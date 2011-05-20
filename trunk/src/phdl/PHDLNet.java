@@ -6,7 +6,8 @@ public class PHDLNet {
 	private String name;
 	private PHDLPinType type;
 	private HashSet<PHDLPin> pins;
-
+	private HashSet<String> tags;
+	
 	public PHDLNet(String name) {
 		this.name = name;
 	}
@@ -38,6 +39,14 @@ public class PHDLNet {
 
 	public void addPin(PHDLPin p) {
 		pins.add(p);
+	}
+	
+	public HashSet<String> getTags() {
+		return tags;
+	}
+	
+	public void addTag(String newTag) {
+		tags.add(newTag);
 	}
 	
 	@Override
