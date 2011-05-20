@@ -1,20 +1,19 @@
 package phdl;
 
+import java.util.HashSet;
+
 public class PHDLNet {
 	private String name;
-	private PHDLNetType type;
-	private int msb;
-	private int lsb;
+	private PHDLPinType type;
+	private HashSet<PHDLPin> pins;
 
 	public PHDLNet(String name) {
 		this.name = name;
 	}
 
-	public PHDLNet(String name, PHDLNetType type, int msb, int lsb) {
+	public PHDLNet(String name, PHDLPinType type) {
 		this.name = name;
 		this.type = type;
-		this.msb = msb;
-		this.lsb = lsb;
 	}
 
 	public String getName() {
@@ -25,32 +24,20 @@ public class PHDLNet {
 		this.name = name;
 	}
 
-	public PHDLNetType getType() {
+	public PHDLPinType getType() {
 		return type;
 	}
 
-	public void setType(PHDLNetType type) {
+	public void setType(PHDLPinType type) {
 		this.type = type;
 	}
 
-	public int getMsb() {
-		return msb;
+	public HashSet<PHDLPin> getPins() {
+		return pins;
 	}
 
-	public void setMsb(int msb) {
-		this.msb = msb;
-	}
-
-	public int getLsb() {
-		return lsb;
-	}
-
-	public void setLsb(int lsb) {
-		this.lsb = lsb;
-	}
-
-	public int getWidth() {
-		return msb - lsb + 1;
+	public void addPin(PHDLPin p) {
+		pins.add(p);
 	}
 
 }
