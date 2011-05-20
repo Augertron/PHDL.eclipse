@@ -6,11 +6,6 @@ options {
   ASTLabelType=CommonTree;
 }
 
-tokens {
-  DESIGN;
-  CONFIGURATION;
-}
-
 @header {
   package phdl;
 }
@@ -21,9 +16,9 @@ tokens {
 
 //rules
 sourceText
-	:	includeList
+	:	//includeList
 		design
-	|	library
+	//|	library
 		EOF
 	;	
 
@@ -36,20 +31,12 @@ directiveName
 	;
 
 design
-	:	desToken^ designName 'is'!
-		configuration?
+	:	'design'^ IDENT 'is'!
+		//configuration?
 		(deviceDecl | netDecl)*
 		'begin'!
 		instantiations
 		'end'! ';'!
-	;
-	
-desToken
-	:	'design' -> DESIGN
-	;
-	
-designName
-	:	IDENT
 	;
 
 library
@@ -58,13 +45,9 @@ library
 	;
 	
 configuration
-	:	cfgToken^ cfgName 'is'!
+	:	'configuration'^ cfgName 'is'!
 		((cfgAttr ','!)* cfgAttr)+
 		'end'! ';'!
-	;
-	
-cfgToken
-	:	'configuration' -> CONFIGURATION
 	;
 	
 cfgName
@@ -76,11 +59,11 @@ cfgAttr
 	;
 	
 deviceDecl
-	:	'device' deviceName 'is'
+	:	'device'^ deviceName 'is'!
 		attrDecl
 		'begin'
-		pinDecl+
-		'end' ';'
+		pinDecl
+		'end'! ';'!
 	;
 	
 netDecl
@@ -96,7 +79,7 @@ attrDecl
 	;
 
 pinDecl
-	:	(type width? (pinName ',')* pinName)+ '=' pinNumberList ';'
+	:	((type width? (pinName ',')* pinName)+ '='! pinNumberList ';'!)*
 	;
 	
 pinNumberList
@@ -104,7 +87,7 @@ pinNumberList
 	;
 	
 width
-	:	'[' msb (':' lsb)? ']'
+	:	'['! msb (':'! lsb)? ']'!
 	;
 	
 element
@@ -176,15 +159,15 @@ type
 	;
 	
 pinAssignment
-	:	pinName (width)? '=' ((netName (width)?) | 'open') ';'
+	:	pinName (width)? '='! ((netName (width)?) | 'open') ';'!
 	;
 	
 netAssignment
-	:	netName (width)? '=' netName (width)? ';'
+	:	netName (width)? '='! netName (width)? ';'!
 	;
 	
 attrAssignment
-	:	attrName (width)? '=' attrValue ';'
+	:	attrName (width)? '='^ attrValue ';'!
 	;
 	
 attrName

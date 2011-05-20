@@ -8,6 +8,12 @@ public class PHDLDesign {
 	private HashSet<PHDLNet> nets;
 	private HashSet<PHDLInstance> instances;
 
+	public PHDLDesign() {
+		this.devices = new HashSet<PHDLDevice>();
+		this.nets = new HashSet<PHDLNet>();
+		this.instances = new HashSet<PHDLInstance>();
+	}
+
 	public PHDLDesign(String name) {
 		this.name = name;
 		this.devices = new HashSet<PHDLDevice>();
