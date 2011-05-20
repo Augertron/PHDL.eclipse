@@ -1,18 +1,18 @@
 package phdl;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 public class PHDLInstance {
 	private String instName;
 	private String deviceName;
-	private ArrayList<PHDLAttribute> attributes;
-	private ArrayList<PHDLPin> pins;
+	private HashSet<PHDLAttribute> attributes;
+	private HashSet<PHDLPin> pins;
 
 	public PHDLInstance(String instName, String deviceName) {
 		this.instName = instName;
 		this.deviceName = deviceName;
-		attributes = new ArrayList<PHDLAttribute>();
-		pins = new ArrayList<PHDLPin>();
+		attributes = new HashSet<PHDLAttribute>();
+		pins = new HashSet<PHDLPin>();
 	}
 
 	public String getInstName() {
@@ -31,7 +31,7 @@ public class PHDLInstance {
 		this.deviceName = deviceName;
 	}
 
-	public ArrayList<PHDLAttribute> getAttributes() {
+	public HashSet<PHDLAttribute> getAttributes() {
 		return attributes;
 	}
 
@@ -39,7 +39,7 @@ public class PHDLInstance {
 		attributes.add(a);
 	}
 
-	public ArrayList<PHDLPin> getPins() {
+	public HashSet<PHDLPin> getPins() {
 		return pins;
 	}
 

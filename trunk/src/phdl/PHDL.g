@@ -64,7 +64,7 @@ configuration
 	;
 	
 cfgToken
-	:	'cfg' -> CONFIGURATION
+	:	'configuration' -> CONFIGURATION
 	;
 	
 cfgName
