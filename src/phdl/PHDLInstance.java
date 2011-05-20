@@ -32,29 +32,41 @@ public class PHDLInstance {
 	public void setInstName(String instName) {
 		this.instName = instName;
 	}
+	
+	public PHDLDevice getDevice() {
+		return this.device;
+	}
+	
+	public void setPHDLDevice(PHDLDevice newDevice) {
+		this.device = newDevice;
+	}
 
 	public String getDeviceName() {
-		return deviceName;
+		return device.getName();
 	}
 
 	public void setDeviceName(String deviceName) {
-		this.deviceName = deviceName;
+		device.setName(deviceName);
 	}
 
 	public HashSet<PHDLAttribute> getAttributes() {
-		return attributes;
+		return device.getAttributes();
 	}
 
 	public void addAttribute(PHDLAttribute a) {
-		attributes.add(a);
+		device.addAttribute(a);
 	}
 
 	public HashSet<PHDLPin> getPins() {
-		return pins;
+		return device.getPins();
 	}
 
 	public void addPin(PHDLPin p) {
-		pins.add(p);
+		device.addPin(p);
+	}
+	
+	public int hashCode() {
+		return instName.hashCode();
 	}
 
 }

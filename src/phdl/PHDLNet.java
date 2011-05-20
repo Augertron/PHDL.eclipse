@@ -39,5 +39,10 @@ public class PHDLNet {
 	public void addPin(PHDLPin p) {
 		pins.add(p);
 	}
+	
+	@Override
+	public int hashCode() {
+		return name.hashCode();
+	}
 
 }

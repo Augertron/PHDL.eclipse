@@ -172,6 +172,7 @@ type
 	|	'sup'
 	|	'pwr'
 	|	'open'
+	|	'pin'
 	;
 	
 pinAssignment

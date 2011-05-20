@@ -36,5 +36,10 @@ public class PHDLDevice {
 	public void addPin(PHDLPin p) {
 		pins.add(p);
 	}
+	
+	@Override
+	public int hashCode() {
+		return name.hashCode();
+	}
 
 }
