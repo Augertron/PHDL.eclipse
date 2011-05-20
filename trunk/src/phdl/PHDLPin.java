@@ -2,14 +2,11 @@ package phdl;
 
 public class PHDLPin {
 	private String name;
-	private int msb;
-	private int lsb;
 	private PHDLNet net;
 
-	public PHDLPin(String name, int msb, int lsb) {
+	public PHDLPin(String name) {
 		this.name = name;
-		this.msb = msb;
-		this.lsb = lsb;
+		net = null;
 	}
 
 	public String getName() {
@@ -20,28 +17,17 @@ public class PHDLPin {
 		this.name = name;
 	}
 
-	public int getMsb() {
-		return msb;
-	}
-
-	public void setMsb(int msb) {
-		this.msb = msb;
-	}
-
-	public int getLsb() {
-		return lsb;
-	}
-
-	public void setLsb(int lsb) {
-		this.lsb = lsb;
-	}
-
 	public PHDLNet getNet() {
 		return net;
 	}
 
 	public void setNet(PHDLNet net) {
 		this.net = net;
+	}
+	
+	@Override
+	public int hashCode() {
+		return name.hashCode();
 	}
 
 }

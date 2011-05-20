@@ -24,5 +24,10 @@ public class PHDLAttribute {
 	public void setValue(String value) {
 		this.value = value;
 	}
+	
+	@Override
+	public int hashCode() {
+		return name.hashCode();
+	}
 
 }
