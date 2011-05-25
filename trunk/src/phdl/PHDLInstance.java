@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Collection;
 
 /**
- * A class that models a device instance on a PCB
+ * A class that models a device instance on a PCB.
  * 
  * A device instance that contains an instance name,
  * the name of the device it is modeled after
@@ -30,10 +30,10 @@ public class PHDLInstance {
 	/**
 	 * The device instance netlist
 	 */
-	private HashMap<PHDLNet, HashSet<PHDLPin>> netlist;
+	private PHDLNetList netlist;
 
 	/**
-	 * Default Constructor
+	 * Default Constructor.
 	 * 
 	 * Initializes attribute set and netlist, sets instance name,
 	 * and device
@@ -45,11 +45,11 @@ public class PHDLInstance {
 		this.instName = instName;
 		this.device = device;
 		attributes = device.getAttributes();
-		netlist = new HashMap<PHDLNet, HashSet<PHDLPin>>();
+		netlist = new PHDLNetList();
 	}
 	
 	/**
-	 * Returns the name of the device instance
+	 * Returns the name of the device instance.
 	 * 
 	 * Device instance name accessor method
 	 * 
@@ -60,7 +60,7 @@ public class PHDLInstance {
 	}
 
 	/**
-	 * Changes the name of the device instance
+	 * Changes the name of the device instance.
 	 * 
 	 * Device instance name mutator method
 	 * 
@@ -72,7 +72,7 @@ public class PHDLInstance {
 	
 	/**
 	 * Checks to see if there is a device the instance is
-	 * based on
+	 * based on.
 	 * 
 	 * If the device reference is null, then it is not configured
 	 * 
@@ -87,7 +87,7 @@ public class PHDLInstance {
 	}
 	
 	/**
-	 * Checks to see if all pins are assigned to a net if necessary
+	 * Checks to see if all pins are assigned to a net if necessary.
 	 * 
 	 * @return 	true if the netlist has all the necessary pins
 	 * 			false otherwise
@@ -99,7 +99,7 @@ public class PHDLInstance {
 			fullSet.addAll(s);
 		}
 		for (PHDLPin p : device.getPins()) {
-			if (!fullSet.contains(p)) {
+			if (!fullSet.contains(p) && p.getType() != PHDLPinType.OPEN) {
 				return false;
 			}
 		}
@@ -107,7 +107,7 @@ public class PHDLInstance {
 	}
 	
 	/**
-	 * Returns the name of the device being used as a template
+	 * Returns the name of the device being used as a template.
 	 * 
 	 * Device name accessor method
 	 * 
@@ -118,7 +118,7 @@ public class PHDLInstance {
 	}
 
 	/**
-	 * Changes the name of the device being used
+	 * Changes the name of the device being used.
 	 * 
 	 * Device name mutator method
 	 * 
@@ -129,7 +129,7 @@ public class PHDLInstance {
 	}
 
 	/**
-	 * Returns the device instance attributes
+	 * Returns the device instance attributes.
 	 * 
 	 * Device instance attributes accessor method
 	 * 
@@ -140,7 +140,7 @@ public class PHDLInstance {
 	}
 
 	/**
-	 * Adds a new attribute
+	 * Adds a new attribute.
 	 * 
 	 * Device instance attributes addition method
 	 * 
@@ -151,7 +151,7 @@ public class PHDLInstance {
 	}
 	
 	/**
-	 * Changes an attribute's value
+	 * Changes an attribute's value.
 	 * 
 	 * Attribute value mutator method
 	 * 
@@ -171,7 +171,7 @@ public class PHDLInstance {
 	}
 	
 	/**
-	 * Changes an attribute's value
+	 * Changes an attribute's value.
 	 * 
 	 * Attribute value mutator method
 	 * 
@@ -185,7 +185,7 @@ public class PHDLInstance {
 	}
 
 	/**
-	 * Returns the device pins
+	 * Returns the device pins.
 	 * 
 	 * Device pins accessor method
 	 * 
@@ -196,7 +196,7 @@ public class PHDLInstance {
 	}
 
 	/**
-	 * Adds a new pin to the device
+	 * Adds a new pin to the device.
 	 * 
 	 * Device pin addition method
 	 * 
@@ -207,7 +207,7 @@ public class PHDLInstance {
 	}
 	
 	/**
-	 * Adds a new pin to the device netlist
+	 * Adds a new pin to the device netlist.
 	 * 
 	 * Device netlist addition method
 	 * 
@@ -217,29 +217,22 @@ public class PHDLInstance {
 	 * 		   	false if it was already there
 	 */
 	public boolean addPin(PHDLNet net, PHDLPin pin) {
-		if (netlist.containsKey(net)) {
-			return netlist.get(net).add(pin);
-		}
-		else {
-			netlist.put(net, new HashSet<PHDLPin>());
-			return netlist.get(net).add(pin);
-		}
+		return netlist.addPin(net, pin);
 	}
 	
 	/**
-	 * Return the netlist for the device
+	 * Return the netlist for the device.
 	 * 
 	 * Device netlist accessor method
 	 * 
-	 * @return a HashMap with PHDLNet keys and a HashSet of
-	 * PHDLPins as values
+	 * @return a PHDLNetlist
 	 */
-	public HashMap<PHDLNet, HashSet<PHDLPin>> getNetList() {
+	public PHDLNetList getNetList() {
 		return netlist;
 	}
 	
 	/**
-	 * Creates a hash code for use in hash data structures
+	 * Creates a hash code for use in hash data structures.
 	 * 
 	 * hashCode method to make attributes compatible with hashMaps
 	 * and hashSets
@@ -248,6 +241,30 @@ public class PHDLInstance {
 	 */
 	public int hashCode() {
 		return instName.hashCode();
+	}
+	
+	public static boolean unitTest() {
+		/* 
+		 * Methods Tested
+		 *********************
+		 * getInstName
+		 * setInstName
+		 * isConfigured
+		 * netListComplete
+		 * getDeviceName
+		 * setDeviceName
+		 * getAttributes
+		 * addAttribute
+		 * changeAttribute(1)
+		 * changeAttribute(2)
+		 * getDevicePins
+		 * addDevicePin
+		 * addPin
+		 * getNetList
+		 */
+		boolean success = true;
+		
+		return success;
 	}
 
 }

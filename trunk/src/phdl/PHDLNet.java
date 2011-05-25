@@ -3,7 +3,7 @@ package phdl;
 import java.util.HashSet;
 
 /**
- * A class that represents a net on a PC board
+ * A class that represents a net on a PC board.
  * 
  * Stores a net name and a set of optional tags with
  * additional information
@@ -13,7 +13,7 @@ import java.util.HashSet;
  */
 public class PHDLNet {
 	/**
-	 * the name of the net
+	 * the name of the net.
 	 */
 	private String name;
 	/**
@@ -23,7 +23,7 @@ public class PHDLNet {
 	private HashSet<String> tags;
 	
 	/**
-	 * Default Constructor
+	 * Default Constructor.
 	 * 
 	 * Sets the net name and instantiates a new HashSet
 	 * for the tags
@@ -36,7 +36,7 @@ public class PHDLNet {
 	}
 
 	/**
-	 * Returns the name of the net
+	 * Returns the name of the net.
 	 * 
 	 * Net name accessor method
 	 * 
@@ -47,7 +47,7 @@ public class PHDLNet {
 	}
 
 	/**
-	 * Changes the name of the net
+	 * Changes the name of the net.
 	 * 
 	 * Net name mutator method
 	 * 
@@ -58,7 +58,7 @@ public class PHDLNet {
 	}
 	
 	/**
-	 * Returns a HashSet of the net tags
+	 * Returns a HashSet of the net tags.
 	 * 
 	 * Tags accessor method
 	 * 
@@ -69,7 +69,7 @@ public class PHDLNet {
 	}
 	
 	/**
-	 * Adds a new tag to the net
+	 * Adds a new tag to the net.
 	 * 
 	 * Net tag adder method
 	 * 
@@ -80,12 +80,11 @@ public class PHDLNet {
 	}
 	
 	@Override
-	
 	/**
-	 * Creates a hash code for use in hash data structures
+	 * Creates a hash code for use in hash data structures.
 	 * 
 	 * hashCode method to make attributes compatible with hashMaps
-	 * and hashSets
+	 * and hashSets.
 	 * 
 	 * @return	an integer representing a hash code
 	 */
@@ -93,40 +92,50 @@ public class PHDLNet {
 		return name.hashCode();
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		PHDLNet n = (PHDLNet)o;
+		return name.equals(n.getName());
+	}
+	
 	public static boolean unitTest() {
+		/* 
+		 * Methods Tested
+		 *********************
+		 * getName			X
+		 * addTag			X
+		 * getTags			X
+		 * setName			X
+		 */
 		boolean success = true;
 		PHDLNet net1 = new PHDLNet("noTags");
 		if (!net1.getName().equals("noTags")) {
 			success = false;
-			err("getName()", "noTags", net1.getName());
+			TestDriver.err("getName()", "noTags", net1.getName());
 		}
 		if (!net1.getTags().isEmpty()) {
 			success = false;
-			err("getTags()", "True", "False");
+			TestDriver.err("getTags()", "True", "False");
 		}
 		net1.setName("2Tags");
 		if (!net1.getName().equals("2Tags")) {
 			success = false;
-			err("setName()", "2Tags", net1.getName());
+			TestDriver.err("setName()", "2Tags", net1.getName());
 		}
 		net1.addTag("tag1");
 		net1.addTag("tag2");
 		if (!net1.getTags().contains("tag1")) {
 			success = false;
-			err("getTags()", "Should contain \"tag1\"", "Didn't contain the tag");
+			TestDriver.err("getTags()", "Should contain \"tag1\"", "Didn't contain the tag");
 		}
 		if (!net1.getTags().contains("tag2")) {
 			success = false;
-			err("getTags()", "Should contain \"tag2\"", "Didn't contain the tag");
+			TestDriver.err("getTags()", "Should contain \"tag2\"", "Didn't contain the tag");
 		}
 		
 		return success;
 	}
 	
-	private static void err(String fun, String expected, String actual) {
-		System.out.println("Error in " + fun);
-		System.out.println("\tExpected:" + expected);
-		System.out.println("\tActual: + actual");
-	}
+	
 
 }
