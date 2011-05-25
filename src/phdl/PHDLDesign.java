@@ -3,7 +3,7 @@ package phdl;
 import java.util.HashSet;
 
 /**
- * A class that models a design schematic for a PCB
+ * A class that models a design schematic for a PCB.
  * 
  * A top module class that contains the design name,
  * a set of devices on the board, a set of device
@@ -31,7 +31,7 @@ public class PHDLDesign {
 	private HashSet<PHDLInstance> instances;
 
 	/**
-	 * Default Constructor
+	 * Default Constructor.
 	 * 
 	 * Initializes the sets and sets the design name
 	 * to "default"
@@ -44,7 +44,7 @@ public class PHDLDesign {
 	}
 
 	/**
-	 * Secondary Constructor
+	 * Secondary Constructor.
 	 * 
 	 * Initializes the sets and sets the design name
 	 * to the paramater "name"
@@ -59,7 +59,7 @@ public class PHDLDesign {
 	}
 
 	/**
-	 * Returns the name of the design
+	 * Returns the name of the design.
 	 * 
 	 * Design name accessor method
 	 * 
@@ -70,7 +70,7 @@ public class PHDLDesign {
 	}
 
 	/**
-	 * Changes the name of the design
+	 * Changes the name of the design.
 	 * 
 	 * Design name mutator method
 	 * 
@@ -81,7 +81,7 @@ public class PHDLDesign {
 	}
 
 	/**
-	 * Returns the devices on the board
+	 * Returns the devices on the board.
 	 * 
 	 * Design devices accessor method
 	 * 
@@ -92,7 +92,7 @@ public class PHDLDesign {
 	}
 
 	/**
-	 * Adds a device to the board
+	 * Adds a device to the board.
 	 * 
 	 * Design device addition method
 	 * 
@@ -103,7 +103,7 @@ public class PHDLDesign {
 	}
 
 	/**
-	 * Returns the nets on the board
+	 * Returns the nets on the board.
 	 * 
 	 * Design nets accessor method
 	 * 
@@ -114,7 +114,7 @@ public class PHDLDesign {
 	}
 
 	/**
-	 * Adds a new net to the board
+	 * Adds a new net to the board.
 	 * 
 	 * Design net addition method
 	 * 
@@ -125,7 +125,7 @@ public class PHDLDesign {
 	}
 
 	/**
-	 * Returns the device instances on the board
+	 * Returns the device instances on the board.
 	 * 
 	 * Design device instances accessor method
 	 * 
@@ -136,7 +136,7 @@ public class PHDLDesign {
 	}
 
 	/**
-	 * Adds a new device instance to the PCB
+	 * Adds a new device instance to the PCB.
 	 * 
 	 * Design device instance addition method
 	 * 
@@ -147,12 +147,42 @@ public class PHDLDesign {
 	}
 	
 	/**
-	 * Still to be implemented.  It will collect all
-	 * of the netlists from device instances and mash them
-	 * together
+	 * Still to be implemented.
+	 * It will collect all of the netlists from
+	 * device instances and mash them together
 	 */
 	public PHDLNetList generateNetList() {
 		return null;
+	}
+	
+	/**
+	 * Still to be implemented.
+	 * It will compile a complete netlist and check
+	 * the pins to make sure that, i.e. no two outputs
+	 * are immediately tied together.
+	 * @return 	true if DRC passes,
+	 * 			false, otherwise
+	 */
+	public boolean isValidDRC() {
+		return true;
+	}
+	
+	public static boolean unitTest() {
+		/* 
+		 * Methods Tested
+		 *********************
+		 * getName
+		 * setName
+		 * getDevices
+		 * addDevice
+		 * getNets
+		 * addNet
+		 * getInstances
+		 * addInstance
+		 * generateNetList
+		 */
+		boolean success = true;
+		return success;
 	}
 
 }

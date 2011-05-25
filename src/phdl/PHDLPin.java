@@ -1,7 +1,7 @@
 package phdl;
 
 /**
- * A class that represents a pin on a PC board
+ * A class that represents a pin on a PC board.
  * 
  * A pin that is embodied by a name and a type
  * 
@@ -24,7 +24,7 @@ public class PHDLPin {
 	private int number;
 
 	/**
-	 * Default Constructor
+	 * Default Constructor.
 	 *
 	 * Defaults the pin type to PHDLPinType.PIN
 	 *
@@ -38,7 +38,7 @@ public class PHDLPin {
 	}
 	
 	/**
-	 * Secondary Constructor
+	 * Secondary Constructor.
 	 * 
 	 * Allows for the instantiation of the name and type
 	 * 
@@ -53,7 +53,7 @@ public class PHDLPin {
 	}
 
 	/**
-	 * Returns the name of the pin
+	 * Returns the name of the pin.
 	 * 
 	 * Pin name accessor method
 	 * 
@@ -64,7 +64,7 @@ public class PHDLPin {
 	}
 
 	/**
-	 * Changes the name of the pin
+	 * Changes the name of the pin.
 	 * 
 	 * Pin name mutator method
 	 * 
@@ -75,7 +75,7 @@ public class PHDLPin {
 	}
 
 	/**
-	 * Returns the pin type of the pin
+	 * Returns the pin type of the pin.
 	 * 
 	 * Pin type accessor method
 	 * 
@@ -86,7 +86,7 @@ public class PHDLPin {
 	}
 	
 	/**
-	 * Changes the pin type of the pin
+	 * Changes the pin type of the pin.
 	 * 
 	 * Pin type mutator method
 	 * 
@@ -97,7 +97,7 @@ public class PHDLPin {
 	}
 	
 	/**
-	 * Returns the number of the pin
+	 * Returns the number of the pin.
 	 * 
 	 * Pin number accessor method
 	 * 
@@ -108,7 +108,7 @@ public class PHDLPin {
 	}
 	
 	/**
-	 * Changes the pin number
+	 * Changes the pin number.
 	 * 
 	 * Pin number mutator method
 	 * 
@@ -120,7 +120,7 @@ public class PHDLPin {
 	
 	@Override
 	/**
-	 * Creates a hash code for use in hash data structures
+	 * Creates a hash code for use in hash data structures.
 	 * 
 	 * hashCode method to make attributes compatible with hashMaps
 	 * and hashSets
@@ -131,7 +131,31 @@ public class PHDLPin {
 		return name.hashCode();
 	}
 	
+	@Override
+	public String toString() {
+		return type.name() + " " + name + " " + number;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		PHDLPin p = (PHDLPin)o;
+		if (p.getName().equals(name) && p.getType() == type && p.getNumber() == number) {
+			return true;
+		}
+		return false;
+	}
+	
 	public static boolean unitTest() {
+		/* 
+		 * Methods Tested
+		 *********************
+		 * getName			X
+		 * getType			X
+		 * getNumber		X
+		 * setName			X
+		 * setType			X
+		 * setNumber		X
+		 */
 		boolean success = true;
 		PHDLPin pin1 = new PHDLPin("PinPin1", 1);
 		PHDLPin pin2 = new PHDLPin("PassivePin2", PHDLPinType.PASSIVE, 2);
@@ -147,15 +171,15 @@ public class PHDLPin {
 		int actualP = pin1.getNumber();
 		if (!actualN.equals("PinPin1")) {
 			success = false;
-			err("getName()", "PinPin1", actualN);
+			TestDriver.err("getName()", "PinPin1", actualN);
 		}
 		if (actualT != PHDLPinType.PIN) {
 			success = false;
-			err("getType()", PHDLPinType.PIN.name(), actualT.name());
+			TestDriver.err("getType()", PHDLPinType.PIN.name(), actualT.name());
 		}
 		if (actualP != 1) {
 			success = false;
-			err("getNumber()", ((Integer)1).toString(), ((Integer)actualP).toString());
+			TestDriver.err("getNumber()", ((Integer)1).toString(), ((Integer)actualP).toString());
 		}
 		
 		actualN = pin2.getName();
@@ -163,15 +187,15 @@ public class PHDLPin {
 		actualP = pin2.getNumber();
 		if (!actualN.equals("PassivePin2")) {
 			success = false;
-			err("getName()", "PassivePin2", actualN);
+			TestDriver.err("getName()", "PassivePin2", actualN);
 		}
 		if (actualT != PHDLPinType.PASSIVE) {
 			success = false;
-			err("getType()", PHDLPinType.PASSIVE.name(), actualT.name());
+			TestDriver.err("getType()", PHDLPinType.PASSIVE.name(), actualT.name());
 		}
 		if (actualP != 2) {
 			success = false;
-			err("getNumber()", ((Integer)2).toString(), ((Integer)actualP).toString());
+			TestDriver.err("getNumber()", ((Integer)2).toString(), ((Integer)actualP).toString());
 		}
 		
 		actualN = pin3.getName();
@@ -179,15 +203,15 @@ public class PHDLPin {
 		actualP = pin3.getNumber();
 		if (!actualN.equals("OpenPin3")) {
 			success = false;
-			err("getName()", "OpenPin3", actualN);
+			TestDriver.err("getName()", "OpenPin3", actualN);
 		}
 		if (actualT != PHDLPinType.OPEN) {
 			success = false;
-			err("getType()", PHDLPinType.OPEN.name(), actualT.name());
+			TestDriver.err("getType()", PHDLPinType.OPEN.name(), actualT.name());
 		}
 		if (actualP != 3) {
 			success = false;
-			err("getNumber()", ((Integer)3).toString(), ((Integer)actualP).toString());
+			TestDriver.err("getNumber()", ((Integer)3).toString(), ((Integer)actualP).toString());
 		}
 		
 		
@@ -196,15 +220,15 @@ public class PHDLPin {
 		actualP = pin4.getNumber();
 		if (!actualN.equals("InPin4")) {
 			success = false;
-			err("getName()", "InPin4", actualN);
+			TestDriver.err("getName()", "InPin4", actualN);
 		}
 		if (actualT != PHDLPinType.IN) {
 			success = false;
-			err("getType()", PHDLPinType.IN.name(), actualT.name());
+			TestDriver.err("getType()", PHDLPinType.IN.name(), actualT.name());
 		}
 		if (actualP != 4) {
 			success = false;
-			err("getNumber()", ((Integer)4).toString(), ((Integer)actualP).toString());
+			TestDriver.err("getNumber()", ((Integer)4).toString(), ((Integer)actualP).toString());
 		}
 		
 		
@@ -213,15 +237,15 @@ public class PHDLPin {
 		actualP = pin5.getNumber();
 		if (!actualN.equals("OutPin5")) {
 			success = false;
-			err("getName()", "OutPin5", actualN);
+			TestDriver.err("getName()", "OutPin5", actualN);
 		}
 		if (actualT != PHDLPinType.OUT) {
 			success = false;
-			err("getType()", PHDLPinType.OUT.name(), actualT.name());
+			TestDriver.err("getType()", PHDLPinType.OUT.name(), actualT.name());
 		}
 		if (actualP != 5) {
 			success = false;
-			err("getNumber()", ((Integer)5).toString(), ((Integer)actualP).toString());
+			TestDriver.err("getNumber()", ((Integer)5).toString(), ((Integer)actualP).toString());
 		}
 		
 		
@@ -230,15 +254,15 @@ public class PHDLPin {
 		actualP = pin6.getNumber();
 		if (!actualN.equals("InoutPin6")) {
 			success = false;
-			err("getName()", "InoutPin6", actualN);
+			TestDriver.err("getName()", "InoutPin6", actualN);
 		}
 		if (actualT != PHDLPinType.INOUT) {
 			success = false;
-			err("getType()", PHDLPinType.INOUT.name(), actualT.name());
+			TestDriver.err("getType()", PHDLPinType.INOUT.name(), actualT.name());
 		}
 		if (actualP != 6) {
 			success = false;
-			err("getNumber()", ((Integer)6).toString(), ((Integer)actualP).toString());
+			TestDriver.err("getNumber()", ((Integer)6).toString(), ((Integer)actualP).toString());
 		}
 		
 		
@@ -247,15 +271,15 @@ public class PHDLPin {
 		actualP = pin7.getNumber();
 		if (!actualN.equals("PowerPin7")) {
 			success = false;
-			err("getName()", "PowerPin7", actualN);
+			TestDriver.err("getName()", "PowerPin7", actualN);
 		}
 		if (actualT != PHDLPinType.POWER) {
 			success = false;
-			err("getType()", PHDLPinType.POWER.name(), actualT.name());
+			TestDriver.err("getType()", PHDLPinType.POWER.name(), actualT.name());
 		}
 		if (actualP != 7) {
 			success = false;
-			err("getNumber()", ((Integer)7).toString(), ((Integer)actualP).toString());
+			TestDriver.err("getNumber()", ((Integer)7).toString(), ((Integer)actualP).toString());
 		}
 
 		
@@ -264,15 +288,15 @@ public class PHDLPin {
 		actualP = pin8.getNumber();
 		if (!actualN.equals("SupplyPin8")) {
 			success = false;
-			err("getName()", "SupplyPin8", actualN);
+			TestDriver.err("getName()", "SupplyPin8", actualN);
 		}
 		if (actualT != PHDLPinType.SUPPLY) {
 			success = false;
-			err("getType()", PHDLPinType.SUPPLY.name(), actualT.name());
+			TestDriver.err("getType()", PHDLPinType.SUPPLY.name(), actualT.name());
 		}
 		if (actualP != 8) {
 			success = false;
-			err("getNumber()", ((Integer)8).toString(), ((Integer)actualP).toString());
+			TestDriver.err("getNumber()", ((Integer)8).toString(), ((Integer)actualP).toString());
 		}
 		
 		PHDLPin newPin = new PHDLPin("changePin1", 3);
@@ -281,24 +305,18 @@ public class PHDLPin {
 		newPin.setNumber(9);
 		if (!newPin.getName().equals("I've been changed")) {
 			success = false;
-			err("setName()", "I've been changed", newPin.getName());
+			TestDriver.err("setName()", "I've been changed", newPin.getName());
 		}
 		if (newPin.getType() != PHDLPinType.PASSIVE) {
 			success = false;
-			err("setType()", PHDLPinType.PASSIVE.name(), newPin.getType().name());
+			TestDriver.err("setType()", PHDLPinType.PASSIVE.name(), newPin.getType().name());
 		}
 		if (newPin.getNumber() != 9) {
 			success = false;
-			err("setNumber()", ((Integer)9).toString(), ((Integer)newPin.getNumber()).toString());
+			TestDriver.err("setNumber()", ((Integer)9).toString(), ((Integer)newPin.getNumber()).toString());
 		}
 		
 		return success;
-	}
-	
-	private static void err(String fun, String expected, String actual) {
-		System.out.println("Error in " + fun);
-		System.out.println("\tExpected:" + expected);
-		System.out.println("\tActual: + actual");
 	}
 
 }

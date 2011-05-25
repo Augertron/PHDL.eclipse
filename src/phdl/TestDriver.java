@@ -18,6 +18,11 @@ public class TestDriver {
 		success &= PHDLPin.unitTest();
 		System.out.println("***Testing PHDLNet***");
 		success &= PHDLNet.unitTest();
+		System.out.println("***Testing PHDLAttribute***");
+		success &= PHDLNet.unitTest();
+		System.out.println("***Testing PHDLNetList***");
+		success &= PHDLNetList.unitTest();
+		
 		System.out.println("\n***Testing Complete***");
 		if (success) {
 			System.out.println("***All Tests Successful***");
@@ -25,6 +30,12 @@ public class TestDriver {
 		else {
 			System.out.println("***Some Tests Failed***");
 		}
+	}
+	
+	public static void err(String fun, String expected, String actual) {
+		System.out.println("Error in " + fun);
+		System.out.println("\tExpected: " + expected);
+		System.out.println("\tActual: " + actual);
 	}
 
 }

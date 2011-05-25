@@ -1,6 +1,5 @@
 package phdl;
 /**
- *	PHDLAttribute
  *	A class that stores a name and value.
  *
  *	For example the line of code: 'tolerance = "5%";'
@@ -20,7 +19,7 @@ public class PHDLAttribute {
 	private String value;
 
 	/**
-	 *	Default Constructor
+	 *	Default Constructor.
 	 *
 	 *	Sets the name and value of the attribute
 	 *
@@ -33,7 +32,7 @@ public class PHDLAttribute {
 	}
 
 	/**
-	 * Returns the name of the attribute
+	 * Returns the name of the attribute.
 	 * 
 	 * Attribute name accessor method
 	 * 
@@ -44,7 +43,7 @@ public class PHDLAttribute {
 	}
 
 	/**
-	 * Sets the name of the attribute
+	 * Sets the name of the attribute.
 	 * 
 	 * Attribute name mutator method
 	 * 
@@ -55,7 +54,7 @@ public class PHDLAttribute {
 	}
 	
 	/**
-	 * Returns the value of the attribute
+	 * Returns the value of the attribute.
 	 * 
 	 * Attribute value accessor method
 	 * 
@@ -67,7 +66,7 @@ public class PHDLAttribute {
 	}
 
 	/**
-	 * Changes the current value of the attribute
+	 * Changes the current value of the attribute.
 	 * 
 	 * Attribute value mutator method
 	 * 
@@ -79,7 +78,7 @@ public class PHDLAttribute {
 	
 	@Override
 	/**
-	 * Creates a hash code for use in hash data structures
+	 * Creates a hash code for use in hash data structures.
 	 * 
 	 * hashCode method to make attributes compatible with hashMaps
 	 * and hashSets
@@ -88,6 +87,44 @@ public class PHDLAttribute {
 	 */
 	public int hashCode() {
 		return name.hashCode();
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		PHDLAttribute a = (PHDLAttribute)o;
+		return (a.getName().equals(name) && a.getValue().equals(value));
+	}
+	
+	public static boolean unitTest() {
+		/* 
+		 * Methods Tested
+		 *********************
+		 * getName			X
+		 * getValue			X
+		 * setName			X
+		 * setValue			X
+		 */
+		boolean success = true;
+		PHDLAttribute attr1 = new PHDLAttribute("name1", "value1");
+		if (!attr1.getName().equals("name1")) {
+			success = false;
+			TestDriver.err("getName()", "name1", attr1.getName());
+		}
+		if (!attr1.getValue().equals("value1")) {
+			success = false;
+			TestDriver.err("getValue()", "value1", attr1.getValue());
+		}
+		attr1.setName("newName");
+		attr1.setValue("newValue");
+		if (!attr1.getName().equals("newName")) {
+			success = false;
+			TestDriver.err("setName()", "newName", attr1.getName());
+		}
+		if (!attr1.getValue().equals("newValue")) {
+			success = false;
+			TestDriver.err("setValue()", "newValue", attr1.getValue());
+		}
+		return success;
 	}
 
 }

@@ -3,7 +3,7 @@ package phdl;
 import java.util.HashSet;
 
 /**
- * A class that represents a device definition on a PCB
+ * A class that represents a device definition on a PCB.
  * 
  * Stores a name, a set of attributes, and a set of pins
  * 
@@ -27,7 +27,7 @@ public class PHDLDevice {
 	private HashSet<PHDLPin> pins;
 
 	/**
-	 * Default Constructor
+	 * Default Constructor.
 	 * 
 	 * Sets the name, creates an empty attribute set
 	 * and creates an empty pin set
@@ -41,7 +41,7 @@ public class PHDLDevice {
 	}
 	
 	/**
-	 * Checks to see if there is a "refPrefix" attribute
+	 * Checks to see if there is a "refPrefix" attribute.
 	 * 
 	 * Iterates through the attribute set until an attribute
 	 * with the name "refPrefix" is found
@@ -58,7 +58,7 @@ public class PHDLDevice {
 	}
 	
 	/**
-	 * Returns the value for the "refPrefix" attribute
+	 * Returns the value for the "refPrefix" attribute.
 	 * 
 	 * @return 	the value for the "refPrefix" attribute,
 	 * 			null when it isn't found
@@ -77,7 +77,7 @@ public class PHDLDevice {
 	}
 	
 	/**
-	 * Checks to see if there is a "refDes" attribute
+	 * Checks to see if there is a "refDes" attribute.
 	 * 
 	 * @return 	true if there is a "refDes" attribute
 	 * 			false otherwise
@@ -92,7 +92,7 @@ public class PHDLDevice {
 	}
 	
 	/**
-	 * Returns the value of the "refDes" attribute
+	 * Returns the value of the "refDes" attribute.
 	 * 
 	 * @return	the value of the "refDes" attribute if it exists,
 	 * 			null otherwise
@@ -111,7 +111,7 @@ public class PHDLDevice {
 	}
 	
 	/**
-	 * Returns the name of the device
+	 * Returns the name of the device.
 	 * 
 	 * Device name accessor method
 	 * 
@@ -122,7 +122,7 @@ public class PHDLDevice {
 	}
 
 	/**
-	 * Changes the name of the device
+	 * Changes the name of the device.
 	 * 
 	 * Device name mutator method
 	 * 
@@ -133,7 +133,7 @@ public class PHDLDevice {
 	}
 
 	/**
-	 * Returns the attributes of the device
+	 * Returns the attributes of the device.
 	 * 
 	 * Device attributes accessor method
 	 * 
@@ -144,7 +144,7 @@ public class PHDLDevice {
 	}
 
 	/**
-	 * Adds an attribute to the device
+	 * Adds an attribute to the device.
 	 * 
 	 * Device attribute addition method
 	 * 
@@ -155,7 +155,7 @@ public class PHDLDevice {
 	}
 
 	/**
-	 * Returns the pins of the device
+	 * Returns the pins of the device.
 	 * 
 	 * Device pins accessor method
 	 * 
@@ -166,7 +166,7 @@ public class PHDLDevice {
 	}
 
 	/**
-	 * Adds a new pin to the device
+	 * Adds a new pin to the device.
 	 * 
 	 * Device pins addition method
 	 * 
@@ -178,7 +178,7 @@ public class PHDLDevice {
 	
 	@Override
 	/**
-	 * Creates a hash code for use in hash data structures
+	 * Creates a hash code for use in hash data structures.
 	 * 
 	 * hashCode method to make attributes compatible with hashMaps
 	 * and hashSets
@@ -187,6 +187,26 @@ public class PHDLDevice {
 	 */
 	public int hashCode() {
 		return name.hashCode();
+	}
+	
+	public static boolean unitTest() {
+		/* 
+		 * Methods Tested
+		 *********************
+		 * hasRefDesPrefix
+		 * getRefDesPrefix
+		 * hasRefDesAttr
+		 * getRefDesAttr
+		 * getName
+		 * setName
+		 * getAttributes
+		 * addAttribute
+		 * getPins
+		 * addPin
+		 */
+		boolean success = true;
+		
+		return success;
 	}
 	
 	
