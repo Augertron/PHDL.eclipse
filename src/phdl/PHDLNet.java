@@ -98,6 +98,15 @@ public class PHDLNet {
 		return name.equals(n.getName());
 	}
 	
+	@Override
+	public String toString() {
+		String stags = "";
+		for (String tag : tags) {
+			stags += tag;
+		}
+		return name + stags;
+	}
+	
 	public static boolean unitTest() {
 		/* 
 		 * Methods Tested

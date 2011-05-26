@@ -80,6 +80,12 @@ public class RefDesGenerator {
 		return myString;
 	}
 	
+	public static boolean unitTest() {
+		boolean success = true;
+		
+		return success;
+	}
+	
 	private class csvEntry implements Comparable {
 		private String instName;
 		private String refDes;

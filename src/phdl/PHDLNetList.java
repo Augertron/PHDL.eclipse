@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * A class that represents a netlist
+ * A class that represents a netlist.
  * 
  * Extends a HashSet to simplify the use of the data structure
  * 
@@ -18,7 +18,7 @@ public class PHDLNetList extends HashMap<PHDLNet, HashSet<PHDLPin>> {
 	
 	/**
 	 * Puts all the pins in another netlist into
-	 * this netlist
+	 * this netlist.
 	 * 
 	 * Netlist mass pin addition method
 	 * 
@@ -38,7 +38,7 @@ public class PHDLNetList extends HashMap<PHDLNet, HashSet<PHDLPin>> {
 	}
 	
 	/**
-	 * Adds a pin to the netlist
+	 * Adds a pin to the netlist.
 	 * 
 	 * Netlist addition method
 	 * 
@@ -69,7 +69,7 @@ public class PHDLNetList extends HashMap<PHDLNet, HashSet<PHDLPin>> {
 	}
 	
 	/**
-	 * Removes a pin from the netlist
+	 * Removes a pin from the netlist.
 	 * 
 	 * Netlist pin removal method
 	 * 
@@ -87,7 +87,7 @@ public class PHDLNetList extends HashMap<PHDLNet, HashSet<PHDLPin>> {
 	}
 	
 	/**
-	 * Removes a net from the netlist
+	 * Removes a net from the netlist.
 	 * 
 	 * Netlist net removal method
 	 * 
@@ -100,7 +100,7 @@ public class PHDLNetList extends HashMap<PHDLNet, HashSet<PHDLPin>> {
 	}
 	
 	/**
-	 * Checks to see if a particular pin is in the netlist
+	 * Checks to see if a particular pin is in the netlist.
 	 * 
 	 * Netlist pin verification method
 	 * 
@@ -119,7 +119,7 @@ public class PHDLNetList extends HashMap<PHDLNet, HashSet<PHDLPin>> {
 	}
 	
 	/**
-	 * Checks to see if a particular net is in the netlist
+	 * Checks to see if a particular net is in the netlist.
 	 * 
 	 * Netlist net verification method
 	 * 
@@ -132,7 +132,7 @@ public class PHDLNetList extends HashMap<PHDLNet, HashSet<PHDLPin>> {
 	}
 	
 	/**
-	 * Checks to see if a particular net doesn't have pins
+	 * Checks to see if a particular net doesn't have pins.
 	 * 
 	 * Netlist net emptiness verification method
 	 * 
@@ -150,7 +150,7 @@ public class PHDLNetList extends HashMap<PHDLNet, HashSet<PHDLPin>> {
 	}
 	
 	/**
-	 * Returns the number of pins associated with a net
+	 * Returns the number of pins associated with a net.
 	 * 
 	 * @param net the net to be checked
 	 * @return	the number of pins associated with a net
@@ -163,7 +163,7 @@ public class PHDLNetList extends HashMap<PHDLNet, HashSet<PHDLPin>> {
 	}
 	
 	/**
-	 * Returns the number of nets in the netlist
+	 * Returns the number of nets in the netlist.
 	 * 
 	 * @return the number of nets
 	 */
@@ -195,7 +195,7 @@ public class PHDLNetList extends HashMap<PHDLNet, HashSet<PHDLPin>> {
 		 * getNumberPins	X
 		 * getNumberNets	X
 		 * isNetEmpty		X
-		 * usesValidNets
+		 * usesValidNets	X
 		 */
 		boolean success = true;
 		
@@ -429,6 +429,24 @@ public class PHDLNetList extends HashMap<PHDLNet, HashSet<PHDLPin>> {
 		if (newNetList.getNumberPins(net3) != 1) {
 			success = false;
 			TestDriver.err("addAllPins()", "should have 1 pins in \"net3\"", "has " + newNetList.getNumberPins(net3));
+		}
+		
+		HashSet<PHDLNet> validNets = new HashSet<PHDLNet>();
+		validNets.add(net1);
+		validNets.add(net2);
+		if (newNetList.usesValidNets(validNets)) {
+			success = false;
+			TestDriver.err("usesValidNets()", "is using invalid net \"net3\"", "apparently it is");
+		}
+		validNets.add(net3);
+		if (!newNetList.usesValidNets(validNets)) {
+			success = false;
+			TestDriver.err("usesValidNets()", "is using only valid nets \"net1,\" \"net2,\" and \"net3\"", "apparently it has more");
+		}
+		validNets.add(new PHDLNet("net4"));
+		if (!newNetList.usesValidNets(validNets)) {
+			success = false;
+			TestDriver.err("usesValidNets()", "is using only valid nets \"net1,\" \"net2,\" and \"net3.\"", "an additional net in the set of valid nets is causing the problem");
 		}
 		
 		return success;

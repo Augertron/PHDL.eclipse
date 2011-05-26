@@ -10,6 +10,7 @@ import java.util.HashSet;
  * @author Richard Black and Brad Riching
  * @version 0.1
  */
+
 public class PHDLDevice {
 	/**
 	 * the name of the device
@@ -48,7 +49,7 @@ public class PHDLDevice {
 	 * 
 	 * @return true if "refPrefix" is an attribute, false otherwise
 	 */
-	public boolean hasRefDesPrefix() {
+	public boolean hasRefPrefix() {
 		for (PHDLAttribute a : attributes) {
 			if (a.getName().equals("refPrefix") && a.getValue() != "") {
 				return true;
@@ -63,9 +64,8 @@ public class PHDLDevice {
 	 * @return 	the value for the "refPrefix" attribute,
 	 * 			null when it isn't found
 	 */
-	public String getRefDesPrefix() {
-		if (!hasRefDesPrefix()) {
-			System.err.println("Error - there is no refPrefix attribute in " + name);
+	public String getRefPrefix() {
+		if (!hasRefPrefix()) {
 			return null;
 		}
 		for (PHDLAttribute a : attributes) {
@@ -82,7 +82,7 @@ public class PHDLDevice {
 	 * @return 	true if there is a "refDes" attribute
 	 * 			false otherwise
 	 */
-	public boolean hasRefDesAttr() {
+	public boolean hasRefDes() {
 		for (PHDLAttribute a : attributes) {
 			if (a.getName().equals("refDes") && a.getValue() != "") {
 				return true;
@@ -97,9 +97,8 @@ public class PHDLDevice {
 	 * @return	the value of the "refDes" attribute if it exists,
 	 * 			null otherwise
 	 */
-	public String getRefDesAttr() {
-		if (!hasRefDesAttr()) {
-			System.err.println("Error - there is no refDes attribute in " + name);
+	public String getRefDes() {
+		if (!hasRefDes()) {
 			return null;
 		}
 		for (PHDLAttribute a : attributes) {
@@ -189,22 +188,177 @@ public class PHDLDevice {
 		return name.hashCode();
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		return name.equals(((PHDLDevice)o).getName());
+	}
+	
 	public static boolean unitTest() {
 		/* 
 		 * Methods Tested
 		 *********************
-		 * hasRefDesPrefix
-		 * getRefDesPrefix
-		 * hasRefDesAttr
-		 * getRefDesAttr
-		 * getName
-		 * setName
-		 * getAttributes
-		 * addAttribute
-		 * getPins
-		 * addPin
+		 * getName			X
+		 * setName			X
+		 * getPins			X
+		 * addPin			X
+		 * getAttributes	X
+		 * addAttribute		X
+		 * hasRefPrefix		X
+		 * getRefPrefix		X
+		 * hasRefDes		X
+		 * getRefDes		X
 		 */
 		boolean success = true;
+		
+		PHDLDevice dev1 = new PHDLDevice("dev1");
+		if (!dev1.getName().equals("dev1")) {
+			success = false;
+			TestDriver.err("getName()", "dev1", dev1.getName());
+		}
+		
+		dev1.setName("devRename");
+		if (!dev1.getName().equals("devRename")) {
+			success = false;
+			TestDriver.err("setName()", "devRename", dev1.getName());
+		}
+		
+		HashSet<PHDLPin> pins = dev1.getPins();
+		if (!pins.isEmpty()) {
+			success = false;
+			TestDriver.err("getPins()", "should be empty", "is empty");
+		}
+		
+		PHDLPin pin1 = new PHDLPin("pin1", 1);
+		PHDLPin pin2 = new PHDLPin("pin2", 2);
+		dev1.pins.add(pin1);
+		dev1.pins.add(pin2);
+		
+		pins = dev1.getPins();
+		if (!pins.contains(pin1)) {
+			success = false;
+			TestDriver.err("getPins()", "to contain \"pin1\"", "did not");
+		}
+		if (!pins.contains(pin2)) {
+			success = false;
+			TestDriver.err("getPins()", "to contain \"pin2\"", "did not");
+		}
+		dev1.pins.add(pin1);
+		if (pins.size() != 2) {
+			success = false;
+			TestDriver.err("getPins()", "to contain 2 pins", "had " + pins.size());
+		}
+		
+		PHDLPin pin3 = new PHDLPin("pin3", 3);
+		PHDLPin pin4 = new PHDLPin("pin4", 4);
+		PHDLDevice devP = new PHDLDevice("devP");
+		
+		devP.addPin(pin3);
+		devP.addPin(pin4);
+		pins = devP.getPins();
+		
+		if (!pins.contains(pin3)) {
+			success = false;
+			TestDriver.err("addPin()", "to contain \"pin3\"", "did not");
+		}
+		if (!pins.contains(pin4)) {
+			success = false;
+			TestDriver.err("addPin()", "to contain \"pin4\"", "did not");
+		}
+		devP.addPin(pin3);
+		if (pins.size() != 2) {
+			success = false;
+			TestDriver.err("addPin()", "to contain 2 pins", "had " + pins.size());
+		}
+		
+		
+	
+		HashSet<PHDLAttribute> attrs = dev1.getAttributes();
+		if (!attrs.isEmpty()) {
+			success = false;
+			TestDriver.err("getAttributes()", "should be empty", "is empty");
+		}
+		
+		PHDLAttribute attr1 = new PHDLAttribute("attr1", "val1");
+		PHDLAttribute attr2 = new PHDLAttribute("attr2", "val2");
+		dev1.attributes.add(attr1);
+		dev1.attributes.add(attr2);
+	
+		attrs = dev1.getAttributes();
+		if (!attrs.contains(attr1)) {
+			success = false;
+			TestDriver.err("getAttributes()", "to contain \"attr1\"", "did not");
+		}
+		if (!attrs.contains(attr2)) {
+			success = false;
+			TestDriver.err("getAttributes()", "to contain \"attr2\"", "did not");
+		}
+		dev1.attributes.add(attr1);
+		if (attrs.size() != 2) {
+			success = false;
+			TestDriver.err("getAttributes()", "to contain 2 attributes", "had " + attrs.size());
+		}
+		
+		
+		PHDLDevice dev2 = new PHDLDevice("dev2");
+		dev2.addAttribute(attr1);
+		attrs = dev2.getAttributes();
+		if (!attrs.contains(attr1)) {
+			success = false;
+			TestDriver.err("addAttribute()", "should have \"attr1\"", "did not");
+		}
+		dev2.addAttribute(attr2);
+		if (!attrs.contains(attr2)) {
+			success = false;
+			TestDriver.err("addAttribute()", "should have \"attr2\"", "did not");
+		}
+		dev2.addAttribute(attr1);
+		if (attrs.size() != 2) {
+			success = false;
+			TestDriver.err("addAttribute()", "to contain 2 attributes", "had " + attrs.size());
+		}
+		
+		
+		if (dev1.hasRefPrefix()) {
+			success = false;
+			TestDriver.err("hasRefPrefix()", "doesn't contain a ref des prefix", "apparently does");
+		}
+		dev1.addAttribute(new PHDLAttribute("refPrefix","R"));
+		if (!dev1.hasRefPrefix()) {
+			success = false;
+			TestDriver.err("hasRefPrefix()", "contains a ref des prefix of \"R\"", "it doesn't");
+		}
+		
+		String pre = dev2.getRefPrefix();
+		if (pre != null) {
+			success = false;
+			TestDriver.err("getRefPrefix()", "doesn't have a ref des prefix", "supposedly it does: " + pre);
+		}
+		pre = dev1.getRefPrefix();
+		if (!pre.equals("R")) {
+			success = false;
+			TestDriver.err("getRefPrefix()", "should have \"R\" as the prefix", "it has " + pre);
+		}
+		
+		dev1.addAttribute(new PHDLAttribute("refDes", "A"));
+		if (dev2.hasRefPrefix()) {
+			success = false;
+			TestDriver.err("hasRefDes()", "doesn't have a ref des", "supposedly it does");
+		}
+		if (!dev1.hasRefPrefix()) {
+			success = false;
+			TestDriver.err("hasRefDes()", "does have a ref des", "supposedly it doesn't");
+		}
+		
+		String ref = dev2.getRefDes();
+		if (ref != null) {
+			success = false;
+			TestDriver.err("getRefDes()", "doesn't have a ref des", "supposedly it does: " + ref);
+		}
+		ref = dev1.getRefDes();
+		if (!ref.equals("A")) {
+			success = false;
+			TestDriver.err("getRefDes()", "should have \"A\" as the reference", "it has " + ref);
+		}
 		
 		return success;
 	}
