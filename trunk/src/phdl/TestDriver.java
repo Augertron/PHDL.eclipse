@@ -22,6 +22,14 @@ public class TestDriver {
 		success &= PHDLNet.unitTest();
 		System.out.println("***Testing PHDLNetList***");
 		success &= PHDLNetList.unitTest();
+		System.out.println("***Testing PHDLDevice***");
+		success &= PHDLDevice.unitTest();
+		System.out.println("***Testing PHDLInstance***");
+		success &= PHDLInstance.unitTest();
+		System.out.println("***Testing PHDLDesign***");
+		success &= PHDLDesign.unitTest();
+		System.out.println("***Testing RefDesGenerator***");
+		success &= RefDesGenerator.unitTest();
 		
 		System.out.println("\n***Testing Complete***");
 		if (success) {

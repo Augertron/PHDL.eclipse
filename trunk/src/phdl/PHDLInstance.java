@@ -71,6 +71,17 @@ public class PHDLInstance {
 	}
 	
 	/**
+	 * Configures the instance to be based on a device definition.
+	 * 
+	 * @param device the device to model the instance after
+	 */
+	public void configure(PHDLDevice device) {
+		this.device = device;
+		attributes = device.getAttributes();
+		netlist = new PHDLNetList();
+	}
+	
+	/**
 	 * Checks to see if there is a device the instance is
 	 * based on.
 	 * 
@@ -247,12 +258,12 @@ public class PHDLInstance {
 		/* 
 		 * Methods Tested
 		 *********************
-		 * getInstName
-		 * setInstName
-		 * isConfigured
-		 * netListComplete
-		 * getDeviceName
-		 * setDeviceName
+		 * getInstName			X
+		 * setInstName			X
+		 * isConfigured			X
+		 * configure			X
+		 * getDeviceName		X
+		 * setDeviceName		X
 		 * getAttributes
 		 * addAttribute
 		 * changeAttribute(1)
@@ -261,8 +272,77 @@ public class PHDLInstance {
 		 * addDevicePin
 		 * addPin
 		 * getNetList
+		 * netListComplete
 		 */
 		boolean success = true;
+		
+		PHDLInstance inst1 = new PHDLInstance("inst1", null);
+		if (!inst1.getInstName().equals("inst1")) {
+			success = false;
+			TestDriver.err("getInstName()", "inst1", inst1.getInstName());
+		}
+		inst1.setInstName("rename");
+		if (!inst1.getInstName().equals("rename")) {
+			success = false;
+			TestDriver.err("setInstName()", "rename", inst1.getInstName());
+		}
+		
+		if (inst1.isConfigured()) {
+			success = false;
+			TestDriver.err("isConfigured()", "shouldn't be configured", "is configured");
+		}
+		PHDLInstance inst2 = new PHDLInstance("inst2", new PHDLDevice("dev1"));
+		if (!inst2.isConfigured()) {
+			success = false;
+			TestDriver.err("isConfigured()", "should be configured", "isn't configured");
+		}
+		
+		inst1.configure(new PHDLDevice("dev2"));
+		if (!inst1.isConfigured()) {
+			success = false;
+			TestDriver.err("configure()", "should be configured", "isn't configured");
+		}
+		if (!inst1.getAttributes().isEmpty()) {
+			success = false;
+			TestDriver.err("configure()", "configured without attributes", "otherwise");
+		}
+		
+		PHDLDevice dev3 = new PHDLDevice("dev3");
+		dev3.addAttribute(new PHDLAttribute("attr1", "val1"));
+		dev3.addAttribute(new PHDLAttribute("attr2", "val2"));
+		inst2.configure(dev3);
+		if (!inst1.isConfigured()) {
+			success = false;
+			TestDriver.err("configure()", "configured with attributes", "not configured");
+		}
+		if (inst1.getAttributes().size() != 2) {
+			success = false;
+			TestDriver.err("configure()", "configured with 2 attributes", "has size " + inst1.getAttributes().size());
+		}
+		if (!inst1.netlist.isEmpty()) {
+			success = false;
+			TestDriver.err("configure()", "configured -> empty netlist", "non-empty netlist");
+		}
+		if (!inst1.device.equals(dev3)) {
+			success = false;
+			TestDriver.err("configure()", "configured with device \"dev3\"", "not \"dev3\"");
+		}
+		
+		if (!inst2.getDeviceName().equals("dev3")) {
+			success = false;
+			TestDriver.err("getDeviceName()", "dev3", inst2.getDeviceName());
+		}
+		
+		inst2.setDeviceName("rename");
+		if (!inst2.getDeviceName().equals("rename")) {
+			success = false;
+			TestDriver.err("setDeviceName()", "rename", inst2.getDeviceName());
+		}
+		if (!inst2.device.getName().equals("rename")) {
+			success = false;
+			TestDriver.err("setDeviceName()", "rename", inst2.device.getName());
+		}
+		
 		
 		return success;
 	}
