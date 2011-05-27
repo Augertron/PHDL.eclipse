@@ -14,6 +14,7 @@ import java.util.Set;
  *
  */
 
+@SuppressWarnings("serial")
 public class PHDLNetList extends HashMap<PHDLNet, HashSet<PHDLPin>> {
 	
 	/**
@@ -181,6 +182,40 @@ public class PHDLNetList extends HashMap<PHDLNet, HashSet<PHDLPin>> {
 		return true;
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		PHDLNetList nl = (PHDLNetList)o;
+		Set<PHDLNet> set1 = nl.keySet();
+		Set<PHDLNet> set2 = keySet();
+		for (PHDLNet n : set1) {
+			if (!set2.contains(n)) {
+				return false;
+			}
+		}
+		for (PHDLNet n : set2) {
+			if (!set1.contains(n)) {
+				return false;
+			}
+		}
+		for (PHDLNet n : set1) {
+			if (!this.get(n).equals(nl.get(n))) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public String toString() {
+		String ret = "";
+		for (PHDLNet n : this.keySet()) {
+			HashSet<PHDLPin> pins = this.getPins(n);
+			for (PHDLPin p : pins) {
+				ret += p.toString() + "\n";
+			}
+		}
+		return ret;
+	}
+	
 	public static boolean unitTest() {
 		/* 
 		 * Methods Tested
@@ -196,6 +231,7 @@ public class PHDLNetList extends HashMap<PHDLNet, HashSet<PHDLPin>> {
 		 * getNumberNets	X
 		 * isNetEmpty		X
 		 * usesValidNets	X
+		 * equals			X
 		 */
 		boolean success = true;
 		
@@ -448,6 +484,26 @@ public class PHDLNetList extends HashMap<PHDLNet, HashSet<PHDLPin>> {
 			success = false;
 			TestDriver.err("usesValidNets()", "is using only valid nets \"net1,\" \"net2,\" and \"net3.\"", "an additional net in the set of valid nets is causing the problem");
 		}
+		
+		
+		PHDLNetList nl1 = new PHDLNetList();
+		PHDLNetList nl2 = new PHDLNetList();
+		nl1.addPin(net2, pin21);
+		if (nl1.equals(nl2)) {
+			success = false;
+			TestDriver.err("equals()", "nl2 doesn't have net2, pin21", "claims that they are equal");
+		}
+		nl2.addPin(net2, pin21);
+		if (!nl1.equals(nl2)) {
+			success = false;
+			TestDriver.err("equals()", "same netlists", "claims that they are not equal");
+		}
+		nl2.addPin(net1, pin22);
+		if (nl1.equals(nl2)) {
+			success = false;
+			TestDriver.err("equals()", "nl1 doesn't have net1, pin22", "claims that they are equal");
+		}
+		
 		
 		return success;
 	}
