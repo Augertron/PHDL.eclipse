@@ -1,7 +1,6 @@
 package phdl;
 
 import java.util.HashSet;
-import java.util.HashMap;
 import java.util.Collection;
 
 /**
@@ -44,7 +43,12 @@ public class PHDLInstance {
 	public PHDLInstance(String instName, PHDLDevice device) {
 		this.instName = instName;
 		this.device = device;
-		attributes = device.getAttributes();
+		if (this.device != null) {
+			attributes = device.getAttributes();
+		}
+		else {
+			attributes = new HashSet<PHDLAttribute>();
+		}
 		netlist = new PHDLNetList();
 	}
 	
@@ -140,6 +144,74 @@ public class PHDLInstance {
 	}
 
 	/**
+	 * Checks to see if there is a "refPrefix" attribute.
+	 * 
+	 * Iterates through the attribute set until an attribute
+	 * with the name "refPrefix" is found
+	 * 
+	 * @return true if "refPrefix" is an attribute, false otherwise
+	 */
+	public boolean hasRefPrefix() {
+		for (PHDLAttribute a : attributes) {
+			if (a.getName().equals("refPrefix") && a.getValue() != "") {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Returns the value for the "refPrefix" attribute.
+	 * 
+	 * @return 	the value for the "refPrefix" attribute,
+	 * 			null when it isn't found
+	 */
+	public String getRefPrefix() {
+		if (!hasRefPrefix()) {
+			return null;
+		}
+		for (PHDLAttribute a : attributes) {
+			if (a.getName().equals("refPrefix")) {
+				return a.getValue();
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Checks to see if there is a "refDes" attribute.
+	 * 
+	 * @return 	true if there is a "refDes" attribute
+	 * 			false otherwise
+	 */
+	public boolean hasRefDes() {
+		for (PHDLAttribute a : attributes) {
+			if (a.getName().equals("refDes") && a.getValue() != "") {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Returns the value of the "refDes" attribute.
+	 * 
+	 * @return	the value of the "refDes" attribute if it exists,
+	 * 			null otherwise
+	 */
+	public String getRefDes() {
+		if (!hasRefDes()) {
+			return null;
+		}
+		for (PHDLAttribute a : attributes) {
+			if (a.getName().equals("refDes")) {
+				return a.getValue();
+			}
+		}
+		return null;
+	}
+
+	/**
 	 * Returns the device instance attributes.
 	 * 
 	 * Device instance attributes accessor method
@@ -195,6 +267,18 @@ public class PHDLInstance {
 		return changeAttribute(attr.getName(), value);
 	}
 
+	/**
+	 * Returns a reference to the device.
+	 * 
+	 * Device accessor method
+	 * 
+	 * @return the device being used as a mold
+	 * 
+	 */
+	public PHDLDevice getDevice() {
+		return this.device;
+	}
+	
 	/**
 	 * Returns the device pins.
 	 * 
@@ -254,6 +338,16 @@ public class PHDLInstance {
 		return instName.hashCode();
 	}
 	
+	public boolean equals(Object o) {
+		PHDLInstance i = (PHDLInstance)o;
+		return this.instName.equals(i.getInstName());
+	}
+	
+	public String toString() {
+		String ret = instName + " : " + device.getName() + "\n" + netlist.toString();
+		return ret;
+	}
+	
 	public static boolean unitTest() {
 		/* 
 		 * Methods Tested
@@ -264,15 +358,15 @@ public class PHDLInstance {
 		 * configure			X
 		 * getDeviceName		X
 		 * setDeviceName		X
-		 * getAttributes
-		 * addAttribute
-		 * changeAttribute(1)
-		 * changeAttribute(2)
-		 * getDevicePins
-		 * addDevicePin
-		 * addPin
-		 * getNetList
-		 * netListComplete
+		 * getAttributes		X
+		 * addAttribute			X
+		 * changeAttribute(1)	X
+		 * changeAttribute(2)	X
+		 * getDevicePins		X
+		 * addDevicePin			X
+		 * addPin				X
+		 * getNetList			X
+		 * netListComplete		X
 		 */
 		boolean success = true;
 		
@@ -302,7 +396,7 @@ public class PHDLInstance {
 			success = false;
 			TestDriver.err("configure()", "should be configured", "isn't configured");
 		}
-		if (!inst1.getAttributes().isEmpty()) {
+		if (!inst1.attributes.isEmpty()) {
 			success = false;
 			TestDriver.err("configure()", "configured without attributes", "otherwise");
 		}
@@ -311,19 +405,19 @@ public class PHDLInstance {
 		dev3.addAttribute(new PHDLAttribute("attr1", "val1"));
 		dev3.addAttribute(new PHDLAttribute("attr2", "val2"));
 		inst2.configure(dev3);
-		if (!inst1.isConfigured()) {
+		if (!inst2.isConfigured()) {
 			success = false;
 			TestDriver.err("configure()", "configured with attributes", "not configured");
 		}
-		if (inst1.getAttributes().size() != 2) {
+		if (inst2.attributes.size() != 2) {
 			success = false;
 			TestDriver.err("configure()", "configured with 2 attributes", "has size " + inst1.getAttributes().size());
 		}
-		if (!inst1.netlist.isEmpty()) {
+		if (!inst2.netlist.isEmpty()) {
 			success = false;
 			TestDriver.err("configure()", "configured -> empty netlist", "non-empty netlist");
 		}
-		if (!inst1.device.equals(dev3)) {
+		if (!inst2.device.equals(dev3)) {
 			success = false;
 			TestDriver.err("configure()", "configured with device \"dev3\"", "not \"dev3\"");
 		}
@@ -343,6 +437,117 @@ public class PHDLInstance {
 			TestDriver.err("setDeviceName()", "rename", inst2.device.getName());
 		}
 		
+		HashSet<PHDLAttribute> attrs = inst2.getAttributes();
+		if (attrs.size() != 2) {
+			success = false;
+			TestDriver.err("getAttributes()", "size of 2", "size of " + attrs.size());
+		}
+		
+		inst1.addAttribute(new PHDLAttribute("attr3", "val3"));
+		inst1.addAttribute(new PHDLAttribute("attr4", "val4"));
+		attrs = inst1.getAttributes();
+		if (attrs.size() != 2) {
+			success = false;
+			TestDriver.err("addAttribute()", "size of 2", "size of " + attrs.size());
+		}
+		if (!attrs.contains(new PHDLAttribute("attr3", "val3"))) {
+			success = false;
+			TestDriver.err("addAttribute()", "contains \"attr3\"", "doesn't");
+		}
+		if (!attrs.contains(new PHDLAttribute("attr4", "val4"))) {
+			success = false;
+			TestDriver.err("addAttribute()", "contains \"attr4\"", "doesn't");
+		}
+		
+		inst1.changeAttribute("attr3", "newval3");
+		if (!inst1.getAttributes().contains(new PHDLAttribute("attr3","newval3"))) {
+			success = false;
+			TestDriver.err("changeAttribute(1)", "contains modified \"attr3\"", "doesn't");
+		}
+		
+		inst1.changeAttribute(new PHDLAttribute("attr4", "val4"), "newval4");
+		if (!inst1.getAttributes().contains(new PHDLAttribute("attr4","newval4"))) {
+			success = false;
+			TestDriver.err("changeAttribute(2)", "contains modified \"attr4\"", "doesn't");
+		}
+		
+		dev3.addPin(new PHDLPin("pin1", 1));
+		dev3.addPin(new PHDLPin("pin2", 2));
+		dev3.addPin(new PHDLPin("pin3", 3));
+		PHDLInstance inst4 = new PHDLInstance("inst4", dev3);
+		HashSet<PHDLPin> pins = inst4.getDevicePins();
+		if (pins.size() != 3) {
+			success = false;
+			TestDriver.err("getDevicePins()", "size of 3", "size of " + pins.size());
+		}
+		if (!pins.contains(new PHDLPin("pin1", 1))) {
+			success = false;
+			TestDriver.err("getDevicePins()", "contains \"pin1\"", "does not");
+		}
+		if (!pins.contains(new PHDLPin("pin2", 2))) {
+			success = false;
+			TestDriver.err("getDevicePins()", "contains \"pin2\"", "does not");
+		}
+		if (!pins.contains(new PHDLPin("pin3", 3))) {
+			success = false;
+			TestDriver.err("getDevicePins()", "contains \"pin3\"", "does not");
+		}
+		
+		inst4.addDevicePin(new PHDLPin("pin4", 4));
+		pins = inst4.getDevicePins();
+		if (pins.size() != 4) {
+			success = false;
+			TestDriver.err("addDevicePin()", "size of 4", "size of " + pins.size());
+		}
+		if (!pins.contains(new PHDLPin("pin4", 4))) {
+			success = false;
+			TestDriver.err("addDevicePin()", "contains \"pin4\"", "does not");
+		}
+		
+		for (PHDLPin p : pins) {
+			inst4.addPin(new PHDLNet("net1"), p);
+		}
+		PHDLNetList netlist = inst4.netlist;
+		for (PHDLPin p : pins) {
+			if (!netlist.containsPin(p)) {
+				success = false;
+				TestDriver.err("addPin()", "to contain " + p.toString(), "did not");
+			}
+		}
+		
+		
+		if (!netlist.equals(inst4.getNetList())) {
+			success = false;
+			TestDriver.err("getNetList()", "equal netlists", "non-equal");
+		}
+		inst4.addPin(new PHDLNet("net2"), new PHDLPin("pin5", 5));
+		if (!netlist.equals(inst4.getNetList())) {
+			success = false;
+			TestDriver.err("getNetList()", "equal netlists", "non-equal");
+		}
+		
+		
+		PHDLDevice dev5 = new PHDLDevice("dev5");
+		dev5.addPin(new PHDLPin("pin51", 1));
+		dev5.addPin(new PHDLPin("pin52", 2));
+		dev5.addPin(new PHDLPin("pin53", 3));
+		dev5.addPin(new PHDLPin("pin54", 4));
+		
+		PHDLInstance inst5 = new PHDLInstance("inst5", dev5);
+		PHDLNet net5 = new PHDLNet("net5");
+		inst5.addPin(net5, new PHDLPin("pin51", 1));
+		inst5.addPin(net5, new PHDLPin("pin52", 2));
+		inst5.addPin(net5, new PHDLPin("pin53", 3));
+		
+		if (inst5.netListComplete()) {
+			success = false;
+			TestDriver.err("netListComplete()", "doesn't have \"pin54\"", "says netlist is complete");
+		}
+		inst5.addPin(net5, new PHDLPin("pin54", 4));
+		if (!inst5.netListComplete()) {
+			success = false;
+			TestDriver.err("netListComplete()", "is a complete netlist", "says netlist is incomplete");
+		}
 		
 		return success;
 	}
