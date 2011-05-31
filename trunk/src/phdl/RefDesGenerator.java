@@ -7,17 +7,43 @@ import java.util.HashSet;
 import java.util.HashMap;
 import java.util.Set;
 
+/**
+ * A class that generates a reference designation for
+ * each device instance on a PCB.
+ * 
+ * Uses a complete design to generate a .csv file with
+ * the instance name in the left column and the reference
+ * designation in the right column.
+ * 
+ * @author Richard Black and Brad Riching
+ * @version 0.1
+ *
+ */
 public class RefDesGenerator {
 	
 	private HashMap<String, String> myCSV;
 	
-	
+	/**
+	 * Default Constructor.
+	 * 
+	 * Initializes the csv data structure and creates designators
+	 * based on a design.
+	 * 
+	 * @param design the design that the reference designators
+	 * will come from
+	 */
 	public RefDesGenerator(PHDLDesign design) {
-		myCSV = new HashMap<String, String>();
 		analyzeDesign(design);
 	}
 	
+	/**
+	 * Analyzes a design to create reference designators.
+	 * 
+	 * @param design the design that the reference designators
+	 * will come from
+	 */
 	public void analyzeDesign(PHDLDesign design) {
+		myCSV = new HashMap<String, String>();
 		HashSet<PHDLInstance> instances = design.getInstances();
 		resolveHardRef(instances);
 		resolveSoftRef(instances);
@@ -70,7 +96,19 @@ public class RefDesGenerator {
 		}
 	}
 	
+	/**
+	 * Outputs a .csv file with all the reference designators
+	 * for the current design. 
+	 * 
+	 * @param filename the name of the output csv file
+	 * @return	true if the file was successfully created
+	 * 			false otherwise
+	 */
 	public boolean generateCSVFile(String filename) {
+		if (myCSV == null) {
+			System.err.println("The csv data structure has not been initialized.");
+			return false;
+		}
 		String fileContents = toString();
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter(filename));
