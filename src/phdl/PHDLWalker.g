@@ -20,7 +20,7 @@ sourceText returns [PHDLDesign design]
 	;
 	
 design
-	:	^('design' IDENT (deviceDecl | netDecl)*) {design = new PHDLDesign($IDENT.text);}
+	:	^('design' IDENT (deviceDecl)*) {design = new PHDLDesign($IDENT.text);}
 	;
 	
 deviceDecl
@@ -32,13 +32,13 @@ deviceDecl
 		{design.addDevice(device);}
 	;
 	
-netDecl
-	:	^('net' (msb=IDENT ':' lsb=IDENT)?)
-	;	
+//netDecl
+	//:	^('net' (msb=IDENT ':' lsb=IDENT)?)
+	//;
 
-attrDecl[PHDLDevice d]
+attrDecl[PHDLDevice device]
 	:	^('=' name=IDENT value=STRING_LITERAL) 
 		{PHDLAttribute a = new PHDLAttribute($name.text, $value.text);}
-		{d.addAttribute(a);}
+		{device.addAttribute(a);}
 	;
 	
