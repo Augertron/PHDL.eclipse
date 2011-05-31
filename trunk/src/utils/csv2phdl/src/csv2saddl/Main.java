@@ -114,7 +114,7 @@ public class Main {
         it = UnusedHash.keySet().iterator();
         while(it.hasNext()){
             Object KeyString = it.next();
-            System.out.print(((String)KeyString) + "   " + ((TreeMap)UnusedHash.get(KeyString)).size() + " \"" );
+            System.out.print("pin  " + ((String)KeyString) + "   \"" );
             Iterator innerIt = ((TreeMap)UnusedHash.get(KeyString)).keySet().iterator();
             while(innerIt.hasNext()){
                 Object innerKeyString = innerIt.next();
@@ -142,8 +142,7 @@ public class Main {
         Iterator it = SigHash.keySet().iterator();
         while(it.hasNext()){
             Object KeyString = it.next();
-            System.out.print(((String)KeyString) + "  => " + ((String)KeyString) );
-            System.out.println("\"");
+            System.out.println(((String)KeyString) + "  => " + ((String)KeyString) );
         }
 
         System.out.println("\n// Power and dedicated FPGA pins.");
@@ -152,19 +151,17 @@ public class Main {
             Object KeyString = it.next();
             int size = ((TreeMap)PowHash.get(KeyString)).size();
             if (size == 1) {
-                System.out.print(((String)KeyString) + "  => " + ((String)KeyString) );
+                System.out.println(((String)KeyString) + "  => " + ((String)KeyString) );
             } else {
-                System.out.print(((String)KeyString) + "  => (others=>" + ((String)KeyString) + ")" );
+                System.out.println(((String)KeyString) + "  => (others=>" + ((String)KeyString) + ")" );
             }
-            System.out.println("\"");
         }
     
         System.out.println("\n// UNUSED I/O pins.");
         it = UnusedHash.keySet().iterator();
         while(it.hasNext()){
             Object KeyString = it.next();
-            System.out.print(((String)KeyString) + "  => open"  );
-            System.out.println("\"");
+            System.out.println(((String)KeyString) + "  => open"  );
         }
     } 
 
