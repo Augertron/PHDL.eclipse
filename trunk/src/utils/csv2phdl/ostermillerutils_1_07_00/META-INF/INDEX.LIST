@@ -1,9 +1,0 @@
-JarIndex-Version: 1.0
-
-utils.jar
-com
-com/Ostermiller
-com/Ostermiller/util
-gnu
-gnu/getopt
-
