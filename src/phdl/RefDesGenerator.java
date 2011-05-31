@@ -19,46 +19,55 @@ public class RefDesGenerator {
 	
 	public void analyzeDesign(PHDLDesign design) {
 		HashSet<PHDLInstance> instances = design.getInstances();
+		resolveHardRef(instances);
+		resolveSoftRef(instances);
+	}
+	
+	private void resolveHardRef(HashSet<PHDLInstance> instances) {
 		for (PHDLInstance i : instances) {
-			checkAttributes(i.getInstName(), i);
+			if (i.hasRefDes()) {
+				setHardRef(i);
+			}	
 		}
 	}
 	
-	private void checkAttributes(String name, PHDLInstance i) {
+	private void setHardRef(PHDLInstance i) {
+		String name = i.getInstName();
 		HashSet<PHDLAttribute> attributes = i.getAttributes();
-		if (i.hasRefDes()) {
-			for (PHDLAttribute a : attributes) {
-				if (a.getName().equals("refDes")) {
-					resolveHardRef(name, a);
+		for (PHDLAttribute a : attributes) {
+			if (a.getName().equals("refDes")) {
+				String refDes = a.getValue();
+				if (myCSV.containsValue(refDes)) {
+					System.err.println("The refDes \"" + refDes + "\" has already been used.  It will be ignored." );
 				}
-			}
-		}
-		else if (i.hasRefPrefix()) {
-			for (PHDLAttribute a : attributes) {
-				if (a.getName().equals("refPrefix")) {
-					resolveSoftRef(name, a);
+				else {
+					myCSV.put(name, refDes);
 				}
 			}
 		}
 	}
 	
-	private void resolveHardRef(String name, PHDLAttribute a) {
-		String refDes = a.getValue();
-		if (myCSV.containsValue(refDes)) {
-			System.err.println("The refDes \"" + refDes + "\" has already been used.  It will be ignored." );
-		}
-		else {
-			myCSV.put(name, refDes);
+	private void resolveSoftRef(HashSet<PHDLInstance> instances) {
+		for (PHDLInstance i : instances) {
+			if (i.hasRefPrefix() && !i.hasRefDes()) {
+				setSoftRef(i);
+			}
 		}
 	}
 	
-	private void resolveSoftRef(String name, PHDLAttribute a) {
-		String refPrefix = a.getValue();
-		int cnt = 1;
-		while (myCSV.containsValue(refPrefix + cnt)) {
-			cnt++;
+	private void setSoftRef(PHDLInstance i) {
+		String name = i.getInstName();
+		HashSet<PHDLAttribute> attributes = i.getAttributes();
+		for (PHDLAttribute a : attributes) {
+			if (a.getName().equals("refPrefix")) {
+				String refPrefix = a.getValue();
+				int cnt = 1;
+				while (myCSV.containsValue(refPrefix + cnt)) {
+					cnt++;
+				}
+				myCSV.put(name, refPrefix + cnt);
+			}
 		}
-		myCSV.put(name, refPrefix + cnt);
 	}
 	
 	public boolean generateCSVFile(String filename) {
@@ -118,6 +127,18 @@ public class RefDesGenerator {
 		PHDLInstance inst7 = new PHDLInstance("res4", null);
 		inst7.addAttribute(new PHDLAttribute("refPrefix", "R"));	// Will be "R2" or "R4"
 		
+		PHDLInstance inst8 = new PHDLInstance("res5", null);
+		inst8.addAttribute(new PHDLAttribute("refPrefix", "R"));
+		
+		PHDLInstance inst9 = new PHDLInstance("res6", null);
+		inst9.addAttribute(new PHDLAttribute("refPrefix", "R"));
+		
+		PHDLInstance fail1 = new PHDLInstance("fail1", null);
+		fail1.addAttribute(new PHDLAttribute("refDes", "R1"));
+		
+		PHDLInstance inst10 = new PHDLInstance("res7", null);
+		inst10.addAttribute(new PHDLAttribute("refDes", "R2"));
+		
 		/* Output
 		 *******************
 		 *	cap1	C3
@@ -137,6 +158,10 @@ public class RefDesGenerator {
 		desTest.addInstance(inst5);
 		desTest.addInstance(inst6);
 		desTest.addInstance(inst7);
+		desTest.addInstance(inst8);
+		desTest.addInstance(inst9);
+		desTest.addInstance(fail1);
+		desTest.addInstance(inst10);
 		
 		RefDesGenerator rdg = new RefDesGenerator(desTest);
 		success &= rdg.generateCSVFile("rdgTest.csv");
