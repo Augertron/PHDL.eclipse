@@ -5,63 +5,60 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.HashMap;
+import java.util.Set;
 
 public class RefDesGenerator {
 	
-	private HashSet<csvEntry> myCSV;
+	private HashMap<String, String> myCSV;
+	
 	
 	public RefDesGenerator(PHDLDesign design) {
+		myCSV = new HashMap<String, String>();
+		analyzeDesign(design);
+	}
+	
+	public void analyzeDesign(PHDLDesign design) {
 		HashSet<PHDLInstance> instances = design.getInstances();
-		HashMap<String, Integer> refDesCounter = new HashMap<String, Integer>();
-		myCSV = new HashSet<csvEntry>();
-		resolveHardRefDes(instances, refDesCounter);
 		for (PHDLInstance i : instances) {
-			analyzeDevice(i, refDesCounter);
+			checkAttributes(i.getInstName(), i);
 		}
 	}
-
-	private void resolveHardRefDes(HashSet<PHDLInstance> instances,
-			   					   HashMap<String, Integer> refDesCounter) {
-		for (PHDLInstance d : instances) {
-			if (d.hasRefDes()) {
-				String des = d.getRefDes();
-				boolean different = myCSV.add(new csvEntry(d.getInstName(), des)); 
-				if (!different) {
-					System.err.println("The mandated reference designator "
-										+ des
-										+ " for "
-										+ d.getInstName()
-										+ " has already been mandated by another device.");
-					System.exit(1);
+	
+	private void checkAttributes(String name, PHDLInstance i) {
+		HashSet<PHDLAttribute> attributes = i.getAttributes();
+		if (i.hasRefDes()) {
+			for (PHDLAttribute a : attributes) {
+				if (a.getName().equals("refDes")) {
+					resolveHardRef(name, a);
 				}
-				else {
-					System.out.print(des);
-					des = des.replaceAll("[0-9]", " ");
-					des = des.trim();
-					System.out.println("\t" + des);
-					int newCnt = 0;
-					if (refDesCounter.containsKey(des)) {
-						newCnt = refDesCounter.get(des);
-					}
-					refDesCounter.put(des, ++newCnt);
+			}
+		}
+		else if (i.hasRefPrefix()) {
+			for (PHDLAttribute a : attributes) {
+				if (a.getName().equals("refPrefix")) {
+					resolveSoftRef(name, a);
 				}
 			}
 		}
 	}
 	
-	private void analyzeDevice(PHDLInstance d, HashMap<String, Integer> refDesCounter) {
-		if (d.hasRefPrefix() && !d.hasRefDes()) {
-			String prefix = d.getRefPrefix();
-			int newCnt = 0;
-			if (refDesCounter.containsKey(prefix)) {
-				newCnt = refDesCounter.get(prefix);
-			}
-			String newRefDes;
-			do {
-				newRefDes = prefix + (++newCnt);
-			} while (!myCSV.add(new csvEntry(d.getInstName(), newRefDes)));
-			refDesCounter.put(prefix, newCnt);
+	private void resolveHardRef(String name, PHDLAttribute a) {
+		String refDes = a.getValue();
+		if (myCSV.containsValue(refDes)) {
+			System.err.println("The refDes \"" + refDes + "\" has already been used.  It will be ignored." );
 		}
+		else {
+			myCSV.put(name, refDes);
+		}
+	}
+	
+	private void resolveSoftRef(String name, PHDLAttribute a) {
+		String refPrefix = a.getValue();
+		int cnt = 1;
+		while (myCSV.containsValue(refPrefix + cnt)) {
+			cnt++;
+		}
+		myCSV.put(name, refPrefix + cnt);
 	}
 	
 	public boolean generateCSVFile(String filename) {
@@ -80,9 +77,11 @@ public class RefDesGenerator {
 	@Override
 	public String toString() {
 		String myString = "";
-		Object[] csvArray = myCSV.toArray();
-		for (int i = 0; i < myCSV.size(); i++) {
-			myString += csvArray[i].toString();
+		Set<String> instNames = myCSV.keySet();
+		for (String s : instNames) {
+			myString += s;
+			myString += ",";
+			myString += myCSV.get(s);
 			myString += "\n";
 		}
 		return myString;
@@ -143,34 +142,6 @@ public class RefDesGenerator {
 		success &= rdg.generateCSVFile("rdgTest.csv");
 		
 		return success;
-	}
-	
-	private class csvEntry implements Comparable {
-		private String instName;
-		private String refDes;
-		
-		public csvEntry(String instName, String refDes) {
-			this.instName = instName;
-			this.refDes = refDes;
-		}
-		
-		public void setRefDes(String refDes) {
-			this.refDes = refDes;
-		}
-		
-		public String getRefDes() {
-			return refDes;
-		}
-		
-		@Override
-		public String toString() {
-			return instName + "," + refDes;
-		}
-		
-		@Override
-		public int compareTo(Object other) {
-			return this.toString().compareTo(((csvEntry)other).toString());
-		}
 	}
 	
 }
