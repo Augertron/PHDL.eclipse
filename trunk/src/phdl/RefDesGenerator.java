@@ -107,7 +107,7 @@ public class RefDesGenerator {
 		PHDLDesign desTest = new PHDLDesign("desTest");
 		PHDLInstance inst1 = new PHDLInstance("res1", null);
 		inst1.addAttribute(new PHDLAttribute("refPrefix", "R"));	// Will start off as "R1"
-																	// But will be overridden to "R2" or "R4"
+																	// But will be overridden to "R4, R5, R6, R7" 
 		PHDLInstance inst2 = new PHDLInstance("cap1", null);
 		inst2.addAttribute(new PHDLAttribute("refDes", "C3"));		// Will be "C3"
 		
@@ -125,30 +125,34 @@ public class RefDesGenerator {
 		inst6.addAttribute(new PHDLAttribute("refDes", "R3"));		// Will be "R3"
 		
 		PHDLInstance inst7 = new PHDLInstance("res4", null);
-		inst7.addAttribute(new PHDLAttribute("refPrefix", "R"));	// Will be "R2" or "R4"
+		inst7.addAttribute(new PHDLAttribute("refPrefix", "R"));	// "R4, R5, R6, R7"
 		
 		PHDLInstance inst8 = new PHDLInstance("res5", null);
-		inst8.addAttribute(new PHDLAttribute("refPrefix", "R"));
+		inst8.addAttribute(new PHDLAttribute("refPrefix", "R"));	// "R4, R5, R6, R7"
 		
 		PHDLInstance inst9 = new PHDLInstance("res6", null);
-		inst9.addAttribute(new PHDLAttribute("refPrefix", "R"));
+		inst9.addAttribute(new PHDLAttribute("refPrefix", "R"));	// "R4, R5, R6, R7"
 		
-		PHDLInstance fail1 = new PHDLInstance("fail1", null);
+		PHDLInstance fail1 = new PHDLInstance("fail1", null);		// Will be ignored
 		fail1.addAttribute(new PHDLAttribute("refDes", "R1"));
 		
 		PHDLInstance inst10 = new PHDLInstance("res7", null);
-		inst10.addAttribute(new PHDLAttribute("refDes", "R2"));
+		inst10.addAttribute(new PHDLAttribute("refDes", "R2"));		// Will be "R2"
 		
 		/* Output
 		 *******************
 		 *	cap1	C3
 		 *	ind1	L1
 		 *	opAmp1	J2
-		 *	res1	R4 (or R2)
+		 *	res1	(R4, R5, R6, R7)
 		 *	res2	R1
 		 *	res3	R3
-		 *	res4	R2 (or R4)
-		 ******************* 
+		 *	res4	(R4, R5, R6, R7)
+		 *	res5	(R4, R5, R6, R7)
+		 *	res6	(R4, R5, R6, R7)
+		 *	res7	R2
+		 *******************
+		 *	Make sure that fail1 is not in the CSV file 
 		 */
 		
 		desTest.addInstance(inst1);
