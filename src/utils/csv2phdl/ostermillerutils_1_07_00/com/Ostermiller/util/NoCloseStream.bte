@@ -1,0 +1,77 @@
+<%bte.doc super="item.bte" %>
+<%bte.tpl name=pageTitle%>NoClose Streams<%/bte.tpl%>
+<%bte.tpl name=description%>Create streams that cannot be closed with the regular close() mechanism.<%/bte.tpl%>
+<%bte.tpl name=keywords%>no close stream, noclosestream, unclosable stream library, java stream that can't be closed<%/bte.tpl%>
+<%bte.tpl name=content%>
+<p>Create streams that cannot be closed with the normal close() mechanism.  Instead, a reallyClose() method is provided while the close() method does nothing.</p>
+<%/bte.tpl%>
+<%bte.tpl name=content%>
+<p>This is useful when you have a stream to pass to methods that either read or write using the stream.  If any of the methods call the stream's close method before you are done with the stream, this class is useful.  Simply wrap your stream in one of the NoClose Streams, and pass that around.  When the other method calls the close method it will have no effect.  You can later close your stream by calling the reallyClose() method.</p>
+
+<h2>NoCloseStream</h2>
+
+Interface for all four of the following classes.
+
+<h2>NoCloseInputStream</h2>
+
+<div class=examplecode><h3>Example</h3>
+<pre><span class=comment>// prevent system.in from being closed
+</span><span class=identifier>NoCloseInputStream in </span><span class=operator>= </span><span class=reservedWord>new </span><span class=identifier>NoCloseInputStream</span><span class=separator>(</span><span class=identifier>System</span><span class=separator>.</span><span class=identifier>in</span><span class=separator>);
+</span><span class=comment>// pass in to other classes:
+/* somebodyelse.dosomething(in); */
+</span><span class=identifier>in</span><span class=separator>.</span><span class=identifier>reallyClose</span><span class=separator>();</span></pre>
+</div>
+
+<br clear=all>
+
+<h2>NoCloseOutputStream</h2>
+
+<div class=examplecode><h3>Example</h3>
+<pre><span class=comment>// prevent system.out from being closed
+</span><span class=identifier>NoCloseOutputStream out </span><span class=operator>= </span><span class=reservedWord>new </span><span class=identifier>NoCloseOutputStream</span><span class=separator>(</span><span class=identifier>System</span><span class=separator>.</span><span class=identifier>out</span><span class=separator>);
+</span><span class=comment>// pass out to other classes:
+/* somebodyelse.dosomething(out); */
+</span><span class=identifier>out</span><span class=separator>.</span><span class=identifier>reallyClose</span><span class=separator>();</span></pre>
+</div>
+
+<br clear=all>
+
+<h2>NoCloseReader</h2>
+
+<div class=examplecode><h3>Example</h3>
+<pre></span><span class=comment>// prevent a file reader from being closed
+</span><span class=identifier>NoCloseReader in </span><span class=operator>= </span><span class=reservedWord>new </span><span class=identifier>NoCloseReader</span><span class=separator>(</span><span class=reservedWord>new </span><span class=identifier>FileReader</span><span class=separator>(</span><span class=literal>&quot;file.txt&quot;</span><span class=separator>));
+</span><span class=comment>// pass in to other classes:
+/* somebodyelse.dosomething(in); */
+</span><span class=identifier>in</span><span class=separator>.</span><span class=identifier>reallyClose</span><span class=separator>();</span></pre>
+</div>
+
+<br clear=all>
+
+<h2>NoCloseWriter</h2>
+
+<div class=examplecode><h3>Example</h3>
+<pre><span class=comment>// prevent a file writer from being closed
+</span><span class=identifier>NoCloseWriter out </span><span class=operator>= </span><span class=reservedWord>new </span><span class=identifier>NoCloseWriter</span><span class=separator>(</span><span class=reservedWord>new </span><span class=identifier>FileWriter</span><span class=separator>(</span><span class=literal>&quot;file.txt&quot;</span><span class=separator>));
+</span><span class=comment>// pass out to other classes:
+/* somebodyelse.dosomething(out); */
+</span><span class=identifier>out</span><span class=separator>.</span><span class=identifier>reallyClose</span><span class=separator>();</span></pre>
+</div>
+
+<%/bte.tpl%>
+<%bte.tpl name=linkNoCloseStream%><b>NoClose Streams</b>
+<ul>
+<li><a href="NoCloseStream.java.html">NoCloseStream Source</a></li>
+<li><a href="doc/com/Ostermiller/util/NoCloseStream.html">NoCloseStream Documentation</a></li>
+<li><a href="NoCloseInputStream.java.html">NoCloseInputStream Source</a></li>
+<li><a href="doc/com/Ostermiller/util/NoCloseInputStream.html">NoCloseInputStream Documentation</a></li>
+<li><a href="NoCloseOutputStream.java.html">NoCloseOutputStream Source</a></li>
+<li><a href="doc/com/Ostermiller/util/NoCloseOutputStream.html">NoCloseOutputStream Documentation</a></li>
+<li><a href="NoCloseReader.java.html">NoCloseReader Source</a></li>
+<li><a href="doc/com/Ostermiller/util/NoCloseReader.html">NoCloseReader Documentation</a></li>
+<li><a href="NoCloseWriter.java.html">NoCloseWriter Source</a></li>
+<li><a href="doc/com/Ostermiller/util/NoCloseWriter.html">NoCloseWriter Documentation</a></li>
+<li><a href="http://bugzilla.ostermiller.com/buglist.cgi?product=JavaUtils&component=NoClose+Streams5&bug_status=UNCONFIRMED&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED">Bugs/Features</a></li>
+</ul>
+<%/bte.tpl%>
+<%/bte.doc%>
