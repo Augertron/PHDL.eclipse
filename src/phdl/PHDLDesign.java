@@ -51,7 +51,7 @@ public class PHDLDesign {
 	 * Default Constructor.
 	 * 
 	 * Initializes the sets and sets the design name
-	 * to "default"
+	 * to "untitled"
 	 */
 	public PHDLDesign() {
 		this.name = "untitled";
