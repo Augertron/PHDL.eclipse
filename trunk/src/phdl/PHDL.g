@@ -1,3 +1,26 @@
+/*
+    Copyright (C) 2011  BYU Configurable Computing Lab
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/**
+ * A grammar to lex and parse a PHDL source file.
+ * 
+ * @author Richard Black and Brad Riching
+ * @version 0.1
+ */
 grammar PHDL;
 
 options {
@@ -21,9 +44,7 @@ options {
 /** The source text contains a design
  */
 sourceText
-	:
-		design
-		EOF
+	:	designDecl EOF
 	;	
 
 /** A design contains all relevant information about the PCB design.  Between the keywords
@@ -31,33 +52,14 @@ sourceText
  * any order.  Following the "begin" keyword, instantiations are located.  The design is terminated with 
  * the "end" keyword and a semicolon.
  */
-design
-	:	'design'^ IDENT 'is'!
-		//configuration?
+designDecl
+	:	//promote the keyword "design" to the root of the subtree, and ignore the keyword "is"
+		'design'^ IDENT 'is'! 
+		//zero or more device or net declarations may follow
 		(deviceDecl | netDecl)*
 		'begin'
 		instantiations
-		'end'! ';'!
-	;
-	
-/** Not yet implemented. 
- */
-configuration
-	:	'configuration'^ cfgName 'is'!
-		((cfgAttr ','!)* cfgAttr)+
-		'end'! ';'!
-	;
-
-/** Not yet implemented. 
- */	
-cfgName
-	:	IDENT
-	;
-
-/** Not yet implemented. 
- */	
-cfgAttr
-	:	IDENT
+		'end'! SEMI!
 	;
 
 /** A device declaration contains information about a deviced used in the design.  The device name is 
@@ -66,11 +68,20 @@ cfgAttr
  * with the "end" keyword and a semicolon.
  */	
 deviceDecl
-	:	'device'^ deviceName 'is'!
-		attrDecl
+	:	'device'^ IDENT 'is'!
+		attributeDecl*
 		'begin'
-		pinDecl
-		'end'! ';'!
+		pinVectorDecl*
+		'end'! SEMI!
+	;
+	
+attributeDecl
+	:	//promote the "=" sign to the root of the subtree, and ignor the semicolon
+		IDENT EQUALS^ STRING_LITERAL SEMI!
+	;
+	
+pinVectorDecl
+	:	IDENT width? IDENT EQUALS^ STRING_LITERAL SEMI!
 	;
 
 /** A net declaration contains information about a net used in the design.  Nets are declared with the
@@ -80,129 +91,59 @@ deviceDecl
  * declaration is terminated in a semicolon.
  */	
 netDecl
-	:	'net' (width)? (netName ',')* netName (':' (netAttr ',')* netAttr)? ';'
-	;
-
-	
-netAttr
-	:	STRING_LITERAL
-	;
-	
-attrDecl
-	:	attrAssignment*
-	;
-
-pinDecl
-	:	((type width? (pinName ',')* pinName)+ '='! pinNumberList ';'!)*
-	;
-	
-pinNumberList
-	:	STRING_LITERAL
+	:	'net'^ (width)? (IDENT COMMA!)* IDENT (COLON (STRING_LITERAL COMMA!)* STRING_LITERAL)? SEMI!
 	;
 	
 width
-	:	'['! msb (':'! lsb)? ']'!
+	:	'['! INT ':'! INT ']'!
 	;
-	
-element
-	:	INT
-	;
-	
-msb
-	: 	INT
-	;
-	
-lsb
-	:	INT
-	;
-	
-netName
-	:	IDENT
-	;
-
 	
 instantiations
 	:	(instance | subSch | netAssignment)*
 	;
 	
 instance
-	:	'inst' instanceName ':' deviceName (width)? 'is'
-		(attrAssignment)*
+	:	'inst' IDENT ':' IDENT (width)? 'is'
+		//attributeList
 		'begin'
-		(pinAssignment)*
+		pinAssignment*
 		'end' ';'
 	;
 	
 subSch
-	:	'subSch' subSchInstanceName ':' subSchName (width)? 'is'
-		(attrAssignment)*
+	:	'subSch' IDENT ':' IDENT (width)? 'is'
+		//attributeList
 		'begin'
-		(pinAssignment)*
+		pinAssignment*
 		'end' ';'
 	;
 	
-subSchInstanceName
-	:	IDENT
-	;
-
-subSchName
-	:	IDENT
-	;
-
-instanceName
-	:	IDENT
-	;
-	
-deviceName
-	:	IDENT
-	;
-
-pinName
-	:	IDENT
-	;
-	
-type
-	:	'in'
-	|	'out'
-	|	'inout'
-	|	'pass'
-	|	'sup'
-	|	'pwr'
-	|	'open'
-	|	'pin'
-	;
-	
 pinAssignment
-	:	pinName (width)? '='! ((netName (width)?) | 'open') ';'!
+	:	IDENT (width)? EQUALS ((IDENT (width)?) | 'open') SEMI!
 	;
 	
 netAssignment
-	:	netName (width)? '='! netName (width)? ';'!
-	;
-	
-attrAssignment
-	:	attrName (width)? '='^ attrValue ';'!
-	;
-	
-attrName
-	:	IDENT
-	;
-	
-attrValue
-	:	STRING_LITERAL
+	:	IDENT (width)? EQUALS IDENT (width)? SEMI!
 	;
 
 /*------------------------------------------------------------------------------------------------------ 
  * Lexer Rules
  *------------------------------------------------------------------------------------------------------*/
-fragment CHAR : ('a'..'z') | ('A'..'Z') | '_' | '-' | '+' | '%' | '.' | '$' | '*';
-
+ 
+//single character definitions
+fragment CHAR : ('a'..'z') | ('A'..'Z') | '_' | '+' | '-';
 fragment DIGIT : '0'..'9' ;
+SEMI: ';';
+COLON: ':';
+COMMA: ',';
+EQUALS: '=';
+LBRACKET: '[';
+RBRACKET: ']';
 
-fragment COMMA : ',' ;
-
+// an integer is one or more digits
 INT : DIGIT+;
 
+// s string literal has its wrapping quotes removed
 STRING_LITERAL 
 	: 	'"' 
 		{StringBuilder sb = new StringBuilder();}
@@ -213,18 +154,24 @@ STRING_LITERAL
 		{setText(sb.toString());}
 	;
 
+// identifiers may not begin with a digit
 IDENT 
 	: CHAR ( CHAR | DIGIT )*
 	;
 
+// whitespace can be a space, tab, newline, carriage return, form feed
 WHITESPACE 
 	: (' ' | '\t' | '\n' | '\r' | '\f' | '\u001D')+ {$channel = HIDDEN;}
 	;
-	
+
+// line comments begin with the double slash
 LINE_COMMENT 
 	: '//' .* ('\n' | '\r' ) {$channel = HIDDEN;}
 	;
-	
+
+// multiline comments begin with /* and end with the */ terminator
 MULTILINE_COMMENT 
 	: '/*' .* '*/' {$channel = HIDDEN;}
 	;
+
+
