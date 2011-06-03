@@ -18,35 +18,47 @@
 package phdl;
 
 /**
- *	A class that stores a name and value.
- *
- *	For example the line of code: 'tolerance = "5%";'
- *  would translate to name = "tolerance" and value = "5%"
- *  
- *  @author		Richard Black and Brad Riching
- *  @version	0.1
+ * A class that stores a name and value.
+ * 
+ * For example the line of code: 'tolerance = "5%";' would translate to name =
+ * "tolerance" and value = "5%"
+ * 
+ * @author Richard Black and Brad Riching
+ * @version 0.1
  */
 public class PHDLAttribute {
 	/**
-	 *	Contains the attribute's name 
+	 * Contains the attribute's name
 	 */
 	private String name;
 	/**
-	 *	Contains the attribute's value 
+	 * Contains the attribute's value
 	 */
 	private String value;
+	/**
+	 * the line number of the attribute
+	 */
+	private int line;
+	/**
+	 * the column position of the attribute
+	 */
+	private int pos;
 
 	/**
-	 *	Default Constructor.
-	 *
-	 *	Sets the name and value of the attribute
-	 *
-	 *	@param name	the name of the new attribute
-	 *	@param name the value of the new attribute
+	 * Default Constructor.
+	 * 
+	 * Sets the name and value of the attribute
+	 * 
+	 * @param name
+	 *            the name of the new attribute
+	 * @param name
+	 *            the value of the new attribute
 	 */
-	public PHDLAttribute(String name, String value) {
+	public PHDLAttribute(String name, String value, int line, int pos) {
 		this.name = name;
 		this.value = value;
+		this.line = line;
+		this.pos = pos;
 	}
 
 	/**
@@ -54,7 +66,7 @@ public class PHDLAttribute {
 	 * 
 	 * Attribute name accessor method
 	 * 
-	 * @return 	a string representation of the attribute's name
+	 * @return a string representation of the attribute's name
 	 */
 	public String getName() {
 		return name;
@@ -65,19 +77,19 @@ public class PHDLAttribute {
 	 * 
 	 * Attribute name mutator method
 	 * 
-	 * @param name	the new name of attribute
+	 * @param name
+	 *            the new name of attribute
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	/**
 	 * Returns the value of the attribute.
 	 * 
 	 * Attribute value accessor method
 	 * 
-	 * @return	a string representation of the current
-	 * 			value of the attribute
+	 * @return a string representation of the current value of the attribute
 	 */
 	public String getValue() {
 		return value;
@@ -88,12 +100,13 @@ public class PHDLAttribute {
 	 * 
 	 * Attribute value mutator method
 	 * 
-	 * @param value	the new value of the attribute
+	 * @param value
+	 *            the new value of the attribute
 	 */
 	public void setValue(String value) {
 		this.value = value;
 	}
-	
+
 	@Override
 	/**
 	 * Creates a hash code for use in hash data structures.
@@ -106,43 +119,45 @@ public class PHDLAttribute {
 	public int hashCode() {
 		return name.hashCode();
 	}
-	
+
 	@Override
 	public boolean equals(Object o) {
-		PHDLAttribute a = (PHDLAttribute)o;
+		PHDLAttribute a = (PHDLAttribute) o;
 		return (a.getName().equals(name) && a.getValue().equals(value));
 	}
-	
-	public static boolean unitTest() {
-		/* 
-		 * Methods Tested
-		 *********************
-		 * getName			X
-		 * getValue			X
-		 * setName			X
-		 * setValue			X
-		 */
-		boolean success = true;
-		PHDLAttribute attr1 = new PHDLAttribute("name1", "value1");
-		if (!attr1.getName().equals("name1")) {
-			success = false;
-			TestDriver.err("getName()", "name1", attr1.getName());
-		}
-		if (!attr1.getValue().equals("value1")) {
-			success = false;
-			TestDriver.err("getValue()", "value1", attr1.getValue());
-		}
-		attr1.setName("newName");
-		attr1.setValue("newValue");
-		if (!attr1.getName().equals("newName")) {
-			success = false;
-			TestDriver.err("setName()", "newName", attr1.getName());
-		}
-		if (!attr1.getValue().equals("newValue")) {
-			success = false;
-			TestDriver.err("setValue()", "newValue", attr1.getValue());
-		}
-		return success;
+
+	@Override
+	public String toString() {
+		return "Attribute[" + line + ":" + pos + "]: " + name + " = " + value
+				+ "\n";
 	}
+
+	// public static boolean unitTest() {
+	// /*
+	// * Methods Tested******************** getName X getValue X setName X
+	// * setValue X
+	// */
+	// boolean success = true;
+	// PHDLAttribute attr1 = new PHDLAttribute("name1", "value1");
+	// if (!attr1.getName().equals("name1")) {
+	// success = false;
+	// TestDriver.err("getName()", "name1", attr1.getName());
+	// }
+	// if (!attr1.getValue().equals("value1")) {
+	// success = false;
+	// TestDriver.err("getValue()", "value1", attr1.getValue());
+	// }
+	// attr1.setName("newName");
+	// attr1.setValue("newValue");
+	// if (!attr1.getName().equals("newName")) {
+	// success = false;
+	// TestDriver.err("setName()", "newName", attr1.getName());
+	// }
+	// if (!attr1.getValue().equals("newValue")) {
+	// success = false;
+	// TestDriver.err("setValue()", "newValue", attr1.getValue());
+	// }
+	// return success;
+	// }
 
 }
