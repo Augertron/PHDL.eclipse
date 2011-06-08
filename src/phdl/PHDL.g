@@ -44,7 +44,7 @@ options {
 /** The source text contains a design
  */
 sourceText
-	:	designDecl EOF
+	:	designDecl* EOF
 	;	
 
 /** A design contains all relevant information about the PCB design.  Between the keywords
@@ -53,13 +53,24 @@ sourceText
  * the "end" keyword and a semicolon.
  */
 designDecl
-	:	//promote the keyword "design" to the root of the subtree, and ignore the keyword "is"
+	:	// promote the keyword "design" to the root of the subtree, and ignore the keyword "is"
 		'design'^ IDENT 'is'! 
-		//zero or more device or net declarations may follow
+		
+		// optional port declarations (for subdesigns) must come before device and net declarations
+		portDecl*
+		
+		// zero or more device or net declarations may follow
 		(deviceDecl | netDecl)*
+		
 		'begin'
-		instantiations
+		
+		// all of the instantiated devices, nets, subdesigns
+		instances
 		'end'! SEMI!
+	;
+
+portDecl
+	:	'port'! type^ width? IDENT SEMI!
 	;
 
 /** A device declaration contains information about a deviced used in the design.  The device name is 
@@ -71,17 +82,29 @@ deviceDecl
 	:	'device'^ IDENT 'is'!
 		attributeDecl*
 		'begin'
-		pinVectorDecl*
+		pinDecl*
 		'end'! SEMI!
 	;
 	
 attributeDecl
-	:	//promote the "=" sign to the root of the subtree, and ignor the semicolon
+	:	//promote the "=" sign to the root of the subtree, and ignore the semicolon
 		IDENT EQUALS^ STRING_LITERAL SEMI!
 	;
 	
-pinVectorDecl
-	:	IDENT width? IDENT EQUALS^ STRING_LITERAL SEMI!
+pinDecl
+	:	//promote the type to the root of the subtree, and ignore the equals and semicolon
+		type^ width? IDENT EQUALS! STRING_LITERAL SEMI!
+	;
+	
+type
+	:	'pin'
+	|	'in'
+	|	'out'
+	|	'inout'
+	|	'passive'
+	|	'supply'
+	|	'power'
+	|	'open'
 	;
 
 /** A net declaration contains information about a net used in the design.  Nets are declared with the
@@ -91,40 +114,61 @@ pinVectorDecl
  * declaration is terminated in a semicolon.
  */	
 netDecl
-	:	'net'^ (width)? (IDENT COMMA!)* IDENT (COLON (STRING_LITERAL COMMA!)* STRING_LITERAL)? SEMI!
+	:	'net'^ (width)? (IDENT COMMA!)* IDENT (COLON (IDENT COMMA!)* IDENT)? SEMI!
 	;
-	
+
+/** A width is an array with MSB and LSB integers separated by a colon inside brackets
+ */	
 width
 	:	'['! INT ':'! INT ']'!
 	;
-	
-instantiations
-	:	(instance | subSch | netAssignment)*
+
+/** An index is an integer inside of parentheses
+ */		
+index
+	:	'('! INT ')'!
 	;
 	
-instance
-	:	'inst' IDENT ':' IDENT (width)? 'is'
-		//attributeList
-		'begin'
-		pinAssignment*
-		'end' ';'
+instances
+	:	(deviceInstance | subDesignInstance | netAssignment)*
 	;
 	
-subSch
-	:	'subSch' IDENT ':' IDENT (width)? 'is'
-		//attributeList
+deviceInstance
+	:	'inst'^ IDENT ':'! IDENT (width)? 'is'!
+		attributeAssignment*
 		'begin'
 		pinAssignment*
-		'end' ';'
+		'end'! ';'!
+	;
+	
+subDesignInstance
+	:	'sub'^ IDENT ':'! IDENT (width)? 'is'!
+		portAssignment*
+		'end'! ';'!
+	;
+	
+attributeAssignment
+	:	IDENT (width | index)? EQUALS^ STRING_LITERAL SEMI!
 	;
 	
 pinAssignment
-	:	IDENT (width)? EQUALS ((IDENT (width)?) | 'open') SEMI!
+	:	IDENT (width | index)? EQUALS^ concatenation SEMI!
+	;
+	
+portAssignment
+	:	IDENT (width | index)? EQUALS^ concatenation SEMI!
 	;
 	
 netAssignment
-	:	IDENT (width)? EQUALS IDENT (width)? SEMI!
+	:	IDENT (width | index)? EQUALS^ concatenation SEMI!
 	;
+	
+concatenation
+	:	((IDENT (width | index)?) ('&'! IDENT (width | index)?)* ) | 'open'
+	;
+
+	
+	
 
 /*------------------------------------------------------------------------------------------------------ 
  * Lexer Rules

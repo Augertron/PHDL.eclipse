@@ -41,19 +41,19 @@ public class PHDLDevice {
 	 */
 	private HashSet<PHDLAttribute> attributes;
 	/**
-	 * the set of pin vectors
+	 * the set of pins
 	 * 
-	 * @see PHDLPinVector
+	 * @see PHDLPin
 	 */
-	private HashSet<PHDLPinVector> pinVectors;
+	private HashSet<PHDLPin> pins;
 	/**
 	 * the line number of the device
 	 */
-	private int line;
+	private int line = 0;
 	/**
 	 * the column position of the device
 	 */
-	private int pos;
+	private int pos = 0;
 
 	/**
 	 * Default Constructor.
@@ -67,13 +67,13 @@ public class PHDLDevice {
 	public PHDLDevice(String name) {
 		this.name = name;
 		attributes = new HashSet<PHDLAttribute>();
-		pinVectors = new HashSet<PHDLPinVector>();
+		pins = new HashSet<PHDLPin>();
 	}
 
 	public PHDLDevice(String name, int line, int pos) {
 		this.name = name;
 		attributes = new HashSet<PHDLAttribute>();
-		pinVectors = new HashSet<PHDLPinVector>();
+		pins = new HashSet<PHDLPin>();
 		this.line = line;
 		this.pos = pos;
 	}
@@ -196,8 +196,8 @@ public class PHDLDevice {
 	 * 
 	 * @return a HashSet of PHDLPins associated with the device
 	 */
-	public HashSet<PHDLPinVector> getPins() {
-		return pinVectors;
+	public HashSet<PHDLPin> getPins() {
+		return pins;
 	}
 
 	/**
@@ -208,8 +208,12 @@ public class PHDLDevice {
 	 * @param p
 	 *            the new PHDLPinVector to add
 	 */
-	public void addPinVector(PHDLPinVector p) {
-		pinVectors.add(p);
+	public void addPin(PHDLPin p) {
+		pins.add(p);
+	}
+
+	public String getLocation() {
+		return "[" + line + ":" + pos + "]";
 	}
 
 	@Override
@@ -232,8 +236,7 @@ public class PHDLDevice {
 
 	@Override
 	public String toString() {
-		String deviceString = "Device[" + line + ":" + pos + "]: " + name
-				+ "\n";
+		String deviceString = "PHDLDevice" + getLocation() + ": " + name + "\n";
 		String attributesString = "";
 		String pinsString = "";
 
@@ -241,184 +244,184 @@ public class PHDLDevice {
 		while (attributesIterator.hasNext())
 			attributesString += "\t\t" + attributesIterator.next().toString();
 
-		Iterator<PHDLPinVector> pinVectorsIterator = pinVectors.iterator();
-		while (pinVectorsIterator.hasNext())
-			pinsString += "\t\t" + pinVectorsIterator.next().toString();
+		Iterator<PHDLPin> pinsIterator = pins.iterator();
+		while (pinsIterator.hasNext())
+			pinsString += "\t\t" + pinsIterator.next().toString();
 
 		return deviceString + attributesString + pinsString;
 	}
 
-	// public static boolean unitTest() {
-	// /*
-	// * Methods Tested******************** getName X setName X getPins X
-	// * addPin X getAttributes X addAttribute X hasRefPrefix X getRefPrefix X
-	// * hasRefDes X getRefDes X
-	// */
-	// boolean success = true;
-	//
-	// PHDLDevice dev1 = new PHDLDevice("dev1");
-	// if (!dev1.getName().equals("dev1")) {
-	// success = false;
-	// TestDriver.err("getName()", "dev1", dev1.getName());
-	// }
-	//
-	// dev1.setName("devRename");
-	// if (!dev1.getName().equals("devRename")) {
-	// success = false;
-	// TestDriver.err("setName()", "devRename", dev1.getName());
-	// }
-	//
-	// HashSet<PHDLPinVector> pins = dev1.getPins();
-	// if (!pins.isEmpty()) {
-	// success = false;
-	// TestDriver.err("getPins()", "should be empty", "is empty");
-	// }
-	//
-	// PHDLPinVector pin1 = new PHDLPinVector("pin1", 1);
-	// PHDLPinVector pin2 = new PHDLPinVector("pin2", 2);
-	// dev1.vectors.add(pin1);
-	// dev1.vectors.add(pin2);
-	//
-	// pins = dev1.getPins();
-	// if (!pins.contains(pin1)) {
-	// success = false;
-	// TestDriver.err("getPins()", "to contain \"pin1\"", "did not");
-	// }
-	// if (!pins.contains(pin2)) {
-	// success = false;
-	// TestDriver.err("getPins()", "to contain \"pin2\"", "did not");
-	// }
-	// dev1.vectors.add(pin1);
-	// if (pins.size() != 2) {
-	// success = false;
-	// TestDriver.err("getPins()", "to contain 2 pins",
-	// "had " + pins.size());
-	// }
-	//
-	// PHDLPinVector pin3 = new PHDLPinVector("pin3", 3);
-	// PHDLPinVector pin4 = new PHDLPinVector("pin4", 4);
-	// PHDLDevice devP = new PHDLDevice("devP");
-	//
-	// devP.addPin(pin3);
-	// devP.addPin(pin4);
-	// pins = devP.getPins();
-	//
-	// if (!pins.contains(pin3)) {
-	// success = false;
-	// TestDriver.err("addPin()", "to contain \"pin3\"", "did not");
-	// }
-	// if (!pins.contains(pin4)) {
-	// success = false;
-	// TestDriver.err("addPin()", "to contain \"pin4\"", "did not");
-	// }
-	// devP.addPin(pin3);
-	// if (pins.size() != 2) {
-	// success = false;
-	// TestDriver.err("addPin()", "to contain 2 pins",
-	// "had " + pins.size());
-	// }
-	//
-	// HashSet<PHDLAttribute> attrs = dev1.getAttributes();
-	// if (!attrs.isEmpty()) {
-	// success = false;
-	// TestDriver.err("getAttributes()", "should be empty", "is empty");
-	// }
-	//
-	// PHDLAttribute attr1 = new PHDLAttribute("attr1", "val1");
-	// PHDLAttribute attr2 = new PHDLAttribute("attr2", "val2");
-	// dev1.attributes.add(attr1);
-	// dev1.attributes.add(attr2);
-	//
-	// attrs = dev1.getAttributes();
-	// if (!attrs.contains(attr1)) {
-	// success = false;
-	// TestDriver
-	// .err("getAttributes()", "to contain \"attr1\"", "did not");
-	// }
-	// if (!attrs.contains(attr2)) {
-	// success = false;
-	// TestDriver
-	// .err("getAttributes()", "to contain \"attr2\"", "did not");
-	// }
-	// dev1.attributes.add(attr1);
-	// if (attrs.size() != 2) {
-	// success = false;
-	// TestDriver.err("getAttributes()", "to contain 2 attributes", "had "
-	// + attrs.size());
-	// }
-	//
-	// PHDLDevice dev2 = new PHDLDevice("dev2");
-	// dev2.addAttribute(attr1);
-	// attrs = dev2.getAttributes();
-	// if (!attrs.contains(attr1)) {
-	// success = false;
-	// TestDriver
-	// .err("addAttribute()", "should have \"attr1\"", "did not");
-	// }
-	// dev2.addAttribute(attr2);
-	// if (!attrs.contains(attr2)) {
-	// success = false;
-	// TestDriver
-	// .err("addAttribute()", "should have \"attr2\"", "did not");
-	// }
-	// dev2.addAttribute(attr1);
-	// if (attrs.size() != 2) {
-	// success = false;
-	// TestDriver.err("addAttribute()", "to contain 2 attributes", "had "
-	// + attrs.size());
-	// }
-	//
-	// if (dev1.hasRefPrefix()) {
-	// success = false;
-	// TestDriver.err("hasRefPrefix()",
-	// "doesn't contain a ref des prefix", "apparently does");
-	// }
-	// dev1.addAttribute(new PHDLAttribute("refPrefix", "R"));
-	// if (!dev1.hasRefPrefix()) {
-	// success = false;
-	// TestDriver.err("hasRefPrefix()",
-	// "contains a ref des prefix of \"R\"", "it doesn't");
-	// }
-	//
-	// String pre = dev2.getRefPrefix();
-	// if (pre != null) {
-	// success = false;
-	// TestDriver.err("getRefPrefix()", "doesn't have a ref des prefix",
-	// "supposedly it does: " + pre);
-	// }
-	// pre = dev1.getRefPrefix();
-	// if (!pre.equals("R")) {
-	// success = false;
-	// TestDriver.err("getRefPrefix()", "should have \"R\" as the prefix",
-	// "it has " + pre);
-	// }
-	//
-	// dev1.addAttribute(new PHDLAttribute("refDes", "A"));
-	// if (dev2.hasRefPrefix()) {
-	// success = false;
-	// TestDriver.err("hasRefDes()", "doesn't have a ref des",
-	// "supposedly it does");
-	// }
-	// if (!dev1.hasRefPrefix()) {
-	// success = false;
-	// TestDriver.err("hasRefDes()", "does have a ref des",
-	// "supposedly it doesn't");
-	// }
-	//
-	// String ref = dev2.getRefDes();
-	// if (ref != null) {
-	// success = false;
-	// TestDriver.err("getRefDes()", "doesn't have a ref des",
-	// "supposedly it does: " + ref);
-	// }
-	// ref = dev1.getRefDes();
-	// if (!ref.equals("A")) {
-	// success = false;
-	// TestDriver.err("getRefDes()", "should have \"A\" as the reference",
-	// "it has " + ref);
-	// }
-	//
-	// return success;
-	// }
+	public static boolean unitTest() {
+		/*
+		 * Methods Tested******************** getName X setName X getPins X
+		 * addPin X getAttributes X addAttribute X hasRefPrefix X getRefPrefix X
+		 * hasRefDes X getRefDes X
+		 */
+		boolean success = true;
+
+		PHDLDevice dev1 = new PHDLDevice("dev1");
+		if (!dev1.getName().equals("dev1")) {
+			success = false;
+			TestDriver.err("getName()", "dev1", dev1.getName());
+		}
+
+		dev1.setName("devRename");
+		if (!dev1.getName().equals("devRename")) {
+			success = false;
+			TestDriver.err("setName()", "devRename", dev1.getName());
+		}
+
+		HashSet<PHDLPin> pins = dev1.getPins();
+		if (!pins.isEmpty()) {
+			success = false;
+			TestDriver.err("getPins()", "should be empty", "is empty");
+		}
+
+		PHDLPin pin1 = new PHDLPin("pin1", 1);
+		PHDLPin pin2 = new PHDLPin("pin2", 2);
+		dev1.pins.add(pin1);
+		dev1.pins.add(pin2);
+
+		pins = dev1.getPins();
+		if (!pins.contains(pin1)) {
+			success = false;
+			TestDriver.err("getPins()", "to contain \"pin1\"", "did not");
+		}
+		if (!pins.contains(pin2)) {
+			success = false;
+			TestDriver.err("getPins()", "to contain \"pin2\"", "did not");
+		}
+		dev1.pins.add(pin1);
+		if (pins.size() != 2) {
+			success = false;
+			TestDriver.err("getPins()", "to contain 2 pins",
+					"had " + pins.size());
+		}
+
+		PHDLPin pin3 = new PHDLPin("pin3", 3);
+		PHDLPin pin4 = new PHDLPin("pin4", 4);
+		PHDLDevice devP = new PHDLDevice("devP");
+
+		devP.addPin(pin3);
+		devP.addPin(pin4);
+		pins = devP.getPins();
+
+		if (!pins.contains(pin3)) {
+			success = false;
+			TestDriver.err("addPin()", "to contain \"pin3\"", "did not");
+		}
+		if (!pins.contains(pin4)) {
+			success = false;
+			TestDriver.err("addPin()", "to contain \"pin4\"", "did not");
+		}
+		devP.addPin(pin3);
+		if (pins.size() != 2) {
+			success = false;
+			TestDriver.err("addPin()", "to contain 2 pins",
+					"had " + pins.size());
+		}
+
+		HashSet<PHDLAttribute> attrs = dev1.getAttributes();
+		if (!attrs.isEmpty()) {
+			success = false;
+			TestDriver.err("getAttributes()", "should be empty", "is empty");
+		}
+
+		PHDLAttribute attr1 = new PHDLAttribute("attr1", "val1");
+		PHDLAttribute attr2 = new PHDLAttribute("attr2", "val2");
+		dev1.attributes.add(attr1);
+		dev1.attributes.add(attr2);
+
+		attrs = dev1.getAttributes();
+		if (!attrs.contains(attr1)) {
+			success = false;
+			TestDriver
+					.err("getAttributes()", "to contain \"attr1\"", "did not");
+		}
+		if (!attrs.contains(attr2)) {
+			success = false;
+			TestDriver
+					.err("getAttributes()", "to contain \"attr2\"", "did not");
+		}
+		dev1.attributes.add(attr1);
+		if (attrs.size() != 2) {
+			success = false;
+			TestDriver.err("getAttributes()", "to contain 2 attributes", "had "
+					+ attrs.size());
+		}
+
+		PHDLDevice dev2 = new PHDLDevice("dev2");
+		dev2.addAttribute(attr1);
+		attrs = dev2.getAttributes();
+		if (!attrs.contains(attr1)) {
+			success = false;
+			TestDriver
+					.err("addAttribute()", "should have \"attr1\"", "did not");
+		}
+		dev2.addAttribute(attr2);
+		if (!attrs.contains(attr2)) {
+			success = false;
+			TestDriver
+					.err("addAttribute()", "should have \"attr2\"", "did not");
+		}
+		dev2.addAttribute(attr1);
+		if (attrs.size() != 2) {
+			success = false;
+			TestDriver.err("addAttribute()", "to contain 2 attributes", "had "
+					+ attrs.size());
+		}
+
+		if (dev1.hasRefPrefix()) {
+			success = false;
+			TestDriver.err("hasRefPrefix()",
+					"doesn't contain a ref des prefix", "apparently does");
+		}
+		dev1.addAttribute(new PHDLAttribute("refPrefix", "R"));
+		if (!dev1.hasRefPrefix()) {
+			success = false;
+			TestDriver.err("hasRefPrefix()",
+					"contains a ref des prefix of \"R\"", "it doesn't");
+		}
+
+		String pre = dev2.getRefPrefix();
+		if (pre != null) {
+			success = false;
+			TestDriver.err("getRefPrefix()", "doesn't have a ref des prefix",
+					"supposedly it does: " + pre);
+		}
+		pre = dev1.getRefPrefix();
+		if (!pre.equals("R")) {
+			success = false;
+			TestDriver.err("getRefPrefix()", "should have \"R\" as the prefix",
+					"it has " + pre);
+		}
+
+		dev1.addAttribute(new PHDLAttribute("refDes", "A"));
+		if (dev2.hasRefPrefix()) {
+			success = false;
+			TestDriver.err("hasRefDes()", "doesn't have a ref des",
+					"supposedly it does");
+		}
+		if (!dev1.hasRefPrefix()) {
+			success = false;
+			TestDriver.err("hasRefDes()", "does have a ref des",
+					"supposedly it doesn't");
+		}
+
+		String ref = dev2.getRefDes();
+		if (ref != null) {
+			success = false;
+			TestDriver.err("getRefDes()", "doesn't have a ref des",
+					"supposedly it does: " + ref);
+		}
+		ref = dev1.getRefDes();
+		if (!ref.equals("A")) {
+			success = false;
+			TestDriver.err("getRefDes()", "should have \"A\" as the reference",
+					"it has " + ref);
+		}
+
+		return success;
+	}
 
 }

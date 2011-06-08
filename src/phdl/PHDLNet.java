@@ -33,9 +33,28 @@ public class PHDLNet {
 	 */
 	private String name;
 	/**
-	 * a set of optional tags that provide additional information about the net
+	 * a set of optional attributes that provide additional information about
+	 * the net
 	 */
-	private HashSet<String> tags;
+	private HashSet<String> attributes;
+	/**
+	 * the msb of the net if the net is an array.
+	 */
+	private int msb = -1;
+	/**
+	 * the lsb of the net if the net is an array.
+	 */
+	private int lsb = -1;
+
+	private int index = -1;
+	/**
+	 * the line number that the net appears in the source.
+	 */
+	private int line = 0;
+	/**
+	 * the position that the net appears in the source.
+	 */
+	private int pos = 0;
 
 	/**
 	 * Default Constructor.
@@ -47,7 +66,46 @@ public class PHDLNet {
 	 */
 	public PHDLNet(String name) {
 		this.name = name;
-		tags = new HashSet<String>();
+		attributes = new HashSet<String>();
+	}
+
+	/**
+	 * Secondary Constructor.
+	 * 
+	 * Sets the net name and instantiates a new HashSet for the tags
+	 * 
+	 * @param name
+	 *            the name of the net
+	 */
+	public PHDLNet(String name, int msb, int lsb, int line, int pos) {
+		this.name = name;
+		this.msb = msb;
+		this.lsb = lsb;
+		this.line = line;
+		this.pos = pos;
+		attributes = new HashSet<String>();
+	}
+
+	public PHDLNet(String name, int msb, int lsb, int index, int line, int pos) {
+		this.name = name;
+		this.msb = msb;
+		this.lsb = lsb;
+		this.index = index;
+		this.line = line;
+		this.pos = pos;
+		attributes = new HashSet<String>();
+	}
+
+	public int getIndex() {
+		return index;
+	}
+
+	public int getMsb() {
+		return msb;
+	}
+
+	public int getLsb() {
+		return lsb;
 	}
 
 	/**
@@ -80,8 +138,8 @@ public class PHDLNet {
 	 * 
 	 * @return A HashSet representation of the tags
 	 */
-	public HashSet<String> getTags() {
-		return tags;
+	public HashSet<String> getAttributes() {
+		return attributes;
 	}
 
 	/**
@@ -92,8 +150,12 @@ public class PHDLNet {
 	 * @param newTag
 	 *            a new tag to be added to the HashSet
 	 */
-	public void addTag(String newTag) {
-		tags.add(newTag);
+	public void addAttribute(String newAttribute) {
+		attributes.add(newAttribute);
+	}
+
+	public String getLocation() {
+		return "[" + line + ":" + pos + "]";
 	}
 
 	@Override
@@ -117,51 +179,49 @@ public class PHDLNet {
 
 	@Override
 	public String toString() {
-		String stags = "";
-		for (String tag : tags) {
-			stags += tag;
+		String netAttributes = "";
+		for (String a : attributes) {
+			netAttributes += ", " + a;
 		}
-		return name + stags;
+		netAttributes = netAttributes.substring(2);
+		return "PHDLNet" + getLocation() + ": " + name + "[" + msb + ":" + lsb
+				+ "]: " + netAttributes + "\n";
 	}
 
-	// public static boolean unitTest() {
-	// /*
-	// * Methods Tested
-	// *********************
-	// * getName X
-	// * addTag X
-	// * getTags X
-	// * setName X
-	// */
-	// boolean success = true;
-	// PHDLNet net1 = new PHDLNet("noTags");
-	// if (!net1.getName().equals("noTags")) {
-	// success = false;
-	// TestDriver.err("getName()", "noTags", net1.getName());
-	// }
-	// if (!net1.getTags().isEmpty()) {
-	// success = false;
-	// TestDriver.err("getTags()", "True", "False");
-	// }
-	// net1.setName("2Tags");
-	// if (!net1.getName().equals("2Tags")) {
-	// success = false;
-	// TestDriver.err("setName()", "2Tags", net1.getName());
-	// }
-	// net1.addTag("tag1");
-	// net1.addTag("tag2");
-	// if (!net1.getTags().contains("tag1")) {
-	// success = false;
-	// TestDriver.err("getTags()", "Should contain \"tag1\"",
-	// "Didn't contain the tag");
-	// }
-	// if (!net1.getTags().contains("tag2")) {
-	// success = false;
-	// TestDriver.err("getTags()", "Should contain \"tag2\"",
-	// "Didn't contain the tag");
-	// }
-	//
-	// return success;
-	// }
+	public static boolean unitTest() {
+		/*
+		 * Methods Tested******************** getName X addTag X getTags X
+		 * setName X
+		 */
+		boolean success = true;
+		PHDLNet net1 = new PHDLNet("noTags");
+		if (!net1.getName().equals("noTags")) {
+			success = false;
+			TestDriver.err("getName()", "noTags", net1.getName());
+		}
+		if (!net1.getAttributes().isEmpty()) {
+			success = false;
+			TestDriver.err("getTags()", "True", "False");
+		}
+		net1.setName("2Tags");
+		if (!net1.getName().equals("2Tags")) {
+			success = false;
+			TestDriver.err("setName()", "2Tags", net1.getName());
+		}
+		net1.addAttribute("tag1");
+		net1.addAttribute("tag2");
+		if (!net1.getAttributes().contains("tag1")) {
+			success = false;
+			TestDriver.err("getTags()", "Should contain \"tag1\"",
+					"Didn't contain the tag");
+		}
+		if (!net1.getAttributes().contains("tag2")) {
+			success = false;
+			TestDriver.err("getTags()", "Should contain \"tag2\"",
+					"Didn't contain the tag");
+		}
+
+		return success;
+	}
 
 }

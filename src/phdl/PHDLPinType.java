@@ -24,5 +24,53 @@ package phdl;
  * @version 0.1
  */
 public enum PHDLPinType {
-	PIN, IN, OUT, INOUT, PASSIVE, SUPPLY, POWER, OPEN
+	PIN {
+		@Override
+		public String toString() {
+			return "pin";
+		}
+	},
+	IN {
+		@Override
+		public String toString() {
+			return "in";
+		}
+	},
+	OUT {
+		@Override
+		public String toString() {
+			return "out";
+		}
+	},
+	INOUT {
+		@Override
+		public String toString() {
+			return "inout";
+		}
+	},
+	PASSIVE {
+		@Override
+		public String toString() {
+			return "passive";
+		}
+	},
+	SUPPLY {
+		@Override
+		public String toString() {
+			return "supply";
+		}
+	},
+	POWER {
+		@Override
+		public String toString() {
+			return "power";
+		}
+	},
+	OPEN {
+		@Override
+		public String toString() {
+			return "open";
+		}
+	};
+
 }
