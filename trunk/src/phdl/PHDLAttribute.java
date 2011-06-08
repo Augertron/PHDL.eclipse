@@ -54,6 +54,23 @@ public class PHDLAttribute {
 	 * @param name
 	 *            the value of the new attribute
 	 */
+	public PHDLAttribute(String name, String value) {
+		this.name = name;
+		this.value = value;
+		this.line = 0;
+		this.pos = 0;
+	}
+
+	/**
+	 * Secondary Constructor.
+	 * 
+	 * Sets the name and value of the attribute
+	 * 
+	 * @param name
+	 *            the name of the new attribute
+	 * @param name
+	 *            the value of the new attribute
+	 */
 	public PHDLAttribute(String name, String value, int line, int pos) {
 		this.name = name;
 		this.value = value;
@@ -107,6 +124,10 @@ public class PHDLAttribute {
 		this.value = value;
 	}
 
+	public String getLocation() {
+		return "[" + line + ":" + pos + "]";
+	}
+
 	@Override
 	/**
 	 * Creates a hash code for use in hash data structures.
@@ -128,36 +149,36 @@ public class PHDLAttribute {
 
 	@Override
 	public String toString() {
-		return "Attribute[" + line + ":" + pos + "]: " + name + " = " + value
+		return "PHDLAttribute" + getLocation() + ": " + name + " = " + value
 				+ "\n";
 	}
 
-	// public static boolean unitTest() {
-	// /*
-	// * Methods Tested******************** getName X getValue X setName X
-	// * setValue X
-	// */
-	// boolean success = true;
-	// PHDLAttribute attr1 = new PHDLAttribute("name1", "value1");
-	// if (!attr1.getName().equals("name1")) {
-	// success = false;
-	// TestDriver.err("getName()", "name1", attr1.getName());
-	// }
-	// if (!attr1.getValue().equals("value1")) {
-	// success = false;
-	// TestDriver.err("getValue()", "value1", attr1.getValue());
-	// }
-	// attr1.setName("newName");
-	// attr1.setValue("newValue");
-	// if (!attr1.getName().equals("newName")) {
-	// success = false;
-	// TestDriver.err("setName()", "newName", attr1.getName());
-	// }
-	// if (!attr1.getValue().equals("newValue")) {
-	// success = false;
-	// TestDriver.err("setValue()", "newValue", attr1.getValue());
-	// }
-	// return success;
-	// }
+	public static boolean unitTest() {
+		/*
+		 * Methods Tested******************** getName X getValue X setName X
+		 * setValue X
+		 */
+		boolean success = true;
+		PHDLAttribute attr1 = new PHDLAttribute("name1", "value1");
+		if (!attr1.getName().equals("name1")) {
+			success = false;
+			TestDriver.err("getName()", "name1", attr1.getName());
+		}
+		if (!attr1.getValue().equals("value1")) {
+			success = false;
+			TestDriver.err("getValue()", "value1", attr1.getValue());
+		}
+		attr1.setName("newName");
+		attr1.setValue("newValue");
+		if (!attr1.getName().equals("newName")) {
+			success = false;
+			TestDriver.err("setName()", "newName", attr1.getName());
+		}
+		if (!attr1.getValue().equals("newValue")) {
+			success = false;
+			TestDriver.err("setValue()", "newValue", attr1.getValue());
+		}
+		return success;
+	}
 
 }

@@ -17,6 +17,7 @@
 
 package phdl;
 
+
 /**
  * A unit test driver
  * 
@@ -32,21 +33,21 @@ public class TestDriver {
 	public static void main(String[] args) {
 		boolean success = true;
 		System.out.println("***Testing PHDLPin***");
-		// success &= PHDLPinVector.unitTest();
+		success &= PHDLPin.unitTest();
 		System.out.println("***Testing PHDLNet***");
-		// success &= PHDLNet.unitTest();
+		success &= PHDLNet.unitTest();
 		System.out.println("***Testing PHDLAttribute***");
-		// success &= PHDLNet.unitTest();
+		success &= PHDLNet.unitTest();
 		System.out.println("***Testing PHDLNetList***");
-		// success &= PHDLNetList.unitTest();
+		success &= PHDLNetList.unitTest();
 		System.out.println("***Testing PHDLDevice***");
-		// success &= PHDLDevice.unitTest();
+		success &= PHDLDevice.unitTest();
 		System.out.println("***Testing PHDLInstance***");
-		// success &= PHDLInstance.unitTest();
+		success &= PHDLInstance.unitTest();
 		System.out.println("***Testing PHDLDesign***");
-		// success &= PHDLDesign.unitTest();
+		success &= PHDLDesign.unitTest();
 		System.out.println("***Testing RefDesGenerator***");
-		// success &= RefDesGenerator.unitTest();
+		success &= RefDesGenerator.unitTest();
 
 		System.out.println("\n***Testing Complete***");
 		if (success) {

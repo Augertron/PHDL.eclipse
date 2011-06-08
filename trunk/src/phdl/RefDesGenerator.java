@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+
 /**
  * A class that generates a reference designation for each device instance on a
  * PCB.
@@ -151,87 +152,74 @@ public class RefDesGenerator {
 		return myString;
 	}
 
-	// public static boolean unitTest() {
-	// /*
-	// * Methods Tested
-	// *********************
-	// * Constructor
-	// * generateCSVFile
-	// */
-	// boolean success = true;
-	// PHDLDesign desTest = new PHDLDesign("desTest");
-	// PHDLInstance inst1 = new PHDLInstance("res1", null);
-	// inst1.addAttribute(new PHDLAttribute("refPrefix", "R")); // Will start
-	// off as "R1"
-	// // But will be overridden to "R4, R5, R6, R7"
-	// PHDLInstance inst2 = new PHDLInstance("cap1", null);
-	// inst2.addAttribute(new PHDLAttribute("refDes", "C3")); // Will be "C3"
-	//
-	// PHDLInstance inst3 = new PHDLInstance("res2", null);
-	// inst3.addAttribute(new PHDLAttribute("refDes", "R1")); // Will be "R1"
-	//
-	// PHDLInstance inst4 = new PHDLInstance("ind1", null);
-	// inst4.addAttribute(new PHDLAttribute("refPrefix", "L")); // Will be "L1"
-	//
-	// PHDLInstance inst5 = new PHDLInstance("opAmp1", null);
-	// inst5.addAttribute(new PHDLAttribute("refPrefix", "J")); // Will start
-	// off as "J1"
-	// inst5.addAttribute(new PHDLAttribute("refDes", "J2")); // But will be
-	// overridden to "J2"
-	//
-	// PHDLInstance inst6 = new PHDLInstance("res3", null);
-	// inst6.addAttribute(new PHDLAttribute("refDes", "R3")); // Will be "R3"
-	//
-	// PHDLInstance inst7 = new PHDLInstance("res4", null);
-	// inst7.addAttribute(new PHDLAttribute("refPrefix", "R")); //
-	// "R4, R5, R6, R7"
-	//
-	// PHDLInstance inst8 = new PHDLInstance("res5", null);
-	// inst8.addAttribute(new PHDLAttribute("refPrefix", "R")); //
-	// "R4, R5, R6, R7"
-	//
-	// PHDLInstance inst9 = new PHDLInstance("res6", null);
-	// inst9.addAttribute(new PHDLAttribute("refPrefix", "R")); //
-	// "R4, R5, R6, R7"
-	//
-	// PHDLInstance fail1 = new PHDLInstance("fail1", null); // Will be ignored
-	// fail1.addAttribute(new PHDLAttribute("refDes", "R1"));
-	//
-	// PHDLInstance inst10 = new PHDLInstance("res7", null);
-	// inst10.addAttribute(new PHDLAttribute("refDes", "R2")); // Will be "R2"
-	//
-	// /* Output
-	// *******************
-	// * cap1 C3
-	// * ind1 L1
-	// * opAmp1 J2
-	// * res1 (R4, R5, R6, R7)
-	// * res2 R1
-	// * res3 R3
-	// * res4 (R4, R5, R6, R7)
-	// * res5 (R4, R5, R6, R7)
-	// * res6 (R4, R5, R6, R7)
-	// * res7 R2
-	// *******************
-	// * Make sure that fail1 is not in the CSV file
-	// */
-	//
-	// desTest.addInstance(inst1);
-	// desTest.addInstance(inst2);
-	// desTest.addInstance(inst3);
-	// desTest.addInstance(inst4);
-	// desTest.addInstance(inst5);
-	// desTest.addInstance(inst6);
-	// desTest.addInstance(inst7);
-	// desTest.addInstance(inst8);
-	// desTest.addInstance(inst9);
-	// desTest.addInstance(fail1);
-	// desTest.addInstance(inst10);
-	//
-	// RefDesGenerator rdg = new RefDesGenerator(desTest);
-	// success &= rdg.generateCSVFile("rdgTest.csv");
-	//
-	// return success;
-	// }
+	public static boolean unitTest() {
+		/*
+		 * Methods Tested******************** Constructor generateCSVFile
+		 */
+		boolean success = true;
+		PHDLDesign desTest = new PHDLDesign("desTest");
+		PHDLInstance inst1 = new PHDLInstance("res1", null);
+		inst1.addAttribute(new PHDLAttribute("refPrefix", "R")); // Will start
+																	// off as
+																	// "R1"
+		// But will be overridden to "R4, R5, R6, R7"
+		PHDLInstance inst2 = new PHDLInstance("cap1", null);
+		inst2.addAttribute(new PHDLAttribute("refDes", "C3")); // Will be "C3"
 
+		PHDLInstance inst3 = new PHDLInstance("res2", null);
+		inst3.addAttribute(new PHDLAttribute("refDes", "R1")); // Will be "R1"
+
+		PHDLInstance inst4 = new PHDLInstance("ind1", null);
+		inst4.addAttribute(new PHDLAttribute("refPrefix", "L")); // Will be "L1"
+
+		PHDLInstance inst5 = new PHDLInstance("opAmp1", null);
+		inst5.addAttribute(new PHDLAttribute("refPrefix", "J")); // Will start
+																	// off as
+																	// "J1"
+		inst5.addAttribute(new PHDLAttribute("refDes", "J2")); // But will be
+																// overridden to
+																// "J2"
+
+		PHDLInstance inst6 = new PHDLInstance("res3", null);
+		inst6.addAttribute(new PHDLAttribute("refDes", "R3")); // Will be "R3"
+
+		PHDLInstance inst7 = new PHDLInstance("res4", null);
+		inst7.addAttribute(new PHDLAttribute("refPrefix", "R")); // "R4, R5, R6, R7"
+
+		PHDLInstance inst8 = new PHDLInstance("res5", null);
+		inst8.addAttribute(new PHDLAttribute("refPrefix", "R")); // "R4, R5, R6, R7"
+
+		PHDLInstance inst9 = new PHDLInstance("res6", null);
+		inst9.addAttribute(new PHDLAttribute("refPrefix", "R")); // "R4, R5, R6, R7"
+
+		PHDLInstance fail1 = new PHDLInstance("fail1", null); // Will be ignored
+		fail1.addAttribute(new PHDLAttribute("refDes", "R1"));
+
+		PHDLInstance inst10 = new PHDLInstance("res7", null);
+		inst10.addAttribute(new PHDLAttribute("refDes", "R2")); // Will be "R2"
+
+		/*
+		 * Output****************** cap1 C3 ind1 L1 opAmp1 J2 res1 (R4, R5, R6,
+		 * R7) res2 R1 res3 R3 res4 (R4, R5, R6, R7) res5 (R4, R5, R6, R7) res6
+		 * (R4, R5, R6, R7) res7 R2****************** Make sure that fail1 is
+		 * not in the CSV file
+		 */
+
+		desTest.addInstance(inst1);
+		desTest.addInstance(inst2);
+		desTest.addInstance(inst3);
+		desTest.addInstance(inst4);
+		desTest.addInstance(inst5);
+		desTest.addInstance(inst6);
+		desTest.addInstance(inst7);
+		desTest.addInstance(inst8);
+		desTest.addInstance(inst9);
+		desTest.addInstance(fail1);
+		desTest.addInstance(inst10);
+
+		RefDesGenerator rdg = new RefDesGenerator(desTest);
+		success &= rdg.generateCSVFile("rdgTest.csv");
+
+		return success;
+	}
 }

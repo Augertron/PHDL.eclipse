@@ -17,6 +17,8 @@
 
 package phdl;
 
+import java.util.HashMap;
+
 /**
  * A class that represents a pin on a PC board.
  * 
@@ -27,19 +29,68 @@ package phdl;
  */
 public class PHDLPin {
 	/**
+	 * the line number where the pin appears in the source text
+	 */
+	private int line = 0;
+	/**
+	 * the lsb if the pin is an array. -1 indicates it is not.
+	 */
+	private int lsb = -1;
+	/**
+	 * the msb if the pin is an array. -1 indicates it is not.
+	 */
+	private int msb = -1;
+	/**
 	 * the name of the pin
 	 */
 	private String name;
+	/**
+	 * the pin number
+	 */
+	private int number = 0;
+	/**
+	 * the string of a list of pin numbers
+	 */
+	private String pinList;
+	/**
+	 * the mapping of the pin array to footprint pin numbers
+	 */
+	private HashMap<Integer, Integer> pinMap;
+	/**
+	 * the position number where the pin appears in the source text
+	 */
+	private int pos = 0;
 	/**
 	 * the type of the pin
 	 * 
 	 * @see PHDLPinType
 	 */
 	private PHDLPinType type;
+
 	/**
-	 * the pin number
+	 * Fourth Constructor.
+	 * 
+	 * @param type
+	 *            the type of the pin
 	 */
-	private int number;
+	public PHDLPin(PHDLPinType type) {
+		this.type = type;
+		this.pinMap = new HashMap<Integer, Integer>();
+	}
+
+	/**
+	 * Second Constructor.
+	 * 
+	 * Defaults the pin type to PHDLPinType.PIN
+	 * 
+	 * @param name
+	 *            the name of the pin
+	 * 
+	 */
+	public PHDLPin(String name) {
+		this.name = name;
+		this.type = PHDLPinType.PIN;
+	}
 
 	/**
 	 * Default Constructor.
@@ -58,7 +109,7 @@ public class PHDLPin {
 	}
 
 	/**
-	 * Secondary Constructor.
+	 * Third Constructor.
 	 * 
 	 * Allows for the instantiation of the name and type
 	 * 
@@ -75,6 +126,32 @@ public class PHDLPin {
 		this.number = number;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		PHDLPin p = (PHDLPin) o;
+		if (p.getName().equals(name) && p.getType() == type
+				&& p.getNumber() == number) {
+			return true;
+		}
+		return false;
+	}
+
+	public int getLine() {
+		return line;
+	}
+
+	public String getLocation() {
+		return "[" + line + ":" + pos + "]";
+	}
+
+	public int getLSB() {
+		return lsb;
+	}
+
+	public int getMSB() {
+		return msb;
+	}
+
 	/**
 	 * Returns the name of the pin.
 	 * 
@@ -84,41 +161,6 @@ public class PHDLPin {
 	 */
 	public String getName() {
 		return name;
-	}
-
-	/**
-	 * Changes the name of the pin.
-	 * 
-	 * Pin name mutator method
-	 * 
-	 * @param name
-	 *            the new name of the pin
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	/**
-	 * Returns the pin type of the pin.
-	 * 
-	 * Pin type accessor method
-	 * 
-	 * @return the pin type
-	 */
-	public PHDLPinType getType() {
-		return type;
-	}
-
-	/**
-	 * Changes the pin type of the pin.
-	 * 
-	 * Pin type mutator method
-	 * 
-	 * @param type
-	 *            the new pin type
-	 */
-	public void setType(PHDLPinType type) {
-		this.type = type;
 	}
 
 	/**
@@ -132,16 +174,23 @@ public class PHDLPin {
 		return number;
 	}
 
+	public String getPinList() {
+		return pinList;
+	}
+
+	public int getPos() {
+		return pos;
+	}
+
 	/**
-	 * Changes the pin number.
+	 * Returns the pin type of the pin.
 	 * 
-	 * Pin number mutator method
+	 * Pin type accessor method
 	 * 
-	 * @param number
-	 *            the new pin number
+	 * @return the pin type
 	 */
-	public void setNumber(int number) {
-		this.number = number;
+	public PHDLPinType getType() {
+		return type;
 	}
 
 	@Override
@@ -157,19 +206,105 @@ public class PHDLPin {
 		return name.hashCode();
 	}
 
-	@Override
-	public String toString() {
-		return type.name() + " " + name + " " + number;
+	public void makePinMap() {
+		// break apart the pin list into integers by splitting on
+		// all whitespace, commas, and semicolons
+		String[] pinStrings = pinList.split("[\\s,;]");
+		int[] pinInts = new int[pinStrings.length];
+		for (int i = 0; i < pinStrings.length; i++)
+			pinInts[i] = Integer.parseInt(pinStrings[i]);
+
+		// assume the pin has a width of one but modify it if both msb and lsb
+		// have been declared
+		int width = 1;
+		if (msb != -1 && lsb != -1)
+			width = Math.abs(msb - lsb) + 1;
+
+		// check that the available width of the pin name is the same as the
+		// number of pins in the comma-separated pin list
+		if (width != pinStrings.length) {
+			// we may want to eventually throw an exception here
+			System.out.println("Incorrect pin-list width: " + toString());
+			return;
+		}
+
+		// perform the mapping based on the direction of the array declaration
+		if (msb < lsb) {
+			for (int i = msb; i < msb + width; i++)
+				pinMap.put(i, pinInts[i - msb]);
+		} else if (msb > lsb) {
+			for (int i = msb; i > lsb + width; i++)
+				pinMap.put(i, pinInts[i - msb]);
+
+			// the case of a single pin and number
+		} else if (msb == lsb) {
+			pinMap.put(0, pinInts[0]);
+		}
+	}
+
+	public void setLine(int line) {
+		this.line = line;
+	}
+
+	public void setLSB(int lsb) {
+		this.lsb = lsb;
+	}
+
+	public void setMSB(int msb) {
+		this.msb = msb;
+	}
+
+	/**
+	 * Changes the name of the pin.
+	 * 
+	 * Pin name mutator method
+	 * 
+	 * @param name
+	 *            the new name of the pin
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * Changes the pin number.
+	 * 
+	 * Pin number mutator method
+	 * 
+	 * @param number
+	 *            the new pin number
+	 */
+	public void setNumber(int number) {
+		this.number = number;
+	}
+
+	public void setPinList(String pinList) {
+		this.pinList = pinList;
+	}
+
+	public void setPos(int pos) {
+		this.pos = pos;
+	}
+
+	/**
+	 * Changes the pin type of the pin.
+	 * 
+	 * Pin type mutator method
+	 * 
+	 * @param type
+	 *            the new pin type
+	 */
+	public void setType(PHDLPinType type) {
+		this.type = type;
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		PHDLPin p = (PHDLPin) o;
-		if (p.getName().equals(name) && p.getType() == type
-				&& p.getNumber() == number) {
-			return true;
-		}
-		return false;
+	public String toString() {
+		String width = ": ";
+		if (msb > -1 && lsb > -1)
+			width = "[" + msb + ":" + lsb + "]: ";
+		return "PHDLPin" + getLocation() + ": " + type.toString() + width
+				+ name + " {" + pinList + "}\n";
 	}
 
 	public static boolean unitTest() {
@@ -349,5 +484,4 @@ public class PHDLPin {
 
 		return success;
 	}
-
 }
