@@ -56,12 +56,12 @@ sourceText returns [HashSet<PHDLDesign> d]
  * declaration are also used in the constructor to report future compilation errors.
  */	
 design
-	:	^('design' IDENT
-	
-			// make a new design based on the identifier and log its position			
-			{
-				PHDLDesign design = new PHDLDesign($IDENT.text, $IDENT.line, $IDENT.pos);
-			}
+	:	^('design' IDENT	
+		{	
+			PHDLDesign design = new PHDLDesign($IDENT.text);
+			design.setLine($IDENT.line);
+			design.setPos($IDENT.pos);
+		}
 			
 		portDecl[design]*
 			
@@ -75,9 +75,7 @@ design
 		(instance[design] | subDesign[design] | netAssignment[design])*
 		)
 		
-		{
-			designs.add(design);
-		}
+		{designs.add(design);}
 	;
 	
 portDecl[PHDLDesign design]
@@ -140,10 +138,12 @@ netDecl[PHDLDesign design]
 	
 		// make a new net with the above information
 		{
-			PHDLNet n = new PHDLNet($name.text, 
-				$msb!=null?Integer.parseInt($msb.text):0, 
-				$lsb!=null?Integer.parseInt($lsb.text):0,
-				$name.line, $name.pos);
+			PHDLNet n = new PHDLNet($name.text); 
+			n.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
+			n.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
+			n.setLine($name.line);
+			n.setPos($name.pos);
+				
 		}
 
 		// add any net attributes after a colon
@@ -226,18 +226,16 @@ instance[PHDLDesign d]
  * attribute assignment data structure based on these parameters.
  */
 attributeAssignment[PHDLInstance i]
-	:	^(EQUALS lValue=IDENT ((lmsb=INT llsb=INT) | (lindex=INT))?
-		rValue=STRING_LITERAL )
+	:	^(EQUALS name=IDENT ((msb=INT lsb=INT) | (index=INT))? value=STRING_LITERAL )
 		
-		// make a new attribute assignment and add it to the instance
+		// make a new attribute assignment, assign all values, and add it to the instance
 		{
-			PHDLAssignment a = new PHDLAssignment(
-				$lValue.text, $rValue.text, 
-				$lmsb!=null?Integer.parseInt($lmsb.text):-1,
-				$llsb!=null?Integer.parseInt($llsb.text):-1,
-				$lindex!=null?Integer.parseInt($lindex.text):-1,
-				-1,-1,-1,$lValue.line, $lValue.pos);
-			
+			PHDLAssignment a = new PHDLAssignment($name.text, $value.text);
+			a.setLeftMsb($msb!=null?Integer.parseInt($msb.text):-1);
+			a.setLeftLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
+			a.setLeftIndex($index!=null?Integer.parseInt($index.text):-1);
+			a.setLine($name.line);
+			a.setPos($name.pos);
 			i.addAttributeAssignment(a);
 		}
 	;
@@ -250,12 +248,12 @@ pinAssignment[PHDLInstance i]
 	
 		// make a new pin assignment
 		{
-			PHDLAssignment a = new PHDLAssignment(
-				$name.text, 
-				$msb!=null?Integer.parseInt($msb.text):-1,
-				$lsb!=null?Integer.parseInt($lsb.text):-1,
-				$index!=null?Integer.parseInt($index.text):-1,
-				$name.line, $name.pos);
+			PHDLAssignment a = new PHDLAssignment($name.text); 
+			a.setLeftMsb($msb!=null?Integer.parseInt($msb.text):-1);
+			a.setLeftLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
+			a.setLeftIndex($index!=null?Integer.parseInt($index.text):-1);
+			a.setLine($name.line);
+			a.setPos($name.pos);
 		}
 	
 		concatenate[a]+
@@ -284,15 +282,16 @@ subDesign[PHDLDesign d]
 netAssignment[PHDLDesign d]
 	:	^(EQUALS name=IDENT ((msb=INT lsb=INT) | (index=INT))?
 		
-		// make a new net assignment and add it to the design
+		// make a new pin assignment
 		{
-			PHDLAssignment a = new PHDLAssignment(
-				$name.text, 
-				$msb!=null?Integer.parseInt($msb.text):-1,
-				$lsb!=null?Integer.parseInt($lsb.text):-1,
-				$index!=null?Integer.parseInt($index.text):-1,
-				$name.line, $name.pos);
+			PHDLAssignment a = new PHDLAssignment($name.text); 
+			a.setLeftMsb($msb!=null?Integer.parseInt($msb.text):-1);
+			a.setLeftLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
+			a.setLeftIndex($index!=null?Integer.parseInt($index.text):-1);
+			a.setLine($name.line);
+			a.setPos($name.pos);
 		}
+		
 		concatenate[a]+
 		)
 		{d.addNetAssignment(a);}
@@ -301,14 +300,14 @@ netAssignment[PHDLDesign d]
 portAssignment[PHDLSubDesign s]
 	:	^(EQUALS name=IDENT ((msb=INT lsb=INT) | (index=INT))?
 	
-		// make a new port assignment
+		// make a new pin assignment
 		{
-			PHDLAssignment a = new PHDLAssignment(
-				$name.text, 
-				$msb!=null?Integer.parseInt($msb.text):-1,
-				$lsb!=null?Integer.parseInt($lsb.text):-1,
-				$index!=null?Integer.parseInt($index.text):-1,
-				$name.line, $name.pos);
+			PHDLAssignment a = new PHDLAssignment($name.text); 
+			a.setLeftMsb($msb!=null?Integer.parseInt($msb.text):-1);
+			a.setLeftLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
+			a.setLeftIndex($index!=null?Integer.parseInt($index.text):-1);
+			a.setLine($name.line);
+			a.setPos($name.pos);
 		}
 	
 		concatenate[a]+
@@ -319,11 +318,12 @@ portAssignment[PHDLSubDesign s]
 concatenate[PHDLAssignment a]
 	:	(name=IDENT ((msb=INT lsb=INT) | (index=INT))?)
 		{
-			PHDLNet n = new PHDLNet($name.text, 
-				$msb!=null?Integer.parseInt($msb.text):-1,
-				$lsb!=null?Integer.parseInt($lsb.text):-1,
-				$index!=null?Integer.parseInt($index.text):-1,
-				$name.line, $name.pos);
+			PHDLNet n = new PHDLNet($name.text);
+			n.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
+			n.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
+			n.setIndex($index!=null?Integer.parseInt($index.text):-1);
+			n.setLine($name.line);
+			n.setPos($name.pos);
 			a.addRightValue(n);
 		}
 	;
