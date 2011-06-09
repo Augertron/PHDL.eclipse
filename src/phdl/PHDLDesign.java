@@ -31,39 +31,41 @@ import java.util.Iterator;
  */
 public class PHDLDesign {
 	/**
-	 * The name of the design
-	 */
-	private String name;
-	/**
 	 * A set of the devices
 	 */
 	private HashSet<PHDLDevice> devices;
-	/**
-	 * A set of the nets
-	 */
-	private HashSet<PHDLNet> nets;
 	/**
 	 * A set of the device instances
 	 */
 	private HashSet<PHDLInstance> instances;
 	/**
-	 * A set of the net assignment statements
-	 */
-	private HashSet<PHDLAssignment> netAssignments;
-	/**
-	 * A set of the sub designs
-	 */
-	private HashSet<PHDLSubDesign> subDesigns;
-	/**
 	 * the line number of the design
 	 */
 	private int line = 0;
 	/**
+	 * The name of the design
+	 */
+	private String name;
+	/**
+	 * A set of the net assignment statements
+	 */
+	private HashSet<PHDLAssignment> netAssignments;
+	/**
+	 * A set of the nets
+	 */
+	private HashSet<PHDLNet> nets;
+	/**
+	 * A set of the ports
+	 */
+	private HashSet<PHDLPort> ports;
+	/**
 	 * the column position of the design
 	 */
 	private int pos = 0;
-
-	private HashSet<PHDLPort> ports;
+	/**
+	 * A set of the sub designs
+	 */
+	private HashSet<PHDLSubDesign> subDesigns;
 
 	/**
 	 * Default Constructor.
@@ -75,34 +77,9 @@ public class PHDLDesign {
 		this.devices = new HashSet<PHDLDevice>();
 		this.nets = new HashSet<PHDLNet>();
 		this.instances = new HashSet<PHDLInstance>();
-	}
-
-	/**
-	 * Secondary Constructor.
-	 * 
-	 * Initializes the sets and sets the design name to the paramater "name"
-	 * 
-	 * @param name
-	 *            the name of the design
-	 */
-	public PHDLDesign(String name, int line, int pos) {
-		this.name = name;
-		this.devices = new HashSet<PHDLDevice>();
-		this.nets = new HashSet<PHDLNet>();
-		this.instances = new HashSet<PHDLInstance>();
 		this.netAssignments = new HashSet<PHDLAssignment>();
 		this.subDesigns = new HashSet<PHDLSubDesign>();
 		this.ports = new HashSet<PHDLPort>();
-		this.line = line;
-		this.pos = pos;
-	}
-
-	public HashSet<PHDLPort> getPorts() {
-		return ports;
-	}
-
-	public void addPort(PHDLPort p) {
-		ports.add(p);
 	}
 
 	/**
@@ -118,48 +95,9 @@ public class PHDLDesign {
 		this.devices = new HashSet<PHDLDevice>();
 		this.nets = new HashSet<PHDLNet>();
 		this.instances = new HashSet<PHDLInstance>();
-	}
-
-	public HashSet<PHDLSubDesign> getSubDesigns() {
-		return subDesigns;
-	}
-
-	public void addSubDesign(PHDLSubDesign d) {
-		subDesigns.add(d);
-	}
-
-	/**
-	 * Returns the name of the design.
-	 * 
-	 * Design name accessor method
-	 * 
-	 * @return the name of the design
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * Changes the name of the design.
-	 * 
-	 * Design name mutator method
-	 * 
-	 * @param name
-	 *            the new name of the design
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	/**
-	 * Returns the devices on the board.
-	 * 
-	 * Design devices accessor method
-	 * 
-	 * @return a HashSet of PHDLDevices
-	 */
-	public HashSet<PHDLDevice> getDevices() {
-		return devices;
+		this.netAssignments = new HashSet<PHDLAssignment>();
+		this.subDesigns = new HashSet<PHDLSubDesign>();
+		this.ports = new HashSet<PHDLPort>();
 	}
 
 	/**
@@ -175,14 +113,15 @@ public class PHDLDesign {
 	}
 
 	/**
-	 * Returns the nets on the board.
+	 * Adds a new device instance to the PCB.
 	 * 
-	 * Design nets accessor method
+	 * Design device instance addition method
 	 * 
-	 * @return a HashSet of PHDLNets
+	 * @param i
+	 *            a new PHDLInstance
 	 */
-	public HashSet<PHDLNet> getNets() {
-		return nets;
+	public void addInstance(PHDLInstance i) {
+		instances.add(i);
 	}
 
 	/**
@@ -197,35 +136,16 @@ public class PHDLDesign {
 		nets.add(n);
 	}
 
-	/**
-	 * Returns the device instances on the board.
-	 * 
-	 * Design device instances accessor method
-	 * 
-	 * @return a HashSet of PHDLInstances
-	 */
-	public HashSet<PHDLInstance> getInstances() {
-		return instances;
-	}
-
-	/**
-	 * Adds a new device instance to the PCB.
-	 * 
-	 * Design device instance addition method
-	 * 
-	 * @param i
-	 *            a new PHDLInstance
-	 */
-	public void addInstance(PHDLInstance i) {
-		instances.add(i);
-	}
-
 	public void addNetAssignment(PHDLAssignment netAssignment) {
 		netAssignments.add(netAssignment);
 	}
 
-	public HashSet<PHDLAssignment> getNetAssignments() {
-		return netAssignments;
+	public void addPort(PHDLPort p) {
+		ports.add(p);
+	}
+
+	public void addSubDesign(PHDLSubDesign d) {
+		subDesigns.add(d);
 	}
 
 	/**
@@ -243,6 +163,74 @@ public class PHDLDesign {
 	}
 
 	/**
+	 * Returns the devices on the board.
+	 * 
+	 * Design devices accessor method
+	 * 
+	 * @return a HashSet of PHDLDevices
+	 */
+	public HashSet<PHDLDevice> getDevices() {
+		return devices;
+	}
+
+	/**
+	 * Returns the device instances on the board.
+	 * 
+	 * Design device instances accessor method
+	 * 
+	 * @return a HashSet of PHDLInstances
+	 */
+	public HashSet<PHDLInstance> getInstances() {
+		return instances;
+	}
+
+	public int getLine() {
+		return line;
+	}
+
+	public String getLocation() {
+		return "[" + line + ":" + pos + "]";
+	}
+
+	/**
+	 * Returns the name of the design.
+	 * 
+	 * Design name accessor method
+	 * 
+	 * @return the name of the design
+	 */
+	public String getName() {
+		return name;
+	}
+
+	public HashSet<PHDLAssignment> getNetAssignments() {
+		return netAssignments;
+	}
+
+	/**
+	 * Returns the nets on the board.
+	 * 
+	 * Design nets accessor method
+	 * 
+	 * @return a HashSet of PHDLNets
+	 */
+	public HashSet<PHDLNet> getNets() {
+		return nets;
+	}
+
+	public HashSet<PHDLPort> getPorts() {
+		return ports;
+	}
+
+	public int getPos() {
+		return pos;
+	}
+
+	public HashSet<PHDLSubDesign> getSubDesigns() {
+		return subDesigns;
+	}
+
+	/**
 	 * Still to be implemented. It will compile a complete netlist and check the
 	 * pins to make sure that, i.e. no two outputs are immediately tied
 	 * together.
@@ -253,11 +241,24 @@ public class PHDLDesign {
 		return true;
 	}
 
-	public String getLocation() {
-		return "[" + line + ":" + pos + "]";
+	public void setLine(int line) {
+		this.line = line;
 	}
 
-	public void printDesign() {
+	/**
+	 * Changes the name of the design.
+	 * 
+	 * Design name mutator method
+	 * 
+	 * @param name
+	 *            the new name of the design
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setPos(int pos) {
+		this.pos = pos;
 	}
 
 	@Override

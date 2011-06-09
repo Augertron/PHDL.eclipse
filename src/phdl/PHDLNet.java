@@ -67,33 +67,35 @@ public class PHDLNet {
 	public PHDLNet(String name) {
 		this.name = name;
 		attributes = new HashSet<String>();
+
 	}
 
-	/**
-	 * Secondary Constructor.
-	 * 
-	 * Sets the net name and instantiates a new HashSet for the tags
-	 * 
-	 * @param name
-	 *            the name of the net
-	 */
-	public PHDLNet(String name, int msb, int lsb, int line, int pos) {
-		this.name = name;
-		this.msb = msb;
-		this.lsb = lsb;
-		this.line = line;
-		this.pos = pos;
-		attributes = new HashSet<String>();
-	}
-
-	public PHDLNet(String name, int msb, int lsb, int index, int line, int pos) {
-		this.name = name;
-		this.msb = msb;
-		this.lsb = lsb;
+	public void setIndex(int index) {
 		this.index = index;
+	}
+
+	public int getLine() {
+		return line;
+	}
+
+	public int getPos() {
+		return pos;
+	}
+
+	public void setMsb(int msb) {
+		this.msb = msb;
+	}
+
+	public void setLsb(int lsb) {
+		this.lsb = lsb;
+	}
+
+	public void setLine(int line) {
 		this.line = line;
+	}
+
+	public void setPos(int pos) {
 		this.pos = pos;
-		attributes = new HashSet<String>();
 	}
 
 	public int getIndex() {

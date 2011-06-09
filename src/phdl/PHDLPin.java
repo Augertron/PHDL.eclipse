@@ -55,7 +55,7 @@ public class PHDLPin {
 	/**
 	 * the mapping of the pin array to footprint pin numbers
 	 */
-	private HashMap<Integer, Integer> pinMap;
+	private HashMap<Integer, String> pinMap;
 	/**
 	 * the position number where the pin appears in the source text
 	 */
@@ -75,7 +75,7 @@ public class PHDLPin {
 	 */
 	public PHDLPin(PHDLPinType type) {
 		this.type = type;
-		this.pinMap = new HashMap<Integer, Integer>();
+		this.pinMap = new HashMap<Integer, String>();
 	}
 
 	/**
@@ -210,9 +210,6 @@ public class PHDLPin {
 		// break apart the pin list into integers by splitting on
 		// all whitespace, commas, and semicolons
 		String[] pinStrings = pinList.split("[\\s,;]");
-		int[] pinInts = new int[pinStrings.length];
-		for (int i = 0; i < pinStrings.length; i++)
-			pinInts[i] = Integer.parseInt(pinStrings[i]);
 
 		// assume the pin has a width of one but modify it if both msb and lsb
 		// have been declared
@@ -231,14 +228,14 @@ public class PHDLPin {
 		// perform the mapping based on the direction of the array declaration
 		if (msb < lsb) {
 			for (int i = msb; i < msb + width; i++)
-				pinMap.put(i, pinInts[i - msb]);
+				pinMap.put(i, pinStrings[i - msb]);
 		} else if (msb > lsb) {
 			for (int i = msb; i > lsb + width; i++)
-				pinMap.put(i, pinInts[i - msb]);
+				pinMap.put(i, pinStrings[i - msb]);
 
 			// the case of a single pin and number
 		} else if (msb == lsb) {
-			pinMap.put(0, pinInts[0]);
+			pinMap.put(0, pinStrings[0]);
 		}
 	}
 

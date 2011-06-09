@@ -73,83 +73,165 @@ public class PHDLAssignment {
 	private ArrayList<PHDLNet> rightValues;
 
 	/**
-	 * Constructor used in an attribute assignment.
-	 * 
-	 * 
-	 */
-	public PHDLAssignment(String leftValue, String rightValue, int leftMSB,
-			int leftLSB, int leftIndex, int rightMSB, int rightLSB,
-			int rightIndex, int line, int pos) {
-		this.leftValue = leftValue;
-		this.leftMsb = leftMSB;
-		this.leftLsb = leftLSB;
-		this.leftIndex = leftIndex;
-		this.rightValue = rightValue;
-		this.rightMsb = rightMSB;
-		this.rightLsb = rightLSB;
-		this.rightIndex = rightIndex;
-		this.line = line;
-		this.pos = pos;
-		this.rightValues = new ArrayList<PHDLNet>();
-	}
-
-	/**
 	 * Constructor used in pin and net assignments
 	 * 
 	 * 
 	 */
-	public PHDLAssignment(String leftValue, int leftMSB, int leftLSB,
-			int leftIndex, int line, int pos) {
+	public PHDLAssignment(String leftValue) {
 		this.leftValue = leftValue;
-		this.leftMsb = leftMSB;
-		this.leftLsb = leftLSB;
-		this.leftIndex = leftIndex;
-		this.line = line;
-		this.pos = pos;
 		this.rightValues = new ArrayList<PHDLNet>();
 	}
 
-	public String getRightValue() {
-		return rightValue;
+	public int getRightIndex() {
+		return rightIndex;
 	}
 
+	public int getRightLsb() {
+		return rightLsb;
+	}
+
+	public int getRightMsb() {
+		return rightMsb;
+	}
+
+	public void setLeftIndex(int leftIndex) {
+		this.leftIndex = leftIndex;
+	}
+
+	public void setLeftLsb(int leftLsb) {
+		this.leftLsb = leftLsb;
+	}
+
+	public void setLeftMsb(int leftMsb) {
+		this.leftMsb = leftMsb;
+	}
+
+	public void setLine(int line) {
+		this.line = line;
+	}
+
+	public void setPos(int pos) {
+		this.pos = pos;
+	}
+
+	public void setRightIndex(int rightIndex) {
+		this.rightIndex = rightIndex;
+	}
+
+	public void setRightLsb(int rightLsb) {
+		this.rightLsb = rightLsb;
+	}
+
+	public void setRightMsb(int rightMsb) {
+		this.rightMsb = rightMsb;
+	}
+
+	/**
+	 * Constructor used in an attribute assignment.
+	 * 
+	 * 
+	 */
+	public PHDLAssignment(String leftValue, String rightValue) {
+		this.leftValue = leftValue;
+		this.rightValue = rightValue;
+		this.rightValues = new ArrayList<PHDLNet>();
+	}
+
+	/**
+	 * Adds a right value net to the array list of right values
+	 * 
+	 * @param net
+	 */
+	public void addRightValue(PHDLNet net) {
+		rightValues.add(net);
+	}
+
+	/**
+	 * Returns the left index of the assignment.
+	 * 
+	 * @return leftIndex
+	 */
 	public int getLeftIndex() {
 		return leftIndex;
 	}
 
+	/**
+	 * Returns the left lsb of the assignment.
+	 * 
+	 * @return leftLsb
+	 */
 	public int getLeftLsb() {
 		return leftLsb;
 	}
 
+	/**
+	 * Returns the left msb of the assignment
+	 * 
+	 * @return lsftMsb
+	 */
 	public int getLeftMsb() {
 		return leftMsb;
 	}
 
+	/**
+	 * Returns the left value of the assignment
+	 * 
+	 * @return leftValue
+	 */
 	public String getLeftValue() {
 		return leftValue;
 	}
 
+	/**
+	 * Returns the line number of the assignment
+	 * 
+	 * @return line
+	 */
 	public int getLine() {
 		return line;
 	}
 
+	/**
+	 * Returns a string representation of the location of the assignment in the
+	 * source text
+	 * 
+	 * @return [line:pos] where line and pos are integers
+	 */
 	public String getLocation() {
 		return "[" + line + ":" + pos + "]";
 	}
 
+	/**
+	 * Returns the position of the assignment
+	 * 
+	 * @return pos
+	 */
 	public int getPos() {
 		return pos;
 	}
 
-	public void addRightValue(PHDLNet n) {
-		rightValues.add(n);
+	/**
+	 * Returns the right value of the assignment.
+	 * 
+	 * @return rightValue
+	 */
+	public String getRightValue() {
+		return rightValue;
 	}
 
+	/**
+	 * Returns an array list of all the right values of the assignment
+	 * 
+	 * @return
+	 */
 	public ArrayList<PHDLNet> getRightValues() {
 		return rightValues;
 	}
 
 	@Override
+	/**
+	 * Returns a string representation of the assignment
+	 */
 	public String toString() {
 
 		String leftWidth = "";
@@ -181,8 +263,7 @@ public class PHDLAssignment {
 			} else
 				rightList += "";
 		}
-		// return assignmentString + leftValue + leftWidth + " = " + rightValue
-		// + rightWidth + "\n";
+
 		return getLocation() + ": " + leftValue + leftWidth + " =" + rightList
 				+ "\n";
 	}
