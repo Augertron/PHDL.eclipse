@@ -17,16 +17,21 @@
 
 package phdl.parser;
 
-public abstract class Declaration extends Element {
+import java.util.HashSet;
 
-	protected String name;
+public class NetDeclaration extends ArrayDeclaration {
 
-	public String getName() {
-		return name;
+	protected HashSet<String> attributes;
+
+	public NetDeclaration() {
+		super();
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public HashSet<String> getAttributes() {
+		return attributes;
 	}
 
+	public void addAttribute(String attribute) {
+		this.attributes.add(attribute);
+	}
 }

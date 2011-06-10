@@ -17,25 +17,38 @@
 
 package phdl.parser;
 
-public abstract class ArrayDeclaration extends Declaration {
+import java.util.HashSet;
 
-	protected int msb = -1;
-	protected int lsb = -1;
+public class DeviceDeclaration extends Declaration {
 
-	public int getMSB() {
-		return msb;
+	protected HashSet<AttributeDeclaration> attributeDecls;
+	protected HashSet<PinDeclaration> pinDecls;
+
+	public DeviceDeclaration() {
+		super();
+		this.attributeDecls = new HashSet<AttributeDeclaration>();
+		this.pinDecls = new HashSet<PinDeclaration>();
 	}
 
-	public int getLSB() {
-		return lsb;
+	public HashSet<AttributeDeclaration> getAttributeDecls() {
+		return attributeDecls;
 	}
 
-	public void setMSB(int msb) {
-		this.msb = msb;
+	public void addAttributeDecl(AttributeDeclaration a) {
+		attributeDecls.add(a);
 	}
 
-	public void setLSB(int lsb) {
-		this.lsb = lsb;
+	public HashSet<PinDeclaration> getPinDecls() {
+		return pinDecls;
 	}
 
+	public void addPinDecl(PinDeclaration p) {
+		pinDecls.add(p);
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
+	}
 }

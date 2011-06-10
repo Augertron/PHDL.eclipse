@@ -17,16 +17,29 @@
 
 package phdl.parser;
 
-public abstract class Declaration extends Element {
+public class PinDeclaration extends ArrayDeclaration {
 
-	protected String name;
+	protected String type;
+	protected String pinList;
 
-	public String getName() {
-		return name;
+	public PinDeclaration() {
+		super();
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getPinList() {
+		return pinList;
+	}
+
+	public void setPinList(String pinList) {
+		this.pinList = pinList;
 	}
 
 }
