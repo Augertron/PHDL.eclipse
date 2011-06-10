@@ -17,46 +17,14 @@
 
 package phdl.parser;
 
-public class Net extends Element {
+public class Net extends Indexable {
 
-	protected String name;
-	protected int msb = -1;
-	protected int lsb = -1;
-	protected int index = -1;
-
-	public String getName() {
-		return name;
+	public Net() {
+		super();
 	}
 
-	public int getMsb() {
-		return msb;
-	}
-
-	public int getLsb() {
-		return lsb;
-	}
-
-	public int getIndex() {
-		return index;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setMsb(int msb) {
-		this.msb = msb;
-	}
-
-	public void setLsb(int lsb) {
-		this.lsb = lsb;
-	}
-
-	public void setIndex(int index) {
-		this.index = index;
-	}
-
-	public Net(String name) {
-		this.name = name;
+	@Override
+	public String toString() {
+		return "Net" + getLocation() + ": " + name + getArray();
 	}
 }

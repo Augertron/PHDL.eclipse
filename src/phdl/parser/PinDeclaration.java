@@ -19,18 +19,19 @@ package phdl.parser;
 
 public class PinDeclaration extends ArrayDeclaration {
 
-	protected String type;
+	protected PHDLType type;
 	protected String pinList;
 
-	public PinDeclaration() {
+	public PinDeclaration(PHDLType type) {
 		super();
+		this.type = type;
 	}
 
-	public String getType() {
+	public PHDLType getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(PHDLType type) {
 		this.type = type;
 	}
 
@@ -40,6 +41,12 @@ public class PinDeclaration extends ArrayDeclaration {
 
 	public void setPinList(String pinList) {
 		this.pinList = pinList;
+	}
+
+	@Override
+	public String toString() {
+		return "PinDecl" + getLocation() + ": " + type.toString() + getArray()
+				+ " " + name + " {" + pinList + "}" + "\n";
 	}
 
 }

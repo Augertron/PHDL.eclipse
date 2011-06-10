@@ -17,22 +17,24 @@
 
 package phdl.parser;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
-public class PinAssignment extends Assignment {
-
-	protected ArrayList<Net> nets;
+public class PinAssignment extends ConcatenationAssignment {
 
 	public PinAssignment() {
 		super();
-		this.nets = new ArrayList<Net>();
+		this.nets = new LinkedList<Net>();
 	}
 
-	public ArrayList<Net> getNets() {
-		return this.nets;
-	}
+	@Override
+	public String toString() {
+		String netString = "";
 
-	public void addNet(Net n) {
-		nets.add(n);
+		for (Net n : nets)
+			netString += n.toString() + " & ";
+		netString = netString.substring(0, netString.length() - 3);
+
+		return "PinAssign" + getLocation() + ": " + name + getArray() + " = "
+				+ netString + "\n";
 	}
 }

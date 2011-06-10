@@ -2,11 +2,11 @@ package phdl.parser;
 
 import java.util.HashSet;
 
-public class Parser {
+public class ParsedDesigns {
 
 	protected HashSet<DesignDeclaration> designDecls;
 	
-	public Parser() {
+	public ParsedDesigns() {
 		this.designDecls = new HashSet<DesignDeclaration>();
 	}
 

@@ -19,20 +19,31 @@ package phdl.parser;
 
 import java.util.HashSet;
 
-public class SubDesignDeclaration extends Declaration {
+public class SubDesignDeclaration extends InstanceDeclarations {
 
-	public HashSet<PortAssignment> portAssignments;
+	public HashSet<PortAssignment> portAssigns;
 
 	public SubDesignDeclaration() {
 		super();
-		this.portAssignments = new HashSet<PortAssignment>();
+		this.portAssigns = new HashSet<PortAssignment>();
 	}
 
 	public HashSet<PortAssignment> getPortAssignments() {
-		return portAssignments;
+		return portAssigns;
 	}
 
 	public void addPortAssignment(PortAssignment p) {
-		portAssignments.add(p);
+		portAssigns.add(p);
+	}
+
+	@Override
+	public String toString() {
+		String header = "SubDesignDecl" + getLocation() + ": " + name + "\n";
+		String ports = "";
+
+		for (PortAssignment p : portAssigns)
+			ports += "\t\t" + p.toString();
+
+		return header + ports;
 	}
 }

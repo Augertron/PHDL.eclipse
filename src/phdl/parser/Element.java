@@ -27,23 +27,36 @@ package phdl.parser;
  */
 public abstract class Element {
 
+	protected String name;
 	protected int line;
 	protected int pos;
 
-	public int getLine() {
-		return line;
+	public String getName() {
+		return name;
 	}
 
-	public int getPos() {
-		return pos;
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getLine() {
+		return line;
 	}
 
 	public void setLine(int line) {
 		this.line = line;
 	}
 
+	public int getPos() {
+		return pos;
+	}
+
 	public void setPos(int pos) {
 		this.pos = pos;
+	}
+
+	public String getLocation() {
+		return "[" + line + ":" + pos + "]";
 	}
 
 }

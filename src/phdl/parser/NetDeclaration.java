@@ -25,6 +25,7 @@ public class NetDeclaration extends ArrayDeclaration {
 
 	public NetDeclaration() {
 		super();
+		this.attributes = new HashSet<String>();
 	}
 
 	public HashSet<String> getAttributes() {
@@ -33,5 +34,18 @@ public class NetDeclaration extends ArrayDeclaration {
 
 	public void addAttribute(String attribute) {
 		this.attributes.add(attribute);
+	}
+
+	@Override
+	public String toString() {
+		String netString = "";
+
+		for (String n : attributes) {
+			netString += n + " ";
+		}
+		netString += "\n";
+
+		return "NetDecl" + getLocation() + ": " + name + getArray() + ": "
+				+ netString;
 	}
 }

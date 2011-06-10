@@ -17,6 +17,7 @@
 
 package phdl.parser;
 
+
 /**
  * An abstract class that describes the different types of assignment statements
  * in PHDL. The assignment's name, [msb:lsb] or (index) describe the left value
@@ -25,43 +26,6 @@ package phdl.parser;
  * @author Richard Black and Brad Riching
  * 
  */
-public abstract class Assignment extends Element {
-
-	protected String name;
-	protected int index = -1;
-	protected int msb = -1;
-	protected int lsb = -1;
-
-	public String getName() {
-		return name;
-	}
-
-	public int getIndex() {
-		return index;
-	}
-
-	public int getMsb() {
-		return msb;
-	}
-
-	public int getLsb() {
-		return lsb;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setIndex(int index) {
-		this.index = index;
-	}
-
-	public void setMsb(int msb) {
-		this.msb = msb;
-	}
-
-	public void setLsb(int lsb) {
-		this.lsb = lsb;
-	}
+public abstract class Assignment extends Indexable {
 
 }

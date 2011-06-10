@@ -19,31 +19,45 @@ package phdl.parser;
 
 import java.util.HashSet;
 
-public class InstanceDeclaration extends Declaration {
+public class InstanceDeclaration extends InstanceDeclarations {
 
-	protected HashSet<AttributeAssignment> attributeAssignments;
-	protected HashSet<PinAssignment> pinAssignments;
+	protected HashSet<AttributeAssignment> attrAssigns;
+	protected HashSet<PinAssignment> pinAssigs;
 
 	public InstanceDeclaration() {
 		super();
-		this.attributeAssignments = new HashSet<AttributeAssignment>();
-		this.pinAssignments = new HashSet<PinAssignment>();
+		this.attrAssigns = new HashSet<AttributeAssignment>();
+		this.pinAssigs = new HashSet<PinAssignment>();
 	}
 
 	public HashSet<AttributeAssignment> getAttributeAssignments() {
-		return attributeAssignments;
+		return attrAssigns;
 	}
 
 	public void addAttributeAssignment(AttributeAssignment a) {
-		attributeAssignments.add(a);
+		attrAssigns.add(a);
 	}
 
 	public HashSet<PinAssignment> getPinAssignments() {
-		return pinAssignments;
+		return pinAssigs;
 	}
 
 	public void addPinAssignment(PinAssignment p) {
-		pinAssignments.add(p);
+		pinAssigs.add(p);
 	}
 
+	@Override
+	public String toString() {
+		String header = "InstanceDecl" + getLocation() + ": " + name + "\n";
+		String attributes = "";
+		String pins = "";
+
+		for (AttributeAssignment a : attrAssigns)
+			attributes += "\t\t" + a.toString();
+
+		for (PinAssignment p : pinAssigs)
+			pins += "\t\t" + p.toString();
+
+		return header + attributes + pins;
+	}
 }

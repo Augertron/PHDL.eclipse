@@ -17,24 +17,43 @@
 
 package phdl.parser;
 
-import java.util.LinkedList;
+public abstract class Indexable extends Element {
 
-public class PortAssignment extends ConcatenationAssignment {
+	protected int msb = -1;
+	protected int lsb = -1;
+	protected int index = -1;
 
-	public PortAssignment() {
-		super();
-		this.nets = new LinkedList<Net>();
+	public int getMsb() {
+		return msb;
 	}
 
-	@Override
-	public String toString() {
-		String netString = "";
-
-		for (Net n : nets)
-			netString += n.toString() + " & ";
-		netString = netString.substring(0, netString.length() - 3);
-
-		return "PortAssign" + getLocation() + ": " + name + getArray() + " = "
-				+ netString + "\n";
+	public void setMsb(int msb) {
+		this.msb = msb;
 	}
+
+	public int getLsb() {
+		return lsb;
+	}
+
+	public void setLsb(int lsb) {
+		this.lsb = lsb;
+	}
+
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
+	}
+
+	public String getArray() {
+		String array = "";
+		if (msb > -1 && lsb > -1)
+			array = "[" + msb + ":" + lsb + "]";
+		else if (index > -1)
+			array = "(" + index + ")";
+		return array;
+	}
+
 }
