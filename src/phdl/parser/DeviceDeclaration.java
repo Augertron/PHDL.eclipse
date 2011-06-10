@@ -51,4 +51,5 @@ public class DeviceDeclaration extends Declaration {
 		// TODO Auto-generated method stub
 		return super.toString();
 	}
+	
 }
