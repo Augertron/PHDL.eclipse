@@ -32,6 +32,7 @@ public class TestDriver {
 	 */
 	public static void main(String[] args) {
 		boolean success = true;
+		/*
 		System.out.println("***Testing PHDLPin***");
 		success &= PHDLPin.unitTest();
 		System.out.println("***Testing PHDLNet***");
@@ -48,6 +49,9 @@ public class TestDriver {
 		success &= PHDLDesign.unitTest();
 		System.out.println("***Testing RefDesGenerator***");
 		success &= RefDesGenerator.unitTest();
+		*/
+		
+		success &= PHDLPreProcessor.unitTest();
 
 		System.out.println("\n***Testing Complete***");
 		if (success) {
