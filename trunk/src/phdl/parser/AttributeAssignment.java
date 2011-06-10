@@ -33,4 +33,10 @@ public class AttributeAssignment extends Assignment {
 		this.value = value;
 	}
 
+	@Override
+	public String toString() {
+		return "AttrAssign" + getLocation() + ": " + name + getArray() + " = "
+				+ value + "\n";
+	}
+
 }

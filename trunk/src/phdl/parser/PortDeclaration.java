@@ -19,18 +19,25 @@ package phdl.parser;
 
 public class PortDeclaration extends ArrayDeclaration {
 
-	protected String type;
+	protected PHDLType type;
 
-	public PortDeclaration() {
+	public PortDeclaration(PHDLType type) {
 		super();
+		this.type = type;
 	}
 
-	public String getType() {
+	public PHDLType getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(PHDLType type) {
 		this.type = type;
+	}
+
+	@Override
+	public String toString() {
+		return "PortDecl" + getLocation() + ": " + type.toString() + getArray()
+				+ " " + name + "\n";
 	}
 
 }

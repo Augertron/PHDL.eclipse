@@ -22,20 +22,27 @@ public abstract class ArrayDeclaration extends Declaration {
 	protected int msb = -1;
 	protected int lsb = -1;
 
-	public int getMSB() {
+	public int getMsb() {
 		return msb;
 	}
 
-	public int getLSB() {
+	public int getLsb() {
 		return lsb;
 	}
 
-	public void setMSB(int msb) {
+	public void setMsb(int msb) {
 		this.msb = msb;
 	}
 
-	public void setLSB(int lsb) {
+	public void setLsb(int lsb) {
 		this.lsb = lsb;
+	}
+
+	public String getArray() {
+		if (msb > -1 && lsb > -1)
+			return "[" + msb + ":" + lsb + "]";
+		else
+			return "";
 	}
 
 }

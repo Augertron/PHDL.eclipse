@@ -24,18 +24,18 @@ public class DesignDeclaration extends Declaration {
 	protected HashSet<PortDeclaration> portDecls;
 	protected HashSet<DeviceDeclaration> deviceDecls;
 	protected HashSet<NetDeclaration> netDecls;
-	protected HashSet<InstanceDeclaration> instanceDecls;
-	protected HashSet<SubDesignDeclaration> subDesignDecls;
-	protected HashSet<Assignment> netAssignments;
+	protected HashSet<InstanceDeclaration> instDecls;
+	protected HashSet<SubDesignDeclaration> subDecls;
+	protected HashSet<NetAssignment> netAssigns;
 
 	public DesignDeclaration() {
 		super();
 		this.portDecls = new HashSet<PortDeclaration>();
 		this.deviceDecls = new HashSet<DeviceDeclaration>();
 		this.netDecls = new HashSet<NetDeclaration>();
-		this.instanceDecls = new HashSet<InstanceDeclaration>();
-		this.subDesignDecls = new HashSet<SubDesignDeclaration>();
-		this.netAssignments = new HashSet<Assignment>();
+		this.instDecls = new HashSet<InstanceDeclaration>();
+		this.subDecls = new HashSet<SubDesignDeclaration>();
+		this.netAssigns = new HashSet<NetAssignment>();
 	}
 
 	public HashSet<PortDeclaration> getPortDecls() {
@@ -63,26 +63,57 @@ public class DesignDeclaration extends Declaration {
 	}
 
 	public HashSet<InstanceDeclaration> getInstanceDecls() {
-		return instanceDecls;
+		return instDecls;
 	}
 
 	public void addInstanceDecl(InstanceDeclaration instanceDecl) {
-		instanceDecls.add(instanceDecl);
+		instDecls.add(instanceDecl);
 	}
 
 	public HashSet<SubDesignDeclaration> getSubDesignDecls() {
-		return subDesignDecls;
+		return subDecls;
 	}
 
 	public void addSubDesignDecl(SubDesignDeclaration subDesignDecl) {
-		subDesignDecls.add(subDesignDecl);
+		subDecls.add(subDesignDecl);
 	}
 
-	public HashSet<Assignment> getNetAssignments() {
-		return netAssignments;
+	public HashSet<NetAssignment> getNetAssignments() {
+		return netAssigns;
 	}
 
-	public void addNetAssignment(Assignment netAssignment) {
-		netAssignments.add(netAssignment);
+	public void addNetAssignment(NetAssignment netAssignment) {
+		netAssigns.add(netAssignment);
+	}
+
+	@Override
+	public String toString() {
+		String header = "DesignDecl" + getLocation() + ": " + name + "\n";
+		String ports = "";
+		String devices = "";
+		String nets = "";
+		String instances = "";
+		String subs = "";
+		String assigns = "";
+
+		for (PortDeclaration p : portDecls)
+			ports += "\t" + p.toString();
+
+		for (DeviceDeclaration d : deviceDecls)
+			devices += "\t" + d.toString();
+
+		for (NetDeclaration n : netDecls)
+			nets += "\t" + n.toString();
+
+		for (InstanceDeclaration i : instDecls)
+			instances += "\t" + i.toString();
+
+		for (SubDesignDeclaration s : subDecls)
+			subs += "\t" + s.toString();
+
+		for (NetAssignment n : netAssigns)
+			assigns += "\t" + n.toString();
+
+		return header + ports + devices + nets + instances + subs + assigns;
 	}
 }
