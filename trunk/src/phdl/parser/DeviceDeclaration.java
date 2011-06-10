@@ -48,8 +48,17 @@ public class DeviceDeclaration extends Declaration {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+		String header = "DeviceDecl" + getLocation() + ": " + name + "\n";
+		String attributes = "";
+		String pins = "";
+
+		for (AttributeDeclaration a : attributeDecls)
+			attributes += "\t\t" + a.toString();
+
+		for (PinDeclaration p : pinDecls)
+			pins += "\t\t" + p.toString();
+
+		return header + attributes + pins;
 	}
-	
+
 }
