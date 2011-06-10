@@ -17,16 +17,20 @@
 
 package phdl.parser;
 
-public abstract class Declaration extends Element {
+public class PortDeclaration extends ArrayDeclaration {
 
-	protected String name;
+	protected String type;
 
-	public String getName() {
-		return name;
+	public PortDeclaration() {
+		super();
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }

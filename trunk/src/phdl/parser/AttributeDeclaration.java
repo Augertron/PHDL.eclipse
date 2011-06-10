@@ -17,16 +17,19 @@
 
 package phdl.parser;
 
-public abstract class Declaration extends Element {
+public class AttributeDeclaration extends Declaration {
 
-	protected String name;
+	protected String value;
 
-	public String getName() {
-		return name;
+	public AttributeDeclaration() {
+		super();
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public String getValue() {
+		return value;
 	}
 
+	public void setValue(String value) {
+		this.value = value;
+	}
 }
