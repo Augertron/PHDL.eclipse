@@ -243,7 +243,8 @@ attributeAssignment[InstanceDeclaration i]
 			a.setPos($name.pos);
 			a.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
 			a.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
-
+			a.setIndex($index!=null?Integer.parseInt($index.text):-1);
+			a.setValue($value.text);
 			i.addAttributeAssignment(a);
 		}
 	;
