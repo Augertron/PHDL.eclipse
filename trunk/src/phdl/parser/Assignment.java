@@ -17,11 +17,7 @@
 
 package phdl.parser;
 
-
 /**
- * An abstract class that describes the different types of assignment statements
- * in PHDL. The assignment's name, [msb:lsb] or (index) describe the left value
- * of the assignment statement in PHDL.
  * 
  * @author Richard Black and Brad Riching
  * 
