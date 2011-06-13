@@ -17,36 +17,78 @@
 
 package phdl.parser;
 
+/**
+ * A class that represents a pin declaration in phdl. In addition to inherited
+ * fields, a pin declaration has a type, and a string containing a pin list.
+ * 
+ * @author Richard Black and Brad Riching
+ */
 public class PinDeclaration extends ArrayDeclaration {
 
-	protected PHDLType type;
+	/**
+	 * The pin declaration's type
+	 */
+	protected Type type;
+	/**
+	 * The pin declaration's pin list
+	 */
 	protected String pinList;
 
-	public PinDeclaration(PHDLType type) {
+	/**
+	 * Default constructor
+	 * 
+	 * @param type
+	 */
+	public PinDeclaration(Type type) {
 		super();
 		this.type = type;
 	}
 
-	public PHDLType getType() {
+	/**
+	 * Gets the pin assignment's type
+	 * 
+	 * @return The pin assignment's type
+	 */
+	public Type getType() {
 		return type;
 	}
 
-	public void setType(PHDLType type) {
+	/**
+	 * Set's the pin assignment's type
+	 * 
+	 * @param type
+	 *            The pin assignment's type
+	 */
+	public void setType(Type type) {
 		this.type = type;
 	}
 
+	/**
+	 * Gets the pin assignment's pin list
+	 * 
+	 * @return The pin assignment's pin list
+	 */
 	public String getPinList() {
 		return pinList;
 	}
 
+	/**
+	 * Sets the pin assignment's pin list
+	 * 
+	 * @param pinList
+	 *            The pin assignment's pin list
+	 */
 	public void setPinList(String pinList) {
 		this.pinList = pinList;
 	}
 
+	/**
+	 * Returns a formatted string representation of the pin declaration
+	 */
 	@Override
 	public String toString() {
-		return "PinDecl" + getLocation() + ": " + type.toString() + getArray()
-				+ " " + name + " {" + pinList + "}" + "\n";
+		return "PinDecl" + getLocString() + ": " + type.toString()
+				+ getWidthString() + " " + name + " {" + pinList + "}" + "\n";
 	}
 
 }

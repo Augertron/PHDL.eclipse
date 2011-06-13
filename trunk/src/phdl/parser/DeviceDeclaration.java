@@ -19,42 +19,89 @@ package phdl.parser;
 
 import java.util.HashSet;
 
+/**
+ * A class that represents a device declaration in phdl. In addition to
+ * inherited fields, a device declaration has set of attribute declarations and
+ * a set of pin declarations.
+ * 
+ * @author Richard Black and Brad Riching
+ * 
+ */
 public class DeviceDeclaration extends Declaration {
 
+	/**
+	 * The device declaration's set of attribute declarations
+	 */
 	protected HashSet<AttributeDeclaration> attributeDecls;
+
+	/**
+	 * the device declaration's set of pin declarations
+	 */
 	protected HashSet<PinDeclaration> pinDecls;
 
+	/**
+	 * Default constructor
+	 */
 	public DeviceDeclaration() {
 		super();
 		this.attributeDecls = new HashSet<AttributeDeclaration>();
 		this.pinDecls = new HashSet<PinDeclaration>();
 	}
 
+	/**
+	 * Gets this device declaration's set of attribute declarations
+	 * 
+	 * @return This device declaration's set of attribute declarations
+	 */
 	public HashSet<AttributeDeclaration> getAttributeDecls() {
 		return attributeDecls;
 	}
 
+	/**
+	 * Adds an attribute declaration to this device declaration's set of
+	 * attribute declarations
+	 * 
+	 * @param a
+	 *            The attribute declaration to add
+	 */
 	public void addAttributeDecl(AttributeDeclaration a) {
 		attributeDecls.add(a);
 	}
 
+	/**
+	 * Gets this device declaration's set of pin declarations
+	 * 
+	 * @return This device declaration's set of pin declarations
+	 */
 	public HashSet<PinDeclaration> getPinDecls() {
 		return pinDecls;
 	}
 
+	/**
+	 * Adds a pin declaration to this device declaration's set of pin
+	 * declarations
+	 * 
+	 * @param p
+	 *            The pin declaration to add
+	 */
 	public void addPinDecl(PinDeclaration p) {
 		pinDecls.add(p);
 	}
 
+	/**
+	 * Returns a formatted string represetation of the device declaration
+	 */
 	@Override
 	public String toString() {
-		String header = "DeviceDecl" + getLocation() + ": " + name + "\n";
+		String header = "DeviceDecl" + getLocString() + ": " + name + "\n";
 		String attributes = "";
 		String pins = "";
 
+		// loop through all attribute declarations
 		for (AttributeDeclaration a : attributeDecls)
 			attributes += "\t\t" + a.toString();
 
+		// loop through all pin declarations
 		for (PinDeclaration p : pinDecls)
 			pins += "\t\t" + p.toString();
 

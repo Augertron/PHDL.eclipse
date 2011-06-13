@@ -17,13 +17,24 @@
 
 package phdl.exception;
 
+/**
+ * Represents an abstract ERC (Electrical Rule Check) exception in phdl
+ * 
+ * @author Richard Black and Brad Riching
+ */
 public abstract class ElectricalRuleCheckException extends PhdlException {
 
 	/**
-	 * 
+	 * The Serial Version UID for this class
 	 */
 	private static final long serialVersionUID = -279692200170233703L;
 
+	/**
+	 * Default constructor
+	 * 
+	 * @param message
+	 *            The exception message
+	 */
 	public ElectricalRuleCheckException(String message) {
 		super(message);
 	}

@@ -3,7 +3,7 @@ package phdl;
 public abstract class PHDLException extends Exception {
 
 	/**
-	 * 
+	 * The Serial Version UID for this class
 	 */
 	private static final long serialVersionUID = -7816636173565490476L;
 

@@ -164,7 +164,7 @@ netAssignment
 	;
 	
 concatenation
-	:	((IDENT (width | index)?) ('&'! IDENT (width | index)?)* ) | 'open'
+	:	((IDENT (width | index)?) ('&'! IDENT (width | index)?)* ) | 'open'!
 	;
 
 	

@@ -19,15 +19,38 @@ package phdl.exception;
 
 import phdl.parser.Element;
 
+/**
+ * A class that represents an exception thrown when an instance refers to a
+ * device or sub-design that has not been declared, or a net assignment refers
+ * to a net that has not been declared in the phdl source code.
+ * 
+ * @author Richard Black and Brad Riching
+ */
 public class UndeclaredReferenceException extends SyntaxException {
 
 	/**
-	 * 
+	 * The Serial Version UID for this class
 	 */
 	private static final long serialVersionUID = 526821093036414079L;
 
+	/**
+	 * Default constructor
+	 * 
+	 * @param e
+	 *            The element in the source text that caused the exception
+	 */
 	public UndeclaredReferenceException(Element e) {
-		super(e.getLocation() + " Undeclared reference detected: "
+		super(e.getLocString() + " Undeclared reference detected: "
 				+ e.getName());
+	}
+
+	/**
+	 * Secondary constructor
+	 * 
+	 * @param n
+	 *            The name of the object that caused the exception
+	 */
+	public UndeclaredReferenceException(String n) {
+		super("Undeclared reference detected: " + n);
 	}
 }

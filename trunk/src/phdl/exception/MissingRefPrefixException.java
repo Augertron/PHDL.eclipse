@@ -19,15 +19,37 @@ package phdl.exception;
 
 import phdl.parser.Element;
 
+/**
+ * A class that represents an exception thrown when a device attribute list is
+ * missing a required reference prefix in the phdl source code.
+ * 
+ * @author Richard Black and Brad Riching
+ */
 public class MissingRefPrefixException extends SyntaxException {
 
 	/**
-	 * 
+	 * The Serial Version UID for this class
 	 */
 	private static final long serialVersionUID = -5744387465105547028L;
 
+	/**
+	 * Default constructor
+	 * 
+	 * @param e
+	 *            The element in the source text that caused the exception
+	 */
 	public MissingRefPrefixException(Element e) {
-		super(e.getLocation() + "Missing reference prefix detected: "
+		super(e.getLocString() + " Missing reference prefix detected: "
 				+ e.getName());
+	}
+
+	/**
+	 * Secondary constructor
+	 * 
+	 * @param s
+	 *            The name of the object that caused the exception
+	 */
+	public MissingRefPrefixException(String s) {
+		super("Missing reference prefix detected: " + s);
 	}
 }

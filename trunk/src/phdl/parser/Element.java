@@ -18,44 +18,90 @@
 package phdl.parser;
 
 /**
- * An abstract class that represents all elements of the parsed PHDL source
- * text. Every parsed element has a line number and position as it appeared in
- * the source.
+ * An abstract class that represents all elements of the parsed phdl. Every
+ * parsed element has a name, a line number, and a position as it appears in the
+ * source phdl code.
  * 
  * @author Richard Black and Brad Riching
- * 
  */
 public abstract class Element {
 
+	/**
+	 * The name of the element
+	 */
 	protected String name;
+	/**
+	 * The line number of the element
+	 */
 	protected int line;
+	/**
+	 * The position of the element
+	 */
 	protected int pos;
 
+	/**
+	 * Gets the name of the element
+	 * 
+	 * @return The name of the element
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Sets the name of the element
+	 * 
+	 * @param name
+	 *            The name of the element
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * Gets the line number of the element
+	 * 
+	 * @return The line number of the element
+	 */
 	public int getLine() {
 		return line;
 	}
 
+	/**
+	 * Sets the line number of the element
+	 * 
+	 * @param line
+	 *            The line number of the element
+	 */
 	public void setLine(int line) {
 		this.line = line;
 	}
 
+	/**
+	 * Gets the position of the element
+	 * 
+	 * @return The position of the element
+	 */
 	public int getPos() {
 		return pos;
 	}
 
+	/**
+	 * Sets the position of the element
+	 * 
+	 * @param pos
+	 *            The position of the element
+	 */
 	public void setPos(int pos) {
 		this.pos = pos;
 	}
 
-	public String getLocation() {
+	/**
+	 * Gets a string representation of the location of the element
+	 * 
+	 * @return A string representation of the line and position of the element
+	 */
+	public String getLocString() {
 		return "[" + line + ":" + pos + "]";
 	}
 

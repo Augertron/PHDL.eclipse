@@ -19,14 +19,36 @@ package phdl.exception;
 
 import phdl.parser.Element;
 
+/**
+ * A class that represents an exception thrown when an indexable object is
+ * reference with an invalid index in the phdl source code.
+ * 
+ * @author Richard Black and Brad Riching
+ */
 public class UndefinedIndexException extends SyntaxException {
 
 	/**
-	 * 
+	 * The Serial Version UID for this class
 	 */
 	private static final long serialVersionUID = -7496063113779535035L;
 
+	/**
+	 * Default constructor
+	 * 
+	 * @param e
+	 *            The element in the source text that caused the exception
+	 */
 	public UndefinedIndexException(Element e) {
-		super(e.getLocation() + " Undefined index detected: " + e.getName());
+		super(e.getLocString() + " Undefined index detected: " + e.getName());
+	}
+
+	/**
+	 * Secondary constructor
+	 * 
+	 * @param n
+	 *            The name of the object that caused the exception
+	 */
+	public UndefinedIndexException(String n) {
+		super("Undefined index detected: " + n);
 	}
 }

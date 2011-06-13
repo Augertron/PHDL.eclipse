@@ -19,14 +19,36 @@ package phdl.exception;
 
 import phdl.parser.Element;
 
+/**
+ * A class that represents an exception thrown when a pin is undriven (floating)
+ * in the phdl source code.
+ * 
+ * @author Richard Black and Brad Riching
+ */
 public class UndrivenPinException extends SyntaxException {
 
 	/**
-	 * 
+	 * The Serial Version UID for this class
 	 */
 	private static final long serialVersionUID = -4865279688125268757L;
 
+	/**
+	 * Default constructor
+	 * 
+	 * @param e
+	 *            The element in the source text that caused the exception
+	 */
 	public UndrivenPinException(Element e) {
-		super(e.getLocation() + " Undriven pin detected: " + e.getName());
+		super(e.getLocString() + " Undriven pin detected: " + e.getName());
+	}
+
+	/**
+	 * Secondary constructor
+	 * 
+	 * @param n
+	 *            The name of the object that caused the exception
+	 */
+	public UndrivenPinException(String n) {
+		super("Undriven pin detected: " + n);
 	}
 }

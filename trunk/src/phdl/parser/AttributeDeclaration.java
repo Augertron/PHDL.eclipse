@@ -17,24 +17,50 @@
 
 package phdl.parser;
 
+/**
+ * A class that represents an attribute declaration in phdl. In addition to
+ * inherited fields, an attribute assignment has a value.
+ * 
+ * @author Richard Black and Brad Riching
+ */
 public class AttributeDeclaration extends Declaration {
 
+	/**
+	 * The attribute's value
+	 */
 	protected String value;
 
+	/**
+	 * Default constructor
+	 */
 	public AttributeDeclaration() {
 		super();
 	}
 
+	/**
+	 * Gets the attribute's value
+	 * 
+	 * @return The attribute's value
+	 */
 	public String getValue() {
 		return value;
 	}
 
+	/**
+	 * Sets the attribute's value
+	 * 
+	 * @param value
+	 *            The attribute's value
+	 */
 	public void setValue(String value) {
 		this.value = value;
 	}
 
+	/**
+	 * Returns a formatted string representation of the attribute declaration
+	 */
 	@Override
 	public String toString() {
-		return "AttrDecl" + getLocation() + ": " + name + " = " + value + "\n";
+		return "AttrDecl" + getLocString() + ": " + name + " = " + value + "\n";
 	}
 }

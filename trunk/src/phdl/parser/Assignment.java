@@ -18,6 +18,7 @@
 package phdl.parser;
 
 /**
+ * An abstract class that represents an assignment in phdl.
  * 
  * @author Richard Black and Brad Riching
  * 

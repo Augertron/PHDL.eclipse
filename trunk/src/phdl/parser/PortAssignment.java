@@ -19,22 +19,41 @@ package phdl.parser;
 
 import java.util.LinkedList;
 
+/**
+ * A class that represents a port assignment in phdl.
+ * 
+ * @author Richard Black and Brad Riching
+ * 
+ */
 public class PortAssignment extends ConcatenationAssignment {
 
+	/**
+	 * Default constructor
+	 */
 	public PortAssignment() {
 		super();
 		this.nets = new LinkedList<Net>();
 	}
 
+	/**
+	 * Returns a formatted string representation of the port assignment
+	 */
 	@Override
 	public String toString() {
 		String netString = "";
 
-		for (Net n : nets)
-			netString += n.toString() + " & ";
-		netString = netString.substring(0, netString.length() - 3);
+		// show concatenations with an ampersand symbol
+		if (!nets.isEmpty()) {
+			for (Net n : nets)
+				netString += n.toString() + " & ";
+			// remove last ampersand from the loop above
+			netString = netString.substring(0, netString.length() - 3);
+		} else {
+			// if there are no nets in the list, the assignment is open.
+			netString = "open";
+		}
 
-		return "PortAssign" + getLocation() + ": " + name + getArray() + " = "
-				+ netString + "\n";
+		return "PortAssign" + getLocString() + ": " + name + getWidthString()
+				+ " = " + netString + "\n";
 	}
 }

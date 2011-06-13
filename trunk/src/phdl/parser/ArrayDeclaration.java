@@ -17,28 +17,68 @@
 
 package phdl.parser;
 
+/**
+ * A class that represents all declarations that take on an array structure. An
+ * array is declared with an msb and lsb in the source phdl code.
+ * 
+ * @author Richard Black and Brad Riching
+ */
 public abstract class ArrayDeclaration extends Declaration {
 
+	/**
+	 * The msb of the array declaration
+	 */
 	protected int msb = -1;
+	/**
+	 * The lsb of the array declaration
+	 */
 	protected int lsb = -1;
 
+	/**
+	 * Gets the msb of the array declaration
+	 * 
+	 * @return The msb of the array declaration
+	 */
 	public int getMsb() {
 		return msb;
 	}
 
+	/**
+	 * Gets the lsb of the array declaration
+	 * 
+	 * @return The lsb of the array declaration
+	 */
 	public int getLsb() {
 		return lsb;
 	}
 
+	/**
+	 * Sets the msb of the array declaration
+	 * 
+	 * @param msb
+	 *            The msb of the array declaration
+	 */
 	public void setMsb(int msb) {
 		this.msb = msb;
 	}
 
+	/**
+	 * Sets the lsb of the array declaration
+	 * 
+	 * @param lsb
+	 *            The lsb of the array declaration
+	 */
 	public void setLsb(int lsb) {
 		this.lsb = lsb;
 	}
 
-	public String getArray() {
+	/**
+	 * Gets a string representation of the array's width if the msb and lsb have
+	 * been set.
+	 * 
+	 * @return a string representation of the array's width
+	 */
+	public String getWidthString() {
 		if (msb > -1 && lsb > -1)
 			return "[" + msb + ":" + lsb + "]";
 		else

@@ -19,22 +19,41 @@ package phdl.parser;
 
 import java.util.LinkedList;
 
+/**
+ * A class that represents a pin assignment in phdl.
+ * 
+ * @author Richard Black and Brad Riching
+ * 
+ */
 public class PinAssignment extends ConcatenationAssignment {
 
+	/**
+	 * Default constructor
+	 */
 	public PinAssignment() {
 		super();
 		this.nets = new LinkedList<Net>();
 	}
 
+	/**
+	 * Returns a formatted string represenation of the pin assignment
+	 */
 	@Override
 	public String toString() {
 		String netString = "";
 
-		for (Net n : nets)
-			netString += n.toString() + " & ";
-		netString = netString.substring(0, netString.length() - 3);
+		// show concatenations with an ampersand symbol
+		if (!nets.isEmpty()) {
+			for (Net n : nets)
+				netString += n.toString() + " & ";
+			// remove last ampersand from the loop above
+			netString = netString.substring(0, netString.length() - 3);
+		} else {
+			// if there are no nets in the list, the assignment is open.
+			netString = "open";
+		}
 
-		return "PinAssign" + getLocation() + ": " + name + getArray() + " = "
-				+ netString + "\n";
+		return "PinAssign" + getLocString() + ": " + name + getWidthString()
+				+ " = " + netString + "\n";
 	}
 }
