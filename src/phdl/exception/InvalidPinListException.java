@@ -19,14 +19,36 @@ package phdl.exception;
 
 import phdl.parser.Element;
 
+/**
+ * A class that represents an exception thrown when an invalid pin list has been
+ * declared in the source phdl code.
+ * 
+ * @author Richard Black and Brad Riching
+ */
 public class InvalidPinListException extends SyntaxException {
 
 	/**
-	 * 
+	 * The Serial Version UID for this class
 	 */
 	private static final long serialVersionUID = -2686147076887022728L;
 
+	/**
+	 * Default constructor
+	 * 
+	 * @param e
+	 *            The element in the source text that caused the exception
+	 */
 	public InvalidPinListException(Element e) {
-		super(e.getLocation() + "Invalid pin list detected: " + e.getName());
+		super(e.getLocString() + " Invalid pin list detected: " + e.getName());
+	}
+
+	/**
+	 * Secondary constructor
+	 * 
+	 * @param n
+	 *            The name of the object that caused the exception
+	 */
+	public InvalidPinListException(String n) {
+		super("Invalid pin list detected: " + n);
 	}
 }

@@ -17,27 +17,55 @@
 
 package phdl.parser;
 
+/**
+ * A class that represents a port declaration in phdl. In addition to inherited
+ * fields, a port declaration has a type.
+ * 
+ * @author Richard Black and Brad Riching
+ */
 public class PortDeclaration extends ArrayDeclaration {
 
-	protected PHDLType type;
+	/**
+	 * The type of the port assignment
+	 */
+	protected Type type;
 
-	public PortDeclaration(PHDLType type) {
+	/**
+	 * Default constructor
+	 * 
+	 * @param type
+	 *            The type of the port assignment
+	 */
+	public PortDeclaration(Type type) {
 		super();
 		this.type = type;
 	}
 
-	public PHDLType getType() {
+	/**
+	 * Gets the port assignment's type
+	 * 
+	 * @return The port assignment's type
+	 */
+	public Type getType() {
 		return type;
 	}
 
-	public void setType(PHDLType type) {
+	/**
+	 * Sets the port assignment's type
+	 * 
+	 * @param type
+	 */
+	public void setType(Type type) {
 		this.type = type;
 	}
 
+	/**
+	 * Returns a formatted string representation of the port declaration
+	 */
 	@Override
 	public String toString() {
-		return "PortDecl" + getLocation() + ": " + type.toString() + getArray()
-				+ " " + name + "\n";
+		return "PortDecl" + getLocString() + ": " + type.toString()
+				+ getWidthString() + " " + name + "\n";
 	}
 
 }

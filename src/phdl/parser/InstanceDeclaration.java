@@ -19,42 +19,85 @@ package phdl.parser;
 
 import java.util.HashSet;
 
+/**
+ * A class that represents an instance declaration in phdl. An instance
+ * declaration (of a device) has a set of attributes, and pin assignments.
+ * 
+ * @author Richard Black and Brad Riching
+ */
 public class InstanceDeclaration extends InstanceDeclarations {
 
+	/**
+	 * The instance's set of attribute assignments
+	 */
 	protected HashSet<AttributeAssignment> attrAssigns;
+	/**
+	 * The instance's set of pin assignments
+	 */
 	protected HashSet<PinAssignment> pinAssigs;
 
+	/**
+	 * Default constructor
+	 */
 	public InstanceDeclaration() {
 		super();
 		this.attrAssigns = new HashSet<AttributeAssignment>();
 		this.pinAssigs = new HashSet<PinAssignment>();
 	}
 
+	/**
+	 * Gets the instance's set of attribute assignments
+	 * 
+	 * @return The instance's set of attribute assignments
+	 */
 	public HashSet<AttributeAssignment> getAttributeAssignments() {
 		return attrAssigns;
 	}
 
+	/**
+	 * Adds an attribute assignment to the instance's set of attribute
+	 * assignments
+	 * 
+	 * @param a
+	 *            The attribute assignment to add
+	 */
 	public void addAttributeAssignment(AttributeAssignment a) {
 		attrAssigns.add(a);
 	}
 
+	/**
+	 * Get's the instance's set of pin assignments
+	 * 
+	 * @return The instance's set of pin assignments
+	 */
 	public HashSet<PinAssignment> getPinAssignments() {
 		return pinAssigs;
 	}
 
+	/**
+	 * Adds a pin assignment to the instance's pin set of pin assignments
+	 * 
+	 * @param p
+	 *            The pin assignment to add
+	 */
 	public void addPinAssignment(PinAssignment p) {
 		pinAssigs.add(p);
 	}
 
+	/**
+	 * Returns a formatted string representation of the instance declaration
+	 */
 	@Override
 	public String toString() {
-		String header = "InstanceDecl" + getLocation() + ": " + name + "\n";
+		String header = "InstanceDecl" + getLocString() + ": " + name + "\n";
 		String attributes = "";
 		String pins = "";
 
+		// loop through all attribute assignments
 		for (AttributeAssignment a : attrAssigns)
 			attributes += "\t\t" + a.toString();
 
+		// loop through all pin assignments
 		for (PinAssignment p : pinAssigs)
 			pins += "\t\t" + p.toString();
 

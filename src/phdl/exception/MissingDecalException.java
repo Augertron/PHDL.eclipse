@@ -19,14 +19,37 @@ package phdl.exception;
 
 import phdl.parser.Element;
 
+/**
+ * A class that represents an exception thrown when a device attribute list is
+ * missing a required decal (also referred to as a footprint) in the phdl source
+ * code.
+ * 
+ * @author Richard Black and Brad Riching
+ */
 public class MissingDecalException extends SyntaxException {
 
 	/**
-	 * 
+	 * The Serial Version UID for this class
 	 */
 	private static final long serialVersionUID = -5251602007276784636L;
 
+	/**
+	 * Default constructor
+	 * 
+	 * @param e
+	 *            The element in the source text that caused the exception
+	 */
 	public MissingDecalException(Element e) {
-		super(e.getLocation() + "Missing decal detected: " + e.getName());
+		super(e.getLocString() + " Missing decal detected: " + e.getName());
+	}
+
+	/**
+	 * Secondary constructor
+	 * 
+	 * @param n
+	 *            The name of the object that caused the exception
+	 */
+	public MissingDecalException(String n) {
+		super("Missing decal detected: " + n);
 	}
 }

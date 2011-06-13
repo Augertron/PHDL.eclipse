@@ -19,23 +19,50 @@ package phdl.parser;
 
 import java.util.HashSet;
 
+/**
+ * A class that represents a net declaration in phdl. In addition to the
+ * inherited fields, a net declaration has a set of net-attributes.
+ * 
+ * @author Richard Black and Brad Riching
+ * 
+ */
 public class NetDeclaration extends ArrayDeclaration {
 
+	/**
+	 * The net's set of attributes
+	 */
 	protected HashSet<String> attributes;
 
+	/**
+	 * Default constructor
+	 */
 	public NetDeclaration() {
 		super();
 		this.attributes = new HashSet<String>();
 	}
 
+	/**
+	 * Gets the net's set of attributes
+	 * 
+	 * @return The net's set of attributes
+	 */
 	public HashSet<String> getAttributes() {
 		return attributes;
 	}
 
-	public void addAttribute(String attribute) {
-		this.attributes.add(attribute);
+	/**
+	 * Adds an attribute to the net's set of attributes
+	 * 
+	 * @param a
+	 *            The attribute to add
+	 */
+	public void addAttribute(String a) {
+		this.attributes.add(a);
 	}
 
+	/**
+	 * Returns a formatted string representation of the net declaration
+	 */
 	@Override
 	public String toString() {
 		String netString = "";
@@ -45,7 +72,7 @@ public class NetDeclaration extends ArrayDeclaration {
 		}
 		netString += "\n";
 
-		return "NetDecl" + getLocation() + ": " + name + getArray() + ": "
-				+ netString;
+		return "NetDecl" + getLocString() + ": " + name + getWidthString()
+				+ ": " + netString;
 	}
 }

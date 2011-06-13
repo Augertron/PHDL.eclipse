@@ -19,15 +19,37 @@ package phdl.exception;
 
 import phdl.parser.Element;
 
+/**
+ * A class that represents an exception thrown when duplicate reference
+ * designators have been constrained in the source phdl code.
+ * 
+ * @author Richard Black and Brad Riching
+ */
 public class DuplicateRefDesException extends SyntaxException {
 
 	/**
-	 * 
+	 * The Serial Version UID for this class
 	 */
 	private static final long serialVersionUID = 4573989149868427305L;
 
+	/**
+	 * Default constructor
+	 * 
+	 * @param e
+	 *            The element in the source text that caused the exception
+	 */
 	public DuplicateRefDesException(Element e) {
-		super(e.getLocation() + "Duplicate reference designator detected: "
+		super(e.getLocString() + " Duplicate reference designator detected: "
 				+ e.getName());
+	}
+
+	/**
+	 * Secondary constructor
+	 * 
+	 * @param n
+	 *            The name of the object that caused the exception
+	 */
+	public DuplicateRefDesException(String n) {
+		super("Duplicate reference designator detected: " + n);
 	}
 }

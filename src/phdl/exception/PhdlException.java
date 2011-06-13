@@ -19,10 +19,13 @@ package phdl.exception;
 
 /**
  * Represents an abstract phdl exception.
+ * 
+ * @author Richard Black and Brad Riching
  */
 public abstract class PhdlException extends Exception {
+
 	/**
-	 * 
+	 * The Serial Version UID for this class
 	 */
 	private static final long serialVersionUID = 2732014517645210176L;
 

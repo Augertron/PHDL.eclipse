@@ -19,14 +19,37 @@ package phdl.exception;
 
 import phdl.parser.Element;
 
+/**
+ * A class which represents an exception thrown when the widths of the vectors
+ * in a concatenation assignment do not match in the source phdl code.
+ * 
+ * @author Richard Black and Brad Riching
+ */
 public class AssignmentWidthException extends SyntaxException {
+
 	/**
-	 * 
+	 * The Serial Version UID for this class
 	 */
 	private static final long serialVersionUID = 4902261808672606812L;
 
+	/**
+	 * Default constructor
+	 * 
+	 * @param e
+	 *            The element in the source text that caused the exception
+	 */
 	public AssignmentWidthException(Element e) {
-		super(e.getLocation() + " Invalid assignment width detected: "
+		super(e.getLocString() + " Invalid assignment width detected: "
 				+ e.getName());
+	}
+
+	/**
+	 * Secondary constructor
+	 * 
+	 * @param n
+	 *            The name of the object that caused the exception
+	 */
+	public AssignmentWidthException(String n) {
+		super("Invalid assignment width detected: " + n);
 	}
 }

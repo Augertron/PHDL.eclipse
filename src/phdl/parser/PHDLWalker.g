@@ -75,13 +75,13 @@ design[ParsedDesigns pd]
 	;
 	
 portDecl[DesignDeclaration d]
-	:	^('pin' {PortDeclaration pin = new PortDeclaration(PHDLType.PIN);} addPort[d, pin])
-	|	^('in' {PortDeclaration in = new PortDeclaration(PHDLType.IN);} addPort[d, in])
-	|	^('out' {PortDeclaration out = new PortDeclaration(PHDLType.OUT);} addPort[d, out])
-	|	^('inout' {PortDeclaration inout = new PortDeclaration(PHDLType.INOUT);} addPort[d, inout])
-	|	^('passive' {PortDeclaration passive = new PortDeclaration(PHDLType.PASSIVE);} addPort[d, passive])
-	|	^('supply' {PortDeclaration supply = new PortDeclaration(PHDLType.SUPPLY);} addPort[d, supply])
-	|	^('power' {PortDeclaration power = new PortDeclaration(PHDLType.POWER);} addPort[d, power])
+	:	^('pin' {PortDeclaration pin = new PortDeclaration(Type.PIN);} addPort[d, pin])
+	|	^('in' {PortDeclaration in = new PortDeclaration(Type.IN);} addPort[d, in])
+	|	^('out' {PortDeclaration out = new PortDeclaration(Type.OUT);} addPort[d, out])
+	|	^('inout' {PortDeclaration inout = new PortDeclaration(Type.INOUT);} addPort[d, inout])
+	|	^('passive' {PortDeclaration passive = new PortDeclaration(Type.PASSIVE);} addPort[d, passive])
+	|	^('supply' {PortDeclaration supply = new PortDeclaration(Type.SUPPLY);} addPort[d, supply])
+	|	^('power' {PortDeclaration power = new PortDeclaration(Type.POWER);} addPort[d, power])
 	;
 	
 addPort[DesignDeclaration d, PortDeclaration p]
@@ -178,13 +178,13 @@ attributeDecl[DeviceDeclaration d]
  * pin with values.
  */	
 pinDecl[DeviceDeclaration d]
-	:	^('pin' {PinDeclaration pin = new PinDeclaration(PHDLType.PIN);} addPin[d, pin])
-	|	^('in' {PinDeclaration in = new PinDeclaration(PHDLType.IN);} addPin[d, in])
-	|	^('out' {PinDeclaration out = new PinDeclaration(PHDLType.OUT);} addPin[d, out])
-	|	^('inout' {PinDeclaration inout = new PinDeclaration(PHDLType.INOUT);} addPin[d, inout])
-	|	^('passive' {PinDeclaration passive = new PinDeclaration(PHDLType.PASSIVE);} addPin[d, passive])
-	|	^('supply' {PinDeclaration supply = new PinDeclaration(PHDLType.SUPPLY);} addPin[d, supply])
-	|	^('power' {PinDeclaration power = new PinDeclaration(PHDLType.POWER);} addPin[d, power])
+	:	^('pin' {PinDeclaration pin = new PinDeclaration(Type.PIN);} addPin[d, pin])
+	|	^('in' {PinDeclaration in = new PinDeclaration(Type.IN);} addPin[d, in])
+	|	^('out' {PinDeclaration out = new PinDeclaration(Type.OUT);} addPin[d, out])
+	|	^('inout' {PinDeclaration inout = new PinDeclaration(Type.INOUT);} addPin[d, inout])
+	|	^('passive' {PinDeclaration passive = new PinDeclaration(Type.PASSIVE);} addPin[d, passive])
+	|	^('supply' {PinDeclaration supply = new PinDeclaration(Type.SUPPLY);} addPin[d, supply])
+	|	^('power' {PinDeclaration power = new PinDeclaration(Type.POWER);} addPin[d, power])
 	;
 	
 /** The helper rule for pinDecl.  It sets all the fields of the pin as they are found after
@@ -266,7 +266,7 @@ pinAssignment[InstanceDeclaration i]
 			p.setIndex($index!=null?Integer.parseInt($index.text):-1);
 		}
 	
-		concatenatePin[p]+
+		concatenatePin[p]*
 		)
 		{i.addPinAssignment(p);}
 	;
@@ -320,7 +320,7 @@ netAssignment[DesignDeclaration d]
 			n.setIndex($index!=null?Integer.parseInt($index.text):-1);
 		}
 		
-		concatenateNet[n]+
+		concatenateNet[n]*
 		)
 		{d.addNetAssignment(n);}
 	;
@@ -353,7 +353,7 @@ portAssignment[SubDesignDeclaration s]
 			p.setIndex($index!=null?Integer.parseInt($index.text):-1);
 		}
 	
-		concatenatePort[p]+
+		concatenatePort[p]*
 		)
 		{s.addPortAssignment(p);}
 	;

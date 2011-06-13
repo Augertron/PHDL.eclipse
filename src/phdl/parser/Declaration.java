@@ -17,6 +17,11 @@
 
 package phdl.parser;
 
+/**
+ * Represents all objects that can be delcared in phdl.
+ * 
+ * @author Richard Black and Brad Riching
+ */
 public abstract class Declaration extends Element {
 
 }

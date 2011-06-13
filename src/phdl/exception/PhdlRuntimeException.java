@@ -17,9 +17,14 @@
 
 package phdl.exception;
 
+/**
+ * Represents a runtime exception in phdl.
+ * 
+ * @author Richard Black and Brad Riching
+ */
 public class PhdlRuntimeException extends RuntimeException {
 	/**
-	 * 
+	 * The Serial Version UID for this class
 	 */
 	private static final long serialVersionUID = -3980300815510113398L;
 

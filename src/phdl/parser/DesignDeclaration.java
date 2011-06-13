@@ -19,15 +19,45 @@ package phdl.parser;
 
 import java.util.HashSet;
 
+/**
+ * A class that represents a design declaration in phdl. In addition to
+ * inherited fields, a design has a set of port declarations, a set of device
+ * declarations, a set of net declarations, a set of instance declarations, a
+ * set of sub declarations and a set of net assignments.
+ * 
+ * @author Richard Black and Brad Riching
+ * 
+ */
 public class DesignDeclaration extends Declaration {
 
+	/**
+	 * The design declaration's set of port declarations
+	 */
 	protected HashSet<PortDeclaration> portDecls;
+	/**
+	 * The design declaration's set of device declarations
+	 */
 	protected HashSet<DeviceDeclaration> deviceDecls;
+	/**
+	 * The design declaration's set of net declarations
+	 */
 	protected HashSet<NetDeclaration> netDecls;
+	/**
+	 * The design declaration's set of instance declarations
+	 */
 	protected HashSet<InstanceDeclaration> instDecls;
+	/**
+	 * The design declaration's set of sub-design declarations
+	 */
 	protected HashSet<SubDesignDeclaration> subDecls;
+	/**
+	 * The design declaration's set of net assignments
+	 */
 	protected HashSet<NetAssignment> netAssigns;
 
+	/**
+	 * Default constructor
+	 */
 	public DesignDeclaration() {
 		super();
 		this.portDecls = new HashSet<PortDeclaration>();
@@ -38,57 +68,129 @@ public class DesignDeclaration extends Declaration {
 		this.netAssigns = new HashSet<NetAssignment>();
 	}
 
+	/**
+	 * Gets this design declaration's set of port declarations
+	 * 
+	 * @return This design declaration's set of port declarations
+	 */
 	public HashSet<PortDeclaration> getPortDecls() {
 		return portDecls;
 	}
 
+	/**
+	 * Adds a port declaration to this design's set of port declarations
+	 * 
+	 * @param portDecl
+	 *            The port declaration to add
+	 */
 	public void addPortDecl(PortDeclaration portDecl) {
 		portDecls.add(portDecl);
 	}
 
+	/**
+	 * Gets this design declaration's set of device declarations
+	 * 
+	 * @return This design declaration's set of device declarations
+	 */
 	public HashSet<DeviceDeclaration> getDeviceDecls() {
 		return deviceDecls;
 	}
 
+	/**
+	 * Adds a device declaration to this design's set of device declarations
+	 * 
+	 * @param devDecl
+	 *            The device declaration to add
+	 */
 	public void addDeviceDecl(DeviceDeclaration devDecl) {
 		deviceDecls.add(devDecl);
 	}
 
+	/**
+	 * Gets this design declaration's set of net declarations
+	 * 
+	 * @return This design declaration's set of net declarations
+	 */
 	public HashSet<NetDeclaration> getNetDecls() {
 		return netDecls;
 	}
 
+	/**
+	 * Adds a net declaration to this design's set of net declarations
+	 * 
+	 * @param netDecl
+	 *            The net declaration to add
+	 */
 	public void addNetDecl(NetDeclaration netDecl) {
 		netDecls.add(netDecl);
 	}
 
+	/**
+	 * Gets this design declaration's set of instance declarations
+	 * 
+	 * @return This design declaration's set of instance declarations
+	 */
 	public HashSet<InstanceDeclaration> getInstanceDecls() {
 		return instDecls;
 	}
 
+	/**
+	 * Adds an instance declaration to this design's set of of instance
+	 * declarations
+	 * 
+	 * @param instanceDecl
+	 *            The instance declaration to add
+	 */
 	public void addInstanceDecl(InstanceDeclaration instanceDecl) {
 		instDecls.add(instanceDecl);
 	}
 
+	/**
+	 * Gets this design declaration's set of sub-design declarations
+	 * 
+	 * @return This design declaration's set of sub-design declarations
+	 */
 	public HashSet<SubDesignDeclaration> getSubDesignDecls() {
 		return subDecls;
 	}
 
+	/**
+	 * Adds a sub-design declaration to this design's set of sub-design
+	 * declarations
+	 * 
+	 * @param subDesignDecl
+	 *            The sub-design declaration to add
+	 */
 	public void addSubDesignDecl(SubDesignDeclaration subDesignDecl) {
 		subDecls.add(subDesignDecl);
 	}
 
+	/**
+	 * Gets this design declaration's set of net assignments
+	 * 
+	 * @return This design declaration's set of net assignments
+	 */
 	public HashSet<NetAssignment> getNetAssignments() {
 		return netAssigns;
 	}
 
+	/**
+	 * Adds a net assignment declaration to this design's set of net assignment
+	 * declarations
+	 * 
+	 * @param netAssignment
+	 *            The net assignment declaration to add
+	 */
 	public void addNetAssignment(NetAssignment netAssignment) {
 		netAssigns.add(netAssignment);
 	}
 
+	/**
+	 * Returns a formatted string representation of the design declaration
+	 */
 	@Override
 	public String toString() {
-		String header = "DesignDecl" + getLocation() + ": " + name + "\n";
+		String header = "DesignDecl" + getLocString() + ": " + name + "\n";
 		String ports = "";
 		String devices = "";
 		String nets = "";
@@ -96,21 +198,27 @@ public class DesignDeclaration extends Declaration {
 		String subs = "";
 		String assigns = "";
 
+		// loop over all port declarations
 		for (PortDeclaration p : portDecls)
 			ports += "\t" + p.toString();
 
+		// loop over all device declarations
 		for (DeviceDeclaration d : deviceDecls)
 			devices += "\t" + d.toString();
 
+		// loop over all net declarations
 		for (NetDeclaration n : netDecls)
 			nets += "\t" + n.toString();
 
+		// loop over all instance declarations
 		for (InstanceDeclaration i : instDecls)
 			instances += "\t" + i.toString();
 
+		// loop over all sub-design declarations
 		for (SubDesignDeclaration s : subDecls)
 			subs += "\t" + s.toString();
 
+		// loop over all net assignments
 		for (NetAssignment n : netAssigns)
 			assigns += "\t" + n.toString();
 

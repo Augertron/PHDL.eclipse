@@ -17,14 +17,26 @@
 
 package phdl.parser;
 
+/**
+ * A class that represents a net in phdl.
+ * 
+ * @author Richard Black and Brad Riching
+ * 
+ */
 public class Net extends Indexable {
 
+	/**
+	 * Default constructor
+	 */
 	public Net() {
 		super();
 	}
 
+	/**
+	 * Returns a formatted string representation of the net
+	 */
 	@Override
 	public String toString() {
-		return "Net" + getLocation() + ": " + name + getArray();
+		return "Net" + getLocString() + ": " + name + getWidthString();
 	}
 }

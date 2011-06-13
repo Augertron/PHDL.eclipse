@@ -17,13 +17,24 @@
 
 package phdl.exception;
 
+/**
+ * Represents an abstract syntax exception in phdl
+ * 
+ * @author Richard Black and Brad Riching
+ */
 public abstract class SyntaxException extends PhdlException {
 
 	/**
-	 * 
+	 * The Serial Version UID for this class
 	 */
 	private static final long serialVersionUID = 9063105921640281717L;
 
+	/**
+	 * Default constructor
+	 * 
+	 * @param message
+	 *            The exception message
+	 */
 	public SyntaxException(String message) {
 		super(message);
 	}
