@@ -55,9 +55,11 @@ public class NetDeclaration extends ArrayDeclaration {
 	 * 
 	 * @param a
 	 *            The attribute to add
+	 * @return True if the attribute was added successfully
 	 */
-	public void addAttribute(String a) {
-		this.attributes.add(a);
+	public boolean addAttribute(String a) {
+		boolean added = this.attributes.add(a);
+		return added;
 	}
 
 	/**

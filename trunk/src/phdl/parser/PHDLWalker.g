@@ -59,13 +59,14 @@ design[ParsedDesigns pd]
 			d.setLine($IDENT.line);
 			d.setPos($IDENT.pos);
 		}
-			
+		
+		// port declarations must appear before anything else	
 		portDecl[d]*
 			
-		// add device and net declarations to the design
+		// add device and net declarations if there are any
 		(deviceDecl[d] | netDecl[d])*
 		
-		// the begin token separates declarations from instances and assignments
+		// seperates declarations from instances
 		'begin'
 		
 		// add all instances subDesigns and netAssignments to the design
@@ -74,8 +75,8 @@ design[ParsedDesigns pd]
 		
 		{
 			boolean added = pd.addDesignDecl(d);
-			if(!added) throw new PhdlRuntimeException(d.getLocString() 
-				+ " Duplicate design declaration detected: " + d.getName());
+			if(!added) throw new PhdlRuntimeException(d.getLocString() + ": "
+				+ "Duplicate design declaration found: " + d.getName());
 		}
 	;
 	
@@ -100,8 +101,8 @@ addPort[DesignDeclaration d, PortDeclaration p]
 		}
 		{
 			boolean added = d.addPortDecl(p);
-			if(!added) throw new PhdlRuntimeException(p.getLocString() 
-				+ " Duplicate port declaration detected: " + p.getName());
+			if(!added) throw new PhdlRuntimeException(p.getLocString() + ": " 
+				+ "Duplicate port declaration found: " + p.getName());
 		}
 	;
 
@@ -134,7 +135,10 @@ deviceDecl[DesignDeclaration d]
 		)
 		
 		// add the device to the design and return
-		{d.addDeviceDecl(dev);}
+		{	boolean added = d.addDeviceDecl(dev);
+			if(!added) throw new PhdlRuntimeException(dev.getLocString() + ": " 
+				+ "Duplicate device declaration found: " + dev.getName());
+		}
 	;
 
 /** Looks for the keyword "net" as the parent of a subtree, and makes a new net named from the 
@@ -145,8 +149,7 @@ netDecl[DesignDeclaration d]
 	:	^('net' (msb=INT lsb=INT)? name=IDENT
 	
 		// make a new net with the above information
-		{
-			NetDeclaration n = new NetDeclaration(); 
+		{	NetDeclaration n = new NetDeclaration(); 
 			n.setName($name.text);
 			n.setLine($name.line);
 			n.setPos($name.pos);
@@ -159,13 +162,20 @@ netDecl[DesignDeclaration d]
 		)
 		
 		// add the net to the design
-		{d.addNetDecl(n);}
+		{	boolean added = d.addNetDecl(n);
+			if(!added) throw new PhdlRuntimeException(n.getLocString() + ": " 
+				+ "Duplicate net declaration found: " + n.getName());
+		}
 	;
 
 /** Helper method for netDecl.  Adds attributes after the colon if they exist in the tree.
  */	
 netAttribute[NetDeclaration n]
-	:	IDENT						{n.addAttribute($IDENT.text);}
+	:	IDENT						
+		{	boolean added = n.addAttribute($IDENT.text);
+			if(!added) throw new PhdlRuntimeException(n.getLocString() + ": " 
+				+ "Duplicate net attribute found: " + n.getName());
+		}
 	;
 
 /** Looks for an "=" as the root of a subtree, and creates a new attribute based on the 
@@ -178,7 +188,9 @@ attributeDecl[DeviceDeclaration d]
 			a.setLine($name.line);
 			a.setPos($name.pos);
 			a.setValue($value.text);
-			d.addAttributeDecl(a);
+			boolean added = d.addAttributeDecl(a);
+			if(!added) throw new PhdlRuntimeException(a.getLocString() + ": "
+				+ "Duplicate attribute declaration found: " + a.getName());
 		}
 	;
 
@@ -209,7 +221,10 @@ addPin[DeviceDeclaration d, PinDeclaration p]
 			p.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
 			p.setPinList($pinList.text);
 		}
-		{d.addPinDecl(p);}
+		{	boolean added = d.addPinDecl(p);
+			if(!added) throw new PhdlRuntimeException(p.getLocString() + ": " 
+				+ "Duplicate pin declaration found: " + p.getName());
+		}
 	;	
 
 /** Looks for the keyword "inst" as the root of a subtree, and creates a new instance based on the
@@ -233,7 +248,10 @@ instance[DesignDeclaration d]
 		'begin'
 		pinAssignment[i]*
 		)
-		{d.addInstanceDecl(i);}
+		{	boolean added = d.addInstanceDecl(i);
+			if(!added) throw new PhdlRuntimeException(i.getLocString() + ": " 
+				+ "Duplicate instance declaration found: " + i.getName());
+		}
 	;
 
 /**	Looks for an "=" sign as the parent of a subtree.  Succeding values consist of left values
@@ -245,8 +263,7 @@ attributeAssignment[InstanceDeclaration i]
 	:	^(EQUALS name=IDENT ((msb=INT lsb=INT) | (index=INT))? value=STRING_LITERAL )
 		
 		// make a new attribute assignment, assign all values, and add it to the instance
-		{
-			AttributeAssignment a = new AttributeAssignment();
+		{	AttributeAssignment a = new AttributeAssignment();
 			a.setName($name.text);
 			a.setLine($name.line);
 			a.setPos($name.pos);
@@ -254,7 +271,9 @@ attributeAssignment[InstanceDeclaration i]
 			a.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
 			a.setIndex($index!=null?Integer.parseInt($index.text):-1);
 			a.setValue($value.text);
-			i.addAttributeAssignment(a);
+			boolean added = i.addAttributeAssignment(a);
+			if(!added) throw new PhdlRuntimeException(a.getLocString() + ": " 
+				+ "Duplicate attribute assignment found: " + a.getName() + a.getWidthString());
 		}
 	;
 
@@ -277,7 +296,10 @@ pinAssignment[InstanceDeclaration i]
 	
 		concatenatePin[p]*
 		)
-		{i.addPinAssignment(p);}
+		{	boolean added = i.addPinAssignment(p);
+			if(!added) throw new PhdlRuntimeException(p.getLocString() + ": " 
+				+ "Duplicate pin assignment found: " + p.getName() + p.getWidthString());
+		}
 	;
 	
 concatenatePin[PinAssignment p]
@@ -310,7 +332,10 @@ subDesign[DesignDeclaration d]
 
 		portAssignment[s]*
 		)
-		{d.addSubDesignDecl(s);}
+		{	boolean added = d.addSubDesignDecl(s);
+			if(!added) throw new PhdlRuntimeException(s.getLocString() + ": " 
+				+ "Duplicate sub-design declaration found: " + s.getName());
+		}
 	;
 
 /**	Looks for an "=" sign as the parent of a subtree.  
@@ -331,7 +356,10 @@ netAssignment[DesignDeclaration d]
 		
 		concatenateNet[n]*
 		)
-		{d.addNetAssignment(n);}
+		{	boolean added = d.addNetAssignment(n);
+			if(!added) throw new PhdlRuntimeException(n.getLocString() + ": " 
+				+ "Duplicate net assignment found: " + n.getName() + n.getWidthString());
+		}
 	;
 	
 concatenateNet[NetAssignment net]
@@ -364,7 +392,10 @@ portAssignment[SubDesignDeclaration s]
 	
 		concatenatePort[p]*
 		)
-		{s.addPortAssignment(p);}
+		{	boolean added = s.addPortAssignment(p);
+			if(!added) throw new PhdlRuntimeException(p.getLocString() + ": " 
+				+ "Duplicate port assignment found: " + p.getName() + p.getWidthString());
+		}
 	;
 
 concatenatePort[PortAssignment p]

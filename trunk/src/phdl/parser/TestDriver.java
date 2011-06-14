@@ -81,7 +81,7 @@ public class TestDriver {
 		try {
 			designs = walker.sourceText().getDesignDecls();
 		} catch (PhdlRuntimeException e) {
-			System.out.println("Error: " + e.getMessage());
+			System.out.println("PHDLWalker Error" + e.getMessage());
 			System.exit(-1);
 		}
 

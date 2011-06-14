@@ -58,6 +58,25 @@ public class AttributeAssignment extends Assignable {
 	}
 
 	/**
+	 * Defines overridden hashCode method
+	 */
+	@Override
+	public int hashCode() {
+		return (name + msb + lsb + index).hashCode();
+	}
+
+	/**
+	 * Defines overridden equals method
+	 */
+	@Override
+	public boolean equals(Object o) {
+		return name.equals(((AttributeAssignment) o).getName())
+				&& msb == ((AttributeAssignment) o).getMsb()
+				&& lsb == ((AttributeAssignment) o).getLsb()
+				&& index == ((AttributeAssignment) o).getIndex();
+	}
+
+	/**
 	 * Returns a formatted string representation of the attribute assignment
 	 */
 	@Override

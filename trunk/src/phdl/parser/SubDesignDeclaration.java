@@ -55,9 +55,11 @@ public class SubDesignDeclaration extends ReferenceDeclaration {
 	 * 
 	 * @param p
 	 *            The port assignment to add
+	 * @return True if the port assignment was added successfully
 	 */
-	public void addPortAssignment(PortAssignment p) {
-		portAssigns.add(p);
+	public boolean addPortAssignment(PortAssignment p) {
+		boolean added = portAssigns.add(p);
+		return added;
 	}
 
 	/**

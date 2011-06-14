@@ -63,9 +63,12 @@ public class DeviceDeclaration extends Declarable {
 	 * 
 	 * @param a
 	 *            The attribute declaration to add
+	 * 
+	 * @return True if the attribute declaration was added successfully
 	 */
-	public void addAttributeDecl(AttributeDeclaration a) {
-		attributeDecls.add(a);
+	public boolean addAttributeDecl(AttributeDeclaration a) {
+		boolean added = attributeDecls.add(a);
+		return added;
 	}
 
 	/**
@@ -83,9 +86,12 @@ public class DeviceDeclaration extends Declarable {
 	 * 
 	 * @param p
 	 *            The pin declaration to add
+	 * 
+	 * @return True if the pin declaration was added successfully
 	 */
-	public void addPinDecl(PinDeclaration p) {
-		pinDecls.add(p);
+	public boolean addPinDecl(PinDeclaration p) {
+		boolean added = pinDecls.add(p);
+		return added;
 	}
 
 	/**
