@@ -28,7 +28,7 @@ import java.util.HashSet;
  * @author Richard Black and Brad Riching
  * 
  */
-public class DesignDeclaration extends Declaration {
+public class DesignDeclaration extends Declarable {
 
 	/**
 	 * The design declaration's set of port declarations
@@ -82,9 +82,12 @@ public class DesignDeclaration extends Declaration {
 	 * 
 	 * @param portDecl
 	 *            The port declaration to add
+	 * 
+	 * @return true if the port declaration was added successfully
 	 */
-	public void addPortDecl(PortDeclaration portDecl) {
-		portDecls.add(portDecl);
+	public boolean addPortDecl(PortDeclaration portDecl) {
+		boolean added = portDecls.add(portDecl);
+		return added;
 	}
 
 	/**
@@ -101,9 +104,12 @@ public class DesignDeclaration extends Declaration {
 	 * 
 	 * @param devDecl
 	 *            The device declaration to add
+	 * 
+	 * @return true if the device declaration was added successfully
 	 */
-	public void addDeviceDecl(DeviceDeclaration devDecl) {
-		deviceDecls.add(devDecl);
+	public boolean addDeviceDecl(DeviceDeclaration devDecl) {
+		boolean added = deviceDecls.add(devDecl);
+		return added;
 	}
 
 	/**
@@ -120,9 +126,12 @@ public class DesignDeclaration extends Declaration {
 	 * 
 	 * @param netDecl
 	 *            The net declaration to add
+	 * 
+	 * @return true if the net declaration was added successfully
 	 */
-	public void addNetDecl(NetDeclaration netDecl) {
-		netDecls.add(netDecl);
+	public boolean addNetDecl(NetDeclaration netDecl) {
+		boolean added = netDecls.add(netDecl);
+		return added;
 	}
 
 	/**
@@ -140,9 +149,12 @@ public class DesignDeclaration extends Declaration {
 	 * 
 	 * @param instanceDecl
 	 *            The instance declaration to add
+	 * 
+	 * @return true if the instance declaration was added successfully
 	 */
-	public void addInstanceDecl(InstanceDeclaration instanceDecl) {
-		instDecls.add(instanceDecl);
+	public boolean addInstanceDecl(InstanceDeclaration instanceDecl) {
+		boolean added = instDecls.add(instanceDecl);
+		return added;
 	}
 
 	/**
@@ -160,9 +172,12 @@ public class DesignDeclaration extends Declaration {
 	 * 
 	 * @param subDesignDecl
 	 *            The sub-design declaration to add
+	 * 
+	 * @return true if the sub-design was added successfully
 	 */
-	public void addSubDesignDecl(SubDesignDeclaration subDesignDecl) {
-		subDecls.add(subDesignDecl);
+	public boolean addSubDesignDecl(SubDesignDeclaration subDesignDecl) {
+		boolean added = subDecls.add(subDesignDecl);
+		return added;
 	}
 
 	/**
@@ -180,9 +195,28 @@ public class DesignDeclaration extends Declaration {
 	 * 
 	 * @param netAssignment
 	 *            The net assignment declaration to add
+	 * 
+	 * @return true if the net assignment was added successfully
 	 */
-	public void addNetAssignment(NetAssignment netAssignment) {
-		netAssigns.add(netAssignment);
+	public boolean addNetAssignment(NetAssignment netAssignment) {
+		boolean added = netAssigns.add(netAssignment);
+		return added;
+	}
+
+	/**
+	 * Defines overridden hashCode method
+	 */
+	@Override
+	public int hashCode() {
+		return name.hashCode();
+	}
+
+	/**
+	 * Defines overridden equals method
+	 */
+	@Override
+	public boolean equals(Object o) {
+		return name.equals(((DesignDeclaration) o).getName());
 	}
 
 	/**

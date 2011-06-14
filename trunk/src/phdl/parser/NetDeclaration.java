@@ -61,6 +61,22 @@ public class NetDeclaration extends ArrayDeclaration {
 	}
 
 	/**
+	 * Defines overridden hashCode method
+	 */
+	@Override
+	public int hashCode() {
+		return name.hashCode();
+	}
+
+	/**
+	 * Defines overridden equals method
+	 */
+	@Override
+	public boolean equals(Object o) {
+		return name.equals(((NetDeclaration) o).getName());
+	}
+
+	/**
 	 * Returns a formatted string representation of the net declaration
 	 */
 	@Override

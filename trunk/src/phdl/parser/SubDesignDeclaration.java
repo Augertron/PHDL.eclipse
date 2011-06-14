@@ -26,7 +26,7 @@ import java.util.HashSet;
  * @author Richard Black and Brad Riching
  * 
  */
-public class SubDesignDeclaration extends InstanceDeclarations {
+public class SubDesignDeclaration extends ReferenceDeclaration {
 
 	/**
 	 * The sub-design's set of port assignments
@@ -58,6 +58,22 @@ public class SubDesignDeclaration extends InstanceDeclarations {
 	 */
 	public void addPortAssignment(PortAssignment p) {
 		portAssigns.add(p);
+	}
+
+	/**
+	 * Defines overridden hashCode method
+	 */
+	@Override
+	public int hashCode() {
+		return name.hashCode();
+	}
+
+	/**
+	 * Defines overridden equals method
+	 */
+	@Override
+	public boolean equals(Object o) {
+		return name.equals(((SubDesignDeclaration) o).getName());
 	}
 
 	/**

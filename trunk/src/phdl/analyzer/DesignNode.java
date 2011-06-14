@@ -15,14 +15,28 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package phdl.parser;
+package phdl.analyzer;
 
-/**
- * An abstract class that represents an assignment in phdl.
- * 
- * @author Richard Black and Brad Riching
- * 
- */
-public abstract class Assignment extends Indexable {
+import java.util.ArrayList;
+
+import phdl.parser.DesignDeclaration;
+
+public class DesignNode {
+
+	protected DesignDeclaration design;
+	protected ArrayList<DesignNode> children;
+
+	public DesignNode(DesignDeclaration design) {
+		this.design = design;
+		this.children = new ArrayList<DesignNode>();
+	}
+
+	public ArrayList<DesignNode> getChildren() {
+		return children;
+	}
+
+	public void addChild(DesignNode node) {
+		this.children.add(node);
+	}
 
 }

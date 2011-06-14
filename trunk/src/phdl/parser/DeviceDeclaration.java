@@ -27,7 +27,7 @@ import java.util.HashSet;
  * @author Richard Black and Brad Riching
  * 
  */
-public class DeviceDeclaration extends Declaration {
+public class DeviceDeclaration extends Declarable {
 
 	/**
 	 * The device declaration's set of attribute declarations
@@ -89,7 +89,23 @@ public class DeviceDeclaration extends Declaration {
 	}
 
 	/**
-	 * Returns a formatted string represetation of the device declaration
+	 * Defines overridden hashCode method
+	 */
+	@Override
+	public int hashCode() {
+		return name.hashCode();
+	}
+
+	/**
+	 * Defines overridden equals method
+	 */
+	@Override
+	public boolean equals(Object o) {
+		return name.equals(((DeviceDeclaration) o).getName());
+	}
+
+	/**
+	 * Returns a formatted string representation of the device declaration
 	 */
 	@Override
 	public String toString() {

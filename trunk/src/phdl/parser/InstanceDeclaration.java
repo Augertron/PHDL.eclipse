@@ -25,7 +25,7 @@ import java.util.HashSet;
  * 
  * @author Richard Black and Brad Riching
  */
-public class InstanceDeclaration extends InstanceDeclarations {
+public class InstanceDeclaration extends ReferenceDeclaration {
 
 	/**
 	 * The instance's set of attribute assignments
@@ -82,6 +82,22 @@ public class InstanceDeclaration extends InstanceDeclarations {
 	 */
 	public void addPinAssignment(PinAssignment p) {
 		pinAssigs.add(p);
+	}
+
+	/**
+	 * Defines overridden hashCode method
+	 */
+	@Override
+	public int hashCode() {
+		return name.hashCode();
+	}
+
+	/**
+	 * Defines overridden equals method
+	 */
+	@Override
+	public boolean equals(Object o) {
+		return name.equals(((InstanceDeclaration) o).getName());
 	}
 
 	/**

@@ -10,7 +10,7 @@ import java.util.LinkedList;
  * @author Richard Black and Brad Riching
  * 
  */
-public abstract class ConcatenationAssignment extends Assignment {
+public abstract class ConcatenationAssignment extends Assignable {
 
 	/**
 	 * This concatenation assignment's list of nets

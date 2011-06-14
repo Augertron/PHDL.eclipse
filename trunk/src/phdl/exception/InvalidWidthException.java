@@ -15,44 +15,40 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package phdl.parser;
+package phdl.exception;
+
+import phdl.parser.Element;
 
 /**
- * A class that represents a net in phdl.
+ * A class which represents an exception thrown when the widths of the vectors
+ * in a concatenation assignment do not match in the source phdl code.
  * 
  * @author Richard Black and Brad Riching
- * 
  */
-public class Net extends Indexable {
+public class InvalidWidthException extends SyntaxException {
+
+	/**
+	 * The Serial Version UID for this class
+	 */
+	private static final long serialVersionUID = 4902261808672606812L;
 
 	/**
 	 * Default constructor
+	 * 
+	 * @param e
+	 *            The element in the source text that caused the exception
 	 */
-	public Net() {
-		super();
+	public InvalidWidthException(Element e) {
+		super(e.getLocString() + " Invalid width detected: " + e.getName());
 	}
 
 	/**
-	 * Defines overridden hashCode method
+	 * Secondary constructor
+	 * 
+	 * @param n
+	 *            The name of the object that caused the exception
 	 */
-	@Override
-	public int hashCode() {
-		return name.hashCode();
-	}
-
-	/**
-	 * Defines overridden equals method
-	 */
-	@Override
-	public boolean equals(Object o) {
-		return name.equals(((Net) o).getName());
-	}
-
-	/**
-	 * Returns a formatted string representation of the net
-	 */
-	@Override
-	public String toString() {
-		return "Net" + getLocString() + ": " + name + getWidthString();
+	public InvalidWidthException(String n) {
+		super("Invalid width detected: " + n);
 	}
 }

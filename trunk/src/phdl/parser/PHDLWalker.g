@@ -33,6 +33,7 @@ options {
 
 @header {
 	package phdl.parser;
+	import phdl.exception.PhdlRuntimeException;
 }
 
 @members {
@@ -71,7 +72,11 @@ design[ParsedDesigns pd]
 		(instance[d] | subDesign[d] | netAssignment[d])*
 		)
 		
-		{pd.addDesignDecl(d);}
+		{
+			boolean added = pd.addDesignDecl(d);
+			if(!added) throw new PhdlRuntimeException(d.getLocString() 
+				+ " Duplicate design declaration detected: " + d.getName());
+		}
 	;
 	
 portDecl[DesignDeclaration d]
@@ -93,7 +98,11 @@ addPort[DesignDeclaration d, PortDeclaration p]
 			p.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
 			p.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
 		}
-		{d.addPortDecl(p);}
+		{
+			boolean added = d.addPortDecl(p);
+			if(!added) throw new PhdlRuntimeException(p.getLocString() 
+				+ " Duplicate port declaration detected: " + p.getName());
+		}
 	;
 
 /** Looks for the keyword "device" as the parent of a subtree, and makes a new device named

@@ -15,39 +15,43 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package phdl.parser;
+package phdl.exception;
+
+import phdl.parser.Element;
 
 /**
- * An abstract class that represents all instance declarations in phdl. In
- * addition to the inherited fields, an instance declaration also has a
- * reference name, binding it to its device or sub design declaration.
+ * A class that represents an exception thrown when either no top design
+ * declaration is found, or multiple top design units are found within the
+ * source phdl code.
  * 
  * @author Richard Black and Brad Riching
  * 
  */
-public abstract class InstanceDeclarations extends ArrayDeclaration {
+public class InvalidTopDesignException extends SyntaxException {
 
 	/**
-	 * The instance declaration reference name
+	 * The Serial Version UID for this class
 	 */
-	protected String refName;
+	private static final long serialVersionUID = 4571171659920307057L;
 
 	/**
-	 * Gets the instance declaration's reference name
+	 * Default constructor
 	 * 
-	 * @return The instance declaration's reference name
+	 * @param e
+	 *            The element in the source text that caused the exception
 	 */
-	public String getRefName() {
-		return refName;
+	public InvalidTopDesignException(Element e) {
+		super(e.getLocString() + " Invalid top design unit detected: "
+				+ e.getName());
 	}
 
 	/**
-	 * Sets the instance declaration's reference name
+	 * Secondary constructor
 	 * 
-	 * @param refName
-	 *            The instance declaration's reference name
+	 * @param n
+	 *            The name of the object that caused the exception
 	 */
-	public void setRefName(String refName) {
-		this.refName = refName;
+	public InvalidTopDesignException(String n) {
+		super("Invalid top design unit detected: " + n);
 	}
 }

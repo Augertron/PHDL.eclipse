@@ -15,41 +15,39 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package phdl.exception;
-
-import phdl.parser.Element;
+package phdl.parser;
 
 /**
- * A class which represents an exception thrown when the widths of the vectors
- * in a concatenation assignment do not match in the source phdl code.
+ * An abstract class that represents all reference declarations in phdl. In
+ * addition to the inherited fields, a reference declaration also has a
+ * reference name, binding it to its referenced device or sub design.
  * 
  * @author Richard Black and Brad Riching
+ * 
  */
-public class AssignmentWidthException extends SyntaxException {
+public abstract class ReferenceDeclaration extends ArrayDeclaration {
 
 	/**
-	 * The Serial Version UID for this class
+	 * The reference declaration reference name
 	 */
-	private static final long serialVersionUID = 4902261808672606812L;
+	protected String refName;
 
 	/**
-	 * Default constructor
+	 * Gets the reference declaration's reference name
 	 * 
-	 * @param e
-	 *            The element in the source text that caused the exception
+	 * @return The reference declaration's reference name
 	 */
-	public AssignmentWidthException(Element e) {
-		super(e.getLocString() + " Invalid assignment width detected: "
-				+ e.getName());
+	public String getRefName() {
+		return refName;
 	}
 
 	/**
-	 * Secondary constructor
+	 * Sets the reference declaration's reference name
 	 * 
-	 * @param n
-	 *            The name of the object that caused the exception
+	 * @param refName
+	 *            The reference declaration's reference name
 	 */
-	public AssignmentWidthException(String n) {
-		super("Invalid assignment width detected: " + n);
+	public void setRefName(String refName) {
+		this.refName = refName;
 	}
 }

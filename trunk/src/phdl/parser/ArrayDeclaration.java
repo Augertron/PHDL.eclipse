@@ -23,7 +23,7 @@ package phdl.parser;
  * 
  * @author Richard Black and Brad Riching
  */
-public abstract class ArrayDeclaration extends Declaration {
+public abstract class ArrayDeclaration extends Declarable {
 
 	/**
 	 * The msb of the array declaration
