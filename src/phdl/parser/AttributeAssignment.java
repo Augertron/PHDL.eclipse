@@ -24,7 +24,7 @@ package phdl.parser;
  * @author Richard Black and Brad Riching
  * 
  */
-public class AttributeAssignment extends Assignment {
+public class AttributeAssignment extends Assignable {
 
 	/**
 	 * The attribute assignment's value

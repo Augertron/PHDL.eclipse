@@ -15,44 +15,21 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package phdl.parser;
+package phdl.analyzer;
 
 /**
- * A class that represents a net in phdl.
+ * A class that represents a phdl design hierarchy. The hierarchical structure
+ * of all designs is stored in a tree of design nodes.
  * 
  * @author Richard Black and Brad Riching
  * 
  */
-public class Net extends Indexable {
+public class DesignHierarchy {
 
-	/**
-	 * Default constructor
-	 */
-	public Net() {
-		super();
+	public DesignNode root;
+
+	public DesignHierarchy(DesignNode root) {
+		this.root = root;
 	}
 
-	/**
-	 * Defines overridden hashCode method
-	 */
-	@Override
-	public int hashCode() {
-		return name.hashCode();
-	}
-
-	/**
-	 * Defines overridden equals method
-	 */
-	@Override
-	public boolean equals(Object o) {
-		return name.equals(((Net) o).getName());
-	}
-
-	/**
-	 * Returns a formatted string representation of the net
-	 */
-	@Override
-	public String toString() {
-		return "Net" + getLocString() + ": " + name + getWidthString();
-	}
 }

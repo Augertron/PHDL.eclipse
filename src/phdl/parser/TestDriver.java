@@ -20,6 +20,7 @@ package phdl.parser;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashSet;
 
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CharStream;
@@ -30,6 +31,7 @@ import org.antlr.runtime.tree.CommonTreeNodeStream;
 import org.antlr.runtime.tree.DOTTreeGenerator;
 import org.antlr.stringtemplate.StringTemplate;
 
+import phdl.exception.PhdlRuntimeException;
 import phdl.parser.PHDLParser.sourceText_return;
 
 /**
@@ -59,30 +61,37 @@ public class TestDriver {
 		// lex the character stream
 		PHDLLexer l = new PHDLLexer(cs);
 
-		// make a stream of tokens
+		// make a stream of tokens with the lexed character stream
 		TokenStream ts = new CommonTokenStream(l);
 
-		// parse the tokens
+		// parse the stream of tokens from the source text into a tree
 		PHDLParser p = new PHDLParser(ts);
-
-		// obtain a tree of the tokens
 		sourceText_return sourceTree = p.sourceText();
 
-		// convert the tree to a stream of nodes
+		// convert the tree of tokens to a stream of common tree nodes
 		CommonTreeNodeStream ns = new CommonTreeNodeStream(sourceTree.tree);
 
 		// print out the stream of nodes
 		// System.out.println("\n" + sourceText.tree.toStringTree() + "\n");
 
-		// traverse the stream of nodes
+		// walk the stream of nodes
 		PHDLWalker walker = new PHDLWalker(ns);
+		HashSet<DesignDeclaration> designs = null;
 
-		for (DesignDeclaration d : walker.sourceText().getDesignDecls())
+		try {
+			designs = walker.sourceText().getDesignDecls();
+		} catch (PhdlRuntimeException e) {
+			System.out.println("Error: " + e.getMessage());
+			System.exit(-1);
+		}
+
+		// print out each design unit as it appears in memory
+		for (DesignDeclaration d : designs)
 			System.out.println(d.toString());
 
 		System.out.println("ok");
 
-		// convert token tree to a dotty formatted string
+		// convert the token tree to a dotty formatted string
 		DOTTreeGenerator tg = new DOTTreeGenerator();
 		StringTemplate st = tg.toDOT(sourceTree.tree);
 

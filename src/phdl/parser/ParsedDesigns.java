@@ -23,7 +23,7 @@ import java.util.HashSet;
  * A class that represents parsed phdl designs containing a set of design
  * declarations
  * 
- * @author brad
+ * @author Richard Black and Brad Riching
  * 
  */
 public class ParsedDesigns {
@@ -54,8 +54,10 @@ public class ParsedDesigns {
 	 * 
 	 * @param designDecl
 	 *            the design declaration to add
+	 * @return true if the design declaration was added successfully
 	 */
-	public void addDesignDecl(DesignDeclaration designDecl) {
-		designDecls.add(designDecl);
+	public boolean addDesignDecl(DesignDeclaration designDecl) {
+		boolean added = designDecls.add(designDecl);
+		return added;
 	}
 }

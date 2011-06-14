@@ -18,41 +18,11 @@
 package phdl.parser;
 
 /**
- * A class that represents a net in phdl.
+ * An abstract class that represents an assignment in phdl.
  * 
  * @author Richard Black and Brad Riching
  * 
  */
-public class Net extends Indexable {
+public abstract class Assignable extends Indexable {
 
-	/**
-	 * Default constructor
-	 */
-	public Net() {
-		super();
-	}
-
-	/**
-	 * Defines overridden hashCode method
-	 */
-	@Override
-	public int hashCode() {
-		return name.hashCode();
-	}
-
-	/**
-	 * Defines overridden equals method
-	 */
-	@Override
-	public boolean equals(Object o) {
-		return name.equals(((Net) o).getName());
-	}
-
-	/**
-	 * Returns a formatted string representation of the net
-	 */
-	@Override
-	public String toString() {
-		return "Net" + getLocString() + ": " + name + getWidthString();
-	}
 }
