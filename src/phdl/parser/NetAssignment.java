@@ -36,6 +36,25 @@ public class NetAssignment extends ConcatenationAssignment {
 	}
 
 	/**
+	 * Defines overridden hashCode method
+	 */
+	@Override
+	public int hashCode() {
+		return (name + msb + lsb + index).hashCode();
+	}
+
+	/**
+	 * Defines overridden equals method
+	 */
+	@Override
+	public boolean equals(Object o) {
+		return name.equals(((NetAssignment) o).getName())
+				&& msb == ((NetAssignment) o).getMsb()
+				&& lsb == ((NetAssignment) o).getLsb()
+				&& index == ((NetAssignment) o).getIndex();
+	}
+
+	/**
 	 * Returns a formatted string representation of the net assignment
 	 */
 	@Override

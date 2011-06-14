@@ -60,9 +60,11 @@ public class InstanceDeclaration extends ReferenceDeclaration {
 	 * 
 	 * @param a
 	 *            The attribute assignment to add
+	 * @return True if the attribute assignment was added successfully
 	 */
-	public void addAttributeAssignment(AttributeAssignment a) {
-		attrAssigns.add(a);
+	public boolean addAttributeAssignment(AttributeAssignment a) {
+		boolean added = attrAssigns.add(a);
+		return added;
 	}
 
 	/**
@@ -75,13 +77,15 @@ public class InstanceDeclaration extends ReferenceDeclaration {
 	}
 
 	/**
-	 * Adds a pin assignment to the instance's pin set of pin assignments
+	 * Adds a pin assignment to the instance's set of pin assignments
 	 * 
 	 * @param p
 	 *            The pin assignment to add
+	 * @return True if the pin assignment was added successfully
 	 */
-	public void addPinAssignment(PinAssignment p) {
-		pinAssigs.add(p);
+	public boolean addPinAssignment(PinAssignment p) {
+		boolean added = pinAssigs.add(p);
+		return added;
 	}
 
 	/**
