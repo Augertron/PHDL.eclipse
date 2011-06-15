@@ -106,8 +106,20 @@ public class DesignHierarchy {
 		this.root = new DesignNode(design);
 	}
 
+	public void setRoot(DesignDeclaration design) {
+		this.root = new DesignNode(design);
+	}
+	
 	public DesignNode getRoot() {
 		return root;
+	}
+	
+	public boolean isEmpty() {
+		return (root == null);
+	}
+	
+	public int size() {
+		return getPostorder().size();
 	}
 	
 	public void addDesign(DesignDeclaration parent, DesignDeclaration child) {		
@@ -171,4 +183,35 @@ public class DesignHierarchy {
 		return list;
 	}
 	
+	
+	public static boolean unitTest() {
+		boolean success = true;
+		
+		DesignDeclaration design1 = new DesignDeclaration();
+		design1.setName("A");
+		DesignDeclaration design2 = new DesignDeclaration();
+		design2.setName("B");
+		DesignDeclaration design3 = new DesignDeclaration();
+		design3.setName("C");
+		DesignDeclaration design4 = new DesignDeclaration();
+		design4.setName("D");
+		DesignDeclaration design5 = new DesignDeclaration();
+		design5.setName("E");
+		DesignDeclaration design6 = new DesignDeclaration();
+		design6.setName("F");
+		DesignDeclaration design7 = new DesignDeclaration();
+		design7.setName("G");
+		
+		DesignHierarchy tree = new DesignHierarchy(design1);
+		tree.addDesign(design1, design2);	//				A
+		tree.addDesign(design2, design3);	//		B				D
+		tree.addDesign(design1, design4);	//	C		F		E		F
+		tree.addDesign(design4, design5);	//
+		tree.addDesign(design2, design6);	//
+		tree.addDesign(design4, design7);	//
+		
+		
+		
+		return success;
+	}
 }
