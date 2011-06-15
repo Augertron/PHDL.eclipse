@@ -17,6 +17,7 @@
 
 package phdl.analyzer;
 
+import phdl.TestDriver;
 import phdl.parser.DesignDeclaration;
 import java.util.LinkedList;
 import java.util.ArrayList;
@@ -110,8 +111,8 @@ public class DesignHierarchy {
 		this.root = new DesignNode(design);
 	}
 	
-	public DesignNode getRoot() {
-		return root;
+	public DesignDeclaration getRoot() {
+		return root.getDesignDeclaration();
 	}
 	
 	public boolean isEmpty() {
@@ -122,7 +123,7 @@ public class DesignHierarchy {
 		return getPostorder().size();
 	}
 	
-	public void addDesign(DesignDeclaration parent, DesignDeclaration child) {		
+	public void addDesign(DesignDeclaration parent, DesignDeclaration child) {
 		DesignNode childNode = new DesignNode(child);
 		DesignNode parentNode = find(parent);
 		parentNode.addChild(childNode);
@@ -145,6 +146,28 @@ public class DesignHierarchy {
 		return null;
 	}
 	
+	public boolean contains(DesignDeclaration design) {
+		if (find(design) != null)
+			return true;
+		return false;
+	}
+	
+	public ArrayList<DesignDeclaration> getBF() {
+		ArrayList<DesignDeclaration> list = new ArrayList<DesignDeclaration>();
+		LinkedList<DesignNode> q = new LinkedList<DesignNode>();
+		q.addFirst(root);
+		while(!q.isEmpty()) {
+			DesignNode node = q.removeLast();
+			list.add(node.getDesignDeclaration());
+			DesignNode sibling = node.getFirstChild();
+			while (sibling != null) {
+				q.addFirst(sibling);
+				sibling = sibling.getNextSibling();
+			}
+		}
+		return list;
+	}
+	
 	public ArrayList<DesignDeclaration> getPostorder() {
 		ArrayList<DesignDeclaration> list = new ArrayList<DesignDeclaration>();
 		list = postorder(root, list);
@@ -153,10 +176,10 @@ public class DesignHierarchy {
 	
 	private ArrayList<DesignDeclaration> postorder(DesignNode node,
 												ArrayList<DesignDeclaration> list) {
-		if (!node.hasChild()) {
+		if (node.hasChild()) {
 			DesignNode sibling = node.getFirstChild();
 			while (sibling != null) {
-				list = preorder(sibling, list);
+				list = postorder(sibling, list);
 				sibling = sibling.getNextSibling();
 			}
 		}
@@ -173,7 +196,7 @@ public class DesignHierarchy {
 	private ArrayList<DesignDeclaration> preorder(DesignNode node,
 												ArrayList<DesignDeclaration> list) {
 		list.add(node.getDesignDeclaration());
-		if (!node.hasChild()) {
+		if (node.hasChild()) {
 			DesignNode sibling = node.getFirstChild();
 			while (sibling != null) {
 				list = preorder(sibling, list);
@@ -203,14 +226,164 @@ public class DesignHierarchy {
 		design7.setName("G");
 		
 		DesignHierarchy tree = new DesignHierarchy(design1);
+		
 		tree.addDesign(design1, design2);	//				A
 		tree.addDesign(design2, design3);	//		B				D
-		tree.addDesign(design1, design4);	//	C		F		E		F
-		tree.addDesign(design4, design5);	//
-		tree.addDesign(design2, design6);	//
-		tree.addDesign(design4, design7);	//
+		tree.addDesign(design1, design4);	//	C		F		E		G
+		tree.addDesign(design4, design5);	//	Preorder: 	A B C F D E G
+		tree.addDesign(design2, design6);	//	Postorder: 	C F B E G D A
+		tree.addDesign(design4, design7);	//	BF : 		A B D C F E G
 		
+		if (tree.isEmpty()) {
+			TestDriver.err("isEmpty()", "False", "True");
+			success = false;
+		}
 		
+		if (!tree.getRoot().equals(design1)) {
+			TestDriver.err("getRoot()", "A", tree.getRoot().getName());
+			success = false;
+		}
+		
+		if (!tree.contains(design1)) {
+			TestDriver.err("contains()", "contains A", "false");
+			success = false;
+		}
+		if (!tree.contains(design2)) {
+			TestDriver.err("contains()", "contains B", "false");
+			success = false;
+		}
+		if (!tree.contains(design3)) {
+			TestDriver.err("contains()", "contains C", "false");
+			success = false;
+		}
+		if (!tree.contains(design4)) {
+			TestDriver.err("contains()", "contains D", "false");
+			success = false;
+		}
+		if (!tree.contains(design5)) {
+			TestDriver.err("contains()", "contains E", "false");
+			success = false;
+		}
+		if (!tree.contains(design6)) {
+			TestDriver.err("contains()", "contains F", "false");
+			success = false;
+		}
+		if (!tree.contains(design7)) {
+			TestDriver.err("contains()", "contains G", "false");
+			success = false;
+		}
+		
+		if (tree.size() != 7) {
+			TestDriver.err("size()", "7", tree.size() + "");
+			success = false;
+		}
+		
+		ArrayList<DesignDeclaration> preorder = tree.getPreorder();
+		//	Preorder: 	A B C F D E G
+		
+		if (preorder.size() != 7) {
+			TestDriver.err("getPreorder()", "size of 7", "size of " + preorder.size());
+			success = false;
+		}
+		if (!preorder.get(0).equals(design1)) {
+			TestDriver.err("getPreorder()", "element 0 = A", preorder.get(0).getName());
+			success = false;
+		}
+		if (!preorder.get(1).equals(design2)) {
+			TestDriver.err("getPreorder()", "element 1 = B", preorder.get(1).getName());
+			success = false;
+		}
+		if (!preorder.get(2).equals(design3)) {
+			TestDriver.err("getPreorder()", "element 2 = C", preorder.get(2).getName());
+			success = false;
+		}
+		if (!preorder.get(3).equals(design6)) {
+			TestDriver.err("getPreorder()", "element 3 = F", preorder.get(3).getName());
+			success = false;
+		}
+		if (!preorder.get(4).equals(design4)) {
+			TestDriver.err("getPreorder()", "element 4 = D", preorder.get(4).getName());
+			success = false;
+		}
+		if (!preorder.get(5).equals(design5)) {
+			TestDriver.err("getPreorder()", "element 5 = E", preorder.get(5).getName());
+			success = false;
+		}
+		if (!preorder.get(6).equals(design7)) {
+			TestDriver.err("getPreorder()", "element 6 = F", preorder.get(6).getName());
+			success = false;
+		}
+		
+		ArrayList<DesignDeclaration> postorder = tree.getPostorder();
+		//	Postorder: 	C F B E G D A
+		
+		if (postorder.size() != 7) {
+			TestDriver.err("getPostorder()", "size = 7", postorder.size() + "");
+			success = false;
+		}
+		if (!postorder.get(0).equals(design3)) {
+			TestDriver.err("getPostorder()", "element 0 = C", postorder.get(0).getName());
+			success = false;
+		}
+		if (!postorder.get(1).equals(design6)) {
+			TestDriver.err("getPostorder()", "element 1 = F", postorder.get(1).getName());
+			success = false;
+		}
+		if (!postorder.get(2).equals(design2)) {
+			TestDriver.err("getPostorder()", "element 2 = B", postorder.get(2).getName());
+			success = false;
+		}
+		if (!postorder.get(3).equals(design5)) {
+			TestDriver.err("getPostorder()", "element 3 = E", postorder.get(3).getName());
+			success = false;
+		}
+		if (!postorder.get(4).equals(design7)) {
+			TestDriver.err("getPostorder()", "element 4 = G", postorder.get(4).getName());
+			success = false;
+		}
+		if (!postorder.get(5).equals(design4)) {
+			TestDriver.err("getPostorder()", "element 5 = D", postorder.get(5).getName());
+			success = false;
+		}
+		if (!postorder.get(6).equals(design1)) {
+			TestDriver.err("getPostorder()", "element 6 = A", postorder.get(6).getName());
+			success = false;
+		}
+		
+		ArrayList<DesignDeclaration> BForder = tree.getBF();
+		//	BF : 		A B D C F E G
+		if (BForder.size() != 7) {
+			TestDriver.err("getBF()", "size = 7", BForder.size() + "");
+			success = false;
+		}
+		if (!BForder.get(0).equals(design1)) {
+			TestDriver.err("getBF()", "element 0 = A", BForder.get(0).getName());
+			success = false;
+		}
+		if (!BForder.get(1).equals(design2)) {
+			TestDriver.err("getBF()", "element 1 = B", BForder.get(1).getName());
+			success = false;
+		}
+		if (!BForder.get(2).equals(design4)) {
+			TestDriver.err("getBF()", "element 2 = D", BForder.get(2).getName());
+			success = false;
+		}
+		if (!BForder.get(3).equals(design3)) {
+			TestDriver.err("getBF()", "element 3 = C", BForder.get(3).getName());
+			success = false;
+		}
+		if (!BForder.get(4).equals(design6)) {
+			TestDriver.err("getBF()", "element 4 = F", BForder.get(4).getName());
+			success = false;
+		}
+		if (!BForder.get(5).equals(design5)) {
+			TestDriver.err("getBF()", "element 5 = E", BForder.get(5).getName());
+			success = false;
+		}
+		if (!BForder.get(6).equals(design7)) {
+			TestDriver.err("getBF()", "element 6 = G", BForder.get(6).getName());
+			success = false;
+		}
 		
 		return success;
 	}

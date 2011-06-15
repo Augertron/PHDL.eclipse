@@ -51,7 +51,8 @@ public class TestDriver {
 		success &= RefDesGenerator.unitTest();
 		*/
 		
-		success &= PHDLPreProcessor.unitTest();
+		// success &= PHDLPreProcessor.unitTest();
+		success &= phdl.analyzer.DesignHierarchy.unitTest();
 
 		System.out.println("\n***Testing Complete***");
 		if (success) {
