@@ -39,7 +39,7 @@ public class InvalidPinListException extends SyntaxException {
 	 *            The element in the source text that caused the exception
 	 */
 	public InvalidPinListException(Element e) {
-		super(e.getLocString() + " Invalid pin list detected: " + e.getName());
+		super(e.getLineString() + " Invalid pin list detected: " + e.getName());
 	}
 
 	/**

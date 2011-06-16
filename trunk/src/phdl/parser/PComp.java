@@ -20,7 +20,7 @@ package phdl.parser;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashSet;
+import java.util.LinkedList;
 
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CharStream;
@@ -31,22 +31,23 @@ import org.antlr.runtime.tree.CommonTreeNodeStream;
 import org.antlr.runtime.tree.DOTTreeGenerator;
 import org.antlr.stringtemplate.StringTemplate;
 
-import phdl.exception.PhdlRuntimeException;
 import phdl.parser.PHDLParser.sourceText_return;
 
 /**
- * A class to test the the ANTLR PHDL grammar. It accepts a *.phdl source text
- * file as its only argument and obtains a design from the ANTLR generated
- * tools. It then prints out the design, and outputs a dotty file representation
- * of the node stream of the abstract syntax tree.
+ * The entry point of the phdl Compiler. It accepts a *.phdl source text file as
+ * its only argument and produces a design from the ANTLR generated tools. It
+ * then prints out the design, and outputs a dotty file representation of the
+ * node stream of the abstract syntax tree.
  * 
  * @author Richard Black and Brad Riching
  * @version 0.1
  * 
  */
-public class TestDriver {
+public class PComp {
 
-	public static void main(String[] args) throws RecognitionException {
+	public static void main(String[] args) {
+
+		LinkedList<String> errors = new LinkedList<String>();
 
 		// the character stream
 		CharStream cs = null;
@@ -55,7 +56,8 @@ public class TestDriver {
 			// make an ANTLR stream from the file passed in
 			cs = new ANTLRFileStream(args[0]);
 		} catch (IOException e) {
-			System.out.println("Problem reading file:" + args[0]);
+			System.err.println("Problem reading file: " + args[0]);
+			System.exit(1);
 		}
 
 		// lex the character stream
@@ -66,27 +68,55 @@ public class TestDriver {
 
 		// parse the stream of tokens from the source text into a tree
 		PHDLParser p = new PHDLParser(ts);
-		sourceText_return sourceTree = p.sourceText();
+
+		// the sourceText return type is a tree of tokens
+		sourceText_return sourceTree = null;
+		try {
+			// call the sourceText rule in the parser on the parser object
+			sourceTree = p.sourceText();
+
+			// check for any parse errors and add them to the list
+			if (!p.getErrors().isEmpty()) {
+				for (String error : p.getErrors()) {
+					errors.add(error);
+				}
+			}
+		} catch (RecognitionException e) {
+			errors.add(e.getMessage());
+		}
 
 		// convert the tree of tokens to a stream of common tree nodes
 		CommonTreeNodeStream ns = new CommonTreeNodeStream(sourceTree.tree);
+		ns.setTokenStream(p.getTokenStream());
 
 		// print out the stream of nodes
 		// System.out.println("\n" + sourceText.tree.toStringTree() + "\n");
 
 		// walk the stream of nodes
 		PHDLWalker walker = new PHDLWalker(ns);
-		HashSet<DesignDeclaration> designs = null;
+		ParsedDesigns pd = null;
 
 		try {
-			designs = walker.sourceText().getDesignDecls();
-		} catch (PhdlRuntimeException e) {
-			System.out.println("PHDLWalker Error" + e.getMessage());
-			System.exit(-1);
+			// obtain the set of parsed designs
+			pd = walker.sourceText();
+
+			for (String error : walker.getErrors()) {
+				errors.add(error);
+			}
+		} catch (RecognitionException e) {
+			errors.add(e.getMessage());
+		}
+
+		// if there were parse errors, print them all out and exit
+		if (!errors.isEmpty()) {
+			for (String s : errors) {
+				System.out.println(s);
+			}
+			System.exit(1);
 		}
 
 		// print out each design unit as it appears in memory
-		for (DesignDeclaration d : designs)
+		for (DesignDeclaration d : pd.getDesignDecls())
 			System.out.println(d.toString());
 
 		System.out.println("ok");
@@ -106,12 +136,14 @@ public class TestDriver {
 			dotty = new BufferedWriter(new FileWriter(fileName));
 		} catch (IOException e) {
 			System.out.println("Problem creating file: " + fileName);
+			System.exit(1);
 		}
 		try {
 			dotty.write(fileData);
 			dotty.close();
 		} catch (IOException e) {
 			System.out.println("Prolem writing dotty file.");
+			System.exit(1);
 		}
 	}
 }

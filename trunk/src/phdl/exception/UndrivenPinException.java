@@ -39,7 +39,7 @@ public class UndrivenPinException extends SyntaxException {
 	 *            The element in the source text that caused the exception
 	 */
 	public UndrivenPinException(Element e) {
-		super(e.getLocString() + " Undriven pin detected: " + e.getName());
+		super(e.getLineString() + " Undriven pin detected: " + e.getName());
 	}
 
 	/**

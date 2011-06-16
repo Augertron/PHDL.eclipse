@@ -101,8 +101,8 @@ public abstract class Element {
 	 * 
 	 * @return A string representation of the line and position of the element
 	 */
-	public String getLocString() {
-		return "[" + line + ":" + pos + "]";
+	public String getLineString() {
+		return line + ":" + pos;
 	}
 
 }

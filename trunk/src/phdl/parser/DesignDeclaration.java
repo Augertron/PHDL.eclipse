@@ -224,7 +224,7 @@ public class DesignDeclaration extends Declarable {
 	 */
 	@Override
 	public String toString() {
-		String header = "DesignDecl" + getLocString() + ": " + name + "\n";
+		String header = "DesignDecl " + getLineString() + " : " + name + "\n";
 		String ports = "";
 		String devices = "";
 		String nets = "";

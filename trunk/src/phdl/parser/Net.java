@@ -53,6 +53,6 @@ public class Net extends Indexable {
 	 */
 	@Override
 	public String toString() {
-		return "Net" + getLocString() + ": " + name + getWidthString();
+		return "Net " + getLineString() + " : " + name + getWidthString();
 	}
 }

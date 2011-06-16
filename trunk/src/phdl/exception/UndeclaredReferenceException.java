@@ -40,7 +40,7 @@ public class UndeclaredReferenceException extends SyntaxException {
 	 *            The element in the source text that caused the exception
 	 */
 	public UndeclaredReferenceException(Element e) {
-		super(e.getLocString() + " Undeclared reference detected: "
+		super(e.getLineString() + " Undeclared reference detected: "
 				+ e.getName());
 	}
 

@@ -77,6 +77,7 @@ public class AttributeDeclaration extends Declarable {
 	 */
 	@Override
 	public String toString() {
-		return "AttrDecl" + getLocString() + ": " + name + " = " + value + "\n";
+		return "AttrDecl " + getLineString() + " : " + name + " = " + value
+				+ "\n";
 	}
 }

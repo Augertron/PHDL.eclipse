@@ -39,7 +39,7 @@ public class DuplicateRefDesException extends SyntaxException {
 	 *            The element in the source text that caused the exception
 	 */
 	public DuplicateRefDesException(Element e) {
-		super(e.getLocString() + " Duplicate reference designator detected: "
+		super(e.getLineString() + " Duplicate reference designator detected: "
 				+ e.getName());
 	}
 
