@@ -39,7 +39,7 @@ public class UndefinedIdentifierException extends SyntaxException {
 	 *            The element in the source text that caused the exception
 	 */
 	public UndefinedIdentifierException(Element e) {
-		super(e.getLocString() + " Undefined identifer detected: "
+		super(e.getLineString() + " Undefined identifer detected: "
 				+ e.getName());
 	}
 

@@ -39,7 +39,7 @@ public class InvalidWidthException extends SyntaxException {
 	 *            The element in the source text that caused the exception
 	 */
 	public InvalidWidthException(Element e) {
-		super(e.getLocString() + " Invalid width detected: " + e.getName());
+		super(e.getLineString() + " Invalid width detected: " + e.getName());
 	}
 
 	/**

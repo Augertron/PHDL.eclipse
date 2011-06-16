@@ -73,7 +73,7 @@ public class NetAssignment extends ConcatenationAssignment {
 			netString = "open";
 		}
 
-		return "NetAssign" + getLocString() + ": " + name + getWidthString()
-				+ " = " + netString + "\n";
+		return "NetAssign " + getLineString() + " : " + name + getWidthString()
+				+ " <= " + netString + "\n";
 	}
 }

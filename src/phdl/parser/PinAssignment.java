@@ -72,7 +72,7 @@ public class PinAssignment extends ConcatenationAssignment {
 			netString = "open";
 		}
 
-		return "PinAssign" + getLocString() + ": " + name + getWidthString()
-				+ " = " + netString + "\n";
+		return "PinAssign " + getLineString() + " : " + name + getWidthString()
+				+ " <= " + netString + "\n";
 	}
 }

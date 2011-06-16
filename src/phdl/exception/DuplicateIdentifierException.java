@@ -39,7 +39,7 @@ public class DuplicateIdentifierException extends SyntaxException {
 	 *            The element in the source text that caused the exception
 	 */
 	public DuplicateIdentifierException(Element e) {
-		super(e.getLocString() + " Duplicate identifer detected: " + e.getName());
+		super(e.getLineString() + " Duplicate identifer detected: " + e.getName());
 	}
 
 	/**

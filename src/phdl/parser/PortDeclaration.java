@@ -80,7 +80,7 @@ public class PortDeclaration extends ArrayDeclaration {
 	 */
 	@Override
 	public String toString() {
-		return "PortDecl" + getLocString() + ": " + type.toString()
+		return "PortDecl " + getLineString() + " : " + type.toString()
 				+ getWidthString() + " " + name + "\n";
 	}
 

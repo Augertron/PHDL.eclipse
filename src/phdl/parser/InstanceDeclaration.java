@@ -109,7 +109,7 @@ public class InstanceDeclaration extends ReferenceDeclaration {
 	 */
 	@Override
 	public String toString() {
-		String header = "InstanceDecl" + getLocString() + ": " + name + "\n";
+		String header = "InstanceDecl " + getLineString() + " : " + name + "\n";
 		String attributes = "";
 		String pins = "";
 

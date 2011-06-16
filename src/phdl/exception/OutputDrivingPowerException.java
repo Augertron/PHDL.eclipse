@@ -39,7 +39,7 @@ public class OutputDrivingPowerException extends ElectricalRuleCheckException {
 	 *            The element in the source text that caused the exception
 	 */
 	public OutputDrivingPowerException(Element e) {
-		super(e.getLocString() + " Output driving power pin detected: "
+		super(e.getLineString() + " Output driving power pin detected: "
 				+ e.getName());
 	}
 

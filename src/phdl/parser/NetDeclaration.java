@@ -90,7 +90,7 @@ public class NetDeclaration extends ArrayDeclaration {
 		}
 		netString += "\n";
 
-		return "NetDecl" + getLocString() + ": " + name + getWidthString()
+		return "NetDecl " + getLineString() + " : " + name + getWidthString()
 				+ ": " + netString;
 	}
 }

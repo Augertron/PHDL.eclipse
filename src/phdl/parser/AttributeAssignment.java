@@ -81,8 +81,8 @@ public class AttributeAssignment extends Assignable {
 	 */
 	@Override
 	public String toString() {
-		return "AttrAssign" + getLocString() + ": " + name + getWidthString()
-				+ " = " + value + "\n";
+		return "AttrAssign " + getLineString() + " : " + name
+				+ getWidthString() + " = " + value + "\n";
 	}
 
 }

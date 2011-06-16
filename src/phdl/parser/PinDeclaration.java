@@ -103,7 +103,7 @@ public class PinDeclaration extends ArrayDeclaration {
 	 */
 	@Override
 	public String toString() {
-		return "PinDecl" + getLocString() + ": " + type.toString()
+		return "PinDecl " + getLineString() + " : " + type.toString()
 				+ getWidthString() + " " + name + " {" + pinList + "}" + "\n";
 	}
 

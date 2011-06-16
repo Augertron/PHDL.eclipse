@@ -41,7 +41,7 @@ public class InvalidTopDesignException extends SyntaxException {
 	 *            The element in the source text that caused the exception
 	 */
 	public InvalidTopDesignException(Element e) {
-		super(e.getLocString() + " Invalid top design unit detected: "
+		super(e.getLineString() + " Invalid top design unit detected: "
 				+ e.getName());
 	}
 

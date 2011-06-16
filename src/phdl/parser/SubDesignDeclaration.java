@@ -83,7 +83,8 @@ public class SubDesignDeclaration extends ReferenceDeclaration {
 	 */
 	@Override
 	public String toString() {
-		String header = "SubDesignDecl" + getLocString() + ": " + name + "\n";
+		String header = "SubDesignDecl " + getLineString() + " : " + name
+				+ "\n";
 		String ports = "";
 
 		for (PortAssignment p : portAssigns)

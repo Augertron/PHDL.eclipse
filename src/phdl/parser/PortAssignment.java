@@ -72,7 +72,7 @@ public class PortAssignment extends ConcatenationAssignment {
 			netString = "open";
 		}
 
-		return "PortAssign" + getLocString() + ": " + name + getWidthString()
-				+ " = " + netString + "\n";
+		return "PortAssign " + getLineString() + " : " + name
+				+ getWidthString() + " <= " + netString + "\n";
 	}
 }

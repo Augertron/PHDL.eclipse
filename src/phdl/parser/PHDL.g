@@ -24,18 +24,38 @@
 grammar PHDL;
 
 options {
-  language = Java;
-  output=AST;
-  ASTLabelType=CommonTree;
+	language = Java;
+	output=AST;
+	ASTLabelType=CommonTree;
 }
 
 @header {
-  package phdl.parser;
+	package phdl.parser;
+	import java.util.LinkedList;
 }
 
 @lexer::header {
-  package phdl.parser;
+	package phdl.parser;
+	import phdl.exception.PhdlRuntimeException;
 }
+
+@members {
+
+	private LinkedList<String> errors = new LinkedList<String>();
+
+	@Override
+	public void displayRecognitionError(String[] tokenNames,
+			RecognitionException e) {
+		String hdr = getErrorHeader(e);
+		String msg = getErrorMessage(e, tokenNames);
+		errors.add(hdr + " in parser: " + msg);
+	}
+
+	public LinkedList<String> getErrors() {
+		return errors;
+	}
+}
+
 
 /*------------------------------------------------------------------------------------------------------ 
  * Parser Rules
@@ -66,11 +86,11 @@ designDecl
 		
 		// all of the instantiated devices, nets, subdesigns
 		instances
-		'end'! SEMI!
+		'end'! SEMICOLON!
 	;
 
 portDecl
-	:	'port'! type^ width? IDENT SEMI!
+	:	'port'! type^ width? IDENT SEMICOLON!
 	;
 
 /** A device declaration contains information about a deviced used in the design.  The device name is 
@@ -83,17 +103,17 @@ deviceDecl
 		attributeDecl*
 		'begin'
 		pinDecl*
-		'end'! SEMI!
+		'end'! SEMICOLON!
 	;
 	
 attributeDecl
 	:	//promote the "=" sign to the root of the subtree, and ignore the semicolon
-		IDENT EQUALS^ STRING_LITERAL SEMI!
+		IDENT EQUALS^ STRING_LITERAL SEMICOLON!
 	;
 	
 pinDecl
 	:	//promote the type to the root of the subtree, and ignore the equals and semicolon
-		type^ width? IDENT EQUALS! STRING_LITERAL SEMI!
+		type^ width? IDENT EQUALS! STRING_LITERAL SEMICOLON!
 	;
 	
 type
@@ -114,7 +134,7 @@ type
  * declaration is terminated in a semicolon.
  */	
 netDecl
-	:	'net'^ (width)? (IDENT COMMA!)* IDENT (COLON (IDENT COMMA!)* IDENT)? SEMI!
+	:	'net'^ (width)? (IDENT COMMA!)* IDENT (COLON (IDENT COMMA!)* IDENT)? SEMICOLON!
 	;
 
 /** A width is an array with MSB and LSB integers separated by a colon inside brackets
@@ -148,19 +168,19 @@ subDesignInstance
 	;
 	
 attributeAssignment
-	:	IDENT (width | index)? EQUALS^ STRING_LITERAL SEMI!
+	:	IDENT (width | index)? EQUALS^ STRING_LITERAL SEMICOLON!
 	;
 	
 pinAssignment
-	:	IDENT (width | index)? EQUALS^ concatenation SEMI!
+	:	IDENT (width | index)? EQUALS^ concatenation SEMICOLON!
 	;
 	
 portAssignment
-	:	IDENT (width | index)? EQUALS^ concatenation SEMI!
+	:	IDENT (width | index)? EQUALS^ concatenation SEMICOLON!
 	;
 	
 netAssignment
-	:	IDENT (width | index)? EQUALS^ concatenation SEMI!
+	:	IDENT (width | index)? EQUALS^ concatenation SEMICOLON!
 	;
 	
 concatenation
@@ -177,7 +197,7 @@ concatenation
 //single character definitions
 fragment CHAR : ('a'..'z') | ('A'..'Z') | '_' | '+' | '-';
 fragment DIGIT : '0'..'9' ;
-SEMI: ';';
+SEMICOLON: ';';
 COLON: ':';
 COMMA: ',';
 EQUALS: '=';

@@ -115,7 +115,7 @@ public class DeviceDeclaration extends Declarable {
 	 */
 	@Override
 	public String toString() {
-		String header = "DeviceDecl" + getLocString() + ": " + name + "\n";
+		String header = "DeviceDecl " + getLineString() + " : " + name + "\n";
 		String attributes = "";
 		String pins = "";
 
