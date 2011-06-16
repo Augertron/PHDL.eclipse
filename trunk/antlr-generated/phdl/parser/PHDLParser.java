@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\parser\\PHDL.g 2011-06-16 12:09:01
+// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\parser\\PHDL.g 2011-06-16 15:56:50
 
 	package phdl.parser;
 	import java.util.LinkedList;
@@ -91,7 +91,7 @@ public class PHDLParser extends Parser {
     			RecognitionException e) {
     		String hdr = getErrorHeader(e);
     		String msg = getErrorMessage(e, tokenNames);
-    		errors.add(hdr + " in parser: " + msg);
+    		errors.add(hdr + " " + msg);
     	}
 
     	public LinkedList<String> getErrors() {

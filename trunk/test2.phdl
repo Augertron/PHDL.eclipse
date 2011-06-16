@@ -1,0 +1,6 @@
+design myDesign3 is
+	// port declarations
+	port in[7:0] addr;
+	port out[7:0] data;
+begin
+end;

@@ -48,7 +48,7 @@ options {
 			RecognitionException e) {
 		String hdr = getErrorHeader(e);
 		String msg = getErrorMessage(e, tokenNames);
-		errors.add(hdr + " in parser: " + msg);
+		errors.add(hdr + " " + msg);
 	}
 
 	public LinkedList<String> getErrors() {

@@ -224,6 +224,9 @@ public class DesignDeclaration extends Declarable {
 	 */
 	@Override
 	public String toString() {
+		String sourceFile = "---------------------------------------- "
+				+ getFileName()
+				+ " -----------------------------------------\n";
 		String header = "DesignDecl " + getLineString() + " : " + name + "\n";
 		String ports = "";
 		String devices = "";
@@ -256,6 +259,7 @@ public class DesignDeclaration extends Declarable {
 		for (NetAssignment n : netAssigns)
 			assigns += "\t" + n.toString();
 
-		return header + ports + devices + nets + instances + subs + assigns;
+		return sourceFile + header + ports + devices + nets + instances + subs
+				+ assigns;
 	}
 }

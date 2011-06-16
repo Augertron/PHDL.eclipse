@@ -69,9 +69,10 @@ options {
 /** 
  * The Source Text rule returns the design units with all data structures populated and processed
  */
-sourceText returns [ParsedDesigns pd]
-	:	{pd = new ParsedDesigns();}
+sourceText[ParsedDesigns pd] returns [ParsedDesigns designs]
+	:	//{pd = new ParsedDesigns();}
 		design[pd]*
+		{designs = pd;}
 	;
 
 /** 
@@ -88,6 +89,7 @@ design[ParsedDesigns pd]
 			d.setName($IDENT.text);
 			d.setLine($IDENT.line);
 			d.setPos($IDENT.pos);
+			d.setFileName(input.getSourceName());
 		}
 		
 		// port declarations must appear before anything else	
@@ -103,10 +105,9 @@ design[ParsedDesigns pd]
 		(instance[d] | subDesign[d] | netAssignment[d])*
 		)
 		
-		{
-			boolean added = pd.addDesignDecl(d);
+		{	boolean added = pd.addDesignDecl(d);
 			if(!added) addError(input.getSourceName() + " line " + d.getLineString()
-				+ " in walker: duplicate design declaration found: " + d.getName());
+				+ " duplicate design declaration found: " + d.getName());
 		}
 	;
 
@@ -137,8 +138,8 @@ addPort[DesignDeclaration d, PortDeclaration p]
 			p.setPos($name.pos);
 			p.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
 			p.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
-		}
-		{
+			p.setFileName(input.getSourceName());
+			
 			boolean added = d.addPortDecl(p);
 			if(!added) addError(input.getSourceName() + " line " + p.getLineString()
 				+ " duplicate port declaration found: " + p.getName());
@@ -155,11 +156,11 @@ deviceDecl[DesignDeclaration d]
 	:	^('device' name=IDENT 
 	
 			// make a new device based on the identifier and log its location 				
-			{
-				DeviceDeclaration dev = new DeviceDeclaration();
+			{	DeviceDeclaration dev = new DeviceDeclaration();
 				dev.setName($name.text);
 				dev.setLine($name.line);
 				dev.setPos($name.pos);
+				dev.setFileName(input.getSourceName());
 			}
 			
 		// add all of the attribute declarations to the device
@@ -173,7 +174,7 @@ deviceDecl[DesignDeclaration d]
 		
 		)
 		
-		// add the device to the design and return
+		// attempt to add the device declaration
 		{	boolean added = d.addDeviceDecl(dev);
 			if(!added) addError(input.getSourceName() + " line " + dev.getLineString()
 				+ " duplicate device declaration found: " + dev.getName());
@@ -194,9 +195,10 @@ netDecl[DesignDeclaration d]
 			n.setPos($name.pos);
 			n.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
 			n.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
+			n.setFileName(input.getSourceName());
 		}
 
-		// add any net attributes after a colon
+		// add any optional net attributes after a colon
 		(COLON netAttribute[n]+)?
 		)
 		
@@ -210,7 +212,9 @@ netDecl[DesignDeclaration d]
 /** Helper method for netDecl.  Adds attributes after the colon if they exist in the tree.
  */	
 netAttribute[NetDeclaration n]
-	:	IDENT						
+	:	IDENT
+	
+		// attempt to add the net attribute						
 		{	boolean added = n.addAttribute($IDENT.text);
 			if(!added) addError(input.getSourceName() + " line " + $IDENT.line + ":" + $IDENT.pos 
 				+ " duplicate net attribute found: " + $IDENT.text);
@@ -222,11 +226,15 @@ netAttribute[NetDeclaration n]
  */
 attributeDecl[DeviceDeclaration d]
 	:	^(EQUALS name=IDENT value=STRING_LITERAL) 
+	
+		// make a new attribute declaration with the above information
 		{	AttributeDeclaration a = new AttributeDeclaration();
 			a.setName($name.text);
 			a.setLine($name.line);
 			a.setPos($name.pos);
 			a.setValue($value.text);
+			a.setFileName(input.getSourceName());
+			
 			boolean added = d.addAttributeDecl(a);
 			if(!added) addError(input.getSourceName() + " line " + a.getLineString()
 				+ " duplicate attribute declaration found: " + a.getName());
@@ -259,8 +267,13 @@ addPin[DeviceDeclaration d, PinDeclaration p]
 			p.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
 			p.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
 			p.setPinList($pinList.text);
-		}
-		{	boolean added = d.addPinDecl(p);
+			p.setFileName(input.getSourceName());
+			
+			boolean mapped = p.pinMap();
+			if(!mapped) addError(input.getSourceName() + " line " + p.getLineString()
+				+ " invalid pin number list found: " + p.getName());
+			
+			boolean added = d.addPinDecl(p);
 			if(!added) addError(input.getSourceName() + " line " + p.getLineString()
 				+ " duplicate pin declaration found: " + p.getName());
 		}
@@ -281,6 +294,7 @@ instance[DesignDeclaration d]
 				i.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
 				i.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
 				i.setRefName($refName.text);
+				i.setFileName(input.getSourceName());
 		}
 				
 		attributeAssignment[i]*
@@ -310,6 +324,8 @@ attributeAssignment[InstanceDeclaration i]
 			a.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
 			a.setIndex($index!=null?Integer.parseInt($index.text):-1);
 			a.setValue($value.text);
+			a.setFileName(input.getSourceName());
+			
 			boolean added = i.addAttributeAssignment(a);
 			if(!added) addError(input.getSourceName() + " line " + a.getLineString()
 				+ " duplicate attribute assignment found: " + a.getName());
@@ -331,6 +347,7 @@ pinAssignment[InstanceDeclaration i]
 			p.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
 			p.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
 			p.setIndex($index!=null?Integer.parseInt($index.text):-1);
+			p.setFileName(input.getSourceName());
 		}
 	
 		concatenatePin[p]*
@@ -341,7 +358,7 @@ pinAssignment[InstanceDeclaration i]
 		}
 	;
 	
-concatenatePin[PinAssignment p]
+concatenatePin[PinAssignment pa]
 	:	(name=IDENT ((msb=INT lsb=INT) | (index=INT))?)
 		{
 			Net n = new Net();
@@ -351,7 +368,8 @@ concatenatePin[PinAssignment p]
 			n.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
 			n.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
 			n.setIndex($index!=null?Integer.parseInt($index.text):-1);
-			p.addNet(n);
+			n.setFileName(input.getSourceName());
+			pa.addNet(n);
 		}
 	;
 	
@@ -367,6 +385,7 @@ subDesign[DesignDeclaration d]
 			s.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
 			s.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
 			s.setRefName($refName.text);
+			s.setFileName(input.getSourceName());
 		}
 
 		portAssignment[s]*
@@ -391,6 +410,7 @@ netAssignment[DesignDeclaration d]
 			n.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
 			n.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
 			n.setIndex($index!=null?Integer.parseInt($index.text):-1);
+			n.setFileName(input.getSourceName());
 		}
 		
 		concatenateNet[n]*
@@ -401,7 +421,7 @@ netAssignment[DesignDeclaration d]
 		}
 	;
 	
-concatenateNet[NetAssignment net]
+concatenateNet[NetAssignment na]
 	:	(name=IDENT ((msb=INT lsb=INT) | (index=INT))?)
 		{
 			Net n = new Net();
@@ -411,7 +431,8 @@ concatenateNet[NetAssignment net]
 			n.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
 			n.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
 			n.setIndex($index!=null?Integer.parseInt($index.text):-1);
-			net.addNet(n);
+			n.setFileName(input.getSourceName());
+			na.addNet(n);
 		}
 	;
 	
@@ -427,6 +448,7 @@ portAssignment[SubDesignDeclaration s]
 			p.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
 			p.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
 			p.setIndex($index!=null?Integer.parseInt($index.text):-1);
+			p.setFileName(input.getSourceName());
 		}
 	
 		concatenatePort[p]*
@@ -437,7 +459,7 @@ portAssignment[SubDesignDeclaration s]
 		}
 	;
 
-concatenatePort[PortAssignment p]
+concatenatePort[PortAssignment pa]
 	:	(name=IDENT ((msb=INT lsb=INT) | (index=INT))?)
 		{
 			Net n = new Net();
@@ -447,6 +469,7 @@ concatenatePort[PortAssignment p]
 			n.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
 			n.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
 			n.setIndex($index!=null?Integer.parseInt($index.text):-1);
-			p.addNet(n);
+			n.setFileName(input.getSourceName());
+			pa.addNet(n);
 		}
 	;

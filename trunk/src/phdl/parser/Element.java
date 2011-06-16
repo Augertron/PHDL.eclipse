@@ -19,8 +19,8 @@ package phdl.parser;
 
 /**
  * An abstract class that represents all elements of the parsed phdl. Every
- * parsed element has a name, a line number, and a position as it appears in the
- * source phdl code.
+ * parsed element has a name, a line number, a position, and a fileName field
+ * corresponding to where it appears in which source phdl file.
  * 
  * @author Richard Black and Brad Riching
  */
@@ -31,13 +31,17 @@ public abstract class Element {
 	 */
 	protected String name;
 	/**
-	 * The line number of the element
+	 * The line number of the element in the source file
 	 */
 	protected int line;
 	/**
-	 * The position of the element
+	 * The position of the element in the source file
 	 */
 	protected int pos;
+	/**
+	 * The source file from where the element came from
+	 */
+	protected String fileName;
 
 	/**
 	 * Gets the name of the element
@@ -94,6 +98,25 @@ public abstract class Element {
 	 */
 	public void setPos(int pos) {
 		this.pos = pos;
+	}
+
+	/**
+	 * Gets the file name of the element
+	 * 
+	 * @return The file name of the element
+	 */
+	public String getFileName() {
+		return fileName;
+	}
+
+	/**
+	 * Sets the file name of the element
+	 * 
+	 * @param fileName
+	 *            The file name of the element
+	 */
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 
 	/**

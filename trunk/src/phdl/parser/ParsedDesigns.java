@@ -19,6 +19,8 @@ package phdl.parser;
 
 import java.util.HashSet;
 
+import phdl.exception.InvalidTopDesignException;
+
 /**
  * A class that represents parsed phdl designs containing a set of design
  * declarations
@@ -59,5 +61,29 @@ public class ParsedDesigns {
 	public boolean addDesignDecl(DesignDeclaration designDecl) {
 		boolean added = designDecls.add(designDecl);
 		return added;
+	}
+
+	/**
+	 * A method to find the top level design in the parsed designs.
+	 * 
+	 * @return A reference to the top level design declaration
+	 * @throws InvalidTopDesignException
+	 */
+	public DesignDeclaration getTopDesign() throws InvalidTopDesignException {
+		boolean topFound = false;
+		DesignDeclaration topDesign = null;
+		for (DesignDeclaration d : designDecls) {
+			if (d.getPortDecls().isEmpty()) {
+				if (topFound) {
+					throw new InvalidTopDesignException(d,
+							"multiple top level designs found:");
+				}
+				topFound = true;
+				topDesign = d;
+			}
+		}
+		if (!topFound)
+			throw new InvalidTopDesignException("no top level design exists.");
+		return topDesign;
 	}
 }
