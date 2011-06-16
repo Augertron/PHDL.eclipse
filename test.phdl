@@ -1,0 +1,69 @@
+design myDesign2 is
+	// port declarations
+	port in[7:0] addr;
+	port out[7:0] data;
+begin
+end;
+
+// the design declaration
+design myDesign1 is
+	
+	// a device declaration
+	device opamp_dual is
+		// attribute list
+		REFPREFIX = "U";
+		NAME = "opamp1";
+		VALUE = "NE5532";
+		PACKAGE = "SOIC_8";
+	begin
+		// pin list
+		in[1:2] +input = "3,5";
+		in[1:2] -input = "2,6";
+		out[1:2] output = "1,7";
+		power[0:0] +vcc = "8";
+		power -vcc = "4";
+	end;	
+	
+	// another device declaration
+	device resistor is
+		REFPREFIX = "R";
+		NAME = "";
+		VALUE = "10K";
+		PACKAGE = "R0207";
+	begin
+		passive a = "1";
+		passive b = "2";
+	end;
+	
+	net[3:0] resASide : attr1, attr2, attr3;	
+	net[3:0] resBSide : attr4;
+	
+	net[7:0] addr;
+	net[7:0] data;
+
+begin
+	
+	// an instance (array) declaration
+	inst myResArray : resistor[7:0] is
+		// (overridable) attribute assignments
+		VALUE(2) = "2.2K";
+		VALUE(3) = "2.5K";
+		TOLERANCE = "5%";
+	begin
+		// pin assignments
+		a[2:1] = mynet1(0) & mynet1[2:1];
+		a(3) = mynet1(0);
+		b = open;
+	end;
+	
+	// a sub-design (array) declaration
+	sub mySubDesign : myDesign2[3:0] is
+		addr = addr;
+		data = data;
+	end;
+	
+	// a net assignment
+	testnet1[1:2] = open;
+	testnet1[7:0] = myNet1[1:0] & myNet1[3:2] & myNet2[1:0] & myNet2[3:0];
+	
+end;

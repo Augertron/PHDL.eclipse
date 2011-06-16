@@ -37,11 +37,11 @@ public class InvalidTopDesignException extends SyntaxException {
 	/**
 	 * Default constructor
 	 * 
-	 * @param e
+	 * @param e1
 	 *            The element in the source text that caused the exception
 	 */
-	public InvalidTopDesignException(Element e) {
-		super(e.getLineString() + " Invalid top design unit detected: "
+	public InvalidTopDesignException(Element e, String message) {
+		super(e.getFileName() + " " + e.getLineString() + " " + message + " "
 				+ e.getName());
 	}
 
@@ -51,7 +51,7 @@ public class InvalidTopDesignException extends SyntaxException {
 	 * @param n
 	 *            The name of the object that caused the exception
 	 */
-	public InvalidTopDesignException(String n) {
-		super("Invalid top design unit detected: " + n);
+	public InvalidTopDesignException(String message) {
+		super(message);
 	}
 }
