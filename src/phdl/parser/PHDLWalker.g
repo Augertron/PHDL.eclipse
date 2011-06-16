@@ -43,9 +43,9 @@ options {
 	@Override
     public void displayRecognitionError(String[] tokenNames,
                                         RecognitionException e) {
-        //String hdr = getErrorHeader(e);
-        //String msg = getErrorMessage(e, tokenNames);
-        //errors.add(input.getSourceName() + hdr + " " + msg);
+        String hdr = getErrorHeader(e);
+        String msg = getErrorMessage(e, tokenNames);
+        errors.add(input.getSourceName() + hdr + " " + msg);
     }
     
     public List<String> getErrors() {
