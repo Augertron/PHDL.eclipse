@@ -1,3 +1,5 @@
 phdl
+phdl.analyzer
+phdl.designer
 phdl.exception
 phdl.parser
