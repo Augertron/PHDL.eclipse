@@ -155,8 +155,10 @@ public class PinDeclaration extends ArrayDeclaration {
 		// all whitespace, commas, and semicolons
 		String[] pinNumbers = pinList.split("[\\s,;]");
 
-		boolean added = false;
+		// add the pin numbers to a set to check for duplicates
+		boolean added;
 		for (int i = 0; i < pinNumbers.length; i++) {
+			added = false;
 			added = numberSet.add(pinNumbers[i]);
 			if (!added)
 				return false;
