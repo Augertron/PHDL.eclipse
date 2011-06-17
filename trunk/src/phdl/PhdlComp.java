@@ -136,7 +136,7 @@ public class PhdlComp {
 
 		for (DesignDeclaration dd : pd.getDesignDecls())
 			System.out.println(dd.toString());
-		// System.out.println(dh.toString());
+		System.out.println(dh.toString());
 	}
 
 	/**

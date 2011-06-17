@@ -1,12 +1,17 @@
 design myDesign2 is
 	// port declarations
 	
+	port in[7:0] addr;
+	port out[7:0] data;
 begin
 
 end;
 
 // the design declaration
 design myDesign is
+	
+	port in[7:0] addr;
+	port out[7:0] data;
 	
 	// a device declaration
 	device opamp_dual is
@@ -23,9 +28,6 @@ design myDesign is
 		power[0:0] +vcc = "8";
 		power -vcc = "4";
 	end;	
-	
-	port in[7:0] addr;
-	port out[7:0] data;
 	
 	// another device declaration
 	device resistor is
