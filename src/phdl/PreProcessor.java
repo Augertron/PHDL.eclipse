@@ -6,11 +6,11 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class PHDLPreProcessor {
+public class PreProcessor {
 
 	private String filename;
 	
-	public PHDLPreProcessor(String filename) {
+	public PreProcessor(String filename) {
 		this.filename = filename;
 	}
 	
@@ -79,7 +79,7 @@ public class PHDLPreProcessor {
 	}
 
 	public static boolean unitTest() {
-		PHDLPreProcessor myPP = new PHDLPreProcessor("a.phdl");
+		PreProcessor myPP = new PreProcessor("a.phdl");
 		myPP.preProcess();
 		return true;
 	}

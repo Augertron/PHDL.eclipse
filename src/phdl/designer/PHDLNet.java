@@ -15,9 +15,11 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package phdl;
+package phdl.designer;
 
 import java.util.HashSet;
+
+import phdl.TestDriver;
 
 /**
  * A class that represents a net on a PC board.

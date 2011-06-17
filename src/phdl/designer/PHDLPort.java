@@ -1,4 +1,4 @@
-package phdl;
+package phdl.designer;
 
 public class PHDLPort {
 	private String name;

@@ -21,7 +21,7 @@
  * @author Richard Black and Brad Riching
  * @version 0.1
  */
-grammar PHDL;
+grammar Phdl;
 
 options {
 	language = Java;
@@ -76,11 +76,8 @@ designDecl
 	:	// promote the keyword "design" to the root of the subtree, and ignore the keyword "is"
 		'design'^ IDENT 'is'! 
 		
-		// optional port declarations (for subdesigns) must come before device and net declarations
-		portDecl*
-		
-		// zero or more device or net declarations may follow
-		(deviceDecl | netDecl)*
+		// any kind of declaration may follow
+		(portDecl | deviceDecl | netDecl)*
 		
 		'begin'
 		

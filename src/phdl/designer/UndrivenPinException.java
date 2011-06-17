@@ -1,4 +1,4 @@
-package phdl;
+package phdl.designer;
 
 public class UndrivenPinException extends PHDLException {
 
@@ -6,6 +6,7 @@ public class UndrivenPinException extends PHDLException {
 	 * The Serial Version UID for this class
 	 */
 	private static final long serialVersionUID = 8096832829702218019L;
+
 	int lineNum;
 	String instName;
 

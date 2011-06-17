@@ -1,4 +1,4 @@
-package phdl;
+package phdl.designer;
 
 public abstract class PHDLException extends Exception {
 
