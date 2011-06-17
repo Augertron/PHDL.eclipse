@@ -30,77 +30,6 @@ import java.util.ArrayList;
  * 
  */
 public class DesignHierarchy {
-
-	private class DesignNode {
-		
-		private DesignDeclaration design;
-		private DesignNode firstChild;
-		private DesignNode nextSibling;
-		
-		public DesignNode() {
-			design = null;
-			firstChild = null;
-			nextSibling = null;
-		}
-		
-		public DesignNode(DesignDeclaration design) {
-			this.design = design;
-			firstChild = null;
-			nextSibling = null;
-		}
-		
-		public boolean hasChild() {
-			return (firstChild != null);
-		}
-		
-		public boolean hasNextSibling() {
-			return (nextSibling != null);
-		}
-		
-		public DesignNode getFirstChild() {
-			return firstChild;
-		}
-		
-		public DesignNode getNextSibling() {
-			return nextSibling;
-		}
-		
-		public DesignDeclaration getDesignDeclaration() {
-			return design;
-		}
-		
-		public void setFirstChild(DesignNode child) {
-			this.firstChild = child;
-		}
-		
-		public void setDesignDeclaration(DesignDeclaration design) {
-			this.design = design;
-		}
-		
-		public void addChild(DesignNode child) {
-			if (firstChild == null) {
-				firstChild = child;
-			}
-			else {
-				DesignNode nextChild = firstChild;
-				while (nextChild.getNextSibling() != null) {
-					nextChild = nextChild.getNextSibling();
-				}
-				nextChild.nextSibling = child;
-			}
-			child.nextSibling = null;
-		}
-		
-		public boolean equals(DesignNode other) {
-			return design.equals(other.getDesignDeclaration());
-		}
-		
-		@Override
-		public String toString() {
-			return design.getName();
-		}
-		
-	}
 	
 	public DesignNode root;
 
@@ -231,6 +160,109 @@ public class DesignHierarchy {
 		return myString;
 	}
 	
+	private class DesignNode {
+		
+		private DesignDeclaration design;
+		private DesignNode firstChild;
+		private DesignNode nextSibling;
+		private DesignNode prevSibling;
+		private DesignNode parent;
+		
+		public DesignNode() {
+			parent = null;
+			design = null;
+			firstChild = null;
+			nextSibling = null;
+			prevSibling = null;
+		}
+		
+		public DesignNode(DesignNode parent) {
+			this.parent = parent;
+			design = null;
+			firstChild = null;
+			nextSibling = null;
+			prevSibling = null;
+		}
+		
+		public DesignNode(DesignDeclaration design) {
+			parent = null;
+			this.design = design;
+			firstChild = null;
+			nextSibling = null;
+			prevSibling = null;
+		}
+		
+		public DesignNode(DesignNode parent, DesignDeclaration design) {
+			this.parent = parent;
+			this.design = design;
+			firstChild = null;
+			prevSibling = null;
+			nextSibling = null;
+		}
+		
+		public boolean hasChild() {
+			return (firstChild != null);
+		}
+		
+		public boolean hasNextSibling() {
+			return (nextSibling != null);
+		}
+		
+		public DesignNode getFirstChild() {
+			return firstChild;
+		}
+		
+		public DesignNode getNextSibling() {
+			return nextSibling;
+		}
+		
+		public DesignNode getPrevSibling() {
+			return prevSibling;
+		}
+		
+		public DesignNode getParent() {
+			return parent;
+		}
+		
+		public DesignDeclaration getDesignDeclaration() {
+			return design;
+		}
+		
+		public void setFirstChild(DesignNode child) {
+			firstChild = child;
+			firstChild.parent = this;
+		}
+		
+		public void setDesignDeclaration(DesignDeclaration design) {
+			this.design = design;
+		}
+		
+		public void addChild(DesignNode child) {
+			if (firstChild == null) {
+				firstChild = child;
+			}
+			else {
+				DesignNode nextChild = firstChild;
+				while (nextChild.getNextSibling() != null) {
+					nextChild = nextChild.getNextSibling();
+				}
+				nextChild.nextSibling = child;
+				child.prevSibling = nextChild;
+			}
+			child.nextSibling = null;
+			child.parent = this;
+		}
+		
+		public boolean equals(DesignNode other) {
+			return design.equals(other.getDesignDeclaration());
+		}
+		
+		@Override
+		public String toString() {
+			return design.getName();
+		}
+		
+	}
 	
 	public static boolean unitTest() {
 		boolean success = true;
