@@ -15,13 +15,12 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package phdl.parser;
+package phdl;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
-import java.util.HashSet;
 
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CharStream;
@@ -30,15 +29,20 @@ import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.TokenStream;
 import org.antlr.runtime.tree.CommonTreeNodeStream;
 import org.antlr.runtime.tree.DOTTreeGenerator;
+import org.antlr.runtime.tree.Tree;
 import org.antlr.stringtemplate.StringTemplate;
 
-import phdl.exception.InvalidTopDesignException;
-import phdl.parser.PHDLParser.sourceText_return;
 import phdl.analyzer.DesignHierarchy;
+import phdl.exception.InvalidDesignException;
+import phdl.parser.DesignDeclaration;
+import phdl.parser.ParsedDesigns;
+import phdl.parser.PhdlLexer;
+import phdl.parser.PhdlParser;
+import phdl.parser.PhdlParser.sourceText_return;
+import phdl.parser.PhdlWalker;
 
 /**
- * The entry point of the phdl Compiler. It accepts *.phdl source files as
- * arguments and generates a netlist for layout tools.
+ * A wrapper class which contains the main entry point of the phdl compiler.
  * 
  * @author Richard Black and Brad Riching
  * @version 0.1
@@ -47,26 +51,19 @@ import phdl.analyzer.DesignHierarchy;
 public class PhdlComp {
 
 	/**
-	 * The list of errors
+	 * The main entry point of the phdl Compiler. It accepts *.phdl source files
+	 * as arguments and generates a netlist for layout tools.
 	 */
-	static LinkedList<String> errors = new LinkedList<String>();
-
-	/**
-	 * The parsed designs from all source files
-	 */
-	static ParsedDesigns pd = new ParsedDesigns();
-
-	/**
-	 * The sourceText return type is a tree of tokens (used for debugging)
-	 */
-	static sourceText_return sourceTree = null;
-
 	public static void main(String[] args) {
+
+		LinkedList<String> errors = new LinkedList<String>();
+		ParsedDesigns pd = new ParsedDesigns();
+		sourceText_return sourceTree = null;
 
 		// repeat for each source file passed in as an argument
 		for (int i = 0; i < args.length; i++) {
 
-			// attempt to make a character stream from the source file
+			// 1. attempt to make a character stream from the source file
 			CharStream cs = null;
 			try {
 				cs = new ANTLRFileStream(args[i]);
@@ -75,13 +72,11 @@ public class PhdlComp {
 				System.exit(1);
 			}
 
-			// lex this character stream and make a stream of tokens
-			PHDLLexer l = new PHDLLexer(cs);
+			// 2. lex this character stream and make a stream of tokens. Attempt
+			// to parse the stream of tokens to a tree and accumulate errors.
+			PhdlLexer l = new PhdlLexer(cs);
 			TokenStream ts = new CommonTokenStream(l);
-
-			// attempt to parse the stream of tokens from source text to a tree
-			// and add any parse errors to the list
-			PHDLParser p = new PHDLParser(ts);
+			PhdlParser p = new PhdlParser(ts);
 			try {
 				sourceTree = p.sourceText();
 				if (!p.getErrors().isEmpty()) {
@@ -92,109 +87,67 @@ public class PhdlComp {
 				errors.add(e.getMessage());
 			}
 
-			// convert the tree of tokens to a stream of common tree nodes
-			CommonTreeNodeStream ns = new CommonTreeNodeStream(sourceTree.tree);
-			// set the token stream to the parser's token stream
+			// 3. convert this tree of tokens to a node stream and set the token
+			// stream reference to the parser's token stream
+			CommonTreeNodeStream ns = new CommonTreeNodeStream(
+					sourceTree.getTree());
 			ns.setTokenStream(p.getTokenStream());
-			// walk the stream of nodes and attempt to obtain a set of all
+
+			// 4. walk the stream of nodes and attempt to obtain a set of all
 			// designs and add any errors if they exist
-			PHDLWalker walker = new PHDLWalker(ns);
+			PhdlWalker walker = new PhdlWalker(ns);
 			try {
-				pd = walker.sourceText(pd);
+				walker.sourceText(pd);
 				for (String error : walker.getErrors())
 					errors.add(error);
 			} catch (RecognitionException e) {
 				errors.add(e.getMessage());
 			}
 
-			// convert the token tree to a dotty formatted string
+			// 5. optionally convert the token tree to a dotty formatted string
 			DOTTreeGenerator tg = new DOTTreeGenerator();
-			StringTemplate st = tg.toDOT(sourceTree.tree);
-			dottyDump(args[i].replace(".phdl", ".dot"), st.toString());
-		}
+			StringTemplate st = tg.toDOT((Tree) sourceTree.getTree());
+			dumpToFile(args[i].replace(".phdl", ".dot"), st.toString());
 
-		// attempt to find the top level design and add a top level design error
-		// if it exists
+		} // end for loop on all source files
+
+		// 6. attempt to find the top level design
 		DesignDeclaration top = null;
 		try {
 			top = pd.getTopDesign();
-		} catch (InvalidTopDesignException e) {
+		} catch (InvalidDesignException e) {
 			errors.add(e.getMessage());
 		}
 
-		// System.out.println(top.toString());
-
-		// print out each design unit as it appears in memory
-		for (DesignDeclaration d : pd.getDesignDecls())
-			System.out.println(d.toString());
-
-		System.out.println("ok");
-		
+		// 7. attempt to build the hierarchy from all parsed designs
 		DesignHierarchy dh = new DesignHierarchy(top);
-		makeTree(top, dh, pd);
-		System.out.println(dh.toString());
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		try {
+			dh.makeHierarchy(pd);
+		} catch (InvalidDesignException e) {
+			errors.add(e.getMessage());
+		}
+
 		// print out all errors if there were any, and exit abnormally
 		if (!errors.isEmpty()) {
 			for (String s : errors)
 				System.out.println(s);
 			System.exit(1);
 		}
-		
+
+		for (DesignDeclaration dd : pd.getDesignDecls())
+			System.out.println(dd.toString());
+		// System.out.println(dh.toString());
 	}
 
-	static void makeTree(DesignDeclaration top, DesignHierarchy dh, ParsedDesigns pd) {
-		HashSet<SubDesignDeclaration> subs = top.getSubDesignDecls();
-		for (SubDesignDeclaration s : subs) {
-			DesignDeclaration child = pd.getDesign(s);
-			PhdlComp.treeMaker(top, child, dh, pd);
-		}
-	}
-	
-	static void treeMaker(DesignDeclaration parent, DesignDeclaration child, DesignHierarchy dh, ParsedDesigns pd) {
-		if (child == null) {
-			errors.add(parent.getFileName() + " line " + parent.getLineString() + " design reference missing for subdesign " + parent.getName());
-			return;
-		}
-		dh.addDesign(parent, child);
-		HashSet<SubDesignDeclaration> subs = child.getSubDesignDecls();
-		for (SubDesignDeclaration s : subs) {
-			DesignDeclaration newChild = pd.getDesign(s);
-			PhdlComp.treeMaker(child, newChild, dh, pd);
-		}
-	}
-
-	static void dottyDump(String fileName, String fileData) {
+	/**
+	 * A debugging routine that writes a string of data to file
+	 * 
+	 * @param fileName
+	 *            The file name to be written
+	 * @param fileData
+	 *            The file data to be written
+	 */
+	static void dumpToFile(String fileName, String fileData) {
 		BufferedWriter dotty = null;
 		try {
 			dotty = new BufferedWriter(new FileWriter(fileName));

@@ -23,11 +23,11 @@
  * @author Richard Black and Brad Riching
  * @version 0.1
  */
-tree grammar PHDLWalker;
+tree grammar PhdlWalker;
 
 options {
 	language = Java;
-	tokenVocab = PHDL;
+	tokenVocab = Phdl;
 	ASTLabelType = CommonTree;
 }
 
@@ -91,12 +91,9 @@ design[ParsedDesigns pd]
 			d.setPos($IDENT.pos);
 			d.setFileName(input.getSourceName());
 		}
-		
-		// port declarations must appear before anything else	
-		portDecl[d]*
 			
-		// add device and net declarations if there are any
-		(deviceDecl[d] | netDecl[d])*
+		// add any kind of declaration
+		(portDecl[d] | deviceDecl[d] | netDecl[d])*
 		
 		// seperates declarations from instances
 		'begin'

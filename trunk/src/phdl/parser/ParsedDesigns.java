@@ -19,14 +19,14 @@ package phdl.parser;
 
 import java.util.HashSet;
 
-import phdl.exception.InvalidTopDesignException;
+import phdl.exception.InvalidDesignException;
 
 /**
- * A class that represents parsed phdl designs containing a set of design
- * declarations
+ * A class that represents set of design declarations as parsed from all phdl
+ * sources
  * 
  * @author Richard Black and Brad Riching
- * 
+ * @see DesignDeclaration
  */
 public class ParsedDesigns {
 
@@ -62,14 +62,14 @@ public class ParsedDesigns {
 		boolean added = designDecls.add(designDecl);
 		return added;
 	}
-	
+
 	/**
 	 * Returns a design representation of a subdesign.
 	 * 
 	 * @param s
-	 * 				the subdesign that maps to a design
-	 * @return the design associated with the subdesign
-	 * 			null if the design was not found
+	 *            the subdesign that maps to a design
+	 * @return the design associated with the subdesign null if the design was
+	 *         not found
 	 */
 	public DesignDeclaration getDesign(SubDesignDeclaration s) {
 		for (DesignDeclaration d : designDecls) {
@@ -84,15 +84,15 @@ public class ParsedDesigns {
 	 * A method to find the top level design in the parsed designs.
 	 * 
 	 * @return A reference to the top level design declaration
-	 * @throws InvalidTopDesignException
+	 * @throws InvalidDesignException
 	 */
-	public DesignDeclaration getTopDesign() throws InvalidTopDesignException {
+	public DesignDeclaration getTopDesign() throws InvalidDesignException {
 		boolean topFound = false;
 		DesignDeclaration topDesign = null;
 		for (DesignDeclaration d : designDecls) {
 			if (d.getPortDecls().isEmpty()) {
 				if (topFound) {
-					throw new InvalidTopDesignException(d,
+					throw new InvalidDesignException(d,
 							"multiple top level designs found:");
 				}
 				topFound = true;
@@ -100,7 +100,7 @@ public class ParsedDesigns {
 			}
 		}
 		if (!topFound)
-			throw new InvalidTopDesignException("no top level design exists.");
+			throw new InvalidDesignException("no top level design found.");
 		return topDesign;
 	}
 }

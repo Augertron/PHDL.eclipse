@@ -1,4 +1,4 @@
-package phdl;
+package phdl.designer;
 
 import java.util.HashSet;
 import java.util.Iterator;

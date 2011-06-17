@@ -15,11 +15,13 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package phdl;
+package phdl.designer;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
+
+import phdl.TestDriver;
 
 /**
  * A class that models a device instance on a PCB.

@@ -27,7 +27,7 @@ import phdl.parser.Element;
  * @author Richard Black and Brad Riching
  * 
  */
-public class InvalidTopDesignException extends SyntaxException {
+public class InvalidDesignException extends SyntaxException {
 
 	/**
 	 * The Serial Version UID for this class
@@ -40,7 +40,7 @@ public class InvalidTopDesignException extends SyntaxException {
 	 * @param e1
 	 *            The element in the source text that caused the exception
 	 */
-	public InvalidTopDesignException(Element e, String message) {
+	public InvalidDesignException(Element e, String message) {
 		super(e.getFileName() + " " + e.getLineString() + " " + message + " "
 				+ e.getName());
 	}
@@ -51,7 +51,7 @@ public class InvalidTopDesignException extends SyntaxException {
 	 * @param n
 	 *            The name of the object that caused the exception
 	 */
-	public InvalidTopDesignException(String message) {
+	public InvalidDesignException(String message) {
 		super(message);
 	}
 }

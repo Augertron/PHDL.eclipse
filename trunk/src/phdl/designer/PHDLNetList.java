@@ -15,12 +15,14 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package phdl;
+package phdl.designer;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
+
+import phdl.TestDriver;
 
 /**
  * A class that represents a netlist.
