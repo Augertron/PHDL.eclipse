@@ -95,6 +95,11 @@ public class DesignHierarchy {
 			return design.equals(other.getDesignDeclaration());
 		}
 		
+		@Override
+		public String toString() {
+			return design.getName();
+		}
+		
 	}
 	
 	public DesignNode root;
@@ -204,6 +209,26 @@ public class DesignHierarchy {
 			}
 		}
 		return list;
+	}
+	
+	@Override
+	public String toString() {
+		String myString = "";
+		return stringTraversal(myString, root, 0);
+	}
+	
+	private String stringTraversal(String myString, DesignNode node, int level) {
+		myString += "\n";
+		for (int i = 0; i < level; i++) {
+			myString += "\t";
+		}
+		myString += node.toString();
+		DesignNode curChild = node.firstChild;
+		while (curChild != null) {
+			myString = stringTraversal(myString, curChild, level+1);
+			curChild = curChild.getNextSibling();
+		}
+		return myString;
 	}
 	
 	
