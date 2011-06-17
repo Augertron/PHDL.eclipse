@@ -21,6 +21,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.HashSet;
 
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CharStream;
@@ -33,6 +34,7 @@ import org.antlr.stringtemplate.StringTemplate;
 
 import phdl.exception.InvalidTopDesignException;
 import phdl.parser.PHDLParser.sourceText_return;
+import phdl.analyzer.DesignHierarchy;
 
 /**
  * The entry point of the phdl Compiler. It accepts *.phdl source files as
@@ -120,13 +122,6 @@ public class PhdlComp {
 			errors.add(e.getMessage());
 		}
 
-		// print out all errors if there were any, and exit abnormally
-		if (!errors.isEmpty()) {
-			for (String s : errors)
-				System.out.println(s);
-			System.exit(1);
-		}
-
 		// System.out.println(top.toString());
 
 		// print out each design unit as it appears in memory
@@ -134,7 +129,69 @@ public class PhdlComp {
 			System.out.println(d.toString());
 
 		System.out.println("ok");
+		
+		DesignHierarchy dh = new DesignHierarchy(top);
+		makeTree(top, dh, pd);
+		System.out.println(dh.toString());
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		// print out all errors if there were any, and exit abnormally
+		if (!errors.isEmpty()) {
+			for (String s : errors)
+				System.out.println(s);
+			System.exit(1);
+		}
+		
+	}
 
+	static void makeTree(DesignDeclaration top, DesignHierarchy dh, ParsedDesigns pd) {
+		HashSet<SubDesignDeclaration> subs = top.getSubDesignDecls();
+		for (SubDesignDeclaration s : subs) {
+			DesignDeclaration child = pd.getDesign(s);
+			PhdlComp.treeMaker(top, child, dh, pd);
+		}
+	}
+	
+	static void treeMaker(DesignDeclaration parent, DesignDeclaration child, DesignHierarchy dh, ParsedDesigns pd) {
+		if (child == null) {
+			errors.add(parent.getFileName() + " line " + parent.getLineString() + " design reference missing for subdesign " + parent.getName());
+			return;
+		}
+		dh.addDesign(parent, child);
+		HashSet<SubDesignDeclaration> subs = child.getSubDesignDecls();
+		for (SubDesignDeclaration s : subs) {
+			DesignDeclaration newChild = pd.getDesign(s);
+			PhdlComp.treeMaker(child, newChild, dh, pd);
+		}
 	}
 
 	static void dottyDump(String fileName, String fileData) {

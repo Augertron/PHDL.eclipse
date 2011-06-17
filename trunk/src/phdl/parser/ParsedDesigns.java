@@ -52,7 +52,7 @@ public class ParsedDesigns {
 	}
 
 	/**
-	 * Adds a design declaration to this parsed design
+	 * Adds a design declaration to this parsed design.
 	 * 
 	 * @param designDecl
 	 *            the design declaration to add
@@ -61,6 +61,23 @@ public class ParsedDesigns {
 	public boolean addDesignDecl(DesignDeclaration designDecl) {
 		boolean added = designDecls.add(designDecl);
 		return added;
+	}
+	
+	/**
+	 * Returns a design representation of a subdesign.
+	 * 
+	 * @param s
+	 * 				the subdesign that maps to a design
+	 * @return the design associated with the subdesign
+	 * 			null if the design was not found
+	 */
+	public DesignDeclaration getDesign(SubDesignDeclaration s) {
+		for (DesignDeclaration d : designDecls) {
+			if (d.getName().equals(s.getRefName())) {
+				return d;
+			}
+		}
+		return null;
 	}
 
 	/**
