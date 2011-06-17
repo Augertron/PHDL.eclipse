@@ -17,56 +17,146 @@
 
 package phdl.analyzer;
 
-import phdl.TestDriver;
-import phdl.parser.DesignDeclaration;
-import java.util.LinkedList;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
+
+import phdl.TestDriver;
+import phdl.exception.InvalidDesignException;
+import phdl.parser.DesignDeclaration;
+import phdl.parser.ParsedDesigns;
+import phdl.parser.SubDesignDeclaration;
 
 /**
  * A class that represents a phdl design hierarchy. The hierarchical structure
- * of all designs is stored in a tree of design nodes.
+ * of all designs is stored in a tree of nodes containing design declarations.
  * 
  * @author Richard Black and Brad Riching
  * 
  */
 public class DesignHierarchy {
-	
-	public DesignNode root;
 
-	public DesignHierarchy(DesignNode root) {
-		this.root = root;
+	private class DesignNode {
+
+		private DesignDeclaration design;
+		private DesignNode firstChild;
+		private DesignNode nextSibling;
+
+		public DesignNode() {
+			design = null;
+			firstChild = null;
+			nextSibling = null;
+		}
+
+		public DesignNode(DesignDeclaration design) {
+			this.design = design;
+			firstChild = null;
+			nextSibling = null;
+		}
+
+		public boolean hasChild() {
+			return (firstChild != null);
+		}
+
+		public boolean hasNextSibling() {
+			return (nextSibling != null);
+		}
+
+		public DesignNode getFirstChild() {
+			return firstChild;
+		}
+
+		public DesignNode getNextSibling() {
+			return nextSibling;
+		}
+
+		public DesignDeclaration getDesignDeclaration() {
+			return design;
+		}
+
+		public void setFirstChild(DesignNode child) {
+			this.firstChild = child;
+		}
+
+		public void setDesignDeclaration(DesignDeclaration design) {
+			this.design = design;
+		}
+
+		public void addChild(DesignNode child) {
+			if (firstChild == null) {
+				firstChild = child;
+			} else {
+				DesignNode nextChild = firstChild;
+				while (nextChild.getNextSibling() != null) {
+					nextChild = nextChild.getNextSibling();
+				}
+				nextChild.nextSibling = child;
+			}
+			child.nextSibling = null;
+		}
+
+		public boolean equals(DesignNode other) {
+			return design.equals(other.getDesignDeclaration());
+		}
+
+		@Override
+		public String toString() {
+			return design.getName();
+		}
+
 	}
-	
+
+	/**
+	 * The top design declaration node
+	 */
+	public DesignNode top;
+
+	/**
+	 * Default Constructor
+	 * 
+	 * @param top
+	 *            Top design node
+	 */
+	public DesignHierarchy(DesignNode top) {
+		this.top = top;
+	}
+
+	/**
+	 * Secondary constructor
+	 * 
+	 * @param design
+	 *            Top DesignDeclaration
+	 */
 	public DesignHierarchy(DesignDeclaration design) {
-		this.root = new DesignNode(design);
+		this.top = new DesignNode(design);
 	}
 
 	public void setRoot(DesignDeclaration design) {
-		this.root = new DesignNode(design);
+		this.top = new DesignNode(design);
 	}
-	
+
 	public DesignDeclaration getRoot() {
-		return root.getDesignDeclaration();
+		return top.getDesignDeclaration();
 	}
-	
+
 	public boolean isEmpty() {
-		return (root == null);
+		return (top == null);
 	}
-	
+
 	public int size() {
 		return getPostorder().size();
 	}
-	
+
 	public void addDesign(DesignDeclaration parent, DesignDeclaration child) {
 		DesignNode childNode = new DesignNode(child);
 		DesignNode parentNode = find(parent);
 		parentNode.addChild(childNode);
 	}
-	
+
 	private DesignNode find(DesignDeclaration design) {
 		LinkedList<DesignNode> q = new LinkedList<DesignNode>();
-		q.addFirst(root);
-		while(!q.isEmpty()) {
+		q.addFirst(top);
+		while (!q.isEmpty()) {
 			DesignNode node = q.removeLast();
 			DesignNode sibling = node.getFirstChild();
 			while (sibling != null) {
@@ -79,18 +169,18 @@ public class DesignHierarchy {
 		}
 		return null;
 	}
-	
+
 	public boolean contains(DesignDeclaration design) {
 		if (find(design) != null)
 			return true;
 		return false;
 	}
-	
+
 	public ArrayList<DesignDeclaration> getBF() {
 		ArrayList<DesignDeclaration> list = new ArrayList<DesignDeclaration>();
 		LinkedList<DesignNode> q = new LinkedList<DesignNode>();
-		q.addFirst(root);
-		while(!q.isEmpty()) {
+		q.addFirst(top);
+		while (!q.isEmpty()) {
 			DesignNode node = q.removeLast();
 			list.add(node.getDesignDeclaration());
 			DesignNode sibling = node.getFirstChild();
@@ -101,15 +191,15 @@ public class DesignHierarchy {
 		}
 		return list;
 	}
-	
+
 	public ArrayList<DesignDeclaration> getPostorder() {
 		ArrayList<DesignDeclaration> list = new ArrayList<DesignDeclaration>();
-		list = postorder(root, list);
+		list = postorder(top, list);
 		return list;
 	}
-	
+
 	private ArrayList<DesignDeclaration> postorder(DesignNode node,
-												ArrayList<DesignDeclaration> list) {
+			ArrayList<DesignDeclaration> list) {
 		if (node.hasChild()) {
 			DesignNode sibling = node.getFirstChild();
 			while (sibling != null) {
@@ -120,15 +210,15 @@ public class DesignHierarchy {
 		list.add(node.getDesignDeclaration());
 		return list;
 	}
-	
+
 	public ArrayList<DesignDeclaration> getPreorder() {
 		ArrayList<DesignDeclaration> list = new ArrayList<DesignDeclaration>();
-		list = preorder(root, list);
+		list = preorder(top, list);
 		return list;
 	}
-	
+
 	private ArrayList<DesignDeclaration> preorder(DesignNode node,
-												ArrayList<DesignDeclaration> list) {
+			ArrayList<DesignDeclaration> list) {
 		list.add(node.getDesignDeclaration());
 		if (node.hasChild()) {
 			DesignNode sibling = node.getFirstChild();
@@ -139,13 +229,13 @@ public class DesignHierarchy {
 		}
 		return list;
 	}
-	
+
 	@Override
 	public String toString() {
 		String myString = "";
-		return stringTraversal(myString, root, 0);
+		return stringTraversal(myString, top, 0);
 	}
-	
+
 	private String stringTraversal(String myString, DesignNode node, int level) {
 		myString += "\n";
 		for (int i = 0; i < level; i++) {
@@ -154,119 +244,65 @@ public class DesignHierarchy {
 		myString += node.toString();
 		DesignNode curChild = node.firstChild;
 		while (curChild != null) {
-			myString = stringTraversal(myString, curChild, level+1);
+			myString = stringTraversal(myString, curChild, level + 1);
 			curChild = curChild.getNextSibling();
 		}
 		return myString;
 	}
-	
-	private class DesignNode {
-		
-		private DesignDeclaration design;
-		private DesignNode firstChild;
-		private DesignNode nextSibling;
-		private DesignNode prevSibling;
-		private DesignNode parent;
-		
-		public DesignNode() {
-			parent = null;
-			design = null;
-			firstChild = null;
-			nextSibling = null;
-			prevSibling = null;
+
+	/**
+	 * Makes a design hierarchy tree using all designs contained in the
+	 * {@link ParsedDesigns} object passed in.
+	 * 
+	 * @param pd
+	 *            The parsed designs object containing all parsed designs
+	 * @throws InvalidDesignException
+	 * @see ParsedDesigns
+	 */
+	public void makeHierarchy(ParsedDesigns pd) throws InvalidDesignException {
+		HashSet<SubDesignDeclaration> subs = top.getDesignDeclaration()
+				.getSubDesignDecls();
+		for (SubDesignDeclaration s : subs) {
+			DesignDeclaration child = pd.getDesign(s);
+			hierarchyMaker(top.getDesignDeclaration(), child, pd);
 		}
-		
-		public DesignNode(DesignNode parent) {
-			this.parent = parent;
-			design = null;
-			firstChild = null;
-			nextSibling = null;
-			prevSibling = null;
-		}
-		
-		public DesignNode(DesignDeclaration design) {
-			parent = null;
-			this.design = design;
-			firstChild = null;
-			nextSibling = null;
-			prevSibling = null;
-		}
-		
-		public DesignNode(DesignNode parent, DesignDeclaration design) {
-			this.parent = parent;
-			this.design = design;
-			firstChild = null;
-			prevSibling = null;
-			nextSibling = null;
-		}
-		
-		public boolean hasChild() {
-			return (firstChild != null);
-		}
-		
-		public boolean hasNextSibling() {
-			return (nextSibling != null);
-		}
-		
-		public DesignNode getFirstChild() {
-			return firstChild;
-		}
-		
-		public DesignNode getNextSibling() {
-			return nextSibling;
-		}
-		
-		public DesignNode getPrevSibling() {
-			return prevSibling;
-		}
-		
-		public DesignNode getParent() {
-			return parent;
-		}
-		
-		public DesignDeclaration getDesignDeclaration() {
-			return design;
-		}
-		
-		public void setFirstChild(DesignNode child) {
-			firstChild = child;
-			firstChild.parent = this;
-		}
-		
-		public void setDesignDeclaration(DesignDeclaration design) {
-			this.design = design;
-		}
-		
-		public void addChild(DesignNode child) {
-			if (firstChild == null) {
-				firstChild = child;
-			}
-			else {
-				DesignNode nextChild = firstChild;
-				while (nextChild.getNextSibling() != null) {
-					nextChild = nextChild.getNextSibling();
-				}
-				nextChild.nextSibling = child;
-				child.prevSibling = nextChild;
-			}
-			child.nextSibling = null;
-			child.parent = this;
-		}
-		
-		public boolean equals(DesignNode other) {
-			return design.equals(other.getDesignDeclaration());
-		}
-		
-		@Override
-		public String toString() {
-			return design.getName();
-		}
-		
 	}
-	
+
+	/**
+	 * The recursive method that makes a design hierarchy
+	 * 
+	 * @param parent
+	 *            The parent design
+	 * @param child
+	 *            The child design
+	 * @param pd
+	 *            The parsed designs object containing all designs currently
+	 *            parsed
+	 * @throws InvalidDesignException
+	 * @see ParsedDesigns
+	 */
+	public void hierarchyMaker(DesignDeclaration parent,
+			DesignDeclaration child, ParsedDesigns pd)
+			throws InvalidDesignException {
+		if (child == null) {
+			throw new InvalidDesignException(parent,
+					"design reference missing for sub-design: ");
+		}
+		addDesign(parent, child);
+		HashSet<SubDesignDeclaration> subs = child.getSubDesignDecls();
+		for (SubDesignDeclaration s : subs) {
+			DesignDeclaration newChild = pd.getDesign(s);
+			hierarchyMaker(child, newChild, pd);
+		}
+	}
+
+	public void makeNetGraph() {
+
+	}
+
 	public static boolean unitTest() {
 		boolean success = true;
-		
+
 		DesignDeclaration design1 = new DesignDeclaration();
 		design1.setName("A");
 		DesignDeclaration design2 = new DesignDeclaration();
@@ -281,26 +317,26 @@ public class DesignHierarchy {
 		design6.setName("F");
 		DesignDeclaration design7 = new DesignDeclaration();
 		design7.setName("G");
-		
+
 		DesignHierarchy tree = new DesignHierarchy(design1);
-		
-		tree.addDesign(design1, design2);	//				A
-		tree.addDesign(design2, design3);	//		B				D
-		tree.addDesign(design1, design4);	//	C		F		E		G
-		tree.addDesign(design4, design5);	//	Preorder: 	A B C F D E G
-		tree.addDesign(design2, design6);	//	Postorder: 	C F B E G D A
-		tree.addDesign(design4, design7);	//	BF : 		A B D C F E G
-		
+
+		tree.addDesign(design1, design2); // A
+		tree.addDesign(design2, design3); // B D
+		tree.addDesign(design1, design4); // C F E G
+		tree.addDesign(design4, design5); // Preorder: A B C F D E G
+		tree.addDesign(design2, design6); // Postorder: C F B E G D A
+		tree.addDesign(design4, design7); // BF : A B D C F E G
+
 		if (tree.isEmpty()) {
 			TestDriver.err("isEmpty()", "False", "True");
 			success = false;
 		}
-		
+
 		if (!tree.getRoot().equals(design1)) {
 			TestDriver.err("getRoot()", "A", tree.getRoot().getName());
 			success = false;
 		}
-		
+
 		if (!tree.contains(design1)) {
 			TestDriver.err("contains()", "contains A", "false");
 			success = false;
@@ -329,119 +365,141 @@ public class DesignHierarchy {
 			TestDriver.err("contains()", "contains G", "false");
 			success = false;
 		}
-		
+
 		if (tree.size() != 7) {
 			TestDriver.err("size()", "7", tree.size() + "");
 			success = false;
 		}
-		
+
 		ArrayList<DesignDeclaration> preorder = tree.getPreorder();
-		//	Preorder: 	A B C F D E G
-		
+		// Preorder: A B C F D E G
+
 		if (preorder.size() != 7) {
-			TestDriver.err("getPreorder()", "size of 7", "size of " + preorder.size());
+			TestDriver.err("getPreorder()", "size of 7",
+					"size of " + preorder.size());
 			success = false;
 		}
 		if (!preorder.get(0).equals(design1)) {
-			TestDriver.err("getPreorder()", "element 0 = A", preorder.get(0).getName());
+			TestDriver.err("getPreorder()", "element 0 = A", preorder.get(0)
+					.getName());
 			success = false;
 		}
 		if (!preorder.get(1).equals(design2)) {
-			TestDriver.err("getPreorder()", "element 1 = B", preorder.get(1).getName());
+			TestDriver.err("getPreorder()", "element 1 = B", preorder.get(1)
+					.getName());
 			success = false;
 		}
 		if (!preorder.get(2).equals(design3)) {
-			TestDriver.err("getPreorder()", "element 2 = C", preorder.get(2).getName());
+			TestDriver.err("getPreorder()", "element 2 = C", preorder.get(2)
+					.getName());
 			success = false;
 		}
 		if (!preorder.get(3).equals(design6)) {
-			TestDriver.err("getPreorder()", "element 3 = F", preorder.get(3).getName());
+			TestDriver.err("getPreorder()", "element 3 = F", preorder.get(3)
+					.getName());
 			success = false;
 		}
 		if (!preorder.get(4).equals(design4)) {
-			TestDriver.err("getPreorder()", "element 4 = D", preorder.get(4).getName());
+			TestDriver.err("getPreorder()", "element 4 = D", preorder.get(4)
+					.getName());
 			success = false;
 		}
 		if (!preorder.get(5).equals(design5)) {
-			TestDriver.err("getPreorder()", "element 5 = E", preorder.get(5).getName());
+			TestDriver.err("getPreorder()", "element 5 = E", preorder.get(5)
+					.getName());
 			success = false;
 		}
 		if (!preorder.get(6).equals(design7)) {
-			TestDriver.err("getPreorder()", "element 6 = F", preorder.get(6).getName());
+			TestDriver.err("getPreorder()", "element 6 = F", preorder.get(6)
+					.getName());
 			success = false;
 		}
-		
+
 		ArrayList<DesignDeclaration> postorder = tree.getPostorder();
-		//	Postorder: 	C F B E G D A
-		
+		// Postorder: C F B E G D A
+
 		if (postorder.size() != 7) {
 			TestDriver.err("getPostorder()", "size = 7", postorder.size() + "");
 			success = false;
 		}
 		if (!postorder.get(0).equals(design3)) {
-			TestDriver.err("getPostorder()", "element 0 = C", postorder.get(0).getName());
+			TestDriver.err("getPostorder()", "element 0 = C", postorder.get(0)
+					.getName());
 			success = false;
 		}
 		if (!postorder.get(1).equals(design6)) {
-			TestDriver.err("getPostorder()", "element 1 = F", postorder.get(1).getName());
+			TestDriver.err("getPostorder()", "element 1 = F", postorder.get(1)
+					.getName());
 			success = false;
 		}
 		if (!postorder.get(2).equals(design2)) {
-			TestDriver.err("getPostorder()", "element 2 = B", postorder.get(2).getName());
+			TestDriver.err("getPostorder()", "element 2 = B", postorder.get(2)
+					.getName());
 			success = false;
 		}
 		if (!postorder.get(3).equals(design5)) {
-			TestDriver.err("getPostorder()", "element 3 = E", postorder.get(3).getName());
+			TestDriver.err("getPostorder()", "element 3 = E", postorder.get(3)
+					.getName());
 			success = false;
 		}
 		if (!postorder.get(4).equals(design7)) {
-			TestDriver.err("getPostorder()", "element 4 = G", postorder.get(4).getName());
+			TestDriver.err("getPostorder()", "element 4 = G", postorder.get(4)
+					.getName());
 			success = false;
 		}
 		if (!postorder.get(5).equals(design4)) {
-			TestDriver.err("getPostorder()", "element 5 = D", postorder.get(5).getName());
+			TestDriver.err("getPostorder()", "element 5 = D", postorder.get(5)
+					.getName());
 			success = false;
 		}
 		if (!postorder.get(6).equals(design1)) {
-			TestDriver.err("getPostorder()", "element 6 = A", postorder.get(6).getName());
+			TestDriver.err("getPostorder()", "element 6 = A", postorder.get(6)
+					.getName());
 			success = false;
 		}
-		
+
 		ArrayList<DesignDeclaration> BForder = tree.getBF();
-		//	BF : 		A B D C F E G
+		// BF : A B D C F E G
 		if (BForder.size() != 7) {
 			TestDriver.err("getBF()", "size = 7", BForder.size() + "");
 			success = false;
 		}
 		if (!BForder.get(0).equals(design1)) {
-			TestDriver.err("getBF()", "element 0 = A", BForder.get(0).getName());
+			TestDriver
+					.err("getBF()", "element 0 = A", BForder.get(0).getName());
 			success = false;
 		}
 		if (!BForder.get(1).equals(design2)) {
-			TestDriver.err("getBF()", "element 1 = B", BForder.get(1).getName());
+			TestDriver
+					.err("getBF()", "element 1 = B", BForder.get(1).getName());
 			success = false;
 		}
 		if (!BForder.get(2).equals(design4)) {
-			TestDriver.err("getBF()", "element 2 = D", BForder.get(2).getName());
+			TestDriver
+					.err("getBF()", "element 2 = D", BForder.get(2).getName());
 			success = false;
 		}
 		if (!BForder.get(3).equals(design3)) {
-			TestDriver.err("getBF()", "element 3 = C", BForder.get(3).getName());
+			TestDriver
+					.err("getBF()", "element 3 = C", BForder.get(3).getName());
 			success = false;
 		}
 		if (!BForder.get(4).equals(design6)) {
-			TestDriver.err("getBF()", "element 4 = F", BForder.get(4).getName());
+			TestDriver
+					.err("getBF()", "element 4 = F", BForder.get(4).getName());
 			success = false;
 		}
 		if (!BForder.get(5).equals(design5)) {
-			TestDriver.err("getBF()", "element 5 = E", BForder.get(5).getName());
+			TestDriver
+					.err("getBF()", "element 5 = E", BForder.get(5).getName());
 			success = false;
 		}
 		if (!BForder.get(6).equals(design7)) {
-			TestDriver.err("getBF()", "element 6 = G", BForder.get(6).getName());
+			TestDriver
+					.err("getBF()", "element 6 = G", BForder.get(6).getName());
 			success = false;
 		}
-		
+
 		return success;
 	}
 }
