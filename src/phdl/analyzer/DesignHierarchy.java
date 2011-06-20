@@ -28,10 +28,13 @@ import phdl.parser.ParsedDesigns;
 import phdl.parser.SubDesignDeclaration;
 
 /**
- * A class that represents a phdl design hierarchy. The hierarchical structure
- * of all designs is stored in a tree of nodes containing design declarations.
+ * A class that represents a phdl design hierarchy.
+ * 
+ * The hierarchical structure of all designs is stored
+ * in a tree of nodes containing design declarations.
  * 
  * @author Richard Black and Brad Riching
+ * @version 0.1
  * 
  */
 public class DesignHierarchy {
@@ -296,8 +299,11 @@ public class DesignHierarchy {
 		}
 	}
 
+	/**
+	 * 
+	 */
 	public void makeNetGraph() {
-
+		
 	}
 
 	public static boolean unitTest() {
