@@ -18,6 +18,7 @@
 package phdl.analyzer;
 
 import java.util.ArrayList;
+import java.util.Set;
 import java.util.HashSet;
 import java.util.LinkedList;
 
@@ -26,6 +27,7 @@ import phdl.exception.InvalidDesignException;
 import phdl.parser.DesignDeclaration;
 import phdl.parser.ParsedDesigns;
 import phdl.parser.SubDesignDeclaration;
+import phdl.parser.PortAssignment;
 
 /**
  * A class that represents a phdl design hierarchy.
@@ -44,19 +46,33 @@ public class DesignHierarchy {
 		private DesignDeclaration design;
 		private DesignNode firstChild;
 		private DesignNode nextSibling;
+		private Set<PortAssignment> ports;
 
 		public DesignNode() {
 			design = null;
 			firstChild = null;
 			nextSibling = null;
+			ports = null;
 		}
 
 		public DesignNode(DesignDeclaration design) {
 			this.design = design;
 			firstChild = null;
 			nextSibling = null;
+			ports = null;
+		}
+		
+		public DesignNode(DesignDeclaration design, Set<PortAssignment> ports) {
+			this.design = design;
+			this.ports = ports;
+			firstChild = null;
+			nextSibling = null;
 		}
 
+		public boolean hasPorts() {
+			return (ports != null);
+		}
+		
 		public boolean hasChild() {
 			return (firstChild != null);
 		}
@@ -71,6 +87,10 @@ public class DesignHierarchy {
 
 		public DesignNode getNextSibling() {
 			return nextSibling;
+		}
+		
+		public Set<PortAssignment> getPorts() {
+			return ports;
 		}
 
 		public DesignDeclaration getDesignDeclaration() {
@@ -151,7 +171,11 @@ public class DesignHierarchy {
 	}
 
 	public void addDesign(DesignDeclaration parent, DesignDeclaration child) {
-		DesignNode childNode = new DesignNode(child);
+		addDesign(parent, child, null);
+	}
+	
+	public void addDesign(DesignDeclaration parent, DesignDeclaration child, Set<PortAssignment> pa) {
+		DesignNode childNode = new DesignNode(child, pa);
 		DesignNode parentNode = find(parent);
 		parentNode.addChild(childNode);
 	}
@@ -267,7 +291,7 @@ public class DesignHierarchy {
 				.getSubDesignDecls();
 		for (SubDesignDeclaration s : subs) {
 			DesignDeclaration child = pd.getDesign(s);
-			hierarchyMaker(top.getDesignDeclaration(), child, pd);
+			hierarchyMaker(top.getDesignDeclaration(), child, pd, s.getPortAssignments());
 		}
 	}
 
@@ -285,17 +309,17 @@ public class DesignHierarchy {
 	 * @see ParsedDesigns
 	 */
 	public void hierarchyMaker(DesignDeclaration parent,
-			DesignDeclaration child, ParsedDesigns pd)
+			DesignDeclaration child, ParsedDesigns pd, HashSet<PortAssignment> pa)
 			throws InvalidDesignException {
 		if (child == null) {
 			throw new InvalidDesignException(parent,
 					"design reference missing for sub-design: ");
 		}
-		addDesign(parent, child);
+		addDesign(parent, child, pa);
 		HashSet<SubDesignDeclaration> subs = child.getSubDesignDecls();
 		for (SubDesignDeclaration s : subs) {
 			DesignDeclaration newChild = pd.getDesign(s);
-			hierarchyMaker(child, newChild, pd);
+			hierarchyMaker(child, newChild, pd, s.getPortAssignments());
 		}
 	}
 
