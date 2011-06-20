@@ -6,6 +6,12 @@ public abstract class AnalyzerElement {
 	protected int line;
 	protected int pos;
 	
+	public AnalyzerElement(String name, int line, int pos) {
+		this.name = name;
+		this.line = line;
+		this.pos = pos;
+	}
+	
 	public String getName() {
 		return name;
 	}

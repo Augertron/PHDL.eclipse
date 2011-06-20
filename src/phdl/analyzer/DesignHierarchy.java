@@ -196,6 +196,11 @@ public class DesignHierarchy {
 		}
 		return null;
 	}
+	
+	public Set<PortAssignment> getPorts(DesignDeclaration design) {
+		DesignNode node = find(design);
+		return node.getPorts();
+	}
 
 	public boolean contains(DesignDeclaration design) {
 		if (find(design) != null)
