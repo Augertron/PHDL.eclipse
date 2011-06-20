@@ -44,7 +44,7 @@ public class PreProcessor {
 		this.filename = filename;
 	}
 	
-	public void preProcess() {
+	public String preProcess() {
 		String outputContents = extractFileContents(filename);
 		while (outputContents.contains("use \"")) {
 			String nextFileName = extractFileName(outputContents);
@@ -53,7 +53,7 @@ public class PreProcessor {
 			String nextFileContents = extractFileContents(nextFileName);
 			outputContents = appendFileContents(outputContents, nextFileContents, nextFileName);
 		}
-		writeNewFile(outputContents);
+		return outputContents;
 	}
 	
 	private String extractFileName(String fileContents) {
@@ -94,7 +94,7 @@ public class PreProcessor {
 		return output;
 	}
 	
-	private boolean writeNewFile(String output) {
+	public boolean writeNewFile(String output) {
 		String outFileName = filename.replace(".phdl", ".pp");
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter(outFileName));
