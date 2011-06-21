@@ -17,7 +17,7 @@
 
 package phdl.exception;
 
-import phdl.parser.Element;
+import phdl.parser.Parsable;
 
 /**
  * A class that represents an exception thrown when duplicate reference
@@ -38,7 +38,7 @@ public class DuplicateRefDesException extends SyntaxException {
 	 * @param e
 	 *            The element in the source text that caused the exception
 	 */
-	public DuplicateRefDesException(Element e) {
+	public DuplicateRefDesException(Parsable e) {
 		super(e.getLineString() + " Duplicate reference designator detected: "
 				+ e.getName());
 	}

@@ -32,6 +32,7 @@ import org.antlr.runtime.tree.DOTTreeGenerator;
 import org.antlr.runtime.tree.Tree;
 import org.antlr.stringtemplate.StringTemplate;
 
+import phdl.analyzer.Analyzer;
 import phdl.analyzer.DesignHierarchy;
 import phdl.exception.InvalidDesignException;
 import phdl.parser.DesignDeclaration;
@@ -112,7 +113,7 @@ public class PhdlComp {
 		} // end for loop on all source files
 
 		// 6. attempt to find the top level design
-		DesignDeclaration top = null;
+		DesignDeclaration top = new DesignDeclaration();
 		try {
 			top = pd.getTopDesign();
 		} catch (InvalidDesignException e) {
@@ -125,6 +126,13 @@ public class PhdlComp {
 			dh.makeHierarchy(pd);
 		} catch (InvalidDesignException e) {
 			errors.add(e.getMessage());
+		}
+
+		// 8. Analyze the design hierarchy and obtain errors if they exist
+		Analyzer a = new Analyzer(dh);
+		a.Analyze();
+		for (String error : a.getErrors()) {
+			errors.add(error);
 		}
 
 		// print out all errors if there were any, and exit abnormally

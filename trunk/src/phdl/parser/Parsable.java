@@ -18,13 +18,13 @@
 package phdl.parser;
 
 /**
- * An abstract class that represents all elements of the parsed phdl. Every
- * parsed element has a name, a line number, a position, and a fileName field
- * corresponding to where it appears in which source phdl file.
+ * An abstract class that represents all parsable elements of the parsed phdl.
+ * Every parsed element has a name, a line number, a position, and a fileName
+ * field corresponding to where it appears in which source phdl file.
  * 
  * @author Richard Black and Brad Riching
  */
-public abstract class Element {
+public abstract class Parsable {
 
 	/**
 	 * The name of the element

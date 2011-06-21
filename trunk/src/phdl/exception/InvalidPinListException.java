@@ -17,7 +17,7 @@
 
 package phdl.exception;
 
-import phdl.parser.Element;
+import phdl.parser.Parsable;
 
 /**
  * A class that represents an exception thrown when an invalid pin list has been
@@ -38,7 +38,7 @@ public class InvalidPinListException extends SyntaxException {
 	 * @param e
 	 *            The element in the source text that caused the exception
 	 */
-	public InvalidPinListException(Element e) {
+	public InvalidPinListException(Parsable e) {
 		super(e.getLineString() + " Invalid pin list detected: " + e.getName());
 	}
 

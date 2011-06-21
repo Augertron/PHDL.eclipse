@@ -17,7 +17,7 @@
 
 package phdl.exception;
 
-import phdl.parser.Element;
+import phdl.parser.Parsable;
 
 /**
  * A class which represents an exception thrown when the widths of the vectors
@@ -38,7 +38,7 @@ public class InvalidWidthException extends SyntaxException {
 	 * @param e
 	 *            The element in the source text that caused the exception
 	 */
-	public InvalidWidthException(Element e) {
+	public InvalidWidthException(Parsable e) {
 		super(e.getLineString() + " Invalid width detected: " + e.getName());
 	}
 

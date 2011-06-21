@@ -22,6 +22,6 @@ package phdl.parser;
  * 
  * @author Richard Black and Brad Riching
  */
-public abstract class Declarable extends Element {
+public abstract class Declarable extends Parsable {
 
 }

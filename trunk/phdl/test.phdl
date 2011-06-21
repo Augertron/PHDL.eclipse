@@ -10,16 +10,13 @@ end;
 // the design declaration
 design myDesign is
 	
-	port in[7:0] addr;
-	port out[7:0] data;
-	
 	// a device declaration
 	device opamp_dual is
 		// attribute list
-		REFPREFIX = "U";
-		NAME = "opamp1";
-		VALUE = "NE5532";
-		PACKAGE = "SOIC_8";
+		refprefix = "U";
+		name = "opamp1";
+		value = "NE5532";
+		package = "SOIC_8";
 	begin
 		// pin list
 		in[1:2] +input = "3,5";
@@ -31,10 +28,11 @@ design myDesign is
 	
 	// another device declaration
 	device resistor is
-		REFPREFIX = "R";
-		NAME = "";
-		VALUE = "10K";
-		PACKAGE = "R0207";
+		refprefix = "R";
+		name = "";
+		value = "10K";
+		package = "R0207";
+		tolerance = "10%";
 	begin
 		passive a = "1";
 		passive b = "2";
@@ -49,11 +47,11 @@ design myDesign is
 begin
 	
 	// an instance (array) declaration
-	inst myResArray : resistor[7:0] is
+	inst resArray : resistor[7:0] is
 		// (overridable) attribute assignments
-		VALUE(2) = "2.2K";
-		VALUE(3) = "2.5K";
-		TOLERANCE = "5%";
+		value(2) = "2.2K";
+		value(3) = "2.5K";
+		tolerance = "5%";
 	begin
 		// pin assignments
 		a[2:1] = mynet1(0) & mynet1[2:1];

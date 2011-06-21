@@ -17,7 +17,7 @@
 
 package phdl.exception;
 
-import phdl.parser.Element;
+import phdl.parser.Parsable;
 
 /**
  * A class that represents an exception thrown when a pin is undriven (floating)
@@ -38,7 +38,7 @@ public class UndrivenPinException extends SyntaxException {
 	 * @param e
 	 *            The element in the source text that caused the exception
 	 */
-	public UndrivenPinException(Element e) {
+	public UndrivenPinException(Parsable e) {
 		super(e.getLineString() + " Undriven pin detected: " + e.getName());
 	}
 

@@ -59,6 +59,12 @@ public class PinDeclaration extends ArrayDeclaration {
 		this.numberSet = new HashSet<String>();
 	}
 
+	public PinDeclaration() {
+		super();
+		this.indexMap = new HashMap<Integer, String>();
+		this.numberSet = new HashSet<String>();
+	}
+
 	/**
 	 * Gets the pin assignment's type
 	 * 
