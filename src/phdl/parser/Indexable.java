@@ -28,7 +28,7 @@ package phdl.parser;
  * @author Richard Black and Brad Riching
  * 
  */
-public abstract class Indexable extends Element {
+public abstract class Indexable extends Parsable {
 
 	/**
 	 * The msb of the indexable object

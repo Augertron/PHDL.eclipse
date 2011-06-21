@@ -17,7 +17,7 @@
 
 package phdl.exception;
 
-import phdl.parser.Element;
+import phdl.parser.Parsable;
 
 /**
  * A class that represents an exception thrown when an indexable object is
@@ -38,7 +38,7 @@ public class UndefinedIndexException extends SyntaxException {
 	 * @param e
 	 *            The element in the source text that caused the exception
 	 */
-	public UndefinedIndexException(Element e) {
+	public UndefinedIndexException(Parsable e) {
 		super(e.getLineString() + " Undefined index detected: " + e.getName());
 	}
 

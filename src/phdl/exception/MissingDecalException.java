@@ -17,7 +17,7 @@
 
 package phdl.exception;
 
-import phdl.parser.Element;
+import phdl.parser.Parsable;
 
 /**
  * A class that represents an exception thrown when a device attribute list is
@@ -39,7 +39,7 @@ public class MissingDecalException extends SyntaxException {
 	 * @param e
 	 *            The element in the source text that caused the exception
 	 */
-	public MissingDecalException(Element e) {
+	public MissingDecalException(Parsable e) {
 		super(e.getLineString() + " Missing decal detected: " + e.getName());
 	}
 

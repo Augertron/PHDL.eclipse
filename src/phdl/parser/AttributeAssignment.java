@@ -62,7 +62,7 @@ public class AttributeAssignment extends Assignable {
 	 */
 	@Override
 	public int hashCode() {
-		return (name + msb + lsb + index).hashCode();
+		return name.hashCode();
 	}
 
 	/**
@@ -70,10 +70,10 @@ public class AttributeAssignment extends Assignable {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return name.equals(((AttributeAssignment) o).getName())
-				&& msb == ((AttributeAssignment) o).getMsb()
-				&& lsb == ((AttributeAssignment) o).getLsb()
-				&& index == ((AttributeAssignment) o).getIndex();
+		return name.equals(((AttributeAssignment) o).getName());
+		// && msb == ((AttributeAssignment) o).getMsb()
+		// && lsb == ((AttributeAssignment) o).getLsb()
+		// && index == ((AttributeAssignment) o).getIndex();
 	}
 
 	/**

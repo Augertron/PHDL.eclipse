@@ -17,7 +17,7 @@
 
 package phdl.exception;
 
-import phdl.parser.Element;
+import phdl.parser.Parsable;
 
 /**
  * A class that represents an exception thrown when an instance refers to a
@@ -39,7 +39,7 @@ public class UndeclaredReferenceException extends SyntaxException {
 	 * @param e
 	 *            The element in the source text that caused the exception
 	 */
-	public UndeclaredReferenceException(Element e) {
+	public UndeclaredReferenceException(Parsable e) {
 		super(e.getLineString() + " Undeclared reference detected: "
 				+ e.getName());
 	}

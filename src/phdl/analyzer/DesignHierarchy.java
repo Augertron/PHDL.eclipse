@@ -18,116 +18,28 @@
 package phdl.analyzer;
 
 import java.util.ArrayList;
-import java.util.Set;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Set;
 
 import phdl.TestDriver;
 import phdl.exception.InvalidDesignException;
 import phdl.parser.DesignDeclaration;
 import phdl.parser.ParsedDesigns;
-import phdl.parser.SubDesignDeclaration;
 import phdl.parser.PortAssignment;
+import phdl.parser.SubDesignDeclaration;
 
 /**
  * A class that represents a phdl design hierarchy.
  * 
- * The hierarchical structure of all designs is stored
- * in a tree of nodes containing design declarations.
+ * The hierarchical structure of all designs is stored in a tree of nodes
+ * containing design declarations.
  * 
  * @author Richard Black and Brad Riching
  * @version 0.1
  * 
  */
 public class DesignHierarchy {
-
-	private class DesignNode {
-
-		private DesignDeclaration design;
-		private DesignNode firstChild;
-		private DesignNode nextSibling;
-		private Set<PortAssignment> ports;
-
-		public DesignNode() {
-			design = null;
-			firstChild = null;
-			nextSibling = null;
-			ports = null;
-		}
-
-		public DesignNode(DesignDeclaration design) {
-			this.design = design;
-			firstChild = null;
-			nextSibling = null;
-			ports = null;
-		}
-		
-		public DesignNode(DesignDeclaration design, Set<PortAssignment> ports) {
-			this.design = design;
-			this.ports = ports;
-			firstChild = null;
-			nextSibling = null;
-		}
-
-		public boolean hasPorts() {
-			return (ports != null);
-		}
-		
-		public boolean hasChild() {
-			return (firstChild != null);
-		}
-
-		public boolean hasNextSibling() {
-			return (nextSibling != null);
-		}
-
-		public DesignNode getFirstChild() {
-			return firstChild;
-		}
-
-		public DesignNode getNextSibling() {
-			return nextSibling;
-		}
-		
-		public Set<PortAssignment> getPorts() {
-			return ports;
-		}
-
-		public DesignDeclaration getDesignDeclaration() {
-			return design;
-		}
-
-		public void setFirstChild(DesignNode child) {
-			this.firstChild = child;
-		}
-
-		public void setDesignDeclaration(DesignDeclaration design) {
-			this.design = design;
-		}
-
-		public void addChild(DesignNode child) {
-			if (firstChild == null) {
-				firstChild = child;
-			} else {
-				DesignNode nextChild = firstChild;
-				while (nextChild.getNextSibling() != null) {
-					nextChild = nextChild.getNextSibling();
-				}
-				nextChild.nextSibling = child;
-			}
-			child.nextSibling = null;
-		}
-
-		public boolean equals(DesignNode other) {
-			return design.equals(other.getDesignDeclaration());
-		}
-
-		@Override
-		public String toString() {
-			return design.getName();
-		}
-
-	}
 
 	/**
 	 * The top design declaration node
@@ -173,8 +85,9 @@ public class DesignHierarchy {
 	public void addDesign(DesignDeclaration parent, DesignDeclaration child) {
 		addDesign(parent, child, null);
 	}
-	
-	public void addDesign(DesignDeclaration parent, DesignDeclaration child, Set<PortAssignment> pa) {
+
+	public void addDesign(DesignDeclaration parent, DesignDeclaration child,
+			Set<PortAssignment> pa) {
 		DesignNode childNode = new DesignNode(child, pa);
 		DesignNode parentNode = find(parent);
 		parentNode.addChild(childNode);
@@ -196,7 +109,7 @@ public class DesignHierarchy {
 		}
 		return null;
 	}
-	
+
 	public Set<PortAssignment> getPorts(DesignDeclaration design) {
 		DesignNode node = find(design);
 		return node.getPorts();
@@ -208,7 +121,13 @@ public class DesignHierarchy {
 		return false;
 	}
 
-	public ArrayList<DesignDeclaration> getBF() {
+	/**
+	 * Returns a list of design declarations based on a breadth-first search of
+	 * the design hierarchy
+	 * 
+	 * @return
+	 */
+	public ArrayList<DesignDeclaration> getBFS() {
 		ArrayList<DesignDeclaration> list = new ArrayList<DesignDeclaration>();
 		LinkedList<DesignNode> q = new LinkedList<DesignNode>();
 		q.addFirst(top);
@@ -224,12 +143,47 @@ public class DesignHierarchy {
 		return list;
 	}
 
+	/**
+	 * Returns a list of design nodes based on a breadth-first search of the
+	 * design hierarchy
+	 * 
+	 * @return
+	 */
+	public ArrayList<DesignNode> getBFSNodes() {
+		ArrayList<DesignNode> list = new ArrayList<DesignNode>();
+		LinkedList<DesignNode> q = new LinkedList<DesignNode>();
+		q.addFirst(top);
+		while (!q.isEmpty()) {
+			DesignNode node = q.removeLast();
+			list.add(node);
+			DesignNode sibling = node.getFirstChild();
+			while (sibling != null) {
+				q.addFirst(sibling);
+				sibling = sibling.getNextSibling();
+			}
+		}
+		return list;
+	}
+
+	/**
+	 * Returns a list of design declarations based on a post-order traversal of
+	 * the design hierarchy
+	 * 
+	 * @return
+	 */
 	public ArrayList<DesignDeclaration> getPostorder() {
 		ArrayList<DesignDeclaration> list = new ArrayList<DesignDeclaration>();
 		list = postorder(top, list);
 		return list;
 	}
 
+	/**
+	 * Recursive internal method for getPostOrder
+	 * 
+	 * @param node
+	 * @param list
+	 * @return
+	 */
 	private ArrayList<DesignDeclaration> postorder(DesignNode node,
 			ArrayList<DesignDeclaration> list) {
 		if (node.hasChild()) {
@@ -243,12 +197,25 @@ public class DesignHierarchy {
 		return list;
 	}
 
+	/**
+	 * Returns a list of design declarations based on a pre-order traversal of
+	 * the design hierarchy
+	 * 
+	 * @return
+	 */
 	public ArrayList<DesignDeclaration> getPreorder() {
 		ArrayList<DesignDeclaration> list = new ArrayList<DesignDeclaration>();
 		list = preorder(top, list);
 		return list;
 	}
 
+	/**
+	 * Recursive internal method for preorder
+	 * 
+	 * @param node
+	 * @param list
+	 * @return
+	 */
 	private ArrayList<DesignDeclaration> preorder(DesignNode node,
 			ArrayList<DesignDeclaration> list) {
 		list.add(node.getDesignDeclaration());
@@ -274,7 +241,7 @@ public class DesignHierarchy {
 			myString += "\t";
 		}
 		myString += node.toString();
-		DesignNode curChild = node.firstChild;
+		DesignNode curChild = node.getFirstChild();
 		while (curChild != null) {
 			myString = stringTraversal(myString, curChild, level + 1);
 			curChild = curChild.getNextSibling();
@@ -292,11 +259,13 @@ public class DesignHierarchy {
 	 * @see ParsedDesigns
 	 */
 	public void makeHierarchy(ParsedDesigns pd) throws InvalidDesignException {
-		HashSet<SubDesignDeclaration> subs = top.getDesignDeclaration()
-				.getSubDesignDecls();
-		for (SubDesignDeclaration s : subs) {
+		// for every sub-design in the top level design, add it's equivalent
+		// design declaration as a child
+		for (SubDesignDeclaration s : top.getDesignDeclaration()
+				.getSubDesignDecls()) {
 			DesignDeclaration child = pd.getDesign(s);
-			hierarchyMaker(top.getDesignDeclaration(), child, pd, s.getPortAssignments());
+			hierarchyMaker(top.getDesignDeclaration(), child, pd,
+					s.getPortAssignments());
 		}
 	}
 
@@ -306,33 +275,30 @@ public class DesignHierarchy {
 	 * @param parent
 	 *            The parent design
 	 * @param child
-	 *            The child design
+	 *            The child design being added
 	 * @param pd
-	 *            The parsed designs object containing all designs currently
-	 *            parsed
+	 *            The parsed designs object containing all available designs
 	 * @throws InvalidDesignException
 	 * @see ParsedDesigns
 	 */
 	public void hierarchyMaker(DesignDeclaration parent,
-			DesignDeclaration child, ParsedDesigns pd, HashSet<PortAssignment> pa)
-			throws InvalidDesignException {
-		if (child == null) {
+			DesignDeclaration child, ParsedDesigns pd,
+			HashSet<PortAssignment> pa) throws InvalidDesignException {
+
+		// throw an exception if the design reference is missing.
+		if (child == null)
 			throw new InvalidDesignException(parent,
 					"design reference missing for sub-design: ");
-		}
+
+		// add the design as a node in the hierarchy tree.
 		addDesign(parent, child, pa);
-		HashSet<SubDesignDeclaration> subs = child.getSubDesignDecls();
-		for (SubDesignDeclaration s : subs) {
+
+		// get each design declaration referenced by each sub-design and add add
+		// it to the hierarchy.
+		for (SubDesignDeclaration s : child.getSubDesignDecls()) {
 			DesignDeclaration newChild = pd.getDesign(s);
 			hierarchyMaker(child, newChild, pd, s.getPortAssignments());
 		}
-	}
-
-	/**
-	 * 
-	 */
-	public void makeNetGraph() {
-		
 	}
 
 	public static boolean unitTest() {
@@ -493,7 +459,7 @@ public class DesignHierarchy {
 			success = false;
 		}
 
-		ArrayList<DesignDeclaration> BForder = tree.getBF();
+		ArrayList<DesignDeclaration> BForder = tree.getBFS();
 		// BF : A B D C F E G
 		if (BForder.size() != 7) {
 			TestDriver.err("getBF()", "size = 7", BForder.size() + "");

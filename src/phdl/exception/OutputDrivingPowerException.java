@@ -17,7 +17,7 @@
 
 package phdl.exception;
 
-import phdl.parser.Element;
+import phdl.parser.Parsable;
 
 /**
  * A class which represents an exception thrown when an output pin and power pin
@@ -38,7 +38,7 @@ public class OutputDrivingPowerException extends ElectricalRuleCheckException {
 	 * @param e
 	 *            The element in the source text that caused the exception
 	 */
-	public OutputDrivingPowerException(Element e) {
+	public OutputDrivingPowerException(Parsable e) {
 		super(e.getLineString() + " Output driving power pin detected: "
 				+ e.getName());
 	}

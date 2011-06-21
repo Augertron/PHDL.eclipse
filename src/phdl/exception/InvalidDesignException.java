@@ -17,7 +17,7 @@
 
 package phdl.exception;
 
-import phdl.parser.Element;
+import phdl.parser.Parsable;
 
 /**
  * A class that represents an exception thrown when either no top design
@@ -40,7 +40,7 @@ public class InvalidDesignException extends SyntaxException {
 	 * @param e1
 	 *            The element in the source text that caused the exception
 	 */
-	public InvalidDesignException(Element e, String message) {
+	public InvalidDesignException(Parsable e, String message) {
 		super(e.getFileName() + " " + e.getLineString() + " " + message + " "
 				+ e.getName());
 	}

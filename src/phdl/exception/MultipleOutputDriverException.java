@@ -17,7 +17,7 @@
 
 package phdl.exception;
 
-import phdl.parser.Element;
+import phdl.parser.Parsable;
 
 /**
  * A class which represents an exception thrown when multiple output drivers
@@ -38,7 +38,7 @@ public class MultipleOutputDriverException extends ElectricalRuleCheckException 
 	 * @param e
 	 *            The element in the source text that caused the exception
 	 */
-	public MultipleOutputDriverException(Element e) {
+	public MultipleOutputDriverException(Parsable e) {
 		super(e.getLineString() + " Multiple output drivers detected: "
 				+ e.getName());
 	}

@@ -17,7 +17,7 @@
 
 package phdl.exception;
 
-import phdl.parser.Element;
+import phdl.parser.Parsable;
 
 /**
  * A class that represents an exception thrown when a device attribute list is
@@ -38,7 +38,7 @@ public class MissingRefPrefixException extends SyntaxException {
 	 * @param e
 	 *            The element in the source text that caused the exception
 	 */
-	public MissingRefPrefixException(Element e) {
+	public MissingRefPrefixException(Parsable e) {
 		super(e.getLineString() + " Missing reference prefix detected: "
 				+ e.getName());
 	}

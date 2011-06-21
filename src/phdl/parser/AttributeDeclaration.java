@@ -80,4 +80,12 @@ public class AttributeDeclaration extends Declarable {
 		return "AttrDecl " + getLineString() + " : " + name + " = " + value
 				+ "\n";
 	}
+
+	/**
+	 * Attribute names are always upper-case
+	 */
+	@Override
+	public void setName(String name) {
+		this.name = name.toUpperCase();
+	}
 }

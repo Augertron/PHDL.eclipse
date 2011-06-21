@@ -17,7 +17,7 @@
 
 package phdl.exception;
 
-import phdl.parser.Element;
+import phdl.parser.Parsable;
 
 /**
  * A class which represents an exception thrown when duplicate identifiers exist
@@ -38,7 +38,7 @@ public class DuplicateIdentifierException extends SyntaxException {
 	 * @param e
 	 *            The element in the source text that caused the exception
 	 */
-	public DuplicateIdentifierException(Element e) {
+	public DuplicateIdentifierException(Parsable e) {
 		super(e.getLineString() + " Duplicate identifer detected: " + e.getName());
 	}
 

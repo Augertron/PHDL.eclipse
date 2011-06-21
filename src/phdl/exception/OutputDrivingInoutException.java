@@ -17,7 +17,7 @@
 
 package phdl.exception;
 
-import phdl.parser.Element;
+import phdl.parser.Parsable;
 
 /**
  * A class which represents an exception thrown when an output pin and inout pin
@@ -38,7 +38,7 @@ public class OutputDrivingInoutException extends ElectricalRuleCheckException {
 	 * @param e
 	 *            The element in the source text that caused the exception
 	 */
-	public OutputDrivingInoutException(Element e) {
+	public OutputDrivingInoutException(Parsable e) {
 		super(e.getName() + " Output driving inout pin detected: "
 				+ e.getName());
 	}
