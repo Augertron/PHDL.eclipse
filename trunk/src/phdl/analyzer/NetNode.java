@@ -9,10 +9,8 @@ public class NetNode extends Node {
 	 */
 	private ArrayList<Node> nodes;
 
-	public NetNode(String name, int line, int pos) {
-		this.name = name;
-		this.line = line;
-		this.pos = pos;
+	public NetNode() {
+		
 	}
 
 	public void addNode(Node node) {
