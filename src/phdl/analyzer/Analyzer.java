@@ -11,6 +11,8 @@ import phdl.parser.AttributeDeclaration;
 import phdl.parser.DesignDeclaration;
 import phdl.parser.DeviceDeclaration;
 import phdl.parser.InstanceDeclaration;
+import phdl.parser.NetAssignment;
+import phdl.parser.NetDeclaration;
 import phdl.parser.ParsedDesigns;
 import phdl.parser.PinAssignment;
 import phdl.parser.PinDeclaration;
@@ -30,31 +32,6 @@ public class Analyzer {
 	private Set<NetNode> nets;
 	private Graph netgraph;
 
-	public Analyzer(ParsedDesigns pd) throws PhdlException {
-		dh = new DesignHierarchy(pd.getTopDesign());
-		dh.makeHierarchy(pd);
-		ArrayList<DesignDeclaration> designs = dh.getBFS();
-		Set<Graph> netgraphs = new HashSet<Graph>();
-		for (DesignDeclaration d : designs) {
-			// netgraphs.add(makeGraph(d));
-		}
-	}
-
-	private Set<PortNode> convertPortAssignments(PortAssignment pa) {
-		Set<PortNode> ports = new HashSet<PortNode>();
-		int lsb = pa.getLsb();
-		int msb = pa.getMsb();
-		int index = pa.getIndex();
-		if (index != -1) {
-			ports.add(new PortNode(pa.getName(), pa.getLine(), pa.getPos()));
-			pa.getNets();
-		} else if (lsb < msb) {
-
-		}
-
-		return ports;
-	}
-
 	/**
 	 * Default constructor
 	 * 
@@ -65,7 +42,57 @@ public class Analyzer {
 		this.dh = dh;
 		this.errors = new LinkedList<String>();
 	}
+	
+	private void createInitialNetGraph() {
+		netgraph = new Graph();
+		for (DesignDeclaration d : dh.getBFS()) {
+			Set<NetDeclaration> nets = d.getNetDecls();
+			createNetNodes(nets);
+			
+			Set<NetAssignment> na = d.getNetAssignments();
+			for (NetAssignment a : na) {
+				ArrayList<String> lvals = new ArrayList<String>();
+				ArrayList<String> rvals = new ArrayList<String>();
+				if (a.getIndex() != -1) {
+					lvals.add(a.getName() + "_" + a.getIndex());
+				}
+				else if (a.getMsb() > a.getLsb()) {
+					for (int i = a.getMsb(); i > a.getLsb(); i--) {
+						
+					}
+				}
+			}
+		}
+	}
+	
+	private void createNetNodes(Set<NetDeclaration> nets) {
+		for (NetDeclaration n : nets) {
+			int min = getMin(n.getMsb(), n.getLsb());
+			int max = getMax(n.getMsb(), n.getLsb());
+			for (int i = min; i <= max; i++) {
+				NetNode newNet = new NetNode();
+				newNet.setName(n.getName() + "_" + i);
+				netgraph.addNetNode(newNet);
+			}
+		}
+	}
+	
+	private int getMin(int msb, int lsb) {
+		if (msb < lsb) {
+			return msb;
+		}
+		return lsb;
+	}
+	
+	private int getMax(int msb, int lsb) {
+		if (msb < lsb) {
+			return lsb;
+		}
+		return msb;
+	}
 
+	
+	
 	/**
 	 * The main analyzer method is called on the analyzer object created from
 	 * the design hierarchy.
