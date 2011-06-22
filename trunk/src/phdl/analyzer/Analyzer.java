@@ -26,11 +26,7 @@ import phdl.parser.AttributeDeclaration;
 import phdl.parser.DesignDeclaration;
 import phdl.parser.DeviceDeclaration;
 import phdl.parser.InstanceDeclaration;
-import phdl.parser.Net;
-import phdl.parser.NetAssignment;
-import phdl.parser.NetDeclaration;
 import phdl.parser.Parsable;
-import phdl.exception.InvalidWidthException;
 
 public class Analyzer {
 
@@ -67,44 +63,81 @@ public class Analyzer {
 	public void Analyze() {
 		for (DesignNode d : dh.getBFSNodes()) {
 
-			verifyDevices(d.getDesignDeclaration());
-			verifyInstances(d.getDesignDeclaration());
-			verifyNets(d.getDesignDeclaration());
+			checkDeviceDecls(d.getDesignDeclaration());
+			checkInstanceDecls(d.getDesignDeclaration());
+			checkNetAssigns(d.getDesignDeclaration());
 
 			// TODO if errors by this point, throw exception
 
 			// TODO make a new graph out of all pin, port and net assignments
 			// and assign to design node
-			try {
-				d.createInitialNetGraph();
-			} catch (InvalidWidthException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
+
+			// try {
+			// d.createInitialNetGraph();
+			// } catch (InvalidWidthException e) {
+			// // TODO Auto-generated catch block
+			// e.printStackTrace();
+			// }
+
 		}
 
 	}
 
-	private void verifyDevices(DesignDeclaration designDeclaration) {
-		// TODO check that all devices have the required attributes and all
-		// attributes and pins are formatted correctly.
+	private void checkDeviceDecls(DesignDeclaration des) {
+		// required attributes that all device declarations must have
+		String[] reqAttr = { "REFPREFIX", "NAME", "VALUE" };
+
+		for (DeviceDeclaration d : des.getDeviceDecls()) {
+
+			for (int i = 0; i < reqAttr.length; i++) {
+				if (d.findAttrDecl(reqAttr[i]) == null) {
+					String message = "required " + reqAttr[i].toLowerCase()
+							+ " attribute missing";
+					addError(d, message);
+				}
+
+			}
+		}
+
+		// TODO check all attributes and pins are declared correctly.
 
 	}
 
-	private void verifyInstances(DesignDeclaration design) {
+	private void checkInstanceDecls(DesignDeclaration design) {
+
+		// Set of names to check for duplicates
+		Set<String> names = new HashSet<String>();
+
 		for (InstanceDeclaration i : design.getInstanceDecls()) {
+
 			DeviceDeclaration d = design.findDevDecl(i.getRefName());
 			if (d == null) {
 				addError(i, "instance references undeclared device");
 			} else {
-				verifyAttributes(i, d);
-				verifyPins(i, d);
+				// the instance references a device - check for duplicates
+				if (i.isUpArray()) {
+					for (int j = i.getMsb(); j <= i.getLsb(); j++) {
+						if (!names.add(i.getName() + j))
+							addError(i, "duplicate instance declaration");
+					}
+				} else if (i.isDownArray()) {
+					for (int j = i.getMsb(); j >= i.getLsb(); j--) {
+						if (!names.add(i.getName() + j))
+							addError(i, "duplicate instance declaration");
+					}
+				} else {
+					if (!names.add(i.getName())) {
+						addError(i, "duplicate instance declaration");
+					}
+				}
+				// check all attributes and pins are assigned correctly
+				checkAttrAssigns(i, d);
+				checkPinAssigns(i, d);
 			}
 		}
 	}
 
-	private void verifyAttributes(InstanceDeclaration i, DeviceDeclaration d) {
+	private void checkAttrAssigns(InstanceDeclaration i, DeviceDeclaration d) {
 
 		// Sets of names and values to easily check for duplicates
 		Set<String> names = new HashSet<String>();
@@ -177,11 +210,6 @@ public class Analyzer {
 				}
 			} else {
 				// inside non-arrayed instances
-				// if (a.isArrayed()) {
-				// addError(a, "array invalid for singular instance");
-				// } else if (a.isIndexed()) {
-				// addError(a, "index invalid for singular instance");
-				// }
 				if (!names.add(a.getName())) {
 					addError(a, "duplicate attribute assignment");
 				}
@@ -189,12 +217,12 @@ public class Analyzer {
 		}
 	}
 
-	private void verifyPins(InstanceDeclaration i, DeviceDeclaration dev) {
+	private void checkPinAssigns(InstanceDeclaration i, DeviceDeclaration dev) {
 		// TODO Auto-generated method stub
 
 	}
 
-	private void verifyNets(DesignDeclaration d) {
+	private void checkNetAssigns(DesignDeclaration d) {
 		// TODO Auto-generated method stub
 
 	}

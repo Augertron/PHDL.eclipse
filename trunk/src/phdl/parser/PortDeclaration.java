@@ -72,7 +72,9 @@ public class PortDeclaration extends ArrayDeclaration {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return name.equals(((PortDeclaration) o).getName());
+		return name.equals(((PortDeclaration) o).getName())
+				&& msb == ((PortDeclaration) o).getMsb()
+				&& lsb == ((PortDeclaration) o).getLsb();
 	}
 
 	/**

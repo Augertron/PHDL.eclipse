@@ -75,7 +75,9 @@ public class NetDeclaration extends ArrayDeclaration {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return name.equals(((NetDeclaration) o).getName());
+		return name.equals(((NetDeclaration) o).getName())
+				&& msb == ((NetDeclaration) o).getMsb()
+				&& lsb == ((NetDeclaration) o).getLsb();
 	}
 
 	/**

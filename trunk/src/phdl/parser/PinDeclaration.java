@@ -131,7 +131,9 @@ public class PinDeclaration extends ArrayDeclaration {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return name.equals(((PinDeclaration) o).getName());
+		return name.equals(((PinDeclaration) o).getName())
+				&& msb == ((InstanceDeclaration) o).getMsb()
+				&& lsb == ((InstanceDeclaration) o).getLsb();
 	}
 
 	/**

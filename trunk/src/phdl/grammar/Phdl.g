@@ -31,7 +31,8 @@ options {
 
 @header {
 	package phdl.parser;
-	import java.util.LinkedList;
+	import java.util.TreeSet;
+	import java.util.Set;
 }
 
 @lexer::header {
@@ -41,7 +42,7 @@ options {
 
 @members {
 
-	private LinkedList<String> errors = new LinkedList<String>();
+	private Set<String> errors = new TreeSet<String>();
 
 	@Override
 	public void displayRecognitionError(String[] tokenNames,
@@ -51,7 +52,7 @@ options {
 		errors.add(hdr + " " + msg);
 	}
 
-	public LinkedList<String> getErrors() {
+	public Set<String> getErrors() {
 		return errors;
 	}
 }
@@ -165,23 +166,23 @@ subDesignInstance
 	;
 	
 attributeAssignment
-	:	IDENT (width | index)? EQUALS^ STRING_LITERAL SEMICOLON!
+	:	IDENT (width | slice)? EQUALS^ STRING_LITERAL SEMICOLON!
 	;
 	
 pinAssignment
-	:	IDENT (width | index)? EQUALS^ concatenation SEMICOLON!
+	:	IDENT (width | slice)? EQUALS^ concatenation SEMICOLON!
 	;
 	
 portAssignment
-	:	IDENT (width | index)? EQUALS^ concatenation SEMICOLON!
+	:	IDENT (width | slice)? EQUALS^ concatenation SEMICOLON!
 	;
 	
 netAssignment
-	:	IDENT (width | index)? EQUALS^ concatenation SEMICOLON!
+	:	IDENT (width | slice)? EQUALS^ concatenation SEMICOLON!
 	;
 	
 concatenation
-	:	((IDENT (width | index)?) ('&'! IDENT (width | index)?)* ) | 'open'!
+	:	((IDENT (width | slice)?) ('&'! IDENT (width | slice)?)* ) | 'open'!
 	;
 
 	

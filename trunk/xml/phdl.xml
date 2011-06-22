@@ -1,5 +1,5 @@
 <NotepadPlus>
-    <UserLang name="phdl" ext=".phdl">
+    <UserLang name="phdl" ext="phdl">
         <Settings>
             <Global caseIgnored="no" />
             <TreatAsSymbol comment="yes" commentLine="yes" />

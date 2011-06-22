@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g 2011-06-22 00:48:59
+// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g 2011-06-22 14:23:38
 
 	package phdl.parser;
 	import phdl.exception.PhdlRuntimeException;
@@ -479,7 +479,7 @@ public class PhdlLexer extends Lexer {
     // $ANTLR start "CHAR"
     public final void mCHAR() throws RecognitionException {
         try {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:195:15: ( ( 'a' .. 'z' ) | ( 'A' .. 'Z' ) | '_' | '+' | '-' )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:196:15: ( ( 'a' .. 'z' ) | ( 'A' .. 'Z' ) | '_' | '+' | '-' )
             int alt1=5;
             switch ( input.LA(1) ) {
             case 'a':
@@ -566,10 +566,10 @@ public class PhdlLexer extends Lexer {
 
             switch (alt1) {
                 case 1 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:195:17: ( 'a' .. 'z' )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:196:17: ( 'a' .. 'z' )
                     {
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:195:17: ( 'a' .. 'z' )
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:195:18: 'a' .. 'z'
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:196:17: ( 'a' .. 'z' )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:196:18: 'a' .. 'z'
                     {
                     matchRange('a','z'); 
 
@@ -579,10 +579,10 @@ public class PhdlLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:195:30: ( 'A' .. 'Z' )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:196:30: ( 'A' .. 'Z' )
                     {
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:195:30: ( 'A' .. 'Z' )
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:195:31: 'A' .. 'Z'
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:196:30: ( 'A' .. 'Z' )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:196:31: 'A' .. 'Z'
                     {
                     matchRange('A','Z'); 
 
@@ -592,21 +592,21 @@ public class PhdlLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:195:43: '_'
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:196:43: '_'
                     {
                     match('_'); 
 
                     }
                     break;
                 case 4 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:195:49: '+'
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:196:49: '+'
                     {
                     match('+'); 
 
                     }
                     break;
                 case 5 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:195:55: '-'
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:196:55: '-'
                     {
                     match('-'); 
 
@@ -623,8 +623,8 @@ public class PhdlLexer extends Lexer {
     // $ANTLR start "DIGIT"
     public final void mDIGIT() throws RecognitionException {
         try {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:196:16: ( '0' .. '9' )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:196:18: '0' .. '9'
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:197:16: ( '0' .. '9' )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:197:18: '0' .. '9'
             {
             matchRange('0','9'); 
 
@@ -641,8 +641,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = SEMICOLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:197:10: ( ';' )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:197:12: ';'
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:198:10: ( ';' )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:198:12: ';'
             {
             match(';'); 
 
@@ -661,8 +661,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = COLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:198:6: ( ':' )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:198:8: ':'
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:199:6: ( ':' )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:199:8: ':'
             {
             match(':'); 
 
@@ -681,8 +681,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = COMMA;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:199:6: ( ',' )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:199:8: ','
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:200:6: ( ',' )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:200:8: ','
             {
             match(','); 
 
@@ -701,8 +701,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = EQUALS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:200:7: ( '=' )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:200:9: '='
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:201:7: ( '=' )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:201:9: '='
             {
             match('='); 
 
@@ -721,8 +721,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = LBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:201:9: ( '[' )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:201:11: '['
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:202:9: ( '[' )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:202:11: '['
             {
             match('['); 
 
@@ -741,8 +741,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = RBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:202:9: ( ']' )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:202:11: ']'
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:203:9: ( ']' )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:203:11: ']'
             {
             match(']'); 
 
@@ -761,10 +761,10 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:205:5: ( ( DIGIT )+ )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:205:7: ( DIGIT )+
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:206:5: ( ( DIGIT )+ )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:206:7: ( DIGIT )+
             {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:205:7: ( DIGIT )+
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:206:7: ( DIGIT )+
             int cnt2=0;
             loop2:
             do {
@@ -778,7 +778,7 @@ public class PhdlLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:205:7: DIGIT
+            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:206:7: DIGIT
             	    {
             	    mDIGIT(); 
 
@@ -812,12 +812,12 @@ public class PhdlLexer extends Lexer {
             int _channel = DEFAULT_TOKEN_CHANNEL;
             int c;
 
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:209:2: ( '\"' ( '/' '\"' | c=~ ( '\"' | '\\r' | '\\n' ) )* '\"' )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:209:5: '\"' ( '/' '\"' | c=~ ( '\"' | '\\r' | '\\n' ) )* '\"'
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:210:2: ( '\"' ( '/' '\"' | c=~ ( '\"' | '\\r' | '\\n' ) )* '\"' )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:210:5: '\"' ( '/' '\"' | c=~ ( '\"' | '\\r' | '\\n' ) )* '\"'
             {
             match('\"'); 
             StringBuilder sb = new StringBuilder();
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:211:3: ( '/' '\"' | c=~ ( '\"' | '\\r' | '\\n' ) )*
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:212:3: ( '/' '\"' | c=~ ( '\"' | '\\r' | '\\n' ) )*
             loop3:
             do {
                 int alt3=3;
@@ -851,7 +851,7 @@ public class PhdlLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:211:5: '/' '\"'
+            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:212:5: '/' '\"'
             	    {
             	    match('/'); 
             	    match('\"'); 
@@ -860,7 +860,7 @@ public class PhdlLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:212:5: c=~ ( '\"' | '\\r' | '\\n' )
+            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:213:5: c=~ ( '\"' | '\\r' | '\\n' )
             	    {
             	    c= input.LA(1);
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='\uFFFF') ) {
@@ -900,11 +900,11 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = IDENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:220:2: ( CHAR ( CHAR | DIGIT )* )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:220:4: CHAR ( CHAR | DIGIT )*
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:221:2: ( CHAR ( CHAR | DIGIT )* )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:221:4: CHAR ( CHAR | DIGIT )*
             {
             mCHAR(); 
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:220:9: ( CHAR | DIGIT )*
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:221:9: ( CHAR | DIGIT )*
             loop4:
             do {
                 int alt4=3;
@@ -920,14 +920,14 @@ public class PhdlLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:220:11: CHAR
+            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:221:11: CHAR
             	    {
             	    mCHAR(); 
 
             	    }
             	    break;
             	case 2 :
-            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:220:18: DIGIT
+            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:221:18: DIGIT
             	    {
             	    mDIGIT(); 
 
@@ -955,10 +955,10 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = WHITESPACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:225:2: ( ( ' ' | '\\t' | '\\n' | '\\r' | '\\f' | '\\u001D' )+ )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:225:4: ( ' ' | '\\t' | '\\n' | '\\r' | '\\f' | '\\u001D' )+
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:226:2: ( ( ' ' | '\\t' | '\\n' | '\\r' | '\\f' | '\\u001D' )+ )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:226:4: ( ' ' | '\\t' | '\\n' | '\\r' | '\\f' | '\\u001D' )+
             {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:225:4: ( ' ' | '\\t' | '\\n' | '\\r' | '\\f' | '\\u001D' )+
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:226:4: ( ' ' | '\\t' | '\\n' | '\\r' | '\\f' | '\\u001D' )+
             int cnt5=0;
             loop5:
             do {
@@ -1013,12 +1013,12 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = LINE_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:230:2: ( '//' ( . )* ( '\\n' | '\\r' ) )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:230:4: '//' ( . )* ( '\\n' | '\\r' )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:231:2: ( '//' ( . )* ( '\\n' | '\\r' ) )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:231:4: '//' ( . )* ( '\\n' | '\\r' )
             {
             match("//"); 
 
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:230:9: ( . )*
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:231:9: ( . )*
             loop6:
             do {
                 int alt6=2;
@@ -1034,7 +1034,7 @@ public class PhdlLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:230:9: .
+            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:231:9: .
             	    {
             	    matchAny(); 
 
@@ -1072,12 +1072,12 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = MULTILINE_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:235:2: ( '/*' ( . )* '*/' )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:235:4: '/*' ( . )* '*/'
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:236:2: ( '/*' ( . )* '*/' )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:236:4: '/*' ( . )* '*/'
             {
             match("/*"); 
 
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:235:9: ( . )*
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:236:9: ( . )*
             loop7:
             do {
                 int alt7=2;
@@ -1102,7 +1102,7 @@ public class PhdlLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:235:9: .
+            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:236:9: .
             	    {
             	    matchAny(); 
 
