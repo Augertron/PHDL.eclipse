@@ -33,12 +33,13 @@ options {
 
 @header {
 	package phdl.parser;
-	import java.util.LinkedList;
+	import java.util.TreeSet;
+	import java.util.SortedSet;
 }
 
 @members {
 
-	private LinkedList<String> errors = new LinkedList<String>();
+	private SortedSet<String> errors = new TreeSet<String>();
 	
 	@Override
     public void displayRecognitionError(String[] tokenNames,
@@ -48,12 +49,13 @@ options {
         errors.add(input.getSourceName() + hdr + " " + msg);
     }
     
-    public List<String> getErrors() {
+    public SortedSet<String> getErrors() {
         return errors;
     }
     
-    public void addError(String s) {
-    	errors.add(s);
+    public void addError(Parsable p, String msg) {
+    	errors.add(input.getSourceName() + " line " + p.getLineString() + " " + msg
+				+ ": " + p.getName());
     }
     
 //    @Override
@@ -70,7 +72,7 @@ options {
  * The Source Text rule returns the design units with all data structures populated and processed
  */
 sourceText[ParsedDesigns pd] returns [ParsedDesigns designs]
-	:	//{pd = new ParsedDesigns();}
+	:	
 		design[pd]*
 		{designs = pd;}
 	;
@@ -102,9 +104,8 @@ design[ParsedDesigns pd]
 		(instance[d] | subDesign[d] | netAssignment[d])*
 		)
 		
-		{	boolean added = pd.addDesignDecl(d);
-			if(!added) addError(input.getSourceName() + " line " + d.getLineString()
-				+ " duplicate design declaration found: " + d.getName());
+		{	if(!pd.addDesignDecl(d)) 
+				addError(d, "duplicate design declaration");
 		}
 	;
 
@@ -137,9 +138,8 @@ addPort[DesignDeclaration d, PortDeclaration p]
 			p.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
 			p.setFileName(input.getSourceName());
 			
-			boolean added = d.addPortDecl(p);
-			if(!added) addError(input.getSourceName() + " line " + p.getLineString()
-				+ " duplicate port declaration found: " + p.getName());
+			if(!d.addPortDecl(p)) 
+				addError(p, "duplicate port declaration");
 		}
 	;
 
@@ -172,9 +172,8 @@ deviceDecl[DesignDeclaration d]
 		)
 		
 		// attempt to add the device declaration
-		{	boolean added = d.addDeviceDecl(dev);
-			if(!added) addError(input.getSourceName() + " line " + dev.getLineString()
-				+ " duplicate device declaration found: " + dev.getName());
+		{	if(!d.addDeviceDecl(dev)) 
+				addError(dev, "duplicate device declaration");
 		}
 	;
 
@@ -200,9 +199,8 @@ netDecl[DesignDeclaration d]
 		)
 		
 		// add the net to the design
-		{	boolean added = d.addNetDecl(n);
-			if(!added) addError(input.getSourceName() + " line " + n.getLineString()
-				+ " duplicate net declaration found: " + n.getName());
+		{	if(!d.addNetDecl(n)) 
+				addError(n, "duplicate net declaration");
 		}
 	;
 
@@ -212,9 +210,8 @@ netAttribute[NetDeclaration n]
 	:	IDENT
 	
 		// attempt to add the net attribute						
-		{	boolean added = n.addAttribute($IDENT.text);
-			if(!added) addError(input.getSourceName() + " line " + $IDENT.line + ":" + $IDENT.pos 
-				+ " duplicate net attribute found: " + $IDENT.text);
+		{	if(!n.addAttribute($IDENT.text)) 
+				addError(n, "duplicate net attribute");
 		}
 	;
 
@@ -232,9 +229,8 @@ attributeDecl[DeviceDeclaration d]
 			a.setValue($value.text);
 			a.setFileName(input.getSourceName());
 			
-			boolean added = d.addAttributeDecl(a);
-			if(!added) addError(input.getSourceName() + " line " + a.getLineString()
-				+ " duplicate attribute declaration found: " + a.getName());
+			if(!d.addAttributeDecl(a)) 
+				addError(a, "duplicate attribute declaration");
 		}
 	;
 
@@ -266,13 +262,11 @@ addPin[DeviceDeclaration d, PinDeclaration p]
 			p.setPinList($pinList.text);
 			p.setFileName(input.getSourceName());
 			
-			boolean mapped = p.pinMap();
-			if(!mapped) addError(input.getSourceName() + " line " + p.getLineString()
-				+ " invalid pin number list found: " + p.getName());
+			if(!p.pinMap()) 
+				addError(p, "invalid pin number list");
 			
-			boolean added = d.addPinDecl(p);
-			if(!added) addError(input.getSourceName() + " line " + p.getLineString()
-				+ " duplicate pin declaration found: " + p.getName());
+			if(!d.addPinDecl(p)) 
+				addError(p, "duplicate pin declaration");
 		}
 	;	
 
@@ -298,9 +292,8 @@ instance[DesignDeclaration d]
 		'begin'
 		pinAssignment[i]*
 		)
-		{	boolean added = d.addInstanceDecl(i);
-			if(!added) addError(input.getSourceName() + " line " + i.getLineString()
-				+ " duplicate instance declaration found: " + i.getName());
+		{	if(!d.addInstanceDecl(i)) 
+				addError(i, "duplicate instance declaration");
 		}
 	;
 
@@ -323,9 +316,8 @@ attributeAssignment[InstanceDeclaration i]
 			a.setValue($value.text);
 			a.setFileName(input.getSourceName());
 			
-			boolean added = i.addAttributeAssignment(a);
-			if(!added) addError(input.getSourceName() + " line " + a.getLineString()
-				+ " duplicate attribute assignment found: " + a.getName());
+			if(!i.addAttributeAssignment(a)) 
+				addError(a, "duplicate attribute assignment");
 		}
 	;
 
@@ -349,9 +341,8 @@ pinAssignment[InstanceDeclaration i]
 	
 		concatenatePin[p]*
 		)
-		{	boolean added = i.addPinAssignment(p);
-			if(!added) addError(input.getSourceName() + " line " + p.getLineString()
-				+ " duplicate pin assignment found: " + p.getName());
+		{	if(!i.addPinAssignment(p)) 
+				addError(p, "duplicate pin assignment");
 		}
 	;
 	
@@ -387,9 +378,8 @@ subDesign[DesignDeclaration d]
 
 		portAssignment[s]*
 		)
-		{	boolean added = d.addSubDesignDecl(s);
-			if(!added) addError(input.getSourceName() + " line " + s.getLineString()
-				+ " duplicate sub-design declaration found: " + s.getName());
+		{	if(!d.addSubDesignDecl(s)) 
+				addError(s, "duplicate sub-design declaration");
 		}
 	;
 
@@ -412,9 +402,8 @@ netAssignment[DesignDeclaration d]
 		
 		concatenateNet[n]*
 		)
-		{	boolean added = d.addNetAssignment(n);
-			if(!added) addError(input.getSourceName() + " line " + n.getLineString()
-				+ " duplicate net assignment found: " + n.getName());
+		{	if(!d.addNetAssignment(n)) 
+				addError(n, "duplicate net assignment");
 		}
 	;
 	
@@ -450,9 +439,8 @@ portAssignment[SubDesignDeclaration s]
 	
 		concatenatePort[p]*
 		)
-		{	boolean added = s.addPortAssignment(p);
-			if(!added) addError(input.getSourceName() + " line " + p.getLineString()
-				+ " duplicate port assignment found: " + p.getName());
+		{	if(!s.addPortAssignment(p)) 
+				addError(p, "duplicate port assignment");
 		}
 	;
 

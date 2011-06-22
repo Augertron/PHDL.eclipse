@@ -85,7 +85,7 @@ public abstract class ArrayDeclaration extends Declarable {
 			return "";
 	}
 
-	public boolean isArray() {
+	public boolean isArrayed() {
 		if (msb > -1 && lsb > -1)
 			return true;
 		else
@@ -94,7 +94,7 @@ public abstract class ArrayDeclaration extends Declarable {
 
 	public int getWidth() {
 		if (msb > -1 && lsb > -1)
-			return Math.abs(msb - lsb);
+			return Math.abs(msb - lsb) + 1;
 		else
 			return 1;
 	}
@@ -106,12 +106,15 @@ public abstract class ArrayDeclaration extends Declarable {
 	 * @return True if it is a valid index, false otherwise
 	 */
 	public boolean isValidIndex(int index) {
-		if (msb > lsb)
-			return (msb >= index && index >= lsb) ? true : false;
-		if (msb < lsb)
-			return (msb <= index && index <= lsb) ? true : false;
-		else
-			return (msb == index && index == lsb) ? true : false;
+		if (isArrayed()) {
+			if (msb > lsb)
+				return (msb >= index && index >= lsb) ? true : false;
+			if (msb < lsb)
+				return (msb <= index && index <= lsb) ? true : false;
+			else
+				return (msb == index && index == lsb) ? true : false;
+		}
+		return false;
 	}
 
 	public boolean isValidArray(int high, int low) {

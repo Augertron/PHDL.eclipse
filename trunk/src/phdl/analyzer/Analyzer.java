@@ -1,13 +1,27 @@
+/*
+    Copyright (C) 2011  BYU Configurable Computing Lab
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package phdl.analyzer;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 
 import phdl.parser.AttributeAssignment;
-import phdl.parser.AttributeDeclaration;
 import phdl.parser.DesignDeclaration;
 import phdl.parser.DeviceDeclaration;
 import phdl.parser.InstanceDeclaration;
@@ -20,7 +34,7 @@ public class Analyzer {
 	/**
 	 * A list of errors to accumulate during the analyzer process
 	 */
-	private LinkedList<String> errors;
+	private Set<String> errors;
 	private ArrayList<DesignDeclaration> designs;
 
 	private DesignHierarchy dh;
@@ -37,7 +51,7 @@ public class Analyzer {
 	 */
 	public Analyzer(DesignHierarchy dh) {
 		this.dh = dh;
-		this.errors = new LinkedList<String>();
+		this.errors = new HashSet<String>();
 	}
 
 	private void createInitialNetGraph() {
@@ -97,117 +111,124 @@ public class Analyzer {
 	public void Analyze() {
 		for (DesignNode d : dh.getBFSNodes()) {
 
-			// verify all instances have a corresponding device declaration
-			validateInstances(d.getDesignDeclaration());
+			verifyInstances(d.getDesignDeclaration());
+			verifyNets(d.getDesignDeclaration());
 
-			// verify all net assignments have a corresponding net declaration
-			validateNets(d.getDesignDeclaration());
+			// TODO if errors by this point, throw exception
 
-			// make a new graph out of all pin, port and net assignments
+			// TODO make a new graph out of all pin, port and net assignments
+			// and assign to design node
 			Graph g = new Graph();
-
 			d.setGraph(g);
 		}
 	}
 
-	private void validateInstances(DesignDeclaration design) {
+	private void verifyInstances(DesignDeclaration design) {
 		for (InstanceDeclaration i : design.getInstanceDecls()) {
 			DeviceDeclaration d = design.findDevDecl(i.getRefName());
 			if (d == null) {
-				addError(i, "undeclared device");
+				addError(i, "instance references undeclared device");
 			} else {
-				validateAttributes(i, d);
-				validatePins(i, d);
+				verifyAttributes(i, d);
+				verifyPins(i, d);
 			}
 		}
 	}
 
-	private void validateAttributes(InstanceDeclaration i, DeviceDeclaration d) {
+	private void verifyAttributes(InstanceDeclaration i, DeviceDeclaration d) {
 
-		Set<String> values = new HashSet<String>();
+		// Sets of names and values to easily check for duplicates
 		Set<String> names = new HashSet<String>();
+		Set<String> values = new HashSet<String>();
 
 		for (AttributeAssignment a : i.getAttributeAssignments()) {
 
-			// for all attribute assignments other than REFDES
-			if (!a.getName().equals("REFDES")) {
+			// convert the array to an index if the array is "one-wide"
+			a.toIndex();
 
-				// check if it has been defined in the attribute declaration
-				AttributeDeclaration ad = d.findAttrDecl(a.getName());
-				if (ad == null)
-					addError(a, "undeclared attribute");
-
-			} else {
-				// check for duplicate refdes constraints
+			if (a.getName().equals("REFDES")) {
+				// for all REFDES attribute assignments
 				if (!values.add(a.getValue()))
 					addError(a, "duplicate refdes constraint");
 
-				if (a.getWidth() > 1)
+				if (a.getWidth() != 1)
 					addError(a, "invalid attribute width");
+
+				// check refDes constraint starts with refPrefix
+				String r = d.findAttrDecl("REFPREFIX").getValue();
+				if (!a.getValue().toUpperCase().startsWith(r.toUpperCase()))
+					addError(a, "refdes begins with invalid refprefix");
+
+			} else {
+				// for all attribute assignments other than REFDES
+				// check if defined in the attribute declaration
+				if (d.findAttrDecl(a.getName()) == null)
+					addError(a, "instance references undeclared attribute");
 			}
 
-			// convert the array to an index if the array is one-wide
-			a.toIndex();
+			// update global attributes with instance array information
+			if (i.isArrayed()) {
+				if (!a.isArrayed() && !a.isIndexed()) {
+					a.setMsb(i.getMsb());
+					a.setLsb(i.getLsb());
+				}
+			}
 
 			// check attribute array bounds or index against instance bounds
-			if (a.hasArray()) {
+			if (a.isArrayed()) {
 				if (!i.isValidArray(a.getMsb(), a.getLsb()))
-					addError(a, "attribute outside range of instance bounds");
-			} else if (a.hasIndex())
+					addError(a, "attribute array outside instance bounds");
+			} else if (a.isIndexed()) {
 				if (!i.isValidIndex(a.getIndex()))
-					addError(a, "attribute outside range of instance bounds");
+					addError(a, "attribute index outside instance bounds");
+			}
 
 			// check for duplicate attribute assignments
-			if (a.isUpArray()) {
-				System.out.println("Up array " + a.getName());
-				for (int j = a.getMsb(); j > a.getLsb(); j++) {
-					if (!names.add(a.getName() + j))
-						addError(a, "duplicate attribute assignment");
-				}
-			} else if (a.isDownArray()) {
-				System.out.println("Down array: " + a.getName());
-				for (int j = a.getMsb(); j < a.getLsb(); j--) {
-					if (!names.add(a.getName() + j))
-						addError(a, "duplicate attribute assignment");
-				}
-			} else if (a.hasIndex()) {
-				System.out.println("Has index " + a.getName());
-				if (!names.add(a.getName() + a.getIndex()))
-					addError(a, "duplicate attribute assignment");
-			} else {
-
-				if (i.isUpArray()) {
-					for (int j = i.getMsb(); j > i.getLsb(); j++) {
+			if (i.isArrayed()) {
+				// inside arrayed instances
+				if (a.isUpArray()) {
+					for (int j = a.getMsb(); j <= a.getLsb(); j++) {
 						if (!names.add(a.getName() + j))
 							addError(a, "duplicate attribute assignment");
 					}
-				} else if (i.isDownArray()) {
-					for (int j = i.getMsb(); j < i.getLsb(); j--) {
+				} else if (a.isDownArray()) {
+					for (int j = a.getMsb(); j >= a.getLsb(); j--) {
 						if (!names.add(a.getName() + j))
 							addError(a, "duplicate attribute assignment");
 					}
+				} else if (a.isIndexed()) {
+					if (!names.add(a.getName() + a.getIndex()))
+						addError(a, "duplicate attribute assignment");
 				} else {
-					if (!names.add(a.getName()))
+					if (!names.add(a.getName())) {
 						addError(a, "duplicate attribute assignment");
+					}
 				}
-
+			} else {
+				// inside non-arrayed instances
+				if (a.isArrayed()) {
+					addError(a, "array invalid for singular instance");
+				} else if (a.isIndexed()) {
+					addError(a, "index invalid for singular instance");
+				}
+				if (!names.add(a.getName())) {
+					addError(a, "duplicate attribute assignment");
+				}
 			}
 		}
-		for (String s : names)
-			System.out.println(s);
 	}
 
-	private void validatePins(InstanceDeclaration i, DeviceDeclaration dev) {
+	private void verifyPins(InstanceDeclaration i, DeviceDeclaration dev) {
 		// TODO Auto-generated method stub
 
 	}
 
-	private void validateNets(DesignDeclaration d) {
+	private void verifyNets(DesignDeclaration d) {
 		// TODO Auto-generated method stub
 
 	}
 
-	public List<String> getErrors() {
+	public Set<String> getErrors() {
 		return errors;
 	}
 
