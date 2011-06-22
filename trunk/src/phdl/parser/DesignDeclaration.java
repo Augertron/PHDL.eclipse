@@ -262,4 +262,29 @@ public class DesignDeclaration extends Declarable {
 		return sourceFile + header + ports + devices + nets + instances + subs
 				+ assigns;
 	}
+
+	/**
+	 * Method to find a particular device declaration based on the name passed
+	 * in.
+	 * 
+	 * @param name
+	 *            The name of the device declaration
+	 * @return The device declaration with this name, or null if it doesn't
+	 *         exist in the set.
+	 */
+	public DeviceDeclaration findDevDecl(String name) {
+		for (DeviceDeclaration d : deviceDecls) {
+			if (d.getName().equals(name))
+				return d;
+		}
+		return null;
+	}
+
+	public boolean hasDeviceDecl(InstanceDeclaration i) {
+		DeviceDeclaration d = findDevDecl(i.getRefName());
+		if (d != null)
+			return true;
+		else
+			return false;
+	}
 }

@@ -3,9 +3,9 @@ package phdl.analyzer;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
-import phdl.exception.PhdlException;
 import phdl.parser.AttributeAssignment;
 import phdl.parser.AttributeDeclaration;
 import phdl.parser.DesignDeclaration;
@@ -13,10 +13,7 @@ import phdl.parser.DeviceDeclaration;
 import phdl.parser.InstanceDeclaration;
 import phdl.parser.NetAssignment;
 import phdl.parser.NetDeclaration;
-import phdl.parser.ParsedDesigns;
-import phdl.parser.PinAssignment;
-import phdl.parser.PinDeclaration;
-import phdl.parser.PortAssignment;
+import phdl.parser.Parsable;
 
 public class Analyzer {
 
@@ -42,29 +39,28 @@ public class Analyzer {
 		this.dh = dh;
 		this.errors = new LinkedList<String>();
 	}
-	
+
 	private void createInitialNetGraph() {
 		netgraph = new Graph();
 		for (DesignDeclaration d : dh.getBFS()) {
 			Set<NetDeclaration> nets = d.getNetDecls();
 			createNetNodes(nets);
-			
+
 			Set<NetAssignment> na = d.getNetAssignments();
 			for (NetAssignment a : na) {
 				ArrayList<String> lvals = new ArrayList<String>();
 				ArrayList<String> rvals = new ArrayList<String>();
 				if (a.getIndex() != -1) {
 					lvals.add(a.getName() + "_" + a.getIndex());
-				}
-				else if (a.getMsb() > a.getLsb()) {
+				} else if (a.getMsb() > a.getLsb()) {
 					for (int i = a.getMsb(); i > a.getLsb(); i--) {
-						
+
 					}
 				}
 			}
 		}
 	}
-	
+
 	private void createNetNodes(Set<NetDeclaration> nets) {
 		for (NetDeclaration n : nets) {
 			int min = getMin(n.getMsb(), n.getLsb());
@@ -76,14 +72,14 @@ public class Analyzer {
 			}
 		}
 	}
-	
+
 	private int getMin(int msb, int lsb) {
 		if (msb < lsb) {
 			return msb;
 		}
 		return lsb;
 	}
-	
+
 	private int getMax(int msb, int lsb) {
 		if (msb < lsb) {
 			return lsb;
@@ -91,8 +87,6 @@ public class Analyzer {
 		return msb;
 	}
 
-	
-	
 	/**
 	 * The main analyzer method is called on the analyzer object created from
 	 * the design hierarchy.
@@ -116,42 +110,96 @@ public class Analyzer {
 		}
 	}
 
-	private void validateInstances(DesignDeclaration d) {
+	private void validateInstances(DesignDeclaration design) {
+		for (InstanceDeclaration i : design.getInstanceDecls()) {
+			DeviceDeclaration d = design.findDevDecl(i.getRefName());
+			if (d == null) {
+				addError(i, "undeclared device");
+			} else {
+				validateAttributes(i, d);
+				validatePins(i, d);
+			}
+		}
+	}
 
-		for (InstanceDeclaration i : d.getInstanceDecls()) {
+	private void validateAttributes(InstanceDeclaration i, DeviceDeclaration d) {
 
-			DeviceDeclaration devDecl = new DeviceDeclaration();
-			devDecl.setName(i.getRefName());
+		Set<String> values = new HashSet<String>();
+		Set<String> names = new HashSet<String>();
 
-			if (!d.getDeviceDecls().contains(devDecl))
-				addError(i.getFileName() + " " + i.getLineString()
-						+ " instanced device not declared: " + i.getName());
+		for (AttributeAssignment a : i.getAttributeAssignments()) {
 
-			if (d.getDeviceDecls().contains(devDecl)) {
-				for (AttributeAssignment a : i.getAttributeAssignments()) {
-					AttributeDeclaration ad = new AttributeDeclaration();
-					ad.setName(a.getName());
-					if (!devDecl.getAttributeDecls().contains(ad)) {
-						addError(a.getFileName()
-								+ " "
-								+ a.getLineString()
-								+ " instanced attribute assignment not declared: "
-								+ a.getName());
-					}
+			// for all attribute assignments other than REFDES
+			if (!a.getName().equals("REFDES")) {
+
+				// check if it has been defined in the attribute declaration
+				AttributeDeclaration ad = d.findAttrDecl(a.getName());
+				if (ad == null)
+					addError(a, "undeclared attribute");
+
+			} else {
+				// check for duplicate refdes constraints
+				if (!values.add(a.getValue()))
+					addError(a, "duplicate refdes constraint");
+
+				if (a.getWidth() > 1)
+					addError(a, "invalid attribute width");
+			}
+
+			// convert the array to an index if the array is one-wide
+			a.toIndex();
+
+			// check attribute array bounds or index against instance bounds
+			if (a.hasArray()) {
+				if (!i.isValidArray(a.getMsb(), a.getLsb()))
+					addError(a, "attribute outside range of instance bounds");
+			} else if (a.hasIndex())
+				if (!i.isValidIndex(a.getIndex()))
+					addError(a, "attribute outside range of instance bounds");
+
+			// check for duplicate attribute assignments
+			if (a.isUpArray()) {
+				System.out.println("Up array " + a.getName());
+				for (int j = a.getMsb(); j > a.getLsb(); j++) {
+					if (!names.add(a.getName() + j))
+						addError(a, "duplicate attribute assignment");
 				}
-				for (PinAssignment p : i.getPinAssignments()) {
-					PinDeclaration pd = new PinDeclaration();
-					pd.setName(p.getName());
-					if (!devDecl.getPinDecls().contains(pd)) {
-						addError(p.getFileName() + " " + p.getLineString()
-								+ " instanced pin assignment not declared: "
-								+ p.getName());
+			} else if (a.isDownArray()) {
+				System.out.println("Down array: " + a.getName());
+				for (int j = a.getMsb(); j < a.getLsb(); j--) {
+					if (!names.add(a.getName() + j))
+						addError(a, "duplicate attribute assignment");
+				}
+			} else if (a.hasIndex()) {
+				System.out.println("Has index " + a.getName());
+				if (!names.add(a.getName() + a.getIndex()))
+					addError(a, "duplicate attribute assignment");
+			} else {
 
+				if (i.isUpArray()) {
+					for (int j = i.getMsb(); j > i.getLsb(); j++) {
+						if (!names.add(a.getName() + j))
+							addError(a, "duplicate attribute assignment");
 					}
+				} else if (i.isDownArray()) {
+					for (int j = i.getMsb(); j < i.getLsb(); j--) {
+						if (!names.add(a.getName() + j))
+							addError(a, "duplicate attribute assignment");
+					}
+				} else {
+					if (!names.add(a.getName()))
+						addError(a, "duplicate attribute assignment");
 				}
 
 			}
 		}
+		for (String s : names)
+			System.out.println(s);
+	}
+
+	private void validatePins(InstanceDeclaration i, DeviceDeclaration dev) {
+		// TODO Auto-generated method stub
+
 	}
 
 	private void validateNets(DesignDeclaration d) {
@@ -159,12 +207,13 @@ public class Analyzer {
 
 	}
 
-	public LinkedList<String> getErrors() {
+	public List<String> getErrors() {
 		return errors;
 	}
 
-	public void addError(String error) {
-		errors.add(error);
+	public void addError(Parsable p, String msg) {
+		errors.add(p.getFileName() + " line " + p.getLineString() + " " + msg
+				+ ": " + p.getName());
 	}
 
 }
