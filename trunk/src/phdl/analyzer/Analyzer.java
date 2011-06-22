@@ -22,6 +22,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import phdl.parser.AttributeAssignment;
+import phdl.parser.AttributeDeclaration;
 import phdl.parser.DesignDeclaration;
 import phdl.parser.DeviceDeclaration;
 import phdl.parser.InstanceDeclaration;
@@ -111,6 +112,7 @@ public class Analyzer {
 	public void Analyze() {
 		for (DesignNode d : dh.getBFSNodes()) {
 
+			verifyDevices(d.getDesignDeclaration());
 			verifyInstances(d.getDesignDeclaration());
 			verifyNets(d.getDesignDeclaration());
 
@@ -121,6 +123,12 @@ public class Analyzer {
 			Graph g = new Graph();
 			d.setGraph(g);
 		}
+	}
+
+	private void verifyDevices(DesignDeclaration designDeclaration) {
+		// TODO check that all devices have the required attributes and all
+		// attributes and pins are formatted correctly.
+
 	}
 
 	private void verifyInstances(DesignDeclaration design) {
@@ -155,10 +163,12 @@ public class Analyzer {
 					addError(a, "invalid attribute width");
 
 				// check refDes constraint starts with refPrefix
-				String r = d.findAttrDecl("REFPREFIX").getValue();
-				if (!a.getValue().toUpperCase().startsWith(r.toUpperCase()))
-					addError(a, "refdes begins with invalid refprefix");
-
+				AttributeDeclaration ad = d.findAttrDecl("REFPREFIX");
+				if (ad != null) {
+					String r = ad.getValue();
+					if (!a.getValue().toUpperCase().startsWith(r.toUpperCase()))
+						addError(a, "refdes begins with invalid refprefix");
+				}
 			} else {
 				// for all attribute assignments other than REFDES
 				// check if defined in the attribute declaration
@@ -206,11 +216,11 @@ public class Analyzer {
 				}
 			} else {
 				// inside non-arrayed instances
-				if (a.isArrayed()) {
-					addError(a, "array invalid for singular instance");
-				} else if (a.isIndexed()) {
-					addError(a, "index invalid for singular instance");
-				}
+				// if (a.isArrayed()) {
+				// addError(a, "array invalid for singular instance");
+				// } else if (a.isIndexed()) {
+				// addError(a, "index invalid for singular instance");
+				// }
 				if (!names.add(a.getName())) {
 					addError(a, "duplicate attribute assignment");
 				}

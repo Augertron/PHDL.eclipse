@@ -28,7 +28,7 @@ design myDesign is
 	
 	// another device declaration
 	device resistor is
-		refprefix = "R";
+		//refprefix = "R";
 		name = "";
 		value = "10K";
 		package = "R0207";
@@ -63,7 +63,6 @@ begin
 	
 	inst resArray2 : resistor is
 		value = "2.5K";
-		value(0) = "2.4K";
 	begin
 	end;
 	
