@@ -1,5 +1,8 @@
 package csv2saddl;
 import java.io.*;
+import java.io.File;
+//import org.apache.commons.io.IOUtils;
+//import org.apache.commons.io.IOUtils;
 import com.Ostermiller.util.CSVParser;
 //import java.util.Hashtable;
 import java.util.regex.*;
@@ -164,6 +167,17 @@ public class Main {
             System.out.println(((String)KeyString) + "  => open"  );
         }
     } 
+    
+     private static String readFile( String file ) throws IOException {    
+         BufferedReader reader = new BufferedReader( new FileReader (file));    
+         String line  = null;    StringBuilder stringBuilder = new StringBuilder();    
+         String ls = System.getProperty("line.separator");    
+         while( ( line = reader.readLine() ) != null ) {        
+             stringBuilder.append( line );        
+             stringBuilder.append( ls );    
+         }    
+         return stringBuilder.toString(); 
+     }
 
     /**
      * Main() parses the input CSV file and generates the component declaration and instantiation template.
@@ -247,6 +261,16 @@ public class Main {
 
                 }
             }
+        }
+        
+        // Lets scan the csv file for the PART TYPE, etc.
+        String WholeFileString = readFile(args[0]);
+        Pattern PartNumPat = Pattern.compile("(#PART TYPE:([ ]+)([0-9a-zA-Z]+))");
+        Matcher PartNumMatcher = PartNumPat.matcher(WholeFileString);
+        if (PartNumMatcher.find()){
+            System.out.println("PART TYPE: found");
+        } else {
+            System.out.println("PART TYPE: not found");         
         }
 
         
