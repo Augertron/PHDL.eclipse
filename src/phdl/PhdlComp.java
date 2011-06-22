@@ -20,7 +20,8 @@ package phdl;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.LinkedList;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CharStream;
@@ -57,7 +58,7 @@ public class PhdlComp {
 	 */
 	public static void main(String[] args) {
 
-		LinkedList<String> errors = new LinkedList<String>();
+		SortedSet<String> errors = new TreeSet<String>();
 		ParsedDesigns pd = new ParsedDesigns();
 		sourceText_return sourceTree = null;
 

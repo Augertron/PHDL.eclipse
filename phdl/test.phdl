@@ -47,18 +47,24 @@ design myDesign is
 begin
 	
 	// an instance (array) declaration
-	inst resArray : resistor[7:2] is
+	inst resArray : resistor[7:0] is
 		// (overridable) attribute assignments
-		value(6) = "2.2K";
-		value[6:6] = "2.5K";
-		tolerance = "5%";
-		//refDes(2) = "R1";
-		refDes[2:2] = "R2";
+		value[7:6] = "2.2K";
+		value[5:2] = "2.5K";
+		tolerance(0) = "5%";
+		refDes(4) = "R1";
+		refDes[1:1] = "R2";
 	begin
 		// pin assignments
 		a[2:1] = mynet1(0) & mynet1[2:1];
 		a(3) = mynet1(0);
 		b = open;
+	end;
+	
+	inst resArray2 : resistor is
+		value = "2.5K";
+		value(0) = "2.4K";
+	begin
 	end;
 	
 	// a sub-design (array) declaration

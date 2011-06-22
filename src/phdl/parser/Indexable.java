@@ -112,14 +112,14 @@ public abstract class Indexable extends Parsable {
 		return array;
 	}
 
-	public boolean hasArray() {
+	public boolean isArrayed() {
 		if (msb > -1 && lsb > -1)
 			return true;
 		else
 			return false;
 	}
 
-	public boolean hasIndex() {
+	public boolean isIndexed() {
 		if (index > -1)
 			return true;
 		else
@@ -128,7 +128,7 @@ public abstract class Indexable extends Parsable {
 
 	public int getWidth() {
 		if (msb > -1 && lsb > -1)
-			return Math.abs(msb - lsb);
+			return Math.abs(msb - lsb) + 1;
 		else
 			return 1;
 	}
@@ -140,12 +140,15 @@ public abstract class Indexable extends Parsable {
 	 * @return True if it is a valid index, false otherwise
 	 */
 	public boolean isValidIndex(int index) {
-		if (msb > lsb)
-			return (msb >= index && index >= lsb) ? true : false;
-		if (msb < lsb)
-			return (msb <= index && index <= lsb) ? true : false;
-		else
-			return (msb == index && index == lsb) ? true : false;
+		if (isArrayed()) {
+			if (msb > lsb)
+				return (msb >= index && index >= lsb) ? true : false;
+			if (msb < lsb)
+				return (msb <= index && index <= lsb) ? true : false;
+			else
+				return (msb == index && index == lsb) ? true : false;
+		}
+		return false;
 	}
 
 	public boolean isDownArray() {
@@ -159,9 +162,10 @@ public abstract class Indexable extends Parsable {
 	/**
 	 * Converts an array declared with equal msb and lsb to an index with that
 	 * value. Sets msb and lsb to -1, as if they never existed in the source.
+	 * Example: converts [3:3] to (3).
 	 */
 	public void toIndex() {
-		if (hasArray() && (msb == lsb)) {
+		if (isArrayed() && (msb == lsb)) {
 			index = msb;
 			msb = -1;
 			lsb = -1;
