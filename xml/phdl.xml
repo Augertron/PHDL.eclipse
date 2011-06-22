@@ -2,7 +2,7 @@
     <UserLang name="phdl" ext=".phdl">
         <Settings>
             <Global caseIgnored="no" />
-            <TreatAsSymbol comment="no" commentLine="no" />
+            <TreatAsSymbol comment="yes" commentLine="yes" />
             <Prefix words1="no" words2="no" words3="no" words4="no" />
         </Settings>
         <KeywordLists>
