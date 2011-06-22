@@ -142,7 +142,7 @@ width
 
 /** An index is an integer inside of parentheses
  */		
-index
+slice
 	:	'('! INT ')'!
 	;
 	

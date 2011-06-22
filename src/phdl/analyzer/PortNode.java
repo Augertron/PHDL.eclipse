@@ -7,10 +7,8 @@ public class PortNode extends Node {
 	 */
 	private NetNode net;
 
-	public PortNode(String name, int line, int pos) {
-		this.name = name;
-		this.line = line;
-		this.pos = pos;
+	public PortNode() {
+
 	}
 
 	public NetNode getNet() {
@@ -22,7 +20,8 @@ public class PortNode extends Node {
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		return name.equals(((PortNode) o).getName());
+	public NodeType getType() {
+		return NodeType.PORT;
 	}
+
 }

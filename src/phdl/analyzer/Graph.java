@@ -1,10 +1,11 @@
 package phdl.analyzer;
 
+import java.util.Set;
 import java.util.HashSet;
 
 public class Graph {
 
-	HashSet<NetNode> netNodes;
+	Set<NetNode> netNodes;
 
 	public Graph() {
 		this.netNodes = new HashSet<NetNode>();
@@ -15,8 +16,17 @@ public class Graph {
 		return added;
 	}
 
-	public HashSet<NetNode> getNetNodes() {
+	public Set<NetNode> getNetNodes() {
 		return netNodes;
+	}
+	
+	public NetNode getNet(String name) {
+		for (NetNode n : netNodes) {
+			if (n.getName().equals(name)) {
+				return n;
+			}
+		}
+		return null;
 	}
 
 }

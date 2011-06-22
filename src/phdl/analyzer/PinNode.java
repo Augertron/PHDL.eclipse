@@ -7,10 +7,8 @@ public class PinNode extends Node {
 	 */
 	private NetNode net;
 
-	public PinNode(String name, int line, int pos) {
-		this.name = name;
-		this.line = line;
-		this.pos = pos;
+	public PinNode() {
+		
 	}
 
 	public NetNode getNet() {
@@ -22,7 +20,7 @@ public class PinNode extends Node {
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		return name.equals(((PinNode) o).getName());
+	public NodeType getType() {
+		return NodeType.PIN;
 	}
 }

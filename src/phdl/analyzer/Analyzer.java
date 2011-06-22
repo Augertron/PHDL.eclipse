@@ -26,9 +26,11 @@ import phdl.parser.AttributeDeclaration;
 import phdl.parser.DesignDeclaration;
 import phdl.parser.DeviceDeclaration;
 import phdl.parser.InstanceDeclaration;
+import phdl.parser.Net;
 import phdl.parser.NetAssignment;
 import phdl.parser.NetDeclaration;
 import phdl.parser.Parsable;
+import phdl.exception.InvalidWidthException;
 
 public class Analyzer {
 
@@ -55,53 +57,6 @@ public class Analyzer {
 		this.errors = new HashSet<String>();
 	}
 
-	private void createInitialNetGraph() {
-		netgraph = new Graph();
-		for (DesignDeclaration d : dh.getBFS()) {
-			Set<NetDeclaration> nets = d.getNetDecls();
-			createNetNodes(nets);
-
-			Set<NetAssignment> na = d.getNetAssignments();
-			for (NetAssignment a : na) {
-				ArrayList<String> lvals = new ArrayList<String>();
-				ArrayList<String> rvals = new ArrayList<String>();
-				if (a.getIndex() != -1) {
-					lvals.add(a.getName() + "_" + a.getIndex());
-				} else if (a.getMsb() > a.getLsb()) {
-					for (int i = a.getMsb(); i > a.getLsb(); i--) {
-
-					}
-				}
-			}
-		}
-	}
-
-	private void createNetNodes(Set<NetDeclaration> nets) {
-		for (NetDeclaration n : nets) {
-			int min = getMin(n.getMsb(), n.getLsb());
-			int max = getMax(n.getMsb(), n.getLsb());
-			for (int i = min; i <= max; i++) {
-				NetNode newNet = new NetNode();
-				newNet.setName(n.getName() + "_" + i);
-				netgraph.addNetNode(newNet);
-			}
-		}
-	}
-
-	private int getMin(int msb, int lsb) {
-		if (msb < lsb) {
-			return msb;
-		}
-		return lsb;
-	}
-
-	private int getMax(int msb, int lsb) {
-		if (msb < lsb) {
-			return lsb;
-		}
-		return msb;
-	}
-
 	/**
 	 * The main analyzer method is called on the analyzer object created from
 	 * the design hierarchy.
@@ -120,9 +75,15 @@ public class Analyzer {
 
 			// TODO make a new graph out of all pin, port and net assignments
 			// and assign to design node
-			Graph g = new Graph();
-			d.setGraph(g);
+			try {
+				d.createInitialNetGraph();
+			} catch (InvalidWidthException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
+
 	}
 
 	private void verifyDevices(DesignDeclaration designDeclaration) {

@@ -49,6 +49,13 @@ public abstract class Node {
 	public Parsable getElement() {
 		return element;
 	}
+	
+	public abstract NodeType getType();
+	
+	@Override
+	public boolean equals(Object o) {
+		return name.equals(((Node)o).getName());
+	}
 
 	@Override
 	public int hashCode() {
