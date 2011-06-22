@@ -45,7 +45,10 @@ public class Net extends Indexable {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return name.equals(((Net) o).getName());
+		return name.equals(((Net) o).getName())
+				&& msb == ((PortAssignment) o).getMsb()
+				&& lsb == ((PortAssignment) o).getLsb()
+				&& index == ((PortAssignment) o).getIndex();
 	}
 
 	/**

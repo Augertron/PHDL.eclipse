@@ -75,7 +75,9 @@ public class SubDesignDeclaration extends ReferenceDeclaration {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return name.equals(((SubDesignDeclaration) o).getName());
+		return name.equals(((SubDesignDeclaration) o).getName())
+				&& msb == ((SubDesignDeclaration) o).getMsb()
+				&& lsb == ((SubDesignDeclaration) o).getLsb();
 	}
 
 	/**

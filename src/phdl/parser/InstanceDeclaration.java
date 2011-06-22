@@ -101,7 +101,9 @@ public class InstanceDeclaration extends ReferenceDeclaration {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return name.equals(((InstanceDeclaration) o).getName());
+		return name.equals(((InstanceDeclaration) o).getName())
+				&& msb == ((InstanceDeclaration) o).getMsb()
+				&& lsb == ((InstanceDeclaration) o).getLsb();
 	}
 
 	/**

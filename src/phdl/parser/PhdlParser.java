@@ -1,7 +1,8 @@
-// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g 2011-06-22 00:48:58
+// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g 2011-06-22 14:23:38
 
 	package phdl.parser;
-	import java.util.LinkedList;
+	import java.util.TreeSet;
+	import java.util.Set;
 
 
 import org.antlr.runtime.*;
@@ -84,7 +85,7 @@ public class PhdlParser extends Parser {
 
 
 
-    	private LinkedList<String> errors = new LinkedList<String>();
+    	private Set<String> errors = new TreeSet<String>();
 
     	@Override
     	public void displayRecognitionError(String[] tokenNames,
@@ -94,7 +95,7 @@ public class PhdlParser extends Parser {
     		errors.add(hdr + " " + msg);
     	}
 
-    	public LinkedList<String> getErrors() {
+    	public Set<String> getErrors() {
     		return errors;
     	}
 
@@ -105,7 +106,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "sourceText"
-    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:64:1: sourceText : ( designDecl )* EOF ;
+    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:65:1: sourceText : ( designDecl )* EOF ;
     public final PhdlParser.sourceText_return sourceText() throws RecognitionException {
         PhdlParser.sourceText_return retval = new PhdlParser.sourceText_return();
         retval.start = input.LT(1);
@@ -119,12 +120,12 @@ public class PhdlParser extends Parser {
         CommonTree EOF2_tree=null;
 
         try {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:67:2: ( ( designDecl )* EOF )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:67:4: ( designDecl )* EOF
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:68:2: ( ( designDecl )* EOF )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:68:4: ( designDecl )* EOF
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:67:4: ( designDecl )*
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:68:4: ( designDecl )*
             loop1:
             do {
                 int alt1=2;
@@ -137,7 +138,7 @@ public class PhdlParser extends Parser {
 
                 switch (alt1) {
             	case 1 :
-            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:67:4: designDecl
+            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:68:4: designDecl
             	    {
             	    pushFollow(FOLLOW_designDecl_in_sourceText68);
             	    designDecl1=designDecl();
@@ -185,7 +186,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "designDecl"
-    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:70:1: designDecl : 'design' IDENT 'is' ( portDecl | deviceDecl | netDecl )* 'begin' instances 'end' SEMICOLON ;
+    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:71:1: designDecl : 'design' IDENT 'is' ( portDecl | deviceDecl | netDecl )* 'begin' instances 'end' SEMICOLON ;
     public final PhdlParser.designDecl_return designDecl() throws RecognitionException {
         PhdlParser.designDecl_return retval = new PhdlParser.designDecl_return();
         retval.start = input.LT(1);
@@ -215,8 +216,8 @@ public class PhdlParser extends Parser {
         CommonTree SEMICOLON12_tree=null;
 
         try {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:76:2: ( 'design' IDENT 'is' ( portDecl | deviceDecl | netDecl )* 'begin' instances 'end' SEMICOLON )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:77:3: 'design' IDENT 'is' ( portDecl | deviceDecl | netDecl )* 'begin' instances 'end' SEMICOLON
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:77:2: ( 'design' IDENT 'is' ( portDecl | deviceDecl | netDecl )* 'begin' instances 'end' SEMICOLON )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:78:3: 'design' IDENT 'is' ( portDecl | deviceDecl | netDecl )* 'begin' instances 'end' SEMICOLON
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -229,7 +230,7 @@ public class PhdlParser extends Parser {
             adaptor.addChild(root_0, IDENT4_tree);
 
             string_literal5=(Token)match(input,19,FOLLOW_19_in_designDecl93); 
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:80:3: ( portDecl | deviceDecl | netDecl )*
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:81:3: ( portDecl | deviceDecl | netDecl )*
             loop2:
             do {
                 int alt2=4;
@@ -254,7 +255,7 @@ public class PhdlParser extends Parser {
 
                 switch (alt2) {
             	case 1 :
-            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:80:4: portDecl
+            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:81:4: portDecl
             	    {
             	    pushFollow(FOLLOW_portDecl_in_designDecl106);
             	    portDecl6=portDecl();
@@ -266,7 +267,7 @@ public class PhdlParser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:80:15: deviceDecl
+            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:81:15: deviceDecl
             	    {
             	    pushFollow(FOLLOW_deviceDecl_in_designDecl110);
             	    deviceDecl7=deviceDecl();
@@ -278,7 +279,7 @@ public class PhdlParser extends Parser {
             	    }
             	    break;
             	case 3 :
-            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:80:28: netDecl
+            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:81:28: netDecl
             	    {
             	    pushFollow(FOLLOW_netDecl_in_designDecl114);
             	    netDecl8=netDecl();
@@ -334,7 +335,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "portDecl"
-    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:89:1: portDecl : 'port' type ( width )? IDENT SEMICOLON ;
+    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:90:1: portDecl : 'port' type ( width )? IDENT SEMICOLON ;
     public final PhdlParser.portDecl_return portDecl() throws RecognitionException {
         PhdlParser.portDecl_return retval = new PhdlParser.portDecl_return();
         retval.start = input.LT(1);
@@ -354,8 +355,8 @@ public class PhdlParser extends Parser {
         CommonTree SEMICOLON17_tree=null;
 
         try {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:90:2: ( 'port' type ( width )? IDENT SEMICOLON )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:90:4: 'port' type ( width )? IDENT SEMICOLON
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:91:2: ( 'port' type ( width )? IDENT SEMICOLON )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:91:4: 'port' type ( width )? IDENT SEMICOLON
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -366,7 +367,7 @@ public class PhdlParser extends Parser {
             state._fsp--;
 
             root_0 = (CommonTree)adaptor.becomeRoot(type14.getTree(), root_0);
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:90:18: ( width )?
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:91:18: ( width )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -375,7 +376,7 @@ public class PhdlParser extends Parser {
             }
             switch (alt3) {
                 case 1 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:90:18: width
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:91:18: width
                     {
                     pushFollow(FOLLOW_width_in_portDecl158);
                     width15=width();
@@ -421,7 +422,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "deviceDecl"
-    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:93:1: deviceDecl : 'device' IDENT 'is' ( attributeDecl )* 'begin' ( pinDecl )* 'end' SEMICOLON ;
+    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:94:1: deviceDecl : 'device' IDENT 'is' ( attributeDecl )* 'begin' ( pinDecl )* 'end' SEMICOLON ;
     public final PhdlParser.deviceDecl_return deviceDecl() throws RecognitionException {
         PhdlParser.deviceDecl_return retval = new PhdlParser.deviceDecl_return();
         retval.start = input.LT(1);
@@ -447,8 +448,8 @@ public class PhdlParser extends Parser {
         CommonTree SEMICOLON25_tree=null;
 
         try {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:99:2: ( 'device' IDENT 'is' ( attributeDecl )* 'begin' ( pinDecl )* 'end' SEMICOLON )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:99:4: 'device' IDENT 'is' ( attributeDecl )* 'begin' ( pinDecl )* 'end' SEMICOLON
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:100:2: ( 'device' IDENT 'is' ( attributeDecl )* 'begin' ( pinDecl )* 'end' SEMICOLON )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:100:4: 'device' IDENT 'is' ( attributeDecl )* 'begin' ( pinDecl )* 'end' SEMICOLON
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -461,7 +462,7 @@ public class PhdlParser extends Parser {
             adaptor.addChild(root_0, IDENT19_tree);
 
             string_literal20=(Token)match(input,19,FOLLOW_19_in_deviceDecl183); 
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:100:3: ( attributeDecl )*
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:101:3: ( attributeDecl )*
             loop4:
             do {
                 int alt4=2;
@@ -474,7 +475,7 @@ public class PhdlParser extends Parser {
 
                 switch (alt4) {
             	case 1 :
-            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:100:3: attributeDecl
+            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:101:3: attributeDecl
             	    {
             	    pushFollow(FOLLOW_attributeDecl_in_deviceDecl188);
             	    attributeDecl21=attributeDecl();
@@ -495,7 +496,7 @@ public class PhdlParser extends Parser {
             string_literal22_tree = (CommonTree)adaptor.create(string_literal22);
             adaptor.addChild(root_0, string_literal22_tree);
 
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:102:3: ( pinDecl )*
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:103:3: ( pinDecl )*
             loop5:
             do {
                 int alt5=2;
@@ -508,7 +509,7 @@ public class PhdlParser extends Parser {
 
                 switch (alt5) {
             	case 1 :
-            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:102:3: pinDecl
+            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:103:3: pinDecl
             	    {
             	    pushFollow(FOLLOW_pinDecl_in_deviceDecl197);
             	    pinDecl23=pinDecl();
@@ -554,7 +555,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "attributeDecl"
-    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:106:1: attributeDecl : IDENT EQUALS STRING_LITERAL SEMICOLON ;
+    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:107:1: attributeDecl : IDENT EQUALS STRING_LITERAL SEMICOLON ;
     public final PhdlParser.attributeDecl_return attributeDecl() throws RecognitionException {
         PhdlParser.attributeDecl_return retval = new PhdlParser.attributeDecl_return();
         retval.start = input.LT(1);
@@ -572,8 +573,8 @@ public class PhdlParser extends Parser {
         CommonTree SEMICOLON29_tree=null;
 
         try {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:107:2: ( IDENT EQUALS STRING_LITERAL SEMICOLON )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:108:3: IDENT EQUALS STRING_LITERAL SEMICOLON
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:108:2: ( IDENT EQUALS STRING_LITERAL SEMICOLON )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:109:3: IDENT EQUALS STRING_LITERAL SEMICOLON
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -617,7 +618,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "pinDecl"
-    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:111:1: pinDecl : type ( width )? IDENT EQUALS STRING_LITERAL SEMICOLON ;
+    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:112:1: pinDecl : type ( width )? IDENT EQUALS STRING_LITERAL SEMICOLON ;
     public final PhdlParser.pinDecl_return pinDecl() throws RecognitionException {
         PhdlParser.pinDecl_return retval = new PhdlParser.pinDecl_return();
         retval.start = input.LT(1);
@@ -639,8 +640,8 @@ public class PhdlParser extends Parser {
         CommonTree SEMICOLON35_tree=null;
 
         try {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:112:2: ( type ( width )? IDENT EQUALS STRING_LITERAL SEMICOLON )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:113:3: type ( width )? IDENT EQUALS STRING_LITERAL SEMICOLON
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:113:2: ( type ( width )? IDENT EQUALS STRING_LITERAL SEMICOLON )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:114:3: type ( width )? IDENT EQUALS STRING_LITERAL SEMICOLON
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -650,7 +651,7 @@ public class PhdlParser extends Parser {
             state._fsp--;
 
             root_0 = (CommonTree)adaptor.becomeRoot(type30.getTree(), root_0);
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:113:9: ( width )?
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:114:9: ( width )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -659,7 +660,7 @@ public class PhdlParser extends Parser {
             }
             switch (alt6) {
                 case 1 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:113:9: width
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:114:9: width
                     {
                     pushFollow(FOLLOW_width_in_pinDecl247);
                     width31=width();
@@ -710,7 +711,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "type"
-    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:116:1: type : ( 'pin' | 'in' | 'out' | 'inout' | 'passive' | 'supply' | 'power' | 'open' );
+    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:117:1: type : ( 'pin' | 'in' | 'out' | 'inout' | 'passive' | 'supply' | 'power' | 'open' );
     public final PhdlParser.type_return type() throws RecognitionException {
         PhdlParser.type_return retval = new PhdlParser.type_return();
         retval.start = input.LT(1);
@@ -722,7 +723,7 @@ public class PhdlParser extends Parser {
         CommonTree set36_tree=null;
 
         try {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:117:2: ( 'pin' | 'in' | 'out' | 'inout' | 'passive' | 'supply' | 'power' | 'open' )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:118:2: ( 'pin' | 'in' | 'out' | 'inout' | 'passive' | 'supply' | 'power' | 'open' )
             // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:
             {
             root_0 = (CommonTree)adaptor.nil();
@@ -765,7 +766,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "netDecl"
-    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:127:1: netDecl : 'net' ( width )? ( IDENT COMMA )* IDENT ( COLON ( IDENT COMMA )* IDENT )? SEMICOLON ;
+    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:128:1: netDecl : 'net' ( width )? ( IDENT COMMA )* IDENT ( COLON ( IDENT COMMA )* IDENT )? SEMICOLON ;
     public final PhdlParser.netDecl_return netDecl() throws RecognitionException {
         PhdlParser.netDecl_return retval = new PhdlParser.netDecl_return();
         retval.start = input.LT(1);
@@ -795,8 +796,8 @@ public class PhdlParser extends Parser {
         CommonTree SEMICOLON46_tree=null;
 
         try {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:134:2: ( 'net' ( width )? ( IDENT COMMA )* IDENT ( COLON ( IDENT COMMA )* IDENT )? SEMICOLON )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:134:4: 'net' ( width )? ( IDENT COMMA )* IDENT ( COLON ( IDENT COMMA )* IDENT )? SEMICOLON
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:135:2: ( 'net' ( width )? ( IDENT COMMA )* IDENT ( COLON ( IDENT COMMA )* IDENT )? SEMICOLON )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:135:4: 'net' ( width )? ( IDENT COMMA )* IDENT ( COLON ( IDENT COMMA )* IDENT )? SEMICOLON
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -804,7 +805,7 @@ public class PhdlParser extends Parser {
             string_literal37_tree = (CommonTree)adaptor.create(string_literal37);
             root_0 = (CommonTree)adaptor.becomeRoot(string_literal37_tree, root_0);
 
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:134:11: ( width )?
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:135:11: ( width )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -813,7 +814,7 @@ public class PhdlParser extends Parser {
             }
             switch (alt7) {
                 case 1 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:134:12: width
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:135:12: width
                     {
                     pushFollow(FOLLOW_width_in_netDecl323);
                     width38=width();
@@ -827,7 +828,7 @@ public class PhdlParser extends Parser {
 
             }
 
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:134:20: ( IDENT COMMA )*
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:135:20: ( IDENT COMMA )*
             loop8:
             do {
                 int alt8=2;
@@ -846,7 +847,7 @@ public class PhdlParser extends Parser {
 
                 switch (alt8) {
             	case 1 :
-            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:134:21: IDENT COMMA
+            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:135:21: IDENT COMMA
             	    {
             	    IDENT39=(Token)match(input,IDENT,FOLLOW_IDENT_in_netDecl328); 
             	    IDENT39_tree = (CommonTree)adaptor.create(IDENT39);
@@ -866,7 +867,7 @@ public class PhdlParser extends Parser {
             IDENT41_tree = (CommonTree)adaptor.create(IDENT41);
             adaptor.addChild(root_0, IDENT41_tree);
 
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:134:42: ( COLON ( IDENT COMMA )* IDENT )?
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:135:42: ( COLON ( IDENT COMMA )* IDENT )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -875,13 +876,13 @@ public class PhdlParser extends Parser {
             }
             switch (alt10) {
                 case 1 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:134:43: COLON ( IDENT COMMA )* IDENT
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:135:43: COLON ( IDENT COMMA )* IDENT
                     {
                     COLON42=(Token)match(input,COLON,FOLLOW_COLON_in_netDecl338); 
                     COLON42_tree = (CommonTree)adaptor.create(COLON42);
                     adaptor.addChild(root_0, COLON42_tree);
 
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:134:49: ( IDENT COMMA )*
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:135:49: ( IDENT COMMA )*
                     loop9:
                     do {
                         int alt9=2;
@@ -900,7 +901,7 @@ public class PhdlParser extends Parser {
 
                         switch (alt9) {
                     	case 1 :
-                    	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:134:50: IDENT COMMA
+                    	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:135:50: IDENT COMMA
                     	    {
                     	    IDENT43=(Token)match(input,IDENT,FOLLOW_IDENT_in_netDecl341); 
                     	    IDENT43_tree = (CommonTree)adaptor.create(IDENT43);
@@ -954,7 +955,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "width"
-    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:137:1: width : '[' INT ':' INT ']' ;
+    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:138:1: width : '[' INT ':' INT ']' ;
     public final PhdlParser.width_return width() throws RecognitionException {
         PhdlParser.width_return retval = new PhdlParser.width_return();
         retval.start = input.LT(1);
@@ -974,8 +975,8 @@ public class PhdlParser extends Parser {
         CommonTree char_literal51_tree=null;
 
         try {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:140:2: ( '[' INT ':' INT ']' )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:140:4: '[' INT ':' INT ']'
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:141:2: ( '[' INT ':' INT ']' )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:141:4: '[' INT ':' INT ']'
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -1011,15 +1012,15 @@ public class PhdlParser extends Parser {
     }
     // $ANTLR end "width"
 
-    public static class index_return extends ParserRuleReturnScope {
+    public static class slice_return extends ParserRuleReturnScope {
         CommonTree tree;
         public Object getTree() { return tree; }
     };
 
-    // $ANTLR start "index"
-    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:143:1: index : '(' INT ')' ;
-    public final PhdlParser.index_return index() throws RecognitionException {
-        PhdlParser.index_return retval = new PhdlParser.index_return();
+    // $ANTLR start "slice"
+    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:144:1: slice : '(' INT ')' ;
+    public final PhdlParser.slice_return slice() throws RecognitionException {
+        PhdlParser.slice_return retval = new PhdlParser.slice_return();
         retval.start = input.LT(1);
 
         CommonTree root_0 = null;
@@ -1033,17 +1034,17 @@ public class PhdlParser extends Parser {
         CommonTree char_literal54_tree=null;
 
         try {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:146:2: ( '(' INT ')' )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:146:4: '(' INT ')'
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:147:2: ( '(' INT ')' )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:147:4: '(' INT ')'
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            char_literal52=(Token)match(input,33,FOLLOW_33_in_index393); 
-            INT53=(Token)match(input,INT,FOLLOW_INT_in_index396); 
+            char_literal52=(Token)match(input,33,FOLLOW_33_in_slice393); 
+            INT53=(Token)match(input,INT,FOLLOW_INT_in_slice396); 
             INT53_tree = (CommonTree)adaptor.create(INT53);
             adaptor.addChild(root_0, INT53_tree);
 
-            char_literal54=(Token)match(input,34,FOLLOW_34_in_index398); 
+            char_literal54=(Token)match(input,34,FOLLOW_34_in_slice398); 
 
             }
 
@@ -1063,7 +1064,7 @@ public class PhdlParser extends Parser {
         }
         return retval;
     }
-    // $ANTLR end "index"
+    // $ANTLR end "slice"
 
     public static class instances_return extends ParserRuleReturnScope {
         CommonTree tree;
@@ -1071,7 +1072,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "instances"
-    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:149:1: instances : ( deviceInstance | subDesignInstance | netAssignment )* ;
+    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:150:1: instances : ( deviceInstance | subDesignInstance | netAssignment )* ;
     public final PhdlParser.instances_return instances() throws RecognitionException {
         PhdlParser.instances_return retval = new PhdlParser.instances_return();
         retval.start = input.LT(1);
@@ -1087,12 +1088,12 @@ public class PhdlParser extends Parser {
 
 
         try {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:150:2: ( ( deviceInstance | subDesignInstance | netAssignment )* )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:150:4: ( deviceInstance | subDesignInstance | netAssignment )*
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:151:2: ( ( deviceInstance | subDesignInstance | netAssignment )* )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:151:4: ( deviceInstance | subDesignInstance | netAssignment )*
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:150:4: ( deviceInstance | subDesignInstance | netAssignment )*
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:151:4: ( deviceInstance | subDesignInstance | netAssignment )*
             loop11:
             do {
                 int alt11=4;
@@ -1117,7 +1118,7 @@ public class PhdlParser extends Parser {
 
                 switch (alt11) {
             	case 1 :
-            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:150:5: deviceInstance
+            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:151:5: deviceInstance
             	    {
             	    pushFollow(FOLLOW_deviceInstance_in_instances412);
             	    deviceInstance55=deviceInstance();
@@ -1129,7 +1130,7 @@ public class PhdlParser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:150:22: subDesignInstance
+            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:151:22: subDesignInstance
             	    {
             	    pushFollow(FOLLOW_subDesignInstance_in_instances416);
             	    subDesignInstance56=subDesignInstance();
@@ -1141,7 +1142,7 @@ public class PhdlParser extends Parser {
             	    }
             	    break;
             	case 3 :
-            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:150:42: netAssignment
+            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:151:42: netAssignment
             	    {
             	    pushFollow(FOLLOW_netAssignment_in_instances420);
             	    netAssignment57=netAssignment();
@@ -1185,7 +1186,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "deviceInstance"
-    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:153:1: deviceInstance : 'inst' IDENT ':' IDENT ( width )? 'is' ( attributeAssignment )* 'begin' ( pinAssignment )* 'end' ';' ;
+    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:154:1: deviceInstance : 'inst' IDENT ':' IDENT ( width )? 'is' ( attributeAssignment )* 'begin' ( pinAssignment )* 'end' ';' ;
     public final PhdlParser.deviceInstance_return deviceInstance() throws RecognitionException {
         PhdlParser.deviceInstance_return retval = new PhdlParser.deviceInstance_return();
         retval.start = input.LT(1);
@@ -1217,8 +1218,8 @@ public class PhdlParser extends Parser {
         CommonTree char_literal68_tree=null;
 
         try {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:154:2: ( 'inst' IDENT ':' IDENT ( width )? 'is' ( attributeAssignment )* 'begin' ( pinAssignment )* 'end' ';' )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:154:4: 'inst' IDENT ':' IDENT ( width )? 'is' ( attributeAssignment )* 'begin' ( pinAssignment )* 'end' ';'
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:155:2: ( 'inst' IDENT ':' IDENT ( width )? 'is' ( attributeAssignment )* 'begin' ( pinAssignment )* 'end' ';' )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:155:4: 'inst' IDENT ':' IDENT ( width )? 'is' ( attributeAssignment )* 'begin' ( pinAssignment )* 'end' ';'
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -1235,7 +1236,7 @@ public class PhdlParser extends Parser {
             IDENT61_tree = (CommonTree)adaptor.create(IDENT61);
             adaptor.addChild(root_0, IDENT61_tree);
 
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:154:29: ( width )?
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:155:29: ( width )?
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -1244,7 +1245,7 @@ public class PhdlParser extends Parser {
             }
             switch (alt12) {
                 case 1 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:154:30: width
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:155:30: width
                     {
                     pushFollow(FOLLOW_width_in_deviceInstance445);
                     width62=width();
@@ -1259,7 +1260,7 @@ public class PhdlParser extends Parser {
             }
 
             string_literal63=(Token)match(input,19,FOLLOW_19_in_deviceInstance449); 
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:155:3: ( attributeAssignment )*
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:156:3: ( attributeAssignment )*
             loop13:
             do {
                 int alt13=2;
@@ -1272,7 +1273,7 @@ public class PhdlParser extends Parser {
 
                 switch (alt13) {
             	case 1 :
-            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:155:3: attributeAssignment
+            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:156:3: attributeAssignment
             	    {
             	    pushFollow(FOLLOW_attributeAssignment_in_deviceInstance454);
             	    attributeAssignment64=attributeAssignment();
@@ -1293,7 +1294,7 @@ public class PhdlParser extends Parser {
             string_literal65_tree = (CommonTree)adaptor.create(string_literal65);
             adaptor.addChild(root_0, string_literal65_tree);
 
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:157:3: ( pinAssignment )*
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:158:3: ( pinAssignment )*
             loop14:
             do {
                 int alt14=2;
@@ -1306,7 +1307,7 @@ public class PhdlParser extends Parser {
 
                 switch (alt14) {
             	case 1 :
-            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:157:3: pinAssignment
+            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:158:3: pinAssignment
             	    {
             	    pushFollow(FOLLOW_pinAssignment_in_deviceInstance463);
             	    pinAssignment66=pinAssignment();
@@ -1352,7 +1353,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "subDesignInstance"
-    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:161:1: subDesignInstance : 'sub' IDENT ':' IDENT ( width )? 'is' ( portAssignment )* 'end' ';' ;
+    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:162:1: subDesignInstance : 'sub' IDENT ':' IDENT ( width )? 'is' ( portAssignment )* 'end' ';' ;
     public final PhdlParser.subDesignInstance_return subDesignInstance() throws RecognitionException {
         PhdlParser.subDesignInstance_return retval = new PhdlParser.subDesignInstance_return();
         retval.start = input.LT(1);
@@ -1380,8 +1381,8 @@ public class PhdlParser extends Parser {
         CommonTree char_literal77_tree=null;
 
         try {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:162:2: ( 'sub' IDENT ':' IDENT ( width )? 'is' ( portAssignment )* 'end' ';' )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:162:4: 'sub' IDENT ':' IDENT ( width )? 'is' ( portAssignment )* 'end' ';'
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:163:2: ( 'sub' IDENT ':' IDENT ( width )? 'is' ( portAssignment )* 'end' ';' )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:163:4: 'sub' IDENT ':' IDENT ( width )? 'is' ( portAssignment )* 'end' ';'
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -1398,7 +1399,7 @@ public class PhdlParser extends Parser {
             IDENT72_tree = (CommonTree)adaptor.create(IDENT72);
             adaptor.addChild(root_0, IDENT72_tree);
 
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:162:28: ( width )?
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:163:28: ( width )?
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -1407,7 +1408,7 @@ public class PhdlParser extends Parser {
             }
             switch (alt15) {
                 case 1 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:162:29: width
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:163:29: width
                     {
                     pushFollow(FOLLOW_width_in_subDesignInstance495);
                     width73=width();
@@ -1422,7 +1423,7 @@ public class PhdlParser extends Parser {
             }
 
             string_literal74=(Token)match(input,19,FOLLOW_19_in_subDesignInstance499); 
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:163:3: ( portAssignment )*
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:164:3: ( portAssignment )*
             loop16:
             do {
                 int alt16=2;
@@ -1435,7 +1436,7 @@ public class PhdlParser extends Parser {
 
                 switch (alt16) {
             	case 1 :
-            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:163:3: portAssignment
+            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:164:3: portAssignment
             	    {
             	    pushFollow(FOLLOW_portAssignment_in_subDesignInstance504);
             	    portAssignment75=portAssignment();
@@ -1481,7 +1482,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "attributeAssignment"
-    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:167:1: attributeAssignment : IDENT ( width | index )? EQUALS STRING_LITERAL SEMICOLON ;
+    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:168:1: attributeAssignment : IDENT ( width | slice )? EQUALS STRING_LITERAL SEMICOLON ;
     public final PhdlParser.attributeAssignment_return attributeAssignment() throws RecognitionException {
         PhdlParser.attributeAssignment_return retval = new PhdlParser.attributeAssignment_return();
         retval.start = input.LT(1);
@@ -1494,7 +1495,7 @@ public class PhdlParser extends Parser {
         Token SEMICOLON83=null;
         PhdlParser.width_return width79 = null;
 
-        PhdlParser.index_return index80 = null;
+        PhdlParser.slice_return slice80 = null;
 
 
         CommonTree IDENT78_tree=null;
@@ -1503,8 +1504,8 @@ public class PhdlParser extends Parser {
         CommonTree SEMICOLON83_tree=null;
 
         try {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:168:2: ( IDENT ( width | index )? EQUALS STRING_LITERAL SEMICOLON )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:168:4: IDENT ( width | index )? EQUALS STRING_LITERAL SEMICOLON
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:169:2: ( IDENT ( width | slice )? EQUALS STRING_LITERAL SEMICOLON )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:169:4: IDENT ( width | slice )? EQUALS STRING_LITERAL SEMICOLON
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -1512,7 +1513,7 @@ public class PhdlParser extends Parser {
             IDENT78_tree = (CommonTree)adaptor.create(IDENT78);
             adaptor.addChild(root_0, IDENT78_tree);
 
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:168:10: ( width | index )?
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:169:10: ( width | slice )?
             int alt17=3;
             int LA17_0 = input.LA(1);
 
@@ -1524,7 +1525,7 @@ public class PhdlParser extends Parser {
             }
             switch (alt17) {
                 case 1 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:168:11: width
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:169:11: width
                     {
                     pushFollow(FOLLOW_width_in_attributeAssignment528);
                     width79=width();
@@ -1536,14 +1537,14 @@ public class PhdlParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:168:19: index
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:169:19: slice
                     {
-                    pushFollow(FOLLOW_index_in_attributeAssignment532);
-                    index80=index();
+                    pushFollow(FOLLOW_slice_in_attributeAssignment532);
+                    slice80=slice();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, index80.getTree());
+                    adaptor.addChild(root_0, slice80.getTree());
 
                     }
                     break;
@@ -1586,7 +1587,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "pinAssignment"
-    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:171:1: pinAssignment : IDENT ( width | index )? EQUALS concatenation SEMICOLON ;
+    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:172:1: pinAssignment : IDENT ( width | slice )? EQUALS concatenation SEMICOLON ;
     public final PhdlParser.pinAssignment_return pinAssignment() throws RecognitionException {
         PhdlParser.pinAssignment_return retval = new PhdlParser.pinAssignment_return();
         retval.start = input.LT(1);
@@ -1598,7 +1599,7 @@ public class PhdlParser extends Parser {
         Token SEMICOLON89=null;
         PhdlParser.width_return width85 = null;
 
-        PhdlParser.index_return index86 = null;
+        PhdlParser.slice_return slice86 = null;
 
         PhdlParser.concatenation_return concatenation88 = null;
 
@@ -1608,8 +1609,8 @@ public class PhdlParser extends Parser {
         CommonTree SEMICOLON89_tree=null;
 
         try {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:172:2: ( IDENT ( width | index )? EQUALS concatenation SEMICOLON )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:172:4: IDENT ( width | index )? EQUALS concatenation SEMICOLON
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:173:2: ( IDENT ( width | slice )? EQUALS concatenation SEMICOLON )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:173:4: IDENT ( width | slice )? EQUALS concatenation SEMICOLON
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -1617,7 +1618,7 @@ public class PhdlParser extends Parser {
             IDENT84_tree = (CommonTree)adaptor.create(IDENT84);
             adaptor.addChild(root_0, IDENT84_tree);
 
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:172:10: ( width | index )?
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:173:10: ( width | slice )?
             int alt18=3;
             int LA18_0 = input.LA(1);
 
@@ -1629,7 +1630,7 @@ public class PhdlParser extends Parser {
             }
             switch (alt18) {
                 case 1 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:172:11: width
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:173:11: width
                     {
                     pushFollow(FOLLOW_width_in_pinAssignment557);
                     width85=width();
@@ -1641,14 +1642,14 @@ public class PhdlParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:172:19: index
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:173:19: slice
                     {
-                    pushFollow(FOLLOW_index_in_pinAssignment561);
-                    index86=index();
+                    pushFollow(FOLLOW_slice_in_pinAssignment561);
+                    slice86=slice();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, index86.getTree());
+                    adaptor.addChild(root_0, slice86.getTree());
 
                     }
                     break;
@@ -1693,7 +1694,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "portAssignment"
-    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:175:1: portAssignment : IDENT ( width | index )? EQUALS concatenation SEMICOLON ;
+    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:176:1: portAssignment : IDENT ( width | slice )? EQUALS concatenation SEMICOLON ;
     public final PhdlParser.portAssignment_return portAssignment() throws RecognitionException {
         PhdlParser.portAssignment_return retval = new PhdlParser.portAssignment_return();
         retval.start = input.LT(1);
@@ -1705,7 +1706,7 @@ public class PhdlParser extends Parser {
         Token SEMICOLON95=null;
         PhdlParser.width_return width91 = null;
 
-        PhdlParser.index_return index92 = null;
+        PhdlParser.slice_return slice92 = null;
 
         PhdlParser.concatenation_return concatenation94 = null;
 
@@ -1715,8 +1716,8 @@ public class PhdlParser extends Parser {
         CommonTree SEMICOLON95_tree=null;
 
         try {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:176:2: ( IDENT ( width | index )? EQUALS concatenation SEMICOLON )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:176:4: IDENT ( width | index )? EQUALS concatenation SEMICOLON
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:177:2: ( IDENT ( width | slice )? EQUALS concatenation SEMICOLON )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:177:4: IDENT ( width | slice )? EQUALS concatenation SEMICOLON
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -1724,7 +1725,7 @@ public class PhdlParser extends Parser {
             IDENT90_tree = (CommonTree)adaptor.create(IDENT90);
             adaptor.addChild(root_0, IDENT90_tree);
 
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:176:10: ( width | index )?
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:177:10: ( width | slice )?
             int alt19=3;
             int LA19_0 = input.LA(1);
 
@@ -1736,7 +1737,7 @@ public class PhdlParser extends Parser {
             }
             switch (alt19) {
                 case 1 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:176:11: width
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:177:11: width
                     {
                     pushFollow(FOLLOW_width_in_portAssignment586);
                     width91=width();
@@ -1748,14 +1749,14 @@ public class PhdlParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:176:19: index
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:177:19: slice
                     {
-                    pushFollow(FOLLOW_index_in_portAssignment590);
-                    index92=index();
+                    pushFollow(FOLLOW_slice_in_portAssignment590);
+                    slice92=slice();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, index92.getTree());
+                    adaptor.addChild(root_0, slice92.getTree());
 
                     }
                     break;
@@ -1800,7 +1801,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "netAssignment"
-    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:179:1: netAssignment : IDENT ( width | index )? EQUALS concatenation SEMICOLON ;
+    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:180:1: netAssignment : IDENT ( width | slice )? EQUALS concatenation SEMICOLON ;
     public final PhdlParser.netAssignment_return netAssignment() throws RecognitionException {
         PhdlParser.netAssignment_return retval = new PhdlParser.netAssignment_return();
         retval.start = input.LT(1);
@@ -1812,7 +1813,7 @@ public class PhdlParser extends Parser {
         Token SEMICOLON101=null;
         PhdlParser.width_return width97 = null;
 
-        PhdlParser.index_return index98 = null;
+        PhdlParser.slice_return slice98 = null;
 
         PhdlParser.concatenation_return concatenation100 = null;
 
@@ -1822,8 +1823,8 @@ public class PhdlParser extends Parser {
         CommonTree SEMICOLON101_tree=null;
 
         try {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:180:2: ( IDENT ( width | index )? EQUALS concatenation SEMICOLON )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:180:4: IDENT ( width | index )? EQUALS concatenation SEMICOLON
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:181:2: ( IDENT ( width | slice )? EQUALS concatenation SEMICOLON )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:181:4: IDENT ( width | slice )? EQUALS concatenation SEMICOLON
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -1831,7 +1832,7 @@ public class PhdlParser extends Parser {
             IDENT96_tree = (CommonTree)adaptor.create(IDENT96);
             adaptor.addChild(root_0, IDENT96_tree);
 
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:180:10: ( width | index )?
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:181:10: ( width | slice )?
             int alt20=3;
             int LA20_0 = input.LA(1);
 
@@ -1843,7 +1844,7 @@ public class PhdlParser extends Parser {
             }
             switch (alt20) {
                 case 1 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:180:11: width
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:181:11: width
                     {
                     pushFollow(FOLLOW_width_in_netAssignment615);
                     width97=width();
@@ -1855,14 +1856,14 @@ public class PhdlParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:180:19: index
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:181:19: slice
                     {
-                    pushFollow(FOLLOW_index_in_netAssignment619);
-                    index98=index();
+                    pushFollow(FOLLOW_slice_in_netAssignment619);
+                    slice98=slice();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, index98.getTree());
+                    adaptor.addChild(root_0, slice98.getTree());
 
                     }
                     break;
@@ -1907,7 +1908,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "concatenation"
-    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:183:1: concatenation : ( ( ( IDENT ( width | index )? ) ( '&' IDENT ( width | index )? )* ) | 'open' );
+    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:184:1: concatenation : ( ( ( IDENT ( width | slice )? ) ( '&' IDENT ( width | slice )? )* ) | 'open' );
     public final PhdlParser.concatenation_return concatenation() throws RecognitionException {
         PhdlParser.concatenation_return retval = new PhdlParser.concatenation_return();
         retval.start = input.LT(1);
@@ -1920,11 +1921,11 @@ public class PhdlParser extends Parser {
         Token string_literal109=null;
         PhdlParser.width_return width103 = null;
 
-        PhdlParser.index_return index104 = null;
+        PhdlParser.slice_return slice104 = null;
 
         PhdlParser.width_return width107 = null;
 
-        PhdlParser.index_return index108 = null;
+        PhdlParser.slice_return slice108 = null;
 
 
         CommonTree IDENT102_tree=null;
@@ -1933,7 +1934,7 @@ public class PhdlParser extends Parser {
         CommonTree string_literal109_tree=null;
 
         try {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:184:2: ( ( ( IDENT ( width | index )? ) ( '&' IDENT ( width | index )? )* ) | 'open' )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:185:2: ( ( ( IDENT ( width | slice )? ) ( '&' IDENT ( width | slice )? )* ) | 'open' )
             int alt24=2;
             int LA24_0 = input.LA(1);
 
@@ -1951,21 +1952,21 @@ public class PhdlParser extends Parser {
             }
             switch (alt24) {
                 case 1 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:184:4: ( ( IDENT ( width | index )? ) ( '&' IDENT ( width | index )? )* )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:185:4: ( ( IDENT ( width | slice )? ) ( '&' IDENT ( width | slice )? )* )
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:184:4: ( ( IDENT ( width | index )? ) ( '&' IDENT ( width | index )? )* )
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:184:5: ( IDENT ( width | index )? ) ( '&' IDENT ( width | index )? )*
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:185:4: ( ( IDENT ( width | slice )? ) ( '&' IDENT ( width | slice )? )* )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:185:5: ( IDENT ( width | slice )? ) ( '&' IDENT ( width | slice )? )*
                     {
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:184:5: ( IDENT ( width | index )? )
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:184:6: IDENT ( width | index )?
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:185:5: ( IDENT ( width | slice )? )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:185:6: IDENT ( width | slice )?
                     {
                     IDENT102=(Token)match(input,IDENT,FOLLOW_IDENT_in_concatenation643); 
                     IDENT102_tree = (CommonTree)adaptor.create(IDENT102);
                     adaptor.addChild(root_0, IDENT102_tree);
 
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:184:12: ( width | index )?
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:185:12: ( width | slice )?
                     int alt21=3;
                     int LA21_0 = input.LA(1);
 
@@ -1977,7 +1978,7 @@ public class PhdlParser extends Parser {
                     }
                     switch (alt21) {
                         case 1 :
-                            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:184:13: width
+                            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:185:13: width
                             {
                             pushFollow(FOLLOW_width_in_concatenation646);
                             width103=width();
@@ -1989,14 +1990,14 @@ public class PhdlParser extends Parser {
                             }
                             break;
                         case 2 :
-                            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:184:21: index
+                            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:185:21: slice
                             {
-                            pushFollow(FOLLOW_index_in_concatenation650);
-                            index104=index();
+                            pushFollow(FOLLOW_slice_in_concatenation650);
+                            slice104=slice();
 
                             state._fsp--;
 
-                            adaptor.addChild(root_0, index104.getTree());
+                            adaptor.addChild(root_0, slice104.getTree());
 
                             }
                             break;
@@ -2006,7 +2007,7 @@ public class PhdlParser extends Parser {
 
                     }
 
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:184:30: ( '&' IDENT ( width | index )? )*
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:185:30: ( '&' IDENT ( width | slice )? )*
                     loop23:
                     do {
                         int alt23=2;
@@ -2019,14 +2020,14 @@ public class PhdlParser extends Parser {
 
                         switch (alt23) {
                     	case 1 :
-                    	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:184:31: '&' IDENT ( width | index )?
+                    	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:185:31: '&' IDENT ( width | slice )?
                     	    {
                     	    char_literal105=(Token)match(input,37,FOLLOW_37_in_concatenation656); 
                     	    IDENT106=(Token)match(input,IDENT,FOLLOW_IDENT_in_concatenation659); 
                     	    IDENT106_tree = (CommonTree)adaptor.create(IDENT106);
                     	    adaptor.addChild(root_0, IDENT106_tree);
 
-                    	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:184:42: ( width | index )?
+                    	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:185:42: ( width | slice )?
                     	    int alt22=3;
                     	    int LA22_0 = input.LA(1);
 
@@ -2038,7 +2039,7 @@ public class PhdlParser extends Parser {
                     	    }
                     	    switch (alt22) {
                     	        case 1 :
-                    	            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:184:43: width
+                    	            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:185:43: width
                     	            {
                     	            pushFollow(FOLLOW_width_in_concatenation662);
                     	            width107=width();
@@ -2050,14 +2051,14 @@ public class PhdlParser extends Parser {
                     	            }
                     	            break;
                     	        case 2 :
-                    	            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:184:51: index
+                    	            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:185:51: slice
                     	            {
-                    	            pushFollow(FOLLOW_index_in_concatenation666);
-                    	            index108=index();
+                    	            pushFollow(FOLLOW_slice_in_concatenation666);
+                    	            slice108=slice();
 
                     	            state._fsp--;
 
-                    	            adaptor.addChild(root_0, index108.getTree());
+                    	            adaptor.addChild(root_0, slice108.getTree());
 
                     	            }
                     	            break;
@@ -2080,7 +2081,7 @@ public class PhdlParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:184:65: 'open'
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:185:65: 'open'
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -2164,9 +2165,9 @@ public class PhdlParser extends Parser {
     public static final BitSet FOLLOW_COLON_in_width372 = new BitSet(new long[]{0x0000000000000400L});
     public static final BitSet FOLLOW_INT_in_width375 = new BitSet(new long[]{0x0000000000004000L});
     public static final BitSet FOLLOW_RBRACKET_in_width377 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_index393 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_INT_in_index396 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_index398 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_slice393 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_INT_in_slice396 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_slice398 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_deviceInstance_in_instances412 = new BitSet(new long[]{0x0000001800000012L});
     public static final BitSet FOLLOW_subDesignInstance_in_instances416 = new BitSet(new long[]{0x0000001800000012L});
     public static final BitSet FOLLOW_netAssignment_in_instances420 = new BitSet(new long[]{0x0000001800000012L});
@@ -2192,35 +2193,35 @@ public class PhdlParser extends Parser {
     public static final BitSet FOLLOW_SEMICOLON_in_subDesignInstance512 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_IDENT_in_attributeAssignment525 = new BitSet(new long[]{0x0000000200002040L});
     public static final BitSet FOLLOW_width_in_attributeAssignment528 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_index_in_attributeAssignment532 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_slice_in_attributeAssignment532 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_EQUALS_in_attributeAssignment536 = new BitSet(new long[]{0x0000000000000080L});
     public static final BitSet FOLLOW_STRING_LITERAL_in_attributeAssignment539 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_SEMICOLON_in_attributeAssignment541 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_IDENT_in_pinAssignment554 = new BitSet(new long[]{0x0000000200002040L});
     public static final BitSet FOLLOW_width_in_pinAssignment557 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_index_in_pinAssignment561 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_slice_in_pinAssignment561 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_EQUALS_in_pinAssignment565 = new BitSet(new long[]{0x0000000080000010L});
     public static final BitSet FOLLOW_concatenation_in_pinAssignment568 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_SEMICOLON_in_pinAssignment570 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_IDENT_in_portAssignment583 = new BitSet(new long[]{0x0000000200002040L});
     public static final BitSet FOLLOW_width_in_portAssignment586 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_index_in_portAssignment590 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_slice_in_portAssignment590 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_EQUALS_in_portAssignment594 = new BitSet(new long[]{0x0000000080000010L});
     public static final BitSet FOLLOW_concatenation_in_portAssignment597 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_SEMICOLON_in_portAssignment599 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_IDENT_in_netAssignment612 = new BitSet(new long[]{0x0000000200002040L});
     public static final BitSet FOLLOW_width_in_netAssignment615 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_index_in_netAssignment619 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_slice_in_netAssignment619 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_EQUALS_in_netAssignment623 = new BitSet(new long[]{0x0000000080000010L});
     public static final BitSet FOLLOW_concatenation_in_netAssignment626 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_SEMICOLON_in_netAssignment628 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_IDENT_in_concatenation643 = new BitSet(new long[]{0x0000002200002002L});
     public static final BitSet FOLLOW_width_in_concatenation646 = new BitSet(new long[]{0x0000002000000002L});
-    public static final BitSet FOLLOW_index_in_concatenation650 = new BitSet(new long[]{0x0000002000000002L});
+    public static final BitSet FOLLOW_slice_in_concatenation650 = new BitSet(new long[]{0x0000002000000002L});
     public static final BitSet FOLLOW_37_in_concatenation656 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_IDENT_in_concatenation659 = new BitSet(new long[]{0x0000002200002002L});
     public static final BitSet FOLLOW_width_in_concatenation662 = new BitSet(new long[]{0x0000002000000002L});
-    public static final BitSet FOLLOW_index_in_concatenation666 = new BitSet(new long[]{0x0000002000000002L});
+    public static final BitSet FOLLOW_slice_in_concatenation666 = new BitSet(new long[]{0x0000002000000002L});
     public static final BitSet FOLLOW_31_in_concatenation676 = new BitSet(new long[]{0x0000000000000002L});
 
 }
