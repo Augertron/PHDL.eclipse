@@ -53,7 +53,7 @@ public class AttributeDeclaration extends Declarable {
 	 *            The attribute's value
 	 */
 	public void setValue(String value) {
-		this.value = value;
+		this.value = value.toUpperCase();
 	}
 
 	/**

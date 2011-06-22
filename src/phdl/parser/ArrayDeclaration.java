@@ -85,4 +85,44 @@ public abstract class ArrayDeclaration extends Declarable {
 			return "";
 	}
 
+	public boolean isArray() {
+		if (msb > -1 && lsb > -1)
+			return true;
+		else
+			return false;
+	}
+
+	public int getWidth() {
+		if (msb > -1 && lsb > -1)
+			return Math.abs(msb - lsb);
+		else
+			return 1;
+	}
+
+	/**
+	 * Method to tell whether the index passed in falls within the bounds of the
+	 * msb and lsb.
+	 * 
+	 * @return True if it is a valid index, false otherwise
+	 */
+	public boolean isValidIndex(int index) {
+		if (msb > lsb)
+			return (msb >= index && index >= lsb) ? true : false;
+		if (msb < lsb)
+			return (msb <= index && index <= lsb) ? true : false;
+		else
+			return (msb == index && index == lsb) ? true : false;
+	}
+
+	public boolean isValidArray(int high, int low) {
+		return isValidIndex(high) && isValidIndex(low);
+	}
+
+	public boolean isDownArray() {
+		return (msb > lsb) ? true : false;
+	}
+
+	public boolean isUpArray() {
+		return (msb < lsb) ? true : false;
+	}
 }

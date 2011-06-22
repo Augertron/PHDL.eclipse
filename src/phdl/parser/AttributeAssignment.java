@@ -54,7 +54,7 @@ public class AttributeAssignment extends Assignable {
 	 *            The attribute assignment's value
 	 */
 	public void setValue(String value) {
-		this.value = value;
+		this.value = value.toUpperCase();
 	}
 
 	/**
@@ -70,10 +70,10 @@ public class AttributeAssignment extends Assignable {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return name.equals(((AttributeAssignment) o).getName());
-		// && msb == ((AttributeAssignment) o).getMsb()
-		// && lsb == ((AttributeAssignment) o).getLsb()
-		// && index == ((AttributeAssignment) o).getIndex();
+		return name.equals(((AttributeAssignment) o).getName())
+				&& msb == ((AttributeAssignment) o).getMsb()
+				&& lsb == ((AttributeAssignment) o).getLsb()
+				&& index == ((AttributeAssignment) o).getIndex();
 	}
 
 	/**
@@ -85,4 +85,8 @@ public class AttributeAssignment extends Assignable {
 				+ getWidthString() + " = " + value + "\n";
 	}
 
+	@Override
+	public void setName(String name) {
+		this.name = name.toUpperCase();
+	}
 }

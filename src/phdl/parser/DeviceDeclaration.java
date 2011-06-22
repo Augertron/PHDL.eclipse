@@ -130,4 +130,37 @@ public class DeviceDeclaration extends Declarable {
 		return header + attributes + pins;
 	}
 
+	/**
+	 * Method to find a particular attribute declaration based on the name
+	 * passed in.
+	 * 
+	 * @param name
+	 *            The name of the attribute declaration
+	 * @return The attribute declaration with this name, or null if it doesn't
+	 *         exist in the set.
+	 */
+	public AttributeDeclaration findAttrDecl(String name) {
+		for (AttributeDeclaration a : attributeDecls) {
+			if (a.getName().equals(name))
+				return a;
+		}
+		return null;
+	}
+
+	/**
+	 * Method to find a particular pin declaration based on the name passed in.
+	 * 
+	 * @param name
+	 *            The name of the pin declaration
+	 * @return The pin declaration with this name, or null if it doesn't exist
+	 *         in the set.
+	 */
+	public PinDeclaration findPinDecl(String name) {
+		for (PinDeclaration p : pinDecls) {
+			if (p.getName().equals(name))
+				return p;
+		}
+		return null;
+	}
+
 }
