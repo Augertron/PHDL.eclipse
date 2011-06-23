@@ -53,6 +53,11 @@ import phdl.parser.PhdlWalker;
 public class PhdlComp {
 
 	/**
+	 * An array of attributes that every device declaration is required to have
+	 */
+	public static String[] reqAttr = { "REFPREFIX", "NAME", "VALUE" };
+
+	/**
 	 * The main entry point of the phdl Compiler. It accepts *.phdl source files
 	 * as arguments and generates a netlist for layout tools.
 	 */

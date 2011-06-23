@@ -262,9 +262,6 @@ addPin[DeviceDeclaration d, PinDeclaration p]
 			p.setPinList($pinList.text);
 			p.setFileName(input.getSourceName());
 			
-			if(!p.pinMap()) 
-				addError(p, "invalid pin number list");
-			
 			if(!d.addPinDecl(p)) 
 				addError(p, "duplicate pin declaration");
 		}

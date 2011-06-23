@@ -131,9 +131,7 @@ public class PinDeclaration extends ArrayDeclaration {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return name.equals(((PinDeclaration) o).getName())
-				&& msb == ((InstanceDeclaration) o).getMsb()
-				&& lsb == ((InstanceDeclaration) o).getLsb();
+		return name.equals(((PinDeclaration) o).getName());
 	}
 
 	/**
@@ -142,8 +140,14 @@ public class PinDeclaration extends ArrayDeclaration {
 	@Override
 	public String toString() {
 		String sPinMap = "";
-		for (Integer i : indexMap.keySet()) {
-			sPinMap += name + "(" + i + ")." + indexMap.get(i) + ", ";
+		if (indexMap.keySet().size() > 1) {
+			for (Integer i : indexMap.keySet()) {
+				sPinMap += name + "(" + i + ")." + indexMap.get(i) + ", ";
+			}
+		} else {
+			for (Integer i : indexMap.keySet()) {
+				sPinMap += name + "." + indexMap.get(i) + ", ";
+			}
 		}
 		// remove the last comma in the string
 		sPinMap = sPinMap.substring(0, sPinMap.length() - 2);
@@ -159,43 +163,31 @@ public class PinDeclaration extends ArrayDeclaration {
 	 * @return True if the mapping was completed successfully, false otherwise
 	 */
 	public boolean pinMap() {
-		// break apart the pin list into integers by splitting on
-		// all whitespace, commas, and semicolons
+		// split pin list on whitespace, commas and semicolons
 		String[] pinNumbers = pinList.split("[\\s,;]");
 
-		// add the pin numbers to a set to check for duplicates
-		boolean added;
+		// add pin numbers to a set to check for duplicates
 		for (int i = 0; i < pinNumbers.length; i++) {
-			added = false;
-			added = numberSet.add(pinNumbers[i]);
-			if (!added)
+			if (!numberSet.add(pinNumbers[i]))
 				return false;
 		}
 
-		// assume the pin has a width of one but modify it if both msb and lsb
-		// have been declared
-		int width = 1;
-		if (msb != -1 && lsb != -1)
-			width = Math.abs(msb - lsb) + 1;
-
-		// check that the available width of the pin name differs from the
-		// number of pins in the comma-separated pin list
-		if (width != pinNumbers.length) {
+		// check pin name width against number of pins in list
+		if (getWidth() != pinNumbers.length) {
 			return false;
 		}
 
 		// perform the mapping based on the direction of the array declaration
-		if (msb < lsb) {
+		if (isUpArray()) {
 			for (int i = msb; i <= lsb; i++)
 				indexMap.put(i, pinNumbers[i - msb]);
-		} else if (msb > lsb) {
+		} else if (isDownArray()) {
 			for (int i = msb; i >= lsb; i--)
 				indexMap.put(i, pinNumbers[msb - i]);
-
-			// the case of a single pin and number
 		} else if (msb == lsb) {
 			indexMap.put(0, pinNumbers[0]);
 		}
+		// indicates a successful pin mapping
 		return true;
 	}
 

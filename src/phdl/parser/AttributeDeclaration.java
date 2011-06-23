@@ -82,7 +82,7 @@ public class AttributeDeclaration extends Declarable {
 	}
 
 	/**
-	 * Attribute names are always upper-case
+	 * Attribute names must all be upper-case
 	 */
 	@Override
 	public void setName(String name) {
