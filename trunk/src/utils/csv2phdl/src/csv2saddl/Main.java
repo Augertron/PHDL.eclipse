@@ -263,15 +263,42 @@ public class Main {
             }
         }
         
-        // Lets scan the csv file for the PART TYPE, etc.
+        // Lets scan the csv file for the PART TYPE, SPEED GRADE and PACKAGE.
         String WholeFileString = readFile(args[0]);
         Pattern PartNumPat = Pattern.compile("(#PART TYPE:([ ]+)([0-9a-zA-Z]+))");
         Matcher PartNumMatcher = PartNumPat.matcher(WholeFileString);
+        String PART_NUMBER;
         if (PartNumMatcher.find()){
-            System.out.println("PART TYPE: found");
+            PART_NUMBER = PartNumMatcher.group(3);
+            System.out.println("PART TYPE = " + PART_NUMBER);
         } else {
+            PART_NUMBER = "pn_not_found:";
             System.out.println("PART TYPE: not found");         
         }
+        
+        PartNumPat = Pattern.compile("(#SPEED GRADE:([ ]+)([-0-9a-zA-Z-]+))");
+        PartNumMatcher = PartNumPat.matcher(WholeFileString);
+        String SPEED_GRADE;
+        if (PartNumMatcher.find()){
+            SPEED_GRADE = PartNumMatcher.group(3);
+            System.out.println("SPEED GRADE = " + SPEED_GRADE);
+        } else {
+            SPEED_GRADE = "speed_grade_not_found:";
+            System.out.println("SPEED GRADE: not found");         
+        }
+        
+        PartNumPat = Pattern.compile("(#PACKAGE:([ ]+)([-0-9a-zA-Z-]+))");
+        PartNumMatcher = PartNumPat.matcher(WholeFileString);
+        String PACKAGE;
+        if (PartNumMatcher.find()){
+            PACKAGE = PartNumMatcher.group(3);
+            System.out.println("PACKAGE = " + PACKAGE);
+        } else {
+            PACKAGE = "package_not_found";
+            System.out.println("PACKAGE: not found");         
+        }
+        
+        System.out.println("Full Part Number = " + PART_NUMBER + SPEED_GRADE + PACKAGE);
 
         
 
