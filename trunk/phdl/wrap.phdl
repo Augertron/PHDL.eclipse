@@ -1,0 +1,19 @@
+design mydesign is
+
+	device mydevice is
+		refprefix = "M";
+		name = "mywrappingwrapping
+			wrappingname";
+		value = "";
+	begin
+		pin[1:5] a = {1,2,3,
+			4,5};
+	end;
+
+begin
+
+	inst mydev : mydevice is
+	begin
+		a{2,4,5} = open;
+	end;
+end;

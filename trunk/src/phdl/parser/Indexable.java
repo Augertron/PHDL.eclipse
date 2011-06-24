@@ -42,6 +42,10 @@ public abstract class Indexable extends Parsable {
 	 * The index of the indexable object
 	 */
 	protected int index = -1;
+	/**
+	 * The list of indices
+	 */
+	protected String indices = null;
 
 	/**
 	 * Gets the msb of the indexable object
@@ -98,6 +102,14 @@ public abstract class Indexable extends Parsable {
 	 */
 	public void setIndex(int index) {
 		this.index = index;
+	}
+
+	public String getIndices() {
+		return indices;
+	}
+
+	public void setIndices(String indices) {
+		this.indices = indices;
 	}
 
 	/**

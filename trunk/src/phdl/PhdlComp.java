@@ -145,7 +145,7 @@ public class PhdlComp {
 		if (!errors.isEmpty()) {
 			for (String s : errors)
 				System.out.println(s);
-			System.exit(1);
+			// System.exit(1);
 		}
 
 		for (DesignDeclaration dd : pd.getDesignDecls())

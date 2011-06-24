@@ -111,7 +111,7 @@ attributeDecl
 	
 pinDecl
 	:	//promote the type to the root of the subtree, and ignore the equals and semicolon
-		type^ width? IDENT EQUALS! STRING_LITERAL SEMICOLON!
+		type^ width? IDENT EQUALS! NUMBER_LIST SEMICOLON!
 	;
 	
 type
@@ -138,13 +138,17 @@ netDecl
 /** A width is an array with MSB and LSB integers separated by a colon inside brackets
  */	
 width
-	:	'['! INT ':'! INT ']'!
+	:	'['! INT ':' INT ']'!
 	;
 
 /** An index is an integer inside of parentheses
  */		
 slice
 	:	'('! INT ')'!
+	;
+	
+specifier
+	:	(width | slice | NUMBER_LIST)
 	;
 	
 instances
@@ -166,23 +170,23 @@ subDesignInstance
 	;
 	
 attributeAssignment
-	:	IDENT (width | slice)? EQUALS^ STRING_LITERAL SEMICOLON!
+	:	IDENT specifier? EQUALS^ STRING_LITERAL SEMICOLON!
 	;
 	
 pinAssignment
-	:	IDENT (width | slice)? (COLON (width | slice))? EQUALS^ concatenation SEMICOLON!
+	:	IDENT (specifier specifier?)? EQUALS^ concatenation SEMICOLON!
 	;
 	
 portAssignment
-	:	IDENT (width | slice)? (COLON (width | slice))? EQUALS^ concatenation SEMICOLON!
+	:	IDENT (specifier specifier?)? EQUALS^ concatenation SEMICOLON!
 	;
 	
 netAssignment
-	:	IDENT (width | slice)? EQUALS^ concatenation SEMICOLON!
+	:	IDENT specifier? EQUALS^ concatenation SEMICOLON!
 	;
 	
 concatenation
-	:	((IDENT (width | slice)?) ('&'! IDENT (width | slice)?)* ) | 'open'!
+	:	((IDENT specifier?) ('&'! IDENT specifier?)* ) | 'open'!
 	;
 
 	
@@ -206,13 +210,29 @@ RBRACKET: ']';
 INT : DIGIT+;
 
 // s string literal has its wrapping quotes removed
-STRING_LITERAL 
+STRING_LITERAL
 	: 	'"' 
 		{StringBuilder sb = new StringBuilder();}
 		(	'/' '"' 				{sb.appendCodePoint('"');}
-		|	c = ~('"'|'\r'|'\n')	{sb.appendCodePoint(c);}
+		|	c = ~('"')	
+			{	if (c!=' ' && c!='\t' && c!='\n' && c!='\r' && c!='\f' && c!='\u001D')
+					sb.appendCodePoint(c);
+			}
 		)*
 		'"' 
+		{setText(sb.toString());}
+	;
+	
+NUMBER_LIST
+	:	'{' 
+		{StringBuilder sb = new StringBuilder();}
+		(	//'/' '"' 				{sb.appendCodePoint('"');}
+			c = ~('}')	
+			{	if (c!=' ' && c!='\t' && c!='\n' && c!='\r' && c!='\f' && c!='\u001D')
+					sb.appendCodePoint(c);
+			}
+		)*
+		'}' 
 		{setText(sb.toString());}
 	;
 

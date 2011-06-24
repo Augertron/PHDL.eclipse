@@ -129,7 +129,7 @@ portDecl[DesignDeclaration d]
  * and adds the port to the design declaration.
  */	
 addPort[DesignDeclaration d, PortDeclaration p]
-	:	(msb=INT lsb=INT)? name=IDENT
+	:	(msb=INT COLON lsb=INT)? name=IDENT
 		{	
 			p.setName($name.text);
 			p.setLine($name.line);
@@ -182,7 +182,7 @@ deviceDecl[DesignDeclaration d]
  * of the net.  Optional attributes are added if they exist after a colon.
  */
 netDecl[DesignDeclaration d]
-	:	^('net' (msb=INT lsb=INT)? name=IDENT
+	:	^('net' (msb=INT COLON lsb=INT)? name=IDENT
 	
 		// make a new net with the above information
 		{	NetDeclaration n = new NetDeclaration(); 
@@ -235,24 +235,24 @@ attributeDecl[DeviceDeclaration d]
 	;
 
 /** Looks for the keywords below as the root of a subtree, and creates the appropriate type of pin in 
- * the data structure by switching on that keyword.  Uses the helper rule addPin to populate the 
+ * the data structure by switching on that keyword.  Uses the helper rule addPinDecl to populate the 
  * pin with values.
  */	
 pinDecl[DeviceDeclaration d]
-	:	^('pin' {PinDeclaration pin = new PinDeclaration(Type.PIN);} addPin[d, pin])
-	|	^('in' {PinDeclaration in = new PinDeclaration(Type.IN);} addPin[d, in])
-	|	^('out' {PinDeclaration out = new PinDeclaration(Type.OUT);} addPin[d, out])
-	|	^('inout' {PinDeclaration inout = new PinDeclaration(Type.INOUT);} addPin[d, inout])
-	|	^('passive' {PinDeclaration passive = new PinDeclaration(Type.PASSIVE);} addPin[d, passive])
-	|	^('supply' {PinDeclaration supply = new PinDeclaration(Type.SUPPLY);} addPin[d, supply])
-	|	^('power' {PinDeclaration power = new PinDeclaration(Type.POWER);} addPin[d, power])
+	:	^('pin' {PinDeclaration pin = new PinDeclaration(Type.PIN);} addPinDecl[d, pin])
+	|	^('in' {PinDeclaration in = new PinDeclaration(Type.IN);} addPinDecl[d, in])
+	|	^('out' {PinDeclaration out = new PinDeclaration(Type.OUT);} addPinDecl[d, out])
+	|	^('inout' {PinDeclaration inout = new PinDeclaration(Type.INOUT);} addPinDecl[d, inout])
+	|	^('passive' {PinDeclaration passive = new PinDeclaration(Type.PASSIVE);} addPinDecl[d, passive])
+	|	^('supply' {PinDeclaration supply = new PinDeclaration(Type.SUPPLY);} addPinDecl[d, supply])
+	|	^('power' {PinDeclaration power = new PinDeclaration(Type.POWER);} addPinDecl[d, power])
 	;
 	
 /** The helper rule for pinDecl.  It sets all the fields of the pin as they are found after
  * each of the keywords above.  The MSB and LSB are set to zero if they are not present.
  */
-addPin[DeviceDeclaration d, PinDeclaration p]
-	:	(msb=INT lsb=INT)? name=IDENT pinList=STRING_LITERAL
+addPinDecl[DeviceDeclaration d, PinDeclaration p]
+	:	(msb=INT COLON lsb=INT)? name=IDENT pinList=NUMBER_LIST
 		{	
 			p.setName($name.text);
 			p.setLine($name.line);
@@ -271,7 +271,7 @@ addPin[DeviceDeclaration d, PinDeclaration p]
  * succeding children in the subtree.  Attribute and pin assignments are added with their own rules.
  */	
 instance[DesignDeclaration d]
-	:	^('inst' name=IDENT refName=IDENT (msb=INT lsb=INT)?
+	:	^('inst' name=IDENT refName=IDENT (msb=INT COLON lsb=INT)?
 		
 		// make a new instance to pass to attributeAssignment and pinAssignment
 		{	
@@ -300,7 +300,8 @@ instance[DesignDeclaration d]
  * attribute assignment data structure based on these parameters.
  */
 attributeAssignment[InstanceDeclaration i]
-	:	^(EQUALS name=IDENT ((msb=INT lsb=INT) | (index=INT))? value=STRING_LITERAL )
+	:	^(EQUALS name=IDENT ((msb=INT COLON lsb=INT) | (index=INT) | indices=NUMBER_LIST)? 
+		value=STRING_LITERAL )
 		
 		// make a new attribute assignment, assign all values, and add it to the instance
 		{	AttributeAssignment a = new AttributeAssignment();
@@ -310,6 +311,7 @@ attributeAssignment[InstanceDeclaration i]
 			a.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
 			a.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
 			a.setIndex($index!=null?Integer.parseInt($index.text):-1);
+			a.setIndices($indices.text);
 			a.setValue($value.text);
 			a.setFileName(input.getSourceName());
 			
@@ -323,8 +325,8 @@ attributeAssignment[InstanceDeclaration i]
  */	
 pinAssignment[InstanceDeclaration i]
 	:	^(EQUALS name=IDENT 
-		((instMsb=INT instLsb=INT) | (instIndex=INT))?
-		(COLON ((msb=INT lsb=INT) | (index=INT)))?
+		(((instMsb=INT COLON instLsb=INT) | (instIndex=INT | instIndices=NUMBER_LIST))
+		((msb=INT COLON lsb=INT) | (index=INT) | indices=NUMBER_LIST)?)?
 	
 		// make a new pin assignment
 		{
@@ -335,9 +337,11 @@ pinAssignment[InstanceDeclaration i]
 			p.setInstMsb($instMsb!=null?Integer.parseInt($instMsb.text):-1);
 			p.setInstLsb($instLsb!=null?Integer.parseInt($instLsb.text):-1);
 			p.setInstIndex($instIndex!=null?Integer.parseInt($instIndex.text):-1);
+			p.setInstIndices($instIndices.text);
 			p.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
 			p.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
 			p.setIndex($index!=null?Integer.parseInt($index.text):-1);
+			p.setIndices($indices.text);
 			p.setFileName(input.getSourceName());
 		}
 	
@@ -349,7 +353,7 @@ pinAssignment[InstanceDeclaration i]
 	;
 	
 concatenatePin[PinAssignment pa]
-	:	(name=IDENT ((msb=INT lsb=INT) | (index=INT))?)
+	:	(name=IDENT ((msb=INT COLON lsb=INT) | (index=INT) | indices=NUMBER_LIST)?)
 		{
 			Net n = new Net();
 			n.setName($name.text);
@@ -358,13 +362,14 @@ concatenatePin[PinAssignment pa]
 			n.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
 			n.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
 			n.setIndex($index!=null?Integer.parseInt($index.text):-1);
+			n.setIndices($indices.text);
 			n.setFileName(input.getSourceName());
 			pa.addNet(n);
 		}
 	;
 	
 subDesign[DesignDeclaration d]
-	:	^('sub' name=IDENT refName=IDENT (msb=INT lsb=INT)?
+	:	^('sub' name=IDENT refName=IDENT (msb=INT COLON lsb=INT)?
 		
 		// make a new instance to pass to attributeAssignment and pinAssignment
 		{	
@@ -388,7 +393,7 @@ subDesign[DesignDeclaration d]
 /**	Looks for an "=" sign as the parent of a subtree.  
  */	
 netAssignment[DesignDeclaration d]
-	:	^(EQUALS name=IDENT ((msb=INT lsb=INT) | (index=INT))?
+	:	^(EQUALS name=IDENT ((msb=INT COLON lsb=INT) | (index=INT) | indices=NUMBER_LIST)?
 		
 		// make a new net assignment
 		{
@@ -399,6 +404,7 @@ netAssignment[DesignDeclaration d]
 			n.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
 			n.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
 			n.setIndex($index!=null?Integer.parseInt($index.text):-1);
+			n.setIndices($indices.text);
 			n.setFileName(input.getSourceName());
 		}
 		
@@ -410,7 +416,7 @@ netAssignment[DesignDeclaration d]
 	;
 	
 concatenateNet[NetAssignment na]
-	:	(name=IDENT ((msb=INT lsb=INT) | (index=INT))?)
+	:	(name=IDENT ((msb=INT COLON lsb=INT) | (index=INT) | indices=NUMBER_LIST)?)
 		{
 			Net n = new Net();
 			n.setName($name.text);
@@ -419,6 +425,7 @@ concatenateNet[NetAssignment na]
 			n.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
 			n.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
 			n.setIndex($index!=null?Integer.parseInt($index.text):-1);
+			n.setIndices($indices.text);
 			n.setFileName(input.getSourceName());
 			na.addNet(n);
 		}
@@ -426,8 +433,8 @@ concatenateNet[NetAssignment na]
 	
 portAssignment[SubDesignDeclaration s]
 	:	^(EQUALS name=IDENT 
-		((instMsb=INT instLsb=INT) | (instIndex=INT))?
-		(COLON ((msb=INT lsb=INT) | (index=INT)))?
+		(((instMsb=INT COLON instLsb=INT) | (instIndex=INT) | instIndices=NUMBER_LIST)
+		((msb=INT COLON lsb=INT) | (index=INT) | indices=NUMBER_LIST)?)?
 	
 		// make a new port assignment
 		{
@@ -438,9 +445,11 @@ portAssignment[SubDesignDeclaration s]
 			p.setInstMsb($instMsb!=null?Integer.parseInt($instMsb.text):-1);
 			p.setInstLsb($instLsb!=null?Integer.parseInt($instLsb.text):-1);
 			p.setInstIndex($instIndex!=null?Integer.parseInt($instIndex.text):-1);
+			p.setInstIndices($instIndices.text);
 			p.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
 			p.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
 			p.setIndex($index!=null?Integer.parseInt($index.text):-1);
+			p.setIndices($indices.text);
 			p.setFileName(input.getSourceName());
 		}
 	
@@ -452,7 +461,7 @@ portAssignment[SubDesignDeclaration s]
 	;
 
 concatenatePort[PortAssignment pa]
-	:	(name=IDENT ((msb=INT lsb=INT) | (index=INT))?)
+	:	(name=IDENT ((msb=INT COLON lsb=INT) | (index=INT) | indices=NUMBER_LIST)?)
 		{
 			Net n = new Net();
 			n.setName($name.text);
