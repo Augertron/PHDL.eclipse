@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g 2011-06-22 14:23:38
+// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g 2011-06-23 20:07:20
 
 	package phdl.parser;
 	import phdl.exception.PhdlRuntimeException;
@@ -479,8 +479,8 @@ public class PhdlLexer extends Lexer {
     // $ANTLR start "CHAR"
     public final void mCHAR() throws RecognitionException {
         try {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:196:15: ( ( 'a' .. 'z' ) | ( 'A' .. 'Z' ) | '_' | '+' | '-' )
-            int alt1=5;
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:196:15: ( ( 'a' .. 'z' ) | ( 'A' .. 'Z' ) | '_' | '+' | '-' | '$' )
+            int alt1=6;
             switch ( input.LA(1) ) {
             case 'a':
             case 'b':
@@ -557,6 +557,11 @@ public class PhdlLexer extends Lexer {
                 alt1=5;
                 }
                 break;
+            case '$':
+                {
+                alt1=6;
+                }
+                break;
             default:
                 NoViableAltException nvae =
                     new NoViableAltException("", 1, 0, input);
@@ -609,6 +614,13 @@ public class PhdlLexer extends Lexer {
                     // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:196:55: '-'
                     {
                     match('-'); 
+
+                    }
+                    break;
+                case 6 :
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:196:61: '$'
+                    {
+                    match('$'); 
 
                     }
                     break;
@@ -910,7 +922,7 @@ public class PhdlLexer extends Lexer {
                 int alt4=3;
                 int LA4_0 = input.LA(1);
 
-                if ( (LA4_0=='+'||LA4_0=='-'||(LA4_0>='A' && LA4_0<='Z')||LA4_0=='_'||(LA4_0>='a' && LA4_0<='z')) ) {
+                if ( (LA4_0=='$'||LA4_0=='+'||LA4_0=='-'||(LA4_0>='A' && LA4_0<='Z')||LA4_0=='_'||(LA4_0>='a' && LA4_0<='z')) ) {
                     alt4=1;
                 }
                 else if ( ((LA4_0>='0' && LA4_0<='9')) ) {
@@ -1374,12 +1386,12 @@ public class PhdlLexer extends Lexer {
         "\133\uffff";
     static final String DFA8_minS =
         "\1\11\1\145\1\156\1\145\1\156\1\141\1\160\1\165\1\145\15\uffff"+
-        "\1\52\1\163\2\53\1\147\1\144\1\162\1\156\1\163\1\164\1\145\1\142"+
-        "\1\164\2\uffff\2\151\1\uffff\1\165\1\164\1\uffff\1\151\1\53\1\164"+
-        "\1\145\1\53\1\163\1\53\1\156\1\160\2\53\1\147\1\143\1\164\1\53\1"+
-        "\156\1\uffff\1\53\1\162\1\uffff\1\151\1\uffff\1\53\1\154\2\uffff"+
-        "\1\156\1\145\1\53\1\uffff\1\53\1\uffff\1\53\1\166\1\uffff\1\171"+
-        "\2\53\3\uffff\1\145\1\53\2\uffff\1\53\2\uffff";
+        "\1\52\1\163\2\44\1\147\1\144\1\162\1\156\1\163\1\164\1\145\1\142"+
+        "\1\164\2\uffff\2\151\1\uffff\1\165\1\164\1\uffff\1\151\1\44\1\164"+
+        "\1\145\1\44\1\163\1\44\1\156\1\160\2\44\1\147\1\143\1\164\1\44\1"+
+        "\156\1\uffff\1\44\1\162\1\uffff\1\151\1\uffff\1\44\1\154\2\uffff"+
+        "\1\156\1\145\1\44\1\uffff\1\44\1\uffff\1\44\1\166\1\uffff\1\171"+
+        "\2\44\3\uffff\1\145\1\44\2\uffff\1\44\2\uffff";
     static final String DFA8_maxS =
         "\1\172\1\145\1\163\1\145\1\156\1\157\2\165\1\145\15\uffff\1\57"+
         "\1\166\2\172\1\147\1\144\1\167\1\156\1\163\1\164\1\145\1\160\1\164"+
@@ -1398,10 +1410,10 @@ public class PhdlLexer extends Lexer {
         "\133\uffff}>";
     static final String[] DFA8_transitionS = {
             "\2\25\1\uffff\2\25\17\uffff\1\25\2\uffff\1\25\1\uffff\1\23"+
-            "\3\uffff\1\13\1\uffff\1\11\1\12\1\uffff\1\24\1\16\1\24\1\uffff"+
-            "\1\26\12\22\1\15\1\14\1\uffff\1\17\3\uffff\32\24\1\20\1\uffff"+
-            "\1\21\1\uffff\1\24\1\uffff\1\24\1\3\1\24\1\1\1\4\3\24\1\2\4"+
-            "\24\1\10\1\6\1\5\2\24\1\7\7\24",
+            "\1\uffff\1\24\1\uffff\1\13\1\uffff\1\11\1\12\1\uffff\1\24\1"+
+            "\16\1\24\1\uffff\1\26\12\22\1\15\1\14\1\uffff\1\17\3\uffff\32"+
+            "\24\1\20\1\uffff\1\21\1\uffff\1\24\1\uffff\1\24\1\3\1\24\1\1"+
+            "\1\4\3\24\1\2\4\24\1\10\1\6\1\5\2\24\1\7\7\24",
             "\1\27",
             "\1\31\4\uffff\1\30",
             "\1\32",
@@ -1425,10 +1437,10 @@ public class PhdlLexer extends Lexer {
             "",
             "\1\44\4\uffff\1\43",
             "\1\45\2\uffff\1\46",
-            "\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24\4\uffff\1\24"+
-            "\1\uffff\32\24",
-            "\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24\4\uffff\1\24"+
-            "\1\uffff\16\24\1\50\3\24\1\51\7\24",
+            "\1\24\6\uffff\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24"+
+            "\4\uffff\1\24\1\uffff\32\24",
+            "\1\24\6\uffff\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24"+
+            "\4\uffff\1\24\1\uffff\16\24\1\50\3\24\1\51\7\24",
             "\1\53",
             "\1\54",
             "\1\55\4\uffff\1\56",
@@ -1447,66 +1459,66 @@ public class PhdlLexer extends Lexer {
             "\1\71",
             "",
             "\1\72",
-            "\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24\4\uffff\1\24"+
-            "\1\uffff\32\24",
+            "\1\24\6\uffff\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24"+
+            "\4\uffff\1\24\1\uffff\32\24",
             "\1\74",
             "\1\75",
-            "\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24\4\uffff\1\24"+
-            "\1\uffff\32\24",
+            "\1\24\6\uffff\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24"+
+            "\4\uffff\1\24\1\uffff\32\24",
             "\1\77",
-            "\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24\4\uffff\1\24"+
-            "\1\uffff\32\24",
+            "\1\24\6\uffff\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24"+
+            "\4\uffff\1\24\1\uffff\32\24",
             "\1\101",
             "\1\102",
-            "\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24\4\uffff\1\24"+
-            "\1\uffff\32\24",
-            "\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24\4\uffff\1\24"+
-            "\1\uffff\32\24",
+            "\1\24\6\uffff\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24"+
+            "\4\uffff\1\24\1\uffff\32\24",
+            "\1\24\6\uffff\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24"+
+            "\4\uffff\1\24\1\uffff\32\24",
             "\1\105",
             "\1\106",
             "\1\107",
-            "\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24\4\uffff\1\24"+
-            "\1\uffff\32\24",
+            "\1\24\6\uffff\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24"+
+            "\4\uffff\1\24\1\uffff\32\24",
             "\1\111",
             "",
-            "\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24\4\uffff\1\24"+
-            "\1\uffff\32\24",
+            "\1\24\6\uffff\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24"+
+            "\4\uffff\1\24\1\uffff\32\24",
             "\1\113",
             "",
             "\1\114",
             "",
-            "\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24\4\uffff\1\24"+
-            "\1\uffff\32\24",
+            "\1\24\6\uffff\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24"+
+            "\4\uffff\1\24\1\uffff\32\24",
             "\1\116",
             "",
             "",
             "\1\117",
             "\1\120",
-            "\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24\4\uffff\1\24"+
-            "\1\uffff\32\24",
+            "\1\24\6\uffff\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24"+
+            "\4\uffff\1\24\1\uffff\32\24",
             "",
-            "\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24\4\uffff\1\24"+
-            "\1\uffff\32\24",
+            "\1\24\6\uffff\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24"+
+            "\4\uffff\1\24\1\uffff\32\24",
             "",
-            "\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24\4\uffff\1\24"+
-            "\1\uffff\32\24",
+            "\1\24\6\uffff\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24"+
+            "\4\uffff\1\24\1\uffff\32\24",
             "\1\124",
             "",
             "\1\125",
-            "\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24\4\uffff\1\24"+
-            "\1\uffff\32\24",
-            "\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24\4\uffff\1\24"+
-            "\1\uffff\32\24",
+            "\1\24\6\uffff\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24"+
+            "\4\uffff\1\24\1\uffff\32\24",
+            "\1\24\6\uffff\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24"+
+            "\4\uffff\1\24\1\uffff\32\24",
             "",
             "",
             "",
             "\1\130",
-            "\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24\4\uffff\1\24"+
-            "\1\uffff\32\24",
+            "\1\24\6\uffff\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24"+
+            "\4\uffff\1\24\1\uffff\32\24",
             "",
             "",
-            "\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24\4\uffff\1\24"+
-            "\1\uffff\32\24",
+            "\1\24\6\uffff\1\24\1\uffff\1\24\2\uffff\12\24\7\uffff\32\24"+
+            "\4\uffff\1\24\1\uffff\32\24",
             "",
             ""
     };
