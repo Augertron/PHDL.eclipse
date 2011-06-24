@@ -170,11 +170,11 @@ attributeAssignment
 	;
 	
 pinAssignment
-	:	IDENT (width | slice)? EQUALS^ concatenation SEMICOLON!
+	:	IDENT (width | slice)? (COLON (width | slice))? EQUALS^ concatenation SEMICOLON!
 	;
 	
 portAssignment
-	:	IDENT (width | slice)? EQUALS^ concatenation SEMICOLON!
+	:	IDENT (width | slice)? (COLON (width | slice))? EQUALS^ concatenation SEMICOLON!
 	;
 	
 netAssignment
@@ -193,7 +193,7 @@ concatenation
  *------------------------------------------------------------------------------------------------------*/
  
 //single character definitions
-fragment CHAR : ('a'..'z') | ('A'..'Z') | '_' | '+' | '-';
+fragment CHAR : ('a'..'z') | ('A'..'Z') | '_' | '+' | '-' | '$';
 fragment DIGIT : '0'..'9' ;
 SEMICOLON: ';';
 COLON: ':';

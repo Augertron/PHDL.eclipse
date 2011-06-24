@@ -1,0 +1,368 @@
+digraph {
+
+	ordering=out;
+	ranksep=.4;
+	bgcolor="lightgrey"; node [shape=box, fixedsize=false, fontsize=12, fontname="Helvetica-bold", fontcolor="blue"
+		width=.25, height=.25, color="black", fillcolor="white", style="filled, solid, bold"];
+	edge [arrowsize=.5, color="black", style="bold"]
+
+  n0 [label=""];
+  n1 [label="design"];
+  n1 [label="design"];
+  n2 [label="fmc_module_top"];
+  n3 [label="net"];
+  n3 [label="net"];
+  n4 [label="DP0_C2M_P"];
+  n5 [label="net"];
+  n5 [label="net"];
+  n6 [label="DP0_C2M_N"];
+  n7 [label="net"];
+  n7 [label="net"];
+  n8 [label="DP0_M2C_P"];
+  n9 [label="net"];
+  n9 [label="net"];
+  n10 [label="DP0_M2C_N"];
+  n11 [label="net"];
+  n11 [label="net"];
+  n12 [label="DP1_C2M_P"];
+  n13 [label="net"];
+  n13 [label="net"];
+  n14 [label="DP1_C2M_N"];
+  n15 [label="net"];
+  n15 [label="net"];
+  n16 [label="DP1_M2C_P"];
+  n17 [label="net"];
+  n17 [label="net"];
+  n18 [label="DP1_M2C_N"];
+  n19 [label="net"];
+  n19 [label="net"];
+  n20 [label="DP2_C2M_P"];
+  n21 [label="net"];
+  n21 [label="net"];
+  n22 [label="DP2_C2M_N"];
+  n23 [label="net"];
+  n23 [label="net"];
+  n24 [label="DP2_M2C_P"];
+  n25 [label="net"];
+  n25 [label="net"];
+  n26 [label="DP2_M2C_N"];
+  n27 [label="net"];
+  n27 [label="net"];
+  n28 [label="DP3_C2M_P"];
+  n29 [label="net"];
+  n29 [label="net"];
+  n30 [label="DP3_C2M_N"];
+  n31 [label="net"];
+  n31 [label="net"];
+  n32 [label="DP3_M2C_P"];
+  n33 [label="net"];
+  n33 [label="net"];
+  n34 [label="DP3_M2C_N"];
+  n35 [label="net"];
+  n35 [label="net"];
+  n36 [label="DP4_C2M_P"];
+  n37 [label="net"];
+  n37 [label="net"];
+  n38 [label="DP4_C2M_N"];
+  n39 [label="net"];
+  n39 [label="net"];
+  n40 [label="DP4_M2C_P"];
+  n41 [label="net"];
+  n41 [label="net"];
+  n42 [label="DP4_M2C_N"];
+  n43 [label="net"];
+  n43 [label="net"];
+  n44 [label="DP5_C2M_P"];
+  n45 [label="net"];
+  n45 [label="net"];
+  n46 [label="DP5_C2M_N"];
+  n47 [label="net"];
+  n47 [label="net"];
+  n48 [label="DP5_M2C_P"];
+  n49 [label="net"];
+  n49 [label="net"];
+  n50 [label="DP5_M2C_N"];
+  n51 [label="begin"];
+  n52 [label="sub"];
+  n52 [label="sub"];
+  n53 [label="ports"];
+  n54 [label="transceiver"];
+  n55 [label="0"];
+  n56 [label="6"];
+  n57 [label="="];
+  n57 [label="="];
+  n58 [label="tx_p"];
+  n59 [label="0"];
+  n60 [label="DP0_C2M_P"];
+  n61 [label="="];
+  n61 [label="="];
+  n62 [label="tx_n"];
+  n63 [label="0"];
+  n64 [label="DP0_C2M_N"];
+  n65 [label="="];
+  n65 [label="="];
+  n66 [label="rx_p"];
+  n67 [label="0"];
+  n68 [label="DP0_M2C_P"];
+  n69 [label="="];
+  n69 [label="="];
+  n70 [label="rx_n"];
+  n71 [label="0"];
+  n72 [label="DP0_M2C_N"];
+  n73 [label="="];
+  n73 [label="="];
+  n74 [label="tx_p"];
+  n75 [label="1"];
+  n76 [label="DP1_C2M_P"];
+  n77 [label="="];
+  n77 [label="="];
+  n78 [label="tx_n"];
+  n79 [label="1"];
+  n80 [label="DP1_C2M_N"];
+  n81 [label="="];
+  n81 [label="="];
+  n82 [label="rx_p"];
+  n83 [label="1"];
+  n84 [label="DP1_M2C_P"];
+  n85 [label="="];
+  n85 [label="="];
+  n86 [label="rx_n"];
+  n87 [label="1"];
+  n88 [label="DP1_M2C_N"];
+  n89 [label="="];
+  n89 [label="="];
+  n90 [label="tx_p"];
+  n91 [label="2"];
+  n92 [label="DP2_C2M_P"];
+  n93 [label="="];
+  n93 [label="="];
+  n94 [label="tx_n"];
+  n95 [label="2"];
+  n96 [label="DP2_C2M_N"];
+  n97 [label="="];
+  n97 [label="="];
+  n98 [label="rx_p"];
+  n99 [label="2"];
+  n100 [label="DP2_M2C_P"];
+  n101 [label="="];
+  n101 [label="="];
+  n102 [label="rx_n"];
+  n103 [label="2"];
+  n104 [label="DP2_M2C_N"];
+  n105 [label="="];
+  n105 [label="="];
+  n106 [label="tx_p"];
+  n107 [label="3"];
+  n108 [label="DP3_C2M_P"];
+  n109 [label="="];
+  n109 [label="="];
+  n110 [label="tx_n"];
+  n111 [label="3"];
+  n112 [label="DP3_C2M_N"];
+  n113 [label="="];
+  n113 [label="="];
+  n114 [label="rx_p"];
+  n115 [label="3"];
+  n116 [label="DP3_M2C_P"];
+  n117 [label="="];
+  n117 [label="="];
+  n118 [label="rx_n"];
+  n119 [label="3"];
+  n120 [label="DP3_M2C_N"];
+  n121 [label="="];
+  n121 [label="="];
+  n122 [label="tx_p"];
+  n123 [label="4"];
+  n124 [label="DP4_C2M_P"];
+  n125 [label="="];
+  n125 [label="="];
+  n126 [label="tx_n"];
+  n127 [label="4"];
+  n128 [label="DP4_C2M_N"];
+  n129 [label="="];
+  n129 [label="="];
+  n130 [label="rx_p"];
+  n131 [label="4"];
+  n132 [label="DP4_M2C_P"];
+  n133 [label="="];
+  n133 [label="="];
+  n134 [label="rx_n"];
+  n135 [label="4"];
+  n136 [label="DP4_M2C_N"];
+  n137 [label="="];
+  n137 [label="="];
+  n138 [label="tx_p"];
+  n139 [label="5"];
+  n140 [label="DP5_C2M_P"];
+  n141 [label="="];
+  n141 [label="="];
+  n142 [label="tx_n"];
+  n143 [label="5"];
+  n144 [label="DP5_C2M_N"];
+  n145 [label="="];
+  n145 [label="="];
+  n146 [label="rx_p"];
+  n147 [label="5"];
+  n148 [label="DP5_M2C_P"];
+  n149 [label="="];
+  n149 [label="="];
+  n150 [label="rx_n"];
+  n151 [label="5"];
+  n152 [label="DP5_M2C_N"];
+  n153 [label="<EOF>"];
+
+  n0 -> n1 // "" -> "design"
+  n1 -> n2 // "design" -> "fmc_module_top"
+  n1 -> n3 // "design" -> "net"
+  n3 -> n4 // "net" -> "DP0_C2M_P"
+  n1 -> n5 // "design" -> "net"
+  n5 -> n6 // "net" -> "DP0_C2M_N"
+  n1 -> n7 // "design" -> "net"
+  n7 -> n8 // "net" -> "DP0_M2C_P"
+  n1 -> n9 // "design" -> "net"
+  n9 -> n10 // "net" -> "DP0_M2C_N"
+  n1 -> n11 // "design" -> "net"
+  n11 -> n12 // "net" -> "DP1_C2M_P"
+  n1 -> n13 // "design" -> "net"
+  n13 -> n14 // "net" -> "DP1_C2M_N"
+  n1 -> n15 // "design" -> "net"
+  n15 -> n16 // "net" -> "DP1_M2C_P"
+  n1 -> n17 // "design" -> "net"
+  n17 -> n18 // "net" -> "DP1_M2C_N"
+  n1 -> n19 // "design" -> "net"
+  n19 -> n20 // "net" -> "DP2_C2M_P"
+  n1 -> n21 // "design" -> "net"
+  n21 -> n22 // "net" -> "DP2_C2M_N"
+  n1 -> n23 // "design" -> "net"
+  n23 -> n24 // "net" -> "DP2_M2C_P"
+  n1 -> n25 // "design" -> "net"
+  n25 -> n26 // "net" -> "DP2_M2C_N"
+  n1 -> n27 // "design" -> "net"
+  n27 -> n28 // "net" -> "DP3_C2M_P"
+  n1 -> n29 // "design" -> "net"
+  n29 -> n30 // "net" -> "DP3_C2M_N"
+  n1 -> n31 // "design" -> "net"
+  n31 -> n32 // "net" -> "DP3_M2C_P"
+  n1 -> n33 // "design" -> "net"
+  n33 -> n34 // "net" -> "DP3_M2C_N"
+  n1 -> n35 // "design" -> "net"
+  n35 -> n36 // "net" -> "DP4_C2M_P"
+  n1 -> n37 // "design" -> "net"
+  n37 -> n38 // "net" -> "DP4_C2M_N"
+  n1 -> n39 // "design" -> "net"
+  n39 -> n40 // "net" -> "DP4_M2C_P"
+  n1 -> n41 // "design" -> "net"
+  n41 -> n42 // "net" -> "DP4_M2C_N"
+  n1 -> n43 // "design" -> "net"
+  n43 -> n44 // "net" -> "DP5_C2M_P"
+  n1 -> n45 // "design" -> "net"
+  n45 -> n46 // "net" -> "DP5_C2M_N"
+  n1 -> n47 // "design" -> "net"
+  n47 -> n48 // "net" -> "DP5_M2C_P"
+  n1 -> n49 // "design" -> "net"
+  n49 -> n50 // "net" -> "DP5_M2C_N"
+  n1 -> n51 // "design" -> "begin"
+  n1 -> n52 // "design" -> "sub"
+  n52 -> n53 // "sub" -> "ports"
+  n52 -> n54 // "sub" -> "transceiver"
+  n52 -> n55 // "sub" -> "0"
+  n52 -> n56 // "sub" -> "6"
+  n52 -> n57 // "sub" -> "="
+  n57 -> n58 // "=" -> "tx_p"
+  n57 -> n59 // "=" -> "0"
+  n57 -> n60 // "=" -> "DP0_C2M_P"
+  n52 -> n61 // "sub" -> "="
+  n61 -> n62 // "=" -> "tx_n"
+  n61 -> n63 // "=" -> "0"
+  n61 -> n64 // "=" -> "DP0_C2M_N"
+  n52 -> n65 // "sub" -> "="
+  n65 -> n66 // "=" -> "rx_p"
+  n65 -> n67 // "=" -> "0"
+  n65 -> n68 // "=" -> "DP0_M2C_P"
+  n52 -> n69 // "sub" -> "="
+  n69 -> n70 // "=" -> "rx_n"
+  n69 -> n71 // "=" -> "0"
+  n69 -> n72 // "=" -> "DP0_M2C_N"
+  n52 -> n73 // "sub" -> "="
+  n73 -> n74 // "=" -> "tx_p"
+  n73 -> n75 // "=" -> "1"
+  n73 -> n76 // "=" -> "DP1_C2M_P"
+  n52 -> n77 // "sub" -> "="
+  n77 -> n78 // "=" -> "tx_n"
+  n77 -> n79 // "=" -> "1"
+  n77 -> n80 // "=" -> "DP1_C2M_N"
+  n52 -> n81 // "sub" -> "="
+  n81 -> n82 // "=" -> "rx_p"
+  n81 -> n83 // "=" -> "1"
+  n81 -> n84 // "=" -> "DP1_M2C_P"
+  n52 -> n85 // "sub" -> "="
+  n85 -> n86 // "=" -> "rx_n"
+  n85 -> n87 // "=" -> "1"
+  n85 -> n88 // "=" -> "DP1_M2C_N"
+  n52 -> n89 // "sub" -> "="
+  n89 -> n90 // "=" -> "tx_p"
+  n89 -> n91 // "=" -> "2"
+  n89 -> n92 // "=" -> "DP2_C2M_P"
+  n52 -> n93 // "sub" -> "="
+  n93 -> n94 // "=" -> "tx_n"
+  n93 -> n95 // "=" -> "2"
+  n93 -> n96 // "=" -> "DP2_C2M_N"
+  n52 -> n97 // "sub" -> "="
+  n97 -> n98 // "=" -> "rx_p"
+  n97 -> n99 // "=" -> "2"
+  n97 -> n100 // "=" -> "DP2_M2C_P"
+  n52 -> n101 // "sub" -> "="
+  n101 -> n102 // "=" -> "rx_n"
+  n101 -> n103 // "=" -> "2"
+  n101 -> n104 // "=" -> "DP2_M2C_N"
+  n52 -> n105 // "sub" -> "="
+  n105 -> n106 // "=" -> "tx_p"
+  n105 -> n107 // "=" -> "3"
+  n105 -> n108 // "=" -> "DP3_C2M_P"
+  n52 -> n109 // "sub" -> "="
+  n109 -> n110 // "=" -> "tx_n"
+  n109 -> n111 // "=" -> "3"
+  n109 -> n112 // "=" -> "DP3_C2M_N"
+  n52 -> n113 // "sub" -> "="
+  n113 -> n114 // "=" -> "rx_p"
+  n113 -> n115 // "=" -> "3"
+  n113 -> n116 // "=" -> "DP3_M2C_P"
+  n52 -> n117 // "sub" -> "="
+  n117 -> n118 // "=" -> "rx_n"
+  n117 -> n119 // "=" -> "3"
+  n117 -> n120 // "=" -> "DP3_M2C_N"
+  n52 -> n121 // "sub" -> "="
+  n121 -> n122 // "=" -> "tx_p"
+  n121 -> n123 // "=" -> "4"
+  n121 -> n124 // "=" -> "DP4_C2M_P"
+  n52 -> n125 // "sub" -> "="
+  n125 -> n126 // "=" -> "tx_n"
+  n125 -> n127 // "=" -> "4"
+  n125 -> n128 // "=" -> "DP4_C2M_N"
+  n52 -> n129 // "sub" -> "="
+  n129 -> n130 // "=" -> "rx_p"
+  n129 -> n131 // "=" -> "4"
+  n129 -> n132 // "=" -> "DP4_M2C_P"
+  n52 -> n133 // "sub" -> "="
+  n133 -> n134 // "=" -> "rx_n"
+  n133 -> n135 // "=" -> "4"
+  n133 -> n136 // "=" -> "DP4_M2C_N"
+  n52 -> n137 // "sub" -> "="
+  n137 -> n138 // "=" -> "tx_p"
+  n137 -> n139 // "=" -> "5"
+  n137 -> n140 // "=" -> "DP5_C2M_P"
+  n52 -> n141 // "sub" -> "="
+  n141 -> n142 // "=" -> "tx_n"
+  n141 -> n143 // "=" -> "5"
+  n141 -> n144 // "=" -> "DP5_C2M_N"
+  n52 -> n145 // "sub" -> "="
+  n145 -> n146 // "=" -> "rx_p"
+  n145 -> n147 // "=" -> "5"
+  n145 -> n148 // "=" -> "DP5_M2C_P"
+  n52 -> n149 // "sub" -> "="
+  n149 -> n150 // "=" -> "rx_n"
+  n149 -> n151 // "=" -> "5"
+  n149 -> n152 // "=" -> "DP5_M2C_N"
+  n0 -> n153 // "" -> "<EOF>"
+
+}

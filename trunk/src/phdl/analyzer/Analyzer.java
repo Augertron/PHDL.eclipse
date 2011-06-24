@@ -22,7 +22,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import phdl.PhdlComp;
-import phdl.exception.InvalidWidthException;
 import phdl.parser.AttributeAssignment;
 import phdl.parser.AttributeDeclaration;
 import phdl.parser.DesignDeclaration;
@@ -38,6 +37,7 @@ public class Analyzer {
 	 * A list of errors to accumulate during the analyzer process
 	 */
 	private Set<String> errors;
+	private Set<String> warnings;
 	private ArrayList<DesignDeclaration> designs;
 
 	private DesignHierarchy dh;
@@ -76,12 +76,12 @@ public class Analyzer {
 			// TODO make a new graph out of all pin, port and net assignments
 			// and assign to design node
 
-			try {
-				d.createInitialNetGraph();
-			} catch (InvalidWidthException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			// try {
+			// d.createInitialNetGraph();
+			// } catch (InvalidWidthException e) {
+			// // TODO Auto-generated catch block
+			// e.printStackTrace();
+			// }
 
 		}
 
@@ -251,6 +251,7 @@ public class Analyzer {
 
 		for (PinAssignment p : i.getPinAssignments()) {
 
+			p.toInstIndex();
 			p.toIndex();
 
 			if (d.findPinDecl(p.getName()) == null) {
@@ -274,33 +275,33 @@ public class Analyzer {
 					addError(p, "pin index outside instance bounds");
 			}
 
-			// check for duplicate attribute assignments
-			if (i.isArrayed()) {
-				// inside arrayed instances
-				if (p.isUpArray()) {
-					for (int j = p.getMsb(); j <= p.getLsb(); j++) {
-						if (!names.add(p.getName() + j))
-							addError(p, "duplicate pin assignment");
-					}
-				} else if (p.isDownArray()) {
-					for (int j = p.getMsb(); j >= p.getLsb(); j--) {
-						if (!names.add(p.getName() + j))
-							addError(p, "duplicate pin assignment");
-					}
-				} else if (p.isIndexed()) {
-					if (!names.add(p.getName() + p.getIndex()))
-						addError(p, "duplicate pin assignment");
-				} else {
-					if (!names.add(p.getName())) {
-						addError(p, "duplicate pin assignment");
-					}
-				}
-			} else {
-				// inside non-arrayed instances
-				if (!names.add(p.getName())) {
-					addError(p, "duplicate pin assignment");
-				}
-			}
+			// // check for duplicate attribute assignments
+			// if (i.isArrayed()) {
+			// // inside arrayed instances
+			// if (p.isUpArray()) {
+			// for (int j = p.getMsb(); j <= p.getLsb(); j++) {
+			// if (!names.add(p.getName() + j))
+			// addError(p, "duplicate pin assignment");
+			// }
+			// } else if (p.isDownArray()) {
+			// for (int j = p.getMsb(); j >= p.getLsb(); j--) {
+			// if (!names.add(p.getName() + j))
+			// addError(p, "duplicate pin assignment");
+			// }
+			// } else if (p.isIndexed()) {
+			// if (!names.add(p.getName() + p.getIndex()))
+			// addError(p, "duplicate pin assignment");
+			// } else {
+			// if (!names.add(p.getName())) {
+			// addError(p, "duplicate pin assignment");
+			// }
+			// }
+			// } else {
+			// // inside non-arrayed instances
+			// if (!names.add(p.getName())) {
+			// addError(p, "duplicate pin assignment");
+			// }
+			// }
 
 		}
 
@@ -347,4 +348,12 @@ public class Analyzer {
 				+ ": " + p.getName());
 	}
 
+	public Set<String> getWarnings() {
+		return warnings;
+	}
+
+	public void AddWarning(Parsable p, String msg) {
+		warnings.add(p.getFileName() + " line " + p.getLineString() + " " + msg
+				+ ": " + p.getName());
+	}
 }

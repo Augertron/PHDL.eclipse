@@ -144,13 +144,13 @@ public class PinDeclaration extends ArrayDeclaration {
 			for (Integer i : indexMap.keySet()) {
 				sPinMap += name + "(" + i + ")." + indexMap.get(i) + ", ";
 			}
+			// remove the last comma in the string
+			sPinMap = sPinMap.substring(0, sPinMap.length() - 2);
 		} else {
 			for (Integer i : indexMap.keySet()) {
-				sPinMap += name + "." + indexMap.get(i) + ", ";
+				sPinMap += name + "." + indexMap.get(i);
 			}
 		}
-		// remove the last comma in the string
-		sPinMap = sPinMap.substring(0, sPinMap.length() - 2);
 
 		return "PinDecl " + getLineString() + " : " + type.toString() + " {"
 				+ sPinMap + "}\n";

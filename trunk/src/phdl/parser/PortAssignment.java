@@ -25,7 +25,7 @@ import java.util.LinkedList;
  * @author Richard Black and Brad Riching
  * 
  */
-public class PortAssignment extends ConcatenationAssignment {
+public class PortAssignment extends InstanceAssignment {
 
 	/**
 	 * Default constructor
@@ -49,6 +49,9 @@ public class PortAssignment extends ConcatenationAssignment {
 	@Override
 	public boolean equals(Object o) {
 		return name.equals(((PortAssignment) o).getName())
+				&& instMsb == ((PortAssignment) o).getInstMsb()
+				&& instLsb == ((PortAssignment) o).getInstLsb()
+				&& instIndex == ((PortAssignment) o).getInstIndex()
 				&& msb == ((PortAssignment) o).getMsb()
 				&& lsb == ((PortAssignment) o).getLsb()
 				&& index == ((PortAssignment) o).getIndex();
@@ -73,6 +76,7 @@ public class PortAssignment extends ConcatenationAssignment {
 		}
 
 		return "PortAssign " + getLineString() + " : " + name
-				+ getWidthString() + " <= " + netString + "\n";
+				+ getInstWidthString() + ":" + getWidthString() + " <= "
+				+ netString + "\n";
 	}
 }

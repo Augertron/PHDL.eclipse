@@ -1,13 +1,30 @@
 design myDesign3 is
-	// port declarations
-	port in[7:0] addr;
-	port out[7:0] data;
-begin
 
-	// a sub-design (array) declaration
-	sub mySubDesign3 : myDesign2[3:0] is
-		addr = addr;
-		data = data;
+	// resitor device declaration
+	device res_array is
+		refprefix = "R";
+		name = "";
+		value = "10K";
+		package = "R0207";
+		tolerance = "10%";
+	begin
+		passive[3:0] a = "1,2,3,4";
+		passive[3:0] b = "8,7,6,5";
 	end;
 
+	net gnd;
+	net +vcc;
+	net -vcc;
+
+begin
+
+	inst myres : res_array[1:2] is
+		value = "20K";
+		tolerance = "1%";
+	begin
+		a(1):[3:0] = +vcc;
+		a(2):[3:0] = -vcc;
+		b[1:2]:[3:0] = gnd;
+	end;
+	
 end;

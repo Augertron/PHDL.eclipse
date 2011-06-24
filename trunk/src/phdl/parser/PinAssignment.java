@@ -25,7 +25,7 @@ import java.util.LinkedList;
  * @author Richard Black and Brad Riching
  * 
  */
-public class PinAssignment extends ConcatenationAssignment {
+public class PinAssignment extends InstanceAssignment {
 
 	/**
 	 * Default constructor
@@ -49,6 +49,9 @@ public class PinAssignment extends ConcatenationAssignment {
 	@Override
 	public boolean equals(Object o) {
 		return name.equals(((PinAssignment) o).getName())
+				&& instMsb == ((PinAssignment) o).getInstMsb()
+				&& instLsb == ((PinAssignment) o).getInstLsb()
+				&& instIndex == ((PinAssignment) o).getInstIndex()
 				&& msb == ((PinAssignment) o).getMsb()
 				&& lsb == ((PinAssignment) o).getLsb()
 				&& index == ((PinAssignment) o).getIndex();
@@ -72,7 +75,8 @@ public class PinAssignment extends ConcatenationAssignment {
 			netString = "open";
 		}
 
-		return "PinAssign " + getLineString() + " : " + name + getWidthString()
-				+ " <= " + netString + "\n";
+		return "PinAssign " + getLineString() + " : " + name
+				+ getInstWidthString() + ":" + getWidthString() + " <= "
+				+ netString + "\n";
 	}
 }
