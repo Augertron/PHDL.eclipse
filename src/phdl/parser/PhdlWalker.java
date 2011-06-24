@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g 2011-06-22 00:49:00
+// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g 2011-06-23 20:07:19
 
 	package phdl.parser;
 	import java.util.TreeSet;
@@ -1093,9 +1093,6 @@ public class PhdlWalker extends TreeParser {
             			p.setPinList((pinList!=null?pinList.getText():null));
             			p.setFileName(input.getSourceName());
             			
-            			if(!p.pinMap()) 
-            				addError(p, "invalid pin number list");
-            			
             			if(!d.addPinDecl(p)) 
             				addError(p, "duplicate pin declaration");
             		
@@ -1115,7 +1112,7 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "instance"
-    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:273:1: instance[DesignDeclaration d] : ^( 'inst' name= IDENT refName= IDENT (msb= INT lsb= INT )? ( attributeAssignment[i] )* 'begin' ( pinAssignment[i] )* ) ;
+    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:270:1: instance[DesignDeclaration d] : ^( 'inst' name= IDENT refName= IDENT (msb= INT lsb= INT )? ( attributeAssignment[i] )* 'begin' ( pinAssignment[i] )* ) ;
     public final void instance(DesignDeclaration d) throws RecognitionException {
         CommonTree name=null;
         CommonTree refName=null;
@@ -1123,15 +1120,15 @@ public class PhdlWalker extends TreeParser {
         CommonTree lsb=null;
 
         try {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:277:2: ( ^( 'inst' name= IDENT refName= IDENT (msb= INT lsb= INT )? ( attributeAssignment[i] )* 'begin' ( pinAssignment[i] )* ) )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:277:4: ^( 'inst' name= IDENT refName= IDENT (msb= INT lsb= INT )? ( attributeAssignment[i] )* 'begin' ( pinAssignment[i] )* )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:274:2: ( ^( 'inst' name= IDENT refName= IDENT (msb= INT lsb= INT )? ( attributeAssignment[i] )* 'begin' ( pinAssignment[i] )* ) )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:274:4: ^( 'inst' name= IDENT refName= IDENT (msb= INT lsb= INT )? ( attributeAssignment[i] )* 'begin' ( pinAssignment[i] )* )
             {
             match(input,35,FOLLOW_35_in_instance656); 
 
             match(input, Token.DOWN, null); 
             name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_instance660); 
             refName=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_instance664); 
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:277:38: (msb= INT lsb= INT )?
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:274:38: (msb= INT lsb= INT )?
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -1140,7 +1137,7 @@ public class PhdlWalker extends TreeParser {
             }
             switch (alt13) {
                 case 1 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:277:39: msb= INT lsb= INT
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:274:39: msb= INT lsb= INT
                     {
                     msb=(CommonTree)match(input,INT,FOLLOW_INT_in_instance669); 
                     lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_instance673); 
@@ -1160,7 +1157,7 @@ public class PhdlWalker extends TreeParser {
             				i.setRefName((refName!=null?refName.getText():null));
             				i.setFileName(input.getSourceName());
             		
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:291:3: ( attributeAssignment[i] )*
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:288:3: ( attributeAssignment[i] )*
             loop14:
             do {
                 int alt14=2;
@@ -1173,7 +1170,7 @@ public class PhdlWalker extends TreeParser {
 
                 switch (alt14) {
             	case 1 :
-            	    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:291:3: attributeAssignment[i]
+            	    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:288:3: attributeAssignment[i]
             	    {
             	    pushFollow(FOLLOW_attributeAssignment_in_instance694);
             	    attributeAssignment(i);
@@ -1190,7 +1187,7 @@ public class PhdlWalker extends TreeParser {
             } while (true);
 
             match(input,20,FOLLOW_20_in_instance700); 
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:293:3: ( pinAssignment[i] )*
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:290:3: ( pinAssignment[i] )*
             loop15:
             do {
                 int alt15=2;
@@ -1203,7 +1200,7 @@ public class PhdlWalker extends TreeParser {
 
                 switch (alt15) {
             	case 1 :
-            	    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:293:3: pinAssignment[i]
+            	    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:290:3: pinAssignment[i]
             	    {
             	    pushFollow(FOLLOW_pinAssignment_in_instance704);
             	    pinAssignment(i);
@@ -1240,7 +1237,7 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "attributeAssignment"
-    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:300:1: attributeAssignment[InstanceDeclaration i] : ^( EQUALS name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? value= STRING_LITERAL ) ;
+    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:297:1: attributeAssignment[InstanceDeclaration i] : ^( EQUALS name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? value= STRING_LITERAL ) ;
     public final void attributeAssignment(InstanceDeclaration i) throws RecognitionException {
         CommonTree name=null;
         CommonTree msb=null;
@@ -1249,14 +1246,14 @@ public class PhdlWalker extends TreeParser {
         CommonTree value=null;
 
         try {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:306:2: ( ^( EQUALS name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? value= STRING_LITERAL ) )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:306:4: ^( EQUALS name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? value= STRING_LITERAL )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:303:2: ( ^( EQUALS name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? value= STRING_LITERAL ) )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:303:4: ^( EQUALS name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? value= STRING_LITERAL )
             {
             match(input,EQUALS,FOLLOW_EQUALS_in_attributeAssignment729); 
 
             match(input, Token.DOWN, null); 
             name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_attributeAssignment733); 
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:306:24: ( (msb= INT lsb= INT ) | (index= INT ) )?
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:303:24: ( (msb= INT lsb= INT ) | (index= INT ) )?
             int alt16=3;
             int LA16_0 = input.LA(1);
 
@@ -1272,10 +1269,10 @@ public class PhdlWalker extends TreeParser {
             }
             switch (alt16) {
                 case 1 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:306:25: (msb= INT lsb= INT )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:303:25: (msb= INT lsb= INT )
                     {
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:306:25: (msb= INT lsb= INT )
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:306:26: msb= INT lsb= INT
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:303:25: (msb= INT lsb= INT )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:303:26: msb= INT lsb= INT
                     {
                     msb=(CommonTree)match(input,INT,FOLLOW_INT_in_attributeAssignment739); 
                     lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_attributeAssignment743); 
@@ -1286,10 +1283,10 @@ public class PhdlWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:306:45: (index= INT )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:303:45: (index= INT )
                     {
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:306:45: (index= INT )
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:306:46: index= INT
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:303:45: (index= INT )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:303:46: index= INT
                     {
                     index=(CommonTree)match(input,INT,FOLLOW_INT_in_attributeAssignment751); 
 
@@ -1333,22 +1330,25 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "pinAssignment"
-    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:325:1: pinAssignment[InstanceDeclaration i] : ^( EQUALS name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? ( concatenatePin[p] )* ) ;
+    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:322:1: pinAssignment[InstanceDeclaration i] : ^( EQUALS name= IDENT ( (instMsb= INT instLsb= INT ) | (instIndex= INT ) )? ( COLON ( (msb= INT lsb= INT ) | (index= INT ) ) )? ( concatenatePin[p] )* ) ;
     public final void pinAssignment(InstanceDeclaration i) throws RecognitionException {
         CommonTree name=null;
+        CommonTree instMsb=null;
+        CommonTree instLsb=null;
+        CommonTree instIndex=null;
         CommonTree msb=null;
         CommonTree lsb=null;
         CommonTree index=null;
 
         try {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:328:2: ( ^( EQUALS name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? ( concatenatePin[p] )* ) )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:328:4: ^( EQUALS name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? ( concatenatePin[p] )* )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:325:2: ( ^( EQUALS name= IDENT ( (instMsb= INT instLsb= INT ) | (instIndex= INT ) )? ( COLON ( (msb= INT lsb= INT ) | (index= INT ) ) )? ( concatenatePin[p] )* ) )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:325:4: ^( EQUALS name= IDENT ( (instMsb= INT instLsb= INT ) | (instIndex= INT ) )? ( COLON ( (msb= INT lsb= INT ) | (index= INT ) ) )? ( concatenatePin[p] )* )
             {
             match(input,EQUALS,FOLLOW_EQUALS_in_pinAssignment787); 
 
             match(input, Token.DOWN, null); 
             name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_pinAssignment791); 
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:328:24: ( (msb= INT lsb= INT ) | (index= INT ) )?
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:326:3: ( (instMsb= INT instLsb= INT ) | (instIndex= INT ) )?
             int alt17=3;
             int LA17_0 = input.LA(1);
 
@@ -1358,19 +1358,19 @@ public class PhdlWalker extends TreeParser {
                 if ( (LA17_1==INT) ) {
                     alt17=1;
                 }
-                else if ( ((LA17_1>=UP && LA17_1<=IDENT)) ) {
+                else if ( ((LA17_1>=UP && LA17_1<=IDENT)||LA17_1==COLON) ) {
                     alt17=2;
                 }
             }
             switch (alt17) {
                 case 1 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:328:25: (msb= INT lsb= INT )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:326:4: (instMsb= INT instLsb= INT )
                     {
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:328:25: (msb= INT lsb= INT )
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:328:26: msb= INT lsb= INT
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:326:4: (instMsb= INT instLsb= INT )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:326:5: instMsb= INT instLsb= INT
                     {
-                    msb=(CommonTree)match(input,INT,FOLLOW_INT_in_pinAssignment797); 
-                    lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_pinAssignment801); 
+                    instMsb=(CommonTree)match(input,INT,FOLLOW_INT_in_pinAssignment800); 
+                    instLsb=(CommonTree)match(input,INT,FOLLOW_INT_in_pinAssignment804); 
 
                     }
 
@@ -1378,12 +1378,87 @@ public class PhdlWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:328:45: (index= INT )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:326:32: (instIndex= INT )
                     {
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:328:45: (index= INT )
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:328:46: index= INT
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:326:32: (instIndex= INT )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:326:33: instIndex= INT
                     {
-                    index=(CommonTree)match(input,INT,FOLLOW_INT_in_pinAssignment809); 
+                    instIndex=(CommonTree)match(input,INT,FOLLOW_INT_in_pinAssignment812); 
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:327:3: ( COLON ( (msb= INT lsb= INT ) | (index= INT ) ) )?
+            int alt19=2;
+            int LA19_0 = input.LA(1);
+
+            if ( (LA19_0==COLON) ) {
+                alt19=1;
+            }
+            switch (alt19) {
+                case 1 :
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:327:4: COLON ( (msb= INT lsb= INT ) | (index= INT ) )
+                    {
+                    match(input,COLON,FOLLOW_COLON_in_pinAssignment820); 
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:327:10: ( (msb= INT lsb= INT ) | (index= INT ) )
+                    int alt18=2;
+                    int LA18_0 = input.LA(1);
+
+                    if ( (LA18_0==INT) ) {
+                        int LA18_1 = input.LA(2);
+
+                        if ( (LA18_1==INT) ) {
+                            alt18=1;
+                        }
+                        else if ( ((LA18_1>=UP && LA18_1<=IDENT)) ) {
+                            alt18=2;
+                        }
+                        else {
+                            NoViableAltException nvae =
+                                new NoViableAltException("", 18, 1, input);
+
+                            throw nvae;
+                        }
+                    }
+                    else {
+                        NoViableAltException nvae =
+                            new NoViableAltException("", 18, 0, input);
+
+                        throw nvae;
+                    }
+                    switch (alt18) {
+                        case 1 :
+                            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:327:11: (msb= INT lsb= INT )
+                            {
+                            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:327:11: (msb= INT lsb= INT )
+                            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:327:12: msb= INT lsb= INT
+                            {
+                            msb=(CommonTree)match(input,INT,FOLLOW_INT_in_pinAssignment826); 
+                            lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_pinAssignment830); 
+
+                            }
+
+
+                            }
+                            break;
+                        case 2 :
+                            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:327:31: (index= INT )
+                            {
+                            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:327:31: (index= INT )
+                            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:327:32: index= INT
+                            {
+                            index=(CommonTree)match(input,INT,FOLLOW_INT_in_pinAssignment838); 
+
+                            }
+
+
+                            }
+                            break;
 
                     }
 
@@ -1398,27 +1473,30 @@ public class PhdlWalker extends TreeParser {
             			p.setName((name!=null?name.getText():null));
             			p.setLine((name!=null?name.getLine():0));
             			p.setPos((name!=null?name.getCharPositionInLine():0));
+            			p.setInstMsb(instMsb!=null?Integer.parseInt((instMsb!=null?instMsb.getText():null)):-1);
+            			p.setInstLsb(instLsb!=null?Integer.parseInt((instLsb!=null?instLsb.getText():null)):-1);
+            			p.setInstIndex(instIndex!=null?Integer.parseInt((instIndex!=null?instIndex.getText():null)):-1);
             			p.setMsb(msb!=null?Integer.parseInt((msb!=null?msb.getText():null)):-1);
             			p.setLsb(lsb!=null?Integer.parseInt((lsb!=null?lsb.getText():null)):-1);
             			p.setIndex(index!=null?Integer.parseInt((index!=null?index.getText():null)):-1);
             			p.setFileName(input.getSourceName());
             		
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:342:3: ( concatenatePin[p] )*
-            loop18:
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:344:3: ( concatenatePin[p] )*
+            loop20:
             do {
-                int alt18=2;
-                int LA18_0 = input.LA(1);
+                int alt20=2;
+                int LA20_0 = input.LA(1);
 
-                if ( (LA18_0==IDENT) ) {
-                    alt18=1;
+                if ( (LA20_0==IDENT) ) {
+                    alt20=1;
                 }
 
 
-                switch (alt18) {
+                switch (alt20) {
             	case 1 :
-            	    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:342:3: concatenatePin[p]
+            	    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:344:3: concatenatePin[p]
             	    {
-            	    pushFollow(FOLLOW_concatenatePin_in_pinAssignment827);
+            	    pushFollow(FOLLOW_concatenatePin_in_pinAssignment857);
             	    concatenatePin(p);
 
             	    state._fsp--;
@@ -1428,7 +1506,7 @@ public class PhdlWalker extends TreeParser {
             	    break;
 
             	default :
-            	    break loop18;
+            	    break loop20;
                 }
             } while (true);
 
@@ -1453,7 +1531,7 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "concatenatePin"
-    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:349:1: concatenatePin[PinAssignment pa] : (name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? ) ;
+    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:351:1: concatenatePin[PinAssignment pa] : (name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? ) ;
     public final void concatenatePin(PinAssignment pa) throws RecognitionException {
         CommonTree name=null;
         CommonTree msb=null;
@@ -1461,36 +1539,36 @@ public class PhdlWalker extends TreeParser {
         CommonTree index=null;
 
         try {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:350:2: ( (name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? ) )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:350:4: (name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:352:2: ( (name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? ) )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:352:4: (name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? )
             {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:350:4: (name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:350:5: name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )?
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:352:4: (name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:352:5: name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )?
             {
-            name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_concatenatePin853); 
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:350:16: ( (msb= INT lsb= INT ) | (index= INT ) )?
-            int alt19=3;
-            int LA19_0 = input.LA(1);
+            name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_concatenatePin883); 
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:352:16: ( (msb= INT lsb= INT ) | (index= INT ) )?
+            int alt21=3;
+            int LA21_0 = input.LA(1);
 
-            if ( (LA19_0==INT) ) {
-                int LA19_1 = input.LA(2);
+            if ( (LA21_0==INT) ) {
+                int LA21_1 = input.LA(2);
 
-                if ( (LA19_1==INT) ) {
-                    alt19=1;
+                if ( (LA21_1==INT) ) {
+                    alt21=1;
                 }
-                else if ( ((LA19_1>=UP && LA19_1<=IDENT)) ) {
-                    alt19=2;
+                else if ( ((LA21_1>=UP && LA21_1<=IDENT)) ) {
+                    alt21=2;
                 }
             }
-            switch (alt19) {
+            switch (alt21) {
                 case 1 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:350:17: (msb= INT lsb= INT )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:352:17: (msb= INT lsb= INT )
                     {
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:350:17: (msb= INT lsb= INT )
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:350:18: msb= INT lsb= INT
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:352:17: (msb= INT lsb= INT )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:352:18: msb= INT lsb= INT
                     {
-                    msb=(CommonTree)match(input,INT,FOLLOW_INT_in_concatenatePin859); 
-                    lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_concatenatePin863); 
+                    msb=(CommonTree)match(input,INT,FOLLOW_INT_in_concatenatePin889); 
+                    lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_concatenatePin893); 
 
                     }
 
@@ -1498,12 +1576,12 @@ public class PhdlWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:350:37: (index= INT )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:352:37: (index= INT )
                     {
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:350:37: (index= INT )
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:350:38: index= INT
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:352:37: (index= INT )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:352:38: index= INT
                     {
-                    index=(CommonTree)match(input,INT,FOLLOW_INT_in_concatenatePin871); 
+                    index=(CommonTree)match(input,INT,FOLLOW_INT_in_concatenatePin901); 
 
                     }
 
@@ -1543,7 +1621,7 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "subDesign"
-    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:364:1: subDesign[DesignDeclaration d] : ^( 'sub' name= IDENT refName= IDENT (msb= INT lsb= INT )? ( portAssignment[s] )* ) ;
+    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:366:1: subDesign[DesignDeclaration d] : ^( 'sub' name= IDENT refName= IDENT (msb= INT lsb= INT )? ( portAssignment[s] )* ) ;
     public final void subDesign(DesignDeclaration d) throws RecognitionException {
         CommonTree name=null;
         CommonTree refName=null;
@@ -1551,27 +1629,27 @@ public class PhdlWalker extends TreeParser {
         CommonTree lsb=null;
 
         try {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:365:2: ( ^( 'sub' name= IDENT refName= IDENT (msb= INT lsb= INT )? ( portAssignment[s] )* ) )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:365:4: ^( 'sub' name= IDENT refName= IDENT (msb= INT lsb= INT )? ( portAssignment[s] )* )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:367:2: ( ^( 'sub' name= IDENT refName= IDENT (msb= INT lsb= INT )? ( portAssignment[s] )* ) )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:367:4: ^( 'sub' name= IDENT refName= IDENT (msb= INT lsb= INT )? ( portAssignment[s] )* )
             {
-            match(input,36,FOLLOW_36_in_subDesign893); 
+            match(input,36,FOLLOW_36_in_subDesign923); 
 
             match(input, Token.DOWN, null); 
-            name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_subDesign897); 
-            refName=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_subDesign901); 
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:365:37: (msb= INT lsb= INT )?
-            int alt20=2;
-            int LA20_0 = input.LA(1);
+            name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_subDesign927); 
+            refName=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_subDesign931); 
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:367:37: (msb= INT lsb= INT )?
+            int alt22=2;
+            int LA22_0 = input.LA(1);
 
-            if ( (LA20_0==INT) ) {
-                alt20=1;
+            if ( (LA22_0==INT) ) {
+                alt22=1;
             }
-            switch (alt20) {
+            switch (alt22) {
                 case 1 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:365:38: msb= INT lsb= INT
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:367:38: msb= INT lsb= INT
                     {
-                    msb=(CommonTree)match(input,INT,FOLLOW_INT_in_subDesign906); 
-                    lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_subDesign910); 
+                    msb=(CommonTree)match(input,INT,FOLLOW_INT_in_subDesign936); 
+                    lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_subDesign940); 
 
                     }
                     break;
@@ -1588,22 +1666,22 @@ public class PhdlWalker extends TreeParser {
             			s.setRefName((refName!=null?refName.getText():null));
             			s.setFileName(input.getSourceName());
             		
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:379:3: ( portAssignment[s] )*
-            loop21:
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:381:3: ( portAssignment[s] )*
+            loop23:
             do {
-                int alt21=2;
-                int LA21_0 = input.LA(1);
+                int alt23=2;
+                int LA23_0 = input.LA(1);
 
-                if ( (LA21_0==EQUALS) ) {
-                    alt21=1;
+                if ( (LA23_0==EQUALS) ) {
+                    alt23=1;
                 }
 
 
-                switch (alt21) {
+                switch (alt23) {
             	case 1 :
-            	    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:379:3: portAssignment[s]
+            	    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:381:3: portAssignment[s]
             	    {
-            	    pushFollow(FOLLOW_portAssignment_in_subDesign927);
+            	    pushFollow(FOLLOW_portAssignment_in_subDesign957);
             	    portAssignment(s);
 
             	    state._fsp--;
@@ -1613,7 +1691,7 @@ public class PhdlWalker extends TreeParser {
             	    break;
 
             	default :
-            	    break loop21;
+            	    break loop23;
                 }
             } while (true);
 
@@ -1638,7 +1716,7 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "netAssignment"
-    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:386:1: netAssignment[DesignDeclaration d] : ^( EQUALS name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? ( concatenateNet[n] )* ) ;
+    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:388:1: netAssignment[DesignDeclaration d] : ^( EQUALS name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? ( concatenateNet[n] )* ) ;
     public final void netAssignment(DesignDeclaration d) throws RecognitionException {
         CommonTree name=null;
         CommonTree msb=null;
@@ -1646,36 +1724,36 @@ public class PhdlWalker extends TreeParser {
         CommonTree index=null;
 
         try {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:389:2: ( ^( EQUALS name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? ( concatenateNet[n] )* ) )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:389:4: ^( EQUALS name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? ( concatenateNet[n] )* )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:391:2: ( ^( EQUALS name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? ( concatenateNet[n] )* ) )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:391:4: ^( EQUALS name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? ( concatenateNet[n] )* )
             {
-            match(input,EQUALS,FOLLOW_EQUALS_in_netAssignment953); 
+            match(input,EQUALS,FOLLOW_EQUALS_in_netAssignment983); 
 
             match(input, Token.DOWN, null); 
-            name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_netAssignment957); 
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:389:24: ( (msb= INT lsb= INT ) | (index= INT ) )?
-            int alt22=3;
-            int LA22_0 = input.LA(1);
+            name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_netAssignment987); 
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:391:24: ( (msb= INT lsb= INT ) | (index= INT ) )?
+            int alt24=3;
+            int LA24_0 = input.LA(1);
 
-            if ( (LA22_0==INT) ) {
-                int LA22_1 = input.LA(2);
+            if ( (LA24_0==INT) ) {
+                int LA24_1 = input.LA(2);
 
-                if ( (LA22_1==INT) ) {
-                    alt22=1;
+                if ( (LA24_1==INT) ) {
+                    alt24=1;
                 }
-                else if ( ((LA22_1>=UP && LA22_1<=IDENT)) ) {
-                    alt22=2;
+                else if ( ((LA24_1>=UP && LA24_1<=IDENT)) ) {
+                    alt24=2;
                 }
             }
-            switch (alt22) {
+            switch (alt24) {
                 case 1 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:389:25: (msb= INT lsb= INT )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:391:25: (msb= INT lsb= INT )
                     {
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:389:25: (msb= INT lsb= INT )
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:389:26: msb= INT lsb= INT
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:391:25: (msb= INT lsb= INT )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:391:26: msb= INT lsb= INT
                     {
-                    msb=(CommonTree)match(input,INT,FOLLOW_INT_in_netAssignment963); 
-                    lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_netAssignment967); 
+                    msb=(CommonTree)match(input,INT,FOLLOW_INT_in_netAssignment993); 
+                    lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_netAssignment997); 
 
                     }
 
@@ -1683,12 +1761,12 @@ public class PhdlWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:389:45: (index= INT )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:391:45: (index= INT )
                     {
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:389:45: (index= INT )
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:389:46: index= INT
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:391:45: (index= INT )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:391:46: index= INT
                     {
-                    index=(CommonTree)match(input,INT,FOLLOW_INT_in_netAssignment975); 
+                    index=(CommonTree)match(input,INT,FOLLOW_INT_in_netAssignment1005); 
 
                     }
 
@@ -1708,22 +1786,22 @@ public class PhdlWalker extends TreeParser {
             			n.setIndex(index!=null?Integer.parseInt((index!=null?index.getText():null)):-1);
             			n.setFileName(input.getSourceName());
             		
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:403:3: ( concatenateNet[n] )*
-            loop23:
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:405:3: ( concatenateNet[n] )*
+            loop25:
             do {
-                int alt23=2;
-                int LA23_0 = input.LA(1);
+                int alt25=2;
+                int LA25_0 = input.LA(1);
 
-                if ( (LA23_0==IDENT) ) {
-                    alt23=1;
+                if ( (LA25_0==IDENT) ) {
+                    alt25=1;
                 }
 
 
-                switch (alt23) {
+                switch (alt25) {
             	case 1 :
-            	    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:403:3: concatenateNet[n]
+            	    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:405:3: concatenateNet[n]
             	    {
-            	    pushFollow(FOLLOW_concatenateNet_in_netAssignment995);
+            	    pushFollow(FOLLOW_concatenateNet_in_netAssignment1025);
             	    concatenateNet(n);
 
             	    state._fsp--;
@@ -1733,7 +1811,7 @@ public class PhdlWalker extends TreeParser {
             	    break;
 
             	default :
-            	    break loop23;
+            	    break loop25;
                 }
             } while (true);
 
@@ -1758,7 +1836,7 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "concatenateNet"
-    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:410:1: concatenateNet[NetAssignment na] : (name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? ) ;
+    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:412:1: concatenateNet[NetAssignment na] : (name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? ) ;
     public final void concatenateNet(NetAssignment na) throws RecognitionException {
         CommonTree name=null;
         CommonTree msb=null;
@@ -1766,36 +1844,36 @@ public class PhdlWalker extends TreeParser {
         CommonTree index=null;
 
         try {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:411:2: ( (name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? ) )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:411:4: (name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:413:2: ( (name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? ) )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:413:4: (name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? )
             {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:411:4: (name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:411:5: name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )?
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:413:4: (name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:413:5: name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )?
             {
-            name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_concatenateNet1021); 
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:411:16: ( (msb= INT lsb= INT ) | (index= INT ) )?
-            int alt24=3;
-            int LA24_0 = input.LA(1);
+            name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_concatenateNet1051); 
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:413:16: ( (msb= INT lsb= INT ) | (index= INT ) )?
+            int alt26=3;
+            int LA26_0 = input.LA(1);
 
-            if ( (LA24_0==INT) ) {
-                int LA24_1 = input.LA(2);
+            if ( (LA26_0==INT) ) {
+                int LA26_1 = input.LA(2);
 
-                if ( (LA24_1==INT) ) {
-                    alt24=1;
+                if ( (LA26_1==INT) ) {
+                    alt26=1;
                 }
-                else if ( ((LA24_1>=UP && LA24_1<=IDENT)) ) {
-                    alt24=2;
+                else if ( ((LA26_1>=UP && LA26_1<=IDENT)) ) {
+                    alt26=2;
                 }
             }
-            switch (alt24) {
+            switch (alt26) {
                 case 1 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:411:17: (msb= INT lsb= INT )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:413:17: (msb= INT lsb= INT )
                     {
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:411:17: (msb= INT lsb= INT )
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:411:18: msb= INT lsb= INT
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:413:17: (msb= INT lsb= INT )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:413:18: msb= INT lsb= INT
                     {
-                    msb=(CommonTree)match(input,INT,FOLLOW_INT_in_concatenateNet1027); 
-                    lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_concatenateNet1031); 
+                    msb=(CommonTree)match(input,INT,FOLLOW_INT_in_concatenateNet1057); 
+                    lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_concatenateNet1061); 
 
                     }
 
@@ -1803,12 +1881,12 @@ public class PhdlWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:411:37: (index= INT )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:413:37: (index= INT )
                     {
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:411:37: (index= INT )
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:411:38: index= INT
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:413:37: (index= INT )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:413:38: index= INT
                     {
-                    index=(CommonTree)match(input,INT,FOLLOW_INT_in_concatenateNet1039); 
+                    index=(CommonTree)match(input,INT,FOLLOW_INT_in_concatenateNet1069); 
 
                     }
 
@@ -1848,44 +1926,47 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "portAssignment"
-    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:425:1: portAssignment[SubDesignDeclaration s] : ^( EQUALS name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? ( concatenatePort[p] )* ) ;
+    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:427:1: portAssignment[SubDesignDeclaration s] : ^( EQUALS name= IDENT ( (instMsb= INT instLsb= INT ) | (instIndex= INT ) )? ( COLON ( (msb= INT lsb= INT ) | (index= INT ) ) )? ( concatenatePort[p] )* ) ;
     public final void portAssignment(SubDesignDeclaration s) throws RecognitionException {
         CommonTree name=null;
+        CommonTree instMsb=null;
+        CommonTree instLsb=null;
+        CommonTree instIndex=null;
         CommonTree msb=null;
         CommonTree lsb=null;
         CommonTree index=null;
 
         try {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:426:2: ( ^( EQUALS name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? ( concatenatePort[p] )* ) )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:426:4: ^( EQUALS name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? ( concatenatePort[p] )* )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:428:2: ( ^( EQUALS name= IDENT ( (instMsb= INT instLsb= INT ) | (instIndex= INT ) )? ( COLON ( (msb= INT lsb= INT ) | (index= INT ) ) )? ( concatenatePort[p] )* ) )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:428:4: ^( EQUALS name= IDENT ( (instMsb= INT instLsb= INT ) | (instIndex= INT ) )? ( COLON ( (msb= INT lsb= INT ) | (index= INT ) ) )? ( concatenatePort[p] )* )
             {
-            match(input,EQUALS,FOLLOW_EQUALS_in_portAssignment1061); 
+            match(input,EQUALS,FOLLOW_EQUALS_in_portAssignment1091); 
 
             match(input, Token.DOWN, null); 
-            name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_portAssignment1065); 
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:426:24: ( (msb= INT lsb= INT ) | (index= INT ) )?
-            int alt25=3;
-            int LA25_0 = input.LA(1);
+            name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_portAssignment1095); 
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:429:3: ( (instMsb= INT instLsb= INT ) | (instIndex= INT ) )?
+            int alt27=3;
+            int LA27_0 = input.LA(1);
 
-            if ( (LA25_0==INT) ) {
-                int LA25_1 = input.LA(2);
+            if ( (LA27_0==INT) ) {
+                int LA27_1 = input.LA(2);
 
-                if ( (LA25_1==INT) ) {
-                    alt25=1;
+                if ( (LA27_1==INT) ) {
+                    alt27=1;
                 }
-                else if ( ((LA25_1>=UP && LA25_1<=IDENT)) ) {
-                    alt25=2;
+                else if ( ((LA27_1>=UP && LA27_1<=IDENT)||LA27_1==COLON) ) {
+                    alt27=2;
                 }
             }
-            switch (alt25) {
+            switch (alt27) {
                 case 1 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:426:25: (msb= INT lsb= INT )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:429:4: (instMsb= INT instLsb= INT )
                     {
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:426:25: (msb= INT lsb= INT )
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:426:26: msb= INT lsb= INT
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:429:4: (instMsb= INT instLsb= INT )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:429:5: instMsb= INT instLsb= INT
                     {
-                    msb=(CommonTree)match(input,INT,FOLLOW_INT_in_portAssignment1071); 
-                    lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_portAssignment1075); 
+                    instMsb=(CommonTree)match(input,INT,FOLLOW_INT_in_portAssignment1104); 
+                    instLsb=(CommonTree)match(input,INT,FOLLOW_INT_in_portAssignment1108); 
 
                     }
 
@@ -1893,12 +1974,87 @@ public class PhdlWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:426:45: (index= INT )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:429:32: (instIndex= INT )
                     {
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:426:45: (index= INT )
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:426:46: index= INT
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:429:32: (instIndex= INT )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:429:33: instIndex= INT
                     {
-                    index=(CommonTree)match(input,INT,FOLLOW_INT_in_portAssignment1083); 
+                    instIndex=(CommonTree)match(input,INT,FOLLOW_INT_in_portAssignment1116); 
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:430:3: ( COLON ( (msb= INT lsb= INT ) | (index= INT ) ) )?
+            int alt29=2;
+            int LA29_0 = input.LA(1);
+
+            if ( (LA29_0==COLON) ) {
+                alt29=1;
+            }
+            switch (alt29) {
+                case 1 :
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:430:4: COLON ( (msb= INT lsb= INT ) | (index= INT ) )
+                    {
+                    match(input,COLON,FOLLOW_COLON_in_portAssignment1124); 
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:430:10: ( (msb= INT lsb= INT ) | (index= INT ) )
+                    int alt28=2;
+                    int LA28_0 = input.LA(1);
+
+                    if ( (LA28_0==INT) ) {
+                        int LA28_1 = input.LA(2);
+
+                        if ( (LA28_1==INT) ) {
+                            alt28=1;
+                        }
+                        else if ( ((LA28_1>=UP && LA28_1<=IDENT)) ) {
+                            alt28=2;
+                        }
+                        else {
+                            NoViableAltException nvae =
+                                new NoViableAltException("", 28, 1, input);
+
+                            throw nvae;
+                        }
+                    }
+                    else {
+                        NoViableAltException nvae =
+                            new NoViableAltException("", 28, 0, input);
+
+                        throw nvae;
+                    }
+                    switch (alt28) {
+                        case 1 :
+                            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:430:11: (msb= INT lsb= INT )
+                            {
+                            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:430:11: (msb= INT lsb= INT )
+                            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:430:12: msb= INT lsb= INT
+                            {
+                            msb=(CommonTree)match(input,INT,FOLLOW_INT_in_portAssignment1130); 
+                            lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_portAssignment1134); 
+
+                            }
+
+
+                            }
+                            break;
+                        case 2 :
+                            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:430:31: (index= INT )
+                            {
+                            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:430:31: (index= INT )
+                            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:430:32: index= INT
+                            {
+                            index=(CommonTree)match(input,INT,FOLLOW_INT_in_portAssignment1142); 
+
+                            }
+
+
+                            }
+                            break;
 
                     }
 
@@ -1913,27 +2069,30 @@ public class PhdlWalker extends TreeParser {
             			p.setName((name!=null?name.getText():null));
             			p.setLine((name!=null?name.getLine():0));
             			p.setPos((name!=null?name.getCharPositionInLine():0));
+            			p.setInstMsb(instMsb!=null?Integer.parseInt((instMsb!=null?instMsb.getText():null)):-1);
+            			p.setInstLsb(instLsb!=null?Integer.parseInt((instLsb!=null?instLsb.getText():null)):-1);
+            			p.setInstIndex(instIndex!=null?Integer.parseInt((instIndex!=null?instIndex.getText():null)):-1);
             			p.setMsb(msb!=null?Integer.parseInt((msb!=null?msb.getText():null)):-1);
             			p.setLsb(lsb!=null?Integer.parseInt((lsb!=null?lsb.getText():null)):-1);
             			p.setIndex(index!=null?Integer.parseInt((index!=null?index.getText():null)):-1);
             			p.setFileName(input.getSourceName());
             		
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:440:3: ( concatenatePort[p] )*
-            loop26:
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:447:3: ( concatenatePort[p] )*
+            loop30:
             do {
-                int alt26=2;
-                int LA26_0 = input.LA(1);
+                int alt30=2;
+                int LA30_0 = input.LA(1);
 
-                if ( (LA26_0==IDENT) ) {
-                    alt26=1;
+                if ( (LA30_0==IDENT) ) {
+                    alt30=1;
                 }
 
 
-                switch (alt26) {
+                switch (alt30) {
             	case 1 :
-            	    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:440:3: concatenatePort[p]
+            	    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:447:3: concatenatePort[p]
             	    {
-            	    pushFollow(FOLLOW_concatenatePort_in_portAssignment1101);
+            	    pushFollow(FOLLOW_concatenatePort_in_portAssignment1161);
             	    concatenatePort(p);
 
             	    state._fsp--;
@@ -1943,7 +2102,7 @@ public class PhdlWalker extends TreeParser {
             	    break;
 
             	default :
-            	    break loop26;
+            	    break loop30;
                 }
             } while (true);
 
@@ -1968,7 +2127,7 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "concatenatePort"
-    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:447:1: concatenatePort[PortAssignment pa] : (name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? ) ;
+    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:454:1: concatenatePort[PortAssignment pa] : (name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? ) ;
     public final void concatenatePort(PortAssignment pa) throws RecognitionException {
         CommonTree name=null;
         CommonTree msb=null;
@@ -1976,36 +2135,36 @@ public class PhdlWalker extends TreeParser {
         CommonTree index=null;
 
         try {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:448:2: ( (name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? ) )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:448:4: (name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:455:2: ( (name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? ) )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:455:4: (name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? )
             {
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:448:4: (name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? )
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:448:5: name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )?
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:455:4: (name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )? )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:455:5: name= IDENT ( (msb= INT lsb= INT ) | (index= INT ) )?
             {
-            name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_concatenatePort1126); 
-            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:448:16: ( (msb= INT lsb= INT ) | (index= INT ) )?
-            int alt27=3;
-            int LA27_0 = input.LA(1);
+            name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_concatenatePort1186); 
+            // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:455:16: ( (msb= INT lsb= INT ) | (index= INT ) )?
+            int alt31=3;
+            int LA31_0 = input.LA(1);
 
-            if ( (LA27_0==INT) ) {
-                int LA27_1 = input.LA(2);
+            if ( (LA31_0==INT) ) {
+                int LA31_1 = input.LA(2);
 
-                if ( (LA27_1==INT) ) {
-                    alt27=1;
+                if ( (LA31_1==INT) ) {
+                    alt31=1;
                 }
-                else if ( ((LA27_1>=UP && LA27_1<=IDENT)) ) {
-                    alt27=2;
+                else if ( ((LA31_1>=UP && LA31_1<=IDENT)) ) {
+                    alt31=2;
                 }
             }
-            switch (alt27) {
+            switch (alt31) {
                 case 1 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:448:17: (msb= INT lsb= INT )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:455:17: (msb= INT lsb= INT )
                     {
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:448:17: (msb= INT lsb= INT )
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:448:18: msb= INT lsb= INT
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:455:17: (msb= INT lsb= INT )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:455:18: msb= INT lsb= INT
                     {
-                    msb=(CommonTree)match(input,INT,FOLLOW_INT_in_concatenatePort1132); 
-                    lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_concatenatePort1136); 
+                    msb=(CommonTree)match(input,INT,FOLLOW_INT_in_concatenatePort1192); 
+                    lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_concatenatePort1196); 
 
                     }
 
@@ -2013,12 +2172,12 @@ public class PhdlWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:448:37: (index= INT )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:455:37: (index= INT )
                     {
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:448:37: (index= INT )
-                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:448:38: index= INT
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:455:37: (index= INT )
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:455:38: index= INT
                     {
-                    index=(CommonTree)match(input,INT,FOLLOW_INT_in_concatenatePort1144); 
+                    index=(CommonTree)match(input,INT,FOLLOW_INT_in_concatenatePort1204); 
 
                     }
 
@@ -2136,40 +2295,48 @@ public class PhdlWalker extends TreeParser {
     public static final BitSet FOLLOW_INT_in_attributeAssignment751 = new BitSet(new long[]{0x0000000000000080L});
     public static final BitSet FOLLOW_STRING_LITERAL_in_attributeAssignment758 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_EQUALS_in_pinAssignment787 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_IDENT_in_pinAssignment791 = new BitSet(new long[]{0x0000000000000418L});
-    public static final BitSet FOLLOW_INT_in_pinAssignment797 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_INT_in_pinAssignment801 = new BitSet(new long[]{0x0000000000000018L});
-    public static final BitSet FOLLOW_INT_in_pinAssignment809 = new BitSet(new long[]{0x0000000000000018L});
-    public static final BitSet FOLLOW_concatenatePin_in_pinAssignment827 = new BitSet(new long[]{0x0000000000000018L});
-    public static final BitSet FOLLOW_IDENT_in_concatenatePin853 = new BitSet(new long[]{0x0000000000000402L});
-    public static final BitSet FOLLOW_INT_in_concatenatePin859 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_INT_in_concatenatePin863 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INT_in_concatenatePin871 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_subDesign893 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_IDENT_in_subDesign897 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_IDENT_in_subDesign901 = new BitSet(new long[]{0x0000000000000448L});
-    public static final BitSet FOLLOW_INT_in_subDesign906 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_INT_in_subDesign910 = new BitSet(new long[]{0x0000000000000048L});
-    public static final BitSet FOLLOW_portAssignment_in_subDesign927 = new BitSet(new long[]{0x0000000000000048L});
-    public static final BitSet FOLLOW_EQUALS_in_netAssignment953 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_IDENT_in_netAssignment957 = new BitSet(new long[]{0x0000000000000418L});
-    public static final BitSet FOLLOW_INT_in_netAssignment963 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_INT_in_netAssignment967 = new BitSet(new long[]{0x0000000000000018L});
-    public static final BitSet FOLLOW_INT_in_netAssignment975 = new BitSet(new long[]{0x0000000000000018L});
-    public static final BitSet FOLLOW_concatenateNet_in_netAssignment995 = new BitSet(new long[]{0x0000000000000018L});
-    public static final BitSet FOLLOW_IDENT_in_concatenateNet1021 = new BitSet(new long[]{0x0000000000000402L});
-    public static final BitSet FOLLOW_INT_in_concatenateNet1027 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_INT_in_concatenateNet1031 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INT_in_concatenateNet1039 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_EQUALS_in_portAssignment1061 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_IDENT_in_portAssignment1065 = new BitSet(new long[]{0x0000000000000418L});
-    public static final BitSet FOLLOW_INT_in_portAssignment1071 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_INT_in_portAssignment1075 = new BitSet(new long[]{0x0000000000000018L});
-    public static final BitSet FOLLOW_INT_in_portAssignment1083 = new BitSet(new long[]{0x0000000000000018L});
-    public static final BitSet FOLLOW_concatenatePort_in_portAssignment1101 = new BitSet(new long[]{0x0000000000000018L});
-    public static final BitSet FOLLOW_IDENT_in_concatenatePort1126 = new BitSet(new long[]{0x0000000000000402L});
-    public static final BitSet FOLLOW_INT_in_concatenatePort1132 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_INT_in_concatenatePort1136 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INT_in_concatenatePort1144 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENT_in_pinAssignment791 = new BitSet(new long[]{0x0000000000000618L});
+    public static final BitSet FOLLOW_INT_in_pinAssignment800 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_INT_in_pinAssignment804 = new BitSet(new long[]{0x0000000000000218L});
+    public static final BitSet FOLLOW_INT_in_pinAssignment812 = new BitSet(new long[]{0x0000000000000218L});
+    public static final BitSet FOLLOW_COLON_in_pinAssignment820 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_INT_in_pinAssignment826 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_INT_in_pinAssignment830 = new BitSet(new long[]{0x0000000000000018L});
+    public static final BitSet FOLLOW_INT_in_pinAssignment838 = new BitSet(new long[]{0x0000000000000018L});
+    public static final BitSet FOLLOW_concatenatePin_in_pinAssignment857 = new BitSet(new long[]{0x0000000000000018L});
+    public static final BitSet FOLLOW_IDENT_in_concatenatePin883 = new BitSet(new long[]{0x0000000000000402L});
+    public static final BitSet FOLLOW_INT_in_concatenatePin889 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_INT_in_concatenatePin893 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INT_in_concatenatePin901 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_subDesign923 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_IDENT_in_subDesign927 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_IDENT_in_subDesign931 = new BitSet(new long[]{0x0000000000000448L});
+    public static final BitSet FOLLOW_INT_in_subDesign936 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_INT_in_subDesign940 = new BitSet(new long[]{0x0000000000000048L});
+    public static final BitSet FOLLOW_portAssignment_in_subDesign957 = new BitSet(new long[]{0x0000000000000048L});
+    public static final BitSet FOLLOW_EQUALS_in_netAssignment983 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_IDENT_in_netAssignment987 = new BitSet(new long[]{0x0000000000000418L});
+    public static final BitSet FOLLOW_INT_in_netAssignment993 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_INT_in_netAssignment997 = new BitSet(new long[]{0x0000000000000018L});
+    public static final BitSet FOLLOW_INT_in_netAssignment1005 = new BitSet(new long[]{0x0000000000000018L});
+    public static final BitSet FOLLOW_concatenateNet_in_netAssignment1025 = new BitSet(new long[]{0x0000000000000018L});
+    public static final BitSet FOLLOW_IDENT_in_concatenateNet1051 = new BitSet(new long[]{0x0000000000000402L});
+    public static final BitSet FOLLOW_INT_in_concatenateNet1057 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_INT_in_concatenateNet1061 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INT_in_concatenateNet1069 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_EQUALS_in_portAssignment1091 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_IDENT_in_portAssignment1095 = new BitSet(new long[]{0x0000000000000618L});
+    public static final BitSet FOLLOW_INT_in_portAssignment1104 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_INT_in_portAssignment1108 = new BitSet(new long[]{0x0000000000000218L});
+    public static final BitSet FOLLOW_INT_in_portAssignment1116 = new BitSet(new long[]{0x0000000000000218L});
+    public static final BitSet FOLLOW_COLON_in_portAssignment1124 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_INT_in_portAssignment1130 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_INT_in_portAssignment1134 = new BitSet(new long[]{0x0000000000000018L});
+    public static final BitSet FOLLOW_INT_in_portAssignment1142 = new BitSet(new long[]{0x0000000000000018L});
+    public static final BitSet FOLLOW_concatenatePort_in_portAssignment1161 = new BitSet(new long[]{0x0000000000000018L});
+    public static final BitSet FOLLOW_IDENT_in_concatenatePort1186 = new BitSet(new long[]{0x0000000000000402L});
+    public static final BitSet FOLLOW_INT_in_concatenatePort1192 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_INT_in_concatenatePort1196 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INT_in_concatenatePort1204 = new BitSet(new long[]{0x0000000000000002L});
 
 }
