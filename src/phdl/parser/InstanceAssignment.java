@@ -22,6 +22,7 @@ public class InstanceAssignment extends ConcatenationAssignment {
 	protected int instMsb = -1;
 	protected int instLsb = -1;
 	protected int instIndex = -1;
+	protected String instIndices = null;
 
 	public int getInstMsb() {
 		return instMsb;
@@ -45,6 +46,14 @@ public class InstanceAssignment extends ConcatenationAssignment {
 
 	public void setInstIndex(int instIndex) {
 		this.instIndex = instIndex;
+	}
+
+	public String getInstIndices() {
+		return instIndices;
+	}
+
+	public void setInstIndices(String instIndices) {
+		this.instIndices = instIndices;
 	}
 
 	/**

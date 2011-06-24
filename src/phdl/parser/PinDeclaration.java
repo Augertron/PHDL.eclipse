@@ -164,7 +164,7 @@ public class PinDeclaration extends ArrayDeclaration {
 	 */
 	public boolean pinMap() {
 		// split pin list on whitespace, commas and semicolons
-		String[] pinNumbers = pinList.split("[\\s,;]");
+		String[] pinNumbers = pinList.split("[;,\\s]");
 
 		// add pin numbers to a set to check for duplicates
 		for (int i = 0; i < pinNumbers.length; i++) {

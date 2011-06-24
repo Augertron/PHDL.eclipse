@@ -1,0 +1,78 @@
+digraph {
+
+	ordering=out;
+	ranksep=.4;
+	bgcolor="lightgrey"; node [shape=box, fixedsize=false, fontsize=12, fontname="Helvetica-bold", fontcolor="blue"
+		width=.25, height=.25, color="black", fillcolor="white", style="filled, solid, bold"];
+	edge [arrowsize=.5, color="black", style="bold"]
+
+  n0 [label=""];
+  n1 [label="design"];
+  n1 [label="design"];
+  n2 [label="mydesign"];
+  n3 [label="device"];
+  n3 [label="device"];
+  n4 [label="mydevice"];
+  n5 [label="="];
+  n5 [label="="];
+  n6 [label="refprefix"];
+  n7 [label="M"];
+  n8 [label="="];
+  n8 [label="="];
+  n9 [label="name"];
+  n10 [label="mywrappi...pingname"];
+  n11 [label="="];
+  n11 [label="="];
+  n12 [label="value"];
+  n13 [label=""];
+  n14 [label="begin"];
+  n15 [label="pin"];
+  n15 [label="pin"];
+  n16 [label="1"];
+  n17 [label=":"];
+  n18 [label="5"];
+  n19 [label="a"];
+  n20 [label="1,2,3,4,5"];
+  n21 [label="begin"];
+  n22 [label="inst"];
+  n22 [label="inst"];
+  n23 [label="mydev"];
+  n24 [label="mydevice"];
+  n25 [label="begin"];
+  n26 [label="="];
+  n26 [label="="];
+  n27 [label="a"];
+  n28 [label="2,4,5"];
+  n29 [label="<EOF>"];
+
+  n0 -> n1 // "" -> "design"
+  n1 -> n2 // "design" -> "mydesign"
+  n1 -> n3 // "design" -> "device"
+  n3 -> n4 // "device" -> "mydevice"
+  n3 -> n5 // "device" -> "="
+  n5 -> n6 // "=" -> "refprefix"
+  n5 -> n7 // "=" -> "M"
+  n3 -> n8 // "device" -> "="
+  n8 -> n9 // "=" -> "name"
+  n8 -> n10 // "=" -> "mywrappi...pingname"
+  n3 -> n11 // "device" -> "="
+  n11 -> n12 // "=" -> "value"
+  n11 -> n13 // "=" -> ""
+  n3 -> n14 // "device" -> "begin"
+  n3 -> n15 // "device" -> "pin"
+  n15 -> n16 // "pin" -> "1"
+  n15 -> n17 // "pin" -> ":"
+  n15 -> n18 // "pin" -> "5"
+  n15 -> n19 // "pin" -> "a"
+  n15 -> n20 // "pin" -> "1,2,3,4,5"
+  n1 -> n21 // "design" -> "begin"
+  n1 -> n22 // "design" -> "inst"
+  n22 -> n23 // "inst" -> "mydev"
+  n22 -> n24 // "inst" -> "mydevice"
+  n22 -> n25 // "inst" -> "begin"
+  n22 -> n26 // "inst" -> "="
+  n26 -> n27 // "=" -> "a"
+  n26 -> n28 // "=" -> "2,4,5"
+  n0 -> n29 // "" -> "<EOF>"
+
+}
