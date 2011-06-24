@@ -322,7 +322,9 @@ attributeAssignment[InstanceDeclaration i]
 /**	Looks for an "=" sign as the parent of a subtree.  
  */	
 pinAssignment[InstanceDeclaration i]
-	:	^(EQUALS name=IDENT ((msb=INT lsb=INT) | (index=INT))?
+	:	^(EQUALS name=IDENT 
+		((instMsb=INT instLsb=INT) | (instIndex=INT))?
+		(COLON ((msb=INT lsb=INT) | (index=INT)))?
 	
 		// make a new pin assignment
 		{
@@ -330,6 +332,9 @@ pinAssignment[InstanceDeclaration i]
 			p.setName($name.text);
 			p.setLine($name.line);
 			p.setPos($name.pos);
+			p.setInstMsb($instMsb!=null?Integer.parseInt($instMsb.text):-1);
+			p.setInstLsb($instLsb!=null?Integer.parseInt($instLsb.text):-1);
+			p.setInstIndex($instIndex!=null?Integer.parseInt($instIndex.text):-1);
 			p.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
 			p.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
 			p.setIndex($index!=null?Integer.parseInt($index.text):-1);
@@ -420,7 +425,9 @@ concatenateNet[NetAssignment na]
 	;
 	
 portAssignment[SubDesignDeclaration s]
-	:	^(EQUALS name=IDENT ((msb=INT lsb=INT) | (index=INT))?
+	:	^(EQUALS name=IDENT 
+		((instMsb=INT instLsb=INT) | (instIndex=INT))?
+		(COLON ((msb=INT lsb=INT) | (index=INT)))?
 	
 		// make a new port assignment
 		{
@@ -428,6 +435,9 @@ portAssignment[SubDesignDeclaration s]
 			p.setName($name.text);
 			p.setLine($name.line);
 			p.setPos($name.pos);
+			p.setInstMsb($instMsb!=null?Integer.parseInt($instMsb.text):-1);
+			p.setInstLsb($instLsb!=null?Integer.parseInt($instLsb.text):-1);
+			p.setInstIndex($instIndex!=null?Integer.parseInt($instIndex.text):-1);
 			p.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
 			p.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
 			p.setIndex($index!=null?Integer.parseInt($index.text):-1);

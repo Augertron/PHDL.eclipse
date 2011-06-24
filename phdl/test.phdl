@@ -56,9 +56,9 @@ begin
 		refDes[1:1] = "R2";
 	begin
 		// pin assignments
-		a of [2:1] = mynet1(0) & mynet2(0);
-		a of (0) = mynet1(0);
-		b of (0) = open;
+		a[2:1] = mynet1(0) & mynet2(0);
+		a(0) = mynet1(0);
+		b(0) = open;
 	end;
 	
 	inst resArray : resistor[15:7] is
@@ -71,12 +71,6 @@ begin
 		addr = addr;
 		data = data;
 	end;
-	
-	inst myOpamp : opamp_dual[1:0] is
-		
-	begin
-		+input[1:2] of [1:0] = ground;
-	end;
 
 	// a sub-design (array) declaration
 	sub mySubDesign2 : myDesign3[3:0] is
@@ -86,6 +80,6 @@ begin
 	
 	// a net assignment
 	testnet1[1:2] = open;
-	testnet1[7:0] = myNet1[1:0] & myNet1[3:2] & myNet2[1:0] & myNet2[3:2];
+	testnet1[7:0] = myNet1[1:0] & myNet1[3:2] & myNet2[1:0] & myNet2(2);
 	
 end;
