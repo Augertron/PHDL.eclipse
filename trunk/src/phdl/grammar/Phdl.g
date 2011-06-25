@@ -88,7 +88,7 @@ designDecl
 	;
 
 portDecl
-	:	'port'! type^ width? IDENT SEMICOLON!
+	:   type^ array? IDENT SEMICOLON!
 	;
 
 /** A device declaration contains information about a deviced used in the design.  The device name is 
@@ -111,9 +111,13 @@ attributeDecl
 	
 pinDecl
 	:	//promote the type to the root of the subtree, and ignore the equals and semicolon
-		type^ width? IDENT EQUALS! NUMBER_LIST SEMICOLON!
+		type^ array? IDENT EQUALS! NUMBER_LIST SEMICOLON!
 	;
-	
+
+/**
+ * There are a few types associated with pin and port declarations.  If no types in the design
+ * are preferred, use the "pin" type for everything.
+ */	
 type
 	:	'pin'
 	|	'in'
@@ -125,30 +129,36 @@ type
 	|	'open'
 	;
 
-/** A net declaration contains information about a net used in the design.  Nets are declared with the
- * "net" keyword, followed by an optional width, followed by a comma separated list of net names. (Nets
+/** 
+ * A net declaration contains information about a net used in the design.  Nets are declared with the
+ * "net" keyword, followed by an optional array, followed by a comma separated list of net names. (Nets
  * may be declared in quantity using this notation.)  Following the comma separated list, an optional 
  * comma separated list of net attributes may be appended using the colon separator.  Finally the net 
  * declaration is terminated in a semicolon.
  */	
 netDecl
-	:	'net'^ (width)? (IDENT COMMA!)* IDENT (COLON (IDENT COMMA!)* IDENT)? SEMICOLON!
+	:	'net'^ (array)? (IDENT COMMA!)* IDENT (COLON (IDENT COMMA!)* IDENT)? SEMICOLON!
 	;
 
-/** A width is an array with MSB and LSB integers separated by a colon inside brackets
+/** 
+ * A array is MSB and LSB integers separated by a colon inside brackets
  */	
-width
+array
 	:	'['! INT ':' INT ']'!
 	;
 
-/** An index is an integer inside of parentheses
+/** 
+ * An index is an integer inside of parentheses
  */		
-slice
+index
 	:	'('! INT ')'!
 	;
-	
-specifier
-	:	(width | slice | NUMBER_LIST)
+
+/**
+ * A slice can be an array in brackets, index in parentheses or number list in braces.
+ */
+slice
+	:	(array | index | NUMBER_LIST)
 	;
 	
 instances
@@ -156,7 +166,7 @@ instances
 	;
 	
 deviceInstance
-	:	'inst'^ IDENT ':'! IDENT (width)? 'is'!
+	:	'inst'^ IDENT ':'! IDENT (array)? 'is'!
 		attributeAssignment*
 		'begin'
 		pinAssignment*
@@ -164,29 +174,35 @@ deviceInstance
 	;
 	
 subDesignInstance
-	:	'sub'^ IDENT ':'! IDENT (width)? 'is'!
+	:	'sub'^ IDENT ':'! IDENT (array)? 'is'!
+		subAttributeAssignment*
+		'begin'
 		portAssignment*
 		'end'! ';'!
 	;
 	
+subAttributeAssignment
+	:	IDENT^ PERIOD! IDENT slice? EQUALS! STRING_LITERAL SEMICOLON!
+	;
+	
 attributeAssignment
-	:	IDENT specifier? EQUALS^ STRING_LITERAL SEMICOLON!
+	:	IDENT slice? EQUALS^ STRING_LITERAL SEMICOLON!
 	;
 	
 pinAssignment
-	:	IDENT (specifier specifier?)? EQUALS^ concatenation SEMICOLON!
+	:	IDENT (slice slice?)? EQUALS^ concatenation SEMICOLON!
 	;
 	
 portAssignment
-	:	IDENT (specifier specifier?)? EQUALS^ concatenation SEMICOLON!
+	:	IDENT (slice slice?)? EQUALS^ concatenation SEMICOLON!
 	;
 	
 netAssignment
-	:	IDENT specifier? EQUALS^ concatenation SEMICOLON!
+	:	IDENT slice? EQUALS^ concatenation SEMICOLON!
 	;
 	
 concatenation
-	:	((IDENT specifier?) ('&'! IDENT specifier?)* ) | 'open'!
+	:	((IDENT slice?) ('&'! IDENT slice?)* ) | 'open'!
 	;
 
 	
@@ -202,6 +218,7 @@ fragment DIGIT : '0'..'9' ;
 SEMICOLON: ';';
 COLON: ':';
 COMMA: ',';
+PERIOD: '.';
 EQUALS: '=';
 LBRACKET: '[';
 RBRACKET: ']';

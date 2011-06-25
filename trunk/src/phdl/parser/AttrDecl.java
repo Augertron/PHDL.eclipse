@@ -23,7 +23,7 @@ package phdl.parser;
  * 
  * @author Richard Black and Brad Riching
  */
-public class AttributeDeclaration extends Declarable {
+public class AttrDecl extends Declarable {
 
 	/**
 	 * The attribute's value
@@ -33,7 +33,7 @@ public class AttributeDeclaration extends Declarable {
 	/**
 	 * Default constructor
 	 */
-	public AttributeDeclaration() {
+	public AttrDecl() {
 		super();
 	}
 
@@ -69,7 +69,7 @@ public class AttributeDeclaration extends Declarable {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return name.equals(((AttributeDeclaration) o).getName());
+		return name.equals(((AttrDecl) o).getName());
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class AttributeDeclaration extends Declarable {
 	 */
 	@Override
 	public String toString() {
-		return "AttrDecl " + getLineString() + " : " + name + " = " + value
+		return "AttrDecl " + getLocation() + " : " + name + " = " + value
 				+ "\n";
 	}
 

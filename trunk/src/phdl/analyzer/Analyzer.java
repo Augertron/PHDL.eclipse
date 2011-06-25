@@ -17,19 +17,20 @@
 
 package phdl.analyzer;
 
-import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import phdl.PhdlComp;
-import phdl.parser.AttributeAssignment;
-import phdl.parser.AttributeDeclaration;
-import phdl.parser.DesignDeclaration;
-import phdl.parser.DeviceDeclaration;
-import phdl.parser.InstanceDeclaration;
+import phdl.parser.AttrAssign;
+import phdl.parser.AttrDecl;
+import phdl.parser.DesignDecl;
+import phdl.parser.DeviceDecl;
+import phdl.parser.InstDecl;
+import phdl.parser.NetDecl;
 import phdl.parser.Parsable;
-import phdl.parser.PinAssignment;
-import phdl.parser.PinDeclaration;
+import phdl.parser.PinAssign;
+import phdl.parser.PinDecl;
 
 public class Analyzer {
 
@@ -38,7 +39,7 @@ public class Analyzer {
 	 */
 	private Set<String> errors;
 	private Set<String> warnings;
-	private ArrayList<DesignDeclaration> designs;
+	private List<DesignDecl> designs;
 
 	private DesignHierarchy dh;
 	private Set<Device> devices;
@@ -67,9 +68,10 @@ public class Analyzer {
 	public void Analyze() {
 		for (DesignNode d : dh.getBFSNodes()) {
 
-			checkDeviceDecls(d.getDesignDeclaration());
-			checkInstanceDecls(d.getDesignDeclaration());
-			checkNetAssigns(d.getDesignDeclaration());
+			processDeviceDecls(d.getDesignDeclaration());
+			processNetDecls(d.getDesignDeclaration());
+			processInstDecls(d.getDesignDeclaration());
+			processNetAssigns(d.getDesignDeclaration());
 
 			// TODO if errors by this point, throw exception
 
@@ -87,61 +89,87 @@ public class Analyzer {
 
 	}
 
-	private void checkDeviceDecls(DesignDeclaration des) {
-		// obtain required attributes that all device declarations must have
-		String[] reqAttr = PhdlComp.reqAttr;
+	private void processDeviceDecls(DesignDecl des) {
+		// required attributes are stored in the compiler
+		String[] reqAttrs = PhdlComp.reqAttr;
 
-		for (DeviceDeclaration dev : des.getDeviceDecls()) {
-
-			// check that each required attribute is declared in each device
-			for (int i = 0; i < reqAttr.length; i++) {
-				if (dev.findAttrDecl(reqAttr[i]) == null) {
-					String message = "required " + reqAttr[i].toLowerCase()
+		for (DeviceDecl d : des.getDeviceDecls()) {
+			// check all required attributes are declared in each device
+			for (int i = 0; i < reqAttrs.length; i++) {
+				if (d.findAttrDecl(reqAttrs[i]) == null) {
+					String message = "required " + reqAttrs[i].toLowerCase()
 							+ " attribute missing";
-					addError(dev, message);
+					addError(d, message);
 				}
 			}
 
-			// check all attributes and pins are declared correctly
-			checkAttrDecls(dev);
-			checkPinDecls(dev);
-		}
-	}
+			// check all attributes are declared correctly
+			for (AttrDecl a : d.getAttributeDecls()) {
 
-	private void checkAttrDecls(DeviceDeclaration d) {
+				// check that attribute refPrefix value only contains letters
+				if (a.getName().equals("REFPREFIX")) {
+					if (!a.getValue().matches("^[A-Z]+$"))
+						addError(a, "invalid refprefix declaration");
+				}
+			}
 
-		for (AttributeDeclaration a : d.getAttributeDecls()) {
-
-			// check that attribute refPrefix value only contains letters
-			if (a.getName().equals("REFPREFIX")) {
-				if (!a.getValue().matches("^[A-Z]+$")) {
-					addError(a, "invalid refprefix declaration");
+			// check that the pins are declared correctly
+			for (PinDecl p : d.getPinDecls()) {
+				if (!p.makePinMap()) {
+					addError(p, "invalid pin number list");
 				}
 			}
 		}
 	}
 
-	private void checkPinDecls(DeviceDeclaration d) {
+	private void processNetDecls(DesignDecl d) {
+		// Set of net names to check for duplicates
+		Set<String> names = new HashSet<String>();
 
-		for (PinDeclaration p : d.getPinDecls()) {
-			if (!p.pinMap()) {
-				addError(p, "invalid pin number list");
+		for (NetDecl n : d.getNetDecls()) {
+			// check if the name by itself is in there already
+			for (String s : names) {
+				if (n.getName().equals(s))
+					addError(n, "duplicate net declaration");
+			}
+			// if an upArray, check each indexed version
+			if (n.isUpArray()) {
+				for (int i = n.getMsb(); i <= n.getLsb(); i++) {
+					if (!names.add(n.getName() + i))
+						addError(n, "duplicate net declaration");
+				}
+				// if a downArray, check each indexed version
+			} else if (n.isDownArray()) {
+				for (int i = n.getLsb(); i <= n.getMsb(); i++) {
+					if (!names.add(n.getName() + i))
+						addError(n, "duplicate net declaration");
+				}
+			} else {
+				// check if any of the names start with the current name
+				for (String s : names) {
+					if (s.startsWith(n.getName()))
+						addError(n, "duplicate net declaration");
+				}
+				// check
+				if (!names.add(n.getName()))
+					addError(n, "duplicate net declaration");
 			}
 		}
+
 	}
 
-	private void checkInstanceDecls(DesignDeclaration design) {
+	private void processInstDecls(DesignDecl design) {
 
 		// Set of names to check for duplicates
 		Set<String> names = new HashSet<String>();
 
-		for (InstanceDeclaration i : design.getInstanceDecls()) {
+		for (InstDecl i : design.getInstDecls()) {
 
-			DeviceDeclaration d = design.findDevDecl(i.getRefName());
+			DeviceDecl d = design.findDevDecl(i.getRefName());
 			if (d == null) {
 				addError(i, "instance references undeclared device");
 			} else {
-				// the instance references a device - check for duplicates
+				// check for duplicates
 				if (i.isUpArray()) {
 					for (int j = i.getMsb(); j <= i.getLsb(); j++) {
 						if (!names.add(i.getName() + j))
@@ -158,183 +186,109 @@ public class Analyzer {
 					}
 				}
 				// check all attributes and pins are assigned correctly
-				checkAttrAssigns(i, d);
-				checkPinAssigns(i, d);
+				processAttrAssigns(i, d);
+				processPinAssigns(i, d);
 			}
 		}
 	}
 
-	private void checkAttrAssigns(InstanceDeclaration i, DeviceDeclaration d) {
+	private void processAttrAssigns(InstDecl i, DeviceDecl d) {
 
-		// Sets of names and values to easily check for duplicates
+		// Sets of names and refDesValues to easily check for duplicates
 		Set<String> names = new HashSet<String>();
-		Set<String> values = new HashSet<String>();
+		Set<String> refDesValues = new HashSet<String>();
 
-		for (AttributeAssignment a : i.getAttributeAssignments()) {
+		for (AttrAssign a : i.getAttrAssigns()) {
 
-			// convert the array to an index if the array is "one-wide"
-			a.toIndex();
+			if (!a.makeSlices())
+				addError(a, "invalid attribute slice list");
 
 			if (a.getName().equals("REFDES")) {
 				// for all REFDES attribute assignments
-				if (!values.add(a.getValue()))
+				if (!refDesValues.add(a.getValue()))
 					addError(a, "duplicate refdes constraint");
 
 				if (a.getWidth() != 1)
-					addError(a, "invalid attribute width");
+					addError(a,
+							"refdes cannot be assigned to multiple instances");
 
-				// check refDes constraint starts with refPrefix
-				AttributeDeclaration ad = d.findAttrDecl("REFPREFIX");
+				AttrDecl ad = d.findAttrDecl("REFPREFIX");
 				if (ad != null) {
-					String r = ad.getValue();
-					if (!a.getValue().toUpperCase().startsWith(r.toUpperCase()))
-						addError(a, "refdes begins with incorrect refprefix");
+					String refDes = a.getValue();
+					String refPrefix = ad.getValue();
+					// check refDes constraint starts with refPrefix
+					if (!refDes.startsWith(refPrefix))
+						addError(a, "invalid refdes prefix");
+					refDes = refDes.substring(refPrefix.length(),
+							refDes.length());
+					// check refDes constraint ends with an integer after
+					// subtracting off the refPrefix
+					try {
+						Integer.parseInt(refDes);
+					} catch (NumberFormatException e) {
+						addError(a, "invalid refdes suffix");
+					}
 				}
 			} else {
 				// for all attribute assignments other than REFDES
 				// check if defined in the attribute declaration
 				if (d.findAttrDecl(a.getName()) == null)
-					addError(a, "instance references undeclared attribute");
+					addError(a, "attribute undeclared in referenced device");
 			}
 
-			// update global attributes with instance array information
-			if (i.isArrayed()) {
-				if (!a.isArrayed() && !a.isIndexed()) {
+			// check attribute slices against instance bounds
+			if (a.getSlices().size() != 0) {
+				for (Integer s : a.getSlices()) {
+					if (!i.isValidIndex(s))
+						addError(a, "slice reference outside instance bounds");
+					// add the attribute name to the set with slice appended
+					if (!names.add(a.getName() + s))
+						addError(a, "duplicate attribute assignment");
+				}
+			} else {
+				// the attribute applies across the entire instance width
+				if (i.isArrayed()) {
 					a.setMsb(i.getMsb());
 					a.setLsb(i.getLsb());
-				}
-			}
-
-			// check attribute array bounds or index against instance bounds
-			if (a.isArrayed()) {
-				if (!i.isValidArray(a.getMsb(), a.getLsb()))
-					addError(a, "attribute array outside instance bounds");
-			} else if (a.isIndexed()) {
-				if (!i.isValidIndex(a.getIndex()))
-					addError(a, "attribute index outside instance bounds");
-			}
-
-			// check for duplicate attribute assignments
-			if (i.isArrayed()) {
-				// inside arrayed instances
-				if (a.isUpArray()) {
-					for (int j = a.getMsb(); j <= a.getLsb(); j++) {
-						if (!names.add(a.getName() + j))
+					a.makeSlices();
+					for (Integer s : a.getSlices()) {
+						if (!names.add(a.getName() + s)) {
 							addError(a, "duplicate attribute assignment");
+						}
 					}
-				} else if (a.isDownArray()) {
-					for (int j = a.getMsb(); j >= a.getLsb(); j--) {
-						if (!names.add(a.getName() + j))
-							addError(a, "duplicate attribute assignment");
-					}
-				} else if (a.isIndexed()) {
-					if (!names.add(a.getName() + a.getIndex()))
-						addError(a, "duplicate attribute assignment");
 				} else {
 					if (!names.add(a.getName())) {
 						addError(a, "duplicate attribute assignment");
 					}
 				}
-			} else {
-				// inside non-arrayed instances
-				if (!names.add(a.getName())) {
-					addError(a, "duplicate attribute assignment");
-				}
 			}
 		}
 	}
 
-	private void checkPinAssigns(InstanceDeclaration i, DeviceDeclaration d) {
-		// check that all pins are present in the device declaration
+	private void processPinAssigns(InstDecl i, DeviceDecl d) {
 
+		// set of pin names to check for duplicates
 		Set<String> names = new HashSet<String>();
 
-		for (PinAssignment p : i.getPinAssignments()) {
+		for (PinAssign p : i.getPinAssigns()) {
 
-			p.toInstIndex();
-			p.toIndex();
+			if (!p.makeSlices())
+				addError(p, "invalid pin slice list");
 
+			// check that all assigned pins are declared
 			if (d.findPinDecl(p.getName()) == null) {
-				addError(p, "instance references undeclared pin");
+				addError(p, "pin undeclared in referenced device");
 			}
 
-			// update global pins with instance array information
-			if (i.isArrayed()) {
-				if (!p.isArrayed() && !p.isIndexed()) {
-					p.setMsb(i.getMsb());
-					p.setLsb(i.getLsb());
-				}
-			}
+			// TODO check for missing pin assignments
 
-			// check pin array bounds or index against instance bounds
-			if (p.isArrayed()) {
-				if (!i.isValidArray(p.getMsb(), p.getLsb()))
-					addError(p, "pin array outside instance bounds");
-			} else if (p.isIndexed()) {
-				if (!i.isValidIndex(p.getIndex()))
-					addError(p, "pin index outside instance bounds");
-			}
-
-			// // check for duplicate attribute assignments
-			// if (i.isArrayed()) {
-			// // inside arrayed instances
-			// if (p.isUpArray()) {
-			// for (int j = p.getMsb(); j <= p.getLsb(); j++) {
-			// if (!names.add(p.getName() + j))
-			// addError(p, "duplicate pin assignment");
-			// }
-			// } else if (p.isDownArray()) {
-			// for (int j = p.getMsb(); j >= p.getLsb(); j--) {
-			// if (!names.add(p.getName() + j))
-			// addError(p, "duplicate pin assignment");
-			// }
-			// } else if (p.isIndexed()) {
-			// if (!names.add(p.getName() + p.getIndex()))
-			// addError(p, "duplicate pin assignment");
-			// } else {
-			// if (!names.add(p.getName())) {
-			// addError(p, "duplicate pin assignment");
-			// }
-			// }
-			// } else {
-			// // inside non-arrayed instances
-			// if (!names.add(p.getName())) {
-			// addError(p, "duplicate pin assignment");
-			// }
-			// }
+			// TODO check all concatenations
 
 		}
 
-		// TODO check for missing pin assignments
-		// for (PinDeclaration p : d.getPinDecls()) {
-		// if (i.isArrayed()) {
-		// if (i.isUpArray()) {
-		// for (int j = p.getMsb(); j <= p.getLsb(); j++) {
-		// String pin = p.getName() + j;
-		// if (!names.contains(pin)) {
-		// String msg = "unassigned pin " + pin;
-		// addError(i, msg);
-		// }
-		// }
-		// } else if (i.isDownArray()) {
-		// for (int j = p.getMsb(); j >= p.getLsb(); j--) {
-		// String pin = p.getName() + j;
-		// if (!names.contains(pin)) {
-		// String msg = "unassigned pin " + pin;
-		// addError(i, msg);
-		// }
-		// }
-		// }
-		// } else {
-		//
-		// }
-		// }
-
-		// TODO check all concatenations
-
 	}
 
-	private void checkNetAssigns(DesignDeclaration d) {
+	private void processNetAssigns(DesignDecl d) {
 		// TODO Auto-generated method stub
 
 	}
@@ -344,7 +298,7 @@ public class Analyzer {
 	}
 
 	public void addError(Parsable p, String msg) {
-		errors.add(p.getFileName() + " line " + p.getLineString() + " " + msg
+		errors.add(p.getFileName() + " line " + p.getLocation() + " " + msg
 				+ ": " + p.getName());
 	}
 
@@ -353,7 +307,7 @@ public class Analyzer {
 	}
 
 	public void AddWarning(Parsable p, String msg) {
-		warnings.add(p.getFileName() + " line " + p.getLineString() + " " + msg
+		warnings.add(p.getFileName() + " line " + p.getLocation() + " " + msg
 				+ ": " + p.getName());
 	}
 }

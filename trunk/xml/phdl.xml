@@ -11,7 +11,7 @@
             <Keywords name="Folder-">end</Keywords>
             <Keywords name="Operators">&quot; &amp; ( ) , : ; [ ] { }</Keywords>
             <Keywords name="Comment">1/* 2*/ 0//</Keywords>
-            <Keywords name="Words1">is port begin pin in out inout passive power supply open net</Keywords>
+            <Keywords name="Words1">is begin pin in out inout passive power supply open net</Keywords>
             <Keywords name="Words2"></Keywords>
             <Keywords name="Words3"></Keywords>
             <Keywords name="Words4"></Keywords>

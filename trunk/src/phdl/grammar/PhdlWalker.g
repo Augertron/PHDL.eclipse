@@ -54,7 +54,7 @@ options {
     }
     
     public void addError(Parsable p, String msg) {
-    	errors.add(input.getSourceName() + " line " + p.getLineString() + " " + msg
+    	errors.add(input.getSourceName() + " line " + p.getLocation() + " " + msg
 				+ ": " + p.getName());
     }
     
@@ -87,7 +87,7 @@ design[ParsedDesigns pd]
 	:	^('design' IDENT
 		
 		// create a new design declaration and set appropriate fields
-		{	DesignDeclaration d = new DesignDeclaration();
+		{	DesignDecl d = new DesignDecl();
 			d.setName($IDENT.text);
 			d.setLine($IDENT.line);
 			d.setPos($IDENT.pos);
@@ -101,7 +101,7 @@ design[ParsedDesigns pd]
 		'begin'
 		
 		// add all instances subDesigns and netAssignments to the design
-		(instance[d] | subDesign[d] | netAssignment[d])*
+		(instance[d] | subDesign[d] | netAssign[d])*
 		)
 		
 		{	if(!pd.addDesignDecl(d)) 
@@ -114,21 +114,21 @@ design[ParsedDesigns pd]
  * a new port declaration based on that type.  It then calls the addPort method to finish
  * setting all appropriate fields of the port declaration.
  */
-portDecl[DesignDeclaration d]
-	:	^('pin' {PortDeclaration pin = new PortDeclaration(Type.PIN);} addPort[d, pin])
-	|	^('in' {PortDeclaration in = new PortDeclaration(Type.IN);} addPort[d, in])
-	|	^('out' {PortDeclaration out = new PortDeclaration(Type.OUT);} addPort[d, out])
-	|	^('inout' {PortDeclaration inout = new PortDeclaration(Type.INOUT);} addPort[d, inout])
-	|	^('passive' {PortDeclaration passive = new PortDeclaration(Type.PASSIVE);} addPort[d, passive])
-	|	^('supply' {PortDeclaration supply = new PortDeclaration(Type.SUPPLY);} addPort[d, supply])
-	|	^('power' {PortDeclaration power = new PortDeclaration(Type.POWER);} addPort[d, power])
+portDecl[DesignDecl d]
+	:	^('pin' {PortDecl pin = new PortDecl(Type.PIN);} addPort[d, pin])
+	|	^('in' {PortDecl in = new PortDecl(Type.IN);} addPort[d, in])
+	|	^('out' {PortDecl out = new PortDecl(Type.OUT);} addPort[d, out])
+	|	^('inout' {PortDecl inout = new PortDecl(Type.INOUT);} addPort[d, inout])
+	|	^('passive' {PortDecl passive = new PortDecl(Type.PASSIVE);} addPort[d, passive])
+	|	^('supply' {PortDecl supply = new PortDecl(Type.SUPPLY);} addPort[d, supply])
+	|	^('power' {PortDecl power = new PortDecl(Type.POWER);} addPort[d, power])
 	;
 
 /**
  * The add port rule finishes setting all the appropriate fields of the port declaration
  * and adds the port to the design declaration.
  */	
-addPort[DesignDeclaration d, PortDeclaration p]
+addPort[DesignDecl d, PortDecl p]
 	:	(msb=INT COLON lsb=INT)? name=IDENT
 		{	
 			p.setName($name.text);
@@ -149,11 +149,11 @@ addPort[DesignDeclaration d, PortDeclaration p]
  * The line number and position of the device are also used in the constructor to report future 
  * compilation errors.
  */	
-deviceDecl[DesignDeclaration d]
+deviceDecl[DesignDecl d]
 	:	^('device' name=IDENT 
 	
 			// make a new device based on the identifier and log its location 				
-			{	DeviceDeclaration dev = new DeviceDeclaration();
+			{	DeviceDecl dev = new DeviceDecl();
 				dev.setName($name.text);
 				dev.setLine($name.line);
 				dev.setPos($name.pos);
@@ -161,7 +161,7 @@ deviceDecl[DesignDeclaration d]
 			}
 			
 		// add all of the attribute declarations to the device
-		attributeDecl[dev]*
+		attrDecl[dev]*
 		
 		// the begin token separates attribute declarations from pin declarations
 		'begin'
@@ -181,11 +181,11 @@ deviceDecl[DesignDeclaration d]
  * first child in the subtree.  Succeeding children in the subtree define the other properties
  * of the net.  Optional attributes are added if they exist after a colon.
  */
-netDecl[DesignDeclaration d]
+netDecl[DesignDecl d]
 	:	^('net' (msb=INT COLON lsb=INT)? name=IDENT
 	
 		// make a new net with the above information
-		{	NetDeclaration n = new NetDeclaration(); 
+		{	NetDecl n = new NetDecl(); 
 			n.setName($name.text);
 			n.setLine($name.line);
 			n.setPos($name.pos);
@@ -194,8 +194,8 @@ netDecl[DesignDeclaration d]
 			n.setFileName(input.getSourceName());
 		}
 
-		// add any optional net attributes after a colon
-		(COLON netAttribute[n]+)?
+		// add one or  more optional net attributes after a colon
+		(COLON netAttr[n]+)?
 		)
 		
 		// add the net to the design
@@ -204,12 +204,12 @@ netDecl[DesignDeclaration d]
 		}
 	;
 
-/** Helper method for netDecl.  Adds attributes after the colon if they exist in the tree.
+/** Helper rule for netDecl.  Adds attributes after the colon if they exist in the tree.
  */	
-netAttribute[NetDeclaration n]
+netAttr[NetDecl n]
 	:	IDENT
 	
-		// attempt to add the net attribute						
+		// add the net attribute to the net						
 		{	if(!n.addAttribute($IDENT.text)) 
 				addError(n, "duplicate net attribute");
 		}
@@ -218,18 +218,18 @@ netAttribute[NetDeclaration n]
 /** Looks for an "=" as the root of a subtree, and creates a new attribute based on the 
  * name and value of the children.
  */
-attributeDecl[DeviceDeclaration d]
+attrDecl[DeviceDecl d]
 	:	^(EQUALS name=IDENT value=STRING_LITERAL) 
 	
 		// make a new attribute declaration with the above information
-		{	AttributeDeclaration a = new AttributeDeclaration();
+		{	AttrDecl a = new AttrDecl();
 			a.setName($name.text);
 			a.setLine($name.line);
 			a.setPos($name.pos);
 			a.setValue($value.text);
 			a.setFileName(input.getSourceName());
 			
-			if(!d.addAttributeDecl(a)) 
+			if(!d.addAttrDecl(a)) 
 				addError(a, "duplicate attribute declaration");
 		}
 	;
@@ -238,20 +238,20 @@ attributeDecl[DeviceDeclaration d]
  * the data structure by switching on that keyword.  Uses the helper rule addPinDecl to populate the 
  * pin with values.
  */	
-pinDecl[DeviceDeclaration d]
-	:	^('pin' {PinDeclaration pin = new PinDeclaration(Type.PIN);} addPinDecl[d, pin])
-	|	^('in' {PinDeclaration in = new PinDeclaration(Type.IN);} addPinDecl[d, in])
-	|	^('out' {PinDeclaration out = new PinDeclaration(Type.OUT);} addPinDecl[d, out])
-	|	^('inout' {PinDeclaration inout = new PinDeclaration(Type.INOUT);} addPinDecl[d, inout])
-	|	^('passive' {PinDeclaration passive = new PinDeclaration(Type.PASSIVE);} addPinDecl[d, passive])
-	|	^('supply' {PinDeclaration supply = new PinDeclaration(Type.SUPPLY);} addPinDecl[d, supply])
-	|	^('power' {PinDeclaration power = new PinDeclaration(Type.POWER);} addPinDecl[d, power])
+pinDecl[DeviceDecl d]
+	:	^('pin' {PinDecl pin = new PinDecl(Type.PIN);} addPinDecl[d, pin])
+	|	^('in' {PinDecl in = new PinDecl(Type.IN);} addPinDecl[d, in])
+	|	^('out' {PinDecl out = new PinDecl(Type.OUT);} addPinDecl[d, out])
+	|	^('inout' {PinDecl inout = new PinDecl(Type.INOUT);} addPinDecl[d, inout])
+	|	^('passive' {PinDecl passive = new PinDecl(Type.PASSIVE);} addPinDecl[d, passive])
+	|	^('supply' {PinDecl supply = new PinDecl(Type.SUPPLY);} addPinDecl[d, supply])
+	|	^('power' {PinDecl power = new PinDecl(Type.POWER);} addPinDecl[d, power])
 	;
 	
 /** The helper rule for pinDecl.  It sets all the fields of the pin as they are found after
  * each of the keywords above.  The MSB and LSB are set to zero if they are not present.
  */
-addPinDecl[DeviceDeclaration d, PinDeclaration p]
+addPinDecl[DeviceDecl d, PinDecl p]
 	:	(msb=INT COLON lsb=INT)? name=IDENT pinList=NUMBER_LIST
 		{	
 			p.setName($name.text);
@@ -270,12 +270,12 @@ addPinDecl[DeviceDeclaration d, PinDeclaration p]
 /** Looks for the keyword "inst" as the root of a subtree, and creates a new instance based on the
  * succeding children in the subtree.  Attribute and pin assignments are added with their own rules.
  */	
-instance[DesignDeclaration d]
+instance[DesignDecl d]
 	:	^('inst' name=IDENT refName=IDENT (msb=INT COLON lsb=INT)?
 		
-		// make a new instance to pass to attributeAssignment and pinAssignment
+		// make a new instance to pass to attrAssign and pinAssign
 		{	
-			InstanceDeclaration i = new InstanceDeclaration();
+			InstDecl i = new InstDecl();
 				i.setName($name.text);
 				i.setLine($name.line);
 				i.setPos($name.pos);
@@ -285,11 +285,11 @@ instance[DesignDeclaration d]
 				i.setFileName(input.getSourceName());
 		}
 				
-		attributeAssignment[i]*
+		attrAssign[i]*
 		'begin'
-		pinAssignment[i]*
+		pinAssign[i]*
 		)
-		{	if(!d.addInstanceDecl(i)) 
+		{	if(!d.addInstDecl(i)) 
 				addError(i, "duplicate instance declaration");
 		}
 	;
@@ -299,12 +299,13 @@ instance[DesignDeclaration d]
  * assigned, while an index is used to reference a particular value in an array.  Creates a new
  * attribute assignment data structure based on these parameters.
  */
-attributeAssignment[InstanceDeclaration i]
-	:	^(EQUALS name=IDENT ((msb=INT COLON lsb=INT) | (index=INT) | indices=NUMBER_LIST)? 
+attrAssign[InstDecl i]
+	:	^(EQUALS name=IDENT 
+		((msb=INT COLON lsb=INT) | (index=INT) | indices=NUMBER_LIST)? 
 		value=STRING_LITERAL )
 		
 		// make a new attribute assignment, assign all values, and add it to the instance
-		{	AttributeAssignment a = new AttributeAssignment();
+		{	AttrAssign a = new AttrAssign();
 			a.setName($name.text);
 			a.setLine($name.line);
 			a.setPos($name.pos);
@@ -315,22 +316,23 @@ attributeAssignment[InstanceDeclaration i]
 			a.setValue($value.text);
 			a.setFileName(input.getSourceName());
 			
-			if(!i.addAttributeAssignment(a)) 
+			if(!i.addAttrAssign(a)) 
 				addError(a, "duplicate attribute assignment");
 		}
 	;
 
 
-/**	Looks for an "=" sign as the parent of a subtree.  
+/**	
+ * Looks for an "=" sign as the parent of a subtree and sets appropriate fields  
  */	
-pinAssignment[InstanceDeclaration i]
+pinAssign[InstDecl i]
 	:	^(EQUALS name=IDENT 
 		(((instMsb=INT COLON instLsb=INT) | (instIndex=INT | instIndices=NUMBER_LIST))
 		((msb=INT COLON lsb=INT) | (index=INT) | indices=NUMBER_LIST)?)?
 	
 		// make a new pin assignment
 		{
-			PinAssignment p = new PinAssignment();
+			PinAssign p = new PinAssign();
 			p.setName($name.text);
 			p.setLine($name.line);
 			p.setPos($name.pos);
@@ -345,14 +347,17 @@ pinAssignment[InstanceDeclaration i]
 			p.setFileName(input.getSourceName());
 		}
 	
-		concatenatePin[p]*
+		concatPin[p]*
 		)
-		{	if(!i.addPinAssignment(p)) 
+		{	if(!i.addPinAssign(p)) 
 				addError(p, "duplicate pin assignment");
 		}
 	;
-	
-concatenatePin[PinAssignment pa]
+
+/**
+ * Helper rule for pinAssign.  Adds any nets that exist in the concatenation list.
+ */	
+concatPin[PinAssign pa]
 	:	(name=IDENT ((msb=INT COLON lsb=INT) | (index=INT) | indices=NUMBER_LIST)?)
 		{
 			Net n = new Net();
@@ -367,13 +372,16 @@ concatenatePin[PinAssignment pa]
 			pa.addNet(n);
 		}
 	;
-	
-subDesign[DesignDeclaration d]
+
+/**
+ * A sub design looks for the keyword "sub" and fills in the appropriate fields.
+ */	
+subDesign[DesignDecl d]
 	:	^('sub' name=IDENT refName=IDENT (msb=INT COLON lsb=INT)?
 		
-		// make a new instance to pass to attributeAssignment and pinAssignment
+		// make a new instance to pass to attrAssign and pinAssign
 		{	
-			SubDesignDeclaration s = new SubDesignDeclaration();
+			SubDecl s = new SubDecl();
 			s.setName($name.text);
 			s.setLine($name.line);
 			s.setPos($name.pos);
@@ -382,22 +390,54 @@ subDesign[DesignDeclaration d]
 			s.setRefName($refName.text);
 			s.setFileName(input.getSourceName());
 		}
-
+		subAttrAssign[s]*
+		'begin'
 		portAssignment[s]*
 		)
-		{	if(!d.addSubDesignDecl(s)) 
+		{	if(!d.addSubDecl(s)) 
 				addError(s, "duplicate sub-design declaration");
 		}
 	;
 
-/**	Looks for an "=" sign as the parent of a subtree.  
+/**
+ * Looks for sub-design attribute assignments.  Sub-design attribute assignments are used
+ * to pass attributes assignments to various instanced devices as a result of the sub-design
+ * being instanced in the hierarchy.  They allow flexibility in configuring a sub-design for
+ * a specific application.
  */	
-netAssignment[DesignDeclaration d]
+subAttrAssign[SubDecl s]
+	:	^(instName=IDENT name=IDENT 
+		((msb=INT COLON lsb=INT) | (index=INT) | indices=NUMBER_LIST)? 
+		value=STRING_LITERAL )
+		
+		// make a new sub-attribute assignment
+		{	SubAttrAssign a = new SubAttrAssign();
+			a.setInstName($instName.text);
+			a.setName($name.text);
+			a.setLine($name.line);
+			a.setPos($name.pos);
+			a.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
+			a.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
+			a.setIndex($index!=null?Integer.parseInt($index.text):-1);
+			a.setIndices($indices.text);
+			a.setValue($value.text);
+			a.setFileName(input.getSourceName());
+			
+			if(!s.addSubAttrAssign(a)) 
+				addError(a, "duplicate sub-design attribute assignment");
+		}
+	;
+	
+
+
+/**	
+ * Looks for an "=" sign as the parent of a subtree and fills in the appropriate fields following.
+ */	
+netAssign[DesignDecl d]
 	:	^(EQUALS name=IDENT ((msb=INT COLON lsb=INT) | (index=INT) | indices=NUMBER_LIST)?
 		
 		// make a new net assignment
-		{
-			NetAssignment n = new NetAssignment(); 
+		{	NetAssign n = new NetAssign(); 
 			n.setName($name.text);
 			n.setLine($name.line);
 			n.setPos($name.pos);
@@ -408,17 +448,21 @@ netAssignment[DesignDeclaration d]
 			n.setFileName(input.getSourceName());
 		}
 		
-		concatenateNet[n]*
+		concatNet[n]*
 		)
-		{	if(!d.addNetAssignment(n)) 
+		{	if(!d.addNetAssign(n)) 
 				addError(n, "duplicate net assignment");
 		}
 	;
-	
-concatenateNet[NetAssignment na]
+
+/**
+ * Helper rule for netAssign.  Adds any nets that exist in the concatenation list.
+ */	
+concatNet[NetAssign na]
 	:	(name=IDENT ((msb=INT COLON lsb=INT) | (index=INT) | indices=NUMBER_LIST)?)
-		{
-			Net n = new Net();
+	
+		// add a net to the net assignment
+		{	Net n = new Net();
 			n.setName($name.text);
 			n.setLine($name.line);
 			n.setPos($name.pos);
@@ -430,15 +474,17 @@ concatenateNet[NetAssignment na]
 			na.addNet(n);
 		}
 	;
-	
-portAssignment[SubDesignDeclaration s]
+
+/**	
+ * Looks for an "=" sign as the parent of a subtree and fills in the appropriate fields following.
+ */		
+portAssignment[SubDecl s]
 	:	^(EQUALS name=IDENT 
 		(((instMsb=INT COLON instLsb=INT) | (instIndex=INT) | instIndices=NUMBER_LIST)
 		((msb=INT COLON lsb=INT) | (index=INT) | indices=NUMBER_LIST)?)?
 	
 		// make a new port assignment
-		{
-			PortAssignment p = new PortAssignment(); 
+		{	PortAssign p = new PortAssign(); 
 			p.setName($name.text);
 			p.setLine($name.line);
 			p.setPos($name.pos);
@@ -453,17 +499,19 @@ portAssignment[SubDesignDeclaration s]
 			p.setFileName(input.getSourceName());
 		}
 	
-		concatenatePort[p]*
+		concatPort[p]*
 		)
-		{	if(!s.addPortAssignment(p)) 
+		{	if(!s.addPortAssign(p)) 
 				addError(p, "duplicate port assignment");
 		}
 	;
 
-concatenatePort[PortAssignment pa]
+/**
+ * Helper rule for portAssignment.  Adds any nets that exist in the concatenation list.
+ */	
+concatPort[PortAssign pa]
 	:	(name=IDENT ((msb=INT COLON lsb=INT) | (index=INT) | indices=NUMBER_LIST)?)
-		{
-			Net n = new Net();
+		{	Net n = new Net();
 			n.setName($name.text);
 			n.setLine($name.line);
 			n.setPos($name.pos);

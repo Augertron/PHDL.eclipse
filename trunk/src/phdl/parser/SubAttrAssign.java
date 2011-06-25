@@ -17,30 +17,20 @@
 
 package phdl.parser;
 
-import java.util.LinkedList;
+public class SubAttrAssign extends AttrAssign {
 
-/**
- * A class that represents a net in phdl.
- * 
- * @author Richard Black and Brad Riching
- * 
- */
-public class Net extends Sliceable {
+	protected String instName;
 
-	/**
-	 * Default constructor
-	 */
-	public Net() {
+	public SubAttrAssign() {
 		super();
-		this.slices = new LinkedList<Integer>();
 	}
 
-	/**
-	 * Defines overridden hashCode method
-	 */
-	@Override
-	public int hashCode() {
-		return name.hashCode();
+	public String getInstName() {
+		return instName;
+	}
+
+	public void setInstName(String instName) {
+		this.instName = instName;
 	}
 
 	/**
@@ -48,16 +38,20 @@ public class Net extends Sliceable {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return name.equals(((Net) o).getName()) && msb == ((Net) o).getMsb()
-				&& lsb == ((Net) o).getLsb() && index == ((Net) o).getIndex()
-				&& indices.equals(((Net) o).getIndices());
+		return name.equals(((SubAttrAssign) o).getName())
+				&& msb == ((SubAttrAssign) o).getMsb()
+				&& lsb == ((SubAttrAssign) o).getLsb()
+				&& index == ((SubAttrAssign) o).getIndex()
+				&& indices.equals(((SubAttrAssign) o).getIndices())
+				&& instName.equals(((SubAttrAssign) o).getInstName());
 	}
 
 	/**
-	 * Returns a formatted string representation of the net
+	 * Returns a formatted string representation of the attribute assignment
 	 */
 	@Override
 	public String toString() {
-		return "Net " + getLocation() + " : " + name + getSlicesString();
+		return "SubAttrAssign " + getLocation() + " : " + instName + "." + name
+				+ getSlicesString() + " = " + value + "\n";
 	}
 }

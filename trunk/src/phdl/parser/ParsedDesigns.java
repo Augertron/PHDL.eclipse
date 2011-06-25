@@ -26,20 +26,20 @@ import phdl.exception.InvalidDesignException;
  * sources
  * 
  * @author Richard Black and Brad Riching
- * @see DesignDeclaration
+ * @see DesignDecl
  */
 public class ParsedDesigns {
 
 	/**
 	 * The parsed designs set of design declarations
 	 */
-	protected HashSet<DesignDeclaration> designDecls;
+	protected HashSet<DesignDecl> designDecls;
 
 	/**
 	 * Default constructor
 	 */
 	public ParsedDesigns() {
-		this.designDecls = new HashSet<DesignDeclaration>();
+		this.designDecls = new HashSet<DesignDecl>();
 	}
 
 	/**
@@ -47,7 +47,7 @@ public class ParsedDesigns {
 	 * 
 	 * @return This parsed design's set of design declarations
 	 */
-	public HashSet<DesignDeclaration> getDesignDecls() {
+	public HashSet<DesignDecl> getDesignDecls() {
 		return designDecls;
 	}
 
@@ -58,7 +58,7 @@ public class ParsedDesigns {
 	 *            the design declaration to add
 	 * @return true if the design declaration was added successfully
 	 */
-	public boolean addDesignDecl(DesignDeclaration designDecl) {
+	public boolean addDesignDecl(DesignDecl designDecl) {
 		boolean added = designDecls.add(designDecl);
 		return added;
 	}
@@ -71,8 +71,8 @@ public class ParsedDesigns {
 	 * @return the design associated with the subdesign null if the design was
 	 *         not found
 	 */
-	public DesignDeclaration getDesign(SubDesignDeclaration s) {
-		for (DesignDeclaration d : designDecls) {
+	public DesignDecl getDesign(SubDecl s) {
+		for (DesignDecl d : designDecls) {
 			if (d.getName().equals(s.getRefName())) {
 				return d;
 			}
@@ -86,10 +86,10 @@ public class ParsedDesigns {
 	 * @return A reference to the top level design declaration
 	 * @throws InvalidDesignException
 	 */
-	public DesignDeclaration getTopDesign() throws InvalidDesignException {
+	public DesignDecl getTopDesign() throws InvalidDesignException {
 		boolean topFound = false;
-		DesignDeclaration topDesign = null;
-		for (DesignDeclaration d : designDecls) {
+		DesignDecl topDesign = null;
+		for (DesignDecl d : designDecls) {
 			if (d.getPortDecls().isEmpty()) {
 				if (topFound) {
 					throw new InvalidDesignException(d,

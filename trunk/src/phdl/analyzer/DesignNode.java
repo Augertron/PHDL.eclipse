@@ -6,24 +6,24 @@ import java.util.List;
 import java.util.Set;
 
 import phdl.exception.InvalidWidthException;
-import phdl.parser.ConcatenationAssignment;
-import phdl.parser.DesignDeclaration;
-import phdl.parser.DeviceDeclaration;
-import phdl.parser.InstanceDeclaration;
+import phdl.parser.ConcatAssign;
+import phdl.parser.DesignDecl;
+import phdl.parser.DeviceDecl;
+import phdl.parser.InstDecl;
 import phdl.parser.Net;
-import phdl.parser.NetAssignment;
-import phdl.parser.NetDeclaration;
-import phdl.parser.PinAssignment;
-import phdl.parser.PinDeclaration;
-import phdl.parser.PortAssignment;
-import phdl.parser.PortDeclaration;
+import phdl.parser.NetAssign;
+import phdl.parser.NetDecl;
+import phdl.parser.PinAssign;
+import phdl.parser.PinDecl;
+import phdl.parser.PortAssign;
+import phdl.parser.PortDecl;
 
 public class DesignNode {
 
 	/**
 	 * The design node's reference to its design declaration
 	 */
-	private DesignDeclaration design;
+	private DesignDecl design;
 	/**
 	 * The design node's first child
 	 */
@@ -35,7 +35,7 @@ public class DesignNode {
 	/**
 	 * The design node's set of port assignments
 	 */
-	private Set<PortAssignment> ports;
+	private Set<PortAssign> ports;
 	/**
 	 * The design node's graph of pins, nets and ports
 	 */
@@ -49,7 +49,7 @@ public class DesignNode {
 		graph = null;
 	}
 
-	public DesignNode(DesignDeclaration design) {
+	public DesignNode(DesignDecl design) {
 		this.design = design;
 		firstChild = null;
 		nextSibling = null;
@@ -57,7 +57,7 @@ public class DesignNode {
 		graph = null;
 	}
 
-	public DesignNode(DesignDeclaration design, Set<PortAssignment> ports) {
+	public DesignNode(DesignDecl design, Set<PortAssign> ports) {
 		this.design = design;
 		this.ports = ports;
 		firstChild = null;
@@ -85,11 +85,11 @@ public class DesignNode {
 		return nextSibling;
 	}
 
-	public Set<PortAssignment> getPorts() {
+	public Set<PortAssign> getPorts() {
 		return ports;
 	}
 
-	public DesignDeclaration getDesignDeclaration() {
+	public DesignDecl getDesignDeclaration() {
 		return design;
 	}
 
@@ -97,7 +97,7 @@ public class DesignNode {
 		this.firstChild = child;
 	}
 
-	public void setDesignDeclaration(DesignDeclaration design) {
+	public void setDesignDeclaration(DesignDecl design) {
 		this.design = design;
 	}
 
@@ -133,11 +133,11 @@ public class DesignNode {
 	
 	public void createInitialNetGraph() throws InvalidWidthException {
 		graph = new Graph();
-		Set<NetDeclaration> nets = design.getNetDecls();
+		Set<NetDecl> nets = design.getNetDecls();
 		createNetNodes(nets);
 
-		Set<NetAssignment> na = design.getNetAssignments();
-		for (NetAssignment a : na) {
+		Set<NetAssign> na = design.getNetAssigns();
+		for (NetAssign a : na) {
 			ArrayList<String> lvals = new ArrayList<String>();
 			ArrayList<String> rvals = new ArrayList<String>();
 			lvals = assignLVals(lvals, a);
@@ -151,8 +151,8 @@ public class DesignNode {
 		addPorts();
 	}
 	
-	private void createNetNodes(Set<NetDeclaration> nets) {
-		for (NetDeclaration n : nets) {
+	private void createNetNodes(Set<NetDecl> nets) {
+		for (NetDecl n : nets) {
 			if (n.getWidth() != 1) {
 				int min = getMin(n.getMsb(), n.getLsb());
 				int max = getMax(n.getMsb(), n.getLsb());
@@ -185,7 +185,7 @@ public class DesignNode {
 		}
 	}
 	
-	private ArrayList<String> assignLVals(ArrayList<String> lvals, ConcatenationAssignment a) {
+	private ArrayList<String> assignLVals(ArrayList<String> lvals, ConcatAssign a) {
 		if (a.getIndex() != -1) {
 			lvals.add(a.getName() + "_" + a.getIndex());
 		} else if (a.getMsb() > a.getLsb()) {
@@ -222,8 +222,8 @@ public class DesignNode {
 	
 	private void addPins() throws InvalidWidthException {
 		Set<PinNode> pins = createPinNodes();
-		for (InstanceDeclaration i : design.getInstanceDecls()) {
-			for (PinAssignment p : i.getPinAssignments()) {
+		for (InstDecl i : design.getInstDecls()) {
+			for (PinAssign p : i.getPinAssigns()) {
 				ArrayList<String> lvals = new ArrayList<String>();
 				ArrayList<String> rvals = new ArrayList<String>();
 				lvals = assignLVals(lvals, p);
@@ -254,8 +254,8 @@ public class DesignNode {
 	
 	private Set<PinNode> createPinNodes() {
 		Set<PinNode> pins = new HashSet<PinNode>();
-		for (DeviceDeclaration d : design.getDeviceDecls()) {
-			for (PinDeclaration p : d.getPinDecls()) {
+		for (DeviceDecl d : design.getDeviceDecls()) {
+			for (PinDecl p : d.getPinDecls()) {
 				if (p.getWidth() != 1) {
 					int min = getMin(p.getMsb(), p.getLsb());
 					int max = getMax(p.getMsb(), p.getLsb());
@@ -282,7 +282,7 @@ public class DesignNode {
 	
 	private Set<PortNode> createPortNodes() {
 		Set<PortNode> p = new HashSet<PortNode>();
-		for (PortDeclaration d : design.getPortDecls()) {
+		for (PortDecl d : design.getPortDecls()) {
 			if (d.getWidth() != 1) {
 				int min = getMin(d.getMsb(), d.getLsb());
 				int max = getMax(d.getMsb(), d.getLsb());

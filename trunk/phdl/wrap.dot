@@ -10,69 +10,127 @@ digraph {
   n1 [label="design"];
   n1 [label="design"];
   n2 [label="mydesign"];
-  n3 [label="device"];
-  n3 [label="device"];
-  n4 [label="mydevice"];
-  n5 [label="="];
-  n5 [label="="];
-  n6 [label="refprefix"];
-  n7 [label="M"];
+  n3 [label="begin"];
+  n4 [label="sub"];
+  n4 [label="sub"];
+  n5 [label="mydes"];
+  n6 [label="myDesign2"];
+  n7 [label="begin"];
   n8 [label="="];
   n8 [label="="];
-  n9 [label="name"];
-  n10 [label="mywrappi...pingname"];
-  n11 [label="="];
-  n11 [label="="];
-  n12 [label="value"];
-  n13 [label=""];
-  n14 [label="begin"];
-  n15 [label="pin"];
-  n15 [label="pin"];
-  n16 [label="1"];
-  n17 [label=":"];
-  n18 [label="5"];
-  n19 [label="a"];
-  n20 [label="1,2,3,4,5"];
-  n21 [label="begin"];
-  n22 [label="inst"];
-  n22 [label="inst"];
-  n23 [label="mydev"];
-  n24 [label="mydevice"];
-  n25 [label="begin"];
+  n9 [label="addr"];
+  n10 [label="="];
+  n10 [label="="];
+  n11 [label="data"];
+  n12 [label="design"];
+  n12 [label="design"];
+  n13 [label="myDesign2"];
+  n14 [label="in"];
+  n14 [label="in"];
+  n15 [label="7"];
+  n16 [label=":"];
+  n17 [label="0"];
+  n18 [label="addr"];
+  n19 [label="out"];
+  n19 [label="out"];
+  n20 [label="7"];
+  n21 [label=":"];
+  n22 [label="0"];
+  n23 [label="data"];
+  n24 [label="device"];
+  n24 [label="device"];
+  n25 [label="resistor"];
   n26 [label="="];
   n26 [label="="];
-  n27 [label="a"];
-  n28 [label="2,4,5"];
-  n29 [label="<EOF>"];
+  n27 [label="refPrefix"];
+  n28 [label="R"];
+  n29 [label="="];
+  n29 [label="="];
+  n30 [label="name"];
+  n31 [label=""];
+  n32 [label="="];
+  n32 [label="="];
+  n33 [label="value"];
+  n34 [label=""];
+  n35 [label="begin"];
+  n36 [label="pin"];
+  n36 [label="pin"];
+  n37 [label="a"];
+  n38 [label="1"];
+  n39 [label="pin"];
+  n39 [label="pin"];
+  n40 [label="b"];
+  n41 [label="2"];
+  n42 [label="begin"];
+  n43 [label="inst"];
+  n43 [label="inst"];
+  n44 [label="res_array"];
+  n45 [label="resistor"];
+  n46 [label="3"];
+  n47 [label=":"];
+  n48 [label="0"];
+  n49 [label="begin"];
+  n50 [label="="];
+  n50 [label="="];
+  n51 [label="a"];
+  n52 [label="="];
+  n52 [label="="];
+  n53 [label="b"];
+  n54 [label="<EOF>"];
 
   n0 -> n1 // "" -> "design"
   n1 -> n2 // "design" -> "mydesign"
-  n1 -> n3 // "design" -> "device"
-  n3 -> n4 // "device" -> "mydevice"
-  n3 -> n5 // "device" -> "="
-  n5 -> n6 // "=" -> "refprefix"
-  n5 -> n7 // "=" -> "M"
-  n3 -> n8 // "device" -> "="
-  n8 -> n9 // "=" -> "name"
-  n8 -> n10 // "=" -> "mywrappi...pingname"
-  n3 -> n11 // "device" -> "="
-  n11 -> n12 // "=" -> "value"
-  n11 -> n13 // "=" -> ""
-  n3 -> n14 // "device" -> "begin"
-  n3 -> n15 // "device" -> "pin"
-  n15 -> n16 // "pin" -> "1"
-  n15 -> n17 // "pin" -> ":"
-  n15 -> n18 // "pin" -> "5"
-  n15 -> n19 // "pin" -> "a"
-  n15 -> n20 // "pin" -> "1,2,3,4,5"
-  n1 -> n21 // "design" -> "begin"
-  n1 -> n22 // "design" -> "inst"
-  n22 -> n23 // "inst" -> "mydev"
-  n22 -> n24 // "inst" -> "mydevice"
-  n22 -> n25 // "inst" -> "begin"
-  n22 -> n26 // "inst" -> "="
-  n26 -> n27 // "=" -> "a"
-  n26 -> n28 // "=" -> "2,4,5"
-  n0 -> n29 // "" -> "<EOF>"
+  n1 -> n3 // "design" -> "begin"
+  n1 -> n4 // "design" -> "sub"
+  n4 -> n5 // "sub" -> "mydes"
+  n4 -> n6 // "sub" -> "myDesign2"
+  n4 -> n7 // "sub" -> "begin"
+  n4 -> n8 // "sub" -> "="
+  n8 -> n9 // "=" -> "addr"
+  n4 -> n10 // "sub" -> "="
+  n10 -> n11 // "=" -> "data"
+  n0 -> n12 // "" -> "design"
+  n12 -> n13 // "design" -> "myDesign2"
+  n12 -> n14 // "design" -> "in"
+  n14 -> n15 // "in" -> "7"
+  n14 -> n16 // "in" -> ":"
+  n14 -> n17 // "in" -> "0"
+  n14 -> n18 // "in" -> "addr"
+  n12 -> n19 // "design" -> "out"
+  n19 -> n20 // "out" -> "7"
+  n19 -> n21 // "out" -> ":"
+  n19 -> n22 // "out" -> "0"
+  n19 -> n23 // "out" -> "data"
+  n12 -> n24 // "design" -> "device"
+  n24 -> n25 // "device" -> "resistor"
+  n24 -> n26 // "device" -> "="
+  n26 -> n27 // "=" -> "refPrefix"
+  n26 -> n28 // "=" -> "R"
+  n24 -> n29 // "device" -> "="
+  n29 -> n30 // "=" -> "name"
+  n29 -> n31 // "=" -> ""
+  n24 -> n32 // "device" -> "="
+  n32 -> n33 // "=" -> "value"
+  n32 -> n34 // "=" -> ""
+  n24 -> n35 // "device" -> "begin"
+  n24 -> n36 // "device" -> "pin"
+  n36 -> n37 // "pin" -> "a"
+  n36 -> n38 // "pin" -> "1"
+  n24 -> n39 // "device" -> "pin"
+  n39 -> n40 // "pin" -> "b"
+  n39 -> n41 // "pin" -> "2"
+  n12 -> n42 // "design" -> "begin"
+  n12 -> n43 // "design" -> "inst"
+  n43 -> n44 // "inst" -> "res_array"
+  n43 -> n45 // "inst" -> "resistor"
+  n43 -> n46 // "inst" -> "3"
+  n43 -> n47 // "inst" -> ":"
+  n43 -> n48 // "inst" -> "0"
+  n43 -> n49 // "inst" -> "begin"
+  n43 -> n50 // "inst" -> "="
+  n50 -> n51 // "=" -> "a"
+  n43 -> n52 // "inst" -> "="
+  n52 -> n53 // "=" -> "b"
+  n0 -> n54 // "" -> "<EOF>"
 
 }

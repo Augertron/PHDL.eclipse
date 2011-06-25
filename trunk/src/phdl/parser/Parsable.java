@@ -39,7 +39,7 @@ public abstract class Parsable {
 	 */
 	protected int pos;
 	/**
-	 * The source file from where the element came from
+	 * The source file where the element came from
 	 */
 	protected String fileName;
 
@@ -124,7 +124,7 @@ public abstract class Parsable {
 	 * 
 	 * @return A string representation of the line and position of the element
 	 */
-	public String getLineString() {
+	public String getLocation() {
 		return line + ":" + pos;
 	}
 

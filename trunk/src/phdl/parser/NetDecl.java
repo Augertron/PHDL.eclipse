@@ -17,46 +17,49 @@
 
 package phdl.parser;
 
+import java.util.HashSet;
+
 /**
- * A class that represents a port declaration in phdl. In addition to inherited
- * fields, a port declaration has a type.
+ * A class that represents a net declaration in phdl. In addition to the
+ * inherited fields, a net declaration has a set of net-attributes.
  * 
  * @author Richard Black and Brad Riching
+ * 
  */
-public class PortDeclaration extends ArrayDeclaration {
+public class NetDecl extends ArrayDecl {
 
 	/**
-	 * The type of the port assignment
+	 * The net's set of attributes
 	 */
-	protected Type type;
+	protected HashSet<String> attributes;
 
 	/**
 	 * Default constructor
-	 * 
-	 * @param type
-	 *            The type of the port assignment
 	 */
-	public PortDeclaration(Type type) {
+	public NetDecl() {
 		super();
-		this.type = type;
+		this.attributes = new HashSet<String>();
 	}
 
 	/**
-	 * Gets the port assignment's type
+	 * Gets the net's set of attributes
 	 * 
-	 * @return The port assignment's type
+	 * @return The net's set of attributes
 	 */
-	public Type getType() {
-		return type;
+	public HashSet<String> getAttributes() {
+		return attributes;
 	}
 
 	/**
-	 * Sets the port assignment's type
+	 * Adds an attribute to the net's set of attributes
 	 * 
-	 * @param type
+	 * @param a
+	 *            The attribute to add
+	 * @return True if the attribute was added successfully
 	 */
-	public void setType(Type type) {
-		this.type = type;
+	public boolean addAttribute(String a) {
+		boolean added = this.attributes.add(a);
+		return added;
 	}
 
 	/**
@@ -72,18 +75,24 @@ public class PortDeclaration extends ArrayDeclaration {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return name.equals(((PortDeclaration) o).getName())
-				&& msb == ((PortDeclaration) o).getMsb()
-				&& lsb == ((PortDeclaration) o).getLsb();
+		return name.equals(((NetDecl) o).getName())
+				&& msb == ((NetDecl) o).getMsb()
+				&& lsb == ((NetDecl) o).getLsb();
 	}
 
 	/**
-	 * Returns a formatted string representation of the port declaration
+	 * Returns a formatted string representation of the net declaration
 	 */
 	@Override
 	public String toString() {
-		return "PortDecl " + getLineString() + " : " + type.toString()
-				+ getWidthString() + " " + name + "\n";
-	}
+		String netString = "";
 
+		for (String n : attributes) {
+			netString += n + " ";
+		}
+		netString += "\n";
+
+		return "NetDecl " + getLocation() + " : " + name + getWidthString()
+				+ ": " + netString;
+	}
 }

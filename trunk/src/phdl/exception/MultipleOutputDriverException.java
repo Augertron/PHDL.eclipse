@@ -39,7 +39,7 @@ public class MultipleOutputDriverException extends ElectricalRuleCheckException 
 	 *            The element in the source text that caused the exception
 	 */
 	public MultipleOutputDriverException(Parsable e) {
-		super(e.getLineString() + " Multiple output drivers detected: "
+		super(e.getLocation() + " Multiple output drivers detected: "
 				+ e.getName());
 	}
 

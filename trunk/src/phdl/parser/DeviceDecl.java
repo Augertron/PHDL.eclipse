@@ -18,6 +18,7 @@
 package phdl.parser;
 
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A class that represents a device declaration in phdl. In addition to
@@ -27,25 +28,25 @@ import java.util.HashSet;
  * @author Richard Black and Brad Riching
  * 
  */
-public class DeviceDeclaration extends Declarable {
+public class DeviceDecl extends Declarable {
 
 	/**
 	 * The device declaration's set of attribute declarations
 	 */
-	protected HashSet<AttributeDeclaration> attributeDecls;
+	protected Set<AttrDecl> attributeDecls;
 
 	/**
 	 * the device declaration's set of pin declarations
 	 */
-	protected HashSet<PinDeclaration> pinDecls;
+	protected Set<PinDecl> pinDecls;
 
 	/**
 	 * Default constructor
 	 */
-	public DeviceDeclaration() {
+	public DeviceDecl() {
 		super();
-		this.attributeDecls = new HashSet<AttributeDeclaration>();
-		this.pinDecls = new HashSet<PinDeclaration>();
+		this.attributeDecls = new HashSet<AttrDecl>();
+		this.pinDecls = new HashSet<PinDecl>();
 	}
 
 	/**
@@ -53,7 +54,7 @@ public class DeviceDeclaration extends Declarable {
 	 * 
 	 * @return This device declaration's set of attribute declarations
 	 */
-	public HashSet<AttributeDeclaration> getAttributeDecls() {
+	public Set<AttrDecl> getAttributeDecls() {
 		return attributeDecls;
 	}
 
@@ -66,9 +67,8 @@ public class DeviceDeclaration extends Declarable {
 	 * 
 	 * @return True if the attribute declaration was added successfully
 	 */
-	public boolean addAttributeDecl(AttributeDeclaration a) {
-		boolean added = attributeDecls.add(a);
-		return added;
+	public boolean addAttrDecl(AttrDecl a) {
+		return attributeDecls.add(a);
 	}
 
 	/**
@@ -76,7 +76,7 @@ public class DeviceDeclaration extends Declarable {
 	 * 
 	 * @return This device declaration's set of pin declarations
 	 */
-	public HashSet<PinDeclaration> getPinDecls() {
+	public Set<PinDecl> getPinDecls() {
 		return pinDecls;
 	}
 
@@ -89,9 +89,8 @@ public class DeviceDeclaration extends Declarable {
 	 * 
 	 * @return True if the pin declaration was added successfully
 	 */
-	public boolean addPinDecl(PinDeclaration p) {
-		boolean added = pinDecls.add(p);
-		return added;
+	public boolean addPinDecl(PinDecl p) {
+		return pinDecls.add(p);
 	}
 
 	/**
@@ -107,7 +106,7 @@ public class DeviceDeclaration extends Declarable {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return name.equals(((DeviceDeclaration) o).getName());
+		return name.equals(((DeviceDecl) o).getName());
 	}
 
 	/**
@@ -115,16 +114,16 @@ public class DeviceDeclaration extends Declarable {
 	 */
 	@Override
 	public String toString() {
-		String header = "DeviceDecl " + getLineString() + " : " + name + "\n";
+		String header = "DeviceDecl " + getLocation() + " : " + name + "\n";
 		String attributes = "";
 		String pins = "";
 
 		// loop through all attribute declarations
-		for (AttributeDeclaration a : attributeDecls)
+		for (AttrDecl a : attributeDecls)
 			attributes += "\t\t" + a.toString();
 
 		// loop through all pin declarations
-		for (PinDeclaration p : pinDecls)
+		for (PinDecl p : pinDecls)
 			pins += "\t\t" + p.toString();
 
 		return header + attributes + pins;
@@ -139,8 +138,8 @@ public class DeviceDeclaration extends Declarable {
 	 * @return The attribute declaration with this name, or null if it doesn't
 	 *         exist in the set.
 	 */
-	public AttributeDeclaration findAttrDecl(String name) {
-		for (AttributeDeclaration a : attributeDecls) {
+	public AttrDecl findAttrDecl(String name) {
+		for (AttrDecl a : attributeDecls) {
 			if (a.getName().equals(name))
 				return a;
 		}
@@ -155,8 +154,8 @@ public class DeviceDeclaration extends Declarable {
 	 * @return The pin declaration with this name, or null if it doesn't exist
 	 *         in the set.
 	 */
-	public PinDeclaration findPinDecl(String name) {
-		for (PinDeclaration p : pinDecls) {
+	public PinDecl findPinDecl(String name) {
+		for (PinDecl p : pinDecls) {
 			if (p.getName().equals(name))
 				return p;
 		}

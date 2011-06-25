@@ -17,6 +17,8 @@
 
 package phdl.parser;
 
+import java.util.LinkedList;
+
 /**
  * A class that represents an attribute assignment in phdl. In addition to
  * inherited fields, an attribute assignment has a value.
@@ -24,7 +26,7 @@ package phdl.parser;
  * @author Richard Black and Brad Riching
  * 
  */
-public class AttributeAssignment extends Assignable {
+public class AttrAssign extends Sliceable {
 
 	/**
 	 * The attribute assignment's value
@@ -34,8 +36,8 @@ public class AttributeAssignment extends Assignable {
 	/**
 	 * Default constructor
 	 */
-	public AttributeAssignment() {
-		super();
+	public AttrAssign() {
+		this.slices = new LinkedList<Integer>();
 	}
 
 	/**
@@ -70,10 +72,11 @@ public class AttributeAssignment extends Assignable {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return name.equals(((AttributeAssignment) o).getName())
-				&& msb == ((AttributeAssignment) o).getMsb()
-				&& lsb == ((AttributeAssignment) o).getLsb()
-				&& index == ((AttributeAssignment) o).getIndex();
+		return name.equals(((AttrAssign) o).getName())
+				&& msb == ((AttrAssign) o).getMsb()
+				&& lsb == ((AttrAssign) o).getLsb()
+				&& index == ((AttrAssign) o).getIndex()
+				&& slices.equals(((AttrAssign) o).getSlices());
 	}
 
 	/**
@@ -81,8 +84,8 @@ public class AttributeAssignment extends Assignable {
 	 */
 	@Override
 	public String toString() {
-		return "AttrAssign " + getLineString() + " : " + name
-				+ getWidthString() + " = " + value + "\n";
+		return "AttrAssign " + getLocation() + " : " + name + getSlicesString()
+				+ " = " + value + "\n";
 	}
 
 	@Override

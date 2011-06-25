@@ -17,12 +17,42 @@
 
 package phdl.parser;
 
-/**
- * An abstract class that represents an assignment in phdl.
- * 
- * @author Richard Black and Brad Riching
- * 
- */
-public abstract class Assignable extends Indexable {
+public abstract class InstAssign extends ConcatAssign {
 
+	protected int instMsb = -1;
+	protected int instLsb = -1;
+	protected int instIndex = -1;
+	protected String instIndices = null;
+
+	public int getInstMsb() {
+		return instMsb;
+	}
+
+	public void setInstMsb(int instMsb) {
+		this.instMsb = instMsb;
+	}
+
+	public int getInstLsb() {
+		return instLsb;
+	}
+
+	public void setInstLsb(int instLsb) {
+		this.instLsb = instLsb;
+	}
+
+	public int getInstIndex() {
+		return instIndex;
+	}
+
+	public void setInstIndex(int instIndex) {
+		this.instIndex = instIndex;
+	}
+
+	public String getInstIndices() {
+		return instIndices;
+	}
+
+	public void setInstIndices(String instIndices) {
+		this.instIndices = instIndices;
+	}
 }

@@ -18,6 +18,7 @@
 package phdl.parser;
 
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A class that represents an instance declaration in phdl. An instance
@@ -25,24 +26,24 @@ import java.util.HashSet;
  * 
  * @author Richard Black and Brad Riching
  */
-public class InstanceDeclaration extends ReferenceDeclaration {
+public class InstDecl extends RefDecl {
 
 	/**
 	 * The instance's set of attribute assignments
 	 */
-	protected HashSet<AttributeAssignment> attrAssigns;
+	protected Set<AttrAssign> attrAssigns;
 	/**
 	 * The instance's set of pin assignments
 	 */
-	protected HashSet<PinAssignment> pinAssigs;
+	protected Set<PinAssign> pinAssigs;
 
 	/**
 	 * Default constructor
 	 */
-	public InstanceDeclaration() {
+	public InstDecl() {
 		super();
-		this.attrAssigns = new HashSet<AttributeAssignment>();
-		this.pinAssigs = new HashSet<PinAssignment>();
+		this.attrAssigns = new HashSet<AttrAssign>();
+		this.pinAssigs = new HashSet<PinAssign>();
 	}
 
 	/**
@@ -50,7 +51,7 @@ public class InstanceDeclaration extends ReferenceDeclaration {
 	 * 
 	 * @return The instance's set of attribute assignments
 	 */
-	public HashSet<AttributeAssignment> getAttributeAssignments() {
+	public Set<AttrAssign> getAttrAssigns() {
 		return attrAssigns;
 	}
 
@@ -62,9 +63,8 @@ public class InstanceDeclaration extends ReferenceDeclaration {
 	 *            The attribute assignment to add
 	 * @return True if the attribute assignment was added successfully
 	 */
-	public boolean addAttributeAssignment(AttributeAssignment a) {
-		boolean added = attrAssigns.add(a);
-		return added;
+	public boolean addAttrAssign(AttrAssign a) {
+		return attrAssigns.add(a);
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class InstanceDeclaration extends ReferenceDeclaration {
 	 * 
 	 * @return The instance's set of pin assignments
 	 */
-	public HashSet<PinAssignment> getPinAssignments() {
+	public Set<PinAssign> getPinAssigns() {
 		return pinAssigs;
 	}
 
@@ -83,9 +83,8 @@ public class InstanceDeclaration extends ReferenceDeclaration {
 	 *            The pin assignment to add
 	 * @return True if the pin assignment was added successfully
 	 */
-	public boolean addPinAssignment(PinAssignment p) {
-		boolean added = pinAssigs.add(p);
-		return added;
+	public boolean addPinAssign(PinAssign p) {
+		return pinAssigs.add(p);
 	}
 
 	/**
@@ -101,9 +100,9 @@ public class InstanceDeclaration extends ReferenceDeclaration {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return name.equals(((InstanceDeclaration) o).getName())
-				&& msb == ((InstanceDeclaration) o).getMsb()
-				&& lsb == ((InstanceDeclaration) o).getLsb();
+		return name.equals(((InstDecl) o).getName())
+				&& msb == ((InstDecl) o).getMsb()
+				&& lsb == ((InstDecl) o).getLsb();
 	}
 
 	/**
@@ -111,19 +110,20 @@ public class InstanceDeclaration extends ReferenceDeclaration {
 	 */
 	@Override
 	public String toString() {
-		String header = "InstanceDecl " + getLineString() + " " + name + ":"
+		String header = "InstanceDecl " + getLocation() + " " + name + ":"
 				+ getRefName() + "\n";
 		String attributes = "";
 		String pins = "";
 
 		// loop through all attribute assignments
-		for (AttributeAssignment a : attrAssigns)
+		for (AttrAssign a : attrAssigns)
 			attributes += "\t\t" + a.toString();
 
 		// loop through all pin assignments
-		for (PinAssignment p : pinAssigs)
+		for (PinAssign p : pinAssigs)
 			pins += "\t\t" + p.toString();
 
 		return header + attributes + pins;
 	}
+
 }

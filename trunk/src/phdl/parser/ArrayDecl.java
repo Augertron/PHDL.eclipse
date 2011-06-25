@@ -23,7 +23,7 @@ package phdl.parser;
  * 
  * @author Richard Black and Brad Riching
  */
-public abstract class ArrayDeclaration extends Declarable {
+public abstract class ArrayDecl extends Declarable {
 
 	/**
 	 * The msb of the array declaration
@@ -117,15 +117,21 @@ public abstract class ArrayDeclaration extends Declarable {
 		return false;
 	}
 
-	public boolean isValidArray(int high, int low) {
-		return isValidIndex(high) && isValidIndex(low);
+	public boolean isValidArray(int msb, int lsb) {
+		return isValidIndex(msb) && isValidIndex(lsb);
 	}
 
 	public boolean isDownArray() {
-		return (msb > lsb) ? true : false;
+		if (isArrayed()) {
+			return (msb > lsb) ? true : false;
+		}
+		return false;
 	}
 
 	public boolean isUpArray() {
-		return (msb < lsb) ? true : false;
+		if (isArrayed()) {
+			return (msb < lsb) ? true : false;
+		}
+		return false;
 	}
 }

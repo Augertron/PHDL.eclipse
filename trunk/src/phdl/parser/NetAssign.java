@@ -20,19 +20,20 @@ package phdl.parser;
 import java.util.LinkedList;
 
 /**
- * A class that represents a pin assignment in phdl.
+ * A class that represents a net assignment in phdl.
  * 
  * @author Richard Black and Brad Riching
  * 
  */
-public class PinAssignment extends InstanceAssignment {
+public class NetAssign extends ConcatAssign {
 
 	/**
 	 * Default constructor
 	 */
-	public PinAssignment() {
+	public NetAssign() {
 		super();
 		this.nets = new LinkedList<Net>();
+		this.slices = new LinkedList<Integer>();
 	}
 
 	/**
@@ -48,17 +49,15 @@ public class PinAssignment extends InstanceAssignment {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return name.equals(((PinAssignment) o).getName())
-				&& instMsb == ((PinAssignment) o).getInstMsb()
-				&& instLsb == ((PinAssignment) o).getInstLsb()
-				&& instIndex == ((PinAssignment) o).getInstIndex()
-				&& msb == ((PinAssignment) o).getMsb()
-				&& lsb == ((PinAssignment) o).getLsb()
-				&& index == ((PinAssignment) o).getIndex();
+		return name.equals(((NetAssign) o).getName())
+				&& msb == ((NetAssign) o).getMsb()
+				&& lsb == ((NetAssign) o).getLsb()
+				&& index == ((NetAssign) o).getIndex()
+				&& indices.equals(((NetAssign) o).getIndices());
 	}
 
 	/**
-	 * Returns a formatted string represenation of the pin assignment
+	 * Returns a formatted string representation of the net assignment
 	 */
 	@Override
 	public String toString() {
@@ -68,15 +67,15 @@ public class PinAssignment extends InstanceAssignment {
 		if (!nets.isEmpty()) {
 			for (Net n : nets)
 				netString += n.toString() + " & ";
-			// remove last ampersand from the loop above
+			// remove the last ampersand from the loop above
 			netString = netString.substring(0, netString.length() - 3);
+
 		} else {
 			// if there are no nets in the list, the assignment is open.
 			netString = "open";
 		}
 
-		return "PinAssign " + getLineString() + " : " + name
-				+ getInstWidthString() + ":" + getWidthString() + " <= "
-				+ netString + "\n";
+		return "NetAssign " + getLocation() + " : " + name + getSlicesString()
+				+ " <= " + netString + "\n";
 	}
 }

@@ -36,7 +36,7 @@ import org.antlr.stringtemplate.StringTemplate;
 import phdl.analyzer.Analyzer;
 import phdl.analyzer.DesignHierarchy;
 import phdl.exception.InvalidDesignException;
-import phdl.parser.DesignDeclaration;
+import phdl.parser.DesignDecl;
 import phdl.parser.ParsedDesigns;
 import phdl.parser.PhdlLexer;
 import phdl.parser.PhdlParser;
@@ -119,7 +119,7 @@ public class PhdlComp {
 		} // end for loop on all source files
 
 		// 6. attempt to find the top level design
-		DesignDeclaration top = new DesignDeclaration();
+		DesignDecl top = new DesignDecl();
 		try {
 			top = pd.getTopDesign();
 		} catch (InvalidDesignException e) {
@@ -145,12 +145,12 @@ public class PhdlComp {
 		if (!errors.isEmpty()) {
 			for (String s : errors)
 				System.out.println(s);
-			// System.exit(1);
+			System.exit(1);
 		}
 
-		for (DesignDeclaration dd : pd.getDesignDecls())
-			System.out.println(dd.toString());
-		System.out.println(dh.toString());
+		// for (DesignDecl dd : pd.getDesignDecls())
+		// System.out.println(dd.toString());
+		// System.out.println(dh.toString());
 	}
 
 	/**

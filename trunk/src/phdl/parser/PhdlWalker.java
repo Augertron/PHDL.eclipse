@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g 2011-06-24 14:06:20
+// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g 2011-06-25 11:05:19
 
 	package phdl.parser;
 	import java.util.TreeSet;
@@ -20,10 +20,9 @@ import java.util.ArrayList;
  */
 public class PhdlWalker extends TreeParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "IDENT", "SEMICOLON", "EQUALS", "STRING_LITERAL", "NUMBER_LIST", "COMMA", "COLON", "INT", "CHAR", "DIGIT", "LBRACKET", "RBRACKET", "WHITESPACE", "LINE_COMMENT", "MULTILINE_COMMENT", "'design'", "'is'", "'begin'", "'end'", "'port'", "'device'", "'pin'", "'in'", "'out'", "'inout'", "'passive'", "'supply'", "'power'", "'open'", "'net'", "'('", "')'", "'inst'", "'sub'", "'&'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "IDENT", "SEMICOLON", "EQUALS", "STRING_LITERAL", "NUMBER_LIST", "COMMA", "COLON", "INT", "PERIOD", "CHAR", "DIGIT", "LBRACKET", "RBRACKET", "WHITESPACE", "LINE_COMMENT", "MULTILINE_COMMENT", "'design'", "'is'", "'begin'", "'end'", "'device'", "'pin'", "'in'", "'out'", "'inout'", "'passive'", "'supply'", "'power'", "'open'", "'net'", "'('", "')'", "'inst'", "'sub'", "'&'"
     };
     public static final int EOF=-1;
-    public static final int T__19=19;
     public static final int T__20=20;
     public static final int T__21=21;
     public static final int T__22=22;
@@ -51,13 +50,14 @@ public class PhdlWalker extends TreeParser {
     public static final int COMMA=9;
     public static final int COLON=10;
     public static final int INT=11;
-    public static final int CHAR=12;
-    public static final int DIGIT=13;
-    public static final int LBRACKET=14;
-    public static final int RBRACKET=15;
-    public static final int WHITESPACE=16;
-    public static final int LINE_COMMENT=17;
-    public static final int MULTILINE_COMMENT=18;
+    public static final int PERIOD=12;
+    public static final int CHAR=13;
+    public static final int DIGIT=14;
+    public static final int LBRACKET=15;
+    public static final int RBRACKET=16;
+    public static final int WHITESPACE=17;
+    public static final int LINE_COMMENT=18;
+    public static final int MULTILINE_COMMENT=19;
 
     // delegates
     // delegators
@@ -92,7 +92,7 @@ public class PhdlWalker extends TreeParser {
         }
         
         public void addError(Parsable p, String msg) {
-        	errors.add(input.getSourceName() + " line " + p.getLineString() + " " + msg
+        	errors.add(input.getSourceName() + " line " + p.getLocation() + " " + msg
     				+ ": " + p.getName());
         }
         
@@ -122,7 +122,7 @@ public class PhdlWalker extends TreeParser {
                 int alt1=2;
                 int LA1_0 = input.LA(1);
 
-                if ( (LA1_0==19) ) {
+                if ( (LA1_0==20) ) {
                     alt1=1;
                 }
 
@@ -162,19 +162,19 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "design"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:80:1: design[ParsedDesigns pd] : ^( 'design' IDENT ( portDecl[d] | deviceDecl[d] | netDecl[d] )* 'begin' ( instance[d] | subDesign[d] | netAssignment[d] )* ) ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:80:1: design[ParsedDesigns pd] : ^( 'design' IDENT ( portDecl[d] | deviceDecl[d] | netDecl[d] )* 'begin' ( instance[d] | subDesign[d] | netAssign[d] )* ) ;
     public final void design(ParsedDesigns pd) throws RecognitionException {
         CommonTree IDENT1=null;
 
         try {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:87:2: ( ^( 'design' IDENT ( portDecl[d] | deviceDecl[d] | netDecl[d] )* 'begin' ( instance[d] | subDesign[d] | netAssignment[d] )* ) )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:87:4: ^( 'design' IDENT ( portDecl[d] | deviceDecl[d] | netDecl[d] )* 'begin' ( instance[d] | subDesign[d] | netAssignment[d] )* )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:87:2: ( ^( 'design' IDENT ( portDecl[d] | deviceDecl[d] | netDecl[d] )* 'begin' ( instance[d] | subDesign[d] | netAssign[d] )* ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:87:4: ^( 'design' IDENT ( portDecl[d] | deviceDecl[d] | netDecl[d] )* 'begin' ( instance[d] | subDesign[d] | netAssign[d] )* )
             {
-            match(input,19,FOLLOW_19_in_design91); 
+            match(input,20,FOLLOW_20_in_design91); 
 
             match(input, Token.DOWN, null); 
             IDENT1=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_design93); 
-            	DesignDeclaration d = new DesignDeclaration();
+            	DesignDecl d = new DesignDecl();
             			d.setName((IDENT1!=null?IDENT1.getText():null));
             			d.setLine((IDENT1!=null?IDENT1.getLine():0));
             			d.setPos((IDENT1!=null?IDENT1.getCharPositionInLine():0));
@@ -249,8 +249,8 @@ public class PhdlWalker extends TreeParser {
                 }
             } while (true);
 
-            match(input,21,FOLLOW_21_in_design138); 
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:104:3: ( instance[d] | subDesign[d] | netAssignment[d] )*
+            match(input,22,FOLLOW_22_in_design138); 
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:104:3: ( instance[d] | subDesign[d] | netAssign[d] )*
             loop3:
             do {
                 int alt3=4;
@@ -297,10 +297,10 @@ public class PhdlWalker extends TreeParser {
             	    }
             	    break;
             	case 3 :
-            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:104:33: netAssignment[d]
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:104:33: netAssign[d]
             	    {
-            	    pushFollow(FOLLOW_netAssignment_in_design159);
-            	    netAssignment(d);
+            	    pushFollow(FOLLOW_netAssign_in_design159);
+            	    netAssign(d);
 
             	    state._fsp--;
 
@@ -334,8 +334,8 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "portDecl"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:112:1: portDecl[DesignDeclaration d] : ( ^( 'pin' addPort[d, pin] ) | ^( 'in' addPort[d, in] ) | ^( 'out' addPort[d, out] ) | ^( 'inout' addPort[d, inout] ) | ^( 'passive' addPort[d, passive] ) | ^( 'supply' addPort[d, supply] ) | ^( 'power' addPort[d, power] ) );
-    public final void portDecl(DesignDeclaration d) throws RecognitionException {
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:112:1: portDecl[DesignDecl d] : ( ^( 'pin' addPort[d, pin] ) | ^( 'in' addPort[d, in] ) | ^( 'out' addPort[d, out] ) | ^( 'inout' addPort[d, inout] ) | ^( 'passive' addPort[d, passive] ) | ^( 'supply' addPort[d, supply] ) | ^( 'power' addPort[d, power] ) );
+    public final void portDecl(DesignDecl d) throws RecognitionException {
         try {
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:118:2: ( ^( 'pin' addPort[d, pin] ) | ^( 'in' addPort[d, in] ) | ^( 'out' addPort[d, out] ) | ^( 'inout' addPort[d, inout] ) | ^( 'passive' addPort[d, passive] ) | ^( 'supply' addPort[d, supply] ) | ^( 'power' addPort[d, power] ) )
             int alt4=7;
@@ -388,7 +388,7 @@ public class PhdlWalker extends TreeParser {
                     {
                     match(input,25,FOLLOW_25_in_portDecl188); 
 
-                    PortDeclaration pin = new PortDeclaration(Type.PIN);
+                    PortDecl pin = new PortDecl(Type.PIN);
 
                     match(input, Token.DOWN, null); 
                     pushFollow(FOLLOW_addPort_in_portDecl192);
@@ -406,7 +406,7 @@ public class PhdlWalker extends TreeParser {
                     {
                     match(input,26,FOLLOW_26_in_portDecl200); 
 
-                    PortDeclaration in = new PortDeclaration(Type.IN);
+                    PortDecl in = new PortDecl(Type.IN);
 
                     match(input, Token.DOWN, null); 
                     pushFollow(FOLLOW_addPort_in_portDecl204);
@@ -424,7 +424,7 @@ public class PhdlWalker extends TreeParser {
                     {
                     match(input,27,FOLLOW_27_in_portDecl212); 
 
-                    PortDeclaration out = new PortDeclaration(Type.OUT);
+                    PortDecl out = new PortDecl(Type.OUT);
 
                     match(input, Token.DOWN, null); 
                     pushFollow(FOLLOW_addPort_in_portDecl216);
@@ -442,7 +442,7 @@ public class PhdlWalker extends TreeParser {
                     {
                     match(input,28,FOLLOW_28_in_portDecl224); 
 
-                    PortDeclaration inout = new PortDeclaration(Type.INOUT);
+                    PortDecl inout = new PortDecl(Type.INOUT);
 
                     match(input, Token.DOWN, null); 
                     pushFollow(FOLLOW_addPort_in_portDecl228);
@@ -460,7 +460,7 @@ public class PhdlWalker extends TreeParser {
                     {
                     match(input,29,FOLLOW_29_in_portDecl236); 
 
-                    PortDeclaration passive = new PortDeclaration(Type.PASSIVE);
+                    PortDecl passive = new PortDecl(Type.PASSIVE);
 
                     match(input, Token.DOWN, null); 
                     pushFollow(FOLLOW_addPort_in_portDecl240);
@@ -478,7 +478,7 @@ public class PhdlWalker extends TreeParser {
                     {
                     match(input,30,FOLLOW_30_in_portDecl248); 
 
-                    PortDeclaration supply = new PortDeclaration(Type.SUPPLY);
+                    PortDecl supply = new PortDecl(Type.SUPPLY);
 
                     match(input, Token.DOWN, null); 
                     pushFollow(FOLLOW_addPort_in_portDecl252);
@@ -496,7 +496,7 @@ public class PhdlWalker extends TreeParser {
                     {
                     match(input,31,FOLLOW_31_in_portDecl260); 
 
-                    PortDeclaration power = new PortDeclaration(Type.POWER);
+                    PortDecl power = new PortDecl(Type.POWER);
 
                     match(input, Token.DOWN, null); 
                     pushFollow(FOLLOW_addPort_in_portDecl264);
@@ -524,8 +524,8 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "addPort"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:127:1: addPort[DesignDeclaration d, PortDeclaration p] : (msb= INT COLON lsb= INT )? name= IDENT ;
-    public final void addPort(DesignDeclaration d, PortDeclaration p) throws RecognitionException {
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:127:1: addPort[DesignDecl d, PortDecl p] : (msb= INT COLON lsb= INT )? name= IDENT ;
+    public final void addPort(DesignDecl d, PortDecl p) throws RecognitionException {
         CommonTree msb=null;
         CommonTree lsb=null;
         CommonTree name=null;
@@ -582,25 +582,25 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "deviceDecl"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:146:1: deviceDecl[DesignDeclaration d] : ^( 'device' name= IDENT ( attributeDecl[dev] )* 'begin' ( pinDecl[dev] )* ) ;
-    public final void deviceDecl(DesignDeclaration d) throws RecognitionException {
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:146:1: deviceDecl[DesignDecl d] : ^( 'device' name= IDENT ( attrDecl[dev] )* 'begin' ( pinDecl[dev] )* ) ;
+    public final void deviceDecl(DesignDecl d) throws RecognitionException {
         CommonTree name=null;
 
         try {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:153:2: ( ^( 'device' name= IDENT ( attributeDecl[dev] )* 'begin' ( pinDecl[dev] )* ) )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:153:4: ^( 'device' name= IDENT ( attributeDecl[dev] )* 'begin' ( pinDecl[dev] )* )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:153:2: ( ^( 'device' name= IDENT ( attrDecl[dev] )* 'begin' ( pinDecl[dev] )* ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:153:4: ^( 'device' name= IDENT ( attrDecl[dev] )* 'begin' ( pinDecl[dev] )* )
             {
             match(input,24,FOLLOW_24_in_deviceDecl316); 
 
             match(input, Token.DOWN, null); 
             name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_deviceDecl320); 
-            	DeviceDeclaration dev = new DeviceDeclaration();
+            	DeviceDecl dev = new DeviceDecl();
             				dev.setName((name!=null?name.getText():null));
             				dev.setLine((name!=null?name.getLine():0));
             				dev.setPos((name!=null?name.getCharPositionInLine():0));
             				dev.setFileName(input.getSourceName());
             			
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:164:3: ( attributeDecl[dev] )*
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:164:3: ( attrDecl[dev] )*
             loop6:
             do {
                 int alt6=2;
@@ -613,10 +613,10 @@ public class PhdlWalker extends TreeParser {
 
                 switch (alt6) {
             	case 1 :
-            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:164:3: attributeDecl[dev]
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:164:3: attrDecl[dev]
             	    {
-            	    pushFollow(FOLLOW_attributeDecl_in_deviceDecl343);
-            	    attributeDecl(dev);
+            	    pushFollow(FOLLOW_attrDecl_in_deviceDecl343);
+            	    attrDecl(dev);
 
             	    state._fsp--;
 
@@ -629,7 +629,7 @@ public class PhdlWalker extends TreeParser {
                 }
             } while (true);
 
-            match(input,21,FOLLOW_21_in_deviceDecl355); 
+            match(input,22,FOLLOW_22_in_deviceDecl355); 
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:170:3: ( pinDecl[dev] )*
             loop7:
             do {
@@ -680,15 +680,15 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "netDecl"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:180:1: netDecl[DesignDeclaration d] : ^( 'net' (msb= INT COLON lsb= INT )? name= IDENT ( COLON ( netAttribute[n] )+ )? ) ;
-    public final void netDecl(DesignDeclaration d) throws RecognitionException {
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:180:1: netDecl[DesignDecl d] : ^( 'net' (msb= INT COLON lsb= INT )? name= IDENT ( COLON ( netAttr[n] )+ )? ) ;
+    public final void netDecl(DesignDecl d) throws RecognitionException {
         CommonTree msb=null;
         CommonTree lsb=null;
         CommonTree name=null;
 
         try {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:185:2: ( ^( 'net' (msb= INT COLON lsb= INT )? name= IDENT ( COLON ( netAttribute[n] )+ )? ) )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:185:4: ^( 'net' (msb= INT COLON lsb= INT )? name= IDENT ( COLON ( netAttribute[n] )+ )? )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:185:2: ( ^( 'net' (msb= INT COLON lsb= INT )? name= IDENT ( COLON ( netAttr[n] )+ )? ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:185:4: ^( 'net' (msb= INT COLON lsb= INT )? name= IDENT ( COLON ( netAttr[n] )+ )? )
             {
             match(input,33,FOLLOW_33_in_netDecl400); 
 
@@ -714,7 +714,7 @@ public class PhdlWalker extends TreeParser {
             }
 
             name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_netDecl417); 
-            	NetDeclaration n = new NetDeclaration(); 
+            	NetDecl n = new NetDecl(); 
             			n.setName((name!=null?name.getText():null));
             			n.setLine((name!=null?name.getLine():0));
             			n.setPos((name!=null?name.getCharPositionInLine():0));
@@ -722,7 +722,7 @@ public class PhdlWalker extends TreeParser {
             			n.setLsb(lsb!=null?Integer.parseInt((lsb!=null?lsb.getText():null)):-1);
             			n.setFileName(input.getSourceName());
             		
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:198:3: ( COLON ( netAttribute[n] )+ )?
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:198:3: ( COLON ( netAttr[n] )+ )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -731,10 +731,10 @@ public class PhdlWalker extends TreeParser {
             }
             switch (alt10) {
                 case 1 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:198:4: COLON ( netAttribute[n] )+
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:198:4: COLON ( netAttr[n] )+
                     {
                     match(input,COLON,FOLLOW_COLON_in_netDecl435); 
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:198:10: ( netAttribute[n] )+
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:198:10: ( netAttr[n] )+
                     int cnt9=0;
                     loop9:
                     do {
@@ -748,10 +748,10 @@ public class PhdlWalker extends TreeParser {
 
                         switch (alt9) {
                     	case 1 :
-                    	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:198:10: netAttribute[n]
+                    	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:198:10: netAttr[n]
                     	    {
-                    	    pushFollow(FOLLOW_netAttribute_in_netDecl437);
-                    	    netAttribute(n);
+                    	    pushFollow(FOLLOW_netAttr_in_netDecl437);
+                    	    netAttr(n);
 
                     	    state._fsp--;
 
@@ -794,16 +794,16 @@ public class PhdlWalker extends TreeParser {
     // $ANTLR end "netDecl"
 
 
-    // $ANTLR start "netAttribute"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:207:1: netAttribute[NetDeclaration n] : IDENT ;
-    public final void netAttribute(NetDeclaration n) throws RecognitionException {
+    // $ANTLR start "netAttr"
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:207:1: netAttr[NetDecl n] : IDENT ;
+    public final void netAttr(NetDecl n) throws RecognitionException {
         CommonTree IDENT2=null;
 
         try {
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:210:2: ( IDENT )
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:210:4: IDENT
             {
-            IDENT2=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_netAttribute470); 
+            IDENT2=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_netAttr470); 
             	if(!n.addAttribute((IDENT2!=null?IDENT2.getText():null))) 
             				addError(n, "duplicate net attribute");
             		
@@ -819,12 +819,12 @@ public class PhdlWalker extends TreeParser {
         }
         return ;
     }
-    // $ANTLR end "netAttribute"
+    // $ANTLR end "netAttr"
 
 
-    // $ANTLR start "attributeDecl"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:218:1: attributeDecl[DeviceDeclaration d] : ^( EQUALS name= IDENT value= STRING_LITERAL ) ;
-    public final void attributeDecl(DeviceDeclaration d) throws RecognitionException {
+    // $ANTLR start "attrDecl"
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:218:1: attrDecl[DeviceDecl d] : ^( EQUALS name= IDENT value= STRING_LITERAL ) ;
+    public final void attrDecl(DeviceDecl d) throws RecognitionException {
         CommonTree name=null;
         CommonTree value=null;
 
@@ -832,21 +832,21 @@ public class PhdlWalker extends TreeParser {
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:222:2: ( ^( EQUALS name= IDENT value= STRING_LITERAL ) )
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:222:4: ^( EQUALS name= IDENT value= STRING_LITERAL )
             {
-            match(input,EQUALS,FOLLOW_EQUALS_in_attributeDecl494); 
+            match(input,EQUALS,FOLLOW_EQUALS_in_attrDecl494); 
 
             match(input, Token.DOWN, null); 
-            name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_attributeDecl498); 
-            value=(CommonTree)match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_attributeDecl502); 
+            name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_attrDecl498); 
+            value=(CommonTree)match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_attrDecl502); 
 
             match(input, Token.UP, null); 
-            	AttributeDeclaration a = new AttributeDeclaration();
+            	AttrDecl a = new AttrDecl();
             			a.setName((name!=null?name.getText():null));
             			a.setLine((name!=null?name.getLine():0));
             			a.setPos((name!=null?name.getCharPositionInLine():0));
             			a.setValue((value!=null?value.getText():null));
             			a.setFileName(input.getSourceName());
             			
-            			if(!d.addAttributeDecl(a)) 
+            			if(!d.addAttrDecl(a)) 
             				addError(a, "duplicate attribute declaration");
             		
 
@@ -861,12 +861,12 @@ public class PhdlWalker extends TreeParser {
         }
         return ;
     }
-    // $ANTLR end "attributeDecl"
+    // $ANTLR end "attrDecl"
 
 
     // $ANTLR start "pinDecl"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:237:1: pinDecl[DeviceDeclaration d] : ( ^( 'pin' addPinDecl[d, pin] ) | ^( 'in' addPinDecl[d, in] ) | ^( 'out' addPinDecl[d, out] ) | ^( 'inout' addPinDecl[d, inout] ) | ^( 'passive' addPinDecl[d, passive] ) | ^( 'supply' addPinDecl[d, supply] ) | ^( 'power' addPinDecl[d, power] ) );
-    public final void pinDecl(DeviceDeclaration d) throws RecognitionException {
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:237:1: pinDecl[DeviceDecl d] : ( ^( 'pin' addPinDecl[d, pin] ) | ^( 'in' addPinDecl[d, in] ) | ^( 'out' addPinDecl[d, out] ) | ^( 'inout' addPinDecl[d, inout] ) | ^( 'passive' addPinDecl[d, passive] ) | ^( 'supply' addPinDecl[d, supply] ) | ^( 'power' addPinDecl[d, power] ) );
+    public final void pinDecl(DeviceDecl d) throws RecognitionException {
         try {
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:242:2: ( ^( 'pin' addPinDecl[d, pin] ) | ^( 'in' addPinDecl[d, in] ) | ^( 'out' addPinDecl[d, out] ) | ^( 'inout' addPinDecl[d, inout] ) | ^( 'passive' addPinDecl[d, passive] ) | ^( 'supply' addPinDecl[d, supply] ) | ^( 'power' addPinDecl[d, power] ) )
             int alt11=7;
@@ -919,7 +919,7 @@ public class PhdlWalker extends TreeParser {
                     {
                     match(input,25,FOLLOW_25_in_pinDecl529); 
 
-                    PinDeclaration pin = new PinDeclaration(Type.PIN);
+                    PinDecl pin = new PinDecl(Type.PIN);
 
                     match(input, Token.DOWN, null); 
                     pushFollow(FOLLOW_addPinDecl_in_pinDecl533);
@@ -937,7 +937,7 @@ public class PhdlWalker extends TreeParser {
                     {
                     match(input,26,FOLLOW_26_in_pinDecl541); 
 
-                    PinDeclaration in = new PinDeclaration(Type.IN);
+                    PinDecl in = new PinDecl(Type.IN);
 
                     match(input, Token.DOWN, null); 
                     pushFollow(FOLLOW_addPinDecl_in_pinDecl545);
@@ -955,7 +955,7 @@ public class PhdlWalker extends TreeParser {
                     {
                     match(input,27,FOLLOW_27_in_pinDecl553); 
 
-                    PinDeclaration out = new PinDeclaration(Type.OUT);
+                    PinDecl out = new PinDecl(Type.OUT);
 
                     match(input, Token.DOWN, null); 
                     pushFollow(FOLLOW_addPinDecl_in_pinDecl557);
@@ -973,7 +973,7 @@ public class PhdlWalker extends TreeParser {
                     {
                     match(input,28,FOLLOW_28_in_pinDecl565); 
 
-                    PinDeclaration inout = new PinDeclaration(Type.INOUT);
+                    PinDecl inout = new PinDecl(Type.INOUT);
 
                     match(input, Token.DOWN, null); 
                     pushFollow(FOLLOW_addPinDecl_in_pinDecl569);
@@ -991,7 +991,7 @@ public class PhdlWalker extends TreeParser {
                     {
                     match(input,29,FOLLOW_29_in_pinDecl577); 
 
-                    PinDeclaration passive = new PinDeclaration(Type.PASSIVE);
+                    PinDecl passive = new PinDecl(Type.PASSIVE);
 
                     match(input, Token.DOWN, null); 
                     pushFollow(FOLLOW_addPinDecl_in_pinDecl581);
@@ -1009,7 +1009,7 @@ public class PhdlWalker extends TreeParser {
                     {
                     match(input,30,FOLLOW_30_in_pinDecl589); 
 
-                    PinDeclaration supply = new PinDeclaration(Type.SUPPLY);
+                    PinDecl supply = new PinDecl(Type.SUPPLY);
 
                     match(input, Token.DOWN, null); 
                     pushFollow(FOLLOW_addPinDecl_in_pinDecl593);
@@ -1027,7 +1027,7 @@ public class PhdlWalker extends TreeParser {
                     {
                     match(input,31,FOLLOW_31_in_pinDecl601); 
 
-                    PinDeclaration power = new PinDeclaration(Type.POWER);
+                    PinDecl power = new PinDecl(Type.POWER);
 
                     match(input, Token.DOWN, null); 
                     pushFollow(FOLLOW_addPinDecl_in_pinDecl605);
@@ -1055,8 +1055,8 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "addPinDecl"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:251:1: addPinDecl[DeviceDeclaration d, PinDeclaration p] : (msb= INT COLON lsb= INT )? name= IDENT pinList= NUMBER_LIST ;
-    public final void addPinDecl(DeviceDeclaration d, PinDeclaration p) throws RecognitionException {
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:251:1: addPinDecl[DeviceDecl d, PinDecl p] : (msb= INT COLON lsb= INT )? name= IDENT pinList= NUMBER_LIST ;
+    public final void addPinDecl(DeviceDecl d, PinDecl p) throws RecognitionException {
         CommonTree msb=null;
         CommonTree lsb=null;
         CommonTree name=null;
@@ -1116,16 +1116,16 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "instance"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:270:1: instance[DesignDeclaration d] : ^( 'inst' name= IDENT refName= IDENT (msb= INT COLON lsb= INT )? ( attributeAssignment[i] )* 'begin' ( pinAssignment[i] )* ) ;
-    public final void instance(DesignDeclaration d) throws RecognitionException {
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:270:1: instance[DesignDecl d] : ^( 'inst' name= IDENT refName= IDENT (msb= INT COLON lsb= INT )? ( attrAssign[i] )* 'begin' ( pinAssign[i] )* ) ;
+    public final void instance(DesignDecl d) throws RecognitionException {
         CommonTree name=null;
         CommonTree refName=null;
         CommonTree msb=null;
         CommonTree lsb=null;
 
         try {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:274:2: ( ^( 'inst' name= IDENT refName= IDENT (msb= INT COLON lsb= INT )? ( attributeAssignment[i] )* 'begin' ( pinAssignment[i] )* ) )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:274:4: ^( 'inst' name= IDENT refName= IDENT (msb= INT COLON lsb= INT )? ( attributeAssignment[i] )* 'begin' ( pinAssignment[i] )* )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:274:2: ( ^( 'inst' name= IDENT refName= IDENT (msb= INT COLON lsb= INT )? ( attrAssign[i] )* 'begin' ( pinAssign[i] )* ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:274:4: ^( 'inst' name= IDENT refName= IDENT (msb= INT COLON lsb= INT )? ( attrAssign[i] )* 'begin' ( pinAssign[i] )* )
             {
             match(input,36,FOLLOW_36_in_instance662); 
 
@@ -1153,7 +1153,7 @@ public class PhdlWalker extends TreeParser {
             }
 
             	
-            			InstanceDeclaration i = new InstanceDeclaration();
+            			InstDecl i = new InstDecl();
             				i.setName((name!=null?name.getText():null));
             				i.setLine((name!=null?name.getLine():0));
             				i.setPos((name!=null?name.getCharPositionInLine():0));
@@ -1162,7 +1162,7 @@ public class PhdlWalker extends TreeParser {
             				i.setRefName((refName!=null?refName.getText():null));
             				i.setFileName(input.getSourceName());
             		
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:288:3: ( attributeAssignment[i] )*
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:288:3: ( attrAssign[i] )*
             loop14:
             do {
                 int alt14=2;
@@ -1175,10 +1175,10 @@ public class PhdlWalker extends TreeParser {
 
                 switch (alt14) {
             	case 1 :
-            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:288:3: attributeAssignment[i]
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:288:3: attrAssign[i]
             	    {
-            	    pushFollow(FOLLOW_attributeAssignment_in_instance702);
-            	    attributeAssignment(i);
+            	    pushFollow(FOLLOW_attrAssign_in_instance702);
+            	    attrAssign(i);
 
             	    state._fsp--;
 
@@ -1191,8 +1191,8 @@ public class PhdlWalker extends TreeParser {
                 }
             } while (true);
 
-            match(input,21,FOLLOW_21_in_instance708); 
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:290:3: ( pinAssignment[i] )*
+            match(input,22,FOLLOW_22_in_instance708); 
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:290:3: ( pinAssign[i] )*
             loop15:
             do {
                 int alt15=2;
@@ -1205,10 +1205,10 @@ public class PhdlWalker extends TreeParser {
 
                 switch (alt15) {
             	case 1 :
-            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:290:3: pinAssignment[i]
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:290:3: pinAssign[i]
             	    {
-            	    pushFollow(FOLLOW_pinAssignment_in_instance712);
-            	    pinAssignment(i);
+            	    pushFollow(FOLLOW_pinAssign_in_instance712);
+            	    pinAssign(i);
 
             	    state._fsp--;
 
@@ -1223,7 +1223,7 @@ public class PhdlWalker extends TreeParser {
 
 
             match(input, Token.UP, null); 
-            	if(!d.addInstanceDecl(i)) 
+            	if(!d.addInstDecl(i)) 
             				addError(i, "duplicate instance declaration");
             		
 
@@ -1241,9 +1241,9 @@ public class PhdlWalker extends TreeParser {
     // $ANTLR end "instance"
 
 
-    // $ANTLR start "attributeAssignment"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:297:1: attributeAssignment[InstanceDeclaration i] : ^( EQUALS name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? value= STRING_LITERAL ) ;
-    public final void attributeAssignment(InstanceDeclaration i) throws RecognitionException {
+    // $ANTLR start "attrAssign"
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:297:1: attrAssign[InstDecl i] : ^( EQUALS name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? value= STRING_LITERAL ) ;
+    public final void attrAssign(InstDecl i) throws RecognitionException {
         CommonTree name=null;
         CommonTree msb=null;
         CommonTree lsb=null;
@@ -1255,11 +1255,11 @@ public class PhdlWalker extends TreeParser {
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:303:2: ( ^( EQUALS name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? value= STRING_LITERAL ) )
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:303:4: ^( EQUALS name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? value= STRING_LITERAL )
             {
-            match(input,EQUALS,FOLLOW_EQUALS_in_attributeAssignment737); 
+            match(input,EQUALS,FOLLOW_EQUALS_in_attrAssign737); 
 
             match(input, Token.DOWN, null); 
-            name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_attributeAssignment741); 
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:303:24: ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )?
+            name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_attrAssign741); 
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:304:3: ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )?
             int alt16=4;
             int LA16_0 = input.LA(1);
 
@@ -1278,14 +1278,14 @@ public class PhdlWalker extends TreeParser {
             }
             switch (alt16) {
                 case 1 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:303:25: (msb= INT COLON lsb= INT )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:304:4: (msb= INT COLON lsb= INT )
                     {
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:303:25: (msb= INT COLON lsb= INT )
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:303:26: msb= INT COLON lsb= INT
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:304:4: (msb= INT COLON lsb= INT )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:304:5: msb= INT COLON lsb= INT
                     {
-                    msb=(CommonTree)match(input,INT,FOLLOW_INT_in_attributeAssignment747); 
-                    match(input,COLON,FOLLOW_COLON_in_attributeAssignment749); 
-                    lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_attributeAssignment753); 
+                    msb=(CommonTree)match(input,INT,FOLLOW_INT_in_attrAssign750); 
+                    match(input,COLON,FOLLOW_COLON_in_attrAssign752); 
+                    lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_attrAssign756); 
 
                     }
 
@@ -1293,12 +1293,12 @@ public class PhdlWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:303:51: (index= INT )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:304:30: (index= INT )
                     {
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:303:51: (index= INT )
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:303:52: index= INT
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:304:30: (index= INT )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:304:31: index= INT
                     {
-                    index=(CommonTree)match(input,INT,FOLLOW_INT_in_attributeAssignment761); 
+                    index=(CommonTree)match(input,INT,FOLLOW_INT_in_attrAssign764); 
 
                     }
 
@@ -1306,19 +1306,19 @@ public class PhdlWalker extends TreeParser {
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:303:65: indices= NUMBER_LIST
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:304:44: indices= NUMBER_LIST
                     {
-                    indices=(CommonTree)match(input,NUMBER_LIST,FOLLOW_NUMBER_LIST_in_attributeAssignment768); 
+                    indices=(CommonTree)match(input,NUMBER_LIST,FOLLOW_NUMBER_LIST_in_attrAssign771); 
 
                     }
                     break;
 
             }
 
-            value=(CommonTree)match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_attributeAssignment777); 
+            value=(CommonTree)match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_attrAssign780); 
 
             match(input, Token.UP, null); 
-            	AttributeAssignment a = new AttributeAssignment();
+            	AttrAssign a = new AttrAssign();
             			a.setName((name!=null?name.getText():null));
             			a.setLine((name!=null?name.getLine():0));
             			a.setPos((name!=null?name.getCharPositionInLine():0));
@@ -1329,7 +1329,7 @@ public class PhdlWalker extends TreeParser {
             			a.setValue((value!=null?value.getText():null));
             			a.setFileName(input.getSourceName());
             			
-            			if(!i.addAttributeAssignment(a)) 
+            			if(!i.addAttrAssign(a)) 
             				addError(a, "duplicate attribute assignment");
             		
 
@@ -1344,12 +1344,12 @@ public class PhdlWalker extends TreeParser {
         }
         return ;
     }
-    // $ANTLR end "attributeAssignment"
+    // $ANTLR end "attrAssign"
 
 
-    // $ANTLR start "pinAssignment"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:324:1: pinAssignment[InstanceDeclaration i] : ^( EQUALS name= IDENT ( ( (instMsb= INT COLON instLsb= INT ) | (instIndex= INT | instIndices= NUMBER_LIST ) ) ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? )? ( concatenatePin[p] )* ) ;
-    public final void pinAssignment(InstanceDeclaration i) throws RecognitionException {
+    // $ANTLR start "pinAssign"
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:325:1: pinAssign[InstDecl i] : ^( EQUALS name= IDENT ( ( (instMsb= INT COLON instLsb= INT ) | (instIndex= INT | instIndices= NUMBER_LIST ) ) ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? )? ( concatPin[p] )* ) ;
+    public final void pinAssign(InstDecl i) throws RecognitionException {
         CommonTree name=null;
         CommonTree instMsb=null;
         CommonTree instLsb=null;
@@ -1361,14 +1361,14 @@ public class PhdlWalker extends TreeParser {
         CommonTree indices=null;
 
         try {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:327:2: ( ^( EQUALS name= IDENT ( ( (instMsb= INT COLON instLsb= INT ) | (instIndex= INT | instIndices= NUMBER_LIST ) ) ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? )? ( concatenatePin[p] )* ) )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:327:4: ^( EQUALS name= IDENT ( ( (instMsb= INT COLON instLsb= INT ) | (instIndex= INT | instIndices= NUMBER_LIST ) ) ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? )? ( concatenatePin[p] )* )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:329:2: ( ^( EQUALS name= IDENT ( ( (instMsb= INT COLON instLsb= INT ) | (instIndex= INT | instIndices= NUMBER_LIST ) ) ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? )? ( concatPin[p] )* ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:329:4: ^( EQUALS name= IDENT ( ( (instMsb= INT COLON instLsb= INT ) | (instIndex= INT | instIndices= NUMBER_LIST ) ) ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? )? ( concatPin[p] )* )
             {
-            match(input,EQUALS,FOLLOW_EQUALS_in_pinAssignment806); 
+            match(input,EQUALS,FOLLOW_EQUALS_in_pinAssign809); 
 
             match(input, Token.DOWN, null); 
-            name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_pinAssignment810); 
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:328:3: ( ( (instMsb= INT COLON instLsb= INT ) | (instIndex= INT | instIndices= NUMBER_LIST ) ) ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? )?
+            name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_pinAssign813); 
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:330:3: ( ( (instMsb= INT COLON instLsb= INT ) | (instIndex= INT | instIndices= NUMBER_LIST ) ) ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? )?
             int alt20=2;
             int LA20_0 = input.LA(1);
 
@@ -1377,9 +1377,9 @@ public class PhdlWalker extends TreeParser {
             }
             switch (alt20) {
                 case 1 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:328:4: ( (instMsb= INT COLON instLsb= INT ) | (instIndex= INT | instIndices= NUMBER_LIST ) ) ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )?
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:330:4: ( (instMsb= INT COLON instLsb= INT ) | (instIndex= INT | instIndices= NUMBER_LIST ) ) ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )?
                     {
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:328:4: ( (instMsb= INT COLON instLsb= INT ) | (instIndex= INT | instIndices= NUMBER_LIST ) )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:330:4: ( (instMsb= INT COLON instLsb= INT ) | (instIndex= INT | instIndices= NUMBER_LIST ) )
                     int alt18=2;
                     int LA18_0 = input.LA(1);
 
@@ -1410,14 +1410,14 @@ public class PhdlWalker extends TreeParser {
                     }
                     switch (alt18) {
                         case 1 :
-                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:328:5: (instMsb= INT COLON instLsb= INT )
+                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:330:5: (instMsb= INT COLON instLsb= INT )
                             {
-                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:328:5: (instMsb= INT COLON instLsb= INT )
-                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:328:6: instMsb= INT COLON instLsb= INT
+                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:330:5: (instMsb= INT COLON instLsb= INT )
+                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:330:6: instMsb= INT COLON instLsb= INT
                             {
-                            instMsb=(CommonTree)match(input,INT,FOLLOW_INT_in_pinAssignment820); 
-                            match(input,COLON,FOLLOW_COLON_in_pinAssignment822); 
-                            instLsb=(CommonTree)match(input,INT,FOLLOW_INT_in_pinAssignment826); 
+                            instMsb=(CommonTree)match(input,INT,FOLLOW_INT_in_pinAssign823); 
+                            match(input,COLON,FOLLOW_COLON_in_pinAssign825); 
+                            instLsb=(CommonTree)match(input,INT,FOLLOW_INT_in_pinAssign829); 
 
                             }
 
@@ -1425,9 +1425,9 @@ public class PhdlWalker extends TreeParser {
                             }
                             break;
                         case 2 :
-                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:328:39: (instIndex= INT | instIndices= NUMBER_LIST )
+                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:330:39: (instIndex= INT | instIndices= NUMBER_LIST )
                             {
-                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:328:39: (instIndex= INT | instIndices= NUMBER_LIST )
+                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:330:39: (instIndex= INT | instIndices= NUMBER_LIST )
                             int alt17=2;
                             int LA17_0 = input.LA(1);
 
@@ -1445,16 +1445,16 @@ public class PhdlWalker extends TreeParser {
                             }
                             switch (alt17) {
                                 case 1 :
-                                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:328:40: instIndex= INT
+                                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:330:40: instIndex= INT
                                     {
-                                    instIndex=(CommonTree)match(input,INT,FOLLOW_INT_in_pinAssignment834); 
+                                    instIndex=(CommonTree)match(input,INT,FOLLOW_INT_in_pinAssign837); 
 
                                     }
                                     break;
                                 case 2 :
-                                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:328:56: instIndices= NUMBER_LIST
+                                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:330:56: instIndices= NUMBER_LIST
                                     {
-                                    instIndices=(CommonTree)match(input,NUMBER_LIST,FOLLOW_NUMBER_LIST_in_pinAssignment840); 
+                                    instIndices=(CommonTree)match(input,NUMBER_LIST,FOLLOW_NUMBER_LIST_in_pinAssign843); 
 
                                     }
                                     break;
@@ -1467,7 +1467,7 @@ public class PhdlWalker extends TreeParser {
 
                     }
 
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:329:3: ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )?
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:331:3: ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )?
                     int alt19=4;
                     int LA19_0 = input.LA(1);
 
@@ -1486,14 +1486,14 @@ public class PhdlWalker extends TreeParser {
                     }
                     switch (alt19) {
                         case 1 :
-                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:329:4: (msb= INT COLON lsb= INT )
+                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:331:4: (msb= INT COLON lsb= INT )
                             {
-                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:329:4: (msb= INT COLON lsb= INT )
-                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:329:5: msb= INT COLON lsb= INT
+                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:331:4: (msb= INT COLON lsb= INT )
+                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:331:5: msb= INT COLON lsb= INT
                             {
-                            msb=(CommonTree)match(input,INT,FOLLOW_INT_in_pinAssignment850); 
-                            match(input,COLON,FOLLOW_COLON_in_pinAssignment852); 
-                            lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_pinAssignment856); 
+                            msb=(CommonTree)match(input,INT,FOLLOW_INT_in_pinAssign853); 
+                            match(input,COLON,FOLLOW_COLON_in_pinAssign855); 
+                            lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_pinAssign859); 
 
                             }
 
@@ -1501,12 +1501,12 @@ public class PhdlWalker extends TreeParser {
                             }
                             break;
                         case 2 :
-                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:329:30: (index= INT )
+                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:331:30: (index= INT )
                             {
-                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:329:30: (index= INT )
-                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:329:31: index= INT
+                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:331:30: (index= INT )
+                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:331:31: index= INT
                             {
-                            index=(CommonTree)match(input,INT,FOLLOW_INT_in_pinAssignment864); 
+                            index=(CommonTree)match(input,INT,FOLLOW_INT_in_pinAssign867); 
 
                             }
 
@@ -1514,9 +1514,9 @@ public class PhdlWalker extends TreeParser {
                             }
                             break;
                         case 3 :
-                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:329:44: indices= NUMBER_LIST
+                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:331:44: indices= NUMBER_LIST
                             {
-                            indices=(CommonTree)match(input,NUMBER_LIST,FOLLOW_NUMBER_LIST_in_pinAssignment871); 
+                            indices=(CommonTree)match(input,NUMBER_LIST,FOLLOW_NUMBER_LIST_in_pinAssign874); 
 
                             }
                             break;
@@ -1530,7 +1530,7 @@ public class PhdlWalker extends TreeParser {
             }
 
 
-            			PinAssignment p = new PinAssignment();
+            			PinAssign p = new PinAssign();
             			p.setName((name!=null?name.getText():null));
             			p.setLine((name!=null?name.getLine():0));
             			p.setPos((name!=null?name.getCharPositionInLine():0));
@@ -1544,7 +1544,7 @@ public class PhdlWalker extends TreeParser {
             			p.setIndices((indices!=null?indices.getText():null));
             			p.setFileName(input.getSourceName());
             		
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:348:3: ( concatenatePin[p] )*
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:350:3: ( concatPin[p] )*
             loop21:
             do {
                 int alt21=2;
@@ -1557,10 +1557,10 @@ public class PhdlWalker extends TreeParser {
 
                 switch (alt21) {
             	case 1 :
-            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:348:3: concatenatePin[p]
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:350:3: concatPin[p]
             	    {
-            	    pushFollow(FOLLOW_concatenatePin_in_pinAssignment890);
-            	    concatenatePin(p);
+            	    pushFollow(FOLLOW_concatPin_in_pinAssign893);
+            	    concatPin(p);
 
             	    state._fsp--;
 
@@ -1575,7 +1575,7 @@ public class PhdlWalker extends TreeParser {
 
 
             match(input, Token.UP, null); 
-            	if(!i.addPinAssignment(p)) 
+            	if(!i.addPinAssign(p)) 
             				addError(p, "duplicate pin assignment");
             		
 
@@ -1590,12 +1590,12 @@ public class PhdlWalker extends TreeParser {
         }
         return ;
     }
-    // $ANTLR end "pinAssignment"
+    // $ANTLR end "pinAssign"
 
 
-    // $ANTLR start "concatenatePin"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:355:1: concatenatePin[PinAssignment pa] : (name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? ) ;
-    public final void concatenatePin(PinAssignment pa) throws RecognitionException {
+    // $ANTLR start "concatPin"
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:357:1: concatPin[PinAssign pa] : (name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? ) ;
+    public final void concatPin(PinAssign pa) throws RecognitionException {
         CommonTree name=null;
         CommonTree msb=null;
         CommonTree lsb=null;
@@ -1603,14 +1603,14 @@ public class PhdlWalker extends TreeParser {
         CommonTree indices=null;
 
         try {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:356:2: ( (name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? ) )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:356:4: (name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:361:2: ( (name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:361:4: (name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? )
             {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:356:4: (name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:356:5: name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )?
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:361:4: (name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:361:5: name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )?
             {
-            name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_concatenatePin916); 
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:356:16: ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )?
+            name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_concatPin921); 
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:361:16: ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )?
             int alt22=4;
             int LA22_0 = input.LA(1);
 
@@ -1629,14 +1629,14 @@ public class PhdlWalker extends TreeParser {
             }
             switch (alt22) {
                 case 1 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:356:17: (msb= INT COLON lsb= INT )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:361:17: (msb= INT COLON lsb= INT )
                     {
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:356:17: (msb= INT COLON lsb= INT )
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:356:18: msb= INT COLON lsb= INT
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:361:17: (msb= INT COLON lsb= INT )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:361:18: msb= INT COLON lsb= INT
                     {
-                    msb=(CommonTree)match(input,INT,FOLLOW_INT_in_concatenatePin922); 
-                    match(input,COLON,FOLLOW_COLON_in_concatenatePin924); 
-                    lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_concatenatePin928); 
+                    msb=(CommonTree)match(input,INT,FOLLOW_INT_in_concatPin927); 
+                    match(input,COLON,FOLLOW_COLON_in_concatPin929); 
+                    lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_concatPin933); 
 
                     }
 
@@ -1644,12 +1644,12 @@ public class PhdlWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:356:43: (index= INT )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:361:43: (index= INT )
                     {
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:356:43: (index= INT )
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:356:44: index= INT
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:361:43: (index= INT )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:361:44: index= INT
                     {
-                    index=(CommonTree)match(input,INT,FOLLOW_INT_in_concatenatePin936); 
+                    index=(CommonTree)match(input,INT,FOLLOW_INT_in_concatPin941); 
 
                     }
 
@@ -1657,9 +1657,9 @@ public class PhdlWalker extends TreeParser {
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:356:57: indices= NUMBER_LIST
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:361:57: indices= NUMBER_LIST
                     {
-                    indices=(CommonTree)match(input,NUMBER_LIST,FOLLOW_NUMBER_LIST_in_concatenatePin943); 
+                    indices=(CommonTree)match(input,NUMBER_LIST,FOLLOW_NUMBER_LIST_in_concatPin948); 
 
                     }
                     break;
@@ -1693,27 +1693,27 @@ public class PhdlWalker extends TreeParser {
         }
         return ;
     }
-    // $ANTLR end "concatenatePin"
+    // $ANTLR end "concatPin"
 
 
     // $ANTLR start "subDesign"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:371:1: subDesign[DesignDeclaration d] : ^( 'sub' name= IDENT refName= IDENT (msb= INT COLON lsb= INT )? ( portAssignment[s] )* ) ;
-    public final void subDesign(DesignDeclaration d) throws RecognitionException {
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:376:1: subDesign[DesignDecl d] : ^( 'sub' name= IDENT refName= IDENT (msb= INT COLON lsb= INT )? ( subAttrAssign[s] )* 'begin' ( portAssignment[s] )* ) ;
+    public final void subDesign(DesignDecl d) throws RecognitionException {
         CommonTree name=null;
         CommonTree refName=null;
         CommonTree msb=null;
         CommonTree lsb=null;
 
         try {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:372:2: ( ^( 'sub' name= IDENT refName= IDENT (msb= INT COLON lsb= INT )? ( portAssignment[s] )* ) )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:372:4: ^( 'sub' name= IDENT refName= IDENT (msb= INT COLON lsb= INT )? ( portAssignment[s] )* )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:380:2: ( ^( 'sub' name= IDENT refName= IDENT (msb= INT COLON lsb= INT )? ( subAttrAssign[s] )* 'begin' ( portAssignment[s] )* ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:380:4: ^( 'sub' name= IDENT refName= IDENT (msb= INT COLON lsb= INT )? ( subAttrAssign[s] )* 'begin' ( portAssignment[s] )* )
             {
-            match(input,37,FOLLOW_37_in_subDesign964); 
+            match(input,37,FOLLOW_37_in_subDesign971); 
 
             match(input, Token.DOWN, null); 
-            name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_subDesign968); 
-            refName=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_subDesign972); 
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:372:37: (msb= INT COLON lsb= INT )?
+            name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_subDesign975); 
+            refName=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_subDesign979); 
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:380:37: (msb= INT COLON lsb= INT )?
             int alt23=2;
             int LA23_0 = input.LA(1);
 
@@ -1722,11 +1722,11 @@ public class PhdlWalker extends TreeParser {
             }
             switch (alt23) {
                 case 1 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:372:38: msb= INT COLON lsb= INT
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:380:38: msb= INT COLON lsb= INT
                     {
-                    msb=(CommonTree)match(input,INT,FOLLOW_INT_in_subDesign977); 
-                    match(input,COLON,FOLLOW_COLON_in_subDesign979); 
-                    lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_subDesign983); 
+                    msb=(CommonTree)match(input,INT,FOLLOW_INT_in_subDesign984); 
+                    match(input,COLON,FOLLOW_COLON_in_subDesign986); 
+                    lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_subDesign990); 
 
                     }
                     break;
@@ -1734,7 +1734,7 @@ public class PhdlWalker extends TreeParser {
             }
 
             	
-            			SubDesignDeclaration s = new SubDesignDeclaration();
+            			SubDecl s = new SubDecl();
             			s.setName((name!=null?name.getText():null));
             			s.setLine((name!=null?name.getLine():0));
             			s.setPos((name!=null?name.getCharPositionInLine():0));
@@ -1743,23 +1743,23 @@ public class PhdlWalker extends TreeParser {
             			s.setRefName((refName!=null?refName.getText():null));
             			s.setFileName(input.getSourceName());
             		
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:386:3: ( portAssignment[s] )*
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:393:3: ( subAttrAssign[s] )*
             loop24:
             do {
                 int alt24=2;
                 int LA24_0 = input.LA(1);
 
-                if ( (LA24_0==EQUALS) ) {
+                if ( (LA24_0==IDENT) ) {
                     alt24=1;
                 }
 
 
                 switch (alt24) {
             	case 1 :
-            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:386:3: portAssignment[s]
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:393:3: subAttrAssign[s]
             	    {
-            	    pushFollow(FOLLOW_portAssignment_in_subDesign1000);
-            	    portAssignment(s);
+            	    pushFollow(FOLLOW_subAttrAssign_in_subDesign1006);
+            	    subAttrAssign(s);
 
             	    state._fsp--;
 
@@ -1772,9 +1772,39 @@ public class PhdlWalker extends TreeParser {
                 }
             } while (true);
 
+            match(input,22,FOLLOW_22_in_subDesign1012); 
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:395:3: ( portAssignment[s] )*
+            loop25:
+            do {
+                int alt25=2;
+                int LA25_0 = input.LA(1);
+
+                if ( (LA25_0==EQUALS) ) {
+                    alt25=1;
+                }
+
+
+                switch (alt25) {
+            	case 1 :
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:395:3: portAssignment[s]
+            	    {
+            	    pushFollow(FOLLOW_portAssignment_in_subDesign1016);
+            	    portAssignment(s);
+
+            	    state._fsp--;
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop25;
+                }
+            } while (true);
+
 
             match(input, Token.UP, null); 
-            	if(!d.addSubDesignDecl(s)) 
+            	if(!d.addSubDecl(s)) 
             				addError(s, "duplicate sub-design declaration");
             		
 
@@ -1792,50 +1822,52 @@ public class PhdlWalker extends TreeParser {
     // $ANTLR end "subDesign"
 
 
-    // $ANTLR start "netAssignment"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:393:1: netAssignment[DesignDeclaration d] : ^( EQUALS name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? ( concatenateNet[n] )* ) ;
-    public final void netAssignment(DesignDeclaration d) throws RecognitionException {
+    // $ANTLR start "subAttrAssign"
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:402:1: subAttrAssign[SubDecl s] : ^(instName= IDENT name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? value= STRING_LITERAL ) ;
+    public final void subAttrAssign(SubDecl s) throws RecognitionException {
+        CommonTree instName=null;
         CommonTree name=null;
         CommonTree msb=null;
         CommonTree lsb=null;
         CommonTree index=null;
         CommonTree indices=null;
+        CommonTree value=null;
 
         try {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:396:2: ( ^( EQUALS name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? ( concatenateNet[n] )* ) )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:396:4: ^( EQUALS name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? ( concatenateNet[n] )* )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:409:2: ( ^(instName= IDENT name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? value= STRING_LITERAL ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:409:4: ^(instName= IDENT name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? value= STRING_LITERAL )
             {
-            match(input,EQUALS,FOLLOW_EQUALS_in_netAssignment1026); 
+            instName=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_subAttrAssign1044); 
 
             match(input, Token.DOWN, null); 
-            name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_netAssignment1030); 
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:396:24: ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )?
-            int alt25=4;
-            int LA25_0 = input.LA(1);
+            name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_subAttrAssign1048); 
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:410:3: ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )?
+            int alt26=4;
+            int LA26_0 = input.LA(1);
 
-            if ( (LA25_0==INT) ) {
-                int LA25_1 = input.LA(2);
+            if ( (LA26_0==INT) ) {
+                int LA26_1 = input.LA(2);
 
-                if ( (LA25_1==COLON) ) {
-                    alt25=1;
+                if ( (LA26_1==COLON) ) {
+                    alt26=1;
                 }
-                else if ( ((LA25_1>=UP && LA25_1<=IDENT)) ) {
-                    alt25=2;
+                else if ( (LA26_1==STRING_LITERAL) ) {
+                    alt26=2;
                 }
             }
-            else if ( (LA25_0==NUMBER_LIST) ) {
-                alt25=3;
+            else if ( (LA26_0==NUMBER_LIST) ) {
+                alt26=3;
             }
-            switch (alt25) {
+            switch (alt26) {
                 case 1 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:396:25: (msb= INT COLON lsb= INT )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:410:4: (msb= INT COLON lsb= INT )
                     {
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:396:25: (msb= INT COLON lsb= INT )
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:396:26: msb= INT COLON lsb= INT
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:410:4: (msb= INT COLON lsb= INT )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:410:5: msb= INT COLON lsb= INT
                     {
-                    msb=(CommonTree)match(input,INT,FOLLOW_INT_in_netAssignment1036); 
-                    match(input,COLON,FOLLOW_COLON_in_netAssignment1038); 
-                    lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_netAssignment1042); 
+                    msb=(CommonTree)match(input,INT,FOLLOW_INT_in_subAttrAssign1057); 
+                    match(input,COLON,FOLLOW_COLON_in_subAttrAssign1059); 
+                    lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_subAttrAssign1063); 
 
                     }
 
@@ -1843,12 +1875,12 @@ public class PhdlWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:396:51: (index= INT )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:410:30: (index= INT )
                     {
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:396:51: (index= INT )
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:396:52: index= INT
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:410:30: (index= INT )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:410:31: index= INT
                     {
-                    index=(CommonTree)match(input,INT,FOLLOW_INT_in_netAssignment1050); 
+                    index=(CommonTree)match(input,INT,FOLLOW_INT_in_subAttrAssign1071); 
 
                     }
 
@@ -1856,59 +1888,32 @@ public class PhdlWalker extends TreeParser {
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:396:65: indices= NUMBER_LIST
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:410:44: indices= NUMBER_LIST
                     {
-                    indices=(CommonTree)match(input,NUMBER_LIST,FOLLOW_NUMBER_LIST_in_netAssignment1057); 
+                    indices=(CommonTree)match(input,NUMBER_LIST,FOLLOW_NUMBER_LIST_in_subAttrAssign1078); 
 
                     }
                     break;
 
             }
 
-
-            			NetAssignment n = new NetAssignment(); 
-            			n.setName((name!=null?name.getText():null));
-            			n.setLine((name!=null?name.getLine():0));
-            			n.setPos((name!=null?name.getCharPositionInLine():0));
-            			n.setMsb(msb!=null?Integer.parseInt((msb!=null?msb.getText():null)):-1);
-            			n.setLsb(lsb!=null?Integer.parseInt((lsb!=null?lsb.getText():null)):-1);
-            			n.setIndex(index!=null?Integer.parseInt((index!=null?index.getText():null)):-1);
-            			n.setIndices((indices!=null?indices.getText():null));
-            			n.setFileName(input.getSourceName());
-            		
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:411:3: ( concatenateNet[n] )*
-            loop26:
-            do {
-                int alt26=2;
-                int LA26_0 = input.LA(1);
-
-                if ( (LA26_0==IDENT) ) {
-                    alt26=1;
-                }
-
-
-                switch (alt26) {
-            	case 1 :
-            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:411:3: concatenateNet[n]
-            	    {
-            	    pushFollow(FOLLOW_concatenateNet_in_netAssignment1076);
-            	    concatenateNet(n);
-
-            	    state._fsp--;
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop26;
-                }
-            } while (true);
-
+            value=(CommonTree)match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_subAttrAssign1087); 
 
             match(input, Token.UP, null); 
-            	if(!d.addNetAssignment(n)) 
-            				addError(n, "duplicate net assignment");
+            	SubAttrAssign a = new SubAttrAssign();
+            			a.setInstName((instName!=null?instName.getText():null));
+            			a.setName((name!=null?name.getText():null));
+            			a.setLine((name!=null?name.getLine():0));
+            			a.setPos((name!=null?name.getCharPositionInLine():0));
+            			a.setMsb(msb!=null?Integer.parseInt((msb!=null?msb.getText():null)):-1);
+            			a.setLsb(lsb!=null?Integer.parseInt((lsb!=null?lsb.getText():null)):-1);
+            			a.setIndex(index!=null?Integer.parseInt((index!=null?index.getText():null)):-1);
+            			a.setIndices((indices!=null?indices.getText():null));
+            			a.setValue((value!=null?value.getText():null));
+            			a.setFileName(input.getSourceName());
+            			
+            			if(!s.addSubAttrAssign(a)) 
+            				addError(a, "duplicate sub-design attribute assignment");
             		
 
             }
@@ -1922,12 +1927,12 @@ public class PhdlWalker extends TreeParser {
         }
         return ;
     }
-    // $ANTLR end "netAssignment"
+    // $ANTLR end "subAttrAssign"
 
 
-    // $ANTLR start "concatenateNet"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:418:1: concatenateNet[NetAssignment na] : (name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? ) ;
-    public final void concatenateNet(NetAssignment na) throws RecognitionException {
+    // $ANTLR start "netAssign"
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:433:1: netAssign[DesignDecl d] : ^( EQUALS name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? ( concatNet[n] )* ) ;
+    public final void netAssign(DesignDecl d) throws RecognitionException {
         CommonTree name=null;
         CommonTree msb=null;
         CommonTree lsb=null;
@@ -1935,14 +1940,14 @@ public class PhdlWalker extends TreeParser {
         CommonTree indices=null;
 
         try {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:419:2: ( (name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? ) )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:419:4: (name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:437:2: ( ^( EQUALS name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? ( concatNet[n] )* ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:437:4: ^( EQUALS name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? ( concatNet[n] )* )
             {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:419:4: (name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:419:5: name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )?
-            {
-            name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_concatenateNet1102); 
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:419:16: ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )?
+            match(input,EQUALS,FOLLOW_EQUALS_in_netAssign1118); 
+
+            match(input, Token.DOWN, null); 
+            name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_netAssign1122); 
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:437:24: ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )?
             int alt27=4;
             int LA27_0 = input.LA(1);
 
@@ -1961,14 +1966,14 @@ public class PhdlWalker extends TreeParser {
             }
             switch (alt27) {
                 case 1 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:419:17: (msb= INT COLON lsb= INT )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:437:25: (msb= INT COLON lsb= INT )
                     {
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:419:17: (msb= INT COLON lsb= INT )
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:419:18: msb= INT COLON lsb= INT
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:437:25: (msb= INT COLON lsb= INT )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:437:26: msb= INT COLON lsb= INT
                     {
-                    msb=(CommonTree)match(input,INT,FOLLOW_INT_in_concatenateNet1108); 
-                    match(input,COLON,FOLLOW_COLON_in_concatenateNet1110); 
-                    lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_concatenateNet1114); 
+                    msb=(CommonTree)match(input,INT,FOLLOW_INT_in_netAssign1128); 
+                    match(input,COLON,FOLLOW_COLON_in_netAssign1130); 
+                    lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_netAssign1134); 
 
                     }
 
@@ -1976,12 +1981,12 @@ public class PhdlWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:419:43: (index= INT )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:437:51: (index= INT )
                     {
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:419:43: (index= INT )
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:419:44: index= INT
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:437:51: (index= INT )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:437:52: index= INT
                     {
-                    index=(CommonTree)match(input,INT,FOLLOW_INT_in_concatenateNet1122); 
+                    index=(CommonTree)match(input,INT,FOLLOW_INT_in_netAssign1142); 
 
                     }
 
@@ -1989,9 +1994,141 @@ public class PhdlWalker extends TreeParser {
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:419:57: indices= NUMBER_LIST
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:437:65: indices= NUMBER_LIST
                     {
-                    indices=(CommonTree)match(input,NUMBER_LIST,FOLLOW_NUMBER_LIST_in_concatenateNet1129); 
+                    indices=(CommonTree)match(input,NUMBER_LIST,FOLLOW_NUMBER_LIST_in_netAssign1149); 
+
+                    }
+                    break;
+
+            }
+
+            	NetAssign n = new NetAssign(); 
+            			n.setName((name!=null?name.getText():null));
+            			n.setLine((name!=null?name.getLine():0));
+            			n.setPos((name!=null?name.getCharPositionInLine():0));
+            			n.setMsb(msb!=null?Integer.parseInt((msb!=null?msb.getText():null)):-1);
+            			n.setLsb(lsb!=null?Integer.parseInt((lsb!=null?lsb.getText():null)):-1);
+            			n.setIndex(index!=null?Integer.parseInt((index!=null?index.getText():null)):-1);
+            			n.setIndices((indices!=null?indices.getText():null));
+            			n.setFileName(input.getSourceName());
+            		
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:451:3: ( concatNet[n] )*
+            loop28:
+            do {
+                int alt28=2;
+                int LA28_0 = input.LA(1);
+
+                if ( (LA28_0==IDENT) ) {
+                    alt28=1;
+                }
+
+
+                switch (alt28) {
+            	case 1 :
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:451:3: concatNet[n]
+            	    {
+            	    pushFollow(FOLLOW_concatNet_in_netAssign1168);
+            	    concatNet(n);
+
+            	    state._fsp--;
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop28;
+                }
+            } while (true);
+
+
+            match(input, Token.UP, null); 
+            	if(!d.addNetAssign(n)) 
+            				addError(n, "duplicate net assignment");
+            		
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+        }
+        return ;
+    }
+    // $ANTLR end "netAssign"
+
+
+    // $ANTLR start "concatNet"
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:458:1: concatNet[NetAssign na] : (name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? ) ;
+    public final void concatNet(NetAssign na) throws RecognitionException {
+        CommonTree name=null;
+        CommonTree msb=null;
+        CommonTree lsb=null;
+        CommonTree index=null;
+        CommonTree indices=null;
+
+        try {
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:462:2: ( (name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:462:4: (name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? )
+            {
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:462:4: (name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:462:5: name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )?
+            {
+            name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_concatNet1196); 
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:462:16: ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )?
+            int alt29=4;
+            int LA29_0 = input.LA(1);
+
+            if ( (LA29_0==INT) ) {
+                int LA29_1 = input.LA(2);
+
+                if ( (LA29_1==COLON) ) {
+                    alt29=1;
+                }
+                else if ( ((LA29_1>=UP && LA29_1<=IDENT)) ) {
+                    alt29=2;
+                }
+            }
+            else if ( (LA29_0==NUMBER_LIST) ) {
+                alt29=3;
+            }
+            switch (alt29) {
+                case 1 :
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:462:17: (msb= INT COLON lsb= INT )
+                    {
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:462:17: (msb= INT COLON lsb= INT )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:462:18: msb= INT COLON lsb= INT
+                    {
+                    msb=(CommonTree)match(input,INT,FOLLOW_INT_in_concatNet1202); 
+                    match(input,COLON,FOLLOW_COLON_in_concatNet1204); 
+                    lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_concatNet1208); 
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:462:43: (index= INT )
+                    {
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:462:43: (index= INT )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:462:44: index= INT
+                    {
+                    index=(CommonTree)match(input,INT,FOLLOW_INT_in_concatNet1216); 
+
+                    }
+
+
+                    }
+                    break;
+                case 3 :
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:462:57: indices= NUMBER_LIST
+                    {
+                    indices=(CommonTree)match(input,NUMBER_LIST,FOLLOW_NUMBER_LIST_in_concatNet1223); 
 
                     }
                     break;
@@ -2001,8 +2138,7 @@ public class PhdlWalker extends TreeParser {
 
             }
 
-
-            			Net n = new Net();
+            	Net n = new Net();
             			n.setName((name!=null?name.getText():null));
             			n.setLine((name!=null?name.getLine():0));
             			n.setPos((name!=null?name.getCharPositionInLine():0));
@@ -2025,12 +2161,12 @@ public class PhdlWalker extends TreeParser {
         }
         return ;
     }
-    // $ANTLR end "concatenateNet"
+    // $ANTLR end "concatNet"
 
 
     // $ANTLR start "portAssignment"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:434:1: portAssignment[SubDesignDeclaration s] : ^( EQUALS name= IDENT ( ( (instMsb= INT COLON instLsb= INT ) | (instIndex= INT ) | instIndices= NUMBER_LIST ) ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? )? ( concatenatePort[p] )* ) ;
-    public final void portAssignment(SubDesignDeclaration s) throws RecognitionException {
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:478:1: portAssignment[SubDecl s] : ^( EQUALS name= IDENT ( ( (instMsb= INT COLON instLsb= INT ) | (instIndex= INT ) | instIndices= NUMBER_LIST ) ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? )? ( concatPort[p] )* ) ;
+    public final void portAssignment(SubDecl s) throws RecognitionException {
         CommonTree name=null;
         CommonTree instMsb=null;
         CommonTree instLsb=null;
@@ -2042,63 +2178,63 @@ public class PhdlWalker extends TreeParser {
         CommonTree indices=null;
 
         try {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:435:2: ( ^( EQUALS name= IDENT ( ( (instMsb= INT COLON instLsb= INT ) | (instIndex= INT ) | instIndices= NUMBER_LIST ) ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? )? ( concatenatePort[p] )* ) )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:435:4: ^( EQUALS name= IDENT ( ( (instMsb= INT COLON instLsb= INT ) | (instIndex= INT ) | instIndices= NUMBER_LIST ) ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? )? ( concatenatePort[p] )* )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:482:2: ( ^( EQUALS name= IDENT ( ( (instMsb= INT COLON instLsb= INT ) | (instIndex= INT ) | instIndices= NUMBER_LIST ) ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? )? ( concatPort[p] )* ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:482:4: ^( EQUALS name= IDENT ( ( (instMsb= INT COLON instLsb= INT ) | (instIndex= INT ) | instIndices= NUMBER_LIST ) ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? )? ( concatPort[p] )* )
             {
-            match(input,EQUALS,FOLLOW_EQUALS_in_portAssignment1150); 
+            match(input,EQUALS,FOLLOW_EQUALS_in_portAssignment1252); 
 
             match(input, Token.DOWN, null); 
-            name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_portAssignment1154); 
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:436:3: ( ( (instMsb= INT COLON instLsb= INT ) | (instIndex= INT ) | instIndices= NUMBER_LIST ) ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? )?
-            int alt30=2;
-            int LA30_0 = input.LA(1);
+            name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_portAssignment1256); 
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:483:3: ( ( (instMsb= INT COLON instLsb= INT ) | (instIndex= INT ) | instIndices= NUMBER_LIST ) ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? )?
+            int alt32=2;
+            int LA32_0 = input.LA(1);
 
-            if ( (LA30_0==NUMBER_LIST||LA30_0==INT) ) {
-                alt30=1;
+            if ( (LA32_0==NUMBER_LIST||LA32_0==INT) ) {
+                alt32=1;
             }
-            switch (alt30) {
+            switch (alt32) {
                 case 1 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:436:4: ( (instMsb= INT COLON instLsb= INT ) | (instIndex= INT ) | instIndices= NUMBER_LIST ) ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )?
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:483:4: ( (instMsb= INT COLON instLsb= INT ) | (instIndex= INT ) | instIndices= NUMBER_LIST ) ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )?
                     {
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:436:4: ( (instMsb= INT COLON instLsb= INT ) | (instIndex= INT ) | instIndices= NUMBER_LIST )
-                    int alt28=3;
-                    int LA28_0 = input.LA(1);
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:483:4: ( (instMsb= INT COLON instLsb= INT ) | (instIndex= INT ) | instIndices= NUMBER_LIST )
+                    int alt30=3;
+                    int LA30_0 = input.LA(1);
 
-                    if ( (LA28_0==INT) ) {
-                        int LA28_1 = input.LA(2);
+                    if ( (LA30_0==INT) ) {
+                        int LA30_1 = input.LA(2);
 
-                        if ( (LA28_1==COLON) ) {
-                            alt28=1;
+                        if ( (LA30_1==COLON) ) {
+                            alt30=1;
                         }
-                        else if ( ((LA28_1>=UP && LA28_1<=IDENT)||LA28_1==NUMBER_LIST||LA28_1==INT) ) {
-                            alt28=2;
+                        else if ( ((LA30_1>=UP && LA30_1<=IDENT)||LA30_1==NUMBER_LIST||LA30_1==INT) ) {
+                            alt30=2;
                         }
                         else {
                             NoViableAltException nvae =
-                                new NoViableAltException("", 28, 1, input);
+                                new NoViableAltException("", 30, 1, input);
 
                             throw nvae;
                         }
                     }
-                    else if ( (LA28_0==NUMBER_LIST) ) {
-                        alt28=3;
+                    else if ( (LA30_0==NUMBER_LIST) ) {
+                        alt30=3;
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("", 28, 0, input);
+                            new NoViableAltException("", 30, 0, input);
 
                         throw nvae;
                     }
-                    switch (alt28) {
+                    switch (alt30) {
                         case 1 :
-                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:436:5: (instMsb= INT COLON instLsb= INT )
+                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:483:5: (instMsb= INT COLON instLsb= INT )
                             {
-                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:436:5: (instMsb= INT COLON instLsb= INT )
-                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:436:6: instMsb= INT COLON instLsb= INT
+                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:483:5: (instMsb= INT COLON instLsb= INT )
+                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:483:6: instMsb= INT COLON instLsb= INT
                             {
-                            instMsb=(CommonTree)match(input,INT,FOLLOW_INT_in_portAssignment1164); 
-                            match(input,COLON,FOLLOW_COLON_in_portAssignment1166); 
-                            instLsb=(CommonTree)match(input,INT,FOLLOW_INT_in_portAssignment1170); 
+                            instMsb=(CommonTree)match(input,INT,FOLLOW_INT_in_portAssignment1266); 
+                            match(input,COLON,FOLLOW_COLON_in_portAssignment1268); 
+                            instLsb=(CommonTree)match(input,INT,FOLLOW_INT_in_portAssignment1272); 
 
                             }
 
@@ -2106,12 +2242,12 @@ public class PhdlWalker extends TreeParser {
                             }
                             break;
                         case 2 :
-                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:436:39: (instIndex= INT )
+                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:483:39: (instIndex= INT )
                             {
-                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:436:39: (instIndex= INT )
-                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:436:40: instIndex= INT
+                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:483:39: (instIndex= INT )
+                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:483:40: instIndex= INT
                             {
-                            instIndex=(CommonTree)match(input,INT,FOLLOW_INT_in_portAssignment1178); 
+                            instIndex=(CommonTree)match(input,INT,FOLLOW_INT_in_portAssignment1280); 
 
                             }
 
@@ -2119,42 +2255,42 @@ public class PhdlWalker extends TreeParser {
                             }
                             break;
                         case 3 :
-                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:436:57: instIndices= NUMBER_LIST
+                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:483:57: instIndices= NUMBER_LIST
                             {
-                            instIndices=(CommonTree)match(input,NUMBER_LIST,FOLLOW_NUMBER_LIST_in_portAssignment1185); 
+                            instIndices=(CommonTree)match(input,NUMBER_LIST,FOLLOW_NUMBER_LIST_in_portAssignment1287); 
 
                             }
                             break;
 
                     }
 
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:437:3: ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )?
-                    int alt29=4;
-                    int LA29_0 = input.LA(1);
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:484:3: ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )?
+                    int alt31=4;
+                    int LA31_0 = input.LA(1);
 
-                    if ( (LA29_0==INT) ) {
-                        int LA29_1 = input.LA(2);
+                    if ( (LA31_0==INT) ) {
+                        int LA31_1 = input.LA(2);
 
-                        if ( (LA29_1==COLON) ) {
-                            alt29=1;
+                        if ( (LA31_1==COLON) ) {
+                            alt31=1;
                         }
-                        else if ( ((LA29_1>=UP && LA29_1<=IDENT)) ) {
-                            alt29=2;
+                        else if ( ((LA31_1>=UP && LA31_1<=IDENT)) ) {
+                            alt31=2;
                         }
                     }
-                    else if ( (LA29_0==NUMBER_LIST) ) {
-                        alt29=3;
+                    else if ( (LA31_0==NUMBER_LIST) ) {
+                        alt31=3;
                     }
-                    switch (alt29) {
+                    switch (alt31) {
                         case 1 :
-                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:437:4: (msb= INT COLON lsb= INT )
+                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:484:4: (msb= INT COLON lsb= INT )
                             {
-                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:437:4: (msb= INT COLON lsb= INT )
-                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:437:5: msb= INT COLON lsb= INT
+                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:484:4: (msb= INT COLON lsb= INT )
+                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:484:5: msb= INT COLON lsb= INT
                             {
-                            msb=(CommonTree)match(input,INT,FOLLOW_INT_in_portAssignment1194); 
-                            match(input,COLON,FOLLOW_COLON_in_portAssignment1196); 
-                            lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_portAssignment1200); 
+                            msb=(CommonTree)match(input,INT,FOLLOW_INT_in_portAssignment1296); 
+                            match(input,COLON,FOLLOW_COLON_in_portAssignment1298); 
+                            lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_portAssignment1302); 
 
                             }
 
@@ -2162,12 +2298,12 @@ public class PhdlWalker extends TreeParser {
                             }
                             break;
                         case 2 :
-                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:437:30: (index= INT )
+                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:484:30: (index= INT )
                             {
-                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:437:30: (index= INT )
-                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:437:31: index= INT
+                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:484:30: (index= INT )
+                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:484:31: index= INT
                             {
-                            index=(CommonTree)match(input,INT,FOLLOW_INT_in_portAssignment1208); 
+                            index=(CommonTree)match(input,INT,FOLLOW_INT_in_portAssignment1310); 
 
                             }
 
@@ -2175,9 +2311,9 @@ public class PhdlWalker extends TreeParser {
                             }
                             break;
                         case 3 :
-                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:437:44: indices= NUMBER_LIST
+                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:484:44: indices= NUMBER_LIST
                             {
-                            indices=(CommonTree)match(input,NUMBER_LIST,FOLLOW_NUMBER_LIST_in_portAssignment1215); 
+                            indices=(CommonTree)match(input,NUMBER_LIST,FOLLOW_NUMBER_LIST_in_portAssignment1317); 
 
                             }
                             break;
@@ -2190,8 +2326,7 @@ public class PhdlWalker extends TreeParser {
 
             }
 
-
-            			PortAssignment p = new PortAssignment(); 
+            	PortAssign p = new PortAssign(); 
             			p.setName((name!=null?name.getText():null));
             			p.setLine((name!=null?name.getLine():0));
             			p.setPos((name!=null?name.getCharPositionInLine():0));
@@ -2205,23 +2340,23 @@ public class PhdlWalker extends TreeParser {
             			p.setIndices((indices!=null?indices.getText():null));
             			p.setFileName(input.getSourceName());
             		
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:456:3: ( concatenatePort[p] )*
-            loop31:
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:502:3: ( concatPort[p] )*
+            loop33:
             do {
-                int alt31=2;
-                int LA31_0 = input.LA(1);
+                int alt33=2;
+                int LA33_0 = input.LA(1);
 
-                if ( (LA31_0==IDENT) ) {
-                    alt31=1;
+                if ( (LA33_0==IDENT) ) {
+                    alt33=1;
                 }
 
 
-                switch (alt31) {
+                switch (alt33) {
             	case 1 :
-            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:456:3: concatenatePort[p]
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:502:3: concatPort[p]
             	    {
-            	    pushFollow(FOLLOW_concatenatePort_in_portAssignment1234);
-            	    concatenatePort(p);
+            	    pushFollow(FOLLOW_concatPort_in_portAssignment1336);
+            	    concatPort(p);
 
             	    state._fsp--;
 
@@ -2230,13 +2365,13 @@ public class PhdlWalker extends TreeParser {
             	    break;
 
             	default :
-            	    break loop31;
+            	    break loop33;
                 }
             } while (true);
 
 
             match(input, Token.UP, null); 
-            	if(!s.addPortAssignment(p)) 
+            	if(!s.addPortAssign(p)) 
             				addError(p, "duplicate port assignment");
             		
 
@@ -2254,9 +2389,9 @@ public class PhdlWalker extends TreeParser {
     // $ANTLR end "portAssignment"
 
 
-    // $ANTLR start "concatenatePort"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:463:1: concatenatePort[PortAssignment pa] : (name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? ) ;
-    public final void concatenatePort(PortAssignment pa) throws RecognitionException {
+    // $ANTLR start "concatPort"
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:509:1: concatPort[PortAssign pa] : (name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? ) ;
+    public final void concatPort(PortAssign pa) throws RecognitionException {
         CommonTree name=null;
         CommonTree msb=null;
         CommonTree lsb=null;
@@ -2264,40 +2399,40 @@ public class PhdlWalker extends TreeParser {
         CommonTree indices=null;
 
         try {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:464:2: ( (name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? ) )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:464:4: (name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:513:2: ( (name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:513:4: (name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? )
             {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:464:4: (name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:464:5: name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )?
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:513:4: (name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )? )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:513:5: name= IDENT ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )?
             {
-            name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_concatenatePort1259); 
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:464:16: ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )?
-            int alt32=4;
-            int LA32_0 = input.LA(1);
+            name=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_concatPort1364); 
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:513:16: ( (msb= INT COLON lsb= INT ) | (index= INT ) | indices= NUMBER_LIST )?
+            int alt34=4;
+            int LA34_0 = input.LA(1);
 
-            if ( (LA32_0==INT) ) {
-                int LA32_1 = input.LA(2);
+            if ( (LA34_0==INT) ) {
+                int LA34_1 = input.LA(2);
 
-                if ( (LA32_1==COLON) ) {
-                    alt32=1;
+                if ( (LA34_1==COLON) ) {
+                    alt34=1;
                 }
-                else if ( ((LA32_1>=UP && LA32_1<=IDENT)) ) {
-                    alt32=2;
+                else if ( ((LA34_1>=UP && LA34_1<=IDENT)) ) {
+                    alt34=2;
                 }
             }
-            else if ( (LA32_0==NUMBER_LIST) ) {
-                alt32=3;
+            else if ( (LA34_0==NUMBER_LIST) ) {
+                alt34=3;
             }
-            switch (alt32) {
+            switch (alt34) {
                 case 1 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:464:17: (msb= INT COLON lsb= INT )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:513:17: (msb= INT COLON lsb= INT )
                     {
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:464:17: (msb= INT COLON lsb= INT )
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:464:18: msb= INT COLON lsb= INT
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:513:17: (msb= INT COLON lsb= INT )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:513:18: msb= INT COLON lsb= INT
                     {
-                    msb=(CommonTree)match(input,INT,FOLLOW_INT_in_concatenatePort1265); 
-                    match(input,COLON,FOLLOW_COLON_in_concatenatePort1267); 
-                    lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_concatenatePort1271); 
+                    msb=(CommonTree)match(input,INT,FOLLOW_INT_in_concatPort1370); 
+                    match(input,COLON,FOLLOW_COLON_in_concatPort1372); 
+                    lsb=(CommonTree)match(input,INT,FOLLOW_INT_in_concatPort1376); 
 
                     }
 
@@ -2305,12 +2440,12 @@ public class PhdlWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:464:43: (index= INT )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:513:43: (index= INT )
                     {
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:464:43: (index= INT )
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:464:44: index= INT
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:513:43: (index= INT )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:513:44: index= INT
                     {
-                    index=(CommonTree)match(input,INT,FOLLOW_INT_in_concatenatePort1279); 
+                    index=(CommonTree)match(input,INT,FOLLOW_INT_in_concatPort1384); 
 
                     }
 
@@ -2318,9 +2453,9 @@ public class PhdlWalker extends TreeParser {
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:464:57: indices= NUMBER_LIST
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:513:57: indices= NUMBER_LIST
                     {
-                    indices=(CommonTree)match(input,NUMBER_LIST,FOLLOW_NUMBER_LIST_in_concatenatePort1286); 
+                    indices=(CommonTree)match(input,NUMBER_LIST,FOLLOW_NUMBER_LIST_in_concatPort1391); 
 
                     }
                     break;
@@ -2330,8 +2465,7 @@ public class PhdlWalker extends TreeParser {
 
             }
 
-
-            			Net n = new Net();
+            	Net n = new Net();
             			n.setName((name!=null?name.getText():null));
             			n.setLine((name!=null?name.getLine():0));
             			n.setPos((name!=null?name.getCharPositionInLine():0));
@@ -2353,23 +2487,23 @@ public class PhdlWalker extends TreeParser {
         }
         return ;
     }
-    // $ANTLR end "concatenatePort"
+    // $ANTLR end "concatPort"
 
     // Delegated rules
 
 
  
 
-    public static final BitSet FOLLOW_design_in_sourceText69 = new BitSet(new long[]{0x0000000000080002L});
-    public static final BitSet FOLLOW_19_in_design91 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_IDENT_in_design93 = new BitSet(new long[]{0x00000002FF200000L});
-    public static final BitSet FOLLOW_portDecl_in_design115 = new BitSet(new long[]{0x00000002FF200000L});
-    public static final BitSet FOLLOW_deviceDecl_in_design120 = new BitSet(new long[]{0x00000002FF200000L});
-    public static final BitSet FOLLOW_netDecl_in_design125 = new BitSet(new long[]{0x00000002FF200000L});
-    public static final BitSet FOLLOW_21_in_design138 = new BitSet(new long[]{0x0000003000000048L});
+    public static final BitSet FOLLOW_design_in_sourceText69 = new BitSet(new long[]{0x0000000000100002L});
+    public static final BitSet FOLLOW_20_in_design91 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_IDENT_in_design93 = new BitSet(new long[]{0x00000002FF400000L});
+    public static final BitSet FOLLOW_portDecl_in_design115 = new BitSet(new long[]{0x00000002FF400000L});
+    public static final BitSet FOLLOW_deviceDecl_in_design120 = new BitSet(new long[]{0x00000002FF400000L});
+    public static final BitSet FOLLOW_netDecl_in_design125 = new BitSet(new long[]{0x00000002FF400000L});
+    public static final BitSet FOLLOW_22_in_design138 = new BitSet(new long[]{0x0000003000000048L});
     public static final BitSet FOLLOW_instance_in_design149 = new BitSet(new long[]{0x0000003000000048L});
     public static final BitSet FOLLOW_subDesign_in_design154 = new BitSet(new long[]{0x0000003000000048L});
-    public static final BitSet FOLLOW_netAssignment_in_design159 = new BitSet(new long[]{0x0000003000000048L});
+    public static final BitSet FOLLOW_netAssign_in_design159 = new BitSet(new long[]{0x0000003000000048L});
     public static final BitSet FOLLOW_25_in_portDecl188 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_addPort_in_portDecl192 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_26_in_portDecl200 = new BitSet(new long[]{0x0000000000000004L});
@@ -2389,9 +2523,9 @@ public class PhdlWalker extends TreeParser {
     public static final BitSet FOLLOW_INT_in_addPort290 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_IDENT_in_addPort296 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_24_in_deviceDecl316 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_IDENT_in_deviceDecl320 = new BitSet(new long[]{0x0000000000200040L});
-    public static final BitSet FOLLOW_attributeDecl_in_deviceDecl343 = new BitSet(new long[]{0x0000000000200040L});
-    public static final BitSet FOLLOW_21_in_deviceDecl355 = new BitSet(new long[]{0x00000000FE000008L});
+    public static final BitSet FOLLOW_IDENT_in_deviceDecl320 = new BitSet(new long[]{0x0000000000400040L});
+    public static final BitSet FOLLOW_attrDecl_in_deviceDecl343 = new BitSet(new long[]{0x0000000000400040L});
+    public static final BitSet FOLLOW_22_in_deviceDecl355 = new BitSet(new long[]{0x00000000FE000008L});
     public static final BitSet FOLLOW_pinDecl_in_deviceDecl365 = new BitSet(new long[]{0x00000000FE000008L});
     public static final BitSet FOLLOW_33_in_netDecl400 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_INT_in_netDecl405 = new BitSet(new long[]{0x0000000000000400L});
@@ -2399,11 +2533,11 @@ public class PhdlWalker extends TreeParser {
     public static final BitSet FOLLOW_INT_in_netDecl411 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_IDENT_in_netDecl417 = new BitSet(new long[]{0x0000000000000408L});
     public static final BitSet FOLLOW_COLON_in_netDecl435 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_netAttribute_in_netDecl437 = new BitSet(new long[]{0x0000000000000018L});
-    public static final BitSet FOLLOW_IDENT_in_netAttribute470 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_EQUALS_in_attributeDecl494 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_IDENT_in_attributeDecl498 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_STRING_LITERAL_in_attributeDecl502 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_netAttr_in_netDecl437 = new BitSet(new long[]{0x0000000000000018L});
+    public static final BitSet FOLLOW_IDENT_in_netAttr470 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_EQUALS_in_attrDecl494 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_IDENT_in_attrDecl498 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_STRING_LITERAL_in_attrDecl502 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_25_in_pinDecl529 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_addPinDecl_in_pinDecl533 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_26_in_pinDecl541 = new BitSet(new long[]{0x0000000000000004L});
@@ -2425,79 +2559,89 @@ public class PhdlWalker extends TreeParser {
     public static final BitSet FOLLOW_NUMBER_LIST_in_addPinDecl641 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_36_in_instance662 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_IDENT_in_instance666 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_IDENT_in_instance670 = new BitSet(new long[]{0x0000000000200840L});
+    public static final BitSet FOLLOW_IDENT_in_instance670 = new BitSet(new long[]{0x0000000000400840L});
     public static final BitSet FOLLOW_INT_in_instance675 = new BitSet(new long[]{0x0000000000000400L});
     public static final BitSet FOLLOW_COLON_in_instance677 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_INT_in_instance681 = new BitSet(new long[]{0x0000000000200040L});
-    public static final BitSet FOLLOW_attributeAssignment_in_instance702 = new BitSet(new long[]{0x0000000000200040L});
-    public static final BitSet FOLLOW_21_in_instance708 = new BitSet(new long[]{0x0000000000000048L});
-    public static final BitSet FOLLOW_pinAssignment_in_instance712 = new BitSet(new long[]{0x0000000000000048L});
-    public static final BitSet FOLLOW_EQUALS_in_attributeAssignment737 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_IDENT_in_attributeAssignment741 = new BitSet(new long[]{0x0000000000000980L});
-    public static final BitSet FOLLOW_INT_in_attributeAssignment747 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_COLON_in_attributeAssignment749 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_INT_in_attributeAssignment753 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_INT_in_attributeAssignment761 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_NUMBER_LIST_in_attributeAssignment768 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_STRING_LITERAL_in_attributeAssignment777 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_EQUALS_in_pinAssignment806 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_IDENT_in_pinAssignment810 = new BitSet(new long[]{0x0000000000000918L});
-    public static final BitSet FOLLOW_INT_in_pinAssignment820 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_COLON_in_pinAssignment822 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_INT_in_pinAssignment826 = new BitSet(new long[]{0x0000000000000918L});
-    public static final BitSet FOLLOW_INT_in_pinAssignment834 = new BitSet(new long[]{0x0000000000000918L});
-    public static final BitSet FOLLOW_NUMBER_LIST_in_pinAssignment840 = new BitSet(new long[]{0x0000000000000918L});
-    public static final BitSet FOLLOW_INT_in_pinAssignment850 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_COLON_in_pinAssignment852 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_INT_in_pinAssignment856 = new BitSet(new long[]{0x0000000000000018L});
-    public static final BitSet FOLLOW_INT_in_pinAssignment864 = new BitSet(new long[]{0x0000000000000018L});
-    public static final BitSet FOLLOW_NUMBER_LIST_in_pinAssignment871 = new BitSet(new long[]{0x0000000000000018L});
-    public static final BitSet FOLLOW_concatenatePin_in_pinAssignment890 = new BitSet(new long[]{0x0000000000000018L});
-    public static final BitSet FOLLOW_IDENT_in_concatenatePin916 = new BitSet(new long[]{0x0000000000000902L});
-    public static final BitSet FOLLOW_INT_in_concatenatePin922 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_COLON_in_concatenatePin924 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_INT_in_concatenatePin928 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INT_in_concatenatePin936 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_LIST_in_concatenatePin943 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_subDesign964 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_IDENT_in_subDesign968 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_IDENT_in_subDesign972 = new BitSet(new long[]{0x0000000000000848L});
-    public static final BitSet FOLLOW_INT_in_subDesign977 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_COLON_in_subDesign979 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_INT_in_subDesign983 = new BitSet(new long[]{0x0000000000000048L});
-    public static final BitSet FOLLOW_portAssignment_in_subDesign1000 = new BitSet(new long[]{0x0000000000000048L});
-    public static final BitSet FOLLOW_EQUALS_in_netAssignment1026 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_IDENT_in_netAssignment1030 = new BitSet(new long[]{0x0000000000000918L});
-    public static final BitSet FOLLOW_INT_in_netAssignment1036 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_COLON_in_netAssignment1038 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_INT_in_netAssignment1042 = new BitSet(new long[]{0x0000000000000018L});
-    public static final BitSet FOLLOW_INT_in_netAssignment1050 = new BitSet(new long[]{0x0000000000000018L});
-    public static final BitSet FOLLOW_NUMBER_LIST_in_netAssignment1057 = new BitSet(new long[]{0x0000000000000018L});
-    public static final BitSet FOLLOW_concatenateNet_in_netAssignment1076 = new BitSet(new long[]{0x0000000000000018L});
-    public static final BitSet FOLLOW_IDENT_in_concatenateNet1102 = new BitSet(new long[]{0x0000000000000902L});
-    public static final BitSet FOLLOW_INT_in_concatenateNet1108 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_COLON_in_concatenateNet1110 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_INT_in_concatenateNet1114 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INT_in_concatenateNet1122 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_LIST_in_concatenateNet1129 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_EQUALS_in_portAssignment1150 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_IDENT_in_portAssignment1154 = new BitSet(new long[]{0x0000000000000918L});
-    public static final BitSet FOLLOW_INT_in_portAssignment1164 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_COLON_in_portAssignment1166 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_INT_in_portAssignment1170 = new BitSet(new long[]{0x0000000000000918L});
-    public static final BitSet FOLLOW_INT_in_portAssignment1178 = new BitSet(new long[]{0x0000000000000918L});
-    public static final BitSet FOLLOW_NUMBER_LIST_in_portAssignment1185 = new BitSet(new long[]{0x0000000000000918L});
-    public static final BitSet FOLLOW_INT_in_portAssignment1194 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_COLON_in_portAssignment1196 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_INT_in_portAssignment1200 = new BitSet(new long[]{0x0000000000000018L});
-    public static final BitSet FOLLOW_INT_in_portAssignment1208 = new BitSet(new long[]{0x0000000000000018L});
-    public static final BitSet FOLLOW_NUMBER_LIST_in_portAssignment1215 = new BitSet(new long[]{0x0000000000000018L});
-    public static final BitSet FOLLOW_concatenatePort_in_portAssignment1234 = new BitSet(new long[]{0x0000000000000018L});
-    public static final BitSet FOLLOW_IDENT_in_concatenatePort1259 = new BitSet(new long[]{0x0000000000000902L});
-    public static final BitSet FOLLOW_INT_in_concatenatePort1265 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_COLON_in_concatenatePort1267 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_INT_in_concatenatePort1271 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INT_in_concatenatePort1279 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_LIST_in_concatenatePort1286 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INT_in_instance681 = new BitSet(new long[]{0x0000000000400040L});
+    public static final BitSet FOLLOW_attrAssign_in_instance702 = new BitSet(new long[]{0x0000000000400040L});
+    public static final BitSet FOLLOW_22_in_instance708 = new BitSet(new long[]{0x0000000000000048L});
+    public static final BitSet FOLLOW_pinAssign_in_instance712 = new BitSet(new long[]{0x0000000000000048L});
+    public static final BitSet FOLLOW_EQUALS_in_attrAssign737 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_IDENT_in_attrAssign741 = new BitSet(new long[]{0x0000000000000980L});
+    public static final BitSet FOLLOW_INT_in_attrAssign750 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_COLON_in_attrAssign752 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_INT_in_attrAssign756 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_INT_in_attrAssign764 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_NUMBER_LIST_in_attrAssign771 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_STRING_LITERAL_in_attrAssign780 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_EQUALS_in_pinAssign809 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_IDENT_in_pinAssign813 = new BitSet(new long[]{0x0000000000000918L});
+    public static final BitSet FOLLOW_INT_in_pinAssign823 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_COLON_in_pinAssign825 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_INT_in_pinAssign829 = new BitSet(new long[]{0x0000000000000918L});
+    public static final BitSet FOLLOW_INT_in_pinAssign837 = new BitSet(new long[]{0x0000000000000918L});
+    public static final BitSet FOLLOW_NUMBER_LIST_in_pinAssign843 = new BitSet(new long[]{0x0000000000000918L});
+    public static final BitSet FOLLOW_INT_in_pinAssign853 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_COLON_in_pinAssign855 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_INT_in_pinAssign859 = new BitSet(new long[]{0x0000000000000018L});
+    public static final BitSet FOLLOW_INT_in_pinAssign867 = new BitSet(new long[]{0x0000000000000018L});
+    public static final BitSet FOLLOW_NUMBER_LIST_in_pinAssign874 = new BitSet(new long[]{0x0000000000000018L});
+    public static final BitSet FOLLOW_concatPin_in_pinAssign893 = new BitSet(new long[]{0x0000000000000018L});
+    public static final BitSet FOLLOW_IDENT_in_concatPin921 = new BitSet(new long[]{0x0000000000000902L});
+    public static final BitSet FOLLOW_INT_in_concatPin927 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_COLON_in_concatPin929 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_INT_in_concatPin933 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INT_in_concatPin941 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_LIST_in_concatPin948 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_subDesign971 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_IDENT_in_subDesign975 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_IDENT_in_subDesign979 = new BitSet(new long[]{0x0000000000400810L});
+    public static final BitSet FOLLOW_INT_in_subDesign984 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_COLON_in_subDesign986 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_INT_in_subDesign990 = new BitSet(new long[]{0x0000000000400010L});
+    public static final BitSet FOLLOW_subAttrAssign_in_subDesign1006 = new BitSet(new long[]{0x0000000000400010L});
+    public static final BitSet FOLLOW_22_in_subDesign1012 = new BitSet(new long[]{0x0000000000000048L});
+    public static final BitSet FOLLOW_portAssignment_in_subDesign1016 = new BitSet(new long[]{0x0000000000000048L});
+    public static final BitSet FOLLOW_IDENT_in_subAttrAssign1044 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_IDENT_in_subAttrAssign1048 = new BitSet(new long[]{0x0000000000000980L});
+    public static final BitSet FOLLOW_INT_in_subAttrAssign1057 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_COLON_in_subAttrAssign1059 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_INT_in_subAttrAssign1063 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_INT_in_subAttrAssign1071 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_NUMBER_LIST_in_subAttrAssign1078 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_STRING_LITERAL_in_subAttrAssign1087 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_EQUALS_in_netAssign1118 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_IDENT_in_netAssign1122 = new BitSet(new long[]{0x0000000000000918L});
+    public static final BitSet FOLLOW_INT_in_netAssign1128 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_COLON_in_netAssign1130 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_INT_in_netAssign1134 = new BitSet(new long[]{0x0000000000000018L});
+    public static final BitSet FOLLOW_INT_in_netAssign1142 = new BitSet(new long[]{0x0000000000000018L});
+    public static final BitSet FOLLOW_NUMBER_LIST_in_netAssign1149 = new BitSet(new long[]{0x0000000000000018L});
+    public static final BitSet FOLLOW_concatNet_in_netAssign1168 = new BitSet(new long[]{0x0000000000000018L});
+    public static final BitSet FOLLOW_IDENT_in_concatNet1196 = new BitSet(new long[]{0x0000000000000902L});
+    public static final BitSet FOLLOW_INT_in_concatNet1202 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_COLON_in_concatNet1204 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_INT_in_concatNet1208 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INT_in_concatNet1216 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_LIST_in_concatNet1223 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_EQUALS_in_portAssignment1252 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_IDENT_in_portAssignment1256 = new BitSet(new long[]{0x0000000000000918L});
+    public static final BitSet FOLLOW_INT_in_portAssignment1266 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_COLON_in_portAssignment1268 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_INT_in_portAssignment1272 = new BitSet(new long[]{0x0000000000000918L});
+    public static final BitSet FOLLOW_INT_in_portAssignment1280 = new BitSet(new long[]{0x0000000000000918L});
+    public static final BitSet FOLLOW_NUMBER_LIST_in_portAssignment1287 = new BitSet(new long[]{0x0000000000000918L});
+    public static final BitSet FOLLOW_INT_in_portAssignment1296 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_COLON_in_portAssignment1298 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_INT_in_portAssignment1302 = new BitSet(new long[]{0x0000000000000018L});
+    public static final BitSet FOLLOW_INT_in_portAssignment1310 = new BitSet(new long[]{0x0000000000000018L});
+    public static final BitSet FOLLOW_NUMBER_LIST_in_portAssignment1317 = new BitSet(new long[]{0x0000000000000018L});
+    public static final BitSet FOLLOW_concatPort_in_portAssignment1336 = new BitSet(new long[]{0x0000000000000018L});
+    public static final BitSet FOLLOW_IDENT_in_concatPort1364 = new BitSet(new long[]{0x0000000000000902L});
+    public static final BitSet FOLLOW_INT_in_concatPort1370 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_COLON_in_concatPort1372 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_INT_in_concatPort1376 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INT_in_concatPort1384 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_LIST_in_concatPort1391 = new BitSet(new long[]{0x0000000000000002L});
 
 }

@@ -39,7 +39,7 @@ public class MissingRefPrefixException extends SyntaxException {
 	 *            The element in the source text that caused the exception
 	 */
 	public MissingRefPrefixException(Parsable e) {
-		super(e.getLineString() + " Missing reference prefix detected: "
+		super(e.getLocation() + " Missing reference prefix detected: "
 				+ e.getName());
 	}
 
