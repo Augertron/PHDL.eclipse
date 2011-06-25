@@ -41,7 +41,7 @@ public class InvalidDesignException extends SyntaxException {
 	 *            The element in the source text that caused the exception
 	 */
 	public InvalidDesignException(Parsable e, String message) {
-		super(e.getFileName() + " " + e.getLineString() + " " + message + " "
+		super(e.getFileName() + " " + e.getLocation() + " " + message + " "
 				+ e.getName());
 	}
 

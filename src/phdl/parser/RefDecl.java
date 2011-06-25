@@ -17,39 +17,37 @@
 
 package phdl.parser;
 
-import java.util.LinkedList;
-
 /**
- * An abstract class that represents a concatenation assignment in phdl. In
- * addition to inherited fields, a concatenation assignment has a list of nets
- * to be concatenated.
+ * An abstract class that represents all reference declarations in phdl. In
+ * addition to the inherited fields, a reference declaration also has a
+ * reference name, binding it to its referenced device or sub design.
  * 
  * @author Richard Black and Brad Riching
  * 
  */
-public abstract class ConcatenationAssignment extends Assignable {
+public abstract class RefDecl extends ArrayDecl {
 
 	/**
-	 * This concatenation assignment's list of nets
+	 * The reference declaration reference name
 	 */
-	protected LinkedList<Net> nets;
+	protected String refName;
 
 	/**
-	 * Gets this concatenation assignment's list of nets
+	 * Gets the reference declaration's reference name
 	 * 
-	 * @return This concatenation assignment's list of nets
+	 * @return The reference declaration's reference name
 	 */
-	public LinkedList<Net> getNets() {
-		return nets;
+	public String getRefName() {
+		return refName;
 	}
 
 	/**
-	 * Adds a net to this concatenation assignment's list of nets
+	 * Sets the reference declaration's reference name
 	 * 
-	 * @param net
-	 *            The net to add
+	 * @param refName
+	 *            The reference declaration's reference name
 	 */
-	public void addNet(Net net) {
-		nets.add(net);
+	public void setRefName(String refName) {
+		this.refName = refName;
 	}
 }

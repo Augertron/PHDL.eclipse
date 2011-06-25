@@ -18,6 +18,7 @@
 package phdl.parser;
 
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A class that represents a sub-design declaration in phdl. A sub-design
@@ -26,19 +27,25 @@ import java.util.HashSet;
  * @author Richard Black and Brad Riching
  * 
  */
-public class SubDesignDeclaration extends ReferenceDeclaration {
+public class SubDecl extends RefDecl {
 
 	/**
 	 * The sub-design's set of port assignments
 	 */
-	public HashSet<PortAssignment> portAssigns;
+	public Set<PortAssign> portAssigns;
+
+	/**
+	 * The sub-design's set of attribute assignments
+	 */
+	public Set<SubAttrAssign> attrAssigns;
 
 	/**
 	 * Default constructor
 	 */
-	public SubDesignDeclaration() {
+	public SubDecl() {
 		super();
-		this.portAssigns = new HashSet<PortAssignment>();
+		this.portAssigns = new HashSet<PortAssign>();
+		this.attrAssigns = new HashSet<SubAttrAssign>();
 	}
 
 	/**
@@ -46,7 +53,7 @@ public class SubDesignDeclaration extends ReferenceDeclaration {
 	 * 
 	 * @return The sub-design's set of port assignments
 	 */
-	public HashSet<PortAssignment> getPortAssignments() {
+	public Set<PortAssign> getPortAssigns() {
 		return portAssigns;
 	}
 
@@ -57,9 +64,16 @@ public class SubDesignDeclaration extends ReferenceDeclaration {
 	 *            The port assignment to add
 	 * @return True if the port assignment was added successfully
 	 */
-	public boolean addPortAssignment(PortAssignment p) {
-		boolean added = portAssigns.add(p);
-		return added;
+	public boolean addPortAssign(PortAssign p) {
+		return portAssigns.add(p);
+	}
+
+	public boolean addSubAttrAssign(SubAttrAssign a) {
+		return attrAssigns.add(a);
+	}
+
+	public Set<SubAttrAssign> getSubAttrAssigns() {
+		return attrAssigns;
 	}
 
 	/**
@@ -75,9 +89,9 @@ public class SubDesignDeclaration extends ReferenceDeclaration {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return name.equals(((SubDesignDeclaration) o).getName())
-				&& msb == ((SubDesignDeclaration) o).getMsb()
-				&& lsb == ((SubDesignDeclaration) o).getLsb();
+		return name.equals(((SubDecl) o).getName())
+				&& msb == ((SubDecl) o).getMsb()
+				&& lsb == ((SubDecl) o).getLsb();
 	}
 
 	/**
@@ -85,13 +99,18 @@ public class SubDesignDeclaration extends ReferenceDeclaration {
 	 */
 	@Override
 	public String toString() {
-		String header = "SubDesignDecl " + getLineString() + " " + name + ":"
+		String header = "SubDesignDecl " + getLocation() + " " + name + ":"
 				+ getRefName() + "\n";
+
+		String attrs = "";
 		String ports = "";
 
-		for (PortAssignment p : portAssigns)
+		for (SubAttrAssign s : attrAssigns)
+			attrs += "\t\t" + s.toString();
+
+		for (PortAssign p : portAssigns)
 			ports += "\t\t" + p.toString();
 
-		return header + ports;
+		return header + attrs + ports;
 	}
 }

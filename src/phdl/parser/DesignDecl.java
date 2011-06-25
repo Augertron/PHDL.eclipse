@@ -18,6 +18,7 @@
 package phdl.parser;
 
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A class that represents a design declaration in phdl. In addition to
@@ -28,44 +29,44 @@ import java.util.HashSet;
  * @author Richard Black and Brad Riching
  * 
  */
-public class DesignDeclaration extends Declarable {
+public class DesignDecl extends Declarable {
 
 	/**
 	 * The design declaration's set of port declarations
 	 */
-	protected HashSet<PortDeclaration> portDecls;
+	protected Set<PortDecl> portDecls;
 	/**
 	 * The design declaration's set of device declarations
 	 */
-	protected HashSet<DeviceDeclaration> deviceDecls;
+	protected Set<DeviceDecl> deviceDecls;
 	/**
 	 * The design declaration's set of net declarations
 	 */
-	protected HashSet<NetDeclaration> netDecls;
+	protected Set<NetDecl> netDecls;
 	/**
 	 * The design declaration's set of instance declarations
 	 */
-	protected HashSet<InstanceDeclaration> instDecls;
+	protected Set<InstDecl> instDecls;
 	/**
 	 * The design declaration's set of sub-design declarations
 	 */
-	protected HashSet<SubDesignDeclaration> subDecls;
+	protected Set<SubDecl> subDecls;
 	/**
 	 * The design declaration's set of net assignments
 	 */
-	protected HashSet<NetAssignment> netAssigns;
+	protected HashSet<NetAssign> netAssigns;
 
 	/**
 	 * Default constructor
 	 */
-	public DesignDeclaration() {
+	public DesignDecl() {
 		super();
-		this.portDecls = new HashSet<PortDeclaration>();
-		this.deviceDecls = new HashSet<DeviceDeclaration>();
-		this.netDecls = new HashSet<NetDeclaration>();
-		this.instDecls = new HashSet<InstanceDeclaration>();
-		this.subDecls = new HashSet<SubDesignDeclaration>();
-		this.netAssigns = new HashSet<NetAssignment>();
+		this.portDecls = new HashSet<PortDecl>();
+		this.deviceDecls = new HashSet<DeviceDecl>();
+		this.netDecls = new HashSet<NetDecl>();
+		this.instDecls = new HashSet<InstDecl>();
+		this.subDecls = new HashSet<SubDecl>();
+		this.netAssigns = new HashSet<NetAssign>();
 	}
 
 	/**
@@ -73,7 +74,7 @@ public class DesignDeclaration extends Declarable {
 	 * 
 	 * @return This design declaration's set of port declarations
 	 */
-	public HashSet<PortDeclaration> getPortDecls() {
+	public Set<PortDecl> getPortDecls() {
 		return portDecls;
 	}
 
@@ -85,9 +86,8 @@ public class DesignDeclaration extends Declarable {
 	 * 
 	 * @return true if the port declaration was added successfully
 	 */
-	public boolean addPortDecl(PortDeclaration portDecl) {
-		boolean added = portDecls.add(portDecl);
-		return added;
+	public boolean addPortDecl(PortDecl portDecl) {
+		return portDecls.add(portDecl);
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class DesignDeclaration extends Declarable {
 	 * 
 	 * @return This design declaration's set of device declarations
 	 */
-	public HashSet<DeviceDeclaration> getDeviceDecls() {
+	public Set<DeviceDecl> getDeviceDecls() {
 		return deviceDecls;
 	}
 
@@ -107,9 +107,8 @@ public class DesignDeclaration extends Declarable {
 	 * 
 	 * @return true if the device declaration was added successfully
 	 */
-	public boolean addDeviceDecl(DeviceDeclaration devDecl) {
-		boolean added = deviceDecls.add(devDecl);
-		return added;
+	public boolean addDeviceDecl(DeviceDecl devDecl) {
+		return deviceDecls.add(devDecl);
 	}
 
 	/**
@@ -117,7 +116,7 @@ public class DesignDeclaration extends Declarable {
 	 * 
 	 * @return This design declaration's set of net declarations
 	 */
-	public HashSet<NetDeclaration> getNetDecls() {
+	public Set<NetDecl> getNetDecls() {
 		return netDecls;
 	}
 
@@ -129,9 +128,8 @@ public class DesignDeclaration extends Declarable {
 	 * 
 	 * @return true if the net declaration was added successfully
 	 */
-	public boolean addNetDecl(NetDeclaration netDecl) {
-		boolean added = netDecls.add(netDecl);
-		return added;
+	public boolean addNetDecl(NetDecl netDecl) {
+		return netDecls.add(netDecl);
 	}
 
 	/**
@@ -139,7 +137,7 @@ public class DesignDeclaration extends Declarable {
 	 * 
 	 * @return This design declaration's set of instance declarations
 	 */
-	public HashSet<InstanceDeclaration> getInstanceDecls() {
+	public Set<InstDecl> getInstDecls() {
 		return instDecls;
 	}
 
@@ -147,14 +145,13 @@ public class DesignDeclaration extends Declarable {
 	 * Adds an instance declaration to this design's set of of instance
 	 * declarations
 	 * 
-	 * @param instanceDecl
+	 * @param instDecl
 	 *            The instance declaration to add
 	 * 
 	 * @return true if the instance declaration was added successfully
 	 */
-	public boolean addInstanceDecl(InstanceDeclaration instanceDecl) {
-		boolean added = instDecls.add(instanceDecl);
-		return added;
+	public boolean addInstDecl(InstDecl instDecl) {
+		return instDecls.add(instDecl);
 	}
 
 	/**
@@ -162,7 +159,7 @@ public class DesignDeclaration extends Declarable {
 	 * 
 	 * @return This design declaration's set of sub-design declarations
 	 */
-	public HashSet<SubDesignDeclaration> getSubDesignDecls() {
+	public Set<SubDecl> getSubDecls() {
 		return subDecls;
 	}
 
@@ -170,14 +167,13 @@ public class DesignDeclaration extends Declarable {
 	 * Adds a sub-design declaration to this design's set of sub-design
 	 * declarations
 	 * 
-	 * @param subDesignDecl
+	 * @param subDecl
 	 *            The sub-design declaration to add
 	 * 
 	 * @return true if the sub-design was added successfully
 	 */
-	public boolean addSubDesignDecl(SubDesignDeclaration subDesignDecl) {
-		boolean added = subDecls.add(subDesignDecl);
-		return added;
+	public boolean addSubDecl(SubDecl subDecl) {
+		return subDecls.add(subDecl);
 	}
 
 	/**
@@ -185,7 +181,7 @@ public class DesignDeclaration extends Declarable {
 	 * 
 	 * @return This design declaration's set of net assignments
 	 */
-	public HashSet<NetAssignment> getNetAssignments() {
+	public Set<NetAssign> getNetAssigns() {
 		return netAssigns;
 	}
 
@@ -193,14 +189,13 @@ public class DesignDeclaration extends Declarable {
 	 * Adds a net assignment declaration to this design's set of net assignment
 	 * declarations
 	 * 
-	 * @param netAssignment
+	 * @param netAssign
 	 *            The net assignment declaration to add
 	 * 
 	 * @return true if the net assignment was added successfully
 	 */
-	public boolean addNetAssignment(NetAssignment netAssignment) {
-		boolean added = netAssigns.add(netAssignment);
-		return added;
+	public boolean addNetAssign(NetAssign netAssign) {
+		return netAssigns.add(netAssign);
 	}
 
 	/**
@@ -216,7 +211,7 @@ public class DesignDeclaration extends Declarable {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return name.equals(((DesignDeclaration) o).getName());
+		return name.equals(((DesignDecl) o).getName());
 	}
 
 	/**
@@ -227,7 +222,7 @@ public class DesignDeclaration extends Declarable {
 		String sourceFile = "---------------------------------------- "
 				+ getFileName()
 				+ " -----------------------------------------\n";
-		String header = "DesignDecl " + getLineString() + " : " + name + "\n";
+		String header = "DesignDecl " + getLocation() + " : " + name + "\n";
 		String ports = "";
 		String devices = "";
 		String nets = "";
@@ -236,27 +231,27 @@ public class DesignDeclaration extends Declarable {
 		String assigns = "";
 
 		// loop over all port declarations
-		for (PortDeclaration p : portDecls)
+		for (PortDecl p : portDecls)
 			ports += "\t" + p.toString();
 
 		// loop over all device declarations
-		for (DeviceDeclaration d : deviceDecls)
+		for (DeviceDecl d : deviceDecls)
 			devices += "\t" + d.toString();
 
 		// loop over all net declarations
-		for (NetDeclaration n : netDecls)
+		for (NetDecl n : netDecls)
 			nets += "\t" + n.toString();
 
 		// loop over all instance declarations
-		for (InstanceDeclaration i : instDecls)
+		for (InstDecl i : instDecls)
 			instances += "\t" + i.toString();
 
 		// loop over all sub-design declarations
-		for (SubDesignDeclaration s : subDecls)
+		for (SubDecl s : subDecls)
 			subs += "\t" + s.toString();
 
 		// loop over all net assignments
-		for (NetAssignment n : netAssigns)
+		for (NetAssign n : netAssigns)
 			assigns += "\t" + n.toString();
 
 		return sourceFile + header + ports + devices + nets + instances + subs
@@ -272,16 +267,23 @@ public class DesignDeclaration extends Declarable {
 	 * @return The device declaration with this name, or null if it doesn't
 	 *         exist in the set.
 	 */
-	public DeviceDeclaration findDevDecl(String name) {
-		for (DeviceDeclaration d : deviceDecls) {
+	public DeviceDecl findDevDecl(String name) {
+		for (DeviceDecl d : deviceDecls) {
 			if (d.getName().equals(name))
 				return d;
 		}
 		return null;
 	}
 
-	public boolean hasDeviceDecl(InstanceDeclaration i) {
-		DeviceDeclaration d = findDevDecl(i.getRefName());
+	/**
+	 * Method to tell whether a particular instance in the design is declared
+	 * 
+	 * @param i
+	 *            The instance declaration to be checked
+	 * @return True if the instance has been declared, false otherwise.
+	 */
+	public boolean isDeclared(InstDecl i) {
+		DeviceDecl d = findDevDecl(i.getRefName());
 		if (d != null)
 			return true;
 		else

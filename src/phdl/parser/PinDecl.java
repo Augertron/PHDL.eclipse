@@ -19,6 +19,8 @@ package phdl.parser;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * A class that represents a pin declaration in phdl. In addition to inherited
@@ -26,7 +28,7 @@ import java.util.HashSet;
  * 
  * @author Richard Black and Brad Riching
  */
-public class PinDeclaration extends ArrayDeclaration {
+public class PinDecl extends ArrayDecl {
 
 	/**
 	 * The pin declaration's type
@@ -40,26 +42,26 @@ public class PinDeclaration extends ArrayDeclaration {
 	/**
 	 * The pin declaration's pin index to pin number mapping
 	 */
-	protected HashMap<Integer, String> indexMap;
+	protected Map<Integer, String> indexMap;
 
 	/**
 	 * The pin declaration's pin number set to check for duplicates
 	 */
-	protected HashSet<String> numberSet;
+	protected Set<String> numberSet;
 
 	/**
 	 * Default constructor
 	 * 
 	 * @param type
 	 */
-	public PinDeclaration(Type type) {
+	public PinDecl(Type type) {
 		super();
 		this.type = type;
 		this.indexMap = new HashMap<Integer, String>();
 		this.numberSet = new HashSet<String>();
 	}
 
-	public PinDeclaration() {
+	public PinDecl() {
 		super();
 		this.indexMap = new HashMap<Integer, String>();
 		this.numberSet = new HashSet<String>();
@@ -131,7 +133,7 @@ public class PinDeclaration extends ArrayDeclaration {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return name.equals(((PinDeclaration) o).getName());
+		return name.equals(((PinDecl) o).getName());
 	}
 
 	/**
@@ -152,7 +154,7 @@ public class PinDeclaration extends ArrayDeclaration {
 			}
 		}
 
-		return "PinDecl " + getLineString() + " : " + type.toString() + " {"
+		return "PinDecl " + getLocation() + " : " + type.toString() + " {"
 				+ sPinMap + "}\n";
 	}
 
@@ -162,8 +164,8 @@ public class PinDeclaration extends ArrayDeclaration {
 	 * 
 	 * @return True if the mapping was completed successfully, false otherwise
 	 */
-	public boolean pinMap() {
-		// split pin list on whitespace, commas and semicolons
+	public boolean makePinMap() {
+		indexMap.clear();
 		String[] pinNumbers = pinList.split("[;,\\s]");
 
 		// add pin numbers to a set to check for duplicates

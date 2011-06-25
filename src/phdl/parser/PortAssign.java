@@ -25,14 +25,15 @@ import java.util.LinkedList;
  * @author Richard Black and Brad Riching
  * 
  */
-public class PortAssignment extends InstanceAssignment {
+public class PortAssign extends InstAssign {
 
 	/**
 	 * Default constructor
 	 */
-	public PortAssignment() {
+	public PortAssign() {
 		super();
 		this.nets = new LinkedList<Net>();
+		this.slices = new LinkedList<Integer>();
 	}
 
 	/**
@@ -48,13 +49,15 @@ public class PortAssignment extends InstanceAssignment {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return name.equals(((PortAssignment) o).getName())
-				&& instMsb == ((PortAssignment) o).getInstMsb()
-				&& instLsb == ((PortAssignment) o).getInstLsb()
-				&& instIndex == ((PortAssignment) o).getInstIndex()
-				&& msb == ((PortAssignment) o).getMsb()
-				&& lsb == ((PortAssignment) o).getLsb()
-				&& index == ((PortAssignment) o).getIndex();
+		return name.equals(((PortAssign) o).getName())
+				&& instMsb == ((PortAssign) o).getInstMsb()
+				&& instLsb == ((PortAssign) o).getInstLsb()
+				&& instIndex == ((PortAssign) o).getInstIndex()
+				&& instIndices.equals(((PortAssign) o).getInstIndices())
+				&& msb == ((PortAssign) o).getMsb()
+				&& lsb == ((PortAssign) o).getLsb()
+				&& index == ((PortAssign) o).getIndex()
+				&& indices.equals(((PortAssign) o).getIndices());
 	}
 
 	/**
@@ -75,8 +78,7 @@ public class PortAssignment extends InstanceAssignment {
 			netString = "open";
 		}
 
-		return "PortAssign " + getLineString() + " : " + name
-				+ getInstWidthString() + ":" + getWidthString() + " <= "
-				+ netString + "\n";
+		return "PortAssign " + getLocation() + " : " + name + ":"
+				+ getSlicesString() + " <= " + netString + "\n";
 	}
 }

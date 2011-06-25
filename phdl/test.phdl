@@ -1,30 +1,4 @@
-design myDesign2 is
-	// port declarations
-	
-	port in[7:0] addr;
-	port out[7:0] data;
-begin
-
-end;
-
-// the design declaration
-design myDesign is
-	
-	// a device declaration
-	device opamp_dual is
-		// attribute list
-		refprefix = "U";
-		name = "opamp1";
-		value = "NE5532";
-		package = "SOIC_8";
-	begin
-		// pin list
-		in[1:2] +input = "3,5";
-		in[1:2] -input = "2,6";
-		out[1:2] output = "1,7";
-		power[0:0] +vcc = "8";
-		power -vcc = "4";
-	end;	
+design myDesign is	
 	
 	// another device declaration
 	device resistor is
@@ -34,26 +8,20 @@ design myDesign is
 		package = "R0207";
 		tolerance = "10%";
 	begin
-		passive a = "1";
-		passive b = "2";
+		passive a = {1};
+		passive b = {2};
 	end;
-	
-	net[3:0] resASide : attr1, attr2, attr3;	
-	net[3:0] resBSide : attr4;
-	
-	net[7:0] addr;
-	net[7:0] data;
 
 begin
 	
-	// an instance (array) declaration
-	inst resArray : resistor[6:0] is
+	inst resArray : resistor[7:0] is
 		// (overridable) attribute assignments
-		value[6:5] = "2.2K";
-		value[4:2] = "2.5K";
-		tolerance(0) = "5%";
+		//value{7,6,5} = "2.2K";
+		//value[4:0] = "2.5K";
+		tolerance{0,1,2} = "5%";
 		refDes(4) = "R1";
-		refDes[1:1] = "R2";
+		refDes{1} = "R2";
+		value = "20K";
 	begin
 		// pin assignments
 		a[2:1] = mynet1(0) & mynet2(0);
@@ -61,25 +29,16 @@ begin
 		b(0) = open;
 	end;
 	
-	inst resArray : resistor[15:7] is
+	inst resArray : resistor is
 		value = "2.5K";
 	begin
 	end;
 	
-	// a sub-design (array) declaration
-	sub mySubDesign : myDesign2[3:0] is
-		addr = addr;
-		data = data;
+	sub subInst : myDesign2 is
+		myres.value{1,2,3} = "25K";
+	begin
+		data = open;
+		addr = open;
 	end;
-
-	// a sub-design (array) declaration
-	sub mySubDesign2 : myDesign3[3:0] is
-		addr = addr;
-		data = data;
-	end;
-	
-	// a net assignment
-	testnet1[1:2] = open;
-	testnet1[7:0] = myNet1[1:0] & myNet1[3:2] & myNet2[1:0] & myNet2(2);
 	
 end;

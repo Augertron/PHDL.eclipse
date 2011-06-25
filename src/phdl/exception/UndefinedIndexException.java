@@ -39,7 +39,7 @@ public class UndefinedIndexException extends SyntaxException {
 	 *            The element in the source text that caused the exception
 	 */
 	public UndefinedIndexException(Parsable e) {
-		super(e.getLineString() + " Undefined index detected: " + e.getName());
+		super(e.getLocation() + " Undefined index detected: " + e.getName());
 	}
 
 	/**

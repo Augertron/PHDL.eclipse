@@ -20,19 +20,20 @@ package phdl.parser;
 import java.util.LinkedList;
 
 /**
- * A class that represents a net assignment in phdl.
+ * A class that represents a pin assignment in phdl.
  * 
  * @author Richard Black and Brad Riching
  * 
  */
-public class NetAssignment extends ConcatenationAssignment {
+public class PinAssign extends InstAssign {
 
 	/**
 	 * Default constructor
 	 */
-	public NetAssignment() {
+	public PinAssign() {
 		super();
 		this.nets = new LinkedList<Net>();
+		this.slices = new LinkedList<Integer>();
 	}
 
 	/**
@@ -48,14 +49,19 @@ public class NetAssignment extends ConcatenationAssignment {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return name.equals(((NetAssignment) o).getName())
-				&& msb == ((NetAssignment) o).getMsb()
-				&& lsb == ((NetAssignment) o).getLsb()
-				&& index == ((NetAssignment) o).getIndex();
+		return name.equals(((PinAssign) o).getName())
+				&& instMsb == ((PinAssign) o).getInstMsb()
+				&& instLsb == ((PinAssign) o).getInstLsb()
+				&& instIndex == ((PinAssign) o).getInstIndex()
+				&& instIndices.equals(((PinAssign) o).getInstIndices())
+				&& msb == ((PinAssign) o).getMsb()
+				&& lsb == ((PinAssign) o).getLsb()
+				&& index == ((PinAssign) o).getIndex()
+				&& indices.equals(((PinAssign) o).getIndices());
 	}
 
 	/**
-	 * Returns a formatted string representation of the net assignment
+	 * Returns a formatted string represenation of the pin assignment
 	 */
 	@Override
 	public String toString() {
@@ -65,15 +71,14 @@ public class NetAssignment extends ConcatenationAssignment {
 		if (!nets.isEmpty()) {
 			for (Net n : nets)
 				netString += n.toString() + " & ";
-			// remove the last ampersand from the loop above
+			// remove last ampersand from the loop above
 			netString = netString.substring(0, netString.length() - 3);
-
 		} else {
 			// if there are no nets in the list, the assignment is open.
 			netString = "open";
 		}
 
-		return "NetAssign " + getLineString() + " : " + name + getWidthString()
-				+ " <= " + netString + "\n";
+		return "PinAssign " + getLocation() + " : " + name + ":"
+				+ getSlicesString() + " <= " + netString + "\n";
 	}
 }

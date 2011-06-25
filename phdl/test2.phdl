@@ -1,5 +1,9 @@
-design myDesign3 is
+design myDesign2 is
 
+	// these are ports
+	in[7:0] addr;
+	out[7:0] data;
+	
 	// resitor device declaration
 	device res_array is
 		refprefix = "R";
@@ -8,13 +12,17 @@ design myDesign3 is
 		package = "R0207";
 		tolerance = "10%";
 	begin
-		passive[3:0] a = "1,2,3,4";
-		passive[3:0] b = "8,7,6,5";
+		passive[3:0] a = {1,2,3,4};
+		passive[3:0] b = {8,7,6,5};
 	end;
 
 	net gnd;
 	net +vcc;
 	net -vcc;
+	
+	net[1:2] test;
+	net[4:3] test;
+	net test;
 
 begin
 
@@ -22,9 +30,9 @@ begin
 		value = "20K";
 		tolerance = "1%";
 	begin
-		a(1):[3:0] = +vcc;
-		a(2):[3:0] = -vcc;
-		b[1:2]:[3:0] = gnd;
+		a(1){3,2,1,0} = +vcc;
+		a(2)[3:0] = -vcc;
+		b[1:2][3:0] = gnd;
 	end;
 	
 end;

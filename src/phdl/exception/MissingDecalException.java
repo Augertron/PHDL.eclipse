@@ -40,7 +40,7 @@ public class MissingDecalException extends SyntaxException {
 	 *            The element in the source text that caused the exception
 	 */
 	public MissingDecalException(Parsable e) {
-		super(e.getLineString() + " Missing decal detected: " + e.getName());
+		super(e.getLocation() + " Missing decal detected: " + e.getName());
 	}
 
 	/**
