@@ -67,19 +67,26 @@ public class Main {
      * @param PowHash
      * @param UnusedHash 
      */
-    public static void PrintDeclaration(TreeMap SigHash, TreeMap PowHash, TreeMap UnusedHash) {
+    public static void PrintDeclaration(TreeMap SigHash, TreeMap PowHash, TreeMap UnusedHash, String PartNum, String Package, String FileRoot) {
         
-        System.out.println("\n// Signal pins from FPGA design.");
+        System.out.println("\n// Part declaration extracted from Xilinx " + FileRoot + "_pad.csv");
+        System.out.println("device " + FileRoot + " is");
+        System.out.println("    refprefix = \"U\";");
+        System.out.println("    pkg_type = \"" + Package + "\";");
+        System.out.println("    mfgr = \"XILINX\";");
+        System.out.println("    partNumber = \"" + PartNum + "\";");
+        System.out.println("begin");
+        System.out.println("    // User I/O pins.");
         Iterator it = SigHash.keySet().iterator();
         while(it.hasNext()){
             Object KeyString = it.next();
             int vectorSize = ((TreeMap)SigHash.get(KeyString)).size();
             if (vectorSize==1) {
-                System.out.print("pin  " + ((String)KeyString) + "    \"" );
+                System.out.print("    pin  " + ((String)KeyString) + "    \"" );
             } else {
                 Integer firstIndex = getIndex((String)((TreeMap)SigHash.get(KeyString)).firstKey());
                 Integer lastIndex  = getIndex((String)((TreeMap)SigHash.get(KeyString)).lastKey());
-                System.out.print("pin  " + "[" + firstIndex + ":" + lastIndex + "] " + ((String)KeyString) + " \"" );
+                System.out.print("    pin" + "[" + firstIndex + ":" + lastIndex + "] " + ((String)KeyString) + " \"" );
             }
             Iterator innerIt = ((TreeMap)SigHash.get(KeyString)).keySet().iterator();
             while(innerIt.hasNext()){
@@ -88,20 +95,20 @@ public class Main {
                 //System.out.print(((String)innerKeyString));
                 if(innerIt.hasNext()) System.out.print(",");
             }
-            System.out.println("\"");
+            System.out.println("\";");
         }
 
-        System.out.println("\n// Power and dedicated FPGA pins.");
+        System.out.println("\n    // Power and dedicated FPGA pins.");
         it = PowHash.keySet().iterator();
         while(it.hasNext()){
             Object KeyString = it.next();
             int vectorSize = ((TreeMap)PowHash.get(KeyString)).size();
             if (vectorSize==1) {
-                System.out.print("pin  " + ((String)KeyString) + "    \"" );
+                System.out.print("    pin  " + ((String)KeyString) + "    \"" );
             } else {
                 Integer firstIndex = vectorSize-1;
                 Integer lastIndex  = 0;
-                System.out.print("pin  " + "[" + firstIndex + ":" + lastIndex + "] " + ((String)KeyString) + " \"" );
+                System.out.print("    pin" + "[" + firstIndex + ":" + lastIndex + "] " + ((String)KeyString) + " \"" );
             }
             //System.out.print(((String)KeyString) + "   " + ((TreeMap)PowHash.get(KeyString)).size() + " \"" );
             Iterator innerIt = ((TreeMap)PowHash.get(KeyString)).keySet().iterator();
@@ -110,22 +117,23 @@ public class Main {
                 System.out.print(((String)innerKeyString));
                 if(innerIt.hasNext()) System.out.print(",");
             }
-            System.out.println("\"");
+            System.out.println("\";");
         }
     
-        System.out.println("\n// UNUSED I/O pins.");
+        System.out.println("\n    // UNUSED I/O pins.");
         it = UnusedHash.keySet().iterator();
         while(it.hasNext()){
             Object KeyString = it.next();
-            System.out.print("pin  " + ((String)KeyString) + "   \"" );
+            System.out.print("    pin  " + ((String)KeyString) + "   \"" );
             Iterator innerIt = ((TreeMap)UnusedHash.get(KeyString)).keySet().iterator();
             while(innerIt.hasNext()){
                 Object innerKeyString = innerIt.next();
                 System.out.print(((String[])((TreeMap)UnusedHash.get(KeyString)).get(innerKeyString))[0]);
                 if(innerIt.hasNext()) System.out.print(",");
             }
-            System.out.println("\"");
+            System.out.println("\";");
         }
+        System.out.println("end;");
     } 
     
     /**
@@ -270,10 +278,10 @@ public class Main {
         String PART_NUMBER;
         if (PartNumMatcher.find()){
             PART_NUMBER = PartNumMatcher.group(3);
-            System.out.println("PART TYPE = " + PART_NUMBER);
+            System.out.println("//PART TYPE = " + PART_NUMBER);
         } else {
             PART_NUMBER = "pn_not_found:";
-            System.out.println("PART TYPE: not found");         
+            System.out.println("//PART TYPE: not found");         
         }
         
         PartNumPat = Pattern.compile("(#SPEED GRADE:([ ]+)([-0-9a-zA-Z-]+))");
@@ -281,10 +289,10 @@ public class Main {
         String SPEED_GRADE;
         if (PartNumMatcher.find()){
             SPEED_GRADE = PartNumMatcher.group(3);
-            System.out.println("SPEED GRADE = " + SPEED_GRADE);
+            System.out.println("//SPEED GRADE = " + SPEED_GRADE);
         } else {
             SPEED_GRADE = "speed_grade_not_found:";
-            System.out.println("SPEED GRADE: not found");         
+            System.out.println("//SPEED GRADE: not found");         
         }
         
         PartNumPat = Pattern.compile("(#PACKAGE:([ ]+)([-0-9a-zA-Z-]+))");
@@ -292,23 +300,44 @@ public class Main {
         String PACKAGE;
         if (PartNumMatcher.find()){
             PACKAGE = PartNumMatcher.group(3);
-            System.out.println("PACKAGE = " + PACKAGE);
+            System.out.println("//PACKAGE = " + PACKAGE);
         } else {
             PACKAGE = "package_not_found";
-            System.out.println("PACKAGE: not found");         
+            System.out.println("//PACKAGE: not found");         
         }
         
-        System.out.println("Full Part Number = " + PART_NUMBER + SPEED_GRADE + PACKAGE);
+        PartNumPat = Pattern.compile("(#OUTPUT FILE:([ ]+)([-_.0-9a-zA-Z-]+))");
+        PartNumMatcher = PartNumPat.matcher(WholeFileString);
+        String InputFile;
+        String FileRoot = "junk";
+        if (PartNumMatcher.find()){
+            InputFile = PartNumMatcher.group(3);
+            System.out.println("//INPUT FILE = " + InputFile);
+            PartNumPat = Pattern.compile("_pad.csv");
+            IndexPatMatcher = PartNumPat.matcher(InputFile);
+            if (IndexPatMatcher.find()){
+                FileRoot = InputFile.substring(0, IndexPatMatcher.start());
+            } else {
+                FileRoot = InputFile;
+            }
+            System.out.println("//Root Filename = " + FileRoot);
+        } else {
+            InputFile = "input_file_not_found";
+            System.out.println("INPUT FILE: not found");         
+        }
+        
+        String FullPartNum = PART_NUMBER + SPEED_GRADE + PACKAGE;
+        System.out.println("//Full Part Number = " + FullPartNum);
 
         
 
         // OK, now we have all the data organized into a hash table of hash tables.
         // These functions walk through the data and print the output file.
         
-        PrintDeclaration(SigHash, PowHash, UnusedHash);
-        PrintInstantiation(SigHash, PowHash, UnusedHash);
+        PrintDeclaration(SigHash, PowHash, UnusedHash, FullPartNum, PACKAGE, FileRoot);
+        //PrintInstantiation(SigHash, PowHash, UnusedHash);
         
-        System.out.println("total pins found = " + pin_count);
+        System.out.println("//total pins found = " + pin_count);
 
     }
 
