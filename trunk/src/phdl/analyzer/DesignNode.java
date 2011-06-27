@@ -2,6 +2,7 @@ package phdl.analyzer;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -131,7 +132,7 @@ public class DesignNode {
 		this.graph = graph;
 	}
 	
-	public void createInitialNetGraph() throws InvalidWidthException {
+	public void createInitialNetGraph() {
 		graph = new Graph();
 		Set<NetDecl> nets = design.getNetDecls();
 		createNetNodes(nets);
@@ -142,20 +143,35 @@ public class DesignNode {
 			ArrayList<String> rvals = new ArrayList<String>();
 			lvals = assignLVals(lvals, a);
 			rvals = assignRVals(rvals, a.getNets());
-			if (lvals.size() != rvals.size()) {
-				throw new InvalidWidthException(a);
-			}
 			linkNets(lvals, rvals);
 		}
-		addPins();
-		addPorts();
+	}
+	
+	private ArrayList<String> assignRVals(ArrayList<String> rvals,
+			LinkedList<Net> nets) {
+		ArrayList<Integer> slices = new ArrayList<Integer>();
+		for (Net n : nets) {
+			slices.addAll(n.getSlices());
+			for (int i = 0; i < slices.size(); i++) {
+				rvals.add(n.getName() + "_" + slices.get(i));
+			}
+			slices.clear();
+		}
+		return rvals;
+	}
+
+	private ArrayList<String> assignLVals(ArrayList<String> lvals, NetAssign a) {
+		for (int i = 0; i < a.getSlices().size(); i++) {
+			lvals.add(a.getName() + "_" + a.getSlices().get(i));
+		}
+		return lvals;
 	}
 	
 	private void createNetNodes(Set<NetDecl> nets) {
 		for (NetDecl n : nets) {
 			if (n.getWidth() != 1) {
-				int min = getMin(n.getMsb(), n.getLsb());
-				int max = getMax(n.getMsb(), n.getLsb());
+				int min = n.getMsb() > n.getLsb() ? n.getLsb() : n.getMsb();
+				int max = n.getMsb() < n.getLsb() ? n.getLsb() : n.getMsb();
 				for (int i = min; i <= max; i++) {
 					NetNode newNet = new NetNode();
 					newNet.setName(n.getName() + "_" + i);
@@ -173,82 +189,8 @@ public class DesignNode {
 	private void linkNets(ArrayList<String> lvals, ArrayList<String> rvals) {
 		for (int i = 0; i < lvals.size(); i++) {
 			NetNode l = graph.getNet(lvals.get(i));
-			if (l == null) {
-				// net never declared
-			}
 			NetNode r = graph.getNet(rvals.get(i));
-			if (r == null) {
-				// net never declared
-			}
 			l.addNode(r);
-			r.addNode(l);
-		}
-	}
-	
-	private ArrayList<String> assignLVals(ArrayList<String> lvals, ConcatAssign a) {
-		if (a.getIndex() != -1) {
-			lvals.add(a.getName() + "_" + a.getIndex());
-		} else if (a.getMsb() > a.getLsb()) {
-			for (int i = a.getMsb(); i > a.getLsb(); i--) {
-				lvals.add(a.getName() + "_" + i);
-			}
-		}
-		else {
-			for (int i = a.getMsb(); i < a.getLsb(); i++) {
-				lvals.add(a.getName() + "_" + i);
-			}
-		}
-		return lvals;
-	}
-	
-	private ArrayList<String> assignRVals(ArrayList<String> rvals, List<Net> a) {
-		for (int j = 0; j < a.size(); j++) {
-			Net n = a.get(j);
-			if (n.getIndex() != -1) {
-				rvals.add(n.getName() + "_" + n.getIndex());
-			} else if (n.getMsb() > n.getLsb()) {
-				for (int i = n.getMsb(); i > n.getLsb(); i--) {
-					rvals.add(n.getName() + "_" + i);
-				}
-			}
-			else {
-				for (int i = n.getMsb(); i < n.getLsb(); i++) {
-					rvals.add(n.getName() + "_" + i);
-				}
-			}
-		}
-		return rvals;
-	}
-	
-	private void addPins() throws InvalidWidthException {
-		Set<PinNode> pins = createPinNodes();
-		for (InstDecl i : design.getInstDecls()) {
-			for (PinAssign p : i.getPinAssigns()) {
-				ArrayList<String> lvals = new ArrayList<String>();
-				ArrayList<String> rvals = new ArrayList<String>();
-				lvals = assignLVals(lvals, p);
-				rvals = assignRVals(rvals, p.getNets());
-				if (lvals.size() != rvals.size()) {
-					throw new InvalidWidthException(p);
-				}
-				linkPins(lvals, rvals, pins);
-			}
-		}
-	}
-	
-	private void linkPins(ArrayList<String> lvals, ArrayList<String> rvals, Set<PinNode> pins) {
-		for (int i = 0; i < lvals.size(); i++) {
-			NetNode n = graph.getNet(rvals.get(i));
-			if (n == null) {
-				// net not declared
-			}
-			for (PinNode p : pins) {
-				if (p.getName().equals(lvals.get(i))) {
-					n.addNode(p);
-					p.setNet(n);
-					break;
-				}
-			}
 		}
 	}
 	
@@ -257,8 +199,8 @@ public class DesignNode {
 		for (DeviceDecl d : design.getDeviceDecls()) {
 			for (PinDecl p : d.getPinDecls()) {
 				if (p.getWidth() != 1) {
-					int min = getMin(p.getMsb(), p.getLsb());
-					int max = getMax(p.getMsb(), p.getLsb());
+					int min = p.getMsb() > p.getLsb() ? p.getLsb() : p.getMsb();
+					int max = p.getMsb() < p.getLsb() ? p.getLsb() : p.getMsb();
 					for (int i = min; i <= max; i++) {
 						PinNode newNode = new PinNode();
 						newNode.setName(p.getName() + "_" + i);
@@ -274,45 +216,5 @@ public class DesignNode {
 		}
 		return pins;
 	}
-	
-	private void addPorts() {
-		Set<PortNode> p = createPortNodes();
-		
-	}
-	
-	private Set<PortNode> createPortNodes() {
-		Set<PortNode> p = new HashSet<PortNode>();
-		for (PortDecl d : design.getPortDecls()) {
-			if (d.getWidth() != 1) {
-				int min = getMin(d.getMsb(), d.getLsb());
-				int max = getMax(d.getMsb(), d.getLsb());
-				for (int i = min; i <= max; i++) {
-					PortNode newNode = new PortNode();
-					newNode.setName(d.getName() + "_" + i);
-					p.add(newNode);
-				}
-			}
-			else {
-				PortNode newNode = new PortNode();
-				newNode.setName(d.getName());
-				p.add(newNode);
-			}
-		}
-		
-		return p;
-	}
 
-	private int getMin(int msb, int lsb) {
-		if (msb < lsb) {
-			return msb;
-		}
-		return lsb;
-	}
-
-	private int getMax(int msb, int lsb) {
-		if (msb < lsb) {
-			return lsb;
-		}
-		return msb;
-	}
 }

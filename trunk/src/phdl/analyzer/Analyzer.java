@@ -77,13 +77,8 @@ public class Analyzer {
 
 			// TODO make a new graph out of all pin, port and net assignments
 			// and assign to design node
-
-			// try {
-			// d.createInitialNetGraph();
-			// } catch (InvalidWidthException e) {
-			// // TODO Auto-generated catch block
-			// e.printStackTrace();
-			// }
+			
+			 d.createInitialNetGraph();
 
 		}
 

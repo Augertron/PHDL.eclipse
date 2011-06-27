@@ -372,7 +372,9 @@ public class NetNode extends Node {
 		N6.addNode(N7);
 		N7.addNode(P4);
 		
-		N1.superNet();		
+		N1.superNet();
+		Set<NetNode> n = new HashSet<NetNode>();
+		printGraph(N1, n);
 		
 		if (!N1.getNetNodes().isEmpty()) {
 			TestDriver.err("superNet()", "no net nodes left", N1.getNetNodes().size() + " remaining nodes");
