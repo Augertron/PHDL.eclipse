@@ -26,7 +26,7 @@ import java.util.LinkedList;
  * @author Richard Black and Brad Riching
  * 
  */
-public class AttrAssign extends Sliceable {
+public class AttrAssign extends Arrayed {
 
 	/**
 	 * The attribute assignment's value
@@ -37,7 +37,7 @@ public class AttrAssign extends Sliceable {
 	 * Default constructor
 	 */
 	public AttrAssign() {
-		this.slices = new LinkedList<Integer>();
+		this.indices = new LinkedList<Integer>();
 	}
 
 	/**
@@ -74,9 +74,7 @@ public class AttrAssign extends Sliceable {
 	public boolean equals(Object o) {
 		return name.equals(((AttrAssign) o).getName())
 				&& msb == ((AttrAssign) o).getMsb()
-				&& lsb == ((AttrAssign) o).getLsb()
-				&& index == ((AttrAssign) o).getIndex()
-				&& slices.equals(((AttrAssign) o).getSlices());
+				&& lsb == ((AttrAssign) o).getLsb();
 	}
 
 	/**
@@ -84,7 +82,7 @@ public class AttrAssign extends Sliceable {
 	 */
 	@Override
 	public String toString() {
-		return "AttrAssign " + getLocation() + " : " + name + getSlicesString()
+		return "AttrAssign " + getLocation() + " : " + name + getArrayString()
 				+ " = " + value + "\n";
 	}
 

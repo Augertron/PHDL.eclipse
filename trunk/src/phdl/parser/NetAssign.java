@@ -25,7 +25,7 @@ import java.util.LinkedList;
  * @author Richard Black and Brad Riching
  * 
  */
-public class NetAssign extends ConcatAssign {
+public class NetAssign extends Concatenated {
 
 	/**
 	 * Default constructor
@@ -33,7 +33,7 @@ public class NetAssign extends ConcatAssign {
 	public NetAssign() {
 		super();
 		this.nets = new LinkedList<Net>();
-		this.slices = new LinkedList<Integer>();
+		this.bits = new LinkedList<Integer>();
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class NetAssign extends ConcatAssign {
 	 */
 	@Override
 	public int hashCode() {
-		return (name + msb + lsb + index).hashCode();
+		return name.hashCode();
 	}
 
 	/**
@@ -50,10 +50,7 @@ public class NetAssign extends ConcatAssign {
 	@Override
 	public boolean equals(Object o) {
 		return name.equals(((NetAssign) o).getName())
-				&& msb == ((NetAssign) o).getMsb()
-				&& lsb == ((NetAssign) o).getLsb()
-				&& index == ((NetAssign) o).getIndex()
-				&& indices.equals(((NetAssign) o).getIndices());
+				&& bits.equals(((NetAssign) o).getBits());
 	}
 
 	/**
@@ -75,7 +72,7 @@ public class NetAssign extends ConcatAssign {
 			netString = "open";
 		}
 
-		return "NetAssign " + getLocation() + " : " + name + getSlicesString()
+		return "NetAssign " + getLocation() + " : " + name + getBitString()
 				+ " <= " + netString + "\n";
 	}
 }

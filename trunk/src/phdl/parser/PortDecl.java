@@ -23,7 +23,7 @@ package phdl.parser;
  * 
  * @author Richard Black and Brad Riching
  */
-public class PortDecl extends ArrayDecl {
+public class PortDecl extends Sliced {
 
 	/**
 	 * The type of the port assignment
@@ -72,9 +72,8 @@ public class PortDecl extends ArrayDecl {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return name.equals(((PortDecl) o).getName())
-				&& msb == ((PortDecl) o).getMsb()
-				&& lsb == ((PortDecl) o).getLsb();
+		return name.equals(((PortDecl) o).getName());
+
 	}
 
 	/**
@@ -82,8 +81,8 @@ public class PortDecl extends ArrayDecl {
 	 */
 	@Override
 	public String toString() {
-		return "PortDecl " + getLocation() + " : " + type.toString()
-				+ getWidthString() + " " + name + "\n";
+		return "PortDecl " + getLocation() + " : " + type.toString() + " "
+				+ name + "\n";
 	}
 
 }

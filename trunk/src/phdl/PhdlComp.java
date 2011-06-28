@@ -94,6 +94,13 @@ public class PhdlComp {
 				errors.add(e.getMessage());
 			}
 
+			// print out all errors if there were any, and exit abnormally
+			if (!errors.isEmpty()) {
+				for (String s : errors)
+					System.out.println(s);
+				System.exit(1);
+			}
+
 			// 3. convert this tree of tokens to a node stream and set the token
 			// stream reference to the parser's token stream
 			CommonTreeNodeStream ns = new CommonTreeNodeStream(
@@ -148,9 +155,9 @@ public class PhdlComp {
 			System.exit(1);
 		}
 
-		// for (DesignDecl dd : pd.getDesignDecls())
-		// System.out.println(dd.toString());
-		// System.out.println(dh.toString());
+		for (DesignDecl dd : pd.getDesignDecls())
+			System.out.println(dd.toString());
+		System.out.println(dh.toString());
 	}
 
 	/**

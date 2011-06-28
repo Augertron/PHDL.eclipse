@@ -94,52 +94,18 @@ design[ParsedDesigns pd]
 			d.setFileName(input.getSourceName());
 		}
 			
-		// add any kind of declaration
-		(portDecl[d] | deviceDecl[d] | netDecl[d])*
+		// device and net declarations
+		(deviceDecl[d] | netDecl[d])*
 		
 		// seperates declarations from instances
 		'begin'
 		
 		// add all instances subDesigns and netAssignments to the design
-		(instance[d] | subDesign[d] | netAssign[d])*
+		(instDecl[d] | netAssign[d])*
 		)
 		
 		{	if(!pd.addDesignDecl(d)) 
 				addError(d, "duplicate design declaration");
-		}
-	;
-
-/**
- * The port declaration rule looks for the keyword types that are shown below, and creates 
- * a new port declaration based on that type.  It then calls the addPort method to finish
- * setting all appropriate fields of the port declaration.
- */
-portDecl[DesignDecl d]
-	:	^('pin' {PortDecl pin = new PortDecl(Type.PIN);} addPort[d, pin])
-	|	^('in' {PortDecl in = new PortDecl(Type.IN);} addPort[d, in])
-	|	^('out' {PortDecl out = new PortDecl(Type.OUT);} addPort[d, out])
-	|	^('inout' {PortDecl inout = new PortDecl(Type.INOUT);} addPort[d, inout])
-	|	^('passive' {PortDecl passive = new PortDecl(Type.PASSIVE);} addPort[d, passive])
-	|	^('supply' {PortDecl supply = new PortDecl(Type.SUPPLY);} addPort[d, supply])
-	|	^('power' {PortDecl power = new PortDecl(Type.POWER);} addPort[d, power])
-	;
-
-/**
- * The add port rule finishes setting all the appropriate fields of the port declaration
- * and adds the port to the design declaration.
- */	
-addPort[DesignDecl d, PortDecl p]
-	:	(msb=INT COLON lsb=INT)? name=IDENT
-		{	
-			p.setName($name.text);
-			p.setLine($name.line);
-			p.setPos($name.pos);
-			p.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
-			p.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
-			p.setFileName(input.getSourceName());
-			
-			if(!d.addPortDecl(p)) 
-				addError(p, "duplicate port declaration");
 		}
 	;
 
@@ -182,29 +148,29 @@ deviceDecl[DesignDecl d]
  * of the net.  Optional attributes are added if they exist after a colon.
  */
 netDecl[DesignDecl d]
-	:	^('net' (msb=INT COLON lsb=INT)? name=IDENT
+	:	^('net' (slice=SLICE_LIST)? name=IDENT
 	
 		// make a new net with the above information
 		{	NetDecl n = new NetDecl(); 
 			n.setName($name.text);
 			n.setLine($name.line);
 			n.setPos($name.pos);
-			n.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
-			n.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
+			n.setSliceString($slice.text);
 			n.setFileName(input.getSourceName());
+			
+			if(!n.makeBits())
+				addError(n, "invalid array format");
 		}
-
 		// add one or  more optional net attributes after a colon
 		(COLON netAttr[n]+)?
 		)
-		
 		// add the net to the design
 		{	if(!d.addNetDecl(n)) 
 				addError(n, "duplicate net declaration");
 		}
 	;
 
-/** Helper rule for netDecl.  Adds attributes after the colon if they exist in the tree.
+/** Helper rule for makeNet.  Adds attributes after the colon if they exist in the tree.
  */	
 netAttr[NetDecl n]
 	:	IDENT
@@ -252,37 +218,44 @@ pinDecl[DeviceDecl d]
  * each of the keywords above.  The MSB and LSB are set to zero if they are not present.
  */
 addPinDecl[DeviceDecl d, PinDecl p]
-	:	(msb=INT COLON lsb=INT)? name=IDENT pinList=NUMBER_LIST
+	:	(slice=SLICE_LIST)? name=IDENT pins=PIN_LIST
 		{	
 			p.setName($name.text);
 			p.setLine($name.line);
 			p.setPos($name.pos);
-			p.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
-			p.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
-			p.setPinList($pinList.text);
+			p.setSliceString($slice.text);
+			p.setPinList($pins.text);
 			p.setFileName(input.getSourceName());
+			
+			if(!p.makeBits())
+				addError(p, "invalid slice format");
+				
+			if(!p.makePinMap())
+				addError(p, "invalid pin list");
 			
 			if(!d.addPinDecl(p)) 
 				addError(p, "duplicate pin declaration");
 		}
 	;	
 
-/** Looks for the keyword "inst" as the root of a subtree, and creates a new instance based on the
+/** Looks for the keyword "inst" as the root of a subtree, and creates a new instDecl based on the
  * succeding children in the subtree.  Attribute and pin assignments are added with their own rules.
  */	
-instance[DesignDecl d]
-	:	^('inst' name=IDENT refName=IDENT (msb=INT COLON lsb=INT)?
+instDecl[DesignDecl d]
+	:	^('inst' name=IDENT refName=IDENT (array=ARRAY_LIST)?
 		
-		// make a new instance to pass to attrAssign and pinAssign
+		// make a new instDecl to pass to attrAssign and pinAssign
 		{	
 			InstDecl i = new InstDecl();
 				i.setName($name.text);
 				i.setLine($name.line);
 				i.setPos($name.pos);
-				i.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
-				i.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
+				i.setArrayString($array.text);
 				i.setRefName($refName.text);
 				i.setFileName(input.getSourceName());
+				
+				if (!i.makeIndices())
+					addError(i, "invalid array format");
 		}
 				
 		attrAssign[i]*
@@ -290,7 +263,7 @@ instance[DesignDecl d]
 		pinAssign[i]*
 		)
 		{	if(!d.addInstDecl(i)) 
-				addError(i, "duplicate instance declaration");
+				addError(i, "duplicate instDecl declaration");
 		}
 	;
 
@@ -300,35 +273,30 @@ instance[DesignDecl d]
  * attribute assignment data structure based on these parameters.
  */
 attrAssign[InstDecl i]
-	:	^(EQUALS name=IDENT 
-		((msb=INT COLON lsb=INT) | (index=INT) | indices=NUMBER_LIST)? 
-		value=STRING_LITERAL )
+	:	^(EQUALS name=IDENT (array=ARRAY_LIST)? value=STRING_LITERAL )
 		
-		// make a new attribute assignment, assign all values, and add it to the instance
+		// make a new attribute assignment, assign all values, and add it to the instDecl
 		{	AttrAssign a = new AttrAssign();
 			a.setName($name.text);
 			a.setLine($name.line);
 			a.setPos($name.pos);
-			a.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
-			a.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
-			a.setIndex($index!=null?Integer.parseInt($index.text):-1);
-			a.setIndices($indices.text);
+			a.setArrayString($array.text);
 			a.setValue($value.text);
 			a.setFileName(input.getSourceName());
+			
+			if(!a.makeIndices())
+				addError(a, "invalid array format");
 			
 			if(!i.addAttrAssign(a)) 
 				addError(a, "duplicate attribute assignment");
 		}
 	;
 
-
 /**	
  * Looks for an "=" sign as the parent of a subtree and sets appropriate fields  
  */	
 pinAssign[InstDecl i]
-	:	^(EQUALS name=IDENT 
-		(((instMsb=INT COLON instLsb=INT) | (instIndex=INT | instIndices=NUMBER_LIST))
-		((msb=INT COLON lsb=INT) | (index=INT) | indices=NUMBER_LIST)?)?
+	:	^(EQUALS name=IDENT (array=ARRAY_LIST)? (slice=SLICE_LIST)?
 	
 		// make a new pin assignment
 		{
@@ -336,15 +304,14 @@ pinAssign[InstDecl i]
 			p.setName($name.text);
 			p.setLine($name.line);
 			p.setPos($name.pos);
-			p.setInstMsb($instMsb!=null?Integer.parseInt($instMsb.text):-1);
-			p.setInstLsb($instLsb!=null?Integer.parseInt($instLsb.text):-1);
-			p.setInstIndex($instIndex!=null?Integer.parseInt($instIndex.text):-1);
-			p.setInstIndices($instIndices.text);
-			p.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
-			p.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
-			p.setIndex($index!=null?Integer.parseInt($index.text):-1);
-			p.setIndices($indices.text);
+			p.setArrayString($array.text);
+			p.setSliceString($slice.text);
 			p.setFileName(input.getSourceName());
+			
+			if(!p.makeIndices())
+				addError(p, "invalid array format");
+			if(!p.makeBits())
+				addError(p, "invalid slice format");
 		}
 	
 		concatPin[p]*
@@ -358,28 +325,95 @@ pinAssign[InstDecl i]
  * Helper rule for pinAssign.  Adds any nets that exist in the concatenation list.
  */	
 concatPin[PinAssign pa]
-	:	(name=IDENT ((msb=INT COLON lsb=INT) | (index=INT) | indices=NUMBER_LIST)?)
+	:	(name=IDENT (slice=SLICE_LIST)?)
 		{
 			Net n = new Net();
 			n.setName($name.text);
 			n.setLine($name.line);
 			n.setPos($name.pos);
-			n.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
-			n.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
-			n.setIndex($index!=null?Integer.parseInt($index.text):-1);
-			n.setIndices($indices.text);
+			n.setSliceString($slice.text);
 			n.setFileName(input.getSourceName());
 			pa.addNet(n);
+			
+			if(!n.makeBits())
+				addError(n, "invalid slice format");
+		}
+	;
+
+/**	
+ * Looks for an "=" sign as the parent of a subtree and fills in the appropriate fields following.
+ */	
+netAssign[DesignDecl d]
+	:	^(EQUALS name=IDENT (slice=SLICE_LIST)?
+		
+		// make a new net assignment
+		{	NetAssign n = new NetAssign(); 
+			n.setName($name.text);
+			n.setLine($name.line);
+			n.setPos($name.pos);
+			n.setSliceString($slice.text);
+			n.setFileName(input.getSourceName());
+			
+			if(!n.makeBits())
+				addError(n, "invalid slice format");
+		}
+		
+		concatNet[n]*
+		)
+		{	if(!d.addNetAssign(n)) 
+				addError(n, "duplicate net assignment");
 		}
 	;
 
 /**
- * A sub design looks for the keyword "sub" and fills in the appropriate fields.
+ * Helper rule for netAssign.  Adds any nets that exist in the concatenation list.
  */	
+concatNet[NetAssign na]
+	:	(name=IDENT (slice=SLICE_LIST)?)
+	
+		// add a net to the net assignment
+		{	Net n = new Net();
+			n.setName($name.text);
+			n.setLine($name.line);
+			n.setPos($name.pos);
+			n.setSliceString($slice.text);
+			n.setFileName(input.getSourceName());
+			na.addNet(n);
+			
+			if(!n.makeBits())
+				addError(n, "invalid slice format");
+		}
+	;
+
+/* These features associated with sub-designs are not yet implemented
+portDecl[DesignDecl d]
+	:	^('pin' {PortDecl pin = new PortDecl(Type.PIN);} addPort[d, pin])
+	|	^('in' {PortDecl in = new PortDecl(Type.IN);} addPort[d, in])
+	|	^('out' {PortDecl out = new PortDecl(Type.OUT);} addPort[d, out])
+	|	^('inout' {PortDecl inout = new PortDecl(Type.INOUT);} addPort[d, inout])
+	|	^('passive' {PortDecl passive = new PortDecl(Type.PASSIVE);} addPort[d, passive])
+	|	^('supply' {PortDecl supply = new PortDecl(Type.SUPPLY);} addPort[d, supply])
+	|	^('power' {PortDecl power = new PortDecl(Type.POWER);} addPort[d, power])
+	;
+
+addPort[DesignDecl d, PortDecl p]
+	:	(array=INDEX_LIST)? name=IDENT
+		{	
+			p.setName($name.text);
+			p.setLine($name.line);
+			p.setPos($name.pos);
+			p.setArray($array.text);
+			p.setFileName(input.getSourceName());
+			
+			if(!d.addPortDecl(p)) 
+				addError(p, "duplicate port declaration");
+		}
+	;
+
 subDesign[DesignDecl d]
 	:	^('sub' name=IDENT refName=IDENT (msb=INT COLON lsb=INT)?
 		
-		// make a new instance to pass to attrAssign and pinAssign
+		// make a new instDecl to pass to attrAssign and pinAssign
 		{	
 			SubDecl s = new SubDecl();
 			s.setName($name.text);
@@ -399,12 +433,6 @@ subDesign[DesignDecl d]
 		}
 	;
 
-/**
- * Looks for sub-design attribute assignments.  Sub-design attribute assignments are used
- * to pass attributes assignments to various instanced devices as a result of the sub-design
- * being instanced in the hierarchy.  They allow flexibility in configuring a sub-design for
- * a specific application.
- */	
 subAttrAssign[SubDecl s]
 	:	^(instName=IDENT name=IDENT 
 		((msb=INT COLON lsb=INT) | (index=INT) | indices=NUMBER_LIST)? 
@@ -427,57 +455,7 @@ subAttrAssign[SubDecl s]
 				addError(a, "duplicate sub-design attribute assignment");
 		}
 	;
-	
 
-
-/**	
- * Looks for an "=" sign as the parent of a subtree and fills in the appropriate fields following.
- */	
-netAssign[DesignDecl d]
-	:	^(EQUALS name=IDENT ((msb=INT COLON lsb=INT) | (index=INT) | indices=NUMBER_LIST)?
-		
-		// make a new net assignment
-		{	NetAssign n = new NetAssign(); 
-			n.setName($name.text);
-			n.setLine($name.line);
-			n.setPos($name.pos);
-			n.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
-			n.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
-			n.setIndex($index!=null?Integer.parseInt($index.text):-1);
-			n.setIndices($indices.text);
-			n.setFileName(input.getSourceName());
-		}
-		
-		concatNet[n]*
-		)
-		{	if(!d.addNetAssign(n)) 
-				addError(n, "duplicate net assignment");
-		}
-	;
-
-/**
- * Helper rule for netAssign.  Adds any nets that exist in the concatenation list.
- */	
-concatNet[NetAssign na]
-	:	(name=IDENT ((msb=INT COLON lsb=INT) | (index=INT) | indices=NUMBER_LIST)?)
-	
-		// add a net to the net assignment
-		{	Net n = new Net();
-			n.setName($name.text);
-			n.setLine($name.line);
-			n.setPos($name.pos);
-			n.setMsb($msb!=null?Integer.parseInt($msb.text):-1);
-			n.setLsb($lsb!=null?Integer.parseInt($lsb.text):-1);
-			n.setIndex($index!=null?Integer.parseInt($index.text):-1);
-			n.setIndices($indices.text);
-			n.setFileName(input.getSourceName());
-			na.addNet(n);
-		}
-	;
-
-/**	
- * Looks for an "=" sign as the parent of a subtree and fills in the appropriate fields following.
- */		
 portAssignment[SubDecl s]
 	:	^(EQUALS name=IDENT 
 		(((instMsb=INT COLON instLsb=INT) | (instIndex=INT) | instIndices=NUMBER_LIST)
@@ -506,9 +484,6 @@ portAssignment[SubDecl s]
 		}
 	;
 
-/**
- * Helper rule for portAssignment.  Adds any nets that exist in the concatenation list.
- */	
 concatPort[PortAssign pa]
 	:	(name=IDENT ((msb=INT COLON lsb=INT) | (index=INT) | indices=NUMBER_LIST)?)
 		{	Net n = new Net();
@@ -522,3 +497,5 @@ concatPort[PortAssign pa]
 			pa.addNet(n);
 		}
 	;
+	
+*/

@@ -18,6 +18,7 @@
 package phdl.parser;
 
 import java.util.HashSet;
+import java.util.LinkedList;
 
 /**
  * A class that represents a net declaration in phdl. In addition to the
@@ -26,7 +27,7 @@ import java.util.HashSet;
  * @author Richard Black and Brad Riching
  * 
  */
-public class NetDecl extends ArrayDecl {
+public class NetDecl extends Sliced {
 
 	/**
 	 * The net's set of attributes
@@ -39,6 +40,7 @@ public class NetDecl extends ArrayDecl {
 	public NetDecl() {
 		super();
 		this.attributes = new HashSet<String>();
+		this.bits = new LinkedList<Integer>();
 	}
 
 	/**
@@ -76,8 +78,7 @@ public class NetDecl extends ArrayDecl {
 	@Override
 	public boolean equals(Object o) {
 		return name.equals(((NetDecl) o).getName())
-				&& msb == ((NetDecl) o).getMsb()
-				&& lsb == ((NetDecl) o).getLsb();
+				&& bits.equals(((NetDecl) o).getBits());
 	}
 
 	/**
@@ -92,7 +93,7 @@ public class NetDecl extends ArrayDecl {
 		}
 		netString += "\n";
 
-		return "NetDecl " + getLocation() + " : " + name + getWidthString()
+		return "NetDecl " + getLocation() + " : " + name + getBitString()
 				+ ": " + netString;
 	}
 }

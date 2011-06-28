@@ -25,7 +25,7 @@ import java.util.LinkedList;
  * @author Richard Black and Brad Riching
  * 
  */
-public class PortAssign extends InstAssign {
+public class PortAssign extends SliceArray {
 
 	/**
 	 * Default constructor
@@ -33,7 +33,7 @@ public class PortAssign extends InstAssign {
 	public PortAssign() {
 		super();
 		this.nets = new LinkedList<Net>();
-		this.slices = new LinkedList<Integer>();
+		this.bits = new LinkedList<Integer>();
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class PortAssign extends InstAssign {
 	 */
 	@Override
 	public int hashCode() {
-		return (name + msb + lsb + index).hashCode();
+		return name.hashCode();
 	}
 
 	/**
@@ -50,14 +50,8 @@ public class PortAssign extends InstAssign {
 	@Override
 	public boolean equals(Object o) {
 		return name.equals(((PortAssign) o).getName())
-				&& instMsb == ((PortAssign) o).getInstMsb()
-				&& instLsb == ((PortAssign) o).getInstLsb()
-				&& instIndex == ((PortAssign) o).getInstIndex()
-				&& instIndices.equals(((PortAssign) o).getInstIndices())
-				&& msb == ((PortAssign) o).getMsb()
-				&& lsb == ((PortAssign) o).getLsb()
-				&& index == ((PortAssign) o).getIndex()
-				&& indices.equals(((PortAssign) o).getIndices());
+				&& bits.equals(((PortAssign) o).getBits())
+				&& indices.equals(((PinAssign) o).getIndices());
 	}
 
 	/**
@@ -79,6 +73,6 @@ public class PortAssign extends InstAssign {
 		}
 
 		return "PortAssign " + getLocation() + " : " + name + ":"
-				+ getSlicesString() + " <= " + netString + "\n";
+				+ getBitString() + " <= " + netString + "\n";
 	}
 }

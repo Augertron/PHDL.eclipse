@@ -29,7 +29,7 @@ import java.util.Set;
  * @author Richard Black and Brad Riching
  * 
  */
-public class DesignDecl extends Declarable {
+public class DesignDecl extends Parsable {
 
 	/**
 	 * The design declaration's set of port declarations

@@ -19,6 +19,7 @@ package phdl.parser;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
 
@@ -28,7 +29,7 @@ import java.util.Set;
  * 
  * @author Richard Black and Brad Riching
  */
-public class PinDecl extends ArrayDecl {
+public class PinDecl extends Sliced {
 
 	/**
 	 * The pin declaration's type
@@ -45,11 +46,6 @@ public class PinDecl extends ArrayDecl {
 	protected Map<Integer, String> indexMap;
 
 	/**
-	 * The pin declaration's pin number set to check for duplicates
-	 */
-	protected Set<String> numberSet;
-
-	/**
 	 * Default constructor
 	 * 
 	 * @param type
@@ -58,13 +54,13 @@ public class PinDecl extends ArrayDecl {
 		super();
 		this.type = type;
 		this.indexMap = new HashMap<Integer, String>();
-		this.numberSet = new HashSet<String>();
+		this.bits = new LinkedList<Integer>();
 	}
 
 	public PinDecl() {
 		super();
 		this.indexMap = new HashMap<Integer, String>();
-		this.numberSet = new HashSet<String>();
+		this.bits = new LinkedList<Integer>();
 	}
 
 	/**
@@ -84,15 +80,6 @@ public class PinDecl extends ArrayDecl {
 	 */
 	public void setType(Type type) {
 		this.type = type;
-	}
-
-	/**
-	 * Gets the pin assignment's pin list
-	 * 
-	 * @return The pin assignment's pin list
-	 */
-	public String getPinList() {
-		return pinList;
 	}
 
 	/**
@@ -144,7 +131,7 @@ public class PinDecl extends ArrayDecl {
 		String sPinMap = "";
 		if (indexMap.keySet().size() > 1) {
 			for (Integer i : indexMap.keySet()) {
-				sPinMap += name + "(" + i + ")." + indexMap.get(i) + ", ";
+				sPinMap += name + "[" + i + "]." + indexMap.get(i) + ", ";
 			}
 			// remove the last comma in the string
 			sPinMap = sPinMap.substring(0, sPinMap.length() - 2);
@@ -166,8 +153,9 @@ public class PinDecl extends ArrayDecl {
 	 */
 	public boolean makePinMap() {
 		indexMap.clear();
-		String[] pinNumbers = pinList.split("[;,\\s]");
+		String[] pinNumbers = pinList.split("[,\\s]");
 
+		Set<String> numberSet = new HashSet<String>();
 		// add pin numbers to a set to check for duplicates
 		for (int i = 0; i < pinNumbers.length; i++) {
 			if (!numberSet.add(pinNumbers[i]))
@@ -175,20 +163,14 @@ public class PinDecl extends ArrayDecl {
 		}
 
 		// check pin name width against number of pins in list
-		if (getWidth() != pinNumbers.length) {
+		if (getBitWidth() != pinNumbers.length) {
 			return false;
 		}
 
-		// perform the mapping based on the direction of the array declaration
-		if (isUpArray()) {
-			for (int i = msb; i <= lsb; i++)
-				indexMap.put(i, pinNumbers[i - msb]);
-		} else if (isDownArray()) {
-			for (int i = msb; i >= lsb; i--)
-				indexMap.put(i, pinNumbers[msb - i]);
-		} else if (msb == lsb) {
-			indexMap.put(0, pinNumbers[0]);
+		for (int i = 0; i < pinNumbers.length; i++) {
+			indexMap.put(bits.get(i), pinNumbers[i]);
 		}
+
 		// indicates a successful pin mapping
 		return true;
 	}
