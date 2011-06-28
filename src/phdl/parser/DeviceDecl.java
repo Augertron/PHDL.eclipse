@@ -28,7 +28,7 @@ import java.util.Set;
  * @author Richard Black and Brad Riching
  * 
  */
-public class DeviceDecl extends Declarable {
+public class DeviceDecl extends Parsable {
 
 	/**
 	 * The device declaration's set of attribute declarations

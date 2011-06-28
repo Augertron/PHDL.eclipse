@@ -18,6 +18,7 @@
 package phdl.parser;
 
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Set;
 
 /**
@@ -44,6 +45,7 @@ public class InstDecl extends RefDecl {
 		super();
 		this.attrAssigns = new HashSet<AttrAssign>();
 		this.pinAssigs = new HashSet<PinAssign>();
+		this.indices = new LinkedList<Integer>();
 	}
 
 	/**
@@ -111,7 +113,7 @@ public class InstDecl extends RefDecl {
 	@Override
 	public String toString() {
 		String header = "InstanceDecl " + getLocation() + " " + name + ":"
-				+ getRefName() + "\n";
+				+ getRefName() + getArrayString() + "\n";
 		String attributes = "";
 		String pins = "";
 

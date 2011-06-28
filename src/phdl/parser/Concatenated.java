@@ -27,7 +27,7 @@ import java.util.LinkedList;
  * @author Richard Black and Brad Riching
  * 
  */
-public abstract class ConcatAssign extends Sliceable {
+public abstract class Concatenated extends Sliced {
 
 	/**
 	 * This concatenation assignment's list of nets

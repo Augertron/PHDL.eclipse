@@ -25,14 +25,14 @@ import java.util.LinkedList;
  * @author Richard Black and Brad Riching
  * 
  */
-public class Net extends Sliceable {
+public class Net extends Sliced {
 
 	/**
 	 * Default constructor
 	 */
 	public Net() {
 		super();
-		this.slices = new LinkedList<Integer>();
+		this.bits = new LinkedList<Integer>();
 	}
 
 	/**
@@ -48,9 +48,8 @@ public class Net extends Sliceable {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return name.equals(((Net) o).getName()) && msb == ((Net) o).getMsb()
-				&& lsb == ((Net) o).getLsb() && index == ((Net) o).getIndex()
-				&& indices.equals(((Net) o).getIndices());
+		return name.equals(((Net) o).getName())
+				&& bits.equals(((Net) o).getBits());
 	}
 
 	/**
@@ -58,6 +57,6 @@ public class Net extends Sliceable {
 	 */
 	@Override
 	public String toString() {
-		return "Net " + getLocation() + " : " + name + getSlicesString();
+		return "Net " + getLocation() + " : " + name + getBitString();
 	}
 }

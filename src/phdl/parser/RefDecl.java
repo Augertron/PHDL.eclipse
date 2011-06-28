@@ -25,7 +25,7 @@ package phdl.parser;
  * @author Richard Black and Brad Riching
  * 
  */
-public abstract class RefDecl extends ArrayDecl {
+public abstract class RefDecl extends Arrayed {
 
 	/**
 	 * The reference declaration reference name

@@ -34,11 +34,4 @@ begin
 	begin
 	end;
 	
-	sub subInst : myDesign2 is
-		myres.value{1,2,3} = "25K";
-	begin
-		data = open;
-		addr = open;
-	end;
-	
 end;

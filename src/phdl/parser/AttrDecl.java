@@ -23,7 +23,7 @@ package phdl.parser;
  * 
  * @author Richard Black and Brad Riching
  */
-public class AttrDecl extends Declarable {
+public class AttrDecl extends Parsable {
 
 	/**
 	 * The attribute's value

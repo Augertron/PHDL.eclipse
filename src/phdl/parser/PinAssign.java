@@ -25,7 +25,7 @@ import java.util.LinkedList;
  * @author Richard Black and Brad Riching
  * 
  */
-public class PinAssign extends InstAssign {
+public class PinAssign extends SliceArray {
 
 	/**
 	 * Default constructor
@@ -33,7 +33,8 @@ public class PinAssign extends InstAssign {
 	public PinAssign() {
 		super();
 		this.nets = new LinkedList<Net>();
-		this.slices = new LinkedList<Integer>();
+		this.bits = new LinkedList<Integer>();
+		this.indices = new LinkedList<Integer>();
 	}
 
 	/**
@@ -41,7 +42,7 @@ public class PinAssign extends InstAssign {
 	 */
 	@Override
 	public int hashCode() {
-		return (name + msb + lsb + index).hashCode();
+		return name.hashCode();
 	}
 
 	/**
@@ -50,18 +51,12 @@ public class PinAssign extends InstAssign {
 	@Override
 	public boolean equals(Object o) {
 		return name.equals(((PinAssign) o).getName())
-				&& instMsb == ((PinAssign) o).getInstMsb()
-				&& instLsb == ((PinAssign) o).getInstLsb()
-				&& instIndex == ((PinAssign) o).getInstIndex()
-				&& instIndices.equals(((PinAssign) o).getInstIndices())
-				&& msb == ((PinAssign) o).getMsb()
-				&& lsb == ((PinAssign) o).getLsb()
-				&& index == ((PinAssign) o).getIndex()
+				&& bits.equals(((PinAssign) o).getBits())
 				&& indices.equals(((PinAssign) o).getIndices());
 	}
 
 	/**
-	 * Returns a formatted string represenation of the pin assignment
+	 * Returns a formatted string representation of the pin assignment
 	 */
 	@Override
 	public String toString() {
@@ -78,7 +73,7 @@ public class PinAssign extends InstAssign {
 			netString = "open";
 		}
 
-		return "PinAssign " + getLocation() + " : " + name + ":"
-				+ getSlicesString() + " <= " + netString + "\n";
+		return "PinAssign " + getLocation() + " : " + name + getArrayString()
+				+ getBitString() + " <= " + netString + "\n";
 	}
 }

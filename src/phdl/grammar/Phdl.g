@@ -78,17 +78,13 @@ designDecl
 		'design'^ IDENT 'is'! 
 		
 		// any kind of declaration may follow
-		(portDecl | deviceDecl | netDecl)*
+		(deviceDecl | netDecl)*
 		
 		'begin'
 		
-		// all of the instantiated devices, nets, subdesigns
-		instances
+		// all of the instantiated devices, net assignments
+		(deviceInstance | netAssignment)*
 		'end'! SEMICOLON!
-	;
-
-portDecl
-	:   type^ array? IDENT SEMICOLON!
 	;
 
 /** A device declaration contains information about a deviced used in the design.  The device name is 
@@ -111,7 +107,7 @@ attributeDecl
 	
 pinDecl
 	:	//promote the type to the root of the subtree, and ignore the equals and semicolon
-		type^ array? IDENT EQUALS! NUMBER_LIST SEMICOLON!
+		type^ SLICE_LIST? IDENT EQUALS! PIN_LIST SEMICOLON!
 	;
 
 /**
@@ -126,7 +122,6 @@ type
 	|	'passive'
 	|	'supply'
 	|	'power'
-	|	'open'
 	;
 
 /** 
@@ -137,42 +132,37 @@ type
  * declaration is terminated in a semicolon.
  */	
 netDecl
-	:	'net'^ (array)? (IDENT COMMA!)* IDENT (COLON (IDENT COMMA!)* IDENT)? SEMICOLON!
-	;
-
-/** 
- * A array is MSB and LSB integers separated by a colon inside brackets
- */	
-array
-	:	'['! INT ':' INT ']'!
-	;
-
-/** 
- * An index is an integer inside of parentheses
- */		
-index
-	:	'('! INT ')'!
-	;
-
-/**
- * A slice can be an array in brackets, index in parentheses or number list in braces.
- */
-slice
-	:	(array | index | NUMBER_LIST)
-	;
-	
-instances
-	:	(deviceInstance | subDesignInstance | netAssignment)*
+	:	'net'^ SLICE_LIST? IDENT (COLON IDENT (COMMA! IDENT)*)? SEMICOLON!
 	;
 	
 deviceInstance
-	:	'inst'^ IDENT ':'! IDENT (array)? 'is'!
+	:	'inst'^ IDENT ':'! IDENT ARRAY_LIST? 'is'!
 		attributeAssignment*
 		'begin'
 		pinAssignment*
 		'end'! ';'!
 	;
+
+attributeAssignment
+	:	IDENT ARRAY_LIST? EQUALS^ STRING_LITERAL SEMICOLON!
+	;
 	
+pinAssignment
+	:	IDENT ARRAY_LIST? SLICE_LIST? EQUALS^ concatenation SEMICOLON!
+	;
+	
+netAssignment
+	:	IDENT SLICE_LIST? EQUALS^ concatenation SEMICOLON!
+	;
+	
+concatenation
+	:	((IDENT SLICE_LIST?) ('&'! IDENT SLICE_LIST?)* ) 
+	|	'<' IDENT '>'
+	| 	'open'!
+	;
+	
+
+/** Not yet supported
 subDesignInstance
 	:	'sub'^ IDENT ':'! IDENT (array)? 'is'!
 		subAttributeAssignment*
@@ -185,27 +175,14 @@ subAttributeAssignment
 	:	IDENT^ PERIOD! IDENT slice? EQUALS! STRING_LITERAL SEMICOLON!
 	;
 	
-attributeAssignment
-	:	IDENT slice? EQUALS^ STRING_LITERAL SEMICOLON!
-	;
-	
-pinAssignment
-	:	IDENT (slice slice?)? EQUALS^ concatenation SEMICOLON!
-	;
-	
 portAssignment
 	:	IDENT (slice slice?)? EQUALS^ concatenation SEMICOLON!
 	;
 	
-netAssignment
-	:	IDENT slice? EQUALS^ concatenation SEMICOLON!
+portDecl
+	:   type^ array? IDENT SEMICOLON!
 	;
-	
-concatenation
-	:	((IDENT slice?) ('&'! IDENT slice?)* ) | 'open'!
-	;
-
-	
+*/
 	
 
 /*------------------------------------------------------------------------------------------------------ 
@@ -240,16 +217,42 @@ STRING_LITERAL
 		{setText(sb.toString());}
 	;
 	
-NUMBER_LIST
+PIN_LIST
 	:	'{' 
 		{StringBuilder sb = new StringBuilder();}
-		(	//'/' '"' 				{sb.appendCodePoint('"');}
+		(
 			c = ~('}')	
 			{	if (c!=' ' && c!='\t' && c!='\n' && c!='\r' && c!='\f' && c!='\u001D')
 					sb.appendCodePoint(c);
 			}
 		)*
 		'}' 
+		{setText(sb.toString());}
+	;
+	
+SLICE_LIST
+	:	'[' 
+		{StringBuilder sb = new StringBuilder();}
+		(
+			c = ~(']')	
+			{	if (c!=' ' && c!='\t' && c!='\n' && c!='\r' && c!='\f' && c!='\u001D')
+					sb.appendCodePoint(c);
+			}
+		)*
+		']' 
+		{setText(sb.toString());}
+	;
+
+ARRAY_LIST
+	:	'(' 
+		{StringBuilder sb = new StringBuilder();}
+		(
+			c = ~(')')	
+			{	if (c!=' ' && c!='\t' && c!='\n' && c!='\r' && c!='\f' && c!='\u001D')
+					sb.appendCodePoint(c);
+			}
+		)*
+		')' 
 		{setText(sb.toString());}
 	;
 

@@ -41,8 +41,7 @@ public class SubAttrAssign extends AttrAssign {
 		return name.equals(((SubAttrAssign) o).getName())
 				&& msb == ((SubAttrAssign) o).getMsb()
 				&& lsb == ((SubAttrAssign) o).getLsb()
-				&& index == ((SubAttrAssign) o).getIndex()
-				&& indices.equals(((SubAttrAssign) o).getIndices())
+
 				&& instName.equals(((SubAttrAssign) o).getInstName());
 	}
 
@@ -52,6 +51,6 @@ public class SubAttrAssign extends AttrAssign {
 	@Override
 	public String toString() {
 		return "SubAttrAssign " + getLocation() + " : " + instName + "." + name
-				+ getSlicesString() + " = " + value + "\n";
+			 + " = " + value + "\n";
 	}
 }
