@@ -77,8 +77,7 @@ public class NetDecl extends Sliced {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return name.equals(((NetDecl) o).getName())
-				&& bits.equals(((NetDecl) o).getBits());
+		return name.equals(((NetDecl) o).getName());
 	}
 
 	/**

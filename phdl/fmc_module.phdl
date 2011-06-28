@@ -307,7 +307,7 @@ begin
 	 */
 	
 	// an array of four sma connectors for port0
-	inst port0 : SMA_CON[1:4] is
+	inst port0 : SMA_CON(1:4) is
 		// refDes constraints defined in the original source
 		refDes(1) = "P9";
 		refDes(2) = "P10";
@@ -328,7 +328,7 @@ begin
 		 */
 	end;
 	
-	inst port1 : SMA_CON[1:4] is
+	inst port1 : SMA_CON(1:4) is
 		refDes(1) = "P12";
 		refDes(2) = "P11";
 		refDes(3) = "P13";
@@ -341,7 +341,7 @@ begin
 		gnd = gnd;
 	end;
 	
-	inst port2 : SMA_CON[1:4] is
+	inst port2 : SMA_CON(1:4) is
 		refDes(1) = "P19";
 		refDes(2) = "P20";
 		refDes(3) = "P18";
@@ -354,7 +354,7 @@ begin
 		gnd = gnd;
 	end;
 	
-	inst port3 : SMA_CON[1:4] is
+	inst port3 : SMA_CON(1:4) is
 		refDes(1) = "P22";
 		refDes(2) = "P21";
 		refDes(3) = "P23";
@@ -367,7 +367,7 @@ begin
 		gnd = gnd;
 	end;
 	
-	inst port4 : SMA_CON[1:4] is
+	inst port4 : SMA_CON(1:4) is
 		refDes(1) = "P3";
 		refDes(2) = "P4";
 		refDes(3) = "P2";
@@ -380,7 +380,7 @@ begin
 		gnd = gnd;
 	end;
 	
-	inst port5 : SMA_CON[1:4] is
+	inst port5 : SMA_CON(1:4) is
 		refDes(1) = "P6";
 		refDes(2) = "P5";
 		refDes(3) = "P7";
@@ -394,7 +394,7 @@ begin
 	end;
 	
 	// all receiver coupling capacitors for all sma ports
-	inst rx_coupling_caps : cap_0402[1:12] is
+	inst rx_coupling_caps : cap_0402(1:12) is
 		// all values are 1uF.  This could also be written as: value[1:12] = "1uF";
 		// or individually as: value(1) = "1uF"; value(2) = "1uF"; ...
 		value = "1uF";
@@ -445,7 +445,7 @@ begin
 	 */
 	 
 	 // the differential clock connectors
-	inst diff_clk_input : SMA_CON[1:2] is
+	inst diff_clk_input : SMA_CON(1:2) is
 		refDes(1) = "P30";
 		refDes(2) = "P26";
 	begin
@@ -483,10 +483,10 @@ begin
 	end;
 	
 	// the clock impedance matching-biasing resitor network
-	inst clk_biasing_network : res_0603[1:10] is
-		value[1:2] = "100";
-		value[3:4] = "49.9";
-		value[5:8] = "150";
+	inst clk_biasing_network : res_0603(1:10) is
+		value(1:2) = "100";
+		value(3:4) = "49.9";
+		value(5:8) = "150";
 		value(9) = "200";
 		value(10) = "100";
 		
@@ -529,9 +529,9 @@ begin
 	end;
 	
 	// all of the power supply's decoupling capacitors
-	inst decoupling_caps : tant_cap[1:10] is
-		value[1:3] = "220uF";
-		value[4:10] = "0.1uF";
+	inst decoupling_caps : tant_cap(1:10) is
+		value(1:3) = "220uF";
+		value(4:10) = "0.1uF";
 		refDes(1) = "C24";
 		refDes(2) = "C25";
 		refDes(3) = "C26";
@@ -571,7 +571,7 @@ begin
 	end;
 	
 	// clock buffer output isolation capacitors
-	inst clk_buffer_iso_caps : cap_0402[1:4] is
+	inst clk_buffer_iso_caps : cap_0402(1:4) is
 		value = "1uF";
 	begin
 		a(1) = $3N42;
@@ -585,7 +585,7 @@ begin
 	end;
 	
 	// clock buffer output terminations
-	inst clk_buffer_terminations : res_0603[1:4] is
+	inst clk_buffer_terminations : res_0603(1:4) is
 		value = "120";
 	begin
 		a(1) = $3N42;
@@ -611,7 +611,7 @@ begin
 	end;
 	
 	// the synchronization connectors
-	inst sync_connectors : SMA_CON[1:2] is
+	inst sync_connectors : SMA_CON(1:2) is
 		refDes(1) = "P28";
 		refDes(2) = "P27";
 	begin
@@ -639,79 +639,79 @@ begin
 	begin
 	
 		// data ports 1 through 5
-		a(2) = DP1_M2C_P;
-		a(3) = DP1_M2C_N;
-		a(6) = DP2_M2C_P;
-		a(7) = DP2_M2C_N;
-		a(10) = DP3_M2C_P;
-		a(11) = DP3_M2C_N;
-		a(14) = DP4_M2C_P;
-		a(15) = DP4_M2C_N;
-		a(18) = DP5_M2C_P;
-		a(19) = DP5_M2C_N;
-		a(22) = DP1_C2M_P;
-		a(23) = DP1_C2M_N;
-		a(26) = DP2_C2M_P;
-		a(27) = DP2_C2M_N;
-		a(30) = DP3_C2M_P;
-		a(31) = DP3_C2M_N;
-		a(34) = DP4_C2M_P;
-		a(35) = DP4_C2M_N;
-		a(38) = DP5_C2M_P;
-		a(39) = DP5_C2M_N;
+		a[2] = DP1_M2C_P;
+		a[3] = DP1_M2C_N;
+		a[6] = DP2_M2C_P;
+		a[7] = DP2_M2C_N;
+		a[10] = DP3_M2C_P;
+		a[11] = DP3_M2C_N;
+		a[14] = DP4_M2C_P;
+		a[15] = DP4_M2C_N;
+		a[18] = DP5_M2C_P;
+		a[19] = DP5_M2C_N;
+		a[22] = DP1_C2M_P;
+		a[23] = DP1_C2M_N;
+		a[26] = DP2_C2M_P;
+		a[27] = DP2_C2M_N;
+		a[30] = DP3_C2M_P;
+		a[31] = DP3_C2M_N;
+		a[34] = DP4_C2M_P;
+		a[35] = DP4_C2M_N;
+		a[38] = DP5_C2M_P;
+		a[39] = DP5_C2M_N;
 		
 		// gigabit transceiver clock 1 m2C
-		b(20) = GBTCLK1_M2C_P;
-		b(21) = GBTCLK1_M2C_N;
-		b{1,4,5,8,9,12,13,16,17,24,25,28,29,32,33,36,37,40} = open;
+		b[20] = GBTCLK1_M2C_P;
+		b[21] = GBTCLK1_M2C_N;
+		b[1,4,5,8,9,12,13,16,17,24,25,28,29,32,33,36,37,40] = open;
 		
 		// data port 0 and sync signals
-		c(2) = DP0_C2M_P;
-		c(3) = DP0_C2M_N;
-		c(6) = DP0_M2C_P;
-		c(7) = DP0_M2C_N;
-		c(10) = SYNC_OUT;
-		c(11) = SYNC_IN;
-		c(14) = DISCRETE(0);
-		c(15) = DISCRETE(1);
-		c(18) = DISCRETE(2);
-		c(19) = DISCRETE(3);
-		c(22) = DISCRETE(4);
-		c(23) = DISCRETE(5);
-		c(26) = DISCRETE(6);
-		c(27) = DISCRETE(7);
-		c(39) = +3V3;
-		c{30,31,34,35,37} = open;
+		c[2] = DP0_C2M_P;
+		c[3] = DP0_C2M_N;
+		c[6] = DP0_M2C_P;
+		c[7] = DP0_M2C_N;
+		c[10] = SYNC_OUT;
+		c[11] = SYNC_IN;
+		c[14] = DISCRETE[0];
+		c[15] = DISCRETE[1];
+		c[18] = DISCRETE[2];
+		c[19] = DISCRETE[3];
+		c[22] = DISCRETE[4];
+		c[23] = DISCRETE[5];
+		c[26] = DISCRETE[6];
+		c[27] = DISCRETE[7];
+		c[39] = +3V3;
+		c[30,31,34,35,37] = open;
 		
 		// gigabit transceiver clock 0 m2c
-		d(1) = GBTCLK0_M2C_P;
-		d(4) = GBTCLK0_M2C_N;
-		d(30) = $4N126;
-		d(31) = $4N126;
-		d(36) = +3V3;
-		d(38) = +3V3;
-		d(40) = +3V3;
-		d{5,8,9,11,12,14,15,17,18,20,21,23,24,26,27,29,32,33,34,35} = open;
+		d[1] = GBTCLK0_M2C_P;
+		d[4] = GBTCLK0_M2C_N;
+		d[30] = $4N126;
+		d[31] = $4N126;
+		d[36] = +3V3;
+		d[38] = +3V3;
+		d[40] = +3V3;
+		d[5,8,9,11,12,14,15,17,18,20,21,23,24,26,27,29,32,33,34,35] = open;
 		
 		// opens
-		e{2,3,6,7,9,10,12,13,15,16,18,19,21,22,24,25,27,28,30,31,33,34,36,37,39} = open;
-		f{1,4,5,7,8,10,11,13,14,16,17,19,20,22,23,25,26,28,29,31,32,34,35,37,38,40} = open;
-		g{2,3,6,7,9,10,12,13,15,16,18,19,21,22,24,25,27,28,30,31,33,34,36,37,39} = open;
-		h{1,2,4,5,7,8,10,11,13,14,16,17,19,20,22,23,25,26,28,29,31,32,34,35,37,38,40} = open;
-		j{2,3,6,7,9,10,12,13,15,16,18,19,21,22,24,25,27,28,30,31,33,34,36,37,39} = open;
-		k{1,4,5,7,8,10,11,13,14,16,17,19,20,22,23,25,26,28,29,31,32,34,35,37,38,40} = open;
+		e[2,3,6,7,9,10,12,13,15,16,18,19,21,22,24,25,27,28,30,31,33,34,36,37,39] = open;
+		f[1,4,5,7,8,10,11,13,14,16,17,19,20,22,23,25,26,28,29,31,32,34,35,37,38,40] = open;
+		g[2,3,6,7,9,10,12,13,15,16,18,19,21,22,24,25,27,28,30,31,33,34,36,37,39] = open;
+		h[1,2,4,5,7,8,10,11,13,14,16,17,19,20,22,23,25,26,28,29,31,32,34,35,37,38,40] = open;
+		j[2,3,6,7,9,10,12,13,15,16,18,19,21,22,24,25,27,28,30,31,33,34,36,37,39] = open;
+		k[1,4,5,7,8,10,11,13,14,16,17,19,20,22,23,25,26,28,29,31,32,34,35,37,38,40] = open;
 	
 		// grounds
-		a{1,4,5,8,9,12,13,16,17,20,21,24,25,28,29,32,33,36} = gnd;
-		b{2,3,6,7,10,11,14,15,18,19,22,23,26,27,30,31,34,35,38,39} = gnd;
-		c{1,4,5,8,9,12,13,16,17,20,21,24,25,28,29,32,33,36} = gnd;
-		d{2,3,6,7,10,13,16,19,22,25,28,37,39} = gnd;
-		e{1,4,5,8,11,14,19,20,23,26,29,32,35,38,40} = gnd;
-		f{2,3,6,9,12,15,18,21,24,28,30,33,36,39} = gnd;
-		g{1,4,5,8,11,14,17,20,23,26,29,32,35,38,40} = gnd;
-		h{3,6,9,12,15,18,21,24,27,30,33,36,39} = gnd;
-		j{1,4,5,8,11,14,17,20,23,26,29,32,35,38,40} = gnd;
-		k{2,3,6,9,12,15,18,21,24,27,30,33,36,39} = gnd;
+		a[1,4,5,8,9,12,13,16,17,20,21,24,25,28,29,32,33,36] = gnd;
+		b[2,3,6,7,10,11,14,15,18,19,22,23,26,27,30,31,34,35,38,39] = gnd;
+		c[1,4,5,8,9,12,13,16,17,20,21,24,25,28,29,32,33,36] = gnd;
+		d[2,3,6,7,10,13,16,19,22,25,28,37,39] = gnd;
+		e[1,4,5,8,11,14,19,20,23,26,29,32,35,38,40] = gnd;
+		f[2,3,6,9,12,15,18,21,24,28,30,33,36,39] = gnd;
+		g[1,4,5,8,11,14,17,20,23,26,29,32,35,38,40] = gnd;
+		h[3,6,9,12,15,18,21,24,27,30,33,36,39] = gnd;
+		j[1,4,5,8,11,14,17,20,23,26,29,32,35,38,40] = gnd;
+		k[2,3,6,9,12,15,18,21,24,27,30,33,36,39] = gnd;
 
 	end;
 	

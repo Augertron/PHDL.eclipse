@@ -54,7 +54,7 @@ public class DeviceDecl extends Parsable {
 	 * 
 	 * @return This device declaration's set of attribute declarations
 	 */
-	public Set<AttrDecl> getAttributeDecls() {
+	public Set<AttrDecl> getAttrDecls() {
 		return attributeDecls;
 	}
 

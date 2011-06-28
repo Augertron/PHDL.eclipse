@@ -33,8 +33,7 @@ import org.antlr.runtime.tree.DOTTreeGenerator;
 import org.antlr.runtime.tree.Tree;
 import org.antlr.stringtemplate.StringTemplate;
 
-import phdl.analyzer.Analyzer;
-import phdl.analyzer.DesignHierarchy;
+import phdl.analyzer.BradAnalyzer;
 import phdl.exception.InvalidDesignException;
 import phdl.parser.DesignDecl;
 import phdl.parser.ParsedDesigns;
@@ -55,7 +54,7 @@ public class PhdlComp {
 	/**
 	 * An array of attributes that every device declaration is required to have
 	 */
-	public static String[] reqAttr = { "REFPREFIX", "NAME", "VALUE" };
+	public static String[] reqAttr = { "REFPREFIX" };
 
 	/**
 	 * The main entry point of the phdl Compiler. It accepts *.phdl source files
@@ -133,20 +132,27 @@ public class PhdlComp {
 			errors.add(e.getMessage());
 		}
 
+		// for testing only
+		BradAnalyzer ba = new BradAnalyzer(top);
+		ba.Analyze();
+		for (String s : ba.getErrors()) {
+			errors.add(s);
+		} // end for testing only
+
 		// 7. attempt to build the hierarchy from all parsed designs
-		DesignHierarchy dh = new DesignHierarchy(top);
-		try {
-			dh.makeHierarchy(pd);
-		} catch (InvalidDesignException e) {
-			errors.add(e.getMessage());
-		}
+		// DesignHierarchy dh = new DesignHierarchy(top);
+		// try {
+		// dh.makeHierarchy(pd);
+		// } catch (InvalidDesignException e) {
+		// errors.add(e.getMessage());
+		// }
 
 		// 8. Analyze the design hierarchy and obtain errors if they exist
-		Analyzer a = new Analyzer(dh);
-		a.Analyze();
-		for (String error : a.getErrors()) {
-			errors.add(error);
-		}
+		// Analyzer a = new Analyzer(dh);
+		// a.Analyze();
+		// for (String error : a.getErrors()) {
+		// errors.add(error);
+		// }
 
 		// print out all errors if there were any, and exit abnormally
 		if (!errors.isEmpty()) {
@@ -157,7 +163,7 @@ public class PhdlComp {
 
 		for (DesignDecl dd : pd.getDesignDecls())
 			System.out.println(dd.toString());
-		System.out.println(dh.toString());
+		// System.out.println(dh.toString());
 	}
 
 	/**

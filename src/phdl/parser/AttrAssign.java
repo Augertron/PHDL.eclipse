@@ -73,8 +73,7 @@ public class AttrAssign extends Arrayed {
 	@Override
 	public boolean equals(Object o) {
 		return name.equals(((AttrAssign) o).getName())
-				&& msb == ((AttrAssign) o).getMsb()
-				&& lsb == ((AttrAssign) o).getLsb();
+				&& indices.equals(((AttrAssign) o).getIndices());
 	}
 
 	/**

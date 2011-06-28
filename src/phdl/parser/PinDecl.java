@@ -43,7 +43,7 @@ public class PinDecl extends Sliced {
 	/**
 	 * The pin declaration's pin index to pin number mapping
 	 */
-	protected Map<Integer, String> indexMap;
+	protected Map<Integer, String> pinMap;
 
 	/**
 	 * Default constructor
@@ -53,13 +53,13 @@ public class PinDecl extends Sliced {
 	public PinDecl(Type type) {
 		super();
 		this.type = type;
-		this.indexMap = new HashMap<Integer, String>();
+		this.pinMap = new HashMap<Integer, String>();
 		this.bits = new LinkedList<Integer>();
 	}
 
 	public PinDecl() {
 		super();
-		this.indexMap = new HashMap<Integer, String>();
+		this.pinMap = new HashMap<Integer, String>();
 		this.bits = new LinkedList<Integer>();
 	}
 
@@ -92,6 +92,10 @@ public class PinDecl extends Sliced {
 		this.pinList = pinList;
 	}
 
+	public Map<Integer, String> getPinMap() {
+		return pinMap;
+	}
+
 	/**
 	 * 
 	 * @param i
@@ -100,8 +104,8 @@ public class PinDecl extends Sliced {
 	 *         index if it exists, otherwise null.
 	 */
 	public String getPinNumber(int i) {
-		if (indexMap.containsKey(i)) {
-			return indexMap.get(i);
+		if (pinMap.containsKey(i)) {
+			return pinMap.get(i);
 		} else {
 			return null;
 		}
@@ -129,20 +133,30 @@ public class PinDecl extends Sliced {
 	@Override
 	public String toString() {
 		String sPinMap = "";
-		if (indexMap.keySet().size() > 1) {
-			for (Integer i : indexMap.keySet()) {
-				sPinMap += name + "[" + i + "]." + indexMap.get(i) + ", ";
+		if (pinMap.keySet().size() > 1) {
+			for (Integer i : pinMap.keySet()) {
+				sPinMap += name + "[" + i + "]." + pinMap.get(i) + ", ";
 			}
 			// remove the last comma in the string
 			sPinMap = sPinMap.substring(0, sPinMap.length() - 2);
 		} else {
-			for (Integer i : indexMap.keySet()) {
-				sPinMap += name + "." + indexMap.get(i);
+			for (Integer i : pinMap.keySet()) {
+				sPinMap += name + "." + pinMap.get(i);
 			}
 		}
 
+		String sliced = "";
+		if (isVector())
+			sliced += " (vector)";
+		if (isBit())
+			sliced += " (bit)";
+		if (isArbitrary())
+			sliced += " (arbitrary)";
+		if (!isSliced())
+			sliced += " (not sliced)";
+
 		return "PinDecl " + getLocation() + " : " + type.toString() + " {"
-				+ sPinMap + "}\n";
+				+ sPinMap + "}" + sliced + "\n";
 	}
 
 	/**
@@ -152,8 +166,13 @@ public class PinDecl extends Sliced {
 	 * @return True if the mapping was completed successfully, false otherwise
 	 */
 	public boolean makePinMap() {
-		indexMap.clear();
+		pinMap.clear();
 		String[] pinNumbers = pinList.split("[,\\s]");
+
+		// check pin name width against number of pins in list
+		if (getBitWidth() != pinNumbers.length) {
+			return false;
+		}
 
 		Set<String> numberSet = new HashSet<String>();
 		// add pin numbers to a set to check for duplicates
@@ -162,13 +181,12 @@ public class PinDecl extends Sliced {
 				return false;
 		}
 
-		// check pin name width against number of pins in list
-		if (getBitWidth() != pinNumbers.length) {
-			return false;
-		}
-
-		for (int i = 0; i < pinNumbers.length; i++) {
-			indexMap.put(bits.get(i), pinNumbers[i]);
+		if (bits.size() > 0) {
+			for (int i = 0; i < pinNumbers.length; i++) {
+				pinMap.put(bits.get(i), pinNumbers[i]);
+			}
+		} else {
+			pinMap.put(0, pinNumbers[0]);
 		}
 
 		// indicates a successful pin mapping

@@ -27,7 +27,6 @@ import phdl.parser.AttrDecl;
 import phdl.parser.DesignDecl;
 import phdl.parser.DeviceDecl;
 import phdl.parser.InstDecl;
-import phdl.parser.NetDecl;
 import phdl.parser.Parsable;
 import phdl.parser.PinAssign;
 import phdl.parser.PinDecl;
@@ -56,6 +55,7 @@ public class Analyzer {
 	public Analyzer(DesignHierarchy dh) {
 		this.dh = dh;
 		this.errors = new HashSet<String>();
+		this.warnings = new HashSet<String>();
 	}
 
 	/**
@@ -69,16 +69,16 @@ public class Analyzer {
 		for (DesignNode d : dh.getBFSNodes()) {
 
 			processDeviceDecls(d.getDesignDeclaration());
-			processNetDecls(d.getDesignDeclaration());
-			processInstDecls(d.getDesignDeclaration());
-			processNetAssigns(d.getDesignDeclaration());
+			// processNetDecls(d.getDesignDeclaration());
+			// processInstDecls(d.getDesignDeclaration());
+			// processNetAssigns(d.getDesignDeclaration());
 
 			// TODO if errors by this point, throw exception
 
 			// TODO make a new graph out of all pin, port and net assignments
 			// and assign to design node
-			
-			 d.createInitialNetGraph();
+
+			// d.createInitialNetGraph();
 
 		}
 
@@ -99,7 +99,7 @@ public class Analyzer {
 			}
 
 			// check all attributes are declared correctly
-			for (AttrDecl a : d.getAttributeDecls()) {
+			for (AttrDecl a : d.getAttrDecls()) {
 
 				// check that attribute refPrefix value only contains letters
 				if (a.getName().equals("REFPREFIX")) {
@@ -121,35 +121,35 @@ public class Analyzer {
 		// Set of net names to check for duplicates
 		Set<String> names = new HashSet<String>();
 
-		for (NetDecl n : d.getNetDecls()) {
-			// check if the name by itself is in there already
-			for (String s : names) {
-				if (n.getName().equals(s))
-					addError(n, "duplicate net declaration");
-			}
-			// if an upArray, check each indexed version
-			if (n.isUpArray()) {
-				for (int i = n.getMsb(); i <= n.getLsb(); i++) {
-					if (!names.add(n.getName() + i))
-						addError(n, "duplicate net declaration");
-				}
-				// if a downArray, check each indexed version
-			} else if (n.isDownArray()) {
-				for (int i = n.getLsb(); i <= n.getMsb(); i++) {
-					if (!names.add(n.getName() + i))
-						addError(n, "duplicate net declaration");
-				}
-			} else {
-				// check if any of the names start with the current name
-				for (String s : names) {
-					if (s.startsWith(n.getName()))
-						addError(n, "duplicate net declaration");
-				}
-				// check
-				if (!names.add(n.getName()))
-					addError(n, "duplicate net declaration");
-			}
-		}
+		// for (NetDecl n : d.getNetDecls()) {
+		// // check if the name by itself is in there already
+		// for (String s : names) {
+		// if (n.getName().equals(s))
+		// addError(n, "duplicate net declaration");
+		// }
+		// // if an upArray, check each indexed version
+		// if (n.isUpArray()) {
+		// for (int i = n.getMsb(); i <= n.getLsb(); i++) {
+		// if (!names.add(n.getName() + i))
+		// addError(n, "duplicate net declaration");
+		// }
+		// // if a downArray, check each indexed version
+		// } else if (n.isDownArray()) {
+		// for (int i = n.getLsb(); i <= n.getMsb(); i++) {
+		// if (!names.add(n.getName() + i))
+		// addError(n, "duplicate net declaration");
+		// }
+		// } else {
+		// // check if any of the names start with the current name
+		// for (String s : names) {
+		// if (s.startsWith(n.getName()))
+		// addError(n, "duplicate net declaration");
+		// }
+		// // check
+		// if (!names.add(n.getName()))
+		// addError(n, "duplicate net declaration");
+		// }
+		// }
 
 	}
 
@@ -195,7 +195,7 @@ public class Analyzer {
 
 		for (AttrAssign a : i.getAttrAssigns()) {
 
-			if (!a.makeSlices())
+			if (!a.makeIndices())
 				addError(a, "invalid attribute slice list");
 
 			if (a.getName().equals("REFDES")) {
@@ -203,7 +203,7 @@ public class Analyzer {
 				if (!refDesValues.add(a.getValue()))
 					addError(a, "duplicate refdes constraint");
 
-				if (a.getWidth() != 1)
+				if (a.getArrayWidth() != 1)
 					addError(a,
 							"refdes cannot be assigned to multiple instances");
 
@@ -232,8 +232,8 @@ public class Analyzer {
 			}
 
 			// check attribute slices against instance bounds
-			if (a.getSlices().size() != 0) {
-				for (Integer s : a.getSlices()) {
+			if (a.getIndices().size() != 0) {
+				for (Integer s : a.getIndices()) {
 					if (!i.isValidIndex(s))
 						addError(a, "slice reference outside instance bounds");
 					// add the attribute name to the set with slice appended
@@ -243,10 +243,9 @@ public class Analyzer {
 			} else {
 				// the attribute applies across the entire instance width
 				if (i.isArrayed()) {
-					a.setMsb(i.getMsb());
-					a.setLsb(i.getLsb());
-					a.makeSlices();
-					for (Integer s : a.getSlices()) {
+					a.setArrayString(i.getMsb() + ":" + i.getLsb());
+					a.makeIndices();
+					for (Integer s : a.getIndices()) {
 						if (!names.add(a.getName() + s)) {
 							addError(a, "duplicate attribute assignment");
 						}
@@ -267,7 +266,7 @@ public class Analyzer {
 
 		for (PinAssign p : i.getPinAssigns()) {
 
-			if (!p.makeSlices())
+			if (!p.makeBits())
 				addError(p, "invalid pin slice list");
 
 			// check that all assigned pins are declared
