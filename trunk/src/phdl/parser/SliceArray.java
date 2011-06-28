@@ -144,6 +144,17 @@ public abstract class SliceArray extends Concatenated {
 			return false;
 	}
 
+	public boolean isIndexed() {
+		if (index > -1)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isReferenced() {
+		return isArrayed() || isIndexed();
+	}
+
 	public int getArrayWidth() {
 		int width = indices.size();
 		if (width == 0)
@@ -171,6 +182,7 @@ public abstract class SliceArray extends Concatenated {
 	 * 
 	 * @return True if it is a valid index, false otherwise
 	 */
+	@Deprecated
 	public boolean isValidIndex(int index) {
 		if (isArrayed()) {
 			if (msb > lsb)
@@ -183,10 +195,12 @@ public abstract class SliceArray extends Concatenated {
 		return false;
 	}
 
+	@Deprecated
 	public boolean isValidArray(int msb, int lsb) {
 		return isValidIndex(msb) && isValidIndex(lsb);
 	}
 
+	@Deprecated
 	public boolean isDownArray() {
 		if (isArrayed()) {
 			return (msb > lsb) ? true : false;
@@ -194,6 +208,7 @@ public abstract class SliceArray extends Concatenated {
 		return false;
 	}
 
+	@Deprecated
 	public boolean isUpArray() {
 		if (isArrayed()) {
 			return (msb < lsb) ? true : false;

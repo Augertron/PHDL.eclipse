@@ -114,8 +114,10 @@ public abstract class Sliced extends Parsable {
 	 *         is invalid
 	 */
 	public boolean makeBits() {
-		if (sliceString == null)
+		if (sliceString == null) {
+			bits.add(0);
 			return true;
+		}
 		// remove all the whitespace beforehand
 		sliceString = sliceString.replaceAll("[\\s]", "");
 		String splits[];

@@ -102,9 +102,7 @@ public class InstDecl extends RefDecl {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return name.equals(((InstDecl) o).getName())
-				&& msb == ((InstDecl) o).getMsb()
-				&& lsb == ((InstDecl) o).getLsb();
+		return name.equals(((InstDecl) o).getName());
 	}
 
 	/**

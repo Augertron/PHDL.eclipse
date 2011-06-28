@@ -276,6 +276,22 @@ public class DesignDecl extends Parsable {
 	}
 
 	/**
+	 * Method to find a particular net declaration based on the name passed in.
+	 * 
+	 * @param name
+	 *            The name of the net declaration
+	 * @return The device declaration with this name, or null if it doesn't
+	 *         exist in the set.
+	 */
+	public NetDecl findNetDecl(String name) {
+		for (NetDecl n : netDecls) {
+			if (n.getName().equals(name))
+				return n;
+		}
+		return null;
+	}
+
+	/**
 	 * Method to tell whether a particular instance in the design is declared
 	 * 
 	 * @param i

@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g 2011-06-28 11:51:32
+// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g 2011-06-28 13:58:44
 
 	package phdl.parser;
 	import java.util.TreeSet;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
  */
 public class PhdlWalker extends TreeParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "IDENT", "SEMICOLON", "EQUALS", "STRING_LITERAL", "SLICE_LIST", "PIN_LIST", "COLON", "COMMA", "ARRAY_LIST", "CHAR", "DIGIT", "PERIOD", "LBRACKET", "RBRACKET", "INT", "WHITESPACE", "LINE_COMMENT", "MULTILINE_COMMENT", "'design'", "'is'", "'begin'", "'end'", "'device'", "'pin'", "'in'", "'out'", "'inout'", "'passive'", "'supply'", "'power'", "'net'", "'inst'", "'&'", "'open'", "'<'", "'>'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "IDENT", "SEMICOLON", "EQUALS", "STRING_LITERAL", "SLICE_LIST", "PIN_LIST", "COLON", "COMMA", "ARRAY_LIST", "CHAR", "DIGIT", "PERIOD", "LBRACKET", "RBRACKET", "INT", "WHITESPACE", "LINE_COMMENT", "MULTILINE_COMMENT", "'design'", "'is'", "'begin'", "'end'", "'device'", "'pin'", "'in'", "'out'", "'inout'", "'passive'", "'supply'", "'power'", "'net'", "'inst'", "'&'", "'<'", "'>'", "'open'"
     };
     public static final int EOF=-1;
     public static final int T__22=22;
@@ -426,7 +426,7 @@ public class PhdlWalker extends TreeParser {
             			n.setFileName(input.getSourceName());
             			
             			if(!n.makeBits())
-            				addError(n, "invalid array format");
+            				addError(n, "invalid net declaration array");
             		
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:165:3: ( COLON ( netAttr[n] )+ )?
             int alt8=2;
@@ -800,10 +800,10 @@ public class PhdlWalker extends TreeParser {
             			p.setFileName(input.getSourceName());
             			
             			if(!p.makeBits())
-            				addError(p, "invalid slice format");
+            				addError(p, "invalid pin declaration slice");
             				
             			if(!p.makePinMap())
-            				addError(p, "invalid pin list");
+            				addError(p, "invalid pin declaration pin list");
             			
             			if(!d.addPinDecl(p)) 
             				addError(p, "duplicate pin declaration");
@@ -867,7 +867,7 @@ public class PhdlWalker extends TreeParser {
             				i.setFileName(input.getSourceName());
             				
             				if (!i.makeIndices())
-            					addError(i, "invalid array format");
+            					addError(i, "invalid instance declaration array");
             		
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:261:3: ( attrAssign[i] )*
             loop12:
@@ -931,7 +931,7 @@ public class PhdlWalker extends TreeParser {
 
             match(input, Token.UP, null); 
             	if(!d.addInstDecl(i)) 
-            				addError(i, "duplicate instDecl declaration");
+            				addError(i, "duplicate instance declaration");
             		
 
             }
@@ -993,7 +993,7 @@ public class PhdlWalker extends TreeParser {
             			a.setFileName(input.getSourceName());
             			
             			if(!a.makeIndices())
-            				addError(a, "invalid array format");
+            				addError(a, "invalid attribute assignment array");
             			
             			if(!i.addAttrAssign(a)) 
             				addError(a, "duplicate attribute assignment");

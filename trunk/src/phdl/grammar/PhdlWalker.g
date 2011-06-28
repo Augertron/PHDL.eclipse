@@ -159,7 +159,7 @@ netDecl[DesignDecl d]
 			n.setFileName(input.getSourceName());
 			
 			if(!n.makeBits())
-				addError(n, "invalid array format");
+				addError(n, "invalid net declaration array");
 		}
 		// add one or  more optional net attributes after a colon
 		(COLON netAttr[n]+)?
@@ -228,10 +228,10 @@ addPinDecl[DeviceDecl d, PinDecl p]
 			p.setFileName(input.getSourceName());
 			
 			if(!p.makeBits())
-				addError(p, "invalid slice format");
+				addError(p, "invalid pin declaration slice");
 				
 			if(!p.makePinMap())
-				addError(p, "invalid pin list");
+				addError(p, "invalid pin declaration pin list");
 			
 			if(!d.addPinDecl(p)) 
 				addError(p, "duplicate pin declaration");
@@ -255,7 +255,7 @@ instDecl[DesignDecl d]
 				i.setFileName(input.getSourceName());
 				
 				if (!i.makeIndices())
-					addError(i, "invalid array format");
+					addError(i, "invalid instance declaration array");
 		}
 				
 		attrAssign[i]*
@@ -263,7 +263,7 @@ instDecl[DesignDecl d]
 		pinAssign[i]*
 		)
 		{	if(!d.addInstDecl(i)) 
-				addError(i, "duplicate instDecl declaration");
+				addError(i, "duplicate instance declaration");
 		}
 	;
 
@@ -285,7 +285,7 @@ attrAssign[InstDecl i]
 			a.setFileName(input.getSourceName());
 			
 			if(!a.makeIndices())
-				addError(a, "invalid array format");
+				addError(a, "invalid attribute assignment array");
 			
 			if(!i.addAttrAssign(a)) 
 				addError(a, "duplicate attribute assignment");
