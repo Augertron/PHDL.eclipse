@@ -130,7 +130,7 @@ deviceDecl[DesignDecl d]
 		attrDecl[dev]*
 		
 		// the begin token separates attribute declarations from pin declarations
-		'begin'
+		//'begin'
 		
 		// add all of the pin declarations to the device
 		pinDecl[dev]* 
@@ -244,6 +244,7 @@ addPinDecl[DeviceDecl d, PinDecl p]
 instDecl[DesignDecl d]
 	:	^('inst' name=IDENT refName=IDENT (array=ARRAY_LIST)?
 		
+		// create pile of instances here
 		// make a new instDecl to pass to attrAssign and pinAssign
 		{	
 			InstDecl i = new InstDecl();
