@@ -2,6 +2,8 @@ package phdl.analyzer;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import phdl.PhdlComp;
 import phdl.parser.AttrAssign;
@@ -172,9 +174,9 @@ public class BradAnalyzer {
 	private void processPinAssigns(InstDecl i, DeviceDecl d) {
 
 		// set of pin names to check for duplicates
-		Set<String> names = new HashSet<String>();
-		Set<String> assignedPins = new HashSet<String>();
-		Set<String> declaredPins = new HashSet<String>();
+		SortedSet<String> names = new TreeSet<String>();
+		SortedSet<String> assignedPins = new TreeSet<String>();
+		SortedSet<String> declaredPins = new TreeSet<String>();
 
 		for (PinAssign p : i.getPinAssigns()) {
 
@@ -204,38 +206,97 @@ public class BradAnalyzer {
 					}
 					// the pin and instance array are singular
 				} else {
-					if (!names.add(p.getName())) {
-						addError(p, "duplicate pin assignment");
+					if (p.isSliced()) {
+						for (Integer s : p.getBits()) {
+							if (!names.add(p.getName() + s))
+								addError(p, "duplicate pin assignment");
+						}
+					} else {
+						if (!names.add(p.getName()))
+							addError(p, "duplicate pin assignment");
 					}
 				}
 			}
 
-			// build the set of all assigned pins
-			if (p.isReferenced() && p.isSliced()) {
-				for (Integer x : p.getIndices()) {
-					for (Integer y : p.getBits())
-						assignedPins
-								.add(p.getName() + "(" + x + ")[" + y + "]");
+			// TODO check for valid pin slices
 
+			if (i.isArrayed()) {
+				if (p.isReferenced()) {
+					if (p.isSliced()) {
+						// arrayed, referenced, and sliced
+						for (Integer x : p.getIndices()) {
+							for (Integer y : p.getBits())
+								assignedPins.add(p.getName() + "(" + x + ")["
+										+ y + "]");
+						}
+					} else {
+						if (d.findPinDecl(p.getName()).isSliced()) {
+							// arrayed, referenced, not sliced
+							for (Integer x : p.getIndices()) {
+								for (Integer y : d.findPinDecl(p.getName())
+										.getBits())
+									assignedPins.add(p.getName() + "(" + x
+											+ ")[" + y + "]");
+							}
+						} else {
+							for (Integer x : p.getIndices())
+								assignedPins.add(p.getName() + "(" + x + ")");
+						}
+					}
+				} else {
+					if (p.isSliced()) {
+						// arrayed, not referenced, sliced
+						for (Integer x : i.getIndices()) {
+							for (Integer y : p.getBits())
+								assignedPins.add(p.getName() + "(" + x + ")["
+										+ y + "]");
+						}
+					} else {
+						// arrayed, not referenced, not sliced
+						if (d.findPinDecl(p.getName()).isSliced()) {
+							for (Integer x : i.getIndices()) {
+								for (Integer y : d.findPinDecl(p.getName())
+										.getBits())
+									assignedPins.add(p.getName() + "(" + x
+											+ ")[" + y + "]");
+							}
+						} else {
+							for (Integer x : i.getIndices()) {
+								assignedPins.add(p.getName() + "(" + x + ")");
+							}
+						}
+					}
 				}
-			} else if (p.isReferenced()) {
-				for (Integer x : p.getIndices()) {
-					for (Integer y : d.findPinDecl(p.getName()).getBits())
-						assignedPins
-								.add(p.getName() + "(" + x + ")[" + y + "]");
-				}
-			} else if (p.isSliced()) {
-				for (Integer y : p.getBits()) {
-					assignedPins.add(p.getName() + "[" + y + "]");
-				}
+
 			} else {
-				assignedPins.add(p.getName());
+				if (p.isReferenced()) {
+					// not arrayed but referenced
+					addError(p,
+							"arrayed pin assignment invalid for singular instance");
+				} else {
+					if (p.isSliced()) {
+						// not arrayed, not referenced, sliced
+						for (Integer y : p.getBits())
+							assignedPins.add(p.getName() + "[" + y + "]");
+					} else {
+						// not arrayed, not referenced, not sliced
+						if (d.findPinDecl(p.getName()).isSliced()) {
+							for (Integer y : d.findPinDecl(p.getName())
+									.getBits()) {
+								assignedPins.add(p.getName() + "[" + y + "]");
+							}
+						} else {
+							assignedPins.add(p.getName());
+						}
+					}
+				}
 			}
 
 			// TODO check all concatenations
 
 		}
 
+		System.out.println(i.getName());
 		// for debugging
 		for (String s : assignedPins) {
 			System.out.println(s);
@@ -244,24 +305,36 @@ public class BradAnalyzer {
 
 		// build the set of all possible instanced pins
 		for (PinDecl pd : d.getPinDecls()) {
-			if (pd.isSliced()) {
-				for (Integer x : i.getIndices()) {
-					for (Integer y : pd.getBits()) {
-						declaredPins.add(pd.getName() + "(" + x + ")[" + y
-								+ "]");
+			if (i.isArrayed()) {
+				if (pd.isSliced()) {
+					for (Integer x : i.getIndices()) {
+						for (Integer y : pd.getBits())
+							declaredPins.add(pd.getName() + "(" + x + ")[" + y
+									+ "]");
+					}
+				} else {
+					for (Integer x : i.getIndices()) {
+						declaredPins.add(pd.getName() + "(" + x + ")");
 					}
 				}
+
 			} else {
-				for (Integer x : i.getIndices()) {
+				if (pd.isSliced()) {
+					for (Integer y : pd.getBits()) {
+						declaredPins.add(pd.getName() + "[" + y + "]");
+					}
+				} else {
+					declaredPins.add(pd.getName());
 				}
+
 			}
 		}
 
-		// // for debugging
-		// for (String s : declaredPins) {
-		// System.out.println(s);
-		// }
-		// System.out.println();
+		// for debugging
+		for (String s : declaredPins) {
+			System.out.println(s);
+		}
+		System.out.println();
 
 		// subtract the assigned pins set from the declared pins set
 		for (String s : assignedPins) {

@@ -84,6 +84,7 @@ designDecl
 		
 		// all of the instantiated devices, net assignments
 		(deviceInstance | netAssignment)*
+		
 		'end'! SEMICOLON!
 	;
 
@@ -94,20 +95,18 @@ designDecl
  */	
 deviceDecl
 	:	'device'^ IDENT 'is'!
-		attributeDecl*
-		'begin'
-		pinDecl*
+		( attributeDecl | pinDecl )*
 		'end'! SEMICOLON!
 	;
 	
 attributeDecl
 	:	//promote the "=" sign to the root of the subtree, and ignore the semicolon
-		IDENT EQUALS^ STRING_LITERAL SEMICOLON!
+		'attr'^ IDENT EQUALS! STRING_LITERAL SEMICOLON!
 	;
 	
 pinDecl
 	:	//promote the type to the root of the subtree, and ignore the equals and semicolon
-		type^ SLICE_LIST? IDENT EQUALS! PIN_LIST SEMICOLON!
+		type^ sliceList? IDENT EQUALS! pinList SEMICOLON!
 	;
 
 /**
@@ -116,12 +115,12 @@ pinDecl
  */	
 type
 	:	'pin'
-	|	'in'
-	|	'out'
-	|	'inout'
-	|	'passive'
-	|	'supply'
-	|	'power'
+//	|	'in'
+//	|	'out'
+//	|	'inout'
+//	|	'passive'
+//	|	'supply'
+//	|	'power'
 	;
 
 /** 
@@ -131,12 +130,18 @@ type
  * comma separated list of net attributes may be appended using the colon separator.  Finally the net 
  * declaration is terminated in a semicolon.
  */	
+ // have this look more like a devicedecl
 netDecl
-	:	'net'^ SLICE_LIST? IDENT (COLON IDENT (COMMA! IDENT)*)? SEMICOLON!
+	:	'net'^ sliceList? IDENT netAttributes? SEMICOLON! 
+	//(COLON IDENT (COMMA! IDENT)*)? SEMICOLON!
+	;
+	
+netAttributes
+	:	'is'! attributeDecl* 'end'!
 	;
 	
 deviceInstance
-	:	'inst'^ IDENT ':'! IDENT ARRAY_LIST? 'is'!
+	:	'inst'^ IDENT ':'! IDENT arrayList? 'is'!
 		attributeAssignment*
 		'begin'
 		pinAssignment*
@@ -144,19 +149,24 @@ deviceInstance
 	;
 
 attributeAssignment
-	:	IDENT ARRAY_LIST? EQUALS^ STRING_LITERAL SEMICOLON!
+	:  instanceQualifier? IDENT EQUALS^ STRING_LITERAL SEMICOLON!
+	;
+	
+instanceQualifier
+	:	IDENT '.'^  
+	| IDENT arrayList '.'^
 	;
 	
 pinAssignment
-	:	IDENT ARRAY_LIST? SLICE_LIST? EQUALS^ concatenation SEMICOLON!
+	:	instanceQualifier? IDENT sliceList? EQUALS^ concatenation SEMICOLON!
 	;
 	
 netAssignment
-	:	IDENT SLICE_LIST? EQUALS^ concatenation SEMICOLON!
+	:	IDENT sliceList? EQUALS^ concatenation SEMICOLON!
 	;
 	
 concatenation
-	:	((IDENT SLICE_LIST?) ('&'! IDENT SLICE_LIST?)* ) 
+	:	((IDENT sliceList?) ('&'! IDENT sliceList?)* ) 
 	|	'<' IDENT '>'
 	| 	'open'!
 	;
@@ -183,6 +193,28 @@ portDecl
 	:   type^ array? IDENT SEMICOLON!
 	;
 */
+	
+pinList
+	: '{' IDENT (',' IDENT)* '}'
+	;
+	
+sliceList
+	: '[' 
+	(
+	| INT ':'^ INT
+	|	INT (','^ INT)* 
+	)
+	']'
+	;
+	
+arrayList
+	: '(' 
+	(
+	| INT ':'^ INT
+	|	INT (','^ INT)* 
+	)
+	')'
+	;
 	
 
 /*------------------------------------------------------------------------------------------------------ 
@@ -214,45 +246,6 @@ STRING_LITERAL
 			}
 		)*
 		'"' 
-		{setText(sb.toString());}
-	;
-	
-PIN_LIST
-	:	'{' 
-		{StringBuilder sb = new StringBuilder();}
-		(
-			c = ~('}')	
-			{	if (c!=' ' && c!='\t' && c!='\n' && c!='\r' && c!='\f' && c!='\u001D')
-					sb.appendCodePoint(c);
-			}
-		)*
-		'}' 
-		{setText(sb.toString());}
-	;
-	
-SLICE_LIST
-	:	'[' 
-		{StringBuilder sb = new StringBuilder();}
-		(
-			c = ~(']')	
-			{	if (c!=' ' && c!='\t' && c!='\n' && c!='\r' && c!='\f' && c!='\u001D')
-					sb.appendCodePoint(c);
-			}
-		)*
-		']' 
-		{setText(sb.toString());}
-	;
-
-ARRAY_LIST
-	:	'(' 
-		{StringBuilder sb = new StringBuilder();}
-		(
-			c = ~(')')	
-			{	if (c!=' ' && c!='\t' && c!='\n' && c!='\r' && c!='\f' && c!='\u001D')
-					sb.appendCodePoint(c);
-			}
-		)*
-		')' 
 		{setText(sb.toString());}
 	;
 
