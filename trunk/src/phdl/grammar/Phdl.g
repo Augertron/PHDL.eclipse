@@ -65,7 +65,7 @@ options {
 /** The source text contains a design
  */
 sourceText
-	:	designDecl* EOF
+	:	designDecl EOF
 	;	
 
 /** A design contains all relevant information about the PCB design.  Between the keywords
@@ -199,10 +199,10 @@ pinList
 	;
 	
 sliceList
-	: '[' 
+	: '[' INT
 	(
-	| INT ':'^ INT
-	|	INT (','^ INT)* 
+	| ':'^ INT
+	|	(','^ INT)* 
 	)
 	']'
 	;

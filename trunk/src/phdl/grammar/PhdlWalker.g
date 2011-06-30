@@ -35,6 +35,8 @@ options {
 	package phdl.parser;
 	import java.util.TreeSet;
 	import java.util.SortedSet;
+	import java.util.List;
+	import java.util.ArrayList;
 }
 
 @members {
@@ -71,10 +73,10 @@ options {
 /** 
  * The Source Text rule returns the design units with all data structures populated and processed
  */
-sourceText[ParsedDesigns pd] returns [ParsedDesigns designs]
+sourceText[DesignNode d] returns [DesignNode dn]
 	:	
-		design[pd]*
-		{designs = pd;}
+		design[d]
+		{dn = d;}
 	;
 
 /** 
@@ -83,14 +85,13 @@ sourceText[ParsedDesigns pd] returns [ParsedDesigns designs]
  * keyword are either device or net declarations.  The line number and position of the design
  * declaration are also used in the constructor to report future compilation errors.
  */	
-design[ParsedDesigns pd]
-	:	^('design' IDENT
+design[DesignNode d]
+	:	^('design' name=IDENT
 		
 		// create a new design declaration and set appropriate fields
-		{	DesignDecl d = new DesignDecl();
-			d.setName($IDENT.text);
-			d.setLine($IDENT.line);
-			d.setPos($IDENT.pos);
+		{	d.setName($name.text);
+			d.setLine($name.line);
+			d.setPos($name.pos);
 			d.setFileName(input.getSourceName());
 		}
 			
@@ -103,10 +104,6 @@ design[ParsedDesigns pd]
 		// add all instances subDesigns and netAssignments to the design
 		(instDecl[d] | netAssign[d])*
 		)
-		
-		{	if(!pd.addDesignDecl(d)) 
-				addError(d, "duplicate design declaration");
-		}
 	;
 
 /** Looks for the keyword "device" as the parent of a subtree, and makes a new device named
@@ -115,11 +112,11 @@ design[ParsedDesigns pd]
  * The line number and position of the device are also used in the constructor to report future 
  * compilation errors.
  */	
-deviceDecl[DesignDecl d]
+deviceDecl[DesignNode d]
 	:	^('device' name=IDENT 
 	
 			// make a new device based on the identifier and log its location 				
-			{	DeviceDecl dev = new DeviceDecl();
+			{	DeviceNode dev = new DeviceNode(d);
 				dev.setName($name.text);
 				dev.setLine($name.line);
 				dev.setPos($name.pos);
@@ -127,13 +124,28 @@ deviceDecl[DesignDecl d]
 			}
 			
 		// add all of the attribute declarations to the device
-		attrDecl[dev]*
+		(
+		  (
+		    {
+		      AttributeNode a  = new AttributeNode(dev);
+  		  } 
+		    attributeDecl[a]
+		    {
+		      dev.addAttribute(a);
+		    }
+		  )
+    |
+		  (
+		    {
+		      PinNode p = new PinNode(dev);
+		    }
+		    pinDecl[p]
+		    {
+		      dev.addPin(p);
+		    }
+		  )
 		
-		// the begin token separates attribute declarations from pin declarations
-		//'begin'
-		
-		// add all of the pin declarations to the device
-		pinDecl[dev]* 
+		)*
 		
 		)
 		
@@ -147,28 +159,87 @@ deviceDecl[DesignDecl d]
  * first child in the subtree.  Succeeding children in the subtree define the other properties
  * of the net.  Optional attributes are added if they exist after a colon.
  */
-netDecl[DesignDecl d]
-	:	^('net' (slice=SLICE_LIST)? name=IDENT
-	
-		// make a new net with the above information
-		{	NetDecl n = new NetDecl(); 
-			n.setName($name.text);
-			n.setLine($name.line);
-			n.setPos($name.pos);
-			n.setSliceString($slice.text);
-			n.setFileName(input.getSourceName());
-			
-			if(!n.makeBits())
-				addError(n, "invalid net declaration array");
+netDecl[DesignNode d]
+	:	^('net'
+	   {
+	     List<Integer> slices = new ArrayList<Integer>();
+	   }
+	   sliceList[slices]?
+	   name=IDENT
+		
+		{
+		  List<AttributeNode> attrs = new ArrayList<AttributeNodes>();
 		}
-		// add one or  more optional net attributes after a colon
-		(COLON netAttr[n]+)?
-		)
+		(
+		  {
+		    AttributeNode a = new AttributeNode(null);
+		  }
+		  attributeDecl[a]
+		  {
+		    attrs.add(a);
+		  }
+		)*
+		
+		{   List<NetNode> nodes = new ArrayList<NetNode>();
+        for (Integer i : slices) {
+          NetNode newNode = new NetNode(d);
+          newNode.setName($name.text + "[" + i + "]");
+          newNode.setLine($name.line);
+          newNode.setPos($name.pos);
+          newNode.setFileName(input.getSourceName());
+          for (a : attrs) {
+            a.setParent(newNode);
+            newNode.addAttribute(a);
+          }
+          nodes.add(newNode);
+        }
+      }
+		
 		// add the net to the design
-		{	if(!d.addNetDecl(n)) 
-				addError(n, "duplicate net declaration");
+		{	for (NetNode n : nodes) {
+		    if(!d.addNetNode(n)) 
+				  addError(n, "duplicate net declaration");
+			}
 		}
 	;
+	
+attributeDecl[AttributeNode a]
+  :
+    ^('attr'
+    name = IDENT
+    value = STRING_LITERAL
+    {
+      a.setName($name.text);
+      a.setValue($value.text);
+    }
+  ;
+	
+sliceList[List<Integer> slices]
+  :^('['
+  start = INT
+  (
+  | ':'^ end = INT
+    {
+      if (start <= end) {
+        for (int i = start; i <= end; i++) {
+          slices.add(i);
+        }
+      }
+      else {
+        for (int i = start; i >= end; i--) {
+           slices.add(i);
+        }
+      }
+    }
+  | {slices.add(Integer.parseInt($start.text));}
+      (','^
+      next = INT
+      {slices.add(Integer.parseInt($next.text));}
+    )* 
+  )
+  ']'
+  )
+  ;
 
 /** Helper rule for makeNet.  Adds attributes after the colon if they exist in the tree.
  */	
@@ -205,38 +276,60 @@ attrDecl[DeviceDecl d]
  * pin with values.
  */	
 pinDecl[DeviceDecl d]
-	:	^('pin' {PinDecl pin = new PinDecl(Type.PIN);} addPinDecl[d, pin])
-	|	^('in' {PinDecl in = new PinDecl(Type.IN);} addPinDecl[d, in])
-	|	^('out' {PinDecl out = new PinDecl(Type.OUT);} addPinDecl[d, out])
-	|	^('inout' {PinDecl inout = new PinDecl(Type.INOUT);} addPinDecl[d, inout])
-	|	^('passive' {PinDecl passive = new PinDecl(Type.PASSIVE);} addPinDecl[d, passive])
-	|	^('supply' {PinDecl supply = new PinDecl(Type.SUPPLY);} addPinDecl[d, supply])
-	|	^('power' {PinDecl power = new PinDecl(Type.POWER);} addPinDecl[d, power])
+	:	^('pin' {PinNode pin = new PinNode(d);} addPinDecl[d, pin])
+//	|	^('in' {PinDecl in = new PinDecl(Type.IN);} addPinDecl[d, in])
+//	|	^('out' {PinDecl out = new PinDecl(Type.OUT);} addPinDecl[d, out])
+//	|	^('inout' {PinDecl inout = new PinDecl(Type.INOUT);} addPinDecl[d, inout])
+//	|	^('passive' {PinDecl passive = new PinDecl(Type.PASSIVE);} addPinDecl[d, passive])
+//	|	^('supply' {PinDecl supply = new PinDecl(Type.SUPPLY);} addPinDecl[d, supply])
+//	|	^('power' {PinDecl power = new PinDecl(Type.POWER);} addPinDecl[d, power])
 	;
 	
 /** The helper rule for pinDecl.  It sets all the fields of the pin as they are found after
  * each of the keywords above.  The MSB and LSB are set to zero if they are not present.
  */
 addPinDecl[DeviceDecl d, PinDecl p]
-	:	(slice=SLICE_LIST)? name=IDENT pins=PIN_LIST
-		{	
-			p.setName($name.text);
-			p.setLine($name.line);
-			p.setPos($name.pos);
-			p.setSliceString($slice.text);
-			p.setPinList($pins.text);
-			p.setFileName(input.getSourceName());
-			
-			if(!p.makeBits())
-				addError(p, "invalid pin declaration slice");
-				
-			if(!p.makePinMap())
-				addError(p, "invalid pin declaration pin list");
-			
-			if(!d.addPinDecl(p)) 
-				addError(p, "duplicate pin declaration");
-		}
-	;	
+	:	 {
+       List<Integer> slices = new ArrayList<Integer>();
+     }
+     sliceList[slices]?
+     name=IDENT
+     
+     {
+      List<String> pList = new ArrayList<String>();
+     }
+     pinList[pList]?
+    
+    {   List<PinNode> pins = new ArrayList<PinNode>();
+        for (Integer i : slices) {
+          PinNode newPin = new PinNode(d);
+          newPin.setName($name.text + "[" + i + "]");
+          newPin.setLine($name.line);
+          newPin.setPos($name.pos);
+          newPin.setFileName(input.getSourceName());
+          newPin.setPinName(pList.get(i));
+          if (!d.addPinNode(newPin)) {
+            addError(n, "duplicate net declaration");
+          }
+        }
+      }
+	;
+	
+pinList[List<String> pList]
+  :
+    ^(
+      '{'
+      value = IDENT
+      {
+        pList.add($value.text);
+      }
+        (','
+          value = IDENT
+          pList.add($value.text);
+        )*
+      '}'
+     )
+  ;
 
 /** Looks for the keyword "inst" as the root of a subtree, and creates a new instDecl based on the
  * succeding children in the subtree.  Attribute and pin assignments are added with their own rules.

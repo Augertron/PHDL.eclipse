@@ -1,6 +1,4 @@
-package phdl.analyzer;
-
-import phdl.parser.Parsable;
+package phdl.graph;
 
 public abstract class Node {
 
@@ -8,15 +6,17 @@ public abstract class Node {
 	 * The name of the node
 	 */
 	protected String name;
-
-	// not sure if we need these
 	protected int line;
 	protected int pos;
+	protected String fileName;
 
-	/**
-	 * Contains the original reference to the parser element object
-	 */
-	protected Parsable element;
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 
 	public String getName() {
 		return name;
@@ -40,14 +40,6 @@ public abstract class Node {
 
 	public void setPosition(int pos) {
 		this.pos = pos;
-	}
-
-	public void setElement(Parsable element) {
-		this.element = element;
-	}
-
-	public Parsable getElement() {
-		return element;
 	}
 	
 	public abstract NodeType getType();

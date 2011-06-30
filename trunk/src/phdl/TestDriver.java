@@ -55,7 +55,7 @@ public class TestDriver {
 		//success &= phdl.analyzer.DesignHierarchy.unitTest();
 		//success &= phdl.preprocessor.Extractor.unitTest();
 		
-		success &= phdl.analyzer.NetNode.unitTest();
+		success &= phdl.graph.NetNode.unitTest();
 
 		System.out.println("\n***Testing Complete***");
 		if (success) {
