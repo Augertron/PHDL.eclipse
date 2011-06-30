@@ -1,4 +1,4 @@
-package phdl.analyzer;
+package phdl.graph;
 
 public class PortNode extends Node {
 

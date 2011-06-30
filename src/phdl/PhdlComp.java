@@ -33,8 +33,8 @@ import org.antlr.runtime.tree.DOTTreeGenerator;
 import org.antlr.runtime.tree.Tree;
 import org.antlr.stringtemplate.StringTemplate;
 
-import phdl.analyzer.BradAnalyzer;
 import phdl.exception.InvalidDesignException;
+import phdl.graph.BradAnalyzer;
 import phdl.parser.DesignDecl;
 import phdl.parser.ParsedDesigns;
 import phdl.parser.PhdlLexer;
