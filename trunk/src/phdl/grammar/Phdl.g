@@ -66,7 +66,7 @@ options {
  */
 sourceText
 	:	designDecl EOF
-	;	
+	;
 
 /** A design contains all relevant information about the PCB design.  Between the keywords
  * "design" and "is" resides the design name.  Before the "begin" keyword, devices and nets are declared in
@@ -142,9 +142,7 @@ netAttributes
 	
 deviceInstance
 	:	'inst'^ IDENT ':'! IDENT arrayList? 'is'!
-		attributeAssignment*
-		'begin'
-		pinAssignment*
+		( attributeAssignment | pinAssignment )*
 		'end'! ';'!
 	;
 

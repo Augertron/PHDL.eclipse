@@ -41,6 +41,8 @@ options {
 
 @members {
 
+  private String code = "";
+
 	private SortedSet<String> errors = new TreeSet<String>();
 	
 	@Override
@@ -49,15 +51,6 @@ options {
         String hdr = getErrorHeader(e);
         String msg = getErrorMessage(e, tokenNames);
         errors.add(input.getSourceName() + hdr + " " + msg);
-    }
-    
-    public SortedSet<String> getErrors() {
-        return errors;
-    }
-    
-    public void addError(Parsable p, String msg) {
-    	errors.add(input.getSourceName() + " line " + p.getLocation() + " " + msg
-				+ ": " + p.getName());
     }
     
 //    @Override
@@ -77,6 +70,7 @@ sourceText[DesignNode d] returns [DesignNode dn]
 	:	
 		design[d]
 		{dn = d;}
+		EOF
 	;
 
 /** 
@@ -94,6 +88,9 @@ design[DesignNode d]
 			d.setPos($name.pos);
 			d.setFileName(input.getSourceName());
 		}
+		
+		// String building for debugging
+		{ code += "DESIGN" + $name.text + "[" + $name.line + ":" + $name.pos + "]\n"; }
 			
 		// device and net declarations
 		(deviceDecl[d] | netDecl[d])*
@@ -113,7 +110,7 @@ design[DesignNode d]
  * compilation errors.
  */	
 deviceDecl[DesignNode d]
-	:	^('device' name=IDENT 
+	:	^('device' name=IDENT
 	
 			// make a new device based on the identifier and log its location 				
 			{	DeviceNode dev = new DeviceNode(d);
@@ -123,61 +120,50 @@ deviceDecl[DesignNode d]
 				dev.setFileName(input.getSourceName());
 			}
 			
-		// add all of the attribute declarations to the device
-		(
-		  (
-		    {
-		      AttributeNode a  = new AttributeNode(dev);
-  		  } 
-		    attributeDecl[a]
-		    {
-		      dev.addAttribute(a);
-		    }
-		  )
-    |
-		  (
-		    {
-		      PinNode p = new PinNode(dev);
-		    }
-		    pinDecl[p]
-		    {
-		      dev.addPin(p);
-		    }
-		  )
-		
-		)*
+			// String building for debugging
+      { code += "\tDEVICE " + $name.text + "[" + $name.line + ":" + $name.pos + "]\n"; }
+			
+			// add all of the attribute declarations to the device
+			(
+			  (
+			    { AttributeNode a  = new AttributeNode(dev); } 
+			    attributeDecl[a]
+			    { dev.addAttribute(a); }
+			  )
+	    |
+			  (
+			    { PinNode p = new PinNode(dev); }
+			    pinDecl[p]
+			    { dev.addPin(p); }
+			  )
+			)*
 		
 		)
 		
 		// attempt to add the device declaration
-		{	if(!d.addDeviceDecl(dev)) 
-				addError(dev, "duplicate device declaration");
+		{	if(!d.addDeviceDecl(dev)) {
+				System.err.println(dev.getName() + " " + dev.getLine() + ":" + dev.getPosition() + " - duplicate device declaration");
+				System.exit(1);
+			}
 		}
 	;
 
 /** Looks for the keyword "net" as the parent of a subtree, and makes a new net named from the 
  * first child in the subtree.  Succeeding children in the subtree define the other properties
- * of the net.  Optional attributes are added if they exist after a colon.
+ * of the net.  Optional attributes are added if they follow an "is" keyword.
  */
 netDecl[DesignNode d]
 	:	^('net'
-	   {
-	     List<Integer> slices = new ArrayList<Integer>();
-	   }
+	   { code += "\tNET"; }
+	   { List<Integer> slices = new ArrayList<Integer>(); }
 	   sliceList[slices]?
 	   name=IDENT
-		
-		{
-		  List<AttributeNode> attrs = new ArrayList<AttributeNodes>();
-		}
+		{ code += $name.text; }
+		{ List<AttributeNode> attrs = new ArrayList<AttributeNodes>(); }
 		(
-		  {
-		    AttributeNode a = new AttributeNode(null);
-		  }
+		  { AttributeNode a = new AttributeNode(null); }
 		  attributeDecl[a]
-		  {
-		    attrs.add(a);
-		  }
+		  { attrs.add(a); }
 		)*
 		
 		{   List<NetNode> nodes = new ArrayList<NetNode>();
@@ -193,12 +179,14 @@ netDecl[DesignNode d]
           }
           nodes.add(newNode);
         }
-      }
+    }
 		
 		// add the net to the design
 		{	for (NetNode n : nodes) {
-		    if(!d.addNetNode(n)) 
-				  addError(n, "duplicate net declaration");
+		    if(!d.addNetNode(n)) {
+		      System.err.println(n.getName() + " " + n.getLine() + ":" + n.getPosition() + " - duplicate net declaration");
+          System.exit(1);
+        }
 			}
 		}
 	;
@@ -208,6 +196,7 @@ attributeDecl[AttributeNode a]
     ^('attr'
     name = IDENT
     value = STRING_LITERAL
+    { code += "\t\tATTR" + $name.text + "[" + $name.line + ":" + $name.pos + "] = " + $value.text; }
     {
       a.setName($name.text);
       a.setValue($value.text);
@@ -218,7 +207,7 @@ sliceList[List<Integer> slices]
   :^('['
   start = INT
   (
-  | ':'^ end = INT
+    ':'^ end = INT
     {
       if (start <= end) {
         for (int i = start; i <= end; i++) {
@@ -231,52 +220,30 @@ sliceList[List<Integer> slices]
         }
       }
     }
-  | {slices.add(Integer.parseInt($start.text));}
+    { code += "[" + start + ":" + end + "]"; }
+  | 
+    { code += "[" + start; }
+    
+    {slices.add(Integer.parseInt($start.text));}
       (','^
       next = INT
+      {
+        code += "," + $next.text;
+      }
       {slices.add(Integer.parseInt($next.text));}
-    )* 
+    )*
+    { code += "]"; }
   )
   ']'
   )
   ;
 
-/** Helper rule for makeNet.  Adds attributes after the colon if they exist in the tree.
- */	
-netAttr[NetDecl n]
-	:	IDENT
-	
-		// add the net attribute to the net						
-		{	if(!n.addAttribute($IDENT.text)) 
-				addError(n, "duplicate net attribute");
-		}
-	;
-
-/** Looks for an "=" as the root of a subtree, and creates a new attribute based on the 
- * name and value of the children.
- */
-attrDecl[DeviceDecl d]
-	:	^(EQUALS name=IDENT value=STRING_LITERAL) 
-	
-		// make a new attribute declaration with the above information
-		{	AttrDecl a = new AttrDecl();
-			a.setName($name.text);
-			a.setLine($name.line);
-			a.setPos($name.pos);
-			a.setValue($value.text);
-			a.setFileName(input.getSourceName());
-			
-			if(!d.addAttrDecl(a)) 
-				addError(a, "duplicate attribute declaration");
-		}
-	;
-
 /** Looks for the keywords below as the root of a subtree, and creates the appropriate type of pin in 
  * the data structure by switching on that keyword.  Uses the helper rule addPinDecl to populate the 
  * pin with values.
  */	
-pinDecl[DeviceDecl d]
-	:	^('pin' {PinNode pin = new PinNode(d);} addPinDecl[d, pin])
+pinDecl[DeviceNode d]
+	:	^('pin' {code += "\t\tPIN";}{PinNode pin = new PinNode(d);} addPinDecl[d])
 //	|	^('in' {PinDecl in = new PinDecl(Type.IN);} addPinDecl[d, in])
 //	|	^('out' {PinDecl out = new PinDecl(Type.OUT);} addPinDecl[d, out])
 //	|	^('inout' {PinDecl inout = new PinDecl(Type.INOUT);} addPinDecl[d, inout])
@@ -288,19 +255,25 @@ pinDecl[DeviceDecl d]
 /** The helper rule for pinDecl.  It sets all the fields of the pin as they are found after
  * each of the keywords above.  The MSB and LSB are set to zero if they are not present.
  */
-addPinDecl[DeviceDecl d, PinDecl p]
-	:	 {
-       List<Integer> slices = new ArrayList<Integer>();
-     }
+addPinDecl[DeviceNode d]
+	:	 { List<Integer> slices = new ArrayList<Integer>(); }
+     
      sliceList[slices]?
      name=IDENT
      
-     {
-      List<String> pList = new ArrayList<String>();
-     }
+     { code += $name.text + "[" + $name.line + ":" + $name.pos + "]"; }
+     { List<String> pList = new ArrayList<String>(); }
+     
      pinList[pList]?
     
-    {   List<PinNode> pins = new ArrayList<PinNode>();
+    {   if (slices.size() != pList.size()) {
+          System.err.println($name.text + " " + $name.line + ":" + $name.pos +
+                              " - invalid pin mapping; size of bit vector: "
+                              + slices.size() + ", size of pin list: "
+                              + pList.size());
+          System.exit(1);
+        }
+        List<PinNode> pins = new ArrayList<PinNode>();
         for (Integer i : slices) {
           PinNode newPin = new PinNode(d);
           newPin.setName($name.text + "[" + i + "]");
@@ -309,7 +282,9 @@ addPinDecl[DeviceDecl d, PinDecl p]
           newPin.setFileName(input.getSourceName());
           newPin.setPinName(pList.get(i));
           if (!d.addPinNode(newPin)) {
-            addError(n, "duplicate net declaration");
+            System.err.println(newPin.getName() + " " + newPin.getLine() + ":" + newPin.getPosition()
+                                + " - duplicate pin declaration");
+            System.exit(1);
           }
         }
       }
@@ -320,25 +295,30 @@ pinList[List<String> pList]
     ^(
       '{'
       value = IDENT
-      {
-        pList.add($value.text);
-      }
+      { code += " = \"" + $value.text; }
+      { pList.add($value.text); }
         (','
           value = IDENT
-          pList.add($value.text);
+          { pList.add($value.text); }
+          { code += ", " + $value.text; }
         )*
       '}'
+      { code += "\"";
      )
   ;
 
 /** Looks for the keyword "inst" as the root of a subtree, and creates a new instDecl based on the
  * succeding children in the subtree.  Attribute and pin assignments are added with their own rules.
  */	
-instDecl[DesignDecl d]
-	:	^('inst' name=IDENT refName=IDENT (array=ARRAY_LIST)?
-		
-		// create pile of instances here
-		// make a new instDecl to pass to attrAssign and pinAssign
+instDecl[DesignNode d]
+	:	^('inst' name=IDENT refName=IDENT 
+	
+	   {
+	     List<Integer> indices = new ArrayList<Integer();
+	   }
+	   
+	   arrayList[indices]?
+	   
 		{	
 			InstDecl i = new InstDecl();
 				i.setName($name.text);
@@ -351,15 +331,45 @@ instDecl[DesignDecl d]
 				if (!i.makeIndices())
 					addError(i, "invalid instance declaration array");
 		}
-				
-		attrAssign[i]*
-		'begin'
-		pinAssign[i]*
+		
+		  
+		  ( attrAssign[i] |	pinAssign[i] )*
+		
 		)
 		{	if(!d.addInstDecl(i)) 
 				addError(i, "duplicate instance declaration");
 		}
 	;
+
+arrayList[List<Integer> indices]
+  : '('
+    (
+    | first = INT ^':' last = INT
+      { code += "[" + $first.text + ":" + $last.text + "]"; }
+      {
+        int start = Integer.parseInt($first.text);
+        int end = Integer.parseInt($last.text);
+        if (start < end) {
+          for (int i = start; i <= end; i++) {
+            indices.add(i);
+          }
+        }
+        else {
+          for (int i = start; i >= end; i--) {
+             indices.add(i);
+          }
+        }
+    | first = INT
+      { code += "[" + $first.text; }
+      { indices.add(Integer.parseInt($first.text)); }
+      ( ^','
+        next = INT
+        { code += "," + $next.text; }
+        { indices.add(Integer.parseInt($next.text)); }
+      )*
+      { code += "]";
+    )
+  ;
 
 /**	Looks for an "=" sign as the parent of a subtree.  Succeding values consist of left values
  * and right values, with optional widths or indices.  A width is used to specify an array of values
