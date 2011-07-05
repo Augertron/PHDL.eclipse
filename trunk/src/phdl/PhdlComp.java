@@ -34,7 +34,7 @@ import org.antlr.runtime.tree.Tree;
 import org.antlr.stringtemplate.StringTemplate;
 
 import phdl.exception.InvalidDesignException;
-import phdl.graph.BradAnalyzer;
+//import phdl.graph.BradAnalyzer;
 import phdl.parser.DesignDecl;
 import phdl.parser.ParsedDesigns;
 import phdl.parser.PhdlLexer;
@@ -133,11 +133,11 @@ public class PhdlComp {
 		}
 
 		// for testing only
-		BradAnalyzer ba = new BradAnalyzer(top);
-		ba.Analyze();
-		for (String s : ba.getErrors()) {
-			errors.add(s);
-		} // end for testing only
+		//BradAnalyzer ba = new BradAnalyzer(top);
+		//ba.Analyze();
+		//for (String s : ba.getErrors()) {
+			//errors.add(s);
+		//} // end for testing only
 
 		// 7. attempt to build the hierarchy from all parsed designs
 		// DesignHierarchy dh = new DesignHierarchy(top);

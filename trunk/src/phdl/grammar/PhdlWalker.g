@@ -32,7 +32,7 @@ options {
 }
 
 @header {
-	package phdl.grammar;
+	package phdl.graph;
 	import java.util.TreeSet;
 	import java.util.SortedSet;
 	import java.util.List;
@@ -84,7 +84,8 @@ design[DesignNode d]
 	:	^('design' name=IDENT
 		
 		// create a new design declaration and set appropriate fields
-		{	d.setName($name.text);
+		{	d.setupDesign(name);
+		  d.setName($name.text);
 			d.setLine($name.line);
 			d.setPos($name.pos);
 			d.setFileName(input.getSourceName());
@@ -114,7 +115,8 @@ deviceDecl[DesignNode d]
 	:	^('device' name=IDENT
 	
 			// make a new device based on the identifier and log its location 				
-			{	DeviceNode dev = new DeviceNode(d);
+			{	DeviceNode dev = d.setupDevice(name);
+			  DeviceNode dev = new DeviceNode(d);
 				dev.setName($name.text);
 				dev.setLine($name.line);
 				dev.setPos($name.pos);
@@ -226,7 +228,7 @@ sliceList[List<Integer> slices]
     { code += "[" + start + ":" + end + "]"; }
   | 
     { code += "[" + start; }
-    
+
     {slices.add(Integer.parseInt($start.text));}
       (
       next = INT
@@ -257,7 +259,7 @@ pinDecl[DeviceNode d]
  * each of the keywords above.  The MSB and LSB are set to zero if they are not present.
  */
 addPinDecl[DeviceNode d]
-	:	 ^({ List<Integer> slices = new ArrayList<Integer>(); }
+	:	 { List<Integer> slices = new ArrayList<Integer>(); }
      
      sliceList[slices]?
      name=IDENT
@@ -289,7 +291,6 @@ addPinDecl[DeviceNode d]
           }
         }
       }
-     )
 	;
 	
 pinList[List<String> pList]
@@ -384,7 +385,7 @@ arrayList[List<Integer> indices]
 		        { code += "," + $next.text; }
 		        { indices.add(Integer.parseInt($next.text)); }
 		      )*
-		      { code += "]" };
+		      { code += "]"; }
 		    )
 		  ')'
 		  )
@@ -399,13 +400,13 @@ attrAssign[InstNode i, List<Integer> instIndices]
 	:	//('new' 'attr'!)? instanceQualifier? IDENT EQUALS^ STRING_LITERAL SEMICOLON!
 	  ^('='
 	   { AttributeNode a; }
-	   'new'
-	    { a = new AttributeNode(i);
-        List<Integer> indices = new ArrayList<Integer>();	     
-	    }
-	  )? instanceQualifier[i.getName(), indices, instIndices]? name = IDENT value = STRING_LITERAL
-
-	  {
+	   	('new'
+	    	{ a = new AttributeNode(i);
+        	List<Integer> indices = new ArrayList<Integer>();	     
+	    }	
+	  	)? instanceQualifier[i.getName(), indices, instIndices]? name = IDENT value = STRING_LITERAL
+	  	)
+     {	  		  
 	   if (a == null) {
 	     for (Integer index : indices) {
 	       if (!instIndices.contains(index)) {
