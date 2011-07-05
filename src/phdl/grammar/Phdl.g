@@ -30,13 +30,13 @@ options {
 }
 
 @header {
-	package phdl.grammar;
+	package phdl.graph;
 	import java.util.TreeSet;
 	import java.util.Set;
 }
 
 @lexer::header {
-	package phdl.parser;
+	package phdl.graph;
 	import phdl.exception.PhdlRuntimeException;
 }
 

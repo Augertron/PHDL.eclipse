@@ -2,12 +2,12 @@ design myDesign is
 	
 	// another device declaration
 	device resistor is
-		refprefix = "R";
-		name = "";
-		value = "10K";
-		package = "R0207";
-		tolerance = "10%";
-	begin
+		attr refprefix = "R";
+		attr name = "";
+		attr value = "10K";
+		attr package = "R0207";
+		attr tolerance = "10%";
+
 		passive a = {1};
 		passive b = {2};
 	end;
