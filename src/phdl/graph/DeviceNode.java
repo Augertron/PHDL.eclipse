@@ -6,7 +6,7 @@ import java.util.HashSet;
 public class DeviceNode extends Attributable {
 
 	private Set<PinNode> pins;
-	private InstanceNode instance;
+	private Set<InstanceNode> instances;
 	private DesignNode design;
 	
 	/**
@@ -17,23 +17,23 @@ public class DeviceNode extends Attributable {
 	public DeviceNode(DesignNode design) {
 		setDesign(design);
 		pins = new HashSet<PinNode>();
-		instance = null;
+		instances = new HashSet<InstanceNode>();
 	}
 	
 	/**
 	 * 
 	 * @return
 	 */
-	public InstanceNode getInstance() {
-		return instance;
+	public Set<InstanceNode> getInstances() {
+		return instances;
 	}
 
 	/**
 	 * 
 	 * @param instance
 	 */
-	public void setInstance(InstanceNode instance) {
-		this.instance = instance;
+	public boolean addInstance(InstanceNode instance) {
+		return instances.add(instance);
 	}
 
 	/**

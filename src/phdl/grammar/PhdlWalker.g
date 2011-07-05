@@ -32,11 +32,12 @@ options {
 }
 
 @header {
-	package phdl.parser;
+	package phdl.grammar;
 	import java.util.TreeSet;
 	import java.util.SortedSet;
 	import java.util.List;
 	import java.util.ArrayList;
+	import phdl.graph.*;
 }
 
 @members {
@@ -180,7 +181,7 @@ netDecl[DesignNode d]
           nodes.add(newNode);
         }
     }
-		
+		)
 		// add the net to the design
 		{	for (NetNode n : nodes) {
 		    if(!d.addNetNode(n)) {
@@ -194,20 +195,22 @@ netDecl[DesignNode d]
 attributeDecl[AttributeNode a]
   :
     ^('attr'
-    name = IDENT
-    value = STRING_LITERAL
-    { code += "\t\tATTR" + $name.text + "[" + $name.line + ":" + $name.pos + "] = " + $value.text; }
-    {
-      a.setName($name.text);
-      a.setValue($value.text);
-    }
+      name = IDENT
+      value = STRING_LITERAL
+      { code += "\t\tATTR" + $name.text + "[" + $name.line + ":" + $name.pos + "] = " + $value.text; }
+      {
+        a.setName($name.text);
+        a.setValue($value.text);
+      }
+    )
   ;
 	
 sliceList[List<Integer> slices]
-  :^('['
+  :^( (',' | ':')
+  '['
   start = INT
   (
-    ':'^ end = INT
+    end = INT
     {
       if (start <= end) {
         for (int i = start; i <= end; i++) {
@@ -225,11 +228,9 @@ sliceList[List<Integer> slices]
     { code += "[" + start; }
     
     {slices.add(Integer.parseInt($start.text));}
-      (','^
+      (
       next = INT
-      {
-        code += "," + $next.text;
-      }
+      { code += "," + $next.text; }
       {slices.add(Integer.parseInt($next.text));}
     )*
     { code += "]"; }
@@ -256,7 +257,7 @@ pinDecl[DeviceNode d]
  * each of the keywords above.  The MSB and LSB are set to zero if they are not present.
  */
 addPinDecl[DeviceNode d]
-	:	 { List<Integer> slices = new ArrayList<Integer>(); }
+	:	 ^({ List<Integer> slices = new ArrayList<Integer>(); }
      
      sliceList[slices]?
      name=IDENT
@@ -288,6 +289,7 @@ addPinDecl[DeviceNode d]
           }
         }
       }
+     )
 	;
 	
 pinList[List<String> pList]
@@ -297,13 +299,13 @@ pinList[List<String> pList]
       value = IDENT
       { code += " = \"" + $value.text; }
       { pList.add($value.text); }
-        (','
-          value = IDENT
-          { pList.add($value.text); }
-          { code += ", " + $value.text; }
-        )*
+     (','
+       next = IDENT
+       { pList.add($next.text); }
+       { code += ", " + $next.text; }
+     )*
       '}'
-      { code += "\"";
+      { code += "\"";}
      )
   ;
 
@@ -313,62 +315,79 @@ pinList[List<String> pList]
 instDecl[DesignNode d]
 	:	^('inst' name=IDENT refName=IDENT 
 	
-	   {
-	     List<Integer> indices = new ArrayList<Integer();
-	   }
+	   { List<Integer> indices = new ArrayList<Integer>(); }
+	   { code += "\tINSTANCE " + $name.text + "[" + $name.line + ":" + $name.pos + "]"; }
 	   
 	   arrayList[indices]?
 	   
 		{	
-			InstDecl i = new InstDecl();
-				i.setName($name.text);
-				i.setLine($name.line);
-				i.setPos($name.pos);
-				i.setArrayString($array.text);
-				i.setRefName($refName.text);
-				i.setFileName(input.getSourceName());
-				
-				if (!i.makeIndices())
-					addError(i, "invalid instance declaration array");
+		  for (Integer i : indices) {
+		    InstanceNode n = new InstanceNode(d);
+		    n.setName($name.text + "(" + i + ")");
+		    n.setLine($name.line);
+		    n.setPosition($name.pos);
+		    for (DeviceNode dn : d.getDevices()) {
+		      if (dn.getName().equals($name.text)) {
+		        n.setDevice(dn);
+		        for (PinNode p : dn.getPins()) {
+		          PinNode newP = new PinNode(n);
+		          newP.setName(p.getName());
+		          n.addPin(newP);
+		        }
+		        for (AttributeNode a : dn.getAttribute()) {
+		          AttributeNode newA = new AttributeNode(n);
+		          newA.setName(a.getName());
+		          n.addAttribute(newA);
+		        }
+		        break;
+		      }
+		    }
+		  }
 		}
-		
-		  
-		  ( attrAssign[i] |	pinAssign[i] )*
+		  ( attrAssign[n, indices] |	pinAssign[n, indices] )*
 		
 		)
-		{	if(!d.addInstDecl(i)) 
-				addError(i, "duplicate instance declaration");
+		
+		{	if(!d.addInstance(n)) {
+		    System.err.println(i.getName() + " " + i.getLine() + ":" + i.getPosition()
+                                + " - duplicate instance declaration");
+        System.exit(1);
+			}
 		}
 	;
 
 arrayList[List<Integer> indices]
-  : '('
-    (
-    | first = INT ^':' last = INT
-      { code += "[" + $first.text + ":" + $last.text + "]"; }
-      {
-        int start = Integer.parseInt($first.text);
-        int end = Integer.parseInt($last.text);
-        if (start < end) {
-          for (int i = start; i <= end; i++) {
-            indices.add(i);
-          }
-        }
-        else {
-          for (int i = start; i >= end; i--) {
-             indices.add(i);
-          }
-        }
-    | first = INT
-      { code += "[" + $first.text; }
-      { indices.add(Integer.parseInt($first.text)); }
-      ( ^','
-        next = INT
-        { code += "," + $next.text; }
-        { indices.add(Integer.parseInt($next.text)); }
-      )*
-      { code += "]";
-    )
+	 : ^((':' | ',')
+	   '('
+		    (
+		      first = INT last = INT
+		      { code += "[" + $first.text + ":" + $last.text + "]"; }
+		      {
+		        int start = Integer.parseInt($first.text);
+		        int end = Integer.parseInt($last.text);
+		        if (start < end) {
+		          for (int i = start; i <= end; i++) {
+		            indices.add(i);
+		          }
+		        }
+		        else {
+		          for (int i = start; i >= end; i--) {
+		             indices.add(i);
+		          }
+		        }
+		      }
+		    | first = INT
+		      { code += "[" + $first.text; }
+		      { indices.add(Integer.parseInt($first.text)); }
+		      (
+		        next = INT
+		        { code += "," + $next.text; }
+		        { indices.add(Integer.parseInt($next.text)); }
+		      )*
+		      { code += "]" };
+		    )
+		  ')'
+		  )
   ;
 
 /**	Looks for an "=" sign as the parent of a subtree.  Succeding values consist of left values
@@ -376,50 +395,88 @@ arrayList[List<Integer> indices]
  * assigned, while an index is used to reference a particular value in an array.  Creates a new
  * attribute assignment data structure based on these parameters.
  */
-attrAssign[InstDecl i]
-	:	^(EQUALS name=IDENT (array=ARRAY_LIST)? value=STRING_LITERAL )
-		
-		// make a new attribute assignment, assign all values, and add it to the instDecl
-		{	AttrAssign a = new AttrAssign();
-			a.setName($name.text);
-			a.setLine($name.line);
-			a.setPos($name.pos);
-			a.setArrayString($array.text);
-			a.setValue($value.text);
-			a.setFileName(input.getSourceName());
-			
-			if(!a.makeIndices())
-				addError(a, "invalid attribute assignment array");
-			
-			if(!i.addAttrAssign(a)) 
-				addError(a, "duplicate attribute assignment");
-		}
+attrAssign[InstNode i, List<Integer> instIndices]
+	:	//('new' 'attr'!)? instanceQualifier? IDENT EQUALS^ STRING_LITERAL SEMICOLON!
+	  ^('='
+	   { AttributeNode a; }
+	   'new'
+	    { a = new AttributeNode(i);
+        List<Integer> indices = new ArrayList<Integer>();	     
+	    }
+	  )? instanceQualifier[i.getName(), indices, instIndices]? name = IDENT value = STRING_LITERAL
+
+	  {
+	   if (a == null) {
+	     for (Integer index : indices) {
+	       if (!instIndices.contains(index)) {
+	         System.err.println($name.text + " " + $name.line + ":" + $name.getPosition()
+	                               + " - index out of bounds, " + index);
+           System.exit(1);
+	       }
+	       for (AttributeNode n : i.getAttributes()) {
+	         if (n.getName().equals($name.text + "(" + index + ")") {
+	           n.setValue($value.text);
+	           break;
+	         }
+	       }
+	     }
+	   }
+	   else {
+	     for (Integer index : indices) {
+	       a = new AttributeNode(i);
+		     a.setName($name.text + "(" + index + ")");
+		     a.setValue($value.text);
+		     if (!i.addAttribute(a)) {
+		       System.err.println(a.getName() + " " + a.getLine() + ":" + a.getPosition()
+	                                + " - duplicate attribute declaration");
+	         System.exit(1);
+		     }
+		   }
+	   }
+	 }
 	;
+
+instanceQualifier[String refName, List<Integer> indices, List<Integer> instIndices]
+  : //IDENT '.'^  
+    //| IDENT arrayList '.'^
+    ^( '.'
+    ( name = IDENT { indices.addAll(instIndices); }
+    | name = IDENT arrayList[indices])
+    )
+    {
+      if (!refName.equals($name.text)) {
+        System.err.println($name.text + " " + $name.line + ":" + $name.pos
+                                + " - invalid instance reference");
+        System.exit(1);
+      }
+    }
+  ;
+
 
 /**	
  * Looks for an "=" sign as the parent of a subtree and sets appropriate fields  
  */	
-pinAssign[InstDecl i]
-	:	^(EQUALS name=IDENT (array=ARRAY_LIST)? (slice=SLICE_LIST)?
-	
-		// make a new pin assignment
-		{
-			PinAssign p = new PinAssign();
-			p.setName($name.text);
-			p.setLine($name.line);
-			p.setPos($name.pos);
-			p.setArrayString($array.text);
-			p.setSliceString($slice.text);
-			p.setFileName(input.getSourceName());
-			
-			if(!p.makeIndices())
-				addError(p, "invalid array format");
-			if(!p.makeBits())
-				addError(p, "invalid slice format");
-		}
-	
+pinAssign[InstNode i, List<Integer> instIndices]
+	: // instanceQualifier? IDENT sliceList? EQUALS^ concatenation SEMICOLON!
+	  ^('='
+	  { List<Integer> indices = new ArrayList<Integer>(); }
+	  instanceQualifier[i.getName(), indices, instIndices]?
+	  name = IDENT
+	  { List<Integer> slices = new ArrayList<Integer>(); }
+	  sliceList[slices]?
+	  
+	  {
+	   for (Integer index : indices) {
+	     
+	     for (Integer slice : slices) {
+	       
+	     }
+	   }
+	  }
+	  
 		concatPin[p]*
 		)
+
 		{	if(!i.addPinAssign(p)) 
 				addError(p, "duplicate pin assignment");
 		}
