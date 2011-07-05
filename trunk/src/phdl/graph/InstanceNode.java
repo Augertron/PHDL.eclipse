@@ -103,6 +103,7 @@ public class InstanceNode extends Attributable {
 	 */
 	public void setDevice(DeviceNode device) {
 		this.device = device;
+		this.device.addInstance(this);		
 	}
 
 	/**

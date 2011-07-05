@@ -30,7 +30,7 @@ options {
 }
 
 @header {
-	package phdl.parser;
+	package phdl.grammar;
 	import java.util.TreeSet;
 	import java.util.Set;
 }
@@ -147,7 +147,7 @@ deviceInstance
 	;
 
 attributeAssignment
-	:  instanceQualifier? IDENT EQUALS^ STRING_LITERAL SEMICOLON!
+	:  ('new' 'attr'!)? instanceQualifier? IDENT EQUALS^ STRING_LITERAL SEMICOLON!
 	;
 	
 instanceQualifier
