@@ -30,13 +30,13 @@ options {
 }
 
 @header {
-	package phdl.graph;
+	package phdl.grammar;
 	import java.util.TreeSet;
 	import java.util.Set;
 }
 
 @lexer::header {
-	package phdl.graph;
+	package phdl.grammar;
 	import phdl.exception.PhdlRuntimeException;
 }
 
@@ -62,156 +62,158 @@ options {
  * Parser Rules
  *------------------------------------------------------------------------------------------------------*/
 
-/** The source text contains a design
+/** 
+ * The source text contains multiple design units.
  */
 sourceText
-	:	designDecl EOF
+	:	designDecl* EOF
 	;
 
-/** A design contains all relevant information about the PCB design.  Between the keywords
- * "design" and "is" resides the design name.  Before the "begin" keyword, devices and nets are declared in
- * any order.  Following the "begin" keyword, instantiations are located.  The design is terminated with 
- * the "end" keyword and a semicolon.
+/** 
+ * A design declaration consists of the keyword "design" followed by the design name, and the keyword "is."
+ * Before the "begin" keyword, device and net declarations can coexist in any order.  After the "begin" keyword
+ * device instances and net assignments can coexist in any order.  The body of the design declaration is 
+ * terminated with the keyword "end" followed by a semicolon.
  */
 designDecl
-	:	// promote the keyword "design" to the root of the subtree, and ignore the keyword "is"
-		'design'^ IDENT 'is'! 
-		
-		// any kind of declaration may follow
+	:	'design'^ IDENT 'is'! 
 		(deviceDecl | netDecl)*
-		
 		'begin'
-		
-		// all of the instantiated devices, net assignments
 		(deviceInstance | netAssignment)*
-		
 		'end'! SEMICOLON!
 	;
 
-/** A device declaration contains information about a deviced used in the design.  The device name is 
- * placed between the keywords "device" and "is".  Before the "begin" keyword, attributes to the device
- * are declared.  After the "begin" keyword, pins are declared.  The device declaration is terminated
- * with the "end" keyword and a semicolon.
+/** 
+ * A device declaration consists of the keyword "device" followed by the device name, and the keyword "is."
+ * Attribute and pin declarations may coexist anywhere in the body of the device declaration.  The device
+ * declaration is terminated with the "end" keyword followed by a semicolon.
  */	
 deviceDecl
 	:	'device'^ IDENT 'is'!
 		( attributeDecl | pinDecl )*
 		'end'! SEMICOLON!
 	;
-	
+
+/**
+ * An attribute declaration begins with the keyword "attr" followed by the attribute name, 
+ * and equals sign, and the string it is intialized to, then terminated in a semicolon.
+ */	
 attributeDecl
-	:	//promote the "=" sign to the root of the subtree, and ignore the semicolon
-		'attr'^ IDENT EQUALS! STRING_LITERAL SEMICOLON!
-	;
-	
-pinDecl
-	:	//promote the type to the root of the subtree, and ignore the equals and semicolon
-		type^ sliceList? IDENT EQUALS! pinList SEMICOLON!
+	:	'attr'^ IDENT EQUALS! STRING_LITERAL SEMICOLON!
 	;
 
 /**
- * There are a few types associated with pin and port declarations.  If no types in the design
- * are preferred, use the "pin" type for everything.
+ * A pin declaration consists of the pin type, an optional slice list, and the name of the pin.  A list
+ * of pin numbers (which may be strings beginning with numbers) is appended with an equals sign, and
+ * terminated with the usual semicolon.
+ */
+pinDecl
+	:	type^ IDENT sliceDecl? EQUALS! pinList SEMICOLON!
+	;
+
+/**
+ * For now, the only type supported is pin.
  */	
 type
 	:	'pin'
-//	|	'in'
-//	|	'out'
-//	|	'inout'
-//	|	'passive'
-//	|	'supply'
-//	|	'power'
 	;
 
 /** 
- * A net declaration contains information about a net used in the design.  Nets are declared with the
- * "net" keyword, followed by an optional array, followed by a comma separated list of net names. (Nets
- * may be declared in quantity using this notation.)  Following the comma separated list, an optional 
- * comma separated list of net attributes may be appended using the colon separator.  Finally the net 
- * declaration is terminated in a semicolon.
+ * A net declaration consists of the "net" keyword followed by an optional bit slice list, the name
+ * of the net, followed by an optional set of attributes, and terminated with a semicolon.
  */	
- // have this look more like a devicedecl
 netDecl
 	:	'net'^ sliceList? IDENT netAttributes? SEMICOLON! 
-	//(COLON IDENT (COMMA! IDENT)*)? SEMICOLON!
 	;
-	
+
+/**
+ * Net attributes take on the same form as attribute declarations, however they must be wrapped by 
+ * the usual keywords.
+ */	
 netAttributes
 	:	'is'! attributeDecl* 'end'!
 	;
-	
+
+/**
+ * A device instance begins with the keyword "inst" followed by an instance name, a colon, the device name
+ * from which it is being instanced, an optional array list specifier, and the keyword "is."  In the body
+ * of the device instance, attribute and pin assignments may coexist.  
+ */
 deviceInstance
-	:	'inst'^ IDENT ':'! IDENT arrayList? 'is'!
-		( attributeAssignment | pinAssignment )*
-		'end'! ';'!
+	:	'inst'^ IDENT COLON! IDENT arrayList? 'is'!
+		(attributeAssignment | pinAssignment)*
+		'end'! SEMICOLON!
 	;
 
+/**
+ * An attribute assignment consists of a string assigned to an attribute name with the optional newattr
+ * keyword and instance qualifier.  The newattr keyword signals to the compiler that the user is declaring
+ * a new attribute for an instanced device beyond the scope of the device declaration.
+ */
 attributeAssignment
-	:  ('new' 'attr'!)? instanceQualifier? IDENT EQUALS^ STRING_LITERAL SEMICOLON!
+	:  ('newattr')? instanceQualifier? IDENT EQUALS^ STRING_LITERAL SEMICOLON!
 	;
 	
+/**
+ * An instance qualifier begins with the label of the instance, followed by an optional array list
+ * and mandatory period.
+ */
 instanceQualifier
-	:	IDENT '.'^  
-	| IDENT arrayList '.'^
+	:	IDENT arrayList? PERIOD^  
 	;
-	
+
+/**
+ * A pin assignment, a concatenation may be assigned to a pin name with optional slice list, 
+ * prefaced by an optional instance qualifier.
+ */
 pinAssignment
 	:	instanceQualifier? IDENT sliceList? EQUALS^ concatenation SEMICOLON!
 	;
-	
+
+/**
+ * In a net assignment, a concatenation may be assigned to a net with an optional slice list.
+ */
 netAssignment
 	:	IDENT sliceList? EQUALS^ concatenation SEMICOLON!
 	;
-	
-concatenation
-	:	((IDENT sliceList?) ('&'! IDENT sliceList?)* ) 
-	|	'<' IDENT '>'
-	| 	'open'!
-	;
-	
 
-/** Not yet supported
-subDesignInstance
-	:	'sub'^ IDENT ':'! IDENT (array)? 'is'!
-		subAttributeAssignment*
-		'begin'
-		portAssignment*
-		'end'! ';'!
+/**
+ * A concatenation consists of either one or more nets with optional slice lists separated by ampersands, 
+ * a single bit-wide net in angle brackets to replicate the net across the width it is being assigned to,
+ * or left explicity open.
+ */
+concatenation
+	:	((IDENT sliceList?) (AMPERSAND! IDENT sliceList?)* ) 
+	|	LANGLE IDENT RANGLE!
+	| 	'open'
 	;
-	
-subAttributeAssignment
-	:	IDENT^ PERIOD! IDENT slice? EQUALS! STRING_LITERAL SEMICOLON!
-	;
-	
-portAssignment
-	:	IDENT (slice slice?)? EQUALS^ concatenation SEMICOLON!
-	;
-	
-portDecl
-	:   type^ array? IDENT SEMICOLON!
-	;
-*/
-	
+
+/**
+ * A pinList is a comma-separated list of pin numbers enclosed in braces.  Each pin number
+ * may be 1 or more characaters long, and may begin with either a number or letter.
+ */	
 pinList
-	: '{' IDENT (',' IDENT)* '}'
+	: 	LBRACE! (IDENT | PIN | INTEGER) (COMMA! (IDENT | PIN | INTEGER))* RBRACE!
 	;
 	
+/**
+ * A sliceList consists of brackets around a single integer, two integers separated by a colon,
+ * or a comma-separated list of integers.
+ */
 sliceList
-	: '[' INT
-	(
-	| ':'^ INT
-	|	(','^ INT)* 
-	)
-	']'
+	: 	LBRACKET INTEGER ((COLON^ INTEGER) | (COMMA^ INTEGER)*) RBRACKET!
+	;
+
+/**
+ * An arrayList consists of a parentheses around a single integer, two integers separated by a colon,
+ * or a comma-separated list of integers in parentheses.
+ */	
+arrayList
+	: 	LPAREN INTEGER ((COLON^ INTEGER) | (COMMA^ INTEGER (COMMA! INTEGER)*)?) RPAREN!
 	;
 	
-arrayList
-	: '(' 
-	(
-	| INT ':'^ INT
-	|	INT (','^ INT)* 
-	)
-	')'
+sliceDecl
+	:	LBRACKET INTEGER ((COLON^ INTEGER) | (COMMA^ INTEGER)+) RBRACKET!
 	;
 	
 
@@ -219,50 +221,81 @@ arrayList
  * Lexer Rules
  *------------------------------------------------------------------------------------------------------*/
  
-//single character definitions
-fragment CHAR : ('a'..'z') | ('A'..'Z') | '_' | '+' | '-' | '$';
-fragment DIGIT : '0'..'9' ;
+/**
+ * Single character definitions
+ */
 SEMICOLON: ';';
 COLON: ':';
 COMMA: ',';
 PERIOD: '.';
 EQUALS: '=';
+LPAREN: '(';
+RPAREN: ')';
 LBRACKET: '[';
 RBRACKET: ']';
+LBRACE: '{';
+RBRACE: '}';
+LANGLE: '<';
+RANGLE: '>';
+AMPERSAND: '&';
 
-// an integer is one or more digits
-INT : DIGIT+;
 
-// s string literal has its wrapping quotes removed
+/**
+ * A character can be uppercase or lowercase letters, and a few others
+ */
+fragment CHAR : ('a'..'z') | ('A'..'Z') | '_' | '+' | '-' | '$';
+
+/**
+ * A digit can be any number 0 through 9
+ */
+fragment DIGIT : ('0'..'9') ;
+
+/**
+ * An integer is one or more digits
+ */
+INTEGER : DIGIT+;
+
+/**
+ * A string literal has it's wrapping quotes removed
+ */
 STRING_LITERAL
-	: 	'"' 
-		{StringBuilder sb = new StringBuilder();}
-		(	'/' '"' 				{sb.appendCodePoint('"');}
-		|	c = ~('"')	
-			{	if (c!=' ' && c!='\t' && c!='\n' && c!='\r' && c!='\f' && c!='\u001D')
-					sb.appendCodePoint(c);
-			}
+	: 	'"' 							{StringBuilder sb = new StringBuilder();}
+		(	c = ~('"' | '\n' | '\r') 	{sb.appendCodePoint(c);}
 		)*
-		'"' 
-		{setText(sb.toString());}
+		'"' 							{setText(sb.toString());}
 	;
 
-// identifiers may not begin with a digit
+/**
+ * Identifiers may not begin with a digit
+ */
 IDENT 
-	: CHAR ( CHAR | DIGIT )*
+	: 	CHAR (CHAR | DIGIT)*
 	;
 
-// whitespace can be a space, tab, newline, carriage return, form feed
+/**
+ * Pin list numbers may begin with a digit
+ */
+PIN
+	:	(CHAR | DIGIT)+
+	;
+	
+/**
+ * Phdl whitespace is ignored
+ */
 WHITESPACE 
 	: (' ' | '\t' | '\n' | '\r' | '\f' | '\u001D')+ {$channel = HIDDEN;}
 	;
 
-// line comments begin with the double slash
+/**
+ * Line comments begin with a double forward slash
+ */
 LINE_COMMENT 
-	: '//' .* ('\n' | '\r' ) {$channel = HIDDEN;}
+	: '//' .* ('\n' | '\r') {$channel = HIDDEN;}
 	;
 
-// multiline comments begin with /* and end with the */ terminator
+/**
+ * Multi-line comments begin and end with the usual indicators
+ */
 MULTILINE_COMMENT 
 	: '/*' .* '*/' {$channel = HIDDEN;}
 	;

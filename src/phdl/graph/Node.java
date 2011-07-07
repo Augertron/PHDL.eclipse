@@ -1,6 +1,6 @@
 package phdl.graph;
 
-public abstract class Node {
+public abstract class Node implements Comparable {
 
 	/**
 	 * The name of the node
@@ -41,21 +41,40 @@ public abstract class Node {
 	public void setPosition(int pos) {
 		this.pos = pos;
 	}
-	
+
 	public abstract NodeType getType();
-	
+
 	@Override
 	public boolean equals(Object o) {
-		return name.equals(((Node)o).getName());
+		return name.equals(((Node) o).getName());
 	}
 
 	@Override
 	public int hashCode() {
 		return name.hashCode();
 	}
-	
+
 	@Override
 	public String toString() {
-		return name + " " + getType().toString();
+		return getType().toString() + " " + name;
+	}
+
+	@Deprecated
+	public void initNode(String name, int line, int pos, String fileName) {
+		this.name = name;
+		this.line = line;
+		this.pos = pos;
+		this.fileName = fileName;
+	}
+
+	public void setLocation(int line, int pos, String fileName) {
+		this.line = line;
+		this.pos = pos;
+		this.fileName = fileName;
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		return this.name.compareTo(((Node) o).getName());
 	}
 }

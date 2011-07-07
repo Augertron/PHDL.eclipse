@@ -1,7 +1,7 @@
 package phdl.graph;
 
-import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 /*
  * TODO test the supernet algorithm again, since the
@@ -12,60 +12,60 @@ public class NetNode extends Attributable {
 	private Set<NetNode> nets;
 	private Set<PinNode> pins;
 	private DesignNode design;
-	
+
 	/**
 	 * Default Constructor.
 	 * 
-	 * @param d the DesignNode that is the parent of this net
+	 * @param d
+	 *            the DesignNode that is the parent of this net
 	 */
 	public NetNode(DesignNode d) {
+		super();
 		setDesign(d);
-		nets = new HashSet<NetNode>();
-		pins = new HashSet<PinNode>();
+		nets = new TreeSet<NetNode>();
+		pins = new TreeSet<PinNode>();
 	}
-	
+
 	/**
 	 * Pins accessor method.
 	 * 
-	 * This method is particularly helpful when generating
-	 * a netlist.
+	 * This method is particularly helpful when generating a netlist.
 	 * 
 	 * @return the set of PinNodes attached to this net
 	 */
 	public Set<PinNode> getPinNodes() {
 		return pins;
 	}
-	
+
 	public boolean addPin(PinNode p) {
 		return (!pins.add(p));
 	}
-	
+
 	/**
 	 * Nets accessor method.
 	 * 
-	 * This method is particularly helpful when using the
-	 * supernet alogorithm.
+	 * This method is particularly helpful when using the supernet alogorithm.
 	 * 
 	 * @return the set of NetNodes attached to this net
 	 */
 	public Set<NetNode> getNetNodes() {
 		return nets;
 	}
-	
+
 	/**
 	 * Checks to see if any nets are attached to this net.
 	 * 
-	 * @return 	true, if there are nets attached,
-	 * 			false, if there aren't
+	 * @return true, if there are nets attached, false, if there aren't
 	 */
 	public boolean hasNets() {
 		return (!nets.isEmpty());
 	}
-	
+
 	/**
 	 * Removes a net connection from this net.
 	 * 
-	 * @param n the net to remove
+	 * @param n
+	 *            the net to remove
 	 */
 	public void removeNet(NetNode n) {
 		for (NetNode p : this.getNetNodes()) {
@@ -74,31 +74,31 @@ public class NetNode extends Attributable {
 			}
 		}
 	}
-	
+
 	/**
 	 * NetNode addition method.
 	 * 
-	 * @param n the new NetNode to add
-	 * @return	true, if the NetNode isn't already connected
-	 * 			false, otherwise
+	 * @param n
+	 *            the new NetNode to add
+	 * @return true, if the NetNode isn't already connected false, otherwise
 	 */
 	public boolean addNet(NetNode n) {
 		return (!nets.add(n));
 	}
-	
+
 	/**
 	 * Merges two nets into a single one.
 	 * 
-	 * @param n the NetNode to merge with
-	 * @return	true, if thet NetNode is connected to this one
-	 * 			false, otherwise
+	 * @param n
+	 *            the NetNode to merge with
+	 * @return true, if thet NetNode is connected to this one false, otherwise
 	 */
 	public boolean mergeNet(NetNode n) {
 		for (NetNode m : this.getNetNodes()) {
 			if (m.equals(n)) {
 				for (NetNode a : m.getNetNodes()) {
 					addNet(a);
-					((NetNode)a).removeNet(m);
+					((NetNode) a).removeNet(m);
 				}
 				for (PinNode p : m.getPinNodes()) {
 					addPin(p);
@@ -111,12 +111,12 @@ public class NetNode extends Attributable {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * The supernet algorithm.
 	 * 
-	 * This iterates through the set of nets and merges them
-	 * with the current one.
+	 * This iterates through the set of nets and merges them with the current
+	 * one.
 	 */
 	public void superNet() {
 		while (!getNetNodes().isEmpty()) {
@@ -134,8 +134,10 @@ public class NetNode extends Attributable {
 	/**
 	 * Debugging method to print the netgraph.
 	 * 
-	 * @param cur the current net being printed
-	 * @param nodes a set of all nets already processed
+	 * @param cur
+	 *            the current net being printed
+	 * @param nodes
+	 *            a set of all nets already processed
 	 */
 	private static void printGraph(NetNode cur, Set<NetNode> nodes) {
 		if (!nodes.contains(cur)) {
@@ -156,7 +158,8 @@ public class NetNode extends Attributable {
 	/**
 	 * Parent DesignNode mutator method.
 	 * 
-	 * @param design the new DesignNode
+	 * @param design
+	 *            the new DesignNode
 	 */
 	public void setDesign(DesignNode design) {
 		this.design = design;
@@ -169,5 +172,14 @@ public class NetNode extends Attributable {
 	 */
 	public DesignNode getDesign() {
 		return design;
+	}
+
+	@Override
+	public String toString() {
+		String myString = super.toString();
+		for (AttributeNode a : attrs) {
+			myString += "\n\t\t" + a.toString();
+		}
+		return myString;
 	}
 }
