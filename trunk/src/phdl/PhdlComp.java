@@ -33,14 +33,11 @@ import org.antlr.runtime.tree.DOTTreeGenerator;
 import org.antlr.runtime.tree.Tree;
 import org.antlr.stringtemplate.StringTemplate;
 
-import phdl.exception.InvalidDesignException;
-//import phdl.graph.BradAnalyzer;
-import phdl.parser.DesignDecl;
-import phdl.parser.ParsedDesigns;
-import phdl.parser.PhdlLexer;
-import phdl.parser.PhdlParser;
-import phdl.parser.PhdlParser.sourceText_return;
-import phdl.parser.PhdlWalker;
+import phdl.grammar.PhdlLexer;
+import phdl.grammar.PhdlParser;
+import phdl.grammar.PhdlParser.sourceText_return;
+import phdl.grammar.PhdlWalker;
+import phdl.graph.DesignNode;
 
 /**
  * A wrapper class which contains the main entry point of the phdl compiler.
@@ -54,7 +51,7 @@ public class PhdlComp {
 	/**
 	 * An array of attributes that every device declaration is required to have
 	 */
-	public static String[] reqAttr = { "REFPREFIX" };
+	public static String[] reqAttr = { "REFPREFIX", "NAME", "VALUE" };
 
 	/**
 	 * The main entry point of the phdl Compiler. It accepts *.phdl source files
@@ -63,12 +60,12 @@ public class PhdlComp {
 	public static void main(String[] args) {
 
 		SortedSet<String> errors = new TreeSet<String>();
-		ParsedDesigns pd = new ParsedDesigns();
 		sourceText_return sourceTree = null;
 
 		// repeat for each source file passed in as an argument
 		for (int i = 0; i < args.length; i++) {
 
+			System.out.println("Compiling..." + args[i]);
 			// 1. attempt to make a character stream from the source file
 			CharStream cs = null;
 			try {
@@ -97,7 +94,7 @@ public class PhdlComp {
 			if (!errors.isEmpty()) {
 				for (String s : errors)
 					System.out.println(s);
-				System.exit(1);
+				// System.exit(1);
 			}
 
 			// 3. convert this tree of tokens to a node stream and set the token
@@ -109,12 +106,23 @@ public class PhdlComp {
 			// 4. walk the stream of nodes and attempt to obtain a set of all
 			// designs and add any errors if they exist
 			PhdlWalker walker = new PhdlWalker(ns);
+			walker.setRequiredAttributes(reqAttr);
 			try {
-				walker.sourceText(pd);
-				for (String error : walker.getErrors())
-					errors.add(error);
+				walker.sourceText();
+				errors.addAll(walker.getErrors());
 			} catch (RecognitionException e) {
 				errors.add(e.getMessage());
+			}
+			// print out all errors if there were any, and exit abnormally
+			if (!errors.isEmpty()) {
+				for (String s : errors)
+					System.out.println(s);
+				// System.exit(1);
+			}
+
+			// print out the design
+			for (DesignNode d : walker.getDesignNodes()) {
+				d.printDesignNode();
 			}
 
 			// 5. optionally convert the token tree to a dotty formatted string
@@ -124,36 +132,6 @@ public class PhdlComp {
 
 		} // end for loop on all source files
 
-		// 6. attempt to find the top level design
-		DesignDecl top = new DesignDecl();
-		try {
-			top = pd.getTopDesign();
-		} catch (InvalidDesignException e) {
-			errors.add(e.getMessage());
-		}
-
-		// for testing only
-		//BradAnalyzer ba = new BradAnalyzer(top);
-		//ba.Analyze();
-		//for (String s : ba.getErrors()) {
-			//errors.add(s);
-		//} // end for testing only
-
-		// 7. attempt to build the hierarchy from all parsed designs
-		// DesignHierarchy dh = new DesignHierarchy(top);
-		// try {
-		// dh.makeHierarchy(pd);
-		// } catch (InvalidDesignException e) {
-		// errors.add(e.getMessage());
-		// }
-
-		// 8. Analyze the design hierarchy and obtain errors if they exist
-		// Analyzer a = new Analyzer(dh);
-		// a.Analyze();
-		// for (String error : a.getErrors()) {
-		// errors.add(error);
-		// }
-
 		// print out all errors if there were any, and exit abnormally
 		if (!errors.isEmpty()) {
 			for (String s : errors)
@@ -161,19 +139,9 @@ public class PhdlComp {
 			System.exit(1);
 		}
 
-		for (DesignDecl dd : pd.getDesignDecls())
-			System.out.println(dd.toString());
-		// System.out.println(dh.toString());
+		System.out.println("...done.");
 	}
 
-	/**
-	 * A debugging routine that writes a string of data to file
-	 * 
-	 * @param fileName
-	 *            The file name to be written
-	 * @param fileData
-	 *            The file data to be written
-	 */
 	static void dumpToFile(String fileName, String fileData) {
 		BufferedWriter dotty = null;
 		try {
@@ -189,5 +157,6 @@ public class PhdlComp {
 			System.out.println("Prolem writing dotty file.");
 			System.exit(1);
 		}
+		System.out.println("Wrote file: " + fileName);
 	}
 }

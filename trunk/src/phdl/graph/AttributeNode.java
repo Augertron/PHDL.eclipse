@@ -4,18 +4,26 @@ public class AttributeNode extends Node {
 
 	private Attributable parent;
 	private String value;
-	
+
 	/**
 	 * Default Constructor.
 	 * 
 	 * Sets the parent of the attribute node.
 	 * 
-	 * @param parent the parent of the attribute node
+	 * @param parent
+	 *            the parent of the attribute node
 	 */
 	public AttributeNode(Attributable parent) {
 		setParent(parent);
 	}
-	
+
+	public AttributeNode(AttributeNode old, Attributable parent) {
+		setParent(parent);
+		initNode(old.getName(), old.getLine(), old.getPosition(),
+				old.getFileName());
+		setValue(old.getValue());
+	}
+
 	/**
 	 * Parent Node accessor method.
 	 * 
@@ -28,7 +36,8 @@ public class AttributeNode extends Node {
 	/**
 	 * Parent Node mutator method.
 	 * 
-	 * @param parent the new parent node
+	 * @param parent
+	 *            the new parent node
 	 */
 	public void setParent(Attributable parent) {
 		this.parent = parent;
@@ -37,10 +46,11 @@ public class AttributeNode extends Node {
 	/**
 	 * Value mutator method.
 	 * 
-	 * @param value the new value to set
+	 * @param value
+	 *            the new value to set
 	 */
 	public void setValue(String value) {
-		this.value = value;
+		this.value = value.toUpperCase();
 	}
 
 	/**
@@ -51,10 +61,27 @@ public class AttributeNode extends Node {
 	public String getValue() {
 		return value;
 	}
-	
+
 	@Override
 	public NodeType getType() {
 		return NodeType.ATTRIBUTE;
 	}
 
+	@Override
+	public String toString() {
+		return super.toString() + " = " + value;
+	}
+
+	@Override
+	public void setName(String name) {
+		this.name = name.toUpperCase();
+	}
+
+	@Override
+	public void initNode(String name, int line, int pos, String fileName) {
+		this.name = name.toUpperCase();
+		this.line = line;
+		this.pos = pos;
+		this.fileName = fileName;
+	}
 }
