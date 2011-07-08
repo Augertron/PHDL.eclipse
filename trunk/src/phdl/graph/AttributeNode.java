@@ -4,6 +4,7 @@ public class AttributeNode extends Node {
 
 	private Attributable parent;
 	private String value;
+	private boolean overwritten = false;
 
 	/**
 	 * Default Constructor.
@@ -19,9 +20,9 @@ public class AttributeNode extends Node {
 
 	public AttributeNode(AttributeNode old, Attributable parent) {
 		setParent(parent);
-		initNode(old.getName(), old.getLine(), old.getPosition(),
-				old.getFileName());
+		setName(old.getName());
 		setValue(old.getValue());
+		setLocation(old.getLine(), old.getPosition(), old.getFileName());
 	}
 
 	/**
@@ -83,5 +84,14 @@ public class AttributeNode extends Node {
 		this.line = line;
 		this.pos = pos;
 		this.fileName = fileName;
+	}
+
+	public boolean overwrite(String value) {
+		this.value = value;
+		if (!overwritten) {
+			overwritten = true;
+			return true;
+		}
+		return false;
 	}
 }

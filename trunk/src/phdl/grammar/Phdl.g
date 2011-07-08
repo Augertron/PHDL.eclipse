@@ -79,7 +79,7 @@ designDecl
 	:	'design'^ IDENT 'is'! 
 		(deviceDecl | netDecl)*
 		'begin'
-		(deviceInstance | netAssignment)*
+		(instanceDecl | netAssignment)*
 		'end'! SEMICOLON!
 	;
 
@@ -99,7 +99,7 @@ deviceDecl
  * and equals sign, and the string it is intialized to, then terminated in a semicolon.
  */	
 attributeDecl
-	:	'attr'^ IDENT EQUALS! STRING_LITERAL SEMICOLON!
+	:	'attr'^ IDENT EQUALS! STRING SEMICOLON!
 	;
 
 /**
@@ -123,7 +123,7 @@ type
  * of the net, followed by an optional set of attributes, and terminated with a semicolon.
  */	
 netDecl
-	:	'net'^ sliceList? IDENT netAttributes? SEMICOLON! 
+	:	'net'^ IDENT sliceDecl? netAttributes? SEMICOLON! 
 	;
 
 /**
@@ -139,8 +139,8 @@ netAttributes
  * from which it is being instanced, an optional array list specifier, and the keyword "is."  In the body
  * of the device instance, attribute and pin assignments may coexist.  
  */
-deviceInstance
-	:	'inst'^ IDENT COLON! IDENT arrayList? 'is'!
+instanceDecl
+	:	'inst'^ IDENT arrayDecl? 'of'! IDENT 'is'!
 		(attributeAssignment | pinAssignment)*
 		'end'! SEMICOLON!
 	;
@@ -151,7 +151,7 @@ deviceInstance
  * a new attribute for an instanced device beyond the scope of the device declaration.
  */
 attributeAssignment
-	:  ('newattr')? instanceQualifier? IDENT EQUALS^ STRING_LITERAL SEMICOLON!
+	:  ('newattr')? instanceQualifier? IDENT EQUALS^ STRING SEMICOLON!
 	;
 	
 /**
@@ -184,7 +184,7 @@ netAssignment
  */
 concatenation
 	:	((IDENT sliceList?) (AMPERSAND! IDENT sliceList?)* ) 
-	|	LANGLE IDENT RANGLE!
+	|	LEFTANGLE IDENT RIGHTANGLE!
 	| 	'open'
 	;
 
@@ -193,7 +193,7 @@ concatenation
  * may be 1 or more characaters long, and may begin with either a number or letter.
  */	
 pinList
-	: 	LBRACE! (IDENT | PIN | INTEGER) (COMMA! (IDENT | PIN | INTEGER))* RBRACE!
+	: 	LEFTBRACE! (IDENT | PIN | INTEGER) (COMMA! (IDENT | PIN | INTEGER))* RIGHTBRACE!
 	;
 	
 /**
@@ -201,7 +201,14 @@ pinList
  * or a comma-separated list of integers.
  */
 sliceList
-	: 	LBRACKET INTEGER ((COLON^ INTEGER) | (COMMA^ INTEGER)*) RBRACKET!
+	: 	LEFTBRACKET INTEGER ((COLON^ INTEGER) | (COMMA^ INTEGER)*) RIGHTBRACKET!
+	;
+
+/**
+ * A sliceDecl is simialr to a sliceList except it omits the single bit slice option
+ */
+sliceDecl
+	:	LEFTBRACKET INTEGER ((COLON^ INTEGER) | (COMMA^ INTEGER)+) RIGHTBRACKET!
 	;
 
 /**
@@ -209,13 +216,15 @@ sliceList
  * or a comma-separated list of integers in parentheses.
  */	
 arrayList
-	: 	LPAREN INTEGER ((COLON^ INTEGER) | (COMMA^ INTEGER (COMMA! INTEGER)*)?) RPAREN!
+	: 	LEFTPAREN INTEGER ((COLON^ INTEGER) | (COMMA^ INTEGER (COMMA! INTEGER)*)?) RIGHTPAREN!
 	;
-	
-sliceDecl
-	:	LBRACKET INTEGER ((COLON^ INTEGER) | (COMMA^ INTEGER)+) RBRACKET!
+
+/**
+ * An arrayDecl is similar to an arrayList except it only allows a colon separated array.
+ */
+arrayDecl
+	:	LEFTPAREN INTEGER COLON^ INTEGER RIGHTPAREN!
 	;
-	
 
 /*------------------------------------------------------------------------------------------------------ 
  * Lexer Rules
@@ -229,14 +238,14 @@ COLON: ':';
 COMMA: ',';
 PERIOD: '.';
 EQUALS: '=';
-LPAREN: '(';
-RPAREN: ')';
-LBRACKET: '[';
-RBRACKET: ']';
-LBRACE: '{';
-RBRACE: '}';
-LANGLE: '<';
-RANGLE: '>';
+LEFTPAREN: '(';
+RIGHTPAREN: ')';
+LEFTBRACKET: '[';
+RIGHTBRACKET: ']';
+LEFTBRACE: '{';
+RIGHTBRACE: '}';
+LEFTANGLE: '<';
+RIGHTANGLE: '>';
 AMPERSAND: '&';
 
 
@@ -256,9 +265,9 @@ fragment DIGIT : ('0'..'9') ;
 INTEGER : DIGIT+;
 
 /**
- * A string literal has it's wrapping quotes removed
+ * A string has it's wrapping quotes removed
  */
-STRING_LITERAL
+STRING
 	: 	'"' 							{StringBuilder sb = new StringBuilder();}
 		(	c = ~('"' | '\n' | '\r') 	{sb.appendCodePoint(c);}
 		)*

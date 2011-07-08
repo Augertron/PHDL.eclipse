@@ -7,10 +7,10 @@ design myDesign is
 		attr package = "R0207";
 		attr tolerance = "10%";
 		pin a[3:0] = {1,2,3,4};
-		//pin[7:4] a = {8,7,6,5};
+		pin b[3:0] = {8,7,6,5};
 	end;
 	
-	net[3:0] myNet is
+	net myNet[3:0] is
 		attr refprefix = "N";
 	end;
 	
@@ -18,27 +18,30 @@ design myDesign is
 		attr refprefix = "R";
 	end;
 	
-	net myNet3;
+	net myNet3[4:1];
 	
-	net[2:1] myNet4;
+	net myNet4[2:1];
 
 begin
 	
-	inst myRes : resistor(1:4) is
+	inst myRes(1:4) of resistor is
 		//tolerance = "5%";
-		//myRes.tolerance = "5%";
+		
 		//myRes(1).tolerance = "5%";
-		myRes(1,3,2).tolerance = "1%";
-		myRes(4).tolerance = "2%";
+		myRes(1,3).tolerance = "1%";
+		myRes(3,4).tolerance = "2%";
+		//myRes.tolerance = "5%";
+		//myRes.tolerance = "10%";
 		//myRes(5).tolerance = "4%";
 		//myRes(1,2,4,5).tolerance = "5%";
 		
-		myRes(1,3,4).name = "Brad";
-		newattr myRes(1,3,2).hometown = "Wisconsin";
-		newattr myRes(1:2).bestfriend = "Nelson";
+		//myRes(1,3,4).name = "Brad";
+		//newattr myRes(1,3,2).hometown = "Neenah, Wisconsin";
+		//newattr myRes(1:2).bestfriend = "Nelson";
+		//newattr myRes.name = "Brad";
 		//a = myNet4[2,1] & myNet2 & myNet3;
 		//a[1:2] = myNet4;
-		//a[3,4] = open;
+		a[3:0] = myNet3;
 	end;
 	
 end;

@@ -5,6 +5,7 @@ public class PinNode extends Node {
 	private Attributable parent;
 	private String pinName;
 	private NetNode net;
+	private boolean open = false;
 
 	public NetNode getNet() {
 		return net;
@@ -56,6 +57,14 @@ public class PinNode extends Node {
 	 */
 	public String getPinName() {
 		return pinName;
+	}
+
+	public boolean isOpen() {
+		return open;
+	}
+
+	public void setOpen() {
+		open = true;
 	}
 
 	@Override
