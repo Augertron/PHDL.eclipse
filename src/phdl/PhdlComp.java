@@ -51,7 +51,10 @@ public class PhdlComp {
 	/**
 	 * An array of attributes that every device declaration is required to have
 	 */
-	public static String[] reqAttr = { "REFPREFIX", "NAME", "VALUE" };
+	static String[] reqAttr = { "REFPREFIX", "NAME", "VALUE" };
+
+	static SortedSet<String> errors = new TreeSet<String>();
+	static SortedSet<String> warnings = new TreeSet<String>();
 
 	/**
 	 * The main entry point of the phdl Compiler. It accepts *.phdl source files
@@ -59,7 +62,6 @@ public class PhdlComp {
 	 */
 	public static void main(String[] args) {
 
-		SortedSet<String> errors = new TreeSet<String>();
 		sourceText_return sourceTree = null;
 
 		// repeat for each source file passed in as an argument
@@ -82,19 +84,16 @@ public class PhdlComp {
 			PhdlParser p = new PhdlParser(ts);
 			try {
 				sourceTree = p.sourceText();
-				if (!p.getErrors().isEmpty()) {
-					for (String error : p.getErrors())
-						errors.add(error);
-				}
+				for (String error : p.getErrors())
+					errors.add(error);
+
 			} catch (RecognitionException e) {
 				errors.add(e.getMessage());
 			}
 
 			// print out all errors if there were any, and exit abnormally
-			if (!errors.isEmpty()) {
-				for (String s : errors)
-					System.out.println(s);
-				// System.exit(1);
+			if (printErrors()) {
+				System.exit(1);
 			}
 
 			// 3. convert this tree of tokens to a node stream and set the token
@@ -110,15 +109,16 @@ public class PhdlComp {
 			try {
 				walker.sourceText();
 				errors.addAll(walker.getErrors());
+				warnings.addAll(walker.getWarnings());
 			} catch (RecognitionException e) {
 				errors.add(e.getMessage());
 			}
 			// print out all errors if there were any, and exit abnormally
-			if (!errors.isEmpty()) {
-				for (String s : errors)
-					System.out.println(s);
-				// System.exit(1);
+			if (printErrors()) {
+				printWarnings();
+				System.exit(1);
 			}
+			printWarnings();
 
 			// print out the design
 			for (DesignNode d : walker.getDesignNodes()) {
@@ -133,13 +133,31 @@ public class PhdlComp {
 		} // end for loop on all source files
 
 		// print out all errors if there were any, and exit abnormally
-		if (!errors.isEmpty()) {
-			for (String s : errors)
-				System.out.println(s);
-			System.exit(1);
-		}
+		// if (printErrors()) {
+		// System.exit(1);
+		// }
 
 		System.out.println("...done.");
+	}
+
+	static boolean printErrors() {
+		if (!errors.isEmpty()) {
+			for (String s : errors) {
+				System.out.println("ERROR: " + s);
+			}
+			return true;
+		}
+		return false;
+	}
+
+	static boolean printWarnings() {
+		if (!warnings.isEmpty()) {
+			for (String s : warnings) {
+				System.out.println("WARNING: " + s);
+			}
+			return true;
+		}
+		return false;
 	}
 
 	static void dumpToFile(String fileName, String fileData) {

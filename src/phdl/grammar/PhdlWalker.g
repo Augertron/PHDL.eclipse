@@ -57,6 +57,7 @@ options {
 	 * The sorted set of errors
 	 */
 	private SortedSet<String> errors = new TreeSet<String>();
+	private SortedSet<String> warnings = new TreeSet<String>();
 	/**
 	 * The set of processed design nodes
 	 */
@@ -79,11 +80,20 @@ options {
 		return errors;
 	}
 	
+	public SortedSet<String> getWarnings() {
+		return warnings;
+	}
+	
 	/**
 	 * Used from within the walker to add an error found while processing the tree
 	 */
 	private void addError(Node n, String message) {
 		errors.add(n.getFileName() + " line " + n.getLine() + ":" 
+				+ n.getPosition() + " " + message + ": " + n.getName());
+	}
+	
+	private void addWarning(Node n, String message) {
+		warnings.add(n.getFileName() + " line " + n.getLine() + ":" 
 				+ n.getPosition() + " " + message + ": " + n.getName());
 	}
 	
@@ -148,7 +158,7 @@ sourceText
 designDecl
 	:	^('design' name=IDENT
 		
-			//==================== JAVA BEGIN =======================
+			//==================== JAVA BLOCK BEGIN =======================
 			{	// make a new design based on the identifier and log its location
 				DesignNode des = new DesignNode();
 				des.setName($name.text);
@@ -158,16 +168,16 @@ designDecl
 				netDecls.clear();
 				instanceDecls.clear();
 			}
-			//===================== JAVA END ========================
+			//===================== JAVA BLOCK END ========================
 		
 		(deviceDecl[des] | netDecl[des])* 'begin' (instDecl[des])*)
 		
-			//==================== JAVA BEGIN =======================
+			//==================== JAVA BLOCK BEGIN =======================
 			{	// add the design node and report if there are duplicates
 				if(!designNodes.add(des))
 					addError(des, "duplicate design unit");
 			}
-			//===================== JAVA END ========================
+			//===================== JAVA BLOCK END ========================
 	;
 
 /**
@@ -176,7 +186,7 @@ designDecl
  *
  * This rule performs the following functions:
  * 1. Make a new device node with the given name and log its location.
- * 2. Clear the appropriate sets which are used to check for duplicate declared attributes and pins.
+ * 2. Clear the appropriate sets which are used to check for duplicate attribute and pin declarations.
  * 3. Using the attibuteDecl and pinDecl rules, process and add all declared attributes and pins to the device.
  * 4. Report any missing attributes present in the required attributes set
  * 5. Report any errors from duplicate device declarations
@@ -184,7 +194,7 @@ designDecl
 deviceDecl[DesignNode des]
 	:	^('device' name=IDENT
 				
-			//==================== JAVA BEGIN =======================
+			//==================== JAVA BLOCK BEGIN =======================
 			{	// make a new device based on the identifier and log its location
 				DeviceNode dev = new DeviceNode(des);
 				dev.setName($name.text);
@@ -194,11 +204,11 @@ deviceDecl[DesignNode des]
 				attrDecls.clear();
 				pinDecls.clear();
 			}
-			//===================== JAVA END ========================
+			//===================== JAVA BLOCK END ========================
 			
 		(attributeDecl[dev] | pinDecl[dev])*)
 		
-			//==================== JAVA BEGIN =======================
+			//==================== JAVA BLOCK BEGIN =======================
 			{	// report any missing required attributes
 				for(String s : reqAttrs) {
 					s = s.toUpperCase();
@@ -211,7 +221,7 @@ deviceDecl[DesignNode des]
 				if(!des.addDevice(dev))
 					addError(dev, "Duplicate device declaration");
 			}
-			//===================== JAVA END ========================
+			//===================== JAVA BLOCK END ========================
 	;
 
 /**
@@ -225,9 +235,9 @@ deviceDecl[DesignNode des]
  * 3. Report any errors with duplicates
  */
 attributeDecl[Attributable dev]
-	:	^('attr' name=IDENT value=STRING_LITERAL)
+	:	^('attr' name=IDENT value=STRING)
 	
-			//==================== JAVA BEGIN =======================
+			//==================== JAVA BLOCK BEGIN =======================
 	    	{	// make a new attribute node, assign its parent, and log its location
 	    		AttributeNode a  = new AttributeNode(dev);
 	    		a.setName($name.text);
@@ -239,7 +249,7 @@ attributeDecl[Attributable dev]
 				if(!attrDecls.add($name.text.toUpperCase()))
 					addError(a, "duplicate attribute declaration");
 			}
-			//===================== JAVA END ========================
+			//===================== JAVA BLOCK END ========================
     ;
 
 /**
@@ -256,22 +266,22 @@ attributeDecl[Attributable dev]
  *
  * This rule performs the following functions:
  * 1. Compare the slice list and pin list sizes, accounting for the possibly of no slice list.
- * 2. Make pin nodes appending the slice bit if applicable, with the device as the parent, and log its location.
+ * 2. Make pin nodes appending the slice bit if applicable, with the device as the parent, and log their location.
  * 3. Report all errors from duplicates and invalid pin lists.
  */
 pinDecl[DeviceNode dev]
 	:	^('pin' 
 	
-			//==================== JAVA BEGIN =======================
+			//==================== JAVA BLOCK BEGIN =======================
 			{ 	// sets to keep track of the slice and pin lists
 				List<Integer> sList = new ArrayList<Integer>(); 
 				List<String> pList = new ArrayList<String>();
 			}
-			//===================== JAVA END ========================
+			//===================== JAVA BLOCK END ========================
 		
 		name=IDENT sliceList[sList]? pinList[pList])
 		
-			//==================== JAVA BEGIN =======================
+			//==================== JAVA BLOCK BEGIN =======================
 			{	// list sizes should only differ if there is no slice list, and the pin list has a size of 1
 				if (sList.size() != pList.size()) {
 					if (sList.size() == 0 && pList.size() != 1)
@@ -325,26 +335,31 @@ pinDecl[DeviceNode dev]
 					errors.add(input.getSourceName() + " line " + $name.line + ":" 
 							+ $name.pos + " duplicate pin declaration: " + $name.text);
 			}
-			//===================== JAVA END ========================
+			//===================== JAVA BLOCK END ========================
 	;
 
-/**
- * The netDecl rule is called by designDecl and uses a design node to add net nodes to it.  
- */	
+ /**
+ * The netDecl rule is called by designDecl and works with a design node.  It makes new net nodes
+ * based on the size of the slice list as specified in the source.  
+ *
+ * This rule performs the following functions:
+ * 1. Make net nodes appending the slice bit if applicable, with the design as the parent, and log their location.
+ * 2. Report all errors from duplicates.
+ */
 netDecl[DesignNode des]
 	:	^('net'
 	
-			//==================== JAVA BEGIN =======================
+			//==================== JAVA BLOCK BEGIN =======================
 			{	// housekeeping
 				List<Integer> slices = new ArrayList<Integer>();
 				NetNode n = new NetNode(null);
 				attrDecls.clear();
 			}
-			//===================== JAVA END ========================
+			//===================== JAVA BLOCK END ========================
 			
-		sliceList[slices]? name=IDENT attributeDecl[n]* )
+		name=IDENT sliceList[slices]? attributeDecl[n]* )
 		
-			//==================== JAVA BEGIN =======================
+			//==================== JAVA BLOCK BEGIN =======================
 			{	// make net nodes based on the slice list
 				for (int i = 0; i < slices.size(); i++) {
 					NetNode newNode = new NetNode(des);
@@ -388,18 +403,33 @@ netDecl[DesignNode des]
 					errors.add(input.getSourceName() + " line " + $name.line + ":" 
 						+ $name.pos + " duplicate net declaration: " + $name.text);
 			}
-			//===================== JAVA END ========================
+			//===================== JAVA BLOCK END ========================
 	;
-	
+
+ /**
+ * The instDecl rule is called by designDecl and works with a design node.  It makes new instance nodes
+ * based on the size of the array list as specified in the source.  
+ *
+ * This rule performs the following functions:
+ * 1. Make instance nodes appending the array index if applicable, with design as the parent, and log their location.
+ * 2. Add all attribute nodes to each instance which are defined in the corresponding device declaration.
+ * 3. Add all pin nodes to each instance which are defined in the corresponding device declaration
+ * 3. Report all errors from duplicates.
+ */
 instDecl[DesignNode des]
-	:	{	// sets of all the instance nodes and indices list which they cover
-			Set<InstanceNode> instNodes = new HashSet<InstanceNode>();
-			List<Integer> indices = new ArrayList<Integer>();
-		}
+	:	^('inst'
+	
+			//==================== JAVA BLOCK BEGIN =======================
+			{	// Set of instance nodes to check for duplicates
+				Set<InstanceNode> instNodes = new HashSet<InstanceNode>();
+				// List of indices to be derived from the arrayList
+				List<Integer> indices = new ArrayList<Integer>();
+			}
+			//===================== JAVA BLOCK END ========================
 		
-		// the instance declaration subtree structure
-		^('inst' instName=IDENT devName=IDENT arrayList[indices]?
+		instName=IDENT arrayList[indices]? devName=IDENT
 		
+			//==================== JAVA BLOCK BEGIN =======================
 			{	// make as many instance nodes as there are indices
 				for (int j = 0; j < indices.size(); j++) {
 				
@@ -411,7 +441,7 @@ instDecl[DesignNode des]
 					DeviceNode dev = des.getDevice($devName.text);
 					if (dev != null) {
 						i.setDevice(dev);
-						// add all of the attributes and pins from the device definition
+						// copy all of the attribute and pin nodes from the device definition
 						for (AttributeNode a: dev.getAttributes())
 							i.addAttribute(new AttributeNode(a, i));
 						for (PinNode pn: dev.getPins())
@@ -432,7 +462,7 @@ instDecl[DesignNode des]
 					DeviceNode dev = des.getDevice($devName.text);
 					if (dev != null) {
 						i.setDevice(dev);
-						// add all of the attributes and pins from the device definition
+						// add all of the attribute and pin nodes from the device definition
 						for (AttributeNode a: dev.getAttributes())
 							i.addAttribute(new AttributeNode(a, i));
 						for (PinNode pn: dev.getPins())
@@ -442,9 +472,8 @@ instDecl[DesignNode des]
 							
 					instNodes.add(i);
 				}
-			}
-		
-			{	// check for duplicates
+			
+				// check for duplicates
 				for (InstanceNode i : instNodes) {
 					if(!des.addInstance(i))
 						addError(i, "duplicate instance declaration");
@@ -455,200 +484,350 @@ instDecl[DesignNode des]
 					errors.add(input.getSourceName() + " line " + $instName.line + ":" 
 						+ $instName.pos + " duplicate instance declaration: " + $instName.text);
 			}
+			//===================== JAVA BLOCK END ========================
 
-		// assign attributes and pins
 		(attrAssign[des, $instName.text] | pinAssign[des, $instName.text])* )
 	;
-
+	
+/**
+ * The attrAssign rule is called by instDecl and works with a design node and instance name.  
+ * If new attributes have been defined and assigned (by the keyword "newattr"), create new
+ * attribute nodes and assign them to the instances they cover as defined by the indices in their 
+ * qualifying array (if it exists).  If a qualifying array does not exist, create as many attribute
+ * nodes as the number of indexed instances in which the attribute assignment resides across all
+ * possible instances (globally). 
+ *
+ * If attributes are not new, overwrite the old values with the new value for all indices in their
+ * qualifying array, or across all instances if no qualifying array is defined (globally).
+ *
+ * This rule performs the following functions:
+ * 1. Make new attribute nodes and assign them to the instance (by index, or globally)
+ * 2. Overwrite existing attributes if they are not declared with "newattr" (by index, or globally)
+ * 3. Report all errors from duplicates, and warnings for overwriting when it already exists
+ */
 attrAssign[DesignNode des, String instName]
-	:	{	// flag for a new attribute and a list of indices the attribute covers
-			boolean newAttr = false;
-			List<Integer> indices = new ArrayList<Integer>();
-		}
+	:	^(EQUALS 
+	
+			//==================== JAVA BLOCK BEGIN =======================
+			{	// flag for a new attribute and a list of indices the attribute assignment applies to
+				boolean newAttr = false;
+				List<Integer> indices = new ArrayList<Integer>();
+			}
+			//===================== JAVA BLOCK END ========================
 		
-		// the attribute assignment subtree structure
-		^(EQUALS ('newattr' {newAttr = true;} )? instanceQualifier[instName, indices]? name=IDENT value=STRING_LITERAL)
+		('newattr' {newAttr = true;} )? instanceQualifier[instName, indices]? 
+		name=IDENT value=STRING)
 		
-		{	// for every index
-			for(int i = 0; i < indices.size(); i++) {
-				InstanceNode inst = des.getInstance(instName + "(" + indices.get(i) + ")");
-				if(inst!=null){
-					AttributeNode a = inst.getAttribute($name.text);
-					if (a!=null) {
-						a.setValue($value.text);
-					} else {
-						if(newAttr) {
-							AttributeNode newA = new AttributeNode(inst);
-							newA.setName($name.text);
-							newA.setValue($value.text);
-							newA.setLocation($name.line, $name.pos, input.getSourceName());
-							inst.addAttribute(newA);
+			//==================== JAVA BLOCK BEGIN =======================
+			{	// for every index in the instance qualifier array list
+				for(int i = 0; i < indices.size(); i++) {
+					// find the instance node in the design with the right index
+					InstanceNode inst = des.getInstance(instName + "(" + indices.get(i) + ")");
+					if(inst!=null){
+						// find its attribute by the name
+						AttributeNode a = inst.getAttribute($name.text);
+						if (a!=null) {
+							if(newAttr)
+								warnings.add(input.getSourceName() + " line " + $name.line + ":" 
+									+ $name.pos + " new attribute already declared in device: " 
+									+ $name.text);
+							// overwrite the attribute value
+							if(!a.overwrite($value.text))
+								warnings.add(input.getSourceName() + " line " + $name.line + ":" 
+									+ $name.pos + " attribute already overwritten: " 
+									+ $name.text);
 						} else {
-							errors.add(input.getSourceName() + " line " + $name.line + ":" 
-								+ $name.pos + " instance references undeclared attribute: " + $name.text);
+							// the attribute doesn't exist
+							if(newAttr) {
+								// make a new attribute if explicitly asked to do so
+								AttributeNode newA = new AttributeNode(inst);
+								newA.setName($name.text);
+								newA.overwrite($value.text);
+								newA.setLocation($name.line, $name.pos, input.getSourceName());
+								inst.addAttribute(newA);
+							} else {
+								// report that the attribute is undeclared
+								errors.add(input.getSourceName() + " line " + $name.line + ":" 
+									+ $name.pos + " attribute undeclared in device: " + $name.text);
+							}
 						}
+					} else {
+						// the instance node does not exist
+						errors.add(input.getSourceName() + " line " + $name.line + ":" 
+									+ $name.pos + " instance is undeclared: " 
+									+ instName + "(" + indices.get(i) + ")");
+					}
+				}
+				// if the attribute is global
+				if (indices.isEmpty()) {
+					// for every instance node with this instance name
+					for (InstanceNode inst : des.getAllInstances(instName)) {
+						// find its attribute by the name
+						AttributeNode a = inst.getAttribute($name.text);
+						if (a!=null) {
+							if(newAttr)
+								warnings.add(input.getSourceName() + " line " + $name.line + ":" 
+									+ $name.pos + " new attribute already declared in device: " 
+									+ $name.text);
+							// overwrite the attribute value
+							if(!a.overwrite($value.text))
+								warnings.add(input.getSourceName() + " line " + $name.line + ":" 
+									+ $name.pos + " attribute already overwritten: " 
+									+ $name.text);
+						} else {
+							// the attribute doesn't exist
+							if(newAttr) {
+								// make a new attribute if explicitly asked to do so
+								AttributeNode newA = new AttributeNode(inst);
+								newA.setName($name.text);
+								newA.overwrite($value.text);
+								newA.setLocation($name.line, $name.pos, input.getSourceName());
+								inst.addAttribute(newA);
+							} else {
+								// report that the attribute is undeclared
+								errors.add(input.getSourceName() + " line " + $name.line + ":" 
+									+ $name.pos + " attribute undeclared in device: " + instName);
+							}
+						}
+					}
+				}
+			}
+			//===================== JAVA BLOCK END ========================
+	;
+
+
+pinAssign[DesignNode des, String instName]	
+	:	^(EQUALS 
+	
+			//==================== JAVA BLOCK BEGIN =======================
+			{	List<Integer> indices = new ArrayList<Integer>();
+				List<Integer> slices = new ArrayList<Integer>();
+				List<String> concats = new ArrayList<String>();
+			}
+			//===================== JAVA BLOCK END ========================
+			
+		instanceQualifier[instName, indices]? name=IDENT sliceList[slices]? 
+		concatenation[concats, slices.size()])
+		
+			//==================== JAVA BLOCK BEGIN =======================
+			{	// process assignments that aren't declared as open
+				if (!concats.get(0).equals("open")) {
+					// check for valid concatenation width
+					if (slices.size()==concats.size()) {
+						// process global array and slice lists
+						if(indices.isEmpty() && slices.isEmpty()) {
+							// iterate over all corresponding instances in the design
+							for(InstanceNode i : des.getAllInstances(instName)) {
+								// obtain list of pins inside each instance with this name and iterate over them
+								List<PinNode> pins = i.getAllPins($name.text);
+								for(int j = 0 ; j < pins.size(); j++) {
+									// process non-globals
+									if(!concats.get(j).startsWith("<>")) {
+										// set the pin's net to the net in the concatenation list
+										pins.get(j).setNet(des.getNet(concats.get(j)));
+										// set the concatenation net in the design to the pin
+										des.getNet(concats.get(j)).addPin(pins.get(j));
+									} else {
+										// process globals
+									}
+								}
+							}
+						} else if (slices.isEmpty()) {
+							// process global slice list, arbitrary array list
+						} else if (indices.isEmpty()) {
+							// process global array list, arbitrary slice list
+						} else {
+							// process arbitrary array and slice list.
+						}
+					} else {
+						System.out.println(slices.size() + " " + concats.size());
+						errors.add(input.getSourceName() + " line " + $name.line + ":" 
+								+ $name.pos + " invalid concatenation width: " + $name.text);
 					}
 				} else {
-					errors.add(input.getSourceName() + " line " + $name.line + ":" 
-								+ $name.pos + " instance name is undeclared: " + instName + "(" + indices.get(i) + ")");
+					// process assignments declared as open (use setOpen())
 				}
+				
+				// for every instance, report any dangling pins (no assigned net, and not declared open)
 			}
-			// if a global attribute
-			if (indices.isEmpty()) {
-				for (InstanceNode inst : des.getAllInstances(instName)) {
-					AttributeNode a = inst.getAttribute($name.text);
-					if (a!=null) {
-						a.setValue($value.text);
-					} else {
-						if(newAttr) {
-							AttributeNode newA = new AttributeNode(inst);
-							newA.setName($name.text);
-							newA.setValue($value.text);
-							newA.setLocation($name.line, $name.pos, input.getSourceName());
-							inst.addAttribute(newA);
-						} else {
-							errors.add(input.getSourceName() + " line " + $name.line + ":" 
-								+ $name.pos + " instance references undeclared attribute: " + instName);
-						}
-					}
-				}
-			}
-		}
+			//===================== JAVA BLOCK END ========================
 	;
 	
-pinAssign[DesignNode des, String instName]	
-	:	{	List<Integer> indices = new ArrayList<Integer>();
-			List<Integer> bits = new ArrayList<Integer>();
-			List<String> concats = new ArrayList<String>();
+/**
+ * TODO check the vector width against the concatenation width
+ */
+concatenation[List<String> concats, int width]
+	:		// a blank list of slices to populate with the sliceList rule
+			{List<Integer> slices = new ArrayList<Integer>();}	
 	
-		}
-		^(EQUALS instanceQualifier[instName, indices]? name=IDENT sliceList[bits]? concatenation[concats, bits.size()])
-		{	if(indices.isEmpty() && bits.isEmpty()) {
-				for(InstanceNode i : des.getAllInstances(instName)) {
-					List<PinNode> pins = i.getAllPins($name.text);
-					for(int j = 0 ; j < pins.size(); j++) {
-						pins.get(j).setNet(des.getNet(concats.get(j)));
-						des.getNet(concats.get(j)).addPin(pins.get(j));
-					}
-				}
-			}
-		}
-	;
-	
-concatenation[List<String> concats, int vectorWidth]
-	:	(	{List<Integer> slices = new ArrayList<Integer>();}
-			(first=IDENT sliceList[slices]?
-				{	if (slices.isEmpty()) {
-						concats.add($first.text);
-					} else {
-						for(int i = 0 ; i < slices.size(); i++) {
-							concats.add($first.text + "[" + slices.get(i) + "]");
-						}
-					}
-				}
-			(next=IDENT 				{slices.clear();}
+		((first=IDENT sliceList[slices]?
 			
-			sliceList[slices]?
-				{	if (slices.isEmpty()) {
-						concats.add($next.text);
-					} else {
-						for(int i = 0 ; i < slices.size(); i++) {
-							concats.add($next.text + "[" + slices.get(i) + "]");
-						}
-					}
+			//==================== JAVA BLOCK BEGIN =======================
+			{	if (slices.isEmpty()) {
+					concats.add($first.text);
+				} else {
+					for(int i = 0 ; i < slices.size(); i++)
+						concats.add($first.text + "[" + slices.get(i) + "]");
 				}
-			)* )
-
-		|	(LANGLE global=IDENT )
-				{	for(int i = 0; i < vectorWidth; i++)
-						concats.add("<>" + $global.text);
+			}
+			//===================== JAVA BLOCK END ========================
+				
+		(next=IDENT 				
+			
+			// slices needs to be cleared before processing additional nets
+			{slices.clear();}
+			
+		sliceList[slices]?
+		
+			//==================== JAVA BLOCK BEGIN =======================
+			{	if (slices.isEmpty()) {
+					concats.add($next.text);
+				} else {
+					for(int i = 0 ; i < slices.size(); i++)
+						concats.add($next.text + "[" + slices.get(i) + "]");
 				}
+			}
+			//===================== JAVA BLOCK END ========================
+			
+		)* ) | (LEFTANGLE global=IDENT )
+		
+			//==================== JAVA BLOCK BEGIN =======================
+			{	for(int i = 0; i < width; i++)
+					concats.add("<>" + $global.text);
+			}
+			//===================== JAVA BLOCK END ========================
+				
 		|	('open')	{concats.add("open");}
-		)
+		)	
 	;
 
 /**
- * Instance qualifier looks for a subtree with a period as its parent.
+ * The instanceQualifier rule accepts the enclosing instance name that the qualifier resides in, and
+ * an empty list of indices that the instance will populate using the arrayList rule.  It compares the
+ * qualifier name to the instance name which it is supposed to refer, and reports an error if they
+ * do not match.
+ *
+ * This rule performs the following functions:
+ * 1. Check the qualifier name against the instance name passed in
+ * 2. Call the arrayList rule (if one exists) to populate the list of indices
+ * 3. Report an error if the qualifier name does not match.
  */
 instanceQualifier[String instName, List<Integer> indices]
-	:	^(PERIOD name=IDENT arrayList[indices]?)
+	:	^(PERIOD qualName=IDENT arrayList[indices]?)
 	
-	    {	// check that the instance qualifier matches
-	    	if (!instName.equals($name.text)) {
-	    		errors.add(input.getSourceName() + " line " + $name.line + ":" 
-						+ $name.pos + " invalid instance qualifier: " + $name.text);
-	    	}
-	    }
+			//==================== JAVA BLOCK BEGIN =======================
+		    {	// check that the instance qualifier matches
+		    	if (!instName.equals($qualName.text)) {
+		    		errors.add(input.getSourceName() + " line " + $qualName.line + ":" 
+							+ $qualName.pos + " invalid instance qualifier: " + $qualName.text);
+		    	}
+		    }
+		    //===================== JAVA BLOCK END ========================
 	;
 
+/**
+ * The arrayList rule accepts an empty list of integers as its argument to populate with all
+ * of the indices inside the subtree.  The array subtree may have either a comma or colon as the parent
+ * or may be a flat list beginning with a left parentheses (in the case of a single index).
+ *
+ * This rule performs the following functions:
+ * 1. For recursive subtrees with a comma as the parent, add the values in order to the list
+ * 2. For subtrees with a colon as the parent, add all integers in order from the first to last child to the list.
+ * 3. For flat subtrees (single index) add the single integer to the list.
+ */
 arrayList[List<Integer> indices]
-	:	^(COMMA LPAREN
-		start=INTEGER				{indices.add(Integer.parseInt($start.text));}
-      	(	next=INTEGER			{indices.add(Integer.parseInt($next.text));}
-      	)*
-      	)
-	| 	^(COLON	LPAREN start=INTEGER end=INTEGER		
-			{	int begin = Integer.parseInt($start.text);
-				int finish = Integer.parseInt($end.text);
+	:	^(COMMA LEFTPAREN first=INTEGER		{indices.add(Integer.parseInt($first.text));}
+      	(next=INTEGER						{indices.add(Integer.parseInt($next.text));}		)*)
+      	
+	| 	^(COLON	LEFTPAREN first=INTEGER last=INTEGER
 			
-				if (begin <= finish) {	
-        			for (int i = begin; i <= finish; i++) {
+			//==================== JAVA BLOCK BEGIN =======================
+			{	int msb = Integer.parseInt($first.text);
+				int lsb = Integer.parseInt($last.text);
+				if (msb <= lsb) {	
+        			for (int i = msb; i <= lsb; i++)
           				indices.add(i);
-        			}
       			}
       			else {
-        			for (int i = begin; i >= finish; i--) {
-           				indices.add(i);
-        			}
+        			for (int i = msb; i >= lsb; i--) 
+        				indices.add(i);
       			}
 			}
+			//===================== JAVA BLOCK END ========================
 		)
-	|	(LPAREN single=INTEGER 	{indices.add(Integer.parseInt($single.text));}		)
+		
+	|	(LEFTPAREN single=INTEGER 	{indices.add(Integer.parseInt($single.text));}				)
  	;
 
+/**
+ * The sliceList rule accepts an empty list of integers as its argument to populate with all
+ * of the slices inside the subtree.  The slice subtree may have either a comma or colon as the parent
+ * or may be a flat list beginning with a left bracket (in the case of a single bit slice).
+ *
+ * This rule performs the following functions:
+ * 1. For recursive subtrees with a comma as the parent, add the values in order to the list
+ * 2. For subtrees with a colon as the parent, add all integers in order from the first to last child to the list.
+ * 3. For flat subtrees (single bit slice) add the single integer to the list.
+ */
 sliceList[List<Integer> slices]
-	:	// comma-separated list subtree structure
-		^(COMMA LBRACKET start=INTEGER  	{slices.add(Integer.parseInt($start.text));}
-      	(next=INTEGER						{slices.add(Integer.parseInt($next.text));}		)*
-      	)
+	:	^(COMMA LEFTBRACKET first=INTEGER  	{slices.add(Integer.parseInt($first.text));}
+      	(next=INTEGER						{slices.add(Integer.parseInt($next.text));}			)*)
       	
-	|	// colon-separated vector subtree structure
-		^(COLON LBRACKET start=INTEGER end=INTEGER		
-			{	int begin = Integer.parseInt($start.text);
-				int finish = Integer.parseInt($end.text);
+	|	^(COLON LEFTBRACKET first=INTEGER last=INTEGER
+		
+			//==================== JAVA BLOCK BEGIN =======================		
+			{	int msb = Integer.parseInt($first.text);
+				int lsb = Integer.parseInt($last.text);
 			
-				if (begin <= finish) {	
+				if (msb <= lsb) {	
 					// increment for up slice lists
-        			for (int i = begin; i <= finish; i++)
+        			for (int i = msb; i <= lsb; i++)
           				slices.add(i);
       			} else {
       				// decrement for down slice lists
-        			for (int i = begin; i >= finish; i--)
+        			for (int i = msb; i >= lsb; i--)
            				slices.add(i);
       			}
 			}
+			//===================== JAVA BLOCK END ========================
 		)
-
+		
+	|	(LEFTBRACKET single=INTEGER 	{slices.add(Integer.parseInt($single.text));}			)
  	;
 
+
+/**
+ * The pinList rule accepts an empty list of strings as its argument to populate with all
+ * of the pin numbers inside a pin list subtree.  It populates the list in left to right
+ * order, as the pin list appears in the source text.  A pin list in the source text is
+ * defined by a comma-separated list enclosed in braces.
+ *
+ * This rule performs the following functions:
+ * 1. Adds each pin number in the tree to the list of strings passed in.
+ * 2. Checks for duplicate pin numbers in the tree with a set
+ */
 pinList[List<String> pList]
-	:	// maintain a set of pins to check for duplicates in the pin list
-		{Set<String> pins = new HashSet<String>();}
-	
-		// adds the first pin in the pin list
-		first= (PIN | INTEGER | IDENT)	
-			{	if(!pins.add($first.text))
+	:	first= (PIN | INTEGER | IDENT)
+
+			//==================== JAVA BLOCK BEGIN =======================	
+			{	// maintain a set of pin numbers to check for duplicates in the pin list
+				Set<String> pins = new HashSet<String>();
+				if(!pins.add($first.text))
 					errors.add(input.getSourceName() + " line " + $first.line + ":" 
 						+ $first.pos + " duplicate found in pin list");
 				pList.add($first.text);
 			}
+			//===================== JAVA BLOCK END ========================
 		
-		// adds subsequent pins in the pin list	
-     	(next= (PIN | INTEGER | IDENT)		
+     	(next= (PIN | INTEGER | IDENT)	
+     	
+     		//==================== JAVA BLOCK BEGIN =======================	
      		{	if(!pins.add($next.text))
 					errors.add(input.getSourceName() + " line " + $first.line + ":" 
 						+ $first.pos + " duplicate found in pin list");
 				pList.add($next.text);
-			}		
+			}
+			//===================== JAVA BLOCK END ========================	
+				
      	)*
  	;

@@ -134,15 +134,26 @@ public class InstanceNode extends Attributable {
 		return null;
 	}
 
+	/**
+	 * Returns a list of PinNodes with the same name as the name passed in.
+	 * Valid names are an exact match (suffix length is zero), or those that are
+	 * suffixed by an array index (the start of which is marked by an open
+	 * parentheses character.)
+	 * 
+	 * @param pinName
+	 * @return The list of pin nodes with the same name as pinName.
+	 */
 	public List<PinNode> getAllPins(String pinName) {
-		List<PinNode> myPins = new ArrayList<PinNode>();
+		List<PinNode> allPins = new ArrayList<PinNode>();
 		for (int i = 0; i < pins.size(); i++) {
+			// make a new string with the name of the pin node removed, leaving
+			// only the suffix if it exists.
 			String suffix = pins.get(i).getName().substring(pinName.length());
 			if (suffix.length() == 0 || suffix.charAt(0) == '(') {
-				myPins.add(pins.get(i));
+				allPins.add(pins.get(i));
 			}
 		}
-		return myPins;
+		return allPins;
 	}
 
 	public PinNode getPin(String s) {

@@ -105,14 +105,14 @@ public class DesignNode extends Node {
 	}
 
 	public Set<InstanceNode> getAllInstances(String instName) {
-		Set<InstanceNode> insts = new TreeSet<InstanceNode>();
+		Set<InstanceNode> allInstances = new TreeSet<InstanceNode>();
 		for (InstanceNode i : instances) {
 			String suffix = i.getName().substring(instName.length());
 			if (suffix.length() == 0 || suffix.charAt(0) == '(') {
-				insts.add(i);
+				allInstances.add(i);
 			}
 		}
-		return insts;
+		return allInstances;
 	}
 
 	public void printDesignNode() {
