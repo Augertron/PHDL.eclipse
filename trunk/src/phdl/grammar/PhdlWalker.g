@@ -37,7 +37,6 @@ options {
 
 @header {
 	package phdl.grammar;
-	import phdl.PhdlComp;
 	import java.util.TreeSet;
 	import java.util.Set;
 	import java.util.HashSet;
@@ -64,14 +63,12 @@ options {
 	private Set<DesignNode> designNodes = new HashSet<DesignNode>();
 	
 	/**
-	 * Sets to check for duplicates whild processing everything
+	 * Sets to check for duplicates while processing everything
 	 */
 	private Set<String> attrDecls = new HashSet<String>();
 	private Set<String> pinDecls = new HashSet<String>();
 	private Set<String> netDecls = new HashSet<String>();
 	private Set<String> instanceDecls = new HashSet<String>();
-	private Set<String> attrAssigns = new HashSet<String>();
-	private Set<String> pinAssigns = new HashSet<String>();
 	
 	/**
 	 * Called to obtain the errors if any exist after walking and processing the tree
@@ -80,21 +77,43 @@ options {
 		return errors;
 	}
 	
+	/**
+	 * Called to obtain the warnings if any exist after walking and processing the tree
+	 */
 	public SortedSet<String> getWarnings() {
 		return warnings;
 	}
 	
 	/**
-	 * Used from within the walker to add an error found while processing the tree
+	 * Adds an error from a Node object
 	 */
 	private void addError(Node n, String message) {
 		errors.add(n.getFileName() + " line " + n.getLine() + ":" 
 				+ n.getPosition() + " " + message + ": " + n.getName());
 	}
 	
+	/**
+	 * Adds an error from a CommonTree object
+	 */
+	private void addError(CommonTree ct, String message) {
+		errors.add(input.getSourceName() + " line " + ct.getLine() + ":" 
+				+ ct.getCharPositionInLine() + " " + message + ": " + ct.getText());
+	}
+	
+	/**
+	 * Adds a warning from a Node object
+	 */
 	private void addWarning(Node n, String message) {
 		warnings.add(n.getFileName() + " line " + n.getLine() + ":" 
 				+ n.getPosition() + " " + message + ": " + n.getName());
+	}
+	
+	/**
+	 * Adds a warning from a CommonTree object
+	 */
+	private void addWarning(CommonTree ct, String message) {
+		warnings.add(input.getSourceName() + " line " + ct.getLine() + ":" 
+				+ ct.getCharPositionInLine() + " " + message + ": " + ct.getText());
 	}
 	
 	/**
@@ -110,6 +129,46 @@ options {
 	public void setRequiredAttributes(String[] attributes) {
 		for(int i = 0; i < attributes.length; i ++) {
 			reqAttrs.add(attributes[i]);
+		}
+	}
+	
+	/**
+	 * Helper method for the pinAssignment rule.  Given a list of slices, concats, an instance node, and a pinNode
+	 * it assigns all relevant pins to their respective net.
+	 */
+	private void assignPins(List<Integer> slices, List<NetNode> concats, InstanceNode inst, CommonTree pinNode) {
+		String pinName = pinNode.getText();
+		if (slices.isEmpty()) {
+			if (concats.size() == 1) {
+				PinNode p = inst.getPin(pinName);
+				if (p != null) {
+					if (p.hasNet())
+						addWarning(pinNode, "pin already assigned");
+					p.setNet(concats.get(0));
+					concats.get(0).addPin(p);
+				} else {
+					addError(pinNode, "pin undeclared in device");
+				}
+			} else {
+				addError(pinNode, "invalid assignment width");
+			}
+		} else {
+			if (concats.size() == slices.size()) {
+				// assign pins
+				for (int i = 0; i < concats.size(); i++) {
+					PinNode p = inst.getPin(pinName + "[" + slices.get(i) + "]");
+					if (p != null) { 
+						if (p.hasNet())
+							addWarning(pinNode, "pin already assigned");
+						p.setNet(concats.get(i));
+						concats.get(i).addPin(p);
+					} else {
+						addError(pinNode, "pin undeclared in device");
+					}
+				}
+			} else {
+				addError(pinNode, "invalid assignment width");
+			}
 		}
 	}
 	
@@ -176,6 +235,22 @@ designDecl
 			{	// add the design node and report if there are duplicates
 				if(!designNodes.add(des))
 					addError(des, "duplicate design unit");
+					
+				// report any unused device declarations
+				for (DeviceNode dev : des.getDevices()) {
+					if (!des.isDeviceInstanced(dev)) {
+						addWarning(dev, "unused device declaration");
+					}
+				}
+				
+				// report any dangling pins in all instances
+				for (InstanceNode i : des.getInstances()) {
+					for (PinNode p : i.getPins()) {
+						if (!p.hasNet()) {
+							addError(i, "dangling pin " + p.getName() + " in instance");
+						}
+					}
+				}
 			}
 			//===================== JAVA BLOCK END ========================
 	;
@@ -213,8 +288,7 @@ deviceDecl[DesignNode des]
 				for(String s : reqAttrs) {
 					s = s.toUpperCase();
 					if(dev.getAttribute(s)==null)
-						errors.add(input.getSourceName() + " line " + $name.line + ":" 
-							+ $name.pos + " required attribute \"" + s + "\" missing in device: " + $name.text);
+						addError($name, "required attribute \"" + s + "\" missing in device");
 				}
 				
 				// attempt to add the device declaration and report duplicates
@@ -279,17 +353,15 @@ pinDecl[DeviceNode dev]
 			}
 			//===================== JAVA BLOCK END ========================
 		
-		name=IDENT sliceList[sList]? pinList[pList])
+		sliceList[sList]? name=IDENT pinList[pList])
 		
 			//==================== JAVA BLOCK BEGIN =======================
 			{	// list sizes should only differ if there is no slice list, and the pin list has a size of 1
 				if (sList.size() != pList.size()) {
 					if (sList.size() == 0 && pList.size() != 1)
-						errors.add(input.getSourceName() + " line " + $name.line + ":" 
-							+ $name.pos + " invalid pin list: " + $name.text);				
+						addError($name, "invalid pin list");
 					if (sList.size() != 0)
-						errors.add(input.getSourceName() + " line " + $name.line + ":" 
-							+ $name.pos + " invalid pin list: " + $name.text);
+						addError($name, "invalid pin list");
 				}
 				
 				// make new pin nodes for all slices by appending the slice reference in brackets to the name
@@ -302,8 +374,7 @@ pinDecl[DeviceNode dev]
 	        		try{
 						newPin.setPinName(pList.get(i));
 					} catch (IndexOutOfBoundsException e) {
-						errors.add(input.getSourceName() + " line " + $name.line + ":" 
-							+ $name.pos + " invalid pin list: " + $name.text);
+						addError($name, "invalid pin list");
 					}
 					
 					// report any duplicate pin declarations
@@ -321,8 +392,7 @@ pinDecl[DeviceNode dev]
 					try{
 						newPin.setPinName(pList.get(0));
 					} catch (IndexOutOfBoundsException e) {
-						errors.add(input.getSourceName() + " line " + $name.line + ":" 
-							+ $name.pos + " invalid pin list: " + $name.text);
+						addError($name, "invalid pin list");
 					}
 					
 					// report any duplicate pin declarations
@@ -332,8 +402,7 @@ pinDecl[DeviceNode dev]
 				
 				// check for overall duplicates based solely on the name
 				if (!pinDecls.add($name.text))
-					errors.add(input.getSourceName() + " line " + $name.line + ":" 
-							+ $name.pos + " duplicate pin declaration: " + $name.text);
+					addError($name, "duplicate pin declaration");
 			}
 			//===================== JAVA BLOCK END ========================
 	;
@@ -357,7 +426,7 @@ netDecl[DesignNode des]
 			}
 			//===================== JAVA BLOCK END ========================
 			
-		name=IDENT sliceList[slices]? attributeDecl[n]* )
+		sliceList[slices]? name=IDENT attributeDecl[n]* )
 		
 			//==================== JAVA BLOCK BEGIN =======================
 			{	// make net nodes based on the slice list
@@ -421,13 +490,13 @@ instDecl[DesignNode des]
 	
 			//==================== JAVA BLOCK BEGIN =======================
 			{	// Set of instance nodes to check for duplicates
-				Set<InstanceNode> instNodes = new HashSet<InstanceNode>();
+				List<InstanceNode> instNodes = new ArrayList<InstanceNode>();
 				// List of indices to be derived from the arrayList
 				List<Integer> indices = new ArrayList<Integer>();
 			}
 			//===================== JAVA BLOCK END ========================
 		
-		instName=IDENT arrayList[indices]? devName=IDENT
+		arrayList[indices]? instName=IDENT devName=IDENT
 		
 			//==================== JAVA BLOCK BEGIN =======================
 			{	// make as many instance nodes as there are indices
@@ -445,7 +514,7 @@ instDecl[DesignNode des]
 						for (AttributeNode a: dev.getAttributes())
 							i.addAttribute(new AttributeNode(a, i));
 						for (PinNode pn: dev.getPins())
-							i.addPin(pn);
+							i.addPin(new PinNode(pn, i));
 					} else
 						addError(i, "instance references undeclared device");
 					
@@ -466,7 +535,7 @@ instDecl[DesignNode des]
 						for (AttributeNode a: dev.getAttributes())
 							i.addAttribute(new AttributeNode(a, i));
 						for (PinNode pn: dev.getPins())
-							i.addPin(pn);
+							i.addPin(new PinNode(pn, i));
 					} else
 						addError(i, "instance references undeclared device");
 							
@@ -481,8 +550,7 @@ instDecl[DesignNode des]
 				
 				// check for overall duplicates based solely on the instName
 				if (!instanceDecls.add($instName.text))
-					errors.add(input.getSourceName() + " line " + $instName.line + ":" 
-						+ $instName.pos + " duplicate instance declaration: " + $instName.text);
+					addError($instName, "duplicate instance declaration");
 			}
 			//===================== JAVA BLOCK END ========================
 
@@ -515,7 +583,7 @@ attrAssign[DesignNode des, String instName]
 			}
 			//===================== JAVA BLOCK END ========================
 		
-		('newattr' {newAttr = true;} )? instanceQualifier[instName, indices]? 
+		('newattr' {newAttr = true;} )? (instanceQualifier[instName, indices, des] | globalArray[indices, instName, des])
 		name=IDENT value=STRING)
 		
 			//==================== JAVA BLOCK BEGIN =======================
@@ -528,14 +596,10 @@ attrAssign[DesignNode des, String instName]
 						AttributeNode a = inst.getAttribute($name.text);
 						if (a!=null) {
 							if(newAttr)
-								warnings.add(input.getSourceName() + " line " + $name.line + ":" 
-									+ $name.pos + " new attribute already declared in device: " 
-									+ $name.text);
+								addWarning($name, "new attribute already declared in device");
 							// overwrite the attribute value
 							if(!a.overwrite($value.text))
-								warnings.add(input.getSourceName() + " line " + $name.line + ":" 
-									+ $name.pos + " attribute already overwritten: " 
-									+ $name.text);
+								addWarning($name, "atribute already overwritten");
 						} else {
 							// the attribute doesn't exist
 							if(newAttr) {
@@ -547,15 +611,12 @@ attrAssign[DesignNode des, String instName]
 								inst.addAttribute(newA);
 							} else {
 								// report that the attribute is undeclared
-								errors.add(input.getSourceName() + " line " + $name.line + ":" 
-									+ $name.pos + " attribute undeclared in device: " + $name.text);
+								addError($name, "attribute undeclared in device");
 							}
 						}
 					} else {
 						// the instance node does not exist
-						errors.add(input.getSourceName() + " line " + $name.line + ":" 
-									+ $name.pos + " instance is undeclared: " 
-									+ instName + "(" + indices.get(i) + ")");
+						addError($name, "instance " + instName + "(" + indices.get(i) + ")" + " is undeclared");
 					}
 				}
 				// if the attribute is global
@@ -566,14 +627,10 @@ attrAssign[DesignNode des, String instName]
 						AttributeNode a = inst.getAttribute($name.text);
 						if (a!=null) {
 							if(newAttr)
-								warnings.add(input.getSourceName() + " line " + $name.line + ":" 
-									+ $name.pos + " new attribute already declared in device: " 
-									+ $name.text);
+								addWarning($name, "new attribute already declared in device");
 							// overwrite the attribute value
 							if(!a.overwrite($value.text))
-								warnings.add(input.getSourceName() + " line " + $name.line + ":" 
-									+ $name.pos + " attribute already overwritten: " 
-									+ $name.text);
+								addWarning($name, "atribute already overwritten");
 						} else {
 							// the attribute doesn't exist
 							if(newAttr) {
@@ -585,8 +642,7 @@ attrAssign[DesignNode des, String instName]
 								inst.addAttribute(newA);
 							} else {
 								// report that the attribute is undeclared
-								errors.add(input.getSourceName() + " line " + $name.line + ":" 
-									+ $name.pos + " attribute undeclared in device: " + instName);
+								addError($name, "instance " + instName + " is undeclared");
 							}
 						}
 					}
@@ -602,102 +658,130 @@ pinAssign[DesignNode des, String instName]
 			//==================== JAVA BLOCK BEGIN =======================
 			{	List<Integer> indices = new ArrayList<Integer>();
 				List<Integer> slices = new ArrayList<Integer>();
-				List<String> concats = new ArrayList<String>();
+				List<NetNode> concats = new ArrayList<NetNode>();
 			}
 			//===================== JAVA BLOCK END ========================
 			
-		instanceQualifier[instName, indices]? name=IDENT sliceList[slices]? 
-		concatenation[concats, slices.size()])
+		(instanceQualifier[instName, indices, des] | globalArray[indices, instName, des]) 
+		name=IDENT (sliceList[slices] | globalVector[slices, $name.text, des, instName])
+		concatenation[concats, slices.size(), des])
 		
 			//==================== JAVA BLOCK BEGIN =======================
-			{	// process assignments that aren't declared as open
-				if (!concats.get(0).equals("open")) {
-					// check for valid concatenation width
-					if (slices.size()==concats.size()) {
-						// process global array and slice lists
-						if(indices.isEmpty() && slices.isEmpty()) {
-							// iterate over all corresponding instances in the design
-							for(InstanceNode i : des.getAllInstances(instName)) {
-								// obtain list of pins inside each instance with this name and iterate over them
-								List<PinNode> pins = i.getAllPins($name.text);
-								for(int j = 0 ; j < pins.size(); j++) {
-									// process non-globals
-									if(!concats.get(j).startsWith("<>")) {
-										// set the pin's net to the net in the concatenation list
-										pins.get(j).setNet(des.getNet(concats.get(j)));
-										// set the concatenation net in the design to the pin
-										des.getNet(concats.get(j)).addPin(pins.get(j));
-									} else {
-										// process globals
-									}
-								}
-							}
-						} else if (slices.isEmpty()) {
-							// process global slice list, arbitrary array list
-						} else if (indices.isEmpty()) {
-							// process global array list, arbitrary slice list
-						} else {
-							// process arbitrary array and slice list.
+			{	
+				// for all the indices in the array list
+				for (int j = 0; j < indices.size(); j++) {
+					// for all isntances with this name
+					for (InstanceNode inst : des.getAllInstances(instName)) {
+						// assign pins for only those that 
+						if(inst.getIndex() == indices.get(j)) {
+							assignPins(slices, concats, inst, $name);
 						}
-					} else {
-						System.out.println(slices.size() + " " + concats.size());
-						errors.add(input.getSourceName() + " line " + $name.line + ":" 
-								+ $name.pos + " invalid concatenation width: " + $name.text);
 					}
-				} else {
-					// process assignments declared as open (use setOpen())
 				}
-				
-				// for every instance, report any dangling pins (no assigned net, and not declared open)
+				if (indices.isEmpty()) {
+					InstanceNode inst = des.getInstance(instName);
+					assignPins(slices, concats, inst, $name);
+				}
 			}
 			//===================== JAVA BLOCK END ========================
 	;
 	
 /**
- * TODO check the vector width against the concatenation width
+ * 
  */
-concatenation[List<String> concats, int width]
+concatenation[List<NetNode> concats, int assignWidth, DesignNode des]
 	:		// a blank list of slices to populate with the sliceList rule
 			{List<Integer> slices = new ArrayList<Integer>();}	
 	
-		((first=IDENT sliceList[slices]?
+		((first=IDENT (sliceList[slices] | globalNet[slices, $first.text, des])
 			
 			//==================== JAVA BLOCK BEGIN =======================
-			{	if (slices.isEmpty()) {
-					concats.add($first.text);
-				} else {
-					for(int i = 0 ; i < slices.size(); i++)
-						concats.add($first.text + "[" + slices.get(i) + "]");
+			{	if(slices.size()==0) {
+					NetNode n = des.getNet($first.text);
+					if (n != null) {
+						concats.add(n);
+					} else {
+						addError($first, "undeclared net");
+					}
 				}
+			
+				for (int i = 0; i < slices.size(); i++) {
+					System.out.println("netName: " + $first.text);
+					for (NetNode n : des.getAllNets($first.text)) {
+						if (n.getIndex() == slices.get(i)) {
+							concats.add(n);
+						}
+					}
+				}
+
 			}
 			//===================== JAVA BLOCK END ========================
 				
 		(next=IDENT 				
 			
-			// slices needs to be cleared before processing additional nets
-			{slices.clear();}
+			{slices.clear();} // slices needs to be cleared before processing additional nets
 			
-		sliceList[slices]?
+		(sliceList[slices] | globalNet[slices, $next.text, des])
 		
 			//==================== JAVA BLOCK BEGIN =======================
-			{	if (slices.isEmpty()) {
-					concats.add($next.text);
-				} else {
-					for(int i = 0 ; i < slices.size(); i++)
-						concats.add($next.text + "[" + slices.get(i) + "]");
+			{	if(slices.size()==0) {
+					NetNode n = des.getNet($next.text);
+					if (n != null) {
+						concats.add(n);
+					} else {
+						addError($next, "undeclared net");
+					}
+				}
+				
+				for (int i = 0; i < slices.size(); i++) {
+					for (NetNode n : des.getAllNets($first.text)) {
+						if (n.getIndex() == slices.get(i)) {
+							concats.add(n);
+						}
+					}
 				}
 			}
 			//===================== JAVA BLOCK END ========================
 			
-		)* ) | (LEFTANGLE global=IDENT )
+		)* ) | (LEFTANGLE global=IDENT (sliceList[slices] | globalNet[slices, $global.text, des]) )
 		
 			//==================== JAVA BLOCK BEGIN =======================
-			{	for(int i = 0; i < width; i++)
-					concats.add("<>" + $global.text);
+			{	if (assignWidth==0) assignWidth++;
+				if (slices.size()==1) {
+					NetNode n = des.getNet($global.text + "[" + slices.get(0) + "]");
+					for (int i = 0; i < assignWidth; i++) {
+						concats.add(n);
+					}
+				} else if(slices.isEmpty()) {
+					NetNode n = des.getNet($global.text);
+					for (int i = 0; i < assignWidth; i++) {
+						concats.add(n);
+					}
+				} else {
+					addError($global, "assignment cannot replicate a net vector");
+				}
 			}
 			//===================== JAVA BLOCK END ========================
 				
-		|	('open')	{concats.add("open");}
+		|	('open')
+			
+			//==================== JAVA BLOCK BEGIN =======================
+			{	if (assignWidth==0)
+					assignWidth++;
+				
+				NetNode n = des.getNet("open");
+				if (n == null) {
+					n = new NetNode(des);
+					n.setName("open");
+					n.setLocation(-1,-1, null);
+					des.addNet(n);
+				}
+				
+				for	(int i = 0; i < assignWidth; i++)
+					concats.add(n);
+
+			}
+			//===================== JAVA BLOCK END ========================	
 		)	
 	;
 
@@ -712,17 +796,33 @@ concatenation[List<String> concats, int width]
  * 2. Call the arrayList rule (if one exists) to populate the list of indices
  * 3. Report an error if the qualifier name does not match.
  */
-instanceQualifier[String instName, List<Integer> indices]
-	:	^(PERIOD qualName=IDENT arrayList[indices]?)
+instanceQualifier[String instName, List<Integer> indices, DesignNode des]
+	:	^(PERIOD qualName=IDENT (arrayList[indices] | globalArray[indices, instName, des]) )
 	
 			//==================== JAVA BLOCK BEGIN =======================
 		    {	// check that the instance qualifier matches
 		    	if (!instName.equals($qualName.text)) {
-		    		errors.add(input.getSourceName() + " line " + $qualName.line + ":" 
-							+ $qualName.pos + " invalid instance qualifier: " + $qualName.text);
+		    		addError($qualName, "invalid instance qualifier");
 		    	}
 		    }
 		    //===================== JAVA BLOCK END ========================
+	;
+	
+
+globalArray[List<Integer> indices, String instName, DesignNode des]
+	:	{indices.addAll(des.getAllIndices(instName));}
+	;
+	
+globalVector[List<Integer> slices, String pinName, DesignNode des, String instName] 
+	:	{	InstanceNode inst = des.getAllInstances(instName).get(0);
+			List<Integer> pins = inst.getAllIndices(pinName);
+			slices.addAll(pins);
+			
+		}
+	;
+	
+globalNet[List<Integer> slices, String netName, DesignNode des]
+	:	{slices.addAll(des.getAllNetIndices(netName));}
 	;
 
 /**
@@ -812,9 +912,8 @@ pinList[List<String> pList]
 			//==================== JAVA BLOCK BEGIN =======================	
 			{	// maintain a set of pin numbers to check for duplicates in the pin list
 				Set<String> pins = new HashSet<String>();
-				if(!pins.add($first.text))
-					errors.add(input.getSourceName() + " line " + $first.line + ":" 
-						+ $first.pos + " duplicate found in pin list");
+				if (!pins.add($first.text))
+					addError($first, "duplicate exists in pin list");
 				pList.add($first.text);
 			}
 			//===================== JAVA BLOCK END ========================
@@ -822,9 +921,8 @@ pinList[List<String> pList]
      	(next= (PIN | INTEGER | IDENT)	
      	
      		//==================== JAVA BLOCK BEGIN =======================	
-     		{	if(!pins.add($next.text))
-					errors.add(input.getSourceName() + " line " + $first.line + ":" 
-						+ $first.pos + " duplicate found in pin list");
+     		{	if (!pins.add($next.text))
+					addError($first, "duplicate exists in pin list");
 				pList.add($next.text);
 			}
 			//===================== JAVA BLOCK END ========================	

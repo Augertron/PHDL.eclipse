@@ -80,7 +80,7 @@ public class NetNode extends Attributable {
 	 * 
 	 * @param n
 	 *            the new NetNode to add
-	 * @return true, if the NetNode isn't already connected false, otherwise
+	 * @return true, if the NetNode isn't already connected, false otherwise
 	 */
 	public boolean addNet(NetNode n) {
 		return (!nets.add(n));
@@ -91,7 +91,7 @@ public class NetNode extends Attributable {
 	 * 
 	 * @param n
 	 *            the NetNode to merge with
-	 * @return true, if thet NetNode is connected to this one false, otherwise
+	 * @return true, if that NetNode is connected to this one, false otherwise
 	 */
 	public boolean mergeNet(NetNode n) {
 		for (NetNode m : this.getNetNodes()) {
@@ -181,5 +181,17 @@ public class NetNode extends Attributable {
 			myString += "\n\t\t" + a.toString();
 		}
 		return myString;
+	}
+
+	public int getIndex() {
+		int start = getName().indexOf('[');
+		int end = getName().indexOf(']');
+
+		if (start == -1 || end == -1) {
+			return -1;
+		}
+
+		String index = getName().substring(start + 1, end);
+		return Integer.parseInt(index);
 	}
 }

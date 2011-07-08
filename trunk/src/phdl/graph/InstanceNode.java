@@ -146,11 +146,16 @@ public class InstanceNode extends Attributable {
 	public List<PinNode> getAllPins(String pinName) {
 		List<PinNode> allPins = new ArrayList<PinNode>();
 		for (int i = 0; i < pins.size(); i++) {
-			// make a new string with the name of the pin node removed, leaving
-			// only the suffix if it exists.
-			String suffix = pins.get(i).getName().substring(pinName.length());
-			if (suffix.length() == 0 || suffix.charAt(0) == '(') {
-				allPins.add(pins.get(i));
+			if (pins.get(i).getName().length() < pinName.length())
+				continue;
+			String prefix = pins.get(i).getName()
+					.substring(0, pinName.length());
+			if (prefix.equals(pinName)) {
+				String suffix = pins.get(i).getName()
+						.substring(pinName.length());
+				if (suffix.length() == 0 || suffix.charAt(0) == '[') {
+					allPins.add(pins.get(i));
+				}
 			}
 		}
 		return allPins;
@@ -179,5 +184,31 @@ public class InstanceNode extends Attributable {
 			return attrs.add(an);
 		} else
 			return false;
+	}
+
+	public List<Integer> getAllIndices(String pinName) {
+		List<Integer> allIndices = new ArrayList<Integer>();
+		for (PinNode p : getAllPins(pinName)) {
+			// System.out.println("pin name " + p.getName());
+			int start = p.getName().indexOf('[');
+			int end = p.getName().indexOf(']');
+			if (start != -1 && end != -1) {
+				String index = p.getName().substring(start + 1, end);
+				allIndices.add(Integer.parseInt(index));
+			}
+		}
+		return allIndices;
+	}
+
+	public int getIndex() {
+		int start = getName().indexOf('(');
+		int end = getName().indexOf(')');
+
+		if (start == -1 || end == -1) {
+			return -1;
+		}
+
+		String index = getName().substring(start + 1, end);
+		return Integer.parseInt(index);
 	}
 }

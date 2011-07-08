@@ -108,7 +108,7 @@ attributeDecl
  * terminated with the usual semicolon.
  */
 pinDecl
-	:	type^ IDENT sliceDecl? EQUALS! pinList SEMICOLON!
+	:	type^ sliceDecl? IDENT EQUALS! pinList SEMICOLON!
 	;
 
 /**
@@ -123,7 +123,7 @@ type
  * of the net, followed by an optional set of attributes, and terminated with a semicolon.
  */	
 netDecl
-	:	'net'^ IDENT sliceDecl? netAttributes? SEMICOLON! 
+	:	'net'^ sliceDecl? IDENT netAttributes? SEMICOLON! 
 	;
 
 /**
@@ -140,7 +140,7 @@ netAttributes
  * of the device instance, attribute and pin assignments may coexist.  
  */
 instanceDecl
-	:	'inst'^ IDENT arrayDecl? 'of'! IDENT 'is'!
+	:	'inst'^ arrayDecl? IDENT 'of'! IDENT 'is'!
 		(attributeAssignment | pinAssignment)*
 		'end'! SEMICOLON!
 	;
