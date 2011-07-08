@@ -5,7 +5,6 @@ public class PinNode extends Node {
 	private Attributable parent;
 	private String pinName;
 	private NetNode net;
-	private boolean open = false;
 
 	public NetNode getNet() {
 		return net;
@@ -13,6 +12,13 @@ public class PinNode extends Node {
 
 	public void setNet(NetNode net) {
 		this.net = net;
+	}
+
+	public boolean hasNet() {
+		if (net != null)
+			return true;
+		else
+			return false;
 	}
 
 	/**
@@ -25,6 +31,16 @@ public class PinNode extends Node {
 		setParent(parent);
 		pinName = "";
 		net = null;
+	}
+
+	public PinNode(PinNode old, Attributable parent) {
+		setParent(parent);
+		pinName = old.getPinName();
+		net = old.getNet();
+		name = old.getName();
+		line = old.getLine();
+		pos = old.getPosition();
+		fileName = old.getFileName();
 	}
 
 	/**
@@ -59,14 +75,6 @@ public class PinNode extends Node {
 		return pinName;
 	}
 
-	public boolean isOpen() {
-		return open;
-	}
-
-	public void setOpen() {
-		open = true;
-	}
-
 	@Override
 	public NodeType getType() {
 		return NodeType.PIN;
@@ -74,6 +82,6 @@ public class PinNode extends Node {
 
 	@Override
 	public String toString() {
-		return super.toString() + " = " + pinName;
+		return super.toString() + " {" + pinName + "}";
 	}
 }

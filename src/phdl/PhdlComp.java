@@ -115,8 +115,8 @@ public class PhdlComp {
 			}
 			// print out all errors if there were any, and exit abnormally
 			if (printErrors()) {
-				printWarnings();
-				System.exit(1);
+				// printWarnings();
+				// System.exit(1);
 			}
 			printWarnings();
 
