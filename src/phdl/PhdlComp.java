@@ -115,9 +115,10 @@ public class PhdlComp {
 			}
 			// print out all errors if there were any, and exit abnormally
 			if (printErrors()) {
-				// printWarnings();
-				// System.exit(1);
+				printWarnings();
+				System.exit(1);
 			}
+			// otherwise, just print warnings
 			printWarnings();
 
 			// print out the design
@@ -125,10 +126,12 @@ public class PhdlComp {
 				d.printDesignNode();
 			}
 
-			// 5. optionally convert the token tree to a dotty formatted string
+			// 5. convert the AST to a dotty formatted string
 			DOTTreeGenerator tg = new DOTTreeGenerator();
 			StringTemplate st = tg.toDOT((Tree) sourceTree.getTree());
-			dumpToFile(args[i].replace(".phdl", ".dot"), st.toString());
+			String fileName = args[i].replace(".phdl", "");
+			fileName += "_AST.dot";
+			dumpToFile(fileName, st.toString());
 
 		} // end for loop on all source files
 

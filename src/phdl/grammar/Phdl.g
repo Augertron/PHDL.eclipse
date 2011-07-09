@@ -44,13 +44,13 @@ options {
 
 	private Set<String> errors = new TreeSet<String>();
 
-	@Override
-	public void displayRecognitionError(String[] tokenNames,
-			RecognitionException e) {
-		String hdr = getErrorHeader(e);
-		String msg = getErrorMessage(e, tokenNames);
-		errors.add(hdr + " " + msg);
-	}
+//	@Override
+//	public void displayRecognitionError(String[] tokenNames,
+//			RecognitionException e) {
+//		String hdr = getErrorHeader(e);
+//		String msg = getErrorMessage(e, tokenNames);
+//		errors.add(hdr + " " + msg);
+//	}
 
 	public Set<String> getErrors() {
 		return errors;
@@ -68,6 +68,9 @@ options {
 sourceText
 	:	designDecl* EOF
 	;
+//	catch [RecognitionException re] {
+//		errors.add(re.getMessage());
+//	}
 
 /** 
  * A design declaration consists of the keyword "design" followed by the design name, and the keyword "is."

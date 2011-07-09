@@ -1,6 +1,6 @@
 package phdl.graph;
 
-public abstract class Node implements Comparable {
+public abstract class Node implements Comparable<Object> {
 
 	/**
 	 * The name of the node

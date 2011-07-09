@@ -50,4 +50,7 @@ begin
 		//b[0:3] = myNet3;
 	end;
 	
+	myNet3[2:1] = <mynet>;
+	myNet3[2] = mynet2;
+	
 end;
