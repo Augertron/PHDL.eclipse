@@ -176,7 +176,11 @@ public class NetNode extends Attributable {
 
 	@Override
 	public String toString() {
-		String myString = super.toString();
+		String myString = super.toString() + " <= ";
+		for (NetNode n : nets) {
+			myString += n.getName() + " <= ";
+		}
+		myString = myString.substring(0, myString.length() - 4);
 		for (AttributeNode a : attrs) {
 			myString += "\n\t\t" + a.toString();
 		}

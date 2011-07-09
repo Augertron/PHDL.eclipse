@@ -149,9 +149,6 @@ public class DesignNode extends Node {
 				System.out.println("\t\t" + pn.toString());
 			}
 		}
-		for (NetNode n : getNets()) {
-			System.out.println("\t" + n.toString());
-		}
 		for (InstanceNode iNode : getInstances()) {
 			System.out.println("\t" + iNode.toString());
 			for (AttributeNode a : iNode.getAttributes()) {
@@ -159,12 +156,15 @@ public class DesignNode extends Node {
 			}
 			for (PinNode p : iNode.getPins()) {
 				if (p.getNet() != null) {
-					System.out.println("\t\t" + p.toString() + " = "
+					System.out.println("\t\t" + p.toString() + " <= "
 							+ p.getNet().toString());
 				} else {
 					System.out.println("\t\t" + p.toString());
 				}
 			}
+		}
+		for (NetNode n : getNets()) {
+			System.out.println("\t" + n.toString());
 		}
 	}
 
