@@ -62,12 +62,14 @@ public class PhdlComp {
 	 */
 	public static void main(String[] args) {
 
-		sourceText_return sourceTree = null;
+		sourceText_return str = null;
 
 		// repeat for each source file passed in as an argument
 		for (int i = 0; i < args.length; i++) {
 
+			String fileName = args[i].replace(".phdl", "");
 			System.out.println("Compiling..." + args[i]);
+
 			// 1. attempt to make a character stream from the source file
 			CharStream cs = null;
 			try {
@@ -83,7 +85,7 @@ public class PhdlComp {
 			TokenStream ts = new CommonTokenStream(l);
 			PhdlParser p = new PhdlParser(ts);
 			try {
-				sourceTree = p.sourceText();
+				str = p.sourceText();
 				for (String error : p.getErrors())
 					errors.add(error);
 
@@ -98,8 +100,7 @@ public class PhdlComp {
 
 			// 3. convert this tree of tokens to a node stream and set the token
 			// stream reference to the parser's token stream
-			CommonTreeNodeStream ns = new CommonTreeNodeStream(
-					sourceTree.getTree());
+			CommonTreeNodeStream ns = new CommonTreeNodeStream(str.getTree());
 			ns.setTokenStream(p.getTokenStream());
 
 			// 4. walk the stream of nodes and attempt to obtain a set of all
@@ -113,34 +114,50 @@ public class PhdlComp {
 			} catch (RecognitionException e) {
 				errors.add(e.getMessage());
 			}
+
 			// print out all errors if there were any, and exit abnormally
 			if (printErrors()) {
-				printWarnings();
 				System.exit(1);
-			}
-			// otherwise, just print warnings
-			printWarnings();
-
-			// print out the design
-			for (DesignNode d : walker.getDesignNodes()) {
-				d.printDesignNode();
 			}
 
 			// 5. convert the AST to a dotty formatted string
 			DOTTreeGenerator tg = new DOTTreeGenerator();
-			StringTemplate st = tg.toDOT((Tree) sourceTree.getTree());
-			String fileName = args[i].replace(".phdl", "");
-			fileName += "_AST.dot";
-			dumpToFile(fileName, st.toString());
+			StringTemplate st = tg.toDOT((Tree) str.getTree());
+			String astFileName = fileName + "_AST.dot";
+			dumpToFile(astFileName, st.toString());
+
+			// print out the design to the console
+			for (DesignNode d : walker.getDesignNodes()) {
+				d.printDesignNode();
+			}
+
+			// output a dotty graph before calling mergeNet
+			for (DesignNode d : walker.getDesignNodes()) {
+				String graphFileName = fileName + "_graph.dot";
+				d.dottyDump(graphFileName);
+			}
+
+			// call the superNet algorithm on all nets in each design node
+			for (DesignNode d : walker.getDesignNodes()) {
+				d.superNet();
+			}
+
+			// output a dotty graph after merging all nodes
+			for (DesignNode d : walker.getDesignNodes()) {
+				String graphFileName = fileName + "_graph_merged.dot";
+				d.dottyDump(graphFileName);
+			}
 
 		} // end for loop on all source files
 
 		// print out all errors if there were any, and exit abnormally
-		// if (printErrors()) {
-		// System.exit(1);
-		// }
+		if (printErrors()) {
+			printWarnings();
+			System.exit(1);
+		}
+		printWarnings();
 
-		System.out.println("...done.");
+		System.out.println("Compile successful.");
 	}
 
 	static boolean printErrors() {
