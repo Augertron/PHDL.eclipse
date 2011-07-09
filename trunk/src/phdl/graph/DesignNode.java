@@ -1,7 +1,12 @@
 package phdl.graph;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -168,6 +173,73 @@ public class DesignNode extends Node {
 		}
 	}
 
+	public void dottyDump(String fileName) {
+		BufferedWriter dotty = null;
+
+		int netRef = 0;
+		int pinRef = 0;
+		Map<Integer, NetNode> netMap = new HashMap<Integer, NetNode>();
+		Map<Integer, PinNode> pinMap = new HashMap<Integer, PinNode>();
+
+		String format = "ordering=out;\r\n"
+				+ "	ranksep=.4;\r\n"
+				+ "	bgcolor=\"lightgrey\"; node [fixedsize=false, fontsize=12, fontname=\"Helvetica-bold\", fontcolor=\"blue\"\r\n"
+				+ "		width=.25, height=.25, color=\"black\", fillcolor=\"white\", style=\"filled, solid, bold\"];\r\n"
+				+ "	edge [arrowsize=.5, color=\"black\", style=\"bold\"]";
+
+		try {
+			dotty = new BufferedWriter(new FileWriter(fileName));
+		} catch (IOException e) {
+			System.out.println("Problem creating file: " + fileName);
+			System.exit(1);
+		}
+		try {
+			dotty.write("digraph {\n\n");
+			dotty.write(format);
+
+			for (NetNode n : nets) {
+				dotty.write("  n" + netRef + " [label=\"" + n.getName()
+						+ "\"];\n");
+				netMap.put(netRef, n);
+				netRef++;
+			}
+			for (InstanceNode i : instances) {
+				for (PinNode p : i.getPins()) {
+					dotty.write("  p" + pinRef + " [label=\"" + i.getName()
+							+ "." + p.getName() + "\"];\n");
+					pinMap.put(pinRef, p);
+					pinRef++;
+				}
+			}
+
+			for (int k = 0; k < netMap.keySet().size(); k++) {
+				for (NetNode n : netMap.get(k).getNetNodes()) {
+					for (Integer i : netMap.keySet()) {
+						if (netMap.get(i).getName().equals(n.getName())) {
+							dotty.write("  n" + k + " -> " + "n" + i + ";\n");
+						}
+					}
+				}
+			}
+
+			for (Integer i : pinMap.keySet()) {
+				for (Integer j : netMap.keySet()) {
+					if (netMap.get(j).getName()
+							.equals(pinMap.get(i).getNet().getName())) {
+						dotty.write("  p" + i + " -> " + "n" + j + ";\n");
+					}
+				}
+			}
+
+			dotty.write("}\n");
+			dotty.close();
+		} catch (IOException e) {
+			System.out.println("Prolem writing dotty file.");
+			System.exit(1);
+		}
+		System.out.println("Wrote file: " + fileName);
+	}
+
 	public List<Integer> getAllIndices(String instName) {
 		List<Integer> allIndices = new ArrayList<Integer>();
 		for (InstanceNode i : getAllInstances(instName)) {
@@ -202,5 +274,11 @@ public class DesignNode extends Node {
 			}
 		}
 		return false;
+	}
+
+	public void superNet() {
+		for (NetNode n : nets) {
+
+		}
 	}
 }

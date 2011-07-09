@@ -113,7 +113,7 @@ public class NetNode extends Attributable {
 	}
 
 	/**
-	 * The supernet algorithm.
+	 * The superNet algorithm.
 	 * 
 	 * This iterates through the set of nets and merges them with the current
 	 * one.
@@ -176,11 +176,11 @@ public class NetNode extends Attributable {
 
 	@Override
 	public String toString() {
-		String myString = super.toString() + " <= ";
+		String myString = super.toString() + " $ ";
 		for (NetNode n : nets) {
-			myString += n.getName() + " <= ";
+			myString += n.getName() + " $ ";
 		}
-		myString = myString.substring(0, myString.length() - 4);
+		myString = myString.substring(0, myString.length() - 3);
 		for (AttributeNode a : attrs) {
 			myString += "\n\t\t" + a.toString();
 		}
