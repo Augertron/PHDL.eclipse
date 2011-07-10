@@ -83,7 +83,7 @@ designDecl
 		(deviceDecl | netDecl)*
 		'begin'
 		(instanceDecl | netAssignment)*
-		'end'! SEMICOLON!
+		'end'! 'design'!? SEMICOLON!
 	;
 
 /** 
@@ -94,7 +94,7 @@ designDecl
 deviceDecl
 	:	'device'^ IDENT 'is'!
 		( attributeDecl | pinDecl )*
-		'end'! SEMICOLON!
+		'end'! 'device'!? SEMICOLON!
 	;
 
 /**
@@ -134,7 +134,7 @@ netDecl
  * the usual keywords.
  */	
 netAttributes
-	:	'is'! attributeDecl* 'end'!
+	:	'is'! attributeDecl* 'end' 'net'!?
 	;
 
 /**
@@ -145,7 +145,7 @@ netAttributes
 instanceDecl
 	:	'inst'^ arrayDecl? IDENT 'of'! IDENT 'is'!
 		(attributeAssignment | pinAssignment)*
-		'end'! SEMICOLON!
+		'end'! 'inst'!? SEMICOLON!
 	;
 
 /**
@@ -204,7 +204,7 @@ pinList
  * or a comma-separated list of integers.
  */
 sliceList
-	: 	LEFTBRACKET INTEGER ((COLON^ INTEGER) | (COMMA^ INTEGER)*) RIGHTBRACKET!
+	: 	LEFTBRACKET INTEGER ((COLON^ INTEGER) | (COMMA^ INTEGER (COMMA! INTEGER)*)?) RIGHTBRACKET!
 	;
 
 /**

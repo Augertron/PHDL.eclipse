@@ -145,7 +145,8 @@ options {
 					if (p.hasNet())
 						addWarning(pinNode, "pin already assigned");
 					p.setNet(concats.get(0));
-					concats.get(0).addPin(p);
+					if (concats.get(0) != null)
+						concats.get(0).addPin(p);
 				} else {
 					addError(pinNode, "pin undeclared in device");
 				}
@@ -161,7 +162,8 @@ options {
 						if (p.hasNet())
 							addWarning(pinNode, "pin already assigned");
 						p.setNet(concats.get(i));
-						concats.get(i).addPin(p);
+						if (concats.get(i) != null)
+							concats.get(i).addPin(p);
 					} else {
 						addError(pinNode, "pin undeclared in device");
 					}
@@ -672,12 +674,12 @@ pinAssign[DesignNode des, String instName]
 					// for all isntances with this pinName
 					for (InstanceNode inst : des.getAllInstances(instName)) {
 						// assign pins for only those whose index is in the list of indices
-						if(inst.getIndex() == indices.get(j)) {
+						if(inst.getIndex() == indices.get(j))
 							assignPins(slices, concats, inst, $pinName);
-						}
 					}
 				}
 				if (indices.isEmpty()) {
+					
 					InstanceNode inst = des.getInstance(instName);
 					assignPins(slices, concats, inst, $pinName);
 				}
@@ -751,7 +753,6 @@ concatenation[List<NetNode> concats, int assignWidth, DesignNode des]
 				}
 			
 				for (int i = 0; i < slices.size(); i++) {
-					System.out.println("netName: " + $first.text);
 					for (NetNode n : des.getAllNets($first.text)) {
 						if (n.getIndex() == slices.get(i)) {
 							concats.add(n);
@@ -794,13 +795,21 @@ concatenation[List<NetNode> concats, int assignWidth, DesignNode des]
 			{	if (assignWidth==0) assignWidth++;
 				if (slices.size()==1) {
 					NetNode n = des.getNet($global.text + "[" + slices.get(0) + "]");
-					for (int i = 0; i < assignWidth; i++) {
-						concats.add(n);
+					if (n != null) {
+						for (int i = 0; i < assignWidth; i++) {
+							concats.add(n);
+						}
+					} else {
+						addError($global, "undeclared net");
 					}
 				} else if(slices.isEmpty()) {
 					NetNode n = des.getNet($global.text);
-					for (int i = 0; i < assignWidth; i++) {
-						concats.add(n);
+					if (n != null) {
+						for (int i = 0; i < assignWidth; i++) {
+							concats.add(n);
+						}
+					} else {
+						addError($global, "undeclared net");
 					}
 				} else {
 					addError($global, "assignment cannot replicate a net vector");
