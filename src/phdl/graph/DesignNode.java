@@ -267,7 +267,6 @@ public class DesignNode extends Node {
 	}
 
 	public boolean isDeviceInstanced(DeviceNode dev) {
-		System.out.println("testing");
 		for (InstanceNode i : instances) {
 			if (i.getDevice().equals(dev)) {
 				return true;
