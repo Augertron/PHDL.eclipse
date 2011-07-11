@@ -224,9 +224,11 @@ public class DesignNode extends Node {
 
 			for (Integer i : pinMap.keySet()) {
 				for (Integer j : netMap.keySet()) {
-					if (netMap.get(j).getName()
-							.equals(pinMap.get(i).getNet().getName())) {
-						dotty.write("  p" + i + " -> " + "n" + j + ";\n");
+					NetNode n = pinMap.get(i).getNet();
+					if (n != null) {
+						if (netMap.get(j).getName().equals(n.getName())) {
+							dotty.write("  p" + i + " -> " + "n" + j + ";\n");
+						}
 					}
 				}
 			}
@@ -245,8 +247,15 @@ public class DesignNode extends Node {
 		for (InstanceNode i : getAllInstances(instName)) {
 			int start = i.getName().indexOf('(');
 			int end = i.getName().indexOf(')');
-			String index = i.getName().substring(start + 1, end);
-			allIndices.add(Integer.parseInt(index));
+			if (start != -1 && end != -1) {
+				System.out.println(instName);
+				System.out.println(start + " " + end);
+
+				String index = i.getName().substring(start + 1, end);
+				allIndices.add(Integer.parseInt(index));
+			} else {
+				// allIndices.add(0);
+			}
 		}
 		return allIndices;
 	}

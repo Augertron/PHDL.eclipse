@@ -51,7 +51,7 @@ public class PhdlComp {
 	/**
 	 * An array of attributes that every device declaration is required to have
 	 */
-	static String[] reqAttr = { "REFPREFIX", "NAME", "VALUE" };
+	static String[] reqAttr = { "REFPREFIX", "REFDES", "NAME", "VALUE" };
 
 	static SortedSet<String> errors = new TreeSet<String>();
 	static SortedSet<String> warnings = new TreeSet<String>();
@@ -117,7 +117,7 @@ public class PhdlComp {
 
 			// print out all errors if there were any, and exit abnormally
 			if (printErrors()) {
-				// System.exit(1);
+				System.exit(1);
 			}
 
 			// 5. convert the AST to a dotty formatted string
@@ -131,22 +131,22 @@ public class PhdlComp {
 				d.printDesignNode();
 			}
 
-			// // output a dotty graph before calling mergeNet
-			// for (DesignNode d : walker.getDesignNodes()) {
-			// String graphFileName = fileName + "_graph.dot";
-			// d.dottyDump(graphFileName);
-			// }
-			//
-			// // call the superNet algorithm on all nets in each design node
-			// for (DesignNode d : walker.getDesignNodes()) {
-			// d.superNet();
-			// }
-			//
-			// // output a dotty graph after merging all nodes
-			// for (DesignNode d : walker.getDesignNodes()) {
-			// String graphFileName = fileName + "_graph_merged.dot";
-			// d.dottyDump(graphFileName);
-			// }
+			// output a dotty graph before calling mergeNet
+			for (DesignNode d : walker.getDesignNodes()) {
+				String graphFileName = fileName + "_graph.dot";
+				d.dottyDump(graphFileName);
+			}
+
+			// call the superNet algorithm on all nets in each design node
+			for (DesignNode d : walker.getDesignNodes()) {
+				d.superNet();
+			}
+
+			// output a dotty graph after merging all nodes
+			for (DesignNode d : walker.getDesignNodes()) {
+				String graphFileName = fileName + "_graph_merged.dot";
+				d.dottyDump(graphFileName);
+			}
 
 		} // end for loop on all source files
 
