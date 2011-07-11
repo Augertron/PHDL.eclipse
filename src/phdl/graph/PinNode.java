@@ -84,4 +84,16 @@ public class PinNode extends Node {
 	public String toString() {
 		return super.toString() + " {" + pinName + "}";
 	}
+
+	public int getIndex() {
+		int start = getName().indexOf('[');
+		int end = getName().indexOf(']');
+
+		if (start == -1 || end == -1) {
+			return -1;
+		}
+
+		String index = getName().substring(start + 1, end);
+		return Integer.parseInt(index);
+	}
 }

@@ -44,16 +44,23 @@ options {
 
 	private Set<String> errors = new TreeSet<String>();
 
-//	@Override
-//	public void displayRecognitionError(String[] tokenNames,
-//			RecognitionException e) {
-//		String hdr = getErrorHeader(e);
-//		String msg = getErrorMessage(e, tokenNames);
-//		errors.add(hdr + " " + msg);
-//	}
+	@Override
+	public void displayRecognitionError(String[] tokenNames,
+			RecognitionException e) {
+		String hdr = getErrorHeader(e);
+		String msg = getErrorMessage(e, tokenNames);
+		errors.add(hdr + " " + msg);
+	}
 
 	public Set<String> getErrors() {
 		return errors;
+	}
+}
+
+@rulecatch {
+	catch (RecognitionException e) {
+		System.out.println("ERROR: " + e.getMessage());
+		System.exit(1);
 	}
 }
 

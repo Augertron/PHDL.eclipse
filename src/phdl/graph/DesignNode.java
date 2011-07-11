@@ -248,13 +248,8 @@ public class DesignNode extends Node {
 			int start = i.getName().indexOf('(');
 			int end = i.getName().indexOf(')');
 			if (start != -1 && end != -1) {
-				System.out.println(instName);
-				System.out.println(start + " " + end);
-
 				String index = i.getName().substring(start + 1, end);
 				allIndices.add(Integer.parseInt(index));
-			} else {
-				// allIndices.add(0);
 			}
 		}
 		return allIndices;
@@ -285,8 +280,15 @@ public class DesignNode extends Node {
 	}
 
 	public void superNet() {
-		for (NetNode n : nets) {
 
+		int numNets = this.nets.size();
+
+		// while iterating through the size of the array, superNet each one
+		for (int i = 0; i < numNets; i++) {
+			this.nets.get(i).superNet();
 		}
+
+		// throw out the copies
+		nets = null;
 	}
 }

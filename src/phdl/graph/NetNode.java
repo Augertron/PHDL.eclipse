@@ -1,5 +1,7 @@
 package phdl.graph;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -9,7 +11,7 @@ import java.util.TreeSet;
  */
 public class NetNode extends Attributable {
 
-	private Set<NetNode> nets;
+	private List<NetNode> nets;
 	private Set<PinNode> pins;
 	private DesignNode design;
 
@@ -22,7 +24,7 @@ public class NetNode extends Attributable {
 	public NetNode(DesignNode d) {
 		super();
 		setDesign(d);
-		nets = new TreeSet<NetNode>();
+		nets = new ArrayList<NetNode>();
 		pins = new TreeSet<PinNode>();
 	}
 
@@ -48,7 +50,7 @@ public class NetNode extends Attributable {
 	 * 
 	 * @return the set of NetNodes attached to this net
 	 */
-	public Set<NetNode> getNetNodes() {
+	public List<NetNode> getNetNodes() {
 		return nets;
 	}
 
@@ -68,11 +70,7 @@ public class NetNode extends Attributable {
 	 *            the net to remove
 	 */
 	public void removeNet(NetNode n) {
-		for (NetNode p : this.getNetNodes()) {
-			if (p.equals(n)) {
-				nets.remove(p);
-			}
-		}
+		nets.remove(n);
 	}
 
 	/**
@@ -89,40 +87,38 @@ public class NetNode extends Attributable {
 	/**
 	 * Merges two nets into a single one.
 	 * 
-	 * @param n
+	 * @param subNet
 	 *            the NetNode to merge with
 	 * @return true, if that NetNode is connected to this one, false otherwise
 	 */
-	public boolean mergeNet(NetNode n) {
-		for (NetNode m : this.getNetNodes()) {
-			if (m.equals(n)) {
-				for (NetNode a : m.getNetNodes()) {
-					addNet(a);
-					((NetNode) a).removeNet(m);
-				}
-				for (PinNode p : m.getPinNodes()) {
-					addPin(p);
-				}
-				nets.remove(m);
-				nets.remove(this);
-				name = name + "$" + m.getName();
-				return true;
+	public void mergeNet(NetNode subNet) {
+
+		for (NetNode n : subNet.nets) {
+			if (!n.equals(this)) {
+				this.nets.add(n);
+				n.removeNet(subNet);
+				n.addNet(this);
 			}
 		}
-		return false;
+		this.removeNet(subNet);
+
+		for (PinNode p : subNet.pins)
+			this.addPin(p);
+
+		this.name = this.name + "$" + subNet.name;
+
 	}
 
 	/**
 	 * The superNet algorithm.
 	 * 
-	 * This iterates through the set of nets and merges them with the current
+	 * This iterates through the list of nets and merges them with the current
 	 * one.
 	 */
 	public void superNet() {
-		while (!getNetNodes().isEmpty()) {
-			for (NetNode n : getNetNodes()) {
-				this.mergeNet(n);
-			}
+		while (!this.nets.isEmpty()) {
+			this.mergeNet(this.nets.get(0));
+
 		}
 	}
 

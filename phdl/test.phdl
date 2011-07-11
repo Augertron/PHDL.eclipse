@@ -11,10 +11,10 @@ design myDesign is
 	end device;
 	
 	
-	net[3:0] myNet3;
-	net mynet;
-	net mynet2;
-	net gnd;
+	net[3:0] vector;
+	net brad;
+	net richard;
+	net brent;
 	
 
 begin
@@ -39,11 +39,11 @@ begin
 		//a = myNet4[2,1] & myNet2 & myNet3;
 		//a[1:2] = myNet4;
 		
-		myRes(3:2).a[1:2] = myNet3[1,2];
-		myRes(3:2).a[3,0] = mynet & mynet;
-		myRes.b = open;
+		myRes(3:2).a[1:2] = vector[1,2];
+		myRes(3:2).a[3,0] = vector[3,2];
+		myRes.b = <brad>;
 		//myRes(2,3).a[2,1] = open;
-		//myRes(1:0).a = <mynet>;
+		myRes(1:0).a = <richard>;
 		//myRes(2,3).a[2,1] = <mynet2>;
 		
 		//a = open;
@@ -53,8 +53,5 @@ begin
 		//myRes.b[3,0,2] = <gnd>;
 		//myRes.b[3, 0, 2] = <gnd>;
 	end inst;
-	
-	myNet3[2:1] = <mynet>;
-	myNet3[2] = mynet2;
 	
 end design;

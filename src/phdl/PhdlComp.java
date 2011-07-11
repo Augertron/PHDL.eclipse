@@ -51,7 +51,7 @@ public class PhdlComp {
 	/**
 	 * An array of attributes that every device declaration is required to have
 	 */
-	static String[] reqAttr = { "REFPREFIX", "REFDES", "NAME", "VALUE" };
+	static String[] reqAttr = { "REFPREFIX", "NAME", "VALUE" };
 
 	static SortedSet<String> errors = new TreeSet<String>();
 	static SortedSet<String> warnings = new TreeSet<String>();
@@ -76,7 +76,7 @@ public class PhdlComp {
 				cs = new ANTLRFileStream(args[i]);
 			} catch (IOException e) {
 				System.err.println("Problem reading file: " + args[0]);
-				// System.exit(1);
+				System.exit(1);
 			}
 
 			// 2. lex this character stream and make a stream of tokens. Attempt
@@ -89,13 +89,13 @@ public class PhdlComp {
 				for (String error : p.getErrors())
 					errors.add(error);
 
-			} catch (RecognitionException e) {
-				errors.add(e.getMessage());
+			} catch (Exception e) {
+				errors.add("ERROR: " + e.getMessage());
 			}
 
-			// print out all errors if there were any, and exit abnormally
+			// print out any parsing errors, and do not continue on.
 			if (printErrors()) {
-				// System.exit(1);
+				System.exit(1);
 			}
 
 			// 3. convert this tree of tokens to a node stream and set the token
@@ -117,8 +117,10 @@ public class PhdlComp {
 
 			// print out all errors if there were any, and exit abnormally
 			if (printErrors()) {
+				printWarnings();
 				System.exit(1);
 			}
+			printWarnings();
 
 			// 5. convert the AST to a dotty formatted string
 			DOTTreeGenerator tg = new DOTTreeGenerator();
@@ -140,6 +142,11 @@ public class PhdlComp {
 			// call the superNet algorithm on all nets in each design node
 			for (DesignNode d : walker.getDesignNodes()) {
 				d.superNet();
+			}
+
+			// print out the design to the console
+			for (DesignNode d : walker.getDesignNodes()) {
+				d.printDesignNode();
 			}
 
 			// output a dotty graph after merging all nodes
