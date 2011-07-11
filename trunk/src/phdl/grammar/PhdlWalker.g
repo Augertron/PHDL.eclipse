@@ -612,8 +612,16 @@ attrAssign[DesignNode des, String instName]
 								newA.setLocation($attrName.line, $attrName.pos, input.getSourceName());
 								inst.addAttribute(newA);
 							} else {
-								// report that the attribute is undeclared
-								addError($attrName, "attribute undeclared in device");
+								if ($attrName.text.toUpperCase().equals("REFDES")) {
+									AttributeNode newA = new AttributeNode(inst);
+									newA.setName($attrName.text);
+									newA.setValue($attrValue.text);
+									newA.setLocation($attrName.line, $attrName.pos, input.getSourceName());
+									inst.addAttribute(newA);
+								} else {
+									// report that the attribute is undeclared
+									addError($attrName, "attribute undeclared in device");
+								}
 							}
 						}
 					} else {

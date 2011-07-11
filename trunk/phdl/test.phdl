@@ -43,7 +43,7 @@ begin
 		myRes(3:2).a[3,0] = mynet & mynet;
 		myRes.b = open;
 		//myRes(2,3).a[2,1] = open;
-		myRes(1:0).a = <mynet>;
+		//myRes(1:0).a = <mynet>;
 		//myRes(2,3).a[2,1] = <mynet2>;
 		
 		//a = open;
