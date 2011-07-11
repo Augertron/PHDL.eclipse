@@ -101,6 +101,24 @@ options {
 	}
 	
 	/**
+	 * Reports an error from a Node object exits
+	 */
+	private void reportError(Node n, String message) {
+		System.out.println("ERROR: " + n.getFileName() + " line " + n.getLine() + ":" 
+				+ n.getPosition() + " " + message + ": " + n.getName());
+		System.exit(1);
+	}
+	
+	/**
+	 * Reports an error from a CommonTree object and exits
+	 */
+	private void reportError(CommonTree ct, String message) {
+		System.out.println("ERROR: " + input.getSourceName() + " line " + ct.getLine() + ":" 
+				+ ct.getCharPositionInLine() + " " + message + ": " + ct.getText());
+		System.exit(1);
+	}
+	
+	/**
 	 * Adds a warning from a Node object
 	 */
 	private void addWarning(Node n, String message) {
@@ -143,7 +161,7 @@ options {
 				PinNode p = inst.getPin(pinName);
 				if (p != null) {
 					if (p.hasNet())
-						addWarning(pinNode, "pin already assigned");
+						addWarning(pinNode, "pin " + p.getIndex() + " already assigned");
 					p.setNet(concats.get(0));
 					if (concats.get(0) != null)
 						concats.get(0).addPin(p);
@@ -151,7 +169,7 @@ options {
 					addError(pinNode, "pin undeclared in device");
 				}
 			} else {
-				addError(pinNode, "invalid assignment width");
+				reportError(pinNode, "invalid assignment width");
 			}
 		} else {
 			if (concats.size() == slices.size()) {
@@ -160,7 +178,7 @@ options {
 					PinNode p = inst.getPin(pinName + "[" + slices.get(i) + "]");
 					if (p != null) { 
 						if (p.hasNet())
-							addWarning(pinNode, "pin already assigned");
+							addWarning(pinNode, "pin " + p.getIndex() + " already assigned");
 						p.setNet(concats.get(i));
 						if (concats.get(i) != null)
 							concats.get(i).addPin(p);
@@ -169,7 +187,7 @@ options {
 					}
 				}
 			} else {
-				addError(pinNode, "invalid assignment width");
+				reportError(pinNode, "invalid assignment width");
 			}
 		}
 	}
@@ -240,18 +258,22 @@ designDecl
 					
 				// report any unused device declarations
 				for (DeviceNode dev : des.getDevices()) {
-					if (!des.isDeviceInstanced(dev)) {
+					if (!des.isDeviceInstanced(dev))
 						addWarning(dev, "unused device declaration");
-					}
 				}
 				
 				// report any dangling pins in all instances
 				for (InstanceNode i : des.getInstances()) {
 					for (PinNode p : i.getPins()) {
-						if (!p.hasNet()) {
+						if (!p.hasNet())
 							addError(i, "dangling pin " + p.getName() + " in instance");
-						}
 					}
+				}
+				
+				// report any floating nets
+				for (NetNode n : des.getNets()) {
+					if ((n.getPinNodes().size() < 1) && (!n.getName().equals("open")))
+						addWarning(n, "floating net");
 				}
 			}
 			//===================== JAVA BLOCK END ========================
@@ -719,7 +741,7 @@ netAssign[DesignNode des]
 							addError($netName, "net undeclared in design");
 						}
 					} else {
-						addError($netName, "invalid assignment width");
+						reportError($netName, "invalid assignment width");
 					}
 				} else {
 					if (concats.size() == slices.size()) {
@@ -733,7 +755,7 @@ netAssign[DesignNode des]
 							}
 						}
 					} else {
-						addError($netName, "invalid assignment width");
+						reportError($netName, "invalid assignment width");
 					}
 				}
 			}
@@ -985,7 +1007,7 @@ pinList[List<String> pList]
 			{	// maintain a set of pin numbers to check for duplicates in the pin list
 				Set<String> pins = new HashSet<String>();
 				if (!pins.add($first.text))
-					addError($first, "duplicate exists in pin list");
+					addError($first, "duplicate pin number in pin list");
 				pList.add($first.text);
 			}
 			//===================== JAVA BLOCK END ========================
@@ -994,7 +1016,7 @@ pinList[List<String> pList]
      	
      		//==================== JAVA BLOCK BEGIN =======================	
      		{	if (!pins.add($next.text))
-					addError($next, "duplicate exists in pin list");
+					addError($next, "duplicate pin number in pin list");
 				pList.add($next.text);
 			}
 			//===================== JAVA BLOCK END ========================	
