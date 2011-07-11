@@ -280,15 +280,22 @@ public class DesignNode extends Node {
 	}
 
 	public void superNet() {
-
-		int numNets = this.nets.size();
-
-		// while iterating through the size of the array, superNet each one
-		for (int i = 0; i < numNets; i++) {
-			this.nets.get(i).superNet();
+		Set<NetNode> rootNodes = new TreeSet<NetNode>();
+		for (NetNode n : nets) {
+			boolean connected = false;
+			for (NetNode r : rootNodes) {
+				if (r.isConnected(n)) {
+					connected = true;
+					break;
+				}
+			}
+			if (!connected) {
+				rootNodes.add(n);
+			}
 		}
 
-		// throw out the copies
-		nets = null;
+		for (NetNode r : rootNodes) {
+			r.superNet();
+		}
 	}
 }

@@ -1,7 +1,5 @@
 package phdl.graph;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -11,7 +9,7 @@ import java.util.TreeSet;
  */
 public class NetNode extends Attributable {
 
-	private List<NetNode> nets;
+	private Set<NetNode> nets;
 	private Set<PinNode> pins;
 	private DesignNode design;
 
@@ -24,7 +22,7 @@ public class NetNode extends Attributable {
 	public NetNode(DesignNode d) {
 		super();
 		setDesign(d);
-		nets = new ArrayList<NetNode>();
+		nets = new TreeSet<NetNode>();
 		pins = new TreeSet<PinNode>();
 	}
 
@@ -50,7 +48,7 @@ public class NetNode extends Attributable {
 	 * 
 	 * @return the set of NetNodes attached to this net
 	 */
-	public List<NetNode> getNetNodes() {
+	public Set<NetNode> getNetNodes() {
 		return nets;
 	}
 
@@ -87,44 +85,67 @@ public class NetNode extends Attributable {
 	/**
 	 * Merges two nets into a single one.
 	 * 
-	 * @param subNet
+	 * @param n
 	 *            the NetNode to merge with
 	 * @return true, if that NetNode is connected to this one, false otherwise
 	 */
-	public void mergeNet(NetNode subNet) {
-
-		for (NetNode n : subNet.nets) {
-			if (!n.equals(this)) {
-				this.nets.add(n);
-				n.removeNet(subNet);
-				n.addNet(this);
+	public boolean mergeNet(NetNode n) {
+		for (NetNode m : this.getNetNodes()) {
+			if (m.equals(n)) {
+				for (NetNode a : m.getNetNodes()) {
+					addNet(a);
+					((NetNode) a).removeNet(m);
+				}
+				for (PinNode p : m.getPinNodes()) {
+					addPin(p);
+				}
+				nets.remove(m);
+				nets.remove(this);
+				name = name + "$" + m.getName();
+				return true;
 			}
 		}
-		this.removeNet(subNet);
-
-		for (PinNode p : subNet.pins)
-			this.addPin(p);
-
-		this.name = this.name + "$" + subNet.name;
-
+		return false;
 	}
 
 	/**
 	 * The superNet algorithm.
 	 * 
-	 * This iterates through the list of nets and merges them with the current
+	 * This iterates through the set of nets and merges them with the current
 	 * one.
 	 */
 	public void superNet() {
-		while (!this.nets.isEmpty()) {
-			this.mergeNet(this.nets.get(0));
-
+		while (!getNetNodes().isEmpty()) {
+			for (NetNode n : getNetNodes()) {
+				this.mergeNet(n);
+			}
 		}
 	}
 
 	@Override
 	public NodeType getType() {
 		return NodeType.NET;
+	}
+
+	public boolean isConnected(NetNode n) {
+		Set<NetNode> traversed = new TreeSet<NetNode>();
+		return isConnected(this, traversed);
+	}
+
+	private boolean isConnected(NetNode n, Set<NetNode> traversed) {
+		if (traversed.contains(this)) {
+			return false;
+		} else if (this.equals(n)) {
+			return true;
+		} else {
+			traversed.add(this);
+			for (NetNode nn : nets) {
+				if (nn.isConnected(n)) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -172,7 +193,7 @@ public class NetNode extends Attributable {
 
 	@Override
 	public String toString() {
-		String myString = super.toString() + " $ ";
+		String myString = super.toString() + " = ";
 		for (NetNode n : nets) {
 			myString += n.getName() + " $ ";
 		}
