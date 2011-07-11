@@ -38,6 +38,7 @@ import phdl.grammar.PhdlParser;
 import phdl.grammar.PhdlParser.sourceText_return;
 import phdl.grammar.PhdlWalker;
 import phdl.graph.DesignNode;
+import phdl.graph.Node;
 
 /**
  * A wrapper class which contains the main entry point of the phdl compiler.
@@ -142,6 +143,13 @@ public class PhdlComp {
 			// call the superNet algorithm on all nets in each design node
 			for (DesignNode d : walker.getDesignNodes()) {
 				d.superNet();
+				// report any floating nets
+				// for (NetNode n : d.getNets()) {
+				// if ((n.getPinNodes().size() < 2 || n.getNetNodes().size() ==
+				// 0)
+				// && (!n.getName().equals("open")))
+				// addWarning(n, "floating net");
+				// }
 			}
 
 			// print out the design to the console
@@ -203,5 +211,13 @@ public class PhdlComp {
 			System.exit(1);
 		}
 		System.out.println("Wrote file: " + fileName);
+	}
+
+	/**
+	 * Adds a warning from a Node object
+	 */
+	static void addWarning(Node n, String message) {
+		warnings.add(n.getFileName() + " line " + n.getLine() + ":"
+				+ n.getPosition() + " " + message + ": " + n.getName());
 	}
 }

@@ -54,4 +54,8 @@ begin
 		//myRes.b[3, 0, 2] = <gnd>;
 	end inst;
 	
+	richard = brad;
+	brad = brent;
+	vector[0] = brent;
+	
 end design;

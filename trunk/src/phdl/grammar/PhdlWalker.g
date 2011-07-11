@@ -269,12 +269,6 @@ designDecl
 							addError(i, "dangling pin " + p.getName() + " in instance");
 					}
 				}
-				
-				// report any floating nets
-				for (NetNode n : des.getNets()) {
-					if ((n.getPinNodes().size() < 1) && (!n.getName().equals("open")))
-						addWarning(n, "floating net");
-				}
 			}
 			//===================== JAVA BLOCK END ========================
 	;
