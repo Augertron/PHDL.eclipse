@@ -57,12 +57,12 @@ options {
 	}
 }
 
-@rulecatch {
-	catch (RecognitionException e) {
-		System.out.println("ERROR: " + e.getMessage());
-		System.exit(1);
-	}
-}
+//@rulecatch {
+//	catch (RecognitionException e) {
+//		System.out.println("ERROR: " + e.getMessage());
+//		//System.exit(1);
+//	}
+//}
 
 
 /*------------------------------------------------------------------------------------------------------ 
@@ -90,7 +90,7 @@ designDecl
 		(deviceDecl | netDecl)*
 		'begin'
 		(instanceDecl | netAssignment)*
-		'end'! 'design'!? SEMICOLON!
+		'end'! 'design'!? IDENT? SEMICOLON!
 	;
 
 /** 
@@ -101,7 +101,7 @@ designDecl
 deviceDecl
 	:	'device'^ IDENT 'is'!
 		( attributeDecl | pinDecl )*
-		'end'! 'device'!? SEMICOLON!
+		'end'! 'device'!? IDENT? SEMICOLON!
 	;
 
 /**
@@ -141,7 +141,7 @@ netDecl
  * the usual keywords.
  */	
 netAttributes
-	:	'is'! attributeDecl* 'end' 'net'!?
+	:	'is'! attributeDecl* 'end'! 'net'!? IDENT?
 	;
 
 /**
@@ -152,7 +152,7 @@ netAttributes
 instanceDecl
 	:	'inst'^ arrayDecl? IDENT 'of'! IDENT 'is'!
 		(attributeAssignment | pinAssignment)*
-		'end'! 'inst'!? SEMICOLON!
+		'end'! 'inst'!? IDENT? SEMICOLON!
 	;
 
 /**
@@ -169,7 +169,7 @@ attributeAssignment
  * and mandatory period.
  */
 instanceQualifier
-	:	IDENT arrayList? PERIOD^  
+	:	(IDENT | 'this') arrayList? PERIOD^  
 	;
 
 /**

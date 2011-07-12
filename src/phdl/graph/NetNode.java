@@ -1,5 +1,7 @@
 package phdl.graph;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -10,8 +12,17 @@ import java.util.TreeSet;
 public class NetNode extends Attributable {
 
 	private Set<NetNode> nets;
-	private Set<PinNode> pins;
+	private List<PinNode> pins;
 	private DesignNode design;
+	private boolean visited = false;
+
+	public boolean isVisited() {
+		return visited;
+	}
+
+	public void setVisited(boolean visited) {
+		this.visited = visited;
+	}
 
 	/**
 	 * Default Constructor.
@@ -23,7 +34,7 @@ public class NetNode extends Attributable {
 		super();
 		setDesign(d);
 		nets = new TreeSet<NetNode>();
-		pins = new TreeSet<PinNode>();
+		pins = new ArrayList<PinNode>();
 	}
 
 	/**
@@ -33,7 +44,7 @@ public class NetNode extends Attributable {
 	 * 
 	 * @return the set of PinNodes attached to this net
 	 */
-	public Set<PinNode> getPinNodes() {
+	public List<PinNode> getPinNodes() {
 		return pins;
 	}
 
@@ -193,7 +204,7 @@ public class NetNode extends Attributable {
 
 	@Override
 	public String toString() {
-		String myString = super.toString() + " = ";
+		String myString = super.toString() + " $ ";
 		for (NetNode n : nets) {
 			myString += n.getName() + " $ ";
 		}
@@ -201,6 +212,12 @@ public class NetNode extends Attributable {
 		for (AttributeNode a : attrs) {
 			myString += "\n\t\t" + a.toString();
 		}
+		// myString += " (";
+		// for (PinNode p : pins) {
+		// myString += p.toString() + ", ";
+		// }
+		// myString = myString.substring(0, myString.length() - 2);
+		// myString += ")";
 		return myString;
 	}
 
@@ -214,5 +231,13 @@ public class NetNode extends Attributable {
 
 		String index = getName().substring(start + 1, end);
 		return Integer.parseInt(index);
+	}
+
+	public NetNode getUnvisitedNet() {
+		for (NetNode n : nets) {
+			if (!n.isVisited())
+				return n;
+		}
+		return null;
 	}
 }

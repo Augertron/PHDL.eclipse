@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g 2011-07-11 09:40:18
+// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g 2011-07-12 10:26:22
 
 	package phdl.grammar;
 	import phdl.exception.PhdlRuntimeException;
@@ -23,6 +23,7 @@ public class PhdlLexer extends Lexer {
     public static final int T__36=36;
     public static final int T__37=37;
     public static final int T__38=38;
+    public static final int T__39=39;
     public static final int IDENT=4;
     public static final int SEMICOLON=5;
     public static final int EQUALS=6;
@@ -296,8 +297,29 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = T__38;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:23:7: ( 'open' )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:23:9: 'open'
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:23:7: ( 'this' )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:23:9: 'this'
+            {
+            match("this"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__38"
+
+    // $ANTLR start "T__39"
+    public final void mT__39() throws RecognitionException {
+        try {
+            int _type = T__39;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:24:7: ( 'open' )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:24:9: 'open'
             {
             match("open"); 
 
@@ -310,7 +332,7 @@ public class PhdlLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "T__38"
+    // $ANTLR end "T__39"
 
     // $ANTLR start "SEMICOLON"
     public final void mSEMICOLON() throws RecognitionException {
@@ -1172,8 +1194,8 @@ public class PhdlLexer extends Lexer {
     // $ANTLR end "MULTILINE_COMMENT"
 
     public void mTokens() throws RecognitionException {
-        // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:8: ( T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | SEMICOLON | COLON | COMMA | PERIOD | EQUALS | LEFTPAREN | RIGHTPAREN | LEFTBRACKET | RIGHTBRACKET | LEFTBRACE | RIGHTBRACE | LEFTANGLE | RIGHTANGLE | AMPERSAND | INTEGER | STRING | IDENT | PIN | WHITESPACE | LINE_COMMENT | MULTILINE_COMMENT )
-        int alt9=33;
+        // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:8: ( T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | SEMICOLON | COLON | COMMA | PERIOD | EQUALS | LEFTPAREN | RIGHTPAREN | LEFTBRACKET | RIGHTBRACKET | LEFTBRACE | RIGHTBRACE | LEFTANGLE | RIGHTANGLE | AMPERSAND | INTEGER | STRING | IDENT | PIN | WHITESPACE | LINE_COMMENT | MULTILINE_COMMENT )
+        int alt9=34;
         alt9 = dfa9.predict(input);
         switch (alt9) {
             case 1 :
@@ -1261,147 +1283,154 @@ public class PhdlLexer extends Lexer {
                 }
                 break;
             case 13 :
-                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:82: SEMICOLON
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:82: T__39
+                {
+                mT__39(); 
+
+                }
+                break;
+            case 14 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:88: SEMICOLON
                 {
                 mSEMICOLON(); 
 
                 }
                 break;
-            case 14 :
-                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:92: COLON
+            case 15 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:98: COLON
                 {
                 mCOLON(); 
 
                 }
                 break;
-            case 15 :
-                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:98: COMMA
+            case 16 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:104: COMMA
                 {
                 mCOMMA(); 
 
                 }
                 break;
-            case 16 :
-                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:104: PERIOD
+            case 17 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:110: PERIOD
                 {
                 mPERIOD(); 
 
                 }
                 break;
-            case 17 :
-                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:111: EQUALS
+            case 18 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:117: EQUALS
                 {
                 mEQUALS(); 
 
                 }
                 break;
-            case 18 :
-                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:118: LEFTPAREN
+            case 19 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:124: LEFTPAREN
                 {
                 mLEFTPAREN(); 
 
                 }
                 break;
-            case 19 :
-                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:128: RIGHTPAREN
+            case 20 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:134: RIGHTPAREN
                 {
                 mRIGHTPAREN(); 
 
                 }
                 break;
-            case 20 :
-                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:139: LEFTBRACKET
+            case 21 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:145: LEFTBRACKET
                 {
                 mLEFTBRACKET(); 
 
                 }
                 break;
-            case 21 :
-                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:151: RIGHTBRACKET
+            case 22 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:157: RIGHTBRACKET
                 {
                 mRIGHTBRACKET(); 
 
                 }
                 break;
-            case 22 :
-                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:164: LEFTBRACE
+            case 23 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:170: LEFTBRACE
                 {
                 mLEFTBRACE(); 
 
                 }
                 break;
-            case 23 :
-                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:174: RIGHTBRACE
+            case 24 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:180: RIGHTBRACE
                 {
                 mRIGHTBRACE(); 
 
                 }
                 break;
-            case 24 :
-                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:185: LEFTANGLE
+            case 25 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:191: LEFTANGLE
                 {
                 mLEFTANGLE(); 
 
                 }
                 break;
-            case 25 :
-                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:195: RIGHTANGLE
+            case 26 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:201: RIGHTANGLE
                 {
                 mRIGHTANGLE(); 
 
                 }
                 break;
-            case 26 :
-                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:206: AMPERSAND
+            case 27 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:212: AMPERSAND
                 {
                 mAMPERSAND(); 
 
                 }
                 break;
-            case 27 :
-                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:216: INTEGER
+            case 28 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:222: INTEGER
                 {
                 mINTEGER(); 
 
                 }
                 break;
-            case 28 :
-                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:224: STRING
+            case 29 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:230: STRING
                 {
                 mSTRING(); 
 
                 }
                 break;
-            case 29 :
-                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:231: IDENT
+            case 30 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:237: IDENT
                 {
                 mIDENT(); 
 
                 }
                 break;
-            case 30 :
-                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:237: PIN
+            case 31 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:243: PIN
                 {
                 mPIN(); 
 
                 }
                 break;
-            case 31 :
-                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:241: WHITESPACE
+            case 32 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:247: WHITESPACE
                 {
                 mWHITESPACE(); 
 
                 }
                 break;
-            case 32 :
-                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:252: LINE_COMMENT
+            case 33 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:258: LINE_COMMENT
                 {
                 mLINE_COMMENT(); 
 
                 }
                 break;
-            case 33 :
-                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:265: MULTILINE_COMMENT
+            case 34 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:271: MULTILINE_COMMENT
                 {
                 mMULTILINE_COMMENT(); 
 
@@ -1415,53 +1444,56 @@ public class PhdlLexer extends Lexer {
 
     protected DFA9 dfa9 = new DFA9(this);
     static final String DFA9_eotS =
-        "\1\uffff\10\42\16\uffff\1\63\1\uffff\6\42\2\uffff\1\42\1\uffff"+
-        "\7\42\1\71\6\42\1\101\1\42\4\uffff\2\42\1\uffff\2\42\1\107\1\42"+
-        "\1\111\1\112\1\42\1\uffff\3\42\1\117\1\42\1\uffff\1\121\2\uffff"+
-        "\1\42\1\123\2\42\1\uffff\1\126\1\uffff\1\42\1\uffff\1\130\1\131"+
-        "\1\uffff\1\42\2\uffff\1\133\1\uffff";
+        "\1\uffff\11\43\16\uffff\1\65\1\uffff\6\43\2\uffff\1\43\1\uffff"+
+        "\7\43\1\73\6\43\1\103\2\43\4\uffff\2\43\1\uffff\2\43\1\112\1\43"+
+        "\1\114\1\115\1\43\1\uffff\4\43\1\123\1\43\1\uffff\1\125\2\uffff"+
+        "\1\43\1\127\1\130\2\43\1\uffff\1\133\1\uffff\1\43\2\uffff\1\135"+
+        "\1\136\1\uffff\1\43\2\uffff\1\140\1\uffff";
     static final String DFA9_eofS =
-        "\134\uffff";
+        "\141\uffff";
     static final String DFA9_minS =
-        "\1\11\10\44\16\uffff\1\44\1\uffff\6\44\1\uffff\1\52\1\44\1\uffff"+
-        "\20\44\4\uffff\2\44\1\uffff\7\44\1\uffff\5\44\1\uffff\1\44\2\uffff"+
-        "\4\44\1\uffff\1\44\1\uffff\1\44\1\uffff\2\44\1\uffff\1\44\2\uffff"+
+        "\1\11\11\44\16\uffff\1\44\1\uffff\6\44\1\uffff\1\52\1\44\1\uffff"+
+        "\21\44\4\uffff\2\44\1\uffff\7\44\1\uffff\6\44\1\uffff\1\44\2\uffff"+
+        "\5\44\1\uffff\1\44\1\uffff\1\44\2\uffff\2\44\1\uffff\1\44\2\uffff"+
         "\1\44\1\uffff";
     static final String DFA9_maxS =
-        "\1\175\10\172\16\uffff\1\172\1\uffff\6\172\1\uffff\1\57\1\172\1"+
-        "\uffff\20\172\4\uffff\2\172\1\uffff\7\172\1\uffff\5\172\1\uffff"+
-        "\1\172\2\uffff\4\172\1\uffff\1\172\1\uffff\1\172\1\uffff\2\172\1"+
+        "\1\175\11\172\16\uffff\1\172\1\uffff\6\172\1\uffff\1\57\1\172\1"+
+        "\uffff\21\172\4\uffff\2\172\1\uffff\7\172\1\uffff\6\172\1\uffff"+
+        "\1\172\2\uffff\5\172\1\uffff\1\172\1\uffff\1\172\2\uffff\2\172\1"+
         "\uffff\1\172\2\uffff\1\172\1\uffff";
     static final String DFA9_acceptS =
-        "\11\uffff\1\15\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25\1\26\1\27"+
-        "\1\30\1\31\1\32\1\uffff\1\34\6\uffff\1\37\2\uffff\1\35\20\uffff"+
-        "\1\33\1\36\1\40\1\41\2\uffff\1\2\7\uffff\1\12\5\uffff\1\4\1\uffff"+
-        "\1\7\1\10\4\uffff\1\11\1\uffff\1\6\1\uffff\1\14\2\uffff\1\3\1\uffff"+
-        "\1\1\1\5\1\uffff\1\13";
+        "\12\uffff\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25\1\26\1\27\1\30"+
+        "\1\31\1\32\1\33\1\uffff\1\35\6\uffff\1\40\2\uffff\1\36\21\uffff"+
+        "\1\34\1\37\1\41\1\42\2\uffff\1\2\7\uffff\1\12\6\uffff\1\4\1\uffff"+
+        "\1\7\1\10\5\uffff\1\11\1\uffff\1\6\1\uffff\1\15\1\14\2\uffff\1\3"+
+        "\1\uffff\1\1\1\5\1\uffff\1\13";
     static final String DFA9_specialS =
-        "\134\uffff}>";
+        "\141\uffff}>";
     static final String[] DFA9_transitionS = {
-            "\2\37\1\uffff\2\37\17\uffff\1\37\2\uffff\1\37\1\uffff\1\30"+
-            "\1\uffff\1\36\1\uffff\1\26\1\uffff\1\16\1\17\1\uffff\1\34\1"+
-            "\13\1\35\1\14\1\40\12\27\1\12\1\11\1\24\1\15\1\25\2\uffff\32"+
-            "\32\1\20\1\uffff\1\21\1\uffff\1\33\1\uffff\1\5\1\3\1\31\1\1"+
-            "\1\4\3\31\1\2\4\31\1\7\1\10\1\6\12\31\1\22\1\uffff\1\23",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\4\43\1\41\25\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\15\43\1\53\4\43\1\52\7\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\4\43\1\54\25\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\15\43\1\55\14\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\23\43\1\56\6\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\10\43\1\57\21\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\4\43\1\60\25\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\5\43\1\61\11\43\1\62\12\43",
+            "\2\40\1\uffff\2\40\17\uffff\1\40\2\uffff\1\40\1\uffff\1\31"+
+            "\1\uffff\1\37\1\uffff\1\27\1\uffff\1\17\1\20\1\uffff\1\35\1"+
+            "\14\1\36\1\15\1\41\12\30\1\13\1\12\1\25\1\16\1\26\2\uffff\32"+
+            "\33\1\21\1\uffff\1\22\1\uffff\1\34\1\uffff\1\5\1\3\1\32\1\1"+
+            "\1\4\3\32\1\2\4\32\1\7\1\10\1\6\3\32\1\11\6\32\1\23\1\uffff"+
+            "\1\24",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\4\44\1\42\25\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\15\44\1\54\4\44\1\53\7\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\4\44\1\55\25\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\15\44\1\56\14\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\23\44\1\57\6\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\10\44\1\60\21\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\4\44\1\61\25\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\5\44\1\62\11\44\1\63\12\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\7\44\1\64\22\44",
             "",
             "",
             "",
@@ -1476,123 +1508,130 @@ public class PhdlLexer extends Lexer {
             "",
             "",
             "",
-            "\1\64\6\uffff\1\64\1\uffff\1\64\2\uffff\12\27\7\uffff\32\64"+
-            "\4\uffff\1\64\1\uffff\32\64",
+            "\1\66\6\uffff\1\66\1\uffff\1\66\2\uffff\12\30\7\uffff\32\66"+
+            "\4\uffff\1\66\1\uffff\32\66",
             "",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\32\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\32\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\32\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\32\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\32\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\32\43",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\32\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\32\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\32\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\32\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\32\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\32\44",
             "",
-            "\1\66\4\uffff\1\65",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\22\43\1\67\2\43\1\70\4\43",
+            "\1\70\4\uffff\1\67",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\22\44\1\71\2\44\1\72\4\44",
             "",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\32\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\32\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\32\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\32\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\32\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\32\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\32\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\32\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\22\43\1\72\7\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\6\43\1\73\23\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\3\43\1\74\26\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\23\43\1\75\6\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\15\43\1\76\14\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\23\43\1\77\2\43\1\100\3\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\32\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\4\43\1\102\25\43",
-            "",
-            "",
-            "",
-            "",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\10\43\1\103\21\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\10\43\1\104\21\43",
-            "",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\23\43\1\105\6\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\10\43\1\106\21\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\32\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\21\43\1\110\10\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\32\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\32\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\1\113\31\43",
-            "",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\15\43\1\114\14\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\6\43\1\115\23\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\2\43\1\116\27\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\32\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\15\43\1\120\14\43",
-            "",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\32\43",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\32\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\32\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\32\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\32\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\32\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\32\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\32\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\32\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\22\44\1\74\7\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\6\44\1\75\23\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\3\44\1\76\26\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\23\44\1\77\6\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\15\44\1\100\14\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\23\44\1\101\2\44\1\102\3\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\32\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\4\44\1\104\25\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\10\44\1\105\21\44",
             "",
             "",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\23\43\1\122\6\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\32\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\15\43\1\124\14\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\4\43\1\125\25\43",
-            "",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\32\43",
-            "",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\23\43\1\127\6\43",
-            "",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\32\43",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\32\43",
-            "",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\21\43\1\132\10\43",
             "",
             "",
-            "\1\50\6\uffff\1\46\1\uffff\1\47\2\uffff\12\51\7\uffff\32\44"+
-            "\4\uffff\1\45\1\uffff\32\43",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\10\44\1\106\21\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\10\44\1\107\21\44",
+            "",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\23\44\1\110\6\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\10\44\1\111\21\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\32\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\21\44\1\113\10\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\32\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\32\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\1\116\31\44",
+            "",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\15\44\1\117\14\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\22\44\1\120\7\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\6\44\1\121\23\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\2\44\1\122\27\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\32\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\15\44\1\124\14\44",
+            "",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\32\44",
+            "",
+            "",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\23\44\1\126\6\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\32\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\32\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\15\44\1\131\14\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\4\44\1\132\25\44",
+            "",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\32\44",
+            "",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\23\44\1\134\6\44",
+            "",
+            "",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\32\44",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\32\44",
+            "",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\21\44\1\137\10\44",
+            "",
+            "",
+            "\1\51\6\uffff\1\47\1\uffff\1\50\2\uffff\12\52\7\uffff\32\45"+
+            "\4\uffff\1\46\1\uffff\32\44",
             ""
     };
 
@@ -1626,7 +1665,7 @@ public class PhdlLexer extends Lexer {
             this.transition = DFA9_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | SEMICOLON | COLON | COMMA | PERIOD | EQUALS | LEFTPAREN | RIGHTPAREN | LEFTBRACKET | RIGHTBRACKET | LEFTBRACE | RIGHTBRACE | LEFTANGLE | RIGHTANGLE | AMPERSAND | INTEGER | STRING | IDENT | PIN | WHITESPACE | LINE_COMMENT | MULTILINE_COMMENT );";
+            return "1:1: Tokens : ( T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | SEMICOLON | COLON | COMMA | PERIOD | EQUALS | LEFTPAREN | RIGHTPAREN | LEFTBRACKET | RIGHTBRACKET | LEFTBRACE | RIGHTBRACE | LEFTANGLE | RIGHTANGLE | AMPERSAND | INTEGER | STRING | IDENT | PIN | WHITESPACE | LINE_COMMENT | MULTILINE_COMMENT );";
         }
     }
  
