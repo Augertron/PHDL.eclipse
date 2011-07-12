@@ -37,7 +37,6 @@ options {
 
 @lexer::header {
 	package phdl.grammar;
-	import phdl.exception.PhdlRuntimeException;
 }
 
 @members {

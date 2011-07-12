@@ -270,13 +270,19 @@ designDecl
 						addWarning(dev, "unused device declaration");
 				}
 				
+				Set<String> refDezs = new HashSet<String>();
+				
 				// report any dangling pins in all instances
 				for (InstanceNode i : des.getInstances()) {
 					for (PinNode p : i.getPins()) {
 						if (!p.hasNet())
 							addError(i, "dangling pin " + p.getName() + " in instance");
 					}
+					
+					// report duplicate reference designators
+					
 				}
+				
 			}
 			//===================== JAVA BLOCK END ========================
 	;
