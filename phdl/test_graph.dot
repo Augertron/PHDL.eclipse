@@ -9,7 +9,6 @@ ordering=out;
   n2 [label="zero_low"];
   n3 [label="one_high"];
   n4 [label="combined"];
-  n5 [label="open"];
   p0 [label="myRes(1).a"];
   p1 [label="myRes(1).b"];
   p2 [label="myRes(0).a"];
@@ -22,6 +21,6 @@ ordering=out;
   n4 -> n2;
   p0 -> n3;
   p1 -> n1;
-  p2 -> n5;
+  p2 -> n0;
   p3 -> n2;
 }

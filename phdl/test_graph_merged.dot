@@ -6,13 +6,12 @@ ordering=out;
 		width=.25, height=.25, color="black", fillcolor="white", style="filled, solid, bold"];
 	edge [arrowsize=.5, color="black", style="bold"]  n0 [label="+vcc$-vcc"];
   n1 [label="zero_low$combined$one_high"];
-  n2 [label="open"];
   p0 [label="myRes(1).a"];
   p1 [label="myRes(1).b"];
   p2 [label="myRes(0).a"];
   p3 [label="myRes(0).b"];
   p0 -> n1;
   p1 -> n0;
-  p2 -> n2;
+  p2 -> n0;
   p3 -> n1;
 }

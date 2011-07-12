@@ -19,8 +19,8 @@ design myDesign is
 begin
 	
 	inst(1:0) myRes of resistor is
-		
-		this(0).a = open;
+		refDes = "U2";
+		this(0).a = +vcc;
 		this(0).b = zero_low;
 		this(1).a = one_high;
 		this(1).b = -vcc;
