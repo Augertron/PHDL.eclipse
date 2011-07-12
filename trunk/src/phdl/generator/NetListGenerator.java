@@ -13,43 +13,62 @@ import phdl.graph.PinNode;
 public class NetListGenerator {
 
 	DesignNode design;
-	Map<InstanceNode, String> refMap;
+	Map<String, InstanceNode> refMap;
 	String contents;
-	
-	public NetListGenerator(DesignNode design, Map<InstanceNode, String> refMap) {
+
+	public NetListGenerator(DesignNode design, Map<String, InstanceNode> refMap) {
 		this.design = design;
 		this.refMap = refMap;
 		generate();
 	}
-	
+
 	private void generate() {
-		contents = "!PADS-POWERPCB-V3.0-MILS!\n\n";
-		contents += "*PART*";
-		for (InstanceNode i : refMap.keySet()) {
-			contents += refMap.get(i);
-			contents += "\t" + "FOOTPRINT\n";
+		contents = "!PADS-POWERPCB-V2007.0-MILS!\n\n";
+		contents += "*PART*\n";
+
+		for (String s : refMap.keySet()) {
+			InstanceNode i = refMap.get(s);
+			contents += s;
+			contents += " " + i.getDevice().getName().toUpperCase() + "@" + i.getFootprint() + "\n";
 		}
-		contents += "\n";
-		contents += "*NET*";
+		contents += "*CONNNECTION*\n";
+
 		for (NetNode n : design.getNets()) {
-			contents += "*SIGNAL* ";
-			contents += n.getName().toUpperCase();
-			contents += "\n";
-			for (PinNode p : n.getPinNodes()) {
-				contents += " ";
-				contents += refMap.get(((InstanceNode)p.getParent()));
-				contents += ".";
-				contents += p.getPinName();
+
+			if (n.getName().equals("open"))
+				continue;
+
+			contents += "*SIGNAL* " + n.getName().toUpperCase() + "\n";
+
+			for (int i = 0; i < n.getPinNodes().size() - 1; i++) {
+
+				PinNode pin1 = n.getPinNodes().get(i);
+				PinNode pin2 = n.getPinNodes().get(i + 1);
+
+				String ref1 = ((InstanceNode) pin1.getParent()).getRefDes();
+				String ref2 = (((InstanceNode) pin2.getParent()).getRefDes());
+				String name1 = pin1.getPinName();
+				String name2 = pin2.getPinName();
+
+				contents += " " + refMap.get(ref1).getRefDes() + "." + name1;
+				contents += " " + refMap.get(ref2).getRefDes() + "." + name2 + "\n";
 			}
-			contents += "\n";
+
+			// for (PinNode p : n.getPinNodes()) {
+			// contents += " ";
+			// contents += refMap.get(((InstanceNode) p.getParent()).getRefDes()).getRefDes();
+			// contents += ".";
+			// contents += p.getPinName();
+			// }
+			// contents += "\n";
 		}
 		contents += "\n*END*";
 	}
-	
+
 	public String getContents() {
 		return contents;
 	}
-	
+
 	public void outputToFile(String fileName) {
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter(fileName));
@@ -60,5 +79,5 @@ public class NetListGenerator {
 			System.exit(1);
 		}
 	}
-	
+
 }

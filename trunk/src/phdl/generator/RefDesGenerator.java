@@ -12,38 +12,42 @@ import phdl.graph.DesignNode;
 import phdl.graph.InstanceNode;
 
 public class RefDesGenerator {
-	
-	private Map<InstanceNode, String> refMap = new TreeMap<InstanceNode, String>();
+
+	private Map<String, InstanceNode> refMap = new TreeMap<String, InstanceNode>();
 	private DesignNode design;
-	
+
 	public RefDesGenerator(DesignNode design) {
 		this.design = design;
 		generate();
 	}
-	
+
 	private void generate() {
+
 		Set<InstanceNode> softInsts = new TreeSet<InstanceNode>();
 		for (InstanceNode i : design.getInstances()) {
 			if (i.getRefDes() != null) {
-				refMap.put(i, i.getRefDes());
+				refMap.put(i.getRefDes(), i);
 			} else {
 				softInsts.add(i);
 			}
 		}
+		// generate refDes's for those that aren't already constrained
 		for (InstanceNode i : softInsts) {
-			String refPrefix = i.getRefPrefix();
+			String refprefix = i.getRefPrefix();
 			int j = 1;
-			while (refMap.containsValue(refPrefix + j)) {
+			while (refMap.containsKey(refprefix + j)) {
 				j++;
 			}
-			refMap.put(i, refPrefix + j);
+			String refDes = refprefix + j;
+			refMap.put(refDes, i);
+			i.setRefDes(refDes);
 		}
 	}
-	
-	public Map<InstanceNode, String> getRefMap() {
+
+	public Map<String, InstanceNode> getRefMap() {
 		return refMap;
 	}
-	
+
 	public void outputToFile(String fileName) {
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter(fileName));
@@ -54,14 +58,14 @@ public class RefDesGenerator {
 			System.exit(1);
 		}
 	}
-	
+
 	public String toString() {
 		String myString = "";
-		Set<InstanceNode> instNames = refMap.keySet();
-		for (InstanceNode i : instNames) {
-			myString += i.getName();
+		Set<String> refs = refMap.keySet();
+		for (String s : refs) {
+			myString += refMap.get(s).getName();
 			myString += ",";
-			myString += refMap.get(i);
+			myString += refMap.get(s);
 			myString += "\n";
 		}
 		return myString;

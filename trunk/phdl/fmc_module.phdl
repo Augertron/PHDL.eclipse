@@ -52,16 +52,6 @@ design fmc_module is
 		pin b = {2};
 	end device;
 	
-	// Note: These transceiver port net names could be optimized with the language.
-	// For example, these four declarations would cover the next 36 declarations 
-	// with a simple rearrangement of the index
-	// net DP_C2M_P[0:5];
-	// net DP_C2M_N[0:5];
-	// net DP_M2C_P[0:5];
-	// net DP_M2C_N[0:5];
-	// net SMA_DP_M2C_P[0:5];
-	// net SMA_DP_M2C_N[0:5];
-	
 	//port0 transciever nets
 	net DP0_C2M_P;
 	net DP0_C2M_N;
@@ -268,26 +258,26 @@ design fmc_module is
 		attr partNumber = "ASP-134488-01";
 		attr cost = "XXXX";
 
-		pin[1:40] a = {a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,
-			a21,a22,a23,a24,a25,a26,a27,a28,a29,a30,a31,a32,a33,a34,a35,a36,a37,a38,a39,a40};
-		pin[1:40] b = {b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16,b17,b18,b19,b20,
-			b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b34,b35,b36,b37,b38,b39,b40};
-		pin[1:40] c = {c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14,c15,c16,c17,c18,c19,c20,
-			c21,c22,c23,c24,c25,c26,c27,c28,c29,c30,c31,c32,c33,c34,c35,c36,c37,c38,c39,c40};
-		pin[1:40] d = {d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11,d12,d13,d14,d15,d16,d17,d18,d19,d20,
-			d21,d22,d23,d24,d25,d26,d27,d28,d29,d30,d31,d32,d33,d34,d35,d36,d37,d38,d39,d40};
-		pin[1:40] e = {e1,e2,e3,e4,e5,e6,e7,e8,e9,e10,e11,e12,e13,e14,e15,e16,e17,e18,e19,e20,
-			e21,e22,e23,e24,e25,e26,e27,e28,e29,e30,e31,e32,e33,e34,e35,e36,e37,e38,e39,e40};
-		pin[1:40] f = {f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13,f14,f15,f16,f17,f18,f19,f20,
-			f21,f22,f23,f24,f25,f26,f27,f28,f29,f30,f31,f32,f33,f34,f35,f36,f37,f38,f39,f40};
-		pin[1:40] g = {g1,g2,g3,g4,g5,g6,g7,g8,g9,g10,g11,g12,g13,g14,g15,g16,g17,g18,g19,g20,
-			g21,g22,g23,g24,g25,g26,g27,g28,g29,g30,g31,g32,g33,g34,g35,g36,g37,g38,g39,g40};
-		pin[1:40] h = {h1,h2,h3,h4,h5,h6,h7,h8,h9,h10,h11,h12,h13,h14,h15,h16,h17,h18,h19,h20,
-			h21,h22,h23,h24,h25,h26,h27,h28,h29,h30,h31,h32,h33,h34,h35,h36,h37,h38,h39,h40};
-		pin[1:40] j = {j1,j2,j3,j4,j5,j6,j7,j8,j9,j10,j11,j12,j13,j14,j15,j16,j17,j18,j19,j20,
-			j21,j22,j23,j24,j25,j26,j27,j28,j29,j30,j31,j32,j33,j34,j35,j36,j37,j38,j39,j40};
-		pin[1:40] k = {k1,k2,k3,k4,k5,k6,k7,k8,k9,k10,k11,k12,k13,k14,k15,k16,k17,k18,k19,k20,
-			k21,k22,k23,k24,k25,k26,k27,k28,k29,k30,k31,k32,k33,k34,k35,k36,k37,k38,k39,k40};
+		pin[1:40] a = {A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11,A12,A13,A14,A15,A16,A17,A18,A19,A20,
+			A21,A22,A23,A24,A25,A26,A27,A28,A29,A30,A31,A32,A33,A34,A35,A36,A37,A38,A39,A40};
+		pin[1:40] b = {B1,B2,B3,B4,B5,B6,B7,B8,B9,B10,B11,B12,B13,B14,B15,B16,B17,B18,B19,B20,
+			B21,B22,B23,B24,B25,B26,B27,B28,B29,B30,B31,B32,B33,B34,B35,B36,B37,B38,B39,B40};
+		pin[1:40] c = {C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,C14,C15,C16,C17,C18,C19,C20,
+			C21,C22,C23,C24,C25,C26,C27,C28,C29,C30,C31,C32,C33,C34,C35,C36,C37,C38,C39,C40};
+		pin[1:40] d = {D1,D2,D3,D4,D5,D6,D7,D8,D9,D10,D11,D12,D13,D14,D15,D16,D17,D18,D19,D20,
+			D21,D22,D23,D24,D25,D26,D27,D28,D29,D30,D31,D32,D33,D34,D35,D36,D37,D38,D39,D40};
+		pin[1:40] e = {E1,E2,E3,E4,E5,E6,E7,E8,E9,E10,E11,E12,E13,E14,E15,E16,E17,E18,E19,E20,
+			E21,E22,E23,E24,E25,E26,E27,E28,E29,E30,E31,E32,E33,E34,E35,E36,E37,E38,E39,E40};
+		pin[1:40] f = {F1,F2,F3,F4,F5,F6,F7,F8,F9,F10,F11,F12,F13,F14,F15,F16,F17,F18,F19,F20,
+			F21,F22,F23,F24,F25,F26,F27,F28,F29,F30,F31,F32,F33,F34,F35,F36,F37,F38,F39,F40};
+		pin[1:40] g = {G1,G2,G3,G4,G5,G6,G7,G8,G9,G10,G11,G12,G13,G14,G15,G16,G17,G18,G19,G20,
+			G21,G22,G23,G24,G25,G26,G27,G28,G29,G30,G31,G32,G33,G34,G35,G36,G37,G38,G39,G40};
+		pin[1:40] h = {H1,H2,H3,H4,H5,H6,H7,H8,H9,H10,H11,H12,H13,H14,H15,H16,H17,H18,H19,H20,
+			H21,H22,H23,H24,H25,H26,H27,H28,H29,H30,H31,H32,H33,H34,H35,H36,H37,H38,H39,H40};
+		pin[1:40] j = {J1,J2,J3,J4,J5,J6,J7,J8,J9,J10,J11,J12,J13,J14,J15,J16,J17,J18,J19,J20,
+			J21,J22,J23,J24,J25,J26,J27,J28,J29,J30,J31,J32,J33,J34,J35,J36,J37,J38,J39,J40};
+		pin[1:40] k = {K1,K2,K3,K4,K5,K6,K7,K8,K9,K10,K11,K12,K13,K14,K15,K16,K17,K18,K19,K20,
+			K21,K22,K23,K24,K25,K26,K27,K28,K29,K30,K31,K32,K33,K34,K35,K36,K37,K38,K39,K40};
 	end device;
 	
 	// a pin header declaration
@@ -316,87 +306,88 @@ begin
 	// an array of four sma connectors for port0
 	inst(1:4) port0 of SMA_CON is
 		// refDes constraints defined in the original source
-		port0(1).refDes = "P9";
-		port0(2).refDes = "P10";
-		port0(3).refDes = "P16";
-		port0(4).refDes = "P15";
+		this(1).refDes = "P9";
+		this(2).refDes = "P10";
+		this(3).refDes = "P16";
+		this(4).refDes = "P15";
 
-		port0(1).sig = DP0_C2M_P;
-		port0(2).sig = DP0_C2M_N;
-		port0(3).sig = SMA_DPO_M2C_P;
-		port0(4).sig = SMA_DPO_M2C_N;
+		// all signal pin assignments
+		this(1).sig = DP0_C2M_P;
+		this(2).sig = DP0_C2M_N;
+		this(3).sig = SMA_DPO_M2C_P;
+		this(4).sig = SMA_DPO_M2C_N;
 	
 		// all ground pins of all instances are connected to ground with this one line.
+		// any single bit wide net in angle brackets (<NET_NAME>) will be replicated across the
+		// width of what it is being assigned to.
 		gnd = <gnd>;
-		
-		/** This last line could optional be written: gnd[1:4][3:0] = gnd;
-		 * where the first array references all instances of the pin,
-		 * and the second array references all pins in each instance.
-		 */
+		// Alternatively, this statement could have been written: 
+		// this(1:4).gnd(3:0) = <gnd>;
+
 	end inst;
 	
 	inst(1:4) port1 of SMA_CON is
-		port1(1).refDes = "P12";
-		port1(2).refDes = "P11";
-		port1(3).refDes = "P13";
-		port1(4).refDes = "P14";
+		this(1).refDes = "P12";
+		this(2).refDes = "P11";
+		this(3).refDes = "P13";
+		this(4).refDes = "P14";
 		
-		port1(1).sig = DP1_C2M_P;
-		port1(2).sig = DP1_C2M_N;
-		port1(3).sig = SMA_DP1_M2C_P;
-		port1(4).sig = SMA_DP1_M2C_N;
+		this(1).sig = DP1_C2M_P;
+		this(2).sig = DP1_C2M_N;
+		this(3).sig = SMA_DP1_M2C_P;
+		this(4).sig = SMA_DP1_M2C_N;
 		gnd = <gnd>;
 	end inst;
 	
 	inst(1:4) port2 of SMA_CON is
-		port2(1).refDes = "P19";
-		port2(2).refDes = "P20";
-		port2(3).refDes = "P18";
-		port2(4).refDes = "P17";
+		this(1).refDes = "P19";
+		this(2).refDes = "P20";
+		this(3).refDes = "P18";
+		this(4).refDes = "P17";
 
-		port2(1).sig = DP1_C2M_P;
-		port2(2).sig = DP1_C2M_N;
-		port2(3).sig = SMA_DP1_M2C_P;
-		port2(4).sig = SMA_DP1_M2C_N;
+		this(1).sig = DP2_C2M_P;
+		this(2).sig = DP2_C2M_N;
+		this(3).sig = SMA_DP2_M2C_P;
+		this(4).sig = SMA_DP2_M2C_N;
 		gnd = <gnd>;
 	end inst;
 	
 	inst(1:4) port3 of SMA_CON is
-		port3(1).refDes = "P22";
-		port3(2).refDes = "P21";
-		port3(3).refDes = "P23";
-		port3(4).refDes = "P24";
+		this(1).refDes = "P22";
+		this(2).refDes = "P21";
+		this(3).refDes = "P23";
+		this(4).refDes = "P24";
 
-		port3(1).sig = DP1_C2M_P;
-		port3(2).sig = DP1_C2M_N;
-		port3(3).sig = SMA_DP1_M2C_P;
-		port3(4).sig = SMA_DP1_M2C_N;
+		this(1).sig = DP3_C2M_P;
+		this(2).sig = DP3_C2M_N;
+		this(3).sig = SMA_DP3_M2C_P;
+		this(4).sig = SMA_DP3_M2C_N;
 		gnd = <gnd>;
 	end inst;
 	
 	inst(1:4) port4 of SMA_CON is
-		port4(1).refDes = "P3";
-		port4(2).refDes = "P4";
-		port4(3).refDes = "P2";
-		port4(4).refDes = "P1";
+		this(1).refDes = "P3";
+		this(2).refDes = "P4";
+		this(3).refDes = "P2";
+		this(4).refDes = "P1";
 
-		port4(1).sig = DP1_C2M_P;
-		port4(2).sig = DP1_C2M_N;
-		port4(3).sig = SMA_DP1_M2C_P;
-		port4(4).sig = SMA_DP1_M2C_N;
+		this(1).sig = DP4_C2M_P;
+		this(2).sig = DP4_C2M_N;
+		this(3).sig = SMA_DP4_M2C_P;
+		this(4).sig = SMA_DP4_M2C_N;
 		gnd = <gnd>;
 	end inst;
 	
 	inst(1:4) port5 of SMA_CON is
-		port5(1).refDes = "P6";
-		port5(2).refDes = "P5";
-		port5(3).refDes = "P7";
-		port5(4).refDes = "P8";
+		this(1).refDes = "P6";
+		this(2).refDes = "P5";
+		this(3).refDes = "P7";
+		this(4).refDes = "P8";
 
-		port5(1).sig = DP1_C2M_P;
-		port5(2).sig = DP1_C2M_N;
-		port5(3).sig = SMA_DP1_M2C_P;
-		port5(4).sig = SMA_DP1_M2C_N;
+		this(1).sig = DP5_C2M_P;
+		this(2).sig = DP5_C2M_N;
+		this(3).sig = SMA_DP5_M2C_P;
+		this(4).sig = SMA_DP5_M2C_N;
 		gnd = <gnd>;
 	end inst;
 	
@@ -406,45 +397,46 @@ begin
 		value = "1uF";
 
 		// refDes constraints as defined in the original source 
-		rx_coupling_caps(1).refDes = "C9";
-		rx_coupling_caps(2).refDes = "C10";
-		rx_coupling_caps(3).refDes = "C11";
-		rx_coupling_caps(4).refDes = "C12";
-		rx_coupling_caps(5).refDes = "C14";
-		rx_coupling_caps(6).refDes = "C13";
-		rx_coupling_caps(7).refDes = "C15";
-		rx_coupling_caps(8).refDes = "C4";
-		rx_coupling_caps(9).refDes = "C6";
-		rx_coupling_caps(10).refDes = "C5";
-		rx_coupling_caps(11).refDes = "C7";
-		rx_coupling_caps(12).refDes = "C8";
+		this(1).refDes = "C9";
+		this(2).refDes = "C10";
+		this(3).refDes = "C11";
+		this(4).refDes = "C12";
+		this(5).refDes = "C14";
+		this(6).refDes = "C13";
+		this(7).refDes = "C15";
+		this(8).refDes = "C4";
+		this(9).refDes = "C6";
+		this(10).refDes = "C5";
+		this(11).refDes = "C7";
+		this(12).refDes = "C8";
 
 		// all coupling caps a-side
-		rx_coupling_caps(1).a = SMA_DPO_M2C_P;
-		rx_coupling_caps(2).a = SMA_DPO_M2C_N;
-		rx_coupling_caps(3).a = SMA_DP1_M2C_P;
-		rx_coupling_caps(4).a = SMA_DP1_M2C_N;
-		rx_coupling_caps(5).a = SMA_DP2_M2C_P;
-		rx_coupling_caps(6).a = SMA_DP2_M2C_N;
-		rx_coupling_caps(7).a = SMA_DP3_M2C_P;
-		rx_coupling_caps(8).a = SMA_DP3_M2C_N;
-		rx_coupling_caps(9).a = SMA_DP4_M2C_P;
-		rx_coupling_caps(10).a = SMA_DP4_M2C_N;
-		rx_coupling_caps(11).a = SMA_DP5_M2C_P;
-		rx_coupling_caps(12).a = SMA_DP5_M2C_N;
+		this(1).a = SMA_DPO_M2C_P;
+		this(2).a = SMA_DPO_M2C_N;
+		this(3).a = SMA_DP1_M2C_P;
+		this(4).a = SMA_DP1_M2C_N;
+		this(5).a = SMA_DP2_M2C_P;
+		this(6).a = SMA_DP2_M2C_N;
+		this(7).a = SMA_DP3_M2C_P;
+		this(8).a = SMA_DP3_M2C_N;
+		this(9).a = SMA_DP4_M2C_P;
+		this(10).a = SMA_DP4_M2C_N;
+		this(11).a = SMA_DP5_M2C_P;
+		this(12).a = SMA_DP5_M2C_N;
 		// all coupling caps b-side
-		rx_coupling_caps(1).b = DP0_M2C_P;
-		rx_coupling_caps(2).b = DP0_M2C_N;
-		rx_coupling_caps(3).b = DP1_M2C_P;
-		rx_coupling_caps(4).b = DP1_M2C_N;
-		rx_coupling_caps(5).b = DP2_M2C_P;
-		rx_coupling_caps(6).b = DP2_M2C_N;
-		rx_coupling_caps(7).b = DP3_M2C_P;
-		rx_coupling_caps(8).b = DP3_M2C_N;
-		rx_coupling_caps(9).b = DP4_M2C_P;
-		rx_coupling_caps(10).b = DP4_M2C_N;
-		rx_coupling_caps(11).b = DP5_M2C_P;
-		rx_coupling_caps(12).b = DP5_M2C_N;
+		
+		this(1).b = DP0_M2C_P;
+		this(2).b = DP0_M2C_N;
+		this(3).b = DP1_M2C_P;
+		this(4).b = DP1_M2C_N;
+		this(5).b = DP2_M2C_P;
+		this(6).b = DP2_M2C_N;
+		this(7).b = DP3_M2C_P;
+		this(8).b = DP3_M2C_N;
+		this(9).b = DP4_M2C_P;
+		this(10).b = DP4_M2C_N;
+		this(11).b = DP5_M2C_P;
+		this(12).b = DP5_M2C_N;
 	end inst;
 	
 	/****************************************************************************************
@@ -453,25 +445,22 @@ begin
 	 
 	 // the differential clock connectors
 	inst(1:2) diff_clk_input of SMA_CON is
-		diff_clk_input(1).refDes = "P30";
-		diff_clk_input(2).refDes = "P26";
-
-		diff_clk_input(1).sig = CLK250P;
-		diff_clk_input(2).sig = CLK250N;
+		this(1).refDes = "P30";
+		this(2).refDes = "P26";
+		this(1).sig = CLK250P;
+		this(2).sig = CLK250N;
 		gnd = <DIFF_CLK_RTN>;
 	end inst;
 	
 	// the single ended clock connector
 	inst single_ended_clk_input of SMA_CON is
 		refDes = "P25";
-
 		sig = CLK250;
 		gnd = <SINGLE_CLK_RTN>;
 	end inst;
 	
 	inst diff_iso_transformer of TC4-14+ is
 		refDes = "T2";
-
 		pri_p = CLK250P;
 		pri_n = CLK250N;
 		sec_p = $3N212;
@@ -481,7 +470,6 @@ begin
 	
 	inst single_iso_transformer of TC4-14+ is
 		refDes = "T1";
-
 		pri_p = SINGLE_CLK_RTN;
 		pri_n = CLK250;
 		sec_p = $3N195;
@@ -491,63 +479,64 @@ begin
 	
 	// the clock impedance matching-biasing resitor network
 	inst(1:10) clk_biasing_network of res_0603 is
-		clk_biasing_network(1:2).value = "100";
-		clk_biasing_network(3:4).value = "49.9";
-		clk_biasing_network(5:8).value = "150";
-		clk_biasing_network(9).value = "200";
-		clk_biasing_network(10).value = "100";
+		// constrained values
+		this(1:2).value = "100";
+		this(3:4).value = "49.9";
+		this(5:8).value = "150";
+		this(9).value = "200";
+		this(10).value = "100";
 		
 		// constrained refdes's
-		clk_biasing_network(1).refDes = "R10";
-		clk_biasing_network(2).refDes = "R12";
-		clk_biasing_network(3).refDes = "R3";
-		clk_biasing_network(4).refDes = "R7";
-		clk_biasing_network(5).refDes = "R11";
-		clk_biasing_network(6).refDes = "R15";
-		clk_biasing_network(7).refDes = "R13";
-		clk_biasing_network(8).refDes = "R14";
-		clk_biasing_network(9).refDes = "R8";
-		clk_biasing_network(10).refDes = "R4";
+		this(1).refDes = "R10";
+		this(2).refDes = "R12";
+		this(3).refDes = "R3";
+		this(4).refDes = "R7";
+		this(5).refDes = "R11";
+		this(6).refDes = "R15";
+		this(7).refDes = "R13";
+		this(8).refDes = "R14";
+		this(9).refDes = "R8";
+		this(10).refDes = "R4";
 		
-		// impedance matching
-		clk_biasing_network(1).a = CLK250N_BAL;
-		clk_biasing_network(1).b = $3N212;
-		clk_biasing_network(2).a = CLK250P_BAL;
-		clk_biasing_network(2).b = $3N213;
-		clk_biasing_network(3).a = CLK250_BAL_N;
-		clk_biasing_network(3).b = $3N193;
-		clk_biasing_network(4).a = CLK250_BAL_P;
-		clk_biasing_network(4).b = $3N195;
+		// impedance matching network
+		this(1).a = CLK250N_BAL;
+		this(1).b = $3N212;
+		this(2).a = CLK250P_BAL;
+		this(2).b = $3N213;
+		this(3).a = CLK250_BAL_N;
+		this(3).b = $3N193;
+		this(4).a = CLK250_BAL_P;
+		this(4).b = $3N195;
 		
-		// biasing
-		clk_biasing_network(5:6).a = +3V3;
-		clk_biasing_network(5).b = $3N205;
-		clk_biasing_network(6).b = $3N1;
-		clk_biasing_network(7).a = $3N205;
-		clk_biasing_network(8).a = $3N1;
-		clk_biasing_network(7:8).b = gnd;
+		// biasing network
+		this(5:6).a = +3V3;
+		this(5).b = $3N205;
+		this(6).b = $3N1;
+		this(7).a = $3N205;
+		this(8).a = $3N1;
+		this(7:8).b = gnd;
 		
-		// terminating
-		clk_biasing_network(9).a = CLK250N_BAL;
-		clk_biasing_network(9).b = CLK250P_BAL;
-		clk_biasing_network(10).a = CLK250_BAL_N;
-		clk_biasing_network(10).b = CLK250_BAL_P;
+		// terminating network
+		this(9).a = CLK250N_BAL;
+		this(9).b = CLK250P_BAL;
+		this(10).a = CLK250_BAL_N;
+		this(10).b = CLK250_BAL_P;
 	end inst;
 	
 	// all of the power supply's decoupling capacitors
 	inst(1:10) decoupling_caps of tant_cap is
-		decoupling_caps(1:3).value = "220uF";
-		decoupling_caps(4:10).value = "0.1uF";
-		decoupling_caps(1).refDes = "C24";
-		decoupling_caps(2).refDes = "C25";
-		decoupling_caps(3).refDes = "C26";
-		decoupling_caps(4).refDes = "C20";
-		decoupling_caps(5).refDes = "C21";
-		decoupling_caps(6).refDes = "C22";
-		decoupling_caps(7).refDes = "C23";
-		decoupling_caps(8).refDes = "C1";
-		decoupling_caps(9).refDes = "C2";
-		decoupling_caps(10).refDes = "C3";
+		this(1:3).value = "220uF";
+		this(4:10).value = "0.1uF";
+		this(1).refDes = "C24";
+		this(2).refDes = "C25";
+		this(3).refDes = "C26";
+		this(4).refDes = "C20";
+		this(5).refDes = "C21";
+		this(6).refDes = "C22";
+		this(7).refDes = "C23";
+		this(8).refDes = "C1";
+		this(9).refDes = "C2";
+		this(10).refDes = "C3";
 
 		pos = <+3V3>;
 		neg = <gnd>;
@@ -556,7 +545,6 @@ begin
 	// the instantiated clock buffer IC
 	inst clock_buffer of sy898533l is
 		refDes = "U1";
-
 		vcc = <+3V3>;
 		clk_p = CLK250P_BAL;
 		clk_n = CLK250N_BAL;
@@ -579,25 +567,31 @@ begin
 	// clock buffer output isolation capacitors
 	inst(1:4) clk_buffer_iso_caps of cap_0402 is
 		value = "1uF";
-
-		clk_buffer_iso_caps(1).a = $3N42;
-		clk_buffer_iso_caps(2).a = $3N44;
-		clk_buffer_iso_caps(3).a = $3N163;
-		clk_buffer_iso_caps(4).a = $3N164;
-		clk_buffer_iso_caps(1).b = GBTCLK0_M2C_P;
-		clk_buffer_iso_caps(2).b = GBTCLK0_M2C_N;
-		clk_buffer_iso_caps(3).b = GBTCLK1_M2C_P;
-		clk_buffer_iso_caps(4).b = GBTCLK1_M2C_P;
+		this(1).refDes = "C19";
+		this(2).refDes = "C18";
+		this(3).refDes = "C17";
+		this(4).refDes = "C16";
+		this(1).a = $3N42;
+		this(2).a = $3N44;
+		this(3).a = $3N163;
+		this(4).a = $3N164;
+		this(1).b = GBTCLK0_M2C_P;
+		this(2).b = GBTCLK0_M2C_N;
+		this(3).b = GBTCLK1_M2C_P;
+		this(4).b = GBTCLK1_M2C_N;
 	end inst;
 	
 	// clock buffer output terminations
 	inst(1:4) clk_buffer_terminations of res_0603 is
 		value = "120";
-
-		clk_buffer_terminations(1).a = $3N42;
-		clk_buffer_terminations(2).a = $3N44;
-		clk_buffer_terminations(3).a = $3N163;
-		clk_buffer_terminations(4).a = $3N164;
+		this(1).refDes = "R5";
+		this(2).refDes = "R6";
+		this(3).refDes = "R1";
+		this(4).refDes = "R2";
+		this(1).a = $3N42;
+		this(2).a = $3N44;
+		this(3).a = $3N163;
+		this(4).a = $3N164;
 		b = <gnd>;
 	end inst;
 	
@@ -618,11 +612,11 @@ begin
 	
 	// the synchronization connectors
 	inst(1:2) sync_connectors of SMA_CON is
-		sync_connectors(1).refDes = "P28";
-		sync_connectors(2).refDes = "P27";
+		this(1).refDes = "P28";
+		this(2).refDes = "P27";
 
-		sync_connectors(1).sig = SYNC_OUT;
-		sync_connectors(2).sig = SYNC_IN;
+		this(1).sig = SYNC_OUT;
+		this(2).sig = SYNC_IN;
 		gnd = <gnd>;
 	end inst;
 	

@@ -1,11 +1,11 @@
-design myDesign is	
+design test is	
 	
 	device resistor is
 		attr refprefix = "R";
 		attr name = "";
 		attr value = "10K";
-		attr package = "R0207";
 		attr tolerance = "10%";
+		attr pkg_type = "R0207";
 		pin a = {1};
 		pin b = {2};
 	end device resistor;
@@ -19,7 +19,8 @@ design myDesign is
 begin
 	
 	inst(1:0) myRes of resistor is
-		refDes = "U2";
+		this(0).refDes = "R2";
+		this(1).refDes = "R1";
 		this(0).a = +vcc;
 		this(0).b = zero_low;
 		this(1).a = one_high;
@@ -31,4 +32,4 @@ begin
 	one_high = combined;
 	+vcc = -vcc;
 	
-end design myDesign;
+end design test;

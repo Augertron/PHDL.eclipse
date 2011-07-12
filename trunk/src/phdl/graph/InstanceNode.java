@@ -10,6 +10,7 @@ public class InstanceNode extends Attributable {
 	private DeviceNode device;
 	private String refDes;
 	private String refPrefix;
+	private String footprint;
 
 	/**
 	 * Default Constructor.
@@ -23,6 +24,7 @@ public class InstanceNode extends Attributable {
 		pins = new ArrayList<PinNode>();
 		refDes = null;
 		refPrefix = null;
+		footprint = null;
 	}
 
 	/**
@@ -122,23 +124,22 @@ public class InstanceNode extends Attributable {
 
 	@Override
 	public String toString() {
-		return super.toString() + " : " + getDevice().getName();
+		return super.toString() + " : " + getDevice().getName()
+			+ (refDes != null ? (" " + refDes) : "");
 	}
 
 	public AttributeNode getAttribute(String s) {
 		for (AttributeNode a : attrs) {
-			if (s.toUpperCase().equals(a.getName().toUpperCase())) {
+			if (s.toUpperCase().equals(a.getName().toUpperCase()))
 				return a;
-			}
 		}
 		return null;
 	}
 
 	/**
-	 * Returns a list of PinNodes with the same name as the name passed in.
-	 * Valid names are an exact match (suffix length is zero), or those that are
-	 * suffixed by an array index (the start of which is marked by an open
-	 * parentheses character.)
+	 * Returns a list of PinNodes with the same name as the name passed in. Valid names are an exact
+	 * match (suffix length is zero), or those that are suffixed by an array index (the start of
+	 * which is marked by an open parentheses character.)
 	 * 
 	 * @param pinName
 	 * @return The list of pin nodes with the same name as pinName.
@@ -148,11 +149,9 @@ public class InstanceNode extends Attributable {
 		for (int i = 0; i < pins.size(); i++) {
 			if (pins.get(i).getName().length() < pinName.length())
 				continue;
-			String prefix = pins.get(i).getName()
-					.substring(0, pinName.length());
+			String prefix = pins.get(i).getName().substring(0, pinName.length());
 			if (prefix.equals(pinName)) {
-				String suffix = pins.get(i).getName()
-						.substring(pinName.length());
+				String suffix = pins.get(i).getName().substring(pinName.length());
 				if (suffix.length() == 0 || suffix.charAt(0) == '[') {
 					allPins.add(pins.get(i));
 				}
@@ -210,5 +209,13 @@ public class InstanceNode extends Attributable {
 
 		String index = getName().substring(start + 1, end);
 		return Integer.parseInt(index);
+	}
+
+	public String getFootprint() {
+		return footprint;
+	}
+
+	public void setFootprint(String footprint) {
+		this.footprint = footprint;
 	}
 }
