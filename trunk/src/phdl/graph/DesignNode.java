@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -297,5 +298,94 @@ public class DesignNode extends Node {
 		for (NetNode r : rootNodes) {
 			r.superNet();
 		}
+
+		Set<NetNode> others = new TreeSet<NetNode>();
+		boolean found = false;
+		for (NetNode n : nets) {
+			found = false;
+			for (NetNode r : rootNodes) {
+				if (n.equals(r)) {
+					found = true;
+					break;
+				}
+			}
+			if (!found) {
+				others.add(n);
+			}
+		}
+
+		for (NetNode n : others) {
+			nets.remove(n);
+		}
+	}
+
+	public void superNet2() {
+		// any net that is set as visited will be deleted
+		Set<NetNode> deletes = new HashSet<NetNode>();
+
+		// go through all nets in the design
+		for (NetNode n : nets) {
+			if (!n.isVisited()) {
+				// call the merge routine on any unvisited net
+				n = merge(n);
+				// make sure merged net isn't deleted.
+				n.setVisited(false);
+			}
+		}
+
+		// gather up all the nets to be deleted from the design
+		for (NetNode n : nets) {
+			if (n.isVisited()) {
+				deletes.add(n);
+			}
+		}
+
+		// delete these nets from the design
+		for (NetNode n : deletes) {
+			nets.remove(n);
+			System.out.println(n.toString());
+		}
+	}
+
+	/**
+	 * Merges the names of the current net with the names of all neighbors by
+	 * using a depth-first search.
+	 * 
+	 * @param current
+	 * @return net with merged name from all unvisited neighbor's names
+	 */
+	private NetNode merge(NetNode current) {
+
+		Set<NetNode> removes = new HashSet<NetNode>();
+
+		// set the current node as visited
+		current.setVisited(true);
+
+		// visit and process all of its neighbors
+		for (NetNode neighbor : current.getNetNodes()) {
+			if (!neighbor.isVisited()) {
+
+				neighbor = merge(neighbor);
+
+				// append the name of its neighbor
+				current.setName(current.getName() + "$" + neighbor.getName());
+				removes.add(neighbor);
+
+				// grab all of its neighbors pins
+				for (PinNode p : neighbor.getPinNodes()) {
+					current.addPin(p);
+					p.setNet(current);
+				}
+
+			}
+		}
+
+		// remove all current's connections to neighbors
+		for (NetNode r : removes) {
+			current.removeNet(r);
+		}
+
+		// propagate the merged net back up the call-stack
+		return current;
 	}
 }

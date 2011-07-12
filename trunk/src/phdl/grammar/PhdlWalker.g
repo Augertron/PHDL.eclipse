@@ -169,7 +169,8 @@ options {
 					addError(pinNode, "pin undeclared in device");
 				}
 			} else {
-				reportError(pinNode, "invalid assignment width");
+				reportError(pinNode, "invalid assignment, left size is " 
+						+ slices.size() + " right size is " + concats.size());
 			}
 		} else {
 			if (concats.size() == slices.size()) {
@@ -187,7 +188,8 @@ options {
 					}
 				}
 			} else {
-				reportError(pinNode, "invalid assignment width");
+				reportError(pinNode, "invalid assignment, left size is " 
+						+ slices.size() + " right size is " + concats.size());
 			}
 		}
 	}
@@ -249,10 +251,16 @@ designDecl
 			}
 			//===================== JAVA BLOCK END ========================
 		
-		(deviceDecl[des] | netDecl[des])* 'begin' (instDecl[des] | netAssign[des])*)
+		(deviceDecl[des] | netDecl[des])* 'begin' (instDecl[des] | netAssign[des])* (endName=IDENT)? )
 		
 			//==================== JAVA BLOCK BEGIN =======================
-			{	// add the design node and report if there are duplicates
+			{	// check the optional trailing label on the design to see if it maches
+				if (endName != null) {
+					if (!$desName.text.equals($endName.text))
+						addError($endName, "design name " + $desName.text + " does not match");
+				}
+			
+				// add the design node and report if there are duplicates
 				if(!designNodes.add(des))
 					addError(des, "duplicate design unit");
 					
@@ -299,10 +307,16 @@ deviceDecl[DesignNode des]
 			}
 			//===================== JAVA BLOCK END ========================
 			
-		(attributeDecl[dev] | pinDecl[dev])*)
+		(attributeDecl[dev] | pinDecl[dev])* endName=IDENT?)
 		
 			//==================== JAVA BLOCK BEGIN =======================
-			{	// report any missing required attributes
+			{	// check the optional trailing label on the device to see if it maches
+				if (endName != null) {
+					if (!$devName.text.equals($endName.text))
+						addError($endName, "device name " + $devName.text + " does not match");
+				}
+			
+				// report any missing required attributes
 				for(String s : reqAttrs) {
 					s = s.toUpperCase();
 					if(dev.getAttribute(s)==null)
@@ -444,10 +458,16 @@ netDecl[DesignNode des]
 			}
 			//===================== JAVA BLOCK END ========================
 			
-		sliceList[slices]? netName=IDENT attributeDecl[n]* )
+		sliceList[slices]? netName=IDENT attributeDecl[n]* endName=IDENT?)
 		
 			//==================== JAVA BLOCK BEGIN =======================
-			{	// make net nodes based on the slice list
+			{	// check the optional trailing label on the net to see if it maches
+				if (endName != null) {
+					if (!$netName.text.equals($endName.text))
+						addError($endName, "net name " + $netName.text + " does not match");
+				}
+			
+				// make net nodes based on the slice list
 				for (int i = 0; i < slices.size(); i++) {
 					NetNode newNode = new NetNode(des);
 					newNode.setName($netName.text + "[" + slices.get(i) + "]");
@@ -571,7 +591,17 @@ instDecl[DesignNode des]
 			}
 			//===================== JAVA BLOCK END ========================
 
-		(attrAssign[des, $instName.text] | pinAssign[des, $instName.text])* )
+		(attrAssign[des, $instName.text] | pinAssign[des, $instName.text])* endName=IDENT?)
+		
+			//==================== JAVA BLOCK BEGIN =======================
+			{	// check the optional trailing label on the design to see if it maches
+				if (endName != null) {
+					if (!$instName.text.equals($endName.text))
+						addError($endName, "inst name " + $instName.text + " does not match");
+				}
+				
+			}
+			//===================== JAVA BLOCK END ========================
 	;
 	
 /**
@@ -707,6 +737,7 @@ pinAssign[DesignNode des, String instName]
 					InstanceNode inst = des.getInstance(instName);
 					assignPins(slices, concats, inst, $pinName);
 				}
+				
 			}
 			//===================== JAVA BLOCK END ========================
 	;
@@ -724,7 +755,9 @@ netAssign[DesignNode des]
 		concatenation[concats, slices.size(), des])
 		
 			//==================== JAVA BLOCK BEGIN =======================
-			{	
+			{	if (concats.contains(des.getNet("open"))) {
+					reportError($netName, "cannot assign open to a net");
+				}
 				if (slices.isEmpty()) {
 					if (concats.size() == 1) {
 						NetNode n = des.getNet($netName.text);
@@ -735,7 +768,8 @@ netAssign[DesignNode des]
 							addError($netName, "net undeclared in design");
 						}
 					} else {
-						reportError($netName, "invalid assignment width");
+						reportError($netName, "invalid assignment, left width is " 
+								+ slices.size() + " right width is " + concats.size());
 					}
 				} else {
 					if (concats.size() == slices.size()) {
@@ -749,7 +783,8 @@ netAssign[DesignNode des]
 							}
 						}
 					} else {
-						reportError($netName, "invalid assignment width");
+						reportError($netName, "invalid assignment, left width is " 
+								+ slices.size() + " right width is " + concats.size());
 					}
 				}
 			}
@@ -772,7 +807,8 @@ concatenation[List<NetNode> concats, int assignWidth, DesignNode des]
 					if (n != null) {
 						concats.add(n);
 					} else {
-						addError($first, "undeclared net");
+						addError($first, "net undeclared in design");
+						System.out.println("testing");
 					}
 				}
 			
@@ -875,13 +911,16 @@ concatenation[List<NetNode> concats, int assignWidth, DesignNode des]
  * 3. Report an error if the qualifier name does not match.
  */
 instanceQualifier[String instName, List<Integer> indices, DesignNode des]
-	:	^(PERIOD qualName=IDENT (arrayList[indices] | arrayIndices[indices, instName, des]) )
+	:	{boolean isThis = false;}
+		^(PERIOD (qualName=IDENT | ('this' {isThis = true;})) (arrayList[indices] | arrayIndices[indices, instName, des]) )
 	
 			//==================== JAVA BLOCK BEGIN =======================
 		    {	// check that the instance qualifier matches
-		    	if (!instName.equals($qualName.text)) {
-		    		addError($qualName, "invalid instance qualifier");
-		    	}
+
+				if (!instName.equals($qualName.text) && !isThis) {
+				    addError($qualName, "invalid instance qualifier");
+				}
+	
 		    }
 		    //===================== JAVA BLOCK END ========================
 	;

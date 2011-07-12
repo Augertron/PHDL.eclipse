@@ -38,6 +38,7 @@ import phdl.grammar.PhdlParser;
 import phdl.grammar.PhdlParser.sourceText_return;
 import phdl.grammar.PhdlWalker;
 import phdl.graph.DesignNode;
+import phdl.graph.NetNode;
 import phdl.graph.Node;
 
 /**
@@ -131,7 +132,7 @@ public class PhdlComp {
 
 			// print out the design to the console
 			for (DesignNode d : walker.getDesignNodes()) {
-				d.printDesignNode();
+				// d.printDesignNode();
 			}
 
 			// output a dotty graph before calling mergeNet
@@ -142,14 +143,13 @@ public class PhdlComp {
 
 			// call the superNet algorithm on all nets in each design node
 			for (DesignNode d : walker.getDesignNodes()) {
-				d.superNet();
+				d.superNet2();
 				// report any floating nets
-				// for (NetNode n : d.getNets()) {
-				// if ((n.getPinNodes().size() < 2 || n.getNetNodes().size() ==
-				// 0)
-				// && (!n.getName().equals("open")))
-				// addWarning(n, "floating net");
-				// }
+				for (NetNode n : d.getNets()) {
+					if ((n.getPinNodes().size() < 2)
+							&& (!n.getName().equals("open")))
+						addWarning(n, "floading net");
+				}
 			}
 
 			// print out the design to the console
@@ -168,7 +168,7 @@ public class PhdlComp {
 		// print out all errors if there were any, and exit abnormally
 		if (printErrors()) {
 			printWarnings();
-			// System.exit(1);
+			System.exit(1);
 		}
 		printWarnings();
 
