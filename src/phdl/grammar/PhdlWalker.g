@@ -43,6 +43,7 @@ options {
 	import java.util.SortedSet;
 	import java.util.List;
 	import java.util.ArrayList;
+	import java.util.regex.Pattern;
 	import phdl.graph.*;
 }
 
@@ -197,21 +198,19 @@ options {
 	/**
 	 * Necessary to properly report AST errors without bailing out of the whole application
 	 */
-//	@Override
-//    public void displayRecognitionError(String[] tokenNames, RecognitionException e) {
-//        String hdr = getErrorHeader(e);
-//        String msg = getErrorMessage(e, tokenNames);
-//        errors.add(input.getSourceName() + hdr + " " + msg);
-//    }
+	@Override
+    public void displayRecognitionError(String[] tokenNames, RecognitionException e) {
+        String hdr = getErrorHeader(e);
+        String msg = getErrorMessage(e, tokenNames);
+        errors.add(input.getSourceName() + hdr + " " + msg);
+    }
     
-//    @Override
-//    protected Object recoverFromMismatchedToken(IntStream input,
-//                                            int ttype,
-//                                            BitSet follow)
-//    throws RecognitionException
-//	{   
-//    	throw new MismatchedTokenException(ttype, input);
-//	}  
+    @Override
+    protected Object recoverFromMismatchedToken(IntStream input, int ttype, BitSet follow)
+    		throws RecognitionException
+	{   
+    	throw new MismatchedTokenException(ttype, input);
+	}  
 }
 
 /**
@@ -270,7 +269,7 @@ designDecl
 						addWarning(dev, "unused device declaration");
 				}
 				
-				Set<String> refDezs = new HashSet<String>();
+				Set<String> refDesSet = new HashSet<String>();
 				
 				// report any dangling pins in all instances
 				for (InstanceNode i : des.getInstances()) {
@@ -279,8 +278,13 @@ designDecl
 							addError(i, "dangling pin " + p.getName() + " in instance");
 					}
 					
-					// report duplicate reference designators
-					
+					if (!i.getRefDes().equals("")) {
+						// report duplicate reference designators
+						if (!refDesSet.add(i.getRefDes())) {
+							System.out.println(i.getRefDes());
+							addError(i, "duplicate reference designator in design");
+						}
+					}
 				}
 				
 			}
@@ -358,8 +362,16 @@ attributeDecl[Attributable dev]
 				dev.addAttribute(a);
 				
 				// report any duplicate attribute declarations
-				if(!attrDecls.add($attrName.text.toUpperCase()))
+				if (!attrDecls.add($attrName.text.toUpperCase()))
 					addError(a, "duplicate attribute declaration");
+					
+				// check if the attribute is a refprefix attribute
+				if (a.getName().equals("REFPREFIX")) {
+					// check to see if refPrefix begins with a letter
+					if (!Pattern.compile("^[A-Z]").matcher(a.getValue()).find()) {
+						addError($attrName, "invalid refPrefix in device");
+					}
+				}
 			}
 			//===================== JAVA BLOCK END ========================
     ;
@@ -606,6 +618,29 @@ instDecl[DesignNode des]
 						addError($endName, "inst name " + $instName.text + " does not match");
 				}
 				
+				// obtain the device which the instance references
+				DeviceNode dev = des.getDevice($devName.text);
+				String refPrefix = null;
+				if (dev != null) {
+					// obtain the reference prefix defined in the device
+					for (AttributeNode a : dev.getAttributes()) {
+						if (a.getName().equals("REFPREFIX"))
+							refPrefix = a.getValue();
+					}
+				}
+				
+				// assign the reference prefix and designator if it exists
+				for (InstanceNode i : des.getAllInstances($instName.text)) {
+
+					for (AttributeNode a : i.getAttributes()) {
+						if (a.getName().equals("REFPREFIX"))
+							i.setRefPrefix(a.getValue());
+						if (a.getName().equals("REFDES"))
+							i.setRefDes(a.getValue());
+						if (a.getName().equals("PKG_TYPE"))
+							i.setFootprint(a.getValue());
+					}
+				}
 			}
 			//===================== JAVA BLOCK END ========================
 	;
@@ -814,7 +849,6 @@ concatenation[List<NetNode> concats, int assignWidth, DesignNode des]
 						concats.add(n);
 					} else {
 						addError($first, "net undeclared in design");
-						System.out.println("testing");
 					}
 				}
 			

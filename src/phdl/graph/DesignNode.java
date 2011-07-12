@@ -343,7 +343,6 @@ public class DesignNode extends Node {
 		// delete these nets from the design
 		for (NetNode n : deletes) {
 			nets.remove(n);
-			System.out.println(n.toString());
 		}
 	}
 

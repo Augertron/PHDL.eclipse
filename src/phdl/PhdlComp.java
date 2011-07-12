@@ -33,9 +33,9 @@ import org.antlr.runtime.tree.DOTTreeGenerator;
 import org.antlr.runtime.tree.Tree;
 import org.antlr.stringtemplate.StringTemplate;
 
+import phdl.generator.Generator;
 import phdl.grammar.PhdlLexer;
 import phdl.grammar.PhdlParser;
-import phdl.grammar.PhdlParser.sourceText_return;
 import phdl.grammar.PhdlWalker;
 import phdl.graph.DesignNode;
 import phdl.graph.NetNode;
@@ -53,26 +53,25 @@ public class PhdlComp {
 	/**
 	 * An array of attributes that every device declaration is required to have
 	 */
-	static String[] reqAttr = { "REFPREFIX", "NAME", "VALUE" };
+	static String[] reqAttr = { "REFPREFIX", "PKG_TYPE" };
 
 	static SortedSet<String> errors = new TreeSet<String>();
 	static SortedSet<String> warnings = new TreeSet<String>();
 
 	/**
-	 * The main entry point of the phdl Compiler. It accepts *.phdl source files
-	 * as arguments and generates a netlist for layout tools.
+	 * The main entry point of the phdl Compiler. It accepts *.phdl source files as arguments and
+	 * generates a netlist for layout tools.
 	 */
 	public static void main(String[] args) {
 
-		sourceText_return str = null;
-
-		// repeat for each source file passed in as an argument
+		// Repeat for each source file passed in as an argument
 		for (int i = 0; i < args.length; i++) {
 
 			String fileName = args[i].replace(".phdl", "");
 			System.out.println("Compiling..." + args[i]);
 
-			// 1. attempt to make a character stream from the source file
+			// 1. Attempt to make a character stream from the source file and bail out if there is a
+			// problem with the source file
 			CharStream cs = null;
 			try {
 				cs = new ANTLRFileStream(args[i]);
@@ -81,61 +80,61 @@ public class PhdlComp {
 				System.exit(1);
 			}
 
-			// 2. lex this character stream and make a stream of tokens. Attempt
-			// to parse the stream of tokens to a tree and accumulate errors.
+			// 2. LEX this character stream and make a stream of tokens. Attempt to parse the stream
+			// of tokens to a tree. Bail out of the compiler if there are any parser errors.
 			PhdlLexer l = new PhdlLexer(cs);
 			TokenStream ts = new CommonTokenStream(l);
 			PhdlParser p = new PhdlParser(ts);
+			CommonTreeNodeStream ns = null;
 			try {
-				str = p.sourceText();
+				ns = new CommonTreeNodeStream(p.sourceText().getTree());
+				ns.setTokenStream(p.getTokenStream());
 				for (String error : p.getErrors())
 					errors.add(error);
 
+				// convert the AST to a dotty formatted string for graph viewing
+				DOTTreeGenerator tg = new DOTTreeGenerator();
+				StringTemplate st = tg.toDOT((Tree) p.sourceText().getTree());
+				String astFileName = fileName + "_ast.dot";
+				dumpToFile(astFileName, st.toString());
+
+				// bail out of there are errors
+				if (printErrors())
+					System.exit(1);
+
 			} catch (Exception e) {
 				errors.add("ERROR: " + e.getMessage());
+
+				// print out any parsing errors, and do not continue on.
+				if (printErrors())
+					System.exit(1);
 			}
 
-			// print out any parsing errors, and do not continue on.
-			if (printErrors()) {
-				System.exit(1);
-			}
-
-			// 3. convert this tree of tokens to a node stream and set the token
-			// stream reference to the parser's token stream
-			CommonTreeNodeStream ns = new CommonTreeNodeStream(str.getTree());
-			ns.setTokenStream(p.getTokenStream());
-
-			// 4. walk the stream of nodes and attempt to obtain a set of all
-			// designs and add any errors if they exist
+			// 3. walk the stream of nodes and attempt to obtain a set of all designs
 			PhdlWalker walker = new PhdlWalker(ns);
 			walker.setRequiredAttributes(reqAttr);
 			try {
 				walker.sourceText();
 				errors.addAll(walker.getErrors());
 				warnings.addAll(walker.getWarnings());
+
+				// print out all errors if there were any, and exit abnormally
+				if (printErrors())
+					System.exit(1);
+
 			} catch (RecognitionException e) {
 				errors.add(e.getMessage());
+				// print out all errors if there were any, and do not continue
+				if (printErrors())
+					System.exit(1);
 			}
-
-			// print out all errors if there were any, and exit abnormally
-			if (printErrors()) {
-				printWarnings();
-				System.exit(1);
-			}
-			printWarnings();
-
-			// 5. convert the AST to a dotty formatted string
-			DOTTreeGenerator tg = new DOTTreeGenerator();
-			StringTemplate st = tg.toDOT((Tree) str.getTree());
-			String astFileName = fileName + "_AST.dot";
-			dumpToFile(astFileName, st.toString());
 
 			// print out the design to the console
 			for (DesignNode d : walker.getDesignNodes()) {
 				// d.printDesignNode();
 			}
 
-			// output a dotty graph before calling mergeNet
+			// output a dotty graph before merging nodes
 			for (DesignNode d : walker.getDesignNodes()) {
 				String graphFileName = fileName + "_graph.dot";
 				d.dottyDump(graphFileName);
@@ -146,15 +145,16 @@ public class PhdlComp {
 				d.superNet2();
 				// report any floating nets
 				for (NetNode n : d.getNets()) {
-					if ((n.getPinNodes().size() < 2)
-							&& (!n.getName().equals("open")))
+					if ((n.getPinNodes().size() < 2) && (!n.getName().equals("open")))
 						addWarning(n, "floading net");
 				}
+
+				Generator gen = new Generator(d);
 			}
 
-			// print out the design to the console
+			// print out the design to the console after the merge
 			for (DesignNode d : walker.getDesignNodes()) {
-				d.printDesignNode();
+				// d.printDesignNode();
 			}
 
 			// output a dotty graph after merging all nodes
@@ -163,23 +163,18 @@ public class PhdlComp {
 				d.dottyDump(graphFileName);
 			}
 
+			// print out all warnings if they exist.
+			printWarnings();
+
+			System.out.println("Compile successful: " + args[i]);
 		} // end for loop on all source files
 
-		// print out all errors if there were any, and exit abnormally
-		if (printErrors()) {
-			printWarnings();
-			System.exit(1);
-		}
-		printWarnings();
-
-		System.out.println("Compile successful.");
 	}
 
 	static boolean printErrors() {
 		if (!errors.isEmpty()) {
-			for (String s : errors) {
+			for (String s : errors)
 				System.out.println("ERROR: " + s);
-			}
 			return true;
 		}
 		return false;
@@ -187,9 +182,8 @@ public class PhdlComp {
 
 	static boolean printWarnings() {
 		if (!warnings.isEmpty()) {
-			for (String s : warnings) {
+			for (String s : warnings)
 				System.out.println("WARNING: " + s);
-			}
 			return true;
 		}
 		return false;
@@ -199,11 +193,6 @@ public class PhdlComp {
 		BufferedWriter dotty = null;
 		try {
 			dotty = new BufferedWriter(new FileWriter(fileName));
-		} catch (IOException e) {
-			System.out.println("Problem creating file: " + fileName);
-			System.exit(1);
-		}
-		try {
 			dotty.write(fileData);
 			dotty.close();
 		} catch (IOException e) {
@@ -217,7 +206,7 @@ public class PhdlComp {
 	 * Adds a warning from a Node object
 	 */
 	static void addWarning(Node n, String message) {
-		warnings.add(n.getFileName() + " line " + n.getLine() + ":"
-				+ n.getPosition() + " " + message + ": " + n.getName());
+		warnings.add(n.getFileName() + " line " + n.getLine() + ":" + n.getPosition() + " "
+			+ message + ": " + n.getName());
 	}
 }
