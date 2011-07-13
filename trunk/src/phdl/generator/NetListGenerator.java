@@ -35,8 +35,8 @@ public class NetListGenerator {
 
 		for (NetNode n : design.getNets()) {
 
-			// if (n.getName().equals("open"))
-			// continue;
+			if (n.getName().equals("open"))
+				continue;
 
 			contents += "*SIGNAL* " + n.getName().toUpperCase() + "\n";
 

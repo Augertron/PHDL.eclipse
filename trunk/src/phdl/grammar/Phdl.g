@@ -261,7 +261,7 @@ AMPERSAND: '&';
 /**
  * A character can be uppercase or lowercase letters, and a few others
  */
-fragment CHAR : ('a'..'z') | ('A'..'Z') | '_' | '+' | '-' | '$';
+fragment CHAR : ('a'..'z') | ('A'..'Z') | '_' | '+' | '-' | '$' ;
 
 /**
  * A digit can be any number 0 through 9
