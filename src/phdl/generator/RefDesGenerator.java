@@ -59,13 +59,14 @@ public class RefDesGenerator {
 		}
 	}
 
+	@Override
 	public String toString() {
 		String myString = "";
 		Set<String> refs = refMap.keySet();
 		for (String s : refs) {
-			myString += refMap.get(s).getName();
-			myString += ",";
 			myString += refMap.get(s).getRefDes();
+			myString += ",";
+			myString += refMap.get(s).getName();
 			myString += "\n";
 		}
 		return myString;

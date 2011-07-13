@@ -23,21 +23,20 @@ public class NetListGenerator {
 	}
 
 	private void generate() {
-		contents = "!PADS-POWERPCB-V2007.0-MILS!\n\n";
+		contents = "!PADS-POWERPCB-V9.0-MILS! NETLIST FILE FROM PADS LOGIC V9.3 \n\n";
 		contents += "*PART*\n";
 
 		for (String s : refMap.keySet()) {
 			InstanceNode i = refMap.get(s);
 			contents += s;
-			contents += " " + i.getDevice().getName().toUpperCase() + "@"
-					+ i.getFootprint() + "\n";
+			contents += " " + i.getDevice().getName().toUpperCase() + "@" + i.getFootprint() + "\n";
 		}
 		contents += "*CONNNECTION*\n";
 
 		for (NetNode n : design.getNets()) {
 
-			if (n.getName().equals("open"))
-				continue;
+			// if (n.getName().equals("open"))
+			// continue;
 
 			contents += "*SIGNAL* " + n.getName().toUpperCase() + "\n";
 
@@ -51,9 +50,15 @@ public class NetListGenerator {
 				String name1 = pin1.getPinName();
 				String name2 = pin2.getPinName();
 
-				contents += " " + refMap.get(ref1).getRefDes() + "." + name1;
-				contents += " " + refMap.get(ref2).getRefDes() + "." + name2
-						+ "\n";
+				contents += " ";
+				contents += refMap.get(ref1).getRefDes();
+				contents += ".";
+				contents += name1;
+				contents += " ";
+				contents += refMap.get(ref2).getRefDes();
+				contents += ".";
+				contents += name2;
+				contents += "\n";
 			}
 		}
 		contents += "\n*END*";
