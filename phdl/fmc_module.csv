@@ -1,76 +1,76 @@
-decoupling_caps(8),INSTANCE decoupling_caps(8) : tant_cap C1
-rx_coupling_caps(2),INSTANCE rx_coupling_caps(2) : cap_0402 C10
-rx_coupling_caps(3),INSTANCE rx_coupling_caps(3) : cap_0402 C11
-rx_coupling_caps(4),INSTANCE rx_coupling_caps(4) : cap_0402 C12
-rx_coupling_caps(6),INSTANCE rx_coupling_caps(6) : cap_0402 C13
-rx_coupling_caps(5),INSTANCE rx_coupling_caps(5) : cap_0402 C14
-rx_coupling_caps(7),INSTANCE rx_coupling_caps(7) : cap_0402 C15
-clk_buffer_iso_caps(4),INSTANCE clk_buffer_iso_caps(4) : cap_0402 C16
-clk_buffer_iso_caps(3),INSTANCE clk_buffer_iso_caps(3) : cap_0402 C17
-clk_buffer_iso_caps(2),INSTANCE clk_buffer_iso_caps(2) : cap_0402 C18
-clk_buffer_iso_caps(1),INSTANCE clk_buffer_iso_caps(1) : cap_0402 C19
-decoupling_caps(9),INSTANCE decoupling_caps(9) : tant_cap C2
-decoupling_caps(4),INSTANCE decoupling_caps(4) : tant_cap C20
-decoupling_caps(5),INSTANCE decoupling_caps(5) : tant_cap C21
-decoupling_caps(6),INSTANCE decoupling_caps(6) : tant_cap C22
-decoupling_caps(7),INSTANCE decoupling_caps(7) : tant_cap C23
-decoupling_caps(1),INSTANCE decoupling_caps(1) : tant_cap C24
-decoupling_caps(2),INSTANCE decoupling_caps(2) : tant_cap C25
-decoupling_caps(3),INSTANCE decoupling_caps(3) : tant_cap C26
-decoupling_caps(10),INSTANCE decoupling_caps(10) : tant_cap C3
-rx_coupling_caps(8),INSTANCE rx_coupling_caps(8) : cap_0402 C4
-rx_coupling_caps(10),INSTANCE rx_coupling_caps(10) : cap_0402 C5
-rx_coupling_caps(9),INSTANCE rx_coupling_caps(9) : cap_0402 C6
-rx_coupling_caps(11),INSTANCE rx_coupling_caps(11) : cap_0402 C7
-rx_coupling_caps(12),INSTANCE rx_coupling_caps(12) : cap_0402 C8
-rx_coupling_caps(1),INSTANCE rx_coupling_caps(1) : cap_0402 C9
-header_IO,INSTANCE header_IO : hdr_2x8 J2
-port4(4),INSTANCE port4(4) : SMA_CON P1
-port0(2),INSTANCE port0(2) : SMA_CON P10
-port1(2),INSTANCE port1(2) : SMA_CON P11
-port1(1),INSTANCE port1(1) : SMA_CON P12
-port1(3),INSTANCE port1(3) : SMA_CON P13
-port1(4),INSTANCE port1(4) : SMA_CON P14
-port0(4),INSTANCE port0(4) : SMA_CON P15
-port0(3),INSTANCE port0(3) : SMA_CON P16
-port2(4),INSTANCE port2(4) : SMA_CON P17
-port2(3),INSTANCE port2(3) : SMA_CON P18
-port2(1),INSTANCE port2(1) : SMA_CON P19
-port4(3),INSTANCE port4(3) : SMA_CON P2
-port2(2),INSTANCE port2(2) : SMA_CON P20
-port3(2),INSTANCE port3(2) : SMA_CON P21
-port3(1),INSTANCE port3(1) : SMA_CON P22
-port3(3),INSTANCE port3(3) : SMA_CON P23
-port3(4),INSTANCE port3(4) : SMA_CON P24
-single_ended_clk_input,INSTANCE single_ended_clk_input : SMA_CON P25
-diff_clk_input(2),INSTANCE diff_clk_input(2) : SMA_CON P26
-sync_connectors(2),INSTANCE sync_connectors(2) : SMA_CON P27
-sync_connectors(1),INSTANCE sync_connectors(1) : SMA_CON P28
-diff_single_select,INSTANCE diff_single_select : spdt2_dip P29
-port4(1),INSTANCE port4(1) : SMA_CON P3
-diff_clk_input(1),INSTANCE diff_clk_input(1) : SMA_CON P30
-port4(2),INSTANCE port4(2) : SMA_CON P4
-port5(2),INSTANCE port5(2) : SMA_CON P5
-port5(1),INSTANCE port5(1) : SMA_CON P6
-docking_connector,INSTANCE docking_connector : asp_134488_01 P64
-port5(3),INSTANCE port5(3) : SMA_CON P7
-port5(4),INSTANCE port5(4) : SMA_CON P8
-port0(1),INSTANCE port0(1) : SMA_CON P9
-clk_buffer_terminations(3),INSTANCE clk_buffer_terminations(3) : res_0603 R1
-clk_biasing_network(1),INSTANCE clk_biasing_network(1) : res_0603 R10
-clk_biasing_network(5),INSTANCE clk_biasing_network(5) : res_0603 R11
-clk_biasing_network(2),INSTANCE clk_biasing_network(2) : res_0603 R12
-clk_biasing_network(7),INSTANCE clk_biasing_network(7) : res_0603 R13
-clk_biasing_network(8),INSTANCE clk_biasing_network(8) : res_0603 R14
-clk_biasing_network(6),INSTANCE clk_biasing_network(6) : res_0603 R15
-clk_buffer_terminations(4),INSTANCE clk_buffer_terminations(4) : res_0603 R2
-clk_biasing_network(3),INSTANCE clk_biasing_network(3) : res_0603 R3
-clk_biasing_network(10),INSTANCE clk_biasing_network(10) : res_0603 R4
-clk_buffer_terminations(1),INSTANCE clk_buffer_terminations(1) : res_0603 R5
-clk_buffer_terminations(2),INSTANCE clk_buffer_terminations(2) : res_0603 R6
-clk_biasing_network(4),INSTANCE clk_biasing_network(4) : res_0603 R7
-clk_biasing_network(9),INSTANCE clk_biasing_network(9) : res_0603 R8
-sync_termination,INSTANCE sync_termination : res_0603 R9
-single_iso_transformer,INSTANCE single_iso_transformer : TC4-14+ T1
-diff_iso_transformer,INSTANCE diff_iso_transformer : TC4-14+ T2
-clock_buffer,INSTANCE clock_buffer : sy898533l U1
+decoupling_caps(8),C1
+rx_coupling_caps(2),C10
+rx_coupling_caps(3),C11
+rx_coupling_caps(4),C12
+rx_coupling_caps(6),C13
+rx_coupling_caps(5),C14
+rx_coupling_caps(7),C15
+clk_buffer_iso_caps(4),C16
+clk_buffer_iso_caps(3),C17
+clk_buffer_iso_caps(2),C18
+clk_buffer_iso_caps(1),C19
+decoupling_caps(9),C2
+decoupling_caps(4),C20
+decoupling_caps(5),C21
+decoupling_caps(6),C22
+decoupling_caps(7),C23
+decoupling_caps(1),C24
+decoupling_caps(2),C25
+decoupling_caps(3),C26
+decoupling_caps(10),C3
+rx_coupling_caps(8),C4
+rx_coupling_caps(10),C5
+rx_coupling_caps(9),C6
+rx_coupling_caps(11),C7
+rx_coupling_caps(12),C8
+rx_coupling_caps(1),C9
+header_IO,J2
+port4(4),P1
+port0(2),P10
+port1(2),P11
+port1(1),P12
+port1(3),P13
+port1(4),P14
+port0(4),P15
+port0(3),P16
+port2(4),P17
+port2(3),P18
+port2(1),P19
+port4(3),P2
+port2(2),P20
+port3(2),P21
+port3(1),P22
+port3(3),P23
+port3(4),P24
+single_ended_clk_input,P25
+diff_clk_input(2),P26
+sync_connectors(2),P27
+sync_connectors(1),P28
+diff_single_select,P29
+port4(1),P3
+diff_clk_input(1),P30
+port4(2),P4
+port5(2),P5
+port5(1),P6
+docking_connector,P64
+port5(3),P7
+port5(4),P8
+port0(1),P9
+clk_buffer_terminations(3),R1
+clk_biasing_network(1),R10
+clk_biasing_network(5),R11
+clk_biasing_network(2),R12
+clk_biasing_network(7),R13
+clk_biasing_network(8),R14
+clk_biasing_network(6),R15
+clk_buffer_terminations(4),R2
+clk_biasing_network(3),R3
+clk_biasing_network(10),R4
+clk_buffer_terminations(1),R5
+clk_buffer_terminations(2),R6
+clk_biasing_network(4),R7
+clk_biasing_network(9),R8
+sync_termination,R9
+single_iso_transformer,T1
+diff_iso_transformer,T2
+clock_buffer,U1
