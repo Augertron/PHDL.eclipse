@@ -43,6 +43,10 @@ public class BoMGenerator {
 			List<String> newRow = new ArrayList<String>();
 			newRow.add(i.getDevice().getName());
 			for (int j = 1; j < headers.size(); j++) {
+				if (!i.getAttributes().contains(headers.get(j))) {
+					newRow.add("");
+					continue;
+				}
 				for (AttributeNode a : i.getAttributes()) {
 					if (a.getName().equals(headers.get(j))) {
 						newRow.add(a.getValue());
