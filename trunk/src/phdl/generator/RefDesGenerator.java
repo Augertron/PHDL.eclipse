@@ -65,7 +65,7 @@ public class RefDesGenerator {
 		for (String s : refs) {
 			myString += refMap.get(s).getName();
 			myString += ",";
-			myString += refMap.get(s);
+			myString += refMap.get(s).getRefDes();
 			myString += "\n";
 		}
 		return myString;
