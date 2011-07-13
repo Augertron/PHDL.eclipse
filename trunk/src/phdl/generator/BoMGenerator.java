@@ -50,6 +50,7 @@ public class BoMGenerator {
 					}
 				}
 			}
+			database.add(newRow);
 		}
 	}
 	
@@ -58,7 +59,7 @@ public class BoMGenerator {
 		for (int i = 0; i < database.size(); i++) {
 			for (int j = 0; j < database.get(i).size(); j++) {
 				bom += database.get(i).get(j);
-				if (j+1 == database.get(i).size()) {
+				if (j+1 != database.get(i).size()) {
 					bom += ",";
 				}
 			}
