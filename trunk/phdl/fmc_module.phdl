@@ -28,9 +28,9 @@ design fmc_module is
 		attr refDes = "";
 		attr name = "";
 		attr value = "";
-		attr pkg_type = "SMA_STRAIGHT";
+		attr pkg_type = "SMA_STRAIT";
 		attr mfgr = "MOLEX";
-		attr attpartNumber = "73391-0070";
+		attr partNumber = "73391-0070";
 		attr cost = "4.97";
 
 		pin sig = {1};
@@ -248,7 +248,7 @@ design fmc_module is
 	 */
 	
 	// a massive surface mount connector array
-	device asp_134488_01 is
+	device asp_134488 is
 		attr refPrefix = "P";
 		attr refDes = "";
 		attr name = "";
@@ -281,7 +281,7 @@ design fmc_module is
 	end device;
 	
 	// a pin header declaration
-	device hdr_2x8 is
+	device 2x8_hdr is
 		attr refPrefix = "J";
 		attr refDes = "";
 		attr name = "";
@@ -296,6 +296,11 @@ design fmc_module is
 	end device;
 	
 	net[7:0] DISCRETE;
+	
+	device mount_hole_125 is
+		attr refPrefix = "U";
+		attr pkg_type = "MOUNT_HOLE_125";
+	end device;
 
 begin
 	
@@ -634,7 +639,7 @@ begin
 	 */
 	 
 	// a massive surface mount connector array
-	inst docking_connector of asp_134488_01 is
+	inst docking_connector of asp_134488 is
 		refDes = "P64";
 		
 		// data ports 1 through 5
@@ -715,11 +720,18 @@ begin
 	end inst;
 	
 	// the I/O header
-	inst header_IO of hdr_2x8 is
+	inst header_IO of 2x8_hdr is
 		refDes = "J2";
 
 		sig = DISCRETE;
 		gnd = <gnd>;
+	end inst;
+	
+	inst(1:4) mounting_holes of mount_hole_125 is
+		newattr this(1).refDes = "U2";
+		newattr this(2).refDes = "U3";
+		newattr this(3).refDes = "U9";
+		newattr this(4).refDes = "U10";
 	end inst;
 	
 end;   

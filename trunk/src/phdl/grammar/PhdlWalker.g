@@ -570,10 +570,10 @@ instDecl[DesignNode des]
 							i.addAttribute(new AttributeNode(a, i));
 						for (PinNode pn: dev.getPins())
 							i.addPin(new PinNode(pn, i));
+						instNodes.add(i);
 					} else
-						addError(i, "instance references undeclared device");
+						reportError(i, "instance references undeclared device");
 					
-					instNodes.add(i);
 				}
 				
 				// otherwise make only one instance node based on the instName
@@ -591,10 +591,10 @@ instDecl[DesignNode des]
 							i.addAttribute(new AttributeNode(a, i));
 						for (PinNode pn: dev.getPins())
 							i.addPin(new PinNode(pn, i));
+						instNodes.add(i);
 					} else
-						addError(i, "instance references undeclared device");
+						reportError(i, "instance references undeclared device");
 							
-					instNodes.add(i);
 				}
 			
 				// check for duplicates
@@ -1074,7 +1074,7 @@ sliceList[List<Integer> slices]
  * 2. Checks for duplicate pin numbers in the tree with a set
  */
 pinList[List<String> pList]
-	:	first= (PIN | INTEGER | IDENT)
+	:	first= (INTEGER | IDENT)
 
 			//==================== JAVA BLOCK BEGIN =======================	
 			{	// maintain a set of pin numbers to check for duplicates in the pin list
@@ -1085,7 +1085,7 @@ pinList[List<String> pList]
 			}
 			//===================== JAVA BLOCK END ========================
 		
-     	(next= (PIN | INTEGER | IDENT)	
+     	(next= (INTEGER | IDENT)	
      	
      		//==================== JAVA BLOCK BEGIN =======================	
      		{	if (!pins.add($next.text))

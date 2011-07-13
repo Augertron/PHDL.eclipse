@@ -202,7 +202,7 @@ concatenation
  * may be 1 or more characaters long, and may begin with either a number or letter.
  */	
 pinList
-	: 	LEFTBRACE! (IDENT | PIN | INTEGER) (COMMA! (IDENT | PIN | INTEGER))* RIGHTBRACE!
+	: 	LEFTBRACE! (IDENT | INTEGER) (COMMA! (IDENT | INTEGER))* RIGHTBRACE!
 	;
 	
 /**
@@ -287,15 +287,16 @@ STRING
  * Identifiers may not begin with a digit
  */
 IDENT 
-	: 	CHAR (CHAR | DIGIT)*
+	: 	(CHAR | DIGIT)+
 	;
 
-/**
+/*
  * Pin list numbers may begin with a digit
- */
+
 PIN
 	:	(CHAR | DIGIT)+
 	;
+*/
 	
 /**
  * Phdl whitespace is ignored
