@@ -1,18 +1,12 @@
 /*
-    Copyright (C) 2011  BYU Configurable Computing Lab
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Copyright (C) 2011 BYU Configurable Computing Lab This program is free software: you can
+ * redistribute it and/or modify it under the terms of the GNU General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or (at your option) any later
+ * version. This program is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ * PURPOSE. See the GNU General Public License for more details. You should have received a copy of
+ * the GNU General Public License along with this program. If not, see
+ * <http://www.gnu.org/licenses/>.
  */
 
 package phdl;
@@ -129,15 +123,11 @@ public class PhdlComp {
 					System.exit(1);
 			}
 
-			// print out the design to the console
-			for (DesignNode d : walker.getDesignNodes()) {
-				// d.printDesignNode();
-			}
-
 			// output a dotty graph before merging nodes
 			for (DesignNode d : walker.getDesignNodes()) {
 				String graphFileName = fileName + "_graph.dot";
 				d.dottyDump(graphFileName);
+				// d.printDesignNode();
 			}
 
 			// call the superNet algorithm on all nets in each design node
@@ -150,17 +140,16 @@ public class PhdlComp {
 				}
 
 				Generator gen = new Generator(d);
-			}
-
-			// print out the design to the console after the merge
-			for (DesignNode d : walker.getDesignNodes()) {
-				// d.printDesignNode();
+				gen.generateRefDes();
+				gen.generateBoM();
+				gen.generateNetList();
 			}
 
 			// output a dotty graph after merging all nodes
 			for (DesignNode d : walker.getDesignNodes()) {
 				String graphFileName = fileName + "_graph_merged.dot";
 				d.dottyDump(graphFileName);
+				// d.printDesignNode();
 			}
 
 			// print out all warnings if they exist.

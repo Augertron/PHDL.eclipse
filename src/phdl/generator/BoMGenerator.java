@@ -11,23 +11,23 @@ import phdl.graph.DesignNode;
 import phdl.graph.InstanceNode;
 
 public class BoMGenerator {
-	
+
 	private DesignNode design;
 	List<List<String>> database;
 	private String bom;
-	
+
 	public BoMGenerator(DesignNode design) {
 		this.design = design;
 		generate();
 		generateString();
 	}
-	
+
 	private void generate() {
 		database = new ArrayList<List<String>>();
-		
+
 		List<String> headers = new ArrayList<String>();
 		headers.add("Device Name");
-		
+
 		// Populate Headers
 		for (InstanceNode i : design.getInstances()) {
 			for (AttributeNode a : i.getAttributes()) {
@@ -36,14 +36,16 @@ public class BoMGenerator {
 				}
 			}
 		}
-		
+
 		database.add(headers);
 		// Add devices
 		for (InstanceNode i : design.getInstances()) {
 			List<String> newRow = new ArrayList<String>();
 			newRow.add(i.getDevice().getName());
 			for (int j = 1; j < headers.size(); j++) {
-				if (!i.getAttributes().contains(headers.get(j))) {
+				AttributeNode dummy = new AttributeNode(null);
+				dummy.setName(headers.get(j));
+				if (!i.getAttributes().contains(dummy)) {
 					newRow.add("");
 					continue;
 				}
@@ -57,24 +59,24 @@ public class BoMGenerator {
 			database.add(newRow);
 		}
 	}
-	
+
 	private void generateString() {
 		bom = "PHDL Generated Bill of Materials\n";
 		for (int i = 0; i < database.size(); i++) {
 			for (int j = 0; j < database.get(i).size(); j++) {
 				bom += database.get(i).get(j);
-				if (j+1 != database.get(i).size()) {
+				if (j + 1 != database.get(i).size()) {
 					bom += ",";
 				}
 			}
 			bom += "\n";
 		}
 	}
-	
+
 	public String getBoMString() {
 		return bom;
 	}
-	
+
 	public void outputToFile(String fileName) {
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter(fileName));
@@ -85,5 +87,5 @@ public class BoMGenerator {
 			System.exit(1);
 		}
 	}
-	
+
 }

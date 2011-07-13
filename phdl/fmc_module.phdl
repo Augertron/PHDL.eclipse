@@ -182,7 +182,7 @@ design fmc_module is
 	end device;
 	
 	// an clock buffer IC
-	device sy898533l is
+	device sy898533 is
 		attr refPrefix = "U";
 		attr refDes = "";
 		attr name = "";
@@ -218,7 +218,7 @@ design fmc_module is
 	net GBTCLK1_M2C_N;
 	
 	// a slide switch declaration
-	device spdt2_dip is
+	device slide_switch is
 		attr refPrefix = "P";
 		attr refDes = "";
 		attr name = "";
@@ -548,7 +548,7 @@ begin
 	end inst;
 	
 	// the instantiated clock buffer IC
-	inst clock_buffer of sy898533l is
+	inst clock_buffer of sy898533 is
 		refDes = "U1";
 		vcc = <+3V3>;
 		clk_p = CLK250P_BAL;
@@ -601,7 +601,7 @@ begin
 	end inst;
 	
 	// the differential or single ended clock input select switch
-	inst diff_single_select of spdt2_dip is
+	inst diff_single_select of slide_switch is
 		refDes = "P29";
 
 		// circuit 1
