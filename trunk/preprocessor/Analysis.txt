@@ -1,0 +1,44 @@
+Analysis of C Preprocessor
+
+All comments are replaced with blank lines
+If a #include is found, it inserts a new line with the following format
+
+# <next_line_number> <included_file> <status_flag>
+
+So for example, given a file like this:
+
+1	//Test.phdl
+2	
+3	#include "subtest.phdl"
+4
+5 Hello again
+6
+
+1	//subtest.pdhl
+2	I'm a sub!
+3
+
+Would translate to this after preprocessing:
+
+1	
+2	
+3	# 1 subtest.pdhl 1
+4	
+5	I'm a sub!
+6
+7	# 4 Test.phdl 2
+8	Hello again
+9
+
+Which is equivalent to saying
+Test.phdl			1
+Test.phdl			2
+
+subTest.pdhl	1
+subTest.pdhl	2
+subTest.pdhl	3	I'm a sub!
+
+Test.phdl			4	
+Test.phdl			5	Hello again
+Test.phdl			6
+
