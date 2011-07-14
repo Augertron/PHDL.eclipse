@@ -1,3 +1,20 @@
+/*
+    Copyright (C) 2011  BYU Configurable Computing Lab
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package phdl.generator;
 
 import java.io.BufferedWriter;
@@ -10,12 +27,32 @@ import phdl.graph.InstanceNode;
 import phdl.graph.NetNode;
 import phdl.graph.PinNode;
 
+/**
+ * A class that generates a NetList (.asc) for use in PADS.
+ * 
+ * @author Brad Riching and Richard Black
+ * @version 0.1
+ */
 public class NetListGenerator {
 
-	DesignNode design;
-	Map<String, InstanceNode> refMap;
-	String contents;
+	private DesignNode design;
+	private Map<String, InstanceNode> refMap;
+	private String contents;
 
+	/**
+	 * Default constructor.
+	 * 
+	 * Takes a design and a map of the reference designators
+	 * and generates the NetList.
+	 * 
+	 * @param design the DesignNode where all the net information
+	 * 			is stored.
+	 * @param refMap the map of Reference Designators needed to
+	 * 			generated the NetList.
+	 * 
+	 * @see DesignNode
+	 * @see RefDesGenerator
+	 */
 	public NetListGenerator(DesignNode design, Map<String, InstanceNode> refMap) {
 		this.design = design;
 		this.refMap = refMap;
@@ -64,10 +101,20 @@ public class NetListGenerator {
 		contents += "\n*END*";
 	}
 
+	/**
+	 * Returns the NetList string.
+	 * 
+	 * @return a string representation of the NetList
+	 */
 	public String getContents() {
 		return contents;
 	}
 
+	/**
+	 * Generates an .asc file representation of the NetList.
+	 * 
+	 * @param fileName the name of the file to write to
+	 */
 	public void outputToFile(String fileName) {
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter(fileName));

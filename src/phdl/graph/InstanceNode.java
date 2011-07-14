@@ -1,8 +1,31 @@
+/*
+    Copyright (C) 2011  BYU Configurable Computing Lab
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package phdl.graph;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A class that represents a device instance in PHDL.
+ * 
+ * @author Brad Riching and Richard Black
+ * @version 0.1
+ */
 public class InstanceNode extends Attributable {
 
 	private List<PinNode> pins;
@@ -17,6 +40,9 @@ public class InstanceNode extends Attributable {
 	 * 
 	 * @param design
 	 *            the parent DesignNode for this instance
+	 * @see DesignNode
+	 * @see DeviceNode
+	 * @see PinNode
 	 */
 	public InstanceNode(DesignNode design) {
 		super();
@@ -28,81 +54,94 @@ public class InstanceNode extends Attributable {
 	}
 
 	/**
+	 * Design accessor method.
 	 * 
-	 * @return
+	 * @return			the DesignNode attached to this
+	 * 					Device
 	 */
 	public DesignNode getDesign() {
 		return design;
 	}
 
 	/**
+	 * Design mutator method.
 	 * 
-	 * @param design
+	 * @param design	the new DesignNode
 	 */
 	public void setDesign(DesignNode design) {
 		this.design = design;
 	}
 
 	/**
+	 * Pin List accessor method.
 	 * 
-	 * @return
+	 * @return			the List of PinNodes
 	 */
 	public List<PinNode> getPins() {
 		return pins;
 	}
 
 	/**
+	 * Pin List addition method.
 	 * 
-	 * @param p
-	 * @return
+	 * @param p			the new PinNode
+	 * @return			true, if the pin wasn't in the set
+	 * 					false, otherwise
 	 */
 	public boolean addPin(PinNode p) {
 		return pins.add(p);
 	}
 
 	/**
+	 * Checks to see if there are any pins in the Instance.
 	 * 
-	 * @return
+	 * @return			true, if there are pins
+	 * 					false, otherwise
 	 */
 	public boolean hasPins() {
 		return (!pins.isEmpty());
 	}
 
 	/**
+	 * RefDes accessor method.
 	 * 
-	 * @return
+	 * @return			the refDes
 	 */
 	public String getRefDes() {
 		return refDes;
 	}
 
 	/**
+	 * RefDes mutator method.
 	 * 
-	 * @param refDes
+	 * @param refDes	the new refDes
 	 */
 	public void setRefDes(String refDes) {
 		this.refDes = refDes;
 	}
 
 	/**
+	 * RefPrefix accessor method.
 	 * 
-	 * @return
+	 * @return			the refPrefix
 	 */
 	public String getRefPrefix() {
 		return refPrefix;
 	}
 
 	/**
+	 * RefPrefix mutator method.
 	 * 
-	 * @param refPrefix
+	 * @param refPrefix	the new refPrefix
 	 */
 	public void setRefPrefix(String refPrefix) {
 		this.refPrefix = refPrefix;
 	}
 
 	/**
+	 * Device mutator method.
 	 * 
-	 * @param device
+	 * @param device	the new DeviceNode 
 	 */
 	public void setDevice(DeviceNode device) {
 		this.device = device;
@@ -110,24 +149,41 @@ public class InstanceNode extends Attributable {
 	}
 
 	/**
+	 * Device accessor method.
 	 * 
-	 * @return
+	 * @return			the DeviceNode
 	 */
 	public DeviceNode getDevice() {
 		return device;
 	}
 
 	@Override
+	/**
+	 * Type accessor method.
+	 * 
+	 * @return NodeType.INSTANCE
+	 */
 	public NodeType getType() {
 		return NodeType.INSTANCE;
 	}
 
 	@Override
+	/**
+	 * Generic toString method.
+	 * 
+	 * @return			a string representation
+	 */
 	public String toString() {
 		return super.toString() + " : " + getDevice().getName()
 			+ (refDes != null ? (" " + refDes) : "");
 	}
 
+	/**
+	 * Single attribute accessor method.
+	 * 
+	 * @param s			the name of the attribute
+	 * @return			the AttributeNode with that name
+	 */
 	public AttributeNode getAttribute(String s) {
 		for (AttributeNode a : attrs) {
 			if (s.toUpperCase().equals(a.getName().toUpperCase()))
@@ -160,6 +216,12 @@ public class InstanceNode extends Attributable {
 		return allPins;
 	}
 
+	/**
+	 * Single pin accessor method.
+	 * 
+	 * @param s			the name of the pin
+	 * @return			the PinNode with that name
+	 */
 	public PinNode getPin(String s) {
 		for (PinNode p : pins) {
 			if (p.getName().equals(s))
@@ -168,27 +230,19 @@ public class InstanceNode extends Attributable {
 		return null;
 	}
 
-	@Deprecated
-	public boolean overwriteAttribute(String name, String newValue) {
-		AttributeNode an = null;
-		for (AttributeNode a : attrs) {
-			if (a.getName().equals(name)) {
-				an = a;
-				break;
-			}
-		}
-		if (an != null) {
-			attrs.remove(an);
-			an.setValue(newValue);
-			return attrs.add(an);
-		} else
-			return false;
-	}
-
+	/**
+	 * Finds all PinNodes with the pinName as the base name and
+	 * returns a List of their indices.
+	 * 
+	 * The base name of a pin is the name without any array references.
+	 * For example, "my_pin(7)" is a pin name, and "my_pin" is its base name.
+	 * 
+	 * @param pinName	the base name of the pin 
+	 * @return			a List of indices of pins with the base name
+	 */
 	public List<Integer> getAllIndices(String pinName) {
 		List<Integer> allIndices = new ArrayList<Integer>();
 		for (PinNode p : getAllPins(pinName)) {
-			// System.out.println("pin name " + p.getName());
 			int start = p.getName().indexOf('[');
 			int end = p.getName().indexOf(']');
 			if (start != -1 && end != -1) {
@@ -199,6 +253,12 @@ public class InstanceNode extends Attributable {
 		return allIndices;
 	}
 
+	/**
+	 * Returns the index of the current Instance, assuming that it
+	 * has an array reference.
+	 * 
+	 * @return			the index of the Instance
+	 */
 	public int getIndex() {
 		int start = getName().indexOf('(');
 		int end = getName().indexOf(')');
@@ -211,10 +271,20 @@ public class InstanceNode extends Attributable {
 		return Integer.parseInt(index);
 	}
 
+	/**
+	 * Footprint accessor method.
+	 * 
+	 * @return			the footprint attribute
+	 */
 	public String getFootprint() {
 		return footprint;
 	}
 
+	/**
+	 * Footprint mutator method.
+	 * 
+	 * @param footprint	the new footprint attribute
+	 */
 	public void setFootprint(String footprint) {
 		this.footprint = footprint;
 	}
