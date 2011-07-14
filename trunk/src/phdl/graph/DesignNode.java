@@ -1,3 +1,20 @@
+/*
+    Copyright (C) 2011  BYU Configurable Computing Lab
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package phdl.graph;
 
 import java.io.BufferedWriter;
@@ -11,6 +28,12 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+/**
+ * A class that represents a design in PHDL.
+ * 
+ * @author Brad Riching and Richard Black
+ * @version 0.1
+ */
 public class DesignNode extends Node {
 
 	private Set<PortNode> ports;
@@ -18,6 +41,16 @@ public class DesignNode extends Node {
 	private List<InstanceNode> instances;
 	private List<NetNode> nets;
 
+	/**
+	 * Default Constructor.
+	 * 
+	 * Initializes all sets and lists of ports, devices,
+	 * instances, and nets.
+	 * @see PortNode
+	 * @see DeviceNode
+	 * @see InstanceNode
+	 * @see NetNode
+	 */
 	public DesignNode() {
 		ports = new TreeSet<PortNode>();
 		devices = new TreeSet<DeviceNode>();
@@ -25,69 +58,169 @@ public class DesignNode extends Node {
 		nets = new ArrayList<NetNode>();
 	}
 
+	/**
+	 * Device set accessor method.
+	 * 
+	 * @return the set of all devices
+	 */
 	public Set<DeviceNode> getDevices() {
 		return devices;
 	}
 
+	/**
+	 * Device set addition method.
+	 * 
+	 * @param d the new DeviceNode to add
+	 * @return	true, if the device wasn't already in
+	 * 				the design
+	 * 			false, otherwise
+	 */
 	public boolean addDevice(DeviceNode d) {
 		return devices.add(d);
 	}
 
+	/**
+	 * Checks to see if the design has any devices.
+	 *
+	 * @return 	true, if there devices in the design
+	 * 			false, otherwise
+	 */
 	public boolean hasDevices() {
 		return (!devices.isEmpty());
 	}
 
+	/**
+	 * Instance set accessor method.
+	 * 
+	 * @return the set of all instances
+	 */
 	public List<InstanceNode> getInstances() {
 		return instances;
 	}
 
+	/**
+	 * Instance set addition method.
+	 * 
+	 * @param i the new InstanceNode to add
+	 * @return	true, if the instance isn't already part
+	 * 					of the design
+	 * 			false, otherwise
+	 */
 	public boolean addInstance(InstanceNode i) {
 		return instances.add(i);
 	}
 
+	/**
+	 * Checks to see if the design has any instances.
+	 * 
+	 * @return	true, if there are instances
+	 * 			false, otherwise
+	 */
 	public boolean hasInstances() {
 		return (!instances.isEmpty());
 	}
 
+	/**
+	 * Net set accessor method.
+	 * 
+	 * @return the set of all nets
+	 */
 	public List<NetNode> getNets() {
 		return nets;
 	}
 
+	/**
+	 * Net set addition method.
+	 * 
+	 * @param i the new NetNode to add
+	 * @return	true, if the net isn't already part
+	 * 					of the design
+	 * 			false, otherwise
+	 */
 	public boolean addNet(NetNode n) {
 		return nets.add(n);
 	}
 
+	/**
+	 * Checks to see if the design has any nets.
+	 * 
+	 * @return	true, if there are nets
+	 * 			false, otherwise
+	 */
 	public boolean hasNets() {
 		return (!nets.isEmpty());
 	}
 
+	/**
+	 * Checks to see if the design has any ports.
+	 * 
+	 * @return	true, if there are ports
+	 * 			false, otherwise
+	 */
 	public boolean hasPorts() {
 		return (!ports.isEmpty());
 	}
 
+	/**
+	 * Port set accessor method.
+	 * 
+	 * @return the set of all ports
+	 */
 	public Set<PortNode> getPorts() {
 		return ports;
 	}
 
+	/**
+	 * Port set addition method.
+	 * 
+	 * @param i the new PortNode to add
+	 * @return	true, if the port isn't already part
+	 * 					of the design
+	 * 			false, otherwise
+	 */
 	public boolean addPort(PortNode p) {
 		return (ports.add(p));
 	}
 
 	@Override
+	/**
+	 * Checks to see if the current DesignNode is equal to
+	 * another.
+	 * 
+	 * @param o	the DesignNode being compared against
+	 * @return 	true, if the designs are equals
+	 * 			false, otherwise
+	 */
 	public boolean equals(Object o) {
 		return name.equals(((DesignNode) o).getName());
 	}
 
 	@Override
+	/**
+	 * Generic toString method.
+	 * 
+	 * @return a string representation of the DesignNode
+	 */
 	public String toString() {
 		return "DESIGN " + name;
 	}
 
 	@Override
+	/**
+	 * Type accessor method.
+	 * 
+	 * @return NodeType.DESIGN
+	 */
 	public NodeType getType() {
 		return NodeType.DESIGN;
 	}
 
+	/**
+	 * Finds and returns a DeviceNode that has a certain name.
+	 * 
+	 * @param devName	the name of the DeviceNode
+	 * @return			the DeviceNode with the device name
+	 */
 	public DeviceNode getDevice(String devName) {
 		for (DeviceNode d : devices) {
 			if (d.getName().equals(devName))
@@ -96,6 +229,12 @@ public class DesignNode extends Node {
 		return null;
 	}
 
+	/**
+	 * Finds and returns a NetNode that has a certain name.
+	 * 
+	 * @param netName	the name of the NetNode
+	 * @return			the NetNode with the net name
+	 */
 	public NetNode getNet(String netName) {
 		for (NetNode n : nets) {
 			if (n.getName().equals(netName))
@@ -104,6 +243,12 @@ public class DesignNode extends Node {
 		return null;
 	}
 
+	/**
+	 * Finds and returns an InstanceNode that has a certain name.
+	 * 
+	 * @param instName	the name of the InstanceNode
+	 * @return			the InstanceNode with the instance name
+	 */
 	public InstanceNode getInstance(String instName) {
 		for (InstanceNode i : instances) {
 			if (i.getName().equals(instName))
@@ -112,6 +257,17 @@ public class DesignNode extends Node {
 		return null;
 	}
 
+	/**
+	 * Finds all InstanceNodes with the same base name (i.e. without
+	 * any array references) and returns a list of them.
+	 * 
+	 * The base name of an instance is the name without any array
+	 * references.  For example, "my_inst(3)" is an instance name,
+	 * and "my_inst" is its base name.
+	 * 
+	 * @param instName	the base name of the Instance
+	 * @return			a List of InstanceNodes with the base name
+	 */
 	public List<InstanceNode> getAllInstances(String instName) {
 		List<InstanceNode> allInstances = new ArrayList<InstanceNode>();
 		for (InstanceNode i : instances) {
@@ -128,6 +284,17 @@ public class DesignNode extends Node {
 		return allInstances;
 	}
 
+	/**
+	 * Finds all NetNodes with the same base name and returns
+	 * a list of them.
+	 * 
+	 * The base name of a net is the name without any array references.
+	 * For example, "my_net(12)" is a net name, and "my_net" is its
+	 * base name.
+	 * 
+	 * @param netName	the base name of the Net
+	 * @return			a List of NetNodes with the base name
+	 */
 	public List<NetNode> getAllNets(String netName) {
 		List<NetNode> allNets = new ArrayList<NetNode>();
 		for (NetNode n : nets) {
@@ -144,6 +311,10 @@ public class DesignNode extends Node {
 		return allNets;
 	}
 
+	/**
+	 * Goes through all Nodes attached to the DesignNode and prints
+	 * out a representation of the connections.
+	 */
 	public void printDesignNode() {
 		System.out.println(toString());
 		for (DeviceNode dev : getDevices()) {
@@ -174,6 +345,11 @@ public class DesignNode extends Node {
 		}
 	}
 
+	/**
+	 * Generates a .dot file that represents the complete graph.
+	 * 
+	 * @param fileName	the name of the file being written
+	 */
 	public void dottyDump(String fileName) {
 		BufferedWriter dotty = null;
 
@@ -243,6 +419,18 @@ public class DesignNode extends Node {
 		System.out.println("Wrote file: " + fileName);
 	}
 
+	/**
+	 * Finds all the InstanceNodes with the same base name and
+	 * returns a list of their indices.
+	 * 
+	 * The base name of an instance is the name without any array
+	 * references.  For example, "my_inst(3)" is an instance name,
+	 * and "my_inst" is its base name.
+	 * 
+	 * @param instName	the base name of the instance
+	 * @return			a List of integers representing the InstanceNodes'
+	 * 					indices
+	 */
 	public List<Integer> getAllIndices(String instName) {
 		List<Integer> allIndices = new ArrayList<Integer>();
 		for (InstanceNode i : getAllInstances(instName)) {
@@ -256,6 +444,18 @@ public class DesignNode extends Node {
 		return allIndices;
 	}
 
+	/**
+	 * Finds all the NetNodes with the same base name and
+	 * returns a list of their indices.
+	 * 
+	 * The base name of an net is the name without any array
+	 * references.  For example, "my_net(1)" is a net name,
+	 * and "my_net" is its base name.
+	 * 
+	 * @param netName	the base name of the net
+	 * @return			a List of integers representing the NetNodes'
+	 * 					indices
+	 */
 	public List<Integer> getAllNetIndices(String netName) {
 		List<Integer> allIndices = new ArrayList<Integer>();
 		for (NetNode n : getAllNets(netName)) {
@@ -271,6 +471,15 @@ public class DesignNode extends Node {
 		return allIndices;
 	}
 
+	/**
+	 * Checks to see if a particular device is instanced in the
+	 * design.
+	 * 
+	 * @param dev		the device to check
+	 * @return			true, if there exists an instance that
+	 * 							references the device
+	 * 					false, otherwise
+	 */
 	public boolean isDeviceInstanced(DeviceNode dev) {
 		for (InstanceNode i : instances) {
 			if (i.getDevice().equals(dev)) {
@@ -280,45 +489,9 @@ public class DesignNode extends Node {
 		return false;
 	}
 
-	public void superNet() {
-		Set<NetNode> rootNodes = new TreeSet<NetNode>();
-		for (NetNode n : nets) {
-			boolean connected = false;
-			for (NetNode r : rootNodes) {
-				if (r.isConnected(n)) {
-					connected = true;
-					break;
-				}
-			}
-			if (!connected) {
-				rootNodes.add(n);
-			}
-		}
-
-		for (NetNode r : rootNodes) {
-			r.superNet();
-		}
-
-		Set<NetNode> others = new TreeSet<NetNode>();
-		boolean found = false;
-		for (NetNode n : nets) {
-			found = false;
-			for (NetNode r : rootNodes) {
-				if (n.equals(r)) {
-					found = true;
-					break;
-				}
-			}
-			if (!found) {
-				others.add(n);
-			}
-		}
-
-		for (NetNode n : others) {
-			nets.remove(n);
-		}
-	}
-
+	/**
+	 * Merges all net-net connections.
+	 */
 	public void superNet2() {
 		// any net that is set as visited will be deleted
 		Set<NetNode> deletes = new HashSet<NetNode>();

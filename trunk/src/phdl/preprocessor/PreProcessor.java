@@ -46,35 +46,8 @@ public class PreProcessor {
 	
 	public String preProcess() {
 		String outputContents = extractFileContents(filename);
-		while (outputContents.contains("use \"")) {
-			String nextFileName = extractFileName(outputContents);
-			System.out.println("importing " + nextFileName);
-			outputContents = outputContents.replaceFirst("use \"" + nextFileName + "\";", "");
-			String nextFileContents = extractFileContents(nextFileName);
-			outputContents = appendFileContents(outputContents, nextFileContents, nextFileName);
-		}
+		
 		return outputContents;
-	}
-	
-	private String extractFileName(String fileContents) {
-		int pos = fileContents.indexOf("use \"");
-		int end = fileContents.indexOf(";", pos);
-		String subString = fileContents.substring(pos, end);
-		System.out.println(pos + "," + end + "\t" + subString);
-		
-		int qstart = subString.indexOf("\"");
-		int qend = subString.indexOf("\"", qstart+1);
-		String fileName = subString.substring(qstart+1, qend);
-		System.out.println(qstart + "," + qend + "\t" + fileName);
-		
-		return fileName;
-	}
-	
-	private String appendFileContents(String output, String nextFile, String nextFileName) {
-		output += "\n\\\\ **** Appending " + nextFileName + " **** \\\\ \n";
-		output = output.concat(nextFile);
-		output += "\n\\\\ **** End of appending " + nextFileName + " **** \\\\ \n"; 
-		return output;
 	}
 	
 	public String extractFileContents(String nextFile) {
@@ -92,20 +65,6 @@ public class PreProcessor {
 			return "Failure to read from " + nextFile;
 		}
 		return output;
-	}
-	
-	public boolean writeNewFile(String output) {
-		String outFileName = filename.replace(".phdl", ".pp");
-		try {
-			BufferedWriter out = new BufferedWriter(new FileWriter(outFileName));
-			out.write(output);
-			out.close();
-		}
-		catch (IOException e) {
-			System.err.println("Problem in writing to a file");
-			return false;
-		}
-		return true;
 	}
 
 	public static boolean unitTest() {
