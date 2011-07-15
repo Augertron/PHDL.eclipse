@@ -49,7 +49,7 @@ begin
 		this(1).entry[1] = x_bar;
 		this(1).exit = sum_in[1];
 
-		newattr refPrefix = "BREAKME!";
+		newattr refPrefix = "B";
 	end;
 
 	inst carry_add of AND_GATE is
@@ -61,13 +61,14 @@ begin
 	end;
 
 	inst(1:0) nots of INVERTER is
+		refPrefix = "R";
 		nots(0).entry = X;
 		nots(0).exit = x_bar;
 		nots(1).entry = Y;
 		nots(1).exit = y_bar;
 
 		pkg_type = "Bogus";
-		refPrefix = "900";
+		refPrefix = "A";
 		newattr this(1).refDes = "Awesome";
 	end;
 

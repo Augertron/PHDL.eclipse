@@ -733,6 +733,12 @@ attrAssign[DesignNode des, String instName]
 						// find its attribute by the attribute name
 						AttributeNode a = inst.getAttribute($attrName.text);
 						if (a!=null) {
+							// check if the attribute is a refprefix attribute
+							if (a.getName().equals("REFPREFIX")) {
+								// check to see if refPrefix begins with a letter
+								if (!Pattern.compile("^[A-Z]").matcher($attrValue.text).find())
+									bailOut($attrValue, "invalid refPrefix value");
+							}
 							if (newAttr)
 								addWarning($attrName, "new attribute already declared in device");
 							// overwrite the attribute value
@@ -752,7 +758,7 @@ attrAssign[DesignNode des, String instName]
 								// make a new attribute if explicitly asked to do so
 								AttributeNode newA = new AttributeNode(inst);
 								newA.setName($attrName.text);
-								newA.overwrite($attrValue.text);
+								newA.setValue($attrValue.text);
 								newA.setLocation($attrName.line, $attrName.pos, 
 									attrName.getToken().getInputStream().getSourceName());
 								inst.addAttribute(newA);
@@ -783,6 +789,12 @@ attrAssign[DesignNode des, String instName]
 						// find its attribute by the attribute name
 						AttributeNode a = inst.getAttribute($attrName.text);
 						if (a!=null) {
+							// check if the attribute is a refprefix attribute
+							if (a.getName().equals("REFPREFIX")) {
+								// check to see if refPrefix begins with a letter
+								if (!Pattern.compile("^[A-Z]").matcher($attrValue.text).find())
+									bailOut($attrValue, "invalid refPrefix value");
+							}
 							if (newAttr)
 								addWarning($attrName, "new attribute already declared in device");
 							// overwrite the attribute value
@@ -802,7 +814,7 @@ attrAssign[DesignNode des, String instName]
 								// make a new attribute if explicitly asked to do so
 								AttributeNode newA = new AttributeNode(inst);
 								newA.setName($attrName.text);
-								newA.overwrite($attrValue.text);
+								newA.setValue($attrValue.text);
 								newA.setLocation($attrName.line, $attrName.pos, 
 									attrName.getToken().getInputStream().getSourceName());
 								inst.addAttribute(newA);

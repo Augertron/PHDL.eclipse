@@ -1,6 +1,6 @@
-9001,nots(0)
+A1,nots(0)
 AWESOME,nots(1)
-BREAKME!1,sum_adds(0)
-BREAKME!2,sum_adds(1)
+B1,sum_adds(0)
+B2,sum_adds(1)
 CA1,carry_add
 O5,sum_or

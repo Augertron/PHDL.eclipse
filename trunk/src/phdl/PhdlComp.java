@@ -124,7 +124,7 @@ public class PhdlComp {
 					// report any floating nets
 					for (NetNode n : d.getNets()) {
 						if ((n.getPinNodes().size() < 2) && (!n.getName().equals("open")))
-							addWarning(n, "floading net");
+							addWarning(n, "floating net");
 					}
 
 					Generator gen = new Generator(d);
