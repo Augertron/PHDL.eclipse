@@ -195,122 +195,127 @@ digraph {
   n143 [label="1"];
   n144 [label="="];
   n144 [label="="];
-  n145 [label="refPrefix"];
-  n146 [label="BREAKME!"];
-  n147 [label="inst"];
-  n147 [label="inst"];
-  n148 [label="carry_add"];
-  n149 [label="AND_GATE"];
-  n150 [label="="];
-  n150 [label="="];
-  n151 [label="entry"];
-  n152 [label="["];
-  n153 [label="0"];
-  n154 [label="X"];
-  n155 [label="="];
-  n155 [label="="];
-  n156 [label="entry"];
-  n157 [label="["];
-  n158 [label="1"];
-  n159 [label="Y"];
-  n160 [label="="];
-  n160 [label="="];
-  n161 [label="exit"];
-  n162 [label="carry"];
-  n163 [label="="];
-  n163 [label="="];
-  n164 [label="newattr"];
-  n165 [label="refDes"];
-  n166 [label="CA1"];
-  n167 [label="inst"];
-  n167 [label="inst"];
-  n168 [label=":"];
-  n168 [label=":"];
-  n169 [label="("];
-  n170 [label="1"];
-  n171 [label="0"];
-  n172 [label="nots"];
-  n173 [label="INVERTER"];
-  n174 [label="="];
-  n174 [label="="];
-  n175 [label="."];
-  n175 [label="."];
-  n176 [label="nots"];
-  n177 [label="("];
-  n178 [label="0"];
-  n179 [label="entry"];
-  n180 [label="X"];
-  n181 [label="="];
-  n181 [label="="];
-  n182 [label="."];
-  n182 [label="."];
-  n183 [label="nots"];
-  n184 [label="("];
-  n185 [label="0"];
-  n186 [label="exit"];
-  n187 [label="x_bar"];
-  n188 [label="="];
-  n188 [label="="];
-  n189 [label="."];
-  n189 [label="."];
-  n190 [label="nots"];
-  n191 [label="("];
-  n192 [label="1"];
-  n193 [label="entry"];
-  n194 [label="Y"];
-  n195 [label="="];
-  n195 [label="="];
-  n196 [label="."];
-  n196 [label="."];
-  n197 [label="nots"];
-  n198 [label="("];
-  n199 [label="1"];
-  n200 [label="exit"];
-  n201 [label="y_bar"];
-  n202 [label="="];
-  n202 [label="="];
-  n203 [label="pkg_type"];
-  n204 [label="Bogus"];
-  n205 [label="="];
-  n205 [label="="];
-  n206 [label="refPrefix"];
-  n207 [label="900"];
-  n208 [label="="];
-  n208 [label="="];
-  n209 [label="newattr"];
-  n210 [label="."];
-  n210 [label="."];
-  n211 [label="this"];
-  n212 [label="("];
-  n213 [label="1"];
-  n214 [label="refDes"];
-  n215 [label="Awesome"];
-  n216 [label="inst"];
-  n216 [label="inst"];
-  n217 [label="sum_or"];
-  n218 [label="OR_GATE"];
-  n219 [label="="];
-  n219 [label="="];
-  n220 [label="newattr"];
-  n221 [label="best_friend"];
-  n222 [label="Brad"];
+  n145 [label="newattr"];
+  n146 [label="refPrefix"];
+  n147 [label="B"];
+  n148 [label="inst"];
+  n148 [label="inst"];
+  n149 [label="carry_add"];
+  n150 [label="AND_GATE"];
+  n151 [label="="];
+  n151 [label="="];
+  n152 [label="entry"];
+  n153 [label="["];
+  n154 [label="0"];
+  n155 [label="X"];
+  n156 [label="="];
+  n156 [label="="];
+  n157 [label="entry"];
+  n158 [label="["];
+  n159 [label="1"];
+  n160 [label="Y"];
+  n161 [label="="];
+  n161 [label="="];
+  n162 [label="exit"];
+  n163 [label="carry"];
+  n164 [label="="];
+  n164 [label="="];
+  n165 [label="newattr"];
+  n166 [label="refDes"];
+  n167 [label="CA1"];
+  n168 [label="inst"];
+  n168 [label="inst"];
+  n169 [label=":"];
+  n169 [label=":"];
+  n170 [label="("];
+  n171 [label="1"];
+  n172 [label="0"];
+  n173 [label="nots"];
+  n174 [label="INVERTER"];
+  n175 [label="="];
+  n175 [label="="];
+  n176 [label="refPrefix"];
+  n177 [label="R"];
+  n178 [label="="];
+  n178 [label="="];
+  n179 [label="."];
+  n179 [label="."];
+  n180 [label="nots"];
+  n181 [label="("];
+  n182 [label="0"];
+  n183 [label="entry"];
+  n184 [label="X"];
+  n185 [label="="];
+  n185 [label="="];
+  n186 [label="."];
+  n186 [label="."];
+  n187 [label="nots"];
+  n188 [label="("];
+  n189 [label="0"];
+  n190 [label="exit"];
+  n191 [label="x_bar"];
+  n192 [label="="];
+  n192 [label="="];
+  n193 [label="."];
+  n193 [label="."];
+  n194 [label="nots"];
+  n195 [label="("];
+  n196 [label="1"];
+  n197 [label="entry"];
+  n198 [label="Y"];
+  n199 [label="="];
+  n199 [label="="];
+  n200 [label="."];
+  n200 [label="."];
+  n201 [label="nots"];
+  n202 [label="("];
+  n203 [label="1"];
+  n204 [label="exit"];
+  n205 [label="y_bar"];
+  n206 [label="="];
+  n206 [label="="];
+  n207 [label="pkg_type"];
+  n208 [label="Bogus"];
+  n209 [label="="];
+  n209 [label="="];
+  n210 [label="refPrefix"];
+  n211 [label="A"];
+  n212 [label="="];
+  n212 [label="="];
+  n213 [label="newattr"];
+  n214 [label="."];
+  n214 [label="."];
+  n215 [label="this"];
+  n216 [label="("];
+  n217 [label="1"];
+  n218 [label="refDes"];
+  n219 [label="Awesome"];
+  n220 [label="inst"];
+  n220 [label="inst"];
+  n221 [label="sum_or"];
+  n222 [label="OR_GATE"];
   n223 [label="="];
   n223 [label="="];
-  n224 [label="best_friend"];
-  n225 [label="Karen"];
-  n226 [label="="];
-  n226 [label="="];
-  n227 [label="refDes"];
-  n228 [label="O5"];
-  n229 [label="="];
-  n229 [label="="];
-  n230 [label="entry"];
-  n231 [label="sum_in"];
-  n232 [label="="];
-  n232 [label="="];
-  n233 [label="exit"];
-  n234 [label="sum"];
-  n235 [label="<EOF>"];
+  n224 [label="newattr"];
+  n225 [label="best_friend"];
+  n226 [label="Brad"];
+  n227 [label="="];
+  n227 [label="="];
+  n228 [label="best_friend"];
+  n229 [label="Karen"];
+  n230 [label="="];
+  n230 [label="="];
+  n231 [label="refDes"];
+  n232 [label="O5"];
+  n233 [label="="];
+  n233 [label="="];
+  n234 [label="entry"];
+  n235 [label="sum_in"];
+  n236 [label="="];
+  n236 [label="="];
+  n237 [label="exit"];
+  n238 [label="sum"];
+  n239 [label="<EOF>"];
 
   n0 -> n1 // "" -> "design"
   n1 -> n2 // "design" -> "full_adder"
@@ -456,96 +461,100 @@ digraph {
   n135 -> n142 // "=" -> "["
   n135 -> n143 // "=" -> "1"
   n83 -> n144 // "inst" -> "="
-  n144 -> n145 // "=" -> "refPrefix"
-  n144 -> n146 // "=" -> "BREAKME!"
-  n1 -> n147 // "design" -> "inst"
-  n147 -> n148 // "inst" -> "carry_add"
-  n147 -> n149 // "inst" -> "AND_GATE"
-  n147 -> n150 // "inst" -> "="
-  n150 -> n151 // "=" -> "entry"
-  n150 -> n152 // "=" -> "["
-  n150 -> n153 // "=" -> "0"
-  n150 -> n154 // "=" -> "X"
-  n147 -> n155 // "inst" -> "="
-  n155 -> n156 // "=" -> "entry"
-  n155 -> n157 // "=" -> "["
-  n155 -> n158 // "=" -> "1"
-  n155 -> n159 // "=" -> "Y"
-  n147 -> n160 // "inst" -> "="
-  n160 -> n161 // "=" -> "exit"
-  n160 -> n162 // "=" -> "carry"
-  n147 -> n163 // "inst" -> "="
-  n163 -> n164 // "=" -> "newattr"
-  n163 -> n165 // "=" -> "refDes"
-  n163 -> n166 // "=" -> "CA1"
-  n1 -> n167 // "design" -> "inst"
-  n167 -> n168 // "inst" -> ":"
-  n168 -> n169 // ":" -> "("
-  n168 -> n170 // ":" -> "1"
-  n168 -> n171 // ":" -> "0"
-  n167 -> n172 // "inst" -> "nots"
-  n167 -> n173 // "inst" -> "INVERTER"
-  n167 -> n174 // "inst" -> "="
-  n174 -> n175 // "=" -> "."
-  n175 -> n176 // "." -> "nots"
-  n175 -> n177 // "." -> "("
-  n175 -> n178 // "." -> "0"
-  n174 -> n179 // "=" -> "entry"
-  n174 -> n180 // "=" -> "X"
-  n167 -> n181 // "inst" -> "="
-  n181 -> n182 // "=" -> "."
-  n182 -> n183 // "." -> "nots"
-  n182 -> n184 // "." -> "("
-  n182 -> n185 // "." -> "0"
-  n181 -> n186 // "=" -> "exit"
-  n181 -> n187 // "=" -> "x_bar"
-  n167 -> n188 // "inst" -> "="
-  n188 -> n189 // "=" -> "."
-  n189 -> n190 // "." -> "nots"
-  n189 -> n191 // "." -> "("
-  n189 -> n192 // "." -> "1"
-  n188 -> n193 // "=" -> "entry"
-  n188 -> n194 // "=" -> "Y"
-  n167 -> n195 // "inst" -> "="
-  n195 -> n196 // "=" -> "."
-  n196 -> n197 // "." -> "nots"
-  n196 -> n198 // "." -> "("
-  n196 -> n199 // "." -> "1"
-  n195 -> n200 // "=" -> "exit"
-  n195 -> n201 // "=" -> "y_bar"
-  n167 -> n202 // "inst" -> "="
-  n202 -> n203 // "=" -> "pkg_type"
-  n202 -> n204 // "=" -> "Bogus"
-  n167 -> n205 // "inst" -> "="
-  n205 -> n206 // "=" -> "refPrefix"
-  n205 -> n207 // "=" -> "900"
-  n167 -> n208 // "inst" -> "="
-  n208 -> n209 // "=" -> "newattr"
-  n208 -> n210 // "=" -> "."
-  n210 -> n211 // "." -> "this"
-  n210 -> n212 // "." -> "("
-  n210 -> n213 // "." -> "1"
-  n208 -> n214 // "=" -> "refDes"
-  n208 -> n215 // "=" -> "Awesome"
-  n1 -> n216 // "design" -> "inst"
-  n216 -> n217 // "inst" -> "sum_or"
-  n216 -> n218 // "inst" -> "OR_GATE"
-  n216 -> n219 // "inst" -> "="
-  n219 -> n220 // "=" -> "newattr"
-  n219 -> n221 // "=" -> "best_friend"
-  n219 -> n222 // "=" -> "Brad"
-  n216 -> n223 // "inst" -> "="
-  n223 -> n224 // "=" -> "best_friend"
-  n223 -> n225 // "=" -> "Karen"
-  n216 -> n226 // "inst" -> "="
-  n226 -> n227 // "=" -> "refDes"
-  n226 -> n228 // "=" -> "O5"
-  n216 -> n229 // "inst" -> "="
-  n229 -> n230 // "=" -> "entry"
-  n229 -> n231 // "=" -> "sum_in"
-  n216 -> n232 // "inst" -> "="
-  n232 -> n233 // "=" -> "exit"
-  n232 -> n234 // "=" -> "sum"
-  n0 -> n235 // "" -> "<EOF>"
+  n144 -> n145 // "=" -> "newattr"
+  n144 -> n146 // "=" -> "refPrefix"
+  n144 -> n147 // "=" -> "B"
+  n1 -> n148 // "design" -> "inst"
+  n148 -> n149 // "inst" -> "carry_add"
+  n148 -> n150 // "inst" -> "AND_GATE"
+  n148 -> n151 // "inst" -> "="
+  n151 -> n152 // "=" -> "entry"
+  n151 -> n153 // "=" -> "["
+  n151 -> n154 // "=" -> "0"
+  n151 -> n155 // "=" -> "X"
+  n148 -> n156 // "inst" -> "="
+  n156 -> n157 // "=" -> "entry"
+  n156 -> n158 // "=" -> "["
+  n156 -> n159 // "=" -> "1"
+  n156 -> n160 // "=" -> "Y"
+  n148 -> n161 // "inst" -> "="
+  n161 -> n162 // "=" -> "exit"
+  n161 -> n163 // "=" -> "carry"
+  n148 -> n164 // "inst" -> "="
+  n164 -> n165 // "=" -> "newattr"
+  n164 -> n166 // "=" -> "refDes"
+  n164 -> n167 // "=" -> "CA1"
+  n1 -> n168 // "design" -> "inst"
+  n168 -> n169 // "inst" -> ":"
+  n169 -> n170 // ":" -> "("
+  n169 -> n171 // ":" -> "1"
+  n169 -> n172 // ":" -> "0"
+  n168 -> n173 // "inst" -> "nots"
+  n168 -> n174 // "inst" -> "INVERTER"
+  n168 -> n175 // "inst" -> "="
+  n175 -> n176 // "=" -> "refPrefix"
+  n175 -> n177 // "=" -> "R"
+  n168 -> n178 // "inst" -> "="
+  n178 -> n179 // "=" -> "."
+  n179 -> n180 // "." -> "nots"
+  n179 -> n181 // "." -> "("
+  n179 -> n182 // "." -> "0"
+  n178 -> n183 // "=" -> "entry"
+  n178 -> n184 // "=" -> "X"
+  n168 -> n185 // "inst" -> "="
+  n185 -> n186 // "=" -> "."
+  n186 -> n187 // "." -> "nots"
+  n186 -> n188 // "." -> "("
+  n186 -> n189 // "." -> "0"
+  n185 -> n190 // "=" -> "exit"
+  n185 -> n191 // "=" -> "x_bar"
+  n168 -> n192 // "inst" -> "="
+  n192 -> n193 // "=" -> "."
+  n193 -> n194 // "." -> "nots"
+  n193 -> n195 // "." -> "("
+  n193 -> n196 // "." -> "1"
+  n192 -> n197 // "=" -> "entry"
+  n192 -> n198 // "=" -> "Y"
+  n168 -> n199 // "inst" -> "="
+  n199 -> n200 // "=" -> "."
+  n200 -> n201 // "." -> "nots"
+  n200 -> n202 // "." -> "("
+  n200 -> n203 // "." -> "1"
+  n199 -> n204 // "=" -> "exit"
+  n199 -> n205 // "=" -> "y_bar"
+  n168 -> n206 // "inst" -> "="
+  n206 -> n207 // "=" -> "pkg_type"
+  n206 -> n208 // "=" -> "Bogus"
+  n168 -> n209 // "inst" -> "="
+  n209 -> n210 // "=" -> "refPrefix"
+  n209 -> n211 // "=" -> "A"
+  n168 -> n212 // "inst" -> "="
+  n212 -> n213 // "=" -> "newattr"
+  n212 -> n214 // "=" -> "."
+  n214 -> n215 // "." -> "this"
+  n214 -> n216 // "." -> "("
+  n214 -> n217 // "." -> "1"
+  n212 -> n218 // "=" -> "refDes"
+  n212 -> n219 // "=" -> "Awesome"
+  n1 -> n220 // "design" -> "inst"
+  n220 -> n221 // "inst" -> "sum_or"
+  n220 -> n222 // "inst" -> "OR_GATE"
+  n220 -> n223 // "inst" -> "="
+  n223 -> n224 // "=" -> "newattr"
+  n223 -> n225 // "=" -> "best_friend"
+  n223 -> n226 // "=" -> "Brad"
+  n220 -> n227 // "inst" -> "="
+  n227 -> n228 // "=" -> "best_friend"
+  n227 -> n229 // "=" -> "Karen"
+  n220 -> n230 // "inst" -> "="
+  n230 -> n231 // "=" -> "refDes"
+  n230 -> n232 // "=" -> "O5"
+  n220 -> n233 // "inst" -> "="
+  n233 -> n234 // "=" -> "entry"
+  n233 -> n235 // "=" -> "sum_in"
+  n220 -> n236 // "inst" -> "="
+  n236 -> n237 // "=" -> "exit"
+  n236 -> n238 // "=" -> "sum"
+  n0 -> n239 // "" -> "<EOF>"
 
 }
