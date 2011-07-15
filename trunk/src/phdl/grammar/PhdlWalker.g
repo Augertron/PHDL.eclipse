@@ -593,8 +593,9 @@ instDecl[DesignNode des]
 					if (dev != null) {
 						i.setDevice(dev);
 						// copy all of the attribute and pin nodes from the device definition
-						for (AttributeNode a: dev.getAttributes())
+						for (AttributeNode a: dev.getAttributes()) {
 							i.addAttribute(new AttributeNode(a, i));
+						}
 						for (PinNode pn: dev.getPins())
 							i.addPin(new PinNode(pn, i));
 						instNodes.add(i);
