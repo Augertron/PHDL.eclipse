@@ -1,0 +1,18 @@
+/*
+ *	Frequency Counter
+ *	freq_cntr.phdl
+ *	Typed by Richard Black	July 15, 2011
+ */
+
+design freq_cntr is
+
+	include "phdl/RLC.phdl";
+	include "phdl/translogic.phdl";
+	include "phdl/pcb_elements.phdl";
+	include "phdl/seven_seg.phdl";
+
+begin
+
+	
+
+end;
