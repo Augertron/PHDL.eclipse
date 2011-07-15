@@ -297,11 +297,11 @@ digraph {
   n215 [label="3"];
   n216 [label="device"];
   n216 [label="device"];
-  n217 [label="NXOR_GATE"];
+  n217 [label="XNOR_GATE"];
   n218 [label="attr"];
   n218 [label="attr"];
   n219 [label="refPrefix"];
-  n220 [label="NX"];
+  n220 [label="XN"];
   n221 [label="attr"];
   n221 [label="attr"];
   n222 [label="pkg_type"];
@@ -597,10 +597,10 @@ digraph {
   n213 -> n214 // "pin" -> "exit"
   n213 -> n215 // "pin" -> "3"
   n1 -> n216 // "design" -> "device"
-  n216 -> n217 // "device" -> "NXOR_GATE"
+  n216 -> n217 // "device" -> "XNOR_GATE"
   n216 -> n218 // "device" -> "attr"
   n218 -> n219 // "attr" -> "refPrefix"
-  n218 -> n220 // "attr" -> "NX"
+  n218 -> n220 // "attr" -> "XN"
   n216 -> n221 // "device" -> "attr"
   n221 -> n222 // "attr" -> "pkg_type"
   n221 -> n223 // "attr" -> ""

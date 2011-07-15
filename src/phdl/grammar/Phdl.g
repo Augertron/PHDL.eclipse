@@ -110,19 +110,18 @@ options {
 
 
 
-@members {
+@parser::members {
 
-	private Set<String> errors = new TreeSet<String>();
+	private List<String> errors = new ArrayList<String>();
 
 	@Override
-	public void displayRecognitionError(String[] tokenNames,
-			RecognitionException e) {
+	public void displayRecognitionError(String[] tokenNames, RecognitionException e) {
 		String hdr = getErrorHeader(e);
 		String msg = getErrorMessage(e, tokenNames);
-		errors.add(hdr + " " + msg);
+		errors.add(hdr + " unexpected token: " + e.token.getText());
 	}
 
-	public Set<String> getErrors() {
+	public List<String> getErrors() {
 		return errors;
 	}
 }
@@ -394,7 +393,7 @@ IDENT
 /**
  * Phdl whitespace is ignored
  */
-WHITESPACE 
+WHITESPACE
 	: (' ' | '\t' | '\n' | '\r' | '\f' | '\u001D')+ {$channel = HIDDEN;}
 	;
 
@@ -426,7 +425,8 @@ INCLUDE
 					reset();
 
 				} catch(Exception fnf) { 
-					System.out.println("Include file not found: " + name); 
+					System.out.println(input.getSourceName() + " " + fileName.getLine() + ":" + fileName.getCharPositionInLine() + " " + 
+						"Include file not found: " + fileName.getText()); 
 					System.exit(1);
 				}
 			}

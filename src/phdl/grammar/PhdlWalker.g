@@ -71,10 +71,13 @@ options {
 	 */
 	private Set<String> reqAttrs = new HashSet<String>();
 	/**
-	 * The sorted set of errors
+	 * The list of errors
 	 */
-	private SortedSet<String> errors = new TreeSet<String>();
-	private SortedSet<String> warnings = new TreeSet<String>();
+	private List<String> errors = new ArrayList<String>();
+	/**
+	 * The list of warnings
+	 */
+	private List<String> warnings = new ArrayList<String>();
 	/**
 	 * The set of processed design nodes
 	 */
@@ -91,14 +94,14 @@ options {
 	/**
 	 * Called to obtain the errors if any exist after walking and processing the tree
 	 */
-	public SortedSet<String> getErrors() {
+	public List<String> getErrors() {
 		return errors;
 	}
 	
 	/**
 	 * Called to obtain the warnings if any exist after walking and processing the tree
 	 */
-	public SortedSet<String> getWarnings() {
+	public List<String> getWarnings() {
 		return warnings;
 	}
 	
@@ -106,50 +109,59 @@ options {
 	 * Adds an error from a Node object
 	 */
 	private void addError(Node n, String message) {
-		errors.add(n.getFileName() + " line " + n.getLine() + ":" 
-				+ n.getPosition() + " " + message + ": " + n.getName());
+		String error = n.getFileName() + " line " + n.getLine() + ":" + n.getPosition() + " "
+			+ message + ": " + n.getName();
+		if (!errors.contains(error))
+			errors.add(error);
 	}
-	
+
 	/**
 	 * Adds an error from a CommonTree object
 	 */
 	private void addError(CommonTree ct, String message) {
-		errors.add(input.getSourceName() + " line " + ct.getLine() + ":" 
-				+ ct.getCharPositionInLine() + " " + message + ": " + ct.getText());
+		String error = ct.getToken().getInputStream().getSourceName() + " line " + ct.getLine()
+			+ ":" + ct.getCharPositionInLine() + " " + message + ": " + ct.getText();
+		if (!errors.contains(error))
+			errors.add(error);
 	}
-	
+
 	/**
 	 * Reports an error from a Node object exits
 	 */
-	private void bailOnError(Node n, String message) {
-		System.out.println("ERROR: " + n.getFileName() + " line " + n.getLine() + ":" 
-				+ n.getPosition() + " " + message + ": " + n.getName());
+	private void bailOut(Node n, String message) {
+		System.out.println("ERROR: " + n.getFileName() + " line " + n.getLine() + ":"
+			+ n.getPosition() + " " + message + ": " + n.getName());
 		System.exit(1);
 	}
-	
+
 	/**
 	 * Reports an error from a CommonTree object and exits
 	 */
-	private void bailOnError(CommonTree ct, String message) {
-		System.out.println("ERROR: " + input.getSourceName() + " line " + ct.getLine() + ":" 
-				+ ct.getCharPositionInLine() + " " + message + ": " + ct.getText());
+	private void bailOut(CommonTree ct, String message) {
+		System.out.println("ERROR: " + ct.getToken().getInputStream().getSourceName() + " line "
+				+ ct.getLine() + ":" + ct.getCharPositionInLine() + " " + message + ": "
+				+ ct.getText());
 		System.exit(1);
 	}
-	
+
 	/**
 	 * Adds a warning from a Node object
 	 */
 	private void addWarning(Node n, String message) {
-		warnings.add(n.getFileName() + " line " + n.getLine() + ":" 
-				+ n.getPosition() + " " + message + ": " + n.getName());
+		String warning = n.getFileName() + " line " + n.getLine() + ":" + n.getPosition() + " "
+			+ message + ": " + n.getName();
+		if (!warnings.contains(warning))
+			warnings.add(warning);
 	}
-	
+
 	/**
 	 * Adds a warning from a CommonTree object
 	 */
 	private void addWarning(CommonTree ct, String message) {
-		warnings.add(input.getSourceName() + " line " + ct.getLine() + ":" 
-				+ ct.getCharPositionInLine() + " " + message + ": " + ct.getText());
+		String warning = ct.getToken().getInputStream().getSourceName() + " line " + ct.getLine()
+			+ ":" + ct.getCharPositionInLine() + " " + message + ": " + ct.getText();
+		if (!warnings.contains(warning))
+			warnings.add(warning);
 	}
 	
 	/**
@@ -187,7 +199,7 @@ options {
 					addError(pinNode, "pin undeclared in device");
 				}
 			} else {
-				bailOnError(pinNode, "invalid assignment, left size is " 
+				bailOut(pinNode, "invalid assignment, left size is " 
 						+ slices.size() + " right size is " + concats.size());
 			}
 		} else {
@@ -206,7 +218,7 @@ options {
 					}
 				}
 			} else {
-				bailOnError(pinNode, "invalid assignment, left size is " 
+				bailOut(pinNode, "invalid assignment, left size is " 
 						+ slices.size() + " right size is " + concats.size());
 			}
 		}
@@ -259,7 +271,8 @@ designDecl
 			{	// make a new design based on the identifier and log its location
 				DesignNode des = new DesignNode();
 				des.setName($desName.text);
-				des.setLocation($desName.line, $desName.pos, input.getSourceName());
+				des.setLocation($desName.line, $desName.pos, 
+					desName.getToken().getInputStream().getSourceName());
 				
 				// clear these sets each time a design is processed
 				netDecls.clear();
@@ -337,7 +350,8 @@ deviceDecl[DesignNode des]
 			{	// make a new device based on the identifier and log its location
 				DeviceNode dev = new DeviceNode(des);
 				dev.setName($devName.text);
-				dev.setLocation($devName.line, $devName.pos, input.getSourceName());
+				dev.setLocation($devName.line, $devName.pos, 
+					devName.getToken().getInputStream().getSourceName());
 				
 				// clear these sets each time a device is processed
 				attrDecls.clear();
@@ -386,7 +400,8 @@ attributeDecl[Attributable dev]
 	    		AttributeNode a  = new AttributeNode(dev);
 	    		a.setName($attrName.text);
 				a.setValue($attrValue.text);
-	    		a.setLocation($attrName.line, $attrName.pos, input.getSourceName());
+	    		a.setLocation($attrName.line, $attrName.pos, 
+	    			attrName.getToken().getInputStream().getSourceName());
 				dev.addAttribute(a);
 				
 				// report any duplicate attribute declarations
@@ -445,7 +460,8 @@ pinDecl[DeviceNode dev]
 	        	for (int i = 0; i < sList.size(); i++) {
 	        		PinNode newPin = new PinNode(dev);
 	        		newPin.setName($pinName.text + "[" + sList.get(i) + "]");
-					newPin.setLocation($pinName.line, $pinName.pos, input.getSourceName());
+					newPin.setLocation($pinName.line, $pinName.pos, 
+						pinName.getToken().getInputStream().getSourceName());
 	        		
 	        		// accessing an invalid pin list may cause an exception
 	        		try{
@@ -463,7 +479,8 @@ pinDecl[DeviceNode dev]
 				if (sList.isEmpty()) {
 					PinNode newPin = new PinNode(dev);
 					newPin.setName($pinName.text);
-					newPin.setLocation($pinName.line, $pinName.pos, input.getSourceName());
+					newPin.setLocation($pinName.line, $pinName.pos, 
+						pinName.getToken().getInputStream().getSourceName());
 					
 					// accessing an invalid pin list may cause an exception
 					try{
@@ -516,7 +533,8 @@ netDecl[DesignNode des]
 				for (int i = 0; i < slices.size(); i++) {
 					NetNode newNode = new NetNode(des);
 					newNode.setName($netName.text + "[" + slices.get(i) + "]");
-					newNode.setLocation($netName.line, $netName.pos, input.getSourceName());
+					newNode.setLocation($netName.line, $netName.pos, 
+						netName.getToken().getInputStream().getSourceName());
 					for (AttributeNode a : n.getAttributes()) {
 						AttributeNode newA = new AttributeNode(newNode);
 						newA.setName(a.getName());
@@ -535,7 +553,8 @@ netDecl[DesignNode des]
 				if (slices.isEmpty()) {
 					NetNode newNode = new NetNode(des);
 					newNode.setName($netName.text);
-					newNode.setLocation($netName.line, $netName.pos, input.getSourceName());
+					newNode.setLocation($netName.line, $netName.pos, 
+						netName.getToken().getInputStream().getSourceName());
 					for (AttributeNode a : n.getAttributes()) {
 							AttributeNode newA = new AttributeNode(newNode);
 							newA.setName(a.getName());
@@ -586,7 +605,8 @@ instDecl[DesignNode des]
 				
 					InstanceNode i = new InstanceNode(des);
 					i.setName($instName.text + "(" + indices.get(j) + ")");
-					i.setLocation($instName.line, $instName.pos, input.getSourceName());
+					i.setLocation($instName.line, $instName.pos, 
+						instName.getToken().getInputStream().getSourceName());
 					
 					// find the corresponding device declaration
 					DeviceNode dev = des.getDevice($devName.text);
@@ -600,7 +620,7 @@ instDecl[DesignNode des]
 							i.addPin(new PinNode(pn, i));
 						instNodes.add(i);
 					} else
-						bailOnError(i, "instance references undeclared device");
+						bailOut(i, "instance references undeclared device");
 					
 				}
 				
@@ -608,7 +628,8 @@ instDecl[DesignNode des]
 				if (indices.isEmpty()) {
 					InstanceNode i = new InstanceNode(des);
 					i.setName($instName.text);
-					i.setLocation($instName.line, $instName.pos, input.getSourceName());
+					i.setLocation($instName.line, $instName.pos, 
+						instName.getToken().getInputStream().getSourceName());
 					
 					// find the corresponding device declaration
 					DeviceNode dev = des.getDevice($devName.text);
@@ -621,7 +642,7 @@ instDecl[DesignNode des]
 							i.addPin(new PinNode(pn, i));
 						instNodes.add(i);
 					} else
-						bailOnError(i, "instance references undeclared device");
+						bailOut(i, "instance references undeclared device");
 							
 				}
 			
@@ -712,26 +733,36 @@ attrAssign[DesignNode des, String instName]
 						// find its attribute by the attribute name
 						AttributeNode a = inst.getAttribute($attrName.text);
 						if (a!=null) {
-							if(newAttr)
+							if (newAttr)
 								addWarning($attrName, "new attribute already declared in device");
 							// overwrite the attribute value
-							if(!a.overwrite($attrValue.text))
+							if (!a.overwrite($attrValue.text))
 								addWarning($attrName, "atribute already overwritten");
 						} else {
+							if ($attrName.text.toUpperCase().equals("REFDES")) {
+								AttributeNode newA = new AttributeNode(inst);
+								newA.setName($attrName.text);
+								newA.setValue($attrValue.text);
+								newA.setLocation($attrName.line, $attrName.pos, 
+									attrName.getToken().getInputStream().getSourceName());
+								inst.addAttribute(newA);
+							}
 							// the attribute doesn't exist
-							if(newAttr) {
+							else if (newAttr) {
 								// make a new attribute if explicitly asked to do so
 								AttributeNode newA = new AttributeNode(inst);
 								newA.setName($attrName.text);
 								newA.overwrite($attrValue.text);
-								newA.setLocation($attrName.line, $attrName.pos, input.getSourceName());
+								newA.setLocation($attrName.line, $attrName.pos, 
+									attrName.getToken().getInputStream().getSourceName());
 								inst.addAttribute(newA);
 							} else {
 								if ($attrName.text.toUpperCase().equals("REFDES")) {
 									AttributeNode newA = new AttributeNode(inst);
 									newA.setName($attrName.text);
 									newA.setValue($attrValue.text);
-									newA.setLocation($attrName.line, $attrName.pos, input.getSourceName());
+									newA.setLocation($attrName.line, $attrName.pos, 
+										attrName.getToken().getInputStream().getSourceName());
 									inst.addAttribute(newA);
 								} else {
 									// report that the attribute is undeclared
@@ -741,7 +772,8 @@ attrAssign[DesignNode des, String instName]
 						}
 					} else {
 						// the instance node does not exist
-						addError($attrName, "instance " + instName + "(" + indices.get(i) + ")" + " is undeclared");
+						addError($attrName, instName + "(" + indices.get(i) + ")" + 
+							" attribute undeclared");
 					}
 				}
 				// if the attribute is global
@@ -751,23 +783,32 @@ attrAssign[DesignNode des, String instName]
 						// find its attribute by the attribute name
 						AttributeNode a = inst.getAttribute($attrName.text);
 						if (a!=null) {
-							if(newAttr)
+							if (newAttr)
 								addWarning($attrName, "new attribute already declared in device");
 							// overwrite the attribute value
 							if(!a.overwrite($attrValue.text))
 								addWarning($attrName, "atribute already overwritten");
 						} else {
+							if ($attrName.text.toUpperCase().equals("REFDES")) {
+								AttributeNode newA = new AttributeNode(inst);
+								newA.setName($attrName.text);
+								newA.setValue($attrValue.text);
+								newA.setLocation($attrName.line, $attrName.pos, 
+									attrName.getToken().getInputStream().getSourceName());
+								inst.addAttribute(newA);
+							}
 							// the attribute doesn't exist
-							if(newAttr) {
+							else if (newAttr) {
 								// make a new attribute if explicitly asked to do so
 								AttributeNode newA = new AttributeNode(inst);
 								newA.setName($attrName.text);
 								newA.overwrite($attrValue.text);
-								newA.setLocation($attrName.line, $attrName.pos, input.getSourceName());
+								newA.setLocation($attrName.line, $attrName.pos, 
+									attrName.getToken().getInputStream().getSourceName());
 								inst.addAttribute(newA);
 							} else {
 								// report that the attribute is undeclared
-								addError($attrName, "instance " + instName + " is undeclared");
+								addError($attrName, instName + " attribute undeclared");
 							}
 						}
 					}
@@ -825,7 +866,7 @@ netAssign[DesignNode des]
 		
 			//==================== JAVA BLOCK BEGIN =======================
 			{	if (concats.contains(des.getNet("open"))) {
-					bailOnError($netName, "cannot assign open to a net");
+					bailOut($netName, "cannot assign open to a net");
 				}
 				if (slices.isEmpty()) {
 					if (concats.size() == 1) {
@@ -837,7 +878,7 @@ netAssign[DesignNode des]
 							addError($netName, "net undeclared in design");
 						}
 					} else {
-						bailOnError($netName, "invalid assignment, left width is " 
+						bailOut($netName, "invalid assignment, left width is " 
 								+ slices.size() + " right width is " + concats.size());
 					}
 				} else {
@@ -852,7 +893,7 @@ netAssign[DesignNode des]
 							}
 						}
 					} else {
-						bailOnError($netName, "invalid assignment, left width is " 
+						bailOut($netName, "invalid assignment, left width is " 
 								+ slices.size() + " right width is " + concats.size());
 					}
 				}
@@ -876,18 +917,16 @@ concatenation[List<NetNode> concats, int assignWidth, DesignNode des]
 					if (n != null) {
 						concats.add(n);
 					} else {
-						addError($first, "net undeclared in design");
+						bailOut($first, "undeclared net");
 					}
 				}
 			
 				for (int i = 0; i < slices.size(); i++) {
 					for (NetNode n : des.getAllNets($first.text)) {
-						if (n.getIndex() == slices.get(i)) {
+						if (n.getIndex() == slices.get(i))
 							concats.add(n);
-						}
 					}
 				}
-
 			}
 			//===================== JAVA BLOCK END ========================
 				
@@ -903,15 +942,14 @@ concatenation[List<NetNode> concats, int assignWidth, DesignNode des]
 					if (n != null) {
 						concats.add(n);
 					} else {
-						addError($next, "undeclared net");
+						bailOut($next, "undeclared net");
 					}
 				}
 				
 				for (int i = 0; i < slices.size(); i++) {
 					for (NetNode n : des.getAllNets($next.text)) {
-						if (n.getIndex() == slices.get(i)) {
+						if (n.getIndex() == slices.get(i))
 							concats.add(n);
-						}
 					}
 				}
 			}
@@ -924,23 +962,21 @@ concatenation[List<NetNode> concats, int assignWidth, DesignNode des]
 				if (slices.size()==1) {
 					NetNode n = des.getNet($global.text + "[" + slices.get(0) + "]");
 					if (n != null) {
-						for (int i = 0; i < assignWidth; i++) {
+						for (int i = 0; i < assignWidth; i++)
 							concats.add(n);
-						}
 					} else {
-						addError($global, "undeclared net");
+						bailOut($global, "undeclared net");
 					}
 				} else if(slices.isEmpty()) {
 					NetNode n = des.getNet($global.text);
 					if (n != null) {
-						for (int i = 0; i < assignWidth; i++) {
+						for (int i = 0; i < assignWidth; i++)
 							concats.add(n);
-						}
 					} else {
-						addError($global, "undeclared net");
+						bailOut($global, "undeclared net");
 					}
 				} else {
-					addError($global, "assignment cannot replicate a net vector");
+					bailOut($global, "assignment cannot replicate a net vector");
 				}
 			}
 			//===================== JAVA BLOCK END ========================

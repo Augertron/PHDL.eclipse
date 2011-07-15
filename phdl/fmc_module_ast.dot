@@ -6,4 +6,7051 @@ digraph {
 		width=.25, height=.25, color="black", fillcolor="white", style="filled, solid, bold"];
 	edge [arrowsize=.5, color="black", style="bold"]
 
+  n0 [label=""];
+  n1 [label="design"];
+  n1 [label="design"];
+  n2 [label="fmc_module"];
+  n3 [label="device"];
+  n3 [label="device"];
+  n4 [label="SMA_CON"];
+  n5 [label="attr"];
+  n5 [label="attr"];
+  n6 [label="refprefix"];
+  n7 [label="P"];
+  n8 [label="attr"];
+  n8 [label="attr"];
+  n9 [label="refDes"];
+  n10 [label=""];
+  n11 [label="attr"];
+  n11 [label="attr"];
+  n12 [label="name"];
+  n13 [label=""];
+  n14 [label="attr"];
+  n14 [label="attr"];
+  n15 [label="value"];
+  n16 [label=""];
+  n17 [label="attr"];
+  n17 [label="attr"];
+  n18 [label="pkg_type"];
+  n19 [label="SMA_STRAIT"];
+  n20 [label="attr"];
+  n20 [label="attr"];
+  n21 [label="mfgr"];
+  n22 [label="MOLEX"];
+  n23 [label="attr"];
+  n23 [label="attr"];
+  n24 [label="partNumber"];
+  n25 [label="73391-0070"];
+  n26 [label="attr"];
+  n26 [label="attr"];
+  n27 [label="cost"];
+  n28 [label="4.97"];
+  n29 [label="pin"];
+  n29 [label="pin"];
+  n30 [label="sig"];
+  n31 [label="1"];
+  n32 [label="pin"];
+  n32 [label="pin"];
+  n33 [label=":"];
+  n33 [label=":"];
+  n34 [label="["];
+  n35 [label="3"];
+  n36 [label="0"];
+  n37 [label="gnd"];
+  n38 [label="5"];
+  n39 [label="4"];
+  n40 [label="3"];
+  n41 [label="2"];
+  n42 [label="device"];
+  n42 [label="device"];
+  n43 [label="cap_0402"];
+  n44 [label="attr"];
+  n44 [label="attr"];
+  n45 [label="refPrefix"];
+  n46 [label="C"];
+  n47 [label="attr"];
+  n47 [label="attr"];
+  n48 [label="refDes"];
+  n49 [label=""];
+  n50 [label="attr"];
+  n50 [label="attr"];
+  n51 [label="name"];
+  n52 [label=""];
+  n53 [label="attr"];
+  n53 [label="attr"];
+  n54 [label="value"];
+  n55 [label=""];
+  n56 [label="attr"];
+  n56 [label="attr"];
+  n57 [label="pkg_type"];
+  n58 [label="CC0402"];
+  n59 [label="attr"];
+  n59 [label="attr"];
+  n60 [label="mfgr"];
+  n61 [label="PANASONIC"];
+  n62 [label="attr"];
+  n62 [label="attr"];
+  n63 [label="partNumber"];
+  n64 [label="ECJ-0EB1A104K"];
+  n65 [label="attr"];
+  n65 [label="attr"];
+  n66 [label="cost"];
+  n67 [label="0.03"];
+  n68 [label="pin"];
+  n68 [label="pin"];
+  n69 [label="a"];
+  n70 [label="1"];
+  n71 [label="pin"];
+  n71 [label="pin"];
+  n72 [label="b"];
+  n73 [label="2"];
+  n74 [label="net"];
+  n74 [label="net"];
+  n75 [label="DP0_C2M_P"];
+  n76 [label="net"];
+  n76 [label="net"];
+  n77 [label="DP0_C2M_N"];
+  n78 [label="net"];
+  n78 [label="net"];
+  n79 [label="DP0_M2C_P"];
+  n80 [label="net"];
+  n80 [label="net"];
+  n81 [label="DP0_M2C_N"];
+  n82 [label="net"];
+  n82 [label="net"];
+  n83 [label="SMA_DPO_M2C_P"];
+  n84 [label="net"];
+  n84 [label="net"];
+  n85 [label="SMA_DPO_M2C_N"];
+  n86 [label="net"];
+  n86 [label="net"];
+  n87 [label="DP1_C2M_P"];
+  n88 [label="net"];
+  n88 [label="net"];
+  n89 [label="DP1_C2M_N"];
+  n90 [label="net"];
+  n90 [label="net"];
+  n91 [label="DP1_M2C_P"];
+  n92 [label="net"];
+  n92 [label="net"];
+  n93 [label="DP1_M2C_N"];
+  n94 [label="net"];
+  n94 [label="net"];
+  n95 [label="SMA_DP1_M2C_P"];
+  n96 [label="net"];
+  n96 [label="net"];
+  n97 [label="SMA_DP1_M2C_N"];
+  n98 [label="net"];
+  n98 [label="net"];
+  n99 [label="DP2_C2M_P"];
+  n100 [label="net"];
+  n100 [label="net"];
+  n101 [label="DP2_C2M_N"];
+  n102 [label="net"];
+  n102 [label="net"];
+  n103 [label="DP2_M2C_P"];
+  n104 [label="net"];
+  n104 [label="net"];
+  n105 [label="DP2_M2C_N"];
+  n106 [label="net"];
+  n106 [label="net"];
+  n107 [label="SMA_DP2_M2C_P"];
+  n108 [label="net"];
+  n108 [label="net"];
+  n109 [label="SMA_DP2_M2C_N"];
+  n110 [label="net"];
+  n110 [label="net"];
+  n111 [label="DP3_C2M_P"];
+  n112 [label="net"];
+  n112 [label="net"];
+  n113 [label="DP3_C2M_N"];
+  n114 [label="net"];
+  n114 [label="net"];
+  n115 [label="DP3_M2C_P"];
+  n116 [label="net"];
+  n116 [label="net"];
+  n117 [label="DP3_M2C_N"];
+  n118 [label="net"];
+  n118 [label="net"];
+  n119 [label="SMA_DP3_M2C_P"];
+  n120 [label="net"];
+  n120 [label="net"];
+  n121 [label="SMA_DP3_M2C_N"];
+  n122 [label="net"];
+  n122 [label="net"];
+  n123 [label="DP4_C2M_P"];
+  n124 [label="net"];
+  n124 [label="net"];
+  n125 [label="DP4_C2M_N"];
+  n126 [label="net"];
+  n126 [label="net"];
+  n127 [label="DP4_M2C_P"];
+  n128 [label="net"];
+  n128 [label="net"];
+  n129 [label="DP4_M2C_N"];
+  n130 [label="net"];
+  n130 [label="net"];
+  n131 [label="SMA_DP4_M2C_P"];
+  n132 [label="net"];
+  n132 [label="net"];
+  n133 [label="SMA_DP4_M2C_N"];
+  n134 [label="net"];
+  n134 [label="net"];
+  n135 [label="DP5_C2M_P"];
+  n136 [label="net"];
+  n136 [label="net"];
+  n137 [label="DP5_C2M_N"];
+  n138 [label="net"];
+  n138 [label="net"];
+  n139 [label="DP5_M2C_P"];
+  n140 [label="net"];
+  n140 [label="net"];
+  n141 [label="DP5_M2C_N"];
+  n142 [label="net"];
+  n142 [label="net"];
+  n143 [label="SMA_DP5_M2C_P"];
+  n144 [label="net"];
+  n144 [label="net"];
+  n145 [label="SMA_DP5_M2C_N"];
+  n146 [label="device"];
+  n146 [label="device"];
+  n147 [label="TC4-14+"];
+  n148 [label="attr"];
+  n148 [label="attr"];
+  n149 [label="refPrefix"];
+  n150 [label="T"];
+  n151 [label="attr"];
+  n151 [label="attr"];
+  n152 [label="refDes"];
+  n153 [label=""];
+  n154 [label="attr"];
+  n154 [label="attr"];
+  n155 [label="name"];
+  n156 [label=""];
+  n157 [label="attr"];
+  n157 [label="attr"];
+  n158 [label="value"];
+  n159 [label=""];
+  n160 [label="attr"];
+  n160 [label="attr"];
+  n161 [label="pkg_type"];
+  n162 [label="AT224-1"];
+  n163 [label="attr"];
+  n163 [label="attr"];
+  n164 [label="mfgr"];
+  n165 [label="MINI-CIRCUITS"];
+  n166 [label="attr"];
+  n166 [label="attr"];
+  n167 [label="partNumber"];
+  n168 [label="TC4-14G2+"];
+  n169 [label="attr"];
+  n169 [label="attr"];
+  n170 [label="cost"];
+  n171 [label="$10.00"];
+  n172 [label="pin"];
+  n172 [label="pin"];
+  n173 [label="pri_p"];
+  n174 [label="4"];
+  n175 [label="pin"];
+  n175 [label="pin"];
+  n176 [label="pri_n"];
+  n177 [label="5"];
+  n178 [label="pin"];
+  n178 [label="pin"];
+  n179 [label="sec_p"];
+  n180 [label="1"];
+  n181 [label="pin"];
+  n181 [label="pin"];
+  n182 [label="sec_tap"];
+  n183 [label="2"];
+  n184 [label="pin"];
+  n184 [label="pin"];
+  n185 [label="sec_n"];
+  n186 [label="3"];
+  n187 [label="device"];
+  n187 [label="device"];
+  n188 [label="res_0603"];
+  n189 [label="attr"];
+  n189 [label="attr"];
+  n190 [label="refPrefix"];
+  n191 [label="R"];
+  n192 [label="attr"];
+  n192 [label="attr"];
+  n193 [label="refDes"];
+  n194 [label=""];
+  n195 [label="attr"];
+  n195 [label="attr"];
+  n196 [label="name"];
+  n197 [label=""];
+  n198 [label="attr"];
+  n198 [label="attr"];
+  n199 [label="value"];
+  n200 [label=""];
+  n201 [label="attr"];
+  n201 [label="attr"];
+  n202 [label="pkg_type"];
+  n203 [label="CR0603"];
+  n204 [label="attr"];
+  n204 [label="attr"];
+  n205 [label="mfgr"];
+  n206 [label="PANASONIC"];
+  n207 [label="attr"];
+  n207 [label="attr"];
+  n208 [label="partNumber"];
+  n209 [label="ERJ-3EKF1500V"];
+  n210 [label="attr"];
+  n210 [label="attr"];
+  n211 [label="cost"];
+  n212 [label="0.07"];
+  n213 [label="pin"];
+  n213 [label="pin"];
+  n214 [label="a"];
+  n215 [label="1"];
+  n216 [label="pin"];
+  n216 [label="pin"];
+  n217 [label="b"];
+  n218 [label="2"];
+  n219 [label="net"];
+  n219 [label="net"];
+  n220 [label="CLK250P"];
+  n221 [label="net"];
+  n221 [label="net"];
+  n222 [label="CLK250N"];
+  n223 [label="net"];
+  n223 [label="net"];
+  n224 [label="CLK250"];
+  n225 [label="net"];
+  n225 [label="net"];
+  n226 [label="DIFF_CLK_RTN"];
+  n227 [label="net"];
+  n227 [label="net"];
+  n228 [label="SINGLE_CLK_RTN"];
+  n229 [label="net"];
+  n229 [label="net"];
+  n230 [label="CLK250N_BAL"];
+  n231 [label="net"];
+  n231 [label="net"];
+  n232 [label="CLK250P_BAL"];
+  n233 [label="net"];
+  n233 [label="net"];
+  n234 [label="CLK250_BAL_N"];
+  n235 [label="net"];
+  n235 [label="net"];
+  n236 [label="CLK250_BAL_P"];
+  n237 [label="net"];
+  n237 [label="net"];
+  n238 [label="$3N205"];
+  n239 [label="net"];
+  n239 [label="net"];
+  n240 [label="$3N212"];
+  n241 [label="net"];
+  n241 [label="net"];
+  n242 [label="$3N213"];
+  n243 [label="net"];
+  n243 [label="net"];
+  n244 [label="$3N195"];
+  n245 [label="net"];
+  n245 [label="net"];
+  n246 [label="$3N1"];
+  n247 [label="net"];
+  n247 [label="net"];
+  n248 [label="$3N193"];
+  n249 [label="net"];
+  n249 [label="net"];
+  n250 [label="$3N222"];
+  n251 [label="net"];
+  n251 [label="net"];
+  n252 [label="$3N42"];
+  n253 [label="net"];
+  n253 [label="net"];
+  n254 [label="$3N44"];
+  n255 [label="net"];
+  n255 [label="net"];
+  n256 [label="$3N163"];
+  n257 [label="net"];
+  n257 [label="net"];
+  n258 [label="$3N164"];
+  n259 [label="net"];
+  n259 [label="net"];
+  n260 [label="$4N126"];
+  n261 [label="net"];
+  n261 [label="net"];
+  n262 [label="+3V3"];
+  n263 [label="net"];
+  n263 [label="net"];
+  n264 [label="gnd"];
+  n265 [label="device"];
+  n265 [label="device"];
+  n266 [label="tant_cap"];
+  n267 [label="attr"];
+  n267 [label="attr"];
+  n268 [label="refPrefix"];
+  n269 [label="C"];
+  n270 [label="attr"];
+  n270 [label="attr"];
+  n271 [label="refDes"];
+  n272 [label=""];
+  n273 [label="attr"];
+  n273 [label="attr"];
+  n274 [label="name"];
+  n275 [label=""];
+  n276 [label="attr"];
+  n276 [label="attr"];
+  n277 [label="value"];
+  n278 [label=""];
+  n279 [label="attr"];
+  n279 [label="attr"];
+  n280 [label="pkg_type"];
+  n281 [label="7343-31"];
+  n282 [label="attr"];
+  n282 [label="attr"];
+  n283 [label="mfgr"];
+  n284 [label="AVX CORPORATION"];
+  n285 [label="attr"];
+  n285 [label="attr"];
+  n286 [label="partNumber"];
+  n287 [label="TAJD227M006RNJ"];
+  n288 [label="attr"];
+  n288 [label="attr"];
+  n289 [label="cost"];
+  n290 [label="2.60"];
+  n291 [label="pin"];
+  n291 [label="pin"];
+  n292 [label="pos"];
+  n293 [label="1"];
+  n294 [label="pin"];
+  n294 [label="pin"];
+  n295 [label="neg"];
+  n296 [label="2"];
+  n297 [label="device"];
+  n297 [label="device"];
+  n298 [label="sy898533"];
+  n299 [label="attr"];
+  n299 [label="attr"];
+  n300 [label="refPrefix"];
+  n301 [label="U"];
+  n302 [label="attr"];
+  n302 [label="attr"];
+  n303 [label="refDes"];
+  n304 [label=""];
+  n305 [label="attr"];
+  n305 [label="attr"];
+  n306 [label="name"];
+  n307 [label=""];
+  n308 [label="attr"];
+  n308 [label="attr"];
+  n309 [label="value"];
+  n310 [label=""];
+  n311 [label="attr"];
+  n311 [label="attr"];
+  n312 [label="pkg_type"];
+  n313 [label="SY898533LKZ"];
+  n314 [label="attr"];
+  n314 [label="attr"];
+  n315 [label="mfgr"];
+  n316 [label="MICREL"];
+  n317 [label="attr"];
+  n317 [label="attr"];
+  n318 [label="partNumber"];
+  n319 [label="SY898533LKZ"];
+  n320 [label="attr"];
+  n320 [label="attr"];
+  n321 [label="cost"];
+  n322 [label="4.45"];
+  n323 [label="pin"];
+  n323 [label="pin"];
+  n324 [label=":"];
+  n324 [label=":"];
+  n325 [label="["];
+  n326 [label="1"];
+  n327 [label="3"];
+  n328 [label="vcc"];
+  n329 [label="10"];
+  n330 [label="13"];
+  n331 [label="18"];
+  n332 [label="pin"];
+  n332 [label="pin"];
+  n333 [label="clk_p"];
+  n334 [label="4"];
+  n335 [label="pin"];
+  n335 [label="pin"];
+  n336 [label="clk_n"];
+  n337 [label="5"];
+  n338 [label="pin"];
+  n338 [label="pin"];
+  n339 [label="pclk_p"];
+  n340 [label="6"];
+  n341 [label="pin"];
+  n341 [label="pin"];
+  n342 [label="pclk_n"];
+  n343 [label="7"];
+  n344 [label="pin"];
+  n344 [label="pin"];
+  n345 [label="clk_en"];
+  n346 [label="2"];
+  n347 [label="pin"];
+  n347 [label="pin"];
+  n348 [label="clk_sel"];
+  n349 [label="3"];
+  n350 [label="pin"];
+  n350 [label="pin"];
+  n351 [label=":"];
+  n351 [label=":"];
+  n352 [label="["];
+  n353 [label="1"];
+  n354 [label="2"];
+  n355 [label="nc"];
+  n356 [label="8"];
+  n357 [label="9"];
+  n358 [label="pin"];
+  n358 [label="pin"];
+  n359 [label="q0_p"];
+  n360 [label="20"];
+  n361 [label="pin"];
+  n361 [label="pin"];
+  n362 [label="q0_n"];
+  n363 [label="19"];
+  n364 [label="pin"];
+  n364 [label="pin"];
+  n365 [label="q1_p"];
+  n366 [label="17"];
+  n367 [label="pin"];
+  n367 [label="pin"];
+  n368 [label="q1_n"];
+  n369 [label="16"];
+  n370 [label="pin"];
+  n370 [label="pin"];
+  n371 [label="q2_p"];
+  n372 [label="15"];
+  n373 [label="pin"];
+  n373 [label="pin"];
+  n374 [label="q2_n"];
+  n375 [label="14"];
+  n376 [label="pin"];
+  n376 [label="pin"];
+  n377 [label="q3_p"];
+  n378 [label="12"];
+  n379 [label="pin"];
+  n379 [label="pin"];
+  n380 [label="q3_n"];
+  n381 [label="11"];
+  n382 [label="pin"];
+  n382 [label="pin"];
+  n383 [label="vee"];
+  n384 [label="1"];
+  n385 [label="net"];
+  n385 [label="net"];
+  n386 [label="GBTCLK0_M2C_P"];
+  n387 [label="net"];
+  n387 [label="net"];
+  n388 [label="GBTCLK0_M2C_N"];
+  n389 [label="net"];
+  n389 [label="net"];
+  n390 [label="GBTCLK1_M2C_P"];
+  n391 [label="net"];
+  n391 [label="net"];
+  n392 [label="GBTCLK1_M2C_N"];
+  n393 [label="device"];
+  n393 [label="device"];
+  n394 [label="slide_switch"];
+  n395 [label="attr"];
+  n395 [label="attr"];
+  n396 [label="refPrefix"];
+  n397 [label="P"];
+  n398 [label="attr"];
+  n398 [label="attr"];
+  n399 [label="refDes"];
+  n400 [label=""];
+  n401 [label="attr"];
+  n401 [label="attr"];
+  n402 [label="name"];
+  n403 [label=""];
+  n404 [label="attr"];
+  n404 [label="attr"];
+  n405 [label="value"];
+  n406 [label=""];
+  n407 [label="attr"];
+  n407 [label="attr"];
+  n408 [label="pkg_type"];
+  n409 [label="CAS-220B"];
+  n410 [label="attr"];
+  n410 [label="attr"];
+  n411 [label="mfgr"];
+  n412 [label="COPAL ELECTRONICS"];
+  n413 [label="attr"];
+  n413 [label="attr"];
+  n414 [label="partNumber"];
+  n415 [label="CAS-D20TB"];
+  n416 [label="attr"];
+  n416 [label="attr"];
+  n417 [label="cost"];
+  n418 [label="2.28"];
+  n419 [label="pin"];
+  n419 [label="pin"];
+  n420 [label="p1_1"];
+  n421 [label="1"];
+  n422 [label="pin"];
+  n422 [label="pin"];
+  n423 [label="p2_1"];
+  n424 [label="3"];
+  n425 [label="pin"];
+  n425 [label="pin"];
+  n426 [label="s_1"];
+  n427 [label="2"];
+  n428 [label="pin"];
+  n428 [label="pin"];
+  n429 [label="p1_2"];
+  n430 [label="4"];
+  n431 [label="pin"];
+  n431 [label="pin"];
+  n432 [label="p2_2"];
+  n433 [label="6"];
+  n434 [label="pin"];
+  n434 [label="pin"];
+  n435 [label="s_2"];
+  n436 [label="5"];
+  n437 [label="net"];
+  n437 [label="net"];
+  n438 [label="SYNC_OUT"];
+  n439 [label="net"];
+  n439 [label="net"];
+  n440 [label="SYNC_IN"];
+  n441 [label="device"];
+  n441 [label="device"];
+  n442 [label="asp_134488"];
+  n443 [label="attr"];
+  n443 [label="attr"];
+  n444 [label="refPrefix"];
+  n445 [label="P"];
+  n446 [label="attr"];
+  n446 [label="attr"];
+  n447 [label="refDes"];
+  n448 [label=""];
+  n449 [label="attr"];
+  n449 [label="attr"];
+  n450 [label="name"];
+  n451 [label=""];
+  n452 [label="attr"];
+  n452 [label="attr"];
+  n453 [label="value"];
+  n454 [label=""];
+  n455 [label="attr"];
+  n455 [label="attr"];
+  n456 [label="pkg_type"];
+  n457 [label="ASP-134488-01"];
+  n458 [label="attr"];
+  n458 [label="attr"];
+  n459 [label="mfgr"];
+  n460 [label="SAMTEC"];
+  n461 [label="attr"];
+  n461 [label="attr"];
+  n462 [label="partNumber"];
+  n463 [label="ASP-134488-01"];
+  n464 [label="attr"];
+  n464 [label="attr"];
+  n465 [label="cost"];
+  n466 [label="XXXX"];
+  n467 [label="pin"];
+  n467 [label="pin"];
+  n468 [label=":"];
+  n468 [label=":"];
+  n469 [label="["];
+  n470 [label="1"];
+  n471 [label="40"];
+  n472 [label="a"];
+  n473 [label="A1"];
+  n474 [label="A2"];
+  n475 [label="A3"];
+  n476 [label="A4"];
+  n477 [label="A5"];
+  n478 [label="A6"];
+  n479 [label="A7"];
+  n480 [label="A8"];
+  n481 [label="A9"];
+  n482 [label="A10"];
+  n483 [label="A11"];
+  n484 [label="A12"];
+  n485 [label="A13"];
+  n486 [label="A14"];
+  n487 [label="A15"];
+  n488 [label="A16"];
+  n489 [label="A17"];
+  n490 [label="A18"];
+  n491 [label="A19"];
+  n492 [label="A20"];
+  n493 [label="A21"];
+  n494 [label="A22"];
+  n495 [label="A23"];
+  n496 [label="A24"];
+  n497 [label="A25"];
+  n498 [label="A26"];
+  n499 [label="A27"];
+  n500 [label="A28"];
+  n501 [label="A29"];
+  n502 [label="A30"];
+  n503 [label="A31"];
+  n504 [label="A32"];
+  n505 [label="A33"];
+  n506 [label="A34"];
+  n507 [label="A35"];
+  n508 [label="A36"];
+  n509 [label="A37"];
+  n510 [label="A38"];
+  n511 [label="A39"];
+  n512 [label="A40"];
+  n513 [label="pin"];
+  n513 [label="pin"];
+  n514 [label=":"];
+  n514 [label=":"];
+  n515 [label="["];
+  n516 [label="1"];
+  n517 [label="40"];
+  n518 [label="b"];
+  n519 [label="B1"];
+  n520 [label="B2"];
+  n521 [label="B3"];
+  n522 [label="B4"];
+  n523 [label="B5"];
+  n524 [label="B6"];
+  n525 [label="B7"];
+  n526 [label="B8"];
+  n527 [label="B9"];
+  n528 [label="B10"];
+  n529 [label="B11"];
+  n530 [label="B12"];
+  n531 [label="B13"];
+  n532 [label="B14"];
+  n533 [label="B15"];
+  n534 [label="B16"];
+  n535 [label="B17"];
+  n536 [label="B18"];
+  n537 [label="B19"];
+  n538 [label="B20"];
+  n539 [label="B21"];
+  n540 [label="B22"];
+  n541 [label="B23"];
+  n542 [label="B24"];
+  n543 [label="B25"];
+  n544 [label="B26"];
+  n545 [label="B27"];
+  n546 [label="B28"];
+  n547 [label="B29"];
+  n548 [label="B30"];
+  n549 [label="B31"];
+  n550 [label="B32"];
+  n551 [label="B33"];
+  n552 [label="B34"];
+  n553 [label="B35"];
+  n554 [label="B36"];
+  n555 [label="B37"];
+  n556 [label="B38"];
+  n557 [label="B39"];
+  n558 [label="B40"];
+  n559 [label="pin"];
+  n559 [label="pin"];
+  n560 [label=":"];
+  n560 [label=":"];
+  n561 [label="["];
+  n562 [label="1"];
+  n563 [label="40"];
+  n564 [label="c"];
+  n565 [label="C1"];
+  n566 [label="C2"];
+  n567 [label="C3"];
+  n568 [label="C4"];
+  n569 [label="C5"];
+  n570 [label="C6"];
+  n571 [label="C7"];
+  n572 [label="C8"];
+  n573 [label="C9"];
+  n574 [label="C10"];
+  n575 [label="C11"];
+  n576 [label="C12"];
+  n577 [label="C13"];
+  n578 [label="C14"];
+  n579 [label="C15"];
+  n580 [label="C16"];
+  n581 [label="C17"];
+  n582 [label="C18"];
+  n583 [label="C19"];
+  n584 [label="C20"];
+  n585 [label="C21"];
+  n586 [label="C22"];
+  n587 [label="C23"];
+  n588 [label="C24"];
+  n589 [label="C25"];
+  n590 [label="C26"];
+  n591 [label="C27"];
+  n592 [label="C28"];
+  n593 [label="C29"];
+  n594 [label="C30"];
+  n595 [label="C31"];
+  n596 [label="C32"];
+  n597 [label="C33"];
+  n598 [label="C34"];
+  n599 [label="C35"];
+  n600 [label="C36"];
+  n601 [label="C37"];
+  n602 [label="C38"];
+  n603 [label="C39"];
+  n604 [label="C40"];
+  n605 [label="pin"];
+  n605 [label="pin"];
+  n606 [label=":"];
+  n606 [label=":"];
+  n607 [label="["];
+  n608 [label="1"];
+  n609 [label="40"];
+  n610 [label="d"];
+  n611 [label="D1"];
+  n612 [label="D2"];
+  n613 [label="D3"];
+  n614 [label="D4"];
+  n615 [label="D5"];
+  n616 [label="D6"];
+  n617 [label="D7"];
+  n618 [label="D8"];
+  n619 [label="D9"];
+  n620 [label="D10"];
+  n621 [label="D11"];
+  n622 [label="D12"];
+  n623 [label="D13"];
+  n624 [label="D14"];
+  n625 [label="D15"];
+  n626 [label="D16"];
+  n627 [label="D17"];
+  n628 [label="D18"];
+  n629 [label="D19"];
+  n630 [label="D20"];
+  n631 [label="D21"];
+  n632 [label="D22"];
+  n633 [label="D23"];
+  n634 [label="D24"];
+  n635 [label="D25"];
+  n636 [label="D26"];
+  n637 [label="D27"];
+  n638 [label="D28"];
+  n639 [label="D29"];
+  n640 [label="D30"];
+  n641 [label="D31"];
+  n642 [label="D32"];
+  n643 [label="D33"];
+  n644 [label="D34"];
+  n645 [label="D35"];
+  n646 [label="D36"];
+  n647 [label="D37"];
+  n648 [label="D38"];
+  n649 [label="D39"];
+  n650 [label="D40"];
+  n651 [label="pin"];
+  n651 [label="pin"];
+  n652 [label=":"];
+  n652 [label=":"];
+  n653 [label="["];
+  n654 [label="1"];
+  n655 [label="40"];
+  n656 [label="e"];
+  n657 [label="E1"];
+  n658 [label="E2"];
+  n659 [label="E3"];
+  n660 [label="E4"];
+  n661 [label="E5"];
+  n662 [label="E6"];
+  n663 [label="E7"];
+  n664 [label="E8"];
+  n665 [label="E9"];
+  n666 [label="E10"];
+  n667 [label="E11"];
+  n668 [label="E12"];
+  n669 [label="E13"];
+  n670 [label="E14"];
+  n671 [label="E15"];
+  n672 [label="E16"];
+  n673 [label="E17"];
+  n674 [label="E18"];
+  n675 [label="E19"];
+  n676 [label="E20"];
+  n677 [label="E21"];
+  n678 [label="E22"];
+  n679 [label="E23"];
+  n680 [label="E24"];
+  n681 [label="E25"];
+  n682 [label="E26"];
+  n683 [label="E27"];
+  n684 [label="E28"];
+  n685 [label="E29"];
+  n686 [label="E30"];
+  n687 [label="E31"];
+  n688 [label="E32"];
+  n689 [label="E33"];
+  n690 [label="E34"];
+  n691 [label="E35"];
+  n692 [label="E36"];
+  n693 [label="E37"];
+  n694 [label="E38"];
+  n695 [label="E39"];
+  n696 [label="E40"];
+  n697 [label="pin"];
+  n697 [label="pin"];
+  n698 [label=":"];
+  n698 [label=":"];
+  n699 [label="["];
+  n700 [label="1"];
+  n701 [label="40"];
+  n702 [label="f"];
+  n703 [label="F1"];
+  n704 [label="F2"];
+  n705 [label="F3"];
+  n706 [label="F4"];
+  n707 [label="F5"];
+  n708 [label="F6"];
+  n709 [label="F7"];
+  n710 [label="F8"];
+  n711 [label="F9"];
+  n712 [label="F10"];
+  n713 [label="F11"];
+  n714 [label="F12"];
+  n715 [label="F13"];
+  n716 [label="F14"];
+  n717 [label="F15"];
+  n718 [label="F16"];
+  n719 [label="F17"];
+  n720 [label="F18"];
+  n721 [label="F19"];
+  n722 [label="F20"];
+  n723 [label="F21"];
+  n724 [label="F22"];
+  n725 [label="F23"];
+  n726 [label="F24"];
+  n727 [label="F25"];
+  n728 [label="F26"];
+  n729 [label="F27"];
+  n730 [label="F28"];
+  n731 [label="F29"];
+  n732 [label="F30"];
+  n733 [label="F31"];
+  n734 [label="F32"];
+  n735 [label="F33"];
+  n736 [label="F34"];
+  n737 [label="F35"];
+  n738 [label="F36"];
+  n739 [label="F37"];
+  n740 [label="F38"];
+  n741 [label="F39"];
+  n742 [label="F40"];
+  n743 [label="pin"];
+  n743 [label="pin"];
+  n744 [label=":"];
+  n744 [label=":"];
+  n745 [label="["];
+  n746 [label="1"];
+  n747 [label="40"];
+  n748 [label="g"];
+  n749 [label="G1"];
+  n750 [label="G2"];
+  n751 [label="G3"];
+  n752 [label="G4"];
+  n753 [label="G5"];
+  n754 [label="G6"];
+  n755 [label="G7"];
+  n756 [label="G8"];
+  n757 [label="G9"];
+  n758 [label="G10"];
+  n759 [label="G11"];
+  n760 [label="G12"];
+  n761 [label="G13"];
+  n762 [label="G14"];
+  n763 [label="G15"];
+  n764 [label="G16"];
+  n765 [label="G17"];
+  n766 [label="G18"];
+  n767 [label="G19"];
+  n768 [label="G20"];
+  n769 [label="G21"];
+  n770 [label="G22"];
+  n771 [label="G23"];
+  n772 [label="G24"];
+  n773 [label="G25"];
+  n774 [label="G26"];
+  n775 [label="G27"];
+  n776 [label="G28"];
+  n777 [label="G29"];
+  n778 [label="G30"];
+  n779 [label="G31"];
+  n780 [label="G32"];
+  n781 [label="G33"];
+  n782 [label="G34"];
+  n783 [label="G35"];
+  n784 [label="G36"];
+  n785 [label="G37"];
+  n786 [label="G38"];
+  n787 [label="G39"];
+  n788 [label="G40"];
+  n789 [label="pin"];
+  n789 [label="pin"];
+  n790 [label=":"];
+  n790 [label=":"];
+  n791 [label="["];
+  n792 [label="1"];
+  n793 [label="40"];
+  n794 [label="h"];
+  n795 [label="H1"];
+  n796 [label="H2"];
+  n797 [label="H3"];
+  n798 [label="H4"];
+  n799 [label="H5"];
+  n800 [label="H6"];
+  n801 [label="H7"];
+  n802 [label="H8"];
+  n803 [label="H9"];
+  n804 [label="H10"];
+  n805 [label="H11"];
+  n806 [label="H12"];
+  n807 [label="H13"];
+  n808 [label="H14"];
+  n809 [label="H15"];
+  n810 [label="H16"];
+  n811 [label="H17"];
+  n812 [label="H18"];
+  n813 [label="H19"];
+  n814 [label="H20"];
+  n815 [label="H21"];
+  n816 [label="H22"];
+  n817 [label="H23"];
+  n818 [label="H24"];
+  n819 [label="H25"];
+  n820 [label="H26"];
+  n821 [label="H27"];
+  n822 [label="H28"];
+  n823 [label="H29"];
+  n824 [label="H30"];
+  n825 [label="H31"];
+  n826 [label="H32"];
+  n827 [label="H33"];
+  n828 [label="H34"];
+  n829 [label="H35"];
+  n830 [label="H36"];
+  n831 [label="H37"];
+  n832 [label="H38"];
+  n833 [label="H39"];
+  n834 [label="H40"];
+  n835 [label="pin"];
+  n835 [label="pin"];
+  n836 [label=":"];
+  n836 [label=":"];
+  n837 [label="["];
+  n838 [label="1"];
+  n839 [label="40"];
+  n840 [label="j"];
+  n841 [label="J1"];
+  n842 [label="J2"];
+  n843 [label="J3"];
+  n844 [label="J4"];
+  n845 [label="J5"];
+  n846 [label="J6"];
+  n847 [label="J7"];
+  n848 [label="J8"];
+  n849 [label="J9"];
+  n850 [label="J10"];
+  n851 [label="J11"];
+  n852 [label="J12"];
+  n853 [label="J13"];
+  n854 [label="J14"];
+  n855 [label="J15"];
+  n856 [label="J16"];
+  n857 [label="J17"];
+  n858 [label="J18"];
+  n859 [label="J19"];
+  n860 [label="J20"];
+  n861 [label="J21"];
+  n862 [label="J22"];
+  n863 [label="J23"];
+  n864 [label="J24"];
+  n865 [label="J25"];
+  n866 [label="J26"];
+  n867 [label="J27"];
+  n868 [label="J28"];
+  n869 [label="J29"];
+  n870 [label="J30"];
+  n871 [label="J31"];
+  n872 [label="J32"];
+  n873 [label="J33"];
+  n874 [label="J34"];
+  n875 [label="J35"];
+  n876 [label="J36"];
+  n877 [label="J37"];
+  n878 [label="J38"];
+  n879 [label="J39"];
+  n880 [label="J40"];
+  n881 [label="pin"];
+  n881 [label="pin"];
+  n882 [label=":"];
+  n882 [label=":"];
+  n883 [label="["];
+  n884 [label="1"];
+  n885 [label="40"];
+  n886 [label="k"];
+  n887 [label="K1"];
+  n888 [label="K2"];
+  n889 [label="K3"];
+  n890 [label="K4"];
+  n891 [label="K5"];
+  n892 [label="K6"];
+  n893 [label="K7"];
+  n894 [label="K8"];
+  n895 [label="K9"];
+  n896 [label="K10"];
+  n897 [label="K11"];
+  n898 [label="K12"];
+  n899 [label="K13"];
+  n900 [label="K14"];
+  n901 [label="K15"];
+  n902 [label="K16"];
+  n903 [label="K17"];
+  n904 [label="K18"];
+  n905 [label="K19"];
+  n906 [label="K20"];
+  n907 [label="K21"];
+  n908 [label="K22"];
+  n909 [label="K23"];
+  n910 [label="K24"];
+  n911 [label="K25"];
+  n912 [label="K26"];
+  n913 [label="K27"];
+  n914 [label="K28"];
+  n915 [label="K29"];
+  n916 [label="K30"];
+  n917 [label="K31"];
+  n918 [label="K32"];
+  n919 [label="K33"];
+  n920 [label="K34"];
+  n921 [label="K35"];
+  n922 [label="K36"];
+  n923 [label="K37"];
+  n924 [label="K38"];
+  n925 [label="K39"];
+  n926 [label="K40"];
+  n927 [label="device"];
+  n927 [label="device"];
+  n928 [label="2x8_hdr"];
+  n929 [label="attr"];
+  n929 [label="attr"];
+  n930 [label="refPrefix"];
+  n931 [label="J"];
+  n932 [label="attr"];
+  n932 [label="attr"];
+  n933 [label="refDes"];
+  n934 [label=""];
+  n935 [label="attr"];
+  n935 [label="attr"];
+  n936 [label="name"];
+  n937 [label=""];
+  n938 [label="attr"];
+  n938 [label="attr"];
+  n939 [label="value"];
+  n940 [label=""];
+  n941 [label="attr"];
+  n941 [label="attr"];
+  n942 [label="pkg_type"];
+  n943 [label="HDR2x8/0_100"];
+  n944 [label="attr"];
+  n944 [label="attr"];
+  n945 [label="mfgr"];
+  n946 [label="MOLEX"];
+  n947 [label="attr"];
+  n947 [label="attr"];
+  n948 [label="partNumber"];
+  n949 [label="90131-0768"];
+  n950 [label="attr"];
+  n950 [label="attr"];
+  n951 [label="cost"];
+  n952 [label="1.03"];
+  n953 [label="pin"];
+  n953 [label="pin"];
+  n954 [label=":"];
+  n954 [label=":"];
+  n955 [label="["];
+  n956 [label="0"];
+  n957 [label="7"];
+  n958 [label="sig"];
+  n959 [label="1"];
+  n960 [label="3"];
+  n961 [label="5"];
+  n962 [label="7"];
+  n963 [label="9"];
+  n964 [label="11"];
+  n965 [label="13"];
+  n966 [label="15"];
+  n967 [label="pin"];
+  n967 [label="pin"];
+  n968 [label=":"];
+  n968 [label=":"];
+  n969 [label="["];
+  n970 [label="0"];
+  n971 [label="7"];
+  n972 [label="gnd"];
+  n973 [label="2"];
+  n974 [label="4"];
+  n975 [label="6"];
+  n976 [label="8"];
+  n977 [label="10"];
+  n978 [label="12"];
+  n979 [label="14"];
+  n980 [label="16"];
+  n981 [label="net"];
+  n981 [label="net"];
+  n982 [label=":"];
+  n982 [label=":"];
+  n983 [label="["];
+  n984 [label="7"];
+  n985 [label="0"];
+  n986 [label="DISCRETE"];
+  n987 [label="device"];
+  n987 [label="device"];
+  n988 [label="mount_hole_125"];
+  n989 [label="attr"];
+  n989 [label="attr"];
+  n990 [label="refPrefix"];
+  n991 [label="U"];
+  n992 [label="attr"];
+  n992 [label="attr"];
+  n993 [label="pkg_type"];
+  n994 [label="MOUNT_HOLE_125"];
+  n995 [label="begin"];
+  n996 [label="inst"];
+  n996 [label="inst"];
+  n997 [label=":"];
+  n997 [label=":"];
+  n998 [label="("];
+  n999 [label="1"];
+  n1000 [label="4"];
+  n1001 [label="port0"];
+  n1002 [label="SMA_CON"];
+  n1003 [label="="];
+  n1003 [label="="];
+  n1004 [label="."];
+  n1004 [label="."];
+  n1005 [label="this"];
+  n1006 [label="("];
+  n1007 [label="1"];
+  n1008 [label="refDes"];
+  n1009 [label="P9"];
+  n1010 [label="="];
+  n1010 [label="="];
+  n1011 [label="."];
+  n1011 [label="."];
+  n1012 [label="this"];
+  n1013 [label="("];
+  n1014 [label="2"];
+  n1015 [label="refDes"];
+  n1016 [label="P10"];
+  n1017 [label="="];
+  n1017 [label="="];
+  n1018 [label="."];
+  n1018 [label="."];
+  n1019 [label="this"];
+  n1020 [label="("];
+  n1021 [label="3"];
+  n1022 [label="refDes"];
+  n1023 [label="P16"];
+  n1024 [label="="];
+  n1024 [label="="];
+  n1025 [label="."];
+  n1025 [label="."];
+  n1026 [label="this"];
+  n1027 [label="("];
+  n1028 [label="4"];
+  n1029 [label="refDes"];
+  n1030 [label="P15"];
+  n1031 [label="="];
+  n1031 [label="="];
+  n1032 [label="."];
+  n1032 [label="."];
+  n1033 [label="this"];
+  n1034 [label="("];
+  n1035 [label="1"];
+  n1036 [label="sig"];
+  n1037 [label="DP0_C2M_P"];
+  n1038 [label="="];
+  n1038 [label="="];
+  n1039 [label="."];
+  n1039 [label="."];
+  n1040 [label="this"];
+  n1041 [label="("];
+  n1042 [label="2"];
+  n1043 [label="sig"];
+  n1044 [label="DP0_C2M_N"];
+  n1045 [label="="];
+  n1045 [label="="];
+  n1046 [label="."];
+  n1046 [label="."];
+  n1047 [label="this"];
+  n1048 [label="("];
+  n1049 [label="3"];
+  n1050 [label="sig"];
+  n1051 [label="SMA_DPO_M2C_P"];
+  n1052 [label="="];
+  n1052 [label="="];
+  n1053 [label="."];
+  n1053 [label="."];
+  n1054 [label="this"];
+  n1055 [label="("];
+  n1056 [label="4"];
+  n1057 [label="sig"];
+  n1058 [label="SMA_DPO_M2C_N"];
+  n1059 [label="="];
+  n1059 [label="="];
+  n1060 [label="gnd"];
+  n1061 [label="<"];
+  n1062 [label="gnd"];
+  n1063 [label="inst"];
+  n1063 [label="inst"];
+  n1064 [label=":"];
+  n1064 [label=":"];
+  n1065 [label="("];
+  n1066 [label="1"];
+  n1067 [label="4"];
+  n1068 [label="port1"];
+  n1069 [label="SMA_CON"];
+  n1070 [label="="];
+  n1070 [label="="];
+  n1071 [label="."];
+  n1071 [label="."];
+  n1072 [label="this"];
+  n1073 [label="("];
+  n1074 [label="1"];
+  n1075 [label="refDes"];
+  n1076 [label="P12"];
+  n1077 [label="="];
+  n1077 [label="="];
+  n1078 [label="."];
+  n1078 [label="."];
+  n1079 [label="this"];
+  n1080 [label="("];
+  n1081 [label="2"];
+  n1082 [label="refDes"];
+  n1083 [label="P11"];
+  n1084 [label="="];
+  n1084 [label="="];
+  n1085 [label="."];
+  n1085 [label="."];
+  n1086 [label="this"];
+  n1087 [label="("];
+  n1088 [label="3"];
+  n1089 [label="refDes"];
+  n1090 [label="P13"];
+  n1091 [label="="];
+  n1091 [label="="];
+  n1092 [label="."];
+  n1092 [label="."];
+  n1093 [label="this"];
+  n1094 [label="("];
+  n1095 [label="4"];
+  n1096 [label="refDes"];
+  n1097 [label="P14"];
+  n1098 [label="="];
+  n1098 [label="="];
+  n1099 [label="."];
+  n1099 [label="."];
+  n1100 [label="this"];
+  n1101 [label="("];
+  n1102 [label="1"];
+  n1103 [label="sig"];
+  n1104 [label="DP1_C2M_P"];
+  n1105 [label="="];
+  n1105 [label="="];
+  n1106 [label="."];
+  n1106 [label="."];
+  n1107 [label="this"];
+  n1108 [label="("];
+  n1109 [label="2"];
+  n1110 [label="sig"];
+  n1111 [label="DP1_C2M_N"];
+  n1112 [label="="];
+  n1112 [label="="];
+  n1113 [label="."];
+  n1113 [label="."];
+  n1114 [label="this"];
+  n1115 [label="("];
+  n1116 [label="3"];
+  n1117 [label="sig"];
+  n1118 [label="SMA_DP1_M2C_P"];
+  n1119 [label="="];
+  n1119 [label="="];
+  n1120 [label="."];
+  n1120 [label="."];
+  n1121 [label="this"];
+  n1122 [label="("];
+  n1123 [label="4"];
+  n1124 [label="sig"];
+  n1125 [label="SMA_DP1_M2C_N"];
+  n1126 [label="="];
+  n1126 [label="="];
+  n1127 [label="gnd"];
+  n1128 [label="<"];
+  n1129 [label="gnd"];
+  n1130 [label="inst"];
+  n1130 [label="inst"];
+  n1131 [label=":"];
+  n1131 [label=":"];
+  n1132 [label="("];
+  n1133 [label="1"];
+  n1134 [label="4"];
+  n1135 [label="port2"];
+  n1136 [label="SMA_CON"];
+  n1137 [label="="];
+  n1137 [label="="];
+  n1138 [label="."];
+  n1138 [label="."];
+  n1139 [label="this"];
+  n1140 [label="("];
+  n1141 [label="1"];
+  n1142 [label="refDes"];
+  n1143 [label="P19"];
+  n1144 [label="="];
+  n1144 [label="="];
+  n1145 [label="."];
+  n1145 [label="."];
+  n1146 [label="this"];
+  n1147 [label="("];
+  n1148 [label="2"];
+  n1149 [label="refDes"];
+  n1150 [label="P20"];
+  n1151 [label="="];
+  n1151 [label="="];
+  n1152 [label="."];
+  n1152 [label="."];
+  n1153 [label="this"];
+  n1154 [label="("];
+  n1155 [label="3"];
+  n1156 [label="refDes"];
+  n1157 [label="P18"];
+  n1158 [label="="];
+  n1158 [label="="];
+  n1159 [label="."];
+  n1159 [label="."];
+  n1160 [label="this"];
+  n1161 [label="("];
+  n1162 [label="4"];
+  n1163 [label="refDes"];
+  n1164 [label="P17"];
+  n1165 [label="="];
+  n1165 [label="="];
+  n1166 [label="."];
+  n1166 [label="."];
+  n1167 [label="this"];
+  n1168 [label="("];
+  n1169 [label="1"];
+  n1170 [label="sig"];
+  n1171 [label="DP2_C2M_P"];
+  n1172 [label="="];
+  n1172 [label="="];
+  n1173 [label="."];
+  n1173 [label="."];
+  n1174 [label="this"];
+  n1175 [label="("];
+  n1176 [label="2"];
+  n1177 [label="sig"];
+  n1178 [label="DP2_C2M_N"];
+  n1179 [label="="];
+  n1179 [label="="];
+  n1180 [label="."];
+  n1180 [label="."];
+  n1181 [label="this"];
+  n1182 [label="("];
+  n1183 [label="3"];
+  n1184 [label="sig"];
+  n1185 [label="SMA_DP2_M2C_P"];
+  n1186 [label="="];
+  n1186 [label="="];
+  n1187 [label="."];
+  n1187 [label="."];
+  n1188 [label="this"];
+  n1189 [label="("];
+  n1190 [label="4"];
+  n1191 [label="sig"];
+  n1192 [label="SMA_DP2_M2C_N"];
+  n1193 [label="="];
+  n1193 [label="="];
+  n1194 [label="gnd"];
+  n1195 [label="<"];
+  n1196 [label="gnd"];
+  n1197 [label="inst"];
+  n1197 [label="inst"];
+  n1198 [label=":"];
+  n1198 [label=":"];
+  n1199 [label="("];
+  n1200 [label="1"];
+  n1201 [label="4"];
+  n1202 [label="port3"];
+  n1203 [label="SMA_CON"];
+  n1204 [label="="];
+  n1204 [label="="];
+  n1205 [label="."];
+  n1205 [label="."];
+  n1206 [label="this"];
+  n1207 [label="("];
+  n1208 [label="1"];
+  n1209 [label="refDes"];
+  n1210 [label="P22"];
+  n1211 [label="="];
+  n1211 [label="="];
+  n1212 [label="."];
+  n1212 [label="."];
+  n1213 [label="this"];
+  n1214 [label="("];
+  n1215 [label="2"];
+  n1216 [label="refDes"];
+  n1217 [label="P21"];
+  n1218 [label="="];
+  n1218 [label="="];
+  n1219 [label="."];
+  n1219 [label="."];
+  n1220 [label="this"];
+  n1221 [label="("];
+  n1222 [label="3"];
+  n1223 [label="refDes"];
+  n1224 [label="P23"];
+  n1225 [label="="];
+  n1225 [label="="];
+  n1226 [label="."];
+  n1226 [label="."];
+  n1227 [label="this"];
+  n1228 [label="("];
+  n1229 [label="4"];
+  n1230 [label="refDes"];
+  n1231 [label="P24"];
+  n1232 [label="="];
+  n1232 [label="="];
+  n1233 [label="."];
+  n1233 [label="."];
+  n1234 [label="this"];
+  n1235 [label="("];
+  n1236 [label="1"];
+  n1237 [label="sig"];
+  n1238 [label="DP3_C2M_P"];
+  n1239 [label="="];
+  n1239 [label="="];
+  n1240 [label="."];
+  n1240 [label="."];
+  n1241 [label="this"];
+  n1242 [label="("];
+  n1243 [label="2"];
+  n1244 [label="sig"];
+  n1245 [label="DP3_C2M_N"];
+  n1246 [label="="];
+  n1246 [label="="];
+  n1247 [label="."];
+  n1247 [label="."];
+  n1248 [label="this"];
+  n1249 [label="("];
+  n1250 [label="3"];
+  n1251 [label="sig"];
+  n1252 [label="SMA_DP3_M2C_P"];
+  n1253 [label="="];
+  n1253 [label="="];
+  n1254 [label="."];
+  n1254 [label="."];
+  n1255 [label="this"];
+  n1256 [label="("];
+  n1257 [label="4"];
+  n1258 [label="sig"];
+  n1259 [label="SMA_DP3_M2C_N"];
+  n1260 [label="="];
+  n1260 [label="="];
+  n1261 [label="gnd"];
+  n1262 [label="<"];
+  n1263 [label="gnd"];
+  n1264 [label="inst"];
+  n1264 [label="inst"];
+  n1265 [label=":"];
+  n1265 [label=":"];
+  n1266 [label="("];
+  n1267 [label="1"];
+  n1268 [label="4"];
+  n1269 [label="port4"];
+  n1270 [label="SMA_CON"];
+  n1271 [label="="];
+  n1271 [label="="];
+  n1272 [label="."];
+  n1272 [label="."];
+  n1273 [label="this"];
+  n1274 [label="("];
+  n1275 [label="1"];
+  n1276 [label="refDes"];
+  n1277 [label="P3"];
+  n1278 [label="="];
+  n1278 [label="="];
+  n1279 [label="."];
+  n1279 [label="."];
+  n1280 [label="this"];
+  n1281 [label="("];
+  n1282 [label="2"];
+  n1283 [label="refDes"];
+  n1284 [label="P4"];
+  n1285 [label="="];
+  n1285 [label="="];
+  n1286 [label="."];
+  n1286 [label="."];
+  n1287 [label="this"];
+  n1288 [label="("];
+  n1289 [label="3"];
+  n1290 [label="refDes"];
+  n1291 [label="P2"];
+  n1292 [label="="];
+  n1292 [label="="];
+  n1293 [label="."];
+  n1293 [label="."];
+  n1294 [label="this"];
+  n1295 [label="("];
+  n1296 [label="4"];
+  n1297 [label="refDes"];
+  n1298 [label="P1"];
+  n1299 [label="="];
+  n1299 [label="="];
+  n1300 [label="."];
+  n1300 [label="."];
+  n1301 [label="this"];
+  n1302 [label="("];
+  n1303 [label="1"];
+  n1304 [label="sig"];
+  n1305 [label="DP4_C2M_P"];
+  n1306 [label="="];
+  n1306 [label="="];
+  n1307 [label="."];
+  n1307 [label="."];
+  n1308 [label="this"];
+  n1309 [label="("];
+  n1310 [label="2"];
+  n1311 [label="sig"];
+  n1312 [label="DP4_C2M_N"];
+  n1313 [label="="];
+  n1313 [label="="];
+  n1314 [label="."];
+  n1314 [label="."];
+  n1315 [label="this"];
+  n1316 [label="("];
+  n1317 [label="3"];
+  n1318 [label="sig"];
+  n1319 [label="SMA_DP4_M2C_P"];
+  n1320 [label="="];
+  n1320 [label="="];
+  n1321 [label="."];
+  n1321 [label="."];
+  n1322 [label="this"];
+  n1323 [label="("];
+  n1324 [label="4"];
+  n1325 [label="sig"];
+  n1326 [label="SMA_DP4_M2C_N"];
+  n1327 [label="="];
+  n1327 [label="="];
+  n1328 [label="gnd"];
+  n1329 [label="<"];
+  n1330 [label="gnd"];
+  n1331 [label="inst"];
+  n1331 [label="inst"];
+  n1332 [label=":"];
+  n1332 [label=":"];
+  n1333 [label="("];
+  n1334 [label="1"];
+  n1335 [label="4"];
+  n1336 [label="port5"];
+  n1337 [label="SMA_CON"];
+  n1338 [label="="];
+  n1338 [label="="];
+  n1339 [label="."];
+  n1339 [label="."];
+  n1340 [label="this"];
+  n1341 [label="("];
+  n1342 [label="1"];
+  n1343 [label="refDes"];
+  n1344 [label="P6"];
+  n1345 [label="="];
+  n1345 [label="="];
+  n1346 [label="."];
+  n1346 [label="."];
+  n1347 [label="this"];
+  n1348 [label="("];
+  n1349 [label="2"];
+  n1350 [label="refDes"];
+  n1351 [label="P5"];
+  n1352 [label="="];
+  n1352 [label="="];
+  n1353 [label="."];
+  n1353 [label="."];
+  n1354 [label="this"];
+  n1355 [label="("];
+  n1356 [label="3"];
+  n1357 [label="refDes"];
+  n1358 [label="P7"];
+  n1359 [label="="];
+  n1359 [label="="];
+  n1360 [label="."];
+  n1360 [label="."];
+  n1361 [label="this"];
+  n1362 [label="("];
+  n1363 [label="4"];
+  n1364 [label="refDes"];
+  n1365 [label="P8"];
+  n1366 [label="="];
+  n1366 [label="="];
+  n1367 [label="."];
+  n1367 [label="."];
+  n1368 [label="this"];
+  n1369 [label="("];
+  n1370 [label="1"];
+  n1371 [label="sig"];
+  n1372 [label="DP5_C2M_P"];
+  n1373 [label="="];
+  n1373 [label="="];
+  n1374 [label="."];
+  n1374 [label="."];
+  n1375 [label="this"];
+  n1376 [label="("];
+  n1377 [label="2"];
+  n1378 [label="sig"];
+  n1379 [label="DP5_C2M_N"];
+  n1380 [label="="];
+  n1380 [label="="];
+  n1381 [label="."];
+  n1381 [label="."];
+  n1382 [label="this"];
+  n1383 [label="("];
+  n1384 [label="3"];
+  n1385 [label="sig"];
+  n1386 [label="SMA_DP5_M2C_P"];
+  n1387 [label="="];
+  n1387 [label="="];
+  n1388 [label="."];
+  n1388 [label="."];
+  n1389 [label="this"];
+  n1390 [label="("];
+  n1391 [label="4"];
+  n1392 [label="sig"];
+  n1393 [label="SMA_DP5_M2C_N"];
+  n1394 [label="="];
+  n1394 [label="="];
+  n1395 [label="gnd"];
+  n1396 [label="<"];
+  n1397 [label="gnd"];
+  n1398 [label="inst"];
+  n1398 [label="inst"];
+  n1399 [label=":"];
+  n1399 [label=":"];
+  n1400 [label="("];
+  n1401 [label="1"];
+  n1402 [label="12"];
+  n1403 [label="rx_coupling_caps"];
+  n1404 [label="cap_0402"];
+  n1405 [label="="];
+  n1405 [label="="];
+  n1406 [label="value"];
+  n1407 [label="1uF"];
+  n1408 [label="="];
+  n1408 [label="="];
+  n1409 [label="."];
+  n1409 [label="."];
+  n1410 [label="this"];
+  n1411 [label="("];
+  n1412 [label="1"];
+  n1413 [label="refDes"];
+  n1414 [label="C9"];
+  n1415 [label="="];
+  n1415 [label="="];
+  n1416 [label="."];
+  n1416 [label="."];
+  n1417 [label="this"];
+  n1418 [label="("];
+  n1419 [label="2"];
+  n1420 [label="refDes"];
+  n1421 [label="C10"];
+  n1422 [label="="];
+  n1422 [label="="];
+  n1423 [label="."];
+  n1423 [label="."];
+  n1424 [label="this"];
+  n1425 [label="("];
+  n1426 [label="3"];
+  n1427 [label="refDes"];
+  n1428 [label="C11"];
+  n1429 [label="="];
+  n1429 [label="="];
+  n1430 [label="."];
+  n1430 [label="."];
+  n1431 [label="this"];
+  n1432 [label="("];
+  n1433 [label="4"];
+  n1434 [label="refDes"];
+  n1435 [label="C12"];
+  n1436 [label="="];
+  n1436 [label="="];
+  n1437 [label="."];
+  n1437 [label="."];
+  n1438 [label="this"];
+  n1439 [label="("];
+  n1440 [label="5"];
+  n1441 [label="refDes"];
+  n1442 [label="C14"];
+  n1443 [label="="];
+  n1443 [label="="];
+  n1444 [label="."];
+  n1444 [label="."];
+  n1445 [label="this"];
+  n1446 [label="("];
+  n1447 [label="6"];
+  n1448 [label="refDes"];
+  n1449 [label="C13"];
+  n1450 [label="="];
+  n1450 [label="="];
+  n1451 [label="."];
+  n1451 [label="."];
+  n1452 [label="this"];
+  n1453 [label="("];
+  n1454 [label="7"];
+  n1455 [label="refDes"];
+  n1456 [label="C15"];
+  n1457 [label="="];
+  n1457 [label="="];
+  n1458 [label="."];
+  n1458 [label="."];
+  n1459 [label="this"];
+  n1460 [label="("];
+  n1461 [label="8"];
+  n1462 [label="refDes"];
+  n1463 [label="C4"];
+  n1464 [label="="];
+  n1464 [label="="];
+  n1465 [label="."];
+  n1465 [label="."];
+  n1466 [label="this"];
+  n1467 [label="("];
+  n1468 [label="9"];
+  n1469 [label="refDes"];
+  n1470 [label="C6"];
+  n1471 [label="="];
+  n1471 [label="="];
+  n1472 [label="."];
+  n1472 [label="."];
+  n1473 [label="this"];
+  n1474 [label="("];
+  n1475 [label="10"];
+  n1476 [label="refDes"];
+  n1477 [label="C5"];
+  n1478 [label="="];
+  n1478 [label="="];
+  n1479 [label="."];
+  n1479 [label="."];
+  n1480 [label="this"];
+  n1481 [label="("];
+  n1482 [label="11"];
+  n1483 [label="refDes"];
+  n1484 [label="C7"];
+  n1485 [label="="];
+  n1485 [label="="];
+  n1486 [label="."];
+  n1486 [label="."];
+  n1487 [label="this"];
+  n1488 [label="("];
+  n1489 [label="12"];
+  n1490 [label="refDes"];
+  n1491 [label="C8"];
+  n1492 [label="="];
+  n1492 [label="="];
+  n1493 [label="."];
+  n1493 [label="."];
+  n1494 [label="this"];
+  n1495 [label="("];
+  n1496 [label="1"];
+  n1497 [label="a"];
+  n1498 [label="SMA_DPO_M2C_P"];
+  n1499 [label="="];
+  n1499 [label="="];
+  n1500 [label="."];
+  n1500 [label="."];
+  n1501 [label="this"];
+  n1502 [label="("];
+  n1503 [label="2"];
+  n1504 [label="a"];
+  n1505 [label="SMA_DPO_M2C_N"];
+  n1506 [label="="];
+  n1506 [label="="];
+  n1507 [label="."];
+  n1507 [label="."];
+  n1508 [label="this"];
+  n1509 [label="("];
+  n1510 [label="3"];
+  n1511 [label="a"];
+  n1512 [label="SMA_DP1_M2C_P"];
+  n1513 [label="="];
+  n1513 [label="="];
+  n1514 [label="."];
+  n1514 [label="."];
+  n1515 [label="this"];
+  n1516 [label="("];
+  n1517 [label="4"];
+  n1518 [label="a"];
+  n1519 [label="SMA_DP1_M2C_N"];
+  n1520 [label="="];
+  n1520 [label="="];
+  n1521 [label="."];
+  n1521 [label="."];
+  n1522 [label="this"];
+  n1523 [label="("];
+  n1524 [label="5"];
+  n1525 [label="a"];
+  n1526 [label="SMA_DP2_M2C_P"];
+  n1527 [label="="];
+  n1527 [label="="];
+  n1528 [label="."];
+  n1528 [label="."];
+  n1529 [label="this"];
+  n1530 [label="("];
+  n1531 [label="6"];
+  n1532 [label="a"];
+  n1533 [label="SMA_DP2_M2C_N"];
+  n1534 [label="="];
+  n1534 [label="="];
+  n1535 [label="."];
+  n1535 [label="."];
+  n1536 [label="this"];
+  n1537 [label="("];
+  n1538 [label="7"];
+  n1539 [label="a"];
+  n1540 [label="SMA_DP3_M2C_P"];
+  n1541 [label="="];
+  n1541 [label="="];
+  n1542 [label="."];
+  n1542 [label="."];
+  n1543 [label="this"];
+  n1544 [label="("];
+  n1545 [label="8"];
+  n1546 [label="a"];
+  n1547 [label="SMA_DP3_M2C_N"];
+  n1548 [label="="];
+  n1548 [label="="];
+  n1549 [label="."];
+  n1549 [label="."];
+  n1550 [label="this"];
+  n1551 [label="("];
+  n1552 [label="9"];
+  n1553 [label="a"];
+  n1554 [label="SMA_DP4_M2C_P"];
+  n1555 [label="="];
+  n1555 [label="="];
+  n1556 [label="."];
+  n1556 [label="."];
+  n1557 [label="this"];
+  n1558 [label="("];
+  n1559 [label="10"];
+  n1560 [label="a"];
+  n1561 [label="SMA_DP4_M2C_N"];
+  n1562 [label="="];
+  n1562 [label="="];
+  n1563 [label="."];
+  n1563 [label="."];
+  n1564 [label="this"];
+  n1565 [label="("];
+  n1566 [label="11"];
+  n1567 [label="a"];
+  n1568 [label="SMA_DP5_M2C_P"];
+  n1569 [label="="];
+  n1569 [label="="];
+  n1570 [label="."];
+  n1570 [label="."];
+  n1571 [label="this"];
+  n1572 [label="("];
+  n1573 [label="12"];
+  n1574 [label="a"];
+  n1575 [label="SMA_DP5_M2C_N"];
+  n1576 [label="="];
+  n1576 [label="="];
+  n1577 [label="."];
+  n1577 [label="."];
+  n1578 [label="this"];
+  n1579 [label="("];
+  n1580 [label="1"];
+  n1581 [label="b"];
+  n1582 [label="DP0_M2C_P"];
+  n1583 [label="="];
+  n1583 [label="="];
+  n1584 [label="."];
+  n1584 [label="."];
+  n1585 [label="this"];
+  n1586 [label="("];
+  n1587 [label="2"];
+  n1588 [label="b"];
+  n1589 [label="DP0_M2C_N"];
+  n1590 [label="="];
+  n1590 [label="="];
+  n1591 [label="."];
+  n1591 [label="."];
+  n1592 [label="this"];
+  n1593 [label="("];
+  n1594 [label="3"];
+  n1595 [label="b"];
+  n1596 [label="DP1_M2C_P"];
+  n1597 [label="="];
+  n1597 [label="="];
+  n1598 [label="."];
+  n1598 [label="."];
+  n1599 [label="this"];
+  n1600 [label="("];
+  n1601 [label="4"];
+  n1602 [label="b"];
+  n1603 [label="DP1_M2C_N"];
+  n1604 [label="="];
+  n1604 [label="="];
+  n1605 [label="."];
+  n1605 [label="."];
+  n1606 [label="this"];
+  n1607 [label="("];
+  n1608 [label="5"];
+  n1609 [label="b"];
+  n1610 [label="DP2_M2C_P"];
+  n1611 [label="="];
+  n1611 [label="="];
+  n1612 [label="."];
+  n1612 [label="."];
+  n1613 [label="this"];
+  n1614 [label="("];
+  n1615 [label="6"];
+  n1616 [label="b"];
+  n1617 [label="DP2_M2C_N"];
+  n1618 [label="="];
+  n1618 [label="="];
+  n1619 [label="."];
+  n1619 [label="."];
+  n1620 [label="this"];
+  n1621 [label="("];
+  n1622 [label="7"];
+  n1623 [label="b"];
+  n1624 [label="DP3_M2C_P"];
+  n1625 [label="="];
+  n1625 [label="="];
+  n1626 [label="."];
+  n1626 [label="."];
+  n1627 [label="this"];
+  n1628 [label="("];
+  n1629 [label="8"];
+  n1630 [label="b"];
+  n1631 [label="DP3_M2C_N"];
+  n1632 [label="="];
+  n1632 [label="="];
+  n1633 [label="."];
+  n1633 [label="."];
+  n1634 [label="this"];
+  n1635 [label="("];
+  n1636 [label="9"];
+  n1637 [label="b"];
+  n1638 [label="DP4_M2C_P"];
+  n1639 [label="="];
+  n1639 [label="="];
+  n1640 [label="."];
+  n1640 [label="."];
+  n1641 [label="this"];
+  n1642 [label="("];
+  n1643 [label="10"];
+  n1644 [label="b"];
+  n1645 [label="DP4_M2C_N"];
+  n1646 [label="="];
+  n1646 [label="="];
+  n1647 [label="."];
+  n1647 [label="."];
+  n1648 [label="this"];
+  n1649 [label="("];
+  n1650 [label="11"];
+  n1651 [label="b"];
+  n1652 [label="DP5_M2C_P"];
+  n1653 [label="="];
+  n1653 [label="="];
+  n1654 [label="."];
+  n1654 [label="."];
+  n1655 [label="this"];
+  n1656 [label="("];
+  n1657 [label="12"];
+  n1658 [label="b"];
+  n1659 [label="DP5_M2C_N"];
+  n1660 [label="inst"];
+  n1660 [label="inst"];
+  n1661 [label=":"];
+  n1661 [label=":"];
+  n1662 [label="("];
+  n1663 [label="1"];
+  n1664 [label="2"];
+  n1665 [label="diff_clk_input"];
+  n1666 [label="SMA_CON"];
+  n1667 [label="="];
+  n1667 [label="="];
+  n1668 [label="."];
+  n1668 [label="."];
+  n1669 [label="this"];
+  n1670 [label="("];
+  n1671 [label="1"];
+  n1672 [label="refDes"];
+  n1673 [label="P30"];
+  n1674 [label="="];
+  n1674 [label="="];
+  n1675 [label="."];
+  n1675 [label="."];
+  n1676 [label="this"];
+  n1677 [label="("];
+  n1678 [label="2"];
+  n1679 [label="refDes"];
+  n1680 [label="P26"];
+  n1681 [label="="];
+  n1681 [label="="];
+  n1682 [label="."];
+  n1682 [label="."];
+  n1683 [label="this"];
+  n1684 [label="("];
+  n1685 [label="1"];
+  n1686 [label="sig"];
+  n1687 [label="CLK250P"];
+  n1688 [label="="];
+  n1688 [label="="];
+  n1689 [label="."];
+  n1689 [label="."];
+  n1690 [label="this"];
+  n1691 [label="("];
+  n1692 [label="2"];
+  n1693 [label="sig"];
+  n1694 [label="CLK250N"];
+  n1695 [label="="];
+  n1695 [label="="];
+  n1696 [label="gnd"];
+  n1697 [label="<"];
+  n1698 [label="DIFF_CLK_RTN"];
+  n1699 [label="inst"];
+  n1699 [label="inst"];
+  n1700 [label="single_e...lk_input"];
+  n1701 [label="SMA_CON"];
+  n1702 [label="="];
+  n1702 [label="="];
+  n1703 [label="refDes"];
+  n1704 [label="P25"];
+  n1705 [label="="];
+  n1705 [label="="];
+  n1706 [label="sig"];
+  n1707 [label="CLK250"];
+  n1708 [label="="];
+  n1708 [label="="];
+  n1709 [label="gnd"];
+  n1710 [label="<"];
+  n1711 [label="SINGLE_CLK_RTN"];
+  n1712 [label="inst"];
+  n1712 [label="inst"];
+  n1713 [label="diff_iso_transformer"];
+  n1714 [label="TC4-14+"];
+  n1715 [label="="];
+  n1715 [label="="];
+  n1716 [label="refDes"];
+  n1717 [label="T2"];
+  n1718 [label="="];
+  n1718 [label="="];
+  n1719 [label="pri_p"];
+  n1720 [label="CLK250P"];
+  n1721 [label="="];
+  n1721 [label="="];
+  n1722 [label="pri_n"];
+  n1723 [label="CLK250N"];
+  n1724 [label="="];
+  n1724 [label="="];
+  n1725 [label="sec_p"];
+  n1726 [label="$3N212"];
+  n1727 [label="="];
+  n1727 [label="="];
+  n1728 [label="sec_tap"];
+  n1729 [label="$3N205"];
+  n1730 [label="="];
+  n1730 [label="="];
+  n1731 [label="sec_n"];
+  n1732 [label="$3N213"];
+  n1733 [label="inst"];
+  n1733 [label="inst"];
+  n1734 [label="single_i...nsformer"];
+  n1735 [label="TC4-14+"];
+  n1736 [label="="];
+  n1736 [label="="];
+  n1737 [label="refDes"];
+  n1738 [label="T1"];
+  n1739 [label="="];
+  n1739 [label="="];
+  n1740 [label="pri_p"];
+  n1741 [label="SINGLE_CLK_RTN"];
+  n1742 [label="="];
+  n1742 [label="="];
+  n1743 [label="pri_n"];
+  n1744 [label="CLK250"];
+  n1745 [label="="];
+  n1745 [label="="];
+  n1746 [label="sec_p"];
+  n1747 [label="$3N195"];
+  n1748 [label="="];
+  n1748 [label="="];
+  n1749 [label="sec_tap"];
+  n1750 [label="$3N1"];
+  n1751 [label="="];
+  n1751 [label="="];
+  n1752 [label="sec_n"];
+  n1753 [label="$3N193"];
+  n1754 [label="inst"];
+  n1754 [label="inst"];
+  n1755 [label=":"];
+  n1755 [label=":"];
+  n1756 [label="("];
+  n1757 [label="1"];
+  n1758 [label="10"];
+  n1759 [label="clk_biasing_network"];
+  n1760 [label="res_0603"];
+  n1761 [label="="];
+  n1761 [label="="];
+  n1762 [label="."];
+  n1762 [label="."];
+  n1763 [label="this"];
+  n1764 [label=":"];
+  n1764 [label=":"];
+  n1765 [label="("];
+  n1766 [label="1"];
+  n1767 [label="2"];
+  n1768 [label="value"];
+  n1769 [label="100"];
+  n1770 [label="="];
+  n1770 [label="="];
+  n1771 [label="."];
+  n1771 [label="."];
+  n1772 [label="this"];
+  n1773 [label=":"];
+  n1773 [label=":"];
+  n1774 [label="("];
+  n1775 [label="3"];
+  n1776 [label="4"];
+  n1777 [label="value"];
+  n1778 [label="49.9"];
+  n1779 [label="="];
+  n1779 [label="="];
+  n1780 [label="."];
+  n1780 [label="."];
+  n1781 [label="this"];
+  n1782 [label=":"];
+  n1782 [label=":"];
+  n1783 [label="("];
+  n1784 [label="5"];
+  n1785 [label="8"];
+  n1786 [label="value"];
+  n1787 [label="150"];
+  n1788 [label="="];
+  n1788 [label="="];
+  n1789 [label="."];
+  n1789 [label="."];
+  n1790 [label="this"];
+  n1791 [label="("];
+  n1792 [label="9"];
+  n1793 [label="value"];
+  n1794 [label="200"];
+  n1795 [label="="];
+  n1795 [label="="];
+  n1796 [label="."];
+  n1796 [label="."];
+  n1797 [label="this"];
+  n1798 [label="("];
+  n1799 [label="10"];
+  n1800 [label="value"];
+  n1801 [label="100"];
+  n1802 [label="="];
+  n1802 [label="="];
+  n1803 [label="."];
+  n1803 [label="."];
+  n1804 [label="this"];
+  n1805 [label="("];
+  n1806 [label="1"];
+  n1807 [label="refDes"];
+  n1808 [label="R10"];
+  n1809 [label="="];
+  n1809 [label="="];
+  n1810 [label="."];
+  n1810 [label="."];
+  n1811 [label="this"];
+  n1812 [label="("];
+  n1813 [label="2"];
+  n1814 [label="refDes"];
+  n1815 [label="R12"];
+  n1816 [label="="];
+  n1816 [label="="];
+  n1817 [label="."];
+  n1817 [label="."];
+  n1818 [label="this"];
+  n1819 [label="("];
+  n1820 [label="3"];
+  n1821 [label="refDes"];
+  n1822 [label="R3"];
+  n1823 [label="="];
+  n1823 [label="="];
+  n1824 [label="."];
+  n1824 [label="."];
+  n1825 [label="this"];
+  n1826 [label="("];
+  n1827 [label="4"];
+  n1828 [label="refDes"];
+  n1829 [label="R7"];
+  n1830 [label="="];
+  n1830 [label="="];
+  n1831 [label="."];
+  n1831 [label="."];
+  n1832 [label="this"];
+  n1833 [label="("];
+  n1834 [label="5"];
+  n1835 [label="refDes"];
+  n1836 [label="R11"];
+  n1837 [label="="];
+  n1837 [label="="];
+  n1838 [label="."];
+  n1838 [label="."];
+  n1839 [label="this"];
+  n1840 [label="("];
+  n1841 [label="6"];
+  n1842 [label="refDes"];
+  n1843 [label="R15"];
+  n1844 [label="="];
+  n1844 [label="="];
+  n1845 [label="."];
+  n1845 [label="."];
+  n1846 [label="this"];
+  n1847 [label="("];
+  n1848 [label="7"];
+  n1849 [label="refDes"];
+  n1850 [label="R13"];
+  n1851 [label="="];
+  n1851 [label="="];
+  n1852 [label="."];
+  n1852 [label="."];
+  n1853 [label="this"];
+  n1854 [label="("];
+  n1855 [label="8"];
+  n1856 [label="refDes"];
+  n1857 [label="R14"];
+  n1858 [label="="];
+  n1858 [label="="];
+  n1859 [label="."];
+  n1859 [label="."];
+  n1860 [label="this"];
+  n1861 [label="("];
+  n1862 [label="9"];
+  n1863 [label="refDes"];
+  n1864 [label="R8"];
+  n1865 [label="="];
+  n1865 [label="="];
+  n1866 [label="."];
+  n1866 [label="."];
+  n1867 [label="this"];
+  n1868 [label="("];
+  n1869 [label="10"];
+  n1870 [label="refDes"];
+  n1871 [label="R4"];
+  n1872 [label="="];
+  n1872 [label="="];
+  n1873 [label="."];
+  n1873 [label="."];
+  n1874 [label="this"];
+  n1875 [label="("];
+  n1876 [label="1"];
+  n1877 [label="a"];
+  n1878 [label="CLK250N_BAL"];
+  n1879 [label="="];
+  n1879 [label="="];
+  n1880 [label="."];
+  n1880 [label="."];
+  n1881 [label="this"];
+  n1882 [label="("];
+  n1883 [label="1"];
+  n1884 [label="b"];
+  n1885 [label="$3N212"];
+  n1886 [label="="];
+  n1886 [label="="];
+  n1887 [label="."];
+  n1887 [label="."];
+  n1888 [label="this"];
+  n1889 [label="("];
+  n1890 [label="2"];
+  n1891 [label="a"];
+  n1892 [label="CLK250P_BAL"];
+  n1893 [label="="];
+  n1893 [label="="];
+  n1894 [label="."];
+  n1894 [label="."];
+  n1895 [label="this"];
+  n1896 [label="("];
+  n1897 [label="2"];
+  n1898 [label="b"];
+  n1899 [label="$3N213"];
+  n1900 [label="="];
+  n1900 [label="="];
+  n1901 [label="."];
+  n1901 [label="."];
+  n1902 [label="this"];
+  n1903 [label="("];
+  n1904 [label="3"];
+  n1905 [label="a"];
+  n1906 [label="CLK250_BAL_N"];
+  n1907 [label="="];
+  n1907 [label="="];
+  n1908 [label="."];
+  n1908 [label="."];
+  n1909 [label="this"];
+  n1910 [label="("];
+  n1911 [label="3"];
+  n1912 [label="b"];
+  n1913 [label="$3N193"];
+  n1914 [label="="];
+  n1914 [label="="];
+  n1915 [label="."];
+  n1915 [label="."];
+  n1916 [label="this"];
+  n1917 [label="("];
+  n1918 [label="4"];
+  n1919 [label="a"];
+  n1920 [label="CLK250_BAL_P"];
+  n1921 [label="="];
+  n1921 [label="="];
+  n1922 [label="."];
+  n1922 [label="."];
+  n1923 [label="this"];
+  n1924 [label="("];
+  n1925 [label="4"];
+  n1926 [label="b"];
+  n1927 [label="$3N195"];
+  n1928 [label="="];
+  n1928 [label="="];
+  n1929 [label="."];
+  n1929 [label="."];
+  n1930 [label="this"];
+  n1931 [label=":"];
+  n1931 [label=":"];
+  n1932 [label="("];
+  n1933 [label="5"];
+  n1934 [label="6"];
+  n1935 [label="a"];
+  n1936 [label="+3V3"];
+  n1937 [label="="];
+  n1937 [label="="];
+  n1938 [label="."];
+  n1938 [label="."];
+  n1939 [label="this"];
+  n1940 [label="("];
+  n1941 [label="5"];
+  n1942 [label="b"];
+  n1943 [label="$3N205"];
+  n1944 [label="="];
+  n1944 [label="="];
+  n1945 [label="."];
+  n1945 [label="."];
+  n1946 [label="this"];
+  n1947 [label="("];
+  n1948 [label="6"];
+  n1949 [label="b"];
+  n1950 [label="$3N1"];
+  n1951 [label="="];
+  n1951 [label="="];
+  n1952 [label="."];
+  n1952 [label="."];
+  n1953 [label="this"];
+  n1954 [label="("];
+  n1955 [label="7"];
+  n1956 [label="a"];
+  n1957 [label="$3N205"];
+  n1958 [label="="];
+  n1958 [label="="];
+  n1959 [label="."];
+  n1959 [label="."];
+  n1960 [label="this"];
+  n1961 [label="("];
+  n1962 [label="8"];
+  n1963 [label="a"];
+  n1964 [label="$3N1"];
+  n1965 [label="="];
+  n1965 [label="="];
+  n1966 [label="."];
+  n1966 [label="."];
+  n1967 [label="this"];
+  n1968 [label=":"];
+  n1968 [label=":"];
+  n1969 [label="("];
+  n1970 [label="7"];
+  n1971 [label="8"];
+  n1972 [label="b"];
+  n1973 [label="gnd"];
+  n1974 [label="="];
+  n1974 [label="="];
+  n1975 [label="."];
+  n1975 [label="."];
+  n1976 [label="this"];
+  n1977 [label="("];
+  n1978 [label="9"];
+  n1979 [label="a"];
+  n1980 [label="CLK250N_BAL"];
+  n1981 [label="="];
+  n1981 [label="="];
+  n1982 [label="."];
+  n1982 [label="."];
+  n1983 [label="this"];
+  n1984 [label="("];
+  n1985 [label="9"];
+  n1986 [label="b"];
+  n1987 [label="CLK250P_BAL"];
+  n1988 [label="="];
+  n1988 [label="="];
+  n1989 [label="."];
+  n1989 [label="."];
+  n1990 [label="this"];
+  n1991 [label="("];
+  n1992 [label="10"];
+  n1993 [label="a"];
+  n1994 [label="CLK250_BAL_N"];
+  n1995 [label="="];
+  n1995 [label="="];
+  n1996 [label="."];
+  n1996 [label="."];
+  n1997 [label="this"];
+  n1998 [label="("];
+  n1999 [label="10"];
+  n2000 [label="b"];
+  n2001 [label="CLK250_BAL_P"];
+  n2002 [label="inst"];
+  n2002 [label="inst"];
+  n2003 [label=":"];
+  n2003 [label=":"];
+  n2004 [label="("];
+  n2005 [label="1"];
+  n2006 [label="10"];
+  n2007 [label="decoupling_caps"];
+  n2008 [label="tant_cap"];
+  n2009 [label="="];
+  n2009 [label="="];
+  n2010 [label="."];
+  n2010 [label="."];
+  n2011 [label="this"];
+  n2012 [label=":"];
+  n2012 [label=":"];
+  n2013 [label="("];
+  n2014 [label="1"];
+  n2015 [label="3"];
+  n2016 [label="value"];
+  n2017 [label="220uF"];
+  n2018 [label="="];
+  n2018 [label="="];
+  n2019 [label="."];
+  n2019 [label="."];
+  n2020 [label="this"];
+  n2021 [label=":"];
+  n2021 [label=":"];
+  n2022 [label="("];
+  n2023 [label="4"];
+  n2024 [label="10"];
+  n2025 [label="value"];
+  n2026 [label="0.1uF"];
+  n2027 [label="="];
+  n2027 [label="="];
+  n2028 [label="."];
+  n2028 [label="."];
+  n2029 [label="this"];
+  n2030 [label="("];
+  n2031 [label="1"];
+  n2032 [label="refDes"];
+  n2033 [label="C24"];
+  n2034 [label="="];
+  n2034 [label="="];
+  n2035 [label="."];
+  n2035 [label="."];
+  n2036 [label="this"];
+  n2037 [label="("];
+  n2038 [label="2"];
+  n2039 [label="refDes"];
+  n2040 [label="C25"];
+  n2041 [label="="];
+  n2041 [label="="];
+  n2042 [label="."];
+  n2042 [label="."];
+  n2043 [label="this"];
+  n2044 [label="("];
+  n2045 [label="3"];
+  n2046 [label="refDes"];
+  n2047 [label="C26"];
+  n2048 [label="="];
+  n2048 [label="="];
+  n2049 [label="."];
+  n2049 [label="."];
+  n2050 [label="this"];
+  n2051 [label="("];
+  n2052 [label="4"];
+  n2053 [label="refDes"];
+  n2054 [label="C20"];
+  n2055 [label="="];
+  n2055 [label="="];
+  n2056 [label="."];
+  n2056 [label="."];
+  n2057 [label="this"];
+  n2058 [label="("];
+  n2059 [label="5"];
+  n2060 [label="refDes"];
+  n2061 [label="C21"];
+  n2062 [label="="];
+  n2062 [label="="];
+  n2063 [label="."];
+  n2063 [label="."];
+  n2064 [label="this"];
+  n2065 [label="("];
+  n2066 [label="6"];
+  n2067 [label="refDes"];
+  n2068 [label="C22"];
+  n2069 [label="="];
+  n2069 [label="="];
+  n2070 [label="."];
+  n2070 [label="."];
+  n2071 [label="this"];
+  n2072 [label="("];
+  n2073 [label="7"];
+  n2074 [label="refDes"];
+  n2075 [label="C23"];
+  n2076 [label="="];
+  n2076 [label="="];
+  n2077 [label="."];
+  n2077 [label="."];
+  n2078 [label="this"];
+  n2079 [label="("];
+  n2080 [label="8"];
+  n2081 [label="refDes"];
+  n2082 [label="C1"];
+  n2083 [label="="];
+  n2083 [label="="];
+  n2084 [label="."];
+  n2084 [label="."];
+  n2085 [label="this"];
+  n2086 [label="("];
+  n2087 [label="9"];
+  n2088 [label="refDes"];
+  n2089 [label="C2"];
+  n2090 [label="="];
+  n2090 [label="="];
+  n2091 [label="."];
+  n2091 [label="."];
+  n2092 [label="this"];
+  n2093 [label="("];
+  n2094 [label="10"];
+  n2095 [label="refDes"];
+  n2096 [label="C3"];
+  n2097 [label="="];
+  n2097 [label="="];
+  n2098 [label="pos"];
+  n2099 [label="<"];
+  n2100 [label="+3V3"];
+  n2101 [label="="];
+  n2101 [label="="];
+  n2102 [label="neg"];
+  n2103 [label="<"];
+  n2104 [label="gnd"];
+  n2105 [label="inst"];
+  n2105 [label="inst"];
+  n2106 [label="clock_buffer"];
+  n2107 [label="sy898533"];
+  n2108 [label="="];
+  n2108 [label="="];
+  n2109 [label="refDes"];
+  n2110 [label="U1"];
+  n2111 [label="="];
+  n2111 [label="="];
+  n2112 [label="vcc"];
+  n2113 [label="<"];
+  n2114 [label="+3V3"];
+  n2115 [label="="];
+  n2115 [label="="];
+  n2116 [label="clk_p"];
+  n2117 [label="CLK250P_BAL"];
+  n2118 [label="="];
+  n2118 [label="="];
+  n2119 [label="clk_n"];
+  n2120 [label="CLK250N_BAL"];
+  n2121 [label="="];
+  n2121 [label="="];
+  n2122 [label="pclk_p"];
+  n2123 [label="CLK250_BAL_P"];
+  n2124 [label="="];
+  n2124 [label="="];
+  n2125 [label="pclk_n"];
+  n2126 [label="CLK250_BAL_N"];
+  n2127 [label="="];
+  n2127 [label="="];
+  n2128 [label="clk_en"];
+  n2129 [label="+3V3"];
+  n2130 [label="="];
+  n2130 [label="="];
+  n2131 [label="clk_sel"];
+  n2132 [label="$3N222"];
+  n2133 [label="="];
+  n2133 [label="="];
+  n2134 [label="nc"];
+  n2135 [label="open"];
+  n2136 [label="="];
+  n2136 [label="="];
+  n2137 [label="q0_p"];
+  n2138 [label="$3N42"];
+  n2139 [label="="];
+  n2139 [label="="];
+  n2140 [label="q0_n"];
+  n2141 [label="$3N44"];
+  n2142 [label="="];
+  n2142 [label="="];
+  n2143 [label="q1_p"];
+  n2144 [label="$3N163"];
+  n2145 [label="="];
+  n2145 [label="="];
+  n2146 [label="q1_n"];
+  n2147 [label="$3N164"];
+  n2148 [label="="];
+  n2148 [label="="];
+  n2149 [label="q2_p"];
+  n2150 [label="open"];
+  n2151 [label="="];
+  n2151 [label="="];
+  n2152 [label="q2_n"];
+  n2153 [label="open"];
+  n2154 [label="="];
+  n2154 [label="="];
+  n2155 [label="q3_p"];
+  n2156 [label="open"];
+  n2157 [label="="];
+  n2157 [label="="];
+  n2158 [label="q3_n"];
+  n2159 [label="open"];
+  n2160 [label="="];
+  n2160 [label="="];
+  n2161 [label="vee"];
+  n2162 [label="gnd"];
+  n2163 [label="inst"];
+  n2163 [label="inst"];
+  n2164 [label=":"];
+  n2164 [label=":"];
+  n2165 [label="("];
+  n2166 [label="1"];
+  n2167 [label="4"];
+  n2168 [label="clk_buffer_iso_caps"];
+  n2169 [label="cap_0402"];
+  n2170 [label="="];
+  n2170 [label="="];
+  n2171 [label="value"];
+  n2172 [label="1uF"];
+  n2173 [label="="];
+  n2173 [label="="];
+  n2174 [label="."];
+  n2174 [label="."];
+  n2175 [label="this"];
+  n2176 [label="("];
+  n2177 [label="1"];
+  n2178 [label="refDes"];
+  n2179 [label="C19"];
+  n2180 [label="="];
+  n2180 [label="="];
+  n2181 [label="."];
+  n2181 [label="."];
+  n2182 [label="this"];
+  n2183 [label="("];
+  n2184 [label="2"];
+  n2185 [label="refDes"];
+  n2186 [label="C18"];
+  n2187 [label="="];
+  n2187 [label="="];
+  n2188 [label="."];
+  n2188 [label="."];
+  n2189 [label="this"];
+  n2190 [label="("];
+  n2191 [label="3"];
+  n2192 [label="refDes"];
+  n2193 [label="C17"];
+  n2194 [label="="];
+  n2194 [label="="];
+  n2195 [label="."];
+  n2195 [label="."];
+  n2196 [label="this"];
+  n2197 [label="("];
+  n2198 [label="4"];
+  n2199 [label="refDes"];
+  n2200 [label="C16"];
+  n2201 [label="="];
+  n2201 [label="="];
+  n2202 [label="."];
+  n2202 [label="."];
+  n2203 [label="this"];
+  n2204 [label="("];
+  n2205 [label="1"];
+  n2206 [label="a"];
+  n2207 [label="$3N42"];
+  n2208 [label="="];
+  n2208 [label="="];
+  n2209 [label="."];
+  n2209 [label="."];
+  n2210 [label="this"];
+  n2211 [label="("];
+  n2212 [label="2"];
+  n2213 [label="a"];
+  n2214 [label="$3N44"];
+  n2215 [label="="];
+  n2215 [label="="];
+  n2216 [label="."];
+  n2216 [label="."];
+  n2217 [label="this"];
+  n2218 [label="("];
+  n2219 [label="3"];
+  n2220 [label="a"];
+  n2221 [label="$3N163"];
+  n2222 [label="="];
+  n2222 [label="="];
+  n2223 [label="."];
+  n2223 [label="."];
+  n2224 [label="this"];
+  n2225 [label="("];
+  n2226 [label="4"];
+  n2227 [label="a"];
+  n2228 [label="$3N164"];
+  n2229 [label="="];
+  n2229 [label="="];
+  n2230 [label="."];
+  n2230 [label="."];
+  n2231 [label="this"];
+  n2232 [label="("];
+  n2233 [label="1"];
+  n2234 [label="b"];
+  n2235 [label="GBTCLK0_M2C_P"];
+  n2236 [label="="];
+  n2236 [label="="];
+  n2237 [label="."];
+  n2237 [label="."];
+  n2238 [label="this"];
+  n2239 [label="("];
+  n2240 [label="2"];
+  n2241 [label="b"];
+  n2242 [label="GBTCLK0_M2C_N"];
+  n2243 [label="="];
+  n2243 [label="="];
+  n2244 [label="."];
+  n2244 [label="."];
+  n2245 [label="this"];
+  n2246 [label="("];
+  n2247 [label="3"];
+  n2248 [label="b"];
+  n2249 [label="GBTCLK1_M2C_P"];
+  n2250 [label="="];
+  n2250 [label="="];
+  n2251 [label="."];
+  n2251 [label="."];
+  n2252 [label="this"];
+  n2253 [label="("];
+  n2254 [label="4"];
+  n2255 [label="b"];
+  n2256 [label="GBTCLK1_M2C_N"];
+  n2257 [label="inst"];
+  n2257 [label="inst"];
+  n2258 [label=":"];
+  n2258 [label=":"];
+  n2259 [label="("];
+  n2260 [label="1"];
+  n2261 [label="4"];
+  n2262 [label="clk_buff...inations"];
+  n2263 [label="res_0603"];
+  n2264 [label="="];
+  n2264 [label="="];
+  n2265 [label="value"];
+  n2266 [label="120"];
+  n2267 [label="="];
+  n2267 [label="="];
+  n2268 [label="."];
+  n2268 [label="."];
+  n2269 [label="this"];
+  n2270 [label="("];
+  n2271 [label="1"];
+  n2272 [label="refDes"];
+  n2273 [label="R5"];
+  n2274 [label="="];
+  n2274 [label="="];
+  n2275 [label="."];
+  n2275 [label="."];
+  n2276 [label="this"];
+  n2277 [label="("];
+  n2278 [label="2"];
+  n2279 [label="refDes"];
+  n2280 [label="R6"];
+  n2281 [label="="];
+  n2281 [label="="];
+  n2282 [label="."];
+  n2282 [label="."];
+  n2283 [label="this"];
+  n2284 [label="("];
+  n2285 [label="3"];
+  n2286 [label="refDes"];
+  n2287 [label="R1"];
+  n2288 [label="="];
+  n2288 [label="="];
+  n2289 [label="."];
+  n2289 [label="."];
+  n2290 [label="this"];
+  n2291 [label="("];
+  n2292 [label="4"];
+  n2293 [label="refDes"];
+  n2294 [label="R2"];
+  n2295 [label="="];
+  n2295 [label="="];
+  n2296 [label="."];
+  n2296 [label="."];
+  n2297 [label="this"];
+  n2298 [label="("];
+  n2299 [label="1"];
+  n2300 [label="a"];
+  n2301 [label="$3N42"];
+  n2302 [label="="];
+  n2302 [label="="];
+  n2303 [label="."];
+  n2303 [label="."];
+  n2304 [label="this"];
+  n2305 [label="("];
+  n2306 [label="2"];
+  n2307 [label="a"];
+  n2308 [label="$3N44"];
+  n2309 [label="="];
+  n2309 [label="="];
+  n2310 [label="."];
+  n2310 [label="."];
+  n2311 [label="this"];
+  n2312 [label="("];
+  n2313 [label="3"];
+  n2314 [label="a"];
+  n2315 [label="$3N163"];
+  n2316 [label="="];
+  n2316 [label="="];
+  n2317 [label="."];
+  n2317 [label="."];
+  n2318 [label="this"];
+  n2319 [label="("];
+  n2320 [label="4"];
+  n2321 [label="a"];
+  n2322 [label="$3N164"];
+  n2323 [label="="];
+  n2323 [label="="];
+  n2324 [label="b"];
+  n2325 [label="<"];
+  n2326 [label="gnd"];
+  n2327 [label="inst"];
+  n2327 [label="inst"];
+  n2328 [label="diff_single_select"];
+  n2329 [label="slide_switch"];
+  n2330 [label="="];
+  n2330 [label="="];
+  n2331 [label="refDes"];
+  n2332 [label="P29"];
+  n2333 [label="="];
+  n2333 [label="="];
+  n2334 [label="p1_1"];
+  n2335 [label="+3V3"];
+  n2336 [label="="];
+  n2336 [label="="];
+  n2337 [label="p2_1"];
+  n2338 [label="gnd"];
+  n2339 [label="="];
+  n2339 [label="="];
+  n2340 [label="s_1"];
+  n2341 [label="$3N222"];
+  n2342 [label="="];
+  n2342 [label="="];
+  n2343 [label="p1_2"];
+  n2344 [label="+3V3"];
+  n2345 [label="="];
+  n2345 [label="="];
+  n2346 [label="p2_2"];
+  n2347 [label="gnd"];
+  n2348 [label="="];
+  n2348 [label="="];
+  n2349 [label="s_2"];
+  n2350 [label="open"];
+  n2351 [label="inst"];
+  n2351 [label="inst"];
+  n2352 [label=":"];
+  n2352 [label=":"];
+  n2353 [label="("];
+  n2354 [label="1"];
+  n2355 [label="2"];
+  n2356 [label="sync_connectors"];
+  n2357 [label="SMA_CON"];
+  n2358 [label="="];
+  n2358 [label="="];
+  n2359 [label="."];
+  n2359 [label="."];
+  n2360 [label="this"];
+  n2361 [label="("];
+  n2362 [label="1"];
+  n2363 [label="refDes"];
+  n2364 [label="P28"];
+  n2365 [label="="];
+  n2365 [label="="];
+  n2366 [label="."];
+  n2366 [label="."];
+  n2367 [label="this"];
+  n2368 [label="("];
+  n2369 [label="2"];
+  n2370 [label="refDes"];
+  n2371 [label="P27"];
+  n2372 [label="="];
+  n2372 [label="="];
+  n2373 [label="."];
+  n2373 [label="."];
+  n2374 [label="this"];
+  n2375 [label="("];
+  n2376 [label="1"];
+  n2377 [label="sig"];
+  n2378 [label="SYNC_OUT"];
+  n2379 [label="="];
+  n2379 [label="="];
+  n2380 [label="."];
+  n2380 [label="."];
+  n2381 [label="this"];
+  n2382 [label="("];
+  n2383 [label="2"];
+  n2384 [label="sig"];
+  n2385 [label="SYNC_IN"];
+  n2386 [label="="];
+  n2386 [label="="];
+  n2387 [label="gnd"];
+  n2388 [label="<"];
+  n2389 [label="gnd"];
+  n2390 [label="inst"];
+  n2390 [label="inst"];
+  n2391 [label="sync_termination"];
+  n2392 [label="res_0603"];
+  n2393 [label="="];
+  n2393 [label="="];
+  n2394 [label="value"];
+  n2395 [label="10K"];
+  n2396 [label="="];
+  n2396 [label="="];
+  n2397 [label="refDes"];
+  n2398 [label="R9"];
+  n2399 [label="="];
+  n2399 [label="="];
+  n2400 [label="a"];
+  n2401 [label="SYNC_IN"];
+  n2402 [label="="];
+  n2402 [label="="];
+  n2403 [label="b"];
+  n2404 [label="gnd"];
+  n2405 [label="inst"];
+  n2405 [label="inst"];
+  n2406 [label="docking_connector"];
+  n2407 [label="asp_134488"];
+  n2408 [label="="];
+  n2408 [label="="];
+  n2409 [label="refDes"];
+  n2410 [label="P64"];
+  n2411 [label="="];
+  n2411 [label="="];
+  n2412 [label="a"];
+  n2413 [label="["];
+  n2414 [label="2"];
+  n2415 [label="DP1_M2C_P"];
+  n2416 [label="="];
+  n2416 [label="="];
+  n2417 [label="a"];
+  n2418 [label="["];
+  n2419 [label="3"];
+  n2420 [label="DP1_M2C_N"];
+  n2421 [label="="];
+  n2421 [label="="];
+  n2422 [label="a"];
+  n2423 [label="["];
+  n2424 [label="6"];
+  n2425 [label="DP2_M2C_P"];
+  n2426 [label="="];
+  n2426 [label="="];
+  n2427 [label="a"];
+  n2428 [label="["];
+  n2429 [label="7"];
+  n2430 [label="DP2_M2C_N"];
+  n2431 [label="="];
+  n2431 [label="="];
+  n2432 [label="a"];
+  n2433 [label="["];
+  n2434 [label="10"];
+  n2435 [label="DP3_M2C_P"];
+  n2436 [label="="];
+  n2436 [label="="];
+  n2437 [label="a"];
+  n2438 [label="["];
+  n2439 [label="11"];
+  n2440 [label="DP3_M2C_N"];
+  n2441 [label="="];
+  n2441 [label="="];
+  n2442 [label="a"];
+  n2443 [label="["];
+  n2444 [label="14"];
+  n2445 [label="DP4_M2C_P"];
+  n2446 [label="="];
+  n2446 [label="="];
+  n2447 [label="a"];
+  n2448 [label="["];
+  n2449 [label="15"];
+  n2450 [label="DP4_M2C_N"];
+  n2451 [label="="];
+  n2451 [label="="];
+  n2452 [label="a"];
+  n2453 [label="["];
+  n2454 [label="18"];
+  n2455 [label="DP5_M2C_P"];
+  n2456 [label="="];
+  n2456 [label="="];
+  n2457 [label="a"];
+  n2458 [label="["];
+  n2459 [label="19"];
+  n2460 [label="DP5_M2C_N"];
+  n2461 [label="="];
+  n2461 [label="="];
+  n2462 [label="a"];
+  n2463 [label="["];
+  n2464 [label="22"];
+  n2465 [label="DP1_C2M_P"];
+  n2466 [label="="];
+  n2466 [label="="];
+  n2467 [label="a"];
+  n2468 [label="["];
+  n2469 [label="23"];
+  n2470 [label="DP1_C2M_N"];
+  n2471 [label="="];
+  n2471 [label="="];
+  n2472 [label="a"];
+  n2473 [label="["];
+  n2474 [label="26"];
+  n2475 [label="DP2_C2M_P"];
+  n2476 [label="="];
+  n2476 [label="="];
+  n2477 [label="a"];
+  n2478 [label="["];
+  n2479 [label="27"];
+  n2480 [label="DP2_C2M_N"];
+  n2481 [label="="];
+  n2481 [label="="];
+  n2482 [label="a"];
+  n2483 [label="["];
+  n2484 [label="30"];
+  n2485 [label="DP3_C2M_P"];
+  n2486 [label="="];
+  n2486 [label="="];
+  n2487 [label="a"];
+  n2488 [label="["];
+  n2489 [label="31"];
+  n2490 [label="DP3_C2M_N"];
+  n2491 [label="="];
+  n2491 [label="="];
+  n2492 [label="a"];
+  n2493 [label="["];
+  n2494 [label="34"];
+  n2495 [label="DP4_C2M_P"];
+  n2496 [label="="];
+  n2496 [label="="];
+  n2497 [label="a"];
+  n2498 [label="["];
+  n2499 [label="35"];
+  n2500 [label="DP4_C2M_N"];
+  n2501 [label="="];
+  n2501 [label="="];
+  n2502 [label="a"];
+  n2503 [label="["];
+  n2504 [label="38"];
+  n2505 [label="DP5_C2M_P"];
+  n2506 [label="="];
+  n2506 [label="="];
+  n2507 [label="a"];
+  n2508 [label="["];
+  n2509 [label="39"];
+  n2510 [label="DP5_C2M_N"];
+  n2511 [label="="];
+  n2511 [label="="];
+  n2512 [label="b"];
+  n2513 [label="["];
+  n2514 [label="20"];
+  n2515 [label="GBTCLK1_M2C_P"];
+  n2516 [label="="];
+  n2516 [label="="];
+  n2517 [label="b"];
+  n2518 [label="["];
+  n2519 [label="21"];
+  n2520 [label="GBTCLK1_M2C_N"];
+  n2521 [label="="];
+  n2521 [label="="];
+  n2522 [label="b"];
+  n2523 [label=","];
+  n2523 [label=","];
+  n2524 [label="["];
+  n2525 [label="1"];
+  n2526 [label="4"];
+  n2527 [label="5"];
+  n2528 [label="8"];
+  n2529 [label="9"];
+  n2530 [label="12"];
+  n2531 [label="13"];
+  n2532 [label="16"];
+  n2533 [label="17"];
+  n2534 [label="24"];
+  n2535 [label="25"];
+  n2536 [label="28"];
+  n2537 [label="29"];
+  n2538 [label="32"];
+  n2539 [label="33"];
+  n2540 [label="36"];
+  n2541 [label="37"];
+  n2542 [label="40"];
+  n2543 [label="open"];
+  n2544 [label="="];
+  n2544 [label="="];
+  n2545 [label="c"];
+  n2546 [label="["];
+  n2547 [label="2"];
+  n2548 [label="DP0_C2M_P"];
+  n2549 [label="="];
+  n2549 [label="="];
+  n2550 [label="c"];
+  n2551 [label="["];
+  n2552 [label="3"];
+  n2553 [label="DP0_C2M_N"];
+  n2554 [label="="];
+  n2554 [label="="];
+  n2555 [label="c"];
+  n2556 [label="["];
+  n2557 [label="6"];
+  n2558 [label="DP0_M2C_P"];
+  n2559 [label="="];
+  n2559 [label="="];
+  n2560 [label="c"];
+  n2561 [label="["];
+  n2562 [label="7"];
+  n2563 [label="DP0_M2C_N"];
+  n2564 [label="="];
+  n2564 [label="="];
+  n2565 [label="c"];
+  n2566 [label="["];
+  n2567 [label="10"];
+  n2568 [label="SYNC_OUT"];
+  n2569 [label="="];
+  n2569 [label="="];
+  n2570 [label="c"];
+  n2571 [label="["];
+  n2572 [label="11"];
+  n2573 [label="SYNC_IN"];
+  n2574 [label="="];
+  n2574 [label="="];
+  n2575 [label="c"];
+  n2576 [label="["];
+  n2577 [label="14"];
+  n2578 [label="DISCRETE"];
+  n2579 [label="["];
+  n2580 [label="0"];
+  n2581 [label="="];
+  n2581 [label="="];
+  n2582 [label="c"];
+  n2583 [label="["];
+  n2584 [label="15"];
+  n2585 [label="DISCRETE"];
+  n2586 [label="["];
+  n2587 [label="1"];
+  n2588 [label="="];
+  n2588 [label="="];
+  n2589 [label="c"];
+  n2590 [label="["];
+  n2591 [label="18"];
+  n2592 [label="DISCRETE"];
+  n2593 [label="["];
+  n2594 [label="2"];
+  n2595 [label="="];
+  n2595 [label="="];
+  n2596 [label="c"];
+  n2597 [label="["];
+  n2598 [label="19"];
+  n2599 [label="DISCRETE"];
+  n2600 [label="["];
+  n2601 [label="3"];
+  n2602 [label="="];
+  n2602 [label="="];
+  n2603 [label="c"];
+  n2604 [label="["];
+  n2605 [label="22"];
+  n2606 [label="DISCRETE"];
+  n2607 [label="["];
+  n2608 [label="4"];
+  n2609 [label="="];
+  n2609 [label="="];
+  n2610 [label="c"];
+  n2611 [label="["];
+  n2612 [label="23"];
+  n2613 [label="DISCRETE"];
+  n2614 [label="["];
+  n2615 [label="5"];
+  n2616 [label="="];
+  n2616 [label="="];
+  n2617 [label="c"];
+  n2618 [label="["];
+  n2619 [label="26"];
+  n2620 [label="DISCRETE"];
+  n2621 [label="["];
+  n2622 [label="6"];
+  n2623 [label="="];
+  n2623 [label="="];
+  n2624 [label="c"];
+  n2625 [label="["];
+  n2626 [label="27"];
+  n2627 [label="DISCRETE"];
+  n2628 [label="["];
+  n2629 [label="7"];
+  n2630 [label="="];
+  n2630 [label="="];
+  n2631 [label="c"];
+  n2632 [label="["];
+  n2633 [label="39"];
+  n2634 [label="+3V3"];
+  n2635 [label="="];
+  n2635 [label="="];
+  n2636 [label="c"];
+  n2637 [label=","];
+  n2637 [label=","];
+  n2638 [label="["];
+  n2639 [label="30"];
+  n2640 [label="31"];
+  n2641 [label="34"];
+  n2642 [label="35"];
+  n2643 [label="37"];
+  n2644 [label="open"];
+  n2645 [label="="];
+  n2645 [label="="];
+  n2646 [label="d"];
+  n2647 [label="["];
+  n2648 [label="1"];
+  n2649 [label="GBTCLK0_M2C_P"];
+  n2650 [label="="];
+  n2650 [label="="];
+  n2651 [label="d"];
+  n2652 [label="["];
+  n2653 [label="4"];
+  n2654 [label="GBTCLK0_M2C_N"];
+  n2655 [label="="];
+  n2655 [label="="];
+  n2656 [label="d"];
+  n2657 [label="["];
+  n2658 [label="30"];
+  n2659 [label="$4N126"];
+  n2660 [label="="];
+  n2660 [label="="];
+  n2661 [label="d"];
+  n2662 [label="["];
+  n2663 [label="31"];
+  n2664 [label="$4N126"];
+  n2665 [label="="];
+  n2665 [label="="];
+  n2666 [label="d"];
+  n2667 [label="["];
+  n2668 [label="36"];
+  n2669 [label="+3V3"];
+  n2670 [label="="];
+  n2670 [label="="];
+  n2671 [label="d"];
+  n2672 [label="["];
+  n2673 [label="38"];
+  n2674 [label="+3V3"];
+  n2675 [label="="];
+  n2675 [label="="];
+  n2676 [label="d"];
+  n2677 [label="["];
+  n2678 [label="40"];
+  n2679 [label="+3V3"];
+  n2680 [label="="];
+  n2680 [label="="];
+  n2681 [label="d"];
+  n2682 [label=","];
+  n2682 [label=","];
+  n2683 [label="["];
+  n2684 [label="5"];
+  n2685 [label="8"];
+  n2686 [label="9"];
+  n2687 [label="11"];
+  n2688 [label="12"];
+  n2689 [label="14"];
+  n2690 [label="15"];
+  n2691 [label="17"];
+  n2692 [label="18"];
+  n2693 [label="20"];
+  n2694 [label="21"];
+  n2695 [label="23"];
+  n2696 [label="24"];
+  n2697 [label="26"];
+  n2698 [label="27"];
+  n2699 [label="29"];
+  n2700 [label="32"];
+  n2701 [label="33"];
+  n2702 [label="34"];
+  n2703 [label="35"];
+  n2704 [label="open"];
+  n2705 [label="="];
+  n2705 [label="="];
+  n2706 [label="e"];
+  n2707 [label=","];
+  n2707 [label=","];
+  n2708 [label="["];
+  n2709 [label="2"];
+  n2710 [label="3"];
+  n2711 [label="6"];
+  n2712 [label="7"];
+  n2713 [label="9"];
+  n2714 [label="10"];
+  n2715 [label="12"];
+  n2716 [label="13"];
+  n2717 [label="15"];
+  n2718 [label="16"];
+  n2719 [label="18"];
+  n2720 [label="19"];
+  n2721 [label="21"];
+  n2722 [label="22"];
+  n2723 [label="24"];
+  n2724 [label="25"];
+  n2725 [label="27"];
+  n2726 [label="28"];
+  n2727 [label="30"];
+  n2728 [label="31"];
+  n2729 [label="33"];
+  n2730 [label="34"];
+  n2731 [label="36"];
+  n2732 [label="37"];
+  n2733 [label="39"];
+  n2734 [label="open"];
+  n2735 [label="="];
+  n2735 [label="="];
+  n2736 [label="f"];
+  n2737 [label=","];
+  n2737 [label=","];
+  n2738 [label="["];
+  n2739 [label="1"];
+  n2740 [label="4"];
+  n2741 [label="5"];
+  n2742 [label="7"];
+  n2743 [label="8"];
+  n2744 [label="10"];
+  n2745 [label="11"];
+  n2746 [label="13"];
+  n2747 [label="14"];
+  n2748 [label="16"];
+  n2749 [label="17"];
+  n2750 [label="19"];
+  n2751 [label="20"];
+  n2752 [label="22"];
+  n2753 [label="23"];
+  n2754 [label="25"];
+  n2755 [label="26"];
+  n2756 [label="28"];
+  n2757 [label="29"];
+  n2758 [label="31"];
+  n2759 [label="32"];
+  n2760 [label="34"];
+  n2761 [label="35"];
+  n2762 [label="37"];
+  n2763 [label="38"];
+  n2764 [label="40"];
+  n2765 [label="open"];
+  n2766 [label="="];
+  n2766 [label="="];
+  n2767 [label="g"];
+  n2768 [label=","];
+  n2768 [label=","];
+  n2769 [label="["];
+  n2770 [label="2"];
+  n2771 [label="3"];
+  n2772 [label="6"];
+  n2773 [label="7"];
+  n2774 [label="9"];
+  n2775 [label="10"];
+  n2776 [label="12"];
+  n2777 [label="13"];
+  n2778 [label="15"];
+  n2779 [label="16"];
+  n2780 [label="18"];
+  n2781 [label="19"];
+  n2782 [label="21"];
+  n2783 [label="22"];
+  n2784 [label="24"];
+  n2785 [label="25"];
+  n2786 [label="27"];
+  n2787 [label="28"];
+  n2788 [label="30"];
+  n2789 [label="31"];
+  n2790 [label="33"];
+  n2791 [label="34"];
+  n2792 [label="36"];
+  n2793 [label="37"];
+  n2794 [label="39"];
+  n2795 [label="open"];
+  n2796 [label="="];
+  n2796 [label="="];
+  n2797 [label="h"];
+  n2798 [label=","];
+  n2798 [label=","];
+  n2799 [label="["];
+  n2800 [label="1"];
+  n2801 [label="2"];
+  n2802 [label="4"];
+  n2803 [label="5"];
+  n2804 [label="7"];
+  n2805 [label="8"];
+  n2806 [label="10"];
+  n2807 [label="11"];
+  n2808 [label="13"];
+  n2809 [label="14"];
+  n2810 [label="16"];
+  n2811 [label="17"];
+  n2812 [label="19"];
+  n2813 [label="20"];
+  n2814 [label="22"];
+  n2815 [label="23"];
+  n2816 [label="25"];
+  n2817 [label="26"];
+  n2818 [label="28"];
+  n2819 [label="29"];
+  n2820 [label="31"];
+  n2821 [label="32"];
+  n2822 [label="34"];
+  n2823 [label="35"];
+  n2824 [label="37"];
+  n2825 [label="38"];
+  n2826 [label="40"];
+  n2827 [label="open"];
+  n2828 [label="="];
+  n2828 [label="="];
+  n2829 [label="j"];
+  n2830 [label=","];
+  n2830 [label=","];
+  n2831 [label="["];
+  n2832 [label="2"];
+  n2833 [label="3"];
+  n2834 [label="6"];
+  n2835 [label="7"];
+  n2836 [label="9"];
+  n2837 [label="10"];
+  n2838 [label="12"];
+  n2839 [label="13"];
+  n2840 [label="15"];
+  n2841 [label="16"];
+  n2842 [label="18"];
+  n2843 [label="19"];
+  n2844 [label="21"];
+  n2845 [label="22"];
+  n2846 [label="24"];
+  n2847 [label="25"];
+  n2848 [label="27"];
+  n2849 [label="28"];
+  n2850 [label="30"];
+  n2851 [label="31"];
+  n2852 [label="33"];
+  n2853 [label="34"];
+  n2854 [label="36"];
+  n2855 [label="37"];
+  n2856 [label="39"];
+  n2857 [label="open"];
+  n2858 [label="="];
+  n2858 [label="="];
+  n2859 [label="k"];
+  n2860 [label=","];
+  n2860 [label=","];
+  n2861 [label="["];
+  n2862 [label="1"];
+  n2863 [label="4"];
+  n2864 [label="5"];
+  n2865 [label="7"];
+  n2866 [label="8"];
+  n2867 [label="10"];
+  n2868 [label="11"];
+  n2869 [label="13"];
+  n2870 [label="14"];
+  n2871 [label="16"];
+  n2872 [label="17"];
+  n2873 [label="19"];
+  n2874 [label="20"];
+  n2875 [label="22"];
+  n2876 [label="23"];
+  n2877 [label="25"];
+  n2878 [label="26"];
+  n2879 [label="28"];
+  n2880 [label="29"];
+  n2881 [label="31"];
+  n2882 [label="32"];
+  n2883 [label="34"];
+  n2884 [label="35"];
+  n2885 [label="37"];
+  n2886 [label="38"];
+  n2887 [label="40"];
+  n2888 [label="open"];
+  n2889 [label="="];
+  n2889 [label="="];
+  n2890 [label="a"];
+  n2891 [label=","];
+  n2891 [label=","];
+  n2892 [label="["];
+  n2893 [label="1"];
+  n2894 [label="4"];
+  n2895 [label="5"];
+  n2896 [label="8"];
+  n2897 [label="9"];
+  n2898 [label="12"];
+  n2899 [label="13"];
+  n2900 [label="16"];
+  n2901 [label="17"];
+  n2902 [label="20"];
+  n2903 [label="21"];
+  n2904 [label="24"];
+  n2905 [label="25"];
+  n2906 [label="28"];
+  n2907 [label="29"];
+  n2908 [label="32"];
+  n2909 [label="33"];
+  n2910 [label="36"];
+  n2911 [label="37"];
+  n2912 [label="40"];
+  n2913 [label="<"];
+  n2914 [label="gnd"];
+  n2915 [label="="];
+  n2915 [label="="];
+  n2916 [label="b"];
+  n2917 [label=","];
+  n2917 [label=","];
+  n2918 [label="["];
+  n2919 [label="2"];
+  n2920 [label="3"];
+  n2921 [label="6"];
+  n2922 [label="7"];
+  n2923 [label="10"];
+  n2924 [label="11"];
+  n2925 [label="14"];
+  n2926 [label="15"];
+  n2927 [label="18"];
+  n2928 [label="19"];
+  n2929 [label="22"];
+  n2930 [label="23"];
+  n2931 [label="26"];
+  n2932 [label="27"];
+  n2933 [label="30"];
+  n2934 [label="31"];
+  n2935 [label="34"];
+  n2936 [label="35"];
+  n2937 [label="38"];
+  n2938 [label="39"];
+  n2939 [label="<"];
+  n2940 [label="gnd"];
+  n2941 [label="="];
+  n2941 [label="="];
+  n2942 [label="c"];
+  n2943 [label=","];
+  n2943 [label=","];
+  n2944 [label="["];
+  n2945 [label="1"];
+  n2946 [label="4"];
+  n2947 [label="5"];
+  n2948 [label="8"];
+  n2949 [label="9"];
+  n2950 [label="12"];
+  n2951 [label="13"];
+  n2952 [label="16"];
+  n2953 [label="17"];
+  n2954 [label="20"];
+  n2955 [label="21"];
+  n2956 [label="24"];
+  n2957 [label="25"];
+  n2958 [label="28"];
+  n2959 [label="29"];
+  n2960 [label="32"];
+  n2961 [label="33"];
+  n2962 [label="36"];
+  n2963 [label="38"];
+  n2964 [label="40"];
+  n2965 [label="<"];
+  n2966 [label="gnd"];
+  n2967 [label="="];
+  n2967 [label="="];
+  n2968 [label="d"];
+  n2969 [label=","];
+  n2969 [label=","];
+  n2970 [label="["];
+  n2971 [label="2"];
+  n2972 [label="3"];
+  n2973 [label="6"];
+  n2974 [label="7"];
+  n2975 [label="10"];
+  n2976 [label="13"];
+  n2977 [label="16"];
+  n2978 [label="19"];
+  n2979 [label="22"];
+  n2980 [label="25"];
+  n2981 [label="28"];
+  n2982 [label="37"];
+  n2983 [label="39"];
+  n2984 [label="<"];
+  n2985 [label="gnd"];
+  n2986 [label="="];
+  n2986 [label="="];
+  n2987 [label="e"];
+  n2988 [label=","];
+  n2988 [label=","];
+  n2989 [label="["];
+  n2990 [label="1"];
+  n2991 [label="4"];
+  n2992 [label="5"];
+  n2993 [label="8"];
+  n2994 [label="11"];
+  n2995 [label="14"];
+  n2996 [label="17"];
+  n2997 [label="20"];
+  n2998 [label="23"];
+  n2999 [label="26"];
+  n3000 [label="29"];
+  n3001 [label="32"];
+  n3002 [label="35"];
+  n3003 [label="38"];
+  n3004 [label="40"];
+  n3005 [label="<"];
+  n3006 [label="gnd"];
+  n3007 [label="="];
+  n3007 [label="="];
+  n3008 [label="f"];
+  n3009 [label=","];
+  n3009 [label=","];
+  n3010 [label="["];
+  n3011 [label="2"];
+  n3012 [label="3"];
+  n3013 [label="6"];
+  n3014 [label="9"];
+  n3015 [label="12"];
+  n3016 [label="15"];
+  n3017 [label="18"];
+  n3018 [label="21"];
+  n3019 [label="24"];
+  n3020 [label="27"];
+  n3021 [label="30"];
+  n3022 [label="33"];
+  n3023 [label="36"];
+  n3024 [label="39"];
+  n3025 [label="<"];
+  n3026 [label="gnd"];
+  n3027 [label="="];
+  n3027 [label="="];
+  n3028 [label="g"];
+  n3029 [label=","];
+  n3029 [label=","];
+  n3030 [label="["];
+  n3031 [label="1"];
+  n3032 [label="4"];
+  n3033 [label="5"];
+  n3034 [label="8"];
+  n3035 [label="11"];
+  n3036 [label="14"];
+  n3037 [label="17"];
+  n3038 [label="20"];
+  n3039 [label="23"];
+  n3040 [label="26"];
+  n3041 [label="29"];
+  n3042 [label="32"];
+  n3043 [label="35"];
+  n3044 [label="38"];
+  n3045 [label="40"];
+  n3046 [label="<"];
+  n3047 [label="gnd"];
+  n3048 [label="="];
+  n3048 [label="="];
+  n3049 [label="h"];
+  n3050 [label=","];
+  n3050 [label=","];
+  n3051 [label="["];
+  n3052 [label="3"];
+  n3053 [label="6"];
+  n3054 [label="9"];
+  n3055 [label="12"];
+  n3056 [label="15"];
+  n3057 [label="18"];
+  n3058 [label="21"];
+  n3059 [label="24"];
+  n3060 [label="27"];
+  n3061 [label="30"];
+  n3062 [label="33"];
+  n3063 [label="36"];
+  n3064 [label="39"];
+  n3065 [label="<"];
+  n3066 [label="gnd"];
+  n3067 [label="="];
+  n3067 [label="="];
+  n3068 [label="j"];
+  n3069 [label=","];
+  n3069 [label=","];
+  n3070 [label="["];
+  n3071 [label="1"];
+  n3072 [label="4"];
+  n3073 [label="5"];
+  n3074 [label="8"];
+  n3075 [label="11"];
+  n3076 [label="14"];
+  n3077 [label="17"];
+  n3078 [label="20"];
+  n3079 [label="23"];
+  n3080 [label="26"];
+  n3081 [label="29"];
+  n3082 [label="32"];
+  n3083 [label="35"];
+  n3084 [label="38"];
+  n3085 [label="40"];
+  n3086 [label="<"];
+  n3087 [label="gnd"];
+  n3088 [label="="];
+  n3088 [label="="];
+  n3089 [label="k"];
+  n3090 [label=","];
+  n3090 [label=","];
+  n3091 [label="["];
+  n3092 [label="2"];
+  n3093 [label="3"];
+  n3094 [label="6"];
+  n3095 [label="9"];
+  n3096 [label="12"];
+  n3097 [label="15"];
+  n3098 [label="18"];
+  n3099 [label="21"];
+  n3100 [label="24"];
+  n3101 [label="27"];
+  n3102 [label="30"];
+  n3103 [label="33"];
+  n3104 [label="36"];
+  n3105 [label="39"];
+  n3106 [label="<"];
+  n3107 [label="gnd"];
+  n3108 [label="inst"];
+  n3108 [label="inst"];
+  n3109 [label="header_IO"];
+  n3110 [label="2x8_hdr"];
+  n3111 [label="="];
+  n3111 [label="="];
+  n3112 [label="refDes"];
+  n3113 [label="J2"];
+  n3114 [label="="];
+  n3114 [label="="];
+  n3115 [label="sig"];
+  n3116 [label="DISCRETE"];
+  n3117 [label="="];
+  n3117 [label="="];
+  n3118 [label="gnd"];
+  n3119 [label="<"];
+  n3120 [label="gnd"];
+  n3121 [label="inst"];
+  n3121 [label="inst"];
+  n3122 [label=":"];
+  n3122 [label=":"];
+  n3123 [label="("];
+  n3124 [label="1"];
+  n3125 [label="4"];
+  n3126 [label="mounting_holes"];
+  n3127 [label="mount_hole_125"];
+  n3128 [label="="];
+  n3128 [label="="];
+  n3129 [label="newattr"];
+  n3130 [label="."];
+  n3130 [label="."];
+  n3131 [label="this"];
+  n3132 [label="("];
+  n3133 [label="1"];
+  n3134 [label="refDes"];
+  n3135 [label="U2"];
+  n3136 [label="="];
+  n3136 [label="="];
+  n3137 [label="newattr"];
+  n3138 [label="."];
+  n3138 [label="."];
+  n3139 [label="this"];
+  n3140 [label="("];
+  n3141 [label="2"];
+  n3142 [label="refDes"];
+  n3143 [label="U3"];
+  n3144 [label="="];
+  n3144 [label="="];
+  n3145 [label="newattr"];
+  n3146 [label="."];
+  n3146 [label="."];
+  n3147 [label="this"];
+  n3148 [label="("];
+  n3149 [label="3"];
+  n3150 [label="refDes"];
+  n3151 [label="U9"];
+  n3152 [label="="];
+  n3152 [label="="];
+  n3153 [label="newattr"];
+  n3154 [label="."];
+  n3154 [label="."];
+  n3155 [label="this"];
+  n3156 [label="("];
+  n3157 [label="4"];
+  n3158 [label="refDes"];
+  n3159 [label="U10"];
+  n3160 [label="<EOF>"];
+
+  n0 -> n1 // "" -> "design"
+  n1 -> n2 // "design" -> "fmc_module"
+  n1 -> n3 // "design" -> "device"
+  n3 -> n4 // "device" -> "SMA_CON"
+  n3 -> n5 // "device" -> "attr"
+  n5 -> n6 // "attr" -> "refprefix"
+  n5 -> n7 // "attr" -> "P"
+  n3 -> n8 // "device" -> "attr"
+  n8 -> n9 // "attr" -> "refDes"
+  n8 -> n10 // "attr" -> ""
+  n3 -> n11 // "device" -> "attr"
+  n11 -> n12 // "attr" -> "name"
+  n11 -> n13 // "attr" -> ""
+  n3 -> n14 // "device" -> "attr"
+  n14 -> n15 // "attr" -> "value"
+  n14 -> n16 // "attr" -> ""
+  n3 -> n17 // "device" -> "attr"
+  n17 -> n18 // "attr" -> "pkg_type"
+  n17 -> n19 // "attr" -> "SMA_STRAIT"
+  n3 -> n20 // "device" -> "attr"
+  n20 -> n21 // "attr" -> "mfgr"
+  n20 -> n22 // "attr" -> "MOLEX"
+  n3 -> n23 // "device" -> "attr"
+  n23 -> n24 // "attr" -> "partNumber"
+  n23 -> n25 // "attr" -> "73391-0070"
+  n3 -> n26 // "device" -> "attr"
+  n26 -> n27 // "attr" -> "cost"
+  n26 -> n28 // "attr" -> "4.97"
+  n3 -> n29 // "device" -> "pin"
+  n29 -> n30 // "pin" -> "sig"
+  n29 -> n31 // "pin" -> "1"
+  n3 -> n32 // "device" -> "pin"
+  n32 -> n33 // "pin" -> ":"
+  n33 -> n34 // ":" -> "["
+  n33 -> n35 // ":" -> "3"
+  n33 -> n36 // ":" -> "0"
+  n32 -> n37 // "pin" -> "gnd"
+  n32 -> n38 // "pin" -> "5"
+  n32 -> n39 // "pin" -> "4"
+  n32 -> n40 // "pin" -> "3"
+  n32 -> n41 // "pin" -> "2"
+  n1 -> n42 // "design" -> "device"
+  n42 -> n43 // "device" -> "cap_0402"
+  n42 -> n44 // "device" -> "attr"
+  n44 -> n45 // "attr" -> "refPrefix"
+  n44 -> n46 // "attr" -> "C"
+  n42 -> n47 // "device" -> "attr"
+  n47 -> n48 // "attr" -> "refDes"
+  n47 -> n49 // "attr" -> ""
+  n42 -> n50 // "device" -> "attr"
+  n50 -> n51 // "attr" -> "name"
+  n50 -> n52 // "attr" -> ""
+  n42 -> n53 // "device" -> "attr"
+  n53 -> n54 // "attr" -> "value"
+  n53 -> n55 // "attr" -> ""
+  n42 -> n56 // "device" -> "attr"
+  n56 -> n57 // "attr" -> "pkg_type"
+  n56 -> n58 // "attr" -> "CC0402"
+  n42 -> n59 // "device" -> "attr"
+  n59 -> n60 // "attr" -> "mfgr"
+  n59 -> n61 // "attr" -> "PANASONIC"
+  n42 -> n62 // "device" -> "attr"
+  n62 -> n63 // "attr" -> "partNumber"
+  n62 -> n64 // "attr" -> "ECJ-0EB1A104K"
+  n42 -> n65 // "device" -> "attr"
+  n65 -> n66 // "attr" -> "cost"
+  n65 -> n67 // "attr" -> "0.03"
+  n42 -> n68 // "device" -> "pin"
+  n68 -> n69 // "pin" -> "a"
+  n68 -> n70 // "pin" -> "1"
+  n42 -> n71 // "device" -> "pin"
+  n71 -> n72 // "pin" -> "b"
+  n71 -> n73 // "pin" -> "2"
+  n1 -> n74 // "design" -> "net"
+  n74 -> n75 // "net" -> "DP0_C2M_P"
+  n1 -> n76 // "design" -> "net"
+  n76 -> n77 // "net" -> "DP0_C2M_N"
+  n1 -> n78 // "design" -> "net"
+  n78 -> n79 // "net" -> "DP0_M2C_P"
+  n1 -> n80 // "design" -> "net"
+  n80 -> n81 // "net" -> "DP0_M2C_N"
+  n1 -> n82 // "design" -> "net"
+  n82 -> n83 // "net" -> "SMA_DPO_M2C_P"
+  n1 -> n84 // "design" -> "net"
+  n84 -> n85 // "net" -> "SMA_DPO_M2C_N"
+  n1 -> n86 // "design" -> "net"
+  n86 -> n87 // "net" -> "DP1_C2M_P"
+  n1 -> n88 // "design" -> "net"
+  n88 -> n89 // "net" -> "DP1_C2M_N"
+  n1 -> n90 // "design" -> "net"
+  n90 -> n91 // "net" -> "DP1_M2C_P"
+  n1 -> n92 // "design" -> "net"
+  n92 -> n93 // "net" -> "DP1_M2C_N"
+  n1 -> n94 // "design" -> "net"
+  n94 -> n95 // "net" -> "SMA_DP1_M2C_P"
+  n1 -> n96 // "design" -> "net"
+  n96 -> n97 // "net" -> "SMA_DP1_M2C_N"
+  n1 -> n98 // "design" -> "net"
+  n98 -> n99 // "net" -> "DP2_C2M_P"
+  n1 -> n100 // "design" -> "net"
+  n100 -> n101 // "net" -> "DP2_C2M_N"
+  n1 -> n102 // "design" -> "net"
+  n102 -> n103 // "net" -> "DP2_M2C_P"
+  n1 -> n104 // "design" -> "net"
+  n104 -> n105 // "net" -> "DP2_M2C_N"
+  n1 -> n106 // "design" -> "net"
+  n106 -> n107 // "net" -> "SMA_DP2_M2C_P"
+  n1 -> n108 // "design" -> "net"
+  n108 -> n109 // "net" -> "SMA_DP2_M2C_N"
+  n1 -> n110 // "design" -> "net"
+  n110 -> n111 // "net" -> "DP3_C2M_P"
+  n1 -> n112 // "design" -> "net"
+  n112 -> n113 // "net" -> "DP3_C2M_N"
+  n1 -> n114 // "design" -> "net"
+  n114 -> n115 // "net" -> "DP3_M2C_P"
+  n1 -> n116 // "design" -> "net"
+  n116 -> n117 // "net" -> "DP3_M2C_N"
+  n1 -> n118 // "design" -> "net"
+  n118 -> n119 // "net" -> "SMA_DP3_M2C_P"
+  n1 -> n120 // "design" -> "net"
+  n120 -> n121 // "net" -> "SMA_DP3_M2C_N"
+  n1 -> n122 // "design" -> "net"
+  n122 -> n123 // "net" -> "DP4_C2M_P"
+  n1 -> n124 // "design" -> "net"
+  n124 -> n125 // "net" -> "DP4_C2M_N"
+  n1 -> n126 // "design" -> "net"
+  n126 -> n127 // "net" -> "DP4_M2C_P"
+  n1 -> n128 // "design" -> "net"
+  n128 -> n129 // "net" -> "DP4_M2C_N"
+  n1 -> n130 // "design" -> "net"
+  n130 -> n131 // "net" -> "SMA_DP4_M2C_P"
+  n1 -> n132 // "design" -> "net"
+  n132 -> n133 // "net" -> "SMA_DP4_M2C_N"
+  n1 -> n134 // "design" -> "net"
+  n134 -> n135 // "net" -> "DP5_C2M_P"
+  n1 -> n136 // "design" -> "net"
+  n136 -> n137 // "net" -> "DP5_C2M_N"
+  n1 -> n138 // "design" -> "net"
+  n138 -> n139 // "net" -> "DP5_M2C_P"
+  n1 -> n140 // "design" -> "net"
+  n140 -> n141 // "net" -> "DP5_M2C_N"
+  n1 -> n142 // "design" -> "net"
+  n142 -> n143 // "net" -> "SMA_DP5_M2C_P"
+  n1 -> n144 // "design" -> "net"
+  n144 -> n145 // "net" -> "SMA_DP5_M2C_N"
+  n1 -> n146 // "design" -> "device"
+  n146 -> n147 // "device" -> "TC4-14+"
+  n146 -> n148 // "device" -> "attr"
+  n148 -> n149 // "attr" -> "refPrefix"
+  n148 -> n150 // "attr" -> "T"
+  n146 -> n151 // "device" -> "attr"
+  n151 -> n152 // "attr" -> "refDes"
+  n151 -> n153 // "attr" -> ""
+  n146 -> n154 // "device" -> "attr"
+  n154 -> n155 // "attr" -> "name"
+  n154 -> n156 // "attr" -> ""
+  n146 -> n157 // "device" -> "attr"
+  n157 -> n158 // "attr" -> "value"
+  n157 -> n159 // "attr" -> ""
+  n146 -> n160 // "device" -> "attr"
+  n160 -> n161 // "attr" -> "pkg_type"
+  n160 -> n162 // "attr" -> "AT224-1"
+  n146 -> n163 // "device" -> "attr"
+  n163 -> n164 // "attr" -> "mfgr"
+  n163 -> n165 // "attr" -> "MINI-CIRCUITS"
+  n146 -> n166 // "device" -> "attr"
+  n166 -> n167 // "attr" -> "partNumber"
+  n166 -> n168 // "attr" -> "TC4-14G2+"
+  n146 -> n169 // "device" -> "attr"
+  n169 -> n170 // "attr" -> "cost"
+  n169 -> n171 // "attr" -> "$10.00"
+  n146 -> n172 // "device" -> "pin"
+  n172 -> n173 // "pin" -> "pri_p"
+  n172 -> n174 // "pin" -> "4"
+  n146 -> n175 // "device" -> "pin"
+  n175 -> n176 // "pin" -> "pri_n"
+  n175 -> n177 // "pin" -> "5"
+  n146 -> n178 // "device" -> "pin"
+  n178 -> n179 // "pin" -> "sec_p"
+  n178 -> n180 // "pin" -> "1"
+  n146 -> n181 // "device" -> "pin"
+  n181 -> n182 // "pin" -> "sec_tap"
+  n181 -> n183 // "pin" -> "2"
+  n146 -> n184 // "device" -> "pin"
+  n184 -> n185 // "pin" -> "sec_n"
+  n184 -> n186 // "pin" -> "3"
+  n1 -> n187 // "design" -> "device"
+  n187 -> n188 // "device" -> "res_0603"
+  n187 -> n189 // "device" -> "attr"
+  n189 -> n190 // "attr" -> "refPrefix"
+  n189 -> n191 // "attr" -> "R"
+  n187 -> n192 // "device" -> "attr"
+  n192 -> n193 // "attr" -> "refDes"
+  n192 -> n194 // "attr" -> ""
+  n187 -> n195 // "device" -> "attr"
+  n195 -> n196 // "attr" -> "name"
+  n195 -> n197 // "attr" -> ""
+  n187 -> n198 // "device" -> "attr"
+  n198 -> n199 // "attr" -> "value"
+  n198 -> n200 // "attr" -> ""
+  n187 -> n201 // "device" -> "attr"
+  n201 -> n202 // "attr" -> "pkg_type"
+  n201 -> n203 // "attr" -> "CR0603"
+  n187 -> n204 // "device" -> "attr"
+  n204 -> n205 // "attr" -> "mfgr"
+  n204 -> n206 // "attr" -> "PANASONIC"
+  n187 -> n207 // "device" -> "attr"
+  n207 -> n208 // "attr" -> "partNumber"
+  n207 -> n209 // "attr" -> "ERJ-3EKF1500V"
+  n187 -> n210 // "device" -> "attr"
+  n210 -> n211 // "attr" -> "cost"
+  n210 -> n212 // "attr" -> "0.07"
+  n187 -> n213 // "device" -> "pin"
+  n213 -> n214 // "pin" -> "a"
+  n213 -> n215 // "pin" -> "1"
+  n187 -> n216 // "device" -> "pin"
+  n216 -> n217 // "pin" -> "b"
+  n216 -> n218 // "pin" -> "2"
+  n1 -> n219 // "design" -> "net"
+  n219 -> n220 // "net" -> "CLK250P"
+  n1 -> n221 // "design" -> "net"
+  n221 -> n222 // "net" -> "CLK250N"
+  n1 -> n223 // "design" -> "net"
+  n223 -> n224 // "net" -> "CLK250"
+  n1 -> n225 // "design" -> "net"
+  n225 -> n226 // "net" -> "DIFF_CLK_RTN"
+  n1 -> n227 // "design" -> "net"
+  n227 -> n228 // "net" -> "SINGLE_CLK_RTN"
+  n1 -> n229 // "design" -> "net"
+  n229 -> n230 // "net" -> "CLK250N_BAL"
+  n1 -> n231 // "design" -> "net"
+  n231 -> n232 // "net" -> "CLK250P_BAL"
+  n1 -> n233 // "design" -> "net"
+  n233 -> n234 // "net" -> "CLK250_BAL_N"
+  n1 -> n235 // "design" -> "net"
+  n235 -> n236 // "net" -> "CLK250_BAL_P"
+  n1 -> n237 // "design" -> "net"
+  n237 -> n238 // "net" -> "$3N205"
+  n1 -> n239 // "design" -> "net"
+  n239 -> n240 // "net" -> "$3N212"
+  n1 -> n241 // "design" -> "net"
+  n241 -> n242 // "net" -> "$3N213"
+  n1 -> n243 // "design" -> "net"
+  n243 -> n244 // "net" -> "$3N195"
+  n1 -> n245 // "design" -> "net"
+  n245 -> n246 // "net" -> "$3N1"
+  n1 -> n247 // "design" -> "net"
+  n247 -> n248 // "net" -> "$3N193"
+  n1 -> n249 // "design" -> "net"
+  n249 -> n250 // "net" -> "$3N222"
+  n1 -> n251 // "design" -> "net"
+  n251 -> n252 // "net" -> "$3N42"
+  n1 -> n253 // "design" -> "net"
+  n253 -> n254 // "net" -> "$3N44"
+  n1 -> n255 // "design" -> "net"
+  n255 -> n256 // "net" -> "$3N163"
+  n1 -> n257 // "design" -> "net"
+  n257 -> n258 // "net" -> "$3N164"
+  n1 -> n259 // "design" -> "net"
+  n259 -> n260 // "net" -> "$4N126"
+  n1 -> n261 // "design" -> "net"
+  n261 -> n262 // "net" -> "+3V3"
+  n1 -> n263 // "design" -> "net"
+  n263 -> n264 // "net" -> "gnd"
+  n1 -> n265 // "design" -> "device"
+  n265 -> n266 // "device" -> "tant_cap"
+  n265 -> n267 // "device" -> "attr"
+  n267 -> n268 // "attr" -> "refPrefix"
+  n267 -> n269 // "attr" -> "C"
+  n265 -> n270 // "device" -> "attr"
+  n270 -> n271 // "attr" -> "refDes"
+  n270 -> n272 // "attr" -> ""
+  n265 -> n273 // "device" -> "attr"
+  n273 -> n274 // "attr" -> "name"
+  n273 -> n275 // "attr" -> ""
+  n265 -> n276 // "device" -> "attr"
+  n276 -> n277 // "attr" -> "value"
+  n276 -> n278 // "attr" -> ""
+  n265 -> n279 // "device" -> "attr"
+  n279 -> n280 // "attr" -> "pkg_type"
+  n279 -> n281 // "attr" -> "7343-31"
+  n265 -> n282 // "device" -> "attr"
+  n282 -> n283 // "attr" -> "mfgr"
+  n282 -> n284 // "attr" -> "AVX CORPORATION"
+  n265 -> n285 // "device" -> "attr"
+  n285 -> n286 // "attr" -> "partNumber"
+  n285 -> n287 // "attr" -> "TAJD227M006RNJ"
+  n265 -> n288 // "device" -> "attr"
+  n288 -> n289 // "attr" -> "cost"
+  n288 -> n290 // "attr" -> "2.60"
+  n265 -> n291 // "device" -> "pin"
+  n291 -> n292 // "pin" -> "pos"
+  n291 -> n293 // "pin" -> "1"
+  n265 -> n294 // "device" -> "pin"
+  n294 -> n295 // "pin" -> "neg"
+  n294 -> n296 // "pin" -> "2"
+  n1 -> n297 // "design" -> "device"
+  n297 -> n298 // "device" -> "sy898533"
+  n297 -> n299 // "device" -> "attr"
+  n299 -> n300 // "attr" -> "refPrefix"
+  n299 -> n301 // "attr" -> "U"
+  n297 -> n302 // "device" -> "attr"
+  n302 -> n303 // "attr" -> "refDes"
+  n302 -> n304 // "attr" -> ""
+  n297 -> n305 // "device" -> "attr"
+  n305 -> n306 // "attr" -> "name"
+  n305 -> n307 // "attr" -> ""
+  n297 -> n308 // "device" -> "attr"
+  n308 -> n309 // "attr" -> "value"
+  n308 -> n310 // "attr" -> ""
+  n297 -> n311 // "device" -> "attr"
+  n311 -> n312 // "attr" -> "pkg_type"
+  n311 -> n313 // "attr" -> "SY898533LKZ"
+  n297 -> n314 // "device" -> "attr"
+  n314 -> n315 // "attr" -> "mfgr"
+  n314 -> n316 // "attr" -> "MICREL"
+  n297 -> n317 // "device" -> "attr"
+  n317 -> n318 // "attr" -> "partNumber"
+  n317 -> n319 // "attr" -> "SY898533LKZ"
+  n297 -> n320 // "device" -> "attr"
+  n320 -> n321 // "attr" -> "cost"
+  n320 -> n322 // "attr" -> "4.45"
+  n297 -> n323 // "device" -> "pin"
+  n323 -> n324 // "pin" -> ":"
+  n324 -> n325 // ":" -> "["
+  n324 -> n326 // ":" -> "1"
+  n324 -> n327 // ":" -> "3"
+  n323 -> n328 // "pin" -> "vcc"
+  n323 -> n329 // "pin" -> "10"
+  n323 -> n330 // "pin" -> "13"
+  n323 -> n331 // "pin" -> "18"
+  n297 -> n332 // "device" -> "pin"
+  n332 -> n333 // "pin" -> "clk_p"
+  n332 -> n334 // "pin" -> "4"
+  n297 -> n335 // "device" -> "pin"
+  n335 -> n336 // "pin" -> "clk_n"
+  n335 -> n337 // "pin" -> "5"
+  n297 -> n338 // "device" -> "pin"
+  n338 -> n339 // "pin" -> "pclk_p"
+  n338 -> n340 // "pin" -> "6"
+  n297 -> n341 // "device" -> "pin"
+  n341 -> n342 // "pin" -> "pclk_n"
+  n341 -> n343 // "pin" -> "7"
+  n297 -> n344 // "device" -> "pin"
+  n344 -> n345 // "pin" -> "clk_en"
+  n344 -> n346 // "pin" -> "2"
+  n297 -> n347 // "device" -> "pin"
+  n347 -> n348 // "pin" -> "clk_sel"
+  n347 -> n349 // "pin" -> "3"
+  n297 -> n350 // "device" -> "pin"
+  n350 -> n351 // "pin" -> ":"
+  n351 -> n352 // ":" -> "["
+  n351 -> n353 // ":" -> "1"
+  n351 -> n354 // ":" -> "2"
+  n350 -> n355 // "pin" -> "nc"
+  n350 -> n356 // "pin" -> "8"
+  n350 -> n357 // "pin" -> "9"
+  n297 -> n358 // "device" -> "pin"
+  n358 -> n359 // "pin" -> "q0_p"
+  n358 -> n360 // "pin" -> "20"
+  n297 -> n361 // "device" -> "pin"
+  n361 -> n362 // "pin" -> "q0_n"
+  n361 -> n363 // "pin" -> "19"
+  n297 -> n364 // "device" -> "pin"
+  n364 -> n365 // "pin" -> "q1_p"
+  n364 -> n366 // "pin" -> "17"
+  n297 -> n367 // "device" -> "pin"
+  n367 -> n368 // "pin" -> "q1_n"
+  n367 -> n369 // "pin" -> "16"
+  n297 -> n370 // "device" -> "pin"
+  n370 -> n371 // "pin" -> "q2_p"
+  n370 -> n372 // "pin" -> "15"
+  n297 -> n373 // "device" -> "pin"
+  n373 -> n374 // "pin" -> "q2_n"
+  n373 -> n375 // "pin" -> "14"
+  n297 -> n376 // "device" -> "pin"
+  n376 -> n377 // "pin" -> "q3_p"
+  n376 -> n378 // "pin" -> "12"
+  n297 -> n379 // "device" -> "pin"
+  n379 -> n380 // "pin" -> "q3_n"
+  n379 -> n381 // "pin" -> "11"
+  n297 -> n382 // "device" -> "pin"
+  n382 -> n383 // "pin" -> "vee"
+  n382 -> n384 // "pin" -> "1"
+  n1 -> n385 // "design" -> "net"
+  n385 -> n386 // "net" -> "GBTCLK0_M2C_P"
+  n1 -> n387 // "design" -> "net"
+  n387 -> n388 // "net" -> "GBTCLK0_M2C_N"
+  n1 -> n389 // "design" -> "net"
+  n389 -> n390 // "net" -> "GBTCLK1_M2C_P"
+  n1 -> n391 // "design" -> "net"
+  n391 -> n392 // "net" -> "GBTCLK1_M2C_N"
+  n1 -> n393 // "design" -> "device"
+  n393 -> n394 // "device" -> "slide_switch"
+  n393 -> n395 // "device" -> "attr"
+  n395 -> n396 // "attr" -> "refPrefix"
+  n395 -> n397 // "attr" -> "P"
+  n393 -> n398 // "device" -> "attr"
+  n398 -> n399 // "attr" -> "refDes"
+  n398 -> n400 // "attr" -> ""
+  n393 -> n401 // "device" -> "attr"
+  n401 -> n402 // "attr" -> "name"
+  n401 -> n403 // "attr" -> ""
+  n393 -> n404 // "device" -> "attr"
+  n404 -> n405 // "attr" -> "value"
+  n404 -> n406 // "attr" -> ""
+  n393 -> n407 // "device" -> "attr"
+  n407 -> n408 // "attr" -> "pkg_type"
+  n407 -> n409 // "attr" -> "CAS-220B"
+  n393 -> n410 // "device" -> "attr"
+  n410 -> n411 // "attr" -> "mfgr"
+  n410 -> n412 // "attr" -> "COPAL ELECTRONICS"
+  n393 -> n413 // "device" -> "attr"
+  n413 -> n414 // "attr" -> "partNumber"
+  n413 -> n415 // "attr" -> "CAS-D20TB"
+  n393 -> n416 // "device" -> "attr"
+  n416 -> n417 // "attr" -> "cost"
+  n416 -> n418 // "attr" -> "2.28"
+  n393 -> n419 // "device" -> "pin"
+  n419 -> n420 // "pin" -> "p1_1"
+  n419 -> n421 // "pin" -> "1"
+  n393 -> n422 // "device" -> "pin"
+  n422 -> n423 // "pin" -> "p2_1"
+  n422 -> n424 // "pin" -> "3"
+  n393 -> n425 // "device" -> "pin"
+  n425 -> n426 // "pin" -> "s_1"
+  n425 -> n427 // "pin" -> "2"
+  n393 -> n428 // "device" -> "pin"
+  n428 -> n429 // "pin" -> "p1_2"
+  n428 -> n430 // "pin" -> "4"
+  n393 -> n431 // "device" -> "pin"
+  n431 -> n432 // "pin" -> "p2_2"
+  n431 -> n433 // "pin" -> "6"
+  n393 -> n434 // "device" -> "pin"
+  n434 -> n435 // "pin" -> "s_2"
+  n434 -> n436 // "pin" -> "5"
+  n1 -> n437 // "design" -> "net"
+  n437 -> n438 // "net" -> "SYNC_OUT"
+  n1 -> n439 // "design" -> "net"
+  n439 -> n440 // "net" -> "SYNC_IN"
+  n1 -> n441 // "design" -> "device"
+  n441 -> n442 // "device" -> "asp_134488"
+  n441 -> n443 // "device" -> "attr"
+  n443 -> n444 // "attr" -> "refPrefix"
+  n443 -> n445 // "attr" -> "P"
+  n441 -> n446 // "device" -> "attr"
+  n446 -> n447 // "attr" -> "refDes"
+  n446 -> n448 // "attr" -> ""
+  n441 -> n449 // "device" -> "attr"
+  n449 -> n450 // "attr" -> "name"
+  n449 -> n451 // "attr" -> ""
+  n441 -> n452 // "device" -> "attr"
+  n452 -> n453 // "attr" -> "value"
+  n452 -> n454 // "attr" -> ""
+  n441 -> n455 // "device" -> "attr"
+  n455 -> n456 // "attr" -> "pkg_type"
+  n455 -> n457 // "attr" -> "ASP-134488-01"
+  n441 -> n458 // "device" -> "attr"
+  n458 -> n459 // "attr" -> "mfgr"
+  n458 -> n460 // "attr" -> "SAMTEC"
+  n441 -> n461 // "device" -> "attr"
+  n461 -> n462 // "attr" -> "partNumber"
+  n461 -> n463 // "attr" -> "ASP-134488-01"
+  n441 -> n464 // "device" -> "attr"
+  n464 -> n465 // "attr" -> "cost"
+  n464 -> n466 // "attr" -> "XXXX"
+  n441 -> n467 // "device" -> "pin"
+  n467 -> n468 // "pin" -> ":"
+  n468 -> n469 // ":" -> "["
+  n468 -> n470 // ":" -> "1"
+  n468 -> n471 // ":" -> "40"
+  n467 -> n472 // "pin" -> "a"
+  n467 -> n473 // "pin" -> "A1"
+  n467 -> n474 // "pin" -> "A2"
+  n467 -> n475 // "pin" -> "A3"
+  n467 -> n476 // "pin" -> "A4"
+  n467 -> n477 // "pin" -> "A5"
+  n467 -> n478 // "pin" -> "A6"
+  n467 -> n479 // "pin" -> "A7"
+  n467 -> n480 // "pin" -> "A8"
+  n467 -> n481 // "pin" -> "A9"
+  n467 -> n482 // "pin" -> "A10"
+  n467 -> n483 // "pin" -> "A11"
+  n467 -> n484 // "pin" -> "A12"
+  n467 -> n485 // "pin" -> "A13"
+  n467 -> n486 // "pin" -> "A14"
+  n467 -> n487 // "pin" -> "A15"
+  n467 -> n488 // "pin" -> "A16"
+  n467 -> n489 // "pin" -> "A17"
+  n467 -> n490 // "pin" -> "A18"
+  n467 -> n491 // "pin" -> "A19"
+  n467 -> n492 // "pin" -> "A20"
+  n467 -> n493 // "pin" -> "A21"
+  n467 -> n494 // "pin" -> "A22"
+  n467 -> n495 // "pin" -> "A23"
+  n467 -> n496 // "pin" -> "A24"
+  n467 -> n497 // "pin" -> "A25"
+  n467 -> n498 // "pin" -> "A26"
+  n467 -> n499 // "pin" -> "A27"
+  n467 -> n500 // "pin" -> "A28"
+  n467 -> n501 // "pin" -> "A29"
+  n467 -> n502 // "pin" -> "A30"
+  n467 -> n503 // "pin" -> "A31"
+  n467 -> n504 // "pin" -> "A32"
+  n467 -> n505 // "pin" -> "A33"
+  n467 -> n506 // "pin" -> "A34"
+  n467 -> n507 // "pin" -> "A35"
+  n467 -> n508 // "pin" -> "A36"
+  n467 -> n509 // "pin" -> "A37"
+  n467 -> n510 // "pin" -> "A38"
+  n467 -> n511 // "pin" -> "A39"
+  n467 -> n512 // "pin" -> "A40"
+  n441 -> n513 // "device" -> "pin"
+  n513 -> n514 // "pin" -> ":"
+  n514 -> n515 // ":" -> "["
+  n514 -> n516 // ":" -> "1"
+  n514 -> n517 // ":" -> "40"
+  n513 -> n518 // "pin" -> "b"
+  n513 -> n519 // "pin" -> "B1"
+  n513 -> n520 // "pin" -> "B2"
+  n513 -> n521 // "pin" -> "B3"
+  n513 -> n522 // "pin" -> "B4"
+  n513 -> n523 // "pin" -> "B5"
+  n513 -> n524 // "pin" -> "B6"
+  n513 -> n525 // "pin" -> "B7"
+  n513 -> n526 // "pin" -> "B8"
+  n513 -> n527 // "pin" -> "B9"
+  n513 -> n528 // "pin" -> "B10"
+  n513 -> n529 // "pin" -> "B11"
+  n513 -> n530 // "pin" -> "B12"
+  n513 -> n531 // "pin" -> "B13"
+  n513 -> n532 // "pin" -> "B14"
+  n513 -> n533 // "pin" -> "B15"
+  n513 -> n534 // "pin" -> "B16"
+  n513 -> n535 // "pin" -> "B17"
+  n513 -> n536 // "pin" -> "B18"
+  n513 -> n537 // "pin" -> "B19"
+  n513 -> n538 // "pin" -> "B20"
+  n513 -> n539 // "pin" -> "B21"
+  n513 -> n540 // "pin" -> "B22"
+  n513 -> n541 // "pin" -> "B23"
+  n513 -> n542 // "pin" -> "B24"
+  n513 -> n543 // "pin" -> "B25"
+  n513 -> n544 // "pin" -> "B26"
+  n513 -> n545 // "pin" -> "B27"
+  n513 -> n546 // "pin" -> "B28"
+  n513 -> n547 // "pin" -> "B29"
+  n513 -> n548 // "pin" -> "B30"
+  n513 -> n549 // "pin" -> "B31"
+  n513 -> n550 // "pin" -> "B32"
+  n513 -> n551 // "pin" -> "B33"
+  n513 -> n552 // "pin" -> "B34"
+  n513 -> n553 // "pin" -> "B35"
+  n513 -> n554 // "pin" -> "B36"
+  n513 -> n555 // "pin" -> "B37"
+  n513 -> n556 // "pin" -> "B38"
+  n513 -> n557 // "pin" -> "B39"
+  n513 -> n558 // "pin" -> "B40"
+  n441 -> n559 // "device" -> "pin"
+  n559 -> n560 // "pin" -> ":"
+  n560 -> n561 // ":" -> "["
+  n560 -> n562 // ":" -> "1"
+  n560 -> n563 // ":" -> "40"
+  n559 -> n564 // "pin" -> "c"
+  n559 -> n565 // "pin" -> "C1"
+  n559 -> n566 // "pin" -> "C2"
+  n559 -> n567 // "pin" -> "C3"
+  n559 -> n568 // "pin" -> "C4"
+  n559 -> n569 // "pin" -> "C5"
+  n559 -> n570 // "pin" -> "C6"
+  n559 -> n571 // "pin" -> "C7"
+  n559 -> n572 // "pin" -> "C8"
+  n559 -> n573 // "pin" -> "C9"
+  n559 -> n574 // "pin" -> "C10"
+  n559 -> n575 // "pin" -> "C11"
+  n559 -> n576 // "pin" -> "C12"
+  n559 -> n577 // "pin" -> "C13"
+  n559 -> n578 // "pin" -> "C14"
+  n559 -> n579 // "pin" -> "C15"
+  n559 -> n580 // "pin" -> "C16"
+  n559 -> n581 // "pin" -> "C17"
+  n559 -> n582 // "pin" -> "C18"
+  n559 -> n583 // "pin" -> "C19"
+  n559 -> n584 // "pin" -> "C20"
+  n559 -> n585 // "pin" -> "C21"
+  n559 -> n586 // "pin" -> "C22"
+  n559 -> n587 // "pin" -> "C23"
+  n559 -> n588 // "pin" -> "C24"
+  n559 -> n589 // "pin" -> "C25"
+  n559 -> n590 // "pin" -> "C26"
+  n559 -> n591 // "pin" -> "C27"
+  n559 -> n592 // "pin" -> "C28"
+  n559 -> n593 // "pin" -> "C29"
+  n559 -> n594 // "pin" -> "C30"
+  n559 -> n595 // "pin" -> "C31"
+  n559 -> n596 // "pin" -> "C32"
+  n559 -> n597 // "pin" -> "C33"
+  n559 -> n598 // "pin" -> "C34"
+  n559 -> n599 // "pin" -> "C35"
+  n559 -> n600 // "pin" -> "C36"
+  n559 -> n601 // "pin" -> "C37"
+  n559 -> n602 // "pin" -> "C38"
+  n559 -> n603 // "pin" -> "C39"
+  n559 -> n604 // "pin" -> "C40"
+  n441 -> n605 // "device" -> "pin"
+  n605 -> n606 // "pin" -> ":"
+  n606 -> n607 // ":" -> "["
+  n606 -> n608 // ":" -> "1"
+  n606 -> n609 // ":" -> "40"
+  n605 -> n610 // "pin" -> "d"
+  n605 -> n611 // "pin" -> "D1"
+  n605 -> n612 // "pin" -> "D2"
+  n605 -> n613 // "pin" -> "D3"
+  n605 -> n614 // "pin" -> "D4"
+  n605 -> n615 // "pin" -> "D5"
+  n605 -> n616 // "pin" -> "D6"
+  n605 -> n617 // "pin" -> "D7"
+  n605 -> n618 // "pin" -> "D8"
+  n605 -> n619 // "pin" -> "D9"
+  n605 -> n620 // "pin" -> "D10"
+  n605 -> n621 // "pin" -> "D11"
+  n605 -> n622 // "pin" -> "D12"
+  n605 -> n623 // "pin" -> "D13"
+  n605 -> n624 // "pin" -> "D14"
+  n605 -> n625 // "pin" -> "D15"
+  n605 -> n626 // "pin" -> "D16"
+  n605 -> n627 // "pin" -> "D17"
+  n605 -> n628 // "pin" -> "D18"
+  n605 -> n629 // "pin" -> "D19"
+  n605 -> n630 // "pin" -> "D20"
+  n605 -> n631 // "pin" -> "D21"
+  n605 -> n632 // "pin" -> "D22"
+  n605 -> n633 // "pin" -> "D23"
+  n605 -> n634 // "pin" -> "D24"
+  n605 -> n635 // "pin" -> "D25"
+  n605 -> n636 // "pin" -> "D26"
+  n605 -> n637 // "pin" -> "D27"
+  n605 -> n638 // "pin" -> "D28"
+  n605 -> n639 // "pin" -> "D29"
+  n605 -> n640 // "pin" -> "D30"
+  n605 -> n641 // "pin" -> "D31"
+  n605 -> n642 // "pin" -> "D32"
+  n605 -> n643 // "pin" -> "D33"
+  n605 -> n644 // "pin" -> "D34"
+  n605 -> n645 // "pin" -> "D35"
+  n605 -> n646 // "pin" -> "D36"
+  n605 -> n647 // "pin" -> "D37"
+  n605 -> n648 // "pin" -> "D38"
+  n605 -> n649 // "pin" -> "D39"
+  n605 -> n650 // "pin" -> "D40"
+  n441 -> n651 // "device" -> "pin"
+  n651 -> n652 // "pin" -> ":"
+  n652 -> n653 // ":" -> "["
+  n652 -> n654 // ":" -> "1"
+  n652 -> n655 // ":" -> "40"
+  n651 -> n656 // "pin" -> "e"
+  n651 -> n657 // "pin" -> "E1"
+  n651 -> n658 // "pin" -> "E2"
+  n651 -> n659 // "pin" -> "E3"
+  n651 -> n660 // "pin" -> "E4"
+  n651 -> n661 // "pin" -> "E5"
+  n651 -> n662 // "pin" -> "E6"
+  n651 -> n663 // "pin" -> "E7"
+  n651 -> n664 // "pin" -> "E8"
+  n651 -> n665 // "pin" -> "E9"
+  n651 -> n666 // "pin" -> "E10"
+  n651 -> n667 // "pin" -> "E11"
+  n651 -> n668 // "pin" -> "E12"
+  n651 -> n669 // "pin" -> "E13"
+  n651 -> n670 // "pin" -> "E14"
+  n651 -> n671 // "pin" -> "E15"
+  n651 -> n672 // "pin" -> "E16"
+  n651 -> n673 // "pin" -> "E17"
+  n651 -> n674 // "pin" -> "E18"
+  n651 -> n675 // "pin" -> "E19"
+  n651 -> n676 // "pin" -> "E20"
+  n651 -> n677 // "pin" -> "E21"
+  n651 -> n678 // "pin" -> "E22"
+  n651 -> n679 // "pin" -> "E23"
+  n651 -> n680 // "pin" -> "E24"
+  n651 -> n681 // "pin" -> "E25"
+  n651 -> n682 // "pin" -> "E26"
+  n651 -> n683 // "pin" -> "E27"
+  n651 -> n684 // "pin" -> "E28"
+  n651 -> n685 // "pin" -> "E29"
+  n651 -> n686 // "pin" -> "E30"
+  n651 -> n687 // "pin" -> "E31"
+  n651 -> n688 // "pin" -> "E32"
+  n651 -> n689 // "pin" -> "E33"
+  n651 -> n690 // "pin" -> "E34"
+  n651 -> n691 // "pin" -> "E35"
+  n651 -> n692 // "pin" -> "E36"
+  n651 -> n693 // "pin" -> "E37"
+  n651 -> n694 // "pin" -> "E38"
+  n651 -> n695 // "pin" -> "E39"
+  n651 -> n696 // "pin" -> "E40"
+  n441 -> n697 // "device" -> "pin"
+  n697 -> n698 // "pin" -> ":"
+  n698 -> n699 // ":" -> "["
+  n698 -> n700 // ":" -> "1"
+  n698 -> n701 // ":" -> "40"
+  n697 -> n702 // "pin" -> "f"
+  n697 -> n703 // "pin" -> "F1"
+  n697 -> n704 // "pin" -> "F2"
+  n697 -> n705 // "pin" -> "F3"
+  n697 -> n706 // "pin" -> "F4"
+  n697 -> n707 // "pin" -> "F5"
+  n697 -> n708 // "pin" -> "F6"
+  n697 -> n709 // "pin" -> "F7"
+  n697 -> n710 // "pin" -> "F8"
+  n697 -> n711 // "pin" -> "F9"
+  n697 -> n712 // "pin" -> "F10"
+  n697 -> n713 // "pin" -> "F11"
+  n697 -> n714 // "pin" -> "F12"
+  n697 -> n715 // "pin" -> "F13"
+  n697 -> n716 // "pin" -> "F14"
+  n697 -> n717 // "pin" -> "F15"
+  n697 -> n718 // "pin" -> "F16"
+  n697 -> n719 // "pin" -> "F17"
+  n697 -> n720 // "pin" -> "F18"
+  n697 -> n721 // "pin" -> "F19"
+  n697 -> n722 // "pin" -> "F20"
+  n697 -> n723 // "pin" -> "F21"
+  n697 -> n724 // "pin" -> "F22"
+  n697 -> n725 // "pin" -> "F23"
+  n697 -> n726 // "pin" -> "F24"
+  n697 -> n727 // "pin" -> "F25"
+  n697 -> n728 // "pin" -> "F26"
+  n697 -> n729 // "pin" -> "F27"
+  n697 -> n730 // "pin" -> "F28"
+  n697 -> n731 // "pin" -> "F29"
+  n697 -> n732 // "pin" -> "F30"
+  n697 -> n733 // "pin" -> "F31"
+  n697 -> n734 // "pin" -> "F32"
+  n697 -> n735 // "pin" -> "F33"
+  n697 -> n736 // "pin" -> "F34"
+  n697 -> n737 // "pin" -> "F35"
+  n697 -> n738 // "pin" -> "F36"
+  n697 -> n739 // "pin" -> "F37"
+  n697 -> n740 // "pin" -> "F38"
+  n697 -> n741 // "pin" -> "F39"
+  n697 -> n742 // "pin" -> "F40"
+  n441 -> n743 // "device" -> "pin"
+  n743 -> n744 // "pin" -> ":"
+  n744 -> n745 // ":" -> "["
+  n744 -> n746 // ":" -> "1"
+  n744 -> n747 // ":" -> "40"
+  n743 -> n748 // "pin" -> "g"
+  n743 -> n749 // "pin" -> "G1"
+  n743 -> n750 // "pin" -> "G2"
+  n743 -> n751 // "pin" -> "G3"
+  n743 -> n752 // "pin" -> "G4"
+  n743 -> n753 // "pin" -> "G5"
+  n743 -> n754 // "pin" -> "G6"
+  n743 -> n755 // "pin" -> "G7"
+  n743 -> n756 // "pin" -> "G8"
+  n743 -> n757 // "pin" -> "G9"
+  n743 -> n758 // "pin" -> "G10"
+  n743 -> n759 // "pin" -> "G11"
+  n743 -> n760 // "pin" -> "G12"
+  n743 -> n761 // "pin" -> "G13"
+  n743 -> n762 // "pin" -> "G14"
+  n743 -> n763 // "pin" -> "G15"
+  n743 -> n764 // "pin" -> "G16"
+  n743 -> n765 // "pin" -> "G17"
+  n743 -> n766 // "pin" -> "G18"
+  n743 -> n767 // "pin" -> "G19"
+  n743 -> n768 // "pin" -> "G20"
+  n743 -> n769 // "pin" -> "G21"
+  n743 -> n770 // "pin" -> "G22"
+  n743 -> n771 // "pin" -> "G23"
+  n743 -> n772 // "pin" -> "G24"
+  n743 -> n773 // "pin" -> "G25"
+  n743 -> n774 // "pin" -> "G26"
+  n743 -> n775 // "pin" -> "G27"
+  n743 -> n776 // "pin" -> "G28"
+  n743 -> n777 // "pin" -> "G29"
+  n743 -> n778 // "pin" -> "G30"
+  n743 -> n779 // "pin" -> "G31"
+  n743 -> n780 // "pin" -> "G32"
+  n743 -> n781 // "pin" -> "G33"
+  n743 -> n782 // "pin" -> "G34"
+  n743 -> n783 // "pin" -> "G35"
+  n743 -> n784 // "pin" -> "G36"
+  n743 -> n785 // "pin" -> "G37"
+  n743 -> n786 // "pin" -> "G38"
+  n743 -> n787 // "pin" -> "G39"
+  n743 -> n788 // "pin" -> "G40"
+  n441 -> n789 // "device" -> "pin"
+  n789 -> n790 // "pin" -> ":"
+  n790 -> n791 // ":" -> "["
+  n790 -> n792 // ":" -> "1"
+  n790 -> n793 // ":" -> "40"
+  n789 -> n794 // "pin" -> "h"
+  n789 -> n795 // "pin" -> "H1"
+  n789 -> n796 // "pin" -> "H2"
+  n789 -> n797 // "pin" -> "H3"
+  n789 -> n798 // "pin" -> "H4"
+  n789 -> n799 // "pin" -> "H5"
+  n789 -> n800 // "pin" -> "H6"
+  n789 -> n801 // "pin" -> "H7"
+  n789 -> n802 // "pin" -> "H8"
+  n789 -> n803 // "pin" -> "H9"
+  n789 -> n804 // "pin" -> "H10"
+  n789 -> n805 // "pin" -> "H11"
+  n789 -> n806 // "pin" -> "H12"
+  n789 -> n807 // "pin" -> "H13"
+  n789 -> n808 // "pin" -> "H14"
+  n789 -> n809 // "pin" -> "H15"
+  n789 -> n810 // "pin" -> "H16"
+  n789 -> n811 // "pin" -> "H17"
+  n789 -> n812 // "pin" -> "H18"
+  n789 -> n813 // "pin" -> "H19"
+  n789 -> n814 // "pin" -> "H20"
+  n789 -> n815 // "pin" -> "H21"
+  n789 -> n816 // "pin" -> "H22"
+  n789 -> n817 // "pin" -> "H23"
+  n789 -> n818 // "pin" -> "H24"
+  n789 -> n819 // "pin" -> "H25"
+  n789 -> n820 // "pin" -> "H26"
+  n789 -> n821 // "pin" -> "H27"
+  n789 -> n822 // "pin" -> "H28"
+  n789 -> n823 // "pin" -> "H29"
+  n789 -> n824 // "pin" -> "H30"
+  n789 -> n825 // "pin" -> "H31"
+  n789 -> n826 // "pin" -> "H32"
+  n789 -> n827 // "pin" -> "H33"
+  n789 -> n828 // "pin" -> "H34"
+  n789 -> n829 // "pin" -> "H35"
+  n789 -> n830 // "pin" -> "H36"
+  n789 -> n831 // "pin" -> "H37"
+  n789 -> n832 // "pin" -> "H38"
+  n789 -> n833 // "pin" -> "H39"
+  n789 -> n834 // "pin" -> "H40"
+  n441 -> n835 // "device" -> "pin"
+  n835 -> n836 // "pin" -> ":"
+  n836 -> n837 // ":" -> "["
+  n836 -> n838 // ":" -> "1"
+  n836 -> n839 // ":" -> "40"
+  n835 -> n840 // "pin" -> "j"
+  n835 -> n841 // "pin" -> "J1"
+  n835 -> n842 // "pin" -> "J2"
+  n835 -> n843 // "pin" -> "J3"
+  n835 -> n844 // "pin" -> "J4"
+  n835 -> n845 // "pin" -> "J5"
+  n835 -> n846 // "pin" -> "J6"
+  n835 -> n847 // "pin" -> "J7"
+  n835 -> n848 // "pin" -> "J8"
+  n835 -> n849 // "pin" -> "J9"
+  n835 -> n850 // "pin" -> "J10"
+  n835 -> n851 // "pin" -> "J11"
+  n835 -> n852 // "pin" -> "J12"
+  n835 -> n853 // "pin" -> "J13"
+  n835 -> n854 // "pin" -> "J14"
+  n835 -> n855 // "pin" -> "J15"
+  n835 -> n856 // "pin" -> "J16"
+  n835 -> n857 // "pin" -> "J17"
+  n835 -> n858 // "pin" -> "J18"
+  n835 -> n859 // "pin" -> "J19"
+  n835 -> n860 // "pin" -> "J20"
+  n835 -> n861 // "pin" -> "J21"
+  n835 -> n862 // "pin" -> "J22"
+  n835 -> n863 // "pin" -> "J23"
+  n835 -> n864 // "pin" -> "J24"
+  n835 -> n865 // "pin" -> "J25"
+  n835 -> n866 // "pin" -> "J26"
+  n835 -> n867 // "pin" -> "J27"
+  n835 -> n868 // "pin" -> "J28"
+  n835 -> n869 // "pin" -> "J29"
+  n835 -> n870 // "pin" -> "J30"
+  n835 -> n871 // "pin" -> "J31"
+  n835 -> n872 // "pin" -> "J32"
+  n835 -> n873 // "pin" -> "J33"
+  n835 -> n874 // "pin" -> "J34"
+  n835 -> n875 // "pin" -> "J35"
+  n835 -> n876 // "pin" -> "J36"
+  n835 -> n877 // "pin" -> "J37"
+  n835 -> n878 // "pin" -> "J38"
+  n835 -> n879 // "pin" -> "J39"
+  n835 -> n880 // "pin" -> "J40"
+  n441 -> n881 // "device" -> "pin"
+  n881 -> n882 // "pin" -> ":"
+  n882 -> n883 // ":" -> "["
+  n882 -> n884 // ":" -> "1"
+  n882 -> n885 // ":" -> "40"
+  n881 -> n886 // "pin" -> "k"
+  n881 -> n887 // "pin" -> "K1"
+  n881 -> n888 // "pin" -> "K2"
+  n881 -> n889 // "pin" -> "K3"
+  n881 -> n890 // "pin" -> "K4"
+  n881 -> n891 // "pin" -> "K5"
+  n881 -> n892 // "pin" -> "K6"
+  n881 -> n893 // "pin" -> "K7"
+  n881 -> n894 // "pin" -> "K8"
+  n881 -> n895 // "pin" -> "K9"
+  n881 -> n896 // "pin" -> "K10"
+  n881 -> n897 // "pin" -> "K11"
+  n881 -> n898 // "pin" -> "K12"
+  n881 -> n899 // "pin" -> "K13"
+  n881 -> n900 // "pin" -> "K14"
+  n881 -> n901 // "pin" -> "K15"
+  n881 -> n902 // "pin" -> "K16"
+  n881 -> n903 // "pin" -> "K17"
+  n881 -> n904 // "pin" -> "K18"
+  n881 -> n905 // "pin" -> "K19"
+  n881 -> n906 // "pin" -> "K20"
+  n881 -> n907 // "pin" -> "K21"
+  n881 -> n908 // "pin" -> "K22"
+  n881 -> n909 // "pin" -> "K23"
+  n881 -> n910 // "pin" -> "K24"
+  n881 -> n911 // "pin" -> "K25"
+  n881 -> n912 // "pin" -> "K26"
+  n881 -> n913 // "pin" -> "K27"
+  n881 -> n914 // "pin" -> "K28"
+  n881 -> n915 // "pin" -> "K29"
+  n881 -> n916 // "pin" -> "K30"
+  n881 -> n917 // "pin" -> "K31"
+  n881 -> n918 // "pin" -> "K32"
+  n881 -> n919 // "pin" -> "K33"
+  n881 -> n920 // "pin" -> "K34"
+  n881 -> n921 // "pin" -> "K35"
+  n881 -> n922 // "pin" -> "K36"
+  n881 -> n923 // "pin" -> "K37"
+  n881 -> n924 // "pin" -> "K38"
+  n881 -> n925 // "pin" -> "K39"
+  n881 -> n926 // "pin" -> "K40"
+  n1 -> n927 // "design" -> "device"
+  n927 -> n928 // "device" -> "2x8_hdr"
+  n927 -> n929 // "device" -> "attr"
+  n929 -> n930 // "attr" -> "refPrefix"
+  n929 -> n931 // "attr" -> "J"
+  n927 -> n932 // "device" -> "attr"
+  n932 -> n933 // "attr" -> "refDes"
+  n932 -> n934 // "attr" -> ""
+  n927 -> n935 // "device" -> "attr"
+  n935 -> n936 // "attr" -> "name"
+  n935 -> n937 // "attr" -> ""
+  n927 -> n938 // "device" -> "attr"
+  n938 -> n939 // "attr" -> "value"
+  n938 -> n940 // "attr" -> ""
+  n927 -> n941 // "device" -> "attr"
+  n941 -> n942 // "attr" -> "pkg_type"
+  n941 -> n943 // "attr" -> "HDR2x8/0_100"
+  n927 -> n944 // "device" -> "attr"
+  n944 -> n945 // "attr" -> "mfgr"
+  n944 -> n946 // "attr" -> "MOLEX"
+  n927 -> n947 // "device" -> "attr"
+  n947 -> n948 // "attr" -> "partNumber"
+  n947 -> n949 // "attr" -> "90131-0768"
+  n927 -> n950 // "device" -> "attr"
+  n950 -> n951 // "attr" -> "cost"
+  n950 -> n952 // "attr" -> "1.03"
+  n927 -> n953 // "device" -> "pin"
+  n953 -> n954 // "pin" -> ":"
+  n954 -> n955 // ":" -> "["
+  n954 -> n956 // ":" -> "0"
+  n954 -> n957 // ":" -> "7"
+  n953 -> n958 // "pin" -> "sig"
+  n953 -> n959 // "pin" -> "1"
+  n953 -> n960 // "pin" -> "3"
+  n953 -> n961 // "pin" -> "5"
+  n953 -> n962 // "pin" -> "7"
+  n953 -> n963 // "pin" -> "9"
+  n953 -> n964 // "pin" -> "11"
+  n953 -> n965 // "pin" -> "13"
+  n953 -> n966 // "pin" -> "15"
+  n927 -> n967 // "device" -> "pin"
+  n967 -> n968 // "pin" -> ":"
+  n968 -> n969 // ":" -> "["
+  n968 -> n970 // ":" -> "0"
+  n968 -> n971 // ":" -> "7"
+  n967 -> n972 // "pin" -> "gnd"
+  n967 -> n973 // "pin" -> "2"
+  n967 -> n974 // "pin" -> "4"
+  n967 -> n975 // "pin" -> "6"
+  n967 -> n976 // "pin" -> "8"
+  n967 -> n977 // "pin" -> "10"
+  n967 -> n978 // "pin" -> "12"
+  n967 -> n979 // "pin" -> "14"
+  n967 -> n980 // "pin" -> "16"
+  n1 -> n981 // "design" -> "net"
+  n981 -> n982 // "net" -> ":"
+  n982 -> n983 // ":" -> "["
+  n982 -> n984 // ":" -> "7"
+  n982 -> n985 // ":" -> "0"
+  n981 -> n986 // "net" -> "DISCRETE"
+  n1 -> n987 // "design" -> "device"
+  n987 -> n988 // "device" -> "mount_hole_125"
+  n987 -> n989 // "device" -> "attr"
+  n989 -> n990 // "attr" -> "refPrefix"
+  n989 -> n991 // "attr" -> "U"
+  n987 -> n992 // "device" -> "attr"
+  n992 -> n993 // "attr" -> "pkg_type"
+  n992 -> n994 // "attr" -> "MOUNT_HOLE_125"
+  n1 -> n995 // "design" -> "begin"
+  n1 -> n996 // "design" -> "inst"
+  n996 -> n997 // "inst" -> ":"
+  n997 -> n998 // ":" -> "("
+  n997 -> n999 // ":" -> "1"
+  n997 -> n1000 // ":" -> "4"
+  n996 -> n1001 // "inst" -> "port0"
+  n996 -> n1002 // "inst" -> "SMA_CON"
+  n996 -> n1003 // "inst" -> "="
+  n1003 -> n1004 // "=" -> "."
+  n1004 -> n1005 // "." -> "this"
+  n1004 -> n1006 // "." -> "("
+  n1004 -> n1007 // "." -> "1"
+  n1003 -> n1008 // "=" -> "refDes"
+  n1003 -> n1009 // "=" -> "P9"
+  n996 -> n1010 // "inst" -> "="
+  n1010 -> n1011 // "=" -> "."
+  n1011 -> n1012 // "." -> "this"
+  n1011 -> n1013 // "." -> "("
+  n1011 -> n1014 // "." -> "2"
+  n1010 -> n1015 // "=" -> "refDes"
+  n1010 -> n1016 // "=" -> "P10"
+  n996 -> n1017 // "inst" -> "="
+  n1017 -> n1018 // "=" -> "."
+  n1018 -> n1019 // "." -> "this"
+  n1018 -> n1020 // "." -> "("
+  n1018 -> n1021 // "." -> "3"
+  n1017 -> n1022 // "=" -> "refDes"
+  n1017 -> n1023 // "=" -> "P16"
+  n996 -> n1024 // "inst" -> "="
+  n1024 -> n1025 // "=" -> "."
+  n1025 -> n1026 // "." -> "this"
+  n1025 -> n1027 // "." -> "("
+  n1025 -> n1028 // "." -> "4"
+  n1024 -> n1029 // "=" -> "refDes"
+  n1024 -> n1030 // "=" -> "P15"
+  n996 -> n1031 // "inst" -> "="
+  n1031 -> n1032 // "=" -> "."
+  n1032 -> n1033 // "." -> "this"
+  n1032 -> n1034 // "." -> "("
+  n1032 -> n1035 // "." -> "1"
+  n1031 -> n1036 // "=" -> "sig"
+  n1031 -> n1037 // "=" -> "DP0_C2M_P"
+  n996 -> n1038 // "inst" -> "="
+  n1038 -> n1039 // "=" -> "."
+  n1039 -> n1040 // "." -> "this"
+  n1039 -> n1041 // "." -> "("
+  n1039 -> n1042 // "." -> "2"
+  n1038 -> n1043 // "=" -> "sig"
+  n1038 -> n1044 // "=" -> "DP0_C2M_N"
+  n996 -> n1045 // "inst" -> "="
+  n1045 -> n1046 // "=" -> "."
+  n1046 -> n1047 // "." -> "this"
+  n1046 -> n1048 // "." -> "("
+  n1046 -> n1049 // "." -> "3"
+  n1045 -> n1050 // "=" -> "sig"
+  n1045 -> n1051 // "=" -> "SMA_DPO_M2C_P"
+  n996 -> n1052 // "inst" -> "="
+  n1052 -> n1053 // "=" -> "."
+  n1053 -> n1054 // "." -> "this"
+  n1053 -> n1055 // "." -> "("
+  n1053 -> n1056 // "." -> "4"
+  n1052 -> n1057 // "=" -> "sig"
+  n1052 -> n1058 // "=" -> "SMA_DPO_M2C_N"
+  n996 -> n1059 // "inst" -> "="
+  n1059 -> n1060 // "=" -> "gnd"
+  n1059 -> n1061 // "=" -> "<"
+  n1059 -> n1062 // "=" -> "gnd"
+  n1 -> n1063 // "design" -> "inst"
+  n1063 -> n1064 // "inst" -> ":"
+  n1064 -> n1065 // ":" -> "("
+  n1064 -> n1066 // ":" -> "1"
+  n1064 -> n1067 // ":" -> "4"
+  n1063 -> n1068 // "inst" -> "port1"
+  n1063 -> n1069 // "inst" -> "SMA_CON"
+  n1063 -> n1070 // "inst" -> "="
+  n1070 -> n1071 // "=" -> "."
+  n1071 -> n1072 // "." -> "this"
+  n1071 -> n1073 // "." -> "("
+  n1071 -> n1074 // "." -> "1"
+  n1070 -> n1075 // "=" -> "refDes"
+  n1070 -> n1076 // "=" -> "P12"
+  n1063 -> n1077 // "inst" -> "="
+  n1077 -> n1078 // "=" -> "."
+  n1078 -> n1079 // "." -> "this"
+  n1078 -> n1080 // "." -> "("
+  n1078 -> n1081 // "." -> "2"
+  n1077 -> n1082 // "=" -> "refDes"
+  n1077 -> n1083 // "=" -> "P11"
+  n1063 -> n1084 // "inst" -> "="
+  n1084 -> n1085 // "=" -> "."
+  n1085 -> n1086 // "." -> "this"
+  n1085 -> n1087 // "." -> "("
+  n1085 -> n1088 // "." -> "3"
+  n1084 -> n1089 // "=" -> "refDes"
+  n1084 -> n1090 // "=" -> "P13"
+  n1063 -> n1091 // "inst" -> "="
+  n1091 -> n1092 // "=" -> "."
+  n1092 -> n1093 // "." -> "this"
+  n1092 -> n1094 // "." -> "("
+  n1092 -> n1095 // "." -> "4"
+  n1091 -> n1096 // "=" -> "refDes"
+  n1091 -> n1097 // "=" -> "P14"
+  n1063 -> n1098 // "inst" -> "="
+  n1098 -> n1099 // "=" -> "."
+  n1099 -> n1100 // "." -> "this"
+  n1099 -> n1101 // "." -> "("
+  n1099 -> n1102 // "." -> "1"
+  n1098 -> n1103 // "=" -> "sig"
+  n1098 -> n1104 // "=" -> "DP1_C2M_P"
+  n1063 -> n1105 // "inst" -> "="
+  n1105 -> n1106 // "=" -> "."
+  n1106 -> n1107 // "." -> "this"
+  n1106 -> n1108 // "." -> "("
+  n1106 -> n1109 // "." -> "2"
+  n1105 -> n1110 // "=" -> "sig"
+  n1105 -> n1111 // "=" -> "DP1_C2M_N"
+  n1063 -> n1112 // "inst" -> "="
+  n1112 -> n1113 // "=" -> "."
+  n1113 -> n1114 // "." -> "this"
+  n1113 -> n1115 // "." -> "("
+  n1113 -> n1116 // "." -> "3"
+  n1112 -> n1117 // "=" -> "sig"
+  n1112 -> n1118 // "=" -> "SMA_DP1_M2C_P"
+  n1063 -> n1119 // "inst" -> "="
+  n1119 -> n1120 // "=" -> "."
+  n1120 -> n1121 // "." -> "this"
+  n1120 -> n1122 // "." -> "("
+  n1120 -> n1123 // "." -> "4"
+  n1119 -> n1124 // "=" -> "sig"
+  n1119 -> n1125 // "=" -> "SMA_DP1_M2C_N"
+  n1063 -> n1126 // "inst" -> "="
+  n1126 -> n1127 // "=" -> "gnd"
+  n1126 -> n1128 // "=" -> "<"
+  n1126 -> n1129 // "=" -> "gnd"
+  n1 -> n1130 // "design" -> "inst"
+  n1130 -> n1131 // "inst" -> ":"
+  n1131 -> n1132 // ":" -> "("
+  n1131 -> n1133 // ":" -> "1"
+  n1131 -> n1134 // ":" -> "4"
+  n1130 -> n1135 // "inst" -> "port2"
+  n1130 -> n1136 // "inst" -> "SMA_CON"
+  n1130 -> n1137 // "inst" -> "="
+  n1137 -> n1138 // "=" -> "."
+  n1138 -> n1139 // "." -> "this"
+  n1138 -> n1140 // "." -> "("
+  n1138 -> n1141 // "." -> "1"
+  n1137 -> n1142 // "=" -> "refDes"
+  n1137 -> n1143 // "=" -> "P19"
+  n1130 -> n1144 // "inst" -> "="
+  n1144 -> n1145 // "=" -> "."
+  n1145 -> n1146 // "." -> "this"
+  n1145 -> n1147 // "." -> "("
+  n1145 -> n1148 // "." -> "2"
+  n1144 -> n1149 // "=" -> "refDes"
+  n1144 -> n1150 // "=" -> "P20"
+  n1130 -> n1151 // "inst" -> "="
+  n1151 -> n1152 // "=" -> "."
+  n1152 -> n1153 // "." -> "this"
+  n1152 -> n1154 // "." -> "("
+  n1152 -> n1155 // "." -> "3"
+  n1151 -> n1156 // "=" -> "refDes"
+  n1151 -> n1157 // "=" -> "P18"
+  n1130 -> n1158 // "inst" -> "="
+  n1158 -> n1159 // "=" -> "."
+  n1159 -> n1160 // "." -> "this"
+  n1159 -> n1161 // "." -> "("
+  n1159 -> n1162 // "." -> "4"
+  n1158 -> n1163 // "=" -> "refDes"
+  n1158 -> n1164 // "=" -> "P17"
+  n1130 -> n1165 // "inst" -> "="
+  n1165 -> n1166 // "=" -> "."
+  n1166 -> n1167 // "." -> "this"
+  n1166 -> n1168 // "." -> "("
+  n1166 -> n1169 // "." -> "1"
+  n1165 -> n1170 // "=" -> "sig"
+  n1165 -> n1171 // "=" -> "DP2_C2M_P"
+  n1130 -> n1172 // "inst" -> "="
+  n1172 -> n1173 // "=" -> "."
+  n1173 -> n1174 // "." -> "this"
+  n1173 -> n1175 // "." -> "("
+  n1173 -> n1176 // "." -> "2"
+  n1172 -> n1177 // "=" -> "sig"
+  n1172 -> n1178 // "=" -> "DP2_C2M_N"
+  n1130 -> n1179 // "inst" -> "="
+  n1179 -> n1180 // "=" -> "."
+  n1180 -> n1181 // "." -> "this"
+  n1180 -> n1182 // "." -> "("
+  n1180 -> n1183 // "." -> "3"
+  n1179 -> n1184 // "=" -> "sig"
+  n1179 -> n1185 // "=" -> "SMA_DP2_M2C_P"
+  n1130 -> n1186 // "inst" -> "="
+  n1186 -> n1187 // "=" -> "."
+  n1187 -> n1188 // "." -> "this"
+  n1187 -> n1189 // "." -> "("
+  n1187 -> n1190 // "." -> "4"
+  n1186 -> n1191 // "=" -> "sig"
+  n1186 -> n1192 // "=" -> "SMA_DP2_M2C_N"
+  n1130 -> n1193 // "inst" -> "="
+  n1193 -> n1194 // "=" -> "gnd"
+  n1193 -> n1195 // "=" -> "<"
+  n1193 -> n1196 // "=" -> "gnd"
+  n1 -> n1197 // "design" -> "inst"
+  n1197 -> n1198 // "inst" -> ":"
+  n1198 -> n1199 // ":" -> "("
+  n1198 -> n1200 // ":" -> "1"
+  n1198 -> n1201 // ":" -> "4"
+  n1197 -> n1202 // "inst" -> "port3"
+  n1197 -> n1203 // "inst" -> "SMA_CON"
+  n1197 -> n1204 // "inst" -> "="
+  n1204 -> n1205 // "=" -> "."
+  n1205 -> n1206 // "." -> "this"
+  n1205 -> n1207 // "." -> "("
+  n1205 -> n1208 // "." -> "1"
+  n1204 -> n1209 // "=" -> "refDes"
+  n1204 -> n1210 // "=" -> "P22"
+  n1197 -> n1211 // "inst" -> "="
+  n1211 -> n1212 // "=" -> "."
+  n1212 -> n1213 // "." -> "this"
+  n1212 -> n1214 // "." -> "("
+  n1212 -> n1215 // "." -> "2"
+  n1211 -> n1216 // "=" -> "refDes"
+  n1211 -> n1217 // "=" -> "P21"
+  n1197 -> n1218 // "inst" -> "="
+  n1218 -> n1219 // "=" -> "."
+  n1219 -> n1220 // "." -> "this"
+  n1219 -> n1221 // "." -> "("
+  n1219 -> n1222 // "." -> "3"
+  n1218 -> n1223 // "=" -> "refDes"
+  n1218 -> n1224 // "=" -> "P23"
+  n1197 -> n1225 // "inst" -> "="
+  n1225 -> n1226 // "=" -> "."
+  n1226 -> n1227 // "." -> "this"
+  n1226 -> n1228 // "." -> "("
+  n1226 -> n1229 // "." -> "4"
+  n1225 -> n1230 // "=" -> "refDes"
+  n1225 -> n1231 // "=" -> "P24"
+  n1197 -> n1232 // "inst" -> "="
+  n1232 -> n1233 // "=" -> "."
+  n1233 -> n1234 // "." -> "this"
+  n1233 -> n1235 // "." -> "("
+  n1233 -> n1236 // "." -> "1"
+  n1232 -> n1237 // "=" -> "sig"
+  n1232 -> n1238 // "=" -> "DP3_C2M_P"
+  n1197 -> n1239 // "inst" -> "="
+  n1239 -> n1240 // "=" -> "."
+  n1240 -> n1241 // "." -> "this"
+  n1240 -> n1242 // "." -> "("
+  n1240 -> n1243 // "." -> "2"
+  n1239 -> n1244 // "=" -> "sig"
+  n1239 -> n1245 // "=" -> "DP3_C2M_N"
+  n1197 -> n1246 // "inst" -> "="
+  n1246 -> n1247 // "=" -> "."
+  n1247 -> n1248 // "." -> "this"
+  n1247 -> n1249 // "." -> "("
+  n1247 -> n1250 // "." -> "3"
+  n1246 -> n1251 // "=" -> "sig"
+  n1246 -> n1252 // "=" -> "SMA_DP3_M2C_P"
+  n1197 -> n1253 // "inst" -> "="
+  n1253 -> n1254 // "=" -> "."
+  n1254 -> n1255 // "." -> "this"
+  n1254 -> n1256 // "." -> "("
+  n1254 -> n1257 // "." -> "4"
+  n1253 -> n1258 // "=" -> "sig"
+  n1253 -> n1259 // "=" -> "SMA_DP3_M2C_N"
+  n1197 -> n1260 // "inst" -> "="
+  n1260 -> n1261 // "=" -> "gnd"
+  n1260 -> n1262 // "=" -> "<"
+  n1260 -> n1263 // "=" -> "gnd"
+  n1 -> n1264 // "design" -> "inst"
+  n1264 -> n1265 // "inst" -> ":"
+  n1265 -> n1266 // ":" -> "("
+  n1265 -> n1267 // ":" -> "1"
+  n1265 -> n1268 // ":" -> "4"
+  n1264 -> n1269 // "inst" -> "port4"
+  n1264 -> n1270 // "inst" -> "SMA_CON"
+  n1264 -> n1271 // "inst" -> "="
+  n1271 -> n1272 // "=" -> "."
+  n1272 -> n1273 // "." -> "this"
+  n1272 -> n1274 // "." -> "("
+  n1272 -> n1275 // "." -> "1"
+  n1271 -> n1276 // "=" -> "refDes"
+  n1271 -> n1277 // "=" -> "P3"
+  n1264 -> n1278 // "inst" -> "="
+  n1278 -> n1279 // "=" -> "."
+  n1279 -> n1280 // "." -> "this"
+  n1279 -> n1281 // "." -> "("
+  n1279 -> n1282 // "." -> "2"
+  n1278 -> n1283 // "=" -> "refDes"
+  n1278 -> n1284 // "=" -> "P4"
+  n1264 -> n1285 // "inst" -> "="
+  n1285 -> n1286 // "=" -> "."
+  n1286 -> n1287 // "." -> "this"
+  n1286 -> n1288 // "." -> "("
+  n1286 -> n1289 // "." -> "3"
+  n1285 -> n1290 // "=" -> "refDes"
+  n1285 -> n1291 // "=" -> "P2"
+  n1264 -> n1292 // "inst" -> "="
+  n1292 -> n1293 // "=" -> "."
+  n1293 -> n1294 // "." -> "this"
+  n1293 -> n1295 // "." -> "("
+  n1293 -> n1296 // "." -> "4"
+  n1292 -> n1297 // "=" -> "refDes"
+  n1292 -> n1298 // "=" -> "P1"
+  n1264 -> n1299 // "inst" -> "="
+  n1299 -> n1300 // "=" -> "."
+  n1300 -> n1301 // "." -> "this"
+  n1300 -> n1302 // "." -> "("
+  n1300 -> n1303 // "." -> "1"
+  n1299 -> n1304 // "=" -> "sig"
+  n1299 -> n1305 // "=" -> "DP4_C2M_P"
+  n1264 -> n1306 // "inst" -> "="
+  n1306 -> n1307 // "=" -> "."
+  n1307 -> n1308 // "." -> "this"
+  n1307 -> n1309 // "." -> "("
+  n1307 -> n1310 // "." -> "2"
+  n1306 -> n1311 // "=" -> "sig"
+  n1306 -> n1312 // "=" -> "DP4_C2M_N"
+  n1264 -> n1313 // "inst" -> "="
+  n1313 -> n1314 // "=" -> "."
+  n1314 -> n1315 // "." -> "this"
+  n1314 -> n1316 // "." -> "("
+  n1314 -> n1317 // "." -> "3"
+  n1313 -> n1318 // "=" -> "sig"
+  n1313 -> n1319 // "=" -> "SMA_DP4_M2C_P"
+  n1264 -> n1320 // "inst" -> "="
+  n1320 -> n1321 // "=" -> "."
+  n1321 -> n1322 // "." -> "this"
+  n1321 -> n1323 // "." -> "("
+  n1321 -> n1324 // "." -> "4"
+  n1320 -> n1325 // "=" -> "sig"
+  n1320 -> n1326 // "=" -> "SMA_DP4_M2C_N"
+  n1264 -> n1327 // "inst" -> "="
+  n1327 -> n1328 // "=" -> "gnd"
+  n1327 -> n1329 // "=" -> "<"
+  n1327 -> n1330 // "=" -> "gnd"
+  n1 -> n1331 // "design" -> "inst"
+  n1331 -> n1332 // "inst" -> ":"
+  n1332 -> n1333 // ":" -> "("
+  n1332 -> n1334 // ":" -> "1"
+  n1332 -> n1335 // ":" -> "4"
+  n1331 -> n1336 // "inst" -> "port5"
+  n1331 -> n1337 // "inst" -> "SMA_CON"
+  n1331 -> n1338 // "inst" -> "="
+  n1338 -> n1339 // "=" -> "."
+  n1339 -> n1340 // "." -> "this"
+  n1339 -> n1341 // "." -> "("
+  n1339 -> n1342 // "." -> "1"
+  n1338 -> n1343 // "=" -> "refDes"
+  n1338 -> n1344 // "=" -> "P6"
+  n1331 -> n1345 // "inst" -> "="
+  n1345 -> n1346 // "=" -> "."
+  n1346 -> n1347 // "." -> "this"
+  n1346 -> n1348 // "." -> "("
+  n1346 -> n1349 // "." -> "2"
+  n1345 -> n1350 // "=" -> "refDes"
+  n1345 -> n1351 // "=" -> "P5"
+  n1331 -> n1352 // "inst" -> "="
+  n1352 -> n1353 // "=" -> "."
+  n1353 -> n1354 // "." -> "this"
+  n1353 -> n1355 // "." -> "("
+  n1353 -> n1356 // "." -> "3"
+  n1352 -> n1357 // "=" -> "refDes"
+  n1352 -> n1358 // "=" -> "P7"
+  n1331 -> n1359 // "inst" -> "="
+  n1359 -> n1360 // "=" -> "."
+  n1360 -> n1361 // "." -> "this"
+  n1360 -> n1362 // "." -> "("
+  n1360 -> n1363 // "." -> "4"
+  n1359 -> n1364 // "=" -> "refDes"
+  n1359 -> n1365 // "=" -> "P8"
+  n1331 -> n1366 // "inst" -> "="
+  n1366 -> n1367 // "=" -> "."
+  n1367 -> n1368 // "." -> "this"
+  n1367 -> n1369 // "." -> "("
+  n1367 -> n1370 // "." -> "1"
+  n1366 -> n1371 // "=" -> "sig"
+  n1366 -> n1372 // "=" -> "DP5_C2M_P"
+  n1331 -> n1373 // "inst" -> "="
+  n1373 -> n1374 // "=" -> "."
+  n1374 -> n1375 // "." -> "this"
+  n1374 -> n1376 // "." -> "("
+  n1374 -> n1377 // "." -> "2"
+  n1373 -> n1378 // "=" -> "sig"
+  n1373 -> n1379 // "=" -> "DP5_C2M_N"
+  n1331 -> n1380 // "inst" -> "="
+  n1380 -> n1381 // "=" -> "."
+  n1381 -> n1382 // "." -> "this"
+  n1381 -> n1383 // "." -> "("
+  n1381 -> n1384 // "." -> "3"
+  n1380 -> n1385 // "=" -> "sig"
+  n1380 -> n1386 // "=" -> "SMA_DP5_M2C_P"
+  n1331 -> n1387 // "inst" -> "="
+  n1387 -> n1388 // "=" -> "."
+  n1388 -> n1389 // "." -> "this"
+  n1388 -> n1390 // "." -> "("
+  n1388 -> n1391 // "." -> "4"
+  n1387 -> n1392 // "=" -> "sig"
+  n1387 -> n1393 // "=" -> "SMA_DP5_M2C_N"
+  n1331 -> n1394 // "inst" -> "="
+  n1394 -> n1395 // "=" -> "gnd"
+  n1394 -> n1396 // "=" -> "<"
+  n1394 -> n1397 // "=" -> "gnd"
+  n1 -> n1398 // "design" -> "inst"
+  n1398 -> n1399 // "inst" -> ":"
+  n1399 -> n1400 // ":" -> "("
+  n1399 -> n1401 // ":" -> "1"
+  n1399 -> n1402 // ":" -> "12"
+  n1398 -> n1403 // "inst" -> "rx_coupling_caps"
+  n1398 -> n1404 // "inst" -> "cap_0402"
+  n1398 -> n1405 // "inst" -> "="
+  n1405 -> n1406 // "=" -> "value"
+  n1405 -> n1407 // "=" -> "1uF"
+  n1398 -> n1408 // "inst" -> "="
+  n1408 -> n1409 // "=" -> "."
+  n1409 -> n1410 // "." -> "this"
+  n1409 -> n1411 // "." -> "("
+  n1409 -> n1412 // "." -> "1"
+  n1408 -> n1413 // "=" -> "refDes"
+  n1408 -> n1414 // "=" -> "C9"
+  n1398 -> n1415 // "inst" -> "="
+  n1415 -> n1416 // "=" -> "."
+  n1416 -> n1417 // "." -> "this"
+  n1416 -> n1418 // "." -> "("
+  n1416 -> n1419 // "." -> "2"
+  n1415 -> n1420 // "=" -> "refDes"
+  n1415 -> n1421 // "=" -> "C10"
+  n1398 -> n1422 // "inst" -> "="
+  n1422 -> n1423 // "=" -> "."
+  n1423 -> n1424 // "." -> "this"
+  n1423 -> n1425 // "." -> "("
+  n1423 -> n1426 // "." -> "3"
+  n1422 -> n1427 // "=" -> "refDes"
+  n1422 -> n1428 // "=" -> "C11"
+  n1398 -> n1429 // "inst" -> "="
+  n1429 -> n1430 // "=" -> "."
+  n1430 -> n1431 // "." -> "this"
+  n1430 -> n1432 // "." -> "("
+  n1430 -> n1433 // "." -> "4"
+  n1429 -> n1434 // "=" -> "refDes"
+  n1429 -> n1435 // "=" -> "C12"
+  n1398 -> n1436 // "inst" -> "="
+  n1436 -> n1437 // "=" -> "."
+  n1437 -> n1438 // "." -> "this"
+  n1437 -> n1439 // "." -> "("
+  n1437 -> n1440 // "." -> "5"
+  n1436 -> n1441 // "=" -> "refDes"
+  n1436 -> n1442 // "=" -> "C14"
+  n1398 -> n1443 // "inst" -> "="
+  n1443 -> n1444 // "=" -> "."
+  n1444 -> n1445 // "." -> "this"
+  n1444 -> n1446 // "." -> "("
+  n1444 -> n1447 // "." -> "6"
+  n1443 -> n1448 // "=" -> "refDes"
+  n1443 -> n1449 // "=" -> "C13"
+  n1398 -> n1450 // "inst" -> "="
+  n1450 -> n1451 // "=" -> "."
+  n1451 -> n1452 // "." -> "this"
+  n1451 -> n1453 // "." -> "("
+  n1451 -> n1454 // "." -> "7"
+  n1450 -> n1455 // "=" -> "refDes"
+  n1450 -> n1456 // "=" -> "C15"
+  n1398 -> n1457 // "inst" -> "="
+  n1457 -> n1458 // "=" -> "."
+  n1458 -> n1459 // "." -> "this"
+  n1458 -> n1460 // "." -> "("
+  n1458 -> n1461 // "." -> "8"
+  n1457 -> n1462 // "=" -> "refDes"
+  n1457 -> n1463 // "=" -> "C4"
+  n1398 -> n1464 // "inst" -> "="
+  n1464 -> n1465 // "=" -> "."
+  n1465 -> n1466 // "." -> "this"
+  n1465 -> n1467 // "." -> "("
+  n1465 -> n1468 // "." -> "9"
+  n1464 -> n1469 // "=" -> "refDes"
+  n1464 -> n1470 // "=" -> "C6"
+  n1398 -> n1471 // "inst" -> "="
+  n1471 -> n1472 // "=" -> "."
+  n1472 -> n1473 // "." -> "this"
+  n1472 -> n1474 // "." -> "("
+  n1472 -> n1475 // "." -> "10"
+  n1471 -> n1476 // "=" -> "refDes"
+  n1471 -> n1477 // "=" -> "C5"
+  n1398 -> n1478 // "inst" -> "="
+  n1478 -> n1479 // "=" -> "."
+  n1479 -> n1480 // "." -> "this"
+  n1479 -> n1481 // "." -> "("
+  n1479 -> n1482 // "." -> "11"
+  n1478 -> n1483 // "=" -> "refDes"
+  n1478 -> n1484 // "=" -> "C7"
+  n1398 -> n1485 // "inst" -> "="
+  n1485 -> n1486 // "=" -> "."
+  n1486 -> n1487 // "." -> "this"
+  n1486 -> n1488 // "." -> "("
+  n1486 -> n1489 // "." -> "12"
+  n1485 -> n1490 // "=" -> "refDes"
+  n1485 -> n1491 // "=" -> "C8"
+  n1398 -> n1492 // "inst" -> "="
+  n1492 -> n1493 // "=" -> "."
+  n1493 -> n1494 // "." -> "this"
+  n1493 -> n1495 // "." -> "("
+  n1493 -> n1496 // "." -> "1"
+  n1492 -> n1497 // "=" -> "a"
+  n1492 -> n1498 // "=" -> "SMA_DPO_M2C_P"
+  n1398 -> n1499 // "inst" -> "="
+  n1499 -> n1500 // "=" -> "."
+  n1500 -> n1501 // "." -> "this"
+  n1500 -> n1502 // "." -> "("
+  n1500 -> n1503 // "." -> "2"
+  n1499 -> n1504 // "=" -> "a"
+  n1499 -> n1505 // "=" -> "SMA_DPO_M2C_N"
+  n1398 -> n1506 // "inst" -> "="
+  n1506 -> n1507 // "=" -> "."
+  n1507 -> n1508 // "." -> "this"
+  n1507 -> n1509 // "." -> "("
+  n1507 -> n1510 // "." -> "3"
+  n1506 -> n1511 // "=" -> "a"
+  n1506 -> n1512 // "=" -> "SMA_DP1_M2C_P"
+  n1398 -> n1513 // "inst" -> "="
+  n1513 -> n1514 // "=" -> "."
+  n1514 -> n1515 // "." -> "this"
+  n1514 -> n1516 // "." -> "("
+  n1514 -> n1517 // "." -> "4"
+  n1513 -> n1518 // "=" -> "a"
+  n1513 -> n1519 // "=" -> "SMA_DP1_M2C_N"
+  n1398 -> n1520 // "inst" -> "="
+  n1520 -> n1521 // "=" -> "."
+  n1521 -> n1522 // "." -> "this"
+  n1521 -> n1523 // "." -> "("
+  n1521 -> n1524 // "." -> "5"
+  n1520 -> n1525 // "=" -> "a"
+  n1520 -> n1526 // "=" -> "SMA_DP2_M2C_P"
+  n1398 -> n1527 // "inst" -> "="
+  n1527 -> n1528 // "=" -> "."
+  n1528 -> n1529 // "." -> "this"
+  n1528 -> n1530 // "." -> "("
+  n1528 -> n1531 // "." -> "6"
+  n1527 -> n1532 // "=" -> "a"
+  n1527 -> n1533 // "=" -> "SMA_DP2_M2C_N"
+  n1398 -> n1534 // "inst" -> "="
+  n1534 -> n1535 // "=" -> "."
+  n1535 -> n1536 // "." -> "this"
+  n1535 -> n1537 // "." -> "("
+  n1535 -> n1538 // "." -> "7"
+  n1534 -> n1539 // "=" -> "a"
+  n1534 -> n1540 // "=" -> "SMA_DP3_M2C_P"
+  n1398 -> n1541 // "inst" -> "="
+  n1541 -> n1542 // "=" -> "."
+  n1542 -> n1543 // "." -> "this"
+  n1542 -> n1544 // "." -> "("
+  n1542 -> n1545 // "." -> "8"
+  n1541 -> n1546 // "=" -> "a"
+  n1541 -> n1547 // "=" -> "SMA_DP3_M2C_N"
+  n1398 -> n1548 // "inst" -> "="
+  n1548 -> n1549 // "=" -> "."
+  n1549 -> n1550 // "." -> "this"
+  n1549 -> n1551 // "." -> "("
+  n1549 -> n1552 // "." -> "9"
+  n1548 -> n1553 // "=" -> "a"
+  n1548 -> n1554 // "=" -> "SMA_DP4_M2C_P"
+  n1398 -> n1555 // "inst" -> "="
+  n1555 -> n1556 // "=" -> "."
+  n1556 -> n1557 // "." -> "this"
+  n1556 -> n1558 // "." -> "("
+  n1556 -> n1559 // "." -> "10"
+  n1555 -> n1560 // "=" -> "a"
+  n1555 -> n1561 // "=" -> "SMA_DP4_M2C_N"
+  n1398 -> n1562 // "inst" -> "="
+  n1562 -> n1563 // "=" -> "."
+  n1563 -> n1564 // "." -> "this"
+  n1563 -> n1565 // "." -> "("
+  n1563 -> n1566 // "." -> "11"
+  n1562 -> n1567 // "=" -> "a"
+  n1562 -> n1568 // "=" -> "SMA_DP5_M2C_P"
+  n1398 -> n1569 // "inst" -> "="
+  n1569 -> n1570 // "=" -> "."
+  n1570 -> n1571 // "." -> "this"
+  n1570 -> n1572 // "." -> "("
+  n1570 -> n1573 // "." -> "12"
+  n1569 -> n1574 // "=" -> "a"
+  n1569 -> n1575 // "=" -> "SMA_DP5_M2C_N"
+  n1398 -> n1576 // "inst" -> "="
+  n1576 -> n1577 // "=" -> "."
+  n1577 -> n1578 // "." -> "this"
+  n1577 -> n1579 // "." -> "("
+  n1577 -> n1580 // "." -> "1"
+  n1576 -> n1581 // "=" -> "b"
+  n1576 -> n1582 // "=" -> "DP0_M2C_P"
+  n1398 -> n1583 // "inst" -> "="
+  n1583 -> n1584 // "=" -> "."
+  n1584 -> n1585 // "." -> "this"
+  n1584 -> n1586 // "." -> "("
+  n1584 -> n1587 // "." -> "2"
+  n1583 -> n1588 // "=" -> "b"
+  n1583 -> n1589 // "=" -> "DP0_M2C_N"
+  n1398 -> n1590 // "inst" -> "="
+  n1590 -> n1591 // "=" -> "."
+  n1591 -> n1592 // "." -> "this"
+  n1591 -> n1593 // "." -> "("
+  n1591 -> n1594 // "." -> "3"
+  n1590 -> n1595 // "=" -> "b"
+  n1590 -> n1596 // "=" -> "DP1_M2C_P"
+  n1398 -> n1597 // "inst" -> "="
+  n1597 -> n1598 // "=" -> "."
+  n1598 -> n1599 // "." -> "this"
+  n1598 -> n1600 // "." -> "("
+  n1598 -> n1601 // "." -> "4"
+  n1597 -> n1602 // "=" -> "b"
+  n1597 -> n1603 // "=" -> "DP1_M2C_N"
+  n1398 -> n1604 // "inst" -> "="
+  n1604 -> n1605 // "=" -> "."
+  n1605 -> n1606 // "." -> "this"
+  n1605 -> n1607 // "." -> "("
+  n1605 -> n1608 // "." -> "5"
+  n1604 -> n1609 // "=" -> "b"
+  n1604 -> n1610 // "=" -> "DP2_M2C_P"
+  n1398 -> n1611 // "inst" -> "="
+  n1611 -> n1612 // "=" -> "."
+  n1612 -> n1613 // "." -> "this"
+  n1612 -> n1614 // "." -> "("
+  n1612 -> n1615 // "." -> "6"
+  n1611 -> n1616 // "=" -> "b"
+  n1611 -> n1617 // "=" -> "DP2_M2C_N"
+  n1398 -> n1618 // "inst" -> "="
+  n1618 -> n1619 // "=" -> "."
+  n1619 -> n1620 // "." -> "this"
+  n1619 -> n1621 // "." -> "("
+  n1619 -> n1622 // "." -> "7"
+  n1618 -> n1623 // "=" -> "b"
+  n1618 -> n1624 // "=" -> "DP3_M2C_P"
+  n1398 -> n1625 // "inst" -> "="
+  n1625 -> n1626 // "=" -> "."
+  n1626 -> n1627 // "." -> "this"
+  n1626 -> n1628 // "." -> "("
+  n1626 -> n1629 // "." -> "8"
+  n1625 -> n1630 // "=" -> "b"
+  n1625 -> n1631 // "=" -> "DP3_M2C_N"
+  n1398 -> n1632 // "inst" -> "="
+  n1632 -> n1633 // "=" -> "."
+  n1633 -> n1634 // "." -> "this"
+  n1633 -> n1635 // "." -> "("
+  n1633 -> n1636 // "." -> "9"
+  n1632 -> n1637 // "=" -> "b"
+  n1632 -> n1638 // "=" -> "DP4_M2C_P"
+  n1398 -> n1639 // "inst" -> "="
+  n1639 -> n1640 // "=" -> "."
+  n1640 -> n1641 // "." -> "this"
+  n1640 -> n1642 // "." -> "("
+  n1640 -> n1643 // "." -> "10"
+  n1639 -> n1644 // "=" -> "b"
+  n1639 -> n1645 // "=" -> "DP4_M2C_N"
+  n1398 -> n1646 // "inst" -> "="
+  n1646 -> n1647 // "=" -> "."
+  n1647 -> n1648 // "." -> "this"
+  n1647 -> n1649 // "." -> "("
+  n1647 -> n1650 // "." -> "11"
+  n1646 -> n1651 // "=" -> "b"
+  n1646 -> n1652 // "=" -> "DP5_M2C_P"
+  n1398 -> n1653 // "inst" -> "="
+  n1653 -> n1654 // "=" -> "."
+  n1654 -> n1655 // "." -> "this"
+  n1654 -> n1656 // "." -> "("
+  n1654 -> n1657 // "." -> "12"
+  n1653 -> n1658 // "=" -> "b"
+  n1653 -> n1659 // "=" -> "DP5_M2C_N"
+  n1 -> n1660 // "design" -> "inst"
+  n1660 -> n1661 // "inst" -> ":"
+  n1661 -> n1662 // ":" -> "("
+  n1661 -> n1663 // ":" -> "1"
+  n1661 -> n1664 // ":" -> "2"
+  n1660 -> n1665 // "inst" -> "diff_clk_input"
+  n1660 -> n1666 // "inst" -> "SMA_CON"
+  n1660 -> n1667 // "inst" -> "="
+  n1667 -> n1668 // "=" -> "."
+  n1668 -> n1669 // "." -> "this"
+  n1668 -> n1670 // "." -> "("
+  n1668 -> n1671 // "." -> "1"
+  n1667 -> n1672 // "=" -> "refDes"
+  n1667 -> n1673 // "=" -> "P30"
+  n1660 -> n1674 // "inst" -> "="
+  n1674 -> n1675 // "=" -> "."
+  n1675 -> n1676 // "." -> "this"
+  n1675 -> n1677 // "." -> "("
+  n1675 -> n1678 // "." -> "2"
+  n1674 -> n1679 // "=" -> "refDes"
+  n1674 -> n1680 // "=" -> "P26"
+  n1660 -> n1681 // "inst" -> "="
+  n1681 -> n1682 // "=" -> "."
+  n1682 -> n1683 // "." -> "this"
+  n1682 -> n1684 // "." -> "("
+  n1682 -> n1685 // "." -> "1"
+  n1681 -> n1686 // "=" -> "sig"
+  n1681 -> n1687 // "=" -> "CLK250P"
+  n1660 -> n1688 // "inst" -> "="
+  n1688 -> n1689 // "=" -> "."
+  n1689 -> n1690 // "." -> "this"
+  n1689 -> n1691 // "." -> "("
+  n1689 -> n1692 // "." -> "2"
+  n1688 -> n1693 // "=" -> "sig"
+  n1688 -> n1694 // "=" -> "CLK250N"
+  n1660 -> n1695 // "inst" -> "="
+  n1695 -> n1696 // "=" -> "gnd"
+  n1695 -> n1697 // "=" -> "<"
+  n1695 -> n1698 // "=" -> "DIFF_CLK_RTN"
+  n1 -> n1699 // "design" -> "inst"
+  n1699 -> n1700 // "inst" -> "single_e...lk_input"
+  n1699 -> n1701 // "inst" -> "SMA_CON"
+  n1699 -> n1702 // "inst" -> "="
+  n1702 -> n1703 // "=" -> "refDes"
+  n1702 -> n1704 // "=" -> "P25"
+  n1699 -> n1705 // "inst" -> "="
+  n1705 -> n1706 // "=" -> "sig"
+  n1705 -> n1707 // "=" -> "CLK250"
+  n1699 -> n1708 // "inst" -> "="
+  n1708 -> n1709 // "=" -> "gnd"
+  n1708 -> n1710 // "=" -> "<"
+  n1708 -> n1711 // "=" -> "SINGLE_CLK_RTN"
+  n1 -> n1712 // "design" -> "inst"
+  n1712 -> n1713 // "inst" -> "diff_iso_transformer"
+  n1712 -> n1714 // "inst" -> "TC4-14+"
+  n1712 -> n1715 // "inst" -> "="
+  n1715 -> n1716 // "=" -> "refDes"
+  n1715 -> n1717 // "=" -> "T2"
+  n1712 -> n1718 // "inst" -> "="
+  n1718 -> n1719 // "=" -> "pri_p"
+  n1718 -> n1720 // "=" -> "CLK250P"
+  n1712 -> n1721 // "inst" -> "="
+  n1721 -> n1722 // "=" -> "pri_n"
+  n1721 -> n1723 // "=" -> "CLK250N"
+  n1712 -> n1724 // "inst" -> "="
+  n1724 -> n1725 // "=" -> "sec_p"
+  n1724 -> n1726 // "=" -> "$3N212"
+  n1712 -> n1727 // "inst" -> "="
+  n1727 -> n1728 // "=" -> "sec_tap"
+  n1727 -> n1729 // "=" -> "$3N205"
+  n1712 -> n1730 // "inst" -> "="
+  n1730 -> n1731 // "=" -> "sec_n"
+  n1730 -> n1732 // "=" -> "$3N213"
+  n1 -> n1733 // "design" -> "inst"
+  n1733 -> n1734 // "inst" -> "single_i...nsformer"
+  n1733 -> n1735 // "inst" -> "TC4-14+"
+  n1733 -> n1736 // "inst" -> "="
+  n1736 -> n1737 // "=" -> "refDes"
+  n1736 -> n1738 // "=" -> "T1"
+  n1733 -> n1739 // "inst" -> "="
+  n1739 -> n1740 // "=" -> "pri_p"
+  n1739 -> n1741 // "=" -> "SINGLE_CLK_RTN"
+  n1733 -> n1742 // "inst" -> "="
+  n1742 -> n1743 // "=" -> "pri_n"
+  n1742 -> n1744 // "=" -> "CLK250"
+  n1733 -> n1745 // "inst" -> "="
+  n1745 -> n1746 // "=" -> "sec_p"
+  n1745 -> n1747 // "=" -> "$3N195"
+  n1733 -> n1748 // "inst" -> "="
+  n1748 -> n1749 // "=" -> "sec_tap"
+  n1748 -> n1750 // "=" -> "$3N1"
+  n1733 -> n1751 // "inst" -> "="
+  n1751 -> n1752 // "=" -> "sec_n"
+  n1751 -> n1753 // "=" -> "$3N193"
+  n1 -> n1754 // "design" -> "inst"
+  n1754 -> n1755 // "inst" -> ":"
+  n1755 -> n1756 // ":" -> "("
+  n1755 -> n1757 // ":" -> "1"
+  n1755 -> n1758 // ":" -> "10"
+  n1754 -> n1759 // "inst" -> "clk_biasing_network"
+  n1754 -> n1760 // "inst" -> "res_0603"
+  n1754 -> n1761 // "inst" -> "="
+  n1761 -> n1762 // "=" -> "."
+  n1762 -> n1763 // "." -> "this"
+  n1762 -> n1764 // "." -> ":"
+  n1764 -> n1765 // ":" -> "("
+  n1764 -> n1766 // ":" -> "1"
+  n1764 -> n1767 // ":" -> "2"
+  n1761 -> n1768 // "=" -> "value"
+  n1761 -> n1769 // "=" -> "100"
+  n1754 -> n1770 // "inst" -> "="
+  n1770 -> n1771 // "=" -> "."
+  n1771 -> n1772 // "." -> "this"
+  n1771 -> n1773 // "." -> ":"
+  n1773 -> n1774 // ":" -> "("
+  n1773 -> n1775 // ":" -> "3"
+  n1773 -> n1776 // ":" -> "4"
+  n1770 -> n1777 // "=" -> "value"
+  n1770 -> n1778 // "=" -> "49.9"
+  n1754 -> n1779 // "inst" -> "="
+  n1779 -> n1780 // "=" -> "."
+  n1780 -> n1781 // "." -> "this"
+  n1780 -> n1782 // "." -> ":"
+  n1782 -> n1783 // ":" -> "("
+  n1782 -> n1784 // ":" -> "5"
+  n1782 -> n1785 // ":" -> "8"
+  n1779 -> n1786 // "=" -> "value"
+  n1779 -> n1787 // "=" -> "150"
+  n1754 -> n1788 // "inst" -> "="
+  n1788 -> n1789 // "=" -> "."
+  n1789 -> n1790 // "." -> "this"
+  n1789 -> n1791 // "." -> "("
+  n1789 -> n1792 // "." -> "9"
+  n1788 -> n1793 // "=" -> "value"
+  n1788 -> n1794 // "=" -> "200"
+  n1754 -> n1795 // "inst" -> "="
+  n1795 -> n1796 // "=" -> "."
+  n1796 -> n1797 // "." -> "this"
+  n1796 -> n1798 // "." -> "("
+  n1796 -> n1799 // "." -> "10"
+  n1795 -> n1800 // "=" -> "value"
+  n1795 -> n1801 // "=" -> "100"
+  n1754 -> n1802 // "inst" -> "="
+  n1802 -> n1803 // "=" -> "."
+  n1803 -> n1804 // "." -> "this"
+  n1803 -> n1805 // "." -> "("
+  n1803 -> n1806 // "." -> "1"
+  n1802 -> n1807 // "=" -> "refDes"
+  n1802 -> n1808 // "=" -> "R10"
+  n1754 -> n1809 // "inst" -> "="
+  n1809 -> n1810 // "=" -> "."
+  n1810 -> n1811 // "." -> "this"
+  n1810 -> n1812 // "." -> "("
+  n1810 -> n1813 // "." -> "2"
+  n1809 -> n1814 // "=" -> "refDes"
+  n1809 -> n1815 // "=" -> "R12"
+  n1754 -> n1816 // "inst" -> "="
+  n1816 -> n1817 // "=" -> "."
+  n1817 -> n1818 // "." -> "this"
+  n1817 -> n1819 // "." -> "("
+  n1817 -> n1820 // "." -> "3"
+  n1816 -> n1821 // "=" -> "refDes"
+  n1816 -> n1822 // "=" -> "R3"
+  n1754 -> n1823 // "inst" -> "="
+  n1823 -> n1824 // "=" -> "."
+  n1824 -> n1825 // "." -> "this"
+  n1824 -> n1826 // "." -> "("
+  n1824 -> n1827 // "." -> "4"
+  n1823 -> n1828 // "=" -> "refDes"
+  n1823 -> n1829 // "=" -> "R7"
+  n1754 -> n1830 // "inst" -> "="
+  n1830 -> n1831 // "=" -> "."
+  n1831 -> n1832 // "." -> "this"
+  n1831 -> n1833 // "." -> "("
+  n1831 -> n1834 // "." -> "5"
+  n1830 -> n1835 // "=" -> "refDes"
+  n1830 -> n1836 // "=" -> "R11"
+  n1754 -> n1837 // "inst" -> "="
+  n1837 -> n1838 // "=" -> "."
+  n1838 -> n1839 // "." -> "this"
+  n1838 -> n1840 // "." -> "("
+  n1838 -> n1841 // "." -> "6"
+  n1837 -> n1842 // "=" -> "refDes"
+  n1837 -> n1843 // "=" -> "R15"
+  n1754 -> n1844 // "inst" -> "="
+  n1844 -> n1845 // "=" -> "."
+  n1845 -> n1846 // "." -> "this"
+  n1845 -> n1847 // "." -> "("
+  n1845 -> n1848 // "." -> "7"
+  n1844 -> n1849 // "=" -> "refDes"
+  n1844 -> n1850 // "=" -> "R13"
+  n1754 -> n1851 // "inst" -> "="
+  n1851 -> n1852 // "=" -> "."
+  n1852 -> n1853 // "." -> "this"
+  n1852 -> n1854 // "." -> "("
+  n1852 -> n1855 // "." -> "8"
+  n1851 -> n1856 // "=" -> "refDes"
+  n1851 -> n1857 // "=" -> "R14"
+  n1754 -> n1858 // "inst" -> "="
+  n1858 -> n1859 // "=" -> "."
+  n1859 -> n1860 // "." -> "this"
+  n1859 -> n1861 // "." -> "("
+  n1859 -> n1862 // "." -> "9"
+  n1858 -> n1863 // "=" -> "refDes"
+  n1858 -> n1864 // "=" -> "R8"
+  n1754 -> n1865 // "inst" -> "="
+  n1865 -> n1866 // "=" -> "."
+  n1866 -> n1867 // "." -> "this"
+  n1866 -> n1868 // "." -> "("
+  n1866 -> n1869 // "." -> "10"
+  n1865 -> n1870 // "=" -> "refDes"
+  n1865 -> n1871 // "=" -> "R4"
+  n1754 -> n1872 // "inst" -> "="
+  n1872 -> n1873 // "=" -> "."
+  n1873 -> n1874 // "." -> "this"
+  n1873 -> n1875 // "." -> "("
+  n1873 -> n1876 // "." -> "1"
+  n1872 -> n1877 // "=" -> "a"
+  n1872 -> n1878 // "=" -> "CLK250N_BAL"
+  n1754 -> n1879 // "inst" -> "="
+  n1879 -> n1880 // "=" -> "."
+  n1880 -> n1881 // "." -> "this"
+  n1880 -> n1882 // "." -> "("
+  n1880 -> n1883 // "." -> "1"
+  n1879 -> n1884 // "=" -> "b"
+  n1879 -> n1885 // "=" -> "$3N212"
+  n1754 -> n1886 // "inst" -> "="
+  n1886 -> n1887 // "=" -> "."
+  n1887 -> n1888 // "." -> "this"
+  n1887 -> n1889 // "." -> "("
+  n1887 -> n1890 // "." -> "2"
+  n1886 -> n1891 // "=" -> "a"
+  n1886 -> n1892 // "=" -> "CLK250P_BAL"
+  n1754 -> n1893 // "inst" -> "="
+  n1893 -> n1894 // "=" -> "."
+  n1894 -> n1895 // "." -> "this"
+  n1894 -> n1896 // "." -> "("
+  n1894 -> n1897 // "." -> "2"
+  n1893 -> n1898 // "=" -> "b"
+  n1893 -> n1899 // "=" -> "$3N213"
+  n1754 -> n1900 // "inst" -> "="
+  n1900 -> n1901 // "=" -> "."
+  n1901 -> n1902 // "." -> "this"
+  n1901 -> n1903 // "." -> "("
+  n1901 -> n1904 // "." -> "3"
+  n1900 -> n1905 // "=" -> "a"
+  n1900 -> n1906 // "=" -> "CLK250_BAL_N"
+  n1754 -> n1907 // "inst" -> "="
+  n1907 -> n1908 // "=" -> "."
+  n1908 -> n1909 // "." -> "this"
+  n1908 -> n1910 // "." -> "("
+  n1908 -> n1911 // "." -> "3"
+  n1907 -> n1912 // "=" -> "b"
+  n1907 -> n1913 // "=" -> "$3N193"
+  n1754 -> n1914 // "inst" -> "="
+  n1914 -> n1915 // "=" -> "."
+  n1915 -> n1916 // "." -> "this"
+  n1915 -> n1917 // "." -> "("
+  n1915 -> n1918 // "." -> "4"
+  n1914 -> n1919 // "=" -> "a"
+  n1914 -> n1920 // "=" -> "CLK250_BAL_P"
+  n1754 -> n1921 // "inst" -> "="
+  n1921 -> n1922 // "=" -> "."
+  n1922 -> n1923 // "." -> "this"
+  n1922 -> n1924 // "." -> "("
+  n1922 -> n1925 // "." -> "4"
+  n1921 -> n1926 // "=" -> "b"
+  n1921 -> n1927 // "=" -> "$3N195"
+  n1754 -> n1928 // "inst" -> "="
+  n1928 -> n1929 // "=" -> "."
+  n1929 -> n1930 // "." -> "this"
+  n1929 -> n1931 // "." -> ":"
+  n1931 -> n1932 // ":" -> "("
+  n1931 -> n1933 // ":" -> "5"
+  n1931 -> n1934 // ":" -> "6"
+  n1928 -> n1935 // "=" -> "a"
+  n1928 -> n1936 // "=" -> "+3V3"
+  n1754 -> n1937 // "inst" -> "="
+  n1937 -> n1938 // "=" -> "."
+  n1938 -> n1939 // "." -> "this"
+  n1938 -> n1940 // "." -> "("
+  n1938 -> n1941 // "." -> "5"
+  n1937 -> n1942 // "=" -> "b"
+  n1937 -> n1943 // "=" -> "$3N205"
+  n1754 -> n1944 // "inst" -> "="
+  n1944 -> n1945 // "=" -> "."
+  n1945 -> n1946 // "." -> "this"
+  n1945 -> n1947 // "." -> "("
+  n1945 -> n1948 // "." -> "6"
+  n1944 -> n1949 // "=" -> "b"
+  n1944 -> n1950 // "=" -> "$3N1"
+  n1754 -> n1951 // "inst" -> "="
+  n1951 -> n1952 // "=" -> "."
+  n1952 -> n1953 // "." -> "this"
+  n1952 -> n1954 // "." -> "("
+  n1952 -> n1955 // "." -> "7"
+  n1951 -> n1956 // "=" -> "a"
+  n1951 -> n1957 // "=" -> "$3N205"
+  n1754 -> n1958 // "inst" -> "="
+  n1958 -> n1959 // "=" -> "."
+  n1959 -> n1960 // "." -> "this"
+  n1959 -> n1961 // "." -> "("
+  n1959 -> n1962 // "." -> "8"
+  n1958 -> n1963 // "=" -> "a"
+  n1958 -> n1964 // "=" -> "$3N1"
+  n1754 -> n1965 // "inst" -> "="
+  n1965 -> n1966 // "=" -> "."
+  n1966 -> n1967 // "." -> "this"
+  n1966 -> n1968 // "." -> ":"
+  n1968 -> n1969 // ":" -> "("
+  n1968 -> n1970 // ":" -> "7"
+  n1968 -> n1971 // ":" -> "8"
+  n1965 -> n1972 // "=" -> "b"
+  n1965 -> n1973 // "=" -> "gnd"
+  n1754 -> n1974 // "inst" -> "="
+  n1974 -> n1975 // "=" -> "."
+  n1975 -> n1976 // "." -> "this"
+  n1975 -> n1977 // "." -> "("
+  n1975 -> n1978 // "." -> "9"
+  n1974 -> n1979 // "=" -> "a"
+  n1974 -> n1980 // "=" -> "CLK250N_BAL"
+  n1754 -> n1981 // "inst" -> "="
+  n1981 -> n1982 // "=" -> "."
+  n1982 -> n1983 // "." -> "this"
+  n1982 -> n1984 // "." -> "("
+  n1982 -> n1985 // "." -> "9"
+  n1981 -> n1986 // "=" -> "b"
+  n1981 -> n1987 // "=" -> "CLK250P_BAL"
+  n1754 -> n1988 // "inst" -> "="
+  n1988 -> n1989 // "=" -> "."
+  n1989 -> n1990 // "." -> "this"
+  n1989 -> n1991 // "." -> "("
+  n1989 -> n1992 // "." -> "10"
+  n1988 -> n1993 // "=" -> "a"
+  n1988 -> n1994 // "=" -> "CLK250_BAL_N"
+  n1754 -> n1995 // "inst" -> "="
+  n1995 -> n1996 // "=" -> "."
+  n1996 -> n1997 // "." -> "this"
+  n1996 -> n1998 // "." -> "("
+  n1996 -> n1999 // "." -> "10"
+  n1995 -> n2000 // "=" -> "b"
+  n1995 -> n2001 // "=" -> "CLK250_BAL_P"
+  n1 -> n2002 // "design" -> "inst"
+  n2002 -> n2003 // "inst" -> ":"
+  n2003 -> n2004 // ":" -> "("
+  n2003 -> n2005 // ":" -> "1"
+  n2003 -> n2006 // ":" -> "10"
+  n2002 -> n2007 // "inst" -> "decoupling_caps"
+  n2002 -> n2008 // "inst" -> "tant_cap"
+  n2002 -> n2009 // "inst" -> "="
+  n2009 -> n2010 // "=" -> "."
+  n2010 -> n2011 // "." -> "this"
+  n2010 -> n2012 // "." -> ":"
+  n2012 -> n2013 // ":" -> "("
+  n2012 -> n2014 // ":" -> "1"
+  n2012 -> n2015 // ":" -> "3"
+  n2009 -> n2016 // "=" -> "value"
+  n2009 -> n2017 // "=" -> "220uF"
+  n2002 -> n2018 // "inst" -> "="
+  n2018 -> n2019 // "=" -> "."
+  n2019 -> n2020 // "." -> "this"
+  n2019 -> n2021 // "." -> ":"
+  n2021 -> n2022 // ":" -> "("
+  n2021 -> n2023 // ":" -> "4"
+  n2021 -> n2024 // ":" -> "10"
+  n2018 -> n2025 // "=" -> "value"
+  n2018 -> n2026 // "=" -> "0.1uF"
+  n2002 -> n2027 // "inst" -> "="
+  n2027 -> n2028 // "=" -> "."
+  n2028 -> n2029 // "." -> "this"
+  n2028 -> n2030 // "." -> "("
+  n2028 -> n2031 // "." -> "1"
+  n2027 -> n2032 // "=" -> "refDes"
+  n2027 -> n2033 // "=" -> "C24"
+  n2002 -> n2034 // "inst" -> "="
+  n2034 -> n2035 // "=" -> "."
+  n2035 -> n2036 // "." -> "this"
+  n2035 -> n2037 // "." -> "("
+  n2035 -> n2038 // "." -> "2"
+  n2034 -> n2039 // "=" -> "refDes"
+  n2034 -> n2040 // "=" -> "C25"
+  n2002 -> n2041 // "inst" -> "="
+  n2041 -> n2042 // "=" -> "."
+  n2042 -> n2043 // "." -> "this"
+  n2042 -> n2044 // "." -> "("
+  n2042 -> n2045 // "." -> "3"
+  n2041 -> n2046 // "=" -> "refDes"
+  n2041 -> n2047 // "=" -> "C26"
+  n2002 -> n2048 // "inst" -> "="
+  n2048 -> n2049 // "=" -> "."
+  n2049 -> n2050 // "." -> "this"
+  n2049 -> n2051 // "." -> "("
+  n2049 -> n2052 // "." -> "4"
+  n2048 -> n2053 // "=" -> "refDes"
+  n2048 -> n2054 // "=" -> "C20"
+  n2002 -> n2055 // "inst" -> "="
+  n2055 -> n2056 // "=" -> "."
+  n2056 -> n2057 // "." -> "this"
+  n2056 -> n2058 // "." -> "("
+  n2056 -> n2059 // "." -> "5"
+  n2055 -> n2060 // "=" -> "refDes"
+  n2055 -> n2061 // "=" -> "C21"
+  n2002 -> n2062 // "inst" -> "="
+  n2062 -> n2063 // "=" -> "."
+  n2063 -> n2064 // "." -> "this"
+  n2063 -> n2065 // "." -> "("
+  n2063 -> n2066 // "." -> "6"
+  n2062 -> n2067 // "=" -> "refDes"
+  n2062 -> n2068 // "=" -> "C22"
+  n2002 -> n2069 // "inst" -> "="
+  n2069 -> n2070 // "=" -> "."
+  n2070 -> n2071 // "." -> "this"
+  n2070 -> n2072 // "." -> "("
+  n2070 -> n2073 // "." -> "7"
+  n2069 -> n2074 // "=" -> "refDes"
+  n2069 -> n2075 // "=" -> "C23"
+  n2002 -> n2076 // "inst" -> "="
+  n2076 -> n2077 // "=" -> "."
+  n2077 -> n2078 // "." -> "this"
+  n2077 -> n2079 // "." -> "("
+  n2077 -> n2080 // "." -> "8"
+  n2076 -> n2081 // "=" -> "refDes"
+  n2076 -> n2082 // "=" -> "C1"
+  n2002 -> n2083 // "inst" -> "="
+  n2083 -> n2084 // "=" -> "."
+  n2084 -> n2085 // "." -> "this"
+  n2084 -> n2086 // "." -> "("
+  n2084 -> n2087 // "." -> "9"
+  n2083 -> n2088 // "=" -> "refDes"
+  n2083 -> n2089 // "=" -> "C2"
+  n2002 -> n2090 // "inst" -> "="
+  n2090 -> n2091 // "=" -> "."
+  n2091 -> n2092 // "." -> "this"
+  n2091 -> n2093 // "." -> "("
+  n2091 -> n2094 // "." -> "10"
+  n2090 -> n2095 // "=" -> "refDes"
+  n2090 -> n2096 // "=" -> "C3"
+  n2002 -> n2097 // "inst" -> "="
+  n2097 -> n2098 // "=" -> "pos"
+  n2097 -> n2099 // "=" -> "<"
+  n2097 -> n2100 // "=" -> "+3V3"
+  n2002 -> n2101 // "inst" -> "="
+  n2101 -> n2102 // "=" -> "neg"
+  n2101 -> n2103 // "=" -> "<"
+  n2101 -> n2104 // "=" -> "gnd"
+  n1 -> n2105 // "design" -> "inst"
+  n2105 -> n2106 // "inst" -> "clock_buffer"
+  n2105 -> n2107 // "inst" -> "sy898533"
+  n2105 -> n2108 // "inst" -> "="
+  n2108 -> n2109 // "=" -> "refDes"
+  n2108 -> n2110 // "=" -> "U1"
+  n2105 -> n2111 // "inst" -> "="
+  n2111 -> n2112 // "=" -> "vcc"
+  n2111 -> n2113 // "=" -> "<"
+  n2111 -> n2114 // "=" -> "+3V3"
+  n2105 -> n2115 // "inst" -> "="
+  n2115 -> n2116 // "=" -> "clk_p"
+  n2115 -> n2117 // "=" -> "CLK250P_BAL"
+  n2105 -> n2118 // "inst" -> "="
+  n2118 -> n2119 // "=" -> "clk_n"
+  n2118 -> n2120 // "=" -> "CLK250N_BAL"
+  n2105 -> n2121 // "inst" -> "="
+  n2121 -> n2122 // "=" -> "pclk_p"
+  n2121 -> n2123 // "=" -> "CLK250_BAL_P"
+  n2105 -> n2124 // "inst" -> "="
+  n2124 -> n2125 // "=" -> "pclk_n"
+  n2124 -> n2126 // "=" -> "CLK250_BAL_N"
+  n2105 -> n2127 // "inst" -> "="
+  n2127 -> n2128 // "=" -> "clk_en"
+  n2127 -> n2129 // "=" -> "+3V3"
+  n2105 -> n2130 // "inst" -> "="
+  n2130 -> n2131 // "=" -> "clk_sel"
+  n2130 -> n2132 // "=" -> "$3N222"
+  n2105 -> n2133 // "inst" -> "="
+  n2133 -> n2134 // "=" -> "nc"
+  n2133 -> n2135 // "=" -> "open"
+  n2105 -> n2136 // "inst" -> "="
+  n2136 -> n2137 // "=" -> "q0_p"
+  n2136 -> n2138 // "=" -> "$3N42"
+  n2105 -> n2139 // "inst" -> "="
+  n2139 -> n2140 // "=" -> "q0_n"
+  n2139 -> n2141 // "=" -> "$3N44"
+  n2105 -> n2142 // "inst" -> "="
+  n2142 -> n2143 // "=" -> "q1_p"
+  n2142 -> n2144 // "=" -> "$3N163"
+  n2105 -> n2145 // "inst" -> "="
+  n2145 -> n2146 // "=" -> "q1_n"
+  n2145 -> n2147 // "=" -> "$3N164"
+  n2105 -> n2148 // "inst" -> "="
+  n2148 -> n2149 // "=" -> "q2_p"
+  n2148 -> n2150 // "=" -> "open"
+  n2105 -> n2151 // "inst" -> "="
+  n2151 -> n2152 // "=" -> "q2_n"
+  n2151 -> n2153 // "=" -> "open"
+  n2105 -> n2154 // "inst" -> "="
+  n2154 -> n2155 // "=" -> "q3_p"
+  n2154 -> n2156 // "=" -> "open"
+  n2105 -> n2157 // "inst" -> "="
+  n2157 -> n2158 // "=" -> "q3_n"
+  n2157 -> n2159 // "=" -> "open"
+  n2105 -> n2160 // "inst" -> "="
+  n2160 -> n2161 // "=" -> "vee"
+  n2160 -> n2162 // "=" -> "gnd"
+  n1 -> n2163 // "design" -> "inst"
+  n2163 -> n2164 // "inst" -> ":"
+  n2164 -> n2165 // ":" -> "("
+  n2164 -> n2166 // ":" -> "1"
+  n2164 -> n2167 // ":" -> "4"
+  n2163 -> n2168 // "inst" -> "clk_buffer_iso_caps"
+  n2163 -> n2169 // "inst" -> "cap_0402"
+  n2163 -> n2170 // "inst" -> "="
+  n2170 -> n2171 // "=" -> "value"
+  n2170 -> n2172 // "=" -> "1uF"
+  n2163 -> n2173 // "inst" -> "="
+  n2173 -> n2174 // "=" -> "."
+  n2174 -> n2175 // "." -> "this"
+  n2174 -> n2176 // "." -> "("
+  n2174 -> n2177 // "." -> "1"
+  n2173 -> n2178 // "=" -> "refDes"
+  n2173 -> n2179 // "=" -> "C19"
+  n2163 -> n2180 // "inst" -> "="
+  n2180 -> n2181 // "=" -> "."
+  n2181 -> n2182 // "." -> "this"
+  n2181 -> n2183 // "." -> "("
+  n2181 -> n2184 // "." -> "2"
+  n2180 -> n2185 // "=" -> "refDes"
+  n2180 -> n2186 // "=" -> "C18"
+  n2163 -> n2187 // "inst" -> "="
+  n2187 -> n2188 // "=" -> "."
+  n2188 -> n2189 // "." -> "this"
+  n2188 -> n2190 // "." -> "("
+  n2188 -> n2191 // "." -> "3"
+  n2187 -> n2192 // "=" -> "refDes"
+  n2187 -> n2193 // "=" -> "C17"
+  n2163 -> n2194 // "inst" -> "="
+  n2194 -> n2195 // "=" -> "."
+  n2195 -> n2196 // "." -> "this"
+  n2195 -> n2197 // "." -> "("
+  n2195 -> n2198 // "." -> "4"
+  n2194 -> n2199 // "=" -> "refDes"
+  n2194 -> n2200 // "=" -> "C16"
+  n2163 -> n2201 // "inst" -> "="
+  n2201 -> n2202 // "=" -> "."
+  n2202 -> n2203 // "." -> "this"
+  n2202 -> n2204 // "." -> "("
+  n2202 -> n2205 // "." -> "1"
+  n2201 -> n2206 // "=" -> "a"
+  n2201 -> n2207 // "=" -> "$3N42"
+  n2163 -> n2208 // "inst" -> "="
+  n2208 -> n2209 // "=" -> "."
+  n2209 -> n2210 // "." -> "this"
+  n2209 -> n2211 // "." -> "("
+  n2209 -> n2212 // "." -> "2"
+  n2208 -> n2213 // "=" -> "a"
+  n2208 -> n2214 // "=" -> "$3N44"
+  n2163 -> n2215 // "inst" -> "="
+  n2215 -> n2216 // "=" -> "."
+  n2216 -> n2217 // "." -> "this"
+  n2216 -> n2218 // "." -> "("
+  n2216 -> n2219 // "." -> "3"
+  n2215 -> n2220 // "=" -> "a"
+  n2215 -> n2221 // "=" -> "$3N163"
+  n2163 -> n2222 // "inst" -> "="
+  n2222 -> n2223 // "=" -> "."
+  n2223 -> n2224 // "." -> "this"
+  n2223 -> n2225 // "." -> "("
+  n2223 -> n2226 // "." -> "4"
+  n2222 -> n2227 // "=" -> "a"
+  n2222 -> n2228 // "=" -> "$3N164"
+  n2163 -> n2229 // "inst" -> "="
+  n2229 -> n2230 // "=" -> "."
+  n2230 -> n2231 // "." -> "this"
+  n2230 -> n2232 // "." -> "("
+  n2230 -> n2233 // "." -> "1"
+  n2229 -> n2234 // "=" -> "b"
+  n2229 -> n2235 // "=" -> "GBTCLK0_M2C_P"
+  n2163 -> n2236 // "inst" -> "="
+  n2236 -> n2237 // "=" -> "."
+  n2237 -> n2238 // "." -> "this"
+  n2237 -> n2239 // "." -> "("
+  n2237 -> n2240 // "." -> "2"
+  n2236 -> n2241 // "=" -> "b"
+  n2236 -> n2242 // "=" -> "GBTCLK0_M2C_N"
+  n2163 -> n2243 // "inst" -> "="
+  n2243 -> n2244 // "=" -> "."
+  n2244 -> n2245 // "." -> "this"
+  n2244 -> n2246 // "." -> "("
+  n2244 -> n2247 // "." -> "3"
+  n2243 -> n2248 // "=" -> "b"
+  n2243 -> n2249 // "=" -> "GBTCLK1_M2C_P"
+  n2163 -> n2250 // "inst" -> "="
+  n2250 -> n2251 // "=" -> "."
+  n2251 -> n2252 // "." -> "this"
+  n2251 -> n2253 // "." -> "("
+  n2251 -> n2254 // "." -> "4"
+  n2250 -> n2255 // "=" -> "b"
+  n2250 -> n2256 // "=" -> "GBTCLK1_M2C_N"
+  n1 -> n2257 // "design" -> "inst"
+  n2257 -> n2258 // "inst" -> ":"
+  n2258 -> n2259 // ":" -> "("
+  n2258 -> n2260 // ":" -> "1"
+  n2258 -> n2261 // ":" -> "4"
+  n2257 -> n2262 // "inst" -> "clk_buff...inations"
+  n2257 -> n2263 // "inst" -> "res_0603"
+  n2257 -> n2264 // "inst" -> "="
+  n2264 -> n2265 // "=" -> "value"
+  n2264 -> n2266 // "=" -> "120"
+  n2257 -> n2267 // "inst" -> "="
+  n2267 -> n2268 // "=" -> "."
+  n2268 -> n2269 // "." -> "this"
+  n2268 -> n2270 // "." -> "("
+  n2268 -> n2271 // "." -> "1"
+  n2267 -> n2272 // "=" -> "refDes"
+  n2267 -> n2273 // "=" -> "R5"
+  n2257 -> n2274 // "inst" -> "="
+  n2274 -> n2275 // "=" -> "."
+  n2275 -> n2276 // "." -> "this"
+  n2275 -> n2277 // "." -> "("
+  n2275 -> n2278 // "." -> "2"
+  n2274 -> n2279 // "=" -> "refDes"
+  n2274 -> n2280 // "=" -> "R6"
+  n2257 -> n2281 // "inst" -> "="
+  n2281 -> n2282 // "=" -> "."
+  n2282 -> n2283 // "." -> "this"
+  n2282 -> n2284 // "." -> "("
+  n2282 -> n2285 // "." -> "3"
+  n2281 -> n2286 // "=" -> "refDes"
+  n2281 -> n2287 // "=" -> "R1"
+  n2257 -> n2288 // "inst" -> "="
+  n2288 -> n2289 // "=" -> "."
+  n2289 -> n2290 // "." -> "this"
+  n2289 -> n2291 // "." -> "("
+  n2289 -> n2292 // "." -> "4"
+  n2288 -> n2293 // "=" -> "refDes"
+  n2288 -> n2294 // "=" -> "R2"
+  n2257 -> n2295 // "inst" -> "="
+  n2295 -> n2296 // "=" -> "."
+  n2296 -> n2297 // "." -> "this"
+  n2296 -> n2298 // "." -> "("
+  n2296 -> n2299 // "." -> "1"
+  n2295 -> n2300 // "=" -> "a"
+  n2295 -> n2301 // "=" -> "$3N42"
+  n2257 -> n2302 // "inst" -> "="
+  n2302 -> n2303 // "=" -> "."
+  n2303 -> n2304 // "." -> "this"
+  n2303 -> n2305 // "." -> "("
+  n2303 -> n2306 // "." -> "2"
+  n2302 -> n2307 // "=" -> "a"
+  n2302 -> n2308 // "=" -> "$3N44"
+  n2257 -> n2309 // "inst" -> "="
+  n2309 -> n2310 // "=" -> "."
+  n2310 -> n2311 // "." -> "this"
+  n2310 -> n2312 // "." -> "("
+  n2310 -> n2313 // "." -> "3"
+  n2309 -> n2314 // "=" -> "a"
+  n2309 -> n2315 // "=" -> "$3N163"
+  n2257 -> n2316 // "inst" -> "="
+  n2316 -> n2317 // "=" -> "."
+  n2317 -> n2318 // "." -> "this"
+  n2317 -> n2319 // "." -> "("
+  n2317 -> n2320 // "." -> "4"
+  n2316 -> n2321 // "=" -> "a"
+  n2316 -> n2322 // "=" -> "$3N164"
+  n2257 -> n2323 // "inst" -> "="
+  n2323 -> n2324 // "=" -> "b"
+  n2323 -> n2325 // "=" -> "<"
+  n2323 -> n2326 // "=" -> "gnd"
+  n1 -> n2327 // "design" -> "inst"
+  n2327 -> n2328 // "inst" -> "diff_single_select"
+  n2327 -> n2329 // "inst" -> "slide_switch"
+  n2327 -> n2330 // "inst" -> "="
+  n2330 -> n2331 // "=" -> "refDes"
+  n2330 -> n2332 // "=" -> "P29"
+  n2327 -> n2333 // "inst" -> "="
+  n2333 -> n2334 // "=" -> "p1_1"
+  n2333 -> n2335 // "=" -> "+3V3"
+  n2327 -> n2336 // "inst" -> "="
+  n2336 -> n2337 // "=" -> "p2_1"
+  n2336 -> n2338 // "=" -> "gnd"
+  n2327 -> n2339 // "inst" -> "="
+  n2339 -> n2340 // "=" -> "s_1"
+  n2339 -> n2341 // "=" -> "$3N222"
+  n2327 -> n2342 // "inst" -> "="
+  n2342 -> n2343 // "=" -> "p1_2"
+  n2342 -> n2344 // "=" -> "+3V3"
+  n2327 -> n2345 // "inst" -> "="
+  n2345 -> n2346 // "=" -> "p2_2"
+  n2345 -> n2347 // "=" -> "gnd"
+  n2327 -> n2348 // "inst" -> "="
+  n2348 -> n2349 // "=" -> "s_2"
+  n2348 -> n2350 // "=" -> "open"
+  n1 -> n2351 // "design" -> "inst"
+  n2351 -> n2352 // "inst" -> ":"
+  n2352 -> n2353 // ":" -> "("
+  n2352 -> n2354 // ":" -> "1"
+  n2352 -> n2355 // ":" -> "2"
+  n2351 -> n2356 // "inst" -> "sync_connectors"
+  n2351 -> n2357 // "inst" -> "SMA_CON"
+  n2351 -> n2358 // "inst" -> "="
+  n2358 -> n2359 // "=" -> "."
+  n2359 -> n2360 // "." -> "this"
+  n2359 -> n2361 // "." -> "("
+  n2359 -> n2362 // "." -> "1"
+  n2358 -> n2363 // "=" -> "refDes"
+  n2358 -> n2364 // "=" -> "P28"
+  n2351 -> n2365 // "inst" -> "="
+  n2365 -> n2366 // "=" -> "."
+  n2366 -> n2367 // "." -> "this"
+  n2366 -> n2368 // "." -> "("
+  n2366 -> n2369 // "." -> "2"
+  n2365 -> n2370 // "=" -> "refDes"
+  n2365 -> n2371 // "=" -> "P27"
+  n2351 -> n2372 // "inst" -> "="
+  n2372 -> n2373 // "=" -> "."
+  n2373 -> n2374 // "." -> "this"
+  n2373 -> n2375 // "." -> "("
+  n2373 -> n2376 // "." -> "1"
+  n2372 -> n2377 // "=" -> "sig"
+  n2372 -> n2378 // "=" -> "SYNC_OUT"
+  n2351 -> n2379 // "inst" -> "="
+  n2379 -> n2380 // "=" -> "."
+  n2380 -> n2381 // "." -> "this"
+  n2380 -> n2382 // "." -> "("
+  n2380 -> n2383 // "." -> "2"
+  n2379 -> n2384 // "=" -> "sig"
+  n2379 -> n2385 // "=" -> "SYNC_IN"
+  n2351 -> n2386 // "inst" -> "="
+  n2386 -> n2387 // "=" -> "gnd"
+  n2386 -> n2388 // "=" -> "<"
+  n2386 -> n2389 // "=" -> "gnd"
+  n1 -> n2390 // "design" -> "inst"
+  n2390 -> n2391 // "inst" -> "sync_termination"
+  n2390 -> n2392 // "inst" -> "res_0603"
+  n2390 -> n2393 // "inst" -> "="
+  n2393 -> n2394 // "=" -> "value"
+  n2393 -> n2395 // "=" -> "10K"
+  n2390 -> n2396 // "inst" -> "="
+  n2396 -> n2397 // "=" -> "refDes"
+  n2396 -> n2398 // "=" -> "R9"
+  n2390 -> n2399 // "inst" -> "="
+  n2399 -> n2400 // "=" -> "a"
+  n2399 -> n2401 // "=" -> "SYNC_IN"
+  n2390 -> n2402 // "inst" -> "="
+  n2402 -> n2403 // "=" -> "b"
+  n2402 -> n2404 // "=" -> "gnd"
+  n1 -> n2405 // "design" -> "inst"
+  n2405 -> n2406 // "inst" -> "docking_connector"
+  n2405 -> n2407 // "inst" -> "asp_134488"
+  n2405 -> n2408 // "inst" -> "="
+  n2408 -> n2409 // "=" -> "refDes"
+  n2408 -> n2410 // "=" -> "P64"
+  n2405 -> n2411 // "inst" -> "="
+  n2411 -> n2412 // "=" -> "a"
+  n2411 -> n2413 // "=" -> "["
+  n2411 -> n2414 // "=" -> "2"
+  n2411 -> n2415 // "=" -> "DP1_M2C_P"
+  n2405 -> n2416 // "inst" -> "="
+  n2416 -> n2417 // "=" -> "a"
+  n2416 -> n2418 // "=" -> "["
+  n2416 -> n2419 // "=" -> "3"
+  n2416 -> n2420 // "=" -> "DP1_M2C_N"
+  n2405 -> n2421 // "inst" -> "="
+  n2421 -> n2422 // "=" -> "a"
+  n2421 -> n2423 // "=" -> "["
+  n2421 -> n2424 // "=" -> "6"
+  n2421 -> n2425 // "=" -> "DP2_M2C_P"
+  n2405 -> n2426 // "inst" -> "="
+  n2426 -> n2427 // "=" -> "a"
+  n2426 -> n2428 // "=" -> "["
+  n2426 -> n2429 // "=" -> "7"
+  n2426 -> n2430 // "=" -> "DP2_M2C_N"
+  n2405 -> n2431 // "inst" -> "="
+  n2431 -> n2432 // "=" -> "a"
+  n2431 -> n2433 // "=" -> "["
+  n2431 -> n2434 // "=" -> "10"
+  n2431 -> n2435 // "=" -> "DP3_M2C_P"
+  n2405 -> n2436 // "inst" -> "="
+  n2436 -> n2437 // "=" -> "a"
+  n2436 -> n2438 // "=" -> "["
+  n2436 -> n2439 // "=" -> "11"
+  n2436 -> n2440 // "=" -> "DP3_M2C_N"
+  n2405 -> n2441 // "inst" -> "="
+  n2441 -> n2442 // "=" -> "a"
+  n2441 -> n2443 // "=" -> "["
+  n2441 -> n2444 // "=" -> "14"
+  n2441 -> n2445 // "=" -> "DP4_M2C_P"
+  n2405 -> n2446 // "inst" -> "="
+  n2446 -> n2447 // "=" -> "a"
+  n2446 -> n2448 // "=" -> "["
+  n2446 -> n2449 // "=" -> "15"
+  n2446 -> n2450 // "=" -> "DP4_M2C_N"
+  n2405 -> n2451 // "inst" -> "="
+  n2451 -> n2452 // "=" -> "a"
+  n2451 -> n2453 // "=" -> "["
+  n2451 -> n2454 // "=" -> "18"
+  n2451 -> n2455 // "=" -> "DP5_M2C_P"
+  n2405 -> n2456 // "inst" -> "="
+  n2456 -> n2457 // "=" -> "a"
+  n2456 -> n2458 // "=" -> "["
+  n2456 -> n2459 // "=" -> "19"
+  n2456 -> n2460 // "=" -> "DP5_M2C_N"
+  n2405 -> n2461 // "inst" -> "="
+  n2461 -> n2462 // "=" -> "a"
+  n2461 -> n2463 // "=" -> "["
+  n2461 -> n2464 // "=" -> "22"
+  n2461 -> n2465 // "=" -> "DP1_C2M_P"
+  n2405 -> n2466 // "inst" -> "="
+  n2466 -> n2467 // "=" -> "a"
+  n2466 -> n2468 // "=" -> "["
+  n2466 -> n2469 // "=" -> "23"
+  n2466 -> n2470 // "=" -> "DP1_C2M_N"
+  n2405 -> n2471 // "inst" -> "="
+  n2471 -> n2472 // "=" -> "a"
+  n2471 -> n2473 // "=" -> "["
+  n2471 -> n2474 // "=" -> "26"
+  n2471 -> n2475 // "=" -> "DP2_C2M_P"
+  n2405 -> n2476 // "inst" -> "="
+  n2476 -> n2477 // "=" -> "a"
+  n2476 -> n2478 // "=" -> "["
+  n2476 -> n2479 // "=" -> "27"
+  n2476 -> n2480 // "=" -> "DP2_C2M_N"
+  n2405 -> n2481 // "inst" -> "="
+  n2481 -> n2482 // "=" -> "a"
+  n2481 -> n2483 // "=" -> "["
+  n2481 -> n2484 // "=" -> "30"
+  n2481 -> n2485 // "=" -> "DP3_C2M_P"
+  n2405 -> n2486 // "inst" -> "="
+  n2486 -> n2487 // "=" -> "a"
+  n2486 -> n2488 // "=" -> "["
+  n2486 -> n2489 // "=" -> "31"
+  n2486 -> n2490 // "=" -> "DP3_C2M_N"
+  n2405 -> n2491 // "inst" -> "="
+  n2491 -> n2492 // "=" -> "a"
+  n2491 -> n2493 // "=" -> "["
+  n2491 -> n2494 // "=" -> "34"
+  n2491 -> n2495 // "=" -> "DP4_C2M_P"
+  n2405 -> n2496 // "inst" -> "="
+  n2496 -> n2497 // "=" -> "a"
+  n2496 -> n2498 // "=" -> "["
+  n2496 -> n2499 // "=" -> "35"
+  n2496 -> n2500 // "=" -> "DP4_C2M_N"
+  n2405 -> n2501 // "inst" -> "="
+  n2501 -> n2502 // "=" -> "a"
+  n2501 -> n2503 // "=" -> "["
+  n2501 -> n2504 // "=" -> "38"
+  n2501 -> n2505 // "=" -> "DP5_C2M_P"
+  n2405 -> n2506 // "inst" -> "="
+  n2506 -> n2507 // "=" -> "a"
+  n2506 -> n2508 // "=" -> "["
+  n2506 -> n2509 // "=" -> "39"
+  n2506 -> n2510 // "=" -> "DP5_C2M_N"
+  n2405 -> n2511 // "inst" -> "="
+  n2511 -> n2512 // "=" -> "b"
+  n2511 -> n2513 // "=" -> "["
+  n2511 -> n2514 // "=" -> "20"
+  n2511 -> n2515 // "=" -> "GBTCLK1_M2C_P"
+  n2405 -> n2516 // "inst" -> "="
+  n2516 -> n2517 // "=" -> "b"
+  n2516 -> n2518 // "=" -> "["
+  n2516 -> n2519 // "=" -> "21"
+  n2516 -> n2520 // "=" -> "GBTCLK1_M2C_N"
+  n2405 -> n2521 // "inst" -> "="
+  n2521 -> n2522 // "=" -> "b"
+  n2521 -> n2523 // "=" -> ","
+  n2523 -> n2524 // "," -> "["
+  n2523 -> n2525 // "," -> "1"
+  n2523 -> n2526 // "," -> "4"
+  n2523 -> n2527 // "," -> "5"
+  n2523 -> n2528 // "," -> "8"
+  n2523 -> n2529 // "," -> "9"
+  n2523 -> n2530 // "," -> "12"
+  n2523 -> n2531 // "," -> "13"
+  n2523 -> n2532 // "," -> "16"
+  n2523 -> n2533 // "," -> "17"
+  n2523 -> n2534 // "," -> "24"
+  n2523 -> n2535 // "," -> "25"
+  n2523 -> n2536 // "," -> "28"
+  n2523 -> n2537 // "," -> "29"
+  n2523 -> n2538 // "," -> "32"
+  n2523 -> n2539 // "," -> "33"
+  n2523 -> n2540 // "," -> "36"
+  n2523 -> n2541 // "," -> "37"
+  n2523 -> n2542 // "," -> "40"
+  n2521 -> n2543 // "=" -> "open"
+  n2405 -> n2544 // "inst" -> "="
+  n2544 -> n2545 // "=" -> "c"
+  n2544 -> n2546 // "=" -> "["
+  n2544 -> n2547 // "=" -> "2"
+  n2544 -> n2548 // "=" -> "DP0_C2M_P"
+  n2405 -> n2549 // "inst" -> "="
+  n2549 -> n2550 // "=" -> "c"
+  n2549 -> n2551 // "=" -> "["
+  n2549 -> n2552 // "=" -> "3"
+  n2549 -> n2553 // "=" -> "DP0_C2M_N"
+  n2405 -> n2554 // "inst" -> "="
+  n2554 -> n2555 // "=" -> "c"
+  n2554 -> n2556 // "=" -> "["
+  n2554 -> n2557 // "=" -> "6"
+  n2554 -> n2558 // "=" -> "DP0_M2C_P"
+  n2405 -> n2559 // "inst" -> "="
+  n2559 -> n2560 // "=" -> "c"
+  n2559 -> n2561 // "=" -> "["
+  n2559 -> n2562 // "=" -> "7"
+  n2559 -> n2563 // "=" -> "DP0_M2C_N"
+  n2405 -> n2564 // "inst" -> "="
+  n2564 -> n2565 // "=" -> "c"
+  n2564 -> n2566 // "=" -> "["
+  n2564 -> n2567 // "=" -> "10"
+  n2564 -> n2568 // "=" -> "SYNC_OUT"
+  n2405 -> n2569 // "inst" -> "="
+  n2569 -> n2570 // "=" -> "c"
+  n2569 -> n2571 // "=" -> "["
+  n2569 -> n2572 // "=" -> "11"
+  n2569 -> n2573 // "=" -> "SYNC_IN"
+  n2405 -> n2574 // "inst" -> "="
+  n2574 -> n2575 // "=" -> "c"
+  n2574 -> n2576 // "=" -> "["
+  n2574 -> n2577 // "=" -> "14"
+  n2574 -> n2578 // "=" -> "DISCRETE"
+  n2574 -> n2579 // "=" -> "["
+  n2574 -> n2580 // "=" -> "0"
+  n2405 -> n2581 // "inst" -> "="
+  n2581 -> n2582 // "=" -> "c"
+  n2581 -> n2583 // "=" -> "["
+  n2581 -> n2584 // "=" -> "15"
+  n2581 -> n2585 // "=" -> "DISCRETE"
+  n2581 -> n2586 // "=" -> "["
+  n2581 -> n2587 // "=" -> "1"
+  n2405 -> n2588 // "inst" -> "="
+  n2588 -> n2589 // "=" -> "c"
+  n2588 -> n2590 // "=" -> "["
+  n2588 -> n2591 // "=" -> "18"
+  n2588 -> n2592 // "=" -> "DISCRETE"
+  n2588 -> n2593 // "=" -> "["
+  n2588 -> n2594 // "=" -> "2"
+  n2405 -> n2595 // "inst" -> "="
+  n2595 -> n2596 // "=" -> "c"
+  n2595 -> n2597 // "=" -> "["
+  n2595 -> n2598 // "=" -> "19"
+  n2595 -> n2599 // "=" -> "DISCRETE"
+  n2595 -> n2600 // "=" -> "["
+  n2595 -> n2601 // "=" -> "3"
+  n2405 -> n2602 // "inst" -> "="
+  n2602 -> n2603 // "=" -> "c"
+  n2602 -> n2604 // "=" -> "["
+  n2602 -> n2605 // "=" -> "22"
+  n2602 -> n2606 // "=" -> "DISCRETE"
+  n2602 -> n2607 // "=" -> "["
+  n2602 -> n2608 // "=" -> "4"
+  n2405 -> n2609 // "inst" -> "="
+  n2609 -> n2610 // "=" -> "c"
+  n2609 -> n2611 // "=" -> "["
+  n2609 -> n2612 // "=" -> "23"
+  n2609 -> n2613 // "=" -> "DISCRETE"
+  n2609 -> n2614 // "=" -> "["
+  n2609 -> n2615 // "=" -> "5"
+  n2405 -> n2616 // "inst" -> "="
+  n2616 -> n2617 // "=" -> "c"
+  n2616 -> n2618 // "=" -> "["
+  n2616 -> n2619 // "=" -> "26"
+  n2616 -> n2620 // "=" -> "DISCRETE"
+  n2616 -> n2621 // "=" -> "["
+  n2616 -> n2622 // "=" -> "6"
+  n2405 -> n2623 // "inst" -> "="
+  n2623 -> n2624 // "=" -> "c"
+  n2623 -> n2625 // "=" -> "["
+  n2623 -> n2626 // "=" -> "27"
+  n2623 -> n2627 // "=" -> "DISCRETE"
+  n2623 -> n2628 // "=" -> "["
+  n2623 -> n2629 // "=" -> "7"
+  n2405 -> n2630 // "inst" -> "="
+  n2630 -> n2631 // "=" -> "c"
+  n2630 -> n2632 // "=" -> "["
+  n2630 -> n2633 // "=" -> "39"
+  n2630 -> n2634 // "=" -> "+3V3"
+  n2405 -> n2635 // "inst" -> "="
+  n2635 -> n2636 // "=" -> "c"
+  n2635 -> n2637 // "=" -> ","
+  n2637 -> n2638 // "," -> "["
+  n2637 -> n2639 // "," -> "30"
+  n2637 -> n2640 // "," -> "31"
+  n2637 -> n2641 // "," -> "34"
+  n2637 -> n2642 // "," -> "35"
+  n2637 -> n2643 // "," -> "37"
+  n2635 -> n2644 // "=" -> "open"
+  n2405 -> n2645 // "inst" -> "="
+  n2645 -> n2646 // "=" -> "d"
+  n2645 -> n2647 // "=" -> "["
+  n2645 -> n2648 // "=" -> "1"
+  n2645 -> n2649 // "=" -> "GBTCLK0_M2C_P"
+  n2405 -> n2650 // "inst" -> "="
+  n2650 -> n2651 // "=" -> "d"
+  n2650 -> n2652 // "=" -> "["
+  n2650 -> n2653 // "=" -> "4"
+  n2650 -> n2654 // "=" -> "GBTCLK0_M2C_N"
+  n2405 -> n2655 // "inst" -> "="
+  n2655 -> n2656 // "=" -> "d"
+  n2655 -> n2657 // "=" -> "["
+  n2655 -> n2658 // "=" -> "30"
+  n2655 -> n2659 // "=" -> "$4N126"
+  n2405 -> n2660 // "inst" -> "="
+  n2660 -> n2661 // "=" -> "d"
+  n2660 -> n2662 // "=" -> "["
+  n2660 -> n2663 // "=" -> "31"
+  n2660 -> n2664 // "=" -> "$4N126"
+  n2405 -> n2665 // "inst" -> "="
+  n2665 -> n2666 // "=" -> "d"
+  n2665 -> n2667 // "=" -> "["
+  n2665 -> n2668 // "=" -> "36"
+  n2665 -> n2669 // "=" -> "+3V3"
+  n2405 -> n2670 // "inst" -> "="
+  n2670 -> n2671 // "=" -> "d"
+  n2670 -> n2672 // "=" -> "["
+  n2670 -> n2673 // "=" -> "38"
+  n2670 -> n2674 // "=" -> "+3V3"
+  n2405 -> n2675 // "inst" -> "="
+  n2675 -> n2676 // "=" -> "d"
+  n2675 -> n2677 // "=" -> "["
+  n2675 -> n2678 // "=" -> "40"
+  n2675 -> n2679 // "=" -> "+3V3"
+  n2405 -> n2680 // "inst" -> "="
+  n2680 -> n2681 // "=" -> "d"
+  n2680 -> n2682 // "=" -> ","
+  n2682 -> n2683 // "," -> "["
+  n2682 -> n2684 // "," -> "5"
+  n2682 -> n2685 // "," -> "8"
+  n2682 -> n2686 // "," -> "9"
+  n2682 -> n2687 // "," -> "11"
+  n2682 -> n2688 // "," -> "12"
+  n2682 -> n2689 // "," -> "14"
+  n2682 -> n2690 // "," -> "15"
+  n2682 -> n2691 // "," -> "17"
+  n2682 -> n2692 // "," -> "18"
+  n2682 -> n2693 // "," -> "20"
+  n2682 -> n2694 // "," -> "21"
+  n2682 -> n2695 // "," -> "23"
+  n2682 -> n2696 // "," -> "24"
+  n2682 -> n2697 // "," -> "26"
+  n2682 -> n2698 // "," -> "27"
+  n2682 -> n2699 // "," -> "29"
+  n2682 -> n2700 // "," -> "32"
+  n2682 -> n2701 // "," -> "33"
+  n2682 -> n2702 // "," -> "34"
+  n2682 -> n2703 // "," -> "35"
+  n2680 -> n2704 // "=" -> "open"
+  n2405 -> n2705 // "inst" -> "="
+  n2705 -> n2706 // "=" -> "e"
+  n2705 -> n2707 // "=" -> ","
+  n2707 -> n2708 // "," -> "["
+  n2707 -> n2709 // "," -> "2"
+  n2707 -> n2710 // "," -> "3"
+  n2707 -> n2711 // "," -> "6"
+  n2707 -> n2712 // "," -> "7"
+  n2707 -> n2713 // "," -> "9"
+  n2707 -> n2714 // "," -> "10"
+  n2707 -> n2715 // "," -> "12"
+  n2707 -> n2716 // "," -> "13"
+  n2707 -> n2717 // "," -> "15"
+  n2707 -> n2718 // "," -> "16"
+  n2707 -> n2719 // "," -> "18"
+  n2707 -> n2720 // "," -> "19"
+  n2707 -> n2721 // "," -> "21"
+  n2707 -> n2722 // "," -> "22"
+  n2707 -> n2723 // "," -> "24"
+  n2707 -> n2724 // "," -> "25"
+  n2707 -> n2725 // "," -> "27"
+  n2707 -> n2726 // "," -> "28"
+  n2707 -> n2727 // "," -> "30"
+  n2707 -> n2728 // "," -> "31"
+  n2707 -> n2729 // "," -> "33"
+  n2707 -> n2730 // "," -> "34"
+  n2707 -> n2731 // "," -> "36"
+  n2707 -> n2732 // "," -> "37"
+  n2707 -> n2733 // "," -> "39"
+  n2705 -> n2734 // "=" -> "open"
+  n2405 -> n2735 // "inst" -> "="
+  n2735 -> n2736 // "=" -> "f"
+  n2735 -> n2737 // "=" -> ","
+  n2737 -> n2738 // "," -> "["
+  n2737 -> n2739 // "," -> "1"
+  n2737 -> n2740 // "," -> "4"
+  n2737 -> n2741 // "," -> "5"
+  n2737 -> n2742 // "," -> "7"
+  n2737 -> n2743 // "," -> "8"
+  n2737 -> n2744 // "," -> "10"
+  n2737 -> n2745 // "," -> "11"
+  n2737 -> n2746 // "," -> "13"
+  n2737 -> n2747 // "," -> "14"
+  n2737 -> n2748 // "," -> "16"
+  n2737 -> n2749 // "," -> "17"
+  n2737 -> n2750 // "," -> "19"
+  n2737 -> n2751 // "," -> "20"
+  n2737 -> n2752 // "," -> "22"
+  n2737 -> n2753 // "," -> "23"
+  n2737 -> n2754 // "," -> "25"
+  n2737 -> n2755 // "," -> "26"
+  n2737 -> n2756 // "," -> "28"
+  n2737 -> n2757 // "," -> "29"
+  n2737 -> n2758 // "," -> "31"
+  n2737 -> n2759 // "," -> "32"
+  n2737 -> n2760 // "," -> "34"
+  n2737 -> n2761 // "," -> "35"
+  n2737 -> n2762 // "," -> "37"
+  n2737 -> n2763 // "," -> "38"
+  n2737 -> n2764 // "," -> "40"
+  n2735 -> n2765 // "=" -> "open"
+  n2405 -> n2766 // "inst" -> "="
+  n2766 -> n2767 // "=" -> "g"
+  n2766 -> n2768 // "=" -> ","
+  n2768 -> n2769 // "," -> "["
+  n2768 -> n2770 // "," -> "2"
+  n2768 -> n2771 // "," -> "3"
+  n2768 -> n2772 // "," -> "6"
+  n2768 -> n2773 // "," -> "7"
+  n2768 -> n2774 // "," -> "9"
+  n2768 -> n2775 // "," -> "10"
+  n2768 -> n2776 // "," -> "12"
+  n2768 -> n2777 // "," -> "13"
+  n2768 -> n2778 // "," -> "15"
+  n2768 -> n2779 // "," -> "16"
+  n2768 -> n2780 // "," -> "18"
+  n2768 -> n2781 // "," -> "19"
+  n2768 -> n2782 // "," -> "21"
+  n2768 -> n2783 // "," -> "22"
+  n2768 -> n2784 // "," -> "24"
+  n2768 -> n2785 // "," -> "25"
+  n2768 -> n2786 // "," -> "27"
+  n2768 -> n2787 // "," -> "28"
+  n2768 -> n2788 // "," -> "30"
+  n2768 -> n2789 // "," -> "31"
+  n2768 -> n2790 // "," -> "33"
+  n2768 -> n2791 // "," -> "34"
+  n2768 -> n2792 // "," -> "36"
+  n2768 -> n2793 // "," -> "37"
+  n2768 -> n2794 // "," -> "39"
+  n2766 -> n2795 // "=" -> "open"
+  n2405 -> n2796 // "inst" -> "="
+  n2796 -> n2797 // "=" -> "h"
+  n2796 -> n2798 // "=" -> ","
+  n2798 -> n2799 // "," -> "["
+  n2798 -> n2800 // "," -> "1"
+  n2798 -> n2801 // "," -> "2"
+  n2798 -> n2802 // "," -> "4"
+  n2798 -> n2803 // "," -> "5"
+  n2798 -> n2804 // "," -> "7"
+  n2798 -> n2805 // "," -> "8"
+  n2798 -> n2806 // "," -> "10"
+  n2798 -> n2807 // "," -> "11"
+  n2798 -> n2808 // "," -> "13"
+  n2798 -> n2809 // "," -> "14"
+  n2798 -> n2810 // "," -> "16"
+  n2798 -> n2811 // "," -> "17"
+  n2798 -> n2812 // "," -> "19"
+  n2798 -> n2813 // "," -> "20"
+  n2798 -> n2814 // "," -> "22"
+  n2798 -> n2815 // "," -> "23"
+  n2798 -> n2816 // "," -> "25"
+  n2798 -> n2817 // "," -> "26"
+  n2798 -> n2818 // "," -> "28"
+  n2798 -> n2819 // "," -> "29"
+  n2798 -> n2820 // "," -> "31"
+  n2798 -> n2821 // "," -> "32"
+  n2798 -> n2822 // "," -> "34"
+  n2798 -> n2823 // "," -> "35"
+  n2798 -> n2824 // "," -> "37"
+  n2798 -> n2825 // "," -> "38"
+  n2798 -> n2826 // "," -> "40"
+  n2796 -> n2827 // "=" -> "open"
+  n2405 -> n2828 // "inst" -> "="
+  n2828 -> n2829 // "=" -> "j"
+  n2828 -> n2830 // "=" -> ","
+  n2830 -> n2831 // "," -> "["
+  n2830 -> n2832 // "," -> "2"
+  n2830 -> n2833 // "," -> "3"
+  n2830 -> n2834 // "," -> "6"
+  n2830 -> n2835 // "," -> "7"
+  n2830 -> n2836 // "," -> "9"
+  n2830 -> n2837 // "," -> "10"
+  n2830 -> n2838 // "," -> "12"
+  n2830 -> n2839 // "," -> "13"
+  n2830 -> n2840 // "," -> "15"
+  n2830 -> n2841 // "," -> "16"
+  n2830 -> n2842 // "," -> "18"
+  n2830 -> n2843 // "," -> "19"
+  n2830 -> n2844 // "," -> "21"
+  n2830 -> n2845 // "," -> "22"
+  n2830 -> n2846 // "," -> "24"
+  n2830 -> n2847 // "," -> "25"
+  n2830 -> n2848 // "," -> "27"
+  n2830 -> n2849 // "," -> "28"
+  n2830 -> n2850 // "," -> "30"
+  n2830 -> n2851 // "," -> "31"
+  n2830 -> n2852 // "," -> "33"
+  n2830 -> n2853 // "," -> "34"
+  n2830 -> n2854 // "," -> "36"
+  n2830 -> n2855 // "," -> "37"
+  n2830 -> n2856 // "," -> "39"
+  n2828 -> n2857 // "=" -> "open"
+  n2405 -> n2858 // "inst" -> "="
+  n2858 -> n2859 // "=" -> "k"
+  n2858 -> n2860 // "=" -> ","
+  n2860 -> n2861 // "," -> "["
+  n2860 -> n2862 // "," -> "1"
+  n2860 -> n2863 // "," -> "4"
+  n2860 -> n2864 // "," -> "5"
+  n2860 -> n2865 // "," -> "7"
+  n2860 -> n2866 // "," -> "8"
+  n2860 -> n2867 // "," -> "10"
+  n2860 -> n2868 // "," -> "11"
+  n2860 -> n2869 // "," -> "13"
+  n2860 -> n2870 // "," -> "14"
+  n2860 -> n2871 // "," -> "16"
+  n2860 -> n2872 // "," -> "17"
+  n2860 -> n2873 // "," -> "19"
+  n2860 -> n2874 // "," -> "20"
+  n2860 -> n2875 // "," -> "22"
+  n2860 -> n2876 // "," -> "23"
+  n2860 -> n2877 // "," -> "25"
+  n2860 -> n2878 // "," -> "26"
+  n2860 -> n2879 // "," -> "28"
+  n2860 -> n2880 // "," -> "29"
+  n2860 -> n2881 // "," -> "31"
+  n2860 -> n2882 // "," -> "32"
+  n2860 -> n2883 // "," -> "34"
+  n2860 -> n2884 // "," -> "35"
+  n2860 -> n2885 // "," -> "37"
+  n2860 -> n2886 // "," -> "38"
+  n2860 -> n2887 // "," -> "40"
+  n2858 -> n2888 // "=" -> "open"
+  n2405 -> n2889 // "inst" -> "="
+  n2889 -> n2890 // "=" -> "a"
+  n2889 -> n2891 // "=" -> ","
+  n2891 -> n2892 // "," -> "["
+  n2891 -> n2893 // "," -> "1"
+  n2891 -> n2894 // "," -> "4"
+  n2891 -> n2895 // "," -> "5"
+  n2891 -> n2896 // "," -> "8"
+  n2891 -> n2897 // "," -> "9"
+  n2891 -> n2898 // "," -> "12"
+  n2891 -> n2899 // "," -> "13"
+  n2891 -> n2900 // "," -> "16"
+  n2891 -> n2901 // "," -> "17"
+  n2891 -> n2902 // "," -> "20"
+  n2891 -> n2903 // "," -> "21"
+  n2891 -> n2904 // "," -> "24"
+  n2891 -> n2905 // "," -> "25"
+  n2891 -> n2906 // "," -> "28"
+  n2891 -> n2907 // "," -> "29"
+  n2891 -> n2908 // "," -> "32"
+  n2891 -> n2909 // "," -> "33"
+  n2891 -> n2910 // "," -> "36"
+  n2891 -> n2911 // "," -> "37"
+  n2891 -> n2912 // "," -> "40"
+  n2889 -> n2913 // "=" -> "<"
+  n2889 -> n2914 // "=" -> "gnd"
+  n2405 -> n2915 // "inst" -> "="
+  n2915 -> n2916 // "=" -> "b"
+  n2915 -> n2917 // "=" -> ","
+  n2917 -> n2918 // "," -> "["
+  n2917 -> n2919 // "," -> "2"
+  n2917 -> n2920 // "," -> "3"
+  n2917 -> n2921 // "," -> "6"
+  n2917 -> n2922 // "," -> "7"
+  n2917 -> n2923 // "," -> "10"
+  n2917 -> n2924 // "," -> "11"
+  n2917 -> n2925 // "," -> "14"
+  n2917 -> n2926 // "," -> "15"
+  n2917 -> n2927 // "," -> "18"
+  n2917 -> n2928 // "," -> "19"
+  n2917 -> n2929 // "," -> "22"
+  n2917 -> n2930 // "," -> "23"
+  n2917 -> n2931 // "," -> "26"
+  n2917 -> n2932 // "," -> "27"
+  n2917 -> n2933 // "," -> "30"
+  n2917 -> n2934 // "," -> "31"
+  n2917 -> n2935 // "," -> "34"
+  n2917 -> n2936 // "," -> "35"
+  n2917 -> n2937 // "," -> "38"
+  n2917 -> n2938 // "," -> "39"
+  n2915 -> n2939 // "=" -> "<"
+  n2915 -> n2940 // "=" -> "gnd"
+  n2405 -> n2941 // "inst" -> "="
+  n2941 -> n2942 // "=" -> "c"
+  n2941 -> n2943 // "=" -> ","
+  n2943 -> n2944 // "," -> "["
+  n2943 -> n2945 // "," -> "1"
+  n2943 -> n2946 // "," -> "4"
+  n2943 -> n2947 // "," -> "5"
+  n2943 -> n2948 // "," -> "8"
+  n2943 -> n2949 // "," -> "9"
+  n2943 -> n2950 // "," -> "12"
+  n2943 -> n2951 // "," -> "13"
+  n2943 -> n2952 // "," -> "16"
+  n2943 -> n2953 // "," -> "17"
+  n2943 -> n2954 // "," -> "20"
+  n2943 -> n2955 // "," -> "21"
+  n2943 -> n2956 // "," -> "24"
+  n2943 -> n2957 // "," -> "25"
+  n2943 -> n2958 // "," -> "28"
+  n2943 -> n2959 // "," -> "29"
+  n2943 -> n2960 // "," -> "32"
+  n2943 -> n2961 // "," -> "33"
+  n2943 -> n2962 // "," -> "36"
+  n2943 -> n2963 // "," -> "38"
+  n2943 -> n2964 // "," -> "40"
+  n2941 -> n2965 // "=" -> "<"
+  n2941 -> n2966 // "=" -> "gnd"
+  n2405 -> n2967 // "inst" -> "="
+  n2967 -> n2968 // "=" -> "d"
+  n2967 -> n2969 // "=" -> ","
+  n2969 -> n2970 // "," -> "["
+  n2969 -> n2971 // "," -> "2"
+  n2969 -> n2972 // "," -> "3"
+  n2969 -> n2973 // "," -> "6"
+  n2969 -> n2974 // "," -> "7"
+  n2969 -> n2975 // "," -> "10"
+  n2969 -> n2976 // "," -> "13"
+  n2969 -> n2977 // "," -> "16"
+  n2969 -> n2978 // "," -> "19"
+  n2969 -> n2979 // "," -> "22"
+  n2969 -> n2980 // "," -> "25"
+  n2969 -> n2981 // "," -> "28"
+  n2969 -> n2982 // "," -> "37"
+  n2969 -> n2983 // "," -> "39"
+  n2967 -> n2984 // "=" -> "<"
+  n2967 -> n2985 // "=" -> "gnd"
+  n2405 -> n2986 // "inst" -> "="
+  n2986 -> n2987 // "=" -> "e"
+  n2986 -> n2988 // "=" -> ","
+  n2988 -> n2989 // "," -> "["
+  n2988 -> n2990 // "," -> "1"
+  n2988 -> n2991 // "," -> "4"
+  n2988 -> n2992 // "," -> "5"
+  n2988 -> n2993 // "," -> "8"
+  n2988 -> n2994 // "," -> "11"
+  n2988 -> n2995 // "," -> "14"
+  n2988 -> n2996 // "," -> "17"
+  n2988 -> n2997 // "," -> "20"
+  n2988 -> n2998 // "," -> "23"
+  n2988 -> n2999 // "," -> "26"
+  n2988 -> n3000 // "," -> "29"
+  n2988 -> n3001 // "," -> "32"
+  n2988 -> n3002 // "," -> "35"
+  n2988 -> n3003 // "," -> "38"
+  n2988 -> n3004 // "," -> "40"
+  n2986 -> n3005 // "=" -> "<"
+  n2986 -> n3006 // "=" -> "gnd"
+  n2405 -> n3007 // "inst" -> "="
+  n3007 -> n3008 // "=" -> "f"
+  n3007 -> n3009 // "=" -> ","
+  n3009 -> n3010 // "," -> "["
+  n3009 -> n3011 // "," -> "2"
+  n3009 -> n3012 // "," -> "3"
+  n3009 -> n3013 // "," -> "6"
+  n3009 -> n3014 // "," -> "9"
+  n3009 -> n3015 // "," -> "12"
+  n3009 -> n3016 // "," -> "15"
+  n3009 -> n3017 // "," -> "18"
+  n3009 -> n3018 // "," -> "21"
+  n3009 -> n3019 // "," -> "24"
+  n3009 -> n3020 // "," -> "27"
+  n3009 -> n3021 // "," -> "30"
+  n3009 -> n3022 // "," -> "33"
+  n3009 -> n3023 // "," -> "36"
+  n3009 -> n3024 // "," -> "39"
+  n3007 -> n3025 // "=" -> "<"
+  n3007 -> n3026 // "=" -> "gnd"
+  n2405 -> n3027 // "inst" -> "="
+  n3027 -> n3028 // "=" -> "g"
+  n3027 -> n3029 // "=" -> ","
+  n3029 -> n3030 // "," -> "["
+  n3029 -> n3031 // "," -> "1"
+  n3029 -> n3032 // "," -> "4"
+  n3029 -> n3033 // "," -> "5"
+  n3029 -> n3034 // "," -> "8"
+  n3029 -> n3035 // "," -> "11"
+  n3029 -> n3036 // "," -> "14"
+  n3029 -> n3037 // "," -> "17"
+  n3029 -> n3038 // "," -> "20"
+  n3029 -> n3039 // "," -> "23"
+  n3029 -> n3040 // "," -> "26"
+  n3029 -> n3041 // "," -> "29"
+  n3029 -> n3042 // "," -> "32"
+  n3029 -> n3043 // "," -> "35"
+  n3029 -> n3044 // "," -> "38"
+  n3029 -> n3045 // "," -> "40"
+  n3027 -> n3046 // "=" -> "<"
+  n3027 -> n3047 // "=" -> "gnd"
+  n2405 -> n3048 // "inst" -> "="
+  n3048 -> n3049 // "=" -> "h"
+  n3048 -> n3050 // "=" -> ","
+  n3050 -> n3051 // "," -> "["
+  n3050 -> n3052 // "," -> "3"
+  n3050 -> n3053 // "," -> "6"
+  n3050 -> n3054 // "," -> "9"
+  n3050 -> n3055 // "," -> "12"
+  n3050 -> n3056 // "," -> "15"
+  n3050 -> n3057 // "," -> "18"
+  n3050 -> n3058 // "," -> "21"
+  n3050 -> n3059 // "," -> "24"
+  n3050 -> n3060 // "," -> "27"
+  n3050 -> n3061 // "," -> "30"
+  n3050 -> n3062 // "," -> "33"
+  n3050 -> n3063 // "," -> "36"
+  n3050 -> n3064 // "," -> "39"
+  n3048 -> n3065 // "=" -> "<"
+  n3048 -> n3066 // "=" -> "gnd"
+  n2405 -> n3067 // "inst" -> "="
+  n3067 -> n3068 // "=" -> "j"
+  n3067 -> n3069 // "=" -> ","
+  n3069 -> n3070 // "," -> "["
+  n3069 -> n3071 // "," -> "1"
+  n3069 -> n3072 // "," -> "4"
+  n3069 -> n3073 // "," -> "5"
+  n3069 -> n3074 // "," -> "8"
+  n3069 -> n3075 // "," -> "11"
+  n3069 -> n3076 // "," -> "14"
+  n3069 -> n3077 // "," -> "17"
+  n3069 -> n3078 // "," -> "20"
+  n3069 -> n3079 // "," -> "23"
+  n3069 -> n3080 // "," -> "26"
+  n3069 -> n3081 // "," -> "29"
+  n3069 -> n3082 // "," -> "32"
+  n3069 -> n3083 // "," -> "35"
+  n3069 -> n3084 // "," -> "38"
+  n3069 -> n3085 // "," -> "40"
+  n3067 -> n3086 // "=" -> "<"
+  n3067 -> n3087 // "=" -> "gnd"
+  n2405 -> n3088 // "inst" -> "="
+  n3088 -> n3089 // "=" -> "k"
+  n3088 -> n3090 // "=" -> ","
+  n3090 -> n3091 // "," -> "["
+  n3090 -> n3092 // "," -> "2"
+  n3090 -> n3093 // "," -> "3"
+  n3090 -> n3094 // "," -> "6"
+  n3090 -> n3095 // "," -> "9"
+  n3090 -> n3096 // "," -> "12"
+  n3090 -> n3097 // "," -> "15"
+  n3090 -> n3098 // "," -> "18"
+  n3090 -> n3099 // "," -> "21"
+  n3090 -> n3100 // "," -> "24"
+  n3090 -> n3101 // "," -> "27"
+  n3090 -> n3102 // "," -> "30"
+  n3090 -> n3103 // "," -> "33"
+  n3090 -> n3104 // "," -> "36"
+  n3090 -> n3105 // "," -> "39"
+  n3088 -> n3106 // "=" -> "<"
+  n3088 -> n3107 // "=" -> "gnd"
+  n1 -> n3108 // "design" -> "inst"
+  n3108 -> n3109 // "inst" -> "header_IO"
+  n3108 -> n3110 // "inst" -> "2x8_hdr"
+  n3108 -> n3111 // "inst" -> "="
+  n3111 -> n3112 // "=" -> "refDes"
+  n3111 -> n3113 // "=" -> "J2"
+  n3108 -> n3114 // "inst" -> "="
+  n3114 -> n3115 // "=" -> "sig"
+  n3114 -> n3116 // "=" -> "DISCRETE"
+  n3108 -> n3117 // "inst" -> "="
+  n3117 -> n3118 // "=" -> "gnd"
+  n3117 -> n3119 // "=" -> "<"
+  n3117 -> n3120 // "=" -> "gnd"
+  n1 -> n3121 // "design" -> "inst"
+  n3121 -> n3122 // "inst" -> ":"
+  n3122 -> n3123 // ":" -> "("
+  n3122 -> n3124 // ":" -> "1"
+  n3122 -> n3125 // ":" -> "4"
+  n3121 -> n3126 // "inst" -> "mounting_holes"
+  n3121 -> n3127 // "inst" -> "mount_hole_125"
+  n3121 -> n3128 // "inst" -> "="
+  n3128 -> n3129 // "=" -> "newattr"
+  n3128 -> n3130 // "=" -> "."
+  n3130 -> n3131 // "." -> "this"
+  n3130 -> n3132 // "." -> "("
+  n3130 -> n3133 // "." -> "1"
+  n3128 -> n3134 // "=" -> "refDes"
+  n3128 -> n3135 // "=" -> "U2"
+  n3121 -> n3136 // "inst" -> "="
+  n3136 -> n3137 // "=" -> "newattr"
+  n3136 -> n3138 // "=" -> "."
+  n3138 -> n3139 // "." -> "this"
+  n3138 -> n3140 // "." -> "("
+  n3138 -> n3141 // "." -> "2"
+  n3136 -> n3142 // "=" -> "refDes"
+  n3136 -> n3143 // "=" -> "U3"
+  n3121 -> n3144 // "inst" -> "="
+  n3144 -> n3145 // "=" -> "newattr"
+  n3144 -> n3146 // "=" -> "."
+  n3146 -> n3147 // "." -> "this"
+  n3146 -> n3148 // "." -> "("
+  n3146 -> n3149 // "." -> "3"
+  n3144 -> n3150 // "=" -> "refDes"
+  n3144 -> n3151 // "=" -> "U9"
+  n3121 -> n3152 // "inst" -> "="
+  n3152 -> n3153 // "=" -> "newattr"
+  n3152 -> n3154 // "=" -> "."
+  n3154 -> n3155 // "." -> "this"
+  n3154 -> n3156 // "." -> "("
+  n3154 -> n3157 // "." -> "4"
+  n3152 -> n3158 // "=" -> "refDes"
+  n3152 -> n3159 // "=" -> "U10"
+  n0 -> n3160 // "" -> "<EOF>"
+
 }

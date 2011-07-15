@@ -1,6 +1,6 @@
-A1,carry_add
-A2,sum_adds(0)
-A3,sum_adds(1)
-I1,nots(0)
-I2,nots(1)
-O1,sum_or
+9001,nots(0)
+AWESOME,nots(1)
+BREAKME!1,sum_adds(0)
+BREAKME!2,sum_adds(1)
+CA1,carry_add
+O5,sum_or
