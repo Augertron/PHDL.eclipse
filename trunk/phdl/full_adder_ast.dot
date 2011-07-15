@@ -6,4 +6,546 @@ digraph {
 		width=.25, height=.25, color="black", fillcolor="white", style="filled, solid, bold"];
 	edge [arrowsize=.5, color="black", style="bold"]
 
+  n0 [label=""];
+  n1 [label="design"];
+  n1 [label="design"];
+  n2 [label="full_adder"];
+  n3 [label="device"];
+  n3 [label="device"];
+  n4 [label="AND_GATE"];
+  n5 [label="attr"];
+  n5 [label="attr"];
+  n6 [label="refPrefix"];
+  n7 [label="A"];
+  n8 [label="attr"];
+  n8 [label="attr"];
+  n9 [label="pkg_type"];
+  n10 [label="74LS08"];
+  n11 [label="pin"];
+  n11 [label="pin"];
+  n12 [label=":"];
+  n12 [label=":"];
+  n13 [label="["];
+  n14 [label="1"];
+  n15 [label="0"];
+  n16 [label="entry"];
+  n17 [label="1"];
+  n18 [label="2"];
+  n19 [label="pin"];
+  n19 [label="pin"];
+  n20 [label="exit"];
+  n21 [label="3"];
+  n22 [label="device"];
+  n22 [label="device"];
+  n23 [label="INVERTER"];
+  n24 [label="attr"];
+  n24 [label="attr"];
+  n25 [label="refPrefix"];
+  n26 [label="I"];
+  n27 [label="attr"];
+  n27 [label="attr"];
+  n28 [label="pkg_type"];
+  n29 [label="74LS04"];
+  n30 [label="pin"];
+  n30 [label="pin"];
+  n31 [label="entry"];
+  n32 [label="1"];
+  n33 [label="pin"];
+  n33 [label="pin"];
+  n34 [label="exit"];
+  n35 [label="+"];
+  n36 [label="device"];
+  n36 [label="device"];
+  n37 [label="OR_GATE"];
+  n38 [label="attr"];
+  n38 [label="attr"];
+  n39 [label="refPrefix"];
+  n40 [label="O"];
+  n41 [label="attr"];
+  n41 [label="attr"];
+  n42 [label="pkg_type"];
+  n43 [label="74LS32"];
+  n44 [label="pin"];
+  n44 [label="pin"];
+  n45 [label=":"];
+  n45 [label=":"];
+  n46 [label="["];
+  n47 [label="1"];
+  n48 [label="0"];
+  n49 [label="entry"];
+  n50 [label="1"];
+  n51 [label="2"];
+  n52 [label="pin"];
+  n52 [label="pin"];
+  n53 [label="exit"];
+  n54 [label="3"];
+  n55 [label="net"];
+  n55 [label="net"];
+  n56 [label="X"];
+  n57 [label="attr"];
+  n57 [label="attr"];
+  n58 [label="impedence"];
+  n59 [label="5k"];
+  n60 [label="net"];
+  n60 [label="net"];
+  n61 [label="Y"];
+  n62 [label="net"];
+  n62 [label="net"];
+  n63 [label="sum"];
+  n64 [label="net"];
+  n64 [label="net"];
+  n65 [label="carry"];
+  n66 [label="net"];
+  n66 [label="net"];
+  n67 [label=":"];
+  n67 [label=":"];
+  n68 [label="["];
+  n69 [label="1"];
+  n70 [label="0"];
+  n71 [label="sum_in"];
+  n72 [label="attr"];
+  n72 [label="attr"];
+  n73 [label="hometown"];
+  n74 [label="Provo"];
+  n75 [label="attr"];
+  n75 [label="attr"];
+  n76 [label="refPrefix"];
+  n77 [label="BREAK"];
+  n78 [label="net"];
+  n78 [label="net"];
+  n79 [label="x_bar"];
+  n80 [label="net"];
+  n80 [label="net"];
+  n81 [label="y_bar"];
+  n82 [label="begin"];
+  n83 [label="inst"];
+  n83 [label="inst"];
+  n84 [label=":"];
+  n84 [label=":"];
+  n85 [label="("];
+  n86 [label="1"];
+  n87 [label="0"];
+  n88 [label="sum_adds"];
+  n89 [label="AND_GATE"];
+  n90 [label="="];
+  n90 [label="="];
+  n91 [label="."];
+  n91 [label="."];
+  n92 [label="this"];
+  n93 [label="("];
+  n94 [label="0"];
+  n95 [label="entry"];
+  n96 [label="["];
+  n97 [label="0"];
+  n98 [label="X"];
+  n99 [label="="];
+  n99 [label="="];
+  n100 [label="."];
+  n100 [label="."];
+  n101 [label="this"];
+  n102 [label="("];
+  n103 [label="0"];
+  n104 [label="entry"];
+  n105 [label="["];
+  n106 [label="1"];
+  n107 [label="y_bar"];
+  n108 [label="="];
+  n108 [label="="];
+  n109 [label="."];
+  n109 [label="."];
+  n110 [label="this"];
+  n111 [label="("];
+  n112 [label="0"];
+  n113 [label="exit"];
+  n114 [label="sum_in"];
+  n115 [label="["];
+  n116 [label="0"];
+  n117 [label="="];
+  n117 [label="="];
+  n118 [label="."];
+  n118 [label="."];
+  n119 [label="this"];
+  n120 [label="("];
+  n121 [label="1"];
+  n122 [label="entry"];
+  n123 [label="["];
+  n124 [label="0"];
+  n125 [label="Y"];
+  n126 [label="="];
+  n126 [label="="];
+  n127 [label="."];
+  n127 [label="."];
+  n128 [label="this"];
+  n129 [label="("];
+  n130 [label="1"];
+  n131 [label="entry"];
+  n132 [label="["];
+  n133 [label="1"];
+  n134 [label="x_bar"];
+  n135 [label="="];
+  n135 [label="="];
+  n136 [label="."];
+  n136 [label="."];
+  n137 [label="this"];
+  n138 [label="("];
+  n139 [label="1"];
+  n140 [label="exit"];
+  n141 [label="sum_in"];
+  n142 [label="["];
+  n143 [label="1"];
+  n144 [label="="];
+  n144 [label="="];
+  n145 [label="refPrefix"];
+  n146 [label="BREAKME!"];
+  n147 [label="inst"];
+  n147 [label="inst"];
+  n148 [label="carry_add"];
+  n149 [label="AND_GATE"];
+  n150 [label="="];
+  n150 [label="="];
+  n151 [label="entry"];
+  n152 [label="["];
+  n153 [label="0"];
+  n154 [label="X"];
+  n155 [label="="];
+  n155 [label="="];
+  n156 [label="entry"];
+  n157 [label="["];
+  n158 [label="1"];
+  n159 [label="Y"];
+  n160 [label="="];
+  n160 [label="="];
+  n161 [label="exit"];
+  n162 [label="carry"];
+  n163 [label="="];
+  n163 [label="="];
+  n164 [label="newattr"];
+  n165 [label="refDes"];
+  n166 [label="CA1"];
+  n167 [label="inst"];
+  n167 [label="inst"];
+  n168 [label=":"];
+  n168 [label=":"];
+  n169 [label="("];
+  n170 [label="1"];
+  n171 [label="0"];
+  n172 [label="nots"];
+  n173 [label="INVERTER"];
+  n174 [label="="];
+  n174 [label="="];
+  n175 [label="."];
+  n175 [label="."];
+  n176 [label="nots"];
+  n177 [label="("];
+  n178 [label="0"];
+  n179 [label="entry"];
+  n180 [label="X"];
+  n181 [label="="];
+  n181 [label="="];
+  n182 [label="."];
+  n182 [label="."];
+  n183 [label="nots"];
+  n184 [label="("];
+  n185 [label="0"];
+  n186 [label="exit"];
+  n187 [label="x_bar"];
+  n188 [label="="];
+  n188 [label="="];
+  n189 [label="."];
+  n189 [label="."];
+  n190 [label="nots"];
+  n191 [label="("];
+  n192 [label="1"];
+  n193 [label="entry"];
+  n194 [label="Y"];
+  n195 [label="="];
+  n195 [label="="];
+  n196 [label="."];
+  n196 [label="."];
+  n197 [label="nots"];
+  n198 [label="("];
+  n199 [label="1"];
+  n200 [label="exit"];
+  n201 [label="y_bar"];
+  n202 [label="="];
+  n202 [label="="];
+  n203 [label="pkg_type"];
+  n204 [label="Bogus"];
+  n205 [label="="];
+  n205 [label="="];
+  n206 [label="refPrefix"];
+  n207 [label="900"];
+  n208 [label="="];
+  n208 [label="="];
+  n209 [label="newattr"];
+  n210 [label="."];
+  n210 [label="."];
+  n211 [label="this"];
+  n212 [label="("];
+  n213 [label="1"];
+  n214 [label="refDes"];
+  n215 [label="Awesome"];
+  n216 [label="inst"];
+  n216 [label="inst"];
+  n217 [label="sum_or"];
+  n218 [label="OR_GATE"];
+  n219 [label="="];
+  n219 [label="="];
+  n220 [label="newattr"];
+  n221 [label="best_friend"];
+  n222 [label="Brad"];
+  n223 [label="="];
+  n223 [label="="];
+  n224 [label="best_friend"];
+  n225 [label="Karen"];
+  n226 [label="="];
+  n226 [label="="];
+  n227 [label="refDes"];
+  n228 [label="O5"];
+  n229 [label="="];
+  n229 [label="="];
+  n230 [label="entry"];
+  n231 [label="sum_in"];
+  n232 [label="="];
+  n232 [label="="];
+  n233 [label="exit"];
+  n234 [label="sum"];
+  n235 [label="<EOF>"];
+
+  n0 -> n1 // "" -> "design"
+  n1 -> n2 // "design" -> "full_adder"
+  n1 -> n3 // "design" -> "device"
+  n3 -> n4 // "device" -> "AND_GATE"
+  n3 -> n5 // "device" -> "attr"
+  n5 -> n6 // "attr" -> "refPrefix"
+  n5 -> n7 // "attr" -> "A"
+  n3 -> n8 // "device" -> "attr"
+  n8 -> n9 // "attr" -> "pkg_type"
+  n8 -> n10 // "attr" -> "74LS08"
+  n3 -> n11 // "device" -> "pin"
+  n11 -> n12 // "pin" -> ":"
+  n12 -> n13 // ":" -> "["
+  n12 -> n14 // ":" -> "1"
+  n12 -> n15 // ":" -> "0"
+  n11 -> n16 // "pin" -> "entry"
+  n11 -> n17 // "pin" -> "1"
+  n11 -> n18 // "pin" -> "2"
+  n3 -> n19 // "device" -> "pin"
+  n19 -> n20 // "pin" -> "exit"
+  n19 -> n21 // "pin" -> "3"
+  n1 -> n22 // "design" -> "device"
+  n22 -> n23 // "device" -> "INVERTER"
+  n22 -> n24 // "device" -> "attr"
+  n24 -> n25 // "attr" -> "refPrefix"
+  n24 -> n26 // "attr" -> "I"
+  n22 -> n27 // "device" -> "attr"
+  n27 -> n28 // "attr" -> "pkg_type"
+  n27 -> n29 // "attr" -> "74LS04"
+  n22 -> n30 // "device" -> "pin"
+  n30 -> n31 // "pin" -> "entry"
+  n30 -> n32 // "pin" -> "1"
+  n22 -> n33 // "device" -> "pin"
+  n33 -> n34 // "pin" -> "exit"
+  n33 -> n35 // "pin" -> "+"
+  n1 -> n36 // "design" -> "device"
+  n36 -> n37 // "device" -> "OR_GATE"
+  n36 -> n38 // "device" -> "attr"
+  n38 -> n39 // "attr" -> "refPrefix"
+  n38 -> n40 // "attr" -> "O"
+  n36 -> n41 // "device" -> "attr"
+  n41 -> n42 // "attr" -> "pkg_type"
+  n41 -> n43 // "attr" -> "74LS32"
+  n36 -> n44 // "device" -> "pin"
+  n44 -> n45 // "pin" -> ":"
+  n45 -> n46 // ":" -> "["
+  n45 -> n47 // ":" -> "1"
+  n45 -> n48 // ":" -> "0"
+  n44 -> n49 // "pin" -> "entry"
+  n44 -> n50 // "pin" -> "1"
+  n44 -> n51 // "pin" -> "2"
+  n36 -> n52 // "device" -> "pin"
+  n52 -> n53 // "pin" -> "exit"
+  n52 -> n54 // "pin" -> "3"
+  n1 -> n55 // "design" -> "net"
+  n55 -> n56 // "net" -> "X"
+  n55 -> n57 // "net" -> "attr"
+  n57 -> n58 // "attr" -> "impedence"
+  n57 -> n59 // "attr" -> "5k"
+  n1 -> n60 // "design" -> "net"
+  n60 -> n61 // "net" -> "Y"
+  n1 -> n62 // "design" -> "net"
+  n62 -> n63 // "net" -> "sum"
+  n1 -> n64 // "design" -> "net"
+  n64 -> n65 // "net" -> "carry"
+  n1 -> n66 // "design" -> "net"
+  n66 -> n67 // "net" -> ":"
+  n67 -> n68 // ":" -> "["
+  n67 -> n69 // ":" -> "1"
+  n67 -> n70 // ":" -> "0"
+  n66 -> n71 // "net" -> "sum_in"
+  n66 -> n72 // "net" -> "attr"
+  n72 -> n73 // "attr" -> "hometown"
+  n72 -> n74 // "attr" -> "Provo"
+  n66 -> n75 // "net" -> "attr"
+  n75 -> n76 // "attr" -> "refPrefix"
+  n75 -> n77 // "attr" -> "BREAK"
+  n1 -> n78 // "design" -> "net"
+  n78 -> n79 // "net" -> "x_bar"
+  n1 -> n80 // "design" -> "net"
+  n80 -> n81 // "net" -> "y_bar"
+  n1 -> n82 // "design" -> "begin"
+  n1 -> n83 // "design" -> "inst"
+  n83 -> n84 // "inst" -> ":"
+  n84 -> n85 // ":" -> "("
+  n84 -> n86 // ":" -> "1"
+  n84 -> n87 // ":" -> "0"
+  n83 -> n88 // "inst" -> "sum_adds"
+  n83 -> n89 // "inst" -> "AND_GATE"
+  n83 -> n90 // "inst" -> "="
+  n90 -> n91 // "=" -> "."
+  n91 -> n92 // "." -> "this"
+  n91 -> n93 // "." -> "("
+  n91 -> n94 // "." -> "0"
+  n90 -> n95 // "=" -> "entry"
+  n90 -> n96 // "=" -> "["
+  n90 -> n97 // "=" -> "0"
+  n90 -> n98 // "=" -> "X"
+  n83 -> n99 // "inst" -> "="
+  n99 -> n100 // "=" -> "."
+  n100 -> n101 // "." -> "this"
+  n100 -> n102 // "." -> "("
+  n100 -> n103 // "." -> "0"
+  n99 -> n104 // "=" -> "entry"
+  n99 -> n105 // "=" -> "["
+  n99 -> n106 // "=" -> "1"
+  n99 -> n107 // "=" -> "y_bar"
+  n83 -> n108 // "inst" -> "="
+  n108 -> n109 // "=" -> "."
+  n109 -> n110 // "." -> "this"
+  n109 -> n111 // "." -> "("
+  n109 -> n112 // "." -> "0"
+  n108 -> n113 // "=" -> "exit"
+  n108 -> n114 // "=" -> "sum_in"
+  n108 -> n115 // "=" -> "["
+  n108 -> n116 // "=" -> "0"
+  n83 -> n117 // "inst" -> "="
+  n117 -> n118 // "=" -> "."
+  n118 -> n119 // "." -> "this"
+  n118 -> n120 // "." -> "("
+  n118 -> n121 // "." -> "1"
+  n117 -> n122 // "=" -> "entry"
+  n117 -> n123 // "=" -> "["
+  n117 -> n124 // "=" -> "0"
+  n117 -> n125 // "=" -> "Y"
+  n83 -> n126 // "inst" -> "="
+  n126 -> n127 // "=" -> "."
+  n127 -> n128 // "." -> "this"
+  n127 -> n129 // "." -> "("
+  n127 -> n130 // "." -> "1"
+  n126 -> n131 // "=" -> "entry"
+  n126 -> n132 // "=" -> "["
+  n126 -> n133 // "=" -> "1"
+  n126 -> n134 // "=" -> "x_bar"
+  n83 -> n135 // "inst" -> "="
+  n135 -> n136 // "=" -> "."
+  n136 -> n137 // "." -> "this"
+  n136 -> n138 // "." -> "("
+  n136 -> n139 // "." -> "1"
+  n135 -> n140 // "=" -> "exit"
+  n135 -> n141 // "=" -> "sum_in"
+  n135 -> n142 // "=" -> "["
+  n135 -> n143 // "=" -> "1"
+  n83 -> n144 // "inst" -> "="
+  n144 -> n145 // "=" -> "refPrefix"
+  n144 -> n146 // "=" -> "BREAKME!"
+  n1 -> n147 // "design" -> "inst"
+  n147 -> n148 // "inst" -> "carry_add"
+  n147 -> n149 // "inst" -> "AND_GATE"
+  n147 -> n150 // "inst" -> "="
+  n150 -> n151 // "=" -> "entry"
+  n150 -> n152 // "=" -> "["
+  n150 -> n153 // "=" -> "0"
+  n150 -> n154 // "=" -> "X"
+  n147 -> n155 // "inst" -> "="
+  n155 -> n156 // "=" -> "entry"
+  n155 -> n157 // "=" -> "["
+  n155 -> n158 // "=" -> "1"
+  n155 -> n159 // "=" -> "Y"
+  n147 -> n160 // "inst" -> "="
+  n160 -> n161 // "=" -> "exit"
+  n160 -> n162 // "=" -> "carry"
+  n147 -> n163 // "inst" -> "="
+  n163 -> n164 // "=" -> "newattr"
+  n163 -> n165 // "=" -> "refDes"
+  n163 -> n166 // "=" -> "CA1"
+  n1 -> n167 // "design" -> "inst"
+  n167 -> n168 // "inst" -> ":"
+  n168 -> n169 // ":" -> "("
+  n168 -> n170 // ":" -> "1"
+  n168 -> n171 // ":" -> "0"
+  n167 -> n172 // "inst" -> "nots"
+  n167 -> n173 // "inst" -> "INVERTER"
+  n167 -> n174 // "inst" -> "="
+  n174 -> n175 // "=" -> "."
+  n175 -> n176 // "." -> "nots"
+  n175 -> n177 // "." -> "("
+  n175 -> n178 // "." -> "0"
+  n174 -> n179 // "=" -> "entry"
+  n174 -> n180 // "=" -> "X"
+  n167 -> n181 // "inst" -> "="
+  n181 -> n182 // "=" -> "."
+  n182 -> n183 // "." -> "nots"
+  n182 -> n184 // "." -> "("
+  n182 -> n185 // "." -> "0"
+  n181 -> n186 // "=" -> "exit"
+  n181 -> n187 // "=" -> "x_bar"
+  n167 -> n188 // "inst" -> "="
+  n188 -> n189 // "=" -> "."
+  n189 -> n190 // "." -> "nots"
+  n189 -> n191 // "." -> "("
+  n189 -> n192 // "." -> "1"
+  n188 -> n193 // "=" -> "entry"
+  n188 -> n194 // "=" -> "Y"
+  n167 -> n195 // "inst" -> "="
+  n195 -> n196 // "=" -> "."
+  n196 -> n197 // "." -> "nots"
+  n196 -> n198 // "." -> "("
+  n196 -> n199 // "." -> "1"
+  n195 -> n200 // "=" -> "exit"
+  n195 -> n201 // "=" -> "y_bar"
+  n167 -> n202 // "inst" -> "="
+  n202 -> n203 // "=" -> "pkg_type"
+  n202 -> n204 // "=" -> "Bogus"
+  n167 -> n205 // "inst" -> "="
+  n205 -> n206 // "=" -> "refPrefix"
+  n205 -> n207 // "=" -> "900"
+  n167 -> n208 // "inst" -> "="
+  n208 -> n209 // "=" -> "newattr"
+  n208 -> n210 // "=" -> "."
+  n210 -> n211 // "." -> "this"
+  n210 -> n212 // "." -> "("
+  n210 -> n213 // "." -> "1"
+  n208 -> n214 // "=" -> "refDes"
+  n208 -> n215 // "=" -> "Awesome"
+  n1 -> n216 // "design" -> "inst"
+  n216 -> n217 // "inst" -> "sum_or"
+  n216 -> n218 // "inst" -> "OR_GATE"
+  n216 -> n219 // "inst" -> "="
+  n219 -> n220 // "=" -> "newattr"
+  n219 -> n221 // "=" -> "best_friend"
+  n219 -> n222 // "=" -> "Brad"
+  n216 -> n223 // "inst" -> "="
+  n223 -> n224 // "=" -> "best_friend"
+  n223 -> n225 // "=" -> "Karen"
+  n216 -> n226 // "inst" -> "="
+  n226 -> n227 // "=" -> "refDes"
+  n226 -> n228 // "=" -> "O5"
+  n216 -> n229 // "inst" -> "="
+  n229 -> n230 // "=" -> "entry"
+  n229 -> n231 // "=" -> "sum_in"
+  n216 -> n232 // "inst" -> "="
+  n232 -> n233 // "=" -> "exit"
+  n232 -> n234 // "=" -> "sum"
+  n0 -> n235 // "" -> "<EOF>"
+
 }

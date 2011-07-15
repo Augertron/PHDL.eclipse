@@ -14,8 +14,8 @@ package phdl;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CharStream;
@@ -48,12 +48,19 @@ public class PhdlComp {
 	 */
 	static String[] reqAttr = { "REFPREFIX", "PKG_TYPE" };
 
-	static SortedSet<String> errors = new TreeSet<String>();
-	static SortedSet<String> warnings = new TreeSet<String>();
+	/**
+	 * A list of errors generated
+	 */
+	static List<String> errors = new ArrayList<String>();
+
+	/**
+	 * A list of warnings generated
+	 */
+	static List<String> warnings = new ArrayList<String>();
 
 	/**
 	 * The main entry point of the phdl Compiler. It accepts *.phdl source files as arguments and
-	 * generates a netlist for layout tools.
+	 * generates a net list for layout tools, and a bill of material for procurement.
 	 */
 	public static void main(String[] args) {
 
@@ -69,7 +76,7 @@ public class PhdlComp {
 			try {
 				cs = new ANTLRFileStream(args[i]);
 			} catch (IOException e) {
-				System.err.println("Problem reading file: " + args[0]);
+				System.err.println("Source file not found: " + args[0]);
 				System.exit(1);
 			}
 

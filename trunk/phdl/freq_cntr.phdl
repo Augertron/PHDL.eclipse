@@ -6,10 +6,10 @@
 
 design freq_cntr is
 
-	include "phdl/RLC.phdl";
-	include "phdl/translogic.phdl";
-	include "phdl/pcb_elements.phdl";
-	include "phdl/seven_seg.phdl";
+	include "RLC.phdl";
+	include "translogic.phdl";
+	include "pcb_elements.phdl";
+	include "seven_seg.phdl";
 
 begin
 

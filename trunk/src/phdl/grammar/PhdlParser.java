@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:50:56 /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g 2011-07-15 11:36:45
+// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g 2011-07-15 14:42:22
 
 /*
     Copyright (C) 2011  BYU Configurable Computing Lab
@@ -101,21 +101,20 @@ public class PhdlParser extends Parser {
     }
 
     public String[] getTokenNames() { return PhdlParser.tokenNames; }
-    public String getGrammarFileName() { return "/fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g"; }
+    public String getGrammarFileName() { return "C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g"; }
 
 
 
-    	private Set<String> errors = new TreeSet<String>();
+    	private List<String> errors = new ArrayList<String>();
 
     	@Override
-    	public void displayRecognitionError(String[] tokenNames,
-    			RecognitionException e) {
+    	public void displayRecognitionError(String[] tokenNames, RecognitionException e) {
     		String hdr = getErrorHeader(e);
     		String msg = getErrorMessage(e, tokenNames);
-    		errors.add(hdr + " " + msg);
+    		errors.add(hdr + " unexpected token: " + e.token.getText());
     	}
 
-    	public Set<String> getErrors() {
+    	public List<String> getErrors() {
     		return errors;
     	}
 
@@ -126,7 +125,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "sourceText"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:143:1: sourceText : ( designDecl )+ EOF ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:142:1: sourceText : ( designDecl )+ EOF ;
     public final PhdlParser.sourceText_return sourceText() throws RecognitionException {
         PhdlParser.sourceText_return retval = new PhdlParser.sourceText_return();
         retval.start = input.LT(1);
@@ -140,12 +139,12 @@ public class PhdlParser extends Parser {
         CommonTree EOF2_tree=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:147:2: ( ( designDecl )+ EOF )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:147:4: ( designDecl )+ EOF
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:146:2: ( ( designDecl )+ EOF )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:146:4: ( designDecl )+ EOF
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:147:4: ( designDecl )+
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:146:4: ( designDecl )+
             int cnt1=0;
             loop1:
             do {
@@ -159,9 +158,9 @@ public class PhdlParser extends Parser {
 
                 switch (alt1) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:147:4: designDecl
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:146:4: designDecl
             	    {
-            	    pushFollow(FOLLOW_designDecl_in_sourceText88);
+            	    pushFollow(FOLLOW_designDecl_in_sourceText91);
             	    designDecl1=designDecl();
 
             	    state._fsp--;
@@ -180,7 +179,7 @@ public class PhdlParser extends Parser {
                 cnt1++;
             } while (true);
 
-            EOF2=(Token)match(input,EOF,FOLLOW_EOF_in_sourceText91); 
+            EOF2=(Token)match(input,EOF,FOLLOW_EOF_in_sourceText94); 
             EOF2_tree = (CommonTree)adaptor.create(EOF2);
             adaptor.addChild(root_0, EOF2_tree);
 
@@ -211,7 +210,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "designDecl"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:161:1: designDecl : 'design' IDENT 'is' ( deviceDecl | netDecl )* 'begin' ( instanceDecl | netAssignment )* 'end' ( 'design' )? ( IDENT )? SEMICOLON ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:160:1: designDecl : 'design' IDENT 'is' ( deviceDecl | netDecl )* 'begin' ( instanceDecl | netAssignment )* 'end' ( 'design' )? ( IDENT )? SEMICOLON ;
     public final PhdlParser.designDecl_return designDecl() throws RecognitionException {
         PhdlParser.designDecl_return retval = new PhdlParser.designDecl_return();
         retval.start = input.LT(1);
@@ -245,21 +244,21 @@ public class PhdlParser extends Parser {
         CommonTree SEMICOLON14_tree=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:168:2: ( 'design' IDENT 'is' ( deviceDecl | netDecl )* 'begin' ( instanceDecl | netAssignment )* 'end' ( 'design' )? ( IDENT )? SEMICOLON )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:168:4: 'design' IDENT 'is' ( deviceDecl | netDecl )* 'begin' ( instanceDecl | netAssignment )* 'end' ( 'design' )? ( IDENT )? SEMICOLON
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:167:2: ( 'design' IDENT 'is' ( deviceDecl | netDecl )* 'begin' ( instanceDecl | netAssignment )* 'end' ( 'design' )? ( IDENT )? SEMICOLON )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:167:4: 'design' IDENT 'is' ( deviceDecl | netDecl )* 'begin' ( instanceDecl | netAssignment )* 'end' ( 'design' )? ( IDENT )? SEMICOLON
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            string_literal3=(Token)match(input,27,FOLLOW_27_in_designDecl110); 
+            string_literal3=(Token)match(input,27,FOLLOW_27_in_designDecl113); 
             string_literal3_tree = (CommonTree)adaptor.create(string_literal3);
             root_0 = (CommonTree)adaptor.becomeRoot(string_literal3_tree, root_0);
 
-            IDENT4=(Token)match(input,IDENT,FOLLOW_IDENT_in_designDecl113); 
+            IDENT4=(Token)match(input,IDENT,FOLLOW_IDENT_in_designDecl116); 
             IDENT4_tree = (CommonTree)adaptor.create(IDENT4);
             adaptor.addChild(root_0, IDENT4_tree);
 
-            string_literal5=(Token)match(input,28,FOLLOW_28_in_designDecl115); 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:169:3: ( deviceDecl | netDecl )*
+            string_literal5=(Token)match(input,28,FOLLOW_28_in_designDecl118); 
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:168:3: ( deviceDecl | netDecl )*
             loop2:
             do {
                 int alt2=3;
@@ -275,9 +274,9 @@ public class PhdlParser extends Parser {
 
                 switch (alt2) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:169:4: deviceDecl
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:168:4: deviceDecl
             	    {
-            	    pushFollow(FOLLOW_deviceDecl_in_designDecl122);
+            	    pushFollow(FOLLOW_deviceDecl_in_designDecl125);
             	    deviceDecl6=deviceDecl();
 
             	    state._fsp--;
@@ -287,9 +286,9 @@ public class PhdlParser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:169:17: netDecl
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:168:17: netDecl
             	    {
-            	    pushFollow(FOLLOW_netDecl_in_designDecl126);
+            	    pushFollow(FOLLOW_netDecl_in_designDecl129);
             	    netDecl7=netDecl();
 
             	    state._fsp--;
@@ -304,11 +303,11 @@ public class PhdlParser extends Parser {
                 }
             } while (true);
 
-            string_literal8=(Token)match(input,29,FOLLOW_29_in_designDecl132); 
+            string_literal8=(Token)match(input,29,FOLLOW_29_in_designDecl135); 
             string_literal8_tree = (CommonTree)adaptor.create(string_literal8);
             adaptor.addChild(root_0, string_literal8_tree);
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:171:3: ( instanceDecl | netAssignment )*
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:170:3: ( instanceDecl | netAssignment )*
             loop3:
             do {
                 int alt3=3;
@@ -324,9 +323,9 @@ public class PhdlParser extends Parser {
 
                 switch (alt3) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:171:4: instanceDecl
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:170:4: instanceDecl
             	    {
-            	    pushFollow(FOLLOW_instanceDecl_in_designDecl137);
+            	    pushFollow(FOLLOW_instanceDecl_in_designDecl140);
             	    instanceDecl9=instanceDecl();
 
             	    state._fsp--;
@@ -336,9 +335,9 @@ public class PhdlParser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:171:19: netAssignment
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:170:19: netAssignment
             	    {
-            	    pushFollow(FOLLOW_netAssignment_in_designDecl141);
+            	    pushFollow(FOLLOW_netAssignment_in_designDecl144);
             	    netAssignment10=netAssignment();
 
             	    state._fsp--;
@@ -353,8 +352,8 @@ public class PhdlParser extends Parser {
                 }
             } while (true);
 
-            string_literal11=(Token)match(input,30,FOLLOW_30_in_designDecl147); 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:172:18: ( 'design' )?
+            string_literal11=(Token)match(input,30,FOLLOW_30_in_designDecl150); 
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:171:18: ( 'design' )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -363,16 +362,16 @@ public class PhdlParser extends Parser {
             }
             switch (alt4) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:172:18: 'design'
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:171:18: 'design'
                     {
-                    string_literal12=(Token)match(input,27,FOLLOW_27_in_designDecl150); 
+                    string_literal12=(Token)match(input,27,FOLLOW_27_in_designDecl153); 
 
                     }
                     break;
 
             }
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:172:21: ( IDENT )?
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:171:21: ( IDENT )?
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -381,9 +380,9 @@ public class PhdlParser extends Parser {
             }
             switch (alt5) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:172:21: IDENT
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:171:21: IDENT
                     {
-                    IDENT13=(Token)match(input,IDENT,FOLLOW_IDENT_in_designDecl154); 
+                    IDENT13=(Token)match(input,IDENT,FOLLOW_IDENT_in_designDecl157); 
                     IDENT13_tree = (CommonTree)adaptor.create(IDENT13);
                     adaptor.addChild(root_0, IDENT13_tree);
 
@@ -393,7 +392,7 @@ public class PhdlParser extends Parser {
 
             }
 
-            SEMICOLON14=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_designDecl157); 
+            SEMICOLON14=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_designDecl160); 
 
             }
 
@@ -421,7 +420,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "deviceDecl"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:175:1: deviceDecl : 'device' IDENT 'is' ( attributeDecl | pinDecl )* 'end' ( 'device' )? ( IDENT )? SEMICOLON ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:174:1: deviceDecl : 'device' IDENT 'is' ( attributeDecl | pinDecl )* 'end' ( 'device' )? ( IDENT )? SEMICOLON ;
     public final PhdlParser.deviceDecl_return deviceDecl() throws RecognitionException {
         PhdlParser.deviceDecl_return retval = new PhdlParser.deviceDecl_return();
         retval.start = input.LT(1);
@@ -449,21 +448,21 @@ public class PhdlParser extends Parser {
         CommonTree SEMICOLON23_tree=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:181:2: ( 'device' IDENT 'is' ( attributeDecl | pinDecl )* 'end' ( 'device' )? ( IDENT )? SEMICOLON )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:181:4: 'device' IDENT 'is' ( attributeDecl | pinDecl )* 'end' ( 'device' )? ( IDENT )? SEMICOLON
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:180:2: ( 'device' IDENT 'is' ( attributeDecl | pinDecl )* 'end' ( 'device' )? ( IDENT )? SEMICOLON )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:180:4: 'device' IDENT 'is' ( attributeDecl | pinDecl )* 'end' ( 'device' )? ( IDENT )? SEMICOLON
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            string_literal15=(Token)match(input,31,FOLLOW_31_in_deviceDecl172); 
+            string_literal15=(Token)match(input,31,FOLLOW_31_in_deviceDecl175); 
             string_literal15_tree = (CommonTree)adaptor.create(string_literal15);
             root_0 = (CommonTree)adaptor.becomeRoot(string_literal15_tree, root_0);
 
-            IDENT16=(Token)match(input,IDENT,FOLLOW_IDENT_in_deviceDecl175); 
+            IDENT16=(Token)match(input,IDENT,FOLLOW_IDENT_in_deviceDecl178); 
             IDENT16_tree = (CommonTree)adaptor.create(IDENT16);
             adaptor.addChild(root_0, IDENT16_tree);
 
-            string_literal17=(Token)match(input,28,FOLLOW_28_in_deviceDecl177); 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:182:3: ( attributeDecl | pinDecl )*
+            string_literal17=(Token)match(input,28,FOLLOW_28_in_deviceDecl180); 
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:181:3: ( attributeDecl | pinDecl )*
             loop6:
             do {
                 int alt6=3;
@@ -479,9 +478,9 @@ public class PhdlParser extends Parser {
 
                 switch (alt6) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:182:5: attributeDecl
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:181:5: attributeDecl
             	    {
-            	    pushFollow(FOLLOW_attributeDecl_in_deviceDecl184);
+            	    pushFollow(FOLLOW_attributeDecl_in_deviceDecl187);
             	    attributeDecl18=attributeDecl();
 
             	    state._fsp--;
@@ -491,9 +490,9 @@ public class PhdlParser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:182:21: pinDecl
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:181:21: pinDecl
             	    {
-            	    pushFollow(FOLLOW_pinDecl_in_deviceDecl188);
+            	    pushFollow(FOLLOW_pinDecl_in_deviceDecl191);
             	    pinDecl19=pinDecl();
 
             	    state._fsp--;
@@ -508,8 +507,8 @@ public class PhdlParser extends Parser {
                 }
             } while (true);
 
-            string_literal20=(Token)match(input,30,FOLLOW_30_in_deviceDecl195); 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:183:18: ( 'device' )?
+            string_literal20=(Token)match(input,30,FOLLOW_30_in_deviceDecl198); 
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:182:18: ( 'device' )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -518,16 +517,16 @@ public class PhdlParser extends Parser {
             }
             switch (alt7) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:183:18: 'device'
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:182:18: 'device'
                     {
-                    string_literal21=(Token)match(input,31,FOLLOW_31_in_deviceDecl198); 
+                    string_literal21=(Token)match(input,31,FOLLOW_31_in_deviceDecl201); 
 
                     }
                     break;
 
             }
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:183:21: ( IDENT )?
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:182:21: ( IDENT )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -536,9 +535,9 @@ public class PhdlParser extends Parser {
             }
             switch (alt8) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:183:21: IDENT
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:182:21: IDENT
                     {
-                    IDENT22=(Token)match(input,IDENT,FOLLOW_IDENT_in_deviceDecl202); 
+                    IDENT22=(Token)match(input,IDENT,FOLLOW_IDENT_in_deviceDecl205); 
                     IDENT22_tree = (CommonTree)adaptor.create(IDENT22);
                     adaptor.addChild(root_0, IDENT22_tree);
 
@@ -548,7 +547,7 @@ public class PhdlParser extends Parser {
 
             }
 
-            SEMICOLON23=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_deviceDecl205); 
+            SEMICOLON23=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_deviceDecl208); 
 
             }
 
@@ -576,7 +575,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "attributeDecl"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:186:1: attributeDecl : 'attr' IDENT EQUALS STRING SEMICOLON ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:185:1: attributeDecl : 'attr' IDENT EQUALS STRING SEMICOLON ;
     public final PhdlParser.attributeDecl_return attributeDecl() throws RecognitionException {
         PhdlParser.attributeDecl_return retval = new PhdlParser.attributeDecl_return();
         retval.start = input.LT(1);
@@ -596,25 +595,25 @@ public class PhdlParser extends Parser {
         CommonTree SEMICOLON28_tree=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:191:2: ( 'attr' IDENT EQUALS STRING SEMICOLON )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:191:4: 'attr' IDENT EQUALS STRING SEMICOLON
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:190:2: ( 'attr' IDENT EQUALS STRING SEMICOLON )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:190:4: 'attr' IDENT EQUALS STRING SEMICOLON
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            string_literal24=(Token)match(input,32,FOLLOW_32_in_attributeDecl220); 
+            string_literal24=(Token)match(input,32,FOLLOW_32_in_attributeDecl223); 
             string_literal24_tree = (CommonTree)adaptor.create(string_literal24);
             root_0 = (CommonTree)adaptor.becomeRoot(string_literal24_tree, root_0);
 
-            IDENT25=(Token)match(input,IDENT,FOLLOW_IDENT_in_attributeDecl223); 
+            IDENT25=(Token)match(input,IDENT,FOLLOW_IDENT_in_attributeDecl226); 
             IDENT25_tree = (CommonTree)adaptor.create(IDENT25);
             adaptor.addChild(root_0, IDENT25_tree);
 
-            EQUALS26=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_attributeDecl225); 
-            STRING27=(Token)match(input,STRING,FOLLOW_STRING_in_attributeDecl228); 
+            EQUALS26=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_attributeDecl228); 
+            STRING27=(Token)match(input,STRING,FOLLOW_STRING_in_attributeDecl231); 
             STRING27_tree = (CommonTree)adaptor.create(STRING27);
             adaptor.addChild(root_0, STRING27_tree);
 
-            SEMICOLON28=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_attributeDecl230); 
+            SEMICOLON28=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_attributeDecl233); 
 
             }
 
@@ -642,7 +641,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "pinDecl"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:194:1: pinDecl : type ( sliceDecl )? IDENT EQUALS pinList SEMICOLON ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:193:1: pinDecl : type ( sliceDecl )? IDENT EQUALS pinList SEMICOLON ;
     public final PhdlParser.pinDecl_return pinDecl() throws RecognitionException {
         PhdlParser.pinDecl_return retval = new PhdlParser.pinDecl_return();
         retval.start = input.LT(1);
@@ -664,18 +663,18 @@ public class PhdlParser extends Parser {
         CommonTree SEMICOLON34_tree=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:200:2: ( type ( sliceDecl )? IDENT EQUALS pinList SEMICOLON )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:200:4: type ( sliceDecl )? IDENT EQUALS pinList SEMICOLON
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:199:2: ( type ( sliceDecl )? IDENT EQUALS pinList SEMICOLON )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:199:4: type ( sliceDecl )? IDENT EQUALS pinList SEMICOLON
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            pushFollow(FOLLOW_type_in_pinDecl244);
+            pushFollow(FOLLOW_type_in_pinDecl247);
             type29=type();
 
             state._fsp--;
 
             root_0 = (CommonTree)adaptor.becomeRoot(type29.getTree(), root_0);
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:200:10: ( sliceDecl )?
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:199:10: ( sliceDecl )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -684,9 +683,9 @@ public class PhdlParser extends Parser {
             }
             switch (alt9) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:200:10: sliceDecl
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:199:10: sliceDecl
                     {
-                    pushFollow(FOLLOW_sliceDecl_in_pinDecl247);
+                    pushFollow(FOLLOW_sliceDecl_in_pinDecl250);
                     sliceDecl30=sliceDecl();
 
                     state._fsp--;
@@ -698,18 +697,18 @@ public class PhdlParser extends Parser {
 
             }
 
-            IDENT31=(Token)match(input,IDENT,FOLLOW_IDENT_in_pinDecl250); 
+            IDENT31=(Token)match(input,IDENT,FOLLOW_IDENT_in_pinDecl253); 
             IDENT31_tree = (CommonTree)adaptor.create(IDENT31);
             adaptor.addChild(root_0, IDENT31_tree);
 
-            EQUALS32=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_pinDecl252); 
-            pushFollow(FOLLOW_pinList_in_pinDecl255);
+            EQUALS32=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_pinDecl255); 
+            pushFollow(FOLLOW_pinList_in_pinDecl258);
             pinList33=pinList();
 
             state._fsp--;
 
             adaptor.addChild(root_0, pinList33.getTree());
-            SEMICOLON34=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_pinDecl257); 
+            SEMICOLON34=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_pinDecl260); 
 
             }
 
@@ -737,7 +736,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "type"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:203:1: type : 'pin' ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:202:1: type : 'pin' ;
     public final PhdlParser.type_return type() throws RecognitionException {
         PhdlParser.type_return retval = new PhdlParser.type_return();
         retval.start = input.LT(1);
@@ -749,12 +748,12 @@ public class PhdlParser extends Parser {
         CommonTree string_literal35_tree=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:207:2: ( 'pin' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:207:4: 'pin'
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:206:2: ( 'pin' )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:206:4: 'pin'
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            string_literal35=(Token)match(input,33,FOLLOW_33_in_type272); 
+            string_literal35=(Token)match(input,33,FOLLOW_33_in_type275); 
             string_literal35_tree = (CommonTree)adaptor.create(string_literal35);
             adaptor.addChild(root_0, string_literal35_tree);
 
@@ -785,7 +784,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "netDecl"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:210:1: netDecl : 'net' ( sliceDecl )? IDENT ( netAttributes )? SEMICOLON ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:209:1: netDecl : 'net' ( sliceDecl )? IDENT ( netAttributes )? SEMICOLON ;
     public final PhdlParser.netDecl_return netDecl() throws RecognitionException {
         PhdlParser.netDecl_return retval = new PhdlParser.netDecl_return();
         retval.start = input.LT(1);
@@ -805,16 +804,16 @@ public class PhdlParser extends Parser {
         CommonTree SEMICOLON40_tree=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:215:2: ( 'net' ( sliceDecl )? IDENT ( netAttributes )? SEMICOLON )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:215:4: 'net' ( sliceDecl )? IDENT ( netAttributes )? SEMICOLON
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:214:2: ( 'net' ( sliceDecl )? IDENT ( netAttributes )? SEMICOLON )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:214:4: 'net' ( sliceDecl )? IDENT ( netAttributes )? SEMICOLON
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            string_literal36=(Token)match(input,34,FOLLOW_34_in_netDecl286); 
+            string_literal36=(Token)match(input,34,FOLLOW_34_in_netDecl289); 
             string_literal36_tree = (CommonTree)adaptor.create(string_literal36);
             root_0 = (CommonTree)adaptor.becomeRoot(string_literal36_tree, root_0);
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:215:11: ( sliceDecl )?
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:214:11: ( sliceDecl )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -823,9 +822,9 @@ public class PhdlParser extends Parser {
             }
             switch (alt10) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:215:11: sliceDecl
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:214:11: sliceDecl
                     {
-                    pushFollow(FOLLOW_sliceDecl_in_netDecl289);
+                    pushFollow(FOLLOW_sliceDecl_in_netDecl292);
                     sliceDecl37=sliceDecl();
 
                     state._fsp--;
@@ -837,11 +836,11 @@ public class PhdlParser extends Parser {
 
             }
 
-            IDENT38=(Token)match(input,IDENT,FOLLOW_IDENT_in_netDecl292); 
+            IDENT38=(Token)match(input,IDENT,FOLLOW_IDENT_in_netDecl295); 
             IDENT38_tree = (CommonTree)adaptor.create(IDENT38);
             adaptor.addChild(root_0, IDENT38_tree);
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:215:28: ( netAttributes )?
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:214:28: ( netAttributes )?
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -850,9 +849,9 @@ public class PhdlParser extends Parser {
             }
             switch (alt11) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:215:28: netAttributes
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:214:28: netAttributes
                     {
-                    pushFollow(FOLLOW_netAttributes_in_netDecl294);
+                    pushFollow(FOLLOW_netAttributes_in_netDecl297);
                     netAttributes39=netAttributes();
 
                     state._fsp--;
@@ -864,7 +863,7 @@ public class PhdlParser extends Parser {
 
             }
 
-            SEMICOLON40=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_netDecl297); 
+            SEMICOLON40=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_netDecl300); 
 
             }
 
@@ -892,7 +891,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "netAttributes"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:218:1: netAttributes : 'is' ( attributeDecl )* 'end' ( 'net' )? ( IDENT )? ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:217:1: netAttributes : 'is' ( attributeDecl )* 'end' ( 'net' )? ( IDENT )? ;
     public final PhdlParser.netAttributes_return netAttributes() throws RecognitionException {
         PhdlParser.netAttributes_return retval = new PhdlParser.netAttributes_return();
         retval.start = input.LT(1);
@@ -912,13 +911,13 @@ public class PhdlParser extends Parser {
         CommonTree IDENT45_tree=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:223:2: ( 'is' ( attributeDecl )* 'end' ( 'net' )? ( IDENT )? )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:223:4: 'is' ( attributeDecl )* 'end' ( 'net' )? ( IDENT )?
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:222:2: ( 'is' ( attributeDecl )* 'end' ( 'net' )? ( IDENT )? )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:222:4: 'is' ( attributeDecl )* 'end' ( 'net' )? ( IDENT )?
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            string_literal41=(Token)match(input,28,FOLLOW_28_in_netAttributes313); 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:223:10: ( attributeDecl )*
+            string_literal41=(Token)match(input,28,FOLLOW_28_in_netAttributes316); 
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:222:10: ( attributeDecl )*
             loop12:
             do {
                 int alt12=2;
@@ -931,9 +930,9 @@ public class PhdlParser extends Parser {
 
                 switch (alt12) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:223:10: attributeDecl
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:222:10: attributeDecl
             	    {
-            	    pushFollow(FOLLOW_attributeDecl_in_netAttributes316);
+            	    pushFollow(FOLLOW_attributeDecl_in_netAttributes319);
             	    attributeDecl42=attributeDecl();
 
             	    state._fsp--;
@@ -948,8 +947,8 @@ public class PhdlParser extends Parser {
                 }
             } while (true);
 
-            string_literal43=(Token)match(input,30,FOLLOW_30_in_netAttributes319); 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:223:37: ( 'net' )?
+            string_literal43=(Token)match(input,30,FOLLOW_30_in_netAttributes322); 
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:222:37: ( 'net' )?
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -958,16 +957,16 @@ public class PhdlParser extends Parser {
             }
             switch (alt13) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:223:37: 'net'
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:222:37: 'net'
                     {
-                    string_literal44=(Token)match(input,34,FOLLOW_34_in_netAttributes322); 
+                    string_literal44=(Token)match(input,34,FOLLOW_34_in_netAttributes325); 
 
                     }
                     break;
 
             }
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:223:40: ( IDENT )?
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:222:40: ( IDENT )?
             int alt14=2;
             int LA14_0 = input.LA(1);
 
@@ -976,9 +975,9 @@ public class PhdlParser extends Parser {
             }
             switch (alt14) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:223:40: IDENT
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:222:40: IDENT
                     {
-                    IDENT45=(Token)match(input,IDENT,FOLLOW_IDENT_in_netAttributes326); 
+                    IDENT45=(Token)match(input,IDENT,FOLLOW_IDENT_in_netAttributes329); 
                     IDENT45_tree = (CommonTree)adaptor.create(IDENT45);
                     adaptor.addChild(root_0, IDENT45_tree);
 
@@ -1015,7 +1014,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "instanceDecl"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:226:1: instanceDecl : 'inst' ( arrayDecl )? IDENT 'of' IDENT 'is' ( attributeAssignment | pinAssignment )* 'end' ( 'inst' )? ( IDENT )? SEMICOLON ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:225:1: instanceDecl : 'inst' ( arrayDecl )? IDENT 'of' IDENT 'is' ( attributeAssignment | pinAssignment )* 'end' ( 'inst' )? ( IDENT )? SEMICOLON ;
     public final PhdlParser.instanceDecl_return instanceDecl() throws RecognitionException {
         PhdlParser.instanceDecl_return retval = new PhdlParser.instanceDecl_return();
         retval.start = input.LT(1);
@@ -1049,16 +1048,16 @@ public class PhdlParser extends Parser {
         CommonTree SEMICOLON57_tree=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:232:2: ( 'inst' ( arrayDecl )? IDENT 'of' IDENT 'is' ( attributeAssignment | pinAssignment )* 'end' ( 'inst' )? ( IDENT )? SEMICOLON )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:232:4: 'inst' ( arrayDecl )? IDENT 'of' IDENT 'is' ( attributeAssignment | pinAssignment )* 'end' ( 'inst' )? ( IDENT )? SEMICOLON
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:231:2: ( 'inst' ( arrayDecl )? IDENT 'of' IDENT 'is' ( attributeAssignment | pinAssignment )* 'end' ( 'inst' )? ( IDENT )? SEMICOLON )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:231:4: 'inst' ( arrayDecl )? IDENT 'of' IDENT 'is' ( attributeAssignment | pinAssignment )* 'end' ( 'inst' )? ( IDENT )? SEMICOLON
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            string_literal46=(Token)match(input,35,FOLLOW_35_in_instanceDecl340); 
+            string_literal46=(Token)match(input,35,FOLLOW_35_in_instanceDecl343); 
             string_literal46_tree = (CommonTree)adaptor.create(string_literal46);
             root_0 = (CommonTree)adaptor.becomeRoot(string_literal46_tree, root_0);
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:232:12: ( arrayDecl )?
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:231:12: ( arrayDecl )?
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -1067,9 +1066,9 @@ public class PhdlParser extends Parser {
             }
             switch (alt15) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:232:12: arrayDecl
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:231:12: arrayDecl
                     {
-                    pushFollow(FOLLOW_arrayDecl_in_instanceDecl343);
+                    pushFollow(FOLLOW_arrayDecl_in_instanceDecl346);
                     arrayDecl47=arrayDecl();
 
                     state._fsp--;
@@ -1081,26 +1080,26 @@ public class PhdlParser extends Parser {
 
             }
 
-            IDENT48=(Token)match(input,IDENT,FOLLOW_IDENT_in_instanceDecl346); 
+            IDENT48=(Token)match(input,IDENT,FOLLOW_IDENT_in_instanceDecl349); 
             IDENT48_tree = (CommonTree)adaptor.create(IDENT48);
             adaptor.addChild(root_0, IDENT48_tree);
 
-            string_literal49=(Token)match(input,36,FOLLOW_36_in_instanceDecl348); 
-            IDENT50=(Token)match(input,IDENT,FOLLOW_IDENT_in_instanceDecl351); 
+            string_literal49=(Token)match(input,36,FOLLOW_36_in_instanceDecl351); 
+            IDENT50=(Token)match(input,IDENT,FOLLOW_IDENT_in_instanceDecl354); 
             IDENT50_tree = (CommonTree)adaptor.create(IDENT50);
             adaptor.addChild(root_0, IDENT50_tree);
 
-            string_literal51=(Token)match(input,28,FOLLOW_28_in_instanceDecl353); 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:233:3: ( attributeAssignment | pinAssignment )*
+            string_literal51=(Token)match(input,28,FOLLOW_28_in_instanceDecl356); 
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:232:3: ( attributeAssignment | pinAssignment )*
             loop16:
             do {
                 int alt16=3;
                 alt16 = dfa16.predict(input);
                 switch (alt16) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:233:4: attributeAssignment
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:232:4: attributeAssignment
             	    {
-            	    pushFollow(FOLLOW_attributeAssignment_in_instanceDecl359);
+            	    pushFollow(FOLLOW_attributeAssignment_in_instanceDecl362);
             	    attributeAssignment52=attributeAssignment();
 
             	    state._fsp--;
@@ -1110,9 +1109,9 @@ public class PhdlParser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:233:26: pinAssignment
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:232:26: pinAssignment
             	    {
-            	    pushFollow(FOLLOW_pinAssignment_in_instanceDecl363);
+            	    pushFollow(FOLLOW_pinAssignment_in_instanceDecl366);
             	    pinAssignment53=pinAssignment();
 
             	    state._fsp--;
@@ -1127,8 +1126,8 @@ public class PhdlParser extends Parser {
                 }
             } while (true);
 
-            string_literal54=(Token)match(input,30,FOLLOW_30_in_instanceDecl369); 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:234:16: ( 'inst' )?
+            string_literal54=(Token)match(input,30,FOLLOW_30_in_instanceDecl372); 
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:233:16: ( 'inst' )?
             int alt17=2;
             int LA17_0 = input.LA(1);
 
@@ -1137,16 +1136,16 @@ public class PhdlParser extends Parser {
             }
             switch (alt17) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:234:16: 'inst'
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:233:16: 'inst'
                     {
-                    string_literal55=(Token)match(input,35,FOLLOW_35_in_instanceDecl372); 
+                    string_literal55=(Token)match(input,35,FOLLOW_35_in_instanceDecl375); 
 
                     }
                     break;
 
             }
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:234:19: ( IDENT )?
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:233:19: ( IDENT )?
             int alt18=2;
             int LA18_0 = input.LA(1);
 
@@ -1155,9 +1154,9 @@ public class PhdlParser extends Parser {
             }
             switch (alt18) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:234:19: IDENT
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:233:19: IDENT
                     {
-                    IDENT56=(Token)match(input,IDENT,FOLLOW_IDENT_in_instanceDecl376); 
+                    IDENT56=(Token)match(input,IDENT,FOLLOW_IDENT_in_instanceDecl379); 
                     IDENT56_tree = (CommonTree)adaptor.create(IDENT56);
                     adaptor.addChild(root_0, IDENT56_tree);
 
@@ -1167,7 +1166,7 @@ public class PhdlParser extends Parser {
 
             }
 
-            SEMICOLON57=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_instanceDecl379); 
+            SEMICOLON57=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_instanceDecl382); 
 
             }
 
@@ -1195,7 +1194,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "attributeAssignment"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:237:1: attributeAssignment : ( 'newattr' )? ( instanceQualifier )? IDENT EQUALS STRING SEMICOLON ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:236:1: attributeAssignment : ( 'newattr' )? ( instanceQualifier )? IDENT EQUALS STRING SEMICOLON ;
     public final PhdlParser.attributeAssignment_return attributeAssignment() throws RecognitionException {
         PhdlParser.attributeAssignment_return retval = new PhdlParser.attributeAssignment_return();
         retval.start = input.LT(1);
@@ -1217,12 +1216,12 @@ public class PhdlParser extends Parser {
         CommonTree SEMICOLON63_tree=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:243:2: ( ( 'newattr' )? ( instanceQualifier )? IDENT EQUALS STRING SEMICOLON )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:243:5: ( 'newattr' )? ( instanceQualifier )? IDENT EQUALS STRING SEMICOLON
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:242:2: ( ( 'newattr' )? ( instanceQualifier )? IDENT EQUALS STRING SEMICOLON )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:242:5: ( 'newattr' )? ( instanceQualifier )? IDENT EQUALS STRING SEMICOLON
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:243:5: ( 'newattr' )?
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:242:5: ( 'newattr' )?
             int alt19=2;
             int LA19_0 = input.LA(1);
 
@@ -1231,9 +1230,9 @@ public class PhdlParser extends Parser {
             }
             switch (alt19) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:243:6: 'newattr'
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:242:6: 'newattr'
                     {
-                    string_literal58=(Token)match(input,37,FOLLOW_37_in_attributeAssignment395); 
+                    string_literal58=(Token)match(input,37,FOLLOW_37_in_attributeAssignment398); 
                     string_literal58_tree = (CommonTree)adaptor.create(string_literal58);
                     adaptor.addChild(root_0, string_literal58_tree);
 
@@ -1243,7 +1242,7 @@ public class PhdlParser extends Parser {
 
             }
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:243:18: ( instanceQualifier )?
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:242:18: ( instanceQualifier )?
             int alt20=2;
             int LA20_0 = input.LA(1);
 
@@ -1259,9 +1258,9 @@ public class PhdlParser extends Parser {
             }
             switch (alt20) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:243:18: instanceQualifier
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:242:18: instanceQualifier
                     {
-                    pushFollow(FOLLOW_instanceQualifier_in_attributeAssignment399);
+                    pushFollow(FOLLOW_instanceQualifier_in_attributeAssignment402);
                     instanceQualifier59=instanceQualifier();
 
                     state._fsp--;
@@ -1273,19 +1272,19 @@ public class PhdlParser extends Parser {
 
             }
 
-            IDENT60=(Token)match(input,IDENT,FOLLOW_IDENT_in_attributeAssignment402); 
+            IDENT60=(Token)match(input,IDENT,FOLLOW_IDENT_in_attributeAssignment405); 
             IDENT60_tree = (CommonTree)adaptor.create(IDENT60);
             adaptor.addChild(root_0, IDENT60_tree);
 
-            EQUALS61=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_attributeAssignment404); 
+            EQUALS61=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_attributeAssignment407); 
             EQUALS61_tree = (CommonTree)adaptor.create(EQUALS61);
             root_0 = (CommonTree)adaptor.becomeRoot(EQUALS61_tree, root_0);
 
-            STRING62=(Token)match(input,STRING,FOLLOW_STRING_in_attributeAssignment407); 
+            STRING62=(Token)match(input,STRING,FOLLOW_STRING_in_attributeAssignment410); 
             STRING62_tree = (CommonTree)adaptor.create(STRING62);
             adaptor.addChild(root_0, STRING62_tree);
 
-            SEMICOLON63=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_attributeAssignment409); 
+            SEMICOLON63=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_attributeAssignment412); 
 
             }
 
@@ -1313,7 +1312,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "instanceQualifier"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:246:1: instanceQualifier : ( IDENT | 'this' ) ( arrayList )? PERIOD ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:245:1: instanceQualifier : ( IDENT | 'this' ) ( arrayList )? PERIOD ;
     public final PhdlParser.instanceQualifier_return instanceQualifier() throws RecognitionException {
         PhdlParser.instanceQualifier_return retval = new PhdlParser.instanceQualifier_return();
         retval.start = input.LT(1);
@@ -1329,8 +1328,8 @@ public class PhdlParser extends Parser {
         CommonTree PERIOD66_tree=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:251:2: ( ( IDENT | 'this' ) ( arrayList )? PERIOD )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:251:4: ( IDENT | 'this' ) ( arrayList )? PERIOD
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:250:2: ( ( IDENT | 'this' ) ( arrayList )? PERIOD )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:250:4: ( IDENT | 'this' ) ( arrayList )? PERIOD
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -1345,7 +1344,7 @@ public class PhdlParser extends Parser {
                 throw mse;
             }
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:251:21: ( arrayList )?
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:250:21: ( arrayList )?
             int alt21=2;
             int LA21_0 = input.LA(1);
 
@@ -1354,9 +1353,9 @@ public class PhdlParser extends Parser {
             }
             switch (alt21) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:251:21: arrayList
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:250:21: arrayList
                     {
-                    pushFollow(FOLLOW_arrayList_in_instanceQualifier432);
+                    pushFollow(FOLLOW_arrayList_in_instanceQualifier435);
                     arrayList65=arrayList();
 
                     state._fsp--;
@@ -1368,7 +1367,7 @@ public class PhdlParser extends Parser {
 
             }
 
-            PERIOD66=(Token)match(input,PERIOD,FOLLOW_PERIOD_in_instanceQualifier435); 
+            PERIOD66=(Token)match(input,PERIOD,FOLLOW_PERIOD_in_instanceQualifier438); 
             PERIOD66_tree = (CommonTree)adaptor.create(PERIOD66);
             root_0 = (CommonTree)adaptor.becomeRoot(PERIOD66_tree, root_0);
 
@@ -1399,7 +1398,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "pinAssignment"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:254:1: pinAssignment : ( instanceQualifier )? IDENT ( sliceList )? EQUALS concatenation SEMICOLON ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:253:1: pinAssignment : ( instanceQualifier )? IDENT ( sliceList )? EQUALS concatenation SEMICOLON ;
     public final PhdlParser.pinAssignment_return pinAssignment() throws RecognitionException {
         PhdlParser.pinAssignment_return retval = new PhdlParser.pinAssignment_return();
         retval.start = input.LT(1);
@@ -1421,12 +1420,12 @@ public class PhdlParser extends Parser {
         CommonTree SEMICOLON72_tree=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:259:2: ( ( instanceQualifier )? IDENT ( sliceList )? EQUALS concatenation SEMICOLON )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:259:4: ( instanceQualifier )? IDENT ( sliceList )? EQUALS concatenation SEMICOLON
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:258:2: ( ( instanceQualifier )? IDENT ( sliceList )? EQUALS concatenation SEMICOLON )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:258:4: ( instanceQualifier )? IDENT ( sliceList )? EQUALS concatenation SEMICOLON
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:259:4: ( instanceQualifier )?
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:258:4: ( instanceQualifier )?
             int alt22=2;
             int LA22_0 = input.LA(1);
 
@@ -1442,9 +1441,9 @@ public class PhdlParser extends Parser {
             }
             switch (alt22) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:259:4: instanceQualifier
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:258:4: instanceQualifier
                     {
-                    pushFollow(FOLLOW_instanceQualifier_in_pinAssignment451);
+                    pushFollow(FOLLOW_instanceQualifier_in_pinAssignment454);
                     instanceQualifier67=instanceQualifier();
 
                     state._fsp--;
@@ -1456,11 +1455,11 @@ public class PhdlParser extends Parser {
 
             }
 
-            IDENT68=(Token)match(input,IDENT,FOLLOW_IDENT_in_pinAssignment454); 
+            IDENT68=(Token)match(input,IDENT,FOLLOW_IDENT_in_pinAssignment457); 
             IDENT68_tree = (CommonTree)adaptor.create(IDENT68);
             adaptor.addChild(root_0, IDENT68_tree);
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:259:29: ( sliceList )?
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:258:29: ( sliceList )?
             int alt23=2;
             int LA23_0 = input.LA(1);
 
@@ -1469,9 +1468,9 @@ public class PhdlParser extends Parser {
             }
             switch (alt23) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:259:29: sliceList
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:258:29: sliceList
                     {
-                    pushFollow(FOLLOW_sliceList_in_pinAssignment456);
+                    pushFollow(FOLLOW_sliceList_in_pinAssignment459);
                     sliceList69=sliceList();
 
                     state._fsp--;
@@ -1483,17 +1482,17 @@ public class PhdlParser extends Parser {
 
             }
 
-            EQUALS70=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_pinAssignment459); 
+            EQUALS70=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_pinAssignment462); 
             EQUALS70_tree = (CommonTree)adaptor.create(EQUALS70);
             root_0 = (CommonTree)adaptor.becomeRoot(EQUALS70_tree, root_0);
 
-            pushFollow(FOLLOW_concatenation_in_pinAssignment462);
+            pushFollow(FOLLOW_concatenation_in_pinAssignment465);
             concatenation71=concatenation();
 
             state._fsp--;
 
             adaptor.addChild(root_0, concatenation71.getTree());
-            SEMICOLON72=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_pinAssignment464); 
+            SEMICOLON72=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_pinAssignment467); 
 
             }
 
@@ -1521,7 +1520,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "netAssignment"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:262:1: netAssignment : IDENT ( sliceList )? EQUALS concatenation SEMICOLON ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:261:1: netAssignment : IDENT ( sliceList )? EQUALS concatenation SEMICOLON ;
     public final PhdlParser.netAssignment_return netAssignment() throws RecognitionException {
         PhdlParser.netAssignment_return retval = new PhdlParser.netAssignment_return();
         retval.start = input.LT(1);
@@ -1541,16 +1540,16 @@ public class PhdlParser extends Parser {
         CommonTree SEMICOLON77_tree=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:266:2: ( IDENT ( sliceList )? EQUALS concatenation SEMICOLON )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:266:4: IDENT ( sliceList )? EQUALS concatenation SEMICOLON
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:265:2: ( IDENT ( sliceList )? EQUALS concatenation SEMICOLON )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:265:4: IDENT ( sliceList )? EQUALS concatenation SEMICOLON
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            IDENT73=(Token)match(input,IDENT,FOLLOW_IDENT_in_netAssignment478); 
+            IDENT73=(Token)match(input,IDENT,FOLLOW_IDENT_in_netAssignment481); 
             IDENT73_tree = (CommonTree)adaptor.create(IDENT73);
             adaptor.addChild(root_0, IDENT73_tree);
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:266:10: ( sliceList )?
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:265:10: ( sliceList )?
             int alt24=2;
             int LA24_0 = input.LA(1);
 
@@ -1559,9 +1558,9 @@ public class PhdlParser extends Parser {
             }
             switch (alt24) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:266:10: sliceList
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:265:10: sliceList
                     {
-                    pushFollow(FOLLOW_sliceList_in_netAssignment480);
+                    pushFollow(FOLLOW_sliceList_in_netAssignment483);
                     sliceList74=sliceList();
 
                     state._fsp--;
@@ -1573,17 +1572,17 @@ public class PhdlParser extends Parser {
 
             }
 
-            EQUALS75=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_netAssignment483); 
+            EQUALS75=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_netAssignment486); 
             EQUALS75_tree = (CommonTree)adaptor.create(EQUALS75);
             root_0 = (CommonTree)adaptor.becomeRoot(EQUALS75_tree, root_0);
 
-            pushFollow(FOLLOW_concatenation_in_netAssignment486);
+            pushFollow(FOLLOW_concatenation_in_netAssignment489);
             concatenation76=concatenation();
 
             state._fsp--;
 
             adaptor.addChild(root_0, concatenation76.getTree());
-            SEMICOLON77=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_netAssignment488); 
+            SEMICOLON77=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_netAssignment491); 
 
             }
 
@@ -1611,7 +1610,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "concatenation"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:269:1: concatenation : ( ( ( IDENT ( sliceList )? ) ( AMPERSAND IDENT ( sliceList )? )* ) | LEFTANGLE IDENT RIGHTANGLE | 'open' );
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:268:1: concatenation : ( ( ( IDENT ( sliceList )? ) ( AMPERSAND IDENT ( sliceList )? )* ) | LEFTANGLE IDENT RIGHTANGLE | 'open' );
     public final PhdlParser.concatenation_return concatenation() throws RecognitionException {
         PhdlParser.concatenation_return retval = new PhdlParser.concatenation_return();
         retval.start = input.LT(1);
@@ -1639,7 +1638,7 @@ public class PhdlParser extends Parser {
         CommonTree string_literal86_tree=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:275:2: ( ( ( IDENT ( sliceList )? ) ( AMPERSAND IDENT ( sliceList )? )* ) | LEFTANGLE IDENT RIGHTANGLE | 'open' )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:274:2: ( ( ( IDENT ( sliceList )? ) ( AMPERSAND IDENT ( sliceList )? )* ) | LEFTANGLE IDENT RIGHTANGLE | 'open' )
             int alt28=3;
             switch ( input.LA(1) ) {
             case IDENT:
@@ -1666,21 +1665,21 @@ public class PhdlParser extends Parser {
 
             switch (alt28) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:275:4: ( ( IDENT ( sliceList )? ) ( AMPERSAND IDENT ( sliceList )? )* )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:274:4: ( ( IDENT ( sliceList )? ) ( AMPERSAND IDENT ( sliceList )? )* )
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:275:4: ( ( IDENT ( sliceList )? ) ( AMPERSAND IDENT ( sliceList )? )* )
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:275:5: ( IDENT ( sliceList )? ) ( AMPERSAND IDENT ( sliceList )? )*
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:274:4: ( ( IDENT ( sliceList )? ) ( AMPERSAND IDENT ( sliceList )? )* )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:274:5: ( IDENT ( sliceList )? ) ( AMPERSAND IDENT ( sliceList )? )*
                     {
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:275:5: ( IDENT ( sliceList )? )
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:275:6: IDENT ( sliceList )?
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:274:5: ( IDENT ( sliceList )? )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:274:6: IDENT ( sliceList )?
                     {
-                    IDENT78=(Token)match(input,IDENT,FOLLOW_IDENT_in_concatenation504); 
+                    IDENT78=(Token)match(input,IDENT,FOLLOW_IDENT_in_concatenation507); 
                     IDENT78_tree = (CommonTree)adaptor.create(IDENT78);
                     adaptor.addChild(root_0, IDENT78_tree);
 
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:275:12: ( sliceList )?
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:274:12: ( sliceList )?
                     int alt25=2;
                     int LA25_0 = input.LA(1);
 
@@ -1689,9 +1688,9 @@ public class PhdlParser extends Parser {
                     }
                     switch (alt25) {
                         case 1 :
-                            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:275:12: sliceList
+                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:274:12: sliceList
                             {
-                            pushFollow(FOLLOW_sliceList_in_concatenation506);
+                            pushFollow(FOLLOW_sliceList_in_concatenation509);
                             sliceList79=sliceList();
 
                             state._fsp--;
@@ -1706,7 +1705,7 @@ public class PhdlParser extends Parser {
 
                     }
 
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:275:24: ( AMPERSAND IDENT ( sliceList )? )*
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:274:24: ( AMPERSAND IDENT ( sliceList )? )*
                     loop27:
                     do {
                         int alt27=2;
@@ -1719,14 +1718,14 @@ public class PhdlParser extends Parser {
 
                         switch (alt27) {
                     	case 1 :
-                    	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:275:25: AMPERSAND IDENT ( sliceList )?
+                    	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:274:25: AMPERSAND IDENT ( sliceList )?
                     	    {
-                    	    AMPERSAND80=(Token)match(input,AMPERSAND,FOLLOW_AMPERSAND_in_concatenation511); 
-                    	    IDENT81=(Token)match(input,IDENT,FOLLOW_IDENT_in_concatenation514); 
+                    	    AMPERSAND80=(Token)match(input,AMPERSAND,FOLLOW_AMPERSAND_in_concatenation514); 
+                    	    IDENT81=(Token)match(input,IDENT,FOLLOW_IDENT_in_concatenation517); 
                     	    IDENT81_tree = (CommonTree)adaptor.create(IDENT81);
                     	    adaptor.addChild(root_0, IDENT81_tree);
 
-                    	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:275:42: ( sliceList )?
+                    	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:274:42: ( sliceList )?
                     	    int alt26=2;
                     	    int LA26_0 = input.LA(1);
 
@@ -1735,9 +1734,9 @@ public class PhdlParser extends Parser {
                     	    }
                     	    switch (alt26) {
                     	        case 1 :
-                    	            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:275:42: sliceList
+                    	            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:274:42: sliceList
                     	            {
-                    	            pushFollow(FOLLOW_sliceList_in_concatenation516);
+                    	            pushFollow(FOLLOW_sliceList_in_concatenation519);
                     	            sliceList82=sliceList();
 
                     	            state._fsp--;
@@ -1765,28 +1764,28 @@ public class PhdlParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:276:4: LEFTANGLE IDENT RIGHTANGLE
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:275:4: LEFTANGLE IDENT RIGHTANGLE
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    LEFTANGLE83=(Token)match(input,LEFTANGLE,FOLLOW_LEFTANGLE_in_concatenation527); 
+                    LEFTANGLE83=(Token)match(input,LEFTANGLE,FOLLOW_LEFTANGLE_in_concatenation530); 
                     LEFTANGLE83_tree = (CommonTree)adaptor.create(LEFTANGLE83);
                     adaptor.addChild(root_0, LEFTANGLE83_tree);
 
-                    IDENT84=(Token)match(input,IDENT,FOLLOW_IDENT_in_concatenation529); 
+                    IDENT84=(Token)match(input,IDENT,FOLLOW_IDENT_in_concatenation532); 
                     IDENT84_tree = (CommonTree)adaptor.create(IDENT84);
                     adaptor.addChild(root_0, IDENT84_tree);
 
-                    RIGHTANGLE85=(Token)match(input,RIGHTANGLE,FOLLOW_RIGHTANGLE_in_concatenation531); 
+                    RIGHTANGLE85=(Token)match(input,RIGHTANGLE,FOLLOW_RIGHTANGLE_in_concatenation534); 
 
                     }
                     break;
                 case 3 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:277:5: 'open'
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:276:5: 'open'
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    string_literal86=(Token)match(input,39,FOLLOW_39_in_concatenation538); 
+                    string_literal86=(Token)match(input,39,FOLLOW_39_in_concatenation541); 
                     string_literal86_tree = (CommonTree)adaptor.create(string_literal86);
                     adaptor.addChild(root_0, string_literal86_tree);
 
@@ -1819,7 +1818,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "pinList"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:280:1: pinList : LEFTBRACE ( IDENT | INTEGER ) ( COMMA ( IDENT | INTEGER ) )* RIGHTBRACE ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:279:1: pinList : LEFTBRACE ( IDENT | INTEGER ) ( COMMA ( IDENT | INTEGER ) )* RIGHTBRACE ;
     public final PhdlParser.pinList_return pinList() throws RecognitionException {
         PhdlParser.pinList_return retval = new PhdlParser.pinList_return();
         retval.start = input.LT(1);
@@ -1839,12 +1838,12 @@ public class PhdlParser extends Parser {
         CommonTree RIGHTBRACE91_tree=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:285:2: ( LEFTBRACE ( IDENT | INTEGER ) ( COMMA ( IDENT | INTEGER ) )* RIGHTBRACE )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:285:5: LEFTBRACE ( IDENT | INTEGER ) ( COMMA ( IDENT | INTEGER ) )* RIGHTBRACE
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:284:2: ( LEFTBRACE ( IDENT | INTEGER ) ( COMMA ( IDENT | INTEGER ) )* RIGHTBRACE )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:284:5: LEFTBRACE ( IDENT | INTEGER ) ( COMMA ( IDENT | INTEGER ) )* RIGHTBRACE
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            LEFTBRACE87=(Token)match(input,LEFTBRACE,FOLLOW_LEFTBRACE_in_pinList553); 
+            LEFTBRACE87=(Token)match(input,LEFTBRACE,FOLLOW_LEFTBRACE_in_pinList556); 
             set88=(Token)input.LT(1);
             if ( input.LA(1)==IDENT||input.LA(1)==INTEGER ) {
                 input.consume();
@@ -1856,7 +1855,7 @@ public class PhdlParser extends Parser {
                 throw mse;
             }
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:285:34: ( COMMA ( IDENT | INTEGER ) )*
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:284:34: ( COMMA ( IDENT | INTEGER ) )*
             loop29:
             do {
                 int alt29=2;
@@ -1869,9 +1868,9 @@ public class PhdlParser extends Parser {
 
                 switch (alt29) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:285:35: COMMA ( IDENT | INTEGER )
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:284:35: COMMA ( IDENT | INTEGER )
             	    {
-            	    COMMA89=(Token)match(input,COMMA,FOLLOW_COMMA_in_pinList565); 
+            	    COMMA89=(Token)match(input,COMMA,FOLLOW_COMMA_in_pinList568); 
             	    set90=(Token)input.LT(1);
             	    if ( input.LA(1)==IDENT||input.LA(1)==INTEGER ) {
             	        input.consume();
@@ -1892,7 +1891,7 @@ public class PhdlParser extends Parser {
                 }
             } while (true);
 
-            RIGHTBRACE91=(Token)match(input,RIGHTBRACE,FOLLOW_RIGHTBRACE_in_pinList578); 
+            RIGHTBRACE91=(Token)match(input,RIGHTBRACE,FOLLOW_RIGHTBRACE_in_pinList581); 
 
             }
 
@@ -1920,7 +1919,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "sliceList"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:288:1: sliceList : LEFTBRACKET INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? ) RIGHTBRACKET ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:287:1: sliceList : LEFTBRACKET INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? ) RIGHTBRACKET ;
     public final PhdlParser.sliceList_return sliceList() throws RecognitionException {
         PhdlParser.sliceList_return retval = new PhdlParser.sliceList_return();
         retval.start = input.LT(1);
@@ -1948,20 +1947,20 @@ public class PhdlParser extends Parser {
         CommonTree RIGHTBRACKET100_tree=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:293:2: ( LEFTBRACKET INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? ) RIGHTBRACKET )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:293:5: LEFTBRACKET INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? ) RIGHTBRACKET
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:292:2: ( LEFTBRACKET INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? ) RIGHTBRACKET )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:292:5: LEFTBRACKET INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? ) RIGHTBRACKET
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            LEFTBRACKET92=(Token)match(input,LEFTBRACKET,FOLLOW_LEFTBRACKET_in_sliceList594); 
+            LEFTBRACKET92=(Token)match(input,LEFTBRACKET,FOLLOW_LEFTBRACKET_in_sliceList597); 
             LEFTBRACKET92_tree = (CommonTree)adaptor.create(LEFTBRACKET92);
             adaptor.addChild(root_0, LEFTBRACKET92_tree);
 
-            INTEGER93=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_sliceList596); 
+            INTEGER93=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_sliceList599); 
             INTEGER93_tree = (CommonTree)adaptor.create(INTEGER93);
             adaptor.addChild(root_0, INTEGER93_tree);
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:293:25: ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:292:25: ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? )
             int alt32=2;
             int LA32_0 = input.LA(1);
 
@@ -1979,16 +1978,16 @@ public class PhdlParser extends Parser {
             }
             switch (alt32) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:293:26: ( COLON INTEGER )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:292:26: ( COLON INTEGER )
                     {
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:293:26: ( COLON INTEGER )
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:293:27: COLON INTEGER
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:292:26: ( COLON INTEGER )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:292:27: COLON INTEGER
                     {
-                    COLON94=(Token)match(input,COLON,FOLLOW_COLON_in_sliceList600); 
+                    COLON94=(Token)match(input,COLON,FOLLOW_COLON_in_sliceList603); 
                     COLON94_tree = (CommonTree)adaptor.create(COLON94);
                     root_0 = (CommonTree)adaptor.becomeRoot(COLON94_tree, root_0);
 
-                    INTEGER95=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_sliceList603); 
+                    INTEGER95=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_sliceList606); 
                     INTEGER95_tree = (CommonTree)adaptor.create(INTEGER95);
                     adaptor.addChild(root_0, INTEGER95_tree);
 
@@ -1999,9 +1998,9 @@ public class PhdlParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:293:45: ( COMMA INTEGER ( COMMA INTEGER )* )?
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:292:45: ( COMMA INTEGER ( COMMA INTEGER )* )?
                     {
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:293:45: ( COMMA INTEGER ( COMMA INTEGER )* )?
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:292:45: ( COMMA INTEGER ( COMMA INTEGER )* )?
                     int alt31=2;
                     int LA31_0 = input.LA(1);
 
@@ -2010,17 +2009,17 @@ public class PhdlParser extends Parser {
                     }
                     switch (alt31) {
                         case 1 :
-                            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:293:46: COMMA INTEGER ( COMMA INTEGER )*
+                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:292:46: COMMA INTEGER ( COMMA INTEGER )*
                             {
-                            COMMA96=(Token)match(input,COMMA,FOLLOW_COMMA_in_sliceList609); 
+                            COMMA96=(Token)match(input,COMMA,FOLLOW_COMMA_in_sliceList612); 
                             COMMA96_tree = (CommonTree)adaptor.create(COMMA96);
                             root_0 = (CommonTree)adaptor.becomeRoot(COMMA96_tree, root_0);
 
-                            INTEGER97=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_sliceList612); 
+                            INTEGER97=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_sliceList615); 
                             INTEGER97_tree = (CommonTree)adaptor.create(INTEGER97);
                             adaptor.addChild(root_0, INTEGER97_tree);
 
-                            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:293:61: ( COMMA INTEGER )*
+                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:292:61: ( COMMA INTEGER )*
                             loop30:
                             do {
                                 int alt30=2;
@@ -2033,10 +2032,10 @@ public class PhdlParser extends Parser {
 
                                 switch (alt30) {
                             	case 1 :
-                            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:293:62: COMMA INTEGER
+                            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:292:62: COMMA INTEGER
                             	    {
-                            	    COMMA98=(Token)match(input,COMMA,FOLLOW_COMMA_in_sliceList615); 
-                            	    INTEGER99=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_sliceList618); 
+                            	    COMMA98=(Token)match(input,COMMA,FOLLOW_COMMA_in_sliceList618); 
+                            	    INTEGER99=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_sliceList621); 
                             	    INTEGER99_tree = (CommonTree)adaptor.create(INTEGER99);
                             	    adaptor.addChild(root_0, INTEGER99_tree);
 
@@ -2061,7 +2060,7 @@ public class PhdlParser extends Parser {
 
             }
 
-            RIGHTBRACKET100=(Token)match(input,RIGHTBRACKET,FOLLOW_RIGHTBRACKET_in_sliceList625); 
+            RIGHTBRACKET100=(Token)match(input,RIGHTBRACKET,FOLLOW_RIGHTBRACKET_in_sliceList628); 
 
             }
 
@@ -2089,7 +2088,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "sliceDecl"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:296:1: sliceDecl : LEFTBRACKET INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER )+ ) RIGHTBRACKET ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:295:1: sliceDecl : LEFTBRACKET INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER )+ ) RIGHTBRACKET ;
     public final PhdlParser.sliceDecl_return sliceDecl() throws RecognitionException {
         PhdlParser.sliceDecl_return retval = new PhdlParser.sliceDecl_return();
         retval.start = input.LT(1);
@@ -2113,20 +2112,20 @@ public class PhdlParser extends Parser {
         CommonTree RIGHTBRACKET107_tree=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:300:2: ( LEFTBRACKET INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER )+ ) RIGHTBRACKET )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:300:4: LEFTBRACKET INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER )+ ) RIGHTBRACKET
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:299:2: ( LEFTBRACKET INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER )+ ) RIGHTBRACKET )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:299:4: LEFTBRACKET INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER )+ ) RIGHTBRACKET
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            LEFTBRACKET101=(Token)match(input,LEFTBRACKET,FOLLOW_LEFTBRACKET_in_sliceDecl639); 
+            LEFTBRACKET101=(Token)match(input,LEFTBRACKET,FOLLOW_LEFTBRACKET_in_sliceDecl642); 
             LEFTBRACKET101_tree = (CommonTree)adaptor.create(LEFTBRACKET101);
             adaptor.addChild(root_0, LEFTBRACKET101_tree);
 
-            INTEGER102=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_sliceDecl641); 
+            INTEGER102=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_sliceDecl644); 
             INTEGER102_tree = (CommonTree)adaptor.create(INTEGER102);
             adaptor.addChild(root_0, INTEGER102_tree);
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:300:24: ( ( COLON INTEGER ) | ( COMMA INTEGER )+ )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:299:24: ( ( COLON INTEGER ) | ( COMMA INTEGER )+ )
             int alt34=2;
             int LA34_0 = input.LA(1);
 
@@ -2144,16 +2143,16 @@ public class PhdlParser extends Parser {
             }
             switch (alt34) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:300:25: ( COLON INTEGER )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:299:25: ( COLON INTEGER )
                     {
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:300:25: ( COLON INTEGER )
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:300:26: COLON INTEGER
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:299:25: ( COLON INTEGER )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:299:26: COLON INTEGER
                     {
-                    COLON103=(Token)match(input,COLON,FOLLOW_COLON_in_sliceDecl645); 
+                    COLON103=(Token)match(input,COLON,FOLLOW_COLON_in_sliceDecl648); 
                     COLON103_tree = (CommonTree)adaptor.create(COLON103);
                     root_0 = (CommonTree)adaptor.becomeRoot(COLON103_tree, root_0);
 
-                    INTEGER104=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_sliceDecl648); 
+                    INTEGER104=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_sliceDecl651); 
                     INTEGER104_tree = (CommonTree)adaptor.create(INTEGER104);
                     adaptor.addChild(root_0, INTEGER104_tree);
 
@@ -2164,9 +2163,9 @@ public class PhdlParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:300:44: ( COMMA INTEGER )+
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:299:44: ( COMMA INTEGER )+
                     {
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:300:44: ( COMMA INTEGER )+
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:299:44: ( COMMA INTEGER )+
                     int cnt33=0;
                     loop33:
                     do {
@@ -2180,13 +2179,13 @@ public class PhdlParser extends Parser {
 
                         switch (alt33) {
                     	case 1 :
-                    	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:300:45: COMMA INTEGER
+                    	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:299:45: COMMA INTEGER
                     	    {
-                    	    COMMA105=(Token)match(input,COMMA,FOLLOW_COMMA_in_sliceDecl654); 
+                    	    COMMA105=(Token)match(input,COMMA,FOLLOW_COMMA_in_sliceDecl657); 
                     	    COMMA105_tree = (CommonTree)adaptor.create(COMMA105);
                     	    root_0 = (CommonTree)adaptor.becomeRoot(COMMA105_tree, root_0);
 
-                    	    INTEGER106=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_sliceDecl657); 
+                    	    INTEGER106=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_sliceDecl660); 
                     	    INTEGER106_tree = (CommonTree)adaptor.create(INTEGER106);
                     	    adaptor.addChild(root_0, INTEGER106_tree);
 
@@ -2209,7 +2208,7 @@ public class PhdlParser extends Parser {
 
             }
 
-            RIGHTBRACKET107=(Token)match(input,RIGHTBRACKET,FOLLOW_RIGHTBRACKET_in_sliceDecl662); 
+            RIGHTBRACKET107=(Token)match(input,RIGHTBRACKET,FOLLOW_RIGHTBRACKET_in_sliceDecl665); 
 
             }
 
@@ -2237,7 +2236,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "arrayList"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:303:1: arrayList : LEFTPAREN INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? ) RIGHTPAREN ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:302:1: arrayList : LEFTPAREN INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? ) RIGHTPAREN ;
     public final PhdlParser.arrayList_return arrayList() throws RecognitionException {
         PhdlParser.arrayList_return retval = new PhdlParser.arrayList_return();
         retval.start = input.LT(1);
@@ -2265,20 +2264,20 @@ public class PhdlParser extends Parser {
         CommonTree RIGHTPAREN116_tree=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:308:2: ( LEFTPAREN INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? ) RIGHTPAREN )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:308:5: LEFTPAREN INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? ) RIGHTPAREN
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:307:2: ( LEFTPAREN INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? ) RIGHTPAREN )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:307:5: LEFTPAREN INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? ) RIGHTPAREN
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            LEFTPAREN108=(Token)match(input,LEFTPAREN,FOLLOW_LEFTPAREN_in_arrayList678); 
+            LEFTPAREN108=(Token)match(input,LEFTPAREN,FOLLOW_LEFTPAREN_in_arrayList681); 
             LEFTPAREN108_tree = (CommonTree)adaptor.create(LEFTPAREN108);
             adaptor.addChild(root_0, LEFTPAREN108_tree);
 
-            INTEGER109=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_arrayList680); 
+            INTEGER109=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_arrayList683); 
             INTEGER109_tree = (CommonTree)adaptor.create(INTEGER109);
             adaptor.addChild(root_0, INTEGER109_tree);
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:308:23: ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:307:23: ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? )
             int alt37=2;
             int LA37_0 = input.LA(1);
 
@@ -2296,16 +2295,16 @@ public class PhdlParser extends Parser {
             }
             switch (alt37) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:308:24: ( COLON INTEGER )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:307:24: ( COLON INTEGER )
                     {
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:308:24: ( COLON INTEGER )
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:308:25: COLON INTEGER
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:307:24: ( COLON INTEGER )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:307:25: COLON INTEGER
                     {
-                    COLON110=(Token)match(input,COLON,FOLLOW_COLON_in_arrayList684); 
+                    COLON110=(Token)match(input,COLON,FOLLOW_COLON_in_arrayList687); 
                     COLON110_tree = (CommonTree)adaptor.create(COLON110);
                     root_0 = (CommonTree)adaptor.becomeRoot(COLON110_tree, root_0);
 
-                    INTEGER111=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_arrayList687); 
+                    INTEGER111=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_arrayList690); 
                     INTEGER111_tree = (CommonTree)adaptor.create(INTEGER111);
                     adaptor.addChild(root_0, INTEGER111_tree);
 
@@ -2316,9 +2315,9 @@ public class PhdlParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:308:43: ( COMMA INTEGER ( COMMA INTEGER )* )?
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:307:43: ( COMMA INTEGER ( COMMA INTEGER )* )?
                     {
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:308:43: ( COMMA INTEGER ( COMMA INTEGER )* )?
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:307:43: ( COMMA INTEGER ( COMMA INTEGER )* )?
                     int alt36=2;
                     int LA36_0 = input.LA(1);
 
@@ -2327,17 +2326,17 @@ public class PhdlParser extends Parser {
                     }
                     switch (alt36) {
                         case 1 :
-                            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:308:44: COMMA INTEGER ( COMMA INTEGER )*
+                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:307:44: COMMA INTEGER ( COMMA INTEGER )*
                             {
-                            COMMA112=(Token)match(input,COMMA,FOLLOW_COMMA_in_arrayList693); 
+                            COMMA112=(Token)match(input,COMMA,FOLLOW_COMMA_in_arrayList696); 
                             COMMA112_tree = (CommonTree)adaptor.create(COMMA112);
                             root_0 = (CommonTree)adaptor.becomeRoot(COMMA112_tree, root_0);
 
-                            INTEGER113=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_arrayList696); 
+                            INTEGER113=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_arrayList699); 
                             INTEGER113_tree = (CommonTree)adaptor.create(INTEGER113);
                             adaptor.addChild(root_0, INTEGER113_tree);
 
-                            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:308:59: ( COMMA INTEGER )*
+                            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:307:59: ( COMMA INTEGER )*
                             loop35:
                             do {
                                 int alt35=2;
@@ -2350,10 +2349,10 @@ public class PhdlParser extends Parser {
 
                                 switch (alt35) {
                             	case 1 :
-                            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:308:60: COMMA INTEGER
+                            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:307:60: COMMA INTEGER
                             	    {
-                            	    COMMA114=(Token)match(input,COMMA,FOLLOW_COMMA_in_arrayList699); 
-                            	    INTEGER115=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_arrayList702); 
+                            	    COMMA114=(Token)match(input,COMMA,FOLLOW_COMMA_in_arrayList702); 
+                            	    INTEGER115=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_arrayList705); 
                             	    INTEGER115_tree = (CommonTree)adaptor.create(INTEGER115);
                             	    adaptor.addChild(root_0, INTEGER115_tree);
 
@@ -2378,7 +2377,7 @@ public class PhdlParser extends Parser {
 
             }
 
-            RIGHTPAREN116=(Token)match(input,RIGHTPAREN,FOLLOW_RIGHTPAREN_in_arrayList709); 
+            RIGHTPAREN116=(Token)match(input,RIGHTPAREN,FOLLOW_RIGHTPAREN_in_arrayList712); 
 
             }
 
@@ -2406,7 +2405,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "arrayDecl"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:311:1: arrayDecl : LEFTPAREN INTEGER COLON INTEGER RIGHTPAREN ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:310:1: arrayDecl : LEFTPAREN INTEGER COLON INTEGER RIGHTPAREN ;
     public final PhdlParser.arrayDecl_return arrayDecl() throws RecognitionException {
         PhdlParser.arrayDecl_return retval = new PhdlParser.arrayDecl_return();
         retval.start = input.LT(1);
@@ -2426,28 +2425,28 @@ public class PhdlParser extends Parser {
         CommonTree RIGHTPAREN121_tree=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:315:2: ( LEFTPAREN INTEGER COLON INTEGER RIGHTPAREN )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:315:4: LEFTPAREN INTEGER COLON INTEGER RIGHTPAREN
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:314:2: ( LEFTPAREN INTEGER COLON INTEGER RIGHTPAREN )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:314:4: LEFTPAREN INTEGER COLON INTEGER RIGHTPAREN
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            LEFTPAREN117=(Token)match(input,LEFTPAREN,FOLLOW_LEFTPAREN_in_arrayDecl723); 
+            LEFTPAREN117=(Token)match(input,LEFTPAREN,FOLLOW_LEFTPAREN_in_arrayDecl726); 
             LEFTPAREN117_tree = (CommonTree)adaptor.create(LEFTPAREN117);
             adaptor.addChild(root_0, LEFTPAREN117_tree);
 
-            INTEGER118=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_arrayDecl725); 
+            INTEGER118=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_arrayDecl728); 
             INTEGER118_tree = (CommonTree)adaptor.create(INTEGER118);
             adaptor.addChild(root_0, INTEGER118_tree);
 
-            COLON119=(Token)match(input,COLON,FOLLOW_COLON_in_arrayDecl727); 
+            COLON119=(Token)match(input,COLON,FOLLOW_COLON_in_arrayDecl730); 
             COLON119_tree = (CommonTree)adaptor.create(COLON119);
             root_0 = (CommonTree)adaptor.becomeRoot(COLON119_tree, root_0);
 
-            INTEGER120=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_arrayDecl730); 
+            INTEGER120=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_arrayDecl733); 
             INTEGER120_tree = (CommonTree)adaptor.create(INTEGER120);
             adaptor.addChild(root_0, INTEGER120_tree);
 
-            RIGHTPAREN121=(Token)match(input,RIGHTPAREN,FOLLOW_RIGHTPAREN_in_arrayDecl732); 
+            RIGHTPAREN121=(Token)match(input,RIGHTPAREN,FOLLOW_RIGHTPAREN_in_arrayDecl735); 
 
             }
 
@@ -2481,8 +2480,8 @@ public class PhdlParser extends Parser {
         "\1\4\2\uffff\1\6\1\10\1\4\1\15\1\4\1\uffff\1\16\1\6\2\15\1\10\1"+
         "\24\1\16\1\15\1\16";
     static final String DFA16_maxS =
-        "\1\46\2\uffff\2\23\1\47\1\15\1\4\1\uffff\1\24\1\20\2\15\1\10\2\24"+
-        "\1\15\1\24";
+        "\1\46\2\uffff\2\23\1\47\1\15\1\4\1\uffff\1\24\1\20\2\15\1\10\2"+
+        "\24\1\15\1\24";
     static final String DFA16_acceptS =
         "\1\uffff\1\3\1\1\5\uffff\1\2\11\uffff";
     static final String DFA16_specialS =
@@ -2538,131 +2537,131 @@ public class PhdlParser extends Parser {
             this.transition = DFA16_transition;
         }
         public String getDescription() {
-            return "()* loopback of 233:3: ( attributeAssignment | pinAssignment )*";
+            return "()* loopback of 232:3: ( attributeAssignment | pinAssignment )*";
         }
     }
  
 
-    public static final BitSet FOLLOW_designDecl_in_sourceText88 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_EOF_in_sourceText91 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_27_in_designDecl110 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_IDENT_in_designDecl113 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_designDecl115 = new BitSet(new long[]{0x00000004A0000000L});
-    public static final BitSet FOLLOW_deviceDecl_in_designDecl122 = new BitSet(new long[]{0x00000004A0000000L});
-    public static final BitSet FOLLOW_netDecl_in_designDecl126 = new BitSet(new long[]{0x00000004A0000000L});
-    public static final BitSet FOLLOW_29_in_designDecl132 = new BitSet(new long[]{0x0000000840000010L});
-    public static final BitSet FOLLOW_instanceDecl_in_designDecl137 = new BitSet(new long[]{0x0000000840000010L});
-    public static final BitSet FOLLOW_netAssignment_in_designDecl141 = new BitSet(new long[]{0x0000000840000010L});
-    public static final BitSet FOLLOW_30_in_designDecl147 = new BitSet(new long[]{0x0000000008000030L});
-    public static final BitSet FOLLOW_27_in_designDecl150 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_IDENT_in_designDecl154 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_SEMICOLON_in_designDecl157 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_deviceDecl172 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_IDENT_in_deviceDecl175 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_deviceDecl177 = new BitSet(new long[]{0x0000000340000000L});
-    public static final BitSet FOLLOW_attributeDecl_in_deviceDecl184 = new BitSet(new long[]{0x0000000340000000L});
-    public static final BitSet FOLLOW_pinDecl_in_deviceDecl188 = new BitSet(new long[]{0x0000000340000000L});
-    public static final BitSet FOLLOW_30_in_deviceDecl195 = new BitSet(new long[]{0x0000000080000030L});
-    public static final BitSet FOLLOW_31_in_deviceDecl198 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_IDENT_in_deviceDecl202 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_SEMICOLON_in_deviceDecl205 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_32_in_attributeDecl220 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_IDENT_in_attributeDecl223 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_EQUALS_in_attributeDecl225 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_STRING_in_attributeDecl228 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_SEMICOLON_in_attributeDecl230 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_type_in_pinDecl244 = new BitSet(new long[]{0x0000000000010010L});
-    public static final BitSet FOLLOW_sliceDecl_in_pinDecl247 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_IDENT_in_pinDecl250 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_EQUALS_in_pinDecl252 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_pinList_in_pinDecl255 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_SEMICOLON_in_pinDecl257 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_type272 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_netDecl286 = new BitSet(new long[]{0x0000000000010010L});
-    public static final BitSet FOLLOW_sliceDecl_in_netDecl289 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_IDENT_in_netDecl292 = new BitSet(new long[]{0x0000000010000020L});
-    public static final BitSet FOLLOW_netAttributes_in_netDecl294 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_SEMICOLON_in_netDecl297 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_netAttributes313 = new BitSet(new long[]{0x0000000140000000L});
-    public static final BitSet FOLLOW_attributeDecl_in_netAttributes316 = new BitSet(new long[]{0x0000000140000000L});
-    public static final BitSet FOLLOW_30_in_netAttributes319 = new BitSet(new long[]{0x0000000400000012L});
-    public static final BitSet FOLLOW_34_in_netAttributes322 = new BitSet(new long[]{0x0000000000000012L});
-    public static final BitSet FOLLOW_IDENT_in_netAttributes326 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_instanceDecl340 = new BitSet(new long[]{0x0000000000080010L});
-    public static final BitSet FOLLOW_arrayDecl_in_instanceDecl343 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_IDENT_in_instanceDecl346 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_36_in_instanceDecl348 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_IDENT_in_instanceDecl351 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_instanceDecl353 = new BitSet(new long[]{0x0000006040000010L});
-    public static final BitSet FOLLOW_attributeAssignment_in_instanceDecl359 = new BitSet(new long[]{0x0000006040000010L});
-    public static final BitSet FOLLOW_pinAssignment_in_instanceDecl363 = new BitSet(new long[]{0x0000006040000010L});
-    public static final BitSet FOLLOW_30_in_instanceDecl369 = new BitSet(new long[]{0x0000000800000030L});
-    public static final BitSet FOLLOW_35_in_instanceDecl372 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_IDENT_in_instanceDecl376 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_SEMICOLON_in_instanceDecl379 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_attributeAssignment395 = new BitSet(new long[]{0x0000004000000010L});
-    public static final BitSet FOLLOW_instanceQualifier_in_attributeAssignment399 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_IDENT_in_attributeAssignment402 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_EQUALS_in_attributeAssignment404 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_STRING_in_attributeAssignment407 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_SEMICOLON_in_attributeAssignment409 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_instanceQualifier424 = new BitSet(new long[]{0x0000000000080100L});
-    public static final BitSet FOLLOW_arrayList_in_instanceQualifier432 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_PERIOD_in_instanceQualifier435 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_instanceQualifier_in_pinAssignment451 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_IDENT_in_pinAssignment454 = new BitSet(new long[]{0x0000000000010040L});
-    public static final BitSet FOLLOW_sliceList_in_pinAssignment456 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_EQUALS_in_pinAssignment459 = new BitSet(new long[]{0x0000008000000410L});
-    public static final BitSet FOLLOW_concatenation_in_pinAssignment462 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_SEMICOLON_in_pinAssignment464 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENT_in_netAssignment478 = new BitSet(new long[]{0x0000000000010040L});
-    public static final BitSet FOLLOW_sliceList_in_netAssignment480 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_EQUALS_in_netAssignment483 = new BitSet(new long[]{0x0000008000000410L});
-    public static final BitSet FOLLOW_concatenation_in_netAssignment486 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_SEMICOLON_in_netAssignment488 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENT_in_concatenation504 = new BitSet(new long[]{0x0000000000010202L});
-    public static final BitSet FOLLOW_sliceList_in_concatenation506 = new BitSet(new long[]{0x0000000000000202L});
-    public static final BitSet FOLLOW_AMPERSAND_in_concatenation511 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_IDENT_in_concatenation514 = new BitSet(new long[]{0x0000000000010202L});
-    public static final BitSet FOLLOW_sliceList_in_concatenation516 = new BitSet(new long[]{0x0000000000000202L});
-    public static final BitSet FOLLOW_LEFTANGLE_in_concatenation527 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_IDENT_in_concatenation529 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_RIGHTANGLE_in_concatenation531 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_concatenation538 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LEFTBRACE_in_pinList553 = new BitSet(new long[]{0x0000000000002010L});
-    public static final BitSet FOLLOW_set_in_pinList556 = new BitSet(new long[]{0x000000000000C000L});
-    public static final BitSet FOLLOW_COMMA_in_pinList565 = new BitSet(new long[]{0x0000000000002010L});
-    public static final BitSet FOLLOW_set_in_pinList568 = new BitSet(new long[]{0x000000000000C000L});
-    public static final BitSet FOLLOW_RIGHTBRACE_in_pinList578 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LEFTBRACKET_in_sliceList594 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_INTEGER_in_sliceList596 = new BitSet(new long[]{0x0000000000064000L});
-    public static final BitSet FOLLOW_COLON_in_sliceList600 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_INTEGER_in_sliceList603 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_COMMA_in_sliceList609 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_INTEGER_in_sliceList612 = new BitSet(new long[]{0x0000000000044000L});
-    public static final BitSet FOLLOW_COMMA_in_sliceList615 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_INTEGER_in_sliceList618 = new BitSet(new long[]{0x0000000000044000L});
-    public static final BitSet FOLLOW_RIGHTBRACKET_in_sliceList625 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LEFTBRACKET_in_sliceDecl639 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_INTEGER_in_sliceDecl641 = new BitSet(new long[]{0x0000000000024000L});
-    public static final BitSet FOLLOW_COLON_in_sliceDecl645 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_INTEGER_in_sliceDecl648 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_COMMA_in_sliceDecl654 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_INTEGER_in_sliceDecl657 = new BitSet(new long[]{0x0000000000044000L});
-    public static final BitSet FOLLOW_RIGHTBRACKET_in_sliceDecl662 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LEFTPAREN_in_arrayList678 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_INTEGER_in_arrayList680 = new BitSet(new long[]{0x0000000000124000L});
-    public static final BitSet FOLLOW_COLON_in_arrayList684 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_INTEGER_in_arrayList687 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_COMMA_in_arrayList693 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_INTEGER_in_arrayList696 = new BitSet(new long[]{0x0000000000104000L});
-    public static final BitSet FOLLOW_COMMA_in_arrayList699 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_INTEGER_in_arrayList702 = new BitSet(new long[]{0x0000000000104000L});
-    public static final BitSet FOLLOW_RIGHTPAREN_in_arrayList709 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LEFTPAREN_in_arrayDecl723 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_INTEGER_in_arrayDecl725 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_COLON_in_arrayDecl727 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_INTEGER_in_arrayDecl730 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_RIGHTPAREN_in_arrayDecl732 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_designDecl_in_sourceText91 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_EOF_in_sourceText94 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_27_in_designDecl113 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_IDENT_in_designDecl116 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_designDecl118 = new BitSet(new long[]{0x00000004A0000000L});
+    public static final BitSet FOLLOW_deviceDecl_in_designDecl125 = new BitSet(new long[]{0x00000004A0000000L});
+    public static final BitSet FOLLOW_netDecl_in_designDecl129 = new BitSet(new long[]{0x00000004A0000000L});
+    public static final BitSet FOLLOW_29_in_designDecl135 = new BitSet(new long[]{0x0000000840000010L});
+    public static final BitSet FOLLOW_instanceDecl_in_designDecl140 = new BitSet(new long[]{0x0000000840000010L});
+    public static final BitSet FOLLOW_netAssignment_in_designDecl144 = new BitSet(new long[]{0x0000000840000010L});
+    public static final BitSet FOLLOW_30_in_designDecl150 = new BitSet(new long[]{0x0000000008000030L});
+    public static final BitSet FOLLOW_27_in_designDecl153 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_IDENT_in_designDecl157 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_SEMICOLON_in_designDecl160 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_deviceDecl175 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_IDENT_in_deviceDecl178 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_deviceDecl180 = new BitSet(new long[]{0x0000000340000000L});
+    public static final BitSet FOLLOW_attributeDecl_in_deviceDecl187 = new BitSet(new long[]{0x0000000340000000L});
+    public static final BitSet FOLLOW_pinDecl_in_deviceDecl191 = new BitSet(new long[]{0x0000000340000000L});
+    public static final BitSet FOLLOW_30_in_deviceDecl198 = new BitSet(new long[]{0x0000000080000030L});
+    public static final BitSet FOLLOW_31_in_deviceDecl201 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_IDENT_in_deviceDecl205 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_SEMICOLON_in_deviceDecl208 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_32_in_attributeDecl223 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_IDENT_in_attributeDecl226 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_EQUALS_in_attributeDecl228 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_STRING_in_attributeDecl231 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_SEMICOLON_in_attributeDecl233 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_type_in_pinDecl247 = new BitSet(new long[]{0x0000000000010010L});
+    public static final BitSet FOLLOW_sliceDecl_in_pinDecl250 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_IDENT_in_pinDecl253 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_EQUALS_in_pinDecl255 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_pinList_in_pinDecl258 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_SEMICOLON_in_pinDecl260 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_type275 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_34_in_netDecl289 = new BitSet(new long[]{0x0000000000010010L});
+    public static final BitSet FOLLOW_sliceDecl_in_netDecl292 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_IDENT_in_netDecl295 = new BitSet(new long[]{0x0000000010000020L});
+    public static final BitSet FOLLOW_netAttributes_in_netDecl297 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_SEMICOLON_in_netDecl300 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_netAttributes316 = new BitSet(new long[]{0x0000000140000000L});
+    public static final BitSet FOLLOW_attributeDecl_in_netAttributes319 = new BitSet(new long[]{0x0000000140000000L});
+    public static final BitSet FOLLOW_30_in_netAttributes322 = new BitSet(new long[]{0x0000000400000012L});
+    public static final BitSet FOLLOW_34_in_netAttributes325 = new BitSet(new long[]{0x0000000000000012L});
+    public static final BitSet FOLLOW_IDENT_in_netAttributes329 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_instanceDecl343 = new BitSet(new long[]{0x0000000000080010L});
+    public static final BitSet FOLLOW_arrayDecl_in_instanceDecl346 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_IDENT_in_instanceDecl349 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_36_in_instanceDecl351 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_IDENT_in_instanceDecl354 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_instanceDecl356 = new BitSet(new long[]{0x0000006040000010L});
+    public static final BitSet FOLLOW_attributeAssignment_in_instanceDecl362 = new BitSet(new long[]{0x0000006040000010L});
+    public static final BitSet FOLLOW_pinAssignment_in_instanceDecl366 = new BitSet(new long[]{0x0000006040000010L});
+    public static final BitSet FOLLOW_30_in_instanceDecl372 = new BitSet(new long[]{0x0000000800000030L});
+    public static final BitSet FOLLOW_35_in_instanceDecl375 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_IDENT_in_instanceDecl379 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_SEMICOLON_in_instanceDecl382 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_attributeAssignment398 = new BitSet(new long[]{0x0000004000000010L});
+    public static final BitSet FOLLOW_instanceQualifier_in_attributeAssignment402 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_IDENT_in_attributeAssignment405 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_EQUALS_in_attributeAssignment407 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_STRING_in_attributeAssignment410 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_SEMICOLON_in_attributeAssignment412 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_instanceQualifier427 = new BitSet(new long[]{0x0000000000080100L});
+    public static final BitSet FOLLOW_arrayList_in_instanceQualifier435 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_PERIOD_in_instanceQualifier438 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_instanceQualifier_in_pinAssignment454 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_IDENT_in_pinAssignment457 = new BitSet(new long[]{0x0000000000010040L});
+    public static final BitSet FOLLOW_sliceList_in_pinAssignment459 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_EQUALS_in_pinAssignment462 = new BitSet(new long[]{0x0000008000000410L});
+    public static final BitSet FOLLOW_concatenation_in_pinAssignment465 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_SEMICOLON_in_pinAssignment467 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENT_in_netAssignment481 = new BitSet(new long[]{0x0000000000010040L});
+    public static final BitSet FOLLOW_sliceList_in_netAssignment483 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_EQUALS_in_netAssignment486 = new BitSet(new long[]{0x0000008000000410L});
+    public static final BitSet FOLLOW_concatenation_in_netAssignment489 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_SEMICOLON_in_netAssignment491 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENT_in_concatenation507 = new BitSet(new long[]{0x0000000000010202L});
+    public static final BitSet FOLLOW_sliceList_in_concatenation509 = new BitSet(new long[]{0x0000000000000202L});
+    public static final BitSet FOLLOW_AMPERSAND_in_concatenation514 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_IDENT_in_concatenation517 = new BitSet(new long[]{0x0000000000010202L});
+    public static final BitSet FOLLOW_sliceList_in_concatenation519 = new BitSet(new long[]{0x0000000000000202L});
+    public static final BitSet FOLLOW_LEFTANGLE_in_concatenation530 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_IDENT_in_concatenation532 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_RIGHTANGLE_in_concatenation534 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_39_in_concatenation541 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LEFTBRACE_in_pinList556 = new BitSet(new long[]{0x0000000000002010L});
+    public static final BitSet FOLLOW_set_in_pinList559 = new BitSet(new long[]{0x000000000000C000L});
+    public static final BitSet FOLLOW_COMMA_in_pinList568 = new BitSet(new long[]{0x0000000000002010L});
+    public static final BitSet FOLLOW_set_in_pinList571 = new BitSet(new long[]{0x000000000000C000L});
+    public static final BitSet FOLLOW_RIGHTBRACE_in_pinList581 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LEFTBRACKET_in_sliceList597 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_INTEGER_in_sliceList599 = new BitSet(new long[]{0x0000000000064000L});
+    public static final BitSet FOLLOW_COLON_in_sliceList603 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_INTEGER_in_sliceList606 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_COMMA_in_sliceList612 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_INTEGER_in_sliceList615 = new BitSet(new long[]{0x0000000000044000L});
+    public static final BitSet FOLLOW_COMMA_in_sliceList618 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_INTEGER_in_sliceList621 = new BitSet(new long[]{0x0000000000044000L});
+    public static final BitSet FOLLOW_RIGHTBRACKET_in_sliceList628 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LEFTBRACKET_in_sliceDecl642 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_INTEGER_in_sliceDecl644 = new BitSet(new long[]{0x0000000000024000L});
+    public static final BitSet FOLLOW_COLON_in_sliceDecl648 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_INTEGER_in_sliceDecl651 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_COMMA_in_sliceDecl657 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_INTEGER_in_sliceDecl660 = new BitSet(new long[]{0x0000000000044000L});
+    public static final BitSet FOLLOW_RIGHTBRACKET_in_sliceDecl665 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LEFTPAREN_in_arrayList681 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_INTEGER_in_arrayList683 = new BitSet(new long[]{0x0000000000124000L});
+    public static final BitSet FOLLOW_COLON_in_arrayList687 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_INTEGER_in_arrayList690 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_COMMA_in_arrayList696 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_INTEGER_in_arrayList699 = new BitSet(new long[]{0x0000000000104000L});
+    public static final BitSet FOLLOW_COMMA_in_arrayList702 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_INTEGER_in_arrayList705 = new BitSet(new long[]{0x0000000000104000L});
+    public static final BitSet FOLLOW_RIGHTPAREN_in_arrayList712 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LEFTPAREN_in_arrayDecl726 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_INTEGER_in_arrayDecl728 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_COLON_in_arrayDecl730 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_INTEGER_in_arrayDecl733 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_RIGHTPAREN_in_arrayDecl735 = new BitSet(new long[]{0x0000000000000002L});
 
 }

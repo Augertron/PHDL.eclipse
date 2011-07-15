@@ -1,46 +1,46 @@
 
-deSign full_adder iS
+design full_adder is
 
-	devIce AND_GATE is
+	device AND_GATE is
 		attr refPrefix = "A";
 		attr pkg_type = "74LS08";
 		pin[1:0] entry = {1,2};
-		pin exit = {3,4};
-	enD;
+		pin exit = {3};
+	end;
 
 	device INVERTER is
 		attr refPrefix = "I";
-		atTr pkg_type = "74LS04";
-		pIn entry = {1};
-		PiN exit = {+};
+		attr pkg_type = "74LS04";
+		pin entry = {1};
+		pin exit = {+};
 	end;
 
 	device OR_GATE is
 		attr refPrefix = "O";
 		attr pkg_type = "74LS32";
 		pin[1:0] entry = {1,2};
-		pin exit = {?};
+		pin exit = {3};
 	end;
 
-	nEt X is
-		Attr impedence = "5k";
+	net X is
+		attr impedence = "5k";
 	end;
 
-	nEt Y;
+	net Y;
 	net sum;
-	NET carry;
+	net carry;
 
-	Net[1:0] sum_in is
+	net[1:0] sum_in is
 		attr hometown = "Provo";
 		attr refPrefix = "BREAK";
 	end;
 
-	neT x_bar;
+	net x_bar;
 	net y_bar;
 
-Begin
+begin
 	
-	inSt(1:0) sum_adds of AND_GATE is
+	inst(1:0) sum_adds of AND_GATE is
 		this(0).entry[0] = X;
 		this(0).entry[1] = y_bar;
 		this(0).exit = sum_in[0];
@@ -52,15 +52,15 @@ Begin
 		newattr refPrefix = "BREAKME!";
 	end;
 
-	Inst carry_add oF AND_GATE iS
-		entry[0] = Xo;
+	inst carry_add of AND_GATE is
+		entry[0] = X;
 		entry[1] = Y;
 		exit = carry;
 
 		newattr refDes = "CA1";
 	end;
 
-	inst(1:0) nots of INVERTEr is
+	inst(1:0) nots of INVERTER is
 		nots(0).entry = X;
 		nots(0).exit = x_bar;
 		nots(1).entry = Y;
@@ -68,7 +68,7 @@ Begin
 
 		pkg_type = "Bogus";
 		refPrefix = "900";
-		newattr refDes = "Awesome";
+		newattr this(1).refDes = "Awesome";
 	end;
 
 	inst sum_or of OR_GATE is
