@@ -1,4 +1,8 @@
+include "include2.phdl";
+
 design test is	
+	
+	include "include.phdl";
 	
 	device resistor is
 		attr refprefix = "R";
@@ -17,7 +21,7 @@ design test is
 	net combined;
 
 begin
-	
+
 	inst(1:0) myRes of resistor is
 		this(0).refDes = "R2";
 		this(1).refDes = "R1";
@@ -31,5 +35,13 @@ begin
 	zero_low = combined;
 	one_high = combined;
 	+vcc = -vcc;
+	
+	inst mine of incldev1 is
+		//refDes = "M2";
+		a = -vcc;
+		b = +vcc;
+	end inst mine;
+	
+	
 	
 end design test;

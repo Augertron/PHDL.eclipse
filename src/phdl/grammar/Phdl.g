@@ -74,6 +74,42 @@ options {
 	package phdl.grammar;
 }
 
+
+@lexer::members {
+
+	class SaveStruct {
+		public CharStream input;
+		public int marker;
+		
+		SaveStruct(CharStream input) {
+			this.input = input;
+			this.marker = input.mark();
+		}
+	}
+	
+	
+	Stack<SaveStruct> includes = new Stack<SaveStruct>();
+	
+	@Override
+	public Token nextToken() {
+		Token token = super.nextToken();
+		
+		if (token.getType() == Token.EOF && !includes.empty()) {
+			SaveStruct ss = includes.pop();
+			setCharStream(ss.input);
+			input.rewind(ss.marker);
+			token = this.nextToken();
+		}
+		
+		if (((CommonToken) token).getStartIndex() < 0)
+			token = this.nextToken();
+			
+		return token;
+	}
+}
+
+
+
 @members {
 
 	private Set<String> errors = new TreeSet<String>();
@@ -91,6 +127,7 @@ options {
 	}
 }
 
+
 //@rulecatch {
 //	catch (RecognitionException e) {
 //		System.out.println("ERROR: " + e.getMessage());
@@ -107,11 +144,19 @@ options {
  * The source text contains multiple design units.
  */
 sourceText
-	:	designDecl* EOF
+	:	designDecl+ EOF
 	;
 //	catch [RecognitionException re] {
 //		errors.add(re.getMessage());
 //	}
+
+/*
+packageDecl
+	:	'package'^ 'is'!
+		deviceDecl+
+		'end'! SEMICOLON!
+	;
+*/
 
 /** 
  * A design declaration consists of the keyword "design" followed by the design name, and the keyword "is."
@@ -269,6 +314,27 @@ arrayList
 arrayDecl
 	:	LEFTPAREN INTEGER COLON^ INTEGER RIGHTPAREN!
 	;
+/*
+includePackage
+@init { CommonTree includetree = null; }
+	:	'include' (WHITESPACE)? fileName=STRING ';' 
+			{	try {
+					CharStream inputstream = null;
+         			inputstream = new ANTLRFileStream((fileName!=null?fileName.getText():null));
+         			PhdlLexer innerlexer = new PhdlLexer(inputstream);
+         			CommonTokenStream cts = new CommonTokenStream(innerlexer);
+         			PhdlParser innerparser = new PhdlParser(cts);
+         			Object tree = innerparser.packageDecl().getTree();
+         			//CommonTreeNodeStream ctns = new CommonTreeNodeStream(tree);
+         			//ctns.setTokenStream(innerparser.getTokenStream());
+         			includetree = (CommonTree)(tree);
+	    		} catch (Exception fnf) {
+	      			System.out.println("Cannot open included file: " );
+	    		}
+			}
+		-> ^('include' $fileName ^({includetree}))
+	;
+*/
 
 /*------------------------------------------------------------------------------------------------------ 
  * Lexer Rules
@@ -324,14 +390,6 @@ STRING
 IDENT 
 	: 	(CHAR | DIGIT)+
 	;
-
-/*
- * Pin list numbers may begin with a digit
-
-PIN
-	:	(CHAR | DIGIT)+
-	;
-*/
 	
 /**
  * Phdl whitespace is ignored
@@ -353,5 +411,23 @@ LINE_COMMENT
 MULTILINE_COMMENT 
 	: '/*' .* '*/' {$channel = HIDDEN;}
 	;
+	
+INCLUDE
+	: 	'include' (WHITESPACE)? fileName=STRING ';'
+			{	String name = fileName.getText();
+				name = name.substring(1,name.length()-1);
+				try {
+					// save current lexer's state
+					SaveStruct ss = new SaveStruct(input);
+					includes.push(ss);
 
+					// switch on new input stream
+					setCharStream(new ANTLRFileStream(name));
+					reset();
 
+				} catch(Exception fnf) { 
+					System.out.println("Include file not found: " + name); 
+					System.exit(1);
+				}
+			}
+	;

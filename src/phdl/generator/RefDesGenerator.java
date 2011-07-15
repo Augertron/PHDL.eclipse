@@ -58,16 +58,18 @@ public class RefDesGenerator {
 
 	private void generate() {
 
-		Set<InstanceNode> softInsts = new TreeSet<InstanceNode>();
+		Set<InstanceNode> needsRefDes = new TreeSet<InstanceNode>();
 		for (InstanceNode i : design.getInstances()) {
-			if (i.getRefDes() != null) {
+			if (i.getRefDes() != null && !i.getRefDes().equals("")) {
 				refMap.put(i.getRefDes(), i);
 			} else {
-				softInsts.add(i);
+				// collect the instances that need a refDes assigned
+				needsRefDes.add(i);
 			}
 		}
-		// generate refDes's for those that aren't already constrained
-		for (InstanceNode i : softInsts) {
+		// generate refDes's for those that need it
+		for (InstanceNode i : needsRefDes) {
+
 			String refprefix = i.getRefPrefix();
 			int j = 1;
 			while (refMap.containsKey(refprefix + j)) {

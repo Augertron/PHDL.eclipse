@@ -121,7 +121,7 @@ options {
 	/**
 	 * Reports an error from a Node object exits
 	 */
-	private void reportError(Node n, String message) {
+	private void bailOnError(Node n, String message) {
 		System.out.println("ERROR: " + n.getFileName() + " line " + n.getLine() + ":" 
 				+ n.getPosition() + " " + message + ": " + n.getName());
 		System.exit(1);
@@ -130,7 +130,7 @@ options {
 	/**
 	 * Reports an error from a CommonTree object and exits
 	 */
-	private void reportError(CommonTree ct, String message) {
+	private void bailOnError(CommonTree ct, String message) {
 		System.out.println("ERROR: " + input.getSourceName() + " line " + ct.getLine() + ":" 
 				+ ct.getCharPositionInLine() + " " + message + ": " + ct.getText());
 		System.exit(1);
@@ -187,7 +187,7 @@ options {
 					addError(pinNode, "pin undeclared in device");
 				}
 			} else {
-				reportError(pinNode, "invalid assignment, left size is " 
+				bailOnError(pinNode, "invalid assignment, left size is " 
 						+ slices.size() + " right size is " + concats.size());
 			}
 		} else {
@@ -206,7 +206,7 @@ options {
 					}
 				}
 			} else {
-				reportError(pinNode, "invalid assignment, left size is " 
+				bailOnError(pinNode, "invalid assignment, left size is " 
 						+ slices.size() + " right size is " + concats.size());
 			}
 		}
@@ -267,7 +267,8 @@ designDecl
 			}
 			//===================== JAVA BLOCK END ========================
 		
-		(deviceDecl[des] | netDecl[des])* 'begin' (instDecl[des] | netAssign[des])* (endName=IDENT)? )
+		(deviceDecl[des] | netDecl[des])* 'begin' 
+		(instDecl[des] | netAssign[des])* (endName=IDENT)? )
 		
 			//==================== JAVA BLOCK BEGIN =======================
 			{	// check the optional trailing label on the design to see if it maches
@@ -294,12 +295,14 @@ designDecl
 						if (!p.hasNet())
 							addError(i, "dangling pin " + p.getName() + " in instance");
 					}
-					
-					if (!i.getRefDes().equals("")) {
-						// report duplicate reference designators
-						if (!refDesSet.add(i.getRefDes())) {
-							System.out.println(i.getRefDes());
-							addError(i, "duplicate reference designator in design");
+					if (i.getRefDes() != null) {
+						if (!i.getRefDes().equals("")) {
+							//System.out.println(i.getRefDes());
+							// report duplicate reference designators
+							if (!refDesSet.add(i.getRefDes())) {
+								//System.out.println(i.getRefDes());
+								addError(i, "duplicate reference designator in design");
+							}
 						}
 					}
 				}
@@ -307,7 +310,15 @@ designDecl
 			}
 			//===================== JAVA BLOCK END ========================
 	;
-
+/*
+includePackage[DesignNode des]
+	:	^('include' fileName=STRING packageDecl[des])
+	;
+	
+packageDecl[DesignNode des]
+	:	^('package' deviceDecl[des]+)
+	;
+*/
 /**
  * The deviceDecl rule is called by the design rule.  It makes new device nodes for every device declaration
  * found in the design declaration.
@@ -385,9 +396,8 @@ attributeDecl[Attributable dev]
 				// check if the attribute is a refprefix attribute
 				if (a.getName().equals("REFPREFIX")) {
 					// check to see if refPrefix begins with a letter
-					if (!Pattern.compile("^[A-Z]").matcher(a.getValue()).find()) {
+					if (!Pattern.compile("^[A-Z]").matcher(a.getValue()).find())
 						addError($attrName, "invalid refPrefix in device");
-					}
 				}
 			}
 			//===================== JAVA BLOCK END ========================
@@ -589,7 +599,7 @@ instDecl[DesignNode des]
 							i.addPin(new PinNode(pn, i));
 						instNodes.add(i);
 					} else
-						reportError(i, "instance references undeclared device");
+						bailOnError(i, "instance references undeclared device");
 					
 				}
 				
@@ -610,7 +620,7 @@ instDecl[DesignNode des]
 							i.addPin(new PinNode(pn, i));
 						instNodes.add(i);
 					} else
-						reportError(i, "instance references undeclared device");
+						bailOnError(i, "instance references undeclared device");
 							
 				}
 			
@@ -814,7 +824,7 @@ netAssign[DesignNode des]
 		
 			//==================== JAVA BLOCK BEGIN =======================
 			{	if (concats.contains(des.getNet("open"))) {
-					reportError($netName, "cannot assign open to a net");
+					bailOnError($netName, "cannot assign open to a net");
 				}
 				if (slices.isEmpty()) {
 					if (concats.size() == 1) {
@@ -826,7 +836,7 @@ netAssign[DesignNode des]
 							addError($netName, "net undeclared in design");
 						}
 					} else {
-						reportError($netName, "invalid assignment, left width is " 
+						bailOnError($netName, "invalid assignment, left width is " 
 								+ slices.size() + " right width is " + concats.size());
 					}
 				} else {
@@ -841,7 +851,7 @@ netAssign[DesignNode des]
 							}
 						}
 					} else {
-						reportError($netName, "invalid assignment, left width is " 
+						bailOnError($netName, "invalid assignment, left width is " 
 								+ slices.size() + " right width is " + concats.size());
 					}
 				}
