@@ -1,0 +1,18 @@
+design include2 is
+	
+	include "include3.phdl";
+	
+	device incl2dev1 is
+		attr refPrefix = "I";
+		attr pkg_type = "I245";
+	end device;
+	
+	device incl2dev2 is
+		attr refPrefix = "N";
+		attr pkg_type = "I245";
+	end device;
+	
+begin
+
+
+end design include2;
