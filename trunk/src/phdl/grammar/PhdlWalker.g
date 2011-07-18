@@ -15,7 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
+/** 
  * A tree grammar that walks the AST produced by PhdlParser.  It operates on a stream of 
  * tree nodes of the form (parent child1 child2 ... childN) where each node may be the
  * root of another subtree.  Call the sourceText()rule on the walker object to generate

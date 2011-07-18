@@ -23,7 +23,7 @@ Possible Improvements?
 
 * Allowing for multiple pin declarations on a single line.
 		i.e. pin a,b,c = {1,2,3};
-		(But packages only have one set of pins, so this wouldn't make sense.)  
+		(I like this.)
 
 * Suppressing "unused device" warnings?
 		A designer might use a device library but not all of the

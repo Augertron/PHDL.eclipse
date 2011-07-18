@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g 2011-07-15 15:21:21
+// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g 2011-07-18 09:33:50
 
 /*
     Copyright (C) 2011  BYU Configurable Computing Lab
@@ -33,7 +33,7 @@ import org.antlr.runtime.tree.*;import java.util.Stack;
 import java.util.List;
 import java.util.ArrayList;
 
-/**
+/** 
  * A tree grammar that walks the AST produced by PhdlParser.  It operates on a stream of 
  * tree nodes of the form (parent child1 child2 ... childN) where each node may be the
  * root of another subtree.  Call the sourceText()rule on the walker object to generate
