@@ -58,11 +58,18 @@ public class PhdlComp {
 	 */
 	static List<String> warnings = new ArrayList<String>();
 
+	static private String usage = "Usage:";
+
 	/**
 	 * The main entry point of the phdl Compiler. It accepts *.phdl source files as arguments and
 	 * generates a net list for layout tools, and a bill of material for procurement.
 	 */
 	public static void main(String[] args) {
+
+		if (args.length == 0) {
+			System.out.println(usage);
+			System.exit(1);
+		}
 
 		// Repeat for each source file passed in as an argument
 		for (int i = 0; i < args.length; i++) {

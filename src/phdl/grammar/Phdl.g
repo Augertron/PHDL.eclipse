@@ -77,30 +77,48 @@ options {
 
 @lexer::members {
 
+	/**
+	 * Class to enable pushing a character stream onto a stack
+	 */
 	class SaveStruct {
 		public CharStream input;
 		public int marker;
 		
+		/**
+		 * The constructor
+		 */
 		SaveStruct(CharStream input) {
 			this.input = input;
 			this.marker = input.mark();
 		}
 	}
 	
-	
+	/**
+	 * The stack of saved character streams
+	 */
 	Stack<SaveStruct> includes = new Stack<SaveStruct>();
 	
+	/**
+	 * Overridden method.
+	 */
 	@Override
 	public Token nextToken() {
-		Token token = super.nextToken();
+		Token token = super.nextToken();		
 		
 		if (token.getType() == Token.EOF && !includes.empty()) {
+			// EOF and a non-empty stack.  Pop a stream, set to it, 
+			// and rewind to its saved marker
 			SaveStruct ss = includes.pop();
 			setCharStream(ss.input);
 			input.rewind(ss.marker);
+			
+			// used to handle exits from nested includes.
+			// it only matters when the 'include' token is the last in the previous stream.
+			// using super, lexer crashes, returning EOF token.
 			token = this.nextToken();
 		}
 		
+		// skip the first token after switching on another input.
 		if (((CommonToken) token).getStartIndex() < 0)
 			token = this.nextToken();
 			
@@ -416,16 +434,18 @@ INCLUDE
 			{	String name = fileName.getText();
 				name = name.substring(1,name.length()-1);
 				try {
-					// save current lexer's state
+					// save the character stream by pushing it onto the stack
 					SaveStruct ss = new SaveStruct(input);
 					includes.push(ss);
 
-					// switch on new input stream
+					// make a new ANTLRFileStream and switch to it
 					setCharStream(new ANTLRFileStream(name));
 					reset();
 
 				} catch(Exception fnf) { 
-					System.out.println(input.getSourceName() + " " + fileName.getLine() + ":" + fileName.getCharPositionInLine() + " " + 
+					// exit if the file cannot be found
+					System.out.println(input.getSourceName() + " " + fileName.getLine() 
+						+ ":" + fileName.getCharPositionInLine() + " " + 
 						"Include file not found: " + fileName.getText()); 
 					System.exit(1);
 				}
