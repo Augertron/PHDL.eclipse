@@ -58,7 +58,35 @@ public class PhdlComp {
 	 */
 	static List<String> warnings = new ArrayList<String>();
 
-	static private String usage = "Usage:";
+	/**
+	 * Usage string for help directions
+	 */
+	static private String usage = "\nPHDL Compiler v0.1.\n\n"
+		+ " * Copyright (C) 2011 BYU Configurable Computing Lab This program is free software: you can\r\n"
+		+ " * redistribute it and/or modify it under the terms of the GNU General Public License as published\r\n"
+		+ " * by the Free Software Foundation, either version 3 of the License, or (at your option) any later\r\n"
+		+ " * version. This program is distributed in the hope that it will be useful, but WITHOUT ANY\r\n"
+		+ " * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR\r\n"
+		+ " * PURPOSE. See the GNU General Public License for more details. You should have received a copy of\r\n"
+		+ " * the GNU General Public License along with this program. If not, see\r\n"
+		+ " * <http://www.gnu.org/licenses/>.\n\n" + "" + "Usage:\n\n"
+		+ "\t<*.phdl> <*.phdl> ... [-w][-d][-v]\n\n"
+		+ "\tOne or more design phdl files followed by optional switches.\n"
+		+ "\t-w\tsupress warnings\n" + "\t-d\tenable dotty file dump for graph viewing\n"
+		+ "\t-v\tenable verbose error reporting (will not bail out simple parse errors)\n";
+
+	/**
+	 * Suppress warnings flag
+	 */
+	static boolean supWarn = false;
+	/**
+	 * Dotty dump enable flag
+	 */
+	static boolean dumpEn = false;
+	/**
+	 * Verbose error messages flag
+	 */
+	static boolean verbose = false;
 
 	/**
 	 * The main entry point of the phdl Compiler. It accepts *.phdl source files as arguments and
@@ -66,13 +94,36 @@ public class PhdlComp {
 	 */
 	public static void main(String[] args) {
 
+		// print out the help if the program is being used incorrectly
 		if (args.length == 0) {
 			System.out.println(usage);
 			System.exit(1);
 		}
 
+		// set all of the compiler switches from command line
+		for (int i = 0; i < args.length; i++) {
+			// suppress warnings
+			if (args[i].equals("-w"))
+				supWarn = true;
+			// turn on dump mode
+			if (args[i].equals("-d"))
+				dumpEn = true;
+			// turn on verbose mode
+			if (args[i].equals("-v"))
+				verbose = true;
+			if (args[i].equals("?")) {
+				System.out.println(usage);
+				System.exit(1);
+			}
+
+		}
+
 		// Repeat for each source file passed in as an argument
 		for (int i = 0; i < args.length; i++) {
+
+			// ignore the compiler switches
+			if (args[i].startsWith("-"))
+				continue;
 
 			String fileName = args[i].replace(".phdl", "");
 			System.out.println("Compiling..." + args[i]);
@@ -99,11 +150,13 @@ public class PhdlComp {
 				for (String error : p.getErrors())
 					errors.add(error);
 
-				// convert the AST to a dotty formatted string for graph viewing
-				DOTTreeGenerator tg = new DOTTreeGenerator();
-				StringTemplate st = tg.toDOT((Tree) tree);
-				String astFileName = fileName + "_ast.dot";
-				dumpToFile(astFileName, st.toString());
+				if (dumpEn) {
+					// convert the AST to a dotty formatted string for graph viewing
+					DOTTreeGenerator tg = new DOTTreeGenerator();
+					StringTemplate st = tg.toDOT((Tree) tree);
+					String astFileName = fileName + "_ast.dot";
+					dumpToFile(astFileName, st.toString());
+				}
 
 				// bail out of there are errors
 				printErrors();
@@ -118,11 +171,12 @@ public class PhdlComp {
 				// print out all errors if there were any, and exit abnormally
 				printErrors();
 
-				// output a dotty graph before merging nodes
-				for (DesignNode d : walker.getDesignNodes()) {
-					String graphFileName = fileName + "_graph.dot";
-					d.dottyDump(graphFileName);
-					// d.printDesignNode();
+				if (dumpEn) {
+					// output a dotty graph before merging nodes
+					for (DesignNode d : walker.getDesignNodes()) {
+						String graphFileName = fileName + "_graph.dot";
+						d.dottyDump(graphFileName);
+					}
 				}
 
 				// call the superNet algorithm on all nets in each design node
@@ -140,23 +194,24 @@ public class PhdlComp {
 					gen.generateNetList();
 				}
 
-				// output a dotty graph after merging all nodes
-				for (DesignNode d : walker.getDesignNodes()) {
-					String graphFileName = fileName + "_graph_merged.dot";
-					d.dottyDump(graphFileName);
-					// d.printDesignNode();
+				if (dumpEn) {
+					// output a dotty graph after merging all nodes
+					for (DesignNode d : walker.getDesignNodes()) {
+						String graphFileName = fileName + "_graph_merged.dot";
+						d.dottyDump(graphFileName);
+					}
 				}
 
 			} catch (Exception e) {
 				errors.add("ERROR: " + e.getMessage());
-
 				// print out any parsing errors, and do not continue on.
 				printErrors();
 
 			}
 
 			// print out all warnings if they exist.
-			printWarnings();
+			if (!supWarn)
+				printWarnings();
 
 			System.out.println("Compile successful: " + args[i]);
 		} // end for loop on all source files
@@ -166,7 +221,9 @@ public class PhdlComp {
 		if (!errors.isEmpty()) {
 			for (String s : errors)
 				System.out.println("ERROR: " + s);
-			System.exit(1);
+			// only bail out if verbose mode is not set
+			if (!verbose)
+				System.exit(1);
 		}
 	}
 

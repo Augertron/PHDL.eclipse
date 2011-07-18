@@ -1,18 +1,12 @@
 /*
-    Copyright (C) 2011  BYU Configurable Computing Lab
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Copyright (C) 2011 BYU Configurable Computing Lab This program is free software: you can
+ * redistribute it and/or modify it under the terms of the GNU General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or (at your option) any later
+ * version. This program is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ * PURPOSE. See the GNU General Public License for more details. You should have received a copy of
+ * the GNU General Public License along with this program. If not, see
+ * <http://www.gnu.org/licenses/>.
  */
 
 package phdl.generator;
@@ -42,13 +36,12 @@ public class NetListGenerator {
 	/**
 	 * Default constructor.
 	 * 
-	 * Takes a design and a map of the reference designators
-	 * and generates the NetList.
+	 * Takes a design and a map of the reference designators and generates the NetList.
 	 * 
-	 * @param design the DesignNode where all the net information
-	 * 			is stored.
-	 * @param refMap the map of Reference Designators needed to
-	 * 			generated the NetList.
+	 * @param design
+	 *            the DesignNode where all the net information is stored.
+	 * @param refMap
+	 *            the map of Reference Designators needed to generated the NetList.
 	 * 
 	 * @see DesignNode
 	 * @see RefDesGenerator
@@ -113,7 +106,8 @@ public class NetListGenerator {
 	/**
 	 * Generates an .asc file representation of the NetList.
 	 * 
-	 * @param fileName the name of the file to write to
+	 * @param fileName
+	 *            the name of the file to write to
 	 */
 	public void outputToFile(String fileName) {
 		try {
@@ -124,6 +118,7 @@ public class NetListGenerator {
 			System.err.println("File Reading Error - filename may be corrupt");
 			System.exit(1);
 		}
+		System.out.println("Wrote netlist file: " + fileName);
 	}
 
 }
