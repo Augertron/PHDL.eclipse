@@ -24,7 +24,7 @@ design full_adder is
 
 	net X is
 		attr impedence = "5k";
-	end;
+	end net X;
 
 	net Y;
 	net sum;
