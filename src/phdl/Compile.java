@@ -41,7 +41,7 @@ import phdl.graph.Node;
  * @version 0.1
  * 
  */
-public class PhdlComp {
+public class Compile {
 
 	/**
 	 * An array of attributes that every device declaration is required to have

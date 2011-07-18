@@ -99,7 +99,8 @@ options {
 	Stack<SaveStruct> includes = new Stack<SaveStruct>();
 	
 	/**
-	 * Overridden method.
+	 * Overridden nextToken method to accomodate the saved character stream states, and how to handle the tokens
+	 * entering and leaving an included file.
 	 */
 	@Override
 	public Token nextToken() {
@@ -130,8 +131,15 @@ options {
 
 @parser::members {
 
+	/**
+	 * The list of errors retrived after parsing to report
+	 */
 	private List<String> errors = new ArrayList<String>();
 
+	/**
+	 * Overriding this method allows the parser to bail out on the first unexpected token.  The unexpected token
+	 * is reported in the usual format.
+	 */
 	@Override
 	public void displayRecognitionError(String[] tokenNames, RecognitionException e) {
 		String hdr = getErrorHeader(e);
@@ -139,18 +147,13 @@ options {
 		errors.add(hdr + " unexpected token: " + e.token.getText());
 	}
 
+	/**
+	 * Accessor method for retrieving the accumulated errors if they exist.
+	 */
 	public List<String> getErrors() {
 		return errors;
 	}
 }
-
-
-//@rulecatch {
-//	catch (RecognitionException e) {
-//		System.out.println("ERROR: " + e.getMessage());
-//		//System.exit(1);
-//	}
-//}
 
 
 /*------------------------------------------------------------------------------------------------------ 
@@ -163,17 +166,6 @@ options {
 sourceText
 	:	designDecl+ EOF
 	;
-//	catch [RecognitionException re] {
-//		errors.add(re.getMessage());
-//	}
-
-/*
-packageDecl
-	:	'package'^ 'is'!
-		deviceDecl+
-		'end'! SEMICOLON!
-	;
-*/
 
 /** 
  * A design declaration consists of the keyword "design" followed by the design name, and the keyword "is."
@@ -331,27 +323,6 @@ arrayList
 arrayDecl
 	:	LEFTPAREN INTEGER COLON^ INTEGER RIGHTPAREN!
 	;
-/*
-includePackage
-@init { CommonTree includetree = null; }
-	:	'include' (WHITESPACE)? fileName=STRING ';' 
-			{	try {
-					CharStream inputstream = null;
-         			inputstream = new ANTLRFileStream((fileName!=null?fileName.getText():null));
-         			PhdlLexer innerlexer = new PhdlLexer(inputstream);
-         			CommonTokenStream cts = new CommonTokenStream(innerlexer);
-         			PhdlParser innerparser = new PhdlParser(cts);
-         			Object tree = innerparser.packageDecl().getTree();
-         			//CommonTreeNodeStream ctns = new CommonTreeNodeStream(tree);
-         			//ctns.setTokenStream(innerparser.getTokenStream());
-         			includetree = (CommonTree)(tree);
-	    		} catch (Exception fnf) {
-	      			System.out.println("Cannot open included file: " );
-	    		}
-			}
-		-> ^('include' $fileName ^({includetree}))
-	;
-*/
 
 /*------------------------------------------------------------------------------------------------------ 
  * Lexer Rules
@@ -392,7 +363,7 @@ fragment DIGIT : ('0'..'9') ;
 INTEGER : DIGIT+;
 
 /**
- * A string has it's wrapping quotes removed
+ * A string has its wrapping quotes removed
  */
 STRING
 	: 	'"' 							{StringBuilder sb = new StringBuilder();}
@@ -402,33 +373,41 @@ STRING
 	;
 
 /**
- * Identifiers may not begin with a digit
+ * Identifiers may be one or more digits
  */
 IDENT 
 	: 	(CHAR | DIGIT)+
 	;
 	
 /**
- * Phdl whitespace is ignored
+ * All PHDL whitespace is ignored
  */
 WHITESPACE
 	: (' ' | '\t' | '\n' | '\r' | '\f' | '\u001D')+ {$channel = HIDDEN;}
 	;
 
 /**
- * Line comments begin with a double forward slash
+ * Line comments begin with a double forward slash.  Everything up to and including the new line or carriage
+ * return characters are placed on the hidden channel for the parser to ignore.
  */
 LINE_COMMENT 
 	: '//' .* ('\n' | '\r') {$channel = HIDDEN;}
 	;
 
 /**
- * Multi-line comments begin and end with the usual indicators
+ * Multi-line comments begin and end with the usual indicators.  Everything up to and including the terminating
+ * token is placed on the hidden channel for the parser to ignore.
  */
 MULTILINE_COMMENT 
 	: '/*' .* '*/' {$channel = HIDDEN;}
 	;
-	
+
+/**
+ * Include statements push the current character stream onto a stack and set up a new stream based on the
+ * file name of the include directive.  When an EOF character is reached inside the included file, that stream
+ * is popped off the stack, and the previous one is turned on again allowing for an uninterrupted stream of
+ * tokens to pass to the parser.
+ */	
 INCLUDE
 	: 	'include' (WHITESPACE)? fileName=STRING ';'
 			{	String name = fileName.getText();

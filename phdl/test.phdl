@@ -42,6 +42,4 @@ begin
 		b = +vcc;
 	end inst mine;
 	
-	
-	
 end design test;
