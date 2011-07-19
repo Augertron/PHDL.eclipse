@@ -155,24 +155,24 @@ options {
 	}
 }
 
-
 /*------------------------------------------------------------------------------------------------------ 
  * Parser Rules
  *------------------------------------------------------------------------------------------------------*/
 
 /** 
- * The source text contains multiple design units.
+ * A PHDL file begins with one or more designDecls
+ * (design delcarations) followed by the end of the file.
  */
 sourceText
 	:	designDecl+ EOF
 	;
 
 /** 
- * A design declaration consists of the keyword "design" followed by the design name, and the keyword "is."
- * Before the "begin" keyword, device and net declarations can coexist in any order.  After the "begin" keyword
- * device instances and net assignments can coexist in any order.  The body of the design declaration is 
- * terminated with the keyword "end" followed by a semicolon.  Between the keyword "end" and the semicolon you can optionally
- * include the keyword "design" and/or the name specified originally as the design name.
+ * A design declaration consists of the keyword "design" followed by the design name and the keyword "is."
+ * Before the "begin" keyword, device and net declarations are placed in any order.  After the "begin" keyword,
+ * device instances and net assignments are placed in any order.  The body of the design declaration is 
+ * terminated with the keyword "end" followed by an optional "design" keyword or the name of the design
+ * and finally a semicolon.
  */
 designDecl
 	:	'design'^ IDENT 'is'! 
@@ -187,7 +187,6 @@ designDecl
  * Attribute and pin declarations may coexist anywhere in the body of the device declaration.  The device
  * declaration is terminated with the "end" keyword followed by a semicolon.   Between the keyword "end" and the semicolon you can optionally
  * include the keyword "device" and/or the name specified originally as the device name.
- 
  */	
 deviceDecl
 	:	'device'^ IDENT 'is'!
@@ -197,50 +196,50 @@ deviceDecl
 
 /**
  * An attribute declaration begins with the keyword "attr" followed by the attribute name, 
- * and equals sign, and the string it is intialized to, then terminated in a semicolon.
+ * an equal sign, and a string.  It then terminates in a semicolon.
  */	
 attributeDecl
 	:	'attr'^ IDENT EQUALS! STRING SEMICOLON!
 	;
 
 /**
- * A pin declaration consists of the pin type, an optional slice list, and the name of the pin.  A list
- * of pin numbers (which may be strings beginning with numbers) is appended with an equals sign, and
- * terminated with the usual semicolon.
+ * A pin declaration consists of the pin type, an optional list of slices, and the name of the pin.
+ * An equal sign comes next followed by a list of pin names and a semicolon.
  */
 pinDecl
 	:	type^ sliceDecl? IDENT EQUALS! pinList SEMICOLON!
 	;
 
 /**
- * For now, the only pin type supported is pin.
+ * A type is a keyword that indicates the type of a pin.
  */	
 type
 	:	'pin'
 	;
 
 /** 
- * A net declaration consists of the "net" keyword followed by an optional bit slice list, the name
+ * A net declaration consists of the "net" keyword followed by an optional list of slices, the name
  * of the net, followed by an optional set of attributes, and terminated with a semicolon.
- */	
+ */
 netDecl
 	:	'net'^ sliceDecl? IDENT netAttributes? SEMICOLON! 
 	;
 
 /**
- * Net attributes take on the same form as attribute declarations, however they must be wrapped by 
- * the usual keywords, have an optional "net" and the net name after the keyword "end".
+ * Net attributes consist of the keyword "is" followed by zero or more attribute declarations followed
+ * by the keyword "end", "end net", or "end" followed by the name of the net.  Lastly, a semicolon
+ * terminates.
  */	
 netAttributes
 	:	'is'! attributeDecl* 'end'! 'net'!? IDENT?
 	;
 
 /**
- * A device instance begins with the keyword "inst" followed by an optional array specification, the instance name, 
- * the keyword "of", the device name
- * from which it is being instanced, and the keyword "is."  The body
- * of the device instance contains attribute and pin assignments.  As with the other constructs,
- * an optional "inst" and the instance name may be placed between the "end" and the semicolon.  
+ * A device instance begins with the keyword "inst" followed by an optional array
+ * specification, the instance name, the keyword "of", the device name from which
+ * it is being instanced, and the keyword "is."  The body of the device instance
+ * contains attribute and pin assignments placed in any order.  An optional "inst"
+ * or the instance name may be placed between the "end" and the semicolon.
  */
 instanceDecl
 	:	'inst'^ arrayDecl? IDENT 'of'! IDENT 'is'!
@@ -267,7 +266,7 @@ attributeAssignment
  * followed by an optional array list
  * and mandatory period.  Examples would be: 'this.tolerance = "5%"' (all instances in this construct get this value), 
  * 'this(2).tolerance = "5%"' (only instance 2 gets this value), or 'this(1, 4, 6).tolerance = "5%"' (only instances 1, 4, and 6
- * get this value). 
+ * get this value).
  */
 instanceQualifier
 	:	(IDENT | 'this') arrayList? PERIOD^  
@@ -285,7 +284,8 @@ pinAssignment
 	;
 
 /**
- * In a net assignment, a concatenation may be assigned to a net with an optional slice list.
+ * A net assignment consists of an identifier followed by an optional list of slices, an
+ * equal sign, a concatenation of nets, and a semicolon.
  */
 netAssignment
 	:	IDENT sliceList? EQUALS^ concatenation SEMICOLON!
@@ -311,30 +311,33 @@ pinList
 	;
 	
 /**
- * A sliceList consists of brackets around a single integer, two integers separated by a colon,
- * or a comma-separated list of integers.
+ * A sliceList consists of a square bracket followed by a single integer, two integers
+ * separated by a colon, or a comma-separated list of integers.  A right square bracket
+ * then follows.  
  */
 sliceList
 	: 	LEFTBRACKET INTEGER ((COLON^ INTEGER) | (COMMA^ INTEGER (COMMA! INTEGER)*)?) RIGHTBRACKET!
 	;
 
 /**
- * A sliceDecl is similar to a sliceList except it omits the single bit slice option
+ * A sliceDecl consists of a left square bracket followed by a single integer or two integers
+ * separated by a colon.  A right square bracket then follows.
  */
 sliceDecl
 	:	LEFTBRACKET INTEGER ((COLON^ INTEGER) | (COMMA^ INTEGER)+) RIGHTBRACKET!
 	;
 
 /**
- * An arrayList consists of a parentheses around a single integer, two integers separated by a colon,
- * or a comma-separated list of integers in parentheses.
+ * An arrayList consists of a left parenthesis folowed by  a single integer, two integers
+ * separated by a colon, or a comma-separated list of integers.  A right parenthesis follows.
  */	
 arrayList
 	: 	LEFTPAREN INTEGER ((COLON^ INTEGER) | (COMMA^ INTEGER (COMMA! INTEGER)*)?) RIGHTPAREN!
 	;
 
 /**
- * An arrayDecl is similar to an arrayList except it only allows a colon separated array.
+ * An arrayDecl is a left parenthesis followed by an integer, a colon, another integer, and a
+ * right parenthesis.
  */
 arrayDecl
 	:	LEFTPAREN INTEGER COLON^ INTEGER RIGHTPAREN!
