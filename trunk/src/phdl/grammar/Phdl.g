@@ -171,7 +171,8 @@ sourceText
  * A design declaration consists of the keyword "design" followed by the design name, and the keyword "is."
  * Before the "begin" keyword, device and net declarations can coexist in any order.  After the "begin" keyword
  * device instances and net assignments can coexist in any order.  The body of the design declaration is 
- * terminated with the keyword "end" followed by a semicolon.
+ * terminated with the keyword "end" followed by a semicolon.  Between the keyword "end" and the semicolon you can optionally
+ * include the keyword "design" and/or the name specified originally as the design name.
  */
 designDecl
 	:	'design'^ IDENT 'is'! 
@@ -184,7 +185,9 @@ designDecl
 /** 
  * A device declaration consists of the keyword "device" followed by the device name, and the keyword "is."
  * Attribute and pin declarations may coexist anywhere in the body of the device declaration.  The device
- * declaration is terminated with the "end" keyword followed by a semicolon.
+ * declaration is terminated with the "end" keyword followed by a semicolon.   Between the keyword "end" and the semicolon you can optionally
+ * include the keyword "device" and/or the name specified originally as the device name.
+ 
  */	
 deviceDecl
 	:	'device'^ IDENT 'is'!
@@ -210,7 +213,7 @@ pinDecl
 	;
 
 /**
- * For now, the only type supported is pin.
+ * For now, the only pin type supported is pin.
  */	
 type
 	:	'pin'
@@ -226,16 +229,18 @@ netDecl
 
 /**
  * Net attributes take on the same form as attribute declarations, however they must be wrapped by 
- * the usual keywords.
+ * the usual keywords, have an optional "net" and the net name after the keyword "end".
  */	
 netAttributes
 	:	'is'! attributeDecl* 'end'! 'net'!? IDENT?
 	;
 
 /**
- * A device instance begins with the keyword "inst" followed by an instance name, a colon, the device name
- * from which it is being instanced, an optional array list specifier, and the keyword "is."  In the body
- * of the device instance, attribute and pin assignments may coexist.  
+ * A device instance begins with the keyword "inst" followed by an optional array specification, the instance name, 
+ * the keyword "of", the device name
+ * from which it is being instanced, and the keyword "is."  The body
+ * of the device instance contains attribute and pin assignments.  As with the other constructs,
+ * an optional "inst" and the instance name may be placed between the "end" and the semicolon.  
  */
 instanceDecl
 	:	'inst'^ arrayDecl? IDENT 'of'! IDENT 'is'!
@@ -246,23 +251,34 @@ instanceDecl
 /**
  * An attribute assignment consists of a string assigned to an attribute name with the optional newattr
  * keyword and instance qualifier.  The newattr keyword signals to the compiler that the user is declaring
- * a new attribute for an instanced device beyond the scope of the device declaration.
+ * a new attribute for an instanced device beyond the scope of the device declaration.  Note that you only need
+ * to provide an instanceQualifier when the instance is an array of instances and you only want to make the
+ * assignment to some of the instances' attributes.  In this case, you would use
+ * an instance qualifier to state which instance's attribute is being assigned to.  If you leave off the instance
+ * qualifier you are implying that all instances in this construct will be assigned the new attribute value.
+ * An example would be 'tolerance = "5%"' (all instances in this construct get this value). 
  */
 attributeAssignment
 	:  ('newattr')? instanceQualifier? IDENT EQUALS^ STRING SEMICOLON!
 	;
 	
 /**
- * An instance qualifier begins with the label of the instance, followed by an optional array list
- * and mandatory period.
+ * An instance qualifier begins with the label of the instance (or the keyword "this" as a shorthand), 
+ * followed by an optional array list
+ * and mandatory period.  Examples would be: 'this.tolerance = "5%"' (all instances in this construct get this value), 
+ * 'this(2).tolerance = "5%"' (only instance 2 gets this value), or 'this(1, 4, 6).tolerance = "5%"' (only instances 1, 4, and 6
+ * get this value). 
  */
 instanceQualifier
 	:	(IDENT | 'this') arrayList? PERIOD^  
 	;
 
 /**
- * A pin assignment, a concatenation may be assigned to a pin name with optional slice list, 
- * prefaced by an optional instance qualifier.
+ * In pin assignment, a concatenation of nets may be assigned to a pin name with optional slice list, 
+ * prefaced by an optional instance qualifier.  As with attribute assignments, the instance qualifier is only required
+ * when the instance is an array and only some of the instances are to be assigned.  If all are to be assigned, then it can be
+ * omitted as in 'a = gnd' (tie all 'a' pins of all instances in this instantiation to ground).  The slice list allows you
+ * to specify the various bits of a multi-bit wire as in 'a[3] = gnd', 'a[5:2] = vcc', or 'a[2, 6, 9] = -vcc'. 
  */
 pinAssignment
 	:	instanceQualifier? IDENT sliceList? EQUALS^ concatenation SEMICOLON!
@@ -276,9 +292,9 @@ netAssignment
 	;
 
 /**
- * A concatenation consists of either one or more nets with optional slice lists separated by ampersands, 
- * a single bit-wide net in angle brackets to replicate the net across the width it is being assigned to,
- * or left explicity open.
+ * There are three forms of concatenation: (1) one or more nets (with optional slice lists) separated by ampersands or (2) 
+ * a single bit net surrounded in angle brackets to replicate the net across the width it is being assigned to, or (3)
+ * or the keyword "open" to specify that the net is unconnected to anything.  Examples: 'a & b', 'a[3:0] & b[0:3]', '<gnd>'.
  */
 concatenation
 	:	((IDENT sliceList?) (AMPERSAND! IDENT sliceList?)* ) 
@@ -288,7 +304,7 @@ concatenation
 
 /**
  * A pinList is a comma-separated list of pin numbers enclosed in braces.  Each pin number
- * may be 1 or more characaters long, and may begin with either a number or letter.
+ * may be 1 or more characters long, and may begin with either a number or letter.  Examples: '{1}', '{2, 6, 9}', '{A1, A3, A7}'.
  */	
 pinList
 	: 	LEFTBRACE! (IDENT | INTEGER) (COMMA! (IDENT | INTEGER))* RIGHTBRACE!
@@ -303,7 +319,7 @@ sliceList
 	;
 
 /**
- * A sliceDecl is simialr to a sliceList except it omits the single bit slice option
+ * A sliceDecl is similar to a sliceList except it omits the single bit slice option
  */
 sliceDecl
 	:	LEFTBRACKET INTEGER ((COLON^ INTEGER) | (COMMA^ INTEGER)+) RIGHTBRACKET!
