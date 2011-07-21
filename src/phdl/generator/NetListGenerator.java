@@ -76,7 +76,7 @@ public class NetListGenerator {
 				PinNode pin2 = n.getPinNodes().get(i + 1);
 
 				String ref1 = ((InstanceNode) pin1.getParent()).getRefDes();
-				String ref2 = (((InstanceNode) pin2.getParent()).getRefDes());
+				String ref2 = ((InstanceNode) pin2.getParent()).getRefDes();
 				String name1 = pin1.getPinName();
 				String name2 = pin2.getPinName();
 
@@ -90,6 +90,16 @@ public class NetListGenerator {
 				contents += name2;
 				contents += "\n";
 			}
+
+			// int pinCount = 0;
+			// for (PinNode p : n.getPinNodes()) {
+			// contents += refMap.get(((InstanceNode) p.getParent()).getRefDes()).getRefDes();
+			// contents += "." + p.getPinName() + " ";
+			// pinCount++;
+			// if (pinCount % 10 == 0)
+			// contents += "\n ";
+			// }
+			// contents += "\n";
 		}
 		contents += "\n*END*";
 	}

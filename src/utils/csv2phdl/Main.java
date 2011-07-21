@@ -70,57 +70,56 @@ public class Main {
 	 * @param PowHash
 	 * @param UnusedHash
 	 */
-	public static void PrintDeclaration(TreeMap SigHash, TreeMap PowHash, TreeMap UnusedHash,
-		String PartNum, String Package, String FileRoot) {
+	public static void PrintDeclaration(TreeMap<String, TreeMap<String, String[]>> SigHash,
+		TreeMap<String, TreeMap<String, String[]>> PowHash,
+		TreeMap<String, TreeMap<String, String[]>> UnusedHash, String PartNum, String Package,
+		String FileRoot) {
 
-		System.out.println("\n// Part declaration extracted from Xilinx " + FileRoot + "_pad.csv");
+		System.out
+			.println("\n// Device declaration extracted from Xilinx " + FileRoot + "_pad.csv");
 		System.out.println("device " + FileRoot + " is");
-		System.out.println("    refprefix = \"U\";");
-		System.out.println("    pkg_type = \"" + Package + "\";");
-		System.out.println("    mfgr = \"XILINX\";");
-		System.out.println("    partNumber = \"" + PartNum + "\";");
-		System.out.println("begin");
-		System.out.println("    // User I/O pins.");
-		Iterator it = SigHash.keySet().iterator();
+		System.out.println("\tattr refPrefix = \"U\";");
+		System.out.println("\tattr pkg_type = \"" + Package + "\";");
+		System.out.println("\tattr mfgr = \"XILINX\";");
+		System.out.println("\tattr partNumber = \"" + PartNum + "\";\n");
+		System.out.println("\t// User I/O pins.");
+		Iterator<String> it = SigHash.keySet().iterator();
 		while (it.hasNext()) {
 			Object KeyString = it.next();
 			int vectorSize = ((TreeMap) SigHash.get(KeyString)).size();
 			if (vectorSize == 1) {
-				System.out.print("    pin  " + ((String) KeyString) + "    \"");
+				System.out.print("\tpin  " + ((String) KeyString) + " = {");
 			} else {
 				Integer firstIndex = getIndex((String) ((TreeMap) SigHash.get(KeyString))
 					.firstKey());
 				Integer lastIndex = getIndex((String) ((TreeMap) SigHash.get(KeyString)).lastKey());
-				System.out.print("    pin" + "[" + firstIndex + ":" + lastIndex + "] "
-					+ ((String) KeyString) + " \"");
+				System.out.print("\tpin" + "[" + firstIndex + ":" + lastIndex + "] "
+					+ ((String) KeyString) + " = {");
 			}
 			Iterator innerIt = ((TreeMap) SigHash.get(KeyString)).keySet().iterator();
 			while (innerIt.hasNext()) {
 				Object innerKeyString = innerIt.next();
 				System.out
 					.print(((String[]) ((TreeMap) SigHash.get(KeyString)).get(innerKeyString))[0]);
-				// System.out.print(((String)innerKeyString));
 				if (innerIt.hasNext())
 					System.out.print(",");
 			}
-			System.out.println("\";");
+			System.out.println("};");
 		}
 
-		System.out.println("\n    // Power and dedicated FPGA pins.");
+		System.out.println("\n\t// Power and dedicated FPGA pins.");
 		it = PowHash.keySet().iterator();
 		while (it.hasNext()) {
 			Object KeyString = it.next();
 			int vectorSize = ((TreeMap) PowHash.get(KeyString)).size();
 			if (vectorSize == 1) {
-				System.out.print("    pin  " + ((String) KeyString) + "    \"");
+				System.out.print("\tpin  " + ((String) KeyString) + " = {");
 			} else {
 				Integer firstIndex = vectorSize - 1;
 				Integer lastIndex = 0;
-				System.out.print("    pin" + "[" + firstIndex + ":" + lastIndex + "] "
-					+ ((String) KeyString) + " \"");
+				System.out.print("\tpin" + "[" + firstIndex + ":" + lastIndex + "] "
+					+ ((String) KeyString) + " = {");
 			}
-			// System.out.print(((String)KeyString) + "   " +
-			// ((TreeMap)PowHash.get(KeyString)).size() + " \"" );
 			Iterator innerIt = ((TreeMap) PowHash.get(KeyString)).keySet().iterator();
 			while (innerIt.hasNext()) {
 				Object innerKeyString = innerIt.next();
@@ -128,14 +127,14 @@ public class Main {
 				if (innerIt.hasNext())
 					System.out.print(",");
 			}
-			System.out.println("\";");
+			System.out.println("};");
 		}
 
-		System.out.println("\n    // UNUSED I/O pins.");
+		System.out.println("\n\t// UNUSED I/O pins.");
 		it = UnusedHash.keySet().iterator();
 		while (it.hasNext()) {
 			Object KeyString = it.next();
-			System.out.print("    pin  " + ((String) KeyString) + "   \"");
+			System.out.print("\tpin  " + ((String) KeyString) + " = {");
 			Iterator innerIt = ((TreeMap) UnusedHash.get(KeyString)).keySet().iterator();
 			while (innerIt.hasNext()) {
 				Object innerKeyString = innerIt.next();
@@ -144,7 +143,7 @@ public class Main {
 				if (innerIt.hasNext())
 					System.out.print(",");
 			}
-			System.out.println("\";");
+			System.out.println("};");
 		}
 		System.out.println("end;");
 	}
@@ -171,7 +170,7 @@ public class Main {
 		Iterator it = SigHash.keySet().iterator();
 		while (it.hasNext()) {
 			Object KeyString = it.next();
-			System.out.println(((String) KeyString) + "  => " + ((String) KeyString));
+			System.out.println(((String) KeyString) + " = " + ((String) KeyString) + ";");
 		}
 
 		System.out.println("\n// Power and dedicated FPGA pins.");
@@ -180,10 +179,9 @@ public class Main {
 			Object KeyString = it.next();
 			int size = ((TreeMap) PowHash.get(KeyString)).size();
 			if (size == 1) {
-				System.out.println(((String) KeyString) + "  => " + ((String) KeyString));
+				System.out.println(((String) KeyString) + " = " + ((String) KeyString) + ";");
 			} else {
-				System.out.println(((String) KeyString) + "  => (others=>" + ((String) KeyString)
-					+ ")");
+				System.out.println(((String) KeyString) + " = " + ((String) KeyString) + ";");
 			}
 		}
 
@@ -191,7 +189,7 @@ public class Main {
 		it = UnusedHash.keySet().iterator();
 		while (it.hasNext()) {
 			Object KeyString = it.next();
-			System.out.println(((String) KeyString) + "  => open");
+			System.out.println(((String) KeyString) + " = open;");
 		}
 	}
 
@@ -245,15 +243,15 @@ public class Main {
 
 		String CSVStringArray[][] = PinoutTable.getAllValues();
 
-		TreeMap SigHash = new TreeMap();
-		TreeMap PowHash = new TreeMap();
-		TreeMap UnusedHash = new TreeMap();
+		TreeMap<String, TreeMap<String, String[]>> SigHash = new TreeMap<String, TreeMap<String, String[]>>();
+		TreeMap<String, TreeMap<String, String[]>> PowHash = new TreeMap<String, TreeMap<String, String[]>>();
+		TreeMap<String, TreeMap<String, String[]>> UnusedHash = new TreeMap<String, TreeMap<String, String[]>>();
 		String SigName = "junk";
 		String RootName;
 		Pattern IndexPat = Pattern.compile("<[0-9]+>");
 		Matcher IndexPatMatcher = IndexPat.matcher(SigName);
 		int pin_count = 0;
-		TreeMap PinHash;
+		TreeMap<String, String[]> PinHash;
 		for (int r = 0; r < CSVStringArray.length; r++) {
 			if ((CSVStringArray[r][0] != "") && (!CSVStringArray[r][0].contains("Pin Number"))) { // If
 																									// valid
@@ -361,9 +359,9 @@ public class Main {
 		// These functions walk through the data and print the output file.
 
 		PrintDeclaration(SigHash, PowHash, UnusedHash, FullPartNum, PACKAGE, FileRoot);
-		// PrintInstantiation(SigHash, PowHash, UnusedHash);
+		PrintInstantiation(SigHash, PowHash, UnusedHash);
 
-		System.out.println("//total pins found = " + pin_count);
+		System.out.println("\n//Total pins found = " + pin_count);
 
 	}
 

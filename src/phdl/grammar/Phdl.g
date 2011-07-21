@@ -222,7 +222,7 @@ type
  * of the net, followed by an optional set of attributes, and terminated with a semicolon.
  */
 netDecl
-	:	'net'^ sliceDecl? IDENT netAttributes? SEMICOLON! 
+	:	'net'^ sliceDecl? IDENT (COMMA IDENT)* netAttributes? SEMICOLON!
 	;
 
 /**
@@ -231,7 +231,7 @@ netDecl
  * terminates.
  */	
 netAttributes
-	:	'is'! attributeDecl* 'end'! 'net'!? IDENT?
+	:	'is'! attributeDecl* 'end'!
 	;
 
 /**
@@ -296,9 +296,9 @@ netAssignment
  * a single bit net surrounded in angle brackets to replicate the net across the width it is being assigned to, or (3)
  * or the keyword "open" to specify that the net is unconnected to anything.  Examples: 'a & b', 'a[3:0] & b[0:3]', '<gnd>'.
  */
-concatenation
+concatenation 
 	:	((IDENT sliceList?) (AMPERSAND! IDENT sliceList?)* ) 
-	|	LEFTANGLE IDENT RIGHTANGLE!
+	|	(LEFTANGLE IDENT sliceList? RIGHTANGLE!)
 	| 	'open'
 	;
 
