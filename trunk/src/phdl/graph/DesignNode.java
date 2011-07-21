@@ -1,18 +1,12 @@
 /*
-    Copyright (C) 2011  BYU Configurable Computing Lab
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Copyright (C) 2011 BYU Configurable Computing Lab This program is free software: you can
+ * redistribute it and/or modify it under the terms of the GNU General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or (at your option) any later
+ * version. This program is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ * PURPOSE. See the GNU General Public License for more details. You should have received a copy of
+ * the GNU General Public License along with this program. If not, see
+ * <http://www.gnu.org/licenses/>.
  */
 
 package phdl.graph;
@@ -44,8 +38,8 @@ public class DesignNode extends Node {
 	/**
 	 * Default Constructor.
 	 * 
-	 * Initializes all sets and lists of ports, devices,
-	 * instances, and nets.
+	 * Initializes all sets and lists of ports, devices, instances, and nets.
+	 * 
 	 * @see PortNode
 	 * @see DeviceNode
 	 * @see InstanceNode
@@ -70,10 +64,9 @@ public class DesignNode extends Node {
 	/**
 	 * Device set addition method.
 	 * 
-	 * @param d the new DeviceNode to add
-	 * @return	true, if the device wasn't already in
-	 * 				the design
-	 * 			false, otherwise
+	 * @param d
+	 *            the new DeviceNode to add
+	 * @return true, if the device wasn't already in the design false, otherwise
 	 */
 	public boolean addDevice(DeviceNode d) {
 		return devices.add(d);
@@ -81,9 +74,8 @@ public class DesignNode extends Node {
 
 	/**
 	 * Checks to see if the design has any devices.
-	 *
-	 * @return 	true, if there devices in the design
-	 * 			false, otherwise
+	 * 
+	 * @return true, if there devices in the design false, otherwise
 	 */
 	public boolean hasDevices() {
 		return (!devices.isEmpty());
@@ -101,10 +93,9 @@ public class DesignNode extends Node {
 	/**
 	 * Instance set addition method.
 	 * 
-	 * @param i the new InstanceNode to add
-	 * @return	true, if the instance isn't already part
-	 * 					of the design
-	 * 			false, otherwise
+	 * @param i
+	 *            the new InstanceNode to add
+	 * @return true, if the instance isn't already part of the design false, otherwise
 	 */
 	public boolean addInstance(InstanceNode i) {
 		return instances.add(i);
@@ -113,8 +104,7 @@ public class DesignNode extends Node {
 	/**
 	 * Checks to see if the design has any instances.
 	 * 
-	 * @return	true, if there are instances
-	 * 			false, otherwise
+	 * @return true, if there are instances false, otherwise
 	 */
 	public boolean hasInstances() {
 		return (!instances.isEmpty());
@@ -132,10 +122,9 @@ public class DesignNode extends Node {
 	/**
 	 * Net set addition method.
 	 * 
-	 * @param i the new NetNode to add
-	 * @return	true, if the net isn't already part
-	 * 					of the design
-	 * 			false, otherwise
+	 * @param i
+	 *            the new NetNode to add
+	 * @return true, if the net isn't already part of the design false, otherwise
 	 */
 	public boolean addNet(NetNode n) {
 		return nets.add(n);
@@ -144,8 +133,7 @@ public class DesignNode extends Node {
 	/**
 	 * Checks to see if the design has any nets.
 	 * 
-	 * @return	true, if there are nets
-	 * 			false, otherwise
+	 * @return true, if there are nets false, otherwise
 	 */
 	public boolean hasNets() {
 		return (!nets.isEmpty());
@@ -154,8 +142,7 @@ public class DesignNode extends Node {
 	/**
 	 * Checks to see if the design has any ports.
 	 * 
-	 * @return	true, if there are ports
-	 * 			false, otherwise
+	 * @return true, if there are ports false, otherwise
 	 */
 	public boolean hasPorts() {
 		return (!ports.isEmpty());
@@ -173,10 +160,9 @@ public class DesignNode extends Node {
 	/**
 	 * Port set addition method.
 	 * 
-	 * @param i the new PortNode to add
-	 * @return	true, if the port isn't already part
-	 * 					of the design
-	 * 			false, otherwise
+	 * @param i
+	 *            the new PortNode to add
+	 * @return true, if the port isn't already part of the design false, otherwise
 	 */
 	public boolean addPort(PortNode p) {
 		return (ports.add(p));
@@ -218,8 +204,9 @@ public class DesignNode extends Node {
 	/**
 	 * Finds and returns a DeviceNode that has a certain name.
 	 * 
-	 * @param devName	the name of the DeviceNode
-	 * @return			the DeviceNode with the device name
+	 * @param devName
+	 *            the name of the DeviceNode
+	 * @return the DeviceNode with the device name
 	 */
 	public DeviceNode getDevice(String devName) {
 		for (DeviceNode d : devices) {
@@ -232,8 +219,9 @@ public class DesignNode extends Node {
 	/**
 	 * Finds and returns a NetNode that has a certain name.
 	 * 
-	 * @param netName	the name of the NetNode
-	 * @return			the NetNode with the net name
+	 * @param netName
+	 *            the name of the NetNode
+	 * @return the NetNode with the net name
 	 */
 	public NetNode getNet(String netName) {
 		for (NetNode n : nets) {
@@ -246,8 +234,9 @@ public class DesignNode extends Node {
 	/**
 	 * Finds and returns an InstanceNode that has a certain name.
 	 * 
-	 * @param instName	the name of the InstanceNode
-	 * @return			the InstanceNode with the instance name
+	 * @param instName
+	 *            the name of the InstanceNode
+	 * @return the InstanceNode with the instance name
 	 */
 	public InstanceNode getInstance(String instName) {
 		for (InstanceNode i : instances) {
@@ -258,15 +247,15 @@ public class DesignNode extends Node {
 	}
 
 	/**
-	 * Finds all InstanceNodes with the same base name (i.e. without
-	 * any array references) and returns a list of them.
+	 * Finds all InstanceNodes with the same base name (i.e. without any array references) and
+	 * returns a list of them.
 	 * 
-	 * The base name of an instance is the name without any array
-	 * references.  For example, "my_inst(3)" is an instance name,
-	 * and "my_inst" is its base name.
+	 * The base name of an instance is the name without any array references. For example,
+	 * "my_inst(3)" is an instance name, and "my_inst" is its base name.
 	 * 
-	 * @param instName	the base name of the Instance
-	 * @return			a List of InstanceNodes with the base name
+	 * @param instName
+	 *            the base name of the Instance
+	 * @return a List of InstanceNodes with the base name
 	 */
 	public List<InstanceNode> getAllInstances(String instName) {
 		List<InstanceNode> allInstances = new ArrayList<InstanceNode>();
@@ -285,15 +274,14 @@ public class DesignNode extends Node {
 	}
 
 	/**
-	 * Finds all NetNodes with the same base name and returns
-	 * a list of them.
+	 * Finds all NetNodes with the same base name and returns a list of them.
 	 * 
-	 * The base name of a net is the name without any array references.
-	 * For example, "my_net(12)" is a net name, and "my_net" is its
-	 * base name.
+	 * The base name of a net is the name without any array references. For example, "my_net(12)" is
+	 * a net name, and "my_net" is its base name.
 	 * 
-	 * @param netName	the base name of the Net
-	 * @return			a List of NetNodes with the base name
+	 * @param netName
+	 *            the base name of the Net
+	 * @return a List of NetNodes with the base name
 	 */
 	public List<NetNode> getAllNets(String netName) {
 		List<NetNode> allNets = new ArrayList<NetNode>();
@@ -312,8 +300,8 @@ public class DesignNode extends Node {
 	}
 
 	/**
-	 * Goes through all Nodes attached to the DesignNode and prints
-	 * out a representation of the connections.
+	 * Goes through all Nodes attached to the DesignNode and prints out a representation of the
+	 * connections.
 	 */
 	public void printDesignNode() {
 		System.out.println(toString());
@@ -333,8 +321,7 @@ public class DesignNode extends Node {
 			}
 			for (PinNode p : iNode.getPins()) {
 				if (p.getNet() != null) {
-					System.out.println("\t\t" + p.toString() + " <= "
-							+ p.getNet().toString());
+					System.out.println("\t\t" + p.toString() + " <= " + p.getNet().toString());
 				} else {
 					System.out.println("\t\t" + p.toString());
 				}
@@ -348,7 +335,8 @@ public class DesignNode extends Node {
 	/**
 	 * Generates a .dot file that represents the complete graph.
 	 * 
-	 * @param fileName	the name of the file being written
+	 * @param fileName
+	 *            the name of the file being written
 	 */
 	public void dottyDump(String fileName) {
 		BufferedWriter dotty = null;
@@ -359,10 +347,10 @@ public class DesignNode extends Node {
 		Map<Integer, PinNode> pinMap = new HashMap<Integer, PinNode>();
 
 		String format = "ordering=out;\r\n"
-				+ "	ranksep=.4;\r\n"
-				+ "	bgcolor=\"lightgrey\"; node [fixedsize=false, fontsize=12, fontname=\"Helvetica-bold\", fontcolor=\"blue\"\r\n"
-				+ "		width=.25, height=.25, color=\"black\", fillcolor=\"white\", style=\"filled, solid, bold\"];\r\n"
-				+ "	edge [arrowsize=.5, color=\"black\", style=\"bold\"]";
+			+ "	ranksep=.4;\r\n"
+			+ "	bgcolor=\"lightgrey\"; node [fixedsize=false, fontsize=12, fontname=\"Helvetica-bold\", fontcolor=\"blue\"\r\n"
+			+ "		width=.25, height=.25, color=\"black\", fillcolor=\"white\", style=\"filled, solid, bold\"];\r\n"
+			+ "	edge [arrowsize=.5, color=\"black\", style=\"bold\"]";
 
 		try {
 			dotty = new BufferedWriter(new FileWriter(fileName));
@@ -375,15 +363,14 @@ public class DesignNode extends Node {
 			dotty.write(format);
 
 			for (NetNode n : nets) {
-				dotty.write("  n" + netRef + " [label=\"" + n.getName()
-						+ "\"];\n");
+				dotty.write("  n" + netRef + " [label=\"" + n.getName() + "\"];\n");
 				netMap.put(netRef, n);
 				netRef++;
 			}
 			for (InstanceNode i : instances) {
 				for (PinNode p : i.getPins()) {
-					dotty.write("  p" + pinRef + " [label=\"" + i.getName()
-							+ "." + p.getName() + "\"];\n");
+					dotty.write("  p" + pinRef + " [label=\"" + i.getName() + "." + p.getName()
+						+ "\"];\n");
 					pinMap.put(pinRef, p);
 					pinRef++;
 				}
@@ -420,16 +407,14 @@ public class DesignNode extends Node {
 	}
 
 	/**
-	 * Finds all the InstanceNodes with the same base name and
-	 * returns a list of their indices.
+	 * Finds all the InstanceNodes with the same base name and returns a list of their indices.
 	 * 
-	 * The base name of an instance is the name without any array
-	 * references.  For example, "my_inst(3)" is an instance name,
-	 * and "my_inst" is its base name.
+	 * The base name of an instance is the name without any array references. For example,
+	 * "my_inst(3)" is an instance name, and "my_inst" is its base name.
 	 * 
-	 * @param instName	the base name of the instance
-	 * @return			a List of integers representing the InstanceNodes'
-	 * 					indices
+	 * @param instName
+	 *            the base name of the instance
+	 * @return a List of integers representing the InstanceNodes' indices
 	 */
 	public List<Integer> getAllIndices(String instName) {
 		List<Integer> allIndices = new ArrayList<Integer>();
@@ -445,16 +430,14 @@ public class DesignNode extends Node {
 	}
 
 	/**
-	 * Finds all the NetNodes with the same base name and
-	 * returns a list of their indices.
+	 * Finds all the NetNodes with the same base name and returns a list of their indices.
 	 * 
-	 * The base name of an net is the name without any array
-	 * references.  For example, "my_net(1)" is a net name,
-	 * and "my_net" is its base name.
+	 * The base name of an net is the name without any array references. For example, "my_net(1)" is
+	 * a net name, and "my_net" is its base name.
 	 * 
-	 * @param netName	the base name of the net
-	 * @return			a List of integers representing the NetNodes'
-	 * 					indices
+	 * @param netName
+	 *            the base name of the net
+	 * @return a List of integers representing the NetNodes' indices
 	 */
 	public List<Integer> getAllNetIndices(String netName) {
 		List<Integer> allIndices = new ArrayList<Integer>();
@@ -472,13 +455,11 @@ public class DesignNode extends Node {
 	}
 
 	/**
-	 * Checks to see if a particular device is instanced in the
-	 * design.
+	 * Checks to see if a particular device is instanced in the design.
 	 * 
-	 * @param dev		the device to check
-	 * @return			true, if there exists an instance that
-	 * 							references the device
-	 * 					false, otherwise
+	 * @param dev
+	 *            the device to check
+	 * @return true, if there exists an instance that references the device false, otherwise
 	 */
 	public boolean isDeviceInstanced(DeviceNode dev) {
 		for (InstanceNode i : instances) {
@@ -520,8 +501,8 @@ public class DesignNode extends Node {
 	}
 
 	/**
-	 * Merges the names of the current net with the names of all neighbors by
-	 * using a depth-first search.
+	 * Merges the names of the current net with the names of all neighbors by using a depth-first
+	 * search.
 	 * 
 	 * @param current
 	 * @return net with merged name from all unvisited neighbor's names

@@ -352,6 +352,9 @@ deviceDecl[DesignNode des]
 				dev.setName($devName.text);
 				dev.setLocation($devName.line, $devName.pos, 
 					devName.getToken().getInputStream().getSourceName());
+					
+				List<Attributable> devices = new ArrayList<Attributable>();
+				devices.add(dev);
 				
 				// clear these sets each time a device is processed
 				attrDecls.clear();
@@ -359,7 +362,7 @@ deviceDecl[DesignNode des]
 			}
 			//===================== JAVA BLOCK END ========================
 			
-		(attributeDecl[dev] | pinDecl[dev])* endName=IDENT?)
+		(attributeDecl[devices] | pinDecl[dev])* endName=IDENT?)
 		
 			//==================== JAVA BLOCK BEGIN =======================
 			{	// check the optional trailing label on the device to see if it maches
@@ -383,35 +386,37 @@ deviceDecl[DesignNode des]
 	;
 
 /**
- * The attributeDecl rule is called by the deviceDecl rule and works with an attributable object, which in this
- * case is the device node.  It makes new attribute nodes for every attribute declaration it finds in the device
- * declaration.  All attribute names and values are interpreted and processed as uppercase strings.
+ * The attributeDecl rule is called by the deviceDecl and netDecl rule and works with an attributable object, 
+ * which in this case is the device node.  It makes new attribute nodes for every attribute declaration it 
+ * finds in the device declaration.  All attribute names and values are interpreted and processed as 
+ * uppercase strings.
  *
  * This rule performs the following functions:
  * 1. Make a new attribute node with the device as its parent, and log its location.
  * 2. Set its value, and add the node to the device.
  * 3. Report any errors with duplicates
  */
-attributeDecl[Attributable dev]
+attributeDecl[List<Attributable> parents]
 	:	^('attr' attrName=IDENT attrValue=STRING)
 	
 			//==================== JAVA BLOCK BEGIN =======================
-	    	{	// make a new attribute node, assign its parent, and log its location
-	    		AttributeNode a  = new AttributeNode(dev);
-	    		a.setName($attrName.text);
-				a.setValue($attrValue.text);
-	    		a.setLocation($attrName.line, $attrName.pos, 
-	    			attrName.getToken().getInputStream().getSourceName());
-				dev.addAttribute(a);
-				
+	    	{	for (Attributable parent : parents) {
+		    		// make a new attribute node, assign its parent, and log its location
+		    		AttributeNode a  = new AttributeNode(parent);
+		    		a.setName($attrName.text);
+					a.setValue($attrValue.text);
+		    		a.setLocation($attrName.line, $attrName.pos, 
+		    			attrName.getToken().getInputStream().getSourceName());
+					parent.addAttribute(a);
+				}
 				// report any duplicate attribute declarations
 				if (!attrDecls.add($attrName.text.toUpperCase()))
-					addError(a, "duplicate attribute declaration");
-					
+					addError($attrName, "duplicate attribute declaration");
+						
 				// check if the attribute is a refprefix attribute
-				if (a.getName().equals("REFPREFIX")) {
+				if ($attrName.text.equals("REFPREFIX")) {
 					// check to see if refPrefix begins with a letter
-					if (!Pattern.compile("^[A-Z]").matcher(a.getValue()).find())
+					if (!Pattern.compile("^[A-Z]").matcher($attrValue.text).find())
 						addError($attrName, "invalid refPrefix in device");
 				}
 			}
@@ -436,7 +441,7 @@ attributeDecl[Attributable dev]
  * 3. Report all errors from duplicates and invalid pin lists.
  */
 pinDecl[DeviceNode dev]
-	:	^('pin' 
+	:	^('pin'
 	
 			//==================== JAVA BLOCK BEGIN =======================
 			{ 	// sets to keep track of the slice and pin lists
@@ -513,65 +518,72 @@ netDecl[DesignNode des]
 	:	^('net'
 	
 			//==================== JAVA BLOCK BEGIN =======================
-			{	// housekeeping
-				List<Integer> slices = new ArrayList<Integer>();
-				NetNode n = new NetNode(null);
+			{	List<Integer> slices = new ArrayList<Integer>();
+				List<Attributable> netNodes = new ArrayList<Attributable>();
 				attrDecls.clear();
 			}
 			//===================== JAVA BLOCK END ========================
 			
-		sliceList[slices]? netName=IDENT attributeDecl[n]* endName=IDENT?)
+		sliceList[slices]? 
 		
+		firstName=IDENT 			
+			
 			//==================== JAVA BLOCK BEGIN =======================
-			{	// check the optional trailing label on the net to see if it maches
-				if (endName != null) {
-					if (!$netName.text.equals($endName.text))
-						addError($endName, "net name " + $netName.text + " does not match");
+			{	for (int i = 0; i < slices.size(); i++) {
+					NetNode newNet = new NetNode(des);
+					newNet.setName($firstName.text + "[" + slices.get(i) + "]");
+					newNet.setLocation($firstName.line, $firstName.pos, 
+						firstName.getToken().getInputStream().getSourceName());
+					netNodes.add(newNet);
+				}
+				
+				if (slices.isEmpty()) {
+					NetNode newNet = new NetNode(des);
+					newNet.setName($firstName.text);
+					newNet.setLocation($firstName.line, $firstName.pos, 
+						firstName.getToken().getInputStream().getSourceName());
+					netNodes.add(newNet);
 				}
 			
-				// make net nodes based on the slice list
-				for (int i = 0; i < slices.size(); i++) {
-					NetNode newNode = new NetNode(des);
-					newNode.setName($netName.text + "[" + slices.get(i) + "]");
-					newNode.setLocation($netName.line, $netName.pos, 
-						netName.getToken().getInputStream().getSourceName());
-					for (AttributeNode a : n.getAttributes()) {
-						AttributeNode newA = new AttributeNode(newNode);
-						newA.setName(a.getName());
-						newA.setLocation(a.getLine(), a.getPosition(), a.getFileName());
-						newA.setValue(a.getValue());
-						newNode.addAttribute(newA);
-					}
-					
-					// check for duplicate net declarations
-					if(!des.addNet(newNode)) {
-						addError(newNode, "duplicate net declaration");
-					}
+			}
+			//===================== JAVA BLOCK END ========================
+			
+		(COMMA nextName=IDENT		
+		
+			//==================== JAVA BLOCK BEGIN =======================
+			{	for (int i = 0; i < slices.size(); i++) {
+					NetNode newNet = new NetNode(des);
+					newNet.setName($nextName.text + "[" + slices.get(i) + "]");
+					newNet.setLocation($nextName.line, $nextName.pos, 
+						nextName.getToken().getInputStream().getSourceName());
+					netNodes.add(newNet);
 				}
 				
-				// otherwise, make a net node based solely on the name	
 				if (slices.isEmpty()) {
-					NetNode newNode = new NetNode(des);
-					newNode.setName($netName.text);
-					newNode.setLocation($netName.line, $netName.pos, 
-						netName.getToken().getInputStream().getSourceName());
-					for (AttributeNode a : n.getAttributes()) {
-							AttributeNode newA = new AttributeNode(newNode);
-							newA.setName(a.getName());
-							newA.setValue(a.getValue());
-							newA.setLocation(a.getLine(), a.getPosition(), a.getFileName());
-							newNode.addAttribute(newA);
-					}
-					
-					// check for duplicate net declarations
-					if(!des.addNet(newNode)) {
-						addError(newNode, "duplicate net declaration");
-					}
+					NetNode newNet = new NetNode(des);
+					newNet.setName($nextName.text);
+					newNet.setLocation($nextName.line, $nextName.pos, 
+						nextName.getToken().getInputStream().getSourceName());
+					netNodes.add(newNet);
 				}
-				
-				// check for overall duplicates based solely on the name
-				if (!netDecls.add($netName.text))
-					addError($netName, "duplicate net declaration");
+			
+			}
+			//===================== JAVA BLOCK END ========================
+		)*
+		
+		attributeDecl[netNodes]* endName=IDENT?)
+		
+			//==================== JAVA BLOCK BEGIN =======================
+			{	for (Attributable n : netNodes) {
+			
+					// check for duplicate net declarations
+					if(!des.addNet((NetNode) n))
+						addError(n, "duplicate net declaration");
+					
+					// check for overall duplicates based solely on the name of the net
+					if (!netDecls.add(n.getName()))
+						addError(n, "duplicate net declaration");
+				}
 			}
 			//===================== JAVA BLOCK END ========================
 	;
@@ -855,7 +867,6 @@ pinAssign[DesignNode des, String instName]
 					}
 				}
 				if (indices.isEmpty()) {
-					
 					InstanceNode inst = des.getInstance(instName);
 					assignPins(slices, concats, inst, $pinName);
 				}
@@ -934,9 +945,14 @@ concatenation[List<NetNode> concats, int assignWidth, DesignNode des]
 				}
 			
 				for (int i = 0; i < slices.size(); i++) {
-					for (NetNode n : des.getAllNets($first.text)) {
-						if (n.getIndex() == slices.get(i))
-							concats.add(n);
+					List<NetNode> nets = des.getAllNets($first.text);
+					if (!nets.isEmpty()) {
+						for (NetNode n : nets) {
+							if (n.getIndex() == slices.get(i))
+								concats.add(n);
+						}
+					} else {
+						bailOut($first, "undeclared net");
 					}
 				}
 			}
@@ -959,9 +975,14 @@ concatenation[List<NetNode> concats, int assignWidth, DesignNode des]
 				}
 				
 				for (int i = 0; i < slices.size(); i++) {
-					for (NetNode n : des.getAllNets($next.text)) {
-						if (n.getIndex() == slices.get(i))
-							concats.add(n);
+					List<NetNode> nets = des.getAllNets($next.text);
+					if (!nets.isEmpty()) {
+						for (NetNode n : des.getAllNets($next.text)) {
+							if (n.getIndex() == slices.get(i))
+								concats.add(n);
+						}
+					} else {
+						bailOut($next, "undeclared net");
 					}
 				}
 			}

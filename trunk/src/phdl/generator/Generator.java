@@ -1,18 +1,12 @@
 /*
-    Copyright (C) 2011  BYU Configurable Computing Lab
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Copyright (C) 2011 BYU Configurable Computing Lab This program is free software: you can
+ * redistribute it and/or modify it under the terms of the GNU General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or (at your option) any later
+ * version. This program is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ * PURPOSE. See the GNU General Public License for more details. You should have received a copy of
+ * the GNU General Public License along with this program. If not, see
+ * <http://www.gnu.org/licenses/>.
  */
 
 package phdl.generator;
@@ -29,16 +23,17 @@ public class Generator {
 
 	RefDesGenerator refDesGen;
 	NetListGenerator netListGen;
+	EagleScriptGenerator eagleScriptGen;
 	BoMGenerator bomGen;
 	DesignNode design;
 
 	/**
 	 * Default Constructor.
 	 * 
-	 * Creates all the generator classes and passes them
-	 * a DesignNode
+	 * Creates all the generator classes and passes them a DesignNode
 	 * 
-	 * @param design the DesignNode to be processed
+	 * @param design
+	 *            the DesignNode to be processed
 	 * @see DesignNode
 	 * @see RefDesGenerator
 	 * @see BoMGenerator
@@ -49,11 +44,11 @@ public class Generator {
 		refDesGen = new RefDesGenerator(design);
 		bomGen = new BoMGenerator(design);
 		netListGen = new NetListGenerator(design, refDesGen.getRefMap());
+		eagleScriptGen = new EagleScriptGenerator(design, refDesGen.getRefMap());
 	}
 
 	/**
-	 * Generates a Reference Designator file based on the name
-	 * of the DesignNode.
+	 * Generates a Reference Designator file based on the name of the DesignNode.
 	 * 
 	 * @see RefDesGenerator
 	 */
@@ -62,8 +57,7 @@ public class Generator {
 	}
 
 	/**
-	 * Generates a Bill of Materials file based on the name
-	 * of the DesignNode.
+	 * Generates a Bill of Materials file based on the name of the DesignNode.
 	 * 
 	 * @see BoMGenerator
 	 */
@@ -72,12 +66,20 @@ public class Generator {
 	}
 
 	/**
-	 * Generates a Netlist file based on the name
-	 * of the DesignNode.
+	 * Generates a Netlist file based on the name of the DesignNode.
 	 * 
 	 * @see NetListGenerator
 	 */
 	public void generateNetList() {
 		netListGen.outputToFile(design.getName() + ".asc");
+	}
+
+	/**
+	 * Generates an Eagle script file based on the name of the DesignNode.
+	 * 
+	 * @ssee EagleScriptGenerator
+	 */
+	public void generateEagleScript() {
+		eagleScriptGen.outputToFile(design.getName() + ".scr");
 	}
 }

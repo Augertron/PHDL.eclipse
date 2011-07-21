@@ -125,114 +125,113 @@ digraph {
   n85 [label="pin"];
   n86 [label="b"];
   n87 [label="2"];
-  n88 [label="resistor"];
-  n89 [label="net"];
-  n89 [label="net"];
-  n90 [label="+vcc"];
-  n91 [label="net"];
-  n91 [label="net"];
-  n92 [label="-vcc"];
-  n93 [label="net"];
-  n93 [label="net"];
-  n94 [label="zero_low"];
+  n88 [label="pin"];
+  n88 [label="pin"];
+  n89 [label="c"];
+  n90 [label="3"];
+  n91 [label="4"];
+  n92 [label="5"];
+  n93 [label="6"];
+  n94 [label="resistor"];
   n95 [label="net"];
   n95 [label="net"];
-  n96 [label="one_high"];
-  n97 [label="net"];
-  n97 [label="net"];
-  n98 [label="combined"];
-  n99 [label="begin"];
-  n100 [label="inst"];
-  n100 [label="inst"];
-  n101 [label=":"];
-  n101 [label=":"];
-  n102 [label="("];
-  n103 [label="1"];
-  n104 [label="0"];
-  n105 [label="myRes"];
-  n106 [label="resistor"];
-  n107 [label="="];
-  n107 [label="="];
-  n108 [label="."];
-  n108 [label="."];
-  n109 [label="this"];
+  n96 [label=":"];
+  n96 [label=":"];
+  n97 [label="["];
+  n98 [label="1"];
+  n99 [label="0"];
+  n100 [label="gnd"];
+  n101 [label="net"];
+  n101 [label="net"];
+  n102 [label=":"];
+  n102 [label=":"];
+  n103 [label="["];
+  n104 [label="3"];
+  n105 [label="0"];
+  n106 [label="testing"];
+  n107 [label="begin"];
+  n108 [label="inst"];
+  n108 [label="inst"];
+  n109 [label=":"];
+  n109 [label=":"];
   n110 [label="("];
-  n111 [label="0"];
-  n112 [label="refDes"];
-  n113 [label="R2"];
-  n114 [label="="];
-  n114 [label="="];
-  n115 [label="."];
-  n115 [label="."];
-  n116 [label="this"];
-  n117 [label="("];
-  n118 [label="1"];
-  n119 [label="refDes"];
-  n120 [label="R1"];
-  n121 [label="="];
-  n121 [label="="];
-  n122 [label="."];
-  n122 [label="."];
-  n123 [label="this"];
-  n124 [label="("];
-  n125 [label="0"];
-  n126 [label="a"];
-  n127 [label="+vcc"];
-  n128 [label="="];
-  n128 [label="="];
-  n129 [label="."];
-  n129 [label="."];
-  n130 [label="this"];
-  n131 [label="("];
-  n132 [label="0"];
-  n133 [label="b"];
-  n134 [label="zero_low"];
-  n135 [label="="];
-  n135 [label="="];
-  n136 [label="."];
-  n136 [label="."];
-  n137 [label="this"];
-  n138 [label="("];
-  n139 [label="1"];
-  n140 [label="a"];
-  n141 [label="one_high"];
-  n142 [label="="];
-  n142 [label="="];
-  n143 [label="."];
-  n143 [label="."];
-  n144 [label="this"];
-  n145 [label="("];
-  n146 [label="1"];
-  n147 [label="b"];
-  n148 [label="-vcc"];
-  n149 [label="myRes"];
-  n150 [label="="];
-  n150 [label="="];
-  n151 [label="zero_low"];
-  n152 [label="combined"];
-  n153 [label="="];
-  n153 [label="="];
-  n154 [label="one_high"];
-  n155 [label="combined"];
+  n111 [label="1"];
+  n112 [label="0"];
+  n113 [label="myRes"];
+  n114 [label="resistor"];
+  n115 [label="="];
+  n115 [label="="];
+  n116 [label="."];
+  n116 [label="."];
+  n117 [label="this"];
+  n118 [label="("];
+  n119 [label="0"];
+  n120 [label="refDes"];
+  n121 [label="R2"];
+  n122 [label="="];
+  n122 [label="="];
+  n123 [label="."];
+  n123 [label="."];
+  n124 [label="this"];
+  n125 [label="("];
+  n126 [label="1"];
+  n127 [label="refDes"];
+  n128 [label="R1"];
+  n129 [label="="];
+  n129 [label="="];
+  n130 [label="."];
+  n130 [label="."];
+  n131 [label="this"];
+  n132 [label="("];
+  n133 [label="0"];
+  n134 [label="a"];
+  n135 [label="gnd"];
+  n136 [label="["];
+  n137 [label="1"];
+  n138 [label="="];
+  n138 [label="="];
+  n139 [label="."];
+  n139 [label="."];
+  n140 [label="this"];
+  n141 [label="("];
+  n142 [label="0"];
+  n143 [label="b"];
+  n144 [label="gnd"];
+  n145 [label="["];
+  n146 [label="0"];
+  n147 [label="="];
+  n147 [label="="];
+  n148 [label="."];
+  n148 [label="."];
+  n149 [label="this"];
+  n150 [label="("];
+  n151 [label="1"];
+  n152 [label="a"];
+  n153 [label="gnd"];
+  n154 [label="["];
+  n155 [label="1"];
   n156 [label="="];
   n156 [label="="];
-  n157 [label="+vcc"];
-  n158 [label="-vcc"];
-  n159 [label="inst"];
-  n159 [label="inst"];
-  n160 [label="mine"];
-  n161 [label="incldev1"];
-  n162 [label="="];
-  n162 [label="="];
-  n163 [label="a"];
-  n164 [label="-vcc"];
+  n157 [label="."];
+  n157 [label="."];
+  n158 [label="this"];
+  n159 [label="("];
+  n160 [label="1"];
+  n161 [label="b"];
+  n162 [label="gnd"];
+  n163 [label="["];
+  n164 [label="0"];
   n165 [label="="];
   n165 [label="="];
-  n166 [label="b"];
-  n167 [label="+vcc"];
-  n168 [label="mine"];
-  n169 [label="test"];
-  n170 [label="<EOF>"];
+  n166 [label="c"];
+  n167 [label="testing"];
+  n168 [label="myRes"];
+  n169 [label="="];
+  n169 [label="="];
+  n170 [label="testing"];
+  n171 [label="<gnd[0]>"];
+  n172 [label="test"];
+  n173 [label="<EOF>"];
 
   n0 -> n1 // "" -> "design"
   n1 -> n2 // "design" -> "include2"
@@ -321,88 +320,91 @@ digraph {
   n65 -> n85 // "device" -> "pin"
   n85 -> n86 // "pin" -> "b"
   n85 -> n87 // "pin" -> "2"
-  n65 -> n88 // "device" -> "resistor"
-  n35 -> n89 // "design" -> "net"
-  n89 -> n90 // "net" -> "+vcc"
-  n35 -> n91 // "design" -> "net"
-  n91 -> n92 // "net" -> "-vcc"
-  n35 -> n93 // "design" -> "net"
-  n93 -> n94 // "net" -> "zero_low"
+  n65 -> n88 // "device" -> "pin"
+  n88 -> n89 // "pin" -> "c"
+  n88 -> n90 // "pin" -> "3"
+  n88 -> n91 // "pin" -> "4"
+  n88 -> n92 // "pin" -> "5"
+  n88 -> n93 // "pin" -> "6"
+  n65 -> n94 // "device" -> "resistor"
   n35 -> n95 // "design" -> "net"
-  n95 -> n96 // "net" -> "one_high"
-  n35 -> n97 // "design" -> "net"
-  n97 -> n98 // "net" -> "combined"
-  n35 -> n99 // "design" -> "begin"
-  n35 -> n100 // "design" -> "inst"
-  n100 -> n101 // "inst" -> ":"
-  n101 -> n102 // ":" -> "("
-  n101 -> n103 // ":" -> "1"
-  n101 -> n104 // ":" -> "0"
-  n100 -> n105 // "inst" -> "myRes"
-  n100 -> n106 // "inst" -> "resistor"
-  n100 -> n107 // "inst" -> "="
-  n107 -> n108 // "=" -> "."
-  n108 -> n109 // "." -> "this"
-  n108 -> n110 // "." -> "("
-  n108 -> n111 // "." -> "0"
-  n107 -> n112 // "=" -> "refDes"
-  n107 -> n113 // "=" -> "R2"
-  n100 -> n114 // "inst" -> "="
-  n114 -> n115 // "=" -> "."
-  n115 -> n116 // "." -> "this"
-  n115 -> n117 // "." -> "("
-  n115 -> n118 // "." -> "1"
-  n114 -> n119 // "=" -> "refDes"
-  n114 -> n120 // "=" -> "R1"
-  n100 -> n121 // "inst" -> "="
-  n121 -> n122 // "=" -> "."
-  n122 -> n123 // "." -> "this"
-  n122 -> n124 // "." -> "("
-  n122 -> n125 // "." -> "0"
-  n121 -> n126 // "=" -> "a"
-  n121 -> n127 // "=" -> "+vcc"
-  n100 -> n128 // "inst" -> "="
-  n128 -> n129 // "=" -> "."
-  n129 -> n130 // "." -> "this"
-  n129 -> n131 // "." -> "("
-  n129 -> n132 // "." -> "0"
-  n128 -> n133 // "=" -> "b"
-  n128 -> n134 // "=" -> "zero_low"
-  n100 -> n135 // "inst" -> "="
-  n135 -> n136 // "=" -> "."
-  n136 -> n137 // "." -> "this"
-  n136 -> n138 // "." -> "("
-  n136 -> n139 // "." -> "1"
-  n135 -> n140 // "=" -> "a"
-  n135 -> n141 // "=" -> "one_high"
-  n100 -> n142 // "inst" -> "="
-  n142 -> n143 // "=" -> "."
-  n143 -> n144 // "." -> "this"
-  n143 -> n145 // "." -> "("
-  n143 -> n146 // "." -> "1"
-  n142 -> n147 // "=" -> "b"
-  n142 -> n148 // "=" -> "-vcc"
-  n100 -> n149 // "inst" -> "myRes"
-  n35 -> n150 // "design" -> "="
-  n150 -> n151 // "=" -> "zero_low"
-  n150 -> n152 // "=" -> "combined"
-  n35 -> n153 // "design" -> "="
-  n153 -> n154 // "=" -> "one_high"
-  n153 -> n155 // "=" -> "combined"
-  n35 -> n156 // "design" -> "="
-  n156 -> n157 // "=" -> "+vcc"
-  n156 -> n158 // "=" -> "-vcc"
-  n35 -> n159 // "design" -> "inst"
-  n159 -> n160 // "inst" -> "mine"
-  n159 -> n161 // "inst" -> "incldev1"
-  n159 -> n162 // "inst" -> "="
-  n162 -> n163 // "=" -> "a"
-  n162 -> n164 // "=" -> "-vcc"
-  n159 -> n165 // "inst" -> "="
-  n165 -> n166 // "=" -> "b"
-  n165 -> n167 // "=" -> "+vcc"
-  n159 -> n168 // "inst" -> "mine"
-  n35 -> n169 // "design" -> "test"
-  n0 -> n170 // "" -> "<EOF>"
+  n95 -> n96 // "net" -> ":"
+  n96 -> n97 // ":" -> "["
+  n96 -> n98 // ":" -> "1"
+  n96 -> n99 // ":" -> "0"
+  n95 -> n100 // "net" -> "gnd"
+  n35 -> n101 // "design" -> "net"
+  n101 -> n102 // "net" -> ":"
+  n102 -> n103 // ":" -> "["
+  n102 -> n104 // ":" -> "3"
+  n102 -> n105 // ":" -> "0"
+  n101 -> n106 // "net" -> "testing"
+  n35 -> n107 // "design" -> "begin"
+  n35 -> n108 // "design" -> "inst"
+  n108 -> n109 // "inst" -> ":"
+  n109 -> n110 // ":" -> "("
+  n109 -> n111 // ":" -> "1"
+  n109 -> n112 // ":" -> "0"
+  n108 -> n113 // "inst" -> "myRes"
+  n108 -> n114 // "inst" -> "resistor"
+  n108 -> n115 // "inst" -> "="
+  n115 -> n116 // "=" -> "."
+  n116 -> n117 // "." -> "this"
+  n116 -> n118 // "." -> "("
+  n116 -> n119 // "." -> "0"
+  n115 -> n120 // "=" -> "refDes"
+  n115 -> n121 // "=" -> "R2"
+  n108 -> n122 // "inst" -> "="
+  n122 -> n123 // "=" -> "."
+  n123 -> n124 // "." -> "this"
+  n123 -> n125 // "." -> "("
+  n123 -> n126 // "." -> "1"
+  n122 -> n127 // "=" -> "refDes"
+  n122 -> n128 // "=" -> "R1"
+  n108 -> n129 // "inst" -> "="
+  n129 -> n130 // "=" -> "."
+  n130 -> n131 // "." -> "this"
+  n130 -> n132 // "." -> "("
+  n130 -> n133 // "." -> "0"
+  n129 -> n134 // "=" -> "a"
+  n129 -> n135 // "=" -> "gnd"
+  n129 -> n136 // "=" -> "["
+  n129 -> n137 // "=" -> "1"
+  n108 -> n138 // "inst" -> "="
+  n138 -> n139 // "=" -> "."
+  n139 -> n140 // "." -> "this"
+  n139 -> n141 // "." -> "("
+  n139 -> n142 // "." -> "0"
+  n138 -> n143 // "=" -> "b"
+  n138 -> n144 // "=" -> "gnd"
+  n138 -> n145 // "=" -> "["
+  n138 -> n146 // "=" -> "0"
+  n108 -> n147 // "inst" -> "="
+  n147 -> n148 // "=" -> "."
+  n148 -> n149 // "." -> "this"
+  n148 -> n150 // "." -> "("
+  n148 -> n151 // "." -> "1"
+  n147 -> n152 // "=" -> "a"
+  n147 -> n153 // "=" -> "gnd"
+  n147 -> n154 // "=" -> "["
+  n147 -> n155 // "=" -> "1"
+  n108 -> n156 // "inst" -> "="
+  n156 -> n157 // "=" -> "."
+  n157 -> n158 // "." -> "this"
+  n157 -> n159 // "." -> "("
+  n157 -> n160 // "." -> "1"
+  n156 -> n161 // "=" -> "b"
+  n156 -> n162 // "=" -> "gnd"
+  n156 -> n163 // "=" -> "["
+  n156 -> n164 // "=" -> "0"
+  n108 -> n165 // "inst" -> "="
+  n165 -> n166 // "=" -> "c"
+  n165 -> n167 // "=" -> "testing"
+  n108 -> n168 // "inst" -> "myRes"
+  n35 -> n169 // "design" -> "="
+  n169 -> n170 // "=" -> "testing"
+  n169 -> n171 // "=" -> "<gnd[0]>"
+  n35 -> n172 // "design" -> "test"
+  n0 -> n173 // "" -> "<EOF>"
 
 }

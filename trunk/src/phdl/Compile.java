@@ -176,6 +176,7 @@ public class Compile {
 					for (DesignNode d : walker.getDesignNodes()) {
 						String graphFileName = fileName + "_graph.dot";
 						d.dottyDump(graphFileName);
+						d.printDesignNode();
 					}
 				}
 
@@ -192,6 +193,7 @@ public class Compile {
 					gen.generateRefDes();
 					gen.generateBoM();
 					gen.generateNetList();
+					gen.generateEagleScript();
 				}
 
 				if (dumpEn) {
@@ -199,6 +201,7 @@ public class Compile {
 					for (DesignNode d : walker.getDesignNodes()) {
 						String graphFileName = fileName + "_graph_merged.dot";
 						d.dottyDump(graphFileName);
+						d.printDesignNode();
 					}
 				}
 
