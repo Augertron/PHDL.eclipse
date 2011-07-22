@@ -9,402 +9,123 @@ digraph {
   n0 [label=""];
   n1 [label="design"];
   n1 [label="design"];
-  n2 [label="include2"];
+  n2 [label="test"];
   n3 [label="device"];
   n3 [label="device"];
-  n4 [label="incl3dev"];
+  n4 [label="resistor"];
   n5 [label="attr"];
   n5 [label="attr"];
   n6 [label="refprefix"];
-  n7 [label="Z"];
+  n7 [label="R"];
   n8 [label="attr"];
   n8 [label="attr"];
   n9 [label="pkg_type"];
-  n10 [label="mypackage"];
+  n10 [label="R0207"];
   n11 [label="pin"];
   n11 [label="pin"];
-  n12 [label="x"];
+  n12 [label="a"];
   n13 [label="1"];
   n14 [label="pin"];
   n14 [label="pin"];
-  n15 [label="y"];
+  n15 [label="b"];
   n16 [label="2"];
-  n17 [label="device"];
-  n17 [label="device"];
-  n18 [label="incl2dev1"];
-  n19 [label="attr"];
-  n19 [label="attr"];
-  n20 [label="refPrefix"];
-  n21 [label="I"];
-  n22 [label="attr"];
-  n22 [label="attr"];
-  n23 [label="pkg_type"];
-  n24 [label="I245"];
-  n25 [label="device"];
-  n25 [label="device"];
-  n26 [label="incl2dev2"];
-  n27 [label="attr"];
-  n27 [label="attr"];
-  n28 [label="refPrefix"];
-  n29 [label="N"];
-  n30 [label="attr"];
-  n30 [label="attr"];
-  n31 [label="pkg_type"];
-  n32 [label="I245"];
-  n33 [label="begin"];
-  n34 [label="include2"];
-  n35 [label="design"];
-  n35 [label="design"];
-  n36 [label="test"];
-  n37 [label="device"];
-  n37 [label="device"];
-  n38 [label="incldev1"];
-  n39 [label="attr"];
-  n39 [label="attr"];
-  n40 [label="refprefix"];
-  n41 [label="M"];
-  n42 [label="attr"];
-  n42 [label="attr"];
-  n43 [label="pkg_type"];
-  n44 [label="mypackage"];
-  n45 [label="pin"];
-  n45 [label="pin"];
-  n46 [label="a"];
-  n47 [label="1"];
-  n48 [label="pin"];
-  n48 [label="pin"];
-  n49 [label="b"];
-  n50 [label="2"];
-  n51 [label="device"];
-  n51 [label="device"];
-  n52 [label="incldev2"];
-  n53 [label="attr"];
-  n53 [label="attr"];
-  n54 [label="refprefix"];
-  n55 [label="M"];
-  n56 [label="attr"];
-  n56 [label="attr"];
-  n57 [label="pkg_type"];
-  n58 [label="mypackage"];
-  n59 [label="pin"];
-  n59 [label="pin"];
-  n60 [label="a"];
-  n61 [label="1"];
-  n62 [label="pin"];
-  n62 [label="pin"];
-  n63 [label="b"];
-  n64 [label="2"];
-  n65 [label="device"];
-  n65 [label="device"];
-  n66 [label="resistor"];
-  n67 [label="attr"];
-  n67 [label="attr"];
-  n68 [label="refprefix"];
-  n69 [label="R"];
-  n70 [label="attr"];
-  n70 [label="attr"];
-  n71 [label="name"];
-  n72 [label=""];
-  n73 [label="attr"];
-  n73 [label="attr"];
-  n74 [label="value"];
-  n75 [label="10K"];
-  n76 [label="attr"];
-  n76 [label="attr"];
-  n77 [label="tolerance"];
-  n78 [label="10%"];
-  n79 [label="attr"];
-  n79 [label="attr"];
-  n80 [label="pkg_type"];
-  n81 [label="R0207"];
-  n82 [label="pin"];
-  n82 [label="pin"];
-  n83 [label="a"];
-  n84 [label="1"];
-  n85 [label="pin"];
-  n85 [label="pin"];
-  n86 [label="b"];
-  n87 [label="2"];
-  n88 [label="pin"];
-  n88 [label="pin"];
-  n89 [label="c"];
-  n90 [label="3"];
-  n91 [label="4"];
-  n92 [label="5"];
-  n93 [label="6"];
-  n94 [label="resistor"];
-  n95 [label="net"];
-  n95 [label="net"];
-  n96 [label=":"];
-  n96 [label=":"];
-  n97 [label="["];
-  n98 [label="1"];
-  n99 [label="0"];
-  n100 [label="gnd"];
-  n101 [label="net"];
-  n101 [label="net"];
-  n102 [label=":"];
-  n102 [label=":"];
-  n103 [label="["];
-  n104 [label="3"];
-  n105 [label="0"];
-  n106 [label="testing"];
-  n107 [label="begin"];
-  n108 [label="inst"];
-  n108 [label="inst"];
-  n109 [label=":"];
-  n109 [label=":"];
-  n110 [label="("];
-  n111 [label="1"];
-  n112 [label="0"];
-  n113 [label="myRes"];
-  n114 [label="resistor"];
-  n115 [label="="];
-  n115 [label="="];
-  n116 [label="."];
-  n116 [label="."];
-  n117 [label="this"];
-  n118 [label="("];
-  n119 [label="0"];
-  n120 [label="refDes"];
-  n121 [label="R2"];
-  n122 [label="="];
-  n122 [label="="];
-  n123 [label="."];
-  n123 [label="."];
-  n124 [label="this"];
-  n125 [label="("];
-  n126 [label="1"];
-  n127 [label="refDes"];
-  n128 [label="R1"];
-  n129 [label="="];
-  n129 [label="="];
-  n130 [label="."];
-  n130 [label="."];
-  n131 [label="this"];
-  n132 [label="("];
-  n133 [label="0"];
-  n134 [label="a"];
-  n135 [label="gnd"];
-  n136 [label="["];
-  n137 [label="1"];
-  n138 [label="="];
-  n138 [label="="];
-  n139 [label="."];
-  n139 [label="."];
-  n140 [label="this"];
-  n141 [label="("];
-  n142 [label="0"];
-  n143 [label="b"];
-  n144 [label="gnd"];
-  n145 [label="["];
-  n146 [label="0"];
-  n147 [label="="];
-  n147 [label="="];
-  n148 [label="."];
-  n148 [label="."];
-  n149 [label="this"];
-  n150 [label="("];
-  n151 [label="1"];
-  n152 [label="a"];
-  n153 [label="gnd"];
-  n154 [label="["];
-  n155 [label="1"];
-  n156 [label="="];
-  n156 [label="="];
-  n157 [label="."];
-  n157 [label="."];
-  n158 [label="this"];
-  n159 [label="("];
-  n160 [label="1"];
-  n161 [label="b"];
-  n162 [label="gnd"];
-  n163 [label="["];
-  n164 [label="0"];
-  n165 [label="="];
-  n165 [label="="];
-  n166 [label="c"];
-  n167 [label="testing"];
-  n168 [label="myRes"];
-  n169 [label="="];
-  n169 [label="="];
-  n170 [label="testing"];
-  n171 [label="<gnd[0]>"];
-  n172 [label="test"];
-  n173 [label="<EOF>"];
+  n17 [label="resistor"];
+  n18 [label="net"];
+  n18 [label="net"];
+  n19 [label=":"];
+  n19 [label=":"];
+  n20 [label="["];
+  n21 [label="1"];
+  n22 [label="0"];
+  n23 [label="myNet"];
+  n24 [label="net"];
+  n24 [label="net"];
+  n25 [label="singleNet"];
+  n26 [label="begin"];
+  n27 [label="inst"];
+  n27 [label="inst"];
+  n28 [label=":"];
+  n28 [label=":"];
+  n29 [label="("];
+  n30 [label="2"];
+  n31 [label="0"];
+  n32 [label="myRes"];
+  n33 [label="resistor"];
+  n34 [label="="];
+  n34 [label="="];
+  n35 [label="a"];
+  n36 [label="<"];
+  n37 [label="myNet"];
+  n38 [label="["];
+  n39 [label="1"];
+  n40 [label="="];
+  n40 [label="="];
+  n41 [label="b"];
+  n42 [label="myNet"];
+  n43 [label="["];
+  n44 [label="0"];
+  n45 [label="myNet"];
+  n46 [label="["];
+  n47 [label="0"];
+  n48 [label="myNet"];
+  n49 [label="["];
+  n50 [label="1"];
+  n51 [label="myRes"];
+  n52 [label="test"];
+  n53 [label="<EOF>"];
 
   n0 -> n1 // "" -> "design"
-  n1 -> n2 // "design" -> "include2"
+  n1 -> n2 // "design" -> "test"
   n1 -> n3 // "design" -> "device"
-  n3 -> n4 // "device" -> "incl3dev"
+  n3 -> n4 // "device" -> "resistor"
   n3 -> n5 // "device" -> "attr"
   n5 -> n6 // "attr" -> "refprefix"
-  n5 -> n7 // "attr" -> "Z"
+  n5 -> n7 // "attr" -> "R"
   n3 -> n8 // "device" -> "attr"
   n8 -> n9 // "attr" -> "pkg_type"
-  n8 -> n10 // "attr" -> "mypackage"
+  n8 -> n10 // "attr" -> "R0207"
   n3 -> n11 // "device" -> "pin"
-  n11 -> n12 // "pin" -> "x"
+  n11 -> n12 // "pin" -> "a"
   n11 -> n13 // "pin" -> "1"
   n3 -> n14 // "device" -> "pin"
-  n14 -> n15 // "pin" -> "y"
+  n14 -> n15 // "pin" -> "b"
   n14 -> n16 // "pin" -> "2"
-  n1 -> n17 // "design" -> "device"
-  n17 -> n18 // "device" -> "incl2dev1"
-  n17 -> n19 // "device" -> "attr"
-  n19 -> n20 // "attr" -> "refPrefix"
-  n19 -> n21 // "attr" -> "I"
-  n17 -> n22 // "device" -> "attr"
-  n22 -> n23 // "attr" -> "pkg_type"
-  n22 -> n24 // "attr" -> "I245"
-  n1 -> n25 // "design" -> "device"
-  n25 -> n26 // "device" -> "incl2dev2"
-  n25 -> n27 // "device" -> "attr"
-  n27 -> n28 // "attr" -> "refPrefix"
-  n27 -> n29 // "attr" -> "N"
-  n25 -> n30 // "device" -> "attr"
-  n30 -> n31 // "attr" -> "pkg_type"
-  n30 -> n32 // "attr" -> "I245"
-  n1 -> n33 // "design" -> "begin"
-  n1 -> n34 // "design" -> "include2"
-  n0 -> n35 // "" -> "design"
-  n35 -> n36 // "design" -> "test"
-  n35 -> n37 // "design" -> "device"
-  n37 -> n38 // "device" -> "incldev1"
-  n37 -> n39 // "device" -> "attr"
-  n39 -> n40 // "attr" -> "refprefix"
-  n39 -> n41 // "attr" -> "M"
-  n37 -> n42 // "device" -> "attr"
-  n42 -> n43 // "attr" -> "pkg_type"
-  n42 -> n44 // "attr" -> "mypackage"
-  n37 -> n45 // "device" -> "pin"
-  n45 -> n46 // "pin" -> "a"
-  n45 -> n47 // "pin" -> "1"
-  n37 -> n48 // "device" -> "pin"
-  n48 -> n49 // "pin" -> "b"
-  n48 -> n50 // "pin" -> "2"
-  n35 -> n51 // "design" -> "device"
-  n51 -> n52 // "device" -> "incldev2"
-  n51 -> n53 // "device" -> "attr"
-  n53 -> n54 // "attr" -> "refprefix"
-  n53 -> n55 // "attr" -> "M"
-  n51 -> n56 // "device" -> "attr"
-  n56 -> n57 // "attr" -> "pkg_type"
-  n56 -> n58 // "attr" -> "mypackage"
-  n51 -> n59 // "device" -> "pin"
-  n59 -> n60 // "pin" -> "a"
-  n59 -> n61 // "pin" -> "1"
-  n51 -> n62 // "device" -> "pin"
-  n62 -> n63 // "pin" -> "b"
-  n62 -> n64 // "pin" -> "2"
-  n35 -> n65 // "design" -> "device"
-  n65 -> n66 // "device" -> "resistor"
-  n65 -> n67 // "device" -> "attr"
-  n67 -> n68 // "attr" -> "refprefix"
-  n67 -> n69 // "attr" -> "R"
-  n65 -> n70 // "device" -> "attr"
-  n70 -> n71 // "attr" -> "name"
-  n70 -> n72 // "attr" -> ""
-  n65 -> n73 // "device" -> "attr"
-  n73 -> n74 // "attr" -> "value"
-  n73 -> n75 // "attr" -> "10K"
-  n65 -> n76 // "device" -> "attr"
-  n76 -> n77 // "attr" -> "tolerance"
-  n76 -> n78 // "attr" -> "10%"
-  n65 -> n79 // "device" -> "attr"
-  n79 -> n80 // "attr" -> "pkg_type"
-  n79 -> n81 // "attr" -> "R0207"
-  n65 -> n82 // "device" -> "pin"
-  n82 -> n83 // "pin" -> "a"
-  n82 -> n84 // "pin" -> "1"
-  n65 -> n85 // "device" -> "pin"
-  n85 -> n86 // "pin" -> "b"
-  n85 -> n87 // "pin" -> "2"
-  n65 -> n88 // "device" -> "pin"
-  n88 -> n89 // "pin" -> "c"
-  n88 -> n90 // "pin" -> "3"
-  n88 -> n91 // "pin" -> "4"
-  n88 -> n92 // "pin" -> "5"
-  n88 -> n93 // "pin" -> "6"
-  n65 -> n94 // "device" -> "resistor"
-  n35 -> n95 // "design" -> "net"
-  n95 -> n96 // "net" -> ":"
-  n96 -> n97 // ":" -> "["
-  n96 -> n98 // ":" -> "1"
-  n96 -> n99 // ":" -> "0"
-  n95 -> n100 // "net" -> "gnd"
-  n35 -> n101 // "design" -> "net"
-  n101 -> n102 // "net" -> ":"
-  n102 -> n103 // ":" -> "["
-  n102 -> n104 // ":" -> "3"
-  n102 -> n105 // ":" -> "0"
-  n101 -> n106 // "net" -> "testing"
-  n35 -> n107 // "design" -> "begin"
-  n35 -> n108 // "design" -> "inst"
-  n108 -> n109 // "inst" -> ":"
-  n109 -> n110 // ":" -> "("
-  n109 -> n111 // ":" -> "1"
-  n109 -> n112 // ":" -> "0"
-  n108 -> n113 // "inst" -> "myRes"
-  n108 -> n114 // "inst" -> "resistor"
-  n108 -> n115 // "inst" -> "="
-  n115 -> n116 // "=" -> "."
-  n116 -> n117 // "." -> "this"
-  n116 -> n118 // "." -> "("
-  n116 -> n119 // "." -> "0"
-  n115 -> n120 // "=" -> "refDes"
-  n115 -> n121 // "=" -> "R2"
-  n108 -> n122 // "inst" -> "="
-  n122 -> n123 // "=" -> "."
-  n123 -> n124 // "." -> "this"
-  n123 -> n125 // "." -> "("
-  n123 -> n126 // "." -> "1"
-  n122 -> n127 // "=" -> "refDes"
-  n122 -> n128 // "=" -> "R1"
-  n108 -> n129 // "inst" -> "="
-  n129 -> n130 // "=" -> "."
-  n130 -> n131 // "." -> "this"
-  n130 -> n132 // "." -> "("
-  n130 -> n133 // "." -> "0"
-  n129 -> n134 // "=" -> "a"
-  n129 -> n135 // "=" -> "gnd"
-  n129 -> n136 // "=" -> "["
-  n129 -> n137 // "=" -> "1"
-  n108 -> n138 // "inst" -> "="
-  n138 -> n139 // "=" -> "."
-  n139 -> n140 // "." -> "this"
-  n139 -> n141 // "." -> "("
-  n139 -> n142 // "." -> "0"
-  n138 -> n143 // "=" -> "b"
-  n138 -> n144 // "=" -> "gnd"
-  n138 -> n145 // "=" -> "["
-  n138 -> n146 // "=" -> "0"
-  n108 -> n147 // "inst" -> "="
-  n147 -> n148 // "=" -> "."
-  n148 -> n149 // "." -> "this"
-  n148 -> n150 // "." -> "("
-  n148 -> n151 // "." -> "1"
-  n147 -> n152 // "=" -> "a"
-  n147 -> n153 // "=" -> "gnd"
-  n147 -> n154 // "=" -> "["
-  n147 -> n155 // "=" -> "1"
-  n108 -> n156 // "inst" -> "="
-  n156 -> n157 // "=" -> "."
-  n157 -> n158 // "." -> "this"
-  n157 -> n159 // "." -> "("
-  n157 -> n160 // "." -> "1"
-  n156 -> n161 // "=" -> "b"
-  n156 -> n162 // "=" -> "gnd"
-  n156 -> n163 // "=" -> "["
-  n156 -> n164 // "=" -> "0"
-  n108 -> n165 // "inst" -> "="
-  n165 -> n166 // "=" -> "c"
-  n165 -> n167 // "=" -> "testing"
-  n108 -> n168 // "inst" -> "myRes"
-  n35 -> n169 // "design" -> "="
-  n169 -> n170 // "=" -> "testing"
-  n169 -> n171 // "=" -> "<gnd[0]>"
-  n35 -> n172 // "design" -> "test"
-  n0 -> n173 // "" -> "<EOF>"
+  n3 -> n17 // "device" -> "resistor"
+  n1 -> n18 // "design" -> "net"
+  n18 -> n19 // "net" -> ":"
+  n19 -> n20 // ":" -> "["
+  n19 -> n21 // ":" -> "1"
+  n19 -> n22 // ":" -> "0"
+  n18 -> n23 // "net" -> "myNet"
+  n1 -> n24 // "design" -> "net"
+  n24 -> n25 // "net" -> "singleNet"
+  n1 -> n26 // "design" -> "begin"
+  n1 -> n27 // "design" -> "inst"
+  n27 -> n28 // "inst" -> ":"
+  n28 -> n29 // ":" -> "("
+  n28 -> n30 // ":" -> "2"
+  n28 -> n31 // ":" -> "0"
+  n27 -> n32 // "inst" -> "myRes"
+  n27 -> n33 // "inst" -> "resistor"
+  n27 -> n34 // "inst" -> "="
+  n34 -> n35 // "=" -> "a"
+  n34 -> n36 // "=" -> "<"
+  n34 -> n37 // "=" -> "myNet"
+  n34 -> n38 // "=" -> "["
+  n34 -> n39 // "=" -> "1"
+  n27 -> n40 // "inst" -> "="
+  n40 -> n41 // "=" -> "b"
+  n40 -> n42 // "=" -> "myNet"
+  n40 -> n43 // "=" -> "["
+  n40 -> n44 // "=" -> "0"
+  n40 -> n45 // "=" -> "myNet"
+  n40 -> n46 // "=" -> "["
+  n40 -> n47 // "=" -> "0"
+  n40 -> n48 // "=" -> "myNet"
+  n40 -> n49 // "=" -> "["
+  n40 -> n50 // "=" -> "1"
+  n27 -> n51 // "inst" -> "myRes"
+  n1 -> n52 // "design" -> "test"
+  n0 -> n53 // "" -> "<EOF>"
 
 }

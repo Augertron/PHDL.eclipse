@@ -206,7 +206,8 @@ public class Compile {
 				}
 
 			} catch (Exception e) {
-				errors.add("ERROR: " + e.getMessage());
+				e.printStackTrace();
+				errors.add("ERROR: " + e.getStackTrace());
 				// print out any parsing errors, and do not continue on.
 				printErrors();
 

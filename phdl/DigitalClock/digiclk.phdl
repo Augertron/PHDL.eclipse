@@ -1,0 +1,437 @@
+/*
+ *	Digital Clock
+ *	Schematic found on "Awesomeness in Randomness"
+ *	vbvyas.wordpress.com/2010/02/04
+ *	
+ *	Coded by Richard Black
+ *	July 19-22, 2011
+ */
+
+design digiclk is
+
+	// Decade and Binary Counter
+	device p7490 is
+		// begin attributes
+		attr refPrefix = "B";
+		attr pkg_type = ""; // Need to determine
+		
+		// begin pins
+		pin input_a = {14};
+		pin input_b = {1};
+		pin A = {12};
+		pin B = {9};
+		pin C = {8};
+		pin D = {11};
+		pin r1 = {2};
+		pin r2 = {3};
+		pin r3 = {6};
+		pin r4 = {7};
+		pin vcc = {5};
+		pin gnd = {10};
+		// Pins that aren't connected
+		pin[1:0] nc = {13, 4};
+	end device;
+
+	// Divide by 12 Counter
+	device p7492 is
+		// begin attributes
+		attr refPrefix = "D";
+		attr pkg_type = ""; // Need to determine
+		//begin pins
+		pin A = {14};
+		pin B = {1};
+		pin Qa = {12};
+		pin Qb = {11};
+		pin Qc = {9};
+		pin Qd = {8};
+		pin vcc = {5};
+		pin gnd = {10};
+		pin[2:1] Ro = {7,6};
+		// Pins that aren't connected
+		pin[3:0] nc = {13, 4, 3, 2};
+	end device;
+
+	// BCD to Seven-Segment Display Converter
+	device p7448 is
+		// begin attributes
+		attr refPrefix = "BC";
+		attr pkg_type = ""; // Need to determine
+		// begin pins
+		pin a = {13};
+		pin b = {12};
+		pin c = {11};
+		pin d = {10};
+		pin e = {9};
+		pin f = {15};
+		pin g = {14};
+		pin vcc = {16};
+		pin gnd = {8};
+		pin input = {5};
+		pin output = {4};
+		pin one = {7};
+		pin two = {1};
+		pin four = {2};
+		pin eight = {6};
+		pin lamp_test = {3};
+	end device;
+
+	// Dialight Common Cathode Seven-Segment Display
+	device p7306003 is
+		// begin attributes
+		attr refPrefix = "L";
+		attr pkg_type = "";
+		// begin pins
+		pin a = {7};
+		pin b = {6};
+		pin c = {3};
+		pin d = {2};
+		pin e = {1};
+		pin f = {9};
+		pin g = {8};
+		pin decimal = {4};
+		pin[1:0] anode = {5,10};
+	end device;
+
+	// Triple 3-input AND gate
+	device p7411 is
+		// begin attributes
+		attr refPrefix = "A";
+		attr pkg_type = "";
+		attr pinout = "A";
+		// begin pins
+		pin[2:0] input_1 = {2, 3, 11};
+		pin[2:0] input_2 = {1, 4, 10};
+		pin[2:0] input_3 = {13, 5, 9};
+		pin[2:0] output = {12, 7, 8};
+		pin vcc = {14};
+		pin gnd = {7};
+	end device;
+
+	// Triple 2-input OR gate
+	device p7432 is
+		// begin attributes
+		attr refPrefix = "O";
+		attr pkg_type = "";
+		// begin pins
+		pin[3:0] input_1 = {13, 10, 1, 4};
+		pin[3:0] input_2 = {12, 9, 2, 5};
+		pin[3:0] output = {11, 8, 3, 6};
+		pin vcc = {14};
+		pin gnd = {7};
+	end device;
+
+	// Generic button
+	device button is
+		// begin attributes
+		attr refPrefix = "L";
+		attr pkg_type = "";
+		// begin pins
+		pin a = {1};
+		pin b = {2};
+	end device;
+
+	// Generic Switch
+	device switch is
+		// begin attributes
+		attr refPrefix = "S";
+		attr pkg_type = "";
+		// begin pins
+		pin a = {1};
+		pin b = {2};
+		pin c = {3};
+	end device;
+
+	// Dual 555 timers
+	device p556 is
+		// begin attributes
+		attr refPrefix = "U";
+		attr pkg_type = "";
+		// begin pins
+		pin vcc = {14};
+		pin gnd = {7};
+		pin[1:0] discharge = {13, 1};
+		pin[1:0] threshold = {12, 2};
+		pin[1:0] control = {11, 3};
+		pin[1:0] reset = {10, 4};
+		pin[1:0] output = {9, 4};
+		pin[1:0] trigger = {8, 6};
+	end device;
+
+	device resistor is
+		// begin attributes
+		attr refPrefix = "R";
+		attr pkg_type = "";
+		attr value = "10k";
+		// begin pins
+		pin a = {1};
+		pin b = {2};
+	end device;
+
+	device capacitor is
+		// begin attributes
+		attr refPrefix = "C";
+		attr pkg_type = "";
+		attr value = "1uF";
+		// begin pins
+		pin a = {1};
+		pin b = {2};
+	end device;
+
+	device diode is
+		// begin attributes
+		attr refPrefix = "D";
+		attr pkg_type = "";
+		// begin pins
+		pin a = {1};
+		pin k = {2};
+	end device;
+
+	net vcc, gnd;
+	net[5:0] g_net, f_net, e_net, d_net, c_net, b_net, a_net;
+	net[5:0] qa, qb, qc, qd;
+	net[1:0] R;
+	net gate_net;
+	net or_gate_net;
+	net clk;
+	net button_net;
+
+	//****************************
+	// Begin Clock Generator Nets
+	//****************************
+
+	net disch;
+	net thresh;
+	net cont;
+	net rd;
+
+begin
+
+	inst(5:0) ss_conv of p7448 is
+		this(5).a = a_net;
+		this(5).b = b_net;
+		this(5).c = c_net;
+		this(5).d = d_net;
+		this(5).e = e_net;
+		this(5).f = f_net;
+		this(5).g = g_net;
+
+		this(4).a = a_net;
+		this(4).b = b_net;
+		this(4).c = c_net;
+		this(4).d = d_net;
+		this(4).e = e_net;
+		this(4).f = f_net;
+		this(4).g = g_net;
+
+		this(3).a = a_net;
+		this(3).b = b_net;
+		this(3).c = c_net;
+		this(3).d = d_net;
+		this(3).e = e_net;
+		this(3).f = f_net;
+		this(3).g = g_net;
+
+		this(2).a = a_net;
+		this(2).b = b_net;
+		this(2).c = c_net;
+		this(2).d = d_net;
+		this(2).e = e_net;
+		this(2).f = f_net;
+		this(2).g = g_net;
+
+		this(1).a = a_net;
+		this(1).b = b_net;
+		this(1).c = c_net;
+		this(1).d = d_net;
+		this(1).e = e_net;
+		this(1).f = f_net;
+		this(1).g = g_net;
+
+		this(0).a = a_net;
+		this(0).b = b_net;
+		this(0).c = c_net;
+		this(0).d = d_net;
+		this(0).e = e_net;
+		this(0).f = f_net;
+		this(0).g = g_net;
+
+		vcc = <vcc>;
+		gnd = <gnd>;
+
+		this(5).eight = gnd;
+		this(3).eight = gnd;
+		this(2).eight = open;
+		this(4).eight = qd[4];
+		this(1).eight = qd[1];
+
+		this(5).four = gnd;
+		
+		this(4).four = qc[4];
+		this(3).four = qc[3];
+		this(2).four = qc[2];
+		this(1).four = qc[1];
+		this(0).four = qc[0];
+
+		this(5).two = qb[5];
+		this(4).two = qb[4];
+		this(3).two = qb[3];
+		this(2).two = qb[2];
+		this(1).two = qb[1];
+		this(0).two = qb[0];
+
+		this(5).one = qa[5];
+		this(4).one = qa[4];
+		this(3).one = qa[3];
+		this(2).one = qa[2];
+		this(1).one = qa[1];
+		this(0).one = qa[0];
+
+		input = open;
+		output = open;
+
+		lamp_test = open;
+	end inst;
+
+	inst(5:0) ss_disp of p7306003 is
+		a = a_net;
+		b = b_net;
+		c = c_net;
+		d = d_net;
+		e = e_net;
+		f = f_net;
+		g = g_net;
+		decimal = open;
+		anode = <gnd>;
+	end inst;
+
+	inst(2:0) divby12 of p7492 is
+		Qd = open;
+		this(2).Qc = open;
+		this(1).Qc = qc[3];
+		this(0).Qc = qc[1];
+		Qb = qb[5,3,1];
+		Qa = qa[5,3,1];
+
+		B = qa[5,3,1];
+		A = qd[4,2,0];
+
+		vcc = <vcc>;
+		gnd = <gnd>;
+
+		this(2).Ro[2:1] = <R[1]>;
+		this(1).Ro[2:1] = <R[0]>;
+
+		nc = open;
+	end inst;
+
+	inst(2:0) decBinCntr of p7490 is
+		D = qd[4,2,0];
+		C = qc[4,2,0];
+		B = qb[4,2,0];
+		A = qa[4,2,0];
+
+		r1[2] = R[1];
+		r2[2] = R[1];
+
+		this(2).r1[1:0] = <R[1]>;
+		this(2).r2[1:0] = <R[1]>;
+
+		this(1:0).r1[1:0] = <R[0]>;
+		this(1:0).r2[1:0] = <R[0]>;
+
+		r3 = <gnd>;
+		r4 = <gnd>;
+
+		vcc = <vcc>;
+		gnd = <gnd>;
+
+		this(2).input_a = qc[3];
+		this(1).input_a = or_gate_net;
+		this(0).input_a = clk;
+		input_b = qa[4,2,0];
+
+		nc = open;
+	end inst;
+
+	inst or_gate of p7432 is
+		input_1[3] = R[0];
+		input_2[3] = gate_net;
+		output[3] = R[1];
+
+		input_1[2] = button_net;
+		input_2[2] = qc[1];
+		output[2] = or_gate_net;
+
+		input_1[1:0] = open;
+		input_2[1:0] = open;
+		output[1:0] = open;
+	end inst;
+
+	inst push_button of button is
+		a = vcc;
+		b = button_net;
+	end inst;
+
+	inst flip_switch of switch is
+		a = vcc;
+		b = gnd;
+		c = R[0];
+	end inst;
+
+
+	// ***********************
+	// Begin Clock Generator
+	// ***********************
+
+	inst timer of p556 is
+		reset[1] = vcc;
+		vcc = vcc;
+		gnd = gnd;
+		output[1] = clk;
+		trigger[1] = thresh;
+		control[1] = cont;
+		threshold[1] = thresh;
+		discharge[1] = disch;
+
+		trigger[0] = open;
+		output[0] = open;
+		reset[0] = open;
+		discharge[0] = open;
+		threshold[0] = open;
+		control[0] = open;
+	end inst;
+
+	inst(2:0) res of resistor is
+		this(1).a = vcc;
+		this(1).b = disch;
+		this(1).value = "1k";
+		
+		this(2).a = disch;
+		this(2).b = thresh;
+		this(2).value = "350k";
+
+		this(0).a = clk;
+		this(0).b = rd;
+		this(0).value = "680";
+	end inst;
+
+	inst(2:0) cap of capacitor is
+		this(2).a = thresh;
+		this(2).b = gnd;
+		this(2).value = "1uF";
+
+		this(1).a = cont;
+		this(1).b = gnd;
+		this(1).value = "10nF";
+
+		this(0).a = vcc;
+		this(0).b = gnd;
+		this(0).value = "47uF";
+	end inst;
+
+	inst dio of diode is
+		a = rd;
+		k = gnd;
+	end inst;
+
+end design;
