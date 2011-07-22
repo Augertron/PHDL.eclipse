@@ -4,4 +4,19 @@ ordering=out;
 	ranksep=.4;
 	bgcolor="lightgrey"; node [fixedsize=false, fontsize=12, fontname="Helvetica-bold", fontcolor="blue"
 		width=.25, height=.25, color="black", fillcolor="white", style="filled, solid, bold"];
-	edge [arrowsize=.5, color="black", style="bold"]}
+	edge [arrowsize=.5, color="black", style="bold"]  n0 [label="myNet[1]"];
+  n1 [label="myNet[0]"];
+  n2 [label="singleNet"];
+  p0 [label="myRes(2).a"];
+  p1 [label="myRes(2).b"];
+  p2 [label="myRes(1).a"];
+  p3 [label="myRes(1).b"];
+  p4 [label="myRes(0).a"];
+  p5 [label="myRes(0).b"];
+  p0 -> n2;
+  p1 -> n1;
+  p2 -> n0;
+  p3 -> n1;
+  p4 -> n1;
+  p5 -> n0;
+}

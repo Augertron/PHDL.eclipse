@@ -185,39 +185,70 @@ options {
 	 * it assigns all relevant pins to their respective net.
 	 */
 	private void assignPins(int start, List<Integer> slices, List<NetNode> concats, InstanceNode inst, CommonTree pinNode) {
+		if (start == -1) {
+			// Non-arrayed instance
+			assignNonArrayed(slices, concats, inst, pinNode);
+		}
+		else {
+			// Arrayed instance
+			assignArrayed(start, slices, concats, inst, pinNode);
+		}
+	}
+	
+	/**
+	 * Helper method for assignPins for arrayed instances
+	 */
+	private void assignArrayed(int start, List<Integer> slices, List<NetNode> concats, InstanceNode inst, CommonTree pinNode) {
 		String pinName = pinNode.getText();
-		if (slices.isEmpty()) {
-			if (concats.size() == 1) {
-				PinNode p = inst.getPin(pinName);
-				if (p != null) {
-					if (p.hasNet())
-						addWarning(pinNode, "pin " + p.getIndex() + " already assigned");
-					p.setNet(concats.get(0));
-					if (concats.get(0) != null)
-						concats.get(0).addPin(p);
-				} else {
-					addError(pinNode, "pin undeclared in device");
-				}
-			} else {
+		if (slices.isEmpty()) {	// Single-bit lval
+			// Grab one net from concats
+			System.out.println("start: " + start + "\tconcat size: " + concats.size());
+			setConcatToPin(inst.getPin(pinName), concats.get(start));
+		} else {	// Multi-bit lval
+			for (int i = 0; i < slices.size(); i++) {
+				PinNode p = inst.getPin(pinName + "[" + slices.get(i) + "]");
+				setConcatToPin(p, concats.get(i + start));
+			}
+		}
+	}
+	
+	/**
+	 *
+	 */
+	private void setConcatToPin(PinNode p, NetNode n) {
+		if (p != null) {
+			if (p.hasNet()) {
+				addWarning(p, "pin " + p.getIndex() + " already assigned");
+			}
+			p.setNet(n);
+			if (n != null) {
+				n.addPin(p);
+			}
+		}
+		else {
+			addError(p, "pin undelcared in device");
+		}
+	}
+	
+	/**
+	 * Helper method for assignPins for non-arrayed instances
+	 */
+	private void assignNonArrayed(List<Integer> slices, List<NetNode> concats, InstanceNode inst, CommonTree pinNode) {
+		String pinName = pinNode.getText();
+		if (slices.isEmpty()) {	// Single-bit lval
+			if (concats.size() == 1) {	// Single-bit rval
+				setConcatToPin(inst.getPin(pinName), concats.get(0));
+			} else {	// Multi-bit rval, ERROR
 				bailOut(pinNode, "invalid assignment, left size is " 
 						+ slices.size() + " right size is " + concats.size());
 			}
-		} else {
-			if (concats.size() == slices.size()) {
-				// assign pins
+		} else {	// Multi-bit lval
+			if (concats.size() == slices.size()) {	// Verify same length
 				for (int i = 0; i < concats.size(); i++) {
 					PinNode p = inst.getPin(pinName + "[" + slices.get(i) + "]");
-					if (p != null) { 
-						if (p.hasNet())
-							addWarning(pinNode, "pin " + p.getIndex() + " already assigned");
-						p.setNet(concats.get(i));
-						if (concats.get(i) != null)
-							concats.get(i).addPin(p);
-					} else {
-						addError(pinNode, "pin undeclared in device");
-					}
+					setConcatToPin(p, concats.get(i));
 				}
-			} else {
+			} else {	// Invalid length, ERROR
 				bailOut(pinNode, "invalid assignment, left size is " 
 						+ slices.size() + " right size is " + concats.size());
 			}
@@ -853,12 +884,28 @@ pinAssign[DesignNode des, String instName]
 			
 		(instanceQualifier[instName, indices, des] | arrayIndices[indices, instName, des]) 
 		pinName=IDENT (sliceList[slices] | pinSlices[slices, $pinName.text, des, instName])
+		{System.out.println("slices.size() = " + slices.size());}
 		concatenation[concats, slices.size(), des])
 		
 			//==================== JAVA BLOCK BEGIN =======================
 			{	
-				if (indices.size() * slices.size() != concats.size()) {
-					// TODO Throw Error
+				if (indices.size() != 0 && slices.size() != 0) {
+					if (indices.size() * slices.size() != concats.size()) {
+						// TODO Throw Error
+						// Arrayed and Sliced
+					}
+				}
+				else if (slices.size() != 0) {
+					if (slices.size() != concats.size()) {
+						// TODO Throw Error
+						// Not Arrayed and Sliced
+					}
+				}
+				else if (indices.size() != 0) {
+					if (indices.size() != concats.size()) {
+						// TODO Throw Error
+						// Arrayed and Not Sliced
+					}
 				}
 			
 				// for all the indices in the array list
@@ -867,14 +914,19 @@ pinAssign[DesignNode des, String instName]
 					for (InstanceNode inst : des.getAllInstances(instName)) {
 						// assign pins for only those whose index is in the list of indices
 						if(inst.getIndex() == indices.get(j)) {
-							int start = j * slices.size();
+							int start;
+							if (slices.size() == 0) {
+								start = j;
+							} else {
+								start = j * slices.size();
+							}
 							assignPins(start, slices, concats, inst, $pinName);
 						}
 					}
 				}
 				if (indices.isEmpty()) {
 					InstanceNode inst = des.getInstance(instName);
-					assignPins(0,slices, concats, inst, $pinName);
+					assignPins(-1,slices, concats, inst, $pinName);
 				}
 				
 			}
@@ -937,6 +989,7 @@ netAssign[DesignNode des]
 concatenation[List<NetNode> concats, int assignWidth, DesignNode des]
 	:		// a blank list of slices to populate with the sliceList rule
 			{List<Integer> slices = new ArrayList<Integer>();}	
+			{System.out.println("AssignWidth: " + assignWidth);}
 	
 		((first=IDENT (sliceList[slices] | concatSlices[slices, $first.text, des])
 			

@@ -1,45 +1,21 @@
-include "include2.phdl";
 
 design test is	
 	
-	include "include.phdl";
-	
 	device resistor is
 		attr refprefix = "R";
-		attr name = "";
-		attr value = "10K";
-		attr tolerance = "10%";
 		attr pkg_type = "R0207";
 		pin a = {1};
 		pin b = {2};
 	end device resistor;
 	
-	net +vcc;
-	net -vcc;
-	net zero_low;
-	net one_high;
-	net combined;
+	net[1:0] myNet;
+	net singleNet;
 
 begin
 
-	inst(1:0) myRes of resistor is
-		this(0).refDes = "R2";
-		this(1).refDes = "R1";
-		this(0).a = +vcc;
-		this(0).b = zero_low;
-		this(1).a = one_high;
-		this(1).b = -vcc;
-	
+	inst(2:0) myRes of resistor is
+		a = <myNet[1]>;
+		b = myNet[0] & myNet[0] & myNet[1];
 	end inst myRes;
-	
-	zero_low = combined;
-	one_high = combined;
-	+vcc = -vcc;
-	
-	inst mine of incldev1 is
-		//refDes = "M2";
-		a = -vcc;
-		b = +vcc;
-	end inst mine;
-	
+
 end design test;
