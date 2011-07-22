@@ -184,7 +184,7 @@ options {
 	 * Helper method for the pinAssignment rule.  Given a list of slices, concats, an instance node, and a pinNode
 	 * it assigns all relevant pins to their respective net.
 	 */
-	private void assignPins(List<Integer> slices, List<NetNode> concats, InstanceNode inst, CommonTree pinNode) {
+	private void assignPins(int start, List<Integer> slices, List<NetNode> concats, InstanceNode inst, CommonTree pinNode) {
 		String pinName = pinNode.getText();
 		if (slices.isEmpty()) {
 			if (concats.size() == 1) {
@@ -857,18 +857,24 @@ pinAssign[DesignNode des, String instName]
 		
 			//==================== JAVA BLOCK BEGIN =======================
 			{	
+				if (indices.size() * slices.size() != concats.size()) {
+					// TODO Throw Error
+				}
+			
 				// for all the indices in the array list
 				for (int j = 0; j < indices.size(); j++) {
 					// for all isntances with this pinName
 					for (InstanceNode inst : des.getAllInstances(instName)) {
 						// assign pins for only those whose index is in the list of indices
-						if(inst.getIndex() == indices.get(j))
-							assignPins(slices, concats, inst, $pinName);
+						if(inst.getIndex() == indices.get(j)) {
+							int start = j * slices.size();
+							assignPins(start, slices, concats, inst, $pinName);
+						}
 					}
 				}
 				if (indices.isEmpty()) {
 					InstanceNode inst = des.getInstance(instName);
-					assignPins(slices, concats, inst, $pinName);
+					assignPins(0,slices, concats, inst, $pinName);
 				}
 				
 			}
