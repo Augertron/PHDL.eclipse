@@ -202,7 +202,6 @@ options {
 		String pinName = pinNode.getText();
 		if (slices.isEmpty()) {	// Single-bit lval
 			// Grab one net from concats
-			System.out.println("start: " + start + "\tconcat size: " + concats.size());
 			setConcatToPin(inst.getPin(pinName), concats.get(start));
 		} else {	// Multi-bit lval
 			for (int i = 0; i < slices.size(); i++) {
@@ -763,8 +762,9 @@ attrAssign[DesignNode des, String instName]
 			}
 			//===================== JAVA BLOCK END ========================
 		
-		('newattr' {newAttr = true;} )? 
-		(instanceQualifier[instName, indices, des] | arrayIndices[indices, instName, des])
+		('newattr' {newAttr = true;} )?
+		{boolean each = false;} 
+		(instanceQualifier[instName, indices, des, each] | arrayIndices[indices, instName, des])
 		attrName=IDENT attrValue=STRING)
 		
 			//==================== JAVA BLOCK BEGIN =======================
@@ -879,13 +879,17 @@ pinAssign[DesignNode des, String instName]
 			{	List<Integer> indices = new ArrayList<Integer>();
 				List<Integer> slices = new ArrayList<Integer>();
 				List<NetNode> concats = new ArrayList<NetNode>();
+				boolean each = false;
 			}
 			//===================== JAVA BLOCK END ========================
-			
-		(instanceQualifier[instName, indices, des] | arrayIndices[indices, instName, des]) 
+		(instanceQualifier[instName, indices, des, each] | arrayIndices[indices, instName, des]) 
 		pinName=IDENT (sliceList[slices] | pinSlices[slices, $pinName.text, des, instName])
-		{System.out.println("slices.size() = " + slices.size());}
-		concatenation[concats, slices.size(), des])
+		{ int assignWidth = 0;
+		  if (slices.size() == 0 && indices.size() != 0) {assignWidth = indices.size();}
+		  if (slices.size() != 0 && indices.size() == 0) {assignWidth = slices.size();}
+		  if (slices.size() != 0 && indices.size() != 0) {assignWidth = indices.size() * slices.size();}
+		} 
+		concatenation[concats, assignWidth, des])
 		
 			//==================== JAVA BLOCK BEGIN =======================
 			{	
@@ -989,7 +993,6 @@ netAssign[DesignNode des]
 concatenation[List<NetNode> concats, int assignWidth, DesignNode des]
 	:		// a blank list of slices to populate with the sliceList rule
 			{List<Integer> slices = new ArrayList<Integer>();}	
-			{System.out.println("AssignWidth: " + assignWidth);}
 	
 		((first=IDENT (sliceList[slices] | concatSlices[slices, $first.text, des])
 			
@@ -1106,9 +1109,9 @@ concatenation[List<NetNode> concats, int assignWidth, DesignNode des]
  * 2. Call the arrayList rule (if one exists) to populate the list of indices
  * 3. Report an error if the qualifier name does not match.
  */
-instanceQualifier[String instName, List<Integer> indices, DesignNode des]
+instanceQualifier[String instName, List<Integer> indices, DesignNode des, boolean each]
 	:	{boolean isThis = false;}
-		^(PERIOD (qualName=IDENT | ('this' {isThis = true;})) (arrayList[indices] | arrayIndices[indices, instName, des]) )
+		^(PERIOD ('each' {each = true;})?(qualName=IDENT | ('this' {isThis = true;})) (arrayList[indices] | arrayIndices[indices, instName, des]) )
 	
 			//==================== JAVA BLOCK BEGIN =======================
 		    {	// check that the instance qualifier matches
@@ -1118,7 +1121,7 @@ instanceQualifier[String instName, List<Integer> indices, DesignNode des]
 				}
 	
 		    }
-		    //===================== JAVA BLOCK END ========================
+		  //===================== JAVA BLOCK END ========================
 	;
 	
 arrayIndices[List<Integer> indices, String instName, DesignNode des]
