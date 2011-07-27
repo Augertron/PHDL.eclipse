@@ -5,6 +5,8 @@
  *	
  *	Coded by Richard Black
  *	July 19-27, 2011
+ *
+ *	TODO: Find pkg_type for every device
  */
 
 design digiclk is
@@ -184,6 +186,15 @@ design digiclk is
 		// begin pins
 		pin a = {1};
 		pin k = {2};
+	end device;
+	
+	device p1043 is		// Battery Holder
+		// begin attributes
+		attr refPrefix = "P";
+		attr pkg_type = "";
+		// begin pins
+		pin vcc = {1};
+		pin gnd = {2};
 	end device;
 
 	net vcc, gnd;
@@ -385,6 +396,11 @@ begin
 		input_3[1:0] = open;
 		output[1:0] = open;
 		
+		vcc = vcc;
+		gnd = gnd;
+	end inst;
+	
+	inst battery of p1043 is
 		vcc = vcc;
 		gnd = gnd;
 	end inst;

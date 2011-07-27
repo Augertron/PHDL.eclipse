@@ -764,8 +764,7 @@ attrAssign[DesignNode des, String instName]
 			//===================== JAVA BLOCK END ========================
 		
 		('newattr' {newAttr = true;} )?
-		{boolean each = false;} 
-		(instanceQualifier[instName, indices, des, each] | arrayIndices[indices, instName, des])
+		(instanceQualifier[instName, indices, des] | arrayIndices[indices, instName, des])
 		attrName=IDENT attrValue=STRING)
 		
 			//==================== JAVA BLOCK BEGIN =======================
@@ -880,10 +879,9 @@ pinAssign[DesignNode des, String instName]
 			{	List<Integer> indices = new ArrayList<Integer>();
 				List<Integer> slices = new ArrayList<Integer>();
 				List<NetNode> concats = new ArrayList<NetNode>();
-				boolean each = false;
 			}
 			//===================== JAVA BLOCK END ========================
-		(instanceQualifier[instName, indices, des, each] | arrayIndices[indices, instName, des]) 
+		(instanceQualifier[instName, indices, des] | arrayIndices[indices, instName, des]) 
 		pinName=IDENT (sliceList[slices] | pinSlices[slices, $pinName.text, des, instName])
 		{ int assignWidth = 0;
 		  if (slices.size() == 0 && indices.size() != 0) {assignWidth = indices.size();}
@@ -1113,9 +1111,9 @@ concatenation[List<NetNode> concats, int assignWidth, DesignNode des]
  * 2. Call the arrayList rule (if one exists) to populate the list of indices
  * 3. Report an error if the qualifier name does not match.
  */
-instanceQualifier[String instName, List<Integer> indices, DesignNode des, boolean each]
+instanceQualifier[String instName, List<Integer> indices, DesignNode des]
 	:	{boolean isThis = false;}
-		^(PERIOD ('each' {each = true;})?(qualName=IDENT | ('this' {isThis = true;})) (arrayList[indices] | arrayIndices[indices, instName, des]) )
+		^(PERIOD (qualName=IDENT | ('this' {isThis = true;})) (arrayList[indices] | arrayIndices[indices, instName, des]) )
 	
 			//==================== JAVA BLOCK BEGIN =======================
 		    {	// check that the instance qualifier matches

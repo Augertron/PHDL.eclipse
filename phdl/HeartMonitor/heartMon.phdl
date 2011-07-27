@@ -1,0 +1,29 @@
+/*
+ *	Heart Rate Monitor
+ *	Found on CPU Ready Consulting, inc.
+ *	Coded by Richard Black
+ *	Date: July 27, 2011
+ */
+ 
+design heartMon is
+
+	include "devices.phdl";
+	
+	net 5v, 9v, gnd, vcc 9v_ana;
+	net probe1, probe2;
+	net hrt_beat;
+	net MISO;
+	net SCK;
+	net MOSI;
+	net RST;
+	net SW;
+	net PWR_ENA;
+	net SEGF, SEGG;
+	net[1:4] DIG;
+	net SEGA, SEGB, SEGC, SEGD, SEGE, SEGF, SEGG, SEGDP;
+
+begin
+
+	
+
+end design;
