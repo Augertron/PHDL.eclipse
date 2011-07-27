@@ -202,11 +202,12 @@ options {
 		String pinName = pinNode.getText();
 		if (slices.isEmpty()) {	// Single-bit lval
 			// Grab one net from concats
-			setConcatToPin(inst.getPin(pinName), concats.get(start));
+			PinNode p = inst.getPin(pinName);
+			setConcatToPin(p, concats.get(start), pinNode);
 		} else {	// Multi-bit lval
 			for (int i = 0; i < slices.size(); i++) {
 				PinNode p = inst.getPin(pinName + "[" + slices.get(i) + "]");
-				setConcatToPin(p, concats.get(i + start));
+				setConcatToPin(p, concats.get(i + start), pinNode);
 			}
 		}
 	}
@@ -214,7 +215,7 @@ options {
 	/**
 	 *
 	 */
-	private void setConcatToPin(PinNode p, NetNode n) {
+	private void setConcatToPin(PinNode p, NetNode n, CommonTree pinNode) {
 		if (p != null) {
 			if (p.hasNet()) {
 				addWarning(p, "pin " + p.getIndex() + " already assigned");
@@ -225,7 +226,7 @@ options {
 			}
 		}
 		else {
-			addError(p, "pin undelcared in device");
+			addError(pinNode, "pin undelcared in device");
 		}
 	}
 	
@@ -236,7 +237,7 @@ options {
 		String pinName = pinNode.getText();
 		if (slices.isEmpty()) {	// Single-bit lval
 			if (concats.size() == 1) {	// Single-bit rval
-				setConcatToPin(inst.getPin(pinName), concats.get(0));
+				setConcatToPin(inst.getPin(pinName), concats.get(0), pinNode);
 			} else {	// Multi-bit rval, ERROR
 				bailOut(pinNode, "invalid assignment, left size is " 
 						+ slices.size() + " right size is " + concats.size());
@@ -245,7 +246,7 @@ options {
 			if (concats.size() == slices.size()) {	// Verify same length
 				for (int i = 0; i < concats.size(); i++) {
 					PinNode p = inst.getPin(pinName + "[" + slices.get(i) + "]");
-					setConcatToPin(p, concats.get(i));
+					setConcatToPin(p, concats.get(i), pinNode);
 				}
 			} else {	// Invalid length, ERROR
 				bailOut(pinNode, "invalid assignment, left size is " 
@@ -897,18 +898,21 @@ pinAssign[DesignNode des, String instName]
 					if (indices.size() * slices.size() != concats.size()) {
 						// TODO Throw Error
 						// Arrayed and Sliced
+						bailOut($pinName, "Invalid assignment width, left = " + indices.size() * slices.size() + ", right = " + concats.size());
 					}
 				}
 				else if (slices.size() != 0) {
 					if (slices.size() != concats.size()) {
 						// TODO Throw Error
 						// Not Arrayed and Sliced
+						bailOut($pinName, "Invalid assignment width, left = " + slices.size() + ", right = " + concats.size());
 					}
 				}
 				else if (indices.size() != 0) {
 					if (indices.size() != concats.size()) {
 						// TODO Throw Error
 						// Arrayed and Not Sliced
+						bailOut($pinName, "Invalid assignment width, left = " + slices.size() + ", right = " + concats.size());
 					}
 				}
 			
