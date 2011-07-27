@@ -269,7 +269,7 @@ attributeAssignment
  * get this value).
  */
 instanceQualifier
-	:	'each'? (IDENT | 'this') arrayList? PERIOD^  
+	:	(IDENT | 'this') arrayList? PERIOD^  
 	;
 
 /**
