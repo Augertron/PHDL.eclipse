@@ -16,6 +16,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import phdl.graph.AttributeNode;
 import phdl.graph.DesignNode;
@@ -33,9 +35,40 @@ import phdl.graph.InstanceNode;
 public class BoMGenerator {
 
 	private DesignNode design;
-	List<List<String>> database;
+	private List<Row> rows;
+	private List<String> headers;
 	private String bom;
-
+	
+	private class Row {
+		private int quantity;
+		private String name;
+		private String refDes;
+		private String pkg_type;
+		private List<String> entries;
+		
+		public Row() {
+			quantity = 1;
+			name = "";
+			refDes = "";
+			pkg_type = "";
+			entries = new ArrayList<String>();
+		}
+		
+		public boolean equals(Object o) {
+			Row r = (Row)o;
+			boolean equal;
+			equal = name.equals(r.name);
+			equal &= pkg_type.equals(pkg_type);
+			for (String s : entries) {
+				equal &= r.entries.contains(s);
+			}
+			for (String s : r.entries) {
+				equal &= entries.contains(s);
+			}
+			return equal;
+		}
+	}
+	
 	/**
 	 * Default Constructor.
 	 * 
@@ -46,68 +79,105 @@ public class BoMGenerator {
 	 *            the DesignNode that contains all of the attribute information.
 	 * @see DesignNode
 	 */
-	public BoMGenerator(DesignNode design) {
-		this.design = design;
+	public BoMGenerator(DesignNode d) {
+		design = d;
+		rows = new ArrayList<Row>();
+		headers = new ArrayList<String>();
 		generate();
 		generateString();
 	}
-
+	
 	private void generate() {
-		database = new ArrayList<List<String>>();
-
-		List<String> headers = new ArrayList<String>();
-		headers.add("Device Name");
-
-		// Populate Headers
+		populateHeaders();
+		initializeRows();
+		consolidateRows();
+	}
+	
+	private void populateHeaders() {
+		List<String> excludes = new ArrayList<String>();
+		excludes.add("REFPREFIX");
+		excludes.add("REFDES");
+		excludes.add("PKG_TYPE");
+		
 		for (InstanceNode i : design.getInstances()) {
 			for (AttributeNode a : i.getAttributes()) {
-				if (!headers.contains(a.getName())) {
+				if (!excludes.contains(a.getName()) && !headers.contains(a.getName())) {
 					headers.add(a.getName());
 				}
 			}
 		}
-
-		database.add(headers);
-		// Add devices
+	}
+	
+	private void initializeRows() {
 		for (InstanceNode i : design.getInstances()) {
-			List<String> newRow = new ArrayList<String>();
-			newRow.add(i.getDevice().getName());
-			for (int j = 1; j < headers.size(); j++) {
-				AttributeNode dummy = new AttributeNode(null);
-				dummy.setName(headers.get(j));
-				if (!i.getAttributes().contains(dummy)) {
-					newRow.add("");
-					continue;
+			Row newRow = new Row();
+			
+			for (int j = 0; j < headers.size(); j++) {
+				newRow.entries.add("");
+			}
+			
+			newRow.name = i.getDevice().getName();
+			newRow.refDes = i.getRefDes();
+			for (AttributeNode a : i.getAttributes()) {
+				if (a.getName().equals("PKG_TYPE")) {
+					newRow.pkg_type = a.getValue();
 				}
-				for (AttributeNode a : i.getAttributes()) {
-					if (a.getName().equals(headers.get(j))) {
-						newRow.add(a.getValue());
-						break;
+				else if (!a.getName().equals("REFPREFIX") && !a.getName().equals("REFDES")) {
+					for (int j = 0; j < headers.size(); j++) {
+						if (headers.get(j).equals(a.getName())) {
+							newRow.entries.set(j, a.getValue());
+						}
 					}
 				}
 			}
-			database.add(newRow);
+			rows.add(newRow);
 		}
 	}
-
-	private void generateString() {
-		bom = "PHDL Generated Bill of Materials\n";
-		for (int i = 0; i < database.size(); i++) {
-			for (int j = 0; j < database.get(i).size(); j++) {
-				bom += database.get(i).get(j);
-				if (j + 1 != database.get(i).size()) {
-					bom += ",";
+	
+	private void consolidateRows() {
+		SortedSet<Integer> deletes = new TreeSet<Integer>();
+		for (int i = 0; i < rows.size(); i++) {
+			if (deletes.contains(i))
+				continue;
+			for (int j = i+1; j < rows.size(); j++) {
+				if (rows.get(i).equals(rows.get(j))) {
+					rows.get(i).quantity++;
+					rows.get(i).refDes = rows.get(i).refDes + "; " + rows.get(j).refDes;
+					deletes.add(j);
 				}
 			}
-			bom += "\n";
+		}
+		int i = 0;
+		for (Integer d : deletes) {
+			rows.remove(d - i);
+			i++;
 		}
 	}
-
+	
+	private void generateString() {
+		bom = "Bill of Materials - " + design.getName() + "\n";
+		bom += "QUANTITY, NAME, REFDES, PKG_TYPE";
+		for (int i = 0; i < headers.size(); i++) {
+			bom += ", " + headers.get(i);
+		}
+		for (Row r : rows) {
+			bom += "\n";
+			bom += r.quantity;
+			bom += ", " + r.name;
+			bom += ", " + r.refDes;
+			bom += ", " + r.pkg_type;
+			for (int i = 0; i < r.entries.size(); i++) {
+				bom += ", " + r.entries.get(i);
+			}
+		}
+	}
+	
 	/**
 	 * Returns the generated string representation of the Bill of Materials.
 	 * 
 	 * @return comma-separated string representation of BoM
 	 */
+
 	public String getBoMString() {
 		return bom;
 	}
@@ -124,10 +194,13 @@ public class BoMGenerator {
 			out.write(bom);
 			out.close();
 		} catch (IOException e) {
-			System.err.println("File Reading Error - filename may be corrupt");
+			System.err.println("File Writing Error - " + fileName + "\n" +
+								"\tPossible Reasons:\n" +
+								"\t\t*filename may be corrupt\n" +
+								"\t\t*file may currently be open\n");
 			System.exit(1);
 		}
 		System.out.println("Wrote BoM file: " + fileName);
 	}
-
+	
 }
