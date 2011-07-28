@@ -51,6 +51,7 @@ public class InstanceNode extends Attributable {
 		refDes = null;
 		refPrefix = null;
 		footprint = null;
+		info = "";
 	}
 
 	/**

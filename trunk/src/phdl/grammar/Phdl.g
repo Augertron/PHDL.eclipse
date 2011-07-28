@@ -74,7 +74,6 @@ options {
 	package phdl.grammar;
 }
 
-
 @lexer::members {
 
 	/**
@@ -127,8 +126,6 @@ options {
 	}
 }
 
-
-
 @parser::members {
 
 	/**
@@ -169,14 +166,14 @@ sourceText
 
 /** 
  * A design declaration consists of the keyword "design" followed by the design name and the keyword "is."
- * Before the "begin" keyword, device and net declarations are placed in any order.  After the "begin" keyword,
- * device instances and net assignments are placed in any order.  The body of the design declaration is 
- * terminated with the keyword "end" followed by an optional "design" keyword or the name of the design
- * and finally a semicolon.
+ * Before the "begin" keyword, device and net declarations as well as info structures are placed in any
+ * order.  After the "begin" keyword, device instances and net assignments are placed in any order.  The
+ * body of the design declaration is terminated with the keyword "end" followed by an optional "design"
+ * keyword or the name of the design and finally a semicolon.
  */
 designDecl
 	:	'design'^ IDENT 'is'! 
-		(deviceDecl | netDecl)*
+		(deviceDecl | netDecl | infoStruct)*
 		'begin'
 		(instanceDecl | netAssignment)*
 		'end'! 'design'!? IDENT? SEMICOLON!
@@ -238,14 +235,23 @@ netAttributes
  * A device instance begins with the keyword "inst" followed by an optional array
  * specification, the instance name, the keyword "of", the device name from which
  * it is being instanced, and the keyword "is."  The body of the device instance
- * contains attribute and pin assignments placed in any order.  An optional "inst"
- * or the instance name may be placed between the "end" and the semicolon.
+ * contains attribute and pin assignments as well as info structures placed in any
+ * order.  An optional "inst" or the instance name may be placed between the "end"
+ * and the semicolon.
  */
 instanceDecl
 	:	'inst'^ arrayDecl? IDENT 'of'! IDENT 'is'!
-		(attributeAssignment | pinAssignment)*
+		(attributeAssignment | pinAssignment | infoStruct)*
 		'end'! 'inst'!? IDENT? SEMICOLON!
 	;
+
+/**
+ * An info struct consists of the keyword 'info' followed by freeform text surrounded by
+ * curly braces.
+ */
+infoStruct
+  : 'info'^ '{'! STRING '}'! SEMICOLON!
+  ;
 
 /**
  * An attribute assignment consists of a string assigned to an attribute name with the optional newattr

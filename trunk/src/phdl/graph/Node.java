@@ -29,7 +29,8 @@ public abstract class Node implements Comparable<Object> {
 	protected int line;
 	protected int pos;
 	protected String fileName;
-
+	protected String info;
+	
 	/**
 	 * FileName accessor method.
 	 * 
@@ -175,5 +176,14 @@ public abstract class Node implements Comparable<Object> {
 	 */
 	public int compareTo(Object o) {
 		return this.name.compareTo(((Node) o).getName());
+	}
+	
+	
+	public void appendInfo(String info) {
+		this.info += info;
+	}
+	
+	public String getInfo() {
+		return info;
 	}
 }

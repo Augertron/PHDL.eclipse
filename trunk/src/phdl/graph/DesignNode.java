@@ -50,6 +50,7 @@ public class DesignNode extends Node {
 		devices = new TreeSet<DeviceNode>();
 		instances = new ArrayList<InstanceNode>();
 		nets = new ArrayList<NetNode>();
+		info = "";
 	}
 
 	/**
@@ -541,4 +542,5 @@ public class DesignNode extends Node {
 		// propagate the merged net back up the call-stack
 		return current;
 	}
+
 }
