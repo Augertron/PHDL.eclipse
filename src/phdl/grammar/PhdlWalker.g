@@ -311,7 +311,7 @@ designDecl
 			}
 			//===================== JAVA BLOCK END ========================
 		
-		(deviceDecl[des] | netDecl[des])* 'begin' 
+		(deviceDecl[des] | netDecl[des] | {String info = "";} infoStruct[des, info] {des.appendInfo(info);})* 'begin' 
 		(instDecl[des] | netAssign[des])* (endName=IDENT)? )
 		
 			//==================== JAVA BLOCK BEGIN =======================
@@ -354,15 +354,11 @@ designDecl
 			}
 			//===================== JAVA BLOCK END ========================
 	;
-/*
-includePackage[DesignNode des]
-	:	^('include' fileName=STRING packageDecl[des])
-	;
-	
-packageDecl[DesignNode des]
-	:	^('package' deviceDecl[des]+)
-	;
-*/
+
+infoStruct[Node des, String value]
+  : ^('info' string=STRING {value = $string.text;})
+  ;
+
 /**
  * The deviceDecl rule is called by the design rule.  It makes new device nodes for every device declaration
  * found in the design declaration.
