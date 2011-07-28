@@ -87,7 +87,11 @@ public class Compile {
 	 * Verbose error messages flag
 	 */
 	static boolean verbose = false;
-
+	/**
+	 * Eagle output enable flag 
+	 */
+	static boolean eagle = false;
+	
 	/**
 	 * The main entry point of the phdl Compiler. It accepts *.phdl source files as arguments and
 	 * generates a net list for layout tools, and a bill of material for procurement.
@@ -111,13 +115,16 @@ public class Compile {
 			// turn on verbose mode
 			if (args[i].equals("-v"))
 				verbose = true;
+			// turn on eagle mode
+			if (args[i].equals("-eagle"))
+				eagle = true;
 			if (args[i].equals("?")) {
 				System.out.println(usage);
 				System.exit(1);
 			}
 
 		}
-
+		
 		// Repeat for each source file passed in as an argument
 		for (int i = 0; i < args.length; i++) {
 
@@ -171,14 +178,16 @@ public class Compile {
 				// print out all errors if there were any, and exit abnormally
 				printErrors();
 
+				/*
 				if (dumpEn) {
 					// output a dotty graph before merging nodes
 					for (DesignNode d : walker.getDesignNodes()) {
 						String graphFileName = fileName + "_graph.dot";
 						d.dottyDump(graphFileName);
-						d.printDesignNode();
+						// d.printDesignNode();
 					}
 				}
+				*/
 
 				// call the superNet algorithm on all nets in each design node
 				for (DesignNode d : walker.getDesignNodes()) {
@@ -189,11 +198,12 @@ public class Compile {
 							addWarning(n, "floating net");
 					}
 
-					Generator gen = new Generator(d);
+					Generator gen = new Generator(d, eagle);
 					gen.generateRefDes();
 					gen.generateBoM();
 					gen.generateNetList();
-					gen.generateEagleScript();
+					if (eagle)
+						gen.generateEagleScript();
 				}
 
 				if (dumpEn) {

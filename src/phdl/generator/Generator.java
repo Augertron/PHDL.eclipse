@@ -11,6 +11,7 @@
 
 package phdl.generator;
 
+import phdl.Compile;
 import phdl.graph.DesignNode;
 
 /**
@@ -39,12 +40,13 @@ public class Generator {
 	 * @see BoMGenerator
 	 * @see NetListGenerator
 	 */
-	public Generator(DesignNode design) {
+	public Generator(DesignNode design, boolean eagle) {
 		this.design = design;
 		refDesGen = new RefDesGenerator(design);
 		bomGen = new BoMGenerator(design);
 		netListGen = new NetListGenerator(design, refDesGen.getRefMap());
-		eagleScriptGen = new EagleScriptGenerator(design, refDesGen.getRefMap());
+		if (eagle)
+			eagleScriptGen = new EagleScriptGenerator(design, refDesGen.getRefMap());
 	}
 
 	/**
@@ -62,7 +64,7 @@ public class Generator {
 	 * @see BoMGenerator
 	 */
 	public void generateBoM() {
-		bomGen.outputToFile(design.getName() + ".bom");
+		bomGen.outputToFile(design.getName() + "_bom.csv");
 	}
 
 	/**
