@@ -26,6 +26,7 @@ public class Generator {
 	NetListGenerator netListGen;
 	EagleScriptGenerator eagleScriptGen;
 	BoMGenerator bomGen;
+	XMLGenerator xmlGen;
 	DesignNode design;
 
 	/**
@@ -33,8 +34,7 @@ public class Generator {
 	 * 
 	 * Creates all the generator classes and passes them a DesignNode
 	 * 
-	 * @param design
-	 *            the DesignNode to be processed
+	 * @param design the DesignNode to be processed
 	 * @see DesignNode
 	 * @see RefDesGenerator
 	 * @see BoMGenerator
@@ -45,6 +45,7 @@ public class Generator {
 		refDesGen = new RefDesGenerator(design);
 		bomGen = new BoMGenerator(design);
 		netListGen = new NetListGenerator(design, refDesGen.getRefMap());
+		xmlGen = new XMLGenerator(design);
 		if (eagle)
 			eagleScriptGen = new EagleScriptGenerator(design, refDesGen.getRefMap());
 	}
@@ -64,7 +65,7 @@ public class Generator {
 	 * @see BoMGenerator
 	 */
 	public void generateBoM() {
-		bomGen.outputToFile(design.getName() + "_bom.csv");
+		bomGen.outputToFile(design.getName() + ".bom");
 	}
 
 	/**
@@ -79,9 +80,18 @@ public class Generator {
 	/**
 	 * Generates an Eagle script file based on the name of the DesignNode.
 	 * 
-	 * @ssee EagleScriptGenerator
+	 * @see EagleScriptGenerator
 	 */
 	public void generateEagleScript() {
 		eagleScriptGen.outputToFile(design.getName() + ".scr");
+	}
+	
+	/**
+	 * Generates a Netlist file based on the name of the DesignNode.
+	 * 
+	 * @see NetListGenerator
+	 */
+	public void generateXML() {
+		xmlGen.outputToFile(design.getName() + ".xml");
 	}
 }

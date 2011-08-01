@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g 2011-07-28 12:27:55
+// $ANTLR 3.3 Nov 30, 2010 12:50:56 /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g 2011-08-01 10:23:15
 
 /*
     Copyright (C) 2011  BYU Configurable Computing Lab
@@ -102,7 +102,7 @@ public class PhdlParser extends Parser {
     }
 
     public String[] getTokenNames() { return PhdlParser.tokenNames; }
-    public String getGrammarFileName() { return "C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g"; }
+    public String getGrammarFileName() { return "/fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g"; }
 
 
 
@@ -136,7 +136,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "sourceText"
-    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:159:1: sourceText : ( designDecl )+ EOF ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:159:1: sourceText : ( designDecl )+ EOF ;
     public final PhdlParser.sourceText_return sourceText() throws RecognitionException {
         PhdlParser.sourceText_return retval = new PhdlParser.sourceText_return();
         retval.start = input.LT(1);
@@ -150,12 +150,12 @@ public class PhdlParser extends Parser {
         CommonTree EOF2_tree=null;
 
         try {
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:164:2: ( ( designDecl )+ EOF )
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:164:4: ( designDecl )+ EOF
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:164:2: ( ( designDecl )+ EOF )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:164:4: ( designDecl )+ EOF
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:164:4: ( designDecl )+
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:164:4: ( designDecl )+
             int cnt1=0;
             loop1:
             do {
@@ -169,7 +169,7 @@ public class PhdlParser extends Parser {
 
                 switch (alt1) {
             	case 1 :
-            	    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:164:4: designDecl
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:164:4: designDecl
             	    {
             	    pushFollow(FOLLOW_designDecl_in_sourceText79);
             	    designDecl1=designDecl();
@@ -221,7 +221,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "designDecl"
-    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:167:1: designDecl : 'design' IDENT 'is' ( deviceDecl | netDecl | infoStruct )* 'begin' ( instanceDecl | netAssignment )* 'end' ( 'design' )? ( IDENT )? SEMICOLON ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:167:1: designDecl : 'design' IDENT 'is' ( deviceDecl | netDecl | infoStruct )* 'begin' ( instanceDecl | netAssignment )* 'end' ( 'design' )? ( IDENT )? SEMICOLON ;
     public final PhdlParser.designDecl_return designDecl() throws RecognitionException {
         PhdlParser.designDecl_return retval = new PhdlParser.designDecl_return();
         retval.start = input.LT(1);
@@ -257,8 +257,8 @@ public class PhdlParser extends Parser {
         CommonTree SEMICOLON15_tree=null;
 
         try {
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:175:2: ( 'design' IDENT 'is' ( deviceDecl | netDecl | infoStruct )* 'begin' ( instanceDecl | netAssignment )* 'end' ( 'design' )? ( IDENT )? SEMICOLON )
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:175:4: 'design' IDENT 'is' ( deviceDecl | netDecl | infoStruct )* 'begin' ( instanceDecl | netAssignment )* 'end' ( 'design' )? ( IDENT )? SEMICOLON
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:175:2: ( 'design' IDENT 'is' ( deviceDecl | netDecl | infoStruct )* 'begin' ( instanceDecl | netAssignment )* 'end' ( 'design' )? ( IDENT )? SEMICOLON )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:175:4: 'design' IDENT 'is' ( deviceDecl | netDecl | infoStruct )* 'begin' ( instanceDecl | netAssignment )* 'end' ( 'design' )? ( IDENT )? SEMICOLON
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -271,7 +271,7 @@ public class PhdlParser extends Parser {
             adaptor.addChild(root_0, IDENT4_tree);
 
             string_literal5=(Token)match(input,28,FOLLOW_28_in_designDecl100); 
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:176:3: ( deviceDecl | netDecl | infoStruct )*
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:176:3: ( deviceDecl | netDecl | infoStruct )*
             loop2:
             do {
                 int alt2=4;
@@ -296,7 +296,7 @@ public class PhdlParser extends Parser {
 
                 switch (alt2) {
             	case 1 :
-            	    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:176:4: deviceDecl
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:176:4: deviceDecl
             	    {
             	    pushFollow(FOLLOW_deviceDecl_in_designDecl107);
             	    deviceDecl6=deviceDecl();
@@ -308,7 +308,7 @@ public class PhdlParser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:176:17: netDecl
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:176:17: netDecl
             	    {
             	    pushFollow(FOLLOW_netDecl_in_designDecl111);
             	    netDecl7=netDecl();
@@ -320,7 +320,7 @@ public class PhdlParser extends Parser {
             	    }
             	    break;
             	case 3 :
-            	    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:176:27: infoStruct
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:176:27: infoStruct
             	    {
             	    pushFollow(FOLLOW_infoStruct_in_designDecl115);
             	    infoStruct8=infoStruct();
@@ -341,7 +341,7 @@ public class PhdlParser extends Parser {
             string_literal9_tree = (CommonTree)adaptor.create(string_literal9);
             adaptor.addChild(root_0, string_literal9_tree);
 
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:178:3: ( instanceDecl | netAssignment )*
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:178:3: ( instanceDecl | netAssignment )*
             loop3:
             do {
                 int alt3=3;
@@ -357,7 +357,7 @@ public class PhdlParser extends Parser {
 
                 switch (alt3) {
             	case 1 :
-            	    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:178:4: instanceDecl
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:178:4: instanceDecl
             	    {
             	    pushFollow(FOLLOW_instanceDecl_in_designDecl126);
             	    instanceDecl10=instanceDecl();
@@ -369,7 +369,7 @@ public class PhdlParser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:178:19: netAssignment
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:178:19: netAssignment
             	    {
             	    pushFollow(FOLLOW_netAssignment_in_designDecl130);
             	    netAssignment11=netAssignment();
@@ -387,7 +387,7 @@ public class PhdlParser extends Parser {
             } while (true);
 
             string_literal12=(Token)match(input,30,FOLLOW_30_in_designDecl136); 
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:179:18: ( 'design' )?
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:179:18: ( 'design' )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -396,7 +396,7 @@ public class PhdlParser extends Parser {
             }
             switch (alt4) {
                 case 1 :
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:179:18: 'design'
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:179:18: 'design'
                     {
                     string_literal13=(Token)match(input,27,FOLLOW_27_in_designDecl139); 
 
@@ -405,7 +405,7 @@ public class PhdlParser extends Parser {
 
             }
 
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:179:21: ( IDENT )?
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:179:21: ( IDENT )?
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -414,7 +414,7 @@ public class PhdlParser extends Parser {
             }
             switch (alt5) {
                 case 1 :
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:179:21: IDENT
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:179:21: IDENT
                     {
                     IDENT14=(Token)match(input,IDENT,FOLLOW_IDENT_in_designDecl143); 
                     IDENT14_tree = (CommonTree)adaptor.create(IDENT14);
@@ -454,7 +454,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "deviceDecl"
-    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:182:1: deviceDecl : 'device' IDENT 'is' ( attributeDecl | pinDecl )* 'end' ( 'device' )? ( IDENT )? SEMICOLON ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:182:1: deviceDecl : 'device' IDENT 'is' ( attributeDecl | pinDecl )* 'end' ( 'device' )? ( IDENT )? SEMICOLON ;
     public final PhdlParser.deviceDecl_return deviceDecl() throws RecognitionException {
         PhdlParser.deviceDecl_return retval = new PhdlParser.deviceDecl_return();
         retval.start = input.LT(1);
@@ -482,8 +482,8 @@ public class PhdlParser extends Parser {
         CommonTree SEMICOLON24_tree=null;
 
         try {
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:189:2: ( 'device' IDENT 'is' ( attributeDecl | pinDecl )* 'end' ( 'device' )? ( IDENT )? SEMICOLON )
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:189:4: 'device' IDENT 'is' ( attributeDecl | pinDecl )* 'end' ( 'device' )? ( IDENT )? SEMICOLON
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:189:2: ( 'device' IDENT 'is' ( attributeDecl | pinDecl )* 'end' ( 'device' )? ( IDENT )? SEMICOLON )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:189:4: 'device' IDENT 'is' ( attributeDecl | pinDecl )* 'end' ( 'device' )? ( IDENT )? SEMICOLON
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -496,7 +496,7 @@ public class PhdlParser extends Parser {
             adaptor.addChild(root_0, IDENT17_tree);
 
             string_literal18=(Token)match(input,28,FOLLOW_28_in_deviceDecl166); 
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:190:3: ( attributeDecl | pinDecl )*
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:190:3: ( attributeDecl | pinDecl )*
             loop6:
             do {
                 int alt6=3;
@@ -512,7 +512,7 @@ public class PhdlParser extends Parser {
 
                 switch (alt6) {
             	case 1 :
-            	    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:190:5: attributeDecl
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:190:5: attributeDecl
             	    {
             	    pushFollow(FOLLOW_attributeDecl_in_deviceDecl173);
             	    attributeDecl19=attributeDecl();
@@ -524,7 +524,7 @@ public class PhdlParser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:190:21: pinDecl
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:190:21: pinDecl
             	    {
             	    pushFollow(FOLLOW_pinDecl_in_deviceDecl177);
             	    pinDecl20=pinDecl();
@@ -542,7 +542,7 @@ public class PhdlParser extends Parser {
             } while (true);
 
             string_literal21=(Token)match(input,30,FOLLOW_30_in_deviceDecl184); 
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:191:18: ( 'device' )?
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:191:18: ( 'device' )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -551,7 +551,7 @@ public class PhdlParser extends Parser {
             }
             switch (alt7) {
                 case 1 :
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:191:18: 'device'
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:191:18: 'device'
                     {
                     string_literal22=(Token)match(input,31,FOLLOW_31_in_deviceDecl187); 
 
@@ -560,7 +560,7 @@ public class PhdlParser extends Parser {
 
             }
 
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:191:21: ( IDENT )?
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:191:21: ( IDENT )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -569,7 +569,7 @@ public class PhdlParser extends Parser {
             }
             switch (alt8) {
                 case 1 :
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:191:21: IDENT
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:191:21: IDENT
                     {
                     IDENT23=(Token)match(input,IDENT,FOLLOW_IDENT_in_deviceDecl191); 
                     IDENT23_tree = (CommonTree)adaptor.create(IDENT23);
@@ -609,7 +609,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "attributeDecl"
-    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:194:1: attributeDecl : 'attr' IDENT EQUALS STRING SEMICOLON ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:194:1: attributeDecl : 'attr' IDENT EQUALS STRING SEMICOLON ;
     public final PhdlParser.attributeDecl_return attributeDecl() throws RecognitionException {
         PhdlParser.attributeDecl_return retval = new PhdlParser.attributeDecl_return();
         retval.start = input.LT(1);
@@ -629,8 +629,8 @@ public class PhdlParser extends Parser {
         CommonTree SEMICOLON29_tree=null;
 
         try {
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:199:2: ( 'attr' IDENT EQUALS STRING SEMICOLON )
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:199:4: 'attr' IDENT EQUALS STRING SEMICOLON
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:199:2: ( 'attr' IDENT EQUALS STRING SEMICOLON )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:199:4: 'attr' IDENT EQUALS STRING SEMICOLON
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -675,7 +675,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "pinDecl"
-    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:202:1: pinDecl : type ( sliceDecl )? IDENT EQUALS pinList SEMICOLON ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:202:1: pinDecl : type ( sliceDecl )? IDENT EQUALS pinList SEMICOLON ;
     public final PhdlParser.pinDecl_return pinDecl() throws RecognitionException {
         PhdlParser.pinDecl_return retval = new PhdlParser.pinDecl_return();
         retval.start = input.LT(1);
@@ -697,8 +697,8 @@ public class PhdlParser extends Parser {
         CommonTree SEMICOLON35_tree=null;
 
         try {
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:207:2: ( type ( sliceDecl )? IDENT EQUALS pinList SEMICOLON )
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:207:4: type ( sliceDecl )? IDENT EQUALS pinList SEMICOLON
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:207:2: ( type ( sliceDecl )? IDENT EQUALS pinList SEMICOLON )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:207:4: type ( sliceDecl )? IDENT EQUALS pinList SEMICOLON
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -708,7 +708,7 @@ public class PhdlParser extends Parser {
             state._fsp--;
 
             root_0 = (CommonTree)adaptor.becomeRoot(type30.getTree(), root_0);
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:207:10: ( sliceDecl )?
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:207:10: ( sliceDecl )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -717,7 +717,7 @@ public class PhdlParser extends Parser {
             }
             switch (alt9) {
                 case 1 :
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:207:10: sliceDecl
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:207:10: sliceDecl
                     {
                     pushFollow(FOLLOW_sliceDecl_in_pinDecl236);
                     sliceDecl31=sliceDecl();
@@ -770,7 +770,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "type"
-    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:210:1: type : 'pin' ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:210:1: type : 'pin' ;
     public final PhdlParser.type_return type() throws RecognitionException {
         PhdlParser.type_return retval = new PhdlParser.type_return();
         retval.start = input.LT(1);
@@ -782,8 +782,8 @@ public class PhdlParser extends Parser {
         CommonTree string_literal36_tree=null;
 
         try {
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:214:2: ( 'pin' )
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:214:4: 'pin'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:214:2: ( 'pin' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:214:4: 'pin'
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -818,7 +818,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "netDecl"
-    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:217:1: netDecl : 'net' ( sliceDecl )? IDENT ( COMMA IDENT )* ( netAttributes )? SEMICOLON ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:217:1: netDecl : 'net' ( sliceDecl )? IDENT ( COMMA IDENT )* ( netAttributes )? SEMICOLON ;
     public final PhdlParser.netDecl_return netDecl() throws RecognitionException {
         PhdlParser.netDecl_return retval = new PhdlParser.netDecl_return();
         retval.start = input.LT(1);
@@ -842,8 +842,8 @@ public class PhdlParser extends Parser {
         CommonTree SEMICOLON43_tree=null;
 
         try {
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:222:2: ( 'net' ( sliceDecl )? IDENT ( COMMA IDENT )* ( netAttributes )? SEMICOLON )
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:222:4: 'net' ( sliceDecl )? IDENT ( COMMA IDENT )* ( netAttributes )? SEMICOLON
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:222:2: ( 'net' ( sliceDecl )? IDENT ( COMMA IDENT )* ( netAttributes )? SEMICOLON )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:222:4: 'net' ( sliceDecl )? IDENT ( COMMA IDENT )* ( netAttributes )? SEMICOLON
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -851,7 +851,7 @@ public class PhdlParser extends Parser {
             string_literal37_tree = (CommonTree)adaptor.create(string_literal37);
             root_0 = (CommonTree)adaptor.becomeRoot(string_literal37_tree, root_0);
 
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:222:11: ( sliceDecl )?
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:222:11: ( sliceDecl )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -860,7 +860,7 @@ public class PhdlParser extends Parser {
             }
             switch (alt10) {
                 case 1 :
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:222:11: sliceDecl
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:222:11: sliceDecl
                     {
                     pushFollow(FOLLOW_sliceDecl_in_netDecl277);
                     sliceDecl38=sliceDecl();
@@ -878,7 +878,7 @@ public class PhdlParser extends Parser {
             IDENT39_tree = (CommonTree)adaptor.create(IDENT39);
             adaptor.addChild(root_0, IDENT39_tree);
 
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:222:28: ( COMMA IDENT )*
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:222:28: ( COMMA IDENT )*
             loop11:
             do {
                 int alt11=2;
@@ -891,7 +891,7 @@ public class PhdlParser extends Parser {
 
                 switch (alt11) {
             	case 1 :
-            	    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:222:29: COMMA IDENT
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:222:29: COMMA IDENT
             	    {
             	    COMMA40=(Token)match(input,COMMA,FOLLOW_COMMA_in_netDecl283); 
             	    COMMA40_tree = (CommonTree)adaptor.create(COMMA40);
@@ -910,7 +910,7 @@ public class PhdlParser extends Parser {
                 }
             } while (true);
 
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:222:43: ( netAttributes )?
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:222:43: ( netAttributes )?
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -919,7 +919,7 @@ public class PhdlParser extends Parser {
             }
             switch (alt12) {
                 case 1 :
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:222:43: netAttributes
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:222:43: netAttributes
                     {
                     pushFollow(FOLLOW_netAttributes_in_netDecl289);
                     netAttributes42=netAttributes();
@@ -961,7 +961,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "netAttributes"
-    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:225:1: netAttributes : 'is' ( attributeDecl )* 'end' ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:225:1: netAttributes : 'is' ( attributeDecl )* 'end' ;
     public final PhdlParser.netAttributes_return netAttributes() throws RecognitionException {
         PhdlParser.netAttributes_return retval = new PhdlParser.netAttributes_return();
         retval.start = input.LT(1);
@@ -977,13 +977,13 @@ public class PhdlParser extends Parser {
         CommonTree string_literal46_tree=null;
 
         try {
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:231:2: ( 'is' ( attributeDecl )* 'end' )
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:231:4: 'is' ( attributeDecl )* 'end'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:231:2: ( 'is' ( attributeDecl )* 'end' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:231:4: 'is' ( attributeDecl )* 'end'
             {
             root_0 = (CommonTree)adaptor.nil();
 
             string_literal44=(Token)match(input,28,FOLLOW_28_in_netAttributes307); 
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:231:10: ( attributeDecl )*
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:231:10: ( attributeDecl )*
             loop13:
             do {
                 int alt13=2;
@@ -996,7 +996,7 @@ public class PhdlParser extends Parser {
 
                 switch (alt13) {
             	case 1 :
-            	    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:231:10: attributeDecl
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:231:10: attributeDecl
             	    {
             	    pushFollow(FOLLOW_attributeDecl_in_netAttributes310);
             	    attributeDecl45=attributeDecl();
@@ -1041,7 +1041,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "instanceDecl"
-    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:234:1: instanceDecl : 'inst' ( arrayDecl )? IDENT 'of' IDENT 'is' ( attributeAssignment | pinAssignment | infoStruct )* 'end' ( 'inst' )? ( IDENT )? SEMICOLON ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:234:1: instanceDecl : 'inst' ( arrayDecl )? IDENT 'of' IDENT 'is' ( attributeAssignment | pinAssignment | infoStruct )* 'end' ( 'inst' )? ( IDENT )? SEMICOLON ;
     public final PhdlParser.instanceDecl_return instanceDecl() throws RecognitionException {
         PhdlParser.instanceDecl_return retval = new PhdlParser.instanceDecl_return();
         retval.start = input.LT(1);
@@ -1077,8 +1077,8 @@ public class PhdlParser extends Parser {
         CommonTree SEMICOLON59_tree=null;
 
         try {
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:243:2: ( 'inst' ( arrayDecl )? IDENT 'of' IDENT 'is' ( attributeAssignment | pinAssignment | infoStruct )* 'end' ( 'inst' )? ( IDENT )? SEMICOLON )
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:243:4: 'inst' ( arrayDecl )? IDENT 'of' IDENT 'is' ( attributeAssignment | pinAssignment | infoStruct )* 'end' ( 'inst' )? ( IDENT )? SEMICOLON
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:243:2: ( 'inst' ( arrayDecl )? IDENT 'of' IDENT 'is' ( attributeAssignment | pinAssignment | infoStruct )* 'end' ( 'inst' )? ( IDENT )? SEMICOLON )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:243:4: 'inst' ( arrayDecl )? IDENT 'of' IDENT 'is' ( attributeAssignment | pinAssignment | infoStruct )* 'end' ( 'inst' )? ( IDENT )? SEMICOLON
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -1086,7 +1086,7 @@ public class PhdlParser extends Parser {
             string_literal47_tree = (CommonTree)adaptor.create(string_literal47);
             root_0 = (CommonTree)adaptor.becomeRoot(string_literal47_tree, root_0);
 
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:243:12: ( arrayDecl )?
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:243:12: ( arrayDecl )?
             int alt14=2;
             int LA14_0 = input.LA(1);
 
@@ -1095,7 +1095,7 @@ public class PhdlParser extends Parser {
             }
             switch (alt14) {
                 case 1 :
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:243:12: arrayDecl
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:243:12: arrayDecl
                     {
                     pushFollow(FOLLOW_arrayDecl_in_instanceDecl330);
                     arrayDecl48=arrayDecl();
@@ -1119,14 +1119,14 @@ public class PhdlParser extends Parser {
             adaptor.addChild(root_0, IDENT51_tree);
 
             string_literal52=(Token)match(input,28,FOLLOW_28_in_instanceDecl340); 
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:244:3: ( attributeAssignment | pinAssignment | infoStruct )*
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:244:3: ( attributeAssignment | pinAssignment | infoStruct )*
             loop15:
             do {
                 int alt15=4;
                 alt15 = dfa15.predict(input);
                 switch (alt15) {
             	case 1 :
-            	    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:244:4: attributeAssignment
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:244:4: attributeAssignment
             	    {
             	    pushFollow(FOLLOW_attributeAssignment_in_instanceDecl346);
             	    attributeAssignment53=attributeAssignment();
@@ -1138,7 +1138,7 @@ public class PhdlParser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:244:26: pinAssignment
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:244:26: pinAssignment
             	    {
             	    pushFollow(FOLLOW_pinAssignment_in_instanceDecl350);
             	    pinAssignment54=pinAssignment();
@@ -1150,7 +1150,7 @@ public class PhdlParser extends Parser {
             	    }
             	    break;
             	case 3 :
-            	    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:244:42: infoStruct
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:244:42: infoStruct
             	    {
             	    pushFollow(FOLLOW_infoStruct_in_instanceDecl354);
             	    infoStruct55=infoStruct();
@@ -1168,7 +1168,7 @@ public class PhdlParser extends Parser {
             } while (true);
 
             string_literal56=(Token)match(input,30,FOLLOW_30_in_instanceDecl360); 
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:245:16: ( 'inst' )?
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:245:16: ( 'inst' )?
             int alt16=2;
             int LA16_0 = input.LA(1);
 
@@ -1177,7 +1177,7 @@ public class PhdlParser extends Parser {
             }
             switch (alt16) {
                 case 1 :
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:245:16: 'inst'
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:245:16: 'inst'
                     {
                     string_literal57=(Token)match(input,35,FOLLOW_35_in_instanceDecl363); 
 
@@ -1186,7 +1186,7 @@ public class PhdlParser extends Parser {
 
             }
 
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:245:19: ( IDENT )?
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:245:19: ( IDENT )?
             int alt17=2;
             int LA17_0 = input.LA(1);
 
@@ -1195,7 +1195,7 @@ public class PhdlParser extends Parser {
             }
             switch (alt17) {
                 case 1 :
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:245:19: IDENT
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:245:19: IDENT
                     {
                     IDENT58=(Token)match(input,IDENT,FOLLOW_IDENT_in_instanceDecl367); 
                     IDENT58_tree = (CommonTree)adaptor.create(IDENT58);
@@ -1235,7 +1235,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "infoStruct"
-    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:248:1: infoStruct : 'info' '{' STRING '}' SEMICOLON ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:248:1: infoStruct : 'info' '{' STRING '}' SEMICOLON ;
     public final PhdlParser.infoStruct_return infoStruct() throws RecognitionException {
         PhdlParser.infoStruct_return retval = new PhdlParser.infoStruct_return();
         retval.start = input.LT(1);
@@ -1255,8 +1255,8 @@ public class PhdlParser extends Parser {
         CommonTree SEMICOLON64_tree=null;
 
         try {
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:253:3: ( 'info' '{' STRING '}' SEMICOLON )
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:253:5: 'info' '{' STRING '}' SEMICOLON
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:253:3: ( 'info' '{' STRING '}' SEMICOLON )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:253:5: 'info' '{' STRING '}' SEMICOLON
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -1298,7 +1298,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "attributeAssignment"
-    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:256:1: attributeAssignment : ( 'newattr' )? ( instanceQualifier )? IDENT EQUALS STRING SEMICOLON ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:256:1: attributeAssignment : ( 'newattr' )? ( instanceQualifier )? IDENT EQUALS STRING SEMICOLON ;
     public final PhdlParser.attributeAssignment_return attributeAssignment() throws RecognitionException {
         PhdlParser.attributeAssignment_return retval = new PhdlParser.attributeAssignment_return();
         retval.start = input.LT(1);
@@ -1320,12 +1320,12 @@ public class PhdlParser extends Parser {
         CommonTree SEMICOLON70_tree=null;
 
         try {
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:267:2: ( ( 'newattr' )? ( instanceQualifier )? IDENT EQUALS STRING SEMICOLON )
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:267:5: ( 'newattr' )? ( instanceQualifier )? IDENT EQUALS STRING SEMICOLON
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:267:2: ( ( 'newattr' )? ( instanceQualifier )? IDENT EQUALS STRING SEMICOLON )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:267:5: ( 'newattr' )? ( instanceQualifier )? IDENT EQUALS STRING SEMICOLON
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:267:5: ( 'newattr' )?
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:267:5: ( 'newattr' )?
             int alt18=2;
             int LA18_0 = input.LA(1);
 
@@ -1334,7 +1334,7 @@ public class PhdlParser extends Parser {
             }
             switch (alt18) {
                 case 1 :
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:267:6: 'newattr'
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:267:6: 'newattr'
                     {
                     string_literal65=(Token)match(input,38,FOLLOW_38_in_attributeAssignment413); 
                     string_literal65_tree = (CommonTree)adaptor.create(string_literal65);
@@ -1346,7 +1346,7 @@ public class PhdlParser extends Parser {
 
             }
 
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:267:18: ( instanceQualifier )?
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:267:18: ( instanceQualifier )?
             int alt19=2;
             int LA19_0 = input.LA(1);
 
@@ -1362,7 +1362,7 @@ public class PhdlParser extends Parser {
             }
             switch (alt19) {
                 case 1 :
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:267:18: instanceQualifier
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:267:18: instanceQualifier
                     {
                     pushFollow(FOLLOW_instanceQualifier_in_attributeAssignment417);
                     instanceQualifier66=instanceQualifier();
@@ -1416,7 +1416,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "instanceQualifier"
-    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:270:1: instanceQualifier : ( IDENT | 'this' ) ( arrayList )? PERIOD ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:270:1: instanceQualifier : ( IDENT | 'this' ) ( arrayList )? PERIOD ;
     public final PhdlParser.instanceQualifier_return instanceQualifier() throws RecognitionException {
         PhdlParser.instanceQualifier_return retval = new PhdlParser.instanceQualifier_return();
         retval.start = input.LT(1);
@@ -1432,8 +1432,8 @@ public class PhdlParser extends Parser {
         CommonTree PERIOD73_tree=null;
 
         try {
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:278:2: ( ( IDENT | 'this' ) ( arrayList )? PERIOD )
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:278:4: ( IDENT | 'this' ) ( arrayList )? PERIOD
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:278:2: ( ( IDENT | 'this' ) ( arrayList )? PERIOD )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:278:4: ( IDENT | 'this' ) ( arrayList )? PERIOD
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -1448,7 +1448,7 @@ public class PhdlParser extends Parser {
                 throw mse;
             }
 
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:278:21: ( arrayList )?
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:278:21: ( arrayList )?
             int alt20=2;
             int LA20_0 = input.LA(1);
 
@@ -1457,7 +1457,7 @@ public class PhdlParser extends Parser {
             }
             switch (alt20) {
                 case 1 :
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:278:21: arrayList
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:278:21: arrayList
                     {
                     pushFollow(FOLLOW_arrayList_in_instanceQualifier450);
                     arrayList72=arrayList();
@@ -1502,7 +1502,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "pinAssignment"
-    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:281:1: pinAssignment : ( instanceQualifier )? IDENT ( sliceList )? EQUALS concatenation SEMICOLON ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:281:1: pinAssignment : ( instanceQualifier )? IDENT ( sliceList )? EQUALS concatenation SEMICOLON ;
     public final PhdlParser.pinAssignment_return pinAssignment() throws RecognitionException {
         PhdlParser.pinAssignment_return retval = new PhdlParser.pinAssignment_return();
         retval.start = input.LT(1);
@@ -1524,12 +1524,12 @@ public class PhdlParser extends Parser {
         CommonTree SEMICOLON79_tree=null;
 
         try {
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:289:2: ( ( instanceQualifier )? IDENT ( sliceList )? EQUALS concatenation SEMICOLON )
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:289:4: ( instanceQualifier )? IDENT ( sliceList )? EQUALS concatenation SEMICOLON
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:289:2: ( ( instanceQualifier )? IDENT ( sliceList )? EQUALS concatenation SEMICOLON )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:289:4: ( instanceQualifier )? IDENT ( sliceList )? EQUALS concatenation SEMICOLON
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:289:4: ( instanceQualifier )?
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:289:4: ( instanceQualifier )?
             int alt21=2;
             int LA21_0 = input.LA(1);
 
@@ -1545,7 +1545,7 @@ public class PhdlParser extends Parser {
             }
             switch (alt21) {
                 case 1 :
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:289:4: instanceQualifier
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:289:4: instanceQualifier
                     {
                     pushFollow(FOLLOW_instanceQualifier_in_pinAssignment469);
                     instanceQualifier74=instanceQualifier();
@@ -1563,7 +1563,7 @@ public class PhdlParser extends Parser {
             IDENT75_tree = (CommonTree)adaptor.create(IDENT75);
             adaptor.addChild(root_0, IDENT75_tree);
 
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:289:29: ( sliceList )?
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:289:29: ( sliceList )?
             int alt22=2;
             int LA22_0 = input.LA(1);
 
@@ -1572,7 +1572,7 @@ public class PhdlParser extends Parser {
             }
             switch (alt22) {
                 case 1 :
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:289:29: sliceList
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:289:29: sliceList
                     {
                     pushFollow(FOLLOW_sliceList_in_pinAssignment474);
                     sliceList76=sliceList();
@@ -1624,7 +1624,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "netAssignment"
-    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:292:1: netAssignment : IDENT ( sliceList )? EQUALS concatenation SEMICOLON ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:292:1: netAssignment : IDENT ( sliceList )? EQUALS concatenation SEMICOLON ;
     public final PhdlParser.netAssignment_return netAssignment() throws RecognitionException {
         PhdlParser.netAssignment_return retval = new PhdlParser.netAssignment_return();
         retval.start = input.LT(1);
@@ -1644,8 +1644,8 @@ public class PhdlParser extends Parser {
         CommonTree SEMICOLON84_tree=null;
 
         try {
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:297:2: ( IDENT ( sliceList )? EQUALS concatenation SEMICOLON )
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:297:4: IDENT ( sliceList )? EQUALS concatenation SEMICOLON
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:297:2: ( IDENT ( sliceList )? EQUALS concatenation SEMICOLON )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:297:4: IDENT ( sliceList )? EQUALS concatenation SEMICOLON
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -1653,7 +1653,7 @@ public class PhdlParser extends Parser {
             IDENT80_tree = (CommonTree)adaptor.create(IDENT80);
             adaptor.addChild(root_0, IDENT80_tree);
 
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:297:10: ( sliceList )?
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:297:10: ( sliceList )?
             int alt23=2;
             int LA23_0 = input.LA(1);
 
@@ -1662,7 +1662,7 @@ public class PhdlParser extends Parser {
             }
             switch (alt23) {
                 case 1 :
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:297:10: sliceList
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:297:10: sliceList
                     {
                     pushFollow(FOLLOW_sliceList_in_netAssignment498);
                     sliceList81=sliceList();
@@ -1714,7 +1714,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "concatenation"
-    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:300:1: concatenation : ( ( ( IDENT ( sliceList )? ) ( AMPERSAND IDENT ( sliceList )? )* ) | ( LEFTANGLE IDENT ( sliceList )? RIGHTANGLE ) | 'open' );
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:300:1: concatenation : ( ( ( IDENT ( sliceList )? ) ( AMPERSAND IDENT ( sliceList )? )* ) | ( LEFTANGLE IDENT ( sliceList )? RIGHTANGLE ) | 'open' );
     public final PhdlParser.concatenation_return concatenation() throws RecognitionException {
         PhdlParser.concatenation_return retval = new PhdlParser.concatenation_return();
         retval.start = input.LT(1);
@@ -1744,7 +1744,7 @@ public class PhdlParser extends Parser {
         CommonTree string_literal94_tree=null;
 
         try {
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:306:2: ( ( ( IDENT ( sliceList )? ) ( AMPERSAND IDENT ( sliceList )? )* ) | ( LEFTANGLE IDENT ( sliceList )? RIGHTANGLE ) | 'open' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:306:2: ( ( ( IDENT ( sliceList )? ) ( AMPERSAND IDENT ( sliceList )? )* ) | ( LEFTANGLE IDENT ( sliceList )? RIGHTANGLE ) | 'open' )
             int alt28=3;
             switch ( input.LA(1) ) {
             case IDENT:
@@ -1771,21 +1771,21 @@ public class PhdlParser extends Parser {
 
             switch (alt28) {
                 case 1 :
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:306:4: ( ( IDENT ( sliceList )? ) ( AMPERSAND IDENT ( sliceList )? )* )
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:306:4: ( ( IDENT ( sliceList )? ) ( AMPERSAND IDENT ( sliceList )? )* )
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:306:4: ( ( IDENT ( sliceList )? ) ( AMPERSAND IDENT ( sliceList )? )* )
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:306:5: ( IDENT ( sliceList )? ) ( AMPERSAND IDENT ( sliceList )? )*
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:306:4: ( ( IDENT ( sliceList )? ) ( AMPERSAND IDENT ( sliceList )? )* )
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:306:5: ( IDENT ( sliceList )? ) ( AMPERSAND IDENT ( sliceList )? )*
                     {
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:306:5: ( IDENT ( sliceList )? )
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:306:6: IDENT ( sliceList )?
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:306:5: ( IDENT ( sliceList )? )
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:306:6: IDENT ( sliceList )?
                     {
                     IDENT85=(Token)match(input,IDENT,FOLLOW_IDENT_in_concatenation523); 
                     IDENT85_tree = (CommonTree)adaptor.create(IDENT85);
                     adaptor.addChild(root_0, IDENT85_tree);
 
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:306:12: ( sliceList )?
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:306:12: ( sliceList )?
                     int alt24=2;
                     int LA24_0 = input.LA(1);
 
@@ -1794,7 +1794,7 @@ public class PhdlParser extends Parser {
                     }
                     switch (alt24) {
                         case 1 :
-                            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:306:12: sliceList
+                            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:306:12: sliceList
                             {
                             pushFollow(FOLLOW_sliceList_in_concatenation525);
                             sliceList86=sliceList();
@@ -1811,7 +1811,7 @@ public class PhdlParser extends Parser {
 
                     }
 
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:306:24: ( AMPERSAND IDENT ( sliceList )? )*
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:306:24: ( AMPERSAND IDENT ( sliceList )? )*
                     loop26:
                     do {
                         int alt26=2;
@@ -1824,14 +1824,14 @@ public class PhdlParser extends Parser {
 
                         switch (alt26) {
                     	case 1 :
-                    	    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:306:25: AMPERSAND IDENT ( sliceList )?
+                    	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:306:25: AMPERSAND IDENT ( sliceList )?
                     	    {
                     	    AMPERSAND87=(Token)match(input,AMPERSAND,FOLLOW_AMPERSAND_in_concatenation530); 
                     	    IDENT88=(Token)match(input,IDENT,FOLLOW_IDENT_in_concatenation533); 
                     	    IDENT88_tree = (CommonTree)adaptor.create(IDENT88);
                     	    adaptor.addChild(root_0, IDENT88_tree);
 
-                    	    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:306:42: ( sliceList )?
+                    	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:306:42: ( sliceList )?
                     	    int alt25=2;
                     	    int LA25_0 = input.LA(1);
 
@@ -1840,7 +1840,7 @@ public class PhdlParser extends Parser {
                     	    }
                     	    switch (alt25) {
                     	        case 1 :
-                    	            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:306:42: sliceList
+                    	            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:306:42: sliceList
                     	            {
                     	            pushFollow(FOLLOW_sliceList_in_concatenation535);
                     	            sliceList89=sliceList();
@@ -1870,12 +1870,12 @@ public class PhdlParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:307:4: ( LEFTANGLE IDENT ( sliceList )? RIGHTANGLE )
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:307:4: ( LEFTANGLE IDENT ( sliceList )? RIGHTANGLE )
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:307:4: ( LEFTANGLE IDENT ( sliceList )? RIGHTANGLE )
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:307:5: LEFTANGLE IDENT ( sliceList )? RIGHTANGLE
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:307:4: ( LEFTANGLE IDENT ( sliceList )? RIGHTANGLE )
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:307:5: LEFTANGLE IDENT ( sliceList )? RIGHTANGLE
                     {
                     LEFTANGLE90=(Token)match(input,LEFTANGLE,FOLLOW_LEFTANGLE_in_concatenation547); 
                     LEFTANGLE90_tree = (CommonTree)adaptor.create(LEFTANGLE90);
@@ -1885,7 +1885,7 @@ public class PhdlParser extends Parser {
                     IDENT91_tree = (CommonTree)adaptor.create(IDENT91);
                     adaptor.addChild(root_0, IDENT91_tree);
 
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:307:21: ( sliceList )?
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:307:21: ( sliceList )?
                     int alt27=2;
                     int LA27_0 = input.LA(1);
 
@@ -1894,7 +1894,7 @@ public class PhdlParser extends Parser {
                     }
                     switch (alt27) {
                         case 1 :
-                            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:307:21: sliceList
+                            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:307:21: sliceList
                             {
                             pushFollow(FOLLOW_sliceList_in_concatenation551);
                             sliceList92=sliceList();
@@ -1916,7 +1916,7 @@ public class PhdlParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:308:5: 'open'
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:308:5: 'open'
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -1953,7 +1953,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "pinList"
-    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:311:1: pinList : LEFTBRACE ( IDENT | INTEGER ) ( COMMA ( IDENT | INTEGER ) )* RIGHTBRACE ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:311:1: pinList : LEFTBRACE ( IDENT | INTEGER ) ( COMMA ( IDENT | INTEGER ) )* RIGHTBRACE ;
     public final PhdlParser.pinList_return pinList() throws RecognitionException {
         PhdlParser.pinList_return retval = new PhdlParser.pinList_return();
         retval.start = input.LT(1);
@@ -1973,8 +1973,8 @@ public class PhdlParser extends Parser {
         CommonTree RIGHTBRACE99_tree=null;
 
         try {
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:316:2: ( LEFTBRACE ( IDENT | INTEGER ) ( COMMA ( IDENT | INTEGER ) )* RIGHTBRACE )
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:316:5: LEFTBRACE ( IDENT | INTEGER ) ( COMMA ( IDENT | INTEGER ) )* RIGHTBRACE
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:316:2: ( LEFTBRACE ( IDENT | INTEGER ) ( COMMA ( IDENT | INTEGER ) )* RIGHTBRACE )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:316:5: LEFTBRACE ( IDENT | INTEGER ) ( COMMA ( IDENT | INTEGER ) )* RIGHTBRACE
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -1990,7 +1990,7 @@ public class PhdlParser extends Parser {
                 throw mse;
             }
 
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:316:34: ( COMMA ( IDENT | INTEGER ) )*
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:316:34: ( COMMA ( IDENT | INTEGER ) )*
             loop29:
             do {
                 int alt29=2;
@@ -2003,7 +2003,7 @@ public class PhdlParser extends Parser {
 
                 switch (alt29) {
             	case 1 :
-            	    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:316:35: COMMA ( IDENT | INTEGER )
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:316:35: COMMA ( IDENT | INTEGER )
             	    {
             	    COMMA97=(Token)match(input,COMMA,FOLLOW_COMMA_in_pinList589); 
             	    set98=(Token)input.LT(1);
@@ -2054,7 +2054,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "sliceList"
-    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:319:1: sliceList : LEFTBRACKET INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? ) RIGHTBRACKET ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:319:1: sliceList : LEFTBRACKET INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? ) RIGHTBRACKET ;
     public final PhdlParser.sliceList_return sliceList() throws RecognitionException {
         PhdlParser.sliceList_return retval = new PhdlParser.sliceList_return();
         retval.start = input.LT(1);
@@ -2082,8 +2082,8 @@ public class PhdlParser extends Parser {
         CommonTree RIGHTBRACKET108_tree=null;
 
         try {
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:325:2: ( LEFTBRACKET INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? ) RIGHTBRACKET )
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:325:5: LEFTBRACKET INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? ) RIGHTBRACKET
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:325:2: ( LEFTBRACKET INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? ) RIGHTBRACKET )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:325:5: LEFTBRACKET INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? ) RIGHTBRACKET
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -2095,7 +2095,7 @@ public class PhdlParser extends Parser {
             INTEGER101_tree = (CommonTree)adaptor.create(INTEGER101);
             adaptor.addChild(root_0, INTEGER101_tree);
 
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:325:25: ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:325:25: ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? )
             int alt32=2;
             int LA32_0 = input.LA(1);
 
@@ -2113,10 +2113,10 @@ public class PhdlParser extends Parser {
             }
             switch (alt32) {
                 case 1 :
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:325:26: ( COLON INTEGER )
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:325:26: ( COLON INTEGER )
                     {
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:325:26: ( COLON INTEGER )
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:325:27: COLON INTEGER
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:325:26: ( COLON INTEGER )
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:325:27: COLON INTEGER
                     {
                     COLON102=(Token)match(input,COLON,FOLLOW_COLON_in_sliceList624); 
                     COLON102_tree = (CommonTree)adaptor.create(COLON102);
@@ -2133,9 +2133,9 @@ public class PhdlParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:325:45: ( COMMA INTEGER ( COMMA INTEGER )* )?
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:325:45: ( COMMA INTEGER ( COMMA INTEGER )* )?
                     {
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:325:45: ( COMMA INTEGER ( COMMA INTEGER )* )?
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:325:45: ( COMMA INTEGER ( COMMA INTEGER )* )?
                     int alt31=2;
                     int LA31_0 = input.LA(1);
 
@@ -2144,7 +2144,7 @@ public class PhdlParser extends Parser {
                     }
                     switch (alt31) {
                         case 1 :
-                            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:325:46: COMMA INTEGER ( COMMA INTEGER )*
+                            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:325:46: COMMA INTEGER ( COMMA INTEGER )*
                             {
                             COMMA104=(Token)match(input,COMMA,FOLLOW_COMMA_in_sliceList633); 
                             COMMA104_tree = (CommonTree)adaptor.create(COMMA104);
@@ -2154,7 +2154,7 @@ public class PhdlParser extends Parser {
                             INTEGER105_tree = (CommonTree)adaptor.create(INTEGER105);
                             adaptor.addChild(root_0, INTEGER105_tree);
 
-                            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:325:61: ( COMMA INTEGER )*
+                            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:325:61: ( COMMA INTEGER )*
                             loop30:
                             do {
                                 int alt30=2;
@@ -2167,7 +2167,7 @@ public class PhdlParser extends Parser {
 
                                 switch (alt30) {
                             	case 1 :
-                            	    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:325:62: COMMA INTEGER
+                            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:325:62: COMMA INTEGER
                             	    {
                             	    COMMA106=(Token)match(input,COMMA,FOLLOW_COMMA_in_sliceList639); 
                             	    INTEGER107=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_sliceList642); 
@@ -2223,7 +2223,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "sliceDecl"
-    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:328:1: sliceDecl : LEFTBRACKET INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER )+ ) RIGHTBRACKET ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:328:1: sliceDecl : LEFTBRACKET INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER )+ ) RIGHTBRACKET ;
     public final PhdlParser.sliceDecl_return sliceDecl() throws RecognitionException {
         PhdlParser.sliceDecl_return retval = new PhdlParser.sliceDecl_return();
         retval.start = input.LT(1);
@@ -2247,8 +2247,8 @@ public class PhdlParser extends Parser {
         CommonTree RIGHTBRACKET115_tree=null;
 
         try {
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:333:2: ( LEFTBRACKET INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER )+ ) RIGHTBRACKET )
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:333:4: LEFTBRACKET INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER )+ ) RIGHTBRACKET
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:333:2: ( LEFTBRACKET INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER )+ ) RIGHTBRACKET )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:333:4: LEFTBRACKET INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER )+ ) RIGHTBRACKET
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -2260,7 +2260,7 @@ public class PhdlParser extends Parser {
             INTEGER110_tree = (CommonTree)adaptor.create(INTEGER110);
             adaptor.addChild(root_0, INTEGER110_tree);
 
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:333:24: ( ( COLON INTEGER ) | ( COMMA INTEGER )+ )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:333:24: ( ( COLON INTEGER ) | ( COMMA INTEGER )+ )
             int alt34=2;
             int LA34_0 = input.LA(1);
 
@@ -2278,10 +2278,10 @@ public class PhdlParser extends Parser {
             }
             switch (alt34) {
                 case 1 :
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:333:25: ( COLON INTEGER )
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:333:25: ( COLON INTEGER )
                     {
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:333:25: ( COLON INTEGER )
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:333:26: COLON INTEGER
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:333:25: ( COLON INTEGER )
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:333:26: COLON INTEGER
                     {
                     COLON111=(Token)match(input,COLON,FOLLOW_COLON_in_sliceDecl669); 
                     COLON111_tree = (CommonTree)adaptor.create(COLON111);
@@ -2298,9 +2298,9 @@ public class PhdlParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:333:44: ( COMMA INTEGER )+
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:333:44: ( COMMA INTEGER )+
                     {
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:333:44: ( COMMA INTEGER )+
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:333:44: ( COMMA INTEGER )+
                     int cnt33=0;
                     loop33:
                     do {
@@ -2314,7 +2314,7 @@ public class PhdlParser extends Parser {
 
                         switch (alt33) {
                     	case 1 :
-                    	    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:333:45: COMMA INTEGER
+                    	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:333:45: COMMA INTEGER
                     	    {
                     	    COMMA113=(Token)match(input,COMMA,FOLLOW_COMMA_in_sliceDecl678); 
                     	    COMMA113_tree = (CommonTree)adaptor.create(COMMA113);
@@ -2371,7 +2371,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "arrayList"
-    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:336:1: arrayList : LEFTPAREN INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? ) RIGHTPAREN ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:336:1: arrayList : LEFTPAREN INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? ) RIGHTPAREN ;
     public final PhdlParser.arrayList_return arrayList() throws RecognitionException {
         PhdlParser.arrayList_return retval = new PhdlParser.arrayList_return();
         retval.start = input.LT(1);
@@ -2399,8 +2399,8 @@ public class PhdlParser extends Parser {
         CommonTree RIGHTPAREN124_tree=null;
 
         try {
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:341:2: ( LEFTPAREN INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? ) RIGHTPAREN )
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:341:5: LEFTPAREN INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? ) RIGHTPAREN
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:341:2: ( LEFTPAREN INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? ) RIGHTPAREN )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:341:5: LEFTPAREN INTEGER ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? ) RIGHTPAREN
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -2412,7 +2412,7 @@ public class PhdlParser extends Parser {
             INTEGER117_tree = (CommonTree)adaptor.create(INTEGER117);
             adaptor.addChild(root_0, INTEGER117_tree);
 
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:341:23: ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:341:23: ( ( COLON INTEGER ) | ( COMMA INTEGER ( COMMA INTEGER )* )? )
             int alt37=2;
             int LA37_0 = input.LA(1);
 
@@ -2430,10 +2430,10 @@ public class PhdlParser extends Parser {
             }
             switch (alt37) {
                 case 1 :
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:341:24: ( COLON INTEGER )
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:341:24: ( COLON INTEGER )
                     {
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:341:24: ( COLON INTEGER )
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:341:25: COLON INTEGER
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:341:24: ( COLON INTEGER )
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:341:25: COLON INTEGER
                     {
                     COLON118=(Token)match(input,COLON,FOLLOW_COLON_in_arrayList708); 
                     COLON118_tree = (CommonTree)adaptor.create(COLON118);
@@ -2450,9 +2450,9 @@ public class PhdlParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:341:43: ( COMMA INTEGER ( COMMA INTEGER )* )?
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:341:43: ( COMMA INTEGER ( COMMA INTEGER )* )?
                     {
-                    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:341:43: ( COMMA INTEGER ( COMMA INTEGER )* )?
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:341:43: ( COMMA INTEGER ( COMMA INTEGER )* )?
                     int alt36=2;
                     int LA36_0 = input.LA(1);
 
@@ -2461,7 +2461,7 @@ public class PhdlParser extends Parser {
                     }
                     switch (alt36) {
                         case 1 :
-                            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:341:44: COMMA INTEGER ( COMMA INTEGER )*
+                            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:341:44: COMMA INTEGER ( COMMA INTEGER )*
                             {
                             COMMA120=(Token)match(input,COMMA,FOLLOW_COMMA_in_arrayList717); 
                             COMMA120_tree = (CommonTree)adaptor.create(COMMA120);
@@ -2471,7 +2471,7 @@ public class PhdlParser extends Parser {
                             INTEGER121_tree = (CommonTree)adaptor.create(INTEGER121);
                             adaptor.addChild(root_0, INTEGER121_tree);
 
-                            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:341:59: ( COMMA INTEGER )*
+                            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:341:59: ( COMMA INTEGER )*
                             loop35:
                             do {
                                 int alt35=2;
@@ -2484,7 +2484,7 @@ public class PhdlParser extends Parser {
 
                                 switch (alt35) {
                             	case 1 :
-                            	    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:341:60: COMMA INTEGER
+                            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:341:60: COMMA INTEGER
                             	    {
                             	    COMMA122=(Token)match(input,COMMA,FOLLOW_COMMA_in_arrayList723); 
                             	    INTEGER123=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_arrayList726); 
@@ -2540,7 +2540,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "arrayDecl"
-    // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:344:1: arrayDecl : LEFTPAREN INTEGER COLON INTEGER RIGHTPAREN ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:344:1: arrayDecl : LEFTPAREN INTEGER COLON INTEGER RIGHTPAREN ;
     public final PhdlParser.arrayDecl_return arrayDecl() throws RecognitionException {
         PhdlParser.arrayDecl_return retval = new PhdlParser.arrayDecl_return();
         retval.start = input.LT(1);
@@ -2560,8 +2560,8 @@ public class PhdlParser extends Parser {
         CommonTree RIGHTPAREN129_tree=null;
 
         try {
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:349:2: ( LEFTPAREN INTEGER COLON INTEGER RIGHTPAREN )
-            // C:\\Users\\RichardAllen\\workspace\\PHDLCompiler\\src\\phdl\\grammar\\Phdl.g:349:4: LEFTPAREN INTEGER COLON INTEGER RIGHTPAREN
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:349:2: ( LEFTPAREN INTEGER COLON INTEGER RIGHTPAREN )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:349:4: LEFTPAREN INTEGER COLON INTEGER RIGHTPAREN
             {
             root_0 = (CommonTree)adaptor.nil();
 
