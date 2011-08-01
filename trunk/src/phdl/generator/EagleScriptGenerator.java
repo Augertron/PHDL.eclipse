@@ -41,6 +41,7 @@ public class EagleScriptGenerator {
 		contents = "# Auto Generated EAGLE PCB script from phdl source: " + design.getFileName()
 			+ "\n\n";
 		contents += "SET UNDO_LOG OFF;\n\n";
+
 		contents += "# Added parts #\n\n";
 
 		// place the parts in an arbitrary grid pattern on an empty board
@@ -79,20 +80,20 @@ public class EagleScriptGenerator {
 			}
 			contents += "\n";
 		}
-		contents += "\nSET UNDO_LOG ON\n\n # End Script #\n";
+		contents += "\nSET UNDO_LOG ON;\nRATSNEST;\n\n # End Script #\n";
 	}
 
 	/**
-	 * Returns the NetList string.
+	 * Returns the eagleScript string.
 	 * 
-	 * @return a string representation of the NetList
+	 * @return a string representation of the eagleScript
 	 */
 	public String getContents() {
 		return contents;
 	}
 
 	/**
-	 * Generates an .asc file representation of the NetList.
+	 * Generates an .asc file representation of the eagleScript.
 	 * 
 	 * @param fileName
 	 *            the name of the file to write to

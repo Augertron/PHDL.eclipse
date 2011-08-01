@@ -88,10 +88,10 @@ public class Compile {
 	 */
 	static boolean verbose = false;
 	/**
-	 * Eagle output enable flag 
+	 * Eagle output enable flag
 	 */
 	static boolean eagle = false;
-	
+
 	/**
 	 * The main entry point of the phdl Compiler. It accepts *.phdl source files as arguments and
 	 * generates a net list for layout tools, and a bill of material for procurement.
@@ -116,7 +116,7 @@ public class Compile {
 			if (args[i].equals("-v"))
 				verbose = true;
 			// turn on eagle mode
-			if (args[i].equals("-eagle"))
+			if (args[i].equals("-e"))
 				eagle = true;
 			if (args[i].equals("?")) {
 				System.out.println(usage);
@@ -124,7 +124,7 @@ public class Compile {
 			}
 
 		}
-		
+
 		// Repeat for each source file passed in as an argument
 		for (int i = 0; i < args.length; i++) {
 
@@ -179,15 +179,10 @@ public class Compile {
 				printErrors();
 
 				/*
-				if (dumpEn) {
-					// output a dotty graph before merging nodes
-					for (DesignNode d : walker.getDesignNodes()) {
-						String graphFileName = fileName + "_graph.dot";
-						d.dottyDump(graphFileName);
-						// d.printDesignNode();
-					}
-				}
-				*/
+				 * if (dumpEn) { // output a dotty graph before merging nodes for (DesignNode d :
+				 * walker.getDesignNodes()) { String graphFileName = fileName + "_graph.dot";
+				 * d.dottyDump(graphFileName); // d.printDesignNode(); } }
+				 */
 
 				// call the superNet algorithm on all nets in each design node
 				for (DesignNode d : walker.getDesignNodes()) {

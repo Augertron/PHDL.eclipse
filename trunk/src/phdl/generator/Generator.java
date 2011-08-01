@@ -11,7 +11,6 @@
 
 package phdl.generator;
 
-import phdl.Compile;
 import phdl.graph.DesignNode;
 
 /**
@@ -34,7 +33,8 @@ public class Generator {
 	 * 
 	 * Creates all the generator classes and passes them a DesignNode
 	 * 
-	 * @param design the DesignNode to be processed
+	 * @param design
+	 *            the DesignNode to be processed
 	 * @see DesignNode
 	 * @see RefDesGenerator
 	 * @see BoMGenerator
@@ -45,7 +45,7 @@ public class Generator {
 		refDesGen = new RefDesGenerator(design);
 		bomGen = new BoMGenerator(design);
 		netListGen = new NetListGenerator(design, refDesGen.getRefMap());
-		xmlGen = new XMLGenerator(design);
+		// xmlGen = new XMLGenerator(design);
 		if (eagle)
 			eagleScriptGen = new EagleScriptGenerator(design, refDesGen.getRefMap());
 	}
@@ -85,7 +85,7 @@ public class Generator {
 	public void generateEagleScript() {
 		eagleScriptGen.outputToFile(design.getName() + ".scr");
 	}
-	
+
 	/**
 	 * Generates a Netlist file based on the name of the DesignNode.
 	 * 
