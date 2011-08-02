@@ -56,6 +56,7 @@ public class XMLGenerator {
 		for (InstanceNode i : design.getInstances()) {
 			sb.append("\n\t<instance>");
 			sb.append("\n\t\t<name>" + i.getName() + "</name>");
+			sb.append("\n\t\t<refDes>" + i.getRefDes() + "</refDes>");
 			sb.append("\n\t\t<device_name>" + i.getDevice().getName() + "</device_name>");
 			for (AttributeNode a : i.getAttributes()) {
 				sb.append("\n\t\t<attribute>");
@@ -64,14 +65,12 @@ public class XMLGenerator {
 				sb.append("\n\t\t</attribute>");
 			}
 			for (PinNode p : i.getPins()) {
-				sb.append("\n\t\t<pin>");
-				sb.append("\n\t\t\t<name>" + p.getName() + "</name>");
-				sb.append("\n\t\t\t<net>" + p.getNet().getName() + "</net>");
-				sb.append("\n\t\t</pin>");
+				sb.append("\n\t\t<pinname>" + p.getName() + "</pinname>");
+				sb.append("\n\t\t\t<netname>" + p.getNet().getName() + "</netname>");
 			}
 			sb.append("\n\t</instance>");
 		}
-		sb.append("\n</device>");
+		sb.append("\n</design>");
 		xml = sb.toString();
 	}
 

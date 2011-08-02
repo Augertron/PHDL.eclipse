@@ -194,12 +194,12 @@ public class Compile {
 					}
 
 					Generator gen = new Generator(d, eagle);
+					
 					gen.generateRefDes();
 					gen.generateBoM();
 					gen.generateNetList();
 					if (eagle)
 						gen.generateEagleScript();
-					gen.generateXML();
 				}
 
 				if (dumpEn) {
@@ -216,7 +216,6 @@ public class Compile {
 				errors.add("ERROR: " + e.getStackTrace());
 				// print out any parsing errors, and do not continue on.
 				printErrors();
-
 			}
 
 			// print out all warnings if they exist.
