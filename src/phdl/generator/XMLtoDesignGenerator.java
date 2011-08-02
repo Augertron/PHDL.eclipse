@@ -13,11 +13,11 @@ import phdl.graph.InstanceNode;
 import phdl.graph.NetNode;
 import phdl.graph.PinNode;
 
-public class DesignGraphGenerator {
+public class XMLtoDesignGenerator {
 
-	private List<DesignNode> designs = new LinkedList<DesignNode>();
+	private DesignNode design = new DesignNode();
 	
-	public DesignGraphGenerator(String fileName) {
+	public XMLtoDesignGenerator(String fileName) {
 		try {
 		    BufferedReader in = new BufferedReader(new FileReader(fileName));
 		    String line;
@@ -33,10 +33,9 @@ public class DesignGraphGenerator {
 		}
 	}
 	
-	public List<DesignNode> getDesigns() {
-		return designs;
+	public DesignNode getDesign() {
+		return design;
 	}
-	
 	
 	private void process(String xml) {
 		DesignNode curDesign = null;
@@ -53,16 +52,14 @@ public class DesignGraphGenerator {
 			if (remaining.startsWith("<")) {
 				 if (remaining.charAt(1) == '/') {
 					 int endangle = remaining.indexOf('>');
-					 System.out.println("Cur Pos: " + pos + "\tEndangle: " + endangle);
 					 String object = remaining.substring(2, endangle);
 					 String stackObj = stack.removeFirst();
-					 System.out.println("\tEnd Tag: " + object);
 					 if (!object.equals(stackObj)) {
 						 System.err.println("Unbalanced Tag! - Attempting to close " + object + " but the next tag to be closed was " + stackObj);
 						 System.exit(1);
 					 }
 					 if (stackObj.equals("design")) {
-						 designs.add(curDesign);
+						 design = curDesign;
 						 curDesign = null;
 					 }
 					 else if (stackObj.equals("device")) {
@@ -85,21 +82,24 @@ public class DesignGraphGenerator {
 						 if (curDevice != null) {
 							 curDevice.addPin(curPin);
 						 }
-						 else if (curInst != null) {
-							 curInst.addPin(curPin);
-						 }
+						 curPin = null;
+					 }
+					 else if (stackObj.equals("netname")) {
 						 curPin = null;
 					 }
 					 else if (stackObj.equals("net")) {
 						 curDesign.addNet(curNet);
+						 curNet = null;
+					 }
+					 else if (stackObj.equals("instance")) {
+						 curDesign.addInstance(curInst);
+						 curInst = null;
 					 }
 					 pos += endangle;
 				 }
 				 else {
 					 int endangle = remaining.indexOf('>');
-					 System.out.println("Cur Pos: " + pos + "\tEndangle: " + endangle);
 					 String object = remaining.substring(1, endangle);
-					 System.out.println("Start Tag: " + object);
 					 pos += endangle;
 					 stack.addFirst(object);
 					 if (object.equals("design")) {
@@ -123,16 +123,39 @@ public class DesignGraphGenerator {
 							 System.exit(1);
 						 }
 					 }
+					 if (object.equals("instance")) {
+						 curInst = new InstanceNode(curDesign);
+					 }
+					 if (object.equals("refDes")) {
+						 String top = stack.get(1);
+						 int nextangle = remaining.indexOf('<', endangle);
+						 String ref = remaining.substring(endangle+1, nextangle);
+						 if (top.equals("instance")) {
+							 curInst.setRefDes(ref);
+						 }
+					 }
 					 if (object.equals("pin")) {
 						 if (curDevice != null) {
 							 curPin = new PinNode(curDevice);
 						 }
-						 else if (curInst != null) {
-							 curPin = new PinNode(curInst);
-						 }
 						 else {
 							 System.err.println("Invalid pin placement");
 							 System.exit(1);
+						 }
+					 }
+					 if (object.equals("pinname")) {
+						 int nextangle = remaining.indexOf('<', endangle);
+						 String name = remaining.substring(endangle+1, nextangle);
+						 if (curInst != null) {
+							 for (PinNode p : curInst.getDevice().getPins()) {
+								 if (p.getName().equals(name)) {
+									 curPin = new PinNode(p, curInst);
+									 break;
+								 }
+							 }
+						 }
+						 else {
+							 System.err.println("Invalid pinname placement");
 						 }
 					 }
 					 if (object.equals("net")) {
@@ -145,8 +168,8 @@ public class DesignGraphGenerator {
 						 }
 					 }
 					 if (object.equals("name")) {
-						 String top = stack.getFirst();
-						 int nextangle = remaining.indexOf(endangle, '<');
+						 String top = stack.get(1);
+						 int nextangle = remaining.indexOf('<', endangle);
 						 String name = remaining.substring(endangle+1, nextangle);
 						 if (top.equals("design")) {
 							 curDesign.setName(name);
@@ -172,8 +195,8 @@ public class DesignGraphGenerator {
 						 }
 					 }
 					 if (object.equals("value")) {
-						 String top = stack.getFirst();
-						 int nextangle = remaining.indexOf(endangle, '<');
+						 String top = stack.get(1);
+						 int nextangle = remaining.indexOf('<', endangle);
 						 String value = remaining.substring(endangle+1, nextangle);
 						 if (top.equals("attribute")) {
 							 curAttr.setValue(value);
@@ -184,8 +207,8 @@ public class DesignGraphGenerator {
 						 }
 					 }
 					 if (object.equals("number")) {
-						 String top = stack.getFirst();
-						 int nextangle = remaining.indexOf(endangle, '<');
+						 String top = stack.get(1);
+						 int nextangle = remaining.indexOf('<', endangle);
 						 String number = remaining.substring(endangle+1, nextangle);
 						 if (top.equals("pin")) {
 							 curPin.setPinName(number);
@@ -195,9 +218,9 @@ public class DesignGraphGenerator {
 							 System.exit(1);
 						 }
 					 }
-					 if (object.equals("device name")) {
-						 String top = stack.getFirst();
-						 int nextangle = remaining.indexOf(endangle, '<');
+					 if (object.equals("device_name")) {
+						 String top = stack.get(1);
+						 int nextangle = remaining.indexOf('<', endangle);
 						 String name = remaining.substring(endangle+1, nextangle);
 						 if (top.equals("instance")) {
 							 curInst.setDevice(curDesign.getDevice(name));
@@ -208,11 +231,16 @@ public class DesignGraphGenerator {
 						 }
 					 }
 					 if (object.equals("netname")) {
-						 String top = stack.getFirst();
-						 int nextangle = remaining.indexOf(endangle, '<');
+						 String top = stack.get(1);
+						 int nextangle = remaining.indexOf('<', endangle);
 						 String name = remaining.substring(endangle+1, nextangle);
-						 if (top.equals("pin")) {
+						 if (top.equals("instance")) {
 							 curPin.setNet(curDesign.getNet(name));
+							 curInst.addPin(curPin);
+						 }
+						 else {
+							 System.err.println("Invalid net name placement.");
+							 System.exit(1);
 						 }
 					 }
 				 }
@@ -222,14 +250,4 @@ public class DesignGraphGenerator {
 			}
 		}
 	}
-	
-	public static void main(String[] args) {
-		String fileName = args[0];
-		DesignGraphGenerator gen = new DesignGraphGenerator(fileName);
-		System.out.println("Designs?");
-		for (DesignNode d : gen.designs) {
-			d.printDesignNode();
-		}
-	}
-	
 }

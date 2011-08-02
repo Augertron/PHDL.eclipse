@@ -26,6 +26,7 @@ public class Generator {
 	EagleScriptGenerator eagleScriptGen;
 	BoMGenerator bomGen;
 	XMLGenerator xmlGen;
+	XMLtoDesignGenerator xmlDesGen;
 	DesignNode design;
 
 	/**
@@ -46,6 +47,8 @@ public class Generator {
 		bomGen = new BoMGenerator(design);
 		netListGen = new NetListGenerator(design, refDesGen.getRefMap());
 		xmlGen = new XMLGenerator(design);
+		generateXML();
+		xmlDesGen = new XMLtoDesignGenerator(design.getName() + ".xml");
 		if (eagle)
 			eagleScriptGen = new EagleScriptGenerator(design, refDesGen.getRefMap());
 	}
