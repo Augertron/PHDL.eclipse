@@ -23,7 +23,8 @@ device BJT is
 	attr refPrefix = "Q";
 	attr value = "MMBT3904";
 	attr pkg_type = "SOT23_MMBT3904";
-	attr partNum = "MMBT3904DICT"; 
+	attr partNum = "MMBT3904DICT";
+	attr config = "NPN"; 
 	pin e = {e};
 	pin c = {c};
 	pin b = {b};
@@ -46,16 +47,11 @@ device ATTINY2313-20SU is
 	attr pkg_type = "SOP20.375";
 	attr partNum = "ATTINY2313-20SU";
 	// begin pins
-	pin vdd = {1};
-	pin gnd = {24};
-	pin RSTN = {2};
-	pin XTout = {3};
-	pin XTin = {4};
-	pin[3:0] P0 = {8, 7, 6, 5};
-	pin[3:0] P1 = {12, 11, 10, 9};
-	pin[3:0] P2 = {16, 15, 14, 13};
-	pin[3:0] P4 = {20, 19, 18, 17};
-	pin[3:1] P5 = {22, 21, 23};
+	pin vcc = {20};
+	pin reset = {1};
+	pin[1:2] xtal = {5,4};
+	pin[0:7] PB = {12,13,14,15,16,17,18,19};
+	pin[0:6] PD = {2,3,6,7,8,9,11};
 end device;
 
 device LM317LDR2 is
@@ -74,7 +70,14 @@ device DISP_A-562G is
 	attr pkg_type = "DISP_A-562G";
 	attr partNum = "DISP_A-562G";
 	// begin pins
-	pin[1:0] A, B, C, D, E, F, G, DP = {16, 11, 15, 10, 3, 8, 2, 6, 1, 5, 18, 12, 17, 7, 4, 9};
+	pin[1:0] A = {16,11};
+	pin[1:0] B = {15,10};
+	pin[1:0] C = {3, 8};
+	pin[1:0] D = {2, 6};
+	pin[1:0] E = {1, 5};
+	pin[1:0] F = {18, 12};
+	pin[1:0] G = {17, 7};
+	pin[1:0] DP = {4, 9};
 	pin[1:0] DIG = {14, 13};
 end device;
 
