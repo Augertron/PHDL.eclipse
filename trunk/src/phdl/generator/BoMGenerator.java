@@ -38,14 +38,14 @@ public class BoMGenerator {
 	private List<Row> rows;
 	private List<String> headers;
 	private String bom;
-	
+
 	private class Row {
 		private int quantity;
 		private String name;
 		private String refDes;
 		private String pkg_type;
 		private List<String> entries;
-		
+
 		public Row() {
 			quantity = 1;
 			name = "";
@@ -53,9 +53,10 @@ public class BoMGenerator {
 			pkg_type = "";
 			entries = new ArrayList<String>();
 		}
-		
+
+		@Override
 		public boolean equals(Object o) {
-			Row r = (Row)o;
+			Row r = (Row) o;
 			boolean equal;
 			equal = name.equals(r.name);
 			equal &= pkg_type.equals(pkg_type);
@@ -68,7 +69,7 @@ public class BoMGenerator {
 			return equal;
 		}
 	}
-	
+
 	/**
 	 * Default Constructor.
 	 * 
@@ -86,19 +87,19 @@ public class BoMGenerator {
 		generate();
 		generateString();
 	}
-	
+
 	private void generate() {
 		populateHeaders();
 		initializeRows();
 		consolidateRows();
 	}
-	
+
 	private void populateHeaders() {
 		List<String> excludes = new ArrayList<String>();
 		excludes.add("REFPREFIX");
 		excludes.add("REFDES");
 		excludes.add("PKG_TYPE");
-		
+
 		for (InstanceNode i : design.getInstances()) {
 			for (AttributeNode a : i.getAttributes()) {
 				if (!excludes.contains(a.getName()) && !headers.contains(a.getName())) {
@@ -107,22 +108,21 @@ public class BoMGenerator {
 			}
 		}
 	}
-	
+
 	private void initializeRows() {
 		for (InstanceNode i : design.getInstances()) {
 			Row newRow = new Row();
-			
+
 			for (int j = 0; j < headers.size(); j++) {
 				newRow.entries.add("");
 			}
-			
+
 			newRow.name = i.getDevice().getName();
 			newRow.refDes = i.getRefDes();
 			for (AttributeNode a : i.getAttributes()) {
 				if (a.getName().equals("PKG_TYPE")) {
 					newRow.pkg_type = a.getValue();
-				}
-				else if (!a.getName().equals("REFPREFIX") && !a.getName().equals("REFDES")) {
+				} else if (!a.getName().equals("REFPREFIX") && !a.getName().equals("REFDES")) {
 					for (int j = 0; j < headers.size(); j++) {
 						if (headers.get(j).equals(a.getName())) {
 							newRow.entries.set(j, a.getValue());
@@ -133,13 +133,13 @@ public class BoMGenerator {
 			rows.add(newRow);
 		}
 	}
-	
+
 	private void consolidateRows() {
 		SortedSet<Integer> deletes = new TreeSet<Integer>();
 		for (int i = 0; i < rows.size(); i++) {
 			if (deletes.contains(i))
 				continue;
-			for (int j = i+1; j < rows.size(); j++) {
+			for (int j = i + 1; j < rows.size(); j++) {
 				if (rows.get(i).equals(rows.get(j))) {
 					rows.get(i).quantity++;
 					rows.get(i).refDes = rows.get(i).refDes + "; " + rows.get(j).refDes;
@@ -153,25 +153,23 @@ public class BoMGenerator {
 			i++;
 		}
 	}
-	
+
 	private void generateString() {
-		bom = "Bill of Materials - " + design.getName() + "\n";
-		bom += "QUANTITY, NAME, REFDES, PKG_TYPE";
+		StringBuilder sb = new StringBuilder();
+		sb.append("Bill of Materials - " + design.getName() + "\n");
+		sb.append("QUANTITY, NAME, REFDES, PKG_TYPE");
 		for (int i = 0; i < headers.size(); i++) {
-			bom += ", " + headers.get(i);
+			sb.append(", " + headers.get(i));
 		}
 		for (Row r : rows) {
-			bom += "\n";
-			bom += r.quantity;
-			bom += ", " + r.name;
-			bom += ", " + r.refDes;
-			bom += ", " + r.pkg_type;
+			sb.append("\n" + r.quantity + ", " + r.name + ", " + r.refDes + ", " + r.pkg_type);
 			for (int i = 0; i < r.entries.size(); i++) {
-				bom += ", " + r.entries.get(i);
+				sb.append(", " + r.entries.get(i));
 			}
 		}
+		bom = sb.toString();
 	}
-	
+
 	/**
 	 * Returns the generated string representation of the Bill of Materials.
 	 * 
@@ -194,13 +192,11 @@ public class BoMGenerator {
 			out.write(bom);
 			out.close();
 		} catch (IOException e) {
-			System.err.println("File Writing Error - " + fileName + "\n" +
-								"\tPossible Reasons:\n" +
-								"\t\t*filename may be corrupt\n" +
-								"\t\t*file may currently be open\n");
+			System.err.println("File Writing Error - " + fileName + "\n" + "\tPossible Reasons:\n"
+				+ "\t\t*filename may be corrupt\n" + "\t\t*file may currently be open\n");
 			System.exit(1);
 		}
 		System.out.println("Wrote BoM file: " + fileName);
 	}
-	
+
 }

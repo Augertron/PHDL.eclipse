@@ -53,22 +53,23 @@ public class NetListGenerator {
 	}
 
 	private void generate() {
-		contents = "!PADS-POWERPCB-V9.0-MILS! NETLIST FILE FROM PADS LOGIC V9.3 \n\n";
-		contents += "*PART*\n";
+		StringBuilder sb = new StringBuilder();
+		sb.append("!PADS-POWERPCB-V9.0-MILS! NETLIST FILE FROM PADS LOGIC V9.3 \n\n");
+		sb.append("*PART*\n");
 
 		for (String s : refMap.keySet()) {
 			InstanceNode i = refMap.get(s);
-			contents += s;
-			contents += " " + i.getDevice().getName().toUpperCase() + "@" + i.getFootprint() + "\n";
+			sb.append(s);
+			sb.append(" " + i.getDevice().getName().toUpperCase() + "@" + i.getFootprint() + "\n");
 		}
-		contents += "*CONNNECTION*\n";
+		sb.append("*CONNNECTION*\n");
 
 		for (NetNode n : design.getNets()) {
 
 			if (n.getName().equals("open"))
 				continue;
 
-			contents += "*SIGNAL* " + n.getName().toUpperCase() + "\n";
+			sb.append("*SIGNAL* " + n.getName().toUpperCase() + "\n");
 
 			for (int i = 0; i < n.getPinNodes().size() - 1; i++) {
 
@@ -80,28 +81,12 @@ public class NetListGenerator {
 				String name1 = pin1.getPinName();
 				String name2 = pin2.getPinName();
 
-				contents += " ";
-				contents += refMap.get(ref1).getRefDes();
-				contents += ".";
-				contents += name1;
-				contents += " ";
-				contents += refMap.get(ref2).getRefDes();
-				contents += ".";
-				contents += name2;
-				contents += "\n";
+				sb.append(" " + refMap.get(ref1).getRefDes() + "." + name1);
+				sb.append(" " + refMap.get(ref2).getRefDes() + "." + name2 + "\n");
 			}
-
-			// int pinCount = 0;
-			// for (PinNode p : n.getPinNodes()) {
-			// contents += refMap.get(((InstanceNode) p.getParent()).getRefDes()).getRefDes();
-			// contents += "." + p.getPinName() + " ";
-			// pinCount++;
-			// if (pinCount % 10 == 0)
-			// contents += "\n ";
-			// }
-			// contents += "\n";
 		}
-		contents += "\n*END*";
+		sb.append("\n*END*");
+		contents = sb.toString();
 	}
 
 	/**
