@@ -37,12 +37,12 @@ public class EagleScriptGenerator {
 	private void generate() {
 		float x = 0;
 		float y = 0;
+		StringBuilder sb = new StringBuilder();
 
-		contents = "# Auto Generated EAGLE PCB script from phdl source: " + design.getFileName()
-			+ "\n\n";
-		contents += "SET UNDO_LOG OFF;\n\n";
+		sb.append("# Auto Generated EAGLE PCB script from: " + design.getFileName() + "\n\n");
+		sb.append("SET UNDO_LOG OFF;\n\n");
 
-		contents += "# Added parts #\n\n";
+		sb.append("# Added parts #\n\n");
 
 		// place the parts in an arbitrary grid pattern on an empty board
 		for (String refDes : refMap.keySet()) {
@@ -55,8 +55,8 @@ public class EagleScriptGenerator {
 				System.out.println("ERROR: Eagle library attribute undeclared: " + i.getName());
 			}
 
-			contents += "ADD " + i.getFootprint() + "@" + eagleLib + " '" + refDes + "' (" + x
-				+ " " + y + ");\n";
+			sb.append("ADD " + i.getFootprint() + "@" + eagleLib + " '" + refDes + "' (" + x + " "
+				+ y + ");\n");
 			x += 0.5;
 			if (x > 10) {
 				x = 0;
@@ -64,7 +64,7 @@ public class EagleScriptGenerator {
 			}
 		}
 
-		contents += "\n# SIGNALS #\n\n";
+		sb.append("\n# SIGNALS #\n\n");
 
 		// assign all the nets
 		for (NetNode n : design.getNets()) {
@@ -73,14 +73,16 @@ public class EagleScriptGenerator {
 			if (n.getName().equals("open"))
 				continue;
 
-			contents += "SIGNAL " + n.getName().toUpperCase() + " ";
+			sb.append("SIGNAL " + n.getName().toUpperCase() + " ");
 			for (PinNode p : n.getPinNodes()) {
-				contents += refMap.get(((InstanceNode) p.getParent()).getRefDes()).getRefDes()
-					+ " " + p.getPinName() + " ";
+				sb.append(refMap.get(((InstanceNode) p.getParent()).getRefDes()).getRefDes() + " "
+					+ p.getPinName() + " ");
 			}
-			contents += "\n";
+			sb.append("\n");
 		}
-		contents += "\nSET UNDO_LOG ON;\nRATSNEST;\n\n # End Script #\n";
+		sb.append("\nSET UNDO_LOG ON;\nRATSNEST;\n\n # End Script #\n");
+
+		contents = sb.toString();
 	}
 
 	/**

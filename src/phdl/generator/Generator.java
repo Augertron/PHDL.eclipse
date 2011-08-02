@@ -45,7 +45,7 @@ public class Generator {
 		refDesGen = new RefDesGenerator(design);
 		bomGen = new BoMGenerator(design);
 		netListGen = new NetListGenerator(design, refDesGen.getRefMap());
-		// xmlGen = new XMLGenerator(design);
+		xmlGen = new XMLGenerator(design);
 		if (eagle)
 			eagleScriptGen = new EagleScriptGenerator(design, refDesGen.getRefMap());
 	}
