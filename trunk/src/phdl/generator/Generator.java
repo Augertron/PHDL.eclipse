@@ -11,6 +11,8 @@
 
 package phdl.generator;
 
+import java.io.File;
+import java.util.List;
 import phdl.graph.DesignNode;
 
 /**
@@ -27,6 +29,7 @@ public class Generator {
 	BoMGenerator bomGen;
 	XMLGenerator xmlGen;
 	XMLtoDesignGenerator xmlDesGen;
+	DesignComparator desComp;
 	DesignNode design;
 
 	/**
@@ -46,9 +49,16 @@ public class Generator {
 		refDesGen = new RefDesGenerator(design);
 		bomGen = new BoMGenerator(design);
 		netListGen = new NetListGenerator(design, refDesGen.getRefMap());
+		File xml = new File(design.getName() + ".xml");
+		if (xml.exists()) {
+			xmlDesGen = new XMLtoDesignGenerator(design.getName() + ".xml");
+			desComp = new DesignComparator();
+			desComp.compareDesign(xmlDesGen.getDesign(), design);
+			System.out.println("********CHANGES MADE********");
+			desComp.printChanges();
+		}
 		xmlGen = new XMLGenerator(design);
 		generateXML();
-		xmlDesGen = new XMLtoDesignGenerator(design.getName() + ".xml");
 		if (eagle)
 			eagleScriptGen = new EagleScriptGenerator(design, refDesGen.getRefMap());
 	}

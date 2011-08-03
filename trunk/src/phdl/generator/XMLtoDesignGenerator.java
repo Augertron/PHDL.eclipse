@@ -32,7 +32,7 @@ public class XMLtoDesignGenerator {
 			System.exit(1);
 		}
 	}
-	
+
 	public DesignNode getDesign() {
 		return design;
 	}

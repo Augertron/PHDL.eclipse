@@ -1,3 +1,4 @@
-R1,myRes(0)
-R2,myRes(1)
-R3,myRes(2)
+A1,res
+R1,resistors(0)
+R2,resistors(1)
+R3,resistors(2)
