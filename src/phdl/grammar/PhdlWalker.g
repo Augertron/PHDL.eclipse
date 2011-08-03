@@ -312,7 +312,7 @@ designDecl
 			//===================== JAVA BLOCK END ========================
 		
 		(deviceDecl[des] | netDecl[des] | {String info = "";} infoStruct[des, info] {des.appendInfo(info);})* 'begin' 
-		(instDecl[des] | netAssign[des])* (endName=IDENT)? )
+		(instDecl[des, null] | netAssign[des] | groupStruct[des])* (endName=IDENT)? )
 		
 			//==================== JAVA BLOCK BEGIN =======================
 			{	// check the optional trailing label on the design to see if it maches
@@ -356,8 +356,20 @@ designDecl
 	;
 
 infoStruct[Node des, String value]
-  : ^('info' string=STRING {value = $string.text;})
-  ;
+	: 	^('info' string=STRING {value = $string.text;})
+	;
+  
+groupStruct[DesignNode des]
+	:	^('group' groupName=STRING (instDecl[des, $groupName.text] | netAssign[des])* (endName=STRING)? )
+	
+		//==================== JAVA BLOCK BEGIN =======================
+		{	if (endName != null) {
+				if (!$groupName.text.equals($endName.text))
+					addError($endName, "group name " + $groupName.text + " does not match");
+			}
+		}
+		//===================== JAVA BLOCK END ========================
+	;
 
 /**
  * The deviceDecl rule is called by the design rule.  It makes new device nodes for every device declaration
@@ -625,7 +637,7 @@ netDecl[DesignNode des]
  * 3. Add all pin nodes to each instance which are defined in the corresponding device declaration
  * 3. Report all errors from duplicates.
  */
-instDecl[DesignNode des]
+instDecl[DesignNode des, String groupName]
 	:	^('inst'
 	
 			//==================== JAVA BLOCK BEGIN =======================
@@ -646,6 +658,7 @@ instDecl[DesignNode des]
 					i.setName($instName.text + "(" + indices.get(j) + ")");
 					i.setLocation($instName.line, $instName.pos, 
 						instName.getToken().getInputStream().getSourceName());
+					i.setGroupName(groupName);
 					
 					// find the corresponding device declaration
 					DeviceNode dev = des.getDevice($devName.text);
@@ -669,6 +682,7 @@ instDecl[DesignNode des]
 					i.setName($instName.text);
 					i.setLocation($instName.line, $instName.pos, 
 						instName.getToken().getInputStream().getSourceName());
+					i.setGroupName(groupName);
 					
 					// find the corresponding device declaration
 					DeviceNode dev = des.getDevice($devName.text);

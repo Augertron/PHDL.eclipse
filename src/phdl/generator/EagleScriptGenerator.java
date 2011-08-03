@@ -3,7 +3,9 @@ package phdl.generator;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
+import java.util.TreeMap;
 
 import phdl.graph.DesignNode;
 import phdl.graph.InstanceNode;
@@ -14,6 +16,7 @@ public class EagleScriptGenerator {
 	private DesignNode design;
 	private Map<String, InstanceNode> refMap;
 	private String contents;
+	private TreeMap<String, ArrayList<InstanceNode>> groupMap;
 
 	/**
 	 * Default constructor.
@@ -31,37 +34,61 @@ public class EagleScriptGenerator {
 	public EagleScriptGenerator(DesignNode design, Map<String, InstanceNode> refMap) {
 		this.design = design;
 		this.refMap = refMap;
+		this.groupMap = new TreeMap<String, ArrayList<InstanceNode>>();
 		generate();
 	}
 
 	private void generate() {
+
+		for (InstanceNode i : design.getInstances()) {
+			if (i.getGroupName() != null) {
+				if (groupMap.containsKey(i.getGroupName())) {
+					groupMap.get(i.getGroupName()).add(i);
+				} else {
+					ArrayList<InstanceNode> l = new ArrayList<InstanceNode>();
+					l.add(i);
+					groupMap.put(i.getGroupName(), l);
+				}
+			} else {
+				if (groupMap.containsKey("")) {
+					groupMap.get("").add(i);
+				} else {
+					ArrayList<InstanceNode> l = new ArrayList<InstanceNode>();
+					l.add(i);
+					groupMap.put("", l);
+				}
+			}
+		}
+
 		float x = 0;
 		float y = 0;
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("# Auto Generated EAGLE PCB script from: " + design.getFileName() + "\n\n");
-		sb.append("SET UNDO_LOG OFF;\n\n");
-
+		sb.append("SET UNDO_LOG OFF;\n");
+		sb.append("GRID INCH\n");
+		sb.append("CHANGE LAYER tValues\n");
+		sb.append("CHANGE SIZE 0.25\n\n");
 		sb.append("# Added parts #\n\n");
 
-		// place the parts in an arbitrary grid pattern on an empty board
-		for (String refDes : refMap.keySet()) {
-			InstanceNode i = refMap.get(refDes);
-			String eagleLib = "";
-
-			if (i.getAttribute("eagleLib") != null) {
-				eagleLib = i.getAttribute("eagleLib").getValue();
-			} else {
-				System.out.println("ERROR: Eagle library attribute undeclared: " + i.getName());
+		for (String g : groupMap.keySet()) {
+			sb.append("TEXT '" + g + "' (" + -4 + " " + y + ");\n");
+			ArrayList<InstanceNode> group = groupMap.get(g);
+			String values = "";
+			for (InstanceNode i : group) {
+				String eagleLib = "";
+				if (i.getAttribute("libName") != null)
+					eagleLib = i.getAttribute("libName").getValue();
+				else
+					System.out.println("ERROR: libName attribute undeclared: " + i.getName());
+				sb.append("ADD " + i.getFootprint() + "@" + eagleLib + " '" + i.getRefDes() + "' ("
+					+ x + " " + y + ");\n");
+				x += 0.5;
+				values += i.getRefDes() + " '" + i.getName() + "' ";
 			}
-
-			sb.append("ADD " + i.getFootprint() + "@" + eagleLib + " '" + refDes + "' (" + x + " "
-				+ y + ");\n");
-			x += 0.5;
-			if (x > 10) {
-				x = 0;
-				y += 0.5;
-			}
+			x = 0;
+			y += 1;
+			sb.append("VALUE " + values + ";\n");
 		}
 
 		sb.append("\n# SIGNALS #\n\n");
