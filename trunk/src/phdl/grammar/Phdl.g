@@ -175,7 +175,7 @@ designDecl
 	:	'design'^ IDENT 'is'! 
 		(deviceDecl | netDecl | infoStruct)*
 		'begin'
-		(instanceDecl | netAssignment)*
+		(instanceDecl | netAssignment | groupStruct)*
 		'end'! 'design'!? IDENT? SEMICOLON!
 	;
 
@@ -250,8 +250,12 @@ instanceDecl
  * curly braces.
  */
 infoStruct
-  : 'info'^ '{'! STRING '}'! SEMICOLON!
-  ;
+	: 	'info'^ '{'! STRING '}'! SEMICOLON!
+	;
+  
+groupStruct
+	: 	'group'^ STRING 'is'! (instanceDecl | netAssignment)* 'end'! 'group'!? STRING? SEMICOLON!
+	;
 
 /**
  * An attribute assignment consists of a string assigned to an attribute name with the optional newattr
@@ -264,7 +268,7 @@ infoStruct
  * An example would be 'tolerance = "5%"' (all instances in this construct get this value). 
  */
 attributeAssignment
-	:  ('newattr')? instanceQualifier? IDENT EQUALS^ STRING SEMICOLON!
+	:	('newattr')? instanceQualifier? IDENT EQUALS^ STRING SEMICOLON!
 	;
 	
 /**
