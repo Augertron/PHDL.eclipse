@@ -15,7 +15,7 @@ public class DesignComparator {
 
 	private List<Change> changes;
 	
-	private class Change {
+	public class Change {
 		ChangeType type;
 		Node node1;
 		Node node2;
@@ -35,6 +35,22 @@ public class DesignComparator {
 			this.node2 = newer;
 		}
 		
+		public ChangeType getType() {
+			return type;
+		}
+		
+		public Node getNode() {
+			return node1;
+		}
+		
+		public Node getOld() {
+			return node1;
+		}
+		
+		public Node getNew() {
+			return node2;
+		}
+		
 		@Override
 		public String toString() {
 			if (type.equals(ChangeType.MODIFY)) {
@@ -49,6 +65,62 @@ public class DesignComparator {
 		REMOVE,
 		MODIFY
 	}
+	
+	public List<Change> getAllChanges() {
+		return changes;
+	}
+	
+	public List<Node> getAllAdditions() {
+		List<Node> adds = new LinkedList<Node>();
+		for (Change c : changes) {
+			if (c.type == ChangeType.ADD) {
+				adds.add(c.node1);
+			}
+		}
+		return adds;
+	}
+	
+	public List<Node> getAllRemovals() {
+		List<Node> removes = new LinkedList<Node>();
+		for (Change c : changes) {
+			if (c.type == ChangeType.REMOVE) {
+				removes.add(c.node1);
+			}
+		}
+		return removes;
+	}
+	
+	public List<Change> getAllModifications() {
+		List<Change> mods = new LinkedList<Change>();
+		for (Change c : changes) {
+			if (c.type == ChangeType.MODIFY) {
+				mods.add(c);
+			}
+		}
+		return mods;
+	}
+	
+	public List<Node> getAllModifyOlds() {
+		List<Node> olds = new LinkedList<Node>();
+		for (Change c : changes) {
+			if (c.type == ChangeType.MODIFY) {
+				olds.add(c.node1);
+			}
+		}
+		return olds;
+	}
+	
+	public List<Node> getAllModifyNews() {
+		List<Node> news = new LinkedList<Node>();
+		for (Change c : changes) {
+			if (c.type == ChangeType.MODIFY) {
+				news.add(c.node1);
+			}
+		}
+		return news;
+	}
+	
+	
 	
 	public void printChanges() {
 		for (Change c : changes) {
