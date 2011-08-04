@@ -73,7 +73,8 @@ public class Compile {
 		+ "\t<*.phdl> <*.phdl> ... [-w][-d][-v]\n\n"
 		+ "\tOne or more design phdl files followed by optional switches.\n"
 		+ "\t-w\tsupress warnings\n" + "\t-d\tenable dotty file dump for graph viewing\n"
-		+ "\t-v\tenable verbose error reporting (will not bail out simple parse errors)\n";
+		+ "\t-v\tenable verbose error reporting (will not bail out simple parse errors)\n"
+		+ "\t-e\toutput script for EAGLE PCB\n\n";
 
 	/**
 	 * Suppress warnings flag
@@ -194,7 +195,7 @@ public class Compile {
 					}
 
 					Generator gen = new Generator(d, eagle);
-					
+
 					gen.generateRefDes();
 					gen.generateBoM();
 					gen.generateNetList();

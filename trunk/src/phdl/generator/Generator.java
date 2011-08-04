@@ -12,7 +12,7 @@
 package phdl.generator;
 
 import java.io.File;
-import java.util.List;
+
 import phdl.graph.DesignNode;
 
 /**
@@ -51,7 +51,8 @@ public class Generator {
 		bomGen = new BoMGenerator(design);
 		netListGen = new NetListGenerator(design, refDesGen.getRefMap());
 		File xml = new File(design.getName() + ".xml");
-		if (xml.exists()) {
+		boolean xmlExists = xml.exists();
+		if (xmlExists) {
 			xmlDesGen = new XMLtoDesignGenerator(design.getName() + ".xml");
 			desComp = new DesignComparator();
 			desComp.compareDesign(xmlDesGen.getDesign(), design);
@@ -62,7 +63,7 @@ public class Generator {
 		xmlGen = new XMLGenerator(design);
 		generateXML();
 		if (eagle)
-			eagleScriptGen = new EagleScriptGenerator(design, refDesGen.getRefMap());
+			eagleScriptGen = new EagleScriptGenerator(design, desComp, xmlExists);
 	}
 
 	/**
@@ -109,7 +110,7 @@ public class Generator {
 	public void generateXML() {
 		xmlGen.outputToFile(design.getName() + ".xml");
 	}
-	
+
 	/**
 	 * Generates an Info file based on the info structures in the DesignNode.
 	 * 
