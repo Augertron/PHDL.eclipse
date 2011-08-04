@@ -219,6 +219,7 @@ public class DesignComparator {
 				for (AttributeNode b : newAttr) {
 					if (b.equals(a) && b.getParent().equals(a.getParent())) {
 						if (!b.getValue().equals(a.getValue())) {
+							System.out.println(a.getParent() + "\t" + a + "\t" + b.getParent() + "\t" + b);
 							changes.add(new Change(ChangeType.MODIFY, a, b));
 						}
 					}

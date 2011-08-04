@@ -1,53 +1,18 @@
 <design>
 	<name>test</name>
 	<device>
-		<name>newDev</name>
+		<name>resistor_pack</name>
 		<attribute>
-			<name>PKG_TYPE</name>
-			<value></value>
+			<name>MYNAME</name>
+			<value>something</value>
 		</attribute>
-		<attribute>
-			<name>REFPREFIX</name>
-			<value>A</value>
-		</attribute>
-		<pin>
-			<name>a[2]</name>
-			<number>1</number>
-		</pin>
-		<pin>
-			<name>a[1]</name>
-			<number>2</number>
-		</pin>
-		<pin>
-			<name>a[0]</name>
-			<number>3</number>
-		</pin>
-		<pin>
-			<name>b[2]</name>
-			<number>4</number>
-		</pin>
-		<pin>
-			<name>b[1]</name>
-			<number>5</number>
-		</pin>
-		<pin>
-			<name>b[0]</name>
-			<number>6</number>
-		</pin>
-		<pin>
-			<name>d</name>
-			<number>7</number>
-		</pin>
-	</device>
-	<device>
-		<name>resistor_pck</name>
 		<attribute>
 			<name>PKG_TYPE</name>
 			<value>R0207</value>
 		</attribute>
 		<attribute>
 			<name>REFPREFIX</name>
-			<value>R</value>
+			<value>D</value>
 		</attribute>
 		<pin>
 			<name>a[2]</name>
@@ -72,10 +37,6 @@
 		<pin>
 			<name>b[0]</name>
 			<number>6</number>
-		</pin>
-		<pin>
-			<name>c</name>
-			<number>8</number>
 		</pin>
 	</device>
 	<net>
@@ -91,16 +52,20 @@
 		<name>open</name>
 	</net>
 	<instance>
-		<name>resistors(2)</name>
-		<refDes>R3</refDes>
-		<device_name>resistor_pck</device_name>
+		<name>myRes(2)</name>
+		<refDes>D3</refDes>
+		<device_name>resistor_pack</device_name>
+		<attribute>
+			<name>MYNAME</name>
+			<value>something else</value>
+		</attribute>
 		<attribute>
 			<name>PKG_TYPE</name>
 			<value>R0207</value>
 		</attribute>
 		<attribute>
 			<name>REFPREFIX</name>
-			<value>R</value>
+			<value>D</value>
 		</attribute>
 		<pinname>a[2]</pinname>
 			<netname>myNet[0]</netname>
@@ -114,20 +79,22 @@
 			<netname>open</netname>
 		<pinname>b[0]</pinname>
 			<netname>open</netname>
-		<pinname>c</pinname>
-			<netname>open</netname>
 	</instance>
 	<instance>
-		<name>resistors(1)</name>
-		<refDes>R2</refDes>
-		<device_name>resistor_pck</device_name>
+		<name>myRes(1)</name>
+		<refDes>D2</refDes>
+		<device_name>resistor_pack</device_name>
+		<attribute>
+			<name>MYNAME</name>
+			<value>something else</value>
+		</attribute>
 		<attribute>
 			<name>PKG_TYPE</name>
 			<value>R0207</value>
 		</attribute>
 		<attribute>
 			<name>REFPREFIX</name>
-			<value>R</value>
+			<value>D</value>
 		</attribute>
 		<pinname>a[2]</pinname>
 			<netname>myNet[1]</netname>
@@ -141,20 +108,22 @@
 			<netname>open</netname>
 		<pinname>b[0]</pinname>
 			<netname>open</netname>
-		<pinname>c</pinname>
-			<netname>open</netname>
 	</instance>
 	<instance>
-		<name>resistors(0)</name>
-		<refDes>R1</refDes>
-		<device_name>resistor_pck</device_name>
+		<name>myRes(0)</name>
+		<refDes>D1</refDes>
+		<device_name>resistor_pack</device_name>
+		<attribute>
+			<name>MYNAME</name>
+			<value>something else</value>
+		</attribute>
 		<attribute>
 			<name>PKG_TYPE</name>
 			<value>R0207</value>
 		</attribute>
 		<attribute>
 			<name>REFPREFIX</name>
-			<value>R</value>
+			<value>D</value>
 		</attribute>
 		<pinname>a[2]</pinname>
 			<netname>singleNet</netname>
@@ -168,38 +137,5 @@
 			<netname>open</netname>
 		<pinname>b[0]</pinname>
 			<netname>open</netname>
-		<pinname>c</pinname>
-			<netname>open</netname>
-	</instance>
-	<instance>
-		<name>res</name>
-		<refDes>A1</refDes>
-		<device_name>newDev</device_name>
-		<attribute>
-			<name>PKG_TYPE</name>
-			<value></value>
-		</attribute>
-		<attribute>
-			<name>REFPREFIX</name>
-			<value>A</value>
-		</attribute>
-		<attribute>
-			<name>SURE</name>
-			<value>NAH</value>
-		</attribute>
-		<pinname>a[2]</pinname>
-			<netname>open</netname>
-		<pinname>a[1]</pinname>
-			<netname>open</netname>
-		<pinname>a[0]</pinname>
-			<netname>open</netname>
-		<pinname>b[2]</pinname>
-			<netname>open</netname>
-		<pinname>b[1]</pinname>
-			<netname>open</netname>
-		<pinname>b[0]</pinname>
-			<netname>open</netname>
-		<pinname>d</pinname>
-			<netname>myNet[0]</netname>
 	</instance>
 </design>

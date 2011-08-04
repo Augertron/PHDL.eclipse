@@ -250,7 +250,7 @@ instanceDecl
  * curly braces.
  */
 infoStruct
-	: 	'info'^ '{'! STRING '}'! SEMICOLON!
+	: 	'info'^ 'is'! STRING SEMICOLON!
 	;
   
 groupStruct

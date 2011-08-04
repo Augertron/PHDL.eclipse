@@ -200,6 +200,7 @@ public class Compile {
 					gen.generateNetList();
 					if (eagle)
 						gen.generateEagleScript();
+					gen.generateInfo();
 				}
 
 				if (dumpEn) {
