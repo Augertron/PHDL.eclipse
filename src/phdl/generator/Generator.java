@@ -31,6 +31,7 @@ public class Generator {
 	XMLtoDesignGenerator xmlDesGen;
 	DesignComparator desComp;
 	DesignNode design;
+	InfoGenerator infoGen;
 
 	/**
 	 * Default Constructor.
@@ -57,6 +58,7 @@ public class Generator {
 			System.out.println("********CHANGES MADE********");
 			desComp.printChanges();
 		}
+		infoGen = new InfoGenerator(design);
 		xmlGen = new XMLGenerator(design);
 		generateXML();
 		if (eagle)
@@ -102,9 +104,18 @@ public class Generator {
 	/**
 	 * Generates a Netlist file based on the name of the DesignNode.
 	 * 
-	 * @see NetListGenerator
+	 * @see XMLGenerator
 	 */
 	public void generateXML() {
 		xmlGen.outputToFile(design.getName() + ".xml");
+	}
+	
+	/**
+	 * Generates an Info file based on the info structures in the DesignNode.
+	 * 
+	 * @see InfoGenerator
+	 */
+	public void generateInfo() {
+		infoGen.outputToFile(design.getName() + ".info");
 	}
 }

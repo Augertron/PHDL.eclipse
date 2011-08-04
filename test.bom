@@ -1,4 +1,3 @@
 Bill of Materials - test
-QUANTITY, NAME, REFDES, PKG_TYPE, SURE
-3, resistor_pck, R3; R2; R1, R0207, 
-1, newDev, A1, , NAH
+QUANTITY, NAME, REFDES, PKG_TYPE, MYNAME
+3, resistor_pack, D3; D2; D1, R0207, something else

@@ -81,7 +81,7 @@ public class AttributeNode extends Node {
 	 *            the new value to set
 	 */
 	public void setValue(String value) {
-		this.value = value.toUpperCase();
+		this.value = value;
 	}
 
 	/**

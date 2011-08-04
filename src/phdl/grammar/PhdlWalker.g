@@ -310,8 +310,8 @@ designDecl
 				instanceDecls.clear();
 			}
 			//===================== JAVA BLOCK END ========================
-		
-		(deviceDecl[des] | netDecl[des] | {String info = "";} infoStruct[des, info] {des.appendInfo(info);})* 'begin' 
+		{String info = "";}
+		(deviceDecl[des] | netDecl[des] | infoStruct {des.appendInfo($infoStruct.value);})* 'begin' 
 		(instDecl[des, null] | netAssign[des] | groupStruct[des])* (endName=IDENT)? )
 		
 			//==================== JAVA BLOCK BEGIN =======================
@@ -355,7 +355,7 @@ designDecl
 			//===================== JAVA BLOCK END ========================
 	;
 
-infoStruct[Node des, String value]
+infoStruct returns [String value]
 	: 	^('info' string=STRING {value = $string.text;})
 	;
   
@@ -710,8 +710,8 @@ instDecl[DesignNode des, String groupName]
 					addError($instName, "duplicate instance declaration");
 			}
 			//===================== JAVA BLOCK END ========================
-
-		(attrAssign[des, $instName.text] | pinAssign[des, $instName.text])* endName=IDENT?)
+		{String info = "";}
+		(attrAssign[des, $instName.text] | pinAssign[des, $instName.text] | infoStruct {info += $infoStruct.value + "\n";})* endName=IDENT?)
 		
 			//==================== JAVA BLOCK BEGIN =======================
 			{	// check the optional trailing label on the design to see if it maches
@@ -733,7 +733,7 @@ instDecl[DesignNode des, String groupName]
 				
 				// assign the reference prefix and designator if it exists
 				for (InstanceNode i : des.getAllInstances($instName.text)) {
-
+					i.appendInfo(info);
 					for (AttributeNode a : i.getAttributes()) {
 						if (a.getName().equals("REFPREFIX"))
 							i.setRefPrefix(a.getValue());
