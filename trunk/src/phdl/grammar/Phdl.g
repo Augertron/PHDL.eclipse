@@ -395,10 +395,16 @@ INTEGER : DIGIT+;
  * A string has its wrapping quotes removed
  */
 STRING
-	: 	'"' 							{StringBuilder sb = new StringBuilder();}
-		(	c = ~('"' | '\n' | '\r') 	{sb.appendCodePoint(c);}
+	: 	'"' 
+		{StringBuilder sb = new StringBuilder();}
+		(	'/' '"' 				{sb.appendCodePoint('"');}
+		|	c = ~('"')	
+			{	if (c!=' ' && c!='\t' && c!='\n' && c!='\r' && c!='\f' && c!='\u001D')
+					sb.appendCodePoint(c);
+			}
 		)*
-		'"' 							{setText(sb.toString());}
+		'"' 
+		{setText(sb.toString());}
 	;
 
 /**
