@@ -94,6 +94,15 @@ public class DesignComparator {
 			if (!newAttr.contains(a)) {
 				changes.add(new Change(ChangeType.REMOVE, a));
 			}
+			else {
+				for (AttributeNode b : newAttr) {
+					if (b.equals(a) && b.getParent().equals(a.getParent())) {
+						if (!b.getValue().equals(a.getValue())) {
+							changes.add(new Change(ChangeType.MODIFY, a, b));
+						}
+					}
+				}
+			}
 		}
 		for (AttributeNode a : newAttr) {
 			if (!oldAttr.contains(a)) {
@@ -136,19 +145,28 @@ public class DesignComparator {
 			if (!newer.getNets().contains(n)) {
 				changes.add(new Change(ChangeType.REMOVE, n));
 			}
-			oldAttr = new LinkedList<AttributeNode>();
+			oldAttr.addAll(n.getAttributes());
 		}
 		for (NetNode n : newer.getNets()) {
 			if (!older.getNets().contains(n)) {
 				changes.add(new Change(ChangeType.ADD, n));
 			}
-			newAttr = new LinkedList<AttributeNode>();
+			newAttr.addAll(n.getAttributes());
 		}
 		
 		// Net Attributes
 		for (AttributeNode a : oldAttr) {
 			if (!newAttr.contains(a)) {
 				changes.add(new Change(ChangeType.REMOVE, a));
+			}
+			else {
+				for (AttributeNode b : newAttr) {
+					if (b.equals(a) && b.getParent().equals(a.getParent())) {
+						if (!b.getValue().equals(a.getValue())) {
+							changes.add(new Change(ChangeType.MODIFY, a, b));
+						}
+					}
+				}
 			}
 		}
 		for (AttributeNode a : newAttr) {
@@ -167,6 +185,15 @@ public class DesignComparator {
 		for (InstanceNode i : older.getInstances()) {
 			if (!newer.getInstances().contains(i)) {
 				changes.add(new Change(ChangeType.REMOVE, i));
+			}
+			else {
+				for (InstanceNode j : newer.getInstances()) {
+					if (j.equals(i)) {
+						if (!j.getDevice().equals(i.getDevice())) {
+							changes.add(new Change(ChangeType.MODIFY, i, j));
+						}
+					}
+				}
 			}
 			// Attributes
 			oldAttr.addAll(i.getAttributes());
@@ -187,6 +214,15 @@ public class DesignComparator {
 		for (AttributeNode a : oldAttr) {
 			if (!newAttr.contains(a)) {
 				changes.add(new Change(ChangeType.REMOVE, a));
+			}
+			else {
+				for (AttributeNode b : newAttr) {
+					if (b.equals(a) && b.getParent().equals(a.getParent())) {
+						if (!b.getValue().equals(a.getValue())) {
+							changes.add(new Change(ChangeType.MODIFY, a, b));
+						}
+					}
+				}
 			}
 		}
 		for (AttributeNode a : newAttr) {

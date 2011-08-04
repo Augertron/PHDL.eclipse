@@ -2,18 +2,39 @@
 design test is	
 	
 	device resistor_pack is
-		attr refprefix = "R";
+		attr refprefix = "D";
 		attr pkg_type = "R0207";
 		pin[2:0] a = {1, 2, 3};
 		pin[2:0] b = {4, 5, 6};
 	end device resistor_pack;
+
+	device resistors is
+		attr refprefix = "D";
+		attr pkg_type = "R0207";
+		pin[2:0] a = {1, 2, 3};
+		pin[2:0] b = {4, 5, 6};
+	end device;
+	
+	device dev1 is
+		attr refprefix = "P";
+		attr pkg_type = "";
+	end;
+	
+	device dev2 is
+		attr refprefix = "Q";
+		attr pkg_type = "";
+	end;
 	
 	net[0:1] myNet;
 	net singleNet;
 
 begin
 
+	inst devinst of dev2 is
+	end inst;
+
 	inst(2:0) myRes of resistor_pack is
+		this(2).refprefix = "C";
 		a = myNet & myNet & myNet & singleNet & singleNet & myNet[1];
 		b = open;
 	end inst myRes;
