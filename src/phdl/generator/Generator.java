@@ -56,7 +56,6 @@ public class Generator {
 			xmlDesGen = new XMLtoDesignGenerator(design.getName() + ".xml");
 			desComp = new DesignComparator();
 			desComp.compareDesign(xmlDesGen.getDesign(), design);
-			System.out.println("********CHANGES MADE********");
 			desComp.printChanges();
 		}
 		infoGen = new InfoGenerator(design);

@@ -43,6 +43,7 @@ public class EagleScriptGenerator {
 	private void generate() {
 
 		if (!xmlExists) {
+			// sort the instances into their groups
 			for (InstanceNode i : design.getInstances()) {
 				if (i.getGroupName() != null) {
 					if (groupMap.containsKey(i.getGroupName())) {
@@ -117,8 +118,9 @@ public class EagleScriptGenerator {
 			float y = -1;
 			StringBuilder sb = new StringBuilder();
 			sb.append("# Auto Generated EAGLE PCB script from: " + design.getFileName() + "\n");
-			sb.append("# Successive Build.");
+			sb.append("# Successive Build.\n");
 			sb.append("SET UNDO_LOG OFF;\n\n");
+			sb.append("GRID INCH\n\n");
 			sb.append("# Added elements #\n\n");
 
 			for (Node n : desComp.getAllAdditions()) {
@@ -130,6 +132,7 @@ public class EagleScriptGenerator {
 					else
 						System.err.println("ERROR: libName attribute undeclared: " + n.getName());
 
+					// add the instance and set it's value
 					sb.append("ADD " + ((InstanceNode) n).getFootprint() + "@" + eagleLib + " '"
 						+ ((InstanceNode) n).getRefDes() + "' (" + 0 + " " + y + ");\n");
 					sb.append("VALUE " + ((InstanceNode) n).getRefDes() + " "
@@ -162,8 +165,20 @@ public class EagleScriptGenerator {
 			}
 
 			sb.append("\n# Modified elements #\n\n");
+			// TODO figure out how to handle modified elements
 
-			sb.append("\n# Removed elements #\n\n");
+			sb.append("\n# Deleted elements #\n\n");
+			for (Node n : desComp.getAllRemovals()) {
+				switch (n.getType()) {
+				case INSTANCE:
+					sb.append("DELETE " + ((InstanceNode) n).getRefDes() + ";\n");
+					break;
+				default:
+					break;
+				}
+				sb.append("\n");
+			}
+
 			sb.append("\nSET UNDO_LOG ON;\nRATSNEST;\n\n# End Script #\n");
 			contents = sb.toString();
 		}

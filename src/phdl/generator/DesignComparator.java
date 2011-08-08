@@ -14,17 +14,17 @@ import phdl.graph.PinNode;
 public class DesignComparator {
 
 	private List<Change> changes;
-	
+
 	public class Change {
 		ChangeType type;
 		Node node1;
 		Node node2;
-		
+
 		Change(ChangeType type, Node node) {
 			this.type = type;
 			this.node1 = node;
 		}
-		
+
 		Change(ChangeType type, Node older, Node newer) {
 			if (!type.equals(ChangeType.MODIFY)) {
 				System.err.println("A change with two nodes requires the change to be a MODIFY");
@@ -34,23 +34,23 @@ public class DesignComparator {
 			this.node1 = older;
 			this.node2 = newer;
 		}
-		
+
 		public ChangeType getType() {
 			return type;
 		}
-		
+
 		public Node getNode() {
 			return node1;
 		}
-		
+
 		public Node getOld() {
 			return node1;
 		}
-		
+
 		public Node getNew() {
 			return node2;
 		}
-		
+
 		@Override
 		public String toString() {
 			if (type.equals(ChangeType.MODIFY)) {
@@ -59,17 +59,15 @@ public class DesignComparator {
 			return type.toString() + " " + node1.toString();
 		}
 	}
-	
+
 	private enum ChangeType {
-		ADD,
-		REMOVE,
-		MODIFY
+		ADD, REMOVE, MODIFY
 	}
-	
+
 	public List<Change> getAllChanges() {
 		return changes;
 	}
-	
+
 	public List<Node> getAllAdditions() {
 		List<Node> adds = new LinkedList<Node>();
 		for (Change c : changes) {
@@ -79,7 +77,7 @@ public class DesignComparator {
 		}
 		return adds;
 	}
-	
+
 	public List<Node> getAllRemovals() {
 		List<Node> removes = new LinkedList<Node>();
 		for (Change c : changes) {
@@ -89,7 +87,7 @@ public class DesignComparator {
 		}
 		return removes;
 	}
-	
+
 	public List<Change> getAllModifications() {
 		List<Change> mods = new LinkedList<Change>();
 		for (Change c : changes) {
@@ -99,7 +97,7 @@ public class DesignComparator {
 		}
 		return mods;
 	}
-	
+
 	public List<Node> getAllModifyOlds() {
 		List<Node> olds = new LinkedList<Node>();
 		for (Change c : changes) {
@@ -109,7 +107,7 @@ public class DesignComparator {
 		}
 		return olds;
 	}
-	
+
 	public List<Node> getAllModifyNews() {
 		List<Node> news = new LinkedList<Node>();
 		for (Change c : changes) {
@@ -119,18 +117,20 @@ public class DesignComparator {
 		}
 		return news;
 	}
-	
-	
-	
+
 	public void printChanges() {
-		for (Change c : changes) {
-			System.out.println(c);
+		if (changes.isEmpty()) {
+			System.out.println("*******NO CHANGES MADE*******");
+		} else {
+			System.out.println("********CHANGES MADE********");
+			for (Change c : changes)
+				System.out.println(c);
 		}
 	}
-	
+
 	public List<Change> compareDesign(DesignNode older, DesignNode newer) {
 		changes = new LinkedList<Change>();
-		
+
 		// ************************************
 		// Check for changes in Devices
 		// ************************************
@@ -146,7 +146,7 @@ public class DesignComparator {
 			// Pins
 			oldPins.addAll(d.getPins());
 		}
-		
+
 		List<AttributeNode> newAttr = new LinkedList<AttributeNode>();
 		List<PinNode> newPins = new LinkedList<PinNode>();
 		for (DeviceNode d : newer.getDevices()) {
@@ -158,15 +158,14 @@ public class DesignComparator {
 			// Pins
 			newPins.addAll(d.getPins());
 		}
-		
+
 		/************************************
 		 * Check for changes in Device Attributes
 		 ************************************/
 		for (AttributeNode a : oldAttr) {
 			if (!newAttr.contains(a)) {
 				changes.add(new Change(ChangeType.REMOVE, a));
-			}
-			else {
+			} else {
 				for (AttributeNode b : newAttr) {
 					if (b.equals(a) && b.getParent().equals(a.getParent())) {
 						if (!b.getValue().equals(a.getValue())) {
@@ -181,7 +180,7 @@ public class DesignComparator {
 				changes.add(new Change(ChangeType.ADD, a));
 			}
 		}
-		
+
 		/************************************
 		 * Check for changes in Device Pins
 		 ************************************/
@@ -190,8 +189,7 @@ public class DesignComparator {
 			// Pin Names
 			if (!oldPins.contains(p)) {
 				changes.add(new Change(ChangeType.ADD, p));
-			}
-			else { // Pin Numbers
+			} else { // Pin Numbers
 				for (PinNode o : oldPins) {
 					if (o.equals(p) && o.getParent().equals(p.getParent())) {
 						if (!o.getPinName().equals(p.getPinName())) {
@@ -225,13 +223,12 @@ public class DesignComparator {
 			}
 			newAttr.addAll(n.getAttributes());
 		}
-		
+
 		// Net Attributes
 		for (AttributeNode a : oldAttr) {
 			if (!newAttr.contains(a)) {
 				changes.add(new Change(ChangeType.REMOVE, a));
-			}
-			else {
+			} else {
 				for (AttributeNode b : newAttr) {
 					if (b.equals(a) && b.getParent().equals(a.getParent())) {
 						if (!b.getValue().equals(a.getValue())) {
@@ -246,7 +243,7 @@ public class DesignComparator {
 				changes.add(new Change(ChangeType.ADD, a));
 			}
 		}
-		
+
 		// ************************************
 		// Check for changes in Instance Names
 		// ************************************
@@ -257,8 +254,7 @@ public class DesignComparator {
 		for (InstanceNode i : older.getInstances()) {
 			if (!newer.getInstances().contains(i)) {
 				changes.add(new Change(ChangeType.REMOVE, i));
-			}
-			else {
+			} else {
 				for (InstanceNode j : newer.getInstances()) {
 					if (j.equals(i)) {
 						if (!j.getDevice().equals(i.getDevice())) {
@@ -274,7 +270,7 @@ public class DesignComparator {
 		}
 		for (InstanceNode i : newer.getInstances()) {
 			if (!older.getInstances().contains(i)) {
-				changes.add(new Change(ChangeType.ADD, i));	
+				changes.add(new Change(ChangeType.ADD, i));
 			}
 			// Attributes
 			newAttr.addAll(i.getAttributes());
@@ -286,12 +282,12 @@ public class DesignComparator {
 		for (AttributeNode a : oldAttr) {
 			if (!newAttr.contains(a)) {
 				changes.add(new Change(ChangeType.REMOVE, a));
-			}
-			else {
+			} else {
 				for (AttributeNode b : newAttr) {
 					if (b.equals(a) && b.getParent().equals(a.getParent())) {
 						if (!b.getValue().equals(a.getValue())) {
-							System.out.println(a.getParent() + "\t" + a + "\t" + b.getParent() + "\t" + b);
+							System.out.println(a.getParent() + "\t" + a + "\t" + b.getParent()
+								+ "\t" + b);
 							changes.add(new Change(ChangeType.MODIFY, a, b));
 						}
 					}
@@ -303,14 +299,13 @@ public class DesignComparator {
 				changes.add(new Change(ChangeType.ADD, a));
 			}
 		}
-		
+
 		// Pin Nets
 		for (PinNode p : newPins) {
 			// Pin Names
 			if (!oldPins.contains(p)) {
 				changes.add(new Change(ChangeType.ADD, p));
-			}
-			else { // Pin Nets
+			} else { // Pin Nets
 				for (PinNode o : oldPins) {
 					if (o.equals(p) && o.getParent().equals(p.getParent())) {
 						if (!o.getNet().equals(p.getNet())) {
@@ -327,8 +322,8 @@ public class DesignComparator {
 				changes.add(new Change(ChangeType.REMOVE, p));
 			}
 		}
-		
+
 		return changes;
 	}
-	
+
 }
