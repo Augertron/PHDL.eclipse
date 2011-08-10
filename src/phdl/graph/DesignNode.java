@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -272,6 +273,19 @@ public class DesignNode extends Node {
 			}
 		}
 		return allInstances;
+	}
+	
+	/**
+	 * 
+	 */
+	public List<InstanceNode> getInst_wo_RefDes() {
+		List<InstanceNode> insts = new LinkedList<InstanceNode>();
+		for (InstanceNode i : instances) {
+			if (i.getRefDes() == null) {
+				insts.add(i);
+			}
+		}
+		return insts;
 	}
 
 	/**

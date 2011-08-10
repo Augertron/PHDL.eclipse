@@ -80,7 +80,7 @@ public class NetListGenerator {
 				String ref2 = ((InstanceNode) pin2.getParent()).getRefDes();
 				String name1 = pin1.getPinName();
 				String name2 = pin2.getPinName();
-
+				
 				sb.append(" " + refMap.get(ref1).getRefDes() + "." + name1);
 				sb.append(" " + refMap.get(ref2).getRefDes() + "." + name2 + "\n");
 			}

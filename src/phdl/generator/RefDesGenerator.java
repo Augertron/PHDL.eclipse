@@ -17,7 +17,10 @@
 
 package phdl.generator;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
@@ -57,27 +60,33 @@ public class RefDesGenerator {
 	}
 
 	private void generate() {
-
-		Set<InstanceNode> needsRefDes = new TreeSet<InstanceNode>();
-		for (InstanceNode i : design.getInstances()) {
-			if (i.getRefDes() != null && !i.getRefDes().equals("")) {
-				refMap.put(i.getRefDes(), i);
-			} else {
-				// collect the instances that need a refDes assigned
-				needsRefDes.add(i);
+		String fileName = design.getName() + ".csv";
+		try {
+			File file = new File(fileName);
+			if (file.exists()) {
+				BufferedReader in = new BufferedReader(new FileReader(fileName));
+				String line = "";
+				while ((line = in.readLine()) != null) {
+					String[] refDes = line.split(",");
+					InstanceNode inst = design.getInstance(refDes[1]);
+					inst.setRefDes(refDes[0]);
+					refMap.put(refDes[0], inst);
+				}
 			}
 		}
-		// generate refDes's for those that need it
-		for (InstanceNode i : needsRefDes) {
-
-			String refprefix = i.getRefPrefix();
-			int j = 1;
-			while (refMap.containsKey(refprefix + j)) {
-				j++;
+		catch (IOException e) {
+			System.err.println("File Reading Error - filename may be corrupt");
+			System.exit(1);
+		}
+		for (InstanceNode i : design.getInst_wo_RefDes()) {
+			for (int j = 0; ;j++) {
+				String refDes = i.getRefPrefix() + j;
+				if (!refMap.keySet().contains(refDes)) {
+					refMap.put(refDes, i);
+					i.setRefDes(refDes);
+					break;
+				}				
 			}
-			String refDes = refprefix + j;
-			refMap.put(refDes, i);
-			i.setRefDes(refDes);
 		}
 	}
 
