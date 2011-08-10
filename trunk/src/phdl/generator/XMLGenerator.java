@@ -65,12 +65,14 @@ public class XMLGenerator {
 				sb.append("\n\t\t</attribute>");
 			}
 			for (PinNode p : i.getPins()) {
-				sb.append("\n\t\t<pinname>" + p.getName() + "</pinname>");
-				sb.append("\n\t\t\t<netname>" + p.getNet().getName() + "</netname>");
+				sb.append("\n\t\t<instPin>");
+				sb.append("\n\t\t\t<name>" + p.getName() + "</name>");
+				sb.append("\n\t\t\t<net>" + p.getNet().getName() + "</net>");
+				sb.append("\n\t\t</instPin>");
 			}
 			sb.append("\n\t</instance>");
 		}
-		sb.append("\n</design>");
+		sb.append("\n</design>\n");
 		xml = sb.toString();
 	}
 

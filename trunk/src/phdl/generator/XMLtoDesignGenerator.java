@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+import phdl.graph.Attributable;
 import phdl.graph.AttributeNode;
 import phdl.graph.DesignNode;
 import phdl.graph.DeviceNode;
@@ -36,7 +37,113 @@ public class XMLtoDesignGenerator {
 	public DesignNode getDesign() {
 		return design;
 	}
+
+	private void process(String xml) {
+		DesignNode curDesign = null;
+		DeviceNode curDevice = null;
+		NetNode curNet = null;
+		InstanceNode curInst = null;
+		
+		String[] strings = xml.split("[<>]");
+		List<String> tags = new LinkedList<String>();
+		for (int j = 0; j < strings.length - 1; j++) {
+			if (!strings[j].trim().equals("")) {
+				tags.add(strings[j].trim());
+			}
+		}
+		
+		for (int i = 0; i < tags.size(); i++) {
+			String tag = tags.get(i).trim();
+			// Start tags
+			if (tag.equals("design")) {
+				curDesign = new DesignNode();
+				i++;
+				curDesign.setName(tags.get(++i));
+				i++;
+			}
+			else if (tag.equals("device")) {
+				curDevice = new DeviceNode(curDesign);
+				i++;
+				curDevice.setName(tags.get(++i));
+				i++;
+			}
+			else if (tag.equals("instance")) {
+				curInst = new InstanceNode(curDesign);
+				i++;
+				curInst.setName(tags.get(++i));
+				i++;
+			}
+			else if (tag.equals("attribute")) {
+				AttributeNode a = null;
+				Attributable dev = null;
+				if (curDevice != null) {
+					dev = curDevice;
+				}
+				else if (curInst !=  null) {
+					dev = curInst;
+				}
+				else if (curNet != null) {
+					dev = curNet;
+				}
+				
+				a = new AttributeNode(dev);
+				
+				i++;
+				a.setName(tags.get(++i));
+				i++;
+				
+				i++;
+				a.setValue(tags.get(++i));
+				i++;
+				
+				i++;
+				
+				dev.addAttribute(a);
+			}
+			else if (tag.equals("pin")) {
+				PinNode p = new PinNode(curDevice);
+				i++;
+				p.setName(tags.get(++i));
+				i++;
+				
+				i++;
+				p.setPinName(tags.get(++i));
+				i++;
+				
+				i++;
+				
+				curDevice.addPin(p);
+			}
+			else if (tag.equals("net")) {
+				curNet = new NetNode(curDesign);
+				i++;
+				curNet.setName(tags.get(++i));
+				i++;
+			}
+			else if (tag.equals("instPin")) {
+				
+			} // End Tags
+			else if (tag.equals("/design")) {
+				design = curDesign;
+				curDesign = null;
+			}
+			else if (tag.equals("/device")) {
+				curDesign.addDevice(curDevice);
+				curDevice = null;
+			}
+			else if (tag.equals("/instance")) {
+				curDesign.addInstance(curInst);
+				curInst = null;
+			}
+			else if (tag.equals("/net")) {
+				curDesign.addNet(curNet);
+				curNet = null;
+			}
+		}
+	}
 	
+	
+/*
 	private void process(String xml) {
 		DesignNode curDesign = null;
 		DeviceNode curDevice = null;
@@ -250,4 +357,6 @@ public class XMLtoDesignGenerator {
 			}
 		}
 	}
+*/
+	
 }
