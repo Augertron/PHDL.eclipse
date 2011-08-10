@@ -891,38 +891,70 @@
 			<name>REFPREFIX</name>
 			<value>BC</value>
 		</attribute>
-		<pinname>a</pinname>
-			<netname>a_net[5]</netname>
-		<pinname>b</pinname>
-			<netname>b_net[5]</netname>
-		<pinname>c</pinname>
-			<netname>c_net[5]</netname>
-		<pinname>d</pinname>
-			<netname>d_net[5]</netname>
-		<pinname>e</pinname>
-			<netname>e_net[5]</netname>
-		<pinname>f</pinname>
-			<netname>f_net[5]</netname>
-		<pinname>g</pinname>
-			<netname>g_net[5]</netname>
-		<pinname>vcc</pinname>
-			<netname>vcc</netname>
-		<pinname>gnd</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
-		<pinname>input</pinname>
-			<netname>open</netname>
-		<pinname>output</pinname>
-			<netname>open</netname>
-		<pinname>one</pinname>
-			<netname>qa[5]</netname>
-		<pinname>two</pinname>
-			<netname>qb[5]</netname>
-		<pinname>four</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
-		<pinname>eight</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
-		<pinname>lamp_test</pinname>
-			<netname>open</netname>
+		<instPin>
+			<name>a</name>
+			<net>a_net[5]</net>
+		</instPin>
+		<instPin>
+			<name>b</name>
+			<net>b_net[5]</net>
+		</instPin>
+		<instPin>
+			<name>c</name>
+			<net>c_net[5]</net>
+		</instPin>
+		<instPin>
+			<name>d</name>
+			<net>d_net[5]</net>
+		</instPin>
+		<instPin>
+			<name>e</name>
+			<net>e_net[5]</net>
+		</instPin>
+		<instPin>
+			<name>f</name>
+			<net>f_net[5]</net>
+		</instPin>
+		<instPin>
+			<name>g</name>
+			<net>g_net[5]</net>
+		</instPin>
+		<instPin>
+			<name>vcc</name>
+			<net>vcc</net>
+		</instPin>
+		<instPin>
+			<name>gnd</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
+		<instPin>
+			<name>input</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>output</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>one</name>
+			<net>qa[5]</net>
+		</instPin>
+		<instPin>
+			<name>two</name>
+			<net>qb[5]</net>
+		</instPin>
+		<instPin>
+			<name>four</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
+		<instPin>
+			<name>eight</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
+		<instPin>
+			<name>lamp_test</name>
+			<net>open</net>
+		</instPin>
 	</instance>
 	<instance>
 		<name>ss_conv(4)</name>
@@ -940,38 +972,70 @@
 			<name>REFPREFIX</name>
 			<value>BC</value>
 		</attribute>
-		<pinname>a</pinname>
-			<netname>a_net[4]</netname>
-		<pinname>b</pinname>
-			<netname>b_net[4]</netname>
-		<pinname>c</pinname>
-			<netname>c_net[4]</netname>
-		<pinname>d</pinname>
-			<netname>d_net[4]</netname>
-		<pinname>e</pinname>
-			<netname>e_net[4]</netname>
-		<pinname>f</pinname>
-			<netname>f_net[4]</netname>
-		<pinname>g</pinname>
-			<netname>g_net[4]</netname>
-		<pinname>vcc</pinname>
-			<netname>vcc</netname>
-		<pinname>gnd</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
-		<pinname>input</pinname>
-			<netname>open</netname>
-		<pinname>output</pinname>
-			<netname>open</netname>
-		<pinname>one</pinname>
-			<netname>qa[4]</netname>
-		<pinname>two</pinname>
-			<netname>qb[4]</netname>
-		<pinname>four</pinname>
-			<netname>qc[4]</netname>
-		<pinname>eight</pinname>
-			<netname>qd[4]</netname>
-		<pinname>lamp_test</pinname>
-			<netname>open</netname>
+		<instPin>
+			<name>a</name>
+			<net>a_net[4]</net>
+		</instPin>
+		<instPin>
+			<name>b</name>
+			<net>b_net[4]</net>
+		</instPin>
+		<instPin>
+			<name>c</name>
+			<net>c_net[4]</net>
+		</instPin>
+		<instPin>
+			<name>d</name>
+			<net>d_net[4]</net>
+		</instPin>
+		<instPin>
+			<name>e</name>
+			<net>e_net[4]</net>
+		</instPin>
+		<instPin>
+			<name>f</name>
+			<net>f_net[4]</net>
+		</instPin>
+		<instPin>
+			<name>g</name>
+			<net>g_net[4]</net>
+		</instPin>
+		<instPin>
+			<name>vcc</name>
+			<net>vcc</net>
+		</instPin>
+		<instPin>
+			<name>gnd</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
+		<instPin>
+			<name>input</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>output</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>one</name>
+			<net>qa[4]</net>
+		</instPin>
+		<instPin>
+			<name>two</name>
+			<net>qb[4]</net>
+		</instPin>
+		<instPin>
+			<name>four</name>
+			<net>qc[4]</net>
+		</instPin>
+		<instPin>
+			<name>eight</name>
+			<net>qd[4]</net>
+		</instPin>
+		<instPin>
+			<name>lamp_test</name>
+			<net>open</net>
+		</instPin>
 	</instance>
 	<instance>
 		<name>ss_conv(3)</name>
@@ -989,38 +1053,70 @@
 			<name>REFPREFIX</name>
 			<value>BC</value>
 		</attribute>
-		<pinname>a</pinname>
-			<netname>a_net[3]</netname>
-		<pinname>b</pinname>
-			<netname>b_net[3]</netname>
-		<pinname>c</pinname>
-			<netname>c_net[3]</netname>
-		<pinname>d</pinname>
-			<netname>d_net[3]</netname>
-		<pinname>e</pinname>
-			<netname>e_net[3]</netname>
-		<pinname>f</pinname>
-			<netname>f_net[3]</netname>
-		<pinname>g</pinname>
-			<netname>g_net[3]</netname>
-		<pinname>vcc</pinname>
-			<netname>vcc</netname>
-		<pinname>gnd</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
-		<pinname>input</pinname>
-			<netname>open</netname>
-		<pinname>output</pinname>
-			<netname>open</netname>
-		<pinname>one</pinname>
-			<netname>qa[3]</netname>
-		<pinname>two</pinname>
-			<netname>qb[3]</netname>
-		<pinname>four</pinname>
-			<netname>qc[3]</netname>
-		<pinname>eight</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
-		<pinname>lamp_test</pinname>
-			<netname>open</netname>
+		<instPin>
+			<name>a</name>
+			<net>a_net[3]</net>
+		</instPin>
+		<instPin>
+			<name>b</name>
+			<net>b_net[3]</net>
+		</instPin>
+		<instPin>
+			<name>c</name>
+			<net>c_net[3]</net>
+		</instPin>
+		<instPin>
+			<name>d</name>
+			<net>d_net[3]</net>
+		</instPin>
+		<instPin>
+			<name>e</name>
+			<net>e_net[3]</net>
+		</instPin>
+		<instPin>
+			<name>f</name>
+			<net>f_net[3]</net>
+		</instPin>
+		<instPin>
+			<name>g</name>
+			<net>g_net[3]</net>
+		</instPin>
+		<instPin>
+			<name>vcc</name>
+			<net>vcc</net>
+		</instPin>
+		<instPin>
+			<name>gnd</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
+		<instPin>
+			<name>input</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>output</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>one</name>
+			<net>qa[3]</net>
+		</instPin>
+		<instPin>
+			<name>two</name>
+			<net>qb[3]</net>
+		</instPin>
+		<instPin>
+			<name>four</name>
+			<net>qc[3]</net>
+		</instPin>
+		<instPin>
+			<name>eight</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
+		<instPin>
+			<name>lamp_test</name>
+			<net>open</net>
+		</instPin>
 	</instance>
 	<instance>
 		<name>ss_conv(2)</name>
@@ -1038,38 +1134,70 @@
 			<name>REFPREFIX</name>
 			<value>BC</value>
 		</attribute>
-		<pinname>a</pinname>
-			<netname>a_net[2]</netname>
-		<pinname>b</pinname>
-			<netname>b_net[2]</netname>
-		<pinname>c</pinname>
-			<netname>c_net[2]</netname>
-		<pinname>d</pinname>
-			<netname>d_net[2]</netname>
-		<pinname>e</pinname>
-			<netname>e_net[2]</netname>
-		<pinname>f</pinname>
-			<netname>f_net[2]</netname>
-		<pinname>g</pinname>
-			<netname>g_net[2]</netname>
-		<pinname>vcc</pinname>
-			<netname>vcc</netname>
-		<pinname>gnd</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
-		<pinname>input</pinname>
-			<netname>open</netname>
-		<pinname>output</pinname>
-			<netname>open</netname>
-		<pinname>one</pinname>
-			<netname>qa[2]</netname>
-		<pinname>two</pinname>
-			<netname>qb[2]</netname>
-		<pinname>four</pinname>
-			<netname>qc[2]</netname>
-		<pinname>eight</pinname>
-			<netname>qd[2]</netname>
-		<pinname>lamp_test</pinname>
-			<netname>open</netname>
+		<instPin>
+			<name>a</name>
+			<net>a_net[2]</net>
+		</instPin>
+		<instPin>
+			<name>b</name>
+			<net>b_net[2]</net>
+		</instPin>
+		<instPin>
+			<name>c</name>
+			<net>c_net[2]</net>
+		</instPin>
+		<instPin>
+			<name>d</name>
+			<net>d_net[2]</net>
+		</instPin>
+		<instPin>
+			<name>e</name>
+			<net>e_net[2]</net>
+		</instPin>
+		<instPin>
+			<name>f</name>
+			<net>f_net[2]</net>
+		</instPin>
+		<instPin>
+			<name>g</name>
+			<net>g_net[2]</net>
+		</instPin>
+		<instPin>
+			<name>vcc</name>
+			<net>vcc</net>
+		</instPin>
+		<instPin>
+			<name>gnd</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
+		<instPin>
+			<name>input</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>output</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>one</name>
+			<net>qa[2]</net>
+		</instPin>
+		<instPin>
+			<name>two</name>
+			<net>qb[2]</net>
+		</instPin>
+		<instPin>
+			<name>four</name>
+			<net>qc[2]</net>
+		</instPin>
+		<instPin>
+			<name>eight</name>
+			<net>qd[2]</net>
+		</instPin>
+		<instPin>
+			<name>lamp_test</name>
+			<net>open</net>
+		</instPin>
 	</instance>
 	<instance>
 		<name>ss_conv(1)</name>
@@ -1087,38 +1215,70 @@
 			<name>REFPREFIX</name>
 			<value>BC</value>
 		</attribute>
-		<pinname>a</pinname>
-			<netname>a_net[1]</netname>
-		<pinname>b</pinname>
-			<netname>b_net[1]</netname>
-		<pinname>c</pinname>
-			<netname>c_net[1]</netname>
-		<pinname>d</pinname>
-			<netname>d_net[1]</netname>
-		<pinname>e</pinname>
-			<netname>e_net[1]</netname>
-		<pinname>f</pinname>
-			<netname>f_net[1]</netname>
-		<pinname>g</pinname>
-			<netname>g_net[1]</netname>
-		<pinname>vcc</pinname>
-			<netname>vcc</netname>
-		<pinname>gnd</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
-		<pinname>input</pinname>
-			<netname>open</netname>
-		<pinname>output</pinname>
-			<netname>open</netname>
-		<pinname>one</pinname>
-			<netname>qa[1]</netname>
-		<pinname>two</pinname>
-			<netname>qb[1]</netname>
-		<pinname>four</pinname>
-			<netname>qc[1]</netname>
-		<pinname>eight</pinname>
-			<netname>open</netname>
-		<pinname>lamp_test</pinname>
-			<netname>open</netname>
+		<instPin>
+			<name>a</name>
+			<net>a_net[1]</net>
+		</instPin>
+		<instPin>
+			<name>b</name>
+			<net>b_net[1]</net>
+		</instPin>
+		<instPin>
+			<name>c</name>
+			<net>c_net[1]</net>
+		</instPin>
+		<instPin>
+			<name>d</name>
+			<net>d_net[1]</net>
+		</instPin>
+		<instPin>
+			<name>e</name>
+			<net>e_net[1]</net>
+		</instPin>
+		<instPin>
+			<name>f</name>
+			<net>f_net[1]</net>
+		</instPin>
+		<instPin>
+			<name>g</name>
+			<net>g_net[1]</net>
+		</instPin>
+		<instPin>
+			<name>vcc</name>
+			<net>vcc</net>
+		</instPin>
+		<instPin>
+			<name>gnd</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
+		<instPin>
+			<name>input</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>output</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>one</name>
+			<net>qa[1]</net>
+		</instPin>
+		<instPin>
+			<name>two</name>
+			<net>qb[1]</net>
+		</instPin>
+		<instPin>
+			<name>four</name>
+			<net>qc[1]</net>
+		</instPin>
+		<instPin>
+			<name>eight</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>lamp_test</name>
+			<net>open</net>
+		</instPin>
 	</instance>
 	<instance>
 		<name>ss_conv(0)</name>
@@ -1136,38 +1296,70 @@
 			<name>REFPREFIX</name>
 			<value>BC</value>
 		</attribute>
-		<pinname>a</pinname>
-			<netname>a_net[0]</netname>
-		<pinname>b</pinname>
-			<netname>b_net[0]</netname>
-		<pinname>c</pinname>
-			<netname>c_net[0]</netname>
-		<pinname>d</pinname>
-			<netname>d_net[0]</netname>
-		<pinname>e</pinname>
-			<netname>e_net[0]</netname>
-		<pinname>f</pinname>
-			<netname>f_net[0]</netname>
-		<pinname>g</pinname>
-			<netname>g_net[0]</netname>
-		<pinname>vcc</pinname>
-			<netname>vcc</netname>
-		<pinname>gnd</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
-		<pinname>input</pinname>
-			<netname>open</netname>
-		<pinname>output</pinname>
-			<netname>open</netname>
-		<pinname>one</pinname>
-			<netname>qa[0]</netname>
-		<pinname>two</pinname>
-			<netname>qb[0]</netname>
-		<pinname>four</pinname>
-			<netname>qc[0]</netname>
-		<pinname>eight</pinname>
-			<netname>qd[0]</netname>
-		<pinname>lamp_test</pinname>
-			<netname>open</netname>
+		<instPin>
+			<name>a</name>
+			<net>a_net[0]</net>
+		</instPin>
+		<instPin>
+			<name>b</name>
+			<net>b_net[0]</net>
+		</instPin>
+		<instPin>
+			<name>c</name>
+			<net>c_net[0]</net>
+		</instPin>
+		<instPin>
+			<name>d</name>
+			<net>d_net[0]</net>
+		</instPin>
+		<instPin>
+			<name>e</name>
+			<net>e_net[0]</net>
+		</instPin>
+		<instPin>
+			<name>f</name>
+			<net>f_net[0]</net>
+		</instPin>
+		<instPin>
+			<name>g</name>
+			<net>g_net[0]</net>
+		</instPin>
+		<instPin>
+			<name>vcc</name>
+			<net>vcc</net>
+		</instPin>
+		<instPin>
+			<name>gnd</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
+		<instPin>
+			<name>input</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>output</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>one</name>
+			<net>qa[0]</net>
+		</instPin>
+		<instPin>
+			<name>two</name>
+			<net>qb[0]</net>
+		</instPin>
+		<instPin>
+			<name>four</name>
+			<net>qc[0]</net>
+		</instPin>
+		<instPin>
+			<name>eight</name>
+			<net>qd[0]</net>
+		</instPin>
+		<instPin>
+			<name>lamp_test</name>
+			<net>open</net>
+		</instPin>
 	</instance>
 	<instance>
 		<name>ss_disp(5)</name>
@@ -1185,26 +1377,46 @@
 			<name>REFPREFIX</name>
 			<value>L</value>
 		</attribute>
-		<pinname>a</pinname>
-			<netname>a_net[5]</netname>
-		<pinname>b</pinname>
-			<netname>b_net[5]</netname>
-		<pinname>c</pinname>
-			<netname>c_net[5]</netname>
-		<pinname>d</pinname>
-			<netname>d_net[5]</netname>
-		<pinname>e</pinname>
-			<netname>e_net[5]</netname>
-		<pinname>f</pinname>
-			<netname>f_net[5]</netname>
-		<pinname>g</pinname>
-			<netname>g_net[5]</netname>
-		<pinname>decimal</pinname>
-			<netname>open</netname>
-		<pinname>anode[1]</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
-		<pinname>anode[0]</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
+		<instPin>
+			<name>a</name>
+			<net>a_net[5]</net>
+		</instPin>
+		<instPin>
+			<name>b</name>
+			<net>b_net[5]</net>
+		</instPin>
+		<instPin>
+			<name>c</name>
+			<net>c_net[5]</net>
+		</instPin>
+		<instPin>
+			<name>d</name>
+			<net>d_net[5]</net>
+		</instPin>
+		<instPin>
+			<name>e</name>
+			<net>e_net[5]</net>
+		</instPin>
+		<instPin>
+			<name>f</name>
+			<net>f_net[5]</net>
+		</instPin>
+		<instPin>
+			<name>g</name>
+			<net>g_net[5]</net>
+		</instPin>
+		<instPin>
+			<name>decimal</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>anode[1]</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
+		<instPin>
+			<name>anode[0]</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
 	</instance>
 	<instance>
 		<name>ss_disp(4)</name>
@@ -1222,26 +1434,46 @@
 			<name>REFPREFIX</name>
 			<value>L</value>
 		</attribute>
-		<pinname>a</pinname>
-			<netname>a_net[4]</netname>
-		<pinname>b</pinname>
-			<netname>b_net[4]</netname>
-		<pinname>c</pinname>
-			<netname>c_net[4]</netname>
-		<pinname>d</pinname>
-			<netname>d_net[4]</netname>
-		<pinname>e</pinname>
-			<netname>e_net[4]</netname>
-		<pinname>f</pinname>
-			<netname>f_net[4]</netname>
-		<pinname>g</pinname>
-			<netname>g_net[4]</netname>
-		<pinname>decimal</pinname>
-			<netname>open</netname>
-		<pinname>anode[1]</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
-		<pinname>anode[0]</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
+		<instPin>
+			<name>a</name>
+			<net>a_net[4]</net>
+		</instPin>
+		<instPin>
+			<name>b</name>
+			<net>b_net[4]</net>
+		</instPin>
+		<instPin>
+			<name>c</name>
+			<net>c_net[4]</net>
+		</instPin>
+		<instPin>
+			<name>d</name>
+			<net>d_net[4]</net>
+		</instPin>
+		<instPin>
+			<name>e</name>
+			<net>e_net[4]</net>
+		</instPin>
+		<instPin>
+			<name>f</name>
+			<net>f_net[4]</net>
+		</instPin>
+		<instPin>
+			<name>g</name>
+			<net>g_net[4]</net>
+		</instPin>
+		<instPin>
+			<name>decimal</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>anode[1]</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
+		<instPin>
+			<name>anode[0]</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
 	</instance>
 	<instance>
 		<name>ss_disp(3)</name>
@@ -1259,26 +1491,46 @@
 			<name>REFPREFIX</name>
 			<value>L</value>
 		</attribute>
-		<pinname>a</pinname>
-			<netname>a_net[3]</netname>
-		<pinname>b</pinname>
-			<netname>b_net[3]</netname>
-		<pinname>c</pinname>
-			<netname>c_net[3]</netname>
-		<pinname>d</pinname>
-			<netname>d_net[3]</netname>
-		<pinname>e</pinname>
-			<netname>e_net[3]</netname>
-		<pinname>f</pinname>
-			<netname>f_net[3]</netname>
-		<pinname>g</pinname>
-			<netname>g_net[3]</netname>
-		<pinname>decimal</pinname>
-			<netname>open</netname>
-		<pinname>anode[1]</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
-		<pinname>anode[0]</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
+		<instPin>
+			<name>a</name>
+			<net>a_net[3]</net>
+		</instPin>
+		<instPin>
+			<name>b</name>
+			<net>b_net[3]</net>
+		</instPin>
+		<instPin>
+			<name>c</name>
+			<net>c_net[3]</net>
+		</instPin>
+		<instPin>
+			<name>d</name>
+			<net>d_net[3]</net>
+		</instPin>
+		<instPin>
+			<name>e</name>
+			<net>e_net[3]</net>
+		</instPin>
+		<instPin>
+			<name>f</name>
+			<net>f_net[3]</net>
+		</instPin>
+		<instPin>
+			<name>g</name>
+			<net>g_net[3]</net>
+		</instPin>
+		<instPin>
+			<name>decimal</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>anode[1]</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
+		<instPin>
+			<name>anode[0]</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
 	</instance>
 	<instance>
 		<name>ss_disp(2)</name>
@@ -1296,26 +1548,46 @@
 			<name>REFPREFIX</name>
 			<value>L</value>
 		</attribute>
-		<pinname>a</pinname>
-			<netname>a_net[2]</netname>
-		<pinname>b</pinname>
-			<netname>b_net[2]</netname>
-		<pinname>c</pinname>
-			<netname>c_net[2]</netname>
-		<pinname>d</pinname>
-			<netname>d_net[2]</netname>
-		<pinname>e</pinname>
-			<netname>e_net[2]</netname>
-		<pinname>f</pinname>
-			<netname>f_net[2]</netname>
-		<pinname>g</pinname>
-			<netname>g_net[2]</netname>
-		<pinname>decimal</pinname>
-			<netname>open</netname>
-		<pinname>anode[1]</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
-		<pinname>anode[0]</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
+		<instPin>
+			<name>a</name>
+			<net>a_net[2]</net>
+		</instPin>
+		<instPin>
+			<name>b</name>
+			<net>b_net[2]</net>
+		</instPin>
+		<instPin>
+			<name>c</name>
+			<net>c_net[2]</net>
+		</instPin>
+		<instPin>
+			<name>d</name>
+			<net>d_net[2]</net>
+		</instPin>
+		<instPin>
+			<name>e</name>
+			<net>e_net[2]</net>
+		</instPin>
+		<instPin>
+			<name>f</name>
+			<net>f_net[2]</net>
+		</instPin>
+		<instPin>
+			<name>g</name>
+			<net>g_net[2]</net>
+		</instPin>
+		<instPin>
+			<name>decimal</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>anode[1]</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
+		<instPin>
+			<name>anode[0]</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
 	</instance>
 	<instance>
 		<name>ss_disp(1)</name>
@@ -1333,26 +1605,46 @@
 			<name>REFPREFIX</name>
 			<value>L</value>
 		</attribute>
-		<pinname>a</pinname>
-			<netname>a_net[1]</netname>
-		<pinname>b</pinname>
-			<netname>b_net[1]</netname>
-		<pinname>c</pinname>
-			<netname>c_net[1]</netname>
-		<pinname>d</pinname>
-			<netname>d_net[1]</netname>
-		<pinname>e</pinname>
-			<netname>e_net[1]</netname>
-		<pinname>f</pinname>
-			<netname>f_net[1]</netname>
-		<pinname>g</pinname>
-			<netname>g_net[1]</netname>
-		<pinname>decimal</pinname>
-			<netname>open</netname>
-		<pinname>anode[1]</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
-		<pinname>anode[0]</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
+		<instPin>
+			<name>a</name>
+			<net>a_net[1]</net>
+		</instPin>
+		<instPin>
+			<name>b</name>
+			<net>b_net[1]</net>
+		</instPin>
+		<instPin>
+			<name>c</name>
+			<net>c_net[1]</net>
+		</instPin>
+		<instPin>
+			<name>d</name>
+			<net>d_net[1]</net>
+		</instPin>
+		<instPin>
+			<name>e</name>
+			<net>e_net[1]</net>
+		</instPin>
+		<instPin>
+			<name>f</name>
+			<net>f_net[1]</net>
+		</instPin>
+		<instPin>
+			<name>g</name>
+			<net>g_net[1]</net>
+		</instPin>
+		<instPin>
+			<name>decimal</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>anode[1]</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
+		<instPin>
+			<name>anode[0]</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
 	</instance>
 	<instance>
 		<name>ss_disp(0)</name>
@@ -1370,26 +1662,46 @@
 			<name>REFPREFIX</name>
 			<value>L</value>
 		</attribute>
-		<pinname>a</pinname>
-			<netname>a_net[0]</netname>
-		<pinname>b</pinname>
-			<netname>b_net[0]</netname>
-		<pinname>c</pinname>
-			<netname>c_net[0]</netname>
-		<pinname>d</pinname>
-			<netname>d_net[0]</netname>
-		<pinname>e</pinname>
-			<netname>e_net[0]</netname>
-		<pinname>f</pinname>
-			<netname>f_net[0]</netname>
-		<pinname>g</pinname>
-			<netname>g_net[0]</netname>
-		<pinname>decimal</pinname>
-			<netname>open</netname>
-		<pinname>anode[1]</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
-		<pinname>anode[0]</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
+		<instPin>
+			<name>a</name>
+			<net>a_net[0]</net>
+		</instPin>
+		<instPin>
+			<name>b</name>
+			<net>b_net[0]</net>
+		</instPin>
+		<instPin>
+			<name>c</name>
+			<net>c_net[0]</net>
+		</instPin>
+		<instPin>
+			<name>d</name>
+			<net>d_net[0]</net>
+		</instPin>
+		<instPin>
+			<name>e</name>
+			<net>e_net[0]</net>
+		</instPin>
+		<instPin>
+			<name>f</name>
+			<net>f_net[0]</net>
+		</instPin>
+		<instPin>
+			<name>g</name>
+			<net>g_net[0]</net>
+		</instPin>
+		<instPin>
+			<name>decimal</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>anode[1]</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
+		<instPin>
+			<name>anode[0]</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
 	</instance>
 	<instance>
 		<name>divby12(2)</name>
@@ -1407,34 +1719,62 @@
 			<name>REFPREFIX</name>
 			<value>D</value>
 		</attribute>
-		<pinname>A</pinname>
-			<netname>qd[4]</netname>
-		<pinname>B</pinname>
-			<netname>qa[5]</netname>
-		<pinname>Qa</pinname>
-			<netname>qa[5]</netname>
-		<pinname>Qb</pinname>
-			<netname>qb[5]</netname>
-		<pinname>Qc</pinname>
-			<netname>open</netname>
-		<pinname>Qd</pinname>
-			<netname>open</netname>
-		<pinname>vcc</pinname>
-			<netname>vcc</netname>
-		<pinname>gnd</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
-		<pinname>Ro[2]</pinname>
-			<netname>R[1]</netname>
-		<pinname>Ro[1]</pinname>
-			<netname>R[1]</netname>
-		<pinname>nc[3]</pinname>
-			<netname>open</netname>
-		<pinname>nc[2]</pinname>
-			<netname>open</netname>
-		<pinname>nc[1]</pinname>
-			<netname>open</netname>
-		<pinname>nc[0]</pinname>
-			<netname>open</netname>
+		<instPin>
+			<name>A</name>
+			<net>qd[4]</net>
+		</instPin>
+		<instPin>
+			<name>B</name>
+			<net>qa[5]</net>
+		</instPin>
+		<instPin>
+			<name>Qa</name>
+			<net>qa[5]</net>
+		</instPin>
+		<instPin>
+			<name>Qb</name>
+			<net>qb[5]</net>
+		</instPin>
+		<instPin>
+			<name>Qc</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>Qd</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>vcc</name>
+			<net>vcc</net>
+		</instPin>
+		<instPin>
+			<name>gnd</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
+		<instPin>
+			<name>Ro[2]</name>
+			<net>R[1]</net>
+		</instPin>
+		<instPin>
+			<name>Ro[1]</name>
+			<net>R[1]</net>
+		</instPin>
+		<instPin>
+			<name>nc[3]</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>nc[2]</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>nc[1]</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>nc[0]</name>
+			<net>open</net>
+		</instPin>
 	</instance>
 	<instance>
 		<name>divby12(1)</name>
@@ -1452,34 +1792,62 @@
 			<name>REFPREFIX</name>
 			<value>D</value>
 		</attribute>
-		<pinname>A</pinname>
-			<netname>qd[2]</netname>
-		<pinname>B</pinname>
-			<netname>qa[3]</netname>
-		<pinname>Qa</pinname>
-			<netname>qa[3]</netname>
-		<pinname>Qb</pinname>
-			<netname>qb[3]</netname>
-		<pinname>Qc</pinname>
-			<netname>qc[3]</netname>
-		<pinname>Qd</pinname>
-			<netname>open</netname>
-		<pinname>vcc</pinname>
-			<netname>vcc</netname>
-		<pinname>gnd</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
-		<pinname>Ro[2]</pinname>
-			<netname>R[0]</netname>
-		<pinname>Ro[1]</pinname>
-			<netname>R[0]</netname>
-		<pinname>nc[3]</pinname>
-			<netname>open</netname>
-		<pinname>nc[2]</pinname>
-			<netname>open</netname>
-		<pinname>nc[1]</pinname>
-			<netname>open</netname>
-		<pinname>nc[0]</pinname>
-			<netname>open</netname>
+		<instPin>
+			<name>A</name>
+			<net>qd[2]</net>
+		</instPin>
+		<instPin>
+			<name>B</name>
+			<net>qa[3]</net>
+		</instPin>
+		<instPin>
+			<name>Qa</name>
+			<net>qa[3]</net>
+		</instPin>
+		<instPin>
+			<name>Qb</name>
+			<net>qb[3]</net>
+		</instPin>
+		<instPin>
+			<name>Qc</name>
+			<net>qc[3]</net>
+		</instPin>
+		<instPin>
+			<name>Qd</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>vcc</name>
+			<net>vcc</net>
+		</instPin>
+		<instPin>
+			<name>gnd</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
+		<instPin>
+			<name>Ro[2]</name>
+			<net>R[0]</net>
+		</instPin>
+		<instPin>
+			<name>Ro[1]</name>
+			<net>R[0]</net>
+		</instPin>
+		<instPin>
+			<name>nc[3]</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>nc[2]</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>nc[1]</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>nc[0]</name>
+			<net>open</net>
+		</instPin>
 	</instance>
 	<instance>
 		<name>divby12(0)</name>
@@ -1497,34 +1865,62 @@
 			<name>REFPREFIX</name>
 			<value>D</value>
 		</attribute>
-		<pinname>A</pinname>
-			<netname>qd[0]</netname>
-		<pinname>B</pinname>
-			<netname>qa[1]</netname>
-		<pinname>Qa</pinname>
-			<netname>qa[1]</netname>
-		<pinname>Qb</pinname>
-			<netname>qb[1]</netname>
-		<pinname>Qc</pinname>
-			<netname>qc[1]</netname>
-		<pinname>Qd</pinname>
-			<netname>open</netname>
-		<pinname>vcc</pinname>
-			<netname>vcc</netname>
-		<pinname>gnd</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
-		<pinname>Ro[2]</pinname>
-			<netname>R[0]</netname>
-		<pinname>Ro[1]</pinname>
-			<netname>R[0]</netname>
-		<pinname>nc[3]</pinname>
-			<netname>open</netname>
-		<pinname>nc[2]</pinname>
-			<netname>open</netname>
-		<pinname>nc[1]</pinname>
-			<netname>open</netname>
-		<pinname>nc[0]</pinname>
-			<netname>open</netname>
+		<instPin>
+			<name>A</name>
+			<net>qd[0]</net>
+		</instPin>
+		<instPin>
+			<name>B</name>
+			<net>qa[1]</net>
+		</instPin>
+		<instPin>
+			<name>Qa</name>
+			<net>qa[1]</net>
+		</instPin>
+		<instPin>
+			<name>Qb</name>
+			<net>qb[1]</net>
+		</instPin>
+		<instPin>
+			<name>Qc</name>
+			<net>qc[1]</net>
+		</instPin>
+		<instPin>
+			<name>Qd</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>vcc</name>
+			<net>vcc</net>
+		</instPin>
+		<instPin>
+			<name>gnd</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
+		<instPin>
+			<name>Ro[2]</name>
+			<net>R[0]</net>
+		</instPin>
+		<instPin>
+			<name>Ro[1]</name>
+			<net>R[0]</net>
+		</instPin>
+		<instPin>
+			<name>nc[3]</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>nc[2]</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>nc[1]</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>nc[0]</name>
+			<net>open</net>
+		</instPin>
 	</instance>
 	<instance>
 		<name>decBinCntr(2)</name>
@@ -1542,34 +1938,62 @@
 			<name>REFPREFIX</name>
 			<value>B</value>
 		</attribute>
-		<pinname>input_a</pinname>
-			<netname>qc[3]</netname>
-		<pinname>input_b</pinname>
-			<netname>qa[4]</netname>
-		<pinname>A</pinname>
-			<netname>qa[4]</netname>
-		<pinname>B</pinname>
-			<netname>qb[4]</netname>
-		<pinname>C</pinname>
-			<netname>qc[4]</netname>
-		<pinname>D</pinname>
-			<netname>qd[4]</netname>
-		<pinname>r1</pinname>
-			<netname>R[1]</netname>
-		<pinname>r2</pinname>
-			<netname>R[1]</netname>
-		<pinname>r3</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
-		<pinname>r4</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
-		<pinname>vcc</pinname>
-			<netname>vcc</netname>
-		<pinname>gnd</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
-		<pinname>nc[1]</pinname>
-			<netname>open</netname>
-		<pinname>nc[0]</pinname>
-			<netname>open</netname>
+		<instPin>
+			<name>input_a</name>
+			<net>qc[3]</net>
+		</instPin>
+		<instPin>
+			<name>input_b</name>
+			<net>qa[4]</net>
+		</instPin>
+		<instPin>
+			<name>A</name>
+			<net>qa[4]</net>
+		</instPin>
+		<instPin>
+			<name>B</name>
+			<net>qb[4]</net>
+		</instPin>
+		<instPin>
+			<name>C</name>
+			<net>qc[4]</net>
+		</instPin>
+		<instPin>
+			<name>D</name>
+			<net>qd[4]</net>
+		</instPin>
+		<instPin>
+			<name>r1</name>
+			<net>R[1]</net>
+		</instPin>
+		<instPin>
+			<name>r2</name>
+			<net>R[1]</net>
+		</instPin>
+		<instPin>
+			<name>r3</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
+		<instPin>
+			<name>r4</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
+		<instPin>
+			<name>vcc</name>
+			<net>vcc</net>
+		</instPin>
+		<instPin>
+			<name>gnd</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
+		<instPin>
+			<name>nc[1]</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>nc[0]</name>
+			<net>open</net>
+		</instPin>
 	</instance>
 	<instance>
 		<name>decBinCntr(1)</name>
@@ -1587,34 +2011,62 @@
 			<name>REFPREFIX</name>
 			<value>B</value>
 		</attribute>
-		<pinname>input_a</pinname>
-			<netname>or_gate_net</netname>
-		<pinname>input_b</pinname>
-			<netname>qa[2]</netname>
-		<pinname>A</pinname>
-			<netname>qa[2]</netname>
-		<pinname>B</pinname>
-			<netname>qb[2]</netname>
-		<pinname>C</pinname>
-			<netname>qc[2]</netname>
-		<pinname>D</pinname>
-			<netname>qd[2]</netname>
-		<pinname>r1</pinname>
-			<netname>R[0]</netname>
-		<pinname>r2</pinname>
-			<netname>R[0]</netname>
-		<pinname>r3</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
-		<pinname>r4</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
-		<pinname>vcc</pinname>
-			<netname>vcc</netname>
-		<pinname>gnd</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
-		<pinname>nc[1]</pinname>
-			<netname>open</netname>
-		<pinname>nc[0]</pinname>
-			<netname>open</netname>
+		<instPin>
+			<name>input_a</name>
+			<net>or_gate_net</net>
+		</instPin>
+		<instPin>
+			<name>input_b</name>
+			<net>qa[2]</net>
+		</instPin>
+		<instPin>
+			<name>A</name>
+			<net>qa[2]</net>
+		</instPin>
+		<instPin>
+			<name>B</name>
+			<net>qb[2]</net>
+		</instPin>
+		<instPin>
+			<name>C</name>
+			<net>qc[2]</net>
+		</instPin>
+		<instPin>
+			<name>D</name>
+			<net>qd[2]</net>
+		</instPin>
+		<instPin>
+			<name>r1</name>
+			<net>R[0]</net>
+		</instPin>
+		<instPin>
+			<name>r2</name>
+			<net>R[0]</net>
+		</instPin>
+		<instPin>
+			<name>r3</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
+		<instPin>
+			<name>r4</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
+		<instPin>
+			<name>vcc</name>
+			<net>vcc</net>
+		</instPin>
+		<instPin>
+			<name>gnd</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
+		<instPin>
+			<name>nc[1]</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>nc[0]</name>
+			<net>open</net>
+		</instPin>
 	</instance>
 	<instance>
 		<name>decBinCntr(0)</name>
@@ -1632,34 +2084,62 @@
 			<name>REFPREFIX</name>
 			<value>B</value>
 		</attribute>
-		<pinname>input_a</pinname>
-			<netname>clk</netname>
-		<pinname>input_b</pinname>
-			<netname>qa[0]</netname>
-		<pinname>A</pinname>
-			<netname>qa[0]</netname>
-		<pinname>B</pinname>
-			<netname>qb[0]</netname>
-		<pinname>C</pinname>
-			<netname>qc[0]</netname>
-		<pinname>D</pinname>
-			<netname>qd[0]</netname>
-		<pinname>r1</pinname>
-			<netname>R[0]</netname>
-		<pinname>r2</pinname>
-			<netname>R[0]</netname>
-		<pinname>r3</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
-		<pinname>r4</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
-		<pinname>vcc</pinname>
-			<netname>vcc</netname>
-		<pinname>gnd</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
-		<pinname>nc[1]</pinname>
-			<netname>open</netname>
-		<pinname>nc[0]</pinname>
-			<netname>open</netname>
+		<instPin>
+			<name>input_a</name>
+			<net>clk</net>
+		</instPin>
+		<instPin>
+			<name>input_b</name>
+			<net>qa[0]</net>
+		</instPin>
+		<instPin>
+			<name>A</name>
+			<net>qa[0]</net>
+		</instPin>
+		<instPin>
+			<name>B</name>
+			<net>qb[0]</net>
+		</instPin>
+		<instPin>
+			<name>C</name>
+			<net>qc[0]</net>
+		</instPin>
+		<instPin>
+			<name>D</name>
+			<net>qd[0]</net>
+		</instPin>
+		<instPin>
+			<name>r1</name>
+			<net>R[0]</net>
+		</instPin>
+		<instPin>
+			<name>r2</name>
+			<net>R[0]</net>
+		</instPin>
+		<instPin>
+			<name>r3</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
+		<instPin>
+			<name>r4</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
+		<instPin>
+			<name>vcc</name>
+			<net>vcc</net>
+		</instPin>
+		<instPin>
+			<name>gnd</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
+		<instPin>
+			<name>nc[1]</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>nc[0]</name>
+			<net>open</net>
+		</instPin>
 	</instance>
 	<instance>
 		<name>or_gate</name>
@@ -1677,34 +2157,62 @@
 			<name>REFPREFIX</name>
 			<value>O</value>
 		</attribute>
-		<pinname>input_1[3]</pinname>
-			<netname>R[0]</netname>
-		<pinname>input_1[2]</pinname>
-			<netname>button_net</netname>
-		<pinname>input_1[1]</pinname>
-			<netname>open</netname>
-		<pinname>input_1[0]</pinname>
-			<netname>open</netname>
-		<pinname>input_2[3]</pinname>
-			<netname>gate_net</netname>
-		<pinname>input_2[2]</pinname>
-			<netname>qc[1]</netname>
-		<pinname>input_2[1]</pinname>
-			<netname>open</netname>
-		<pinname>input_2[0]</pinname>
-			<netname>open</netname>
-		<pinname>output[3]</pinname>
-			<netname>R[1]</netname>
-		<pinname>output[2]</pinname>
-			<netname>or_gate_net</netname>
-		<pinname>output[1]</pinname>
-			<netname>open</netname>
-		<pinname>output[0]</pinname>
-			<netname>open</netname>
-		<pinname>vcc</pinname>
-			<netname>vcc</netname>
-		<pinname>gnd</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
+		<instPin>
+			<name>input_1[3]</name>
+			<net>R[0]</net>
+		</instPin>
+		<instPin>
+			<name>input_1[2]</name>
+			<net>button_net</net>
+		</instPin>
+		<instPin>
+			<name>input_1[1]</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>input_1[0]</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>input_2[3]</name>
+			<net>gate_net</net>
+		</instPin>
+		<instPin>
+			<name>input_2[2]</name>
+			<net>qc[1]</net>
+		</instPin>
+		<instPin>
+			<name>input_2[1]</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>input_2[0]</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>output[3]</name>
+			<net>R[1]</net>
+		</instPin>
+		<instPin>
+			<name>output[2]</name>
+			<net>or_gate_net</net>
+		</instPin>
+		<instPin>
+			<name>output[1]</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>output[0]</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>vcc</name>
+			<net>vcc</net>
+		</instPin>
+		<instPin>
+			<name>gnd</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
 	</instance>
 	<instance>
 		<name>push_button</name>
@@ -1722,14 +2230,22 @@
 			<name>REFPREFIX</name>
 			<value>L</value>
 		</attribute>
-		<pinname>a</pinname>
-			<netname>vcc</netname>
-		<pinname>b</pinname>
-			<netname>button_net</netname>
-		<pinname>c</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
-		<pinname>d</pinname>
-			<netname>button_net</netname>
+		<instPin>
+			<name>a</name>
+			<net>vcc</net>
+		</instPin>
+		<instPin>
+			<name>b</name>
+			<net>button_net</net>
+		</instPin>
+		<instPin>
+			<name>c</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
+		<instPin>
+			<name>d</name>
+			<net>button_net</net>
+		</instPin>
 	</instance>
 	<instance>
 		<name>flip_switch</name>
@@ -1747,12 +2263,18 @@
 			<name>REFPREFIX</name>
 			<value>S</value>
 		</attribute>
-		<pinname>a</pinname>
-			<netname>vcc</netname>
-		<pinname>b</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
-		<pinname>c</pinname>
-			<netname>R[0]</netname>
+		<instPin>
+			<name>a</name>
+			<net>vcc</net>
+		</instPin>
+		<instPin>
+			<name>b</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
+		<instPin>
+			<name>c</name>
+			<net>R[0]</net>
+		</instPin>
 	</instance>
 	<instance>
 		<name>timer</name>
@@ -1770,34 +2292,62 @@
 			<name>REFPREFIX</name>
 			<value>U</value>
 		</attribute>
-		<pinname>vcc</pinname>
-			<netname>vcc</netname>
-		<pinname>gnd</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
-		<pinname>discharge[1]</pinname>
-			<netname>disch</netname>
-		<pinname>discharge[0]</pinname>
-			<netname>open</netname>
-		<pinname>threshold[1]</pinname>
-			<netname>thresh</netname>
-		<pinname>threshold[0]</pinname>
-			<netname>open</netname>
-		<pinname>control[1]</pinname>
-			<netname>cont</netname>
-		<pinname>control[0]</pinname>
-			<netname>open</netname>
-		<pinname>reset[1]</pinname>
-			<netname>vcc</netname>
-		<pinname>reset[0]</pinname>
-			<netname>open</netname>
-		<pinname>output[1]</pinname>
-			<netname>clk</netname>
-		<pinname>output[0]</pinname>
-			<netname>open</netname>
-		<pinname>trigger[1]</pinname>
-			<netname>thresh</netname>
-		<pinname>trigger[0]</pinname>
-			<netname>open</netname>
+		<instPin>
+			<name>vcc</name>
+			<net>vcc</net>
+		</instPin>
+		<instPin>
+			<name>gnd</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
+		<instPin>
+			<name>discharge[1]</name>
+			<net>disch</net>
+		</instPin>
+		<instPin>
+			<name>discharge[0]</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>threshold[1]</name>
+			<net>thresh</net>
+		</instPin>
+		<instPin>
+			<name>threshold[0]</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>control[1]</name>
+			<net>cont</net>
+		</instPin>
+		<instPin>
+			<name>control[0]</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>reset[1]</name>
+			<net>vcc</net>
+		</instPin>
+		<instPin>
+			<name>reset[0]</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>output[1]</name>
+			<net>clk</net>
+		</instPin>
+		<instPin>
+			<name>output[0]</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>trigger[1]</name>
+			<net>thresh</net>
+		</instPin>
+		<instPin>
+			<name>trigger[0]</name>
+			<net>open</net>
+		</instPin>
 	</instance>
 	<instance>
 		<name>res(2)</name>
@@ -1819,10 +2369,14 @@
 			<name>VALUE</name>
 			<value>350k</value>
 		</attribute>
-		<pinname>a</pinname>
-			<netname>disch</netname>
-		<pinname>b</pinname>
-			<netname>thresh</netname>
+		<instPin>
+			<name>a</name>
+			<net>disch</net>
+		</instPin>
+		<instPin>
+			<name>b</name>
+			<net>thresh</net>
+		</instPin>
 	</instance>
 	<instance>
 		<name>res(1)</name>
@@ -1844,10 +2398,14 @@
 			<name>VALUE</name>
 			<value>1k</value>
 		</attribute>
-		<pinname>a</pinname>
-			<netname>vcc</netname>
-		<pinname>b</pinname>
-			<netname>disch</netname>
+		<instPin>
+			<name>a</name>
+			<net>vcc</net>
+		</instPin>
+		<instPin>
+			<name>b</name>
+			<net>disch</net>
+		</instPin>
 	</instance>
 	<instance>
 		<name>res(0)</name>
@@ -1869,10 +2427,14 @@
 			<name>VALUE</name>
 			<value>680</value>
 		</attribute>
-		<pinname>a</pinname>
-			<netname>clk</netname>
-		<pinname>b</pinname>
-			<netname>rd</netname>
+		<instPin>
+			<name>a</name>
+			<net>clk</net>
+		</instPin>
+		<instPin>
+			<name>b</name>
+			<net>rd</net>
+		</instPin>
 	</instance>
 	<instance>
 		<name>cap(2)</name>
@@ -1894,10 +2456,14 @@
 			<name>VALUE</name>
 			<value>1uF</value>
 		</attribute>
-		<pinname>a</pinname>
-			<netname>thresh</netname>
-		<pinname>b</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
+		<instPin>
+			<name>a</name>
+			<net>thresh</net>
+		</instPin>
+		<instPin>
+			<name>b</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
 	</instance>
 	<instance>
 		<name>cap(1)</name>
@@ -1919,10 +2485,14 @@
 			<name>VALUE</name>
 			<value>10nF</value>
 		</attribute>
-		<pinname>a</pinname>
-			<netname>cont</netname>
-		<pinname>b</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
+		<instPin>
+			<name>a</name>
+			<net>cont</net>
+		</instPin>
+		<instPin>
+			<name>b</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
 	</instance>
 	<instance>
 		<name>cap(0)</name>
@@ -1944,10 +2514,14 @@
 			<name>VALUE</name>
 			<value>47uF</value>
 		</attribute>
-		<pinname>a</pinname>
-			<netname>vcc</netname>
-		<pinname>b</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
+		<instPin>
+			<name>a</name>
+			<net>vcc</net>
+		</instPin>
+		<instPin>
+			<name>b</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
 	</instance>
 	<instance>
 		<name>dio</name>
@@ -1965,10 +2539,14 @@
 			<name>REFPREFIX</name>
 			<value>D</value>
 		</attribute>
-		<pinname>a</pinname>
-			<netname>rd</netname>
-		<pinname>k</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
+		<instPin>
+			<name>a</name>
+			<net>rd</net>
+		</instPin>
+		<instPin>
+			<name>k</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
 	</instance>
 	<instance>
 		<name>and</name>
@@ -1990,34 +2568,62 @@
 			<name>REFPREFIX</name>
 			<value>A</value>
 		</attribute>
-		<pinname>input_1[2]</pinname>
-			<netname>qb[5]</netname>
-		<pinname>input_1[1]</pinname>
-			<netname>open</netname>
-		<pinname>input_1[0]</pinname>
-			<netname>open</netname>
-		<pinname>input_2[2]</pinname>
-			<netname>qb[4]</netname>
-		<pinname>input_2[1]</pinname>
-			<netname>open</netname>
-		<pinname>input_2[0]</pinname>
-			<netname>open</netname>
-		<pinname>input_3[2]</pinname>
-			<netname>qa[4]</netname>
-		<pinname>input_3[1]</pinname>
-			<netname>open</netname>
-		<pinname>input_3[0]</pinname>
-			<netname>open</netname>
-		<pinname>output[2]</pinname>
-			<netname>gate_net</netname>
-		<pinname>output[1]</pinname>
-			<netname>open</netname>
-		<pinname>output[0]</pinname>
-			<netname>open</netname>
-		<pinname>vcc</pinname>
-			<netname>vcc</netname>
-		<pinname>gnd</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
+		<instPin>
+			<name>input_1[2]</name>
+			<net>qb[5]</net>
+		</instPin>
+		<instPin>
+			<name>input_1[1]</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>input_1[0]</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>input_2[2]</name>
+			<net>qb[4]</net>
+		</instPin>
+		<instPin>
+			<name>input_2[1]</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>input_2[0]</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>input_3[2]</name>
+			<net>qa[4]</net>
+		</instPin>
+		<instPin>
+			<name>input_3[1]</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>input_3[0]</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>output[2]</name>
+			<net>gate_net</net>
+		</instPin>
+		<instPin>
+			<name>output[1]</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>output[0]</name>
+			<net>open</net>
+		</instPin>
+		<instPin>
+			<name>vcc</name>
+			<net>vcc</net>
+		</instPin>
+		<instPin>
+			<name>gnd</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
 	</instance>
 	<instance>
 		<name>battery</name>
@@ -2031,9 +2637,13 @@
 			<name>REFPREFIX</name>
 			<value>P</value>
 		</attribute>
-		<pinname>vcc</pinname>
-			<netname>vcc</netname>
-		<pinname>gnd</pinname>
-			<netname>gnd$qc[5]$qd[3]$qd[5]</netname>
+		<instPin>
+			<name>vcc</name>
+			<net>vcc</net>
+		</instPin>
+		<instPin>
+			<name>gnd</name>
+			<net>gnd$qc[5]$qd[3]$qd[5]</net>
+		</instPin>
 	</instance>
 </design>
