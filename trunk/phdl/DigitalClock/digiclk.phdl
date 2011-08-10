@@ -15,7 +15,8 @@ design digiclk is
 	device p7490 is
 		// begin attributes
 		attr refPrefix = "B";
-		attr pkg_type = ""; // Need to determine
+		attr pkg_type = "74*90"; // Need to determine
+		attr libName = "74xx-us.lbr";
 		
 		// begin pins
 		pin input_a = {14};
@@ -38,7 +39,8 @@ design digiclk is
 	device p7492 is
 		// begin attributes
 		attr refPrefix = "D";
-		attr pkg_type = ""; // Need to determine
+		attr pkg_type = "74*92"; // Need to determine
+		attr libName = "74xx-us.lbr";
 		//begin pins
 		pin A = {14};
 		pin B = {1};
@@ -57,7 +59,8 @@ design digiclk is
 	device p7448 is
 		// begin attributes
 		attr refPrefix = "BC";
-		attr pkg_type = ""; // Need to determine
+		attr pkg_type = "74*48"; // Need to determine
+		attr libName = "74xx-us.lbr";
 		// begin pins
 		pin a = {13};
 		pin b = {12};
@@ -82,6 +85,7 @@ design digiclk is
 		// begin attributes
 		attr refPrefix = "L";
 		attr pkg_type = "";
+		attr libName = "";
 		// begin pins
 		pin a = {7};
 		pin b = {6};
@@ -98,7 +102,8 @@ design digiclk is
 	device p7411 is
 		// begin attributes
 		attr refPrefix = "A";
-		attr pkg_type = "";
+		attr pkg_type = "74*11";
+		attr libName = "74xx-us.lbr";
 		attr pinout = "A";
 		// begin pins
 		pin[2:0] input_1 = {2, 3, 11};
@@ -113,7 +118,8 @@ design digiclk is
 	device p7432 is
 		// begin attributes
 		attr refPrefix = "O";
-		attr pkg_type = "";
+		attr pkg_type = "74*32";
+		attr libName = "74xx-us.lbr";
 		// begin pins
 		pin[3:0] input_1 = {13, 10, 1, 4};
 		pin[3:0] input_2 = {12, 9, 2, 5};
@@ -126,17 +132,21 @@ design digiclk is
 	device button is
 		// begin attributes
 		attr refPrefix = "L";
-		attr pkg_type = "";
+		attr pkg_type = "TL1105";
+		attr libName = "switch.lbr";
 		// begin pins
 		pin a = {1};
 		pin b = {2};
+		pin c = {3};
+		pin d = {4};
 	end device;
 
 	// Generic Switch
 	device switch is
 		// begin attributes
 		attr refPrefix = "S";
-		attr pkg_type = "";
+		attr pkg_type = "TL36PO";
+		attr libName = "switch.lbr";
 		// begin pins
 		pin a = {1};
 		pin b = {2};
@@ -147,7 +157,8 @@ design digiclk is
 	device p556 is
 		// begin attributes
 		attr refPrefix = "U";
-		attr pkg_type = "";
+		attr pkg_type = "*556";
+		attr libName = "linear.lbr";
 		// begin pins
 		pin vcc = {14};
 		pin gnd = {7};
@@ -162,7 +173,8 @@ design digiclk is
 	device resistor is
 		// begin attributes
 		attr refPrefix = "R";
-		attr pkg_type = "";
+		attr pkg_type = "R-US_";
+		attr libName = "rcl.lib";
 		attr value = "10k";
 		// begin pins
 		pin a = {1};
@@ -172,7 +184,8 @@ design digiclk is
 	device capacitor is
 		// begin attributes
 		attr refPrefix = "C";
-		attr pkg_type = "";
+		attr pkg_type = "C-US";
+		attr libName = "rcl.lib";
 		attr value = "1uF";
 		// begin pins
 		pin a = {1};
@@ -182,7 +195,9 @@ design digiclk is
 	device diode is
 		// begin attributes
 		attr refPrefix = "D";
-		attr pkg_type = "";
+		attr pkg_type = "1N4004";
+		attr libName = "diode.lbr";
+		
 		// begin pins
 		pin a = {1};
 		pin k = {2};
@@ -320,6 +335,8 @@ begin
 	inst push_button of button is
 		a = vcc;
 		b = button_net;
+		c = gnd;
+		d = button_net;
 	end inst;
 
 	inst flip_switch of switch is

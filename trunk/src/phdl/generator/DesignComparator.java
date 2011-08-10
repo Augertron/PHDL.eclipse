@@ -112,7 +112,7 @@ public class DesignComparator {
 		List<Node> news = new LinkedList<Node>();
 		for (Change c : changes) {
 			if (c.type == ChangeType.MODIFY) {
-				news.add(c.node1);
+				news.add(c.node2);
 			}
 		}
 		return news;
@@ -130,81 +130,12 @@ public class DesignComparator {
 
 	public List<Change> compareDesign(DesignNode older, DesignNode newer) {
 		changes = new LinkedList<Change>();
-
-		// ************************************
-		// Check for changes in Devices
-		// ************************************
+		
 		List<AttributeNode> oldAttr = new LinkedList<AttributeNode>();
 		List<PinNode> oldPins = new LinkedList<PinNode>();
-		for (DeviceNode d : older.getDevices()) {
-			// Device Name
-			if (!newer.getDevices().contains(d)) {
-				changes.add(new Change(ChangeType.REMOVE, d));
-			}
-			// Attributes
-			oldAttr.addAll(d.getAttributes());
-			// Pins
-			oldPins.addAll(d.getPins());
-		}
-
+	
 		List<AttributeNode> newAttr = new LinkedList<AttributeNode>();
 		List<PinNode> newPins = new LinkedList<PinNode>();
-		for (DeviceNode d : newer.getDevices()) {
-			if (!older.getDevices().contains(d)) {
-				changes.add(new Change(ChangeType.ADD, d));
-			}
-			// Attributes
-			newAttr.addAll(d.getAttributes());
-			// Pins
-			newPins.addAll(d.getPins());
-		}
-
-		/************************************
-		 * Check for changes in Device Attributes
-		 ************************************/
-		for (AttributeNode a : oldAttr) {
-			if (!newAttr.contains(a)) {
-				changes.add(new Change(ChangeType.REMOVE, a));
-			} else {
-				for (AttributeNode b : newAttr) {
-					if (b.equals(a) && b.getParent().equals(a.getParent())) {
-						if (!b.getValue().equals(a.getValue())) {
-							changes.add(new Change(ChangeType.MODIFY, a, b));
-						}
-					}
-				}
-			}
-		}
-		for (AttributeNode a : newAttr) {
-			if (!oldAttr.contains(a)) {
-				changes.add(new Change(ChangeType.ADD, a));
-			}
-		}
-
-		/************************************
-		 * Check for changes in Device Pins
-		 ************************************/
-		// Pin Names
-		for (PinNode p : newPins) {
-			// Pin Names
-			if (!oldPins.contains(p)) {
-				changes.add(new Change(ChangeType.ADD, p));
-			} else { // Pin Numbers
-				for (PinNode o : oldPins) {
-					if (o.equals(p) && o.getParent().equals(p.getParent())) {
-						if (!o.getPinName().equals(p.getPinName())) {
-							changes.add(new Change(ChangeType.MODIFY, o, p));
-						}
-					}
-				}
-			}
-		}
-		for (PinNode p : oldPins) {
-			// Pin Names
-			if (!newPins.contains(p)) {
-				changes.add(new Change(ChangeType.REMOVE, p));
-			}
-		}
 
 		// ************************************
 		// Check for changes in Net Names

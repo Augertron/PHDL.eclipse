@@ -853,17 +853,9 @@ attrAssign[DesignNode des, String instName]
 							// overwrite the attribute value
 							if(!a.overwrite($attrValue.text))
 								addWarning($attrName, "atribute already overwritten");
-						} else {
-							if ($attrName.text.toUpperCase().equals("REFDES")) {
-								AttributeNode newA = new AttributeNode(inst);
-								newA.setName($attrName.text);
-								newA.setValue($attrValue.text);
-								newA.setLocation($attrName.line, $attrName.pos, 
-									attrName.getToken().getInputStream().getSourceName());
-								inst.addAttribute(newA);
-							}
+						} else {							
 							// the attribute doesn't exist
-							else if (newAttr) {
+							if (newAttr) {
 								// make a new attribute if explicitly asked to do so
 								AttributeNode newA = new AttributeNode(inst);
 								newA.setName($attrName.text);
