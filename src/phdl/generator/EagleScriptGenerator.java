@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
+import phdl.graph.AttributeNode;
 import phdl.graph.DesignNode;
 import phdl.graph.InstanceNode;
 import phdl.graph.NetNode;
@@ -18,6 +19,13 @@ public class EagleScriptGenerator {
 	private TreeMap<String, ArrayList<InstanceNode>> groupMap;
 	private DesignComparator desComp;
 	private boolean xmlExists;
+	private StringBuilder sb;
+
+	// board grid constraints
+	private double xSpacing = 0.25;
+	private double ySpacing = 0.5;
+	private int xMax = 30;
+	private int yMax = 30;
 
 	/**
 	 * Default constructor.
@@ -37,12 +45,21 @@ public class EagleScriptGenerator {
 		this.groupMap = new TreeMap<String, ArrayList<InstanceNode>>();
 		this.desComp = desComp;
 		this.xmlExists = xmlExists;
+		this.sb = new StringBuilder();
 		generate();
 	}
 
 	private void generate() {
 
+		sb.append("# Auto-generated EAGLE PCB script from: " + design.getFileName() + "\n");
+		sb.append("SET UNDO_LOG OFF;\n");
+		sb.append("GRID INCH;\n");
+		sb.append("CHANGE DISPLAY OFF;\n");
+		sb.append("CHANGE SIZE 0.25;\n");
+
+		// If the design has not been previously compiled, it is the initial build.
 		if (!xmlExists) {
+			sb.append("# Initial Build.\n\n");
 			// sort the instances into their groups
 			for (InstanceNode i : design.getInstances()) {
 				if (i.getGroupName() != null) {
@@ -64,87 +81,99 @@ public class EagleScriptGenerator {
 				}
 			}
 
-			float x = 0;
-			float y = 0;
-			StringBuilder sb = new StringBuilder();
+			// grid placement coordinates
+			double x = 0;
+			double y = 0;
 
-			sb.append("# Auto-generated EAGLE PCB script from: " + design.getFileName() + "\n");
-			sb.append("# Initial build.\n\n");
-			sb.append("SET UNDO_LOG OFF;\n");
-			sb.append("GRID INCH\n");
-			sb.append("CHANGE LAYER tValues\n");
-			sb.append("CHANGE SIZE 0.25\n\n");
+			// place each group on its own line, each line at one inch increments
 			sb.append("# Added parts #\n\n");
-
+			sb.append("CHANGE LAYER tValues; #the layer that group text will appear\n");
 			for (String g : groupMap.keySet()) {
+				// generate a label for the group and place it 4 inches to the left of each group
 				sb.append("TEXT '" + g + "' (" + -4 + " " + y + ");\n");
+
 				ArrayList<InstanceNode> group = groupMap.get(g);
-				String values = "";
 				for (InstanceNode i : group) {
-					String eagleLib = "";
-					if (i.getAttribute("libName") != null)
-						eagleLib = i.getAttribute("libName").getValue();
-					else
-						System.err.println("ERROR: libName attribute undeclared: " + i.getName());
-					sb.append("ADD " + i.getFootprint() + "@" + eagleLib + " '" + i.getRefDes()
-						+ "' (" + x + " " + y + ");\n");
-					x += 0.5;
-					values += i.getRefDes() + " '" + i.getName() + "' ";
+
+					addInstance(i, x, y);
+					setValue(i);
+					x += xSpacing;
+
+					// set the special instance name and device name attributes
+					sb.append("ATTRIBUTE " + i.getRefDes() + " INST_NAME '" + i.getName() + "';\n");
+					sb.append("ATTRIBUTE " + i.getRefDes() + " DEV_NAME '"
+						+ i.getDevice().getName() + "';\n");
+
+					// add all the attributes except "values"
+					for (AttributeNode a : i.getAttributes()) {
+						if (!a.getName().equals("VALUE"))
+							attribute(a);
+					}
+
+					// increment y and reset x if too close to edge board space
+					if (x > xMax) {
+						x = 0;
+						y += ySpacing;
+					}
 				}
+				// reset x for every group
 				x = 0;
-				y += 1;
-				sb.append("VALUE " + values + ";\n");
+
+				// reset y if too close to edge of board space, otherwise increment for every group
+				if (y > yMax)
+					y = 0;
+				else
+					y += ySpacing;
 			}
 
 			sb.append("\n# SIGNALS #\n\n");
 
 			// assign all the nets
 			for (NetNode n : design.getNets()) {
+
 				// ignore the open net
 				if (n.getName().equals("open"))
 					continue;
 
 				sb.append("SIGNAL " + n.getName().toUpperCase() + " ");
 				for (PinNode p : n.getPinNodes()) {
-					sb.append(((InstanceNode) p.getParent()).getRefDes() + " " + p.getPinName()
-						+ " ");
+					String refDes = ((InstanceNode) p.getParent()).getRefDes();
+					sb.append(refDes + " " + p.getPinName() + " ");
 				}
 				sb.append("\n");
 			}
-			sb.append("\nSET UNDO_LOG ON;\nRATSNEST;\n\n# End Script #\n");
-			contents = sb.toString();
-
 		} else {
+			// the design has been previously compiled, and is an iterative or successive build.
+			sb.append("# Successive Build.\n\n");
 			float y = -1;
-			StringBuilder sb = new StringBuilder();
-			sb.append("# Auto Generated EAGLE PCB script from: " + design.getFileName() + "\n");
-			sb.append("# Successive Build.\n");
-			sb.append("SET UNDO_LOG OFF;\n\n");
-			sb.append("GRID INCH\n\n");
-			sb.append("# Added elements #\n\n");
 
+			// Added Elements
+			sb.append("# Added elements #\n\n");
 			for (Node n : desComp.getAllAdditions()) {
 				switch (n.getType()) {
 				case INSTANCE:
-					String eagleLib = "";
-					if (((InstanceNode) n).getAttribute("libName") != null)
-						eagleLib = ((InstanceNode) n).getAttribute("libName").getValue();
-					else
-						System.err.println("ERROR: libName attribute undeclared: " + n.getName());
-
 					// add the instance and set it's value
-					sb.append("ADD " + ((InstanceNode) n).getFootprint() + "@" + eagleLib + " '"
-						+ ((InstanceNode) n).getRefDes() + "' (" + 0 + " " + y + ");\n");
-					sb.append("VALUE " + ((InstanceNode) n).getRefDes() + " "
-						+ ((InstanceNode) n).getName() + ";\n");
+					addInstance((InstanceNode) n, 0, y);
+					setValue((InstanceNode) n);
 
-					for (PinNode p : ((InstanceNode) n).getPins())
-						sb.append("SIGNAL " + p.getNet().getName().toUpperCase() + " "
-							+ ((InstanceNode) p.getParent()).getRefDes() + " " + p.getPinName()
-							+ ";\n");
+					// add all of it's attributes
+					for (AttributeNode a : ((InstanceNode) n).getAttributes()) {
+						// Eagle will not accept an an arbitrary attribute with the name "VALUE"
+						if (!a.getName().equals("VALUE"))
+							attribute(a);
+					}
 
-					y -= 0.05;
+					// connect all of it's nets
+					for (PinNode p : ((InstanceNode) n).getPins()) {
+						String refDes = ((InstanceNode) p.getParent()).getRefDes();
+						String name = p.getNet().getName().toUpperCase();
+						sb.append("SIGNAL " + name + " " + refDes + " " + p.getPinName() + ";\n");
+					}
+
+					// keep adding instances below the origin
+					y -= ySpacing;
 					break;
+
 				case NET:
 					// ignore the open net
 					if (n.getName().equals("open"))
@@ -152,36 +181,63 @@ public class EagleScriptGenerator {
 
 					sb.append("SIGNAL " + n.getName().toUpperCase() + " ");
 					for (PinNode p : ((NetNode) n).getPinNodes()) {
-						sb.append(((InstanceNode) p.getParent()).getRefDes() + " " + p.getPinName()
-							+ " ");
+						String refDes = ((InstanceNode) p.getParent()).getRefDes();
+						sb.append(refDes + " " + p.getPinName() + " ");
 					}
 					sb.append("\n");
 					break;
 
+				case ATTRIBUTE:
+					if (n.getName().equals("VALUE"))
+						setValue((InstanceNode) ((AttributeNode) n).getParent());
+					else
+						attribute((AttributeNode) n);
+
 				default:
 					break;
 				}
 				sb.append("\n");
 			}
 
+			// Modified Elements
 			sb.append("\n# Modified elements #\n\n");
-			// TODO figure out how to handle modified elements
+			for (Node n : desComp.getAllModifyNews()) {
+				switch (n.getType()) {
+				case ATTRIBUTE:
+					if (n.getName().equals("VALUE"))
+						setValue((InstanceNode) ((AttributeNode) n).getParent());
+					else if (n.getName().equals("PKG_TYPE"))
+						replacePackage((AttributeNode) n);
+					else
+						attribute((AttributeNode) n);
+					break;
 
+				case PIN:
+					sb.append("testing");
+					break;
+				default:
+					break;
+				}
+			}
+
+			// Deleted Elements
 			sb.append("\n# Deleted elements #\n\n");
 			for (Node n : desComp.getAllRemovals()) {
 				switch (n.getType()) {
 				case INSTANCE:
-					sb.append("DELETE " + ((InstanceNode) n).getRefDes() + ";\n");
+					delete((InstanceNode) n);
+
 					break;
 				default:
 					break;
 				}
 				sb.append("\n");
 			}
-
-			sb.append("\nSET UNDO_LOG ON;\nRATSNEST;\n\n# End Script #\n");
-			contents = sb.toString();
 		}
+		sb.append("SET UNDO_LOG ON;\n");
+		sb.append("RATSNEST;\n\n");
+		sb.append("# End Script #\n");
+		contents = sb.toString();
 	}
 
 	/**
@@ -211,4 +267,41 @@ public class EagleScriptGenerator {
 		System.out.println("Wrote Eagle script file: " + fileName);
 	}
 
+	private void attribute(AttributeNode a) {
+		String refDes = ((InstanceNode) ((AttributeNode) a).getParent()).getRefDes();
+		sb.append("ATTR " + refDes + " " + a.getName() + " '" + a.getValue() + "';\n");
+	}
+
+	private void setValue(InstanceNode i) {
+		AttributeNode a = i.getAttribute("VALUE");
+		if (a != null) {
+			sb.append("VALUE " + i.getRefDes() + " " + a.getValue() + ";\n");
+		}
+	}
+
+	private void addInstance(InstanceNode i, double x, double y) {
+		// find the instance's library attribute
+		String lib = "";
+		if (i.getAttribute("LIBNAME") != null) {
+			lib = i.getAttribute("LIBNAME").getValue();
+			sb.append("ADD " + i.getFootprint() + "@" + lib + " '" + i.getRefDes() + "' (" + x
+				+ " " + y + ");\n");
+		} else
+			System.err.println("ERROR: libName attribute undeclared: " + i.getName());
+
+	}
+
+	private void delete(InstanceNode i) {
+		sb.append("DELETE " + i.getRefDes() + ";\n");
+	}
+
+	private void signal() {
+	}
+
+	private void replacePackage(AttributeNode a) {
+		String refDes = ((InstanceNode) ((AttributeNode) a).getParent()).getRefDes();
+		String lib = ((InstanceNode) ((AttributeNode) a).getParent()).getAttribute("LIBNAME")
+			.getValue();
+		sb.append("REPLACE " + refDes + " '" + a.getValue() + "@" + lib + "';\n");
+	}
 }
