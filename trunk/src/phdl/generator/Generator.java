@@ -57,6 +57,8 @@ public class Generator {
 			desComp = new DesignComparator();
 			desComp.compareDesign(xmlDesGen.getDesign(), design);
 			desComp.printChanges();
+		} else {
+			System.out.println("********Initial Build*******");
 		}
 		infoGen = new InfoGenerator(design);
 		xmlGen = new XMLGenerator(design);

@@ -120,7 +120,7 @@ public class DesignComparator {
 
 	public void printChanges() {
 		if (changes.isEmpty()) {
-			System.out.println("*******NO CHANGES MADE*******");
+			System.out.println("*******NO CHANGES MADE******");
 		} else {
 			System.out.println("********CHANGES MADE********");
 			for (Change c : changes)

@@ -12,6 +12,7 @@
 package phdl;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ public class Compile {
 	/**
 	 * An array of attributes that every device declaration is required to have
 	 */
-	static String[] reqAttr = { "REFPREFIX", "PKG_TYPE" };
+	static String[] reqAttr = { "REFPREFIX", "PKG_TYPE", };
 
 	/**
 	 * A list of errors generated
@@ -92,6 +93,10 @@ public class Compile {
 	 * Eagle output enable flag
 	 */
 	static boolean eagle = false;
+	/**
+	 * Remove all generated files before compiling
+	 */
+	static boolean clean = false;
 
 	/**
 	 * The main entry point of the phdl Compiler. It accepts *.phdl source files as arguments and
@@ -119,11 +124,13 @@ public class Compile {
 			// turn on eagle mode
 			if (args[i].equals("-e"))
 				eagle = true;
+			// cleanup the generated files
+			if (args[i].equals("-c"))
+				clean = true;
 			if (args[i].equals("?")) {
 				System.out.println(usage);
 				System.exit(1);
 			}
-
 		}
 
 		// Repeat for each source file passed in as an argument
@@ -135,6 +142,28 @@ public class Compile {
 
 			String fileName = args[i].replace(".phdl", "");
 			System.out.println("Compiling..." + args[i]);
+
+			// remove generated files first
+			if (clean) {
+				ArrayList<File> deletes = new ArrayList<File>();
+				File xml = new File(fileName + ".xml");
+				File csv = new File(fileName + ".csv");
+				File bom = new File(fileName + ".bom");
+				File asc = new File(fileName + ".asc");
+				deletes.add(xml);
+				deletes.add(csv);
+				deletes.add(bom);
+				deletes.add(asc);
+
+				for (File f : deletes) {
+					if (f.exists() && f.canWrite()) {
+						if (!f.delete())
+							System.err.println("Clean operation failed to delete: " + f.getName());
+					} else {
+						System.err.println("Clean operation failed to delete: " + f.getName());
+					}
+				}
+			}
 
 			// 1. Attempt to make a character stream from the source file and bail out if there is a
 			// problem with the source file
