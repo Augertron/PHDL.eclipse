@@ -28,6 +28,7 @@ public class XMLtoDesignGenerator {
 		    }
 		    in.close();
 		    process(xml);
+		    design.printDesignNode();
 		} catch (IOException e) {
 			System.err.println("File Reading Error - File may not exist or be open in another program.");
 			System.exit(1);
@@ -54,6 +55,7 @@ public class XMLtoDesignGenerator {
 		
 		for (int i = 0; i < tags.size(); i++) {
 			String tag = tags.get(i).trim();
+			System.out.println("Analyzing tag: " + tag);
 			// Start tags
 			if (tag.equals("design")) {
 				curDesign = new DesignNode();
@@ -71,6 +73,14 @@ public class XMLtoDesignGenerator {
 				curInst = new InstanceNode(curDesign);
 				i++;
 				curInst.setName(tags.get(++i));
+				i++;
+				
+				i++;
+				curInst.setRefDes(tags.get(++i));
+				i++;
+				
+				i++;
+				curInst.setDevice(curDesign.getDevice(tags.get(++i)));
 				i++;
 			}
 			else if (tag.equals("attribute")) {
@@ -93,8 +103,14 @@ public class XMLtoDesignGenerator {
 				i++;
 				
 				i++;
-				a.setValue(tags.get(++i));
-				i++;
+				String value = tags.get(++i);
+				if (!value.equals("/value")) {
+					a.setValue(value);
+					i++;
+				}
+				else {
+					a.setValue("");
+				}
 				
 				i++;
 				
@@ -121,6 +137,20 @@ public class XMLtoDesignGenerator {
 				i++;
 			}
 			else if (tag.equals("instPin")) {
+				i++;
+				PinNode p = new PinNode(curInst);
+				String name = tags.get(++i);
+				p.setName(name);
+				p.setPinName(curInst.getDevice().getPin(name).getPinName());
+				i++;
+				
+				i++;
+				String netName = tags.get(++i);
+				p.setNet(curDesign.getNet(netName));
+				i++;
+				
+				i++;
+				curInst.addPin(p);
 				
 			} // End Tags
 			else if (tag.equals("/design")) {

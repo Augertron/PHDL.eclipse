@@ -59,7 +59,7 @@ design digiclk is
 	device p7448 is
 		// begin attributes
 		attr refPrefix = "BC";
-		attr pkg_type = "74*48"; // Need to determine
+		attr pkg_type = "74*48";
 		attr libName = "74xx-us.lbr";
 		// begin pins
 		pin a = {13};
