@@ -112,6 +112,21 @@ public class DeviceNode extends Attributable {
 	public List<PinNode> getPins() {
 		return pins;
 	}
+	
+	/**
+	 * Individual Pin Accessor method.
+	 * 
+	 * 
+	 */
+	public PinNode getPin(String pinName) {
+		for (PinNode p : pins) {
+			if (p.getName().equals(pinName)) {
+				return p;
+			}
+		}
+		return null;
+	}
+	
 
 	/**
 	 * Pin addition method.
