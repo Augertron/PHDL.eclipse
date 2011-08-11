@@ -1,0 +1,147 @@
+
+device Resistor is
+	attr refPrefix = "R";
+	attr pkg_type = "0603";
+	attr value = "10K";
+	attr tolerance = "5%";
+	attr partNum = "ERJ-3GEYJ103V";
+	pin a = {1};
+	pin b = {2};
+end device;
+
+device Capacitor is
+	attr refPrefix = "C";
+	attr pkg_type = "0603";
+	attr value = "1uf";
+	attr voltage = "50V";
+	attr partNum = "ECJ-1VC1H471J";
+	pin a = {1};
+	pin b = {2};
+end device;
+
+device BJT is
+	attr refPrefix = "Q";
+	attr value = "MMBT3904";
+	attr pkg_type = "SOT23_MMBT3904";
+	attr partNum = "MMBT3904DICT";
+	attr config = "NPN"; 
+	pin e = {e};
+	pin c = {c};
+	pin b = {b};
+end device;
+
+device LM324DR is
+	attr refPrefix = "U";
+	attr pkg_type = "SO14";
+	attr partNum = "LM324DR";
+	// begin pins
+	pin[3:0] pos = {3, 5, 10, 12};
+	pin[3:0] neg = {2, 6, 9, 13};
+	pin[3:0] out = {1, 7, 8, 14};
+	pin vcc = {4};
+	pin gnd = {11}; 
+end device;
+
+device ATTINY2313-20SU is
+	attr refPrefix = "U";
+	attr pkg_type = "SOP20.375";
+	attr partNum = "ATTINY2313-20SU";
+	// begin pins
+	pin vcc = {20};
+	pin reset = {1};
+	pin[1:2] xtal = {5,4};
+	pin[0:7] PB = {12,13,14,15,16,17,18,19};
+	pin[0:6] PD = {2,3,6,7,8,9,11};
+end device;
+
+device LM317LDR2 is
+	attr refPrefix = "U";
+	attr pkg_type = "SO8";
+	attr partNum = "LM317LDR2";
+	// begin pins
+	pin vin = {1};
+	pin[3:0] vout = {2,3,6,7};
+	pin adjust = {4};
+	pin[1:0] nc = {5,8};
+end device;
+
+device DISP_A-562G is
+	attr refPrefix = "DISP";
+	attr pkg_type = "DISP_A-562G";
+	attr partNum = "DISP_A-562G";
+	// begin pins
+	pin[1:0] A = {16,11};
+	pin[1:0] B = {15,10};
+	pin[1:0] C = {3, 8};
+	pin[1:0] D = {2, 6};
+	pin[1:0] E = {1, 5};
+	pin[1:0] F = {18, 12};
+	pin[1:0] G = {17, 7};
+	pin[1:0] DP = {4, 9};
+	pin[1:0] DIG = {14, 13};
+end device;
+
+device 9V-CLIP is
+	attr refPrefix = "J";
+	attr pkg_type = "CONN PCB 9V";
+	attr partNum = "9V_CLIP (special order)";
+	// begin pins
+	pin pos = {1};
+	pin neg = {2};
+end device;
+
+device AVRPGM is
+	attr refPrefix = "J";
+	attr pkg_type = "CONN-DIL6";
+	attr partNum = "Not stuffed";
+	// begin pins
+	pin vcc = {2};
+	pin gnd = {6};
+	pin MISO = {1};
+	pin SCK = {3};
+	pin RST = {5};
+	pin MOSI = {4};
+end device;
+
+device CONN-H10 is
+	attr refPrefix = "J";
+	attr pkg_type = "10 PIN EDGE CARD";
+	attr partNum = "PCB feature";
+	// begin pins
+	pin 5v = {2};
+	pin 9v = {10};
+	pin MISO = {1};
+	pin SCK = {3};
+	pin MOSI = {4};
+	pin RST = {5};
+	pin[1:0] gnd = {6, 8};
+	pin nc = {7};
+	pin SW = {9};
+end device;
+
+device SPST is
+	attr refPrefix = "SW";
+	attr pkg_type = "B3FS-1002P";
+	attr partNum = "B3FS-1002P";
+	// begin pins
+	pin a = {1};
+	pin b = {2};
+end device;
+
+device TEST_POINT is
+	attr refPrefix = "TP";
+	attr pkg_type = "TEST_POINT";
+	attr partNum = "Not stuffed";
+	// begin pins
+	pin a = {1};
+end device;
+
+device SMT is
+	attr refPrefix = "X";
+	attr value = "1.8432mhz";
+	attr pkg_type = "SMT_CSM7";
+	attr partNum = "Not stuffed";
+	// begin pins
+	pin a = {1};
+	pin b = {2};
+end device;

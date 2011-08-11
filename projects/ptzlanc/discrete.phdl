@@ -1,0 +1,53 @@
+	// discrete semiconductor devices
+	
+	device LD0603 is
+		attr refPrefix = "LD";
+		attr pkg_type = "0603MP";
+		attr libName = "led";
+		attr mfgr = "";
+		attr supplier = "";
+		attr partNumber = "";
+		attr cost = "";
+		pin a = {a};
+		pin c = {c};
+	end;
+	
+	device DO214AC is
+		attr refPrefix = "D";
+		attr pkg_type = "DO214AC";
+		attr libName = "diode";
+		attr mfgr = "";
+		attr supplier = "";
+		attr partNumber = "";
+		attr cost = "";
+		attr dataSheet = "doc/DS25002.pdf";
+		pin a = {a};
+		pin c = {c};
+	end;
+	
+	device TO252 is
+		attr refPrefix = "Q";
+		attr pkg_type = "TO252";
+		attr libName = "ref-packages-smd-ipc";
+		attr mfgr = "";
+		attr supplier = "";
+		attr partNumber = "";
+		attr cost = "";
+		pin g = {1};
+		pin s = {2};
+		pin d = {3};
+	end;
+	
+	device BSR14 is
+		attr refPrefix = "Q";
+		attr pkg_type = "SOT23-BEC";
+		attr libName = "transistor-npn";
+		attr mfgr = "Fairchild";
+		attr supplier = "DIGI-KEY";
+		attr partNumber = "BSR14CT-ND";
+		attr cost = "0.43";
+		attr dataSheet = "doc/BSR14.pdf";
+		pin b = {b};
+		pin c = {c};
+		pin e = {e};
+	end;

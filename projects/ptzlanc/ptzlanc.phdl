@@ -1,0 +1,951 @@
+/**
+ * Pan-tilt-zoom LANC controller for Small HD Sony video cameras
+ * Author: Brad Riching
+ */
+ 
+/**
+ * TODO add a DAC for PID tuning with an oscilloscope
+ */
+ 
+design ptzlanc is
+	
+	// resistor and capacitor definitions
+	include "rcl.phdl";
+	
+	// various pin headers
+	include "pinheader.phdl";
+	
+	// various integrated circuits
+	include "ic.phdl";
+	
+	// various switches
+	include "switches.phdl";
+	
+	// various discrete semiconductors
+	include "discrete.phdl";
+	
+	include "connector.phdl";
+	
+	// power supply
+	net vmot, vdd, vu, vcco, vccaux, vccint, gnd;  // <= 40V, 12V, 5V, 3.3V, 1.7V, 1.2V, 0V respectively
+	net 3v3_sense, 5v_pwr, 3v3_pwr, 2v5_pwr;
+	
+	// global clock and reset
+	net clk, rst, reset_res;
+	// serial rs232 receive and transmit
+	net rxd, txd, rxd_a, txd_a;
+	// lanc receive and transmit
+	net lrx, ltx;
+	// switches and leds
+	net[7:0] sw, led;
+	// motor 0 and 1 encoder
+	net[2:0] enc0, enc1;
+	// brushed motor 0 and 1 drive
+	net pwm0, dir0, pwm1, dir1;
+	// brushless motor 0 and 1 drive
+	net[2:0] high0, high1, low0, low1;
+	// brushless motor 0 and 1 commutation 3-phase sense
+	net[2:0] sense0, sense1;
+	// memory chip
+	net[17:0] addr;
+	net[7:0] data;
+	net ce0_n, ce1_n, oe_n, we_n, ub_n, lb_n;
+	// general purpose IO
+	net[10:0] gpio;
+	// fpga dedicated nets
+	net CCLK, DONE, HSWAP_EN, M0, M1, M2, PROG_B, TCK, TDI, TDO, TMS;
+	// switches and leds nets
+	net[7:0] sw_res, led_res;
+	
+	// encoder and sensor
+	net[2:0] e0, e1; 	// brushless motor 0 and 1 encoders [a,b,i]
+	net[3:1] s0, s1;	// brushless motor 0 and 1 commutation sensors [s3,s2,s1]
+	
+	// jtag interface nets
+	net din, init_b, d0, rom_clk, rom_ce, tdo_rom, prog_sw, tms_ext, tdi_ext, tck_ext;
+	
+	// motor 0 and 1 FET driver nets
+	net[0:1] ahb, bhb, chb, aho, bho, cho, ahs, bhs, chs, alo, blo, clo, rdel, uvlo, rfsh, ahi, bhi, chi, ali, bli, cli;
+	// phase a and b, high and low gate nets for both motors
+	net[0:1] ahg, bhg, chg, alg, blg, clg;
+	// high voltage brushless motor drive nets
+	net[2:0] mot0, mot1;
+	// diode clamps
+	net[0:5] clamps;
+	
+	// brushed motor nets
+	net[0:1] pwm, dir, out1, out2, boot1, boot2;
+	
+	// rs232 level converter nets
+	net c1+, c1-, c2+, c2-, r1in, r2in, r1out, r2out, t1in, t2in, t1out, t2out, v+, v-;
+	net rs232_com, rs232_jump;
+	
+	// lanc nets
+	net lanc_res, lanc_base, lanc_line;
+
+begin
+
+	/*********************************************************************************
+	 * Spartan3 FPGA, decoupling capacitors, mode switches, and HSWAP_EN select
+	 */
+	group "FPGA" is
+		inst fpga of top_tq144 is
+			newattr libName = "xilinx_devices";
+			partnumber = "122-1711-ND";
+			newattr supplier = "DIGI-KEY";
+			newattr cost = "17.35";
+			
+			// Signal pins from FPGA design.
+			addr = addr;
+			ce0_n = ce0_n;
+			ce1_n = ce1_n;
+			clk = clk;
+			data = data;
+			din = din;
+			dir0 = dir0;
+			dir1 = dir1;
+			enc0 = enc0;
+			enc1 = enc1;
+			gpio = gpio;
+			high0 = high0;
+			high1 = high1;
+			init_b = init_b;
+			lb_n = lb_n;
+			led = led;
+			low0 = low0;
+			low1 = low1;
+			lrx = lrx;
+			ltx = ltx;
+			oe_n = oe_n;
+			pwm0 = pwm0;
+			pwm1 = pwm1;
+			rst = rst;
+			rxd = rxd;
+			rxd_a = rxd_a;
+			sense0 = sense0;
+			sense1 = sense1;
+			sw = sw;
+			txd = txd;
+			txd_a = txd_a;
+			ub_n = ub_n;
+			we_n = we_n;
+
+			// Power and dedicated FPGA pins.
+			CCLK = CCLK;
+			DONE = DONE;
+			GND = <gnd>;
+			HSWAP_EN = HSWAP_EN;
+			M0 = M0;
+			M1 = M1;
+			M2 = M2;
+			PROG_B = PROG_B;
+			TCK = TCK;
+			TDI = TDI;
+			TDO = TDO;
+			TMS = TMS;
+			VCCAUX = <vccaux>;
+			VCCINT = <vccint>;
+			VCCO_0 = <vcco>;
+			VCCO_1 = <vcco>;
+			VCCO_2 = <vcco>;
+			VCCO_3 = <vcco>;
+			VCCO_4 = <vcco>;
+			VCCO_5 = <vcco>;
+			VCCO_6 = <vcco>;
+			VCCO_7 = <vcco>;
+		end;
+		
+		// small vcco decoupling caps
+		inst(1:12) fpga_vcco_small of C0603 is
+			value = "0.047u";
+			a = <vcco>;
+			b = <gnd>;
+		end;
+		
+		// small vccaux decoupling caps
+		inst(1:8) fpga_vccaux_small of C0603 is
+			value = "0.01u";
+			a = <vccaux>;
+			b = <gnd>;
+		end;
+		
+		// small vccint decoupling caps
+		inst(1:8) fpga_vccint_small of C0603 is
+			this(1:4).value = "0.047u";
+			this(5:8).value = "0.01u";
+			a = <vccint>;
+			b = <gnd>;
+		end;
+		
+		// large vcco decoupling caps
+		inst(1:3) fpga_vcco_large of CP_1206MP/T is
+			value = "10u";
+			pos = <vcco>;
+			neg = <gnd>;
+		end;
+		
+		// large vccaux decoupling caps
+		inst(1:2) fpga_vccaux_large of CP_1206MP/T is
+			value = "10u";
+			pos = <vccaux>;
+			neg = <gnd>;
+		end;
+		
+		// large vccint decoupling caps
+		inst(1:2) fpga_vccint_large of CP_1206MP/T is
+			value = "10u";
+			pos = <vccint>;
+			neg = <gnd>;
+		end;
+	end;
+	
+	/*********************************************************************************
+	 * Memory and decoupling capacitors
+	 */
+	group "MEMORY" is
+		inst(0:1) mem of RAM256KX16 is
+			this(0).addr = addr;
+			this(1).addr = addr;
+			this(0).data[8:15] = data;
+			this(0).data[7:0] = data;
+			this(1).data[8:15] = data;
+			this(1).data[7:0] = data;
+			this(0).ce_n = ce0_n;
+			this(1).ce_n = ce1_n;
+			oe_n = <oe_n>;
+			we_n = <we_n>;
+			ub_n = <ub_n>;
+			lb_n = <lb_n>;
+			vdd = <vcco>;
+			gnd = <gnd>;
+			nc = open;
+		end;
+		
+		inst(1:8) mem_cap of C0603 is
+			value = "0.047u";
+			a = <vcco>;
+			b = <gnd>;
+		end;
+	end;
+	
+	/*********************************************************************************
+	 * FPGA Clock and reset
+	 */
+	group "CLOCK" is
+		inst clk of OSC_50MHZ is
+			oe = gnd;
+			gnd = gnd;
+			output = clk;
+			vcc = vcco;
+		end;
+		
+		inst clk_cap of C0603 is
+			a = vcco;
+			b = gnd;
+		end;
+	end;
+	
+	group "RESET" is
+		inst rst_btn of TL1105T is
+			a = <reset_res>;
+			b = <gnd>;
+		end;
+		
+		inst(1:0) rst_res of R0603 is
+			this(0).a = vcco;
+			this(0).b = reset_res;
+			this(1).a = reset_res;
+			this(1).b = rst;
+		end;		
+	end;
+	
+	/*********************************************************************************
+	 * FPGA GPIO and mode select jumpers
+	 */
+	group "FPGA CONFIG" is
+		inst pmod_hdr0 of HDR_1X6 is
+			pkg_type = "1X06/90";
+			libName = "pinhead";
+			p = gpio[3:0] & gnd & vcco;
+		end;
+		
+		inst pmod_hdr1 of HDR_1X6 is
+			pkg_type = "1X06/90";
+			libName = "pinhead";
+			p = gpio[7:4] & gnd & vcco;
+		end;
+		
+		inst gpio-hdr of HDR_1X4 is
+			p = gpio[10:8] & gnd;
+		end;
+		
+		// sets the configuration mode of the fpga
+		inst mode_sel of HDR_2X3 is
+			p[6,4,2] = M0 & M1 & M2;
+			p[5,3,1] = <gnd>;
+		end;
+		
+		// enable/disable internal pullup resistors during fpga configuration
+		inst hswap_sel of HDR_1X3 is
+			p = gnd & HSWAP_EN & vcco;
+		end;
+	end;
+	
+	/*********************************************************************************
+	 * FLASH ROM
+	 */
+	group "FLASH" is
+		inst flash of rom is 
+			d0 = d0;
+			clk = rom_clk;
+			tdi = TDO;
+			tms = TMS;
+			tck = TCK;
+			cf_n = PROG_B;
+			oe = init_b;
+			ce_n = rom_ce;
+			gnd = gnd;
+			ceo_n = open;
+			tdo = tdo_rom;
+			vccint = vcco;
+			vcco = vcco;
+			vccj = vcco;
+			nc = open;
+		end;
+		
+		inst(1:3) flash_cap of C0603 is
+			value = "0.047u";
+			a = <vcco>;
+			b = <gnd>;
+		end;
+	end;
+	
+	/*********************************************************************************
+	 * JTAG programming chain
+	 */
+	group "JTAG" is
+		inst(1:3) cfg_pullup of R0603 is
+			this(1,2).value = "4.7k";
+			this(3).value = "270R";
+			a = <vccaux>;
+			this(1).b = init_b;
+			this(2).b = PROG_B;
+			this(3).b = DONE;
+		end;
+		
+		inst done_led of LD0603 is
+			mfgr = "DIALIGHT";
+			supplier = "DIGI-KEY";
+			partNumber = "350-2035-1-ND";
+			cost = "0.41";
+			a = DONE;
+			c = gnd;
+		end;
+		
+		inst(1:4) jtag_res of R0603 is 
+			this(1,2).value = "100R";
+			this(3).value = "4.7k";
+			this(4).value = "75R";
+			this(1).a = PROG_B;
+			this(1).b = prog_sw;
+			this(2).a = din;
+			this(2).b = d0;
+			this(3).a = vcco;
+			this(3).b = rom_ce;
+			this(4).a = CCLK;
+			this(4).b = rom_clk;
+		end;
+		
+		// reprogram switch
+		inst prog_fpga of TL1105T is
+			a = <prog_sw>;
+			b = <gnd>;
+		end;
+		
+		// rom enable jumper
+		inst rom_en of HDR_1X3 is
+			p = gnd & rom_ce & DONE;
+		end;
+		
+		// JTAG Parallel IV header
+		inst jtag_par_iv_hdr of HDR_2X7 is
+			pkg_type = "79107-14";
+			libName = "con-headers-jp";
+			partNumber = "WM17469-ND";
+			supplier = "DIGI-KEY";
+			cost = "1.76";
+			p[2] = vccaux;
+			p[4] = TMS;
+			p[6] = TCK;
+			p[8] = tdo_rom;
+			p[10] = TDI;
+			p[12,14] = open;
+			p[1,3,5,7,9,11,13] = <gnd>;
+		end;
+		
+		// JTAG interface header and current limiting resistors
+		inst jtag_hdr of HDR_1X6 is
+			pkg_type = "1X06/90";
+			libName = "pinhead";
+			p[1] = tms_ext;
+			p[2] = tdi_ext;
+			p[3] = tdo_rom;
+			p[4] = tck_ext;
+			p[5] = gnd;
+			p[6] = vcco;
+		end;
+		
+		inst(1:3) jtag_hdr_res of R0603 is
+			value = "100R";
+			this(1).a = tms_ext;
+			this(2).a = tdi_ext;
+			this(3).a = tck_ext;
+			this(1).b = TMS;
+			this(2).b = TDI;
+			this(3).b = TCK;
+		end;
+	end;
+	
+	/*********************************************************************************
+	 * DIP Switches and resistor network
+	 */
+	group "SWITCHES" is
+		inst fpga_switches of dipswitch is
+			a = <vcco>;
+			b = sw_res;
+		end;
+		
+		inst(7:0) sw_pulldown of R0603 is
+			value = "4.7k";
+			a = sw_res;
+			b = <gnd>;
+		end;
+		
+		inst(7:0) sw_lim of R0603 is
+			value = "4.7k";
+			a = sw_res;
+			b = sw;
+		end;
+	end;
+	
+	/*********************************************************************************
+	 * LEDS and resistor network
+	 */
+	group "LEDS" is
+		inst(7:0) fpga_leds of LD0603 is
+			mfgr = "DIALIGHT";
+			supplier = "DIGI-KEY";
+			partNumber = "350-2029-1-ND";
+			cost = "0.41";
+			this(7:0).a = led_res;
+			c = <gnd>;
+		end;
+		
+		inst(7:0) led_lim of R0603 is
+			value = "390R";
+			a = led_res;
+			b = led;
+		end;
+	end;
+	
+	/*********************************************************************************
+	 * Hex schmitt trigger inverter buffers and encoder header connectors
+	 */
+	group "ENCODERS" is
+		inst enc_buf of 7414_SOIC is
+			vcc = vcco;
+			gnd = gnd;
+			din = e1 & e0;
+			dout = enc1 & enc0;
+		end;
+		
+		inst(0:1) enc_hdrs of HDR_1X5 is
+			pkg_type = "70543-05";
+			libName = "con-molex";
+			this(0).p = e0 & vu & gnd;
+			this(1).p = e1 & vu & gnd;
+		end;
+		
+		inst enc_cap of C0603 is
+			value = "0.1u";
+			a = vcco;
+			b = gnd;
+		end;
+	end;
+	
+	/*********************************************************************************
+	 * Hex schmitt trigger inverter buffers and brushless motor sensor inputs
+	 */
+	group "BLDC SENSE" is
+		inst sense_buf of 7414_SOIC is
+			vcc = vcco;
+			gnd = gnd;
+			din = s1 & s0;
+			dout = sense1 & sense0;
+		end;
+		
+		inst(0:1) sense_hdrs of HDR_1X5 is
+			pkg_type = "70543-05";
+			libName = "con-molex";
+			this(0).p = s0 & vu & gnd;
+			this(1).p = s1 & vu & gnd;
+		end;
+		
+		// pullups on all brushless motor sensor lines
+		inst(5:0) sense_pullup of R0603 is
+			value = "1k";
+			a = <vu>;
+			this(5,4,3).b = sense1;
+			this(2,1,0).b = sense0;
+		end;
+		
+		inst sense_cap of C0603 is
+			value = "0.1u";
+			a = vcco;
+			b = gnd;
+		end;
+	end;
+	
+	/*********************************************************************************
+	 * Brushless motor 0 and 1 drive
+	 */
+	group "FET DRIVERS" is
+		inst(0:1) fet_drivers of HIP4086 is
+			bhb = bhb;
+			bhi = bhi;
+			bli = bli;
+			ali = ali;
+			ahi = ahi;
+			vss = <gnd>;
+			rdel = rdel;
+			uvlo = uvlo;
+			rfsh = rfsh;
+			dis = <gnd>;
+			cli = cli;
+			chi = chi;
+			chb = chb;
+			cho = cho;
+			chs = chs;
+			ahb = ahb;
+			aho = aho;
+			ahs = ahs;
+			clo = clo;
+			vdd = <vdd>;
+			alo = alo;
+			blo = blo;
+			bhs = bhs;
+			bho = bho;
+		end;
+		
+		inst(1:4) fet_driver_cap of CP_1206MP/T is
+			this(1,2).value = "4.7u";
+			this(3,4).value = "1u";
+			pos = <vdd>;
+			neg = <gnd>;
+		end;
+		
+		
+		inst(1:4) config_res of R0603 is
+			this(1,3).value = "22K";
+			this(1,3).a = <vdd>;
+			this(1,3).b = rdel;
+			this(2,4).value = "47K";
+			this(2,4).a = <gnd>;
+			this(2,4).b = uvlo;
+		end;
+		
+		inst(1:2) rfsh_cap of C0603 is
+			value = "470p";
+			a = <gnd>;
+			b = rfsh;
+		end;
+		
+		// re-map vectors from fpga
+		ahi = high0[2] & high1[2];
+		bhi = high0[1] & high1[1];
+		chi = high0[0] & high1[0];
+		ali = low0[2] & low1[2];
+		bli = low0[1] & low1[1];
+		cli = low0[0] & low1[0];
+		
+		// bootstrap capacitors
+		inst(1:6) bldc_boot_cap of C0603 is
+			value = "0.22u";
+			cost = "0.31";
+			supplier = "DIGI-KEY";
+			mfgr = "Murata";
+			partNumber = "490-5402-1-ND";
+			this(1,4).a = ahb;
+			this(2,5).a = bhb;
+			this(3,6).a = chb;
+			this(1,4).b = ahs;
+			this(2,5).b = bhs;
+			this(3,6).b = chs;
+		end;
+		
+		// bootstrap diodes
+		inst(1:6) bldc_boot_diode of DO214AC is
+			cost = "0.403";
+			supplier = "DIGI-KEY";
+			mfgr = "Vishay";
+			partNumber = "US1D-E3/61TGICT-ND";
+			a = <vdd>;
+			this(1,4).c = ahb;
+			this(2,5).c = bhb;
+			this(3,6).c = chb;
+		end;
+		
+		// clamp diodes to prevent negative transients on the floating sense lines
+		inst(1:12) bldc_clamp of DO214AC is
+			cost = "0.403";
+			supplier = "DIGI-KEY";
+			mfgr = "Vishay";
+			partNumber = "US1D-E3/61TGICT-ND";
+			this(1:6).a = <gnd>;
+			this(1:6).c = clamps;
+			this(7:12).a = clamps;
+			this(7:12).c = ahs & bhs & chs;
+		end;
+		
+		// gate resistors to dampen any ringing
+		inst(1:12) gate_res of R0603 is
+			value = "10R";
+			this(1,7).a = aho;
+			this(2,8).a = bho;
+			this(3,9).a = cho;
+			this(4,10).a = alo;
+			this(5,11).a = blo;
+			this(6,12).a = clo;
+			this(1,7).b = ahg;
+			this(2,8).b = bhg;
+			this(3,9).b = chg;
+			this(4,10).b = alg;
+			this(5,11).b = blg;
+			this(6,12).b = clg;
+		end;
+	end;
+	
+	group "POWER FETS" is
+		// 6 FETS for each brushless motor
+		inst(1:12) drive_fet of TO252 is
+			mfgr = "Fairchild";
+			partNumber = "FDD3682CT-ND";
+			supplier = "DIGI-KEY";
+			cost = "1.56";
+			this(1,7).g = ahg;
+			this(2,8).g = bhg;
+			this(3,9).g = chg;
+			this(4,10).g = alg;
+			this(5,11).g = blg;
+			this(6,12).g = clg;
+			this(1,2,3,7,8,9).d = <vmot>;
+			this(1,2,3).s = mot0;
+			this(7,8,9).s = mot1;
+			this(4,5,6,10,11,12).s = <gnd>;
+			this(4,5,6).d = mot0;
+			this(10,11,12).d = mot1;
+		end;
+		
+		// gate-source resistors make sure lower stages are off on powerup
+		inst(1:6) gate_source_res of R0603 is
+			value = "4.7k";
+			this(1,4).a = alg;
+			this(2,5).a = blg;
+			this(3,6).a = clg;
+			b = <gnd>;
+		end;
+		
+		// output connector
+		inst(0:1) bldc_out of HDR_1X3 is
+			pkg_type = "22-23-2031";
+			libName = "con-molex";
+			this(0).p = mot0;
+			this(1).p = mot1;
+		end;
+	end;
+	
+	/*********************************************************************************
+	 * Brushed motor 0 and 1 drive
+	 */
+	group "DC DRIVE" is
+		inst(0:1) h_bridges of LMD18200T is
+			pwm = pwm;
+			dir = dir;
+			out1 = out1;
+			out2 = out2;
+			boot1 = boot1;
+			boot2 = boot2;
+			sense = open;
+			thermal = open;
+			brake = <gnd>;
+			vss = <vmot>;
+			gnd = <gnd>;
+		end;
+		
+		// remap vectors
+		pwm = pwm0 & pwm1;
+		dir = dir0 & dir1;
+		
+		inst(1:4) bridge_boot of C0603 is
+			value = "10n";
+			this(1,3).a = boot1;
+			this(1,3).b = out1;
+			this(2,4).a = boot2;
+			this(2,4).b = out2;
+		end;
+		
+		inst(0:1) brushed_out of HDR_1X2 is
+			pkg_type = "22-23-2021";
+			libName = "con-molex";
+			this(0).p = out1[0] & out2[0];
+			this(1).p = out1[1] & out2[1];
+		end;
+		
+		inst motor_power of HDR_1X2 is
+			pkg_type = "22-23-2021";
+			libName = "con-molex";
+			p = vmot & gnd;
+		end;
+	end;
+	
+	/*********************************************************************************
+	 * RS232 Serial port
+	 */
+	group "RS232" is
+		inst level_conv of ST3232C is
+			c1+ = c1+;
+			v+ = v+;
+			c1- = c1-;
+			c2+ = c2+;
+			c2- = c2-;
+			v- = v-;
+			t2out = t2out;
+			r2in = r2in;
+			r2out = r2out;
+			t2in = t2in;
+			t1in = t1in;
+			r1out = r1out;
+			r1in = r1in;
+			t1out = t1out;
+			gnd = gnd;
+			vcc = vcco;
+		end;
+		
+		t1in = txd;
+		t2in = txd_a;
+		
+		inst(1:2) rxd_res of R0603 is
+			value = "100R";
+			this(1).a = rxd;
+			this(1).b = r1out;
+			this(2).a = rxd_a;
+			this(2).b = r2out;
+		end;
+		
+		inst(1:5) conv_cap of C0603 is
+			value = "0.1u";
+			this(1).a = c1+;
+			this(1).b = c1-;
+			this(2).a = c2+;
+			this(2).b = c2-;
+			this(3).a = vcco;
+			this(3).b = v+;
+			this(4).a = v-;
+			this(4).b = gnd;
+			this(5).a = vcco;
+			this(5).b = gnd;
+		end;
+		
+		inst rs232_port of SUBD9F is
+			p1 = rs232_com;
+			p2 = t1out;
+			p3 = r1in;
+			p4 = rs232_com;
+			p5 = gnd;
+			p6 = rs232_com;
+			p7 = rs232_jump;
+			p8 = rs232_jump;
+			p9 = open;
+			g1 = gnd;
+			g2 = gnd;
+		end;
+		
+		inst rs232_aux_port of HDR_1X3 is
+			p = t2out & r2in & gnd;
+		end;
+	end;
+	
+	/*********************************************************************************
+	 * LANC interface
+	 */
+	group "LANC" is
+		inst lanc_bjt of BSR14 is
+			e = gnd;
+			c = lanc_res;
+			b = lanc_base;
+		end;
+		
+		// biasing and current limiting resistors
+		inst(1:4) lanc_res of R0603 is
+			this(1).value = "220R";
+			this(2,3).value = "1k";
+			this(4).value = "100R";
+			this(1).a = lrx;
+			this(1).b = lanc_res;
+			this(2).a = ltx;
+			this(2).b = lanc_base;
+			this(3).a = vu;
+			this(3).b = lanc_res;
+			this(4).a = lanc_res;
+			this(4).b = lanc_line;
+		end;
+		
+		// LANC connector
+		inst lanc of HDR_1X2 is
+			pkg_type = "70543-02";
+			libName = "con-molex";
+			p = lanc_line & gnd;
+		end;
+	end;
+	
+	/*********************************************************************************
+	 * Power Supply
+	 */
+	 
+	// DC input jack
+	group "5v REG" is
+		inst 12vdc_in of DC_JACK is
+			tip = vdd;
+			sleeve = gnd;
+			switch = gnd;
+		end;
+		
+		// 5V regulator
+		inst 5v_reg of L7805 is
+			input = vdd;
+			output = vu;
+			ground = gnd;
+		end;
+		
+		inst(1:2) 5v_reg_cap of C0603 is
+			this(1).value = "0.33u";
+			this(2).value = "0.1u";
+			this(1).a = vdd;
+			this(2).a = vu;
+			b = <gnd>;
+		end;
+		
+		inst 5v_led of LD0603 is
+			mfgr = "DIALIGHT";
+			supplier = "DIGI-KEY";
+			partNumber = "350-2035-1-ND";
+			cost = "0.41";
+			a = 5v_pwr;
+			c = gnd;
+		end;
+		
+		inst 5v_led_res of R0603 is
+			value = "390R";
+			a = vu;
+			b = 5v_pwr;
+		end;
+	end;
+	
+	// 3.3V Regulator
+	group "3.3v REG" is
+		inst 3v3_reg of LM1086CS is
+			input = vu;
+			output = vcco;
+			tab = vcco;
+			adj/gnd = 3v3_sense;
+		end;
+		
+		inst(1:4) 3v3_cap of CP_1206MP/T is
+			this(1).value = "22u";
+			this(2,3,4).value = "10u";
+			this(1,2).pos = <vu>;
+			this(3).pos = 3v3_sense;
+			this(4).pos = vcco;
+			neg = <gnd>;
+		end;
+		
+		inst(1:2) 3v3_res of R0603 is
+			this(1).value = "240R";
+			this(2).value = "240R";
+			this(1).a = vcco;
+			this(1).b = 3v3_sense;
+			this(2).a = 3v3_sense;
+			this(2).b = gnd;
+		end;
+		
+		inst 3v3_led of LD0603 is
+			mfgr = "DIALIGHT";
+			supplier = "DIGI-KEY";
+			partNumber = "350-2035-1-ND";
+			cost = "0.41";
+			a = 3v3_pwr;
+			c = gnd;
+		end;
+		
+		inst 3v3_led_res of R0603 is
+			value = "390R";
+			a = vcco;
+			b = 3v3_pwr;
+		end;
+	end;
+	
+	// 2.5V Regulator
+	group "2.5v REG" is
+		inst 2v5_reg of LF25CDT is
+			input = vcco;
+			output = vccaux;
+			gnd = gnd;
+		end;
+		
+		inst(1:3) 2v5_cap of CP_1206MP/T is
+			this(1).value = "22u";
+			this(2).value = "0.1u";
+			this(3).value = "10u";
+			this(1,2).pos = <vcco>;
+			this(3).pos = vccaux;
+			neg = <gnd>;
+		end;
+		
+		inst 2v5_res of R0603 is
+			value = "2.2k";
+			a = vccaux;
+			b = gnd;
+		end;
+		
+		inst 2v5_led of LD0603 is
+			mfgr = "DIALIGHT";
+			supplier = "DIGI-KEY";
+			partNumber = "350-2035-1-ND";
+			cost = "0.41";
+			a = 2v5_pwr;
+			c = gnd;
+		end;
+		
+		inst 2v5_led_res of R0603 is
+			value = "390R";
+			a = vccaux;
+			b = 2v5_pwr;
+		end;
+	end;
+	
+	// 1.2V Regulator
+	group "1.2v REG" is
+		inst 1v2_reg of LD1117 is
+			input = vcco;
+			output = vccint;
+			gnd = gnd;
+		end;
+		
+		inst 1v2_cap of CP_1206MP/T is
+			value = "22u";
+			pos = vccint;
+			neg = gnd;
+		end;
+	end;
+	
+end design ptzlanc;

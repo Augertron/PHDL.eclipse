@@ -1,0 +1,5 @@
+PHDL Generated Bill of Materials
+Device Name,NAME,PKG_TYPE,REFDES,REFPREFIX,TOLERANCE,VALUE
+resistor,,R0207,R1,R,10%,10K
+resistor,,R0207,R2,R,10%,10K
+incldev1,,MYPACKAGE,,M,,
