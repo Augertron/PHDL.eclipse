@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.StringTokenizer;
+import java.util.regex.Pattern;
 
 import phdl.graph.Attributable;
 import phdl.graph.AttributeNode;
@@ -22,13 +24,14 @@ public class XMLtoDesignGenerator {
 		try {
 		    BufferedReader in = new BufferedReader(new FileReader(fileName));
 		    String line;
-		    String xml = "";
+		    StringBuilder xml = new StringBuilder();
+
 		    while ((line = in.readLine()) != null) {
-		        xml += line + "\n";
+		        xml.append(line + "\n");
 		    }
+		    
 		    in.close();
-		    process(xml);
-		    design.printDesignNode();
+		    process(xml.toString());
 		} catch (IOException e) {
 			System.err.println("File Reading Error - File may not exist or be open in another program.");
 			System.exit(1);
@@ -44,8 +47,9 @@ public class XMLtoDesignGenerator {
 		DeviceNode curDevice = null;
 		NetNode curNet = null;
 		InstanceNode curInst = null;
-		
+
 		String[] strings = xml.split("[<>]");
+		
 		List<String> tags = new LinkedList<String>();
 		for (int j = 0; j < strings.length - 1; j++) {
 			if (!strings[j].trim().equals("")) {
@@ -55,7 +59,7 @@ public class XMLtoDesignGenerator {
 		
 		for (int i = 0; i < tags.size(); i++) {
 			String tag = tags.get(i).trim();
-			System.out.println("Analyzing tag: " + tag);
+			//System.out.println("Analyzing tag: " + tag);
 			// Start tags
 			if (tag.equals("design")) {
 				curDesign = new DesignNode();

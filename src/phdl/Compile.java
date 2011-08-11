@@ -104,6 +104,8 @@ public class Compile {
 	 */
 	public static void main(String[] args) {
 
+		long start = System.currentTimeMillis();
+		
 		// print out the help if the program is being used incorrectly
 		if (args.length == 0) {
 			System.out.println(usage);
@@ -254,6 +256,8 @@ public class Compile {
 				printWarnings();
 
 			System.out.println("Compile successful: " + args[i]);
+			long end = System.currentTimeMillis();
+			System.out.println("Compile Time: " + (end - start) + " ms");
 		} // end for loop on all source files
 	}
 
