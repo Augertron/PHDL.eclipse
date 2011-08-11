@@ -1,0 +1,737 @@
+/**
+ * Design: fmc_module.phdl
+ * Adapted from PADS fmc_module.prj
+ * Submitted by: Pete Dudley, Sandia Labs
+ * Translated by: Brad Riching, Brigham Young University
+ *
+ * Dependencies: none (fully contained design in this file)
+ *
+ * Notes:
+ * This is an exact translation of the design to phdl.  Pay particular attention
+ * to how easy it is to instance an array of devices (such as the sma connectors
+ * and associated coupling capacitors on the receiver ports.)  All refDes constraints
+ * were constrained manually to duplicate the exact reference in the schematic.  
+ * However, the phdl compiler can also generate them automatically if they aren't 
+ * formally constrained.
+ */
+
+// the design declaration
+design fmc_module is
+
+	/****************************************************************************************
+	 * Beginning of schematic page 2 from original source
+	 */
+
+	// an SMA connector device declaration
+	device SMA_CON is
+		attr refprefix = "P";
+		attr refDes = "";
+		attr name = "";
+		attr value = "";
+		attr pkg_type = "SMA_STRAIT";
+		attr mfgr = "MOLEX";
+		attr partNumber = "73391-0070";
+		attr cost = "4.97";
+
+		pin sig = {1};
+		pin[3:0] gnd = {5,4,3,2}; // gnd(3) maps to "5", gnd(2) maps to "4", gnd(1) maps to "3", gnd(0) maps to "2"
+	end device;
+	
+	// a non-polarized surface mount capacitor device declaration
+	device cap_0402 is
+		attr refPrefix = "C";
+		attr refDes = "";
+		attr name = "";
+		attr value = "";
+		attr pkg_type = "CC0402";
+		attr mfgr = "PANASONIC";
+		attr partNumber = "ECJ-0EB1A104K";
+		attr cost = "0.03";
+
+		pin a = {1};
+		pin b = {2};
+	end device;
+	
+	//port0 transciever nets
+	net DP0_C2M_P;
+	net DP0_C2M_N;
+	net DP0_M2C_P;
+	net DP0_M2C_N;
+	net SMA_DPO_M2C_P;
+	net SMA_DPO_M2C_N;
+	
+	//port1 transciever nets
+	net DP1_C2M_P;
+	net DP1_C2M_N;
+	net DP1_M2C_P;
+	net DP1_M2C_N;
+	net SMA_DP1_M2C_P;
+	net SMA_DP1_M2C_N;
+	
+	//port2 transciever nets
+	net DP2_C2M_P;
+	net DP2_C2M_N;
+	net DP2_M2C_P;
+	net DP2_M2C_N;
+	net SMA_DP2_M2C_P;
+	net SMA_DP2_M2C_N;
+	
+	//port3 transciever nets
+	net DP3_C2M_P;
+	net DP3_C2M_N;
+	net DP3_M2C_P;
+	net DP3_M2C_N;
+	net SMA_DP3_M2C_P;
+	net SMA_DP3_M2C_N;
+	
+	//port4 transciever nets
+	net DP4_C2M_P;
+	net DP4_C2M_N;
+	net DP4_M2C_P;
+	net DP4_M2C_N;
+	net SMA_DP4_M2C_P;
+	net SMA_DP4_M2C_N;
+	
+	//port5 transciever nets
+	net DP5_C2M_P;
+	net DP5_C2M_N;
+	net DP5_M2C_P;
+	net DP5_M2C_N;
+	net SMA_DP5_M2C_P;
+	net SMA_DP5_M2C_N;
+	
+	/****************************************************************************************
+	 * End of schematic page 2, beginning of schematic page 3 from original source
+	 */
+	
+	// an isolation transformer declaration
+	device TC4-14+ is
+		attr refPrefix = "T";
+		attr refDes = "";
+		attr name = "";
+		attr value = "";
+		attr pkg_type = "AT224-1";
+		attr mfgr = "MINI-CIRCUITS";
+		attr partNumber = "TC4-14G2+";
+		attr cost = "$10.00";
+
+		pin pri_p = {4};
+		pin pri_n = {5};
+		pin sec_p = {1};
+		pin sec_tap = {2};
+		pin sec_n = {3};
+	end device;
+	
+	// a surface mount resistor declaration
+	device res_0603 is
+		attr refPrefix = "R";
+		attr refDes = "";
+		attr name = "";
+		attr value = "";
+		attr pkg_type = "CR0603";
+		attr mfgr = "PANASONIC";
+		attr partNumber = "ERJ-3EKF1500V";
+		attr cost = "0.07";
+
+		pin a = {1};
+		pin b = {2};
+	end device;
+	
+	// clock nets
+	net CLK250P;
+	net CLK250N;
+	net CLK250;
+	net DIFF_CLK_RTN;
+	net SINGLE_CLK_RTN;
+	net CLK250N_BAL;
+	net CLK250P_BAL;
+	net CLK250_BAL_N;
+	net CLK250_BAL_P;
+	
+	// misc nets
+	net $3N205;
+	net $3N212;
+	net $3N213;
+	net $3N195;
+	net $3N1;
+	net $3N193;
+	net $3N222;
+	net $3N42;
+	net $3N44;
+	net $3N163;
+	net $3N164;
+	net $4N126;
+	
+	// power supply
+	net +3V3;
+	net gnd;
+	
+	// a tantalum capacitor declaration
+	device tant_cap is
+		attr refPrefix = "C";
+		attr refDes = "";
+		attr name = "";
+		attr value = "";
+		attr pkg_type = "7343-31";
+		attr mfgr = "AVX CORPORATION";
+		attr partNumber = "TAJD227M006RNJ";
+		attr cost = "2.60";
+
+		pin pos = {1};
+		pin neg = {2};
+	end device;
+	
+	// an clock buffer IC
+	device sy898533 is
+		attr refPrefix = "U";
+		attr refDes = "";
+		attr name = "";
+		attr value = "";
+		attr pkg_type = "SY898533LKZ";
+		attr mfgr = "MICREL";
+		attr partNumber = "SY898533LKZ";
+		attr cost = "4.45";
+
+		pin[1:3] vcc = {10,13,18};
+		pin clk_p = {4};
+		pin clk_n = {5};
+		pin pclk_p = {6};
+		pin pclk_n = {7};
+		pin clk_en = {2};
+		pin clk_sel = {3};
+		pin[1:2] nc = {8,9};
+		pin q0_p = {20};
+		pin q0_n = {19};
+		pin q1_p = {17};
+		pin q1_n = {16};
+		pin q2_p = {15};
+		pin q2_n = {14};
+		pin q3_p = {12};
+		pin q3_n = {11};
+		pin vee = {1};
+	end device;
+	
+	// gigabit transceiver clock nets
+	net GBTCLK0_M2C_P;
+	net GBTCLK0_M2C_N;
+	net GBTCLK1_M2C_P;
+	net GBTCLK1_M2C_N;
+	
+	// a slide switch declaration
+	device slide_switch is
+		attr refPrefix = "P";
+		attr refDes = "";
+		attr name = "";
+		attr value = "";
+		attr pkg_type = "CAS-220B";
+		attr mfgr = "COPAL ELECTRONICS";
+		attr partNumber = "CAS-D20TB";
+		attr cost = "2.28";
+
+		// circuit 1
+		pin p1_1 = {1}; // position1
+		pin p2_1 = {3}; // position2
+		pin s_1 = {2}; // select
+		
+		// circuit 2
+		pin p1_2 = {4}; // position1
+		pin p2_2 = {6}; // position2
+		pin s_2 = {5}; // select
+	end device;
+	
+	// nets for sync connectors signals
+	net SYNC_OUT;
+	net SYNC_IN;
+	
+	/****************************************************************************************
+	 * End of schematic page 3, beginning of schematic page 4-5 from original source
+	 */
+	
+	// a massive surface mount connector array
+	device asp_134488 is
+		attr refPrefix = "P";
+		attr refDes = "";
+		attr name = "";
+		attr value = "";
+		attr pkg_type = "ASP-134488-01";
+		attr mfgr = "SAMTEC";
+		attr partNumber = "ASP-134488-01";
+		attr cost = "XXXX";
+
+		pin[1:40] a = {A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11,A12,A13,A14,A15,A16,A17,A18,A19,A20,
+			A21,A22,A23,A24,A25,A26,A27,A28,A29,A30,A31,A32,A33,A34,A35,A36,A37,A38,A39,A40};
+		pin[1:40] b = {B1,B2,B3,B4,B5,B6,B7,B8,B9,B10,B11,B12,B13,B14,B15,B16,B17,B18,B19,B20,
+			B21,B22,B23,B24,B25,B26,B27,B28,B29,B30,B31,B32,B33,B34,B35,B36,B37,B38,B39,B40};
+		pin[1:40] c = {C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,C14,C15,C16,C17,C18,C19,C20,
+			C21,C22,C23,C24,C25,C26,C27,C28,C29,C30,C31,C32,C33,C34,C35,C36,C37,C38,C39,C40};
+		pin[1:40] d = {D1,D2,D3,D4,D5,D6,D7,D8,D9,D10,D11,D12,D13,D14,D15,D16,D17,D18,D19,D20,
+			D21,D22,D23,D24,D25,D26,D27,D28,D29,D30,D31,D32,D33,D34,D35,D36,D37,D38,D39,D40};
+		pin[1:40] e = {E1,E2,E3,E4,E5,E6,E7,E8,E9,E10,E11,E12,E13,E14,E15,E16,E17,E18,E19,E20,
+			E21,E22,E23,E24,E25,E26,E27,E28,E29,E30,E31,E32,E33,E34,E35,E36,E37,E38,E39,E40};
+		pin[1:40] f = {F1,F2,F3,F4,F5,F6,F7,F8,F9,F10,F11,F12,F13,F14,F15,F16,F17,F18,F19,F20,
+			F21,F22,F23,F24,F25,F26,F27,F28,F29,F30,F31,F32,F33,F34,F35,F36,F37,F38,F39,F40};
+		pin[1:40] g = {G1,G2,G3,G4,G5,G6,G7,G8,G9,G10,G11,G12,G13,G14,G15,G16,G17,G18,G19,G20,
+			G21,G22,G23,G24,G25,G26,G27,G28,G29,G30,G31,G32,G33,G34,G35,G36,G37,G38,G39,G40};
+		pin[1:40] h = {H1,H2,H3,H4,H5,H6,H7,H8,H9,H10,H11,H12,H13,H14,H15,H16,H17,H18,H19,H20,
+			H21,H22,H23,H24,H25,H26,H27,H28,H29,H30,H31,H32,H33,H34,H35,H36,H37,H38,H39,H40};
+		pin[1:40] j = {J1,J2,J3,J4,J5,J6,J7,J8,J9,J10,J11,J12,J13,J14,J15,J16,J17,J18,J19,J20,
+			J21,J22,J23,J24,J25,J26,J27,J28,J29,J30,J31,J32,J33,J34,J35,J36,J37,J38,J39,J40};
+		pin[1:40] k = {K1,K2,K3,K4,K5,K6,K7,K8,K9,K10,K11,K12,K13,K14,K15,K16,K17,K18,K19,K20,
+			K21,K22,K23,K24,K25,K26,K27,K28,K29,K30,K31,K32,K33,K34,K35,K36,K37,K38,K39,K40};
+	end device;
+	
+	// a pin header declaration
+	device 2x8_hdr is
+		attr refPrefix = "J";
+		attr refDes = "";
+		attr name = "";
+		attr value = "";
+		attr pkg_type = "HDR2x8/0_100";
+		attr mfgr = "MOLEX";
+		attr partNumber = "90131-0768";
+		attr cost = "1.03";
+
+		pin[0:7] sig = {1,3,5,7,9,11,13,15};
+		pin[0:7] gnd = {2,4,6,8,10,12,14,16};
+	end device;
+	
+	net[7:0] DISCRETE;
+	
+	device mount_hole_125 is
+		attr refPrefix = "U";
+		attr pkg_type = "MOUNT_HOLE_125";
+	end device;
+
+begin
+	
+	/**
+	 * Beginning of schematic page 2 from original source
+	 */
+	
+	// an array of four sma connectors for port0
+	inst(1:4) port0 of SMA_CON is
+		// refDes constraints defined in the original source
+		this(1).refDes = "P9";
+		this(2).refDes = "P10";
+		this(3).refDes = "P16";
+		this(4).refDes = "P15";
+
+		// all signal pin assignments
+		this(1).sig = DP0_C2M_P;
+		this(2).sig = DP0_C2M_N;
+		this(3).sig = SMA_DPO_M2C_P;
+		this(4).sig = SMA_DPO_M2C_N;
+	
+		// all ground pins of all instances are connected to ground with this one line.
+		// any single bit wide net in angle brackets (<NET_NAME>) will be replicated across the
+		// width of what it is being assigned to.
+		gnd = <gnd>;
+		// Alternatively, this statement could have been written: 
+		// this(1:4).gnd(3:0) = <gnd>;
+
+	end inst;
+	
+	inst(1:4) port1 of SMA_CON is
+		this(1).refDes = "P12";
+		this(2).refDes = "P11";
+		this(3).refDes = "P13";
+		this(4).refDes = "P14";
+		
+		this(1).sig = DP1_C2M_P;
+		this(2).sig = DP1_C2M_N;
+		this(3).sig = SMA_DP1_M2C_P;
+		this(4).sig = SMA_DP1_M2C_N;
+		gnd = <gnd>;
+	end inst;
+	
+	inst(1:4) port2 of SMA_CON is
+		this(1).refDes = "P19";
+		this(2).refDes = "P20";
+		this(3).refDes = "P18";
+		this(4).refDes = "P17";
+
+		this(1).sig = DP2_C2M_P;
+		this(2).sig = DP2_C2M_N;
+		this(3).sig = SMA_DP2_M2C_P;
+		this(4).sig = SMA_DP2_M2C_N;
+		gnd = <gnd>;
+	end inst;
+	
+	inst(1:4) port3 of SMA_CON is
+		this(1).refDes = "P22";
+		this(2).refDes = "P21";
+		this(3).refDes = "P23";
+		this(4).refDes = "P24";
+
+		this(1).sig = DP3_C2M_P;
+		this(2).sig = DP3_C2M_N;
+		this(3).sig = SMA_DP3_M2C_P;
+		this(4).sig = SMA_DP3_M2C_N;
+		gnd = <gnd>;
+	end inst;
+	
+	inst(1:4) port4 of SMA_CON is
+		this(1).refDes = "P3";
+		this(2).refDes = "P4";
+		this(3).refDes = "P2";
+		this(4).refDes = "P1";
+
+		this(1).sig = DP4_C2M_P;
+		this(2).sig = DP4_C2M_N;
+		this(3).sig = SMA_DP4_M2C_P;
+		this(4).sig = SMA_DP4_M2C_N;
+		gnd = <gnd>;
+	end inst;
+	
+	inst(1:4) port5 of SMA_CON is
+		this(1).refDes = "P6";
+		this(2).refDes = "P5";
+		this(3).refDes = "P7";
+		this(4).refDes = "P8";
+
+		this(1).sig = DP5_C2M_P;
+		this(2).sig = DP5_C2M_N;
+		this(3).sig = SMA_DP5_M2C_P;
+		this(4).sig = SMA_DP5_M2C_N;
+		gnd = <gnd>;
+	end inst;
+	
+	// all receiver coupling capacitors for all sma ports
+	inst(1:12) rx_coupling_caps of cap_0402 is
+		// all values are 1uF.
+		value = "1uF";
+
+		// refDes constraints as defined in the original source 
+		this(1).refDes = "C9";
+		this(2).refDes = "C10";
+		this(3).refDes = "C11";
+		this(4).refDes = "C12";
+		this(5).refDes = "C14";
+		this(6).refDes = "C13";
+		this(7).refDes = "C15";
+		this(8).refDes = "C4";
+		this(9).refDes = "C6";
+		this(10).refDes = "C5";
+		this(11).refDes = "C7";
+		this(12).refDes = "C8";
+
+		// all coupling caps a-side
+		this(1).a = SMA_DPO_M2C_P;
+		this(2).a = SMA_DPO_M2C_N;
+		this(3).a = SMA_DP1_M2C_P;
+		this(4).a = SMA_DP1_M2C_N;
+		this(5).a = SMA_DP2_M2C_P;
+		this(6).a = SMA_DP2_M2C_N;
+		this(7).a = SMA_DP3_M2C_P;
+		this(8).a = SMA_DP3_M2C_N;
+		this(9).a = SMA_DP4_M2C_P;
+		this(10).a = SMA_DP4_M2C_N;
+		this(11).a = SMA_DP5_M2C_P;
+		this(12).a = SMA_DP5_M2C_N;
+		// all coupling caps b-side
+		
+		this(1).b = DP0_M2C_P;
+		this(2).b = DP0_M2C_N;
+		this(3).b = DP1_M2C_P;
+		this(4).b = DP1_M2C_N;
+		this(5).b = DP2_M2C_P;
+		this(6).b = DP2_M2C_N;
+		this(7).b = DP3_M2C_P;
+		this(8).b = DP3_M2C_N;
+		this(9).b = DP4_M2C_P;
+		this(10).b = DP4_M2C_N;
+		this(11).b = DP5_M2C_P;
+		this(12).b = DP5_M2C_N;
+	end inst;
+	
+	/****************************************************************************************
+	 * End of schematic page 2, beginning of schematic page 3 from original source
+	 */
+	 
+	 // the differential clock connectors
+	inst(1:2) diff_clk_input of SMA_CON is
+		this(1).refDes = "P30";
+		this(2).refDes = "P26";
+		this(1).sig = CLK250P;
+		this(2).sig = CLK250N;
+		gnd = <DIFF_CLK_RTN>;
+	end inst;
+	
+	// the single ended clock connector
+	inst single_ended_clk_input of SMA_CON is
+		refDes = "P25";
+		sig = CLK250;
+		gnd = <SINGLE_CLK_RTN>;
+	end inst;
+	
+	inst diff_iso_transformer of TC4-14+ is
+		refDes = "T2";
+		pri_p = CLK250P;
+		pri_n = CLK250N;
+		sec_p = $3N212;
+		sec_tap = $3N205;
+		sec_n = $3N213;
+	end inst;
+	
+	inst single_iso_transformer of TC4-14+ is
+		refDes = "T1";
+		pri_p = SINGLE_CLK_RTN;
+		pri_n = CLK250;
+		sec_p = $3N195;
+		sec_tap = $3N1;
+		sec_n = $3N193;
+	end inst;
+	
+	// the clock impedance matching-biasing resitor network
+	inst(1:10) clk_biasing_network of res_0603 is
+		// constrained values
+		this(1:2).value = "100";
+		this(3:4).value = "49.9";
+		this(5:8).value = "150";
+		this(9).value = "200";
+		this(10).value = "100";
+		
+		// constrained refdes's
+		this(1).refDes = "R10";
+		this(2).refDes = "R12";
+		this(3).refDes = "R3";
+		this(4).refDes = "R7";
+		this(5).refDes = "R11";
+		this(6).refDes = "R15";
+		this(7).refDes = "R13";
+		this(8).refDes = "R14";
+		this(9).refDes = "R8";
+		this(10).refDes = "R4";
+		
+		// impedance matching network
+		this(1).a = CLK250N_BAL;
+		this(1).b = $3N212;
+		this(2).a = CLK250P_BAL;
+		this(2).b = $3N213;
+		this(3).a = CLK250_BAL_N;
+		this(3).b = $3N193;
+		this(4).a = CLK250_BAL_P;
+		this(4).b = $3N195;
+		
+		// biasing network
+		this(5:6).a = +3V3;
+		this(5).b = $3N205;
+		this(6).b = $3N1;
+		this(7).a = $3N205;
+		this(8).a = $3N1;
+		this(7:8).b = gnd;
+		
+		// terminating network
+		this(9).a = CLK250N_BAL;
+		this(9).b = CLK250P_BAL;
+		this(10).a = CLK250_BAL_N;
+		this(10).b = CLK250_BAL_P;
+	end inst;
+	
+	// all of the power supply's decoupling capacitors
+	inst(1:10) decoupling_caps of tant_cap is
+		this(1:3).value = "220uF";
+		this(4:10).value = "0.1uF";
+		this(1).refDes = "C24";
+		this(2).refDes = "C25";
+		this(3).refDes = "C26";
+		this(4).refDes = "C20";
+		this(5).refDes = "C21";
+		this(6).refDes = "C22";
+		this(7).refDes = "C23";
+		this(8).refDes = "C1";
+		this(9).refDes = "C2";
+		this(10).refDes = "C3";
+
+		pos = <+3V3>;
+		neg = <gnd>;
+	end inst;
+	
+	// the instantiated clock buffer IC
+	inst clock_buffer of sy898533 is
+		refDes = "U1";
+		vcc = <+3V3>;
+		clk_p = CLK250P_BAL;
+		clk_n = CLK250N_BAL;
+		pclk_p = CLK250_BAL_P;
+		pclk_n = CLK250_BAL_N;
+		clk_en = +3V3;
+		clk_sel = $3N222;
+		nc = open;
+		q0_p = $3N42;
+		q0_n = $3N44;
+		q1_p = $3N163;
+		q1_n = $3N164;
+		q2_p = open;
+		q2_n = open;
+		q3_p = open;
+		q3_n = open;
+		vee = gnd;
+	end inst;
+	
+	// clock buffer output isolation capacitors
+	inst(1:4) clk_buffer_iso_caps of cap_0402 is
+		value = "1uF";
+		this(1).refDes = "C19";
+		this(2).refDes = "C18";
+		this(3).refDes = "C17";
+		this(4).refDes = "C16";
+		this(1).a = $3N42;
+		this(2).a = $3N44;
+		this(3).a = $3N163;
+		this(4).a = $3N164;
+		this(1).b = GBTCLK0_M2C_P;
+		this(2).b = GBTCLK0_M2C_N;
+		this(3).b = GBTCLK1_M2C_P;
+		this(4).b = GBTCLK1_M2C_N;
+	end inst;
+	
+	// clock buffer output terminations
+	inst(1:4) clk_buffer_terminations of res_0603 is
+		value = "120";
+		this(1).refDes = "R5";
+		this(2).refDes = "R6";
+		this(3).refDes = "R1";
+		this(4).refDes = "R2";
+		this(1).a = $3N42;
+		this(2).a = $3N44;
+		this(3).a = $3N163;
+		this(4).a = $3N164;
+		b = <gnd>;
+	end inst;
+	
+	// the differential or single ended clock input select switch
+	inst diff_single_select of slide_switch is
+		refDes = "P29";
+
+		// circuit 1
+		p1_1 = +3V3;
+		p2_1 = gnd;
+		s_1 = $3N222;
+		
+		// circuit 2 (not used)
+		p1_2 = +3V3;
+		p2_2 = gnd;
+		s_2 = open;
+	end inst;
+	
+	// the synchronization connectors
+	inst(1:2) sync_connectors of SMA_CON is
+		this(1).refDes = "P28";
+		this(2).refDes = "P27";
+
+		this(1).sig = SYNC_OUT;
+		this(2).sig = SYNC_IN;
+		gnd = <gnd>;
+	end inst;
+	
+	// a sync termination resitor
+	inst sync_termination of res_0603 is
+		value = "10K";
+		refDes = "R9";
+
+		a = SYNC_IN;
+		b = gnd;
+	end inst;
+	
+	/****************************************************************************************
+	 * End of schematic page 3, beginning of schematic page 4-5 from original source
+	 */
+	 
+	// a massive surface mount connector array
+	inst docking_connector of asp_134488 is
+		refDes = "P64";
+		
+		// data ports 1 through 5
+		a[2] = DP1_M2C_P;
+		a[3] = DP1_M2C_N;
+		a[6] = DP2_M2C_P;
+		a[7] = DP2_M2C_N;
+		a[10] = DP3_M2C_P;
+		a[11] = DP3_M2C_N;
+		a[14] = DP4_M2C_P;
+		a[15] = DP4_M2C_N;
+		a[18] = DP5_M2C_P;
+		a[19] = DP5_M2C_N;
+		a[22] = DP1_C2M_P;
+		a[23] = DP1_C2M_N;
+		a[26] = DP2_C2M_P;
+		a[27] = DP2_C2M_N;
+		a[30] = DP3_C2M_P;
+		a[31] = DP3_C2M_N;
+		a[34] = DP4_C2M_P;
+		a[35] = DP4_C2M_N;
+		a[38] = DP5_C2M_P;
+		a[39] = DP5_C2M_N;
+		
+		// gigabit transceiver clock 1 m2C
+		b[20] = GBTCLK1_M2C_P;
+		b[21] = GBTCLK1_M2C_N;
+		b[1,4,5,8,9,12,13,16,17,24,25,28,29,32,33,36,37,40] = open;
+		
+		// data port 0 and sync signals
+		c[2] = DP0_C2M_P;
+		c[3] = DP0_C2M_N;
+		c[6] = DP0_M2C_P;
+		c[7] = DP0_M2C_N;
+		c[10] = SYNC_OUT;
+		c[11] = SYNC_IN;
+		c[14] = DISCRETE[0];
+		c[15] = DISCRETE[1];
+		c[18] = DISCRETE[2];
+		c[19] = DISCRETE[3];
+		c[22] = DISCRETE[4];
+		c[23] = DISCRETE[5];
+		c[26] = DISCRETE[6];
+		c[27] = DISCRETE[7];
+		c[39] = +3V3;
+		c[30,31,34,35,37] = open;
+		
+		// gigabit transceiver clock 0 m2c
+		d[1] = GBTCLK0_M2C_P;
+		d[4] = GBTCLK0_M2C_N;
+		d[30] = $4N126;
+		d[31] = $4N126;
+		d[36] = +3V3;
+		d[38] = +3V3;
+		d[40] = +3V3;
+		d[5,8,9,11,12,14,15,17,18,20,21,23,24,26,27,29,32,33,34,35] = open;
+		
+		// opens
+		e[2,3,6,7,9,10,12,13,15,16,18,19,21,22,24,25,27,28,30,31,33,34,36,37,39] = open;
+		f[1,4,5,7,8,10,11,13,14,16,17,19,20,22,23,25,26,28,29,31,32,34,35,37,38,40] = open;
+		g[2,3,6,7,9,10,12,13,15,16,18,19,21,22,24,25,27,28,30,31,33,34,36,37,39] = open;
+		h[1,2,4,5,7,8,10,11,13,14,16,17,19,20,22,23,25,26,28,29,31,32,34,35,37,38,40] = open;
+		j[2,3,6,7,9,10,12,13,15,16,18,19,21,22,24,25,27,28,30,31,33,34,36,37,39] = open;
+		k[1,4,5,7,8,10,11,13,14,16,17,19,20,22,23,25,26,28,29,31,32,34,35,37,38,40] = open;
+		
+		// grounds
+		a[1,4,5,8,9,12,13,16,17,20,21,24,25,28,29,32,33,36,37,40] = <gnd>;
+		b[2,3,6,7,10,11,14,15,18,19,22,23,26,27,30,31,34,35,38,39] = <gnd>;
+		c[1,4,5,8,9,12,13,16,17,20,21,24,25,28,29,32,33,36,38,40] = <gnd>;
+		d[2,3,6,7,10,13,16,19,22,25,28,37,39] = <gnd>;
+		e[1,4,5,8,11,14,17,20,23,26,29,32,35,38,40] = <gnd>;
+		f[2,3,6,9,12,15,18,21,24,27,30,33,36,39] = <gnd>;
+		g[1,4,5,8,11,14,17,20,23,26,29,32,35,38,40] = <gnd>;
+		h[3,6,9,12,15,18,21,24,27,30,33,36,39] = <gnd>;
+		j[1,4,5,8,11,14,17,20,23,26,29,32,35,38,40] = <gnd>;
+		k[2,3,6,9,12,15,18,21,24,27,30,33,36,39] = <gnd>;
+
+	end inst;
+	
+	// the I/O header
+	inst header_IO of 2x8_hdr is
+		refDes = "J2";
+
+		sig = DISCRETE;
+		gnd = <gnd>;
+	end inst;
+	
+	inst(1:4) mounting_holes of mount_hole_125 is
+		newattr this(1).refDes = "U2";
+		newattr this(2).refDes = "U3";
+		newattr this(3).refDes = "U9";
+		newattr this(4).refDes = "U10";
+	end inst;
+	
+end;   

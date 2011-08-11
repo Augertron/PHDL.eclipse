@@ -1,0 +1,664 @@
+digraph {
+
+	ordering=out;
+	ranksep=.4;
+	bgcolor="lightgrey"; node [shape=box, fixedsize=false, fontsize=12, fontname="Helvetica-bold", fontcolor="blue"
+		width=.25, height=.25, color="black", fillcolor="white", style="filled, solid, bold"];
+	edge [arrowsize=.5, color="black", style="bold"]
+
+  n0 [label=""];
+  n1 [label="design"];
+  n1 [label="design"];
+  n2 [label="freq_cntr"];
+  n3 [label="device"];
+  n3 [label="device"];
+  n4 [label="resistor"];
+  n5 [label="attr"];
+  n5 [label="attr"];
+  n6 [label="refPrefix"];
+  n7 [label="R"];
+  n8 [label="attr"];
+  n8 [label="attr"];
+  n9 [label="pkg_type"];
+  n10 [label=""];
+  n11 [label="pin"];
+  n11 [label="pin"];
+  n12 [label="a"];
+  n13 [label="1"];
+  n14 [label="pin"];
+  n14 [label="pin"];
+  n15 [label="b"];
+  n16 [label="2"];
+  n17 [label="device"];
+  n17 [label="device"];
+  n18 [label="potentiometer"];
+  n19 [label="attr"];
+  n19 [label="attr"];
+  n20 [label="refPrefix"];
+  n21 [label="R"];
+  n22 [label="attr"];
+  n22 [label="attr"];
+  n23 [label="pkg_type"];
+  n24 [label=""];
+  n25 [label="pin"];
+  n25 [label="pin"];
+  n26 [label="a"];
+  n27 [label="1"];
+  n28 [label="pin"];
+  n28 [label="pin"];
+  n29 [label="b"];
+  n30 [label="2"];
+  n31 [label="device"];
+  n31 [label="device"];
+  n32 [label="capacitor"];
+  n33 [label="attr"];
+  n33 [label="attr"];
+  n34 [label="refPrefix"];
+  n35 [label="C"];
+  n36 [label="attr"];
+  n36 [label="attr"];
+  n37 [label="pkg_type"];
+  n38 [label=""];
+  n39 [label="pin"];
+  n39 [label="pin"];
+  n40 [label="a"];
+  n41 [label="1"];
+  n42 [label="pin"];
+  n42 [label="pin"];
+  n43 [label="b"];
+  n44 [label="2"];
+  n45 [label="device"];
+  n45 [label="device"];
+  n46 [label="pol_cap"];
+  n47 [label="attr"];
+  n47 [label="attr"];
+  n48 [label="refPrefix"];
+  n49 [label="C"];
+  n50 [label="attr"];
+  n50 [label="attr"];
+  n51 [label="pkg_type"];
+  n52 [label=""];
+  n53 [label="pin"];
+  n53 [label="pin"];
+  n54 [label="pos"];
+  n55 [label="1"];
+  n56 [label="pin"];
+  n56 [label="pin"];
+  n57 [label="neg"];
+  n58 [label="2"];
+  n59 [label="device"];
+  n59 [label="device"];
+  n60 [label="inductor"];
+  n61 [label="attr"];
+  n61 [label="attr"];
+  n62 [label="refPrefix"];
+  n63 [label="L"];
+  n64 [label="attr"];
+  n64 [label="attr"];
+  n65 [label="pkg_type"];
+  n66 [label=""];
+  n67 [label="pin"];
+  n67 [label="pin"];
+  n68 [label="a"];
+  n69 [label="1"];
+  n70 [label="pin"];
+  n70 [label="pin"];
+  n71 [label="b"];
+  n72 [label="2"];
+  n73 [label="device"];
+  n73 [label="device"];
+  n74 [label="BJT_npn"];
+  n75 [label="attr"];
+  n75 [label="attr"];
+  n76 [label="refPrefix"];
+  n77 [label="Q"];
+  n78 [label="attr"];
+  n78 [label="attr"];
+  n79 [label="pkg_type"];
+  n80 [label=""];
+  n81 [label="pin"];
+  n81 [label="pin"];
+  n82 [label="c"];
+  n83 [label="1"];
+  n84 [label="pin"];
+  n84 [label="pin"];
+  n85 [label="b"];
+  n86 [label="2"];
+  n87 [label="pin"];
+  n87 [label="pin"];
+  n88 [label="e"];
+  n89 [label="3"];
+  n90 [label="device"];
+  n90 [label="device"];
+  n91 [label="BJT_pnp"];
+  n92 [label="attr"];
+  n92 [label="attr"];
+  n93 [label="refPrefix"];
+  n94 [label="Q"];
+  n95 [label="attr"];
+  n95 [label="attr"];
+  n96 [label="pkg_type"];
+  n97 [label=""];
+  n98 [label="pin"];
+  n98 [label="pin"];
+  n99 [label="c"];
+  n100 [label="1"];
+  n101 [label="pin"];
+  n101 [label="pin"];
+  n102 [label="b"];
+  n103 [label="2"];
+  n104 [label="pin"];
+  n104 [label="pin"];
+  n105 [label="e"];
+  n106 [label="3"];
+  n107 [label="device"];
+  n107 [label="device"];
+  n108 [label="AND_GATE"];
+  n109 [label="attr"];
+  n109 [label="attr"];
+  n110 [label="refPrefix"];
+  n111 [label="A"];
+  n112 [label="attr"];
+  n112 [label="attr"];
+  n113 [label="pkg_type"];
+  n114 [label="74LS08"];
+  n115 [label="pin"];
+  n115 [label="pin"];
+  n116 [label=":"];
+  n116 [label=":"];
+  n117 [label="["];
+  n118 [label="1"];
+  n119 [label="0"];
+  n120 [label="entry"];
+  n121 [label="1"];
+  n122 [label="2"];
+  n123 [label="pin"];
+  n123 [label="pin"];
+  n124 [label="exit"];
+  n125 [label="3"];
+  n126 [label="device"];
+  n126 [label="device"];
+  n127 [label="INVERTER"];
+  n128 [label="attr"];
+  n128 [label="attr"];
+  n129 [label="refPrefix"];
+  n130 [label="I"];
+  n131 [label="attr"];
+  n131 [label="attr"];
+  n132 [label="pkg_type"];
+  n133 [label="74LS04"];
+  n134 [label="pin"];
+  n134 [label="pin"];
+  n135 [label="entry"];
+  n136 [label="1"];
+  n137 [label="pin"];
+  n137 [label="pin"];
+  n138 [label="exit"];
+  n139 [label="2"];
+  n140 [label="device"];
+  n140 [label="device"];
+  n141 [label="OR_GATE"];
+  n142 [label="attr"];
+  n142 [label="attr"];
+  n143 [label="refPrefix"];
+  n144 [label="O"];
+  n145 [label="attr"];
+  n145 [label="attr"];
+  n146 [label="pkg_type"];
+  n147 [label="74LS32"];
+  n148 [label="pin"];
+  n148 [label="pin"];
+  n149 [label=":"];
+  n149 [label=":"];
+  n150 [label="["];
+  n151 [label="1"];
+  n152 [label="0"];
+  n153 [label="entry"];
+  n154 [label="1"];
+  n155 [label="2"];
+  n156 [label="pin"];
+  n156 [label="pin"];
+  n157 [label="exit"];
+  n158 [label="3"];
+  n159 [label="device"];
+  n159 [label="device"];
+  n160 [label="NAND_GATE"];
+  n161 [label="attr"];
+  n161 [label="attr"];
+  n162 [label="refPrefix"];
+  n163 [label="NA"];
+  n164 [label="attr"];
+  n164 [label="attr"];
+  n165 [label="pkg_type"];
+  n166 [label=""];
+  n167 [label="pin"];
+  n167 [label="pin"];
+  n168 [label=":"];
+  n168 [label=":"];
+  n169 [label="["];
+  n170 [label="1"];
+  n171 [label="0"];
+  n172 [label="entry"];
+  n173 [label="1"];
+  n174 [label="2"];
+  n175 [label="pin"];
+  n175 [label="pin"];
+  n176 [label="exit"];
+  n177 [label="3"];
+  n178 [label="device"];
+  n178 [label="device"];
+  n179 [label="NOR_GATE"];
+  n180 [label="attr"];
+  n180 [label="attr"];
+  n181 [label="refPrefix"];
+  n182 [label="NO"];
+  n183 [label="attr"];
+  n183 [label="attr"];
+  n184 [label="pkg_type"];
+  n185 [label=""];
+  n186 [label="pin"];
+  n186 [label="pin"];
+  n187 [label=":"];
+  n187 [label=":"];
+  n188 [label="["];
+  n189 [label="1"];
+  n190 [label="0"];
+  n191 [label="entry"];
+  n192 [label="1"];
+  n193 [label="2"];
+  n194 [label="pin"];
+  n194 [label="pin"];
+  n195 [label="exit"];
+  n196 [label="3"];
+  n197 [label="device"];
+  n197 [label="device"];
+  n198 [label="XOR_GATE"];
+  n199 [label="attr"];
+  n199 [label="attr"];
+  n200 [label="refPrefix"];
+  n201 [label="X"];
+  n202 [label="attr"];
+  n202 [label="attr"];
+  n203 [label="pkg_type"];
+  n204 [label=""];
+  n205 [label="pin"];
+  n205 [label="pin"];
+  n206 [label=":"];
+  n206 [label=":"];
+  n207 [label="["];
+  n208 [label="1"];
+  n209 [label="0"];
+  n210 [label="entry"];
+  n211 [label="1"];
+  n212 [label="2"];
+  n213 [label="pin"];
+  n213 [label="pin"];
+  n214 [label="exit"];
+  n215 [label="3"];
+  n216 [label="device"];
+  n216 [label="device"];
+  n217 [label="XNOR_GATE"];
+  n218 [label="attr"];
+  n218 [label="attr"];
+  n219 [label="refPrefix"];
+  n220 [label="XN"];
+  n221 [label="attr"];
+  n221 [label="attr"];
+  n222 [label="pkg_type"];
+  n223 [label=""];
+  n224 [label="pin"];
+  n224 [label="pin"];
+  n225 [label=":"];
+  n225 [label=":"];
+  n226 [label="["];
+  n227 [label="1"];
+  n228 [label="0"];
+  n229 [label="entry"];
+  n230 [label="1"];
+  n231 [label="2"];
+  n232 [label="pin"];
+  n232 [label="pin"];
+  n233 [label="exit"];
+  n234 [label="3"];
+  n235 [label="device"];
+  n235 [label="device"];
+  n236 [label="mounting_hole"];
+  n237 [label="attr"];
+  n237 [label="attr"];
+  n238 [label="refPrefix"];
+  n239 [label="H"];
+  n240 [label="attr"];
+  n240 [label="attr"];
+  n241 [label="pkg_type"];
+  n242 [label=""];
+  n243 [label="device"];
+  n243 [label="device"];
+  n244 [label="seven_seg_display"];
+  n245 [label="attr"];
+  n245 [label="attr"];
+  n246 [label="refPrefix"];
+  n247 [label="S"];
+  n248 [label="attr"];
+  n248 [label="attr"];
+  n249 [label="pkg_type"];
+  n250 [label=""];
+  n251 [label="pin"];
+  n251 [label="pin"];
+  n252 [label="com"];
+  n253 [label="9"];
+  n254 [label="pin"];
+  n254 [label="pin"];
+  n255 [label="a"];
+  n256 [label="1"];
+  n257 [label="pin"];
+  n257 [label="pin"];
+  n258 [label="b"];
+  n259 [label="2"];
+  n260 [label="pin"];
+  n260 [label="pin"];
+  n261 [label="c"];
+  n262 [label="3"];
+  n263 [label="pin"];
+  n263 [label="pin"];
+  n264 [label="d"];
+  n265 [label="4"];
+  n266 [label="pin"];
+  n266 [label="pin"];
+  n267 [label="e"];
+  n268 [label="5"];
+  n269 [label="pin"];
+  n269 [label="pin"];
+  n270 [label="f"];
+  n271 [label="6"];
+  n272 [label="pin"];
+  n272 [label="pin"];
+  n273 [label="g"];
+  n274 [label="7"];
+  n275 [label="pin"];
+  n275 [label="pin"];
+  n276 [label="h"];
+  n277 [label="8"];
+  n278 [label="begin"];
+  n279 [label="<EOF>"];
+
+  n0 -> n1 // "" -> "design"
+  n1 -> n2 // "design" -> "freq_cntr"
+  n1 -> n3 // "design" -> "device"
+  n3 -> n4 // "device" -> "resistor"
+  n3 -> n5 // "device" -> "attr"
+  n5 -> n6 // "attr" -> "refPrefix"
+  n5 -> n7 // "attr" -> "R"
+  n3 -> n8 // "device" -> "attr"
+  n8 -> n9 // "attr" -> "pkg_type"
+  n8 -> n10 // "attr" -> ""
+  n3 -> n11 // "device" -> "pin"
+  n11 -> n12 // "pin" -> "a"
+  n11 -> n13 // "pin" -> "1"
+  n3 -> n14 // "device" -> "pin"
+  n14 -> n15 // "pin" -> "b"
+  n14 -> n16 // "pin" -> "2"
+  n1 -> n17 // "design" -> "device"
+  n17 -> n18 // "device" -> "potentiometer"
+  n17 -> n19 // "device" -> "attr"
+  n19 -> n20 // "attr" -> "refPrefix"
+  n19 -> n21 // "attr" -> "R"
+  n17 -> n22 // "device" -> "attr"
+  n22 -> n23 // "attr" -> "pkg_type"
+  n22 -> n24 // "attr" -> ""
+  n17 -> n25 // "device" -> "pin"
+  n25 -> n26 // "pin" -> "a"
+  n25 -> n27 // "pin" -> "1"
+  n17 -> n28 // "device" -> "pin"
+  n28 -> n29 // "pin" -> "b"
+  n28 -> n30 // "pin" -> "2"
+  n1 -> n31 // "design" -> "device"
+  n31 -> n32 // "device" -> "capacitor"
+  n31 -> n33 // "device" -> "attr"
+  n33 -> n34 // "attr" -> "refPrefix"
+  n33 -> n35 // "attr" -> "C"
+  n31 -> n36 // "device" -> "attr"
+  n36 -> n37 // "attr" -> "pkg_type"
+  n36 -> n38 // "attr" -> ""
+  n31 -> n39 // "device" -> "pin"
+  n39 -> n40 // "pin" -> "a"
+  n39 -> n41 // "pin" -> "1"
+  n31 -> n42 // "device" -> "pin"
+  n42 -> n43 // "pin" -> "b"
+  n42 -> n44 // "pin" -> "2"
+  n1 -> n45 // "design" -> "device"
+  n45 -> n46 // "device" -> "pol_cap"
+  n45 -> n47 // "device" -> "attr"
+  n47 -> n48 // "attr" -> "refPrefix"
+  n47 -> n49 // "attr" -> "C"
+  n45 -> n50 // "device" -> "attr"
+  n50 -> n51 // "attr" -> "pkg_type"
+  n50 -> n52 // "attr" -> ""
+  n45 -> n53 // "device" -> "pin"
+  n53 -> n54 // "pin" -> "pos"
+  n53 -> n55 // "pin" -> "1"
+  n45 -> n56 // "device" -> "pin"
+  n56 -> n57 // "pin" -> "neg"
+  n56 -> n58 // "pin" -> "2"
+  n1 -> n59 // "design" -> "device"
+  n59 -> n60 // "device" -> "inductor"
+  n59 -> n61 // "device" -> "attr"
+  n61 -> n62 // "attr" -> "refPrefix"
+  n61 -> n63 // "attr" -> "L"
+  n59 -> n64 // "device" -> "attr"
+  n64 -> n65 // "attr" -> "pkg_type"
+  n64 -> n66 // "attr" -> ""
+  n59 -> n67 // "device" -> "pin"
+  n67 -> n68 // "pin" -> "a"
+  n67 -> n69 // "pin" -> "1"
+  n59 -> n70 // "device" -> "pin"
+  n70 -> n71 // "pin" -> "b"
+  n70 -> n72 // "pin" -> "2"
+  n1 -> n73 // "design" -> "device"
+  n73 -> n74 // "device" -> "BJT_npn"
+  n73 -> n75 // "device" -> "attr"
+  n75 -> n76 // "attr" -> "refPrefix"
+  n75 -> n77 // "attr" -> "Q"
+  n73 -> n78 // "device" -> "attr"
+  n78 -> n79 // "attr" -> "pkg_type"
+  n78 -> n80 // "attr" -> ""
+  n73 -> n81 // "device" -> "pin"
+  n81 -> n82 // "pin" -> "c"
+  n81 -> n83 // "pin" -> "1"
+  n73 -> n84 // "device" -> "pin"
+  n84 -> n85 // "pin" -> "b"
+  n84 -> n86 // "pin" -> "2"
+  n73 -> n87 // "device" -> "pin"
+  n87 -> n88 // "pin" -> "e"
+  n87 -> n89 // "pin" -> "3"
+  n1 -> n90 // "design" -> "device"
+  n90 -> n91 // "device" -> "BJT_pnp"
+  n90 -> n92 // "device" -> "attr"
+  n92 -> n93 // "attr" -> "refPrefix"
+  n92 -> n94 // "attr" -> "Q"
+  n90 -> n95 // "device" -> "attr"
+  n95 -> n96 // "attr" -> "pkg_type"
+  n95 -> n97 // "attr" -> ""
+  n90 -> n98 // "device" -> "pin"
+  n98 -> n99 // "pin" -> "c"
+  n98 -> n100 // "pin" -> "1"
+  n90 -> n101 // "device" -> "pin"
+  n101 -> n102 // "pin" -> "b"
+  n101 -> n103 // "pin" -> "2"
+  n90 -> n104 // "device" -> "pin"
+  n104 -> n105 // "pin" -> "e"
+  n104 -> n106 // "pin" -> "3"
+  n1 -> n107 // "design" -> "device"
+  n107 -> n108 // "device" -> "AND_GATE"
+  n107 -> n109 // "device" -> "attr"
+  n109 -> n110 // "attr" -> "refPrefix"
+  n109 -> n111 // "attr" -> "A"
+  n107 -> n112 // "device" -> "attr"
+  n112 -> n113 // "attr" -> "pkg_type"
+  n112 -> n114 // "attr" -> "74LS08"
+  n107 -> n115 // "device" -> "pin"
+  n115 -> n116 // "pin" -> ":"
+  n116 -> n117 // ":" -> "["
+  n116 -> n118 // ":" -> "1"
+  n116 -> n119 // ":" -> "0"
+  n115 -> n120 // "pin" -> "entry"
+  n115 -> n121 // "pin" -> "1"
+  n115 -> n122 // "pin" -> "2"
+  n107 -> n123 // "device" -> "pin"
+  n123 -> n124 // "pin" -> "exit"
+  n123 -> n125 // "pin" -> "3"
+  n1 -> n126 // "design" -> "device"
+  n126 -> n127 // "device" -> "INVERTER"
+  n126 -> n128 // "device" -> "attr"
+  n128 -> n129 // "attr" -> "refPrefix"
+  n128 -> n130 // "attr" -> "I"
+  n126 -> n131 // "device" -> "attr"
+  n131 -> n132 // "attr" -> "pkg_type"
+  n131 -> n133 // "attr" -> "74LS04"
+  n126 -> n134 // "device" -> "pin"
+  n134 -> n135 // "pin" -> "entry"
+  n134 -> n136 // "pin" -> "1"
+  n126 -> n137 // "device" -> "pin"
+  n137 -> n138 // "pin" -> "exit"
+  n137 -> n139 // "pin" -> "2"
+  n1 -> n140 // "design" -> "device"
+  n140 -> n141 // "device" -> "OR_GATE"
+  n140 -> n142 // "device" -> "attr"
+  n142 -> n143 // "attr" -> "refPrefix"
+  n142 -> n144 // "attr" -> "O"
+  n140 -> n145 // "device" -> "attr"
+  n145 -> n146 // "attr" -> "pkg_type"
+  n145 -> n147 // "attr" -> "74LS32"
+  n140 -> n148 // "device" -> "pin"
+  n148 -> n149 // "pin" -> ":"
+  n149 -> n150 // ":" -> "["
+  n149 -> n151 // ":" -> "1"
+  n149 -> n152 // ":" -> "0"
+  n148 -> n153 // "pin" -> "entry"
+  n148 -> n154 // "pin" -> "1"
+  n148 -> n155 // "pin" -> "2"
+  n140 -> n156 // "device" -> "pin"
+  n156 -> n157 // "pin" -> "exit"
+  n156 -> n158 // "pin" -> "3"
+  n1 -> n159 // "design" -> "device"
+  n159 -> n160 // "device" -> "NAND_GATE"
+  n159 -> n161 // "device" -> "attr"
+  n161 -> n162 // "attr" -> "refPrefix"
+  n161 -> n163 // "attr" -> "NA"
+  n159 -> n164 // "device" -> "attr"
+  n164 -> n165 // "attr" -> "pkg_type"
+  n164 -> n166 // "attr" -> ""
+  n159 -> n167 // "device" -> "pin"
+  n167 -> n168 // "pin" -> ":"
+  n168 -> n169 // ":" -> "["
+  n168 -> n170 // ":" -> "1"
+  n168 -> n171 // ":" -> "0"
+  n167 -> n172 // "pin" -> "entry"
+  n167 -> n173 // "pin" -> "1"
+  n167 -> n174 // "pin" -> "2"
+  n159 -> n175 // "device" -> "pin"
+  n175 -> n176 // "pin" -> "exit"
+  n175 -> n177 // "pin" -> "3"
+  n1 -> n178 // "design" -> "device"
+  n178 -> n179 // "device" -> "NOR_GATE"
+  n178 -> n180 // "device" -> "attr"
+  n180 -> n181 // "attr" -> "refPrefix"
+  n180 -> n182 // "attr" -> "NO"
+  n178 -> n183 // "device" -> "attr"
+  n183 -> n184 // "attr" -> "pkg_type"
+  n183 -> n185 // "attr" -> ""
+  n178 -> n186 // "device" -> "pin"
+  n186 -> n187 // "pin" -> ":"
+  n187 -> n188 // ":" -> "["
+  n187 -> n189 // ":" -> "1"
+  n187 -> n190 // ":" -> "0"
+  n186 -> n191 // "pin" -> "entry"
+  n186 -> n192 // "pin" -> "1"
+  n186 -> n193 // "pin" -> "2"
+  n178 -> n194 // "device" -> "pin"
+  n194 -> n195 // "pin" -> "exit"
+  n194 -> n196 // "pin" -> "3"
+  n1 -> n197 // "design" -> "device"
+  n197 -> n198 // "device" -> "XOR_GATE"
+  n197 -> n199 // "device" -> "attr"
+  n199 -> n200 // "attr" -> "refPrefix"
+  n199 -> n201 // "attr" -> "X"
+  n197 -> n202 // "device" -> "attr"
+  n202 -> n203 // "attr" -> "pkg_type"
+  n202 -> n204 // "attr" -> ""
+  n197 -> n205 // "device" -> "pin"
+  n205 -> n206 // "pin" -> ":"
+  n206 -> n207 // ":" -> "["
+  n206 -> n208 // ":" -> "1"
+  n206 -> n209 // ":" -> "0"
+  n205 -> n210 // "pin" -> "entry"
+  n205 -> n211 // "pin" -> "1"
+  n205 -> n212 // "pin" -> "2"
+  n197 -> n213 // "device" -> "pin"
+  n213 -> n214 // "pin" -> "exit"
+  n213 -> n215 // "pin" -> "3"
+  n1 -> n216 // "design" -> "device"
+  n216 -> n217 // "device" -> "XNOR_GATE"
+  n216 -> n218 // "device" -> "attr"
+  n218 -> n219 // "attr" -> "refPrefix"
+  n218 -> n220 // "attr" -> "XN"
+  n216 -> n221 // "device" -> "attr"
+  n221 -> n222 // "attr" -> "pkg_type"
+  n221 -> n223 // "attr" -> ""
+  n216 -> n224 // "device" -> "pin"
+  n224 -> n225 // "pin" -> ":"
+  n225 -> n226 // ":" -> "["
+  n225 -> n227 // ":" -> "1"
+  n225 -> n228 // ":" -> "0"
+  n224 -> n229 // "pin" -> "entry"
+  n224 -> n230 // "pin" -> "1"
+  n224 -> n231 // "pin" -> "2"
+  n216 -> n232 // "device" -> "pin"
+  n232 -> n233 // "pin" -> "exit"
+  n232 -> n234 // "pin" -> "3"
+  n1 -> n235 // "design" -> "device"
+  n235 -> n236 // "device" -> "mounting_hole"
+  n235 -> n237 // "device" -> "attr"
+  n237 -> n238 // "attr" -> "refPrefix"
+  n237 -> n239 // "attr" -> "H"
+  n235 -> n240 // "device" -> "attr"
+  n240 -> n241 // "attr" -> "pkg_type"
+  n240 -> n242 // "attr" -> ""
+  n1 -> n243 // "design" -> "device"
+  n243 -> n244 // "device" -> "seven_seg_display"
+  n243 -> n245 // "device" -> "attr"
+  n245 -> n246 // "attr" -> "refPrefix"
+  n245 -> n247 // "attr" -> "S"
+  n243 -> n248 // "device" -> "attr"
+  n248 -> n249 // "attr" -> "pkg_type"
+  n248 -> n250 // "attr" -> ""
+  n243 -> n251 // "device" -> "pin"
+  n251 -> n252 // "pin" -> "com"
+  n251 -> n253 // "pin" -> "9"
+  n243 -> n254 // "device" -> "pin"
+  n254 -> n255 // "pin" -> "a"
+  n254 -> n256 // "pin" -> "1"
+  n243 -> n257 // "device" -> "pin"
+  n257 -> n258 // "pin" -> "b"
+  n257 -> n259 // "pin" -> "2"
+  n243 -> n260 // "device" -> "pin"
+  n260 -> n261 // "pin" -> "c"
+  n260 -> n262 // "pin" -> "3"
+  n243 -> n263 // "device" -> "pin"
+  n263 -> n264 // "pin" -> "d"
+  n263 -> n265 // "pin" -> "4"
+  n243 -> n266 // "device" -> "pin"
+  n266 -> n267 // "pin" -> "e"
+  n266 -> n268 // "pin" -> "5"
+  n243 -> n269 // "device" -> "pin"
+  n269 -> n270 // "pin" -> "f"
+  n269 -> n271 // "pin" -> "6"
+  n243 -> n272 // "device" -> "pin"
+  n272 -> n273 // "pin" -> "g"
+  n272 -> n274 // "pin" -> "7"
+  n243 -> n275 // "device" -> "pin"
+  n275 -> n276 // "pin" -> "h"
+  n275 -> n277 // "pin" -> "8"
+  n1 -> n278 // "design" -> "begin"
+  n0 -> n279 // "" -> "<EOF>"
+
+}

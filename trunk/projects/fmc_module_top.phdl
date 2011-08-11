@@ -1,0 +1,91 @@
+/**
+ * Design: fmc_module_top.phdl
+ * Adapted from PADS fmc_module.prj
+ * Submitted by: Pete Dudley, Sandia Labs
+ * Translated by: Brad Riching, Brigham Young University
+ *
+ * Dependencies: transceiver.phdl
+ *
+ * Notes:
+ * This is an exact translation of the design to phdl, this time using a hierarchical
+ * structure.  Pay particular attention to how easy it is to instance a sub-design.
+ */
+
+design fmc_module_top is
+
+
+	// again, these nets could be more optimized for the language
+	// so the slice or index specifier is appended at the end.
+	
+	// port0 nets
+	net DP0_C2M_P;
+	net DP0_C2M_N;
+	net DP0_M2C_P;
+	net DP0_M2C_N;
+	
+	// port1 nets
+	net DP1_C2M_P;
+	net DP1_C2M_N;
+	net DP1_M2C_P;
+	net DP1_M2C_N;
+	
+	// port2 nets
+	net DP2_C2M_P;
+	net DP2_C2M_N;
+	net DP2_M2C_P;
+	net DP2_M2C_N;
+	
+	// port3 nets
+	net DP3_C2M_P;
+	net DP3_C2M_N;
+	net DP3_M2C_P;
+	net DP3_M2C_N;
+	
+	// port4 nets
+	net DP4_C2M_P;
+	net DP4_C2M_N;
+	net DP4_M2C_P;
+	net DP4_M2C_N;
+	
+	// port5 nets
+	net DP5_C2M_P;
+	net DP5_C2M_N;
+	net DP5_M2C_P;
+	net DP5_M2C_N;
+
+begin
+
+	// all of the instanced transceiver ports
+	sub txcvr_ports : transceiver[0:6] is
+		tx_p(0) = DP0_C2M_P;
+		tx_n(0) = DP0_C2M_N;
+		rx_p(0) = DP0_M2C_P;
+		rx_n(0) = DP0_M2C_N;
+		
+		tx_p(1) = DP1_C2M_P;
+		tx_n(1) = DP1_C2M_N;
+		rx_p(1) = DP1_M2C_P;
+		rx_n(1) = DP1_M2C_N;
+		
+		tx_p(2) = DP2_C2M_P;
+		tx_n(2) = DP2_C2M_N;
+		rx_p(2) = DP2_M2C_P;
+		rx_n(2) = DP2_M2C_N;
+		
+		tx_p(3) = DP3_C2M_P;
+		tx_n(3) = DP3_C2M_N;
+		rx_p(3) = DP3_M2C_P;
+		rx_n(3) = DP3_M2C_N;
+		
+		tx_p(4) = DP4_C2M_P;
+		tx_n(4) = DP4_C2M_N;
+		rx_p(4) = DP4_M2C_P;
+		rx_n(4) = DP4_M2C_N;
+		
+		tx_p(5) = DP5_C2M_P;
+		tx_n(5) = DP5_C2M_N;
+		rx_p(5) = DP5_M2C_P;
+		rx_n(5) = DP5_M2C_N;
+	end;
+
+end;

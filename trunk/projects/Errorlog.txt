@@ -1,0 +1,56 @@
+Error Log
+--------------------------
+
+*	Typo on "floating net" warning
+		Current says "floading net: " :P
+		
+	(Done.)
+
+*	Throw error when refPrefix is overwritten with an invalid
+	prefix.
+		i.e.
+				attr refPrefix = "P";	// Initially
+				refPrefix = "3";			// Overwritting
+				
+	(Done.)
+
+Possible Improvements?
+--------------------------
+
+* Allowing for multiple net declarations on a single line.
+		i.e. net x,y,z;
+		(yes, but how to do with net attribute wrapper?)
+
+* Allowing for multiple pin declarations on a single line.
+		i.e. pin a,b,c = {1,2,3};
+		(I like this.)
+
+* Suppressing "unused device" warnings?
+		A designer might use a device library but not all of the
+		devices found in it.
+		(I agree.  It is mainly for our troubleshooting now. :) )
+
+*	Slight modification of attribute overwritting message for newattr
+		i.e. (inside instance)
+			newattr tolerance = "5%";
+			tolerance = "10%";
+				//makes the following warning:
+					// atribute already overwritten: tolerance
+				//technically a newattr isn't an overwrite, is it?
+				
+		(I agree.  Fixed.)
+
+*	Different error message when trying to assign a pin to a non-existant
+	net.
+		i.e.
+			a = non_net; // non_net never declared, and a is a single bit pin.
+				// Produces the following message:
+					// invalid assignment, left size is 1 right size is 0: a
+				// It would be nice to know that "non_net" is an undeclared net
+				// instead.
+				
+		(Fixed.)
+
+* A good way to test the compiler's warning and error system is to have
+	somebody take a good design and put several bugs in it.  Then have
+	somebody else try to debug it with the compiler only.

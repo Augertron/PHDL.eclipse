@@ -1,0 +1,33 @@
+design test is
+	// various integrated circuits
+	include "ic.phdl";
+	
+	// resistor and capacitor definitions
+	include "rcl.phdl";
+	
+	net[17:0] addr;
+	net[15:0] data;
+	net ce_n, oe_n, we_n, ub_n, lb_n;
+	net vcco, gnd;
+begin
+	group MEMORY is
+		inst mem of RAM256KX16 is
+			addr = addr;
+			data = data;
+			ce_n = ce_n;
+			oe_n = oe_n;
+			we_n = we_n;
+			ub_n = ub_n;
+			lb_n = lb_n;
+			vdd = <vcco>;
+			gnd = <gnd>;
+			nc = open;
+		end;
+		
+		inst(1:4) mem_cap of C0603 is
+			value = "0.047u";
+			a = <vcco>;
+			b = <gnd>;
+		end;
+	end;
+end;

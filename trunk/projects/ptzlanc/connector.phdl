@@ -1,0 +1,34 @@
+	device DC_JACK is
+		attr refPrefix = "J";
+		attr pkg_type = "DCJ0202";
+		attr libName = "con-jack";
+		attr mfgr = "CUI";
+		attr supplier = "DIGI-KEY";
+		attr partNumber = "CP-102B-ND";
+		attr cost = "0.80";
+		attr dataSheet = "doc/CUI_PJ-102B_Datasheet.pdf";
+		pin tip = {1};
+		pin sleeve = {2};
+		pin switch = {3};
+	end;
+	
+	device SUBD9F is
+		attr refPrefix = "J";
+		attr pkg_type = "09HP";
+		attr libName = "con-subd";
+		attr mfgr = "FCI";
+		attr supplier = "DIGI-KEY";
+		attr partNumber = "609-4008-ND";
+		attr cost = "1.27";
+		pin p1 = {1};
+		pin p2 = {2};
+		pin p3 = {3};
+		pin p4 = {4};
+		pin p5 = {5};
+		pin p6 = {6};
+		pin p7 = {7};
+		pin p8 = {8};
+		pin p9 = {9};
+		pin g1 = {g1};
+		pin g2 = {g2};
+	end device;

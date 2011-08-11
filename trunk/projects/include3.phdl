@@ -1,0 +1,8 @@
+device incl3dev is
+	
+	attr refprefix = "Z";
+	attr pkg_type = "mypackage";
+	pin x = {1};
+	pin y = {2};
+
+end device;
