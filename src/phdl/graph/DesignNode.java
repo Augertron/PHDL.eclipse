@@ -227,7 +227,7 @@ public class DesignNode extends Node {
 	 */
 	public NetNode getNet(String netName) {
 		for (NetNode n : nets) {
-			if (n.getName().equals(netName))
+			if (n.getName().equals(netName.toUpperCase()))
 				return n;
 		}
 		return null;
@@ -274,7 +274,7 @@ public class DesignNode extends Node {
 		}
 		return allInstances;
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -304,7 +304,7 @@ public class DesignNode extends Node {
 			if (n.getName().length() < netName.length())
 				continue;
 			String prefix = n.getName().substring(0, netName.length());
-			if (prefix.equals(netName)) {
+			if (prefix.equals(netName.toUpperCase())) {
 				String suffix = n.getName().substring(netName.length());
 				if (suffix.length() == 0 || suffix.charAt(0) == '[') {
 					allNets.add(n);
