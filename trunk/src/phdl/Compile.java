@@ -105,7 +105,7 @@ public class Compile {
 	public static void main(String[] args) {
 
 		long start = System.currentTimeMillis();
-		
+
 		// print out the help if the program is being used incorrectly
 		if (args.length == 0) {
 			System.out.println(usage);
@@ -221,7 +221,7 @@ public class Compile {
 					d.superNet2();
 					// report any floating nets
 					for (NetNode n : d.getNets()) {
-						if ((n.getPinNodes().size() < 2) && (!n.getName().equals("open")))
+						if ((n.getPinNodes().size() < 2) && (!n.getName().equals("OPEN")))
 							addWarning(n, "floating net");
 					}
 

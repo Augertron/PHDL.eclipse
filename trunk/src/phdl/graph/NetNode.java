@@ -1,18 +1,12 @@
 /*
-    Copyright (C) 2011  BYU Configurable Computing Lab
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Copyright (C) 2011 BYU Configurable Computing Lab This program is free software: you can
+ * redistribute it and/or modify it under the terms of the GNU General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or (at your option) any later
+ * version. This program is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ * PURPOSE. See the GNU General Public License for more details. You should have received a copy of
+ * the GNU General Public License along with this program. If not, see
+ * <http://www.gnu.org/licenses/>.
  */
 
 package phdl.graph;
@@ -47,12 +41,11 @@ public class NetNode extends Attributable {
 		nets = new TreeSet<NetNode>();
 		pins = new ArrayList<PinNode>();
 	}
-		
+
 	/**
 	 * Helper acccessor method for a Depth First Search.
-	 *  
-	 * @return		true, if this Node has been visited
-	 * 				false, otherwise
+	 * 
+	 * @return true, if this Node has been visited false, otherwise
 	 */
 	public boolean isVisited() {
 		return visited;
@@ -60,7 +53,9 @@ public class NetNode extends Attributable {
 
 	/**
 	 * Helper mutator method for a Depth First Search.
-	 * @param visited	the new value of visited
+	 * 
+	 * @param visited
+	 *            the new value of visited
 	 */
 	public void setVisited(boolean visited) {
 		this.visited = visited;
@@ -80,9 +75,9 @@ public class NetNode extends Attributable {
 	/**
 	 * Pin addition method.
 	 * 
-	 * @param p		the new PinNode
-	 * @return		true, if the pin wasn't in the List
-	 * 				false, otherwise
+	 * @param p
+	 *            the new PinNode
+	 * @return true, if the pin wasn't in the List false, otherwise
 	 */
 	public boolean addPin(PinNode p) {
 		return (!pins.add(p));
@@ -203,10 +198,9 @@ public class NetNode extends Attributable {
 	}
 
 	/**
-	 * Returns the index of the current Net, assuming that it
-	 * has an array reference.
+	 * Returns the index of the current Net, assuming that it has an array reference.
 	 * 
-	 * @return			the index of the Net
+	 * @return the index of the Net
 	 */
 	public int getIndex() {
 		int start = getName().indexOf('[');
@@ -223,11 +217,10 @@ public class NetNode extends Attributable {
 	/**
 	 * Helper method for superNet algorithm.
 	 * 
-	 * Iterates through all nets attached to this NetNode
-	 * and returns the first one that is unvisited.
+	 * Iterates through all nets attached to this NetNode and returns the first one that is
+	 * unvisited.
 	 * 
-	 * @return			the first NetNode that is unvisited,
-	 * 					null if there aren't any
+	 * @return the first NetNode that is unvisited, null if there aren't any
 	 */
 	public NetNode getUnvisitedNet() {
 		for (NetNode n : nets) {
@@ -235,5 +228,10 @@ public class NetNode extends Attributable {
 				return n;
 		}
 		return null;
+	}
+
+	@Override
+	public void setName(String name) {
+		this.name = name.toUpperCase();
 	}
 }
