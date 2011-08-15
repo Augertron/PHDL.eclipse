@@ -26,14 +26,12 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.TreeSet;
 
 import phdl.graph.DesignNode;
 import phdl.graph.InstanceNode;
 
 /**
- * A class that generates a Reference Designator mapping and
- * file.
+ * A class that generates a Reference Designator mapping and file.
  * 
  * @author Brad Riching and Richard Black
  * @version 0.1
@@ -49,8 +47,8 @@ public class RefDesGenerator {
 	 * 
 	 * Takes a DesignNode and generates the Reference Designator mapping.
 	 * 
-	 * @param design the DesignNode that contains the InstanceNode
-	 * 			information.
+	 * @param design
+	 *            the DesignNode that contains the InstanceNode information.
 	 * 
 	 * @see DesignNode
 	 */
@@ -73,19 +71,18 @@ public class RefDesGenerator {
 					refMap.put(refDes[0], inst);
 				}
 			}
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			System.err.println("File Reading Error - filename may be corrupt");
 			System.exit(1);
 		}
 		for (InstanceNode i : design.getInst_wo_RefDes()) {
-			for (int j = 0; ;j++) {
+			for (int j = 1;; j++) {
 				String refDes = i.getRefPrefix() + j;
 				if (!refMap.keySet().contains(refDes)) {
 					refMap.put(refDes, i);
 					i.setRefDes(refDes);
 					break;
-				}				
+				}
 			}
 		}
 	}
@@ -93,8 +90,7 @@ public class RefDesGenerator {
 	/**
 	 * Returns the RefDes mapping.
 	 * 
-	 * @return a map with RefDes as the key and InstanceNode as
-	 * 			the value
+	 * @return a map with RefDes as the key and InstanceNode as the value
 	 * @see InstanceNode
 	 * 
 	 */
@@ -103,10 +99,10 @@ public class RefDesGenerator {
 	}
 
 	/**
-	 * Generates a .csv file containing all the Reference
-	 * Designator mappings.
+	 * Generates a .csv file containing all the Reference Designator mappings.
 	 * 
-	 * @param fileName the name of the file to be written
+	 * @param fileName
+	 *            the name of the file to be written
 	 */
 	public void outputToFile(String fileName) {
 		try {
