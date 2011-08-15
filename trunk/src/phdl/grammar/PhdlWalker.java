@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:50:56 /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g 2011-08-10 10:18:31
+// $ANTLR 3.3 Nov 30, 2010 12:50:56 D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g 2011-08-10 17:46:19
 
 /*
     Copyright (C) 2011  BYU Configurable Computing Lab
@@ -103,7 +103,7 @@ public class PhdlWalker extends TreeParser {
         
 
     public String[] getTokenNames() { return PhdlWalker.tokenNames; }
-    public String getGrammarFileName() { return "/fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g"; }
+    public String getGrammarFileName() { return "D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g"; }
 
 
 
@@ -316,13 +316,13 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "sourceText"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:276:1: sourceText : ( designDecl )* ;
+    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:276:1: sourceText : ( designDecl )* ;
     public final void sourceText() throws RecognitionException {
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:283:2: ( ( designDecl )* )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:283:4: ( designDecl )*
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:283:2: ( ( designDecl )* )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:283:4: ( designDecl )*
             {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:283:4: ( designDecl )*
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:283:4: ( designDecl )*
             loop1:
             do {
                 int alt1=2;
@@ -335,7 +335,7 @@ public class PhdlWalker extends TreeParser {
 
                 switch (alt1) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:283:4: designDecl
+            	    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:283:4: designDecl
             	    {
             	    pushFollow(FOLLOW_designDecl_in_sourceText61);
             	    designDecl();
@@ -367,7 +367,7 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "designDecl"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:286:1: designDecl : ^( 'design' desName= IDENT ( deviceDecl[des] | netDecl[des] | infoStruct )* 'begin' ( instDecl[des, null] | netAssign[des] | groupStruct[des] )* (endName= IDENT )? ) ;
+    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:286:1: designDecl : ^( 'design' desName= IDENT ( deviceDecl[des] | netDecl[des] | infoStruct )* 'begin' ( instDecl[des, null] | netAssign[des] | groupStruct[des] )* (endName= IDENT )? ) ;
     public final void designDecl() throws RecognitionException {
         CommonTree desName=null;
         CommonTree endName=null;
@@ -375,8 +375,8 @@ public class PhdlWalker extends TreeParser {
 
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:299:2: ( ^( 'design' desName= IDENT ( deviceDecl[des] | netDecl[des] | infoStruct )* 'begin' ( instDecl[des, null] | netAssign[des] | groupStruct[des] )* (endName= IDENT )? ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:299:4: ^( 'design' desName= IDENT ( deviceDecl[des] | netDecl[des] | infoStruct )* 'begin' ( instDecl[des, null] | netAssign[des] | groupStruct[des] )* (endName= IDENT )? )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:299:2: ( ^( 'design' desName= IDENT ( deviceDecl[des] | netDecl[des] | infoStruct )* 'begin' ( instDecl[des, null] | netAssign[des] | groupStruct[des] )* (endName= IDENT )? ) )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:299:4: ^( 'design' desName= IDENT ( deviceDecl[des] | netDecl[des] | infoStruct )* 'begin' ( instDecl[des, null] | netAssign[des] | groupStruct[des] )* (endName= IDENT )? )
             {
             match(input,27,FOLLOW_27_in_designDecl76); 
 
@@ -393,7 +393,7 @@ public class PhdlWalker extends TreeParser {
             				instanceDecls.clear();
             			
             String info = "";
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:314:3: ( deviceDecl[des] | netDecl[des] | infoStruct )*
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:314:3: ( deviceDecl[des] | netDecl[des] | infoStruct )*
             loop2:
             do {
                 int alt2=4;
@@ -418,7 +418,7 @@ public class PhdlWalker extends TreeParser {
 
                 switch (alt2) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:314:4: deviceDecl[des]
+            	    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:314:4: deviceDecl[des]
             	    {
             	    pushFollow(FOLLOW_deviceDecl_in_designDecl105);
             	    deviceDecl(des);
@@ -429,7 +429,7 @@ public class PhdlWalker extends TreeParser {
             	    }
             	    break;
             	case 2 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:314:22: netDecl[des]
+            	    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:314:22: netDecl[des]
             	    {
             	    pushFollow(FOLLOW_netDecl_in_designDecl110);
             	    netDecl(des);
@@ -440,7 +440,7 @@ public class PhdlWalker extends TreeParser {
             	    }
             	    break;
             	case 3 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:314:37: infoStruct
+            	    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:314:37: infoStruct
             	    {
             	    pushFollow(FOLLOW_infoStruct_in_designDecl115);
             	    infoStruct1=infoStruct();
@@ -458,7 +458,7 @@ public class PhdlWalker extends TreeParser {
             } while (true);
 
             match(input,29,FOLLOW_29_in_designDecl121); 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:315:3: ( instDecl[des, null] | netAssign[des] | groupStruct[des] )*
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:315:3: ( instDecl[des, null] | netAssign[des] | groupStruct[des] )*
             loop3:
             do {
                 int alt3=4;
@@ -483,7 +483,7 @@ public class PhdlWalker extends TreeParser {
 
                 switch (alt3) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:315:4: instDecl[des, null]
+            	    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:315:4: instDecl[des, null]
             	    {
             	    pushFollow(FOLLOW_instDecl_in_designDecl127);
             	    instDecl(des, null);
@@ -494,7 +494,7 @@ public class PhdlWalker extends TreeParser {
             	    }
             	    break;
             	case 2 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:315:26: netAssign[des]
+            	    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:315:26: netAssign[des]
             	    {
             	    pushFollow(FOLLOW_netAssign_in_designDecl132);
             	    netAssign(des);
@@ -505,7 +505,7 @@ public class PhdlWalker extends TreeParser {
             	    }
             	    break;
             	case 3 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:315:43: groupStruct[des]
+            	    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:315:43: groupStruct[des]
             	    {
             	    pushFollow(FOLLOW_groupStruct_in_designDecl137);
             	    groupStruct(des);
@@ -521,7 +521,7 @@ public class PhdlWalker extends TreeParser {
                 }
             } while (true);
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:315:62: (endName= IDENT )?
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:315:62: (endName= IDENT )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -530,7 +530,7 @@ public class PhdlWalker extends TreeParser {
             }
             switch (alt4) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:315:63: endName= IDENT
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:315:63: endName= IDENT
                     {
                     endName=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_designDecl145); 
 
@@ -594,15 +594,15 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "infoStruct"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:358:1: infoStruct returns [String value] : ^( 'info' string= STRING ) ;
+    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:358:1: infoStruct returns [String value] : ^( 'info' string= STRING ) ;
     public final String infoStruct() throws RecognitionException {
         String value = null;
 
         CommonTree string=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:359:2: ( ^( 'info' string= STRING ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:359:5: ^( 'info' string= STRING )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:359:2: ( ^( 'info' string= STRING ) )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:359:5: ^( 'info' string= STRING )
             {
             match(input,37,FOLLOW_37_in_infoStruct182); 
 
@@ -627,20 +627,20 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "groupStruct"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:362:1: groupStruct[DesignNode des] : ^( 'group' groupName= STRING ( instDecl[des, $groupName.text] | netAssign[des] )* (endName= STRING )? ) ;
+    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:362:1: groupStruct[DesignNode des] : ^( 'group' groupName= STRING ( instDecl[des, $groupName.text] | netAssign[des] )* (endName= STRING )? ) ;
     public final void groupStruct(DesignNode des) throws RecognitionException {
         CommonTree groupName=null;
         CommonTree endName=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:363:2: ( ^( 'group' groupName= STRING ( instDecl[des, $groupName.text] | netAssign[des] )* (endName= STRING )? ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:363:4: ^( 'group' groupName= STRING ( instDecl[des, $groupName.text] | netAssign[des] )* (endName= STRING )? )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:363:2: ( ^( 'group' groupName= STRING ( instDecl[des, $groupName.text] | netAssign[des] )* (endName= STRING )? ) )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:363:4: ^( 'group' groupName= STRING ( instDecl[des, $groupName.text] | netAssign[des] )* (endName= STRING )? )
             {
             match(input,38,FOLLOW_38_in_groupStruct204); 
 
             match(input, Token.DOWN, null); 
             groupName=(CommonTree)match(input,STRING,FOLLOW_STRING_in_groupStruct208); 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:363:31: ( instDecl[des, $groupName.text] | netAssign[des] )*
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:363:31: ( instDecl[des, $groupName.text] | netAssign[des] )*
             loop5:
             do {
                 int alt5=3;
@@ -656,7 +656,7 @@ public class PhdlWalker extends TreeParser {
 
                 switch (alt5) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:363:32: instDecl[des, $groupName.text]
+            	    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:363:32: instDecl[des, $groupName.text]
             	    {
             	    pushFollow(FOLLOW_instDecl_in_groupStruct211);
             	    instDecl(des, (groupName!=null?groupName.getText():null));
@@ -667,7 +667,7 @@ public class PhdlWalker extends TreeParser {
             	    }
             	    break;
             	case 2 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:363:65: netAssign[des]
+            	    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:363:65: netAssign[des]
             	    {
             	    pushFollow(FOLLOW_netAssign_in_groupStruct216);
             	    netAssign(des);
@@ -683,7 +683,7 @@ public class PhdlWalker extends TreeParser {
                 }
             } while (true);
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:363:82: (endName= STRING )?
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:363:82: (endName= STRING )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -692,7 +692,7 @@ public class PhdlWalker extends TreeParser {
             }
             switch (alt6) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:363:83: endName= STRING
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:363:83: endName= STRING
                     {
                     endName=(CommonTree)match(input,STRING,FOLLOW_STRING_in_groupStruct224); 
 
@@ -724,14 +724,14 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "deviceDecl"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:374:1: deviceDecl[DesignNode des] : ^( 'device' devName= IDENT ( attributeDecl[devices] | pinDecl[dev] )* (endName= IDENT )? ) ;
+    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:374:1: deviceDecl[DesignNode des] : ^( 'device' devName= IDENT ( attributeDecl[devices] | pinDecl[dev] )* (endName= IDENT )? ) ;
     public final void deviceDecl(DesignNode des) throws RecognitionException {
         CommonTree devName=null;
         CommonTree endName=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:386:2: ( ^( 'device' devName= IDENT ( attributeDecl[devices] | pinDecl[dev] )* (endName= IDENT )? ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:386:4: ^( 'device' devName= IDENT ( attributeDecl[devices] | pinDecl[dev] )* (endName= IDENT )? )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:386:2: ( ^( 'device' devName= IDENT ( attributeDecl[devices] | pinDecl[dev] )* (endName= IDENT )? ) )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:386:4: ^( 'device' devName= IDENT ( attributeDecl[devices] | pinDecl[dev] )* (endName= IDENT )? )
             {
             match(input,31,FOLLOW_31_in_deviceDecl256); 
 
@@ -750,7 +750,7 @@ public class PhdlWalker extends TreeParser {
             				attrDecls.clear();
             				pinDecls.clear();
             			
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:404:3: ( attributeDecl[devices] | pinDecl[dev] )*
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:404:3: ( attributeDecl[devices] | pinDecl[dev] )*
             loop7:
             do {
                 int alt7=3;
@@ -766,7 +766,7 @@ public class PhdlWalker extends TreeParser {
 
                 switch (alt7) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:404:4: attributeDecl[devices]
+            	    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:404:4: attributeDecl[devices]
             	    {
             	    pushFollow(FOLLOW_attributeDecl_in_deviceDecl287);
             	    attributeDecl(devices);
@@ -777,7 +777,7 @@ public class PhdlWalker extends TreeParser {
             	    }
             	    break;
             	case 2 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:404:29: pinDecl[dev]
+            	    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:404:29: pinDecl[dev]
             	    {
             	    pushFollow(FOLLOW_pinDecl_in_deviceDecl292);
             	    pinDecl(dev);
@@ -793,7 +793,7 @@ public class PhdlWalker extends TreeParser {
                 }
             } while (true);
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:404:51: (endName= IDENT )?
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:404:51: (endName= IDENT )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -802,7 +802,7 @@ public class PhdlWalker extends TreeParser {
             }
             switch (alt8) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:404:51: endName= IDENT
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:404:51: endName= IDENT
                     {
                     endName=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_deviceDecl299); 
 
@@ -846,14 +846,14 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "attributeDecl"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:427:1: attributeDecl[List<Attributable> parents] : ^( 'attr' attrName= IDENT attrValue= STRING ) ;
+    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:427:1: attributeDecl[List<Attributable> parents] : ^( 'attr' attrName= IDENT attrValue= STRING ) ;
     public final void attributeDecl(List<Attributable> parents) throws RecognitionException {
         CommonTree attrName=null;
         CommonTree attrValue=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:439:2: ( ^( 'attr' attrName= IDENT attrValue= STRING ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:439:4: ^( 'attr' attrName= IDENT attrValue= STRING )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:439:2: ( ^( 'attr' attrName= IDENT attrValue= STRING ) )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:439:4: ^( 'attr' attrName= IDENT attrValue= STRING )
             {
             match(input,32,FOLLOW_32_in_attributeDecl332); 
 
@@ -898,13 +898,13 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "pinDecl"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:465:1: pinDecl[DeviceNode dev] : ^( 'pin' ( sliceList[sList] )? pinName= IDENT pinList[pList] ) ;
+    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:465:1: pinDecl[DeviceNode dev] : ^( 'pin' ( sliceList[sList] )? pinName= IDENT pinList[pList] ) ;
     public final void pinDecl(DeviceNode dev) throws RecognitionException {
         CommonTree pinName=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:483:2: ( ^( 'pin' ( sliceList[sList] )? pinName= IDENT pinList[pList] ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:483:4: ^( 'pin' ( sliceList[sList] )? pinName= IDENT pinList[pList] )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:483:2: ( ^( 'pin' ( sliceList[sList] )? pinName= IDENT pinList[pList] ) )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:483:4: ^( 'pin' ( sliceList[sList] )? pinName= IDENT pinList[pList] )
             {
             match(input,33,FOLLOW_33_in_pinDecl377); 
 
@@ -914,7 +914,7 @@ public class PhdlWalker extends TreeParser {
             			
 
             match(input, Token.DOWN, null); 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:492:3: ( sliceList[sList] )?
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:492:3: ( sliceList[sList] )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -923,7 +923,7 @@ public class PhdlWalker extends TreeParser {
             }
             switch (alt9) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:492:3: sliceList[sList]
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:492:3: sliceList[sList]
                     {
                     pushFollow(FOLLOW_sliceList_in_pinDecl399);
                     sliceList(sList);
@@ -1010,15 +1010,15 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "netDecl"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:548:1: netDecl[DesignNode des] : ^( 'net' ( sliceList[slices] )? firstName= IDENT ( COMMA nextName= IDENT )* ( attributeDecl[netNodes] )* (endName= IDENT )? ) ;
+    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:548:1: netDecl[DesignNode des] : ^( 'net' ( sliceList[slices] )? firstName= IDENT ( COMMA nextName= IDENT )* ( attributeDecl[netNodes] )* (endName= IDENT )? ) ;
     public final void netDecl(DesignNode des) throws RecognitionException {
         CommonTree firstName=null;
         CommonTree nextName=null;
         CommonTree endName=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:557:2: ( ^( 'net' ( sliceList[slices] )? firstName= IDENT ( COMMA nextName= IDENT )* ( attributeDecl[netNodes] )* (endName= IDENT )? ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:557:4: ^( 'net' ( sliceList[slices] )? firstName= IDENT ( COMMA nextName= IDENT )* ( attributeDecl[netNodes] )* (endName= IDENT )? )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:557:2: ( ^( 'net' ( sliceList[slices] )? firstName= IDENT ( COMMA nextName= IDENT )* ( attributeDecl[netNodes] )* (endName= IDENT )? ) )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:557:4: ^( 'net' ( sliceList[slices] )? firstName= IDENT ( COMMA nextName= IDENT )* ( attributeDecl[netNodes] )* (endName= IDENT )? )
             {
             match(input,34,FOLLOW_34_in_netDecl441); 
 
@@ -1028,7 +1028,7 @@ public class PhdlWalker extends TreeParser {
             			
 
             match(input, Token.DOWN, null); 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:566:3: ( sliceList[slices] )?
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:566:3: ( sliceList[slices] )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -1037,7 +1037,7 @@ public class PhdlWalker extends TreeParser {
             }
             switch (alt10) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:566:3: sliceList[slices]
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:566:3: sliceList[slices]
                     {
                     pushFollow(FOLLOW_sliceList_in_netDecl464);
                     sliceList(slices);
@@ -1068,7 +1068,7 @@ public class PhdlWalker extends TreeParser {
             				}
             			
             			
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:590:3: ( COMMA nextName= IDENT )*
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:590:3: ( COMMA nextName= IDENT )*
             loop11:
             do {
                 int alt11=2;
@@ -1081,7 +1081,7 @@ public class PhdlWalker extends TreeParser {
 
                 switch (alt11) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:590:4: COMMA nextName= IDENT
+            	    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:590:4: COMMA nextName= IDENT
             	    {
             	    match(input,COMMA,FOLLOW_COMMA_in_netDecl506); 
             	    nextName=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_netDecl510); 
@@ -1111,7 +1111,7 @@ public class PhdlWalker extends TreeParser {
                 }
             } while (true);
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:613:3: ( attributeDecl[netNodes] )*
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:613:3: ( attributeDecl[netNodes] )*
             loop12:
             do {
                 int alt12=2;
@@ -1124,7 +1124,7 @@ public class PhdlWalker extends TreeParser {
 
                 switch (alt12) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:613:3: attributeDecl[netNodes]
+            	    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:613:3: attributeDecl[netNodes]
             	    {
             	    pushFollow(FOLLOW_attributeDecl_in_netDecl540);
             	    attributeDecl(netNodes);
@@ -1140,7 +1140,7 @@ public class PhdlWalker extends TreeParser {
                 }
             } while (true);
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:613:35: (endName= IDENT )?
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:613:35: (endName= IDENT )?
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -1149,7 +1149,7 @@ public class PhdlWalker extends TreeParser {
             }
             switch (alt13) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:613:35: endName= IDENT
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:613:35: endName= IDENT
                     {
                     endName=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_netDecl546); 
 
@@ -1187,7 +1187,7 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "instDecl"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:630:1: instDecl[DesignNode des, String groupName] : ^( 'inst' ( arrayList[indices] )? instName= IDENT devName= IDENT ( attrAssign[des, $instName.text] | pinAssign[des, $instName.text] | infoStruct )* (endName= IDENT )? ) ;
+    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:630:1: instDecl[DesignNode des, String groupName] : ^( 'inst' ( arrayList[indices] )? instName= IDENT devName= IDENT ( attrAssign[des, $instName.text] | pinAssign[des, $instName.text] | infoStruct )* (endName= IDENT )? ) ;
     public final void instDecl(DesignNode des, String groupName) throws RecognitionException {
         CommonTree instName=null;
         CommonTree devName=null;
@@ -1196,8 +1196,8 @@ public class PhdlWalker extends TreeParser {
 
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:641:2: ( ^( 'inst' ( arrayList[indices] )? instName= IDENT devName= IDENT ( attrAssign[des, $instName.text] | pinAssign[des, $instName.text] | infoStruct )* (endName= IDENT )? ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:641:4: ^( 'inst' ( arrayList[indices] )? instName= IDENT devName= IDENT ( attrAssign[des, $instName.text] | pinAssign[des, $instName.text] | infoStruct )* (endName= IDENT )? )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:641:2: ( ^( 'inst' ( arrayList[indices] )? instName= IDENT devName= IDENT ( attrAssign[des, $instName.text] | pinAssign[des, $instName.text] | infoStruct )* (endName= IDENT )? ) )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:641:4: ^( 'inst' ( arrayList[indices] )? instName= IDENT devName= IDENT ( attrAssign[des, $instName.text] | pinAssign[des, $instName.text] | infoStruct )* (endName= IDENT )? )
             {
             match(input,35,FOLLOW_35_in_instDecl580); 
 
@@ -1208,7 +1208,7 @@ public class PhdlWalker extends TreeParser {
             			
 
             match(input, Token.DOWN, null); 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:651:3: ( arrayList[indices] )?
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:651:3: ( arrayList[indices] )?
             int alt14=2;
             int LA14_0 = input.LA(1);
 
@@ -1217,7 +1217,7 @@ public class PhdlWalker extends TreeParser {
             }
             switch (alt14) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:651:3: arrayList[indices]
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:651:3: arrayList[indices]
                     {
                     pushFollow(FOLLOW_arrayList_in_instDecl602);
                     arrayList(indices);
@@ -1291,14 +1291,14 @@ public class PhdlWalker extends TreeParser {
             					addError(instName, "duplicate instance declaration");
             			
             String info = "";
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:714:3: ( attrAssign[des, $instName.text] | pinAssign[des, $instName.text] | infoStruct )*
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:714:3: ( attrAssign[des, $instName.text] | pinAssign[des, $instName.text] | infoStruct )*
             loop15:
             do {
                 int alt15=4;
                 alt15 = dfa15.predict(input);
                 switch (alt15) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:714:4: attrAssign[des, $instName.text]
+            	    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:714:4: attrAssign[des, $instName.text]
             	    {
             	    pushFollow(FOLLOW_attrAssign_in_instDecl637);
             	    attrAssign(des, (instName!=null?instName.getText():null));
@@ -1309,7 +1309,7 @@ public class PhdlWalker extends TreeParser {
             	    }
             	    break;
             	case 2 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:714:38: pinAssign[des, $instName.text]
+            	    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:714:38: pinAssign[des, $instName.text]
             	    {
             	    pushFollow(FOLLOW_pinAssign_in_instDecl642);
             	    pinAssign(des, (instName!=null?instName.getText():null));
@@ -1320,7 +1320,7 @@ public class PhdlWalker extends TreeParser {
             	    }
             	    break;
             	case 3 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:714:71: infoStruct
+            	    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:714:71: infoStruct
             	    {
             	    pushFollow(FOLLOW_infoStruct_in_instDecl647);
             	    infoStruct2=infoStruct();
@@ -1337,7 +1337,7 @@ public class PhdlWalker extends TreeParser {
                 }
             } while (true);
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:714:127: (endName= IDENT )?
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:714:127: (endName= IDENT )?
             int alt16=2;
             int LA16_0 = input.LA(1);
 
@@ -1346,7 +1346,7 @@ public class PhdlWalker extends TreeParser {
             }
             switch (alt16) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:714:127: endName= IDENT
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:714:127: endName= IDENT
                     {
                     endName=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_instDecl655); 
 
@@ -1403,14 +1403,14 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "attrAssign"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:750:1: attrAssign[DesignNode des, String instName] : ^( EQUALS ( 'newattr' )? ( instanceQualifier[instName, indices, des] | arrayIndices[indices, instName, des] ) attrName= IDENT attrValue= STRING ) ;
+    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:750:1: attrAssign[DesignNode des, String instName] : ^( EQUALS ( 'newattr' )? ( instanceQualifier[instName, indices, des] | arrayIndices[indices, instName, des] ) attrName= IDENT attrValue= STRING ) ;
     public final void attrAssign(DesignNode des, String instName) throws RecognitionException {
         CommonTree attrName=null;
         CommonTree attrValue=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:767:2: ( ^( EQUALS ( 'newattr' )? ( instanceQualifier[instName, indices, des] | arrayIndices[indices, instName, des] ) attrName= IDENT attrValue= STRING ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:767:4: ^( EQUALS ( 'newattr' )? ( instanceQualifier[instName, indices, des] | arrayIndices[indices, instName, des] ) attrName= IDENT attrValue= STRING )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:767:2: ( ^( EQUALS ( 'newattr' )? ( instanceQualifier[instName, indices, des] | arrayIndices[indices, instName, des] ) attrName= IDENT attrValue= STRING ) )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:767:4: ^( EQUALS ( 'newattr' )? ( instanceQualifier[instName, indices, des] | arrayIndices[indices, instName, des] ) attrName= IDENT attrValue= STRING )
             {
             match(input,EQUALS,FOLLOW_EQUALS_in_attrAssign689); 
 
@@ -1421,7 +1421,7 @@ public class PhdlWalker extends TreeParser {
 
             if ( input.LA(1)==Token.DOWN ) {
                 match(input, Token.DOWN, null); 
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:776:3: ( 'newattr' )?
+                // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:776:3: ( 'newattr' )?
                 int alt17=2;
                 int LA17_0 = input.LA(1);
 
@@ -1430,7 +1430,7 @@ public class PhdlWalker extends TreeParser {
                 }
                 switch (alt17) {
                     case 1 :
-                        // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:776:4: 'newattr'
+                        // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:776:4: 'newattr'
                         {
                         match(input,39,FOLLOW_39_in_attrAssign713); 
                         newAttr = true;
@@ -1440,7 +1440,7 @@ public class PhdlWalker extends TreeParser {
 
                 }
 
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:777:3: ( instanceQualifier[instName, indices, des] | arrayIndices[indices, instName, des] )
+                // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:777:3: ( instanceQualifier[instName, indices, des] | arrayIndices[indices, instName, des] )
                 int alt18=2;
                 int LA18_0 = input.LA(1);
 
@@ -1458,7 +1458,7 @@ public class PhdlWalker extends TreeParser {
                 }
                 switch (alt18) {
                     case 1 :
-                        // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:777:4: instanceQualifier[instName, indices, des]
+                        // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:777:4: instanceQualifier[instName, indices, des]
                         {
                         pushFollow(FOLLOW_instanceQualifier_in_attrAssign723);
                         instanceQualifier(instName, indices, des);
@@ -1469,7 +1469,7 @@ public class PhdlWalker extends TreeParser {
                         }
                         break;
                     case 2 :
-                        // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:777:48: arrayIndices[indices, instName, des]
+                        // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:777:48: arrayIndices[indices, instName, des]
                         {
                         pushFollow(FOLLOW_arrayIndices_in_attrAssign728);
                         arrayIndices(indices, instName, des);
@@ -1596,13 +1596,13 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "pinAssign"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:877:1: pinAssign[DesignNode des, String instName] : ^( EQUALS ( instanceQualifier[instName, indices, des] | arrayIndices[indices, instName, des] ) pinName= IDENT ( sliceList[slices] | pinSlices[slices, $pinName.text, des, instName] ) concatenation[concats, assignWidth, des] ) ;
+    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:877:1: pinAssign[DesignNode des, String instName] : ^( EQUALS ( instanceQualifier[instName, indices, des] | arrayIndices[indices, instName, des] ) pinName= IDENT ( sliceList[slices] | pinSlices[slices, $pinName.text, des, instName] ) concatenation[concats, assignWidth, des] ) ;
     public final void pinAssign(DesignNode des, String instName) throws RecognitionException {
         CommonTree pinName=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:878:2: ( ^( EQUALS ( instanceQualifier[instName, indices, des] | arrayIndices[indices, instName, des] ) pinName= IDENT ( sliceList[slices] | pinSlices[slices, $pinName.text, des, instName] ) concatenation[concats, assignWidth, des] ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:878:4: ^( EQUALS ( instanceQualifier[instName, indices, des] | arrayIndices[indices, instName, des] ) pinName= IDENT ( sliceList[slices] | pinSlices[slices, $pinName.text, des, instName] ) concatenation[concats, assignWidth, des] )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:878:2: ( ^( EQUALS ( instanceQualifier[instName, indices, des] | arrayIndices[indices, instName, des] ) pinName= IDENT ( sliceList[slices] | pinSlices[slices, $pinName.text, des, instName] ) concatenation[concats, assignWidth, des] ) )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:878:4: ^( EQUALS ( instanceQualifier[instName, indices, des] | arrayIndices[indices, instName, des] ) pinName= IDENT ( sliceList[slices] | pinSlices[slices, $pinName.text, des, instName] ) concatenation[concats, assignWidth, des] )
             {
             match(input,EQUALS,FOLLOW_EQUALS_in_pinAssign771); 
 
@@ -1613,7 +1613,7 @@ public class PhdlWalker extends TreeParser {
 
             if ( input.LA(1)==Token.DOWN ) {
                 match(input, Token.DOWN, null); 
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:886:3: ( instanceQualifier[instName, indices, des] | arrayIndices[indices, instName, des] )
+                // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:886:3: ( instanceQualifier[instName, indices, des] | arrayIndices[indices, instName, des] )
                 int alt19=2;
                 int LA19_0 = input.LA(1);
 
@@ -1631,7 +1631,7 @@ public class PhdlWalker extends TreeParser {
                 }
                 switch (alt19) {
                     case 1 :
-                        // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:886:4: instanceQualifier[instName, indices, des]
+                        // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:886:4: instanceQualifier[instName, indices, des]
                         {
                         pushFollow(FOLLOW_instanceQualifier_in_pinAssign792);
                         instanceQualifier(instName, indices, des);
@@ -1642,7 +1642,7 @@ public class PhdlWalker extends TreeParser {
                         }
                         break;
                     case 2 :
-                        // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:886:48: arrayIndices[indices, instName, des]
+                        // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:886:48: arrayIndices[indices, instName, des]
                         {
                         pushFollow(FOLLOW_arrayIndices_in_pinAssign797);
                         arrayIndices(indices, instName, des);
@@ -1656,7 +1656,7 @@ public class PhdlWalker extends TreeParser {
                 }
 
                 pinName=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_pinAssign806); 
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:887:17: ( sliceList[slices] | pinSlices[slices, $pinName.text, des, instName] )
+                // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:887:17: ( sliceList[slices] | pinSlices[slices, $pinName.text, des, instName] )
                 int alt20=2;
                 int LA20_0 = input.LA(1);
 
@@ -1674,7 +1674,7 @@ public class PhdlWalker extends TreeParser {
                 }
                 switch (alt20) {
                     case 1 :
-                        // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:887:18: sliceList[slices]
+                        // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:887:18: sliceList[slices]
                         {
                         pushFollow(FOLLOW_sliceList_in_pinAssign809);
                         sliceList(slices);
@@ -1685,7 +1685,7 @@ public class PhdlWalker extends TreeParser {
                         }
                         break;
                     case 2 :
-                        // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:887:38: pinSlices[slices, $pinName.text, des, instName]
+                        // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:887:38: pinSlices[slices, $pinName.text, des, instName]
                         {
                         pushFollow(FOLLOW_pinSlices_in_pinAssign814);
                         pinSlices(slices, (pinName!=null?pinName.getText():null), des, instName);
@@ -1772,13 +1772,13 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "netAssign"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:944:1: netAssign[DesignNode des] : ^( EQUALS netName= IDENT ( sliceList[slices] | netSlices[slices, $netName.text, des] ) concatenation[concats, slices.size(), des] ) ;
+    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:944:1: netAssign[DesignNode des] : ^( EQUALS netName= IDENT ( sliceList[slices] | netSlices[slices, $netName.text, des] ) concatenation[concats, slices.size(), des] ) ;
     public final void netAssign(DesignNode des) throws RecognitionException {
         CommonTree netName=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:945:2: ( ^( EQUALS netName= IDENT ( sliceList[slices] | netSlices[slices, $netName.text, des] ) concatenation[concats, slices.size(), des] ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:945:4: ^( EQUALS netName= IDENT ( sliceList[slices] | netSlices[slices, $netName.text, des] ) concatenation[concats, slices.size(), des] )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:945:2: ( ^( EQUALS netName= IDENT ( sliceList[slices] | netSlices[slices, $netName.text, des] ) concatenation[concats, slices.size(), des] ) )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:945:4: ^( EQUALS netName= IDENT ( sliceList[slices] | netSlices[slices, $netName.text, des] ) concatenation[concats, slices.size(), des] )
             {
             match(input,EQUALS,FOLLOW_EQUALS_in_netAssign857); 
 
@@ -1788,7 +1788,7 @@ public class PhdlWalker extends TreeParser {
 
             match(input, Token.DOWN, null); 
             netName=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_netAssign881); 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:953:17: ( sliceList[slices] | netSlices[slices, $netName.text, des] )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:953:17: ( sliceList[slices] | netSlices[slices, $netName.text, des] )
             int alt21=2;
             int LA21_0 = input.LA(1);
 
@@ -1806,7 +1806,7 @@ public class PhdlWalker extends TreeParser {
             }
             switch (alt21) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:953:18: sliceList[slices]
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:953:18: sliceList[slices]
                     {
                     pushFollow(FOLLOW_sliceList_in_netAssign884);
                     sliceList(slices);
@@ -1817,7 +1817,7 @@ public class PhdlWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:953:38: netSlices[slices, $netName.text, des]
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:953:38: netSlices[slices, $netName.text, des]
                     {
                     pushFollow(FOLLOW_netSlices_in_netAssign889);
                     netSlices(slices, (netName!=null?netName.getText():null), des);
@@ -1886,18 +1886,18 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "concatenation"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:994:1: concatenation[List<NetNode> concats, int assignWidth, DesignNode des] : ( (first= IDENT ( sliceList[slices] | concatSlices[slices, $first.text, des] ) (next= IDENT ( sliceList[slices] | concatSlices[slices, $next.text, des] ) )* ) | ( LEFTANGLE global= IDENT ( sliceList[slices] | concatSlices[slices, $global.text, des] ) ) | ( 'open' ) ) ;
+    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:994:1: concatenation[List<NetNode> concats, int assignWidth, DesignNode des] : ( (first= IDENT ( sliceList[slices] | concatSlices[slices, $first.text, des] ) (next= IDENT ( sliceList[slices] | concatSlices[slices, $next.text, des] ) )* ) | ( LEFTANGLE global= IDENT ( sliceList[slices] | concatSlices[slices, $global.text, des] ) ) | ( 'open' ) ) ;
     public final void concatenation(List<NetNode> concats, int assignWidth, DesignNode des) throws RecognitionException {
         CommonTree first=null;
         CommonTree next=null;
         CommonTree global=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:998:2: ( ( (first= IDENT ( sliceList[slices] | concatSlices[slices, $first.text, des] ) (next= IDENT ( sliceList[slices] | concatSlices[slices, $next.text, des] ) )* ) | ( LEFTANGLE global= IDENT ( sliceList[slices] | concatSlices[slices, $global.text, des] ) ) | ( 'open' ) ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:999:4: ( (first= IDENT ( sliceList[slices] | concatSlices[slices, $first.text, des] ) (next= IDENT ( sliceList[slices] | concatSlices[slices, $next.text, des] ) )* ) | ( LEFTANGLE global= IDENT ( sliceList[slices] | concatSlices[slices, $global.text, des] ) ) | ( 'open' ) )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:998:2: ( ( (first= IDENT ( sliceList[slices] | concatSlices[slices, $first.text, des] ) (next= IDENT ( sliceList[slices] | concatSlices[slices, $next.text, des] ) )* ) | ( LEFTANGLE global= IDENT ( sliceList[slices] | concatSlices[slices, $global.text, des] ) ) | ( 'open' ) ) )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:999:4: ( (first= IDENT ( sliceList[slices] | concatSlices[slices, $first.text, des] ) (next= IDENT ( sliceList[slices] | concatSlices[slices, $next.text, des] ) )* ) | ( LEFTANGLE global= IDENT ( sliceList[slices] | concatSlices[slices, $global.text, des] ) ) | ( 'open' ) )
             {
             List<Integer> slices = new ArrayList<Integer>();
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1001:3: ( (first= IDENT ( sliceList[slices] | concatSlices[slices, $first.text, des] ) (next= IDENT ( sliceList[slices] | concatSlices[slices, $next.text, des] ) )* ) | ( LEFTANGLE global= IDENT ( sliceList[slices] | concatSlices[slices, $global.text, des] ) ) | ( 'open' ) )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1001:3: ( (first= IDENT ( sliceList[slices] | concatSlices[slices, $first.text, des] ) (next= IDENT ( sliceList[slices] | concatSlices[slices, $next.text, des] ) )* ) | ( LEFTANGLE global= IDENT ( sliceList[slices] | concatSlices[slices, $global.text, des] ) ) | ( 'open' ) )
             int alt26=3;
             switch ( input.LA(1) ) {
             case IDENT:
@@ -1924,13 +1924,13 @@ public class PhdlWalker extends TreeParser {
 
             switch (alt26) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1001:4: (first= IDENT ( sliceList[slices] | concatSlices[slices, $first.text, des] ) (next= IDENT ( sliceList[slices] | concatSlices[slices, $next.text, des] ) )* )
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1001:4: (first= IDENT ( sliceList[slices] | concatSlices[slices, $first.text, des] ) (next= IDENT ( sliceList[slices] | concatSlices[slices, $next.text, des] ) )* )
                     {
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1001:4: (first= IDENT ( sliceList[slices] | concatSlices[slices, $first.text, des] ) (next= IDENT ( sliceList[slices] | concatSlices[slices, $next.text, des] ) )* )
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1001:5: first= IDENT ( sliceList[slices] | concatSlices[slices, $first.text, des] ) (next= IDENT ( sliceList[slices] | concatSlices[slices, $next.text, des] ) )*
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1001:4: (first= IDENT ( sliceList[slices] | concatSlices[slices, $first.text, des] ) (next= IDENT ( sliceList[slices] | concatSlices[slices, $next.text, des] ) )* )
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1001:5: first= IDENT ( sliceList[slices] | concatSlices[slices, $first.text, des] ) (next= IDENT ( sliceList[slices] | concatSlices[slices, $next.text, des] ) )*
                     {
                     first=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_concatenation947); 
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1001:17: ( sliceList[slices] | concatSlices[slices, $first.text, des] )
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1001:17: ( sliceList[slices] | concatSlices[slices, $first.text, des] )
                     int alt22=2;
                     int LA22_0 = input.LA(1);
 
@@ -1948,7 +1948,7 @@ public class PhdlWalker extends TreeParser {
                     }
                     switch (alt22) {
                         case 1 :
-                            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1001:18: sliceList[slices]
+                            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1001:18: sliceList[slices]
                             {
                             pushFollow(FOLLOW_sliceList_in_concatenation950);
                             sliceList(slices);
@@ -1959,7 +1959,7 @@ public class PhdlWalker extends TreeParser {
                             }
                             break;
                         case 2 :
-                            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1001:38: concatSlices[slices, $first.text, des]
+                            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1001:38: concatSlices[slices, $first.text, des]
                             {
                             pushFollow(FOLLOW_concatSlices_in_concatenation955);
                             concatSlices(slices, (first!=null?first.getText():null), des);
@@ -1993,7 +1993,7 @@ public class PhdlWalker extends TreeParser {
                     					}
                     				}
                     			
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1027:3: (next= IDENT ( sliceList[slices] | concatSlices[slices, $next.text, des] ) )*
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1027:3: (next= IDENT ( sliceList[slices] | concatSlices[slices, $next.text, des] ) )*
                     loop24:
                     do {
                         int alt24=2;
@@ -2006,11 +2006,11 @@ public class PhdlWalker extends TreeParser {
 
                         switch (alt24) {
                     	case 1 :
-                    	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1027:4: next= IDENT ( sliceList[slices] | concatSlices[slices, $next.text, des] )
+                    	    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1027:4: next= IDENT ( sliceList[slices] | concatSlices[slices, $next.text, des] )
                     	    {
                     	    next=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_concatenation986); 
                     	    slices.clear();
-                    	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1031:3: ( sliceList[slices] | concatSlices[slices, $next.text, des] )
+                    	    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1031:3: ( sliceList[slices] | concatSlices[slices, $next.text, des] )
                     	    int alt23=2;
                     	    int LA23_0 = input.LA(1);
 
@@ -2028,7 +2028,7 @@ public class PhdlWalker extends TreeParser {
                     	    }
                     	    switch (alt23) {
                     	        case 1 :
-                    	            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1031:4: sliceList[slices]
+                    	            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1031:4: sliceList[slices]
                     	            {
                     	            pushFollow(FOLLOW_sliceList_in_concatenation1010);
                     	            sliceList(slices);
@@ -2039,7 +2039,7 @@ public class PhdlWalker extends TreeParser {
                     	            }
                     	            break;
                     	        case 2 :
-                    	            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1031:24: concatSlices[slices, $next.text, des]
+                    	            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1031:24: concatSlices[slices, $next.text, des]
                     	            {
                     	            pushFollow(FOLLOW_concatSlices_in_concatenation1015);
                     	            concatSlices(slices, (next!=null?next.getText():null), des);
@@ -2089,14 +2089,14 @@ public class PhdlWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1057:10: ( LEFTANGLE global= IDENT ( sliceList[slices] | concatSlices[slices, $global.text, des] ) )
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1057:10: ( LEFTANGLE global= IDENT ( sliceList[slices] | concatSlices[slices, $global.text, des] ) )
                     {
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1057:10: ( LEFTANGLE global= IDENT ( sliceList[slices] | concatSlices[slices, $global.text, des] ) )
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1057:11: LEFTANGLE global= IDENT ( sliceList[slices] | concatSlices[slices, $global.text, des] )
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1057:10: ( LEFTANGLE global= IDENT ( sliceList[slices] | concatSlices[slices, $global.text, des] ) )
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1057:11: LEFTANGLE global= IDENT ( sliceList[slices] | concatSlices[slices, $global.text, des] )
                     {
                     match(input,LEFTANGLE,FOLLOW_LEFTANGLE_in_concatenation1049); 
                     global=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_concatenation1053); 
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1057:34: ( sliceList[slices] | concatSlices[slices, $global.text, des] )
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1057:34: ( sliceList[slices] | concatSlices[slices, $global.text, des] )
                     int alt25=2;
                     int LA25_0 = input.LA(1);
 
@@ -2114,7 +2114,7 @@ public class PhdlWalker extends TreeParser {
                     }
                     switch (alt25) {
                         case 1 :
-                            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1057:35: sliceList[slices]
+                            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1057:35: sliceList[slices]
                             {
                             pushFollow(FOLLOW_sliceList_in_concatenation1056);
                             sliceList(slices);
@@ -2125,7 +2125,7 @@ public class PhdlWalker extends TreeParser {
                             }
                             break;
                         case 2 :
-                            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1057:55: concatSlices[slices, $global.text, des]
+                            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1057:55: concatSlices[slices, $global.text, des]
                             {
                             pushFollow(FOLLOW_concatSlices_in_concatenation1061);
                             concatSlices(slices, (global!=null?global.getText():null), des);
@@ -2166,10 +2166,10 @@ public class PhdlWalker extends TreeParser {
                     }
                     break;
                 case 3 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1083:5: ( 'open' )
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1083:5: ( 'open' )
                     {
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1083:5: ( 'open' )
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1083:6: 'open'
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1083:5: ( 'open' )
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1083:6: 'open'
                     {
                     match(input,41,FOLLOW_41_in_concatenation1093); 
 
@@ -2212,19 +2212,19 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "instanceQualifier"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1105:1: instanceQualifier[String instName, List<Integer> indices, DesignNode des] : ^( PERIOD (qualName= IDENT | ( 'this' ) ) ( arrayList[indices] | arrayIndices[indices, instName, des] ) ) ;
+    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1105:1: instanceQualifier[String instName, List<Integer> indices, DesignNode des] : ^( PERIOD (qualName= IDENT | ( 'this' ) ) ( arrayList[indices] | arrayIndices[indices, instName, des] ) ) ;
     public final void instanceQualifier(String instName, List<Integer> indices, DesignNode des) throws RecognitionException {
         CommonTree qualName=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1117:2: ( ^( PERIOD (qualName= IDENT | ( 'this' ) ) ( arrayList[indices] | arrayIndices[indices, instName, des] ) ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1117:4: ^( PERIOD (qualName= IDENT | ( 'this' ) ) ( arrayList[indices] | arrayIndices[indices, instName, des] ) )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1117:2: ( ^( PERIOD (qualName= IDENT | ( 'this' ) ) ( arrayList[indices] | arrayIndices[indices, instName, des] ) ) )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1117:4: ^( PERIOD (qualName= IDENT | ( 'this' ) ) ( arrayList[indices] | arrayIndices[indices, instName, des] ) )
             {
             boolean isThis = false;
             match(input,PERIOD,FOLLOW_PERIOD_in_instanceQualifier1135); 
 
             match(input, Token.DOWN, null); 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1118:12: (qualName= IDENT | ( 'this' ) )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1118:12: (qualName= IDENT | ( 'this' ) )
             int alt27=2;
             int LA27_0 = input.LA(1);
 
@@ -2242,17 +2242,17 @@ public class PhdlWalker extends TreeParser {
             }
             switch (alt27) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1118:13: qualName= IDENT
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1118:13: qualName= IDENT
                     {
                     qualName=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_instanceQualifier1140); 
 
                     }
                     break;
                 case 2 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1118:30: ( 'this' )
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1118:30: ( 'this' )
                     {
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1118:30: ( 'this' )
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1118:31: 'this'
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1118:30: ( 'this' )
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1118:31: 'this'
                     {
                     match(input,40,FOLLOW_40_in_instanceQualifier1145); 
                     isThis = true;
@@ -2265,7 +2265,7 @@ public class PhdlWalker extends TreeParser {
 
             }
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1118:57: ( arrayList[indices] | arrayIndices[indices, instName, des] )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1118:57: ( arrayList[indices] | arrayIndices[indices, instName, des] )
             int alt28=2;
             int LA28_0 = input.LA(1);
 
@@ -2283,7 +2283,7 @@ public class PhdlWalker extends TreeParser {
             }
             switch (alt28) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1118:58: arrayList[indices]
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1118:58: arrayList[indices]
                     {
                     pushFollow(FOLLOW_arrayList_in_instanceQualifier1152);
                     arrayList(indices);
@@ -2294,7 +2294,7 @@ public class PhdlWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1118:79: arrayIndices[indices, instName, des]
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1118:79: arrayIndices[indices, instName, des]
                     {
                     pushFollow(FOLLOW_arrayIndices_in_instanceQualifier1157);
                     arrayIndices(indices, instName, des);
@@ -2332,11 +2332,11 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "arrayIndices"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1131:1: arrayIndices[List<Integer> indices, String instName, DesignNode des] : ;
+    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1131:1: arrayIndices[List<Integer> indices, String instName, DesignNode des] : ;
     public final void arrayIndices(List<Integer> indices, String instName, DesignNode des) throws RecognitionException {
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1132:2: ()
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1132:4: 
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1132:2: ()
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1132:4: 
             {
             indices.addAll(des.getAllIndices(instName));
 
@@ -2351,11 +2351,11 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "pinSlices"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1135:1: pinSlices[List<Integer> slices, String pinName, DesignNode des, String instName] : ;
+    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1135:1: pinSlices[List<Integer> slices, String pinName, DesignNode des, String instName] : ;
     public final void pinSlices(List<Integer> slices, String pinName, DesignNode des, String instName) throws RecognitionException {
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1136:2: ()
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1136:4: 
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1136:2: ()
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1136:4: 
             {
             	InstanceNode inst = des.getAllInstances(instName).get(0);
             			List<Integer> pins = inst.getAllIndices(pinName);
@@ -2373,11 +2373,11 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "netSlices"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1142:1: netSlices[List<Integer> slices, String netName, DesignNode des] : ;
+    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1142:1: netSlices[List<Integer> slices, String netName, DesignNode des] : ;
     public final void netSlices(List<Integer> slices, String netName, DesignNode des) throws RecognitionException {
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1143:2: ()
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1143:4: 
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1143:2: ()
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1143:4: 
             {
             	List<Integer> nets = des.getAllNetIndices(netName);
             			slices.addAll(nets);
@@ -2394,11 +2394,11 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "concatSlices"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1148:1: concatSlices[List<Integer> slices, String netName, DesignNode des] : ;
+    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1148:1: concatSlices[List<Integer> slices, String netName, DesignNode des] : ;
     public final void concatSlices(List<Integer> slices, String netName, DesignNode des) throws RecognitionException {
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1149:2: ()
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1149:4: 
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1149:2: ()
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1149:4: 
             {
             slices.addAll(des.getAllNetIndices(netName));
 
@@ -2413,7 +2413,7 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "arrayList"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1152:1: arrayList[List<Integer> indices] : ( ^( COMMA LEFTPAREN first= INTEGER (next= INTEGER )* ) | ^( COLON LEFTPAREN first= INTEGER last= INTEGER ) | ( LEFTPAREN single= INTEGER ) );
+    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1152:1: arrayList[List<Integer> indices] : ( ^( COMMA LEFTPAREN first= INTEGER (next= INTEGER )* ) | ^( COLON LEFTPAREN first= INTEGER last= INTEGER ) | ( LEFTPAREN single= INTEGER ) );
     public final void arrayList(List<Integer> indices) throws RecognitionException {
         CommonTree first=null;
         CommonTree next=null;
@@ -2421,7 +2421,7 @@ public class PhdlWalker extends TreeParser {
         CommonTree single=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1163:2: ( ^( COMMA LEFTPAREN first= INTEGER (next= INTEGER )* ) | ^( COLON LEFTPAREN first= INTEGER last= INTEGER ) | ( LEFTPAREN single= INTEGER ) )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1163:2: ( ^( COMMA LEFTPAREN first= INTEGER (next= INTEGER )* ) | ^( COLON LEFTPAREN first= INTEGER last= INTEGER ) | ( LEFTPAREN single= INTEGER ) )
             int alt30=3;
             switch ( input.LA(1) ) {
             case COMMA:
@@ -2448,7 +2448,7 @@ public class PhdlWalker extends TreeParser {
 
             switch (alt30) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1164:3: ^( COMMA LEFTPAREN first= INTEGER (next= INTEGER )* )
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1164:3: ^( COMMA LEFTPAREN first= INTEGER (next= INTEGER )* )
                     {
                     match(input,COMMA,FOLLOW_COMMA_in_arrayList1251); 
 
@@ -2456,7 +2456,7 @@ public class PhdlWalker extends TreeParser {
                     match(input,LEFTPAREN,FOLLOW_LEFTPAREN_in_arrayList1253); 
                     first=(CommonTree)match(input,INTEGER,FOLLOW_INTEGER_in_arrayList1257); 
                     indices.add(Integer.parseInt((first!=null?first.getText():null)));
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1165:8: (next= INTEGER )*
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1165:8: (next= INTEGER )*
                     loop29:
                     do {
                         int alt29=2;
@@ -2469,7 +2469,7 @@ public class PhdlWalker extends TreeParser {
 
                         switch (alt29) {
                     	case 1 :
-                    	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1165:9: next= INTEGER
+                    	    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1165:9: next= INTEGER
                     	    {
                     	    next=(CommonTree)match(input,INTEGER,FOLLOW_INTEGER_in_arrayList1272); 
                     	    indices.add(Integer.parseInt((next!=null?next.getText():null)));
@@ -2488,7 +2488,7 @@ public class PhdlWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1168:5: ^( COLON LEFTPAREN first= INTEGER last= INTEGER )
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1168:5: ^( COLON LEFTPAREN first= INTEGER last= INTEGER )
                     {
                     match(input,COLON,FOLLOW_COLON_in_arrayList1307); 
 
@@ -2513,10 +2513,10 @@ public class PhdlWalker extends TreeParser {
                     }
                     break;
                 case 3 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1186:4: ( LEFTPAREN single= INTEGER )
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1186:4: ( LEFTPAREN single= INTEGER )
                     {
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1186:4: ( LEFTPAREN single= INTEGER )
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1186:5: LEFTPAREN single= INTEGER
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1186:4: ( LEFTPAREN single= INTEGER )
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1186:5: LEFTPAREN single= INTEGER
                     {
                     match(input,LEFTPAREN,FOLLOW_LEFTPAREN_in_arrayList1350); 
                     single=(CommonTree)match(input,INTEGER,FOLLOW_INTEGER_in_arrayList1354); 
@@ -2542,7 +2542,7 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "sliceList"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1189:1: sliceList[List<Integer> slices] : ( ^( COMMA LEFTBRACKET first= INTEGER (next= INTEGER )* ) | ^( COLON LEFTBRACKET first= INTEGER last= INTEGER ) | ( LEFTBRACKET single= INTEGER ) );
+    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1189:1: sliceList[List<Integer> slices] : ( ^( COMMA LEFTBRACKET first= INTEGER (next= INTEGER )* ) | ^( COLON LEFTBRACKET first= INTEGER last= INTEGER ) | ( LEFTBRACKET single= INTEGER ) );
     public final void sliceList(List<Integer> slices) throws RecognitionException {
         CommonTree first=null;
         CommonTree next=null;
@@ -2550,7 +2550,7 @@ public class PhdlWalker extends TreeParser {
         CommonTree single=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1200:2: ( ^( COMMA LEFTBRACKET first= INTEGER (next= INTEGER )* ) | ^( COLON LEFTBRACKET first= INTEGER last= INTEGER ) | ( LEFTBRACKET single= INTEGER ) )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1200:2: ( ^( COMMA LEFTBRACKET first= INTEGER (next= INTEGER )* ) | ^( COLON LEFTBRACKET first= INTEGER last= INTEGER ) | ( LEFTBRACKET single= INTEGER ) )
             int alt32=3;
             switch ( input.LA(1) ) {
             case COMMA:
@@ -2577,7 +2577,7 @@ public class PhdlWalker extends TreeParser {
 
             switch (alt32) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1201:3: ^( COMMA LEFTBRACKET first= INTEGER (next= INTEGER )* )
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1201:3: ^( COMMA LEFTBRACKET first= INTEGER (next= INTEGER )* )
                     {
                     match(input,COMMA,FOLLOW_COMMA_in_sliceList1381); 
 
@@ -2585,7 +2585,7 @@ public class PhdlWalker extends TreeParser {
                     match(input,LEFTBRACKET,FOLLOW_LEFTBRACKET_in_sliceList1383); 
                     first=(CommonTree)match(input,INTEGER,FOLLOW_INTEGER_in_sliceList1387); 
                     slices.add(Integer.parseInt((first!=null?first.getText():null)));
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1202:8: (next= INTEGER )*
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1202:8: (next= INTEGER )*
                     loop31:
                     do {
                         int alt31=2;
@@ -2598,7 +2598,7 @@ public class PhdlWalker extends TreeParser {
 
                         switch (alt31) {
                     	case 1 :
-                    	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1202:9: next= INTEGER
+                    	    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1202:9: next= INTEGER
                     	    {
                     	    next=(CommonTree)match(input,INTEGER,FOLLOW_INTEGER_in_sliceList1403); 
                     	    slices.add(Integer.parseInt((next!=null?next.getText():null)));
@@ -2617,7 +2617,7 @@ public class PhdlWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1205:4: ^( COLON LEFTBRACKET first= INTEGER last= INTEGER )
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1205:4: ^( COLON LEFTBRACKET first= INTEGER last= INTEGER )
                     {
                     match(input,COLON,FOLLOW_COLON_in_sliceList1438); 
 
@@ -2644,10 +2644,10 @@ public class PhdlWalker extends TreeParser {
                     }
                     break;
                 case 3 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1225:4: ( LEFTBRACKET single= INTEGER )
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1225:4: ( LEFTBRACKET single= INTEGER )
                     {
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1225:4: ( LEFTBRACKET single= INTEGER )
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1225:5: LEFTBRACKET single= INTEGER
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1225:4: ( LEFTBRACKET single= INTEGER )
+                    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1225:5: LEFTBRACKET single= INTEGER
                     {
                     match(input,LEFTBRACKET,FOLLOW_LEFTBRACKET_in_sliceList1480); 
                     single=(CommonTree)match(input,INTEGER,FOLLOW_INTEGER_in_sliceList1484); 
@@ -2673,14 +2673,14 @@ public class PhdlWalker extends TreeParser {
 
 
     // $ANTLR start "pinList"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1229:1: pinList[List<String> pList] : first= ( INTEGER | IDENT ) (next= ( INTEGER | IDENT ) )* ;
+    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1229:1: pinList[List<String> pList] : first= ( INTEGER | IDENT ) (next= ( INTEGER | IDENT ) )* ;
     public final void pinList(List<String> pList) throws RecognitionException {
         CommonTree first=null;
         CommonTree next=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1240:2: (first= ( INTEGER | IDENT ) (next= ( INTEGER | IDENT ) )* )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1240:4: first= ( INTEGER | IDENT ) (next= ( INTEGER | IDENT ) )*
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1240:2: (first= ( INTEGER | IDENT ) (next= ( INTEGER | IDENT ) )* )
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1240:4: first= ( INTEGER | IDENT ) (next= ( INTEGER | IDENT ) )*
             {
             first=(CommonTree)input.LT(1);
             if ( input.LA(1)==IDENT||input.LA(1)==INTEGER ) {
@@ -2698,7 +2698,7 @@ public class PhdlWalker extends TreeParser {
             					addError(first, "duplicate pin number in pin list");
             				pList.add((first!=null?first.getText():null));
             			
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1251:7: (next= ( INTEGER | IDENT ) )*
+            // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1251:7: (next= ( INTEGER | IDENT ) )*
             loop33:
             do {
                 int alt33=2;
@@ -2711,7 +2711,7 @@ public class PhdlWalker extends TreeParser {
 
                 switch (alt33) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlWalker.g:1251:8: next= ( INTEGER | IDENT )
+            	    // D:\\work\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1251:8: next= ( INTEGER | IDENT )
             	    {
             	    next=(CommonTree)input.LT(1);
             	    if ( input.LA(1)==IDENT||input.LA(1)==INTEGER ) {
@@ -2759,11 +2759,11 @@ public class PhdlWalker extends TreeParser {
     static final String DFA15_eofS =
         "\33\uffff";
     static final String DFA15_minS =
-        "\1\3\1\uffff\1\2\1\uffff\1\4\1\uffff\1\2\2\4\1\uffff\2\3\2\2\1\16"+
-        "\1\4\2\23\1\3\2\16\1\3\1\16\4\3";
+        "\1\3\1\uffff\1\2\1\uffff\1\4\1\uffff\1\2\2\4\1\uffff\2\3\2\2\1"+
+        "\16\1\4\2\23\1\3\2\16\1\3\1\16\4\3";
     static final String DFA15_maxS =
-        "\1\45\1\uffff\1\2\1\uffff\1\47\1\uffff\1\2\1\51\1\50\1\uffff\2\23"+
-        "\2\2\1\16\1\4\2\23\1\3\5\16\3\3";
+        "\1\45\1\uffff\1\2\1\uffff\1\47\1\uffff\1\2\1\51\1\50\1\uffff\2"+
+        "\23\2\2\1\16\1\4\2\23\1\3\5\16\3\3";
     static final String DFA15_acceptS =
         "\1\uffff\1\4\1\uffff\1\3\1\uffff\1\1\3\uffff\1\2\21\uffff";
     static final String DFA15_specialS =
@@ -2776,8 +2776,8 @@ public class PhdlWalker extends TreeParser {
             "\1\7\4\uffff\1\6\35\uffff\1\5",
             "",
             "\1\10",
-            "\1\11\2\uffff\1\5\1\11\2\uffff\1\11\4\uffff\2\11\27\uffff\1"+
-            "\11",
+            "\1\11\2\uffff\1\5\1\11\2\uffff\1\11\4\uffff\2\11\27\uffff"+
+            "\1\11",
             "\1\12\43\uffff\1\13",
             "",
             "\1\17\4\uffff\1\14\10\uffff\1\15\1\uffff\1\16",
