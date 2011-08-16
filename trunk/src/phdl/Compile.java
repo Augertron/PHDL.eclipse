@@ -63,19 +63,22 @@ public class Compile {
 	 * Usage string for help directions
 	 */
 	static private String usage = "\nPHDL Compiler v0.1.\n\n"
-		+ " * Copyright (C) 2011 BYU Configurable Computing Lab This program is free software: you can\r\n"
-		+ " * redistribute it and/or modify it under the terms of the GNU General Public License as published\r\n"
-		+ " * by the Free Software Foundation, either version 3 of the License, or (at your option) any later\r\n"
-		+ " * version. This program is distributed in the hope that it will be useful, but WITHOUT ANY\r\n"
-		+ " * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR\r\n"
-		+ " * PURPOSE. See the GNU General Public License for more details. You should have received a copy of\r\n"
-		+ " * the GNU General Public License along with this program. If not, see\r\n"
-		+ " * <http://www.gnu.org/licenses/>.\n\n" + "" + "Usage:\n\n"
-		+ "\t<*.phdl> <*.phdl> ... [-w][-d][-v]\n\n"
-		+ "\tOne or more design phdl files followed by optional switches.\n"
-		+ "\t-w\tsupress warnings\n" + "\t-d\tenable dotty file dump for graph viewing\n"
-		+ "\t-v\tenable verbose error reporting (will not bail out simple parse errors)\n"
-		+ "\t-e\toutput script for EAGLE PCB\n\n";
+			+ " * Copyright (C) 2011 BYU Configurable Computing Lab This program is free software: you can\r\n"
+			+ " * redistribute it and/or modify it under the terms of the GNU General Public License as published\r\n"
+			+ " * by the Free Software Foundation, either version 3 of the License, or (at your option) any later\r\n"
+			+ " * version. This program is distributed in the hope that it will be useful, but WITHOUT ANY\r\n"
+			+ " * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR\r\n"
+			+ " * PURPOSE. See the GNU General Public License for more details. You should have received a copy of\r\n"
+			+ " * the GNU General Public License along with this program. If not, see\r\n"
+			+ " * <http://www.gnu.org/licenses/>.\n\n"
+			+ ""
+			+ "Usage:\n\n"
+			+ "\t<*.phdl> <*.phdl> ... [-w][-d][-v]\n\n"
+			+ "\tOne or more design phdl files followed by optional switches.\n"
+			+ "\t-w\tsupress warnings\n"
+			+ "\t-d\tenable dotty file dump for graph viewing\n"
+			+ "\t-v\tenable verbose error reporting (will not bail out simple parse errors)\n"
+			+ "\t-e\toutput script for EAGLE PCB\n\n";
 
 	/**
 	 * Suppress warnings flag
@@ -99,8 +102,9 @@ public class Compile {
 	static boolean clean = false;
 
 	/**
-	 * The main entry point of the phdl Compiler. It accepts *.phdl source files as arguments and
-	 * generates a net list for layout tools, and a bill of material for procurement.
+	 * The main entry point of the phdl Compiler. It accepts *.phdl source files
+	 * as arguments and generates a net list for layout tools, and a bill of
+	 * material for procurement.
 	 */
 	public static void main(String[] args) {
 
@@ -150,7 +154,7 @@ public class Compile {
 				ArrayList<File> deletes = new ArrayList<File>();
 				File xml = new File(fileName + ".xml");
 				File csv = new File(fileName + ".csv");
-				File bom = new File(fileName + ".bom");
+				File bom = new File(fileName + "_bom.csv");
 				File asc = new File(fileName + ".asc");
 				deletes.add(xml);
 				deletes.add(csv);
@@ -160,14 +164,17 @@ public class Compile {
 				for (File f : deletes) {
 					if (f.exists() && f.canWrite()) {
 						if (!f.delete())
-							System.err.println("Clean operation failed to delete: " + f.getName());
+							System.err.println("Clean failed to delete: "
+									+ f.getName());
 					} else {
-						System.err.println("Clean operation failed to delete: " + f.getName());
+						System.err.println("Clean failed to delete: "
+								+ f.getName());
 					}
 				}
 			}
 
-			// 1. Attempt to make a character stream from the source file and bail out if there is a
+			// 1. Attempt to make a character stream from the source file and
+			// bail out if there is a
 			// problem with the source file
 			CharStream cs = null;
 			try {
@@ -177,8 +184,10 @@ public class Compile {
 				System.exit(1);
 			}
 
-			// 2. LEX this character stream and make a stream of tokens. Attempt to parse the stream
-			// of tokens to a tree. Bail out of the compiler if there are any parser errors.
+			// 2. LEX this character stream and make a stream of tokens. Attempt
+			// to parse the stream
+			// of tokens to a tree. Bail out of the compiler if there are any
+			// parser errors.
 			PhdlLexer l = new PhdlLexer(cs);
 			TokenStream ts = new CommonTokenStream(l);
 			PhdlParser p = new PhdlParser(ts);
@@ -190,7 +199,8 @@ public class Compile {
 					errors.add(error);
 
 				if (dumpEn) {
-					// convert the AST to a dotty formatted string for graph viewing
+					// convert the AST to a dotty formatted string for graph
+					// viewing
 					DOTTreeGenerator tg = new DOTTreeGenerator();
 					StringTemplate st = tg.toDOT((Tree) tree);
 					String astFileName = fileName + "_ast.dot";
@@ -200,7 +210,8 @@ public class Compile {
 				// bail out of there are errors
 				printErrors();
 
-				// 3. walk the stream of nodes and attempt to obtain a set of all designs
+				// 3. walk the stream of nodes and attempt to obtain a set of
+				// all designs
 				PhdlWalker walker = new PhdlWalker(ns);
 				walker.setRequiredAttributes(reqAttr);
 				walker.sourceText();
@@ -211,8 +222,9 @@ public class Compile {
 				printErrors();
 
 				/*
-				 * if (dumpEn) { // output a dotty graph before merging nodes for (DesignNode d :
-				 * walker.getDesignNodes()) { String graphFileName = fileName + "_graph.dot";
+				 * if (dumpEn) { // output a dotty graph before merging nodes
+				 * for (DesignNode d : walker.getDesignNodes()) { String
+				 * graphFileName = fileName + "_graph.dot";
 				 * d.dottyDump(graphFileName); // d.printDesignNode(); } }
 				 */
 
@@ -221,7 +233,8 @@ public class Compile {
 					d.superNet2();
 					// report any floating nets
 					for (NetNode n : d.getNets()) {
-						if ((n.getPinNodes().size() < 2) && (!n.getName().equals("OPEN")))
+						if ((n.getPinNodes().size() < 2)
+								&& (!n.getName().equals("OPEN")))
 							addWarning(n, "floating net");
 					}
 
@@ -297,7 +310,7 @@ public class Compile {
 	 * Adds a warning from a Node object
 	 */
 	static void addWarning(Node n, String message) {
-		warnings.add(n.getFileName() + " line " + n.getLine() + ":" + n.getPosition() + " "
-			+ message + ": " + n.getName());
+		warnings.add(n.getFileName() + " line " + n.getLine() + ":"
+				+ n.getPosition() + " " + message + ": " + n.getName());
 	}
 }
