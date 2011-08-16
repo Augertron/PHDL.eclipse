@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.TreeMap;
 
 import phdl.graph.AttributeNode;
@@ -20,6 +21,7 @@ public class EagleScriptGenerator {
 	private DesignComparator desComp;
 	private boolean xmlExists;
 	private StringBuilder sb;
+	private List<Node> signals;
 
 	// board grid constraints
 	private double xSpacing = 0.25;
@@ -30,28 +32,33 @@ public class EagleScriptGenerator {
 	/**
 	 * Default constructor.
 	 * 
-	 * Takes a design and a map of the reference designators and generates the Eagle script.
+	 * Takes a design and a map of the reference designators and generates the
+	 * Eagle script.
 	 * 
 	 * @param design
 	 *            the DesignNode where all the net information is stored.
 	 * @param refMap
-	 *            the map of Reference Designators needed to generated the Eagle script.
+	 *            the map of Reference Designators needed to generated the Eagle
+	 *            script.
 	 * 
 	 * @see DesignNode
 	 * @see RefDesGenerator
 	 */
-	public EagleScriptGenerator(DesignNode design, DesignComparator desComp, boolean xmlExists) {
+	public EagleScriptGenerator(DesignNode design, DesignComparator desComp,
+			boolean xmlExists) {
 		this.design = design;
 		this.groupMap = new TreeMap<String, ArrayList<InstanceNode>>();
 		this.desComp = desComp;
 		this.xmlExists = xmlExists;
 		this.sb = new StringBuilder();
+		this.signals = new ArrayList<Node>();
 		generate();
 	}
 
 	private void generate() {
 
-		sb.append("# Auto-generated EAGLE PCB script from: " + design.getFileName() + "\n");
+		sb.append("# Auto-generated EAGLE PCB script from: "
+				+ design.getFileName() + "\n");
 		sb.append("SET UNDO_LOG OFF;\n");
 		sb.append("GRID INCH;\n");
 		sb.append("CHANGE DISPLAY OFF;\n");
@@ -103,9 +110,10 @@ public class EagleScriptGenerator {
 					x += xSpacing;
 
 					// set the special instance name and device name attributes
-					sb.append("ATTRIBUTE " + i.getRefDes() + " INST_NAME '" + i.getName() + "';\n");
+					sb.append("ATTRIBUTE " + i.getRefDes() + " INST_NAME '"
+							+ i.getName() + "';\n");
 					sb.append("ATTRIBUTE " + i.getRefDes() + " DEV_NAME '"
-						+ i.getDevice().getName() + "';\n");
+							+ i.getDevice().getName() + "';\n");
 
 					// add all the attributes except "values"
 					for (AttributeNode a : i.getAttributes()) {
@@ -139,12 +147,7 @@ public class EagleScriptGenerator {
 				if (n.getName().equals("open"))
 					continue;
 
-				sb.append("SIGNAL " + n.getName().toUpperCase());
-				for (PinNode p : n.getPinNodes()) {
-					String refDes = ((InstanceNode) p.getParent()).getRefDes();
-					sb.append(" " + refDes + " " + p.getPinName());
-				}
-				sb.append(";\n");
+				signal((NetNode) n);
 			}
 		} else {
 			// the design has been previously compiled, and is an iterative or
@@ -157,23 +160,25 @@ public class EagleScriptGenerator {
 			for (Node n : desComp.getAllAdditions()) {
 				switch (n.getType()) {
 				case INSTANCE:
-					// add the instance and set it's value
+					// add the instance and set its value
 					addInstance((InstanceNode) n, 0, y);
 					setValue((InstanceNode) n);
 
 					// add all of it's attributes
 					for (AttributeNode a : ((InstanceNode) n).getAttributes()) {
-						// Eagle will not accept an an arbitrary attribute with
-						// the name "VALUE"
+						// the value attribute is handled with the setValue
+						// special case
 						if (!a.getName().equals("VALUE"))
 							attribute(a);
 					}
 
-					// connect all of it's nets
+					// connect all of its nets
 					for (PinNode p : ((InstanceNode) n).getPins()) {
-						String refDes = ((InstanceNode) p.getParent()).getRefDes();
+						String refDes = ((InstanceNode) p.getParent())
+								.getRefDes();
 						String name = p.getNet().getName().toUpperCase();
-						sb.append("SIGNAL " + name + " " + refDes + " " + p.getPinName() + ";\n");
+						sb.append("SIGNAL " + name + " " + refDes + " "
+								+ p.getPinName() + ";\n");
 					}
 
 					// keep adding instances below the origin
@@ -185,12 +190,7 @@ public class EagleScriptGenerator {
 					if (n.getName().equals("open"))
 						continue;
 
-					sb.append("SIGNAL " + n.getName().toUpperCase());
-					for (PinNode p : ((NetNode) n).getPinNodes()) {
-						String refDes = ((InstanceNode) p.getParent()).getRefDes();
-						sb.append(" " + refDes + " " + p.getPinName());
-					}
-					sb.append(";\n");
+					signal((NetNode) n);
 					break;
 
 				case ATTRIBUTE:
@@ -198,6 +198,9 @@ public class EagleScriptGenerator {
 						setValue((InstanceNode) ((AttributeNode) n).getParent());
 					else
 						attribute((AttributeNode) n);
+
+				case PIN:
+					break;
 
 				default:
 					break;
@@ -220,13 +223,21 @@ public class EagleScriptGenerator {
 
 				case PIN:
 					// delete old signal
-					sb.append("RUN DELETE-SIGNAL ");
+					sb.append("RIPUP " + ((PinNode) n).getNet().getName()
+							+ ";\n");
+					sb.append("RATSNEST;\n");
+					// del-signal is a custom EAGLE ULP
+					sb.append("RUN del-signal "
+							+ ((PinNode) n).getNet().getName() + ";\n");
 					// add new signal
-					sb.append("testing");
+					signals.add(n);
 					break;
 				default:
 					break;
 				}
+			}
+			for (Node n : signals) {
+				signal(((PinNode) n).getNet());
 			}
 
 			// Deleted Elements
@@ -288,29 +299,40 @@ public class EagleScriptGenerator {
 		String lib = "";
 		if (i.getAttribute("LIBNAME") != null) {
 			lib = i.getAttribute("LIBNAME").getValue();
-			sb.append("ADD " + i.getFootprint() + "@" + lib + " '" + i.getRefDes() + "' (" + x
-				+ " " + y + ");\n");
+			sb.append("ADD " + i.getFootprint() + "@" + lib + " '"
+					+ i.getRefDes() + "' (" + x + " " + y + ");\n");
 		} else
-			System.err.println("ERROR: libName attribute undeclared: " + i.getName());
+			System.err.println("ERROR: libName attribute undeclared: "
+					+ i.getName());
 
 	}
 
 	private void attribute(AttributeNode a) {
-		String refDes = ((InstanceNode) ((AttributeNode) a).getParent()).getRefDes();
-		sb.append("ATTRIBUTE " + refDes + " " + a.getName() + " '" + a.getValue() + "';\n");
+		String refDes = ((InstanceNode) ((AttributeNode) a).getParent())
+				.getRefDes();
+		sb.append("ATTRIBUTE " + refDes + " " + a.getName() + " '"
+				+ a.getValue() + "';\n");
 	}
 
 	private void delete(InstanceNode i) {
 		sb.append("DELETE " + i.getRefDes() + ";\n");
 	}
 
-	private void signal() {
+	private void signal(NetNode n) {
+		sb.append("SIGNAL " + n.getName().toUpperCase());
+		for (PinNode p : n.getPinNodes()) {
+			String refDes = ((InstanceNode) p.getParent()).getRefDes();
+			sb.append(" " + refDes + " " + p.getPinName());
+		}
+		sb.append(";\n");
 	}
 
 	private void replacePackage(AttributeNode a) {
-		String refDes = ((InstanceNode) ((AttributeNode) a).getParent()).getRefDes();
-		String lib = ((InstanceNode) ((AttributeNode) a).getParent()).getAttribute("LIBNAME")
-			.getValue();
-		sb.append("REPLACE " + refDes + " '" + a.getValue() + "@" + lib + "';\n");
+		String refDes = ((InstanceNode) ((AttributeNode) a).getParent())
+				.getRefDes();
+		String lib = ((InstanceNode) ((AttributeNode) a).getParent())
+				.getAttribute("LIBNAME").getValue();
+		sb.append("REPLACE " + refDes + " '" + a.getValue() + "@" + lib
+				+ "';\n");
 	}
 }

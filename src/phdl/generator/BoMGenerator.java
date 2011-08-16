@@ -26,8 +26,8 @@ import phdl.graph.InstanceNode;
 /**
  * Bill of Materials Generator.
  * 
- * This class takes a design and sorts all of its instances attributes into a readable comma-
- * seperated file.
+ * This class takes a design and sorts all of its instances attributes into a
+ * readable comma- seperated file.
  * 
  * @author Brad Riching and Richard Black
  * @version 0.1
@@ -73,8 +73,8 @@ public class BoMGenerator {
 	/**
 	 * Default Constructor.
 	 * 
-	 * Takes a DesignNode, generates the table of attributes, and creates a string representation of
-	 * the table.
+	 * Takes a DesignNode, generates the table of attributes, and creates a
+	 * string representation of the table.
 	 * 
 	 * @param design
 	 *            the DesignNode that contains all of the attribute information.
@@ -102,7 +102,8 @@ public class BoMGenerator {
 
 		for (InstanceNode i : design.getInstances()) {
 			for (AttributeNode a : i.getAttributes()) {
-				if (!excludes.contains(a.getName()) && !headers.contains(a.getName())) {
+				if (!excludes.contains(a.getName())
+						&& !headers.contains(a.getName())) {
 					headers.add(a.getName());
 				}
 			}
@@ -122,7 +123,8 @@ public class BoMGenerator {
 			for (AttributeNode a : i.getAttributes()) {
 				if (a.getName().equals("PKG_TYPE")) {
 					newRow.pkg_type = a.getValue();
-				} else if (!a.getName().equals("REFPREFIX") && !a.getName().equals("REFDES")) {
+				} else if (!a.getName().equals("REFPREFIX")
+						&& !a.getName().equals("REFDES")) {
 					for (int j = 0; j < headers.size(); j++) {
 						if (headers.get(j).equals(a.getName())) {
 							newRow.entries.set(j, a.getValue());
@@ -142,7 +144,8 @@ public class BoMGenerator {
 			for (int j = i + 1; j < rows.size(); j++) {
 				if (rows.get(i).equals(rows.get(j))) {
 					rows.get(i).quantity++;
-					rows.get(i).refDes = rows.get(i).refDes + "; " + rows.get(j).refDes;
+					rows.get(i).refDes = rows.get(i).refDes + "; "
+							+ rows.get(j).refDes;
 					deletes.add(j);
 				}
 			}
@@ -156,13 +159,14 @@ public class BoMGenerator {
 
 	private void generateString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Bill of Materials - " + design.getName() + "\n");
+		// sb.append("Bill of Materials - " + design.getName() + "\n");
 		sb.append("QUANTITY, NAME, REFDES, PKG_TYPE");
 		for (int i = 0; i < headers.size(); i++) {
 			sb.append(", " + headers.get(i));
 		}
 		for (Row r : rows) {
-			sb.append("\n" + r.quantity + ", " + r.name + ", " + r.refDes + ", " + r.pkg_type);
+			sb.append("\n" + r.quantity + ", " + r.name + ", " + r.refDes
+					+ ", " + r.pkg_type);
 			for (int i = 0; i < r.entries.size(); i++) {
 				sb.append(", " + r.entries.get(i));
 			}
@@ -181,7 +185,8 @@ public class BoMGenerator {
 	}
 
 	/**
-	 * Produces a .bom file which contains the comma-separated table of attributes.
+	 * Produces a .bom file which contains the comma-separated table of
+	 * attributes.
 	 * 
 	 * @param fileName
 	 *            the file name to output the data
@@ -192,8 +197,10 @@ public class BoMGenerator {
 			out.write(bom);
 			out.close();
 		} catch (IOException e) {
-			System.err.println("File Writing Error - " + fileName + "\n" + "\tPossible Reasons:\n"
-				+ "\t\t*filename may be corrupt\n" + "\t\t*file may currently be open\n");
+			System.err.println("File Writing Error - " + fileName + "\n"
+					+ "\tPossible Reasons:\n"
+					+ "\t\t*filename may be corrupt\n"
+					+ "\t\t*file may currently be open\n");
 			System.exit(1);
 		}
 		System.out.println("Wrote BoM file: " + fileName);

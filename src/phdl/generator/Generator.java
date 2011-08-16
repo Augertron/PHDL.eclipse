@@ -64,11 +64,13 @@ public class Generator {
 		xmlGen = new XMLGenerator(design);
 		generateXML();
 		if (eagle)
-			eagleScriptGen = new EagleScriptGenerator(design, desComp, xmlExists);
+			eagleScriptGen = new EagleScriptGenerator(design, desComp,
+					xmlExists);
 	}
 
 	/**
-	 * Generates a Reference Designator file based on the name of the DesignNode.
+	 * Generates a Reference Designator file based on the name of the
+	 * DesignNode.
 	 * 
 	 * @see RefDesGenerator
 	 */
@@ -82,7 +84,7 @@ public class Generator {
 	 * @see BoMGenerator
 	 */
 	public void generateBoM() {
-		bomGen.outputToFile(design.getName() + ".bom");
+		bomGen.outputToFile(design.getName() + "_bom.csv");
 	}
 
 	/**
