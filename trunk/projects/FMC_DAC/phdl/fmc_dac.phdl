@@ -13,7 +13,8 @@ design fmc_dac is
     // DAC Signals.
     net OUTP, OUTN;
     net[13:0] DB1_P, DB1_N, DB0_P, DB0_N;
-    net DACCLK_P, DACCLK_N, DCI_P, DCI_N, DCO_P, DCO_N, SYNC_IN_P, SYNC_IN_N, SYNC_OUT_P, SYNC_OUT_N;
+    net DACCLK_P, DACCLK_N, DCI_P, DCI_N, DCO_P, DCO_N,
+        SYNC_IN_P, SYNC_IN_N, SYNC_OUT_P, SYNC_OUT_N;
     net SPI_CS, SPI_SCLK, SPI_SDO, SPI_SDI;
     net RESET, IRQ, VREF, IPTAT, I120;
 
@@ -22,9 +23,9 @@ begin
     inst docking_connector of asp_134488 is
         refDes = "P64";
 
-        //  we don't use row A since is is all GTP.
+        //  we don't use row A since it is all GTP.
         a = open;
-        //  we don't use row B since is is all GTP.
+        //  we don't use row B since it is all GTP.
         b = open;
 
         // Row C has some useful differential lines.
