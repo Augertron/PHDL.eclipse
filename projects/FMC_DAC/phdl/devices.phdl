@@ -228,5 +228,6 @@ end device;
 device mount_hole_125 is
 	attr refPrefix = "U";
 	attr pkg_type = "MOUNT_HOLE_125";
+        pin pin1 = {1};
 end device;
 
