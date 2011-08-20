@@ -130,6 +130,53 @@ device slide_switch is
 	pin s_2 = {5}; // select
 end device;
 
+// Analog Devices high speed DAC
+device ad9739 is
+    attr refPrefix = "U";
+    attr refDes = "";
+    attr name = "";
+    attr value = "";
+    attr pkg_type = "ANALOG_DEVICES_BC-160-1";
+    attr mfgr =  "Analog Devices";
+    attr PartNumber = "AD9739BBCZ";
+    attr cost = "70.00";
+
+    pin[1:8]  VDDC = {C1, C2, D1, D2, E1, E2, E3, E4};
+    pin[1:14] VSSC = {A1, A2, A3, A4, A5, B1, B2, B3, B4, B5, C4, C5, D4, D5};
+    pin[1:8]  VDDA = {A10, A11, B10, B11, C10, C11, D10, D11};
+    pin[1:8]  VSSA = {A12, A13, B12, B13, C12, C13, D12, D13};
+    pin[1:18] VSSA_SHIELD = {A6, A9, B6, B9, C6, C9, D6, D9, F1, F2, F3, F4, E11, E12, E13, E14, F11, F12};
+    pin NC = {A14};
+    pin[1:4] IOUTN = {A7, B7, C7, D7};
+    pin[1:4] IOUTP = {A8, B8, C8, D8};
+    pin I120 = {B14};
+    pin  VREF = {C14};
+    pin IPTAT = {D14};
+    pin  DACCLK_N = {C3};
+    pin  DACCLK_P = {D3};
+    pin IRQ = {F13};
+    pin RESET = {F14};
+    pin CS = {G13};
+    pin SDIO = {G14};
+    pin SCLK = {H13};
+    pin SDO  = {H14};
+    pin VDD33 = {J3, J4, J11, J12};
+    pin VDD = {G1, G2, G3, G4, G11, G12};
+    pin VSS = {H1, H2, H3, H4, H11, H12, K3, K4, K11, K12};
+    pin SYNC_OUT_P = {J1};
+    pin SYNC_OUT_N = {J2};
+    pin SYNC_IN_P = {K1};
+    pin SYNC_IN_N = {K2};
+    pin DCO_P = {J13};
+    pin DCO_N = {J14};
+    pin DCI_P = {K13};
+    pin DCI_N = {K14};
+    pin[13:0] DB1_P = {L14,L13,L12,L11,L10,L9,L8,L7,L6,L5,L4,L3,L2,L1};
+    pin[13:0] DB1_N = {M14,M13,M12,M11,M10,M9,M8,M7,M6,M5,M4,M3,M2,M1};
+    pin[13:0] DB0_P = {N14,N13,N12,N11,N10,N9,N8,N7,N6,N5,N4,N3,N2,N1};
+    pin[13:0] DB0_N = {P14,P13,P12,P11,P10,P9,P8,P7,P6,P5,P4,P3,P2,P1};
+end device;
+
 // a massive surface mount connector array
 device asp_134488 is
 	attr refPrefix = "P";
