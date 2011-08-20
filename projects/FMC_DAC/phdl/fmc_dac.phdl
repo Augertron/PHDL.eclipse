@@ -1,0 +1,5 @@
+
+design fmc_dac is
+
+	// resistor and capacitor definitions
+	include "devices.phdl";
