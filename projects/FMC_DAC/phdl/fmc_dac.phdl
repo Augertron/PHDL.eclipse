@@ -15,66 +15,87 @@ begin
     inst docking_connector of asp_134488 is
         refDes = "P64";
 
-        // data ports 1 through 5
-        a[2] = open;
-        a[3] = DP1_M2C_N;
-        a[6] = DP2_M2C_P;
-        a[7] = DP2_M2C_N;
-        a[10] = DP3_M2C_P;
-        a[11] = DP3_M2C_N;
-        a[14] = DP4_M2C_P;
-        a[15] = DP4_M2C_N;
-        a[18] = DP5_M2C_P;
-        a[19] = DP5_M2C_N;
-        a[22] = DP1_C2M_P;
-        a[23] = DP1_C2M_N;
-        a[26] = DP2_C2M_P;
-        a[27] = DP2_C2M_N;
-        a[30] = DP3_C2M_P;
-        a[31] = DP3_C2M_N;
-        a[34] = DP4_C2M_P;
-        a[35] = DP4_C2M_N;
-        a[38] = DP5_C2M_P;
-        a[39] = DP5_C2M_N;
+        //  we don't use row A since is is all GTP.
+        a = open;
+        //  we don't use row B since is is all GTP.
+        b = open;
 
-        // gigabit transceiver clock 1 m2C
-        b[20] = GBTCLK1_M2C_P;
-        b[21] = GBTCLK1_M2C_N;
-        b[1,4,5,8,9,12,13,16,17,24,25,28,29,32,33,36,37,40] = open;
-
-        // data port 0 and sync signals
-        c[2] = DP0_C2M_P;
-        c[3] = DP0_C2M_N;
-        c[6] = DP0_M2C_P;
-        c[7] = DP0_M2C_N;
-        c[10] = SYNC_OUT;
-        c[11] = SYNC_IN;
-        c[14] = DISCRETE[0];
-        c[15] = DISCRETE[1];
-        c[18] = DISCRETE[2];
-        c[19] = DISCRETE[3];
-        c[22] = DISCRETE[4];
-        c[23] = DISCRETE[5];
-        c[26] = DISCRETE[6];
-        c[27] = DISCRETE[7];
+        // Row C has some useful differential lines.
+        c[10,11] = open;
+        c[14,15] = open;
+        c[18,19] = open;
+        c[22,23] = open;
+        c[26,27] = open;
         c[39] = +3V3;
-        c[30,31,34,35,37] = open;
 
-        // gigabit transceiver clock 0 m2c
-        d[1] = GBTCLK0_M2C_P;
-        d[4] = GBTCLK0_M2C_N;
-        d[30] = $4N126;
-        d[31] = $4N126;
+        // Row D has some useful differential lines.
+        d[8,9] = open;
+        d[11,12] = open;
+        d[14,15] = open;
+        d[17,18] = open;
+        d[20,21] = open;
+        d[23,24] = open;
+        d[26,27] = open;
         d[36] = +3V3;
         d[38] = +3V3;
         d[40] = +3V3;
-        d[5,8,9,11,12,14,15,17,18,20,21,23,24,26,27,29,32,33,34,35] = open;
 
-        // opens
-        e[2,3,6,7,9,10,12,13,15,16,18,19,21,22,24,25,27,28,30,31,33,34,36,37,39] = open;
-        f[1,4,5,7,8,10,11,13,14,16,17,19,20,22,23,25,26,28,29,31,32,34,35,37,38,40] = open;
-        g[2,3,6,7,9,10,12,13,15,16,18,19,21,22,24,25,27,28,30,31,33,34,36,37,39] = open;
+        // Row D has diff pairs.
+        e[2,3] = open;
+        e[6,7] = open;
+        e[9,10] = open;
+        e[12,13] = open;
+        e[15,16] = open;
+        e[18,19] = open;
+        e[21,22] = open;
+        e[24,25] = open;
+        e[27,28] = open;
+        e[30,31] = open;
+        e[33,34] = open;
+        e[39] = +2V5;
+
+        // Row F has diff pairs.
+        f[4,5]   = open;
+        f[7,8]   = open;
+        f[10,11] = open;
+        f[13,14] = open;
+        f[16,17] = open;
+        f[19,20] = open;
+        f[22,23] = open;
+        f[25,26] = open;
+        f[28,29] = open;
+        f[31,32] = open;
+        f[34,35] = open;
+        f[40]    = +2V5;
+
+        // Row G has diff pairs.
+        g[6,7] = open;
+        g[9,10] = open;
+        g[12,13] = open;
+        g[15,16] = open;
+        g[18,19] = open;
+        g[21,22] = open;
+        g[24,25] = open;
+        g[27,28] = open;
+        g[30,31] = open;
+        g[33,34] = open;
+        g[36,37] = open;
+        g[39] = +2V5;
+
+        // H has diff pairs.
+        h[1] = gnd;  // indicates presence of FMC module.
+        h[7,8] = open;
+        h[10,11] = open;
+        h[13,14] = open;
+        h[16,17] = open;
+        h[19,20] = open;
+        h[22,23] = open;
+        h[25,26] = open;
         h[1,2,4,5,7,8,10,11,13,14,16,17,19,20,22,23,25,26,28,29,31,32,34,35,37,38,40] = open;
+        h[1,2,4,5,7,8,10,11,13,14,16,17,19,20,22,23,25,26,28,29,31,32,34,35,37,38,40] = open;
+        h[1,2,4,5,7,8,10,11,13,14,16,17,19,20,22,23,25,26,28,29,31,32,34,35,37,38,40] = open;
+        h[1,2,4,5,7,8,10,11,13,14,16,17,19,20,22,23,25,26,28,29,31,32,34,35,37,38,40] = open;
+
         j[2,3,6,7,9,10,12,13,15,16,18,19,21,22,24,25,27,28,30,31,33,34,36,37,39] = open;
         k[1,4,5,7,8,10,11,13,14,16,17,19,20,22,23,25,26,28,29,31,32,34,35,37,38,40] = open;
 
