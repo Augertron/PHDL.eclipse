@@ -231,3 +231,38 @@ device mount_hole_125 is
         pin pin1 = {1};
 end device;
 
+device LT3022 is
+    attr refPrefix = "U";
+    attr pkg_type = "LT3022_MSOP16";
+    attr refDes = "";
+    attr name = "";
+    attr value = "";
+    attr cost = "6.10";
+    attr mfgr = "LTC";
+    pin NC = {1,2,8,15,16};
+    pin OUT = {3,4};
+    pin ADJ/SENSE = {5};
+    pin AGND = {6,7};
+    pin SHDN_N = {9};
+    pin PGND = {10,11};
+    pin IN = {12,13,14};
+    pin GND_PAD = {17};
+end device;
+
+device MABACT0039 is
+	attr refPrefix = "T";
+	attr refDes = "";
+	attr name = "";
+	attr value = "";
+	attr pkg_type = "MACOM_SM-138";
+	attr mfgr = "MACOM";
+	attr partNumber = "MABACT0039";
+	attr cost = "$10.00";
+
+	pin input = {5};
+	pin gnd = {4};
+	pin out_coupled = {3};
+	pin out_thru = {1};
+end device;
+
+
