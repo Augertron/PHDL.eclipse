@@ -160,9 +160,9 @@ device ad9739 is
     pin SDIO = {G14};
     pin SCLK = {H13};
     pin SDO  = {H14};
-    pin VDD33 = {J3, J4, J11, J12};
-    pin VDD = {G1, G2, G3, G4, G11, G12};
-    pin VSS = {H1, H2, H3, H4, H11, H12, K3, K4, K11, K12};
+    pin[1:4] VDD33 = {J3,J4,J11,J12};
+    pin[1:6] VDD = {G1, G2, G3, G4, G11, G12};
+    pin[1:10] VSS = {H1, H2, H3, H4, H11, H12, K3, K4, K11, K12};
     pin SYNC_OUT_P = {J1};
     pin SYNC_OUT_N = {J2};
     pin SYNC_IN_P = {K1};
@@ -239,13 +239,13 @@ device LT3022 is
     attr value = "";
     attr cost = "6.10";
     attr mfgr = "LTC";
-    pin NC = {1,2,8,15,16};
-    pin OUT = {3,4};
+    pin[1:5] NC = {1,2,8,15,16};
+    pin[1:2] OUT = {3,4};
     pin ADJ/SENSE = {5};
-    pin AGND = {6,7};
+    pin[1:2] AGND = {6,7};
     pin SHDN_N = {9};
-    pin PGND = {10,11};
-    pin IN = {12,13,14};
+    pin[1:2] PGND = {10,11};
+    pin[1:3] IN = {12,13,14};
     pin GND_PAD = {17};
 end device;
 
