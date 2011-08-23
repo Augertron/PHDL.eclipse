@@ -9,24 +9,23 @@ design fmc_dac is
     // Power and ground nets.
     net +3V3, +2V5, +1V8, gnd;
     net VDDC, VDDA;
-
+/*
     // DAC Signals.
     net IOUTP, IOUTN;
     net[13:0] DB1_P, DB1_N, DB0_P, DB0_N;
-    net DACCLK_P, DACCLK_N, DCI_P, DCI_N, DCO_P, DCO_N,
-        SYNC_IN_P, SYNC_IN_N, SYNC_OUT_P, SYNC_OUT_N;
+    net DACCLK_P, DACCLK_N, DCI_P, DCI_N, DCO_P, DCO_N, SYNC_IN_P, SYNC_IN_N, SYNC_OUT_P, SYNC_OUT_N;
     net SPI_CS, SPI_SCLK, SPI_SDO, SPI_SDI;
     net RESET, IRQ, VREF, IPTAT, I120;
-
+*/
 begin
 
     inst docking_connector of asp_134488 is
         refDes = "P64";
 
         //  we don't use row A since it is all GTP.
-        a = open;
+        a[2,3,6,7,10,11,14,15,18,19,22,23,26,27,30,31,34,35,38,39] = open;
         //  we don't use row B since it is all GTP.
-        b = open;
+        b[1,4,5,8,9,12,13,16,17,20,21,24,25,28,29,32,33,36,37,40] = open;
 
         // Row C has some useful differential lines.
         c[10,11] = open;
@@ -149,7 +148,7 @@ begin
         j[1,4,5,8,11,14,17,20,23,26,29,32,35,38,40] = <gnd>;
         k[2,3,6,9,12,15,18,21,24,27,30,33,36,39] = <gnd>;
     end inst;
-
+/*
     inst fast_dac of ad9739 is
         refDes = "U1";
 
@@ -194,6 +193,13 @@ begin
         a = I120; b = gnd;
     end inst;
 
-
-
+    // These are the four mounting holes required by the FMC standard.
+    inst(1:4) mounting_holes of mount_hole_125 is
+        this(1).refDes = "MTG1";
+        this(2).refDes = "MTG2";
+        this(3).refDes = "MTG3";
+        this(4).refDes = "MTG4";
+        pin1 = open;
+    end inst;
+*/
 end design fmc_dac;
