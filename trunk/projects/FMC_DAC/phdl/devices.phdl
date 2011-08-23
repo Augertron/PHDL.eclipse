@@ -241,7 +241,7 @@ device LT3022 is
     attr mfgr = "LTC";
     pin[1:5] NC = {1,2,8,15,16};
     pin[1:2] OUT = {3,4};
-    pin ADJ/SENSE = {5};
+    pin ADJ_SENSE = {5};
     pin[1:2] AGND = {6,7};
     pin SHDN_N = {9};
     pin[1:2] PGND = {10,11};
