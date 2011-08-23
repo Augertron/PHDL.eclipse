@@ -1,23 +1,22 @@
-
 design test is	
 	
-	device resistor_pack is
-		attr refprefix = "D";
+	device res_array is
+		attr refprefix = "R";
 		attr pkg_type = "R0207";
-		attr myName = "something";
+		attr myName = "brad";
 		pin[2:0] a = {1, 2, 3};
 		pin[2:0] b = {4, 5, 6};
-	end device resistor_pack;
+	end device res_array;
 	
 	net[0:1] myNet;
 	net singleNet;
 
 begin
 
-	inst(2:0) myRes of resistor_pack is
-		myName = "something else";
-		a = myNet & myNet & myNet & singleNet & singleNet & myNet[1];
-		b = open;
+	inst(2:0) myRes of res_array is
+		each(2,0).myName = "erin";
+		combine.a = myNet & myNet & myNet & singleNet & singleNet & myNet[1];
+		b = <myNet[0]>;
 	end inst myRes;
 
 end design test;

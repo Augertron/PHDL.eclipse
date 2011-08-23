@@ -213,7 +213,7 @@ options {
 	}
 	
 	/**
-	 *
+	 * forms the link between a pin node and net node in the design.
 	 */
 	private void setConcatToPin(PinNode p, NetNode n, CommonTree pinNode) {
 		if (p != null) {
@@ -762,7 +762,7 @@ attrAssign[DesignNode des, String instName]
 			//===================== JAVA BLOCK END ========================
 		
 		('newattr' {newAttr = true;} )?
-		(instanceQualifier[instName, indices, des] | arrayIndices[indices, instName, des])
+		(attributeQualifier[instName, indices, des] | arrayIndices[instName, indices, des])
 		attrName=IDENT attrValue=STRING)
 		
 			//==================== JAVA BLOCK BEGIN =======================
@@ -805,7 +805,7 @@ attrAssign[DesignNode des, String instName]
 							" attribute undeclared");
 					}
 				}
-				// if the attribute is global
+				// if the instance is not arrayed
 				if (indices.isEmpty()) {
 					// for every instance node with this instance name
 					for (InstanceNode inst : des.getAllInstances(instName)) {
@@ -853,34 +853,35 @@ pinAssign[DesignNode des, String instName]
 				List<NetNode> concats = new ArrayList<NetNode>();
 			}
 			//===================== JAVA BLOCK END ========================
-		(instanceQualifier[instName, indices, des] | arrayIndices[indices, instName, des]) 
+			
+			// $pinQualifier.each, pinQualifier.combine
+		(pinQualifier[instName, indices, des] | arrayIndices[instName, indices, des]) 
 		pinName=IDENT (sliceList[slices] | pinSlices[slices, $pinName.text, des, instName])
-		{ int assignWidth = 0;
-		  if (slices.size() == 0 && indices.size() != 0) {assignWidth = indices.size();}
-		  if (slices.size() != 0 && indices.size() == 0) {assignWidth = slices.size();}
-		  if (slices.size() != 0 && indices.size() != 0) {assignWidth = indices.size() * slices.size();}
-		} 
+		
+			{	int assignWidth = 0;
+				if (slices.size() == 0 && indices.size() != 0) {assignWidth = indices.size();}
+				if (slices.size() != 0 && indices.size() == 0) {assignWidth = slices.size();}
+				if (slices.size() != 0 && indices.size() != 0) {assignWidth = indices.size() * slices.size();}
+			} 
+		
 		concatenation[concats, assignWidth, des])
 		
 			//==================== JAVA BLOCK BEGIN =======================
 			{	
 				if (indices.size() != 0 && slices.size() != 0) {
 					if (indices.size() * slices.size() != concats.size()) {
-						// TODO Throw Error
 						// Arrayed and Sliced
 						bailOut($pinName, "Invalid assignment width, left = " + indices.size() * slices.size() + ", right = " + concats.size());
 					}
 				}
 				else if (slices.size() != 0) {
 					if (slices.size() != concats.size()) {
-						// TODO Throw Error
 						// Not Arrayed and Sliced
 						bailOut($pinName, "Invalid assignment width, left = " + slices.size() + ", right = " + concats.size());
 					}
 				}
 				else if (indices.size() != 0) {
 					if (indices.size() != concats.size()) {
-						// TODO Throw Error
 						// Arrayed and Not Sliced
 						bailOut($pinName, "Invalid assignment width, left = " + slices.size() + ", right = " + concats.size());
 					}
@@ -1073,35 +1074,42 @@ concatenation[List<NetNode> concats, int assignWidth, DesignNode des]
 	;
 
 /**
- * The instanceQualifier rule accepts the enclosing instance name that the qualifier resides in, and
- * an empty list of indices that the instance will populate using the arrayList rule.  It compares the
- * qualifier name to the instance name which it is supposed to refer, and reports an error if they
- * do not match.
+ * The attributeQualifier rule accepts the instance name that the qualifier resides in, an empty list of 
+ * indices that will be populated, and a pointer to the design.  The attributeQualifier rule determines 
+ * which instances the attribute assignment applies.
  *
  * This rule performs the following functions:
- * 1. Check the qualifier name against the instance name passed in
- * 2. Call the arrayList rule (if one exists) to populate the list of indices
- * 3. Report an error if the qualifier name does not match.
+ * 1. Call the arrayList rule (if one exists) to populate the list of indices, or
+ * 2. Call the arrayIndices rule to populate the list of all available indices.
  */
-instanceQualifier[String instName, List<Integer> indices, DesignNode des]
-	:	{boolean isThis = false;}
-		^(PERIOD (qualName=IDENT | ('this' {isThis = true;})) (arrayList[indices] | arrayIndices[indices, instName, des]) )
-	
-			//==================== JAVA BLOCK BEGIN =======================
-		    {	// check that the instance qualifier matches
-
-				if (!instName.equals($qualName.text) && !isThis) {
-				    addError($qualName, "invalid instance qualifier");
-				}
-	
-		    }
-		  //===================== JAVA BLOCK END ========================
+attributeQualifier[String instName, List<Integer> indices, DesignNode des]
+	:	^(PERIOD 'each' (arrayList[indices] | arrayIndices[instName, indices, des]) )	
 	;
 	
-arrayIndices[List<Integer> indices, String instName, DesignNode des]
+/**
+ * The pinQualifier rule accepts the instance name that the qualifier resides in, and empty list of indices
+ * that will be populated, and a pointer to the design.  The pinQualifier rule determines which instances
+ * the pin assignment applies.
+ *
+ * This rule performs the following functions:
+ */
+pinQualifier[String instName, List<Integer> indices, DesignNode des] returns [boolean each, boolean combine]
+	:	{$each = false; $combine = false;}	
+		^(PERIOD ('each' {$each = true;} | 'combine' {$combine = true;}) 
+		(arrayList[indices] | arrayIndices[instName, indices, des]) )
+	;
+
+/**
+ * The arrayIndices rule adds all indices from the set of instances in the design with instName as a name.  This
+ * rule is executed by default when the user does not specifiy an attribute or pin qualifier before the assignment.
+ */
+arrayIndices[String instName, List<Integer> indices, DesignNode des]
 	:	{indices.addAll(des.getAllIndices(instName));}
 	;
-	
+
+/**
+ * The pinSlices rule adds all indices from the set of pins in the instance to the list of slices to return.
+ */
 pinSlices[List<Integer> slices, String pinName, DesignNode des, String instName] 
 	:	{	InstanceNode inst = des.getAllInstances(instName).get(0);
 			List<Integer> pins = inst.getAllIndices(pinName);
