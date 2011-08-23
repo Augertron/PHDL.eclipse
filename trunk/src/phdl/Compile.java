@@ -47,7 +47,7 @@ public class Compile {
 	/**
 	 * An array of attributes that every device declaration is required to have
 	 */
-	static String[] reqAttr = { "REFPREFIX", "PKG_TYPE", };
+	static String[] reqAttr = { "REFPREFIX", "PKG_TYPE" };
 
 	/**
 	 * A list of errors generated

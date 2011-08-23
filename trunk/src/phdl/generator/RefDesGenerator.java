@@ -62,6 +62,7 @@ public class RefDesGenerator {
 		try {
 			File file = new File(fileName);
 			if (file.exists()) {
+				System.out.println("File Exists!");
 				BufferedReader in = new BufferedReader(new FileReader(fileName));
 				String line = "";
 				while ((line = in.readLine()) != null) {
@@ -76,6 +77,7 @@ public class RefDesGenerator {
 			System.exit(1);
 		}
 		for (InstanceNode i : design.getInst_wo_RefDes()) {
+			System.out.println(i);
 			for (int j = 1;; j++) {
 				String refDes = i.getRefPrefix() + j;
 				if (!refMap.keySet().contains(refDes)) {

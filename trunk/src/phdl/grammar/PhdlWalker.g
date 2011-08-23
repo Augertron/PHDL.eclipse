@@ -339,16 +339,6 @@ designDecl
 						if (!p.hasNet())
 							addError(i, "dangling pin " + p.getName() + " in instance");
 					}
-					if (i.getRefDes() != null) {
-						if (!i.getRefDes().equals("")) {
-							//System.out.println(i.getRefDes());
-							// report duplicate reference designators
-							if (!refDesSet.add(i.getRefDes())) {
-								//System.out.println(i.getRefDes());
-								addError(i, "duplicate reference designator in design");
-							}
-						}
-					}
 				}
 				
 			}
@@ -737,8 +727,6 @@ instDecl[DesignNode des, String groupName]
 					for (AttributeNode a : i.getAttributes()) {
 						if (a.getName().equals("REFPREFIX"))
 							i.setRefPrefix(a.getValue());
-						if (a.getName().equals("REFDES"))
-							i.setRefDes(a.getValue());
 						if (a.getName().equals("PKG_TYPE"))
 							i.setFootprint(a.getValue());
 					}
@@ -798,16 +786,7 @@ attrAssign[DesignNode des, String instName]
 							if (!a.overwrite($attrValue.text))
 								addWarning($attrName, "atribute already overwritten");
 						} else {
-							if ($attrName.text.toUpperCase().equals("REFDES")) {
-								AttributeNode newA = new AttributeNode(inst);
-								newA.setName($attrName.text);
-								newA.setValue($attrValue.text);
-								newA.setLocation($attrName.line, $attrName.pos, 
-									attrName.getToken().getInputStream().getSourceName());
-								inst.addAttribute(newA);
-							}
-							// the attribute doesn't exist
-							else if (newAttr) {
+							if (newAttr) {
 								// make a new attribute if explicitly asked to do so
 								AttributeNode newA = new AttributeNode(inst);
 								newA.setName($attrName.text);
@@ -816,17 +795,8 @@ attrAssign[DesignNode des, String instName]
 									attrName.getToken().getInputStream().getSourceName());
 								inst.addAttribute(newA);
 							} else {
-								if ($attrName.text.toUpperCase().equals("REFDES")) {
-									AttributeNode newA = new AttributeNode(inst);
-									newA.setName($attrName.text);
-									newA.setValue($attrValue.text);
-									newA.setLocation($attrName.line, $attrName.pos, 
-										attrName.getToken().getInputStream().getSourceName());
-									inst.addAttribute(newA);
-								} else {
-									// report that the attribute is undeclared
-									addError($attrName, "attribute undeclared in device");
-								}
+								// report that the attribute is undeclared
+								addError($attrName, "attribute undeclared in device");
 							}
 						}
 					} else {
