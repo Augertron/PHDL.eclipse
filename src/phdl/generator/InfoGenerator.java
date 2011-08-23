@@ -12,8 +12,10 @@ import phdl.graph.InstanceNode;
 public class InfoGenerator {
 
 	String info;
+	DesignNode design;
 	
 	public InfoGenerator(DesignNode design) {
+		this.design = design;
 		StringBuilder sb = new StringBuilder();
 		sb.append("Design " + design.getName() + " Info\n" + design.getInfo() + "\n\n");
 		List<String> visited = new ArrayList<String>();
@@ -47,7 +49,7 @@ public class InfoGenerator {
 			System.err.println("File Reading Error - filename may be corrupt");
 			System.exit(1);
 		}
-		System.out.println("Wrote info file: " + fileName);
+		System.out.println("Wrote info file: " + design.getName() + ".info");
 	}
 	
 }

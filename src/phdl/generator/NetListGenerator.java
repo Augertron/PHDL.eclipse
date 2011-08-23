@@ -113,7 +113,7 @@ public class NetListGenerator {
 			System.err.println("File Reading Error - filename may be corrupt");
 			System.exit(1);
 		}
-		System.out.println("Wrote netlist file: " + fileName);
+		System.out.println("Wrote netlist file: " + design.getName() + ".asc");
 	}
 
 }

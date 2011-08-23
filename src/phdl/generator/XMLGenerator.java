@@ -91,7 +91,7 @@ public class XMLGenerator {
 			System.err.println("File Reading Error - filename may be corrupt");
 			System.exit(1);
 		}
-		System.out.println("Wrote xml file: " + fileName);
+		System.out.println("Wrote xml file: " + design.getName() + ".xml");
 	}
 
 	@Override

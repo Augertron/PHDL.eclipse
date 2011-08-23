@@ -281,7 +281,7 @@ public class DesignNode extends Node {
 	public List<InstanceNode> getInst_wo_RefDes() {
 		List<InstanceNode> insts = new LinkedList<InstanceNode>();
 		for (InstanceNode i : instances) {
-			if (i.getRefDes() == null) {
+			if (i.getRefDes() == null || i.getRefDes().equals("")) {
 				insts.add(i);
 			}
 		}
