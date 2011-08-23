@@ -261,25 +261,32 @@ groupStruct
  * An attribute assignment consists of a string assigned to an attribute name with the optional newattr
  * keyword and instance qualifier.  The newattr keyword signals to the compiler that the user is declaring
  * a new attribute for an instanced device beyond the scope of the device declaration.  Note that you only need
- * to provide an instanceQualifier when the instance is an array of instances and you only want to make the
+ * to provide an attributeQualifier when the instance is an array of instances and you only want to make the
  * assignment to some of the instances' attributes.  In this case, you would use
  * an instance qualifier to state which instance's attribute is being assigned to.  If you leave off the instance
  * qualifier you are implying that all instances in this construct will be assigned the new attribute value.
  * An example would be 'tolerance = "5%"' (all instances in this construct get this value). 
  */
 attributeAssignment
-	:	('newattr')? instanceQualifier? IDENT EQUALS^ STRING SEMICOLON!
+	:	('newattr')? attributeQualifier? IDENT EQUALS^ STRING SEMICOLON!
 	;
 	
 /**
- * An instance qualifier begins with the label of the instance (or the keyword "this" as a shorthand), 
- * followed by an optional array list
- * and mandatory period.  Examples would be: 'this.tolerance = "5%"' (all instances in this construct get this value), 
- * 'this(2).tolerance = "5%"' (only instance 2 gets this value), or 'this(1, 4, 6).tolerance = "5%"' (only instances 1, 4, and 6
- * get this value).
+ * An attribute qualifier begins with the keyword 'each', followed by an optional array list and mandatory period.  
+ * Examples would be: 'each.tolerance = "5%";' (all instances in this construct get this value), 'each(2).tolerance = "5%";' 
+ * (only instance 2 gets this value), or 'each(1, 4, 6).tolerance = "5%";' (only instances 1, 4, and 6 get this value).  
  */
-instanceQualifier
-	:	(IDENT | 'this') arrayList? PERIOD^  
+attributeQualifier
+	:	'each' arrayList? PERIOD^  
+	;
+
+/**
+ * A pin qualifier begins with the keyword 'each' or 'combine', followed by an optional array list and mandatory period.
+ * Examples might be: each.addr = addrA (meaning that all address vectors in every instance are tied in parallel to the addrA bit vector
+ * in the same order that the vectors were declared.
+ */
+pinQualifier
+	:	('each' | 'combine') arrayList? PERIOD^
 	;
 
 /**
@@ -290,7 +297,7 @@ instanceQualifier
  * to specify the various bits of a multi-bit wire as in 'a[3] = gnd', 'a[5:2] = vcc', or 'a[2, 6, 9] = -vcc'. 
  */
 pinAssignment
-	:	instanceQualifier? IDENT sliceList? EQUALS^ concatenation SEMICOLON!
+	:	pinQualifier? IDENT sliceList? EQUALS^ concatenation SEMICOLON!
 	;
 
 /**

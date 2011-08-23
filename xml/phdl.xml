@@ -7,11 +7,11 @@
         </Settings>
         <KeywordLists>
             <Keywords name="Delimiters">&quot;{0&quot;}0</Keywords>
-            <Keywords name="Folder+">design device sub inst</Keywords>
+            <Keywords name="Folder+">design device sub inst group</Keywords>
             <Keywords name="Folder-">end</Keywords>
             <Keywords name="Operators">&quot; &amp; ( ) , . : ; [ ] { } &lt; &gt;</Keywords>
             <Keywords name="Comment">1/* 2*/ 0//</Keywords>
-            <Keywords name="Words1">package include this of is begin attr newattr pin in out inout passive power supply open net</Keywords>
+            <Keywords name="Words1">package include this of is begin attr newattr pin in out inout passive power supply open net each combine</Keywords>
             <Keywords name="Words2"></Keywords>
             <Keywords name="Words3"></Keywords>
             <Keywords name="Words4"></Keywords>
