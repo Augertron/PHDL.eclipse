@@ -16,7 +16,7 @@ device SMA_CON is
 end device;
 
 // a non-polarized surface mount capacitor device declaration
-device cap_0402 is
+device capnp_0402 is
 	attr refPrefix = "C";
 	attr refDes = "";
 	attr name = "";
@@ -24,6 +24,21 @@ device cap_0402 is
 	attr pkg_type = "CC0402";
 	attr mfgr = "PANASONIC";
 	attr partNumber = "ECJ-0EB1A104K";
+	attr cost = "0.03";
+
+	pin a = {1};
+	pin b = {2};
+end device;
+
+// a non-polarized surface mount capacitor device declaration
+device capnp_0603 is
+	attr refPrefix = "C";
+	attr refDes = "";
+	attr name = "";
+	attr value = "";
+	attr pkg_type = "CC0603";
+	attr mfgr = "";
+	attr partNumber = "";
 	attr cost = "0.03";
 
 	pin a = {1};
@@ -292,6 +307,20 @@ device MABACT0039 is
 	pin gnd = {4};
 	pin out_coupled = {3};
 	pin out_thru = {1};
+end device;
+
+device  ELKE is 
+    attr refPrefix = "L";
+    attr refDes = "";
+    attr name = "";
+    attr pkg_type = "FILT_ELK_E";
+    attr mfgr = "Panasonic";
+    attr partNumber = "ELK-E222FA / P9877CT-ND";
+    attr cost= "0.48";
+
+    pin in = {1};
+    pin out = {3};
+    pin gnd = {2};
 end device;
 
 

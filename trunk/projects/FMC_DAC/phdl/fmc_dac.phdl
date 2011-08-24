@@ -190,7 +190,33 @@ begin
         DB0_N = DB0_N;
     end inst;
 
-    inst I120_res of res_0603 is value = "10K/1%"; a = I120; b = gnd; end inst;
+    inst I120_res   of res_0603 is value="10K/1%"; a=I120; b=gnd;  end inst;
+    inst IRQ_PULLUP of res_0603 is value="10K/1%"; a=IRQ;  b=+3V3; end inst;
+    inst clk_term   of res_0603 is value="100/1%"; a=DACCLK_P;  b=DACCLK_N; end inst;
+
+    // Power filtering and decoupling.
+    // For VDDC
+    inst L1  of ELKE  is refDes="L1"; in=+1V8; out=VDDC; gnd=gnd; end inst;
+    inst C3  of capnp_0603 is refDes="C3";  value="0.01UF/X7R/10V"; a=VDDC; b=gnd; end inst;
+    inst C4  of capnp_0603 is refDes="C4";  value="0.01UF/X7R/10V"; a=VDDC; b=gnd; end inst;
+    inst C5  of capnp_0603 is refDes="C5";  value="1000PF/X7R/10V"; a=VDDC; b=gnd; end inst;
+    inst C6  of capnp_0603 is refDes="C6";  value="1000PF/X7R/10V"; a=VDDC; b=gnd; end inst;
+    // For VDDA
+    inst L2  of ELKE  is refDes="L2"; in=+1V8; out=VDDA; gnd=gnd; end inst;
+    inst C7  of capnp_0603 is refDes="C7";  value="0.01UF/X7R/10V"; a=VDDA; b=gnd; end inst;
+    inst C8  of capnp_0603 is refDes="C8";  value="0.01UF/X7R/10V"; a=VDDA; b=gnd; end inst;
+    inst C9  of capnp_0603 is refDes="C9";  value="1000PF/X7R/10V"; a=VDDA; b=gnd; end inst;
+    inst C10 of capnp_0603 is refDes="C10"; value="1000PF/X7R/10V"; a=VDDA; b=gnd; end inst;
+    // For +3V3
+    inst C11 of capnp_0603 is refDes="C11"; value="0.01UF/X7R/10V"; a=VDDA; b=gnd; end inst;
+    inst C12 of capnp_0603 is refDes="C12"; value="0.01UF/X7R/10V"; a=VDDA; b=gnd; end inst;
+    inst C13 of capnp_0603 is refDes="C13"; value="1000PF/X7R/10V"; a=VDDA; b=gnd; end inst;
+    inst C14 of capnp_0603 is refDes="C14"; value="1000PF/X7R/10V"; a=VDDA; b=gnd; end inst;
+    // For +1V8
+    inst C15 of capnp_0603 is refDes="C15"; value="0.01UF/X7R/10V"; a=VDDA; b=gnd; end inst;
+    inst C16 of capnp_0603 is refDes="C16"; value="0.01UF/X7R/10V"; a=VDDA; b=gnd; end inst;
+    inst C17 of capnp_0603 is refDes="C17"; value="1000PF/X7R/10V"; a=VDDA; b=gnd; end inst;
+    inst C18 of capnp_0603 is refDes="C18"; value="1000PF/X7R/10V"; a=VDDA; b=gnd; end inst;
 
     // These are the four mounting holes required by the FMC standard.
     inst(1:4) mounting_holes of mount_hole_125 is
@@ -202,11 +228,11 @@ begin
     end inst;
 
     // Here we create the 1.8V supply
-    inst LDO of LT3022 is 
-        refDes="U2"; 
-        NC=open; OUT=<+1V8>; ADJ_SENSE=1V8_sense; AGND=<gnd>; SHDN_N=+3V3; PGND=<gnd>; IN=<+3V3>; GND_PAD=gnd; 
+    inst LDO of LT3022 is
+        refDes="U2";
+        NC=open; OUT=<+1V8>; ADJ_SENSE=1V8_sense; AGND=<gnd>; SHDN_N=+3V3; PGND=<gnd>; IN=<+3V3>; GND_PAD=gnd;
     end inst;
-    inst C1 of capnp_1210 is refDes="C1"; value="22UF/X7R/25V"; a=+3V3;      b=gnd; end inst; 
+    inst C1 of capnp_1210 is refDes="C1"; value="22UF/X7R/25V"; a=+3V3;      b=gnd; end inst;
     inst C2 of capnp_1210 is refDes="C2"; value="22UF/X7R/25V"; a=+1V8;      b=gnd; end inst;
     inst R2 of res_0805   is refDes="R2"; value="1500/1%";      a=+1V8;      b=1V8_sense; end inst;
     inst R3 of res_0805   is refDes="R3"; value="187/1%";       a=1V8_sense; b=gnd; end inst;
