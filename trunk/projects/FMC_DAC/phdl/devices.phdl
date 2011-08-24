@@ -30,6 +30,21 @@ device cap_0402 is
 	pin b = {2};
 end device;
 
+// a non-polarized surface mount capacitor device declaration
+device capnp is
+	attr refPrefix = "C";
+	attr refDes = "";
+	attr name = "";
+	attr value = "";
+	attr pkg_type = "";
+	attr mfgr = "";
+	attr partNumber = "";
+	attr cost = "";
+
+	pin a = {1};
+	pin b = {2};
+end device;
+
 // an isolation transformer declaration
 device TC4-14+ is
 	attr refPrefix = "T";
@@ -57,6 +72,20 @@ device res_0603 is
 	attr pkg_type = "CR0603";
 	attr mfgr = "PANASONIC";
 	attr partNumber = "ERJ-3EKF1500V";
+	attr cost = "0.07";
+
+	pin a = {1};
+	pin b = {2};
+end device;
+
+device res_0805 is
+	attr refPrefix = "R";
+	attr refDes = "";
+	attr name = "";
+	attr value = "";
+	attr pkg_type = "CR0805";
+	attr mfgr = "";
+	attr partNumber = "";
 	attr cost = "0.07";
 
 	pin a = {1};

@@ -192,7 +192,8 @@ begin
 
     inst I120_res of res_0603 is
         value = "10K/1%";
-        a = I120; b = gnd;
+        a = I120; b = gnd;:w
+
     end inst;
 
 
@@ -205,6 +206,36 @@ begin
         this(4).refDes = "MTG4";
         pin1 = open;
     end inst;
+
+    // Here we create the 1.8V supply
+    inst input_cap_1V8_supply of capnp is
+        refDes = "C1";
+        value  = "22UF/X7R/25V";
+        a = +3V3;
+        b = gnd;
+    end inst;
+
+    inst C1 of capnp is
+        refDes = "C1";
+        value  = "22UF/X7R/25V";
+        pkg_type = "CC1210";
+        a = +1V8;
+        b = gnd;
+    end inst;
+
+    inst R2 of res_0805 is
+        refDes = "R2";
+        value = "1500/1%";
+        a = +1V8;
+        b = 1V8_sense;
+    end inst;
+
+    inst R3 of res_0805 is
+        refDes = "R3";
+        value = "187/1%";
+        a = 1V8_sense;
+        b = gnd
+    end inst;:w
 
 
 
