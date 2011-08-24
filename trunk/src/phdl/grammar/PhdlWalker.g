@@ -184,21 +184,24 @@ options {
 	 * Helper method for the pinAssignment rule.  Given a list of slices, concats, an instance node, and a pinNode
 	 * it assigns all relevant pins to their respective net.
 	 */
-	private void assignPins(int start, List<Integer> slices, List<NetNode> concats, InstanceNode inst, CommonTree pinNode) {
+	private void assignPins(int start, List<Integer> slices, List<NetNode> concats, InstanceNode inst, CommonTree pinNode, boolean combine) {
 		if (start == -1) {
 			// Non-arrayed instance
 			assignNonArrayed(slices, concats, inst, pinNode);
 		}
 		else {
 			// Arrayed instance
-			assignArrayed(start, slices, concats, inst, pinNode);
+			if (combine)
+			 assignArrayedCombine(start, slices, concats, inst, pinNode);
+			else
+			 assignArrayedEach(slices, concats, inst, pinNode);
 		}
 	}
 	
 	/**
 	 * Helper method for assignPins for arrayed instances
 	 */
-	private void assignArrayed(int start, List<Integer> slices, List<NetNode> concats, InstanceNode inst, CommonTree pinNode) {
+	private void assignArrayedCombine(int start, List<Integer> slices, List<NetNode> concats, InstanceNode inst, CommonTree pinNode) {
 		String pinName = pinNode.getText();
 		if (slices.isEmpty()) {	// Single-bit lval
 			// Grab one net from concats
@@ -211,6 +214,23 @@ options {
 			}
 		}
 	}
+	
+	/**
+   * Helper method for assignPins for arrayed instances
+   */
+  private void assignArrayedEach(List<Integer> slices, List<NetNode> concats, InstanceNode inst, CommonTree pinNode) {
+    String pinName = pinNode.getText();
+    if (slices.isEmpty()) { // Single-bit lval
+      // Grab one net from concats
+      PinNode p = inst.getPin(pinName);
+      setConcatToPin(p, concats.get(0), pinNode);
+    } else {  // Multi-bit lval
+      for (int i = 0; i < slices.size(); i++) {
+        PinNode p = inst.getPin(pinName + "[" + slices.get(i) + "]");
+        setConcatToPin(p, concats.get(i), pinNode);
+      }
+    }
+  }
 	
 	/**
 	 * forms the link between a pin node and net node in the design.
@@ -854,14 +874,15 @@ pinAssign[DesignNode des, String instName]
 			}
 			//===================== JAVA BLOCK END ========================
 			
-			// $pinQualifier.each, pinQualifier.combine
-		(pinQualifier[instName, indices, des] | arrayIndices[instName, indices, des]) 
-		pinName=IDENT (sliceList[slices] | pinSlices[slices, $pinName.text, des, instName])
+      {boolean combine = false;}
+		  (pinQualifier[instName, indices, des] {combine = $pinQualifier.combine;} | arrayIndices[instName, indices, des]) 
+		  pinName=IDENT (sliceList[slices] | pinSlices[slices, $pinName.text, des, instName])
 		
 			{	int assignWidth = 0;
 				if (slices.size() == 0 && indices.size() != 0) {assignWidth = indices.size();}
 				if (slices.size() != 0 && indices.size() == 0) {assignWidth = slices.size();}
-				if (slices.size() != 0 && indices.size() != 0) {assignWidth = indices.size() * slices.size();}
+				if (slices.size() != 0 && indices.size() != 0 && combine) {assignWidth = indices.size() * slices.size();}
+				if (slices.size() != 0 && indices.size() != 0 && !combine) {assignWidth = slices.size();}
 			} 
 		
 		concatenation[concats, assignWidth, des])
@@ -869,9 +890,12 @@ pinAssign[DesignNode des, String instName]
 			//==================== JAVA BLOCK BEGIN =======================
 			{	
 				if (indices.size() != 0 && slices.size() != 0) {
-					if (indices.size() * slices.size() != concats.size()) {
+					if (indices.size() * slices.size() != concats.size() && combine) {
 						// Arrayed and Sliced
 						bailOut($pinName, "Invalid assignment width, left = " + indices.size() * slices.size() + ", right = " + concats.size());
+					}
+					else if (slices.size() != concats.size() && !combine) {
+					 bailOut($pinName, "Invalid assignment width, left = " + slices.size() + ", right = " + concats.size());
 					}
 				}
 				else if (slices.size() != 0) {
@@ -899,13 +923,13 @@ pinAssign[DesignNode des, String instName]
 							} else {
 								start = j * slices.size();
 							}
-							assignPins(start, slices, concats, inst, $pinName);
+							assignPins(start, slices, concats, inst, $pinName, combine);
 						}
 					}
 				}
 				if (indices.isEmpty()) {
 					InstanceNode inst = des.getInstance(instName);
-					assignPins(-1,slices, concats, inst, $pinName);
+					assignPins(-1,slices, concats, inst, $pinName, combine);
 				}
 				
 			}
@@ -1093,10 +1117,10 @@ attributeQualifier[String instName, List<Integer> indices, DesignNode des]
  *
  * This rule performs the following functions:
  */
-pinQualifier[String instName, List<Integer> indices, DesignNode des] returns [boolean each, boolean combine]
-	:	{$each = false; $combine = false;}	
-		^(PERIOD ('each' {$each = true;} | 'combine' {$combine = true;}) 
-		(arrayList[indices] | arrayIndices[instName, indices, des]) )
+pinQualifier[String instName, List<Integer> indices, DesignNode des] returns [boolean combine]
+	:	{$combine = false;}	
+		^(PERIOD ('each' | 'combine' {$combine = true;}) 
+		(arrayList[indices] | arrayIndices[instName, indices, des]))
 	;
 
 /**

@@ -15,8 +15,9 @@ begin
 
 	inst(2:0) myRes of res_array is
 		each(2,0).myName = "erin";
-		combine.a = myNet & myNet & myNet & singleNet & singleNet & myNet[1];
-		b = <myNet[0]>;
+		each(0:1).a = myNet & singleNet;
+		combine(2).a = singleNet & myNet;
+		combine.b = <myNet[0]>;
 	end inst myRes;
 
 end design test;
