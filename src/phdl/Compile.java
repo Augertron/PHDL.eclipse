@@ -248,6 +248,11 @@ public class Compile {
 						d.printDesignNode();
 					}
 				}
+				if (verbose) {
+					for (DesignNode d : walker.getDesignNodes()) {
+						d.printDesignNode();
+					}
+				}
 
 			} catch (Exception e) {
 				e.printStackTrace();
