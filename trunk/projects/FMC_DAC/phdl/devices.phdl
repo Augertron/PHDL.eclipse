@@ -31,12 +31,12 @@ device cap_0402 is
 end device;
 
 // a non-polarized surface mount capacitor device declaration
-device capnp is
+device capnp_1210 is
 	attr refPrefix = "C";
 	attr refDes = "";
 	attr name = "";
 	attr value = "";
-	attr pkg_type = "";
+	attr pkg_type = "CC1210";
 	attr mfgr = "";
 	attr partNumber = "";
 	attr cost = "";

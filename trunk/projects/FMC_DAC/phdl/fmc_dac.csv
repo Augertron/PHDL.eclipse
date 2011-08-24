@@ -1,0 +1,12 @@
+C1,C1
+C2,C2
+MTG1,mounting_holes(1)
+MTG2,mounting_holes(2)
+MTG3,mounting_holes(3)
+MTG4,mounting_holes(4)
+P64,docking_connector
+R1,I120_res
+R2,R2
+R3,R3
+U1,fast_dac
+U2,LDO

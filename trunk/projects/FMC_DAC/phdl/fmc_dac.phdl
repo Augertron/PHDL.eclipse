@@ -7,7 +7,7 @@ design fmc_dac is
     include "devices.phdl";
 
     // Power and ground nets.
-    net +3V3, +2V5, +1V8, gnd;
+    net +3V3, +2V5, +1V8, 1V8_sense, gnd;
     net VDDC, VDDA;
 
     // DAC Signals.
@@ -190,13 +190,7 @@ begin
         DB0_N = DB0_N;
     end inst;
 
-    inst I120_res of res_0603 is
-        value = "10K/1%";
-        a = I120; b = gnd;:w
-
-    end inst;
-
-
+    inst I120_res of res_0603 is value = "10K/1%"; a = I120; b = gnd; end inst;
 
     // These are the four mounting holes required by the FMC standard.
     inst(1:4) mounting_holes of mount_hole_125 is
@@ -208,35 +202,14 @@ begin
     end inst;
 
     // Here we create the 1.8V supply
-    inst input_cap_1V8_supply of capnp is
-        refDes = "C1";
-        value  = "22UF/X7R/25V";
-        a = +3V3;
-        b = gnd;
+    inst LDO of LT3022 is 
+        refDes="U2"; 
+        NC=open; OUT=<+1V8>; ADJ_SENSE=1V8_sense; AGND=<gnd>; SHDN_N=+3V3; PGND=<gnd>; IN=<+3V3>; GND_PAD=gnd; 
     end inst;
-
-    inst C1 of capnp is
-        refDes = "C1";
-        value  = "22UF/X7R/25V";
-        pkg_type = "CC1210";
-        a = +1V8;
-        b = gnd;
-    end inst;
-
-    inst R2 of res_0805 is
-        refDes = "R2";
-        value = "1500/1%";
-        a = +1V8;
-        b = 1V8_sense;
-    end inst;
-
-    inst R3 of res_0805 is
-        refDes = "R3";
-        value = "187/1%";
-        a = 1V8_sense;
-        b = gnd
-    end inst;:w
-
+    inst C1 of capnp_1210 is refDes="C1"; value="22UF/X7R/25V"; a=+3V3;      b=gnd; end inst; 
+    inst C2 of capnp_1210 is refDes="C2"; value="22UF/X7R/25V"; a=+1V8;      b=gnd; end inst;
+    inst R2 of res_0805   is refDes="R2"; value="1500/1%";      a=+1V8;      b=1V8_sense; end inst;
+    inst R3 of res_0805   is refDes="R3"; value="187/1%";       a=1V8_sense; b=gnd; end inst;
 
 
 end design fmc_dac;
