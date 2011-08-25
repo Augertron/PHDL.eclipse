@@ -270,9 +270,13 @@ device 2x8_hdr is
 end device;
 
 device mount_hole_125 is
-	attr refPrefix = "MTG";
-	attr pkg_type = "MOUNT_HOLE_125";
-        pin pin1 = {1};
+    attr refPrefix = "MTG";
+    attr refDes = "";
+    attr name = "";
+    attr pkg_type = "MOUNT_HOLE_125";
+    attr cost = "0.00";
+    attr mfgr = "";
+    pin pin1 = {1};
 end device;
 
 device LT3022 is
