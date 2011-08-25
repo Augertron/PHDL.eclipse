@@ -219,13 +219,10 @@ begin
     inst C18 of capnp_0603 is refDes="C18"; value="1000PF/X7R/10V"; a=VDDA; b=gnd; end inst;
 
     // These are the four mounting holes required by the FMC standard.
-    inst(1:4) mounting_holes of mount_hole_125 is
-        this(1).refDes = "MTG1";
-        this(2).refDes = "MTG2";
-        this(3).refDes = "MTG3";
-        this(4).refDes = "MTG4";
-        pin1 = open;
-    end inst;
+    inst mounting_hole1 of mount_hole_125 is refDes="MTG1"; pin1=open; end inst;
+    inst mounting_hole2 of mount_hole_125 is refDes="MTG2"; pin1=open; end inst;
+    inst mounting_hole3 of mount_hole_125 is refDes="MTG3"; pin1=open; end inst;
+    inst mounting_hole4 of mount_hole_125 is refDes="MTG4"; pin1=open; end inst;
 
     // Here we create the 1.8V supply
     inst LDO of LT3022 is
