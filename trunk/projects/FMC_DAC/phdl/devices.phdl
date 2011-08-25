@@ -6,9 +6,9 @@ device SMA_CON is
 	attr refDes = "";
 	attr name = "";
 	attr value = "";
-	attr pkg_type = "SMA_STRAIT";
-	attr mfgr = "MOLEX";
-	attr partNumber = "73391-0070";
+	attr pkg_type = "SMA_AR";
+	attr mfgr = "AMP";
+	attr partNumber = "AMP221790-1";
 	attr cost = "4.97";
 
 	pin sig = {1};
@@ -302,7 +302,7 @@ device MABACT0039 is
 	attr refDes = "";
 	attr name = "";
 	attr value = "";
-	attr pkg_type = "MACOM_SM-138";
+	attr pkg_type = "MABACT0039";
 	attr mfgr = "MACOM";
 	attr partNumber = "MABACT0039";
 	attr cost = "$10.00";
