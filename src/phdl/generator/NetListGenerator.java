@@ -36,12 +36,14 @@ public class NetListGenerator {
 	/**
 	 * Default constructor.
 	 * 
-	 * Takes a design and a map of the reference designators and generates the NetList.
+	 * Takes a design and a map of the reference designators and generates the
+	 * NetList.
 	 * 
 	 * @param design
 	 *            the DesignNode where all the net information is stored.
 	 * @param refMap
-	 *            the map of Reference Designators needed to generated the NetList.
+	 *            the map of Reference Designators needed to generated the
+	 *            NetList.
 	 * 
 	 * @see DesignNode
 	 * @see RefDesGenerator
@@ -66,7 +68,7 @@ public class NetListGenerator {
 
 		for (NetNode n : design.getNets()) {
 
-			if (n.getName().equals("open"))
+			if (n.getName().equals("OPEN"))
 				continue;
 
 			sb.append("*SIGNAL* " + n.getName().toUpperCase() + "\n");
@@ -80,7 +82,7 @@ public class NetListGenerator {
 				String ref2 = ((InstanceNode) pin2.getParent()).getRefDes();
 				String name1 = pin1.getPinName();
 				String name2 = pin2.getPinName();
-				
+
 				sb.append(" " + refMap.get(ref1).getRefDes() + "." + name1);
 				sb.append(" " + refMap.get(ref2).getRefDes() + "." + name2 + "\n");
 			}
