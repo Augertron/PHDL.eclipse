@@ -221,15 +221,15 @@ begin
     inst C9  of capnp_0603 is refDes="C9";  value="1000PF/X7R/10V"; a=VDDA; b=gnd; end inst;
     inst C10 of capnp_0603 is refDes="C10"; value="1000PF/X7R/10V"; a=VDDA; b=gnd; end inst;
     // For +3V3
-    inst C11 of capnp_0603 is refDes="C11"; value="0.01UF/X7R/10V"; a=VDDA; b=gnd; end inst;
-    inst C12 of capnp_0603 is refDes="C12"; value="0.01UF/X7R/10V"; a=VDDA; b=gnd; end inst;
-    inst C13 of capnp_0603 is refDes="C13"; value="1000PF/X7R/10V"; a=VDDA; b=gnd; end inst;
-    inst C14 of capnp_0603 is refDes="C14"; value="1000PF/X7R/10V"; a=VDDA; b=gnd; end inst;
+    inst C11 of capnp_0603 is refDes="C11"; value="0.01UF/X7R/10V"; a=+3V3; b=gnd; end inst;
+    inst C12 of capnp_0603 is refDes="C12"; value="0.01UF/X7R/10V"; a=+3V3; b=gnd; end inst;
+    inst C13 of capnp_0603 is refDes="C13"; value="1000PF/X7R/10V"; a=+3V3; b=gnd; end inst;
+    inst C14 of capnp_0603 is refDes="C14"; value="1000PF/X7R/10V"; a=+3V3; b=gnd; end inst;
     // For +1V8
-    inst C15 of capnp_0603 is refDes="C15"; value="0.01UF/X7R/10V"; a=VDDA; b=gnd; end inst;
-    inst C16 of capnp_0603 is refDes="C16"; value="0.01UF/X7R/10V"; a=VDDA; b=gnd; end inst;
-    inst C17 of capnp_0603 is refDes="C17"; value="1000PF/X7R/10V"; a=VDDA; b=gnd; end inst;
-    inst C18 of capnp_0603 is refDes="C18"; value="1000PF/X7R/10V"; a=VDDA; b=gnd; end inst;
+    inst C15 of capnp_0603 is refDes="C15"; value="0.01UF/X7R/10V"; a=+1V8; b=gnd; end inst;
+    inst C16 of capnp_0603 is refDes="C16"; value="0.01UF/X7R/10V"; a=+1V8; b=gnd; end inst;
+    inst C17 of capnp_0603 is refDes="C17"; value="1000PF/X7R/10V"; a=+1V8; b=gnd; end inst;
+    inst C18 of capnp_0603 is refDes="C18"; value="1000PF/X7R/10V"; a=+1V8; b=gnd; end inst;
 
     // These are the four mounting holes required by the FMC standard.
     inst mounting_hole1 of mount_hole_125 is refDes="MTG1"; pin1=open; end inst;
