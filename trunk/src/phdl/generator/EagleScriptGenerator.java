@@ -32,12 +32,14 @@ public class EagleScriptGenerator {
 	/**
 	 * Default constructor.
 	 * 
-	 * Takes a design and a map of the reference designators and generates the Eagle script.
+	 * Takes a design and a map of the reference designators and generates the
+	 * Eagle script.
 	 * 
 	 * @param design
 	 *            the DesignNode where all the net information is stored.
 	 * @param refMap
-	 *            the map of Reference Designators needed to generated the Eagle script.
+	 *            the map of Reference Designators needed to generated the Eagle
+	 *            script.
 	 * 
 	 * @see DesignNode
 	 * @see RefDesGenerator
@@ -108,7 +110,7 @@ public class EagleScriptGenerator {
 					// set the special instance name and device name attributes
 					sb.append("ATTRIBUTE " + i.getRefDes() + " INST_NAME '" + i.getName() + "';\n");
 					sb.append("ATTRIBUTE " + i.getRefDes() + " DEV_NAME '"
-						+ i.getDevice().getName() + "';\n");
+							+ i.getDevice().getName() + "';\n");
 
 					// add all the attributes except "values"
 					for (AttributeNode a : i.getAttributes()) {
@@ -139,7 +141,7 @@ public class EagleScriptGenerator {
 			for (NetNode n : design.getNets()) {
 
 				// ignore the open net
-				if (n.getName().equals("open"))
+				if (n.getName().equals("OPEN"))
 					continue;
 
 				signal((NetNode) n);
@@ -218,11 +220,15 @@ public class EagleScriptGenerator {
 					break;
 
 				case PIN:
-					// rip-up and ratsnest the signal the old pin was attached to
-					// sb.append("RIPUP " + ((PinNode) olds.get(i)).getNet().getName() + ";\n");
+					// rip-up and ratsnest the signal the old pin was attached
+					// to
+					// sb.append("RIPUP " + ((PinNode)
+					// olds.get(i)).getNet().getName() + ";\n");
 					sb.append("RATSNEST;\n");
-					// delete the signal from all pins on using a custom EAGLE ULP
-					// sb.append("RUN del-signal " + ((PinNode) olds.get(i)).getNet().getName()
+					// delete the signal from all pins on using a custom EAGLE
+					// ULP
+					// sb.append("RUN del-signal " + ((PinNode)
+					// olds.get(i)).getNet().getName()
 					// + ";\n");
 					// store the signal to add after processing all removes
 					signals.add(news.get(i));
@@ -295,7 +301,7 @@ public class EagleScriptGenerator {
 		if (i.getAttribute("LIBNAME") != null) {
 			lib = i.getAttribute("LIBNAME").getValue();
 			sb.append("ADD " + i.getFootprint() + "@" + lib + " '" + i.getRefDes() + "' (" + x
-				+ " " + y + ");\n");
+					+ " " + y + ");\n");
 		} else
 			System.err.println("ERROR: libName attribute undeclared: " + i.getName());
 
@@ -322,7 +328,7 @@ public class EagleScriptGenerator {
 	private void replacePackage(AttributeNode a) {
 		String refDes = ((InstanceNode) ((AttributeNode) a).getParent()).getRefDes();
 		String lib = ((InstanceNode) ((AttributeNode) a).getParent()).getAttribute("LIBNAME")
-			.getValue();
+				.getValue();
 		sb.append("REPLACE " + refDes + " '" + a.getValue() + "@" + lib + "';\n");
 	}
 }
