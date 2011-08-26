@@ -1,0 +1,25 @@
+QUANTITY, NAME, REFDES, PKG_TYPE, COST, LIBNAME, PARTNUM, SUPPLIER, POWER, TOLERANCE, VALUE, VOLTAGE
+1, SPST, SW1, TL1105T, 0.58, switch, EG1827-ND, digikey, , , , 
+1, 9V-CLIP, J3, BH9VPC, 1.30, con-batt, BH9V-PC-ND, digikey, , , , 
+5, BJT, Q1; Q3; Q4; Q5; Q6, TO92, 0.43, transistor-neu-to92, 2N3904TFCT-ND, digikey, , , , 
+1, BJT, Q2, TO92, 0.43, transistor-neu-to92, 2N3906D26ZCT-ND, digikey, , , , 
+13, Resistor, R1; R2; R3; R4; R5; R6; R7; R8; R9; R25; R26; R27; R35, 0207/7, 0.08, rcl, CF14JT10K0CT-ND, digikey, 1/4w, 5%, 10K, 
+5, Capacitor, C1; C2; C3; C4; C5, C050-024X044, 0.36, rcl, 445-2852-ND, digikey, , , 1uf, 50V
+1, LM317LDR2, U1, SO08, 0.63, linear, LM317LDR2GOSCT-ND, digikey, , , , 
+1, ATTINY2313-20SU, U2, SOIC20S, 2.34, atmel, ATTINY2313-20SU, newark, , , , 
+2, Capacitor, C6; C7, C050-024X044, 0.36, rcl, 445-2852-ND, digikey, , , 18pf, 50V
+1, Capacitor, C8, C050-024X044, 0.36, rcl, 445-2852-ND, digikey, , , 10uf, 25V
+1, SMT, X1, HC49U-H, 2.10, crystal, X1000-ND, , , , 1.8432mhz, 
+8, Resistor, R10; R11; R12; R13; R14; R15; R16; R17, 0207/7, 0.08, rcl, S120QCT-ND, digikey, 1/4w, 5%, 120, 
+4, Resistor, R18; R19; R20; R21, 0207/7, 0.08, rcl, CF14JT1K00CT-ND, digikey, 1/4w, 5%, 1K, 
+2, DISP_A-562G, DISP1; DISP2, LDD-A514RI, 3.05, seven-seg, LDD-A514RI, digikey, , , , 
+4, TEST_POINT, TP1; TP2; TP3; TP4, TEST_POINT, , , Notstuffed, , , , , 
+1, LM324DR, U3, SO14, 0.61, linear, 296-14597-1-ND, digikey, , , , 
+5, Capacitor, C9; C10; C13; C20; C21, C050-024X044, 0.95, rcl, 445-2852-ND, digikey, , , 10uF, 25V
+6, Capacitor, C11; C12; C16; C17; C18; C19, C050-024X044, 0.36, rcl, 445-2852-ND, digikey, , , .1uF, 50V
+1, Capacitor, C14, C050-024X044, 0.24, rcl, 445-2852-ND, digikey, , , 1uF, 15V
+1, Capacitor, C15, C050-024X044, unknown, rcl, 445-2852-ND, digikey, , , 470pF, 50V
+1, Resistor, R22, 0207/7, 0.08, rcl, CD14ZT0R00CT-ND, digikey, 1/4w, 5%, 0, 
+3, Resistor, R23; R24; R28, 0207/7, 0.08, rcl, CF14JT10M0CT-ND, digikey, 1/4w, 5%, 10M, 
+5, Resistor, R29; R30; R31; R32; R34, 0207/7, 0.08, rcl, CF14JT100KCT-ND, digikey, 1/4w, 5%, 100K, 
+1, Resistor, R33, 0207/7, 0.08, rcl, CF14JT4K70CT-ND, digikey, 1/4w, 5%, 4.7K, 

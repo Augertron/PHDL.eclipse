@@ -888,14 +888,14 @@ pinAssign[DesignNode des, String instName]
 		concatenation[concats, assignWidth, des])
 		
 			//==================== JAVA BLOCK BEGIN =======================
-			{	
+			{	  
 				if (indices.size() != 0 && slices.size() != 0) {
 					if (indices.size() * slices.size() != concats.size() && combine) {
 						// Arrayed and Sliced
 						bailOut($pinName, "Invalid assignment width, left = " + indices.size() * slices.size() + ", right = " + concats.size());
 					}
 					else if (slices.size() != concats.size() && !combine) {
-					 bailOut($pinName, "Invalid assignment width, left = " + slices.size() + ", right = " + concats.size());
+						bailOut($pinName, "Invalid assignment width, left = " + slices.size() + ", right = " + concats.size());
 					}
 				}
 				else if (slices.size() != 0) {
@@ -905,9 +905,12 @@ pinAssign[DesignNode des, String instName]
 					}
 				}
 				else if (indices.size() != 0) {
-					if (indices.size() != concats.size()) {
-						// Arrayed and Not Sliced
-						bailOut($pinName, "Invalid assignment width, left = " + slices.size() + ", right = " + concats.size());
+					// Arrayed and Not Sliced
+					if (concats.size() != 1 && !combine) {
+						bailOut($pinName, "Invalid assignment width, left = " + 1 + ", right = " + concats.size());
+					}
+					else if (combine && concats.size() != indices.size()) {
+						bailOut($pinName, "Invalid assignment width, left = " + indices.size() + ", right = " + concats.size());
 					}
 				}
 			

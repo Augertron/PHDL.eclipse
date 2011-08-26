@@ -1,0 +1,57 @@
+Bill of Materials - ptzlanc
+QUANTITY, NAME, REFDES, PKG_TYPE, COST, LIBNAME, MFGR, PARTNUMBER, SUPPLIER, VALUE, VOLTAGE, DATASHEET, TOLERANCE
+1, top_tq144, U0, tq144, 17.35, xilinx_devices, XILINX, 122-1711-ND, DIGI-KEY, , , , 
+27, C0603, C0; C1; C2; C3; C4; C5; C6; C7; C8; C9; C10; C11; C20; C21; C22; C23; C35; C36; C37; C38; C39; C40; C41; C42; C44; C45; C46, C0603MP, , rc-master-smd, , , , 0.047u, , , 
+12, C0603, C12; C13; C14; C15; C16; C17; C18; C19; C24; C25; C26; C27, C0603MP, , rc-master-smd, , , , 0.01u, , , 
+11, CP_1206MP/T, C28; C29; C30; C31; C32; C33; C34; C73; C74; C75; C78, C1206MP/T, , rc-master-smd, , , , 10u, , , 
+2, RAM256KX16, U1; U2, TSOPII44, 6.60, memory-issi, ISSI, 706-1035-ND, DIGI-KEY, , , doc/61LV25616AL.pdf, 
+1, OSC_50MHZ, X0, SM77H, 2.63, crystal, Abracon, 535-9330-1-ND, DIGI-KEY, , , doc/ASV.pdf, 
+1, C0603, C43, C0603MP, , rc-master-smd, , , , , , , 
+2, TL1105T, S0; S1, TL1105T, 0.58, switch, E-Switch, EG1827-ND, DIGI-KEY, , , doc/TL1105.pdf, 
+2, R0603, R0; R1, R0603MP, , rc-master-smd, , , , , , , 5%
+3, HDR_1X6, J0; J1; J7, 1X06/90, , pinhead, , , , , , , 
+1, HDR_1X4, J2, SIP-100-04-40, , con-headers-jp, , , , , , , 
+1, HDR_2X3, J3, DIL-100-2X03, , con-headers-jp, , , , , , , 
+3, HDR_1X3, J4; J5; J18, SIP-100-03-40, , con-headers-jp, , , , , , , 
+1, rom, U3, TSSOP20, 4.25, xilinx-flash, XILINX, 122-1287-5-ND, DIGI-KEY, , , doc/ds123.pdf, 
+25, R0603, R2; R3; R7; R12; R13; R14; R15; R16; R17; R18; R19; R20; R21; R22; R23; R24; R25; R26; R27; R58; R59; R60; R61; R62; R63, R0603MP, , rc-master-smd, , , , 4.7k, , , 5%
+1, R0603, R4, R0603MP, , rc-master-smd, , , , 270R, , , 5%
+4, LD0603, LD0; LD9; LD10; LD11, 0603MP, 0.41, led, DIALIGHT, 350-2035-1-ND, DIGI-KEY, , , , 
+8, R0603, R5; R6; R9; R10; R11; R64; R65; R69, R0603MP, , rc-master-smd, , , , 100R, , , 5%
+1, R0603, R8, R0603MP, , rc-master-smd, , , , 75R, , , 5%
+1, HDR_2X7, J6, 79107-14, 1.76, con-headers-jp, , WM17469-ND, DIGI-KEY, , , , 
+1, dipswitch, S2, DIL16, 1.14, ref-packages, E-Switch, 450-1366-ND, DIGI-KEY, , , doc/ENG_CD_1825057_P.pdf, 
+8, LD0603, LD1; LD2; LD3; LD4; LD5; LD6; LD7; LD8, 0603MP, 0.41, led, DIALIGHT, 350-2029-1-ND, DIGI-KEY, , , , 
+11, R0603, R28; R29; R30; R31; R32; R33; R34; R35; R70; R73; R75, R0603MP, , rc-master-smd, , , , 390R, , , 5%
+2, 7414_SOIC, U4; U5, SO14, 0.54, ref-packages-smd-ipc, Fairchild, 74LCX14MXCT-ND, DIGI-KEY, , , doc/74LCX14.pdf, 
+4, HDR_1X5, J8; J9; J10; J11, 70543-05, , con-molex, , , , , , , 
+8, C0603, C47; C48; C65; C66; C67; C68; C69; C71, C0603MP, , rc-master-smd, , , , 0.1u, , , 
+8, R0603, R36; R37; R38; R39; R40; R41; R67; R68, R0603MP, , rc-master-smd, , , , 1k, , , 5%
+2, HIP4086, U6; U7, SO24W, 9.15, ref-packages-smd-ipc, Intersil, HIP4086ABZTCT-ND, DIGI-KEY, , , doc/HIP5086.pdf, 
+2, CP_1206MP/T, C49; C50, C1206MP/T, , rc-master-smd, , , , 4.7u, , , 
+2, CP_1206MP/T, C51; C52, C1206MP/T, , rc-master-smd, , , , 1u, , , 
+2, R0603, R42; R44, R0603MP, , rc-master-smd, , , , 22K, , , 5%
+2, R0603, R43; R45, R0603MP, , rc-master-smd, , , , 47K, , , 5%
+2, C0603, C53; C54, C0603MP, , rc-master-smd, , , , 470p, , , 
+6, C0603, C55; C56; C57; C58; C59; C60, C0603MP, 0.31, rc-master-smd, Murata, 490-5402-1-ND, DIGI-KEY, 0.22u, , , 
+18, DO214AC, D0; D1; D2; D3; D4; D5; D6; D7; D8; D9; D10; D11; D12; D13; D14; D15; D16; D17, DO214AC, 0.403, diode, Vishay, US1D-E3/61TGICT-ND, DIGI-KEY, , , doc/DS25002.pdf, 
+12, R0603, R46; R47; R48; R49; R50; R51; R52; R53; R54; R55; R56; R57, R0603MP, , rc-master-smd, , , , 10R, , , 5%
+12, TO252, Q0; Q1; Q2; Q3; Q4; Q5; Q6; Q7; Q8; Q9; Q10; Q11, TO252, 1.56, ref-packages-smd-ipc, Fairchild, FDD3682CT-ND, DIGI-KEY, , , , 
+2, HDR_1X3, J12; J13, 22-23-2031, , con-molex, , , , , , , 
+2, LMD18200T, U8; U9, TO-220-11H, 17.78, national-semi, National, LMD18200T-ND, DIGI-KEY, , , doc/LMD18200.pdf, 
+4, C0603, C61; C62; C63; C64, C0603MP, , rc-master-smd, , , , 10n, , , 
+4, HDR_1X2, J14; J15; J16; J19, 22-23-2021, , con-molex, , , , , , , 
+1, ST3232C, U10, SO16, 2.33, ref-packages-smd-ipc, STMicro, 497-3731-1-ND, DIGI-KEY, , , doc/CD00002253.pdf, 
+1, SUBD9F, J17, 09HP, 1.27, con-subd, FCI, 609-4008-ND, DIGI-KEY, , , , 
+1, BSR14, Q12, SOT23-BEC, 0.43, transistor-npn, Fairchild, BSR14CT-ND, DIGI-KEY, , , doc/BSR14.pdf, 
+1, R0603, R66, R0603MP, , rc-master-smd, , , , 220R, , , 5%
+1, DC_JACK, J20, DCJ0202, 0.80, con-jack, CUI, CP-102B-ND, DIGI-KEY, , , doc/CUI_PJ-102B_Datasheet.pdf, 
+1, L7805, U11, D2PACK, 0.92, v-reg, STMicro, 497-1170-1-ND, DIGI-KEY, , , doc/CD00000444.pdf, 
+1, C0603, C70, C0603MP, , rc-master-smd, , , , 0.33u, , , 
+1, LM1086CS, U12, TO263, 2.39, v-reg, National, LM1086IS-ADJ-ND, DIGI-KEY, , , doc/LM1086.pdf, 
+3, CP_1206MP/T, C72; C76; C79, C1206MP/T, , rc-master-smd, , , , 22u, , , 
+2, R0603, R71; R72, R0603MP, , rc-master-smd, , , , 240R, , , 5%
+1, LF25CDT, U13, DPACK, 1.76, v-reg, STMicro, 497-6449-1-ND, DIGI-KEY, , , doc/CD00000546.pdf, 
+1, CP_1206MP/T, C77, C1206MP/T, , rc-master-smd, , , , 0.1u, , , 
+1, R0603, R74, R0603MP, , rc-master-smd, , , , 2.2k, , , 5%
+1, LD1117, U14, DPACK, 0.86, v-reg, STMicro, 497-1231-1-ND, DIGI-KEY, , , doc/CD00000544.pdf, 
