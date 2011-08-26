@@ -238,6 +238,7 @@ public class Compile {
 					if (eagle)
 						gen.generateEagleScript();
 					gen.generateInfo();
+
 				}
 
 				if (dumpEn) {
