@@ -1,30 +1,38 @@
 
 device Resistor is
 	attr refPrefix = "R";
-	attr pkg_type = "0603";
+	attr libName = "rcl";
+	attr pkg_type = "0207/7";
 	attr value = "10K";
 	attr tolerance = "5%";
-	attr partNum = "ERJ-3GEYJ103V";
+	attr partNum = "CF14JT10K0CT-ND";
+	attr cost = "0.08";
+	attr supplier = "digikey";
+	attr power = "1/4w";
 	pin a = {1};
 	pin b = {2};
 end device;
 
 device Capacitor is
 	attr refPrefix = "C";
-	attr pkg_type = "0603";
+	attr libName = "rcl";
+	attr pkg_type = "C050-024X044";
 	attr value = "1uf";
 	attr voltage = "50V";
-	attr partNum = "ECJ-1VC1H471J";
+	attr partNum = "445-2852-ND";
+	attr supplier = "digikey";
+	attr cost = "0.36";
 	pin a = {1};
 	pin b = {2};
 end device;
 
 device BJT is
 	attr refPrefix = "Q";
-	attr value = "MMBT3904";
-	attr pkg_type = "SOT23_MMBT3904";
-	attr partNum = "MMBT3904DICT";
-	attr config = "NPN"; 
+	attr pkg_type = "TO92";
+	attr libName = "transistor-neu-to92";
+	attr partNum = "2N3904TFCT-ND";
+	attr supplier = "digikey";
+	attr cost = "0.43";
 	pin e = {e};
 	pin c = {c};
 	pin b = {b};
@@ -33,7 +41,10 @@ end device;
 device LM324DR is
 	attr refPrefix = "U";
 	attr pkg_type = "SO14";
-	attr partNum = "LM324DR";
+	attr libName = "linear";
+	attr partNum = "296-14597-1-ND";
+	attr supplier = "digikey";
+	attr cost = "0.61";
 	// begin pins
 	pin[3:0] pos = {3, 5, 10, 12};
 	pin[3:0] neg = {2, 6, 9, 13};
@@ -44,8 +55,11 @@ end device;
 
 device ATTINY2313-20SU is
 	attr refPrefix = "U";
-	attr pkg_type = "SOP20.375";
+	attr pkg_type = "SOIC20S";
+	attr libName = "atmel";
 	attr partNum = "ATTINY2313-20SU";
+	attr supplier = "newark";
+	attr cost = "2.34";
 	// begin pins
 	pin vcc = {20};
 	pin reset = {1};
@@ -56,8 +70,11 @@ end device;
 
 device LM317LDR2 is
 	attr refPrefix = "U";
-	attr pkg_type = "SO8";
-	attr partNum = "LM317LDR2";
+	attr pkg_type = "SO08";
+	attr libName = "linear";
+	attr partNum = "LM317LDR2GOSCT-ND";
+	attr cost = "0.63";
+	attr supplier = "digikey";
 	// begin pins
 	pin vin = {1};
 	pin[3:0] vout = {2,3,6,7};
@@ -67,8 +84,11 @@ end device;
 
 device DISP_A-562G is
 	attr refPrefix = "DISP";
-	attr pkg_type = "DISP_A-562G";
-	attr partNum = "DISP_A-562G";
+	attr libName = "seven-seg";
+	attr pkg_type = "LDD-A514RI";
+	attr partNum = "LDD-A514RI";
+	attr supplier = "digikey";
+	attr cost = "3.05";
 	// begin pins
 	pin[1:0] A = {16,11};
 	pin[1:0] B = {15,10};
@@ -83,55 +103,35 @@ end device;
 
 device 9V-CLIP is
 	attr refPrefix = "J";
-	attr pkg_type = "CONN PCB 9V";
-	attr partNum = "9V_CLIP (special order)";
+	attr libName = "con-batt";
+	attr pkg_type = "BH9VPC";
+	attr partNum = "BH9V-PC-ND";
+	attr supplier = "digikey";
+	attr cost = "1.30";
 	// begin pins
 	pin pos = {1};
 	pin neg = {2};
 end device;
 
-device AVRPGM is
-	attr refPrefix = "J";
-	attr pkg_type = "CONN-DIL6";
-	attr partNum = "Not stuffed";
-	// begin pins
-	pin vcc = {2};
-	pin gnd = {6};
-	pin MISO = {1};
-	pin SCK = {3};
-	pin RST = {5};
-	pin MOSI = {4};
-end device;
-
-device CONN-H10 is
-	attr refPrefix = "J";
-	attr pkg_type = "10 PIN EDGE CARD";
-	attr partNum = "PCB feature";
-	// begin pins
-	pin 5v = {2};
-	pin 9v = {10};
-	pin MISO = {1};
-	pin SCK = {3};
-	pin MOSI = {4};
-	pin RST = {5};
-	pin[1:0] gnd = {6, 8};
-	pin nc = {7};
-	pin SW = {9};
-end device;
-
 device SPST is
 	attr refPrefix = "SW";
-	attr pkg_type = "B3FS-1002P";
-	attr partNum = "B3FS-1002P";
+	attr pkg_type = "TL1105T";
+	attr libName = "switch";
+	attr partNum = "EG1827-ND";
+	attr supplier = "digikey";
+	attr cost = "0.58";
 	// begin pins
 	pin a = {1};
 	pin b = {2};
+	pin c = {3};
+	pin d = {4};
 end device;
 
 device TEST_POINT is
 	attr refPrefix = "TP";
 	attr pkg_type = "TEST_POINT";
 	attr partNum = "Not stuffed";
+	attr cost = "";
 	// begin pins
 	pin a = {1};
 end device;
@@ -139,8 +139,10 @@ end device;
 device SMT is
 	attr refPrefix = "X";
 	attr value = "1.8432mhz";
-	attr pkg_type = "SMT_CSM7";
-	attr partNum = "Not stuffed";
+	attr pkg_type = "HC49U-H";
+	attr libName = "crystal";
+	attr partNum = "X1000-ND";
+	attr cost = "2.10";
 	// begin pins
 	pin a = {1};
 	pin b = {2};

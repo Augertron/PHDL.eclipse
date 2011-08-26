@@ -7,7 +7,7 @@
  
 design heartMon is
 
-	include "phdl/HeartMonitor/devices.phdl";
+	include "devices.phdl";
 	
 	net 5v, 9v, gnd, vcc, 9V_ANA, agnd;
 	net PROBE1, PROBE2;
@@ -39,30 +39,12 @@ design heartMon is
 begin
 
 	// ******************* Page 1 *******************
-	inst pp_conn of CONN-H10 is
-		MISO = MISO;
-		5v = 5v;
-		SCK = SCK;
-		MOSI = MOSI;
-		RST = RST;
-		gnd = <gnd>;
-		nc = open;
-		SW = SW;
-		9v = 9v;
-	end inst;
-	
-	inst ep_conn of AVRPGM is
-		MISO = MISO;
-		SCK = SCK;
-		RST = RST;
-		vcc = 5v;
-		MOSI = MOSI;
-		gnd = gnd;
-	end inst;
 	
 	inst switch of SPST is
 		a = SW;
-		b = gnd;
+		b = open;
+		c = gnd;
+		d = open;
 	end inst;
 	
 	inst volt_clip of 9V-CLIP is
@@ -71,51 +53,51 @@ begin
 	end inst;
 	
 	inst(1:2) power_bjt of BJT is
-		this(1).c = gnd;
-		this(1).e = SW;
-		this(1).b = power_bjt_b[1];
+		combine(1).c = gnd;
+		combine(1).e = SW;
+		combine(1).b = power_bjt_b[1];
 		
-		this(2).c = power_bjt_c;
-		this(2).e = 5v;
-		this(2).b = power_bjt_b[2];
-		this(2).config = "PNP";
+		combine(2).c = power_bjt_c;
+		combine(2).e = 5v;
+		combine(2).b = power_bjt_b[2];
+		each(2).partNum = "2N3906D26ZCT-ND";
 	end inst;
 	
 	inst(1:7) power_res_array of Resistor is
-		this(1).a = power_bjt_b[1];
-		this(1).b = SW;
+		combine(1).a = power_bjt_b[1];
+		combine(1).b = SW;
 		
-		this(2).a = power_bjt_b[1];
-		this(2).b = power_bjt_c;
+		combine(2).a = power_bjt_b[1];
+		combine(2).b = power_bjt_c;
 		
-		this(3).a = 5v;
-		this(3).b = power_bjt_b[2];
+		combine(3).a = 5v;
+		combine(3).b = power_bjt_b[2];
 		
-		this(4).a = power_bjt_b[2];
-		this(4).b = PWR_ENA;
+		combine(4).a = power_bjt_b[2];
+		combine(4).b = PWR_ENA;
 		
-		this(5).a = vcc;
-		this(5).b = adj;
+		combine(5).a = vcc;
+		combine(5).b = adj;
 		
-		this(6).a = adj;
-		this(6).b = gnd;
+		combine(6).a = adj;
+		combine(6).b = gnd;
 		
-		this(7).a = gnd;
-		this(7).b = agnd;
+		combine(7).a = gnd;
+		combine(7).b = agnd;
 	end inst;
 	
 	inst(1:4) power_caps of Capacitor is
-		this(1).a = gnd;
-		this(1).b = SW;
+		combine(1).a = gnd;
+		combine(1).b = SW;
 		
-		this(2).a = power_bjt_b[1];
-		this(2).b = SW;
+		combine(2).a = power_bjt_b[1];
+		combine(2).b = SW;
 		
-		this(3).a = 9v;
-		this(3).b = gnd;
+		combine(3).a = 9v;
+		combine(3).b = gnd;
 		
-		this(4).a = vcc;
-		this(4).b = gnd;
+		combine(4).a = vcc;
+		combine(4).b = gnd;
 	end inst;
 	
 	inst power_supply of LM317LDR2 is
@@ -148,30 +130,33 @@ begin
 	end inst;
 	
 	inst(1:2) cpu_resistors of Resistor is
-		this(1).a = 5v;
-		this(1).b = RST;
+		combine(1).a = 5v;
+		combine(1).b = RST;
 		
-		this(2).a = cpu_res;
-		this(2).b = filter_node;
+		combine(2).a = cpu_res;
+		combine(2).b = filter_node;
 	end inst;
 	
 	inst(1:4) cpu_caps of Capacitor is
-		this(1).a = 5v;
-		this(1).b = gnd;
+		combine(1).a = 5v;
+		combine(1).b = gnd;
 		
-		this(2).a = SEGDP;
-		this(2).b = gnd;
+		combine(2).a = SEGDP;
+		combine(2).b = gnd;
+		combine(3).a = x1a;
+		combine(3).b = gnd;
+		each(2:3).value = "18pf";
 		
-		this(3).a = x1a;
-		this(3).b = gnd;
+		combine(4).a = filter_node;
+		combine(4).b = gnd;
+		each(4).value = "10uf";
+		each(4).voltage = "25V";
 		
-		this(4).a = filter_node;
-		this(4).b = gnd;
 	end inst;
 	
 	inst tranducer of SMT is
-		this.a = x1a;
-		this.b = SEGDP;
+		combine.a = x1a;
+		combine.b = SEGDP;
 	end inst;
 	
 	MOSI = DIG2;
@@ -181,21 +166,23 @@ begin
 	// ******************* Page 2 *******************
 	inst(1:8) res_seg_array of Resistor is
 		value = "120";
-		a = SEGA & SEGB & SEGC & SEGD & SEGE & SEGF & SEGG & SEGDP;
-		b = SA & SB & SC & SD & SE & SF & SG & SDP;
+		combine.a = SEGA & SEGB & SEGC & SEGD & SEGE & SEGF & SEGG & SEGDP;
+		combine.b = SA & SB & SC & SD & SE & SF & SG & SDP;
+		partNum = "S120QCT-ND";
 	end inst;
 
 	inst(1:4) res_bjt_array of Resistor is
 		value = "1K";
 		tolerance = "5%";
-		a = DIG1 & DIG2 & DIG3 & DIG4;
-		b = bjt_b;
+		partNum = "CF14JT1K00CT-ND";
+		combine.a = DIG1 & DIG2 & DIG3 & DIG4;
+		combine.b = bjt_b;
 	end inst;
 
 	inst(1:4) bjt_seg_array of BJT is
-		b = bjt_b;
-		c = <5v>;
-		e = ca2[2] & ca1[2] & ca2[1] & ca1[1];
+		combine.b = bjt_b;
+		combine.c = <5v>;
+		combine.e = ca2[2] & ca1[2] & ca2[1] & ca1[1];
 	end inst;
 	
 	inst(1:2) displays of DISP_A-562G is
@@ -207,11 +194,11 @@ begin
 		F = <SF>;
 		G = <SG>;
 		DP = <SDP>;
-		DIG = ca1[1] & ca2[1] & ca1[2] & ca2[2];
+		combine.DIG = ca1[1] & ca2[1] & ca1[2] & ca2[2];
 	end inst;
 	
 	inst(1:4) test_points of TEST_POINT is
-		a = PROBE1 & PROBE2 & agnd & gnd;
+		combine.a = PROBE1 & PROBE2 & agnd & gnd;
 	end inst;
 	
 	// ******************* Page 3 *******************
@@ -224,117 +211,132 @@ begin
 	end inst;
 	
 	inst(1:13) caps of Capacitor is
-		this(1:2).a = <9V_ANA>;
-		this(1:2).b = <agnd>;
-		this(1:2).value = "10uF";
-		this(1:2).voltage = "25V";
+		combine(1:2).a = <9V_ANA>;
+		combine(1:2).b = <agnd>;
+		each(1:2).value = "10uF";
+		each(1:2).voltage = "25V";
+		each(1:2).cost = "0.95";
 		
-		this(3:4).a = op_pos[1:2];
-		this(3:4).b = PROBE1 & PROBE2;
-		this(3:4).value = ".1uF";
-		this(3:4).voltage = "50V";
+		combine(3:4).a = op_pos[1:2];
+		combine(3:4).b = PROBE1 & PROBE2;
+		each(3:4).value = ".1uF";
+		each(3:4).voltage = "50V";
 		
-		this(5).a = large_rc_node;
-		this(5).b = agnd;
-		this(5).value = "10uf";
-		this(5).voltage = "25V";
+		combine(5).a = large_rc_node;
+		combine(5).b = agnd;
+		each(5).value = "10uF";
+		each(5).voltage = "25V";
+		each(5).cost = "0.95";
 		
-		this(6).a = rc_node[3];
-		this(6).b = op_neg[2];
-		this(6).value = "1uF";
-		this(6).voltage = "15V";
+		combine(6).a = rc_node[3];
+		combine(6).b = op_neg[2];
+		each(6).value = "1uF";
+		each(6).voltage = "15V";
+		each(6).cost = "0.24";
 		
-		this(7).a = op_neg[2];
-		this(7).b = op_out[2];
-		this(7).value = "460pF";
-		this(7).voltage = "50V";
+		combine(7).a = op_neg[2];
+		combine(7).b = op_out[2];
+		each(7).value = "470pF";
+		each(7).voltage = "50V";
+		each(7).cost = "unknown";
 		
-		this(8).a = inter_res;
-		this(8).b = op_neg[3];
-		this(9).a = op_pos[3];
-		this(9).b = agnd;
-		this(8:9).value = ".1uF";
-		this(8:9).voltage = "50V";
+		combine(8).a = inter_res;
+		combine(8).b = op_neg[3];
+		combine(9).a = op_pos[3];
+		combine(9).b = agnd;
+		each(8:9).value = ".1uF";
+		each(8:9).voltage = "50V";
 		
-		this(10).a = op_pos[4];
-		this(10).b = agnd;
-		this(11).a = rc_node[1];
-		this(11).b = agnd;
-		this(10:11).value = ".1uF";
-		this(10:11).voltage = "50V";
+		combine(10).a = op_pos[4];
+		combine(10).b = agnd;
+		combine(11).a = rc_node[1];
+		combine(11).b = agnd;
+		each(10:11).value = ".1uF";
+		each(10:11).voltage = "50V";
 		
-		this(12).a = rc_node[2];
-		this(12).b = agnd;
-		this(12).value = "10uF";
-		this(12).voltage = "25V";
+		combine(12).a = rc_node[2];
+		combine(12).b = agnd;
+		each(12).value = "10uF";
+		each(12).voltage = "25V";
+		each(12).cost = "0.95";
 		
-		this(13).a = op_out[4];
-		this(13).b = HRT_BEAT;
-		this(13).value = "10uF";
-		this(13).voltage = "25V";
+		combine(13).a = op_out[4];
+		combine(13).b = HRT_BEAT;
+		each(13).value = "10uF";
+		each(13).voltage = "25V";
+		each(13).cost = "0.95";
 	end inst;
 	
 	inst(1:14) amp_res_array of Resistor is
-		this(1).a = 9v;
-		this(1).b = 9V_ANA;
-		this(1).value = "0";
+		combine(1).a = 9v;
+		combine(1).b = 9V_ANA;
+		each(1).value = "0";
+		each(1).partNum = "CD14ZT0R00CT-ND";
 		
-		this(2).a = op_pos[2];
-		this(3).a = op_pos[1];
-		this(2:3).b = <large_rc_node>;
-		this(2:3).value = "10M";
-		this(2:3).tolerance = "5%";
+		combine(2).a = op_pos[2];
+		combine(3).a = op_pos[1];
+		combine(2:3).b = <large_rc_node>;
+		each(2:3).value = "10M";
+		each(2:3).tolerance = "5%";
+		each(2:3).partNum = "CF14JT10M0CT-ND";
 		
-		this(4:5).a = <large_rc_node>;
-		this(4).b = 9V_ANA;
-		this(5).b = agnd;
-		this(4:5).value = "10K";
-		this(4:5).tolerance = "5%";
+		combine(4:5).a = <large_rc_node>;
+		combine(4).b = 9V_ANA;
+		combine(5).b = agnd;
+		each(4:5).value = "10K";
+		each(4:5).tolerance = "5%";
 		
-		this(6).a = op_out[1];
-		this(6).b = rc_node[3];
-		this(6).value = "10K";
-		this(6).tolerance = "5%";
+		combine(6).a = op_out[1];
+		combine(6).b = rc_node[3];
+		each(6).value = "10K";
+		each(6).tolerance = "5%";
 		
-		this(7).a = op_out[2];
-		this(7).b = op_neg[2];
-		this(7).value = "10M";
-		this(7).tolerance = "5%";
+		combine(7).a = op_out[2];
+		combine(7).b = op_neg[2];
+		each(7).value = "10M";
+		each(7).tolerance = "5%";
+		each(7).partNum = "CF14JT10M0CT-ND";
 		
-		this(8).a = op_out[2];
-		this(8).b = inter_res;
-		this(8).value = "100K";
-		this(8).tolerance = "5%";
+		combine(8).a = op_out[2];
+		combine(8).b = inter_res;
+		each(8).value = "100K";
+		each(8).tolerance = "5%";
+		each(8).partNum = "CF14JT100KCT-ND";
 		
-		this(9).a = inter_res;
-		this(9).b = op_pos[3];
-		this(9).value = "100K";
-		this(9).tolerance = "5%";
+		combine(9).a = inter_res;
+		combine(9).b = op_pos[3];
+		each(9).value = "100K";
+		each(9).tolerance = "5%";
+		each(9).partNum = "CF14JT100KCT-ND";
 		
-		this(10).a = op_out[3];
-		this(10).b = op_pos[4];
-		this(10).value = "100K";
-		this(10).tolerance = "5%";
+		combine(10).a = op_out[3];
+		combine(10).b = op_pos[4];
+		each(10).value = "100K";
+		each(10).tolerance = "5%";
+		each(10).partNum = "CF14JT100KCT-ND";
 		
-		this(11).a = op_pos[4];
-		this(11).b = rc_node[1];
-		this(11).value = "100K";
-		this(11).tolerance = ".1uF";
+		combine(11).a = op_pos[4];
+		combine(11).b = rc_node[1];
+		each(11).value = "100K";
+		each(11).tolerance = "5%";
+		each(11).partNum = "CF14JT100KCT-ND";
 		
-		this(12).a = rc_node[2];
-		this(12).b = op_neg[4];
-		this(12).value = "4.7K";
-		this(12).tolerance = "5%";
+		combine(12).a = rc_node[2];
+		combine(12).b = op_neg[4];
+		each(12).value = "4.7K";
+		each(12).tolerance = "5%";
+		each(12).partNum = "CF14JT4K70CT-ND";
 		
-		this(13).a = op_neg[4];
-		this(13).b = op_out[4];
-		this(13).value = "100K";
-		this(13).tolerance = "5%";
+		combine(13).a = op_neg[4];
+		combine(13).b = op_out[4];
+		each(13).value = "100K";
+		each(13).tolerance = "5%";
+		each(13).partNum = "CF14JT100KCT-ND";
 		
-		this(14).a = op_out[4];
-		this(14).b = agnd;
-		this(14).value = "10K";
-		this(14).tolerance = "5%";
+		combine(14).a = op_out[4];
+		combine(14).b = agnd;
+		each(14).value = "10K";
+		each(14).tolerance = "5%";
 	end inst;
 	
 	op_neg[3] = op_out[3];
