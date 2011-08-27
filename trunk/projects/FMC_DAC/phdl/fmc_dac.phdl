@@ -198,14 +198,14 @@ begin
         refDes="T1";
         input=analog_out; gnd=gnd; out_coupled=IOUTN; out_thru=IOUTP;
     end inst;
-    inst analog_bal_resP of res_0603 is value="90.1/1%"; a=IOUTP;  b=gnd; end inst;
-    inst analog_bal_resN of res_0603 is value="90.1/1%"; a=IOUTN;  b=gnd; end inst;
+    inst analog_bal_resP of res_0603 is refDes="R4"; value="90.1/1%"; a=IOUTP;  b=gnd; end inst;
+    inst analog_bal_resN of res_0603 is refDes="R5"; value="90.1/1%"; a=IOUTN;  b=gnd; end inst;
 
     inst vref_res   of capnp_0603 is refDes="C19";  value="1000PF/X7R/10V"; a=DAC_VREF; b=gnd; end inst;
-    inst I120_res   of res_0603 is value="10K/1%"; a=I120;  b=gnd;  end inst;
-    inst IPTAT_res  of res_0603 is value="10K/1%"; a=IPTAT; b=gnd;  end inst;
-    inst IRQ_PULLUP of res_0603 is value="10K/1%"; a=IRQ;   b=+3V3; end inst;
-    inst clk_term   of res_0603 is value="100/1%"; a=DACCLK_P; b=DACCLK_N; end inst;
+    inst I120_res   of res_0603 is refDes="R6"; value="10K/1%"; a=I120;  b=gnd;  end inst;
+    inst IPTAT_res  of res_0603 is refDes="R7"; value="10K/1%"; a=IPTAT; b=gnd;  end inst;
+    inst IRQ_PULLUP of res_0603 is refDes="R8"; value="10K/1%"; a=IRQ;   b=+3V3; end inst;
+    inst clk_term   of res_0603 is refDes="R9"; value="100/1%"; a=DACCLK_P; b=DACCLK_N; end inst;
 
     // Power filtering and decoupling for AD9739.
     // For VDDC
