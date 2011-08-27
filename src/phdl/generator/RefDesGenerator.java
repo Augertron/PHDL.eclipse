@@ -70,8 +70,21 @@ public class RefDesGenerator {
 			System.err.println("File Reading Error - filename may be corrupt");
 			System.exit(1);
 		}
+
+		// map all of the refDes's that have been manually constrained
+		for (InstanceNode i : design.getInstances()) {
+			if (i.getRefDes() != null && !i.getRefDes().equals("")) {
+				if (!refMap.keySet().contains(i.getRefDes())) {
+					refMap.put(i.getRefDes(), i);
+					i.setRefDes(i.getRefDes());
+				} else {
+					System.out.println("Duplicate RefDes detected in RefDesGenerator.");
+				}
+			}
+		}
+
+		// assign refDes's to everything else that hasn't been manually constrained
 		for (InstanceNode i : design.getInst_wo_RefDes()) {
-			// System.out.println(i);
 			for (int j = 1;; j++) {
 				String refDes = i.getRefPrefix() + j;
 				if (!refMap.keySet().contains(refDes)) {
@@ -109,6 +122,7 @@ public class RefDesGenerator {
 			System.err.println("File Reading Error - filename may be corrupt");
 			System.exit(1);
 		}
+		System.out.println("Wrote csv file: " + design.getName() + ".csv");
 	}
 
 	@Override

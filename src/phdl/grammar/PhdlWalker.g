@@ -749,6 +749,8 @@ instDecl[DesignNode des, String groupName]
 							i.setRefPrefix(a.getValue());
 						if (a.getName().equals("PKG_TYPE"))
 							i.setFootprint(a.getValue());
+						if (a.getName().equals("REFDES"))
+							i.setRefDes(a.getValue());
 					}
 				}
 			}
