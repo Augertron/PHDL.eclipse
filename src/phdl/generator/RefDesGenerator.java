@@ -52,24 +52,6 @@ public class RefDesGenerator {
 	}
 
 	private void generate() {
-		String fileName = design.getName() + ".csv";
-		try {
-			File file = new File(fileName);
-			if (file.exists()) {
-				System.out.println("File Exists!");
-				BufferedReader in = new BufferedReader(new FileReader(fileName));
-				String line = "";
-				while ((line = in.readLine()) != null) {
-					String[] refDes = line.split(",");
-					InstanceNode inst = design.getInstance(refDes[1]);
-					inst.setRefDes(refDes[0]);
-					refMap.put(refDes[0], inst);
-				}
-			}
-		} catch (IOException e) {
-			System.err.println("File Reading Error - filename may be corrupt");
-			System.exit(1);
-		}
 
 		// map all of the refDes's that have been manually constrained
 		for (InstanceNode i : design.getInstances()) {
@@ -81,6 +63,27 @@ public class RefDesGenerator {
 					System.out.println("Duplicate RefDes detected in RefDesGenerator.");
 				}
 			}
+		}
+
+		// grab all of the other refdes's from the CSV file
+		String fileName = design.getName() + ".csv";
+		try {
+			File file = new File(fileName);
+			if (file.exists()) {
+				System.out.println("File Exists!");
+				BufferedReader in = new BufferedReader(new FileReader(fileName));
+				String line = "";
+				while ((line = in.readLine()) != null) {
+					String[] refDes = line.split(",");
+					InstanceNode inst = design.getInstance(refDes[1]);
+					inst.setRefDes(refDes[0]);
+					if (!refMap.keySet().contains(refDes[0]))
+						refMap.put(refDes[0], inst);
+				}
+			}
+		} catch (IOException e) {
+			System.err.println("File Reading Error - filename may be corrupt");
+			System.exit(1);
 		}
 
 		// assign refDes's to everything else that hasn't been manually constrained
