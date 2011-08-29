@@ -20,6 +20,113 @@ design fmc_dac is
 
 begin
 
+    // This the fast DAC itself. Note how concisely the busses are connected.
+    inst fast_dac of ad9739 is
+        refDes = "U1";
+
+        VDDC = <VDDC>;
+        VSSC = <gnd>;
+        VDDA = <VDDA>;
+        VSSA = <gnd>;
+        VSSA_SHIELD = <gnd>;
+        NC = open;
+        IOUTN = <IOUTN>;
+        IOUTP = <IOUTP>;
+        I120  = I120;
+        VREF  = DAC_VREF;
+        IPTAT = IPTAT;
+        DACCLK_N = DACCLK_N;
+        DACCLK_P = DACCLK_P;
+        IRQ   = IRQ;
+        RESET = RESET;
+        CS = SPI_CS;
+        SDIO = SPI_SDI;
+        SCLK = SPI_SCLK;
+        SDO  = SPI_SDO;
+        VDD33 = <+3V3>;
+        VDD = <+1V8>;
+        VSS = <gnd>;
+        SYNC_OUT_P = SYNC_OUT_P;
+        SYNC_OUT_N = SYNC_OUT_N;
+        SYNC_IN_P = SYNC_IN_P;
+        SYNC_IN_N = SYNC_IN_N;
+        DCO_P = DCO_P;
+        DCO_N = DCO_N;
+        DCI_P = DCI_P;
+        DCI_N = DCI_N;
+        DB1_P = DB1_P;
+        DB1_N = DB1_N;
+        DB0_P = DB0_P;
+        DB0_N = DB0_N;
+    end inst;
+
+    // the output balun transformer and associated bias resistors.
+    inst output_balun of MABACT0039 is
+        refDes="T1";
+        input=analog_out; gnd=gnd; out_coupled=IOUTN; out_thru=IOUTP;
+    end inst;
+    inst analog_bal_resP of res_0603 is refDes="R4"; value="90.1/1%"; a=IOUTP;  b=gnd; end inst;
+    inst analog_bal_resN of res_0603 is refDes="R5"; value="90.1/1%"; a=IOUTN;  b=gnd; end inst;
+    // Some caps and resistors for the DAC.
+    inst vref_res   of capnp_0603 is refDes="C19";  value="1000PF/X7R/10V"; a=DAC_VREF; b=gnd; end inst;
+    inst I120_res   of res_0603 is refDes="R6"; value="10K/1%"; a=I120;  b=gnd;  end inst;
+    inst IPTAT_res  of res_0603 is refDes="R7"; value="10K/1%"; a=IPTAT; b=gnd;  end inst;
+    inst IRQ_PULLUP of res_0603 is refDes="R8"; value="10K/1%"; a=IRQ;   b=+3V3; end inst;
+    inst clk_term   of res_0603 is refDes="R9"; value="100/1%"; a=DACCLK_P; b=DACCLK_N; end inst;
+    // Power filtering and decoupling for AD9739.
+    // For VDDC
+    inst L1  of ELKE  is refDes="L1"; in=+1V8; out=VDDC; gnd=gnd; end inst;
+    inst C3  of capnp_0603 is refDes="C3";  value="0.01UF/X7R/10V"; a=VDDC; b=gnd; end inst;
+    inst C4  of capnp_0603 is refDes="C4";  value="0.01UF/X7R/10V"; a=VDDC; b=gnd; end inst;
+    inst C5  of capnp_0603 is refDes="C5";  value="1000PF/X7R/10V"; a=VDDC; b=gnd; end inst;
+    inst C6  of capnp_0603 is refDes="C6";  value="1000PF/X7R/10V"; a=VDDC; b=gnd; end inst;
+    // For VDDA
+    inst L2  of ELKE  is refDes="L2"; in=+1V8; out=VDDA; gnd=gnd; end inst;
+    inst C7  of capnp_0603 is refDes="C7";  value="0.01UF/X7R/10V"; a=VDDA; b=gnd; end inst;
+    inst C8  of capnp_0603 is refDes="C8";  value="0.01UF/X7R/10V"; a=VDDA; b=gnd; end inst;
+    inst C9  of capnp_0603 is refDes="C9";  value="1000PF/X7R/10V"; a=VDDA; b=gnd; end inst;
+    inst C10 of capnp_0603 is refDes="C10"; value="1000PF/X7R/10V"; a=VDDA; b=gnd; end inst;
+    // For +3V3
+    inst C11 of capnp_0603 is refDes="C11"; value="0.01UF/X7R/10V"; a=+3V3; b=gnd; end inst;
+    inst C12 of capnp_0603 is refDes="C12"; value="0.01UF/X7R/10V"; a=+3V3; b=gnd; end inst;
+    inst C13 of capnp_0603 is refDes="C13"; value="1000PF/X7R/10V"; a=+3V3; b=gnd; end inst;
+    inst C14 of capnp_0603 is refDes="C14"; value="1000PF/X7R/10V"; a=+3V3; b=gnd; end inst;
+    // For +1V8
+    inst C15 of capnp_0603 is refDes="C15"; value="0.01UF/X7R/10V"; a=+1V8; b=gnd; end inst;
+    inst C16 of capnp_0603 is refDes="C16"; value="0.01UF/X7R/10V"; a=+1V8; b=gnd; end inst;
+    inst C17 of capnp_0603 is refDes="C17"; value="1000PF/X7R/10V"; a=+1V8; b=gnd; end inst;
+    inst C18 of capnp_0603 is refDes="C18"; value="1000PF/X7R/10V"; a=+1V8; b=gnd; end inst;
+
+
+
+    // These are the SMA connectors, one for the input clock and the other for the analog output.
+    inst sma_samp_clk   of SMA_CON is refDes="J1"; sig=samp_clk_in; gnd=<gnd>; end inst;
+    inst sma_analog_out of SMA_CON is refDes="J2"; sig=analog_out; gnd=<gnd>;  end inst;
+
+
+
+    // These are the four mounting holes required by the FMC standard.
+    inst mounting_hole1 of mount_hole_125 is refDes="MTG1"; pin1=open; end inst;
+    inst mounting_hole2 of mount_hole_125 is refDes="MTG2"; pin1=open; end inst;
+    inst mounting_hole3 of mount_hole_125 is refDes="MTG3"; pin1=open; end inst;
+    inst mounting_hole4 of mount_hole_125 is refDes="MTG4"; pin1=open; end inst;
+
+
+
+    // Here we create the 1.8V supply
+    inst LDO of LT3022 is
+        refDes="U2";
+        NC=open; OUT=<+1V8>; ADJ_SENSE=1V8_sense; AGND=<gnd>; SHDN_N=+3V3; PGND=<gnd>; IN=<+3V3>; GND_PAD=gnd;
+    end inst;
+    inst C1 of capnp_1210 is refDes="C1"; value="22UF/X7R/25V"; a=+3V3;      b=gnd; end inst;
+    inst C2 of capnp_1210 is refDes="C2"; value="22UF/X7R/25V"; a=+1V8;      b=gnd; end inst;
+    inst R2 of res_0805   is refDes="R2"; value="1500/1%";      a=+1V8;      b=1V8_sense; end inst;
+    inst R3 of res_0805   is refDes="R3"; value="187/1%";       a=1V8_sense; b=gnd; end inst;
+
+
+
+    // This is the big High Pin Count FMC connector.
+    // I broke up the pin list into the diff pairs because the DAC uses LVDS I/O.
     inst docking_connector of asp_134488 is
         refDes = "P64";
 
@@ -28,7 +135,7 @@ begin
         //  we don't use row B since it is all GTP.
         b[1,4,5,8,9,12,13,16,17,20,21,24,25,28,29,32,33,36,37,40] = open;
 
-        // Row C has some useful differential lines.
+        // Row C has some differential lines.
         c[10,11] = open;
         c[14,15] = open;
         c[18,19] = open;
@@ -37,7 +144,7 @@ begin
         c[39]    = +3V3;
         c[2,3,6,7,30,31,34,35,37] = open;
 
-        // Row D has some useful differential lines.
+        // Row D has some differential lines.
         d[8,9]   = open;
         d[11,12] = open;
         d[14,15] = open;
@@ -151,101 +258,5 @@ begin
         j[1,4,5,8,11,14,17,20,23,26,29,32,35,38,40] = <gnd>;
         k[2,3,6,9,12,15,18,21,24,27,30,33,36,39] = <gnd>;
     end inst;
-
-    inst sma_samp_clk   of SMA_CON is refDes="J1"; sig=samp_clk_in; gnd=<gnd>; end inst;
-    inst sma_analog_out of SMA_CON is refDes="J2"; sig=analog_out; gnd=<gnd>;  end inst;
-
-    inst fast_dac of ad9739 is
-        refDes = "U1";
-
-        VDDC = <VDDC>;
-        VSSC = <gnd>;
-        VDDA = <VDDA>;
-        VSSA = <gnd>;
-        VSSA_SHIELD = <gnd>;
-        NC = open;
-        IOUTN = <IOUTN>;
-        IOUTP = <IOUTP>;
-        I120  = I120;
-        VREF  = DAC_VREF;
-        IPTAT = IPTAT;
-        DACCLK_N = DACCLK_N;
-        DACCLK_P = DACCLK_P;
-        IRQ   = IRQ;
-        RESET = RESET;
-        CS = SPI_CS;
-        SDIO = SPI_SDI;
-        SCLK = SPI_SCLK;
-        SDO  = SPI_SDO;
-        VDD33 = <+3V3>;
-        VDD = <+1V8>;
-        VSS = <gnd>;
-        SYNC_OUT_P = SYNC_OUT_P;
-        SYNC_OUT_N = SYNC_OUT_N;
-        SYNC_IN_P = SYNC_IN_P;
-        SYNC_IN_N = SYNC_IN_N;
-        DCO_P = DCO_P;
-        DCO_N = DCO_N;
-        DCI_P = DCI_P;
-        DCI_N = DCI_N;
-        DB1_P = DB1_P;
-        DB1_N = DB1_N;
-        DB0_P = DB0_P;
-        DB0_N = DB0_N;
-    end inst;
-
-    inst output_balun of MABACT0039 is 
-        refDes="T1";
-        input=analog_out; gnd=gnd; out_coupled=IOUTN; out_thru=IOUTP;
-    end inst;
-    inst analog_bal_resP of res_0603 is refDes="R4"; value="90.1/1%"; a=IOUTP;  b=gnd; end inst;
-    inst analog_bal_resN of res_0603 is refDes="R5"; value="90.1/1%"; a=IOUTN;  b=gnd; end inst;
-
-    inst vref_res   of capnp_0603 is refDes="C19";  value="1000PF/X7R/10V"; a=DAC_VREF; b=gnd; end inst;
-    inst I120_res   of res_0603 is refDes="R6"; value="10K/1%"; a=I120;  b=gnd;  end inst;
-    inst IPTAT_res  of res_0603 is refDes="R7"; value="10K/1%"; a=IPTAT; b=gnd;  end inst;
-    inst IRQ_PULLUP of res_0603 is refDes="R8"; value="10K/1%"; a=IRQ;   b=+3V3; end inst;
-    inst clk_term   of res_0603 is refDes="R9"; value="100/1%"; a=DACCLK_P; b=DACCLK_N; end inst;
-
-    // Power filtering and decoupling for AD9739.
-    // For VDDC
-    inst L1  of ELKE  is refDes="L1"; in=+1V8; out=VDDC; gnd=gnd; end inst;
-    inst C3  of capnp_0603 is refDes="C3";  value="0.01UF/X7R/10V"; a=VDDC; b=gnd; end inst;
-    inst C4  of capnp_0603 is refDes="C4";  value="0.01UF/X7R/10V"; a=VDDC; b=gnd; end inst;
-    inst C5  of capnp_0603 is refDes="C5";  value="1000PF/X7R/10V"; a=VDDC; b=gnd; end inst;
-    inst C6  of capnp_0603 is refDes="C6";  value="1000PF/X7R/10V"; a=VDDC; b=gnd; end inst;
-    // For VDDA
-    inst L2  of ELKE  is refDes="L2"; in=+1V8; out=VDDA; gnd=gnd; end inst;
-    inst C7  of capnp_0603 is refDes="C7";  value="0.01UF/X7R/10V"; a=VDDA; b=gnd; end inst;
-    inst C8  of capnp_0603 is refDes="C8";  value="0.01UF/X7R/10V"; a=VDDA; b=gnd; end inst;
-    inst C9  of capnp_0603 is refDes="C9";  value="1000PF/X7R/10V"; a=VDDA; b=gnd; end inst;
-    inst C10 of capnp_0603 is refDes="C10"; value="1000PF/X7R/10V"; a=VDDA; b=gnd; end inst;
-    // For +3V3
-    inst C11 of capnp_0603 is refDes="C11"; value="0.01UF/X7R/10V"; a=+3V3; b=gnd; end inst;
-    inst C12 of capnp_0603 is refDes="C12"; value="0.01UF/X7R/10V"; a=+3V3; b=gnd; end inst;
-    inst C13 of capnp_0603 is refDes="C13"; value="1000PF/X7R/10V"; a=+3V3; b=gnd; end inst;
-    inst C14 of capnp_0603 is refDes="C14"; value="1000PF/X7R/10V"; a=+3V3; b=gnd; end inst;
-    // For +1V8
-    inst C15 of capnp_0603 is refDes="C15"; value="0.01UF/X7R/10V"; a=+1V8; b=gnd; end inst;
-    inst C16 of capnp_0603 is refDes="C16"; value="0.01UF/X7R/10V"; a=+1V8; b=gnd; end inst;
-    inst C17 of capnp_0603 is refDes="C17"; value="1000PF/X7R/10V"; a=+1V8; b=gnd; end inst;
-    inst C18 of capnp_0603 is refDes="C18"; value="1000PF/X7R/10V"; a=+1V8; b=gnd; end inst;
-
-    // These are the four mounting holes required by the FMC standard.
-    inst mounting_hole1 of mount_hole_125 is refDes="MTG1"; pin1=open; end inst;
-    inst mounting_hole2 of mount_hole_125 is refDes="MTG2"; pin1=open; end inst;
-    inst mounting_hole3 of mount_hole_125 is refDes="MTG3"; pin1=open; end inst;
-    inst mounting_hole4 of mount_hole_125 is refDes="MTG4"; pin1=open; end inst;
-
-    // Here we create the 1.8V supply
-    inst LDO of LT3022 is
-        refDes="U2";
-        NC=open; OUT=<+1V8>; ADJ_SENSE=1V8_sense; AGND=<gnd>; SHDN_N=+3V3; PGND=<gnd>; IN=<+3V3>; GND_PAD=gnd;
-    end inst;
-    inst C1 of capnp_1210 is refDes="C1"; value="22UF/X7R/25V"; a=+3V3;      b=gnd; end inst;
-    inst C2 of capnp_1210 is refDes="C2"; value="22UF/X7R/25V"; a=+1V8;      b=gnd; end inst;
-    inst R2 of res_0805   is refDes="R2"; value="1500/1%";      a=+1V8;      b=1V8_sense; end inst;
-    inst R3 of res_0805   is refDes="R3"; value="187/1%";       a=1V8_sense; b=gnd; end inst;
-
 
 end design fmc_dac;
