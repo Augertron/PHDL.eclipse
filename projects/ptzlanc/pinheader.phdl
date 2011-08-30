@@ -13,17 +13,14 @@
 		pin[3:1] p = {3,2,1};
 	end;
 	
-	device HDR_1X4 is
-		attr refPrefix = "J";
-		attr pkg_type = "SIP-100-04-40";
-		attr libName = "con-headers-jp";
-		pin[4:1] p = {4,3,2,1};
-	end;
-	
 	device HDR_1X5 is
 		attr refPrefix = "J";
 		attr pkg_type = "SIP-100-05-40";
 		attr libName = "con-headers-jp";
+		attr cost = "";
+		attr supplier = "";
+		attr mfgr = "";
+		attr partNumber = "";
 		pin[5:1] p = {5,4,3,2,1};
 	end;
 	

@@ -1,0 +1,19 @@
+[Eagle]
+Version="05 06 00"
+Platform="Windows"
+Serial="261B248B74-LSR-DOWL-NCP"
+Globals="Globals"
+Desktop="Desktop"
+
+[Globals]
+AutoSaveProject=1
+
+[Win_1]
+Type="Control Panel"
+Loc="-519 33 -18 603"
+State=1
+Number=0
+
+[Desktop]
+Screen="2560 1024"
+Window="Win_1"

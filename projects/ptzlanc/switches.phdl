@@ -1,8 +1,8 @@
 
 	device dipswitch is
 		attr refPrefix = "S";
-		attr pkg_type = "DIL16";
-		attr libName = "ref-packages";
+		attr pkg_type = "DS-08";
+		attr libName = "switch-dil";
 		attr mfgr = "E-Switch";
 		attr supplier = "DIGI-KEY";
 		attr partNumber = "450-1366-ND";
