@@ -1,70 +1,71 @@
 	// Device declaration extracted from Xilinx top_tq144_pad.csv
-device top_tq144 is
-        attr refPrefix = "U";
-        attr pkg_type = "tq144";
-        attr mfgr = "XILINX";
-        attr partNumber = "xc3s200-5tq144";
+	device top_tq144 is
+		attr refPrefix = "U";
+		attr pkg_type = "tq144";
+		attr mfgr = "XILINX";
+		attr partNumber = "xc3s400-4tq144";
 
-        // User I/O pins.
-        pin[17:0] addr = {P108,P107,P105,P77,P76,P74,P73,P70,P78,P79,P80,P82,P83,P96,P97,P98,P99,P100};
-        pin  ce0_n = {P69};
-        pin  ce1_n = {P68};
-        pin  clk = {P128};
-        pin[7:0] data = {P85,P86,P87,P89,P90,P92,P93,P95};
-        pin  din = {P65};
-        pin  dir0 = {P40};
-        pin  dir1 = {P41};
-        pin[2:0] enc0 = {P63,P60,P59};
-        pin[2:0] enc1 = {P55,P56,P57};
-        pin[10:0] gpio = {P127,P129,P112,P113,P116,P118,P119,P122,P123,P124,P125};
-        pin[2:0] high0 = {P23,P21,P20};
-        pin[2:0] high1 = {P26,P25,P24};
-        pin  init_b = {P58};
-        pin  lb_n = {P102};
-        pin[7:0] led = {P1,P141,P140,P137,P135,P132,P131,P130};
-        pin[2:0] low0 = {P30,P28,P27};
-        pin[2:0] low1 = {P33,P32,P31};
-        pin  lrx = {P35};
-        pin  ltx = {P36};
-        pin  oe_n = {P104};
-        pin  pwm0 = {P44};
-        pin  pwm1 = {P46};
-        pin  rst = {P47};
-        pin  rxd = {P50};
-        pin  rxd_a = {P51};
-        pin[2:0] sense0 = {P14,P13,P12};
-        pin[2:0] sense1 = {P18,P17,P15};
-        pin[7:0] sw = {P11,P10,P8,P7,P6,P5,P4,P2};
-        pin  txd = {P52};
-        pin  txd_a = {P53};
-        pin  ub_n = {P103};
-        pin  we_n = {P84};
+		// User I/O pins.
+		pin[17:0] addr = {P4,P5,P6,P25,P26,P27,P28,P30,P36,P35,P33,P32,P31,P8,P7,P2,P1,P141};
+		pin  ce0_n = {P140};
+		pin  ce1_n = {P137};
+		pin  clk = {P52};
+		pin[7:0] data = {P23,P21,P20,P18,P17,P15,P14,P13};
+		pin  din = {P65};
+		pin  dir0 = {P90};
+		pin  dir1 = {P93};
+		pin[2:0] enc0 = {P69,P68,P63};
+		pin[2:0] enc1 = {P70,P73,P74};
+		pin[7:0] gpio = {P124,P123,P122,P119,P118,P116,P113,P112};
+		pin[2:0] high0 = {P104,P108,P102};
+		pin[2:0] high1 = {P97,P100,P95};
+		pin  init_b = {P58};
+		pin  lb_n = {P12};
+		pin[7:0] led = {P50,P51,P53,P55,P56,P57,P59,P60};
+		pin[2:0] low0 = {P105,P107,P103};
+		pin[2:0] low1 = {P98,P99,P96};
+		pin  lrx = {P84};
+		pin  ltx = {P83};
+		pin  oe_n = {P10};
+		pin  pwm0 = {P89};
+		pin  pwm1 = {P92};
+		pin  rst = {P40};
+		pin  rxd = {P47};
+		pin  rxd_a = {P41};
+		pin  sclk = {P86};
+		pin  sdata = {P87};
+		pin[2:0] sense0 = {P78,P77,P76};
+		pin[2:0] sense1 = {P79,P80,P82};
+		pin[7:0] sw = {P135,P132,P131,P130,P129,P128,P127,P125};
+		pin  sync = {P85};
+		pin  txd = {P46};
+		pin  txd_a = {P44};
+		pin  ub_n = {P11};
+		pin  we_n = {P24};
 
-        // Power and dedicated FPGA pins.
-        pin  CCLK = {P72};
-        pin  DONE = {P71};
-        pin[15:0] GND = {P101,P114,P117,P136,P139,P16,P22,P29,P42,P45,P64,P67,P81,P88,P9,P94};
-        pin  HSWAP_EN = {P142};
-        pin  M0 = {P38};
-        pin  M1 = {P37};
-        pin  M2 = {P39};
-        pin  PROG_B = {P143};
-        pin  TCK = {P110};
-        pin  TDI = {P144};
-        pin  TDO = {P109};
-        pin  TMS = {P111};
-        pin[3:0] VCCAUX = {P120,P134,P48,P62};
-        pin[3:0] VCCINT = {P121,P133,P49,P61};
-        pin  VCCO_0 = {P138};
-        pin[1:0] VCCO_1 = {P115,P126};
-        pin  VCCO_2 = {P106};
-        pin[1:0] VCCO_3 = {P75,P91};
-        pin  VCCO_4 = {P66};
-        pin[1:0] VCCO_5 = {P43,P54};
-        pin  VCCO_6 = {P34};
-        pin[1:0] VCCO_7 = {P19,P3};
-
-        // UNUSED I/O pins.
+		// Power and dedicated FPGA pins.
+		pin  CCLK = {P72};
+		pin  DONE = {P71};
+		pin[15:0] GND = {P101,P114,P117,P136,P139,P16,P22,P29,P42,P45,P64,P67,P81,P88,P9,P94};
+		pin  HSWAP_EN = {P142};
+		pin  M0 = {P38};
+		pin  M1 = {P37};
+		pin  M2 = {P39};
+		pin  PROG_B = {P143};
+		pin  TCK = {P110};
+		pin  TDI = {P144};
+		pin  TDO = {P109};
+		pin  TMS = {P111};
+		pin[3:0] VCCAUX = {P120,P134,P48,P62};
+		pin[3:0] VCCINT = {P121,P133,P49,P61};
+		pin  VCCO_0 = {P138};
+		pin[1:0] VCCO_1 = {P115,P126};
+		pin  VCCO_2 = {P106};
+		pin[1:0] VCCO_3 = {P75,P91};
+		pin  VCCO_4 = {P66};
+		pin[1:0] VCCO_5 = {P43,P54};
+		pin  VCCO_6 = {P34};
+		pin[1:0] VCCO_7 = {P19,P3};
 	end;
 	
 	// flash rom
@@ -186,7 +187,7 @@ device top_tq144 is
 	
 	device LMD18200T is
 		attr refPrefix = "U";
-		attr pkg_type = "TO-220-11H";
+		attr pkg_type = "TO-220-11";
 		attr libName = "national-semi";
 		attr mfgr = "National";
 		attr supplier = "DIGI-KEY";
@@ -288,4 +289,21 @@ device top_tq144 is
 		pin input = {3};
 		pin output = {4};
 		pin gnd = {1};
+	end;
+	
+	device DAC121S101 is
+		attr refPrefix = "U";
+		attr pkg_type = "SOT23-6";
+		attr libName = "ref-packages-smd-ipc";
+		attr mfgr = "National";
+		attr supplier = "DIGI-KEY";
+		attr partNumber = "DAC121S101CIMKTR-ND";
+		attr cost = "1.53";
+		attr dataSheet = "DAC121S101.pdf";
+		pin vout = {1};
+		pin gnd = {2};
+		pin va = {3};
+		pin sdata = {4};
+		pin sclk = {5};
+		pin sync = {6};
 	end;

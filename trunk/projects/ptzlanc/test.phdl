@@ -10,7 +10,7 @@ design test is
 	net ce_n, oe_n, we_n, ub_n, lb_n;
 	net vcco, gnd;
 begin
-	group MEMORY is
+	group "MEMORY" is
 		inst mem of RAM256KX16 is
 			addr = addr;
 			data = data;
@@ -26,7 +26,8 @@ begin
 		
 		inst(1:4) mem_cap of C0603 is
 			value = "0.047u";
-			a = <vcco>;
+			this(1:3).a = <vcco>;
+			this(4).a = gnd;
 			b = <gnd>;
 		end;
 	end;

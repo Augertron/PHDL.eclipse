@@ -16,10 +16,11 @@
 		attr refPrefix = "J";
 		attr pkg_type = "09HP";
 		attr libName = "con-subd";
-		attr mfgr = "FCI";
+		attr mfgr = "Amplite";
 		attr supplier = "DIGI-KEY";
-		attr partNumber = "609-4008-ND";
-		attr cost = "1.27";
+		attr partNumber = "A35109-ND";
+		attr cost = "1.00";
+		attr dataSheet = "doc/ENG_CD_1734348_B1.pdf";
 		pin p1 = {1};
 		pin p2 = {2};
 		pin p3 = {3};
