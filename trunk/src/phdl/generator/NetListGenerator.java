@@ -62,9 +62,10 @@ public class NetListGenerator {
 		for (String s : refMap.keySet()) {
 			InstanceNode i = refMap.get(s);
 			sb.append(s);
-			sb.append(" " + i.getDevice().getName().toUpperCase() + "@" + i.getFootprint() + "\n");
+			sb.append(" " + i.getDevice().getName().toUpperCase() + "@"
+					+ i.getFootprint() + "\n");
 		}
-		sb.append("*CONNNECTION*\n");
+		sb.append("*CONNECTION*\n");
 
 		for (NetNode n : design.getNets()) {
 
@@ -84,7 +85,8 @@ public class NetListGenerator {
 				String name2 = pin2.getPinName();
 
 				sb.append(" " + refMap.get(ref1).getRefDes() + "." + name1);
-				sb.append(" " + refMap.get(ref2).getRefDes() + "." + name2 + "\n");
+				sb.append(" " + refMap.get(ref2).getRefDes() + "." + name2
+						+ "\n");
 			}
 		}
 		sb.append("\n*END*");
