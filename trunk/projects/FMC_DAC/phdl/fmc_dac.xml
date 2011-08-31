@@ -4344,14 +4344,14 @@
 	<instance>
 		<name>output_balun</name>
 		<refDes>T1</refDes>
-		<device_name>MABACT0039</device_name>
+		<device_name>RFXF9503</device_name>
 		<attribute>
 			<name>COST</name>
-			<value>$10.00</value>
+			<value>2.00</value>
 		</attribute>
 		<attribute>
 			<name>MFGR</name>
-			<value>MACOM</value>
+			<value>RFMD</value>
 		</attribute>
 		<attribute>
 			<name>NAME</name>
@@ -4359,11 +4359,11 @@
 		</attribute>
 		<attribute>
 			<name>PARTNUMBER</name>
-			<value>MABACT0039</value>
+			<value>RFXF9503</value>
 		</attribute>
 		<attribute>
 			<name>PKG_TYPE</name>
-			<value>MABACT0039</value>
+			<value>RFMD_S20</value>
 		</attribute>
 		<attribute>
 			<name>REFDES</name>
@@ -4373,25 +4373,25 @@
 			<name>REFPREFIX</name>
 			<value>T</value>
 		</attribute>
-		<attribute>
-			<name>VALUE</name>
-			<value></value>
-		</attribute>
 		<instPin>
-			<name>input</name>
-			<net>ANALOG_OUT</net>
-		</instPin>
-		<instPin>
-			<name>gnd</name>
-			<net>GND</net>
-		</instPin>
-		<instPin>
-			<name>out_coupled</name>
+			<name>sec</name>
 			<net>IOUTN</net>
 		</instPin>
 		<instPin>
-			<name>out_thru</name>
+			<name>nc</name>
+			<net>OPEN</net>
+		</instPin>
+		<instPin>
+			<name>sec_dot</name>
 			<net>IOUTP</net>
+		</instPin>
+		<instPin>
+			<name>prim_dot</name>
+			<net>ANALOG_OUT</net>
+		</instPin>
+		<instPin>
+			<name>prim</name>
+			<net>GND</net>
 		</instPin>
 	</instance>
 	<instance>
