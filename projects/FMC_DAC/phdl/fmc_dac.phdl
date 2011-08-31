@@ -66,8 +66,8 @@ begin
     // SMA connector for the analog output.
     inst sma_analog_out of SMA_CON is refDes="J2"; sig=analog_out; gnd=<gnd>;  end inst;
     // the output balun transformer and associated bias resistors.
-    inst output_balun of MABACT0039 is refDes="T1";
-        input=analog_out; gnd=gnd; out_coupled=IOUTN; out_thru=IOUTP;
+    inst output_balun of RFXF9503 is refDes   = "T1";
+        nc=open; sec_dot=IOUTP; sec=IOUTN; prim_dot=analog_out; prim=gnd;
     end inst;
     inst analog_bal_resP of res_0603 is refDes="R4"; value="90.1/1%"; a=IOUTP;  b=gnd; end inst;
     inst analog_bal_resN of res_0603 is refDes="R5"; value="90.1/1%"; a=IOUTN;  b=gnd; end inst;
@@ -125,11 +125,7 @@ begin
     // Clock buffer section.
     inst sma_samp_clk   of SMA_CON is refDes="J1"; sig=samp_clk_in; gnd=<gnd>; end inst;
     inst clock_balun of RFXF9503 is refDes   = "T2";
-        nc       = open;
-        sec_dot  = bal_clock_p;
-        sec      = bal_clock_n;
-        prim_dot = samp_clk_in;
-        prim     = gnd;
+        nc=open; sec_dot=bal_clock_p; sec=bal_clock_n; prim_dot=samp_clk_in; prim=gnd;
     end inst;
     // Some AC coupling caps after the clock balun.
     inst coup_cap_p of capnp_0603 is refDes="C20";  value="1000PF/X7R/10V"; a=bal_clock_p; b=coup_clock_p; end inst;
