@@ -71,10 +71,9 @@ public class NetListGenerator {
 
 			if (n.getName().equals("OPEN"))
 				continue;
-			System.out.println(n.getName() + "*************");
+
 			sb.append("*SIGNAL* " + n.getName().toUpperCase() + "\n");
 
-			System.out.println("SIZE: " + n.getPinNodes().size());
 			for (int i = 0; i < n.getPinNodes().size() - 1; i++) {
 
 				PinNode pin1 = n.getPinNodes().get(i);
@@ -84,7 +83,7 @@ public class NetListGenerator {
 				String ref2 = ((InstanceNode) pin2.getParent()).getRefDes();
 				String name1 = pin1.getPinName();
 				String name2 = pin2.getPinName();
-				System.out.println(pin1.toString() + "\t" + pin2.toString());
+
 				sb.append(" " + refMap.get(ref1).getRefDes() + "." + name1);
 				sb.append(" " + refMap.get(ref2).getRefDes() + "." + name2
 						+ "\n");
