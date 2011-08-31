@@ -327,4 +327,43 @@ device  ELKE is
     pin gnd = {2};
 end device;
 
+// This is a balun from RFMD, 5 to 3000MHz.
+device RFXF9503 is
+    attr refPrefix = "T";
+    attr refDes = "";
+    attr name = "";
+    attr pkg_type = "RFMD_S20";
+    attr mfgr = "RFMD";
+    attr partNumber = "RFXF9503";
+    attr cost = "2.00";
+
+    pin sec = {1};
+    pin nc  = {2};
+    pin sec_dot = {3};
+    pin prim_dot = {4};
+    pin prim = {5};
+end device;
+
+// This is a clock buffer chip specifically designed for the AD9739 DAC.
+device ADCLK914 is
+    attr refPrefix = "U";
+    attr refDes = "";
+    attr name = "";
+    attr pkg_type = "ADCLK914";
+    attr mfgr = "Analog Devices";
+    attr partNumber = "ADCLK914BCPZ-R7";
+    attr cost = "16.00";
+
+    pin D_P = {1};
+    pin D_N = {2};
+    pin[1:6] NC = {3,4,5,6,9,10};
+    pin[1:2] Vee = {7,14};
+    pin[1:2] Vcc = {8,13};
+    pin Q_N = {11};
+    pin Q_P = {12};
+    pin Vref = {15};
+    pin Vt = {16};
+    pin THERMAL_PAD = {17};
+end device;
+
 
