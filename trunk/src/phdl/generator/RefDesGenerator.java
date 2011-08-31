@@ -76,7 +76,8 @@ public class RefDesGenerator {
 				while ((line = in.readLine()) != null) {
 					String[] refDes = line.split(",");
 					InstanceNode inst = design.getInstance(refDes[1]);
-					inst.setRefDes(refDes[0]);
+					if (inst.getRefDes() == null || inst.getRefDes().equals(""))
+						inst.setRefDes(refDes[0]);
 					if (!refMap.keySet().contains(refDes[0]))
 						refMap.put(refDes[0], inst);
 				}
@@ -130,14 +131,12 @@ public class RefDesGenerator {
 
 	@Override
 	public String toString() {
-		String myString = "";
+		StringBuilder sb = new StringBuilder();
 		Set<String> refs = refMap.keySet();
 		for (String s : refs) {
-			myString += refMap.get(s).getRefDes();
-			myString += ",";
-			myString += refMap.get(s).getName();
-			myString += "\n";
+			sb.append(refMap.get(s).getRefDes() + ",");
+			sb.append(refMap.get(s).getName() + "\n");
 		}
-		return myString;
+		return sb.toString();
 	}
 }
