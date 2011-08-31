@@ -10,6 +10,8 @@ C17,C17
 C18,C18
 C19,vref_res
 C2,C2
+C20,coup_cap_p
+C21,coup_cap_n
 C3,C3
 C4,C4
 C5,C5
@@ -35,5 +37,7 @@ R7,IPTAT_res
 R8,IRQ_PULLUP
 R9,clk_term
 T1,output_balun
+T2,clock_balun
 U1,fast_dac
 U2,LDO
+U3,clock_buffer
