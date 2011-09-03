@@ -366,4 +366,28 @@ device ADCLK914 is
     pin THERMAL_PAD = {17};
 end device;
 
-
+// This is for level shifting.
+device SN74AVC4T245PW is
+    attr refPrefix = "U";
+    attr refDes = "";
+    attr name = "";
+    attr pkg_type = "SN74AVC4T245PW";
+    attr mfgr = "TI";
+    attr partNumber = "SN74AVC4T245PW";
+    attr cost = "16.00";
+    pin Vcca  = {1};
+    pin 1DIR  = {2};
+    pin 2DIR  = {3};
+    pin 1A1   = {4};
+    pin 1A2   = {5};
+    pin 2A1   = {6};
+    pin 2A2   = {7};
+    pin[1:2] GND   = {8,9};
+    pin 2B2   = {10};
+    pin 2B1   = {11};
+    pin 1B2   = {12};
+    pin 1B1   = {13};
+    pin 2OE_n = {14};
+    pin 1OE_n = {15};
+    pin Vccb  = {16};
+end device;

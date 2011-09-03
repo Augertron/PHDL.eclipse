@@ -12,7 +12,14 @@ C19,vref_res
 C2,C2
 C20,coup_cap_p
 C21,coup_cap_n
+C22,out_ac_cap_p
+C23,out_ac_cap_n
+C24,adclk914_vref_cap
+C25,914_coup_cap_p
+C26,914_coup_cap_n
 C3,C3
+C30,C30
+C31,C31
 C4,C4
 C5,C5
 C6,C6
@@ -28,6 +35,9 @@ MTG2,mounting_hole2
 MTG3,mounting_hole3
 MTG4,mounting_hole4
 P64,docking_connector
+R10,914_pullup_p
+R11,914_pullup_n
+R12,DACCLK_term
 R2,R2
 R3,R3
 R4,analog_bal_resP
@@ -35,9 +45,10 @@ R5,analog_bal_resN
 R6,I120_res
 R7,IPTAT_res
 R8,IRQ_PULLUP
-R9,clk_term
 T1,output_balun
 T2,clock_balun
 U1,fast_dac
 U2,LDO
 U3,clock_buffer
+U4,level_shifter_out
+U5,level_shifter_in

@@ -498,6 +498,101 @@
 		</pin>
 	</device>
 	<device>
+		<name>SN74AVC4T245PW</name>
+		<attribute>
+			<name>COST</name>
+			<value>16.00</value>
+		</attribute>
+		<attribute>
+			<name>MFGR</name>
+			<value>TI</value>
+		</attribute>
+		<attribute>
+			<name>NAME</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>PARTNUMBER</name>
+			<value>SN74AVC4T245PW</value>
+		</attribute>
+		<attribute>
+			<name>PKG_TYPE</name>
+			<value>SN74AVC4T245PW</value>
+		</attribute>
+		<attribute>
+			<name>REFDES</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>REFPREFIX</name>
+			<value>U</value>
+		</attribute>
+		<pin>
+			<name>Vcca</name>
+			<number>1</number>
+		</pin>
+		<pin>
+			<name>1DIR</name>
+			<number>2</number>
+		</pin>
+		<pin>
+			<name>2DIR</name>
+			<number>3</number>
+		</pin>
+		<pin>
+			<name>1A1</name>
+			<number>4</number>
+		</pin>
+		<pin>
+			<name>1A2</name>
+			<number>5</number>
+		</pin>
+		<pin>
+			<name>2A1</name>
+			<number>6</number>
+		</pin>
+		<pin>
+			<name>2A2</name>
+			<number>7</number>
+		</pin>
+		<pin>
+			<name>GND[1]</name>
+			<number>8</number>
+		</pin>
+		<pin>
+			<name>GND[2]</name>
+			<number>9</number>
+		</pin>
+		<pin>
+			<name>2B2</name>
+			<number>10</number>
+		</pin>
+		<pin>
+			<name>2B1</name>
+			<number>11</number>
+		</pin>
+		<pin>
+			<name>1B2</name>
+			<number>12</number>
+		</pin>
+		<pin>
+			<name>1B1</name>
+			<number>13</number>
+		</pin>
+		<pin>
+			<name>2OE_n</name>
+			<number>14</number>
+		</pin>
+		<pin>
+			<name>1OE_n</name>
+			<number>15</number>
+		</pin>
+		<pin>
+			<name>Vccb</name>
+			<number>16</number>
+		</pin>
+	</device>
+	<device>
 		<name>TC4-14+</name>
 		<attribute>
 			<name>COST</name>
@@ -3551,6 +3646,12 @@
 		<name>SYNC_OUT_N</name>
 	</net>
 	<net>
+		<name>IRQ</name>
+	</net>
+	<net>
+		<name>RESET</name>
+	</net>
+	<net>
 		<name>SPI_CS</name>
 	</net>
 	<net>
@@ -3563,10 +3664,22 @@
 		<name>SPI_SDI</name>
 	</net>
 	<net>
-		<name>RESET</name>
+		<name>IRQ_2V5</name>
 	</net>
 	<net>
-		<name>IRQ</name>
+		<name>RESET_2V5</name>
+	</net>
+	<net>
+		<name>SPI_CS_2V5</name>
+	</net>
+	<net>
+		<name>SPI_SCLK_2V5</name>
+	</net>
+	<net>
+		<name>SPI_SDO_2V5</name>
+	</net>
+	<net>
+		<name>SPI_SDI_2V5</name>
 	</net>
 	<net>
 		<name>DAC_VREF</name>
@@ -3603,6 +3716,12 @@
 	</net>
 	<net>
 		<name>ADCLK914_VREF</name>
+	</net>
+	<net>
+		<name>OUT_COUP_CLOCK_P</name>
+	</net>
+	<net>
+		<name>OUT_COUP_CLOCK_N</name>
 	</net>
 	<net>
 		<name>OPEN</name>
@@ -4375,7 +4494,7 @@
 		</attribute>
 		<instPin>
 			<name>sec</name>
-			<net>IOUTN</net>
+			<net>OUT_COUP_CLOCK_N</net>
 		</instPin>
 		<instPin>
 			<name>nc</name>
@@ -4383,7 +4502,7 @@
 		</instPin>
 		<instPin>
 			<name>sec_dot</name>
-			<net>IOUTP</net>
+			<net>OUT_COUP_CLOCK_P</net>
 		</instPin>
 		<instPin>
 			<name>prim_dot</name>
@@ -4392,6 +4511,96 @@
 		<instPin>
 			<name>prim</name>
 			<net>GND</net>
+		</instPin>
+	</instance>
+	<instance>
+		<name>out_ac_cap_p</name>
+		<refDes>C22</refDes>
+		<device_name>capnp_0603</device_name>
+		<attribute>
+			<name>COST</name>
+			<value>0.03</value>
+		</attribute>
+		<attribute>
+			<name>MFGR</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>NAME</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>PARTNUMBER</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>PKG_TYPE</name>
+			<value>CC0603</value>
+		</attribute>
+		<attribute>
+			<name>REFDES</name>
+			<value>C22</value>
+		</attribute>
+		<attribute>
+			<name>REFPREFIX</name>
+			<value>C</value>
+		</attribute>
+		<attribute>
+			<name>VALUE</name>
+			<value>1000PF/X7R/10V</value>
+		</attribute>
+		<instPin>
+			<name>a</name>
+			<net>IOUTP</net>
+		</instPin>
+		<instPin>
+			<name>b</name>
+			<net>OUT_COUP_CLOCK_P</net>
+		</instPin>
+	</instance>
+	<instance>
+		<name>out_ac_cap_n</name>
+		<refDes>C23</refDes>
+		<device_name>capnp_0603</device_name>
+		<attribute>
+			<name>COST</name>
+			<value>0.03</value>
+		</attribute>
+		<attribute>
+			<name>MFGR</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>NAME</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>PARTNUMBER</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>PKG_TYPE</name>
+			<value>CC0603</value>
+		</attribute>
+		<attribute>
+			<name>REFDES</name>
+			<value>C23</value>
+		</attribute>
+		<attribute>
+			<name>REFPREFIX</name>
+			<value>C</value>
+		</attribute>
+		<attribute>
+			<name>VALUE</name>
+			<value>1000PF/X7R/10V</value>
+		</attribute>
+		<instPin>
+			<name>a</name>
+			<net>IOUTN</net>
+		</instPin>
+		<instPin>
+			<name>b</name>
+			<net>OUT_COUP_CLOCK_N</net>
 		</instPin>
 	</instance>
 	<instance>
@@ -4662,51 +4871,6 @@
 		<instPin>
 			<name>b</name>
 			<net>+3V3</net>
-		</instPin>
-	</instance>
-	<instance>
-		<name>clk_term</name>
-		<refDes>R9</refDes>
-		<device_name>res_0603</device_name>
-		<attribute>
-			<name>COST</name>
-			<value>0.07</value>
-		</attribute>
-		<attribute>
-			<name>MFGR</name>
-			<value>PANASONIC</value>
-		</attribute>
-		<attribute>
-			<name>NAME</name>
-			<value></value>
-		</attribute>
-		<attribute>
-			<name>PARTNUMBER</name>
-			<value>ERJ-3EKF1500V</value>
-		</attribute>
-		<attribute>
-			<name>PKG_TYPE</name>
-			<value>CR0603</value>
-		</attribute>
-		<attribute>
-			<name>REFDES</name>
-			<value>R9</value>
-		</attribute>
-		<attribute>
-			<name>REFPREFIX</name>
-			<value>R</value>
-		</attribute>
-		<attribute>
-			<name>VALUE</name>
-			<value>100/1%</value>
-		</attribute>
-		<instPin>
-			<name>a</name>
-			<net>DACCLK_P</net>
-		</instPin>
-		<instPin>
-			<name>b</name>
-			<net>DACCLK_N</net>
 		</instPin>
 	</instance>
 	<instance>
@@ -5845,14 +6009,14 @@
 	<instance>
 		<name>R2</name>
 		<refDes>R2</refDes>
-		<device_name>res_0805</device_name>
+		<device_name>res_0603</device_name>
 		<attribute>
 			<name>COST</name>
 			<value>0.07</value>
 		</attribute>
 		<attribute>
 			<name>MFGR</name>
-			<value></value>
+			<value>PANASONIC</value>
 		</attribute>
 		<attribute>
 			<name>NAME</name>
@@ -5860,11 +6024,11 @@
 		</attribute>
 		<attribute>
 			<name>PARTNUMBER</name>
-			<value></value>
+			<value>ERJ-3EKF1500V</value>
 		</attribute>
 		<attribute>
 			<name>PKG_TYPE</name>
-			<value>CR0805</value>
+			<value>CR0603</value>
 		</attribute>
 		<attribute>
 			<name>REFDES</name>
@@ -5890,14 +6054,14 @@
 	<instance>
 		<name>R3</name>
 		<refDes>R3</refDes>
-		<device_name>res_0805</device_name>
+		<device_name>res_0603</device_name>
 		<attribute>
 			<name>COST</name>
 			<value>0.07</value>
 		</attribute>
 		<attribute>
 			<name>MFGR</name>
-			<value></value>
+			<value>PANASONIC</value>
 		</attribute>
 		<attribute>
 			<name>NAME</name>
@@ -5905,11 +6069,11 @@
 		</attribute>
 		<attribute>
 			<name>PARTNUMBER</name>
-			<value></value>
+			<value>ERJ-3EKF1500V</value>
 		</attribute>
 		<attribute>
 			<name>PKG_TYPE</name>
-			<value>CR0805</value>
+			<value>CR0603</value>
 		</attribute>
 		<attribute>
 			<name>REFDES</name>
@@ -6230,6 +6394,560 @@
 		</instPin>
 		<instPin>
 			<name>THERMAL_PAD</name>
+			<net>GND</net>
+		</instPin>
+	</instance>
+	<instance>
+		<name>adclk914_vref_cap</name>
+		<refDes>C24</refDes>
+		<device_name>capnp_0603</device_name>
+		<attribute>
+			<name>COST</name>
+			<value>0.03</value>
+		</attribute>
+		<attribute>
+			<name>MFGR</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>NAME</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>PARTNUMBER</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>PKG_TYPE</name>
+			<value>CC0603</value>
+		</attribute>
+		<attribute>
+			<name>REFDES</name>
+			<value>C24</value>
+		</attribute>
+		<attribute>
+			<name>REFPREFIX</name>
+			<value>C</value>
+		</attribute>
+		<attribute>
+			<name>VALUE</name>
+			<value>0.01UF/X7R/10V</value>
+		</attribute>
+		<instPin>
+			<name>a</name>
+			<net>ADCLK914_VREF</net>
+		</instPin>
+		<instPin>
+			<name>b</name>
+			<net>GND</net>
+		</instPin>
+	</instance>
+	<instance>
+		<name>914_pullup_p</name>
+		<refDes>R10</refDes>
+		<device_name>res_0603</device_name>
+		<attribute>
+			<name>COST</name>
+			<value>0.07</value>
+		</attribute>
+		<attribute>
+			<name>MFGR</name>
+			<value>PANASONIC</value>
+		</attribute>
+		<attribute>
+			<name>NAME</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>PARTNUMBER</name>
+			<value>ERJ-3EKF1500V</value>
+		</attribute>
+		<attribute>
+			<name>PKG_TYPE</name>
+			<value>CR0603</value>
+		</attribute>
+		<attribute>
+			<name>REFDES</name>
+			<value>R10</value>
+		</attribute>
+		<attribute>
+			<name>REFPREFIX</name>
+			<value>R</value>
+		</attribute>
+		<attribute>
+			<name>VALUE</name>
+			<value>49.9/1%</value>
+		</attribute>
+		<instPin>
+			<name>a</name>
+			<net>CLOCK_BUF_P</net>
+		</instPin>
+		<instPin>
+			<name>b</name>
+			<net>+3V3</net>
+		</instPin>
+	</instance>
+	<instance>
+		<name>914_pullup_n</name>
+		<refDes>R11</refDes>
+		<device_name>res_0603</device_name>
+		<attribute>
+			<name>COST</name>
+			<value>0.07</value>
+		</attribute>
+		<attribute>
+			<name>MFGR</name>
+			<value>PANASONIC</value>
+		</attribute>
+		<attribute>
+			<name>NAME</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>PARTNUMBER</name>
+			<value>ERJ-3EKF1500V</value>
+		</attribute>
+		<attribute>
+			<name>PKG_TYPE</name>
+			<value>CR0603</value>
+		</attribute>
+		<attribute>
+			<name>REFDES</name>
+			<value>R11</value>
+		</attribute>
+		<attribute>
+			<name>REFPREFIX</name>
+			<value>R</value>
+		</attribute>
+		<attribute>
+			<name>VALUE</name>
+			<value>49.9/1%</value>
+		</attribute>
+		<instPin>
+			<name>a</name>
+			<net>CLOCK_BUF_N</net>
+		</instPin>
+		<instPin>
+			<name>b</name>
+			<net>+3V3</net>
+		</instPin>
+	</instance>
+	<instance>
+		<name>914_coup_cap_p</name>
+		<refDes>C25</refDes>
+		<device_name>capnp_0603</device_name>
+		<attribute>
+			<name>COST</name>
+			<value>0.03</value>
+		</attribute>
+		<attribute>
+			<name>MFGR</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>NAME</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>PARTNUMBER</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>PKG_TYPE</name>
+			<value>CC0603</value>
+		</attribute>
+		<attribute>
+			<name>REFDES</name>
+			<value>C25</value>
+		</attribute>
+		<attribute>
+			<name>REFPREFIX</name>
+			<value>C</value>
+		</attribute>
+		<attribute>
+			<name>VALUE</name>
+			<value>1000PF/X7R/10V</value>
+		</attribute>
+		<instPin>
+			<name>a</name>
+			<net>CLOCK_BUF_P</net>
+		</instPin>
+		<instPin>
+			<name>b</name>
+			<net>DACCLK_P</net>
+		</instPin>
+	</instance>
+	<instance>
+		<name>914_coup_cap_n</name>
+		<refDes>C26</refDes>
+		<device_name>capnp_0603</device_name>
+		<attribute>
+			<name>COST</name>
+			<value>0.03</value>
+		</attribute>
+		<attribute>
+			<name>MFGR</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>NAME</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>PARTNUMBER</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>PKG_TYPE</name>
+			<value>CC0603</value>
+		</attribute>
+		<attribute>
+			<name>REFDES</name>
+			<value>C26</value>
+		</attribute>
+		<attribute>
+			<name>REFPREFIX</name>
+			<value>C</value>
+		</attribute>
+		<attribute>
+			<name>VALUE</name>
+			<value>1000PF/X7R/10V</value>
+		</attribute>
+		<instPin>
+			<name>a</name>
+			<net>CLOCK_BUF_N</net>
+		</instPin>
+		<instPin>
+			<name>b</name>
+			<net>DACCLK_N</net>
+		</instPin>
+	</instance>
+	<instance>
+		<name>DACCLK_term</name>
+		<refDes>R12</refDes>
+		<device_name>res_0603</device_name>
+		<attribute>
+			<name>COST</name>
+			<value>0.07</value>
+		</attribute>
+		<attribute>
+			<name>MFGR</name>
+			<value>PANASONIC</value>
+		</attribute>
+		<attribute>
+			<name>NAME</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>PARTNUMBER</name>
+			<value>ERJ-3EKF1500V</value>
+		</attribute>
+		<attribute>
+			<name>PKG_TYPE</name>
+			<value>CR0603</value>
+		</attribute>
+		<attribute>
+			<name>REFDES</name>
+			<value>R12</value>
+		</attribute>
+		<attribute>
+			<name>REFPREFIX</name>
+			<value>R</value>
+		</attribute>
+		<attribute>
+			<name>VALUE</name>
+			<value>100/1%</value>
+		</attribute>
+		<instPin>
+			<name>a</name>
+			<net>DACCLK_P</net>
+		</instPin>
+		<instPin>
+			<name>b</name>
+			<net>DACCLK_N</net>
+		</instPin>
+	</instance>
+	<instance>
+		<name>level_shifter_out</name>
+		<refDes>U4</refDes>
+		<device_name>SN74AVC4T245PW</device_name>
+		<attribute>
+			<name>COST</name>
+			<value>16.00</value>
+		</attribute>
+		<attribute>
+			<name>MFGR</name>
+			<value>TI</value>
+		</attribute>
+		<attribute>
+			<name>NAME</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>PARTNUMBER</name>
+			<value>SN74AVC4T245PW</value>
+		</attribute>
+		<attribute>
+			<name>PKG_TYPE</name>
+			<value>SN74AVC4T245PW</value>
+		</attribute>
+		<attribute>
+			<name>REFDES</name>
+			<value>U4</value>
+		</attribute>
+		<attribute>
+			<name>REFPREFIX</name>
+			<value>U</value>
+		</attribute>
+		<instPin>
+			<name>Vcca</name>
+			<net>+2V5</net>
+		</instPin>
+		<instPin>
+			<name>1DIR</name>
+			<net>GND</net>
+		</instPin>
+		<instPin>
+			<name>2DIR</name>
+			<net>GND</net>
+		</instPin>
+		<instPin>
+			<name>1A1</name>
+			<net>IRQ_2V5</net>
+		</instPin>
+		<instPin>
+			<name>1A2</name>
+			<net>SPI_SDO_2V5</net>
+		</instPin>
+		<instPin>
+			<name>2A1</name>
+			<net>GND</net>
+		</instPin>
+		<instPin>
+			<name>2A2</name>
+			<net>GND</net>
+		</instPin>
+		<instPin>
+			<name>GND[1]</name>
+			<net>GND</net>
+		</instPin>
+		<instPin>
+			<name>GND[2]</name>
+			<net>GND</net>
+		</instPin>
+		<instPin>
+			<name>2B2</name>
+			<net>IRQ</net>
+		</instPin>
+		<instPin>
+			<name>2B1</name>
+			<net>SPI_SDO</net>
+		</instPin>
+		<instPin>
+			<name>1B2</name>
+			<net>OPEN</net>
+		</instPin>
+		<instPin>
+			<name>1B1</name>
+			<net>OPEN</net>
+		</instPin>
+		<instPin>
+			<name>2OE_n</name>
+			<net>GND</net>
+		</instPin>
+		<instPin>
+			<name>1OE_n</name>
+			<net>GND</net>
+		</instPin>
+		<instPin>
+			<name>Vccb</name>
+			<net>+3V3</net>
+		</instPin>
+	</instance>
+	<instance>
+		<name>level_shifter_in</name>
+		<refDes>U5</refDes>
+		<device_name>SN74AVC4T245PW</device_name>
+		<attribute>
+			<name>COST</name>
+			<value>16.00</value>
+		</attribute>
+		<attribute>
+			<name>MFGR</name>
+			<value>TI</value>
+		</attribute>
+		<attribute>
+			<name>NAME</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>PARTNUMBER</name>
+			<value>SN74AVC4T245PW</value>
+		</attribute>
+		<attribute>
+			<name>PKG_TYPE</name>
+			<value>SN74AVC4T245PW</value>
+		</attribute>
+		<attribute>
+			<name>REFDES</name>
+			<value>U5</value>
+		</attribute>
+		<attribute>
+			<name>REFPREFIX</name>
+			<value>U</value>
+		</attribute>
+		<instPin>
+			<name>Vcca</name>
+			<net>+3V3</net>
+		</instPin>
+		<instPin>
+			<name>1DIR</name>
+			<net>GND</net>
+		</instPin>
+		<instPin>
+			<name>2DIR</name>
+			<net>GND</net>
+		</instPin>
+		<instPin>
+			<name>1A1</name>
+			<net>SPI_CS</net>
+		</instPin>
+		<instPin>
+			<name>1A2</name>
+			<net>SPI_SCLK</net>
+		</instPin>
+		<instPin>
+			<name>2A1</name>
+			<net>SPI_SDI</net>
+		</instPin>
+		<instPin>
+			<name>2A2</name>
+			<net>RESET</net>
+		</instPin>
+		<instPin>
+			<name>GND[1]</name>
+			<net>GND</net>
+		</instPin>
+		<instPin>
+			<name>GND[2]</name>
+			<net>GND</net>
+		</instPin>
+		<instPin>
+			<name>2B2</name>
+			<net>SPI_CS_2V5</net>
+		</instPin>
+		<instPin>
+			<name>2B1</name>
+			<net>SPI_SCLK_2V5</net>
+		</instPin>
+		<instPin>
+			<name>1B2</name>
+			<net>SPI_SDI_2V5</net>
+		</instPin>
+		<instPin>
+			<name>1B1</name>
+			<net>RESET_2V5</net>
+		</instPin>
+		<instPin>
+			<name>2OE_n</name>
+			<net>GND</net>
+		</instPin>
+		<instPin>
+			<name>1OE_n</name>
+			<net>GND</net>
+		</instPin>
+		<instPin>
+			<name>Vccb</name>
+			<net>+2V5</net>
+		</instPin>
+	</instance>
+	<instance>
+		<name>C30</name>
+		<refDes>C30</refDes>
+		<device_name>capnp_0603</device_name>
+		<attribute>
+			<name>COST</name>
+			<value>0.03</value>
+		</attribute>
+		<attribute>
+			<name>MFGR</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>NAME</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>PARTNUMBER</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>PKG_TYPE</name>
+			<value>CC0603</value>
+		</attribute>
+		<attribute>
+			<name>REFDES</name>
+			<value>C30</value>
+		</attribute>
+		<attribute>
+			<name>REFPREFIX</name>
+			<value>C</value>
+		</attribute>
+		<attribute>
+			<name>VALUE</name>
+			<value>1000PF/X7R/10V</value>
+		</attribute>
+		<instPin>
+			<name>a</name>
+			<net>+3V3</net>
+		</instPin>
+		<instPin>
+			<name>b</name>
+			<net>GND</net>
+		</instPin>
+	</instance>
+	<instance>
+		<name>C31</name>
+		<refDes>C31</refDes>
+		<device_name>capnp_0603</device_name>
+		<attribute>
+			<name>COST</name>
+			<value>0.03</value>
+		</attribute>
+		<attribute>
+			<name>MFGR</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>NAME</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>PARTNUMBER</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>PKG_TYPE</name>
+			<value>CC0603</value>
+		</attribute>
+		<attribute>
+			<name>REFDES</name>
+			<value>C31</value>
+		</attribute>
+		<attribute>
+			<name>REFPREFIX</name>
+			<value>C</value>
+		</attribute>
+		<attribute>
+			<name>VALUE</name>
+			<value>1000PF/X7R/10V</value>
+		</attribute>
+		<instPin>
+			<name>a</name>
+			<net>+2V5</net>
+		</instPin>
+		<instPin>
+			<name>b</name>
 			<net>GND</net>
 		</instPin>
 	</instance>
@@ -6931,11 +7649,11 @@
 		</instPin>
 		<instPin>
 			<name>e[6]</name>
-			<net>DB1_P[0]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>e[7]</name>
-			<net>DB1_N[0]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>e[8]</name>
@@ -6943,11 +7661,11 @@
 		</instPin>
 		<instPin>
 			<name>e[9]</name>
-			<net>DB1_P[1]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>e[10]</name>
-			<net>DB1_N[1]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>e[11]</name>
@@ -6955,11 +7673,11 @@
 		</instPin>
 		<instPin>
 			<name>e[12]</name>
-			<net>DB1_P[2]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>e[13]</name>
-			<net>DB1_N[2]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>e[14]</name>
@@ -6967,11 +7685,11 @@
 		</instPin>
 		<instPin>
 			<name>e[15]</name>
-			<net>DB1_P[3]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>e[16]</name>
-			<net>DB1_N[3]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>e[17]</name>
@@ -6979,11 +7697,11 @@
 		</instPin>
 		<instPin>
 			<name>e[18]</name>
-			<net>DB1_P[4]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>e[19]</name>
-			<net>DB1_N[4]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>e[20]</name>
@@ -6991,11 +7709,11 @@
 		</instPin>
 		<instPin>
 			<name>e[21]</name>
-			<net>DB1_P[5]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>e[22]</name>
-			<net>DB1_N[5]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>e[23]</name>
@@ -7003,11 +7721,11 @@
 		</instPin>
 		<instPin>
 			<name>e[24]</name>
-			<net>DB1_P[6]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>e[25]</name>
-			<net>DB1_N[6]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>e[26]</name>
@@ -7015,11 +7733,11 @@
 		</instPin>
 		<instPin>
 			<name>e[27]</name>
-			<net>DB1_P[7]</net>
+			<net>SPI_SDO_2V5</net>
 		</instPin>
 		<instPin>
 			<name>e[28]</name>
-			<net>DB1_N[7]</net>
+			<net>IRQ_2V5</net>
 		</instPin>
 		<instPin>
 			<name>e[29]</name>
@@ -7027,11 +7745,11 @@
 		</instPin>
 		<instPin>
 			<name>e[30]</name>
-			<net>DB1_P[8]</net>
+			<net>RESET_2V5</net>
 		</instPin>
 		<instPin>
 			<name>e[31]</name>
-			<net>DB1_N[8]</net>
+			<net>SPI_SDI_2V5</net>
 		</instPin>
 		<instPin>
 			<name>e[32]</name>
@@ -7039,11 +7757,11 @@
 		</instPin>
 		<instPin>
 			<name>e[33]</name>
-			<net>DB1_P[9]</net>
+			<net>SPI_CS_2V5</net>
 		</instPin>
 		<instPin>
 			<name>e[34]</name>
-			<net>DB1_N[9]</net>
+			<net>SPI_SCLK_2V5</net>
 		</instPin>
 		<instPin>
 			<name>e[35]</name>
@@ -7083,11 +7801,11 @@
 		</instPin>
 		<instPin>
 			<name>f[4]</name>
-			<net>DCO_P</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>f[5]</name>
-			<net>DCO_N</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>f[6]</name>
@@ -7095,11 +7813,11 @@
 		</instPin>
 		<instPin>
 			<name>f[7]</name>
-			<net>DB1_P[10]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>f[8]</name>
-			<net>DB1_N[10]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>f[9]</name>
@@ -7107,11 +7825,11 @@
 		</instPin>
 		<instPin>
 			<name>f[10]</name>
-			<net>DB1_P[11]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>f[11]</name>
-			<net>DB1_N[11]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>f[12]</name>
@@ -7119,11 +7837,11 @@
 		</instPin>
 		<instPin>
 			<name>f[13]</name>
-			<net>DB1_P[12]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>f[14]</name>
-			<net>DB1_N[12]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>f[15]</name>
@@ -7131,11 +7849,11 @@
 		</instPin>
 		<instPin>
 			<name>f[16]</name>
-			<net>DB1_P[13]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>f[17]</name>
-			<net>DB1_N[13]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>f[18]</name>
@@ -7143,11 +7861,11 @@
 		</instPin>
 		<instPin>
 			<name>f[19]</name>
-			<net>DCI_P</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>f[20]</name>
-			<net>DCI_N</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>f[21]</name>
@@ -7155,11 +7873,11 @@
 		</instPin>
 		<instPin>
 			<name>f[22]</name>
-			<net>SYNC_IN_P</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>f[23]</name>
-			<net>SYNC_IN_N</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>f[24]</name>
@@ -7263,11 +7981,11 @@
 		</instPin>
 		<instPin>
 			<name>g[9]</name>
-			<net>DB0_P[1]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>g[10]</name>
-			<net>DB0_N[1]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>g[11]</name>
@@ -7287,11 +8005,11 @@
 		</instPin>
 		<instPin>
 			<name>g[15]</name>
-			<net>DB0_P[3]</net>
+			<net>DB0_P[4]</net>
 		</instPin>
 		<instPin>
 			<name>g[16]</name>
-			<net>DB0_N[3]</net>
+			<net>DB0_N[4]</net>
 		</instPin>
 		<instPin>
 			<name>g[17]</name>
@@ -7299,11 +8017,11 @@
 		</instPin>
 		<instPin>
 			<name>g[18]</name>
-			<net>DB0_P[4]</net>
+			<net>DB0_P[6]</net>
 		</instPin>
 		<instPin>
 			<name>g[19]</name>
-			<net>DB0_N[4]</net>
+			<net>DB0_N[6]</net>
 		</instPin>
 		<instPin>
 			<name>g[20]</name>
@@ -7311,11 +8029,11 @@
 		</instPin>
 		<instPin>
 			<name>g[21]</name>
-			<net>DB0_P[5]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>g[22]</name>
-			<net>DB0_N[5]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>g[23]</name>
@@ -7323,11 +8041,11 @@
 		</instPin>
 		<instPin>
 			<name>g[24]</name>
-			<net>DB0_P[6]</net>
+			<net>DB0_P[8]</net>
 		</instPin>
 		<instPin>
 			<name>g[25]</name>
-			<net>DB0_N[6]</net>
+			<net>DB0_N[8]</net>
 		</instPin>
 		<instPin>
 			<name>g[26]</name>
@@ -7335,11 +8053,11 @@
 		</instPin>
 		<instPin>
 			<name>g[27]</name>
-			<net>DB0_P[7]</net>
+			<net>DB0_P[10]</net>
 		</instPin>
 		<instPin>
 			<name>g[28]</name>
-			<net>DB0_N[7]</net>
+			<net>DB0_N[10]</net>
 		</instPin>
 		<instPin>
 			<name>g[29]</name>
@@ -7347,11 +8065,11 @@
 		</instPin>
 		<instPin>
 			<name>g[30]</name>
-			<net>DB0_P[8]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>g[31]</name>
-			<net>DB0_N[8]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>g[32]</name>
@@ -7359,11 +8077,11 @@
 		</instPin>
 		<instPin>
 			<name>g[33]</name>
-			<net>DB0_P[9]</net>
+			<net>DB0_P[12]</net>
 		</instPin>
 		<instPin>
 			<name>g[34]</name>
-			<net>DB0_N[9]</net>
+			<net>DB0_N[12]</net>
 		</instPin>
 		<instPin>
 			<name>g[35]</name>
@@ -7415,11 +8133,11 @@
 		</instPin>
 		<instPin>
 			<name>h[7]</name>
-			<net>OPEN</net>
+			<net>DB0_P[1]</net>
 		</instPin>
 		<instPin>
 			<name>h[8]</name>
-			<net>OPEN</net>
+			<net>DB0_N[1]</net>
 		</instPin>
 		<instPin>
 			<name>h[9]</name>
@@ -7427,11 +8145,11 @@
 		</instPin>
 		<instPin>
 			<name>h[10]</name>
-			<net>DB0_P[10]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>h[11]</name>
-			<net>DB0_N[10]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>h[12]</name>
@@ -7439,11 +8157,11 @@
 		</instPin>
 		<instPin>
 			<name>h[13]</name>
-			<net>DB0_P[11]</net>
+			<net>DB0_P[3]</net>
 		</instPin>
 		<instPin>
 			<name>h[14]</name>
-			<net>DB0_N[11]</net>
+			<net>DB0_N[3]</net>
 		</instPin>
 		<instPin>
 			<name>h[15]</name>
@@ -7451,11 +8169,11 @@
 		</instPin>
 		<instPin>
 			<name>h[16]</name>
-			<net>DB0_P[12]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>h[17]</name>
-			<net>DB0_N[12]</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>h[18]</name>
@@ -7463,11 +8181,11 @@
 		</instPin>
 		<instPin>
 			<name>h[19]</name>
-			<net>DB0_P[13]</net>
+			<net>DB0_P[5]</net>
 		</instPin>
 		<instPin>
 			<name>h[20]</name>
-			<net>DB0_N[13]</net>
+			<net>DB0_N[5]</net>
 		</instPin>
 		<instPin>
 			<name>h[21]</name>
@@ -7475,11 +8193,11 @@
 		</instPin>
 		<instPin>
 			<name>h[22]</name>
-			<net>OPEN</net>
+			<net>DB0_P[7]</net>
 		</instPin>
 		<instPin>
 			<name>h[23]</name>
-			<net>OPEN</net>
+			<net>DB0_N[7]</net>
 		</instPin>
 		<instPin>
 			<name>h[24]</name>
@@ -7499,11 +8217,11 @@
 		</instPin>
 		<instPin>
 			<name>h[28]</name>
-			<net>OPEN</net>
+			<net>DB0_P[9]</net>
 		</instPin>
 		<instPin>
 			<name>h[29]</name>
-			<net>OPEN</net>
+			<net>DB0_N[9]</net>
 		</instPin>
 		<instPin>
 			<name>h[30]</name>
@@ -7511,11 +8229,11 @@
 		</instPin>
 		<instPin>
 			<name>h[31]</name>
-			<net>OPEN</net>
+			<net>DB0_P[11]</net>
 		</instPin>
 		<instPin>
 			<name>h[32]</name>
-			<net>OPEN</net>
+			<net>DB0_N[11]</net>
 		</instPin>
 		<instPin>
 			<name>h[33]</name>
@@ -7535,11 +8253,11 @@
 		</instPin>
 		<instPin>
 			<name>h[37]</name>
-			<net>OPEN</net>
+			<net>DB0_P[13]</net>
 		</instPin>
 		<instPin>
 			<name>h[38]</name>
-			<net>OPEN</net>
+			<net>DB0_N[13]</net>
 		</instPin>
 		<instPin>
 			<name>h[39]</name>
@@ -7571,11 +8289,11 @@
 		</instPin>
 		<instPin>
 			<name>j[6]</name>
-			<net>OPEN</net>
+			<net>DB1_P[0]</net>
 		</instPin>
 		<instPin>
 			<name>j[7]</name>
-			<net>OPEN</net>
+			<net>DB1_N[0]</net>
 		</instPin>
 		<instPin>
 			<name>j[8]</name>
@@ -7583,11 +8301,11 @@
 		</instPin>
 		<instPin>
 			<name>j[9]</name>
-			<net>OPEN</net>
+			<net>DB1_P[2]</net>
 		</instPin>
 		<instPin>
 			<name>j[10]</name>
-			<net>OPEN</net>
+			<net>DB1_N[2]</net>
 		</instPin>
 		<instPin>
 			<name>j[11]</name>
@@ -7607,11 +8325,11 @@
 		</instPin>
 		<instPin>
 			<name>j[15]</name>
-			<net>OPEN</net>
+			<net>DB1_P[4]</net>
 		</instPin>
 		<instPin>
 			<name>j[16]</name>
-			<net>OPEN</net>
+			<net>DB1_N[4]</net>
 		</instPin>
 		<instPin>
 			<name>j[17]</name>
@@ -7643,11 +8361,11 @@
 		</instPin>
 		<instPin>
 			<name>j[24]</name>
-			<net>OPEN</net>
+			<net>DB1_P[6]</net>
 		</instPin>
 		<instPin>
 			<name>j[25]</name>
-			<net>OPEN</net>
+			<net>DB1_N[6]</net>
 		</instPin>
 		<instPin>
 			<name>j[26]</name>
@@ -7655,11 +8373,11 @@
 		</instPin>
 		<instPin>
 			<name>j[27]</name>
-			<net>OPEN</net>
+			<net>DB1_P[8]</net>
 		</instPin>
 		<instPin>
 			<name>j[28]</name>
-			<net>OPEN</net>
+			<net>DB1_N[8]</net>
 		</instPin>
 		<instPin>
 			<name>j[29]</name>
@@ -7667,11 +8385,11 @@
 		</instPin>
 		<instPin>
 			<name>j[30]</name>
-			<net>OPEN</net>
+			<net>DB1_P[10]</net>
 		</instPin>
 		<instPin>
 			<name>j[31]</name>
-			<net>OPEN</net>
+			<net>DB1_N[10]</net>
 		</instPin>
 		<instPin>
 			<name>j[32]</name>
@@ -7679,11 +8397,11 @@
 		</instPin>
 		<instPin>
 			<name>j[33]</name>
-			<net>OPEN</net>
+			<net>DB1_P[12]</net>
 		</instPin>
 		<instPin>
 			<name>j[34]</name>
-			<net>OPEN</net>
+			<net>DB1_N[12]</net>
 		</instPin>
 		<instPin>
 			<name>j[35]</name>
@@ -7691,11 +8409,11 @@
 		</instPin>
 		<instPin>
 			<name>j[36]</name>
-			<net>OPEN</net>
+			<net>DCI_P</net>
 		</instPin>
 		<instPin>
 			<name>j[37]</name>
-			<net>OPEN</net>
+			<net>DCI_N</net>
 		</instPin>
 		<instPin>
 			<name>j[38]</name>
@@ -7735,11 +8453,11 @@
 		</instPin>
 		<instPin>
 			<name>k[7]</name>
-			<net>OPEN</net>
+			<net>SYNC_IN_P</net>
 		</instPin>
 		<instPin>
 			<name>k[8]</name>
-			<net>OPEN</net>
+			<net>SYNC_IN_N</net>
 		</instPin>
 		<instPin>
 			<name>k[9]</name>
@@ -7747,11 +8465,11 @@
 		</instPin>
 		<instPin>
 			<name>k[10]</name>
-			<net>OPEN</net>
+			<net>DB1_P[1]</net>
 		</instPin>
 		<instPin>
 			<name>k[11]</name>
-			<net>OPEN</net>
+			<net>DB1_N[1]</net>
 		</instPin>
 		<instPin>
 			<name>k[12]</name>
@@ -7771,11 +8489,11 @@
 		</instPin>
 		<instPin>
 			<name>k[16]</name>
-			<net>OPEN</net>
+			<net>DB1_P[3]</net>
 		</instPin>
 		<instPin>
 			<name>k[17]</name>
-			<net>OPEN</net>
+			<net>DB1_N[3]</net>
 		</instPin>
 		<instPin>
 			<name>k[18]</name>
@@ -7783,11 +8501,11 @@
 		</instPin>
 		<instPin>
 			<name>k[19]</name>
-			<net>OPEN</net>
+			<net>DB1_P[5]</net>
 		</instPin>
 		<instPin>
 			<name>k[20]</name>
-			<net>OPEN</net>
+			<net>DB1_N[5]</net>
 		</instPin>
 		<instPin>
 			<name>k[21]</name>
@@ -7795,11 +8513,11 @@
 		</instPin>
 		<instPin>
 			<name>k[22]</name>
-			<net>OPEN</net>
+			<net>DB1_P[7]</net>
 		</instPin>
 		<instPin>
 			<name>k[23]</name>
-			<net>OPEN</net>
+			<net>DB1_N[7]</net>
 		</instPin>
 		<instPin>
 			<name>k[24]</name>
@@ -7807,11 +8525,11 @@
 		</instPin>
 		<instPin>
 			<name>k[25]</name>
-			<net>OPEN</net>
+			<net>DB1_P[9]</net>
 		</instPin>
 		<instPin>
 			<name>k[26]</name>
-			<net>OPEN</net>
+			<net>DB1_N[9]</net>
 		</instPin>
 		<instPin>
 			<name>k[27]</name>
@@ -7819,11 +8537,11 @@
 		</instPin>
 		<instPin>
 			<name>k[28]</name>
-			<net>OPEN</net>
+			<net>DCO_P</net>
 		</instPin>
 		<instPin>
 			<name>k[29]</name>
-			<net>OPEN</net>
+			<net>DCO_N</net>
 		</instPin>
 		<instPin>
 			<name>k[30]</name>
@@ -7831,11 +8549,11 @@
 		</instPin>
 		<instPin>
 			<name>k[31]</name>
-			<net>OPEN</net>
+			<net>DB1_P[11]</net>
 		</instPin>
 		<instPin>
 			<name>k[32]</name>
-			<net>OPEN</net>
+			<net>DB1_N[11]</net>
 		</instPin>
 		<instPin>
 			<name>k[33]</name>
@@ -7843,11 +8561,11 @@
 		</instPin>
 		<instPin>
 			<name>k[34]</name>
-			<net>OPEN</net>
+			<net>DB1_P[13]</net>
 		</instPin>
 		<instPin>
 			<name>k[35]</name>
-			<net>OPEN</net>
+			<net>DB1_N[13]</net>
 		</instPin>
 		<instPin>
 			<name>k[36]</name>
