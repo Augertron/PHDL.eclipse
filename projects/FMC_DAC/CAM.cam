@@ -1,0 +1,647 @@
+*REMARK*    PARENT_KEYWORD PARENT_VALUE
+*REMARK*  [ { 
+*REMARK*       CHILD_KEYWORD CHILD_VALUE
+*REMARK*     [ CHILD_KEYWORD CHILD_VALUE
+*REMARK*     [ { 
+*REMARK*          GRAND_CHILD_KEYWORD GRAND_CHILD_VALUE [...] 
+*REMARK*       } ]] 
+*REMARK*    } ] 
+
+CAM_SECTION PARENT
+{
+CAM_VERSION V2007.0
+CAM_DOC_LIST PARENT
+{
+CAM_DOC_DIRECTORY C:\Users\pedro\workspace\phdl\projects\FMC_DAC\CAM
+CAM_DOC_NAME silk_top
+{
+DOC_PLOT_TYPE Silkscreen
+DOC_DEVICE_TYPE Photo
+DOC_OUTPUT_FILE silk_top.pho
+DOC_LAYER_NAMES Top Silkscreen_Top
+DOC_LAYER_NUMBERS 1 26 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+DOC_LAYER_TYPES Component Plane
+DOC_FABRICATION_LAYER_NUMBER 26
+DOC_SCALE 1 1
+DOC_ORIENTATION 0
+DOC_MIRROR N
+DOC_JUSTIFICATION OO
+DOC_OFFSET 38100000 38100000
+DOC_CLIP 0
+DOC_FIT_OUTPUT 0
+DOC_NO_PLANE_THERMALS 0
+DOC_ASSEMBLY_OPTION ""
+DOC_CUSTOM_THERMALS 0
+DOC_BOARD Black
+DOC_CONNECTIONS None
+DOC_OUTLINES Black None
+DOC_SLOTS None None
+DOC_REFDES Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_PARTTYPES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_ATTRIBUTES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_TESTPOINTS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_OUTLINE_LAYERS N Y N N N N N N N N N N N N N N N N N N N N N N N N N N N N
+DOC_PADS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_VIAS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_ROUTES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_COPPER None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_LINES None Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_TEXT None Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_KEEPOUTS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_PINS_ADV 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+DOC_PAD_OVERSIZE 0
+DOC_PLOT_JOBNAME Y
+DOC_PLOT_OLE N
+DOC_MIRROR_REFS N
+DOC_SUPRESS_PREFIXES ""
+DOC_PLOT_QUALITY Filled
+DOC_DRILL_CHART Y
+DOC_CHART_OFFSET 0 0
+DOC_SUPRESS_EXCLUDE_PADS N
+DOC_COLOR_BY_NET 0
+}
+CAM_DOC_NAME mask_top
+{
+DOC_PLOT_TYPE Solder_Mask
+DOC_DEVICE_TYPE Photo
+DOC_OUTPUT_FILE mask_top.pho
+DOC_LAYER_NAMES Top Solder_Mask_Top
+DOC_LAYER_NUMBERS 1 21 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+DOC_LAYER_TYPES Component SilkScreen
+DOC_FABRICATION_LAYER_NUMBER 21
+DOC_SCALE 1 1
+DOC_ORIENTATION 0
+DOC_MIRROR N
+DOC_JUSTIFICATION OO
+DOC_OFFSET 38100000 38100000
+DOC_CLIP 0
+DOC_FIT_OUTPUT 0
+DOC_NO_PLANE_THERMALS 0
+DOC_ASSEMBLY_OPTION ""
+DOC_CUSTOM_THERMALS 0
+DOC_BOARD None
+DOC_CONNECTIONS None
+DOC_OUTLINES None None
+DOC_SLOTS None None
+DOC_REFDES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_PARTTYPES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_ATTRIBUTES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_TESTPOINTS Black Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_OUTLINE_LAYERS N N N N N N N N N N N N N N N N N N N N N N N N N N N N N N
+DOC_PADS Black Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_VIAS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_ROUTES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_COPPER None Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_LINES None Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_TEXT None Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_KEEPOUTS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_PINS_ADV 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+DOC_PAD_OVERSIZE 381000
+DOC_PLOT_JOBNAME Y
+DOC_PLOT_OLE N
+DOC_MIRROR_REFS N
+DOC_SUPRESS_PREFIXES ""
+DOC_PLOT_QUALITY Filled
+DOC_DRILL_CHART Y
+DOC_CHART_OFFSET 0 0
+DOC_SUPRESS_EXCLUDE_PADS N
+DOC_COLOR_BY_NET 0
+}
+CAM_DOC_NAME top
+{
+DOC_PLOT_TYPE Routing
+DOC_DEVICE_TYPE Photo
+DOC_OUTPUT_FILE top.pho
+DOC_LAYER_NAMES Top
+DOC_LAYER_NUMBERS 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+DOC_LAYER_TYPES Component
+DOC_FABRICATION_LAYER_NUMBER 1
+DOC_SCALE 1 1
+DOC_ORIENTATION 0
+DOC_MIRROR N
+DOC_JUSTIFICATION OO
+DOC_OFFSET 38100000 38100000
+DOC_CLIP 0
+DOC_FIT_OUTPUT 0
+DOC_NO_PLANE_THERMALS 0
+DOC_ASSEMBLY_OPTION ""
+DOC_CUSTOM_THERMALS 0
+DOC_BOARD None
+DOC_CONNECTIONS None
+DOC_OUTLINES None None
+DOC_SLOTS None None
+DOC_REFDES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_PARTTYPES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_ATTRIBUTES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_TESTPOINTS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_OUTLINE_LAYERS N N N N N N N N N N N N N N N N N N N N N N N N N N N N N N
+DOC_PADS Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_VIAS Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_ROUTES Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_COPPER Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_LINES Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_TEXT Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_KEEPOUTS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_PINS_ADV 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+DOC_PAD_OVERSIZE 0
+DOC_PLOT_JOBNAME Y
+DOC_PLOT_OLE N
+DOC_MIRROR_REFS N
+DOC_SUPRESS_PREFIXES ""
+DOC_PLOT_QUALITY Filled
+DOC_DRILL_CHART Y
+DOC_CHART_OFFSET 0 0
+DOC_SUPRESS_EXCLUDE_PADS N
+DOC_COLOR_BY_NET 0
+}
+CAM_DOC_NAME layer2
+{
+DOC_PLOT_TYPE Routing
+DOC_DEVICE_TYPE Photo
+DOC_OUTPUT_FILE layer2.pho
+DOC_LAYER_NAMES Inner_Layer_2
+DOC_LAYER_NUMBERS 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+DOC_LAYER_TYPES Component
+DOC_FABRICATION_LAYER_NUMBER 2
+DOC_SCALE 1 1
+DOC_ORIENTATION 0
+DOC_MIRROR N
+DOC_JUSTIFICATION OO
+DOC_OFFSET 38100000 38100000
+DOC_CLIP 0
+DOC_FIT_OUTPUT 0
+DOC_NO_PLANE_THERMALS 0
+DOC_ASSEMBLY_OPTION ""
+DOC_CUSTOM_THERMALS 0
+DOC_BOARD None
+DOC_CONNECTIONS None
+DOC_OUTLINES None None
+DOC_SLOTS None None
+DOC_REFDES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_PARTTYPES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_ATTRIBUTES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_TESTPOINTS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_OUTLINE_LAYERS N N N N N N N N N N N N N N N N N N N N N N N N N N N N N N
+DOC_PADS Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_VIAS Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_ROUTES Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_COPPER Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_LINES Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_TEXT Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_KEEPOUTS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_PINS_ADV 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+DOC_PAD_OVERSIZE 0
+DOC_PLOT_JOBNAME Y
+DOC_PLOT_OLE N
+DOC_MIRROR_REFS N
+DOC_SUPRESS_PREFIXES ""
+DOC_PLOT_QUALITY Filled
+DOC_DRILL_CHART Y
+DOC_CHART_OFFSET 0 0
+DOC_SUPRESS_EXCLUDE_PADS N
+DOC_COLOR_BY_NET 0
+}
+CAM_DOC_NAME layer3
+{
+DOC_PLOT_TYPE Routing
+DOC_DEVICE_TYPE Photo
+DOC_OUTPUT_FILE layer3.pho
+DOC_LAYER_NAMES Inner_Layer_3
+DOC_LAYER_NUMBERS 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+DOC_LAYER_TYPES Component
+DOC_FABRICATION_LAYER_NUMBER 3
+DOC_SCALE 1 1
+DOC_ORIENTATION 0
+DOC_MIRROR N
+DOC_JUSTIFICATION OO
+DOC_OFFSET 38100000 38100000
+DOC_CLIP 0
+DOC_FIT_OUTPUT 0
+DOC_NO_PLANE_THERMALS 0
+DOC_ASSEMBLY_OPTION ""
+DOC_CUSTOM_THERMALS 0
+DOC_BOARD None
+DOC_CONNECTIONS None
+DOC_OUTLINES None None
+DOC_SLOTS None None
+DOC_REFDES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_PARTTYPES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_ATTRIBUTES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_TESTPOINTS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_OUTLINE_LAYERS N N N N N N N N N N N N N N N N N N N N N N N N N N N N N N
+DOC_PADS Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_VIAS Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_ROUTES Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_COPPER Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_LINES Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_TEXT Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_KEEPOUTS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_PINS_ADV 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+DOC_PAD_OVERSIZE 0
+DOC_PLOT_JOBNAME Y
+DOC_PLOT_OLE N
+DOC_MIRROR_REFS N
+DOC_SUPRESS_PREFIXES ""
+DOC_PLOT_QUALITY Filled
+DOC_DRILL_CHART Y
+DOC_CHART_OFFSET 0 0
+DOC_SUPRESS_EXCLUDE_PADS N
+DOC_COLOR_BY_NET 0
+}
+CAM_DOC_NAME bottom
+{
+DOC_PLOT_TYPE Routing
+DOC_DEVICE_TYPE Photo
+DOC_OUTPUT_FILE bottom.pho
+DOC_LAYER_NAMES Bottom
+DOC_LAYER_NUMBERS 6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+DOC_LAYER_TYPES Component
+DOC_FABRICATION_LAYER_NUMBER 6
+DOC_SCALE 1 1
+DOC_ORIENTATION 0
+DOC_MIRROR N
+DOC_JUSTIFICATION OO
+DOC_OFFSET 38100000 38100000
+DOC_CLIP 0
+DOC_FIT_OUTPUT 0
+DOC_NO_PLANE_THERMALS 0
+DOC_ASSEMBLY_OPTION ""
+DOC_CUSTOM_THERMALS 0
+DOC_BOARD None
+DOC_CONNECTIONS None
+DOC_OUTLINES None None
+DOC_SLOTS None None
+DOC_REFDES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_PARTTYPES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_ATTRIBUTES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_TESTPOINTS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_OUTLINE_LAYERS N N N N N N N N N N N N N N N N N N N N N N N N N N N N N N
+DOC_PADS Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_VIAS Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_ROUTES Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_COPPER Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_LINES Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_TEXT Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_KEEPOUTS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_PINS_ADV 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+DOC_PAD_OVERSIZE 0
+DOC_PLOT_JOBNAME Y
+DOC_PLOT_OLE N
+DOC_MIRROR_REFS N
+DOC_SUPRESS_PREFIXES ""
+DOC_PLOT_QUALITY Filled
+DOC_DRILL_CHART Y
+DOC_CHART_OFFSET 0 0
+DOC_SUPRESS_EXCLUDE_PADS N
+DOC_COLOR_BY_NET 0
+}
+CAM_DOC_NAME mask_bottom
+{
+DOC_PLOT_TYPE Solder_Mask
+DOC_DEVICE_TYPE Photo
+DOC_OUTPUT_FILE mask_bottom.pho
+DOC_LAYER_NAMES Bottom Solder_Mask_Bottom
+DOC_LAYER_NUMBERS 6 28 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+DOC_LAYER_TYPES Component SilkScreen
+DOC_FABRICATION_LAYER_NUMBER 28
+DOC_SCALE 1 1
+DOC_ORIENTATION 0
+DOC_MIRROR N
+DOC_JUSTIFICATION OO
+DOC_OFFSET 38100000 38100000
+DOC_CLIP 0
+DOC_FIT_OUTPUT 0
+DOC_NO_PLANE_THERMALS 0
+DOC_ASSEMBLY_OPTION ""
+DOC_CUSTOM_THERMALS 0
+DOC_BOARD None
+DOC_CONNECTIONS None
+DOC_OUTLINES None None
+DOC_SLOTS None None
+DOC_REFDES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_PARTTYPES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_ATTRIBUTES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_TESTPOINTS Black Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_OUTLINE_LAYERS N N N N N N N N N N N N N N N N N N N N N N N N N N N N N N
+DOC_PADS Black Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_VIAS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_ROUTES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_COPPER None Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_LINES None Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_TEXT None Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_KEEPOUTS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_PINS_ADV 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+DOC_PAD_OVERSIZE 381000
+DOC_PLOT_JOBNAME Y
+DOC_PLOT_OLE N
+DOC_MIRROR_REFS N
+DOC_SUPRESS_PREFIXES ""
+DOC_PLOT_QUALITY Filled
+DOC_DRILL_CHART Y
+DOC_CHART_OFFSET 0 0
+DOC_SUPRESS_EXCLUDE_PADS N
+DOC_COLOR_BY_NET 0
+}
+CAM_DOC_NAME silk_bottom
+{
+DOC_PLOT_TYPE Silkscreen
+DOC_DEVICE_TYPE Photo
+DOC_OUTPUT_FILE silk_bottom.pho
+DOC_LAYER_NAMES Bottom Silkscreen_Bottom
+DOC_LAYER_NUMBERS 6 29 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+DOC_LAYER_TYPES Component Plane
+DOC_FABRICATION_LAYER_NUMBER 29
+DOC_SCALE 1 1
+DOC_ORIENTATION 0
+DOC_MIRROR N
+DOC_JUSTIFICATION OO
+DOC_OFFSET 38100000 38100000
+DOC_CLIP 0
+DOC_FIT_OUTPUT 0
+DOC_NO_PLANE_THERMALS 0
+DOC_ASSEMBLY_OPTION ""
+DOC_CUSTOM_THERMALS 0
+DOC_BOARD Black
+DOC_CONNECTIONS None
+DOC_OUTLINES None Black
+DOC_SLOTS None None
+DOC_REFDES Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_PARTTYPES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_ATTRIBUTES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_TESTPOINTS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_OUTLINE_LAYERS N Y N N N N N N N N N N N N N N N N N N N N N N N N N N N N
+DOC_PADS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_VIAS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_ROUTES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_COPPER None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_LINES None Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_TEXT None Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_KEEPOUTS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_PINS_ADV 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+DOC_PAD_OVERSIZE 0
+DOC_PLOT_JOBNAME Y
+DOC_PLOT_OLE N
+DOC_MIRROR_REFS N
+DOC_SUPRESS_PREFIXES ""
+DOC_PLOT_QUALITY Filled
+DOC_DRILL_CHART Y
+DOC_CHART_OFFSET 0 0
+DOC_SUPRESS_EXCLUDE_PADS N
+DOC_COLOR_BY_NET 0
+}
+CAM_DOC_NAME drill
+{
+DOC_PLOT_TYPE NC_Drill
+DOC_DEVICE_TYPE Drill
+DOC_OUTPUT_FILE drill.drl
+DOC_LAYER_NAMES Top
+DOC_LAYER_NUMBERS 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+DOC_LAYER_TYPES Component
+DOC_FABRICATION_LAYER_NUMBER 0
+DOC_SCALE 1 1
+DOC_ORIENTATION 0
+DOC_MIRROR N
+DOC_JUSTIFICATION OO
+DOC_OFFSET 38100000 38100000
+DOC_CLIP 0
+DOC_FIT_OUTPUT 0
+DOC_NO_PLANE_THERMALS 0
+DOC_ASSEMBLY_OPTION ""
+DOC_CUSTOM_THERMALS 0
+DOC_DRILL_PLATED Y
+DOC_DRILL_NONPLATED Y
+DOC_DRILL_THRU_VIA Y
+DOC_DRILL_PARTIAL_VIA N
+DOC_DRILL_TESTPOINTS N
+DOC_REPEAT_COUNTS 0 0
+DOC_STEP_SIZES 0 0
+DOC_DRILL_LIST Y
+DOC_DRILL_FILE Y
+}
+CAM_DOC_NAME assy_top
+{
+DOC_PLOT_TYPE Assembly
+DOC_DEVICE_TYPE Photo
+DOC_OUTPUT_FILE assy_top.pho
+DOC_LAYER_NAMES Top Assembly_Drawing_Top
+DOC_LAYER_NUMBERS 1 27 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+DOC_LAYER_TYPES Component PasteMask
+DOC_FABRICATION_LAYER_NUMBER 0
+DOC_SCALE 1 1
+DOC_ORIENTATION 0
+DOC_MIRROR N
+DOC_JUSTIFICATION OO
+DOC_OFFSET 38100000 38100000
+DOC_CLIP 0
+DOC_FIT_OUTPUT 0
+DOC_NO_PLANE_THERMALS 0
+DOC_ASSEMBLY_OPTION ""
+DOC_CUSTOM_THERMALS 0
+DOC_BOARD Black
+DOC_CONNECTIONS None
+DOC_OUTLINES Black None
+DOC_SLOTS None None
+DOC_REFDES Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_PARTTYPES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_ATTRIBUTES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_TESTPOINTS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_OUTLINE_LAYERS N Y N N N N N N N N N N N N N N N N N N N N N N N N N N N N
+DOC_PADS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_VIAS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_ROUTES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_COPPER None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_LINES None Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_TEXT Black Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_KEEPOUTS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_PINS_ADV 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+DOC_PAD_OVERSIZE 0
+DOC_PLOT_JOBNAME Y
+DOC_PLOT_OLE N
+DOC_MIRROR_REFS N
+DOC_SUPRESS_PREFIXES ""
+DOC_PLOT_QUALITY Filled
+DOC_DRILL_CHART Y
+DOC_CHART_OFFSET 0 0
+DOC_SUPRESS_EXCLUDE_PADS N
+DOC_COLOR_BY_NET 0
+}
+CAM_DOC_NAME assy_bottom
+{
+DOC_PLOT_TYPE Assembly
+DOC_DEVICE_TYPE Photo
+DOC_OUTPUT_FILE assy_bottom.pho
+DOC_LAYER_NAMES Bottom Assembly_Drawing_Bottom
+DOC_LAYER_NUMBERS 6 30 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+DOC_LAYER_TYPES Component PasteMask
+DOC_FABRICATION_LAYER_NUMBER 0
+DOC_SCALE 1 1
+DOC_ORIENTATION 0
+DOC_MIRROR Y
+DOC_JUSTIFICATION OO
+DOC_OFFSET 190500000 38100000
+DOC_CLIP 0
+DOC_FIT_OUTPUT 0
+DOC_NO_PLANE_THERMALS 0
+DOC_ASSEMBLY_OPTION ""
+DOC_CUSTOM_THERMALS 0
+DOC_BOARD Black
+DOC_CONNECTIONS None
+DOC_OUTLINES None Black
+DOC_SLOTS None None
+DOC_REFDES Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_PARTTYPES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_ATTRIBUTES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_TESTPOINTS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_OUTLINE_LAYERS N Y N N N N N N N N N N N N N N N N N N N N N N N N N N N N
+DOC_PADS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_VIAS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_ROUTES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_COPPER None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_LINES None Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_TEXT Black Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_KEEPOUTS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_PINS_ADV 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+DOC_PAD_OVERSIZE 0
+DOC_PLOT_JOBNAME Y
+DOC_PLOT_OLE N
+DOC_MIRROR_REFS N
+DOC_SUPRESS_PREFIXES ""
+DOC_PLOT_QUALITY Filled
+DOC_DRILL_CHART Y
+DOC_CHART_OFFSET 0 0
+DOC_SUPRESS_EXCLUDE_PADS N
+DOC_COLOR_BY_NET 0
+}
+CAM_DOC_NAME assy_top_xps
+{
+DOC_PLOT_TYPE Assembly
+DOC_DEVICE_TYPE Printer
+DOC_OUTPUT_FILE adt001027.lpr
+DOC_LAYER_NAMES Top Assembly_Drawing_Top
+DOC_LAYER_NUMBERS 1 27 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+DOC_LAYER_TYPES Component PasteMask
+DOC_FABRICATION_LAYER_NUMBER 0
+DOC_SCALE 2 1
+DOC_ORIENTATION 0
+DOC_MIRROR N
+DOC_JUSTIFICATION OO
+DOC_OFFSET 53340000 38100000
+DOC_CLIP 0
+DOC_FIT_OUTPUT 0
+DOC_NO_PLANE_THERMALS 0
+DOC_ASSEMBLY_OPTION ""
+DOC_CUSTOM_THERMALS 0
+DOC_BOARD Black
+DOC_CONNECTIONS None
+DOC_OUTLINES Black None
+DOC_SLOTS None None
+DOC_REFDES Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_PARTTYPES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_ATTRIBUTES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_TESTPOINTS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_OUTLINE_LAYERS N Y N N N N N N N N N N N N N N N N N N N N N N N N N N N N
+DOC_PADS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_VIAS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_ROUTES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_COPPER None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_LINES None Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_TEXT Black Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_KEEPOUTS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_PINS_ADV 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+DOC_PAD_OVERSIZE 0
+DOC_PLOT_JOBNAME Y
+DOC_PLOT_OLE N
+DOC_MIRROR_REFS N
+DOC_SUPRESS_PREFIXES ""
+DOC_PLOT_QUALITY Filled
+DOC_DRILL_CHART Y
+DOC_CHART_OFFSET 0 0
+DOC_SUPRESS_EXCLUDE_PADS N
+DOC_COLOR_BY_NET 0
+}
+CAM_DOC_NAME assy_bottom_xps
+{
+DOC_PLOT_TYPE Assembly
+DOC_DEVICE_TYPE Printer
+DOC_OUTPUT_FILE adb004030.lpr
+DOC_LAYER_NAMES Bottom Assembly_Drawing_Bottom
+DOC_LAYER_NUMBERS 6 30 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+DOC_LAYER_TYPES Component PasteMask
+DOC_FABRICATION_LAYER_NUMBER 0
+DOC_SCALE 2 1
+DOC_ORIENTATION 0
+DOC_MIRROR Y
+DOC_JUSTIFICATION OO
+DOC_OFFSET 358140000 38100000
+DOC_CLIP 0
+DOC_FIT_OUTPUT 0
+DOC_NO_PLANE_THERMALS 0
+DOC_ASSEMBLY_OPTION ""
+DOC_CUSTOM_THERMALS 0
+DOC_BOARD Black
+DOC_CONNECTIONS None
+DOC_OUTLINES None Black
+DOC_SLOTS None None
+DOC_REFDES Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_PARTTYPES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_ATTRIBUTES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_TESTPOINTS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_OUTLINE_LAYERS N Y N N N N N N N N N N N N N N N N N N N N N N N N N N N N
+DOC_PADS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_VIAS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_ROUTES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_COPPER None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_LINES None Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_TEXT Black Black None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_KEEPOUTS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_PINS_ADV 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+DOC_PAD_OVERSIZE 0
+DOC_PLOT_JOBNAME Y
+DOC_PLOT_OLE N
+DOC_MIRROR_REFS N
+DOC_SUPRESS_PREFIXES ""
+DOC_PLOT_QUALITY Filled
+DOC_DRILL_CHART Y
+DOC_CHART_OFFSET 0 0
+DOC_SUPRESS_EXCLUDE_PADS N
+DOC_COLOR_BY_NET 0
+}
+}
+CAM_DRILL_SPEED_FEED_TABLE PARENT
+{
+DRILL_RANGE_1 381000 761619 95 300
+DRILL_RANGE_2 762000 1523619 197 550
+DRILL_RANGE_3 1524000 1904619 139 550
+DRILL_RANGE_4 1905000 2285619 107 550
+DRILL_RANGE_5 2286000 2666619 89 550
+DRILL_RANGE_6 2667000 3047619 81 550
+DRILL_RANGE_7 3048000 3428619 74 550
+DRILL_RANGE_8 3429000 3809619 66 550
+DRILL_RANGE_9 3810000 4571619 69 658
+DRILL_RANGE_10 4572000 5333619 35 794
+DRILL_RANGE_11 5334000 6095619 35 900
+DRILL_RANGE_12 6096000 7619619 35 1033
+}
+CAM_AUGMENT_ON_THE_FLY Y
+CAM_APERTURE_TABLE PARENT
+{
+APERTURE_1 10 38100 0 RND
+APERTURE_2 11 381000 0 RND
+APERTURE_3 12 190500 0 RND
+APERTURE_4 13 304800 0 RND
+}
+CAM_DRILL_SYMBOL_TABLE_EXTENDED PARENT
+{
+MARKER_SIZE 3048000
+MARKER_LINE_WIDTH 381000
+MARKER_CHAR_HEIGHT 1905000
+CHART_TEXT_HEIGHT 4572000
+CHART_LINE_WIDTH 381000
+SIZE_VALUES_SORTING_ORDER 0
+QUANTITY_VALUES_SORTING_ORDER 0
+PLATED_VALUES_SORTING_ORDER 0
+DEFAULT_TOLERANCE +/-0.0
+DRILL_UNIT 0
+THROUGH_PARTIAL N
+}
+}
