@@ -38,6 +38,7 @@ P64,docking_connector
 R10,914_pullup_p
 R11,914_pullup_n
 R12,DACCLK_term
+R13,samp_clk_term
 R2,R2
 R3,R3
 R4,analog_bal_resP

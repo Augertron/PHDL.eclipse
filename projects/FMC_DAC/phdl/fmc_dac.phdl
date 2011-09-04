@@ -135,6 +135,8 @@ begin
     // Some AC coupling caps after the clock balun.
     inst coup_cap_p of capnp_0603 is refDes="C20"; value="1000PF/X7R/10V"; a=bal_clock_p; b=coup_clock_p; end inst;
     inst coup_cap_n of capnp_0603 is refDes="C21"; value="1000PF/X7R/10V"; a=bal_clock_n; b=coup_clock_n; end inst;
+    // Then we need a 100 Ohm diff term resistor because the balun is 1:1.
+    inst samp_clk_term of res_0603 is refDes="R13"; value="100/1%"; a=coup_clock_p; b=coup_clock_n; end inst;
     inst clock_buffer of ADCLK914 is refDes = "U3";
         D_P = coup_clock_p;
         D_N = coup_clock_n;

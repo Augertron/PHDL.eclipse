@@ -6297,6 +6297,51 @@
 		</instPin>
 	</instance>
 	<instance>
+		<name>samp_clk_term</name>
+		<refDes>R13</refDes>
+		<device_name>res_0603</device_name>
+		<attribute>
+			<name>COST</name>
+			<value>0.07</value>
+		</attribute>
+		<attribute>
+			<name>MFGR</name>
+			<value>PANASONIC</value>
+		</attribute>
+		<attribute>
+			<name>NAME</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>PARTNUMBER</name>
+			<value>ERJ-3EKF1500V</value>
+		</attribute>
+		<attribute>
+			<name>PKG_TYPE</name>
+			<value>CR0603</value>
+		</attribute>
+		<attribute>
+			<name>REFDES</name>
+			<value>R13</value>
+		</attribute>
+		<attribute>
+			<name>REFPREFIX</name>
+			<value>R</value>
+		</attribute>
+		<attribute>
+			<name>VALUE</name>
+			<value>100/1%</value>
+		</attribute>
+		<instPin>
+			<name>a</name>
+			<net>COUP_CLOCK_P</net>
+		</instPin>
+		<instPin>
+			<name>b</name>
+			<net>COUP_CLOCK_N</net>
+		</instPin>
+	</instance>
+	<instance>
 		<name>clock_buffer</name>
 		<refDes>U3</refDes>
 		<device_name>ADCLK914</device_name>
