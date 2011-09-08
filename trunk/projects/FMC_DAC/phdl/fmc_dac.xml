@@ -5132,7 +5132,7 @@
 		</attribute>
 		<instPin>
 			<name>in</name>
-			<net>+1V8</net>
+			<net>+3V3</net>
 		</instPin>
 		<instPin>
 			<name>out</name>
