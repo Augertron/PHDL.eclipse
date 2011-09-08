@@ -88,7 +88,7 @@ begin
     inst C5  of capnp_0603 is refDes="C5";  value="1000PF/X7R/10V"; a=VDDC; b=gnd; end inst;
     inst C6  of capnp_0603 is refDes="C6";  value="1000PF/X7R/10V"; a=VDDC; b=gnd; end inst;
     // For VDDA
-    inst L2  of ELKE  is refDes="L2"; in=+1V8; out=VDDA; gnd=gnd; end inst;
+    inst L2  of ELKE  is refDes="L2"; in=+3V3; out=VDDA; gnd=gnd; end inst;
     inst C7  of capnp_0603 is refDes="C7";  value="0.01UF/X7R/10V"; a=VDDA; b=gnd; end inst;
     inst C8  of capnp_0603 is refDes="C8";  value="0.01UF/X7R/10V"; a=VDDA; b=gnd; end inst;
     inst C9  of capnp_0603 is refDes="C9";  value="1000PF/X7R/10V"; a=VDDA; b=gnd; end inst;
