@@ -21,6 +21,11 @@ C3,C3
 C30,C30
 C31,C31
 C4,C4
+C40,bulk_cap_3V3_a
+C41,bulk_cap_3V3_b
+C42,bulk_cap_1V8_a
+C43,bulk_cap_1V8_b
+C44,bulk_cap_2V5_b
 C5,C5
 C6,C6
 C7,C7
@@ -28,8 +33,6 @@ C8,C8
 C9,C9
 J1,sma_samp_clk
 J2,sma_analog_out
-L1,L1
-L2,L2
 MTG1,mounting_hole1
 MTG2,mounting_hole2
 MTG3,mounting_hole3
