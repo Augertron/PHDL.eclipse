@@ -3378,14 +3378,14 @@
 		</pin>
 	</device>
 	<device>
-		<name>tant_cap</name>
+		<name>tant_cap_3528</name>
 		<attribute>
 			<name>COST</name>
-			<value>2.60</value>
+			<value>1.55</value>
 		</attribute>
 		<attribute>
 			<name>MFGR</name>
-			<value>AVXCORPORATION</value>
+			<value>AVX</value>
 		</attribute>
 		<attribute>
 			<name>NAME</name>
@@ -3393,11 +3393,11 @@
 		</attribute>
 		<attribute>
 			<name>PARTNUMBER</name>
-			<value>TAJD227M006RNJ</value>
+			<value>TCJB107M006R0045</value>
 		</attribute>
 		<attribute>
 			<name>PKG_TYPE</name>
-			<value>7343-31</value>
+			<value>TANT3528</value>
 		</attribute>
 		<attribute>
 			<name>REFDES</name>
@@ -3434,12 +3434,6 @@
 	</net>
 	<net>
 		<name>GND</name>
-	</net>
-	<net>
-		<name>VDDC</name>
-	</net>
-	<net>
-		<name>VDDA</name>
 	</net>
 	<net>
 		<name>IOUTP</name>
@@ -3764,35 +3758,35 @@
 		</attribute>
 		<instPin>
 			<name>VDDC[1]</name>
-			<net>VDDC</net>
+			<net>+1V8</net>
 		</instPin>
 		<instPin>
 			<name>VDDC[2]</name>
-			<net>VDDC</net>
+			<net>+1V8</net>
 		</instPin>
 		<instPin>
 			<name>VDDC[3]</name>
-			<net>VDDC</net>
+			<net>+1V8</net>
 		</instPin>
 		<instPin>
 			<name>VDDC[4]</name>
-			<net>VDDC</net>
+			<net>+1V8</net>
 		</instPin>
 		<instPin>
 			<name>VDDC[5]</name>
-			<net>VDDC</net>
+			<net>+1V8</net>
 		</instPin>
 		<instPin>
 			<name>VDDC[6]</name>
-			<net>VDDC</net>
+			<net>+1V8</net>
 		</instPin>
 		<instPin>
 			<name>VDDC[7]</name>
-			<net>VDDC</net>
+			<net>+1V8</net>
 		</instPin>
 		<instPin>
 			<name>VDDC[8]</name>
-			<net>VDDC</net>
+			<net>+1V8</net>
 		</instPin>
 		<instPin>
 			<name>VSSC[1]</name>
@@ -3852,35 +3846,35 @@
 		</instPin>
 		<instPin>
 			<name>VDDA[1]</name>
-			<net>VDDA</net>
+			<net>+3V3</net>
 		</instPin>
 		<instPin>
 			<name>VDDA[2]</name>
-			<net>VDDA</net>
+			<net>+3V3</net>
 		</instPin>
 		<instPin>
 			<name>VDDA[3]</name>
-			<net>VDDA</net>
+			<net>+3V3</net>
 		</instPin>
 		<instPin>
 			<name>VDDA[4]</name>
-			<net>VDDA</net>
+			<net>+3V3</net>
 		</instPin>
 		<instPin>
 			<name>VDDA[5]</name>
-			<net>VDDA</net>
+			<net>+3V3</net>
 		</instPin>
 		<instPin>
 			<name>VDDA[6]</name>
-			<net>VDDA</net>
+			<net>+3V3</net>
 		</instPin>
 		<instPin>
 			<name>VDDA[7]</name>
-			<net>VDDA</net>
+			<net>+3V3</net>
 		</instPin>
 		<instPin>
 			<name>VDDA[8]</name>
-			<net>VDDA</net>
+			<net>+3V3</net>
 		</instPin>
 		<instPin>
 			<name>VSSA[1]</name>
@@ -4874,51 +4868,6 @@
 		</instPin>
 	</instance>
 	<instance>
-		<name>L1</name>
-		<refDes>L1</refDes>
-		<device_name>ELKE</device_name>
-		<attribute>
-			<name>COST</name>
-			<value>0.48</value>
-		</attribute>
-		<attribute>
-			<name>MFGR</name>
-			<value>Panasonic</value>
-		</attribute>
-		<attribute>
-			<name>NAME</name>
-			<value></value>
-		</attribute>
-		<attribute>
-			<name>PARTNUMBER</name>
-			<value>ELK-E222FA/P9877CT-ND</value>
-		</attribute>
-		<attribute>
-			<name>PKG_TYPE</name>
-			<value>FILT_ELK_E</value>
-		</attribute>
-		<attribute>
-			<name>REFDES</name>
-			<value>L1</value>
-		</attribute>
-		<attribute>
-			<name>REFPREFIX</name>
-			<value>L</value>
-		</attribute>
-		<instPin>
-			<name>in</name>
-			<net>+1V8</net>
-		</instPin>
-		<instPin>
-			<name>out</name>
-			<net>VDDC</net>
-		</instPin>
-		<instPin>
-			<name>gnd</name>
-			<net>GND</net>
-		</instPin>
-	</instance>
-	<instance>
 		<name>C3</name>
 		<refDes>C3</refDes>
 		<device_name>capnp_0603</device_name>
@@ -4956,7 +4905,7 @@
 		</attribute>
 		<instPin>
 			<name>a</name>
-			<net>VDDC</net>
+			<net>+1V8</net>
 		</instPin>
 		<instPin>
 			<name>b</name>
@@ -5001,7 +4950,7 @@
 		</attribute>
 		<instPin>
 			<name>a</name>
-			<net>VDDC</net>
+			<net>+1V8</net>
 		</instPin>
 		<instPin>
 			<name>b</name>
@@ -5046,7 +4995,7 @@
 		</attribute>
 		<instPin>
 			<name>a</name>
-			<net>VDDC</net>
+			<net>+1V8</net>
 		</instPin>
 		<instPin>
 			<name>b</name>
@@ -5091,55 +5040,10 @@
 		</attribute>
 		<instPin>
 			<name>a</name>
-			<net>VDDC</net>
+			<net>+1V8</net>
 		</instPin>
 		<instPin>
 			<name>b</name>
-			<net>GND</net>
-		</instPin>
-	</instance>
-	<instance>
-		<name>L2</name>
-		<refDes>L2</refDes>
-		<device_name>ELKE</device_name>
-		<attribute>
-			<name>COST</name>
-			<value>0.48</value>
-		</attribute>
-		<attribute>
-			<name>MFGR</name>
-			<value>Panasonic</value>
-		</attribute>
-		<attribute>
-			<name>NAME</name>
-			<value></value>
-		</attribute>
-		<attribute>
-			<name>PARTNUMBER</name>
-			<value>ELK-E222FA/P9877CT-ND</value>
-		</attribute>
-		<attribute>
-			<name>PKG_TYPE</name>
-			<value>FILT_ELK_E</value>
-		</attribute>
-		<attribute>
-			<name>REFDES</name>
-			<value>L2</value>
-		</attribute>
-		<attribute>
-			<name>REFPREFIX</name>
-			<value>L</value>
-		</attribute>
-		<instPin>
-			<name>in</name>
-			<net>+3V3</net>
-		</instPin>
-		<instPin>
-			<name>out</name>
-			<net>VDDA</net>
-		</instPin>
-		<instPin>
-			<name>gnd</name>
 			<net>GND</net>
 		</instPin>
 	</instance>
@@ -5181,7 +5085,7 @@
 		</attribute>
 		<instPin>
 			<name>a</name>
-			<net>VDDA</net>
+			<net>+3V3</net>
 		</instPin>
 		<instPin>
 			<name>b</name>
@@ -5226,7 +5130,7 @@
 		</attribute>
 		<instPin>
 			<name>a</name>
-			<net>VDDA</net>
+			<net>+3V3</net>
 		</instPin>
 		<instPin>
 			<name>b</name>
@@ -5271,7 +5175,7 @@
 		</attribute>
 		<instPin>
 			<name>a</name>
-			<net>VDDA</net>
+			<net>+3V3</net>
 		</instPin>
 		<instPin>
 			<name>b</name>
@@ -5316,7 +5220,7 @@
 		</attribute>
 		<instPin>
 			<name>a</name>
-			<net>VDDA</net>
+			<net>+3V3</net>
 		</instPin>
 		<instPin>
 			<name>b</name>
@@ -6093,6 +5997,231 @@
 		</instPin>
 		<instPin>
 			<name>b</name>
+			<net>GND</net>
+		</instPin>
+	</instance>
+	<instance>
+		<name>bulk_cap_3V3_a</name>
+		<refDes>C40</refDes>
+		<device_name>tant_cap_3528</device_name>
+		<attribute>
+			<name>COST</name>
+			<value>1.55</value>
+		</attribute>
+		<attribute>
+			<name>MFGR</name>
+			<value>AVX</value>
+		</attribute>
+		<attribute>
+			<name>NAME</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>PARTNUMBER</name>
+			<value>TCJB107M006R0045</value>
+		</attribute>
+		<attribute>
+			<name>PKG_TYPE</name>
+			<value>TANT3528</value>
+		</attribute>
+		<attribute>
+			<name>REFDES</name>
+			<value>C40</value>
+		</attribute>
+		<attribute>
+			<name>REFPREFIX</name>
+			<value>C</value>
+		</attribute>
+		<attribute>
+			<name>VALUE</name>
+			<value>100UF/35mOhm/6.3V</value>
+		</attribute>
+		<instPin>
+			<name>pos</name>
+			<net>+3V3</net>
+		</instPin>
+		<instPin>
+			<name>neg</name>
+			<net>GND</net>
+		</instPin>
+	</instance>
+	<instance>
+		<name>bulk_cap_3V3_b</name>
+		<refDes>C41</refDes>
+		<device_name>tant_cap_3528</device_name>
+		<attribute>
+			<name>COST</name>
+			<value>1.55</value>
+		</attribute>
+		<attribute>
+			<name>MFGR</name>
+			<value>AVX</value>
+		</attribute>
+		<attribute>
+			<name>NAME</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>PARTNUMBER</name>
+			<value>TCJB107M006R0045</value>
+		</attribute>
+		<attribute>
+			<name>PKG_TYPE</name>
+			<value>TANT3528</value>
+		</attribute>
+		<attribute>
+			<name>REFDES</name>
+			<value>C41</value>
+		</attribute>
+		<attribute>
+			<name>REFPREFIX</name>
+			<value>C</value>
+		</attribute>
+		<attribute>
+			<name>VALUE</name>
+			<value>100UF/35mOhm/6.3V</value>
+		</attribute>
+		<instPin>
+			<name>pos</name>
+			<net>+3V3</net>
+		</instPin>
+		<instPin>
+			<name>neg</name>
+			<net>GND</net>
+		</instPin>
+	</instance>
+	<instance>
+		<name>bulk_cap_1V8_a</name>
+		<refDes>C42</refDes>
+		<device_name>tant_cap_3528</device_name>
+		<attribute>
+			<name>COST</name>
+			<value>1.55</value>
+		</attribute>
+		<attribute>
+			<name>MFGR</name>
+			<value>AVX</value>
+		</attribute>
+		<attribute>
+			<name>NAME</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>PARTNUMBER</name>
+			<value>TCJB107M006R0045</value>
+		</attribute>
+		<attribute>
+			<name>PKG_TYPE</name>
+			<value>TANT3528</value>
+		</attribute>
+		<attribute>
+			<name>REFDES</name>
+			<value>C42</value>
+		</attribute>
+		<attribute>
+			<name>REFPREFIX</name>
+			<value>C</value>
+		</attribute>
+		<attribute>
+			<name>VALUE</name>
+			<value>100UF/35mOhm/6.3V</value>
+		</attribute>
+		<instPin>
+			<name>pos</name>
+			<net>+1V8</net>
+		</instPin>
+		<instPin>
+			<name>neg</name>
+			<net>GND</net>
+		</instPin>
+	</instance>
+	<instance>
+		<name>bulk_cap_1V8_b</name>
+		<refDes>C43</refDes>
+		<device_name>tant_cap_3528</device_name>
+		<attribute>
+			<name>COST</name>
+			<value>1.55</value>
+		</attribute>
+		<attribute>
+			<name>MFGR</name>
+			<value>AVX</value>
+		</attribute>
+		<attribute>
+			<name>NAME</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>PARTNUMBER</name>
+			<value>TCJB107M006R0045</value>
+		</attribute>
+		<attribute>
+			<name>PKG_TYPE</name>
+			<value>TANT3528</value>
+		</attribute>
+		<attribute>
+			<name>REFDES</name>
+			<value>C43</value>
+		</attribute>
+		<attribute>
+			<name>REFPREFIX</name>
+			<value>C</value>
+		</attribute>
+		<attribute>
+			<name>VALUE</name>
+			<value>100UF/35mOhm/6.3V</value>
+		</attribute>
+		<instPin>
+			<name>pos</name>
+			<net>+1V8</net>
+		</instPin>
+		<instPin>
+			<name>neg</name>
+			<net>GND</net>
+		</instPin>
+	</instance>
+	<instance>
+		<name>bulk_cap_2V5_b</name>
+		<refDes>C44</refDes>
+		<device_name>tant_cap_3528</device_name>
+		<attribute>
+			<name>COST</name>
+			<value>1.55</value>
+		</attribute>
+		<attribute>
+			<name>MFGR</name>
+			<value>AVX</value>
+		</attribute>
+		<attribute>
+			<name>NAME</name>
+			<value></value>
+		</attribute>
+		<attribute>
+			<name>PARTNUMBER</name>
+			<value>TCJB107M006R0045</value>
+		</attribute>
+		<attribute>
+			<name>PKG_TYPE</name>
+			<value>TANT3528</value>
+		</attribute>
+		<attribute>
+			<name>REFDES</name>
+			<value>C44</value>
+		</attribute>
+		<attribute>
+			<name>REFPREFIX</name>
+			<value>C</value>
+		</attribute>
+		<attribute>
+			<name>VALUE</name>
+			<value>100UF/35mOhm/6.3V</value>
+		</attribute>
+		<instPin>
+			<name>pos</name>
+			<net>+2V5</net>
+		</instPin>
+		<instPin>
+			<name>neg</name>
 			<net>GND</net>
 		</instPin>
 	</instance>

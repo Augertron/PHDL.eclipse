@@ -108,16 +108,15 @@ device res_0805 is
 end device;
 
 // a tantalum capacitor declaration
-device tant_cap is
+device tant_cap_3528 is
 	attr refPrefix = "C";
 	attr refDes = "";
 	attr name = "";
 	attr value = "";
-	attr pkg_type = "7343-31";
-	attr mfgr = "AVX CORPORATION";
-	attr partNumber = "TAJD227M006RNJ";
-	attr cost = "2.60";
-
+	attr pkg_type = "TANT3528";
+	attr mfgr = "AVX";
+	attr partNumber = "TCJB107M006R0045";
+	attr cost = "1.55";
 	pin pos = {1};
 	pin neg = {2};
 end device;
