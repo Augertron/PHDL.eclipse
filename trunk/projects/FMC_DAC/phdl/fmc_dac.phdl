@@ -25,6 +25,9 @@ design fmc_dac is
     net ADCLK914_Vref;
     net out_coup_clock_p, out_coup_clock_n;
 
+    // Test signals.
+    net test_trace_bottom, test_trace_top;
+
 begin
 
     // This the fast DAC itself. Note how concisely the busses are connected.
@@ -40,8 +43,8 @@ begin
         I120  = I120;
         VREF  = DAC_VREF;
         IPTAT = IPTAT;
-        DACCLK_N = DACCLK_N;
-        DACCLK_P = DACCLK_P;
+        DACCLK_N = DACCLK_P; // clock polarity reversed for better routing.
+        DACCLK_P = DACCLK_N;
         IRQ   = IRQ;
         RESET = RESET;
         CS = SPI_CS;
@@ -353,6 +356,25 @@ begin
         j[1,4,5,8,11,14,17,20,23,26,29,32,35,38,40] = <gnd>;
         k[2,3,6,9,12,15,18,21,24,27,30,33,36,39] = <gnd>;
     end inst;
+
+    // Let's put some test points so we can measure power plane decoupling.
+    inst tp1 of TP_ROUND  is refDes="TP1"; sig=gnd; end inst;
+    inst tp2 of TP_ROUND  is refDes="TP2"; sig=gnd; end inst;
+    inst tp3 of TP_SQUARE is refDes="TP3"; sig=+3V3; end inst;
+    inst tp4 of TP_SQUARE is refDes="TP4"; sig=+3V3; end inst;
+    inst tp5 of TP_ROUND  is refDes="TP5"; sig=gnd; end inst;
+    inst tp6 of TP_ROUND  is refDes="TP6"; sig=gnd; end inst;
+    inst tp7 of TP_SQUARE is refDes="TP7"; sig=+1V8; end inst;
+    inst tp8 of TP_SQUARE is refDes="TP8"; sig=+1V8; end inst;
+    // and trace impedance.
+    inst tp9  of TP_ROUND  is refDes="TP9";  sig=gnd; end inst;
+    inst tp10 of TP_ROUND  is refDes="TP10"; sig=gnd; end inst;
+    inst tp11 of TP_SQUARE is refDes="TP11"; sig=test_trace_bottom; end inst;
+    inst tp12 of TP_SQUARE is refDes="TP12"; sig=test_trace_bottom; end inst;
+    inst tp13 of TP_ROUND  is refDes="TP13";  sig=gnd; end inst;
+    inst tp14 of TP_ROUND  is refDes="TP14"; sig=gnd; end inst;
+    inst tp15 of TP_SQUARE is refDes="TP15"; sig=test_trace_top; end inst;
+    inst tp16 of TP_SQUARE is refDes="TP16"; sig=test_trace_top; end inst;
 
 end design fmc_dac;
 
