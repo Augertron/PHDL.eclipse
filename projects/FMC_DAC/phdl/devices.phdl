@@ -1,8 +1,29 @@
 // This file holds all the device declarations for the FMC_DAC board. :-)
 
+// A couple of through hole test point devices.
+device TP_ROUND is
+    attr refPrefix = "TP";
+    attr refDes = "";
+    attr name = "";
+    attr value = "";
+    attr pkg_type = "TP_ROUND";
+    pin sig = {1};
+end device;
+
+device TP_SQUARE is
+    attr refPrefix = "TP";
+    attr refDes = "";
+    attr name = "";
+    attr value = "";
+    attr pkg_type = "TP_SQUARE";
+    pin sig = {1};
+end device;
+
+
+
 // an SMA connector device declaration
 device SMA_CON is
-	attr refprefix = "P";
+	attr refPrefix = "P";
 	attr refDes = "";
 	attr name = "";
 	attr value = "";
