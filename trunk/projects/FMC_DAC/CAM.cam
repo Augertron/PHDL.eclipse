@@ -13,6 +13,53 @@ CAM_VERSION V2007.0
 CAM_DOC_LIST PARENT
 {
 CAM_DOC_DIRECTORY C:\Users\pedro\workspace\phdl\projects\FMC_DAC\CAM
+CAM_DOC_NAME paste_top
+{
+DOC_PLOT_TYPE Paste_Mask
+DOC_DEVICE_TYPE Photo
+DOC_OUTPUT_FILE paste_top.pho
+DOC_LAYER_NAMES Top Paste_Mask_Top
+DOC_LAYER_NUMBERS 1 23 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+DOC_LAYER_TYPES Component Drill
+DOC_FABRICATION_LAYER_NUMBER 23
+DOC_SCALE 1 1
+DOC_ORIENTATION 0
+DOC_MIRROR N
+DOC_JUSTIFICATION OO
+DOC_OFFSET 38100000 38100000
+DOC_CLIP 0
+DOC_FIT_OUTPUT 0
+DOC_NO_PLANE_THERMALS 0
+DOC_ASSEMBLY_OPTION ""
+DOC_CUSTOM_THERMALS 0
+DOC_BOARD None
+DOC_CONNECTIONS None
+DOC_OUTLINES None None
+DOC_SLOTS None None
+DOC_REFDES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_PARTTYPES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_ATTRIBUTES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_TESTPOINTS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_OUTLINE_LAYERS N N N N N N N N N N N N N N N N N N N N N N N N N N N N N N
+DOC_PADS Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black
+DOC_VIAS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_ROUTES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_COPPER None Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black
+DOC_LINES None Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black
+DOC_TEXT None Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black
+DOC_KEEPOUTS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_PINS_ADV 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+DOC_PAD_OVERSIZE 0
+DOC_PLOT_JOBNAME Y
+DOC_PLOT_OLE N
+DOC_MIRROR_REFS N
+DOC_SUPRESS_PREFIXES ""
+DOC_PLOT_QUALITY Filled
+DOC_DRILL_CHART Y
+DOC_CHART_OFFSET 0 0
+DOC_SUPRESS_EXCLUDE_PADS Y
+DOC_COLOR_BY_NET 0
+}
 CAM_DOC_NAME silk_top
 {
 DOC_PLOT_TYPE Silkscreen
@@ -40,7 +87,7 @@ DOC_REFDES Black None None None None None None None None None None None None Non
 DOC_PARTTYPES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
 DOC_ATTRIBUTES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
 DOC_TESTPOINTS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
-DOC_OUTLINE_LAYERS N Y N N N N N N N N N N N N N N N N N N N N N N N N N N N N
+DOC_OUTLINE_LAYERS Y Y N N N N N N N N N N N N N N N N N N N N N N N N N N N N
 DOC_PADS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
 DOC_VIAS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
 DOC_ROUTES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
@@ -483,6 +530,53 @@ DOC_CHART_OFFSET 0 0
 DOC_SUPRESS_EXCLUDE_PADS N
 DOC_COLOR_BY_NET 0
 }
+CAM_DOC_NAME paste_bottom
+{
+DOC_PLOT_TYPE Paste_Mask
+DOC_DEVICE_TYPE Photo
+DOC_OUTPUT_FILE paste_bottom.pho
+DOC_LAYER_NAMES Bottom Paste_Mask_Bottom
+DOC_LAYER_NUMBERS 6 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+DOC_LAYER_TYPES Component Drill
+DOC_FABRICATION_LAYER_NUMBER 22
+DOC_SCALE 1 1
+DOC_ORIENTATION 0
+DOC_MIRROR N
+DOC_JUSTIFICATION OO
+DOC_OFFSET 38100000 38100000
+DOC_CLIP 0
+DOC_FIT_OUTPUT 0
+DOC_NO_PLANE_THERMALS 0
+DOC_ASSEMBLY_OPTION ""
+DOC_CUSTOM_THERMALS 0
+DOC_BOARD None
+DOC_CONNECTIONS None
+DOC_OUTLINES None None
+DOC_SLOTS None None
+DOC_REFDES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_PARTTYPES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_ATTRIBUTES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_TESTPOINTS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_OUTLINE_LAYERS N N N N N N N N N N N N N N N N N N N N N N N N N N N N N N
+DOC_PADS Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black
+DOC_VIAS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_ROUTES None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_COPPER None Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black
+DOC_LINES None Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black
+DOC_TEXT None Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black Black
+DOC_KEEPOUTS None None None None None None None None None None None None None None None None None None None None None None None None None None None None None None
+DOC_PINS_ADV 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+DOC_PAD_OVERSIZE 0
+DOC_PLOT_JOBNAME Y
+DOC_PLOT_OLE N
+DOC_MIRROR_REFS N
+DOC_SUPRESS_PREFIXES ""
+DOC_PLOT_QUALITY Filled
+DOC_DRILL_CHART Y
+DOC_CHART_OFFSET 0 0
+DOC_SUPRESS_EXCLUDE_PADS Y
+DOC_COLOR_BY_NET 0
+}
 CAM_DOC_NAME drill
 {
 DOC_PLOT_TYPE NC_Drill
@@ -575,6 +669,15 @@ APERTURE_41 50 152400 0 RND
 APERTURE_42 51 838200 0 RND
 APERTURE_43 52 609600 0 RND
 APERTURE_44 53 76200 0 RND
+APERTURE_45 54 990600 0 RND
+APERTURE_46 55 2667000 4191000 RECT
+APERTURE_47 56 2286000 0 RND
+APERTURE_48 57 2286000 0 SQR
+APERTURE_49 58 2286000 3810000 RECT
+APERTURE_50 59 1905000 0 RND
+APERTURE_51 60 1905000 0 SQR
+APERTURE_52 61 251460 0 RND
+APERTURE_53 62 457200 0 RND
 }
 CAM_DRILL_SYMBOL_TABLE_EXTENDED PARENT
 {
