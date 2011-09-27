@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:50:56 D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g 2011-08-27 01:00:47
+// $ANTLR 3.3 Nov 30, 2010 12:50:56 /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g 2011-09-27 10:05:10
 
 /*
     Copyright (C) 2011  BYU Configurable Computing Lab
@@ -129,15 +129,15 @@ public class PhdlLexer extends Lexer {
         super(input,state);
 
     }
-    public String getGrammarFileName() { return "D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g"; }
+    public String getGrammarFileName() { return "/fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g"; }
 
     // $ANTLR start "T__27"
     public final void mT__27() throws RecognitionException {
         try {
             int _type = T__27;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:79:7: ( 'design' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:79:9: 'design'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:79:7: ( 'design' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:79:9: 'design'
             {
             match("design"); 
 
@@ -157,8 +157,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = T__28;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:80:7: ( 'is' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:80:9: 'is'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:80:7: ( 'is' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:80:9: 'is'
             {
             match("is"); 
 
@@ -178,8 +178,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = T__29;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:81:7: ( 'begin' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:81:9: 'begin'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:81:7: ( 'begin' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:81:9: 'begin'
             {
             match("begin"); 
 
@@ -199,8 +199,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = T__30;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:82:7: ( 'end' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:82:9: 'end'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:82:7: ( 'end' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:82:9: 'end'
             {
             match("end"); 
 
@@ -220,8 +220,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = T__31;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:83:7: ( 'device' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:83:9: 'device'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:83:7: ( 'device' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:83:9: 'device'
             {
             match("device"); 
 
@@ -241,8 +241,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = T__32;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:84:7: ( 'attr' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:84:9: 'attr'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:84:7: ( 'attr' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:84:9: 'attr'
             {
             match("attr"); 
 
@@ -262,8 +262,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = T__33;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:85:7: ( 'pin' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:85:9: 'pin'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:85:7: ( 'pin' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:85:9: 'pin'
             {
             match("pin"); 
 
@@ -283,8 +283,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = T__34;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:86:7: ( 'net' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:86:9: 'net'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:86:7: ( 'net' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:86:9: 'net'
             {
             match("net"); 
 
@@ -304,8 +304,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = T__35;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:87:7: ( 'inst' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:87:9: 'inst'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:87:7: ( 'inst' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:87:9: 'inst'
             {
             match("inst"); 
 
@@ -325,8 +325,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = T__36;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:88:7: ( 'of' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:88:9: 'of'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:88:7: ( 'of' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:88:9: 'of'
             {
             match("of"); 
 
@@ -346,8 +346,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = T__37;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:89:7: ( 'info' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:89:9: 'info'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:89:7: ( 'info' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:89:9: 'info'
             {
             match("info"); 
 
@@ -367,8 +367,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = T__38;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:90:7: ( 'group' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:90:9: 'group'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:90:7: ( 'group' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:90:9: 'group'
             {
             match("group"); 
 
@@ -388,8 +388,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = T__39;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:91:7: ( 'newattr' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:91:9: 'newattr'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:91:7: ( 'newattr' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:91:9: 'newattr'
             {
             match("newattr"); 
 
@@ -409,8 +409,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = T__40;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:92:7: ( 'each' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:92:9: 'each'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:92:7: ( 'each' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:92:9: 'each'
             {
             match("each"); 
 
@@ -430,8 +430,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = T__41;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:93:7: ( 'combine' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:93:9: 'combine'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:93:7: ( 'combine' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:93:9: 'combine'
             {
             match("combine"); 
 
@@ -451,8 +451,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = T__42;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:94:7: ( 'open' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:94:9: 'open'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:94:7: ( 'open' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:94:9: 'open'
             {
             match("open"); 
 
@@ -472,8 +472,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = SEMICOLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:370:10: ( ';' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:370:12: ';'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:368:10: ( ';' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:368:12: ';'
             {
             match(';'); 
 
@@ -492,8 +492,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = COLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:371:6: ( ':' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:371:8: ':'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:369:6: ( ':' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:369:8: ':'
             {
             match(':'); 
 
@@ -512,8 +512,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = COMMA;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:372:6: ( ',' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:372:8: ','
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:370:6: ( ',' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:370:8: ','
             {
             match(','); 
 
@@ -532,8 +532,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = PERIOD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:373:7: ( '.' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:373:9: '.'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:371:7: ( '.' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:371:9: '.'
             {
             match('.'); 
 
@@ -552,8 +552,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = EQUALS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:374:7: ( '=' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:374:9: '='
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:372:7: ( '=' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:372:9: '='
             {
             match('='); 
 
@@ -572,8 +572,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = LEFTPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:375:10: ( '(' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:375:12: '('
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:373:10: ( '(' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:373:12: '('
             {
             match('('); 
 
@@ -592,8 +592,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = RIGHTPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:376:11: ( ')' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:376:13: ')'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:374:11: ( ')' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:374:13: ')'
             {
             match(')'); 
 
@@ -612,8 +612,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = LEFTBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:377:12: ( '[' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:377:14: '['
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:375:12: ( '[' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:375:14: '['
             {
             match('['); 
 
@@ -632,8 +632,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = RIGHTBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:378:13: ( ']' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:378:15: ']'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:376:13: ( ']' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:376:15: ']'
             {
             match(']'); 
 
@@ -652,8 +652,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = LEFTBRACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:379:10: ( '{' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:379:12: '{'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:377:10: ( '{' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:377:12: '{'
             {
             match('{'); 
 
@@ -672,8 +672,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = RIGHTBRACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:380:11: ( '}' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:380:13: '}'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:378:11: ( '}' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:378:13: '}'
             {
             match('}'); 
 
@@ -692,8 +692,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = LEFTANGLE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:381:10: ( '<' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:381:12: '<'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:379:10: ( '<' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:379:12: '<'
             {
             match('<'); 
 
@@ -712,8 +712,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = RIGHTANGLE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:382:11: ( '>' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:382:13: '>'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:380:11: ( '>' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:380:13: '>'
             {
             match('>'); 
 
@@ -732,8 +732,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = AMPERSAND;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:383:10: ( '&' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:383:12: '&'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:381:10: ( '&' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:381:12: '&'
             {
             match('&'); 
 
@@ -750,7 +750,7 @@ public class PhdlLexer extends Lexer {
     // $ANTLR start "CHAR"
     public final void mCHAR() throws RecognitionException {
         try {
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:389:15: ( ( 'a' .. 'z' ) | ( 'A' .. 'Z' ) | '_' | '+' | '-' | '$' | '/' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:387:15: ( ( 'a' .. 'z' ) | ( 'A' .. 'Z' ) | '_' | '+' | '-' | '$' | '/' )
             int alt1=7;
             switch ( input.LA(1) ) {
             case 'a':
@@ -847,10 +847,10 @@ public class PhdlLexer extends Lexer {
 
             switch (alt1) {
                 case 1 :
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:389:17: ( 'a' .. 'z' )
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:387:17: ( 'a' .. 'z' )
                     {
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:389:17: ( 'a' .. 'z' )
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:389:18: 'a' .. 'z'
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:387:17: ( 'a' .. 'z' )
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:387:18: 'a' .. 'z'
                     {
                     matchRange('a','z'); 
 
@@ -860,10 +860,10 @@ public class PhdlLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:389:30: ( 'A' .. 'Z' )
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:387:30: ( 'A' .. 'Z' )
                     {
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:389:30: ( 'A' .. 'Z' )
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:389:31: 'A' .. 'Z'
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:387:30: ( 'A' .. 'Z' )
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:387:31: 'A' .. 'Z'
                     {
                     matchRange('A','Z'); 
 
@@ -873,35 +873,35 @@ public class PhdlLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:389:43: '_'
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:387:43: '_'
                     {
                     match('_'); 
 
                     }
                     break;
                 case 4 :
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:389:49: '+'
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:387:49: '+'
                     {
                     match('+'); 
 
                     }
                     break;
                 case 5 :
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:389:55: '-'
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:387:55: '-'
                     {
                     match('-'); 
 
                     }
                     break;
                 case 6 :
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:389:61: '$'
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:387:61: '$'
                     {
                     match('$'); 
 
                     }
                     break;
                 case 7 :
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:389:67: '/'
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:387:67: '/'
                     {
                     match('/'); 
 
@@ -918,11 +918,11 @@ public class PhdlLexer extends Lexer {
     // $ANTLR start "DIGIT"
     public final void mDIGIT() throws RecognitionException {
         try {
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:394:16: ( ( '0' .. '9' ) )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:394:18: ( '0' .. '9' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:392:16: ( ( '0' .. '9' ) )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:392:18: ( '0' .. '9' )
             {
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:394:18: ( '0' .. '9' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:394:19: '0' .. '9'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:392:18: ( '0' .. '9' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:392:19: '0' .. '9'
             {
             matchRange('0','9'); 
 
@@ -942,10 +942,10 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = INTEGER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:399:9: ( ( DIGIT )+ )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:399:11: ( DIGIT )+
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:397:9: ( ( DIGIT )+ )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:397:11: ( DIGIT )+
             {
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:399:11: ( DIGIT )+
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:397:11: ( DIGIT )+
             int cnt2=0;
             loop2:
             do {
@@ -959,7 +959,7 @@ public class PhdlLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:399:11: DIGIT
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:397:11: DIGIT
             	    {
             	    mDIGIT(); 
 
@@ -993,12 +993,12 @@ public class PhdlLexer extends Lexer {
             int _channel = DEFAULT_TOKEN_CHANNEL;
             int c;
 
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:405:2: ( '\"' ( '/' '\"' | c=~ ( '\"' ) )* '\"' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:405:5: '\"' ( '/' '\"' | c=~ ( '\"' ) )* '\"'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:403:2: ( '\"' ( '/' '\"' | c=~ ( '\"' ) )* '\"' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:403:5: '\"' ( '/' '\"' | c=~ ( '\"' ) )* '\"'
             {
             match('\"'); 
             StringBuilder sb = new StringBuilder();
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:407:3: ( '/' '\"' | c=~ ( '\"' ) )*
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:405:3: ( '/' '\"' | c=~ ( '\"' ) )*
             loop3:
             do {
                 int alt3=3;
@@ -1032,7 +1032,7 @@ public class PhdlLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:407:5: '/' '\"'
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:405:5: '/' '\"'
             	    {
             	    match('/'); 
             	    match('\"'); 
@@ -1041,7 +1041,7 @@ public class PhdlLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:408:5: c=~ ( '\"' )
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:406:5: c=~ ( '\"' )
             	    {
             	    c= input.LA(1);
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='\uFFFF') ) {
@@ -1083,10 +1083,10 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = IDENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:421:2: ( ( CHAR | DIGIT )+ )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:421:5: ( CHAR | DIGIT )+
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:419:2: ( ( CHAR | DIGIT )+ )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:419:5: ( CHAR | DIGIT )+
             {
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:421:5: ( CHAR | DIGIT )+
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:419:5: ( CHAR | DIGIT )+
             int cnt4=0;
             loop4:
             do {
@@ -1103,14 +1103,14 @@ public class PhdlLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:421:6: CHAR
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:419:6: CHAR
             	    {
             	    mCHAR(); 
 
             	    }
             	    break;
             	case 2 :
-            	    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:421:13: DIGIT
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:419:13: DIGIT
             	    {
             	    mDIGIT(); 
 
@@ -1142,10 +1142,10 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = WHITESPACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:428:2: ( ( ' ' | '\\t' | '\\n' | '\\r' | '\\f' | '\\u001D' )+ )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:428:4: ( ' ' | '\\t' | '\\n' | '\\r' | '\\f' | '\\u001D' )+
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:426:2: ( ( ' ' | '\\t' | '\\n' | '\\r' | '\\f' | '\\u001D' )+ )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:426:4: ( ' ' | '\\t' | '\\n' | '\\r' | '\\f' | '\\u001D' )+
             {
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:428:4: ( ' ' | '\\t' | '\\n' | '\\r' | '\\f' | '\\u001D' )+
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:426:4: ( ' ' | '\\t' | '\\n' | '\\r' | '\\f' | '\\u001D' )+
             int cnt5=0;
             loop5:
             do {
@@ -1159,7 +1159,7 @@ public class PhdlLexer extends Lexer {
 
                 switch (alt5) {
             	case 1 :
-            	    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:
             	    {
             	    if ( (input.LA(1)>='\t' && input.LA(1)<='\n')||(input.LA(1)>='\f' && input.LA(1)<='\r')||input.LA(1)=='\u001D'||input.LA(1)==' ' ) {
             	        input.consume();
@@ -1200,12 +1200,12 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = LINE_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:436:2: ( '//' ( . )* ( '\\n' | '\\r' ) )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:436:4: '//' ( . )* ( '\\n' | '\\r' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:434:2: ( '//' ( . )* ( '\\n' | '\\r' ) )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:434:4: '//' ( . )* ( '\\n' | '\\r' )
             {
             match("//"); 
 
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:436:9: ( . )*
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:434:9: ( . )*
             loop6:
             do {
                 int alt6=2;
@@ -1221,7 +1221,7 @@ public class PhdlLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:436:9: .
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:434:9: .
             	    {
             	    matchAny(); 
 
@@ -1259,12 +1259,12 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = MULTILINE_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:444:2: ( '/*' ( . )* '*/' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:444:4: '/*' ( . )* '*/'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:442:2: ( '/*' ( . )* '*/' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:442:4: '/*' ( . )* '*/'
             {
             match("/*"); 
 
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:444:9: ( . )*
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:442:9: ( . )*
             loop7:
             do {
                 int alt7=2;
@@ -1289,7 +1289,7 @@ public class PhdlLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:444:9: .
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:442:9: .
             	    {
             	    matchAny(); 
 
@@ -1322,12 +1322,12 @@ public class PhdlLexer extends Lexer {
             int _channel = DEFAULT_TOKEN_CHANNEL;
             CommonToken fileName=null;
 
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:454:2: ( 'include' ( WHITESPACE )? fileName= STRING ';' )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:454:5: 'include' ( WHITESPACE )? fileName= STRING ';'
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:452:2: ( 'include' ( WHITESPACE )? fileName= STRING ';' )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:452:5: 'include' ( WHITESPACE )? fileName= STRING ';'
             {
             match("include"); 
 
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:454:15: ( WHITESPACE )?
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:452:15: ( WHITESPACE )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -1336,7 +1336,7 @@ public class PhdlLexer extends Lexer {
             }
             switch (alt8) {
                 case 1 :
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:454:16: WHITESPACE
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:452:16: WHITESPACE
                     {
                     mWHITESPACE(); 
 
@@ -1384,264 +1384,264 @@ public class PhdlLexer extends Lexer {
     // $ANTLR end "INCLUDE"
 
     public void mTokens() throws RecognitionException {
-        // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:8: ( T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | SEMICOLON | COLON | COMMA | PERIOD | EQUALS | LEFTPAREN | RIGHTPAREN | LEFTBRACKET | RIGHTBRACKET | LEFTBRACE | RIGHTBRACE | LEFTANGLE | RIGHTANGLE | AMPERSAND | INTEGER | STRING | IDENT | WHITESPACE | LINE_COMMENT | MULTILINE_COMMENT | INCLUDE )
+        // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:8: ( T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | SEMICOLON | COLON | COMMA | PERIOD | EQUALS | LEFTPAREN | RIGHTPAREN | LEFTBRACKET | RIGHTBRACKET | LEFTBRACE | RIGHTBRACE | LEFTANGLE | RIGHTANGLE | AMPERSAND | INTEGER | STRING | IDENT | WHITESPACE | LINE_COMMENT | MULTILINE_COMMENT | INCLUDE )
         int alt9=37;
         alt9 = dfa9.predict(input);
         switch (alt9) {
             case 1 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:10: T__27
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:10: T__27
                 {
                 mT__27(); 
 
                 }
                 break;
             case 2 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:16: T__28
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:16: T__28
                 {
                 mT__28(); 
 
                 }
                 break;
             case 3 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:22: T__29
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:22: T__29
                 {
                 mT__29(); 
 
                 }
                 break;
             case 4 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:28: T__30
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:28: T__30
                 {
                 mT__30(); 
 
                 }
                 break;
             case 5 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:34: T__31
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:34: T__31
                 {
                 mT__31(); 
 
                 }
                 break;
             case 6 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:40: T__32
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:40: T__32
                 {
                 mT__32(); 
 
                 }
                 break;
             case 7 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:46: T__33
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:46: T__33
                 {
                 mT__33(); 
 
                 }
                 break;
             case 8 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:52: T__34
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:52: T__34
                 {
                 mT__34(); 
 
                 }
                 break;
             case 9 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:58: T__35
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:58: T__35
                 {
                 mT__35(); 
 
                 }
                 break;
             case 10 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:64: T__36
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:64: T__36
                 {
                 mT__36(); 
 
                 }
                 break;
             case 11 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:70: T__37
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:70: T__37
                 {
                 mT__37(); 
 
                 }
                 break;
             case 12 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:76: T__38
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:76: T__38
                 {
                 mT__38(); 
 
                 }
                 break;
             case 13 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:82: T__39
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:82: T__39
                 {
                 mT__39(); 
 
                 }
                 break;
             case 14 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:88: T__40
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:88: T__40
                 {
                 mT__40(); 
 
                 }
                 break;
             case 15 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:94: T__41
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:94: T__41
                 {
                 mT__41(); 
 
                 }
                 break;
             case 16 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:100: T__42
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:100: T__42
                 {
                 mT__42(); 
 
                 }
                 break;
             case 17 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:106: SEMICOLON
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:106: SEMICOLON
                 {
                 mSEMICOLON(); 
 
                 }
                 break;
             case 18 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:116: COLON
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:116: COLON
                 {
                 mCOLON(); 
 
                 }
                 break;
             case 19 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:122: COMMA
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:122: COMMA
                 {
                 mCOMMA(); 
 
                 }
                 break;
             case 20 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:128: PERIOD
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:128: PERIOD
                 {
                 mPERIOD(); 
 
                 }
                 break;
             case 21 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:135: EQUALS
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:135: EQUALS
                 {
                 mEQUALS(); 
 
                 }
                 break;
             case 22 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:142: LEFTPAREN
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:142: LEFTPAREN
                 {
                 mLEFTPAREN(); 
 
                 }
                 break;
             case 23 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:152: RIGHTPAREN
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:152: RIGHTPAREN
                 {
                 mRIGHTPAREN(); 
 
                 }
                 break;
             case 24 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:163: LEFTBRACKET
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:163: LEFTBRACKET
                 {
                 mLEFTBRACKET(); 
 
                 }
                 break;
             case 25 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:175: RIGHTBRACKET
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:175: RIGHTBRACKET
                 {
                 mRIGHTBRACKET(); 
 
                 }
                 break;
             case 26 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:188: LEFTBRACE
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:188: LEFTBRACE
                 {
                 mLEFTBRACE(); 
 
                 }
                 break;
             case 27 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:198: RIGHTBRACE
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:198: RIGHTBRACE
                 {
                 mRIGHTBRACE(); 
 
                 }
                 break;
             case 28 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:209: LEFTANGLE
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:209: LEFTANGLE
                 {
                 mLEFTANGLE(); 
 
                 }
                 break;
             case 29 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:219: RIGHTANGLE
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:219: RIGHTANGLE
                 {
                 mRIGHTANGLE(); 
 
                 }
                 break;
             case 30 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:230: AMPERSAND
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:230: AMPERSAND
                 {
                 mAMPERSAND(); 
 
                 }
                 break;
             case 31 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:240: INTEGER
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:240: INTEGER
                 {
                 mINTEGER(); 
 
                 }
                 break;
             case 32 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:248: STRING
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:248: STRING
                 {
                 mSTRING(); 
 
                 }
                 break;
             case 33 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:255: IDENT
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:255: IDENT
                 {
                 mIDENT(); 
 
                 }
                 break;
             case 34 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:261: WHITESPACE
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:261: WHITESPACE
                 {
                 mWHITESPACE(); 
 
                 }
                 break;
             case 35 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:272: LINE_COMMENT
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:272: LINE_COMMENT
                 {
                 mLINE_COMMENT(); 
 
                 }
                 break;
             case 36 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:285: MULTILINE_COMMENT
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:285: MULTILINE_COMMENT
                 {
                 mMULTILINE_COMMENT(); 
 
                 }
                 break;
             case 37 :
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl.g:1:303: INCLUDE
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:303: INCLUDE
                 {
                 mINCLUDE(); 
 
@@ -1673,15 +1673,15 @@ public class PhdlLexer extends Lexer {
         "\1\144\1\44\2\uffff\1\164\1\uffff\1\44\1\156\2\44\1\145\1\uffff"+
         "\1\162\1\uffff\1\145\2\uffff\1\11\2\44\3\uffff";
     static final String DFA9_maxS =
-        "\1\175\1\145\1\163\1\145\1\156\1\164\1\151\1\145\1\160\1\162\1"+
-        "\157\16\uffff\1\172\2\uffff\1\57\1\uffff\1\166\1\172\1\163\1\147"+
-        "\1\144\1\143\1\164\1\156\1\167\1\172\1\145\1\157\1\155\1\uffff\1"+
-        "\uffff\1\uffff\2\151\1\uffff\1\164\1\157\1\154\1\151\1\172\1\150"+
-        "\1\162\2\172\1\141\1\uffff\1\156\1\165\1\142\1\uffff\10\uffff\1"+
-        "\147\1\143\2\172\1\165\1\156\1\uffff\2\172\2\uffff\1\164\1\172\1"+
-        "\160\1\151\1\156\1\145\2\uffff\1\144\1\172\2\uffff\1\164\1\uffff"+
-        "\1\172\1\156\2\172\1\145\1\uffff\1\162\1\uffff\1\145\2\uffff\1\42"+
-        "\2\172\3\uffff";
+        "\1\175\1\145\1\163\1\145\1\156\1\164\1\151\1\145\1\160\1\162\1\157"+
+        "\16\uffff\1\172\2\uffff\1\57\1\uffff\1\166\1\172\1\163\1\147\1\144"+
+        "\1\143\1\164\1\156\1\167\1\172\1\145\1\157\1\155\1\uffff\1\uffff"+
+        "\1\uffff\2\151\1\uffff\1\164\1\157\1\154\1\151\1\172\1\150\1\162"+
+        "\2\172\1\141\1\uffff\1\156\1\165\1\142\1\uffff\10\uffff\1\147\1"+
+        "\143\2\172\1\165\1\156\1\uffff\2\172\2\uffff\1\164\1\172\1\160\1"+
+        "\151\1\156\1\145\2\uffff\1\144\1\172\2\uffff\1\164\1\uffff\1\172"+
+        "\1\156\2\172\1\145\1\uffff\1\162\1\uffff\1\145\2\uffff\1\42\2\172"+
+        "\3\uffff";
     static final String DFA9_acceptS =
         "\13\uffff\1\21\1\22\1\23\1\24\1\25\1\26\1\27\1\30\1\31\1\32\1\33"+
         "\1\34\1\35\1\36\1\uffff\1\40\1\41\1\uffff\1\42\15\uffff\1\37\1\uffff"+
@@ -1691,12 +1691,11 @@ public class PhdlLexer extends Lexer {
     static final String DFA9_specialS =
         "\54\uffff\1\7\23\uffff\1\1\1\0\1\4\1\5\1\2\1\3\1\6\1\10\52\uffff}>";
     static final String[] DFA9_transitionS = {
-            "\2\35\1\uffff\2\35\17\uffff\1\35\2\uffff\1\35\1\uffff\1\32"+
-            "\1\uffff\1\33\1\uffff\1\30\1\uffff\1\20\1\21\1\uffff\1\33\1"+
-            "\15\1\33\1\16\1\34\12\31\1\14\1\13\1\26\1\17\1\27\2\uffff\32"+
-            "\33\1\22\1\uffff\1\23\1\uffff\1\33\1\uffff\1\5\1\3\1\12\1\1"+
-            "\1\4\1\33\1\11\1\33\1\2\4\33\1\7\1\10\1\6\12\33\1\24\1\uffff"+
-            "\1\25",
+            "\2\35\1\uffff\2\35\17\uffff\1\35\2\uffff\1\35\1\uffff\1\32\1"+
+            "\uffff\1\33\1\uffff\1\30\1\uffff\1\20\1\21\1\uffff\1\33\1\15"+
+            "\1\33\1\16\1\34\12\31\1\14\1\13\1\26\1\17\1\27\2\uffff\32\33"+
+            "\1\22\1\uffff\1\23\1\uffff\1\33\1\uffff\1\5\1\3\1\12\1\1\1\4"+
+            "\1\33\1\11\1\33\1\2\4\33\1\7\1\10\1\6\12\33\1\24\1\uffff\1\25",
             "\1\36",
             "\1\40\4\uffff\1\37",
             "\1\41",
@@ -1743,8 +1742,8 @@ public class PhdlLexer extends Lexer {
             "\1\75",
             "\1\76",
             "",
-            "\44\77\1\105\6\77\1\103\1\77\1\104\1\77\1\106\12\107\7\77"+
-            "\32\101\4\77\1\102\1\77\32\100\uff85\77",
+            "\44\77\1\105\6\77\1\103\1\77\1\104\1\77\1\106\12\107\7\77\32"+
+            "\101\4\77\1\102\1\77\32\100\uff85\77",
             "",
             "\1\110",
             "\1\111",
@@ -1767,22 +1766,22 @@ public class PhdlLexer extends Lexer {
             "\1\125",
             "\1\126",
             "",
-            "\44\77\1\105\6\77\1\103\1\77\1\104\1\77\1\106\12\107\7\77"+
-            "\32\101\4\77\1\102\1\77\32\100\uff85\77",
-            "\44\77\1\105\6\77\1\103\1\77\1\104\1\77\1\106\12\107\7\77"+
-            "\32\101\4\77\1\102\1\77\32\100\uff85\77",
-            "\44\77\1\105\6\77\1\103\1\77\1\104\1\77\1\106\12\107\7\77"+
-            "\32\101\4\77\1\102\1\77\32\100\uff85\77",
-            "\44\77\1\105\6\77\1\103\1\77\1\104\1\77\1\106\12\107\7\77"+
-            "\32\101\4\77\1\102\1\77\32\100\uff85\77",
-            "\44\77\1\105\6\77\1\103\1\77\1\104\1\77\1\106\12\107\7\77"+
-            "\32\101\4\77\1\102\1\77\32\100\uff85\77",
-            "\44\77\1\105\6\77\1\103\1\77\1\104\1\77\1\106\12\107\7\77"+
-            "\32\101\4\77\1\102\1\77\32\100\uff85\77",
-            "\44\77\1\105\6\77\1\103\1\77\1\104\1\77\1\106\12\107\7\77"+
-            "\32\101\4\77\1\102\1\77\32\100\uff85\77",
-            "\44\77\1\105\6\77\1\103\1\77\1\104\1\77\1\106\12\107\7\77"+
-            "\32\101\4\77\1\102\1\77\32\100\uff85\77",
+            "\44\77\1\105\6\77\1\103\1\77\1\104\1\77\1\106\12\107\7\77\32"+
+            "\101\4\77\1\102\1\77\32\100\uff85\77",
+            "\44\77\1\105\6\77\1\103\1\77\1\104\1\77\1\106\12\107\7\77\32"+
+            "\101\4\77\1\102\1\77\32\100\uff85\77",
+            "\44\77\1\105\6\77\1\103\1\77\1\104\1\77\1\106\12\107\7\77\32"+
+            "\101\4\77\1\102\1\77\32\100\uff85\77",
+            "\44\77\1\105\6\77\1\103\1\77\1\104\1\77\1\106\12\107\7\77\32"+
+            "\101\4\77\1\102\1\77\32\100\uff85\77",
+            "\44\77\1\105\6\77\1\103\1\77\1\104\1\77\1\106\12\107\7\77\32"+
+            "\101\4\77\1\102\1\77\32\100\uff85\77",
+            "\44\77\1\105\6\77\1\103\1\77\1\104\1\77\1\106\12\107\7\77\32"+
+            "\101\4\77\1\102\1\77\32\100\uff85\77",
+            "\44\77\1\105\6\77\1\103\1\77\1\104\1\77\1\106\12\107\7\77\32"+
+            "\101\4\77\1\102\1\77\32\100\uff85\77",
+            "\44\77\1\105\6\77\1\103\1\77\1\104\1\77\1\106\12\107\7\77\32"+
+            "\101\4\77\1\102\1\77\32\100\uff85\77",
             "\1\127",
             "\1\130",
             "\1\33\6\uffff\1\33\1\uffff\1\33\1\uffff\13\33\7\uffff\32\33"+
@@ -1828,8 +1827,8 @@ public class PhdlLexer extends Lexer {
             "\1\156",
             "",
             "",
-            "\2\157\1\uffff\2\157\17\uffff\1\157\2\uffff\1\157\1\uffff"+
-            "\1\157",
+            "\2\157\1\uffff\2\157\17\uffff\1\157\2\uffff\1\157\1\uffff\1"+
+            "\157",
             "\1\33\6\uffff\1\33\1\uffff\1\33\1\uffff\13\33\7\uffff\32\33"+
             "\4\uffff\1\33\1\uffff\32\33",
             "\1\33\6\uffff\1\33\1\uffff\1\33\1\uffff\13\33\7\uffff\32\33"+
