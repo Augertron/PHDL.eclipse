@@ -1,4 +1,3 @@
-C1,C1
 C10,C10
 C11,C11
 C12,C12
@@ -9,7 +8,6 @@ C16,C16
 C17,C17
 C18,C18
 C19,vref_res
-C2,C2
 C20,coup_cap_p
 C21,coup_cap_n
 C22,out_ac_cap_p
@@ -18,7 +16,6 @@ C24,adclk914_vref_cap
 C25,914_coup_cap_p
 C26,914_coup_cap_n
 C3,C3
-C30,C30
 C31,C31
 C4,C4
 C40,bulk_cap_3V3_a
