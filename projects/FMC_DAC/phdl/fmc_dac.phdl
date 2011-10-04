@@ -251,12 +251,12 @@ begin
         e[18,19] = open;
         e[21,22] = open;
         e[24,25] = open;
-        e[27] = SPI_SDO_2V5;
-        e[28] = IRQ_2V5;
-        e[30] = RESET_2V5;
-        e[31] = SPI_SDI_2V5;
-        e[33] = SPI_CS_2V5;
-        e[34] = SPI_SCLK_2V5;
+        e[27] = SPI_SDO_2V5; // AL34
+        e[28] = IRQ_2V5; // AK34
+        e[30] = RESET_2V5; // AH33
+        e[31] = SPI_SDI_2V5; // AH32
+        e[33] = SPI_CS_2V5; // AL31
+        e[34] = SPI_SCLK_2V5; // AK31
         e[36,37] = open; // really NC.
         e[39]    = +2V5;
 
@@ -276,62 +276,62 @@ begin
         f[1,37,38] = open;
 
         // Row G has diff pairs.
-        g[6,7]   = DB0_P[ 0] & DB0_N[ 0];
+        g[6,7]   = DB0_P[ 0] & DB0_N[ 0]; // AF20
         g[9,10]  = open;
-        g[12,13] = DB0_P[ 2] & DB0_N[ 2];
-        g[15,16] = DB0_P[ 4] & DB0_N[ 4];
-        g[18,19] = DB0_P[ 6] & DB0_N[ 6];
+        g[12,13] = DB0_P[ 2] & DB0_N[ 2]; // AK22
+        g[15,16] = DB0_P[ 4] & DB0_N[ 4]; // AM21
+        g[18,19] = DB0_P[ 6] & DB0_N[ 6]; // AP22
         g[21,22] = open;
-        g[24,25] = DB0_P[ 8] & DB0_N[ 8];
-        g[27,28] = DB0_P[10] & DB0_N[10];
+        g[24,25] = DB0_P[ 8] & DB0_N[ 8]; // AP27
+        g[27,28] = DB0_P[10] & DB0_N[10]; // AN28
         g[30,31] = open;
-        g[33,34] = DB0_P[12] & DB0_N[12];
+        g[33,34] = DB0_P[12] & DB0_N[12]; // AL29
         g[36,37] = open;
         g[39]    = +2V5;
         g[2,3] = open;
 
         // H has diff pairs.
         h[1]     = gnd;  // indicates presence of FMC module.
-        h[7,8]   = DB0_P[ 1] & DB0_N[ 1];
+        h[7,8]   = DB0_P[ 1] & DB0_N[ 1]; // AC20
         h[10,11] = open;
-        h[13,14] = DB0_P[ 3] & DB0_N[ 3];
+        h[13,14] = DB0_P[ 3] & DB0_N[ 3]; // AK21
         h[16,17] = open;
-        h[19,20] = DB0_P[ 5] & DB0_N[ 5];
-        h[22,23] = DB0_P[ 7] & DB0_N[ 7];
+        h[19,20] = DB0_P[ 5] & DB0_N[ 5]; // AM23
+        h[22,23] = DB0_P[ 7] & DB0_N[ 7]; // AN25
         h[25,26] = open;
-        h[28,29] = DB0_P[ 9] & DB0_N[ 9];
-        h[31,32] = DB0_P[11] & DB0_N[11];
+        h[28,29] = DB0_P[ 9] & DB0_N[ 9]; // AN30
+        h[31,32] = DB0_P[11] & DB0_N[11]; // AK27
         h[34,35] = open;
-        h[37,38] = DB0_P[13] & DB0_N[13];
+        h[37,38] = DB0_P[13] & DB0_N[13]; // AG25
         h[40]    = +2V5;
         h[2,4,5] = open;
 
         // J diff pairs.
-        j[6,7]   = DB1_P[0] & DB1_N[0];
-        j[9,10]  = DB1_P[2] & DB1_N[2];
+        j[6,7]   = DB1_P[0] & DB1_N[0]; // AA25
+        j[9,10]  = DB1_P[2] & DB1_N[2]; // AA26
         j[12,13] = open;
-        j[15,16] = DB1_P[4] & DB1_N[4];
+        j[15,16] = DB1_P[4] & DB1_N[4]; // AA30
         j[18,19] = open;
         j[21,22] = open;
-        j[24,25] = DB1_P[6] & DB1_N[6];
-        j[27,28] = DB1_P[8] & DB1_N[8];
-        j[30,31] = DB1_P[10] & DB1_N[10];
-        j[33,34] = DB1_P[12] & DB1_N[12];
-        j[36,37] = DCI_P & DCI_N;
+        j[24,25] = DB1_P[6] & DB1_N[6]; // AN32
+        j[27,28] = DB1_P[8] & DB1_N[8]; // AJ34
+        j[30,31] = DB1_P[10] & DB1_N[10]; // AJ29
+        j[33,34] = DB1_P[12] & DB1_N[12]; // AE28
+        j[36,37] = DCI_P & DCI_N; // AD25
         j[39] = +2V5;  // here we feed the 2.5V back to the carrier.
         j[2,3] = open;
 
         // K diff pairs.
-        k[7,8]   = SYNC_IN_P & SYNC_IN_N;
-        k[10,11] = DB1_P[1] & DB1_N[1];
+        k[7,8]   = SYNC_IN_P & SYNC_IN_N; // AB25
+        k[10,11] = DB1_P[1] & DB1_N[1]; // AA28
         k[13,14] = open;
-        k[16,17] = DB1_P[3] & DB1_N[3];
-        k[19,20] = DB1_P[5] & DB1_N[5];
-        k[22,23] = DB1_P[7] & DB1_N[7];
-        k[25,26] = DB1_P[9] & DB1_N[9];
-        k[28,29] = DCO_P & DCO_N;
-        k[31,32] = DB1_P[11] & DB1_N[11];
-        k[34,35] = DB1_P[13] & DB1_N[13];
+        k[16,17] = DB1_P[3] & DB1_N[3]; // V30
+        k[19,20] = DB1_P[5] & DB1_N[5]; // U31
+        k[22,23] = DB1_P[7] & DB1_N[7]; // U26
+        k[25,26] = DB1_P[9] & DB1_N[9]; // AF30
+        k[28,29] = DCO_P & DCO_N; // AF26
+        k[31,32] = DB1_P[11] & DB1_N[11]; // AF28
+        k[34,35] = DB1_P[13] & DB1_N[13]; // AE27
         k[37,38] = open;
         k[40] = +2V5;  // here we feed the 2.5V back to the carrier.
         k[1,4,5] = open;

@@ -1,0 +1,9 @@
+NET "db1_*" IOSTANDARD = LVDS_25;
+NET "db0_*" IOSTANDARD = LVDS_25;
+
+NET "reset" IOSTANDARD = LVDCI_25;
+NET "spi_*" IOSTANDARD = LVDCI_25;
+
+
+
+NET "dco_p" LOC = G19;
