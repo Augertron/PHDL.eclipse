@@ -8188,11 +8188,11 @@
 		</instPin>
 		<instPin>
 			<name>g[36]</name>
-			<net>OPEN</net>
+			<net>DCO_P</net>
 		</instPin>
 		<instPin>
 			<name>g[37]</name>
-			<net>OPEN</net>
+			<net>DCO_N</net>
 		</instPin>
 		<instPin>
 			<name>g[38]</name>
@@ -8636,11 +8636,11 @@
 		</instPin>
 		<instPin>
 			<name>k[28]</name>
-			<net>DCO_P</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>k[29]</name>
-			<net>DCO_N</net>
+			<net>OPEN</net>
 		</instPin>
 		<instPin>
 			<name>k[30]</name>
