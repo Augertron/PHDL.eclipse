@@ -243,7 +243,7 @@ begin
         d[1,4,5,29,30,31,32,33,34,35] = open;
 
         // Row E has diff pairs.
-        e[2,3]   = SYNC_OUT_P & SYNC_OUT_N;
+        e[2,3]   = SYNC_OUT_P & SYNC_OUT_N; // AD29
         e[6,7]   = open;
         e[9,10]  = open;
         e[12,13] = open;
@@ -286,7 +286,7 @@ begin
         g[27,28] = DB0_P[10] & DB0_N[10]; // AN28
         g[30,31] = open;
         g[33,34] = DB0_P[12] & DB0_N[12]; // AL29
-        g[36,37] = open;
+        g[36,37] = DCO_P & DCO_N; // AH23
         g[39]    = +2V5;
         g[2,3] = open;
 
@@ -329,10 +329,10 @@ begin
         k[19,20] = DB1_P[5] & DB1_N[5]; // U31
         k[22,23] = DB1_P[7] & DB1_N[7]; // U26
         k[25,26] = DB1_P[9] & DB1_N[9]; // AF30
-        k[28,29] = DCO_P & DCO_N; // AF26
+        k[28,29] = open; // AF26
         k[31,32] = DB1_P[11] & DB1_N[11]; // AF28
         k[34,35] = DB1_P[13] & DB1_N[13]; // AE27
-        k[37,38] = open;
+        k[37,38] = open; // AG27
         k[40] = +2V5;  // here we feed the 2.5V back to the carrier.
         k[1,4,5] = open;
 

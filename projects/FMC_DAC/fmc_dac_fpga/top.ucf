@@ -4,6 +4,44 @@ NET "db0_*" IOSTANDARD = LVDS_25;
 NET "reset" IOSTANDARD = LVDCI_25;
 NET "spi_*" IOSTANDARD = LVDCI_25;
 
+NET "sync_in_p" LOC = AD29;
+NET "sync_out_p" LOC = AB25;
+NET "dco_p" LOC = AD25;
+NET "dci_p" LOC = AH23;
 
+NET "spi_cs"   LOC = AL31;
+NET "spi_sclk" LOC = AK31;
+NET "spi_sdi"  LOC = AL34;
+NET "spi_sdo"  LOC = AH32;
+NET "reset"    LOC = AH33;
 
-NET "dco_p" LOC = G19;
+NET "db1_p<0>"  LOC = AA25;
+NET "db1_p<1>"  LOC = AA28;
+NET "db1_p<2>"  LOC = AA26;
+NET "db1_p<3>"  LOC = V30;
+NET "db1_p<4>"  LOC = AA30;
+NET "db1_p<5>"  LOC = U31;
+NET "db1_p<6>"  LOC = AN32;
+NET "db1_p<7>"  LOC = U26;
+NET "db1_p<8>"  LOC = AJ34;
+NET "db1_p<9>"  LOC = AF30;
+NET "db1_p<10>" LOC = AJ29;
+NET "db1_p<11>" LOC = AF28;
+NET "db1_p<12>" LOC = AE28;
+NET "db1_p<13>" LOC = AE27;
+
+NET "db0_p<0>"  LOC = AF20;
+NET "db0_p<1>"  LOC = AC20;
+NET "db0_p<2>"  LOC = AK22;
+NET "db0_p<3>"  LOC = AK21;
+NET "db0_p<4>"  LOC = AM21;
+NET "db0_p<5>"  LOC = AM23;
+NET "db0_p<6>"  LOC = AP22;
+NET "db0_p<7>"  LOC = AN25;
+NET "db0_p<8>"  LOC = AP27;
+NET "db0_p<9>"  LOC = AN30;
+NET "db0_p<10>" LOC = AN28;
+NET "db0_p<11>" LOC = AK27;
+NET "db0_p<12>" LOC = AL29;
+NET "db0_p<13>" LOC = AG25;
+
