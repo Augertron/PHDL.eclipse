@@ -1,0 +1,103 @@
+*
+*
+G04 PADS 9.3 Build Number: 433611 generated Gerber (RS-274-X) file*
+G04 PC Version=2.1*
+*
+%IN "fmc_dac.pcb"*%
+*
+%MOIN*%
+*
+%FSLAX35Y35*%
+*
+*
+*
+*
+G04 PC Standard Apertures*
+*
+*
+G04 Thermal Relief Aperture macro.*
+%AMTER*
+1,1,$1,0,0*
+1,0,$1-$2,0,0*
+21,0,$3,$4,0,0,45*
+21,0,$3,$4,0,0,135*
+%
+*
+*
+G04 Annular Aperture macro.*
+%AMANN*
+1,1,$1,0,0*
+1,0,$2,0,0*
+%
+*
+*
+G04 Odd Aperture macro.*
+%AMODD*
+1,1,$1,0,0*
+1,0,$1-0.005,0,0*
+%
+*
+*
+G04 PC Custom Aperture Macros*
+*
+*
+*
+*
+*
+*
+G04 PC Aperture Table*
+*
+%ADD010C,0.001*%
+%ADD028C,0.11*%
+%ADD056C,0.06*%
+%ADD057R,0.06X0.06*%
+*
+*
+*
+*
+G04 PC Circuitry*
+G04 Layer Name fmc_dac.pcb - circuitry*
+%LPD*%
+*
+*
+G04 PC Custom Flashes*
+G04 Layer Name fmc_dac.pcb - flashes*
+%LPD*%
+*
+*
+G04 PC Circuitry*
+G04 Layer Name fmc_dac.pcb - circuitry*
+%LPD*%
+*
+G54D10*
+G54D28*
+G01X146042Y340000D03*
+X136042Y330000D03*
+Y350000D03*
+X156042D03*
+Y330000D03*
+X220156Y340000D03*
+X210156Y330000D03*
+Y350000D03*
+X230156D03*
+Y330000D03*
+G54D56*
+X290000Y347500D03*
+X300000D03*
+X280000Y232500D03*
+X290000D03*
+X340000Y242500D03*
+X350000D03*
+X260000Y322500D03*
+X270000D03*
+G54D57*
+X290000Y340000D03*
+X340000Y250000D03*
+X300000Y340000D03*
+X350000Y250000D03*
+X270000Y330000D03*
+X290000Y240000D03*
+X260000Y330000D03*
+X280000Y240000D03*
+X0Y0D02*
+M02*
