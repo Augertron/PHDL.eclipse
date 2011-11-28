@@ -58,6 +58,10 @@ public class DesignNode extends Node {
 		nets = new ArrayList<NetNode>();
 		info = "";
 	}
+	
+	public boolean isSubDesign() {
+		return !(ports.isEmpty());
+	}
 
 	/**
 	 * Device set accessor method.
