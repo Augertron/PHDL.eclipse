@@ -329,17 +329,11 @@ designDecl
 			}
 			//===================== JAVA BLOCK END ========================
 		{String info = "";}
-		(deviceDecl[des] | netDecl[des] | infoStruct {des.appendInfo($infoStruct.value);})* 'begin' 
-		(instDecl[des, null] | netAssign[des] | groupStruct[des])* (endName=IDENT)? )
+		(deviceDecl[des] | netDecl[des] | infoStruct {des.appendInfo($infoStruct.value);} | instDecl[des, null] | netAssign[des] | groupStruct[des])*)
 		
 			//==================== JAVA BLOCK BEGIN =======================
-			{	// check the optional trailing label on the design to see if it maches
-				if (endName != null) {
-					if (!$desName.text.equals($endName.text))
-						addError($endName, "design name " + $desName.text + " does not match");
-				}
-			
-				// add the design node and report if there are duplicates
+			{ 
+			  // add the design node and report if there are duplicates
 				if(!designNodes.add(des))
 					addError(des, "duplicate design unit");
 					
@@ -368,15 +362,7 @@ infoStruct returns [String value]
 	;
   
 groupStruct[DesignNode des]
-	:	^('group' groupName=STRING (instDecl[des, $groupName.text] | netAssign[des])* (endName=STRING)? )
-	
-		//==================== JAVA BLOCK BEGIN =======================
-		{	if (endName != null) {
-				if (!$groupName.text.equals($endName.text))
-					addError($endName, "group name " + $groupName.text + " does not match");
-			}
-		}
-		//===================== JAVA BLOCK END ========================
+	:	^('group' groupName=STRING (instDecl[des, $groupName.text] | netAssign[des])* )
 	;
 
 /**
@@ -409,15 +395,10 @@ deviceDecl[DesignNode des]
 			}
 			//===================== JAVA BLOCK END ========================
 			
-		(attributeDecl[devices] | pinDecl[dev])* endName=IDENT?)
+		(attributeDecl[devices] | pinDecl[dev])*)
 		
 			//==================== JAVA BLOCK BEGIN =======================
-			{	// check the optional trailing label on the device to see if it maches
-				if (endName != null) {
-					if (!$devName.text.equals($endName.text))
-						addError($endName, "device name " + $devName.text + " does not match");
-				}
-			
+			{
 				// report any missing required attributes
 				for(String s : reqAttrs) {
 					s = s.toUpperCase();
@@ -618,7 +599,7 @@ netDecl[DesignNode des]
 			//===================== JAVA BLOCK END ========================
 		)*
 		
-		attributeDecl[netNodes]* endName=IDENT?)
+		attributeDecl[netNodes]*)
 		
 			//==================== JAVA BLOCK BEGIN =======================
 			{	for (Attributable n : netNodes) {
@@ -719,15 +700,10 @@ instDecl[DesignNode des, String groupName]
 			}
 			//===================== JAVA BLOCK END ========================
 		{String info = "";}
-		(attrAssign[des, $instName.text] | pinAssign[des, $instName.text] | infoStruct {info += $infoStruct.value + "\n";})* endName=IDENT?)
+		(attrAssign[des, $instName.text] | pinAssign[des, $instName.text] | infoStruct {info += $infoStruct.value + "\n";})*)
 		
 			//==================== JAVA BLOCK BEGIN =======================
-			{	// check the optional trailing label on the design to see if it maches
-				if (endName != null) {
-					if (!$instName.text.equals($endName.text))
-						addError($endName, "inst name " + $instName.text + " does not match");
-				}
-				
+			{					
 				// obtain the device which the instance references
 				DeviceNode dev = des.getDevice($devName.text);
 				String refPrefix = null;

@@ -170,11 +170,9 @@ sourceText
  * keyword or the name of the design and finally a semicolon.
  */
 designDecl
-	:	'design'^ IDENT 'is'! 
-		(deviceDecl | netDecl | infoStruct)*
-		'begin'
-		(instanceDecl | netAssignment | groupStruct)*
-		'end'! 'design'!? IDENT? SEMICOLON!
+	:	'design'^ IDENT LEFTBRACE! 
+		(deviceDecl | netDecl | infoStruct | instanceDecl | netAssignment | groupStruct)*
+		RIGHTBRACE!
 	;
 
 /** 
@@ -184,9 +182,9 @@ designDecl
  * include the keyword "device" and/or the name specified originally as the device name.
  */	
 deviceDecl
-	:	'device'^ IDENT 'is'!
+	:	'device'^ IDENT LEFTBRACE!
 		( attributeDecl | pinDecl )*
-		'end'! 'device'!? IDENT? SEMICOLON!
+		RIGHTBRACE!
 	;
 
 /**
@@ -226,7 +224,7 @@ netDecl
  * terminates.
  */	
 netAttributes
-	:	'is'! attributeDecl* 'end'!
+	:	LEFTBRACE! attributeDecl* RIGHTBRACE!
 	;
 
 /**
@@ -238,9 +236,9 @@ netAttributes
  * and the semicolon.
  */
 instanceDecl
-	:	'inst'^ arrayDecl? IDENT 'of'! IDENT 'is'!
+	:	'inst'^ arrayDecl? IDENT 'of'! IDENT LEFTBRACE!
 		(attributeAssignment | pinAssignment | infoStruct)*
-		'end'! 'inst'!? IDENT? SEMICOLON!
+		RIGHTBRACE!
 	;
 
 /**
@@ -248,11 +246,11 @@ instanceDecl
  * curly braces.
  */
 infoStruct
-	: 	'info'^ 'is'! STRING SEMICOLON!
+	: 	'info'^ LEFTBRACE! STRING RIGHTBRACE!
 	;
   
 groupStruct
-	: 	'group'^ STRING 'is'! (instanceDecl | netAssignment)* 'end'! 'group'!? STRING? SEMICOLON!
+	: 	'group'^ STRING LEFTBRACE! (instanceDecl | netAssignment)* RIGHTBRACE!
 	;
 
 /**

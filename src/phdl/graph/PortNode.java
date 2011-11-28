@@ -28,12 +28,13 @@ package phdl.graph;
 public class PortNode extends Node {
 	
 	private NetNode net;
+	private PinNode pin;
 
 	/**
 	 * Default Constructor.
 	 */
 	public PortNode() {
-
+		
 	}
 
 	/**
@@ -53,6 +54,44 @@ public class PortNode extends Node {
 	public void setNet(NetNode net) {
 		this.net = net;
 	}
+	
+	/**
+	 * PinNode accessor method
+	 * 
+	 * @return		the PinNode connected to this port
+	 */
+	public PinNode getPin() {
+		return pin;
+	}
+	
+	/**
+	 * PinNode mutator method
+	 * 
+	 * @param pin	the new PinNode to connect to this port
+	 */
+	public void setPin(PinNode pin) {
+		this.pin = pin;
+	}
+	
+	/**
+	 * Checks to see if the port is connected to a pin
+	 * 
+	 * @return	true, if the port is connected to a pin
+	 * 			false, otherwise
+	 */
+	public boolean isPinConnected() {
+		return (pin!=null);
+	}
+	
+	/**
+	 * Checks to see if the port is connected to a net
+	 * 
+	 * @return	true, if the port is connected to a net
+	 * 			false, otherwise
+	 */
+	public boolean isNetConnected() {
+		return (net!=null);
+	}
 
 	@Override
 	/**
@@ -63,5 +102,5 @@ public class PortNode extends Node {
 	public NodeType getType() {
 		return NodeType.PORT;
 	}
-
+	
 }
