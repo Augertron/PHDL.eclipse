@@ -171,7 +171,7 @@ sourceText
  */
 designDecl
 	:	'design'^ IDENT LEFTBRACE! 
-		(deviceDecl | netDecl | infoStruct | instanceDecl | netAssignment | groupStruct)*
+		(deviceDecl | netDecl | infoStruct | instanceDecl | netAssignment | groupStruct | subDesignInstance)*
 		RIGHTBRACE!
 	;
 
@@ -240,6 +240,44 @@ instanceDecl
 		(attributeAssignment | pinAssignment | infoStruct)*
 		RIGHTBRACE!
 	;
+/**
+ * A sub design instance 
+ *
+ */
+subDesignInstance
+  : 'sub'^ arrayDecl? IDENT 'of'! IDENT LEFTBRACE!
+    (subAssignment | infoStruct)*
+    RIGHTBRACE!
+  ;
+
+/**
+ * A sub design assignment is
+ */
+subAssignment
+  : portAssignment
+  | subAttrAssignment
+  ;
+  
+portAssignment
+  : portQualifier
+  | portSpecifier   
+  ;
+
+portQualifier
+  : 'combine' LEFTPAREN! portSpecifier RIGHTPAREN!
+  ;
+  
+portSpecifier
+  : ('this' arrayList? PERIOD)? IDENT sliceList?
+  ;
+
+subAttrAssignment
+  : 'newattr'? arrayQualifier? instSpecifier* IDENT EQUALS^ STRING SEMICOLON! 
+  ;
+
+instSpecifier
+  : IDENT arrayList? PERIOD
+  ;
 
 /**
  * An info struct consists of the keyword 'info' followed by freeform text surrounded by
@@ -273,16 +311,7 @@ attributeAssignment
  * (only instance 2 gets this value), or 'each(1, 4, 6).tolerance = "5%";' (only instances 1, 4, and 6 get this value).  
  */
 attributeQualifier
-	:	'each' arrayList? PERIOD^  
-	;
-
-/**
- * A pin qualifier begins with the keyword 'each' or 'combine', followed by an optional array list and mandatory period.
- * Examples might be: each.addr = addrA (meaning that all address vectors in every instance are tied in parallel to the addrA bit vector
- * in the same order that the vectors were declared.
- */
-pinQualifier
-	:	('each' | 'combine') arrayList? PERIOD^
+	:	'this' arrayList? PERIOD^
 	;
 
 /**
@@ -293,8 +322,31 @@ pinQualifier
  * to specify the various bits of a multi-bit wire as in 'a[3] = gnd', 'a[5:2] = vcc', or 'a[2, 6, 9] = -vcc'. 
  */
 pinAssignment
-	:	pinQualifier? IDENT sliceList? EQUALS^ concatenation SEMICOLON!
+	:	pinDescription EQUALS^ concatenation SEMICOLON!
 	;
+
+pinDescription
+  : pinQualifier | pinSpecifier 
+  ;
+
+/**
+ * A pin description is 
+ */
+pinQualifier
+  : 'combine' LEFTPAREN! pinSpecifier RIGHTPAREN!
+  ;
+  
+pinSpecifier
+  : arrayQualifier? IDENT sliceList?
+  ;
+
+arrayQualifier
+  : 'this' arrayList? PERIOD
+  ;
+
+combineQualifier
+  : 'combine' LEFTPAREN! pinQualifier? RIGHTPAREN!
+  ;
 
 /**
  * A net assignment consists of an identifier followed by an optional list of slices, an
