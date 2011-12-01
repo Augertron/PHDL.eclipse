@@ -215,7 +215,7 @@ type
  * of the net, followed by an optional set of attributes, and terminated with a semicolon.
  */
 netDecl
-	:	'net'^ sliceDecl? IDENT (COMMA IDENT)* netAttributes? SEMICOLON!
+	:	'net'^ sliceDecl? IDENT (COMMA IDENT)* (netAttributes | SEMICOLON!)
 	;
 
 /**
@@ -259,20 +259,23 @@ subAssignment
   ;
   
 portAssignment
-  : portQualifier
-  | portSpecifier   
+  : (combineQualifier | pinSpecifier) EQUALS concatenation SEMICOLON!
   ;
 
-portQualifier
-  : 'combine' LEFTPAREN! portSpecifier RIGHTPAREN!
+combineQualifier
+  : 'combine' LEFTPAREN! pinSpecifier RIGHTPAREN!
   ;
   
-portSpecifier
-  : ('this' arrayList? PERIOD)? IDENT sliceList?
+pinSpecifier
+  : arrayQualifier? IDENT sliceList?
   ;
 
 subAttrAssignment
   : 'newattr'? arrayQualifier? instSpecifier* IDENT EQUALS^ STRING SEMICOLON! 
+  ;
+  
+arrayQualifier
+  : 'this' arrayList? PERIOD
   ;
 
 instSpecifier
@@ -334,18 +337,6 @@ pinDescription
  */
 pinQualifier
   : 'combine' LEFTPAREN! pinSpecifier RIGHTPAREN!
-  ;
-  
-pinSpecifier
-  : arrayQualifier? IDENT sliceList?
-  ;
-
-arrayQualifier
-  : 'this' arrayList? PERIOD
-  ;
-
-combineQualifier
-  : 'combine' LEFTPAREN! pinQualifier? RIGHTPAREN!
   ;
 
 /**
