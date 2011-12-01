@@ -1,0 +1,30 @@
+<design>
+	<name>testDesign</name>
+	<device>
+		<name>testDevice</name>
+		<attribute>
+			<name>PKG_TYPE</name>
+			<value>dummy2</value>
+		</attribute>
+		<attribute>
+			<name>REFPREFIX</name>
+			<value>dummy1</value>
+		</attribute>
+	</device>
+	<net>
+		<name>TESTNET</name>
+	</net>
+	<instance>
+		<name>testInst</name>
+		<refDes>dummy11</refDes>
+		<device_name>testDevice</device_name>
+		<attribute>
+			<name>PKG_TYPE</name>
+			<value>dummy2</value>
+		</attribute>
+		<attribute>
+			<name>REFPREFIX</name>
+			<value>dummy1</value>
+		</attribute>
+	</instance>
+</design>
