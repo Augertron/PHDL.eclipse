@@ -30,6 +30,6 @@ public enum NodeType {
 	DESIGN,
 	DEVICE,
 	INSTANCE,
-	ATTRIBUTE
-	
+	ATTRIBUTE,
+	SUBDESIGN
 }

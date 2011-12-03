@@ -81,6 +81,15 @@ options {
 	 */
 	private Set<DesignNode> designNodes = new HashSet<DesignNode>();
 	
+	public DesignNode getDesignNode(String name) {
+    for (DesignNode d : designNodes) {
+      if (d.getName().equals(name)) {
+        return d;
+      }
+    }
+    return null;
+	}
+	
 	/**
 	 * Sets to check for duplicates while processing everything
 	 */
@@ -329,7 +338,7 @@ designDecl
 			}
 			//===================== JAVA BLOCK END ========================
 		{String info = "";}
-		(deviceDecl[des] | netDecl[des] | infoStruct {des.appendInfo($infoStruct.value);} | instDecl[des, null] | netAssign[des] | groupStruct[des])*)
+		(deviceDecl[des] | netDecl[des] | infoStruct {des.appendInfo($infoStruct.value);} | instDecl[des, null] | netAssign[des] | groupStruct[des] | subDesignInstance[des])*)
 		
 			//==================== JAVA BLOCK BEGIN =======================
 			{ 
@@ -352,10 +361,56 @@ designDecl
 							addError(i, "dangling pin " + p.getName() + " in instance");
 					}
 				}
-				
 			}
 			//===================== JAVA BLOCK END ========================
 	;
+
+subDesignInstance[DesignNode des]
+  :   ^'sub' 
+      //==================== JAVA BLOCK BEGIN =======================
+      { // Set of instance nodes to check for duplicates
+        List<DesignNode> subDesignNodes = new ArrayList<DesignNode>();
+        // List of indices to be derived from the arrayList
+        List<Integer> indices = new ArrayList<Integer>();
+      }
+      //===================== JAVA BLOCK END ========================
+      
+      arrayList[indices]? subDesName=IDENT desName=IDENT
+      //==================== JAVA BLOCK BEGIN =======================
+      {
+        for (int j = 0; j < indices.size(); j++) {
+          SubDesignNode s = new SubDesignNode(des);
+          s.setName($subDesName.text + "(" + indices.get(j) + ")");
+          s.setLocation($subDesName.line, $subDesName.pos,
+            subDesName.getToken().getInputStream().getSourceName());
+          
+          //Find the reference design
+          DesignNode rDes = getDesignNode($desName.text);
+          if (rDes != null) {
+            s.setReferenceDesign(rDes);
+            for (PortNode p : rDes.getPorts()) {
+              s.addPort(p);
+            }
+            for (DeviceNode d : rDes.getDevices() {
+              s.addDevice(d);
+            }
+            for (InstanceNode i : rDes.getInstances()) {
+              s.addInstance(i);
+            }
+            for (NetNode n : rDes.getNets()) {
+              s.addNet(n);
+            }
+            for (SubDesignNode sd : rDes.getSubDesigns()) {
+              s.addSubDesign(sd);
+            }
+          }
+          else {
+            bailOut(s, "subdesign instance references undeclared design");
+          }
+        }
+      }
+      //==================== JAVA BLOCK END =========================
+  ;
 
 infoStruct returns [String value]
 	: 	^('info' string=STRING {value = $string.text;})

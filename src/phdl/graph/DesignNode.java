@@ -40,6 +40,7 @@ public class DesignNode extends Node {
 	private Set<DeviceNode> devices;
 	private List<InstanceNode> instances;
 	private List<NetNode> nets;
+	private Set<DesignNode> subDesigns;
 
 	/**
 	 * Default Constructor.
@@ -57,8 +58,35 @@ public class DesignNode extends Node {
 		instances = new ArrayList<InstanceNode>();
 		nets = new ArrayList<NetNode>();
 		info = "";
+		subDesigns = new TreeSet<DesignNode>();
 	}
 	
+	/**
+	 * SubDesign addition method
+	 * 
+	 * @param newDesign	the DesignNode to add to the subDesign
+	 * @return	true if the subDesign wasn't already in the set
+	 * 			false otherwise
+	 */
+	public boolean addSubDesign(DesignNode newDesign) {
+		return subDesigns.add(newDesign);
+	}
+	
+	/**
+	 * SubDesign Set accessor method
+	 * 
+	 * @return	the set of subDesigns
+	 */
+	public Set<DesignNode> getSubDesigns() {
+		return subDesigns;
+	}
+	
+	/**
+	 * SubDesign identification method.
+	 * 
+	 * @return	true if the design is a sub design
+	 * 			false otherwise
+	 */
 	public boolean isSubDesign() {
 		return !(ports.isEmpty());
 	}
