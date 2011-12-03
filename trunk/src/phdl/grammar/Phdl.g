@@ -259,15 +259,15 @@ subAssignment
   ;
   
 portAssignment
-  : (combineQualifier | pinSpecifier) EQUALS concatenation SEMICOLON!
+  : (combineQualifier | pinSpecifier) EQUALS^ concatenation SEMICOLON!
   ;
 
 combineQualifier
-  : 'combine' LEFTPAREN! pinSpecifier RIGHTPAREN!
+  : 'combine'^ LEFTPAREN! pinSpecifier RIGHTPAREN!
   ;
   
 pinSpecifier
-  : arrayQualifier? IDENT sliceList?
+  : arrayQualifier? IDENT^ sliceList?
   ;
 
 subAttrAssignment
@@ -279,7 +279,7 @@ arrayQualifier
   ;
 
 instSpecifier
-  : IDENT arrayList? PERIOD
+  : IDENT arrayList? PERIOD^
   ;
 
 /**
