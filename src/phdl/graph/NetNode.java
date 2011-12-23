@@ -196,7 +196,7 @@ public class NetNode extends Attributable {
 			myString += n.getName() + " $ ";
 		}
 		myString = myString.substring(0, myString.length() - 3);
-		for (AttributeNode a : attrs) {
+		for (AttributeNode a : attributes) {
 			myString += "\n\t\t" + a.toString();
 		}
 		return myString;

@@ -11,11 +11,11 @@
 package phdl.graph;
 
 /**
- * Enumerated types that describe Nodes.
+ * Enumerated types that describe Pins.
  * 
  * @author Brad Riching and Richard Black
  * @version 0.1
  */
-public enum NodeType {
-	NET, PIN, PORT, DESIGN, DEVICE, INSTANCE, ATTRIBUTE, SUBDESIGN
+public enum PinType {
+	PIN, INPIN, OUTPIN, IOPIN, PWRPIN, SUPPIN,
 }

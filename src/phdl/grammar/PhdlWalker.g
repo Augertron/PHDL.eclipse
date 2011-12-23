@@ -366,7 +366,7 @@ designDecl
 	;
 
 subDesignInstance[DesignNode des]
-  :   ^'sub' 
+  :   ^('sub' 
       //==================== JAVA BLOCK BEGIN =======================
       { // Set of instance nodes to check for duplicates
         List<DesignNode> subDesignNodes = new ArrayList<DesignNode>();
@@ -377,7 +377,7 @@ subDesignInstance[DesignNode des]
       
       arrayList[indices]? subDesName=IDENT desName=IDENT
       //==================== JAVA BLOCK BEGIN =======================
-      {
+      /*{
         for (int j = 0; j < indices.size(); j++) {
           SubDesignNode s = new SubDesignNode(des);
           s.setName($subDesName.text + "(" + indices.get(j) + ")");
@@ -391,7 +391,7 @@ subDesignInstance[DesignNode des]
             for (PortNode p : rDes.getPorts()) {
               s.addPort(p);
             }
-            for (DeviceNode d : rDes.getDevices() {
+            for (DeviceNode d : rDes.getDevices()) {
               s.addDevice(d);
             }
             for (InstanceNode i : rDes.getInstances()) {
@@ -408,7 +408,8 @@ subDesignInstance[DesignNode des]
             bailOut(s, "subdesign instance references undeclared design");
           }
         }
-      }
+      }*/
+      )
       //==================== JAVA BLOCK END =========================
   ;
 
@@ -553,7 +554,7 @@ pinDecl[DeviceNode dev]
 	        		
 	        		// accessing an invalid pin list may cause an exception
 	        		try{
-						newPin.setPinName(pList.get(i));
+						newPin.setName(pList.get(i));
 					} catch (IndexOutOfBoundsException e) {
 						addError($pinName, "invalid pin list");
 					}
@@ -572,7 +573,7 @@ pinDecl[DeviceNode dev]
 					
 					// accessing an invalid pin list may cause an exception
 					try{
-						newPin.setPinName(pList.get(0));
+						newPin.setName(pList.get(0));
 					} catch (IndexOutOfBoundsException e) {
 						addError($pinName, "invalid pin list");
 					}
@@ -950,7 +951,7 @@ pinAssign[DesignNode des, String instName]
 					// for all isntances with this pinName
 					for (InstanceNode inst : des.getAllInstances(instName)) {
 						// assign pins for only those whose index is in the list of indices
-						if(inst.getIndex() == indices.get(j)) {
+						if(inst.findIndex() == indices.get(j)) {
 							int start;
 							if (slices.size() == 0) {
 								start = j;

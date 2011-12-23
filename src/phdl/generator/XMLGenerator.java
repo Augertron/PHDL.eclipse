@@ -1,17 +1,11 @@
 /*
-    Copyright (C) 2011  Brigham Young University
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, version 3.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Copyright (C) 2011 Brigham Young University This program is free software: you can redistribute
+ * it and/or modify it under the terms of the GNU General Public License as published by the Free
+ * Software Foundation, version 3. This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+ * PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received
+ * a copy of the GNU General Public License along with this program. If not, see
+ * <http://www.gnu.org/licenses/>.
  */
 
 package phdl.generator;
@@ -53,7 +47,7 @@ public class XMLGenerator {
 			for (PinNode p : d.getPins()) {
 				sb.append("\n\t\t<pin>");
 				sb.append("\n\t\t\t<name>" + p.getName() + "</name>");
-				sb.append("\n\t\t\t<number>" + p.getPinName() + "</number>");
+				sb.append("\n\t\t\t<number>" + p.getName() + "</number>");
 				sb.append("\n\t\t</pin>");
 			}
 			sb.append("\n\t</device>");

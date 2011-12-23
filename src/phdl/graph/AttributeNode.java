@@ -1,17 +1,11 @@
 /*
-    Copyright (C) 2011  Brigham Young University
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, version 3.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Copyright (C) 2011 Brigham Young University This program is free software: you can redistribute
+ * it and/or modify it under the terms of the GNU General Public License as published by the Free
+ * Software Foundation, version 3. This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+ * PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received
+ * a copy of the GNU General Public License along with this program. If not, see
+ * <http://www.gnu.org/licenses/>.
  */
 
 package phdl.graph;
@@ -21,7 +15,7 @@ package phdl.graph;
  * 
  * @author Brad Riching and Richard Black
  * @version 0.1
- *
+ * 
  */
 public class AttributeNode extends Node {
 
@@ -44,8 +38,10 @@ public class AttributeNode extends Node {
 	/**
 	 * Copy Constructor.
 	 * 
-	 * @param old the old AttributeNode to copy
-	 * @param parent the parent of the current node
+	 * @param old
+	 *            the old AttributeNode to copy
+	 * @param parent
+	 *            the parent of the current node
 	 */
 	public AttributeNode(AttributeNode old, Attributable parent) {
 		setParent(parent);
@@ -130,31 +126,12 @@ public class AttributeNode extends Node {
 		this.name = name.toUpperCase();
 	}
 
-	@Override
 	/**
-	 * A method that initializes an AttributeNode with
-	 * essential information.
+	 * Changes the attribute value and checks to see if it's already been changed once.
 	 * 
-	 * @param name		the name of the AttributeNode
-	 * @param line		the line of the attribute
-	 * @param pos		the position of the attribute
-	 * @param fileName	the filename where the attribute was found
-	 */
-	public void initNode(String name, int line, int pos, String fileName) {
-		this.name = name.toUpperCase();
-		this.line = line;
-		this.pos = pos;
-		this.fileName = fileName;
-	}
-
-	/**
-	 * Changes the attribute value and checks to see if
-	 * it's already been changed once.
-	 * 
-	 * @param value the new attribute value
-	 * @return	true if the attribute hasn't been overwritten
-	 * 				before
-	 * 			false if it has
+	 * @param value
+	 *            the new attribute value
+	 * @return true if the attribute hasn't been overwritten before false if it has
 	 */
 	public boolean overwrite(String value) {
 		this.value = value;

@@ -1,17 +1,11 @@
 /*
-    Copyright (C) 2011  Brigham Young University
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, version 3.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Copyright (C) 2011 Brigham Young University This program is free software: you can redistribute
+ * it and/or modify it under the terms of the GNU General Public License as published by the Free
+ * Software Foundation, version 3. This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+ * PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received
+ * a copy of the GNU General Public License along with this program. If not, see
+ * <http://www.gnu.org/licenses/>.
  */
 
 package phdl.generator;
@@ -48,14 +42,12 @@ public class EagleScriptGenerator {
 	/**
 	 * Default constructor.
 	 * 
-	 * Takes a design and a map of the reference designators and generates the
-	 * Eagle script.
+	 * Takes a design and a map of the reference designators and generates the Eagle script.
 	 * 
 	 * @param design
 	 *            the DesignNode where all the net information is stored.
 	 * @param refMap
-	 *            the map of Reference Designators needed to generated the Eagle
-	 *            script.
+	 *            the map of Reference Designators needed to generated the Eagle script.
 	 * 
 	 * @see DesignNode
 	 * @see RefDesGenerator
@@ -126,7 +118,7 @@ public class EagleScriptGenerator {
 					// set the special instance name and device name attributes
 					sb.append("ATTRIBUTE " + i.getRefDes() + " INST_NAME '" + i.getName() + "';\n");
 					sb.append("ATTRIBUTE " + i.getRefDes() + " DEV_NAME '"
-							+ i.getDevice().getName() + "';\n");
+						+ i.getDevice().getName() + "';\n");
 
 					// add all the attributes except "values"
 					for (AttributeNode a : i.getAttributes()) {
@@ -189,7 +181,7 @@ public class EagleScriptGenerator {
 					for (PinNode p : ((InstanceNode) n).getPins()) {
 						String refDes = ((InstanceNode) p.getParent()).getRefDes();
 						String name = p.getNet().getName().toUpperCase();
-						sb.append("SIGNAL " + name + " " + refDes + " " + p.getPinName() + ";\n");
+						sb.append("SIGNAL " + name + " " + refDes + " " + p.getName() + ";\n");
 					}
 
 					// keep adding instances below the origin
@@ -317,7 +309,7 @@ public class EagleScriptGenerator {
 		if (i.getAttribute("LIBNAME") != null) {
 			lib = i.getAttribute("LIBNAME").getValue();
 			sb.append("ADD " + i.getFootprint() + "@" + lib + " '" + i.getRefDes() + "' (" + x
-					+ " " + y + ");\n");
+				+ " " + y + ");\n");
 		} else
 			System.err.println("ERROR: libName attribute undeclared: " + i.getName());
 
@@ -336,7 +328,7 @@ public class EagleScriptGenerator {
 		sb.append("SIGNAL " + n.getName().toUpperCase());
 		for (PinNode p : n.getPinNodes()) {
 			String refDes = ((InstanceNode) p.getParent()).getRefDes();
-			sb.append(" " + refDes + " " + p.getPinName());
+			sb.append(" " + refDes + " " + p.getName());
 		}
 		sb.append(";\n");
 	}
@@ -344,7 +336,7 @@ public class EagleScriptGenerator {
 	private void replacePackage(AttributeNode a) {
 		String refDes = ((InstanceNode) ((AttributeNode) a).getParent()).getRefDes();
 		String lib = ((InstanceNode) ((AttributeNode) a).getParent()).getAttribute("LIBNAME")
-				.getValue();
+			.getValue();
 		sb.append("REPLACE " + refDes + " '" + a.getValue() + "@" + lib + "';\n");
 	}
 }

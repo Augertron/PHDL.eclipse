@@ -1,17 +1,11 @@
 /*
-    Copyright (C) 2011  Brigham Young University
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, version 3.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Copyright (C) 2011 Brigham Young University This program is free software: you can redistribute
+ * it and/or modify it under the terms of the GNU General Public License as published by the Free
+ * Software Foundation, version 3. This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+ * PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received
+ * a copy of the GNU General Public License along with this program. If not, see
+ * <http://www.gnu.org/licenses/>.
  */
 
 package phdl.generator;
@@ -41,14 +35,12 @@ public class NetListGenerator {
 	/**
 	 * Default constructor.
 	 * 
-	 * Takes a design and a map of the reference designators and generates the
-	 * NetList.
+	 * Takes a design and a map of the reference designators and generates the NetList.
 	 * 
 	 * @param design
 	 *            the DesignNode where all the net information is stored.
 	 * @param refMap
-	 *            the map of Reference Designators needed to generated the
-	 *            NetList.
+	 *            the map of Reference Designators needed to generated the NetList.
 	 * 
 	 * @see DesignNode
 	 * @see RefDesGenerator
@@ -67,8 +59,7 @@ public class NetListGenerator {
 		for (String s : refMap.keySet()) {
 			InstanceNode i = refMap.get(s);
 			sb.append(s);
-			sb.append(" " + i.getDevice().getName().toUpperCase() + "@"
-					+ i.getFootprint() + "\n");
+			sb.append(" " + i.getDevice().getName().toUpperCase() + "@" + i.getFootprint() + "\n");
 		}
 		sb.append("*CONNECTION*\n");
 
@@ -86,12 +77,11 @@ public class NetListGenerator {
 
 				String ref1 = ((InstanceNode) pin1.getParent()).getRefDes();
 				String ref2 = ((InstanceNode) pin2.getParent()).getRefDes();
-				String name1 = pin1.getPinName();
-				String name2 = pin2.getPinName();
+				String name1 = pin1.getName();
+				String name2 = pin2.getName();
 
 				sb.append(" " + refMap.get(ref1).getRefDes() + "." + name1);
-				sb.append(" " + refMap.get(ref2).getRefDes() + "." + name2
-						+ "\n");
+				sb.append(" " + refMap.get(ref2).getRefDes() + "." + name2 + "\n");
 			}
 		}
 		sb.append("\n*END*");
