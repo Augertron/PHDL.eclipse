@@ -1,17 +1,11 @@
 /*
-    Copyright (C) 2011  Brigham Young University
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, version 3.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Copyright (C) 2011 Brigham Young University This program is free software: you can redistribute
+ * it and/or modify it under the terms of the GNU General Public License as published by the Free
+ * Software Foundation, version 3. This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+ * PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received
+ * a copy of the GNU General Public License along with this program. If not, see
+ * <http://www.gnu.org/licenses/>.
  */
 
 package phdl.graph;
@@ -34,6 +28,7 @@ public class InstanceNode extends Attributable {
 	private String refPrefix;
 	private String footprint;
 	private String groupName;
+	private int index;
 
 	/**
 	 * Default Constructor.
@@ -46,12 +41,13 @@ public class InstanceNode extends Attributable {
 	 */
 	public InstanceNode(DesignNode design) {
 		super();
-		setDesign(design);
-		pins = new ArrayList<PinNode>();
-		refDes = null;
-		refPrefix = null;
-		footprint = null;
-		info = "";
+		this.design = design;
+		this.pins = new ArrayList<PinNode>();
+		this.refDes = null;
+		this.refPrefix = null;
+		this.footprint = null;
+		this.info = "";
+		this.index = -1;
 	}
 
 	/**
@@ -189,7 +185,7 @@ public class InstanceNode extends Attributable {
 	 * @return the AttributeNode with that name
 	 */
 	public AttributeNode getAttribute(String s) {
-		for (AttributeNode a : attrs) {
+		for (AttributeNode a : attributes) {
 			if (s.toUpperCase().equals(a.getName().toUpperCase()))
 				return a;
 		}
@@ -263,7 +259,7 @@ public class InstanceNode extends Attributable {
 	 * 
 	 * @return the index of the Instance
 	 */
-	public int getIndex() {
+	public int findIndex() {
 		int start = getName().indexOf('(');
 		int end = getName().indexOf(')');
 
@@ -300,5 +296,19 @@ public class InstanceNode extends Attributable {
 
 	public String getGroupName() {
 		return groupName;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
+	}
+
+	public int getIndex() {
+		return index;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		return this.name.equals(((InstanceNode) o).getName())
+			&& this.index == ((InstanceNode) o).getIndex();
 	}
 }

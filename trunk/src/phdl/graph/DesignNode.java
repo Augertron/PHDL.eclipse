@@ -1,17 +1,11 @@
 /*
-    Copyright (C) 2011  Brigham Young University
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, version 3.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Copyright (C) 2011 Brigham Young University This program is free software: you can redistribute
+ * it and/or modify it under the terms of the GNU General Public License as published by the Free
+ * Software Foundation, version 3. This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+ * PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received
+ * a copy of the GNU General Public License along with this program. If not, see
+ * <http://www.gnu.org/licenses/>.
  */
 
 package phdl.graph;
@@ -36,7 +30,6 @@ import java.util.TreeSet;
  */
 public class DesignNode extends Node {
 
-	private Set<PortNode> ports;
 	private Set<DeviceNode> devices;
 	private List<InstanceNode> instances;
 	private List<NetNode> nets;
@@ -53,42 +46,31 @@ public class DesignNode extends Node {
 	 * @see NetNode
 	 */
 	public DesignNode() {
-		ports = new TreeSet<PortNode>();
 		devices = new TreeSet<DeviceNode>();
 		instances = new ArrayList<InstanceNode>();
 		nets = new ArrayList<NetNode>();
 		info = "";
 		subDesigns = new TreeSet<DesignNode>();
 	}
-	
+
 	/**
 	 * SubDesign addition method
 	 * 
-	 * @param newDesign	the DesignNode to add to the subDesign
-	 * @return	true if the subDesign wasn't already in the set
-	 * 			false otherwise
+	 * @param newDesign
+	 *            the DesignNode to add to the subDesign
+	 * @return true if the subDesign wasn't already in the set false otherwise
 	 */
 	public boolean addSubDesign(DesignNode newDesign) {
 		return subDesigns.add(newDesign);
 	}
-	
+
 	/**
 	 * SubDesign Set accessor method
 	 * 
-	 * @return	the set of subDesigns
+	 * @return the set of subDesigns
 	 */
 	public Set<DesignNode> getSubDesigns() {
 		return subDesigns;
-	}
-	
-	/**
-	 * SubDesign identification method.
-	 * 
-	 * @return	true if the design is a sub design
-	 * 			false otherwise
-	 */
-	public boolean isSubDesign() {
-		return !(ports.isEmpty());
 	}
 
 	/**
@@ -134,8 +116,7 @@ public class DesignNode extends Node {
 	 * 
 	 * @param i
 	 *            the new InstanceNode to add
-	 * @return true, if the instance isn't already part of the design false,
-	 *         otherwise
+	 * @return true, if the instance isn't already part of the design false, otherwise
 	 */
 	public boolean addInstance(InstanceNode i) {
 		return instances.add(i);
@@ -164,8 +145,7 @@ public class DesignNode extends Node {
 	 * 
 	 * @param i
 	 *            the new NetNode to add
-	 * @return true, if the net isn't already part of the design false,
-	 *         otherwise
+	 * @return true, if the net isn't already part of the design false, otherwise
 	 */
 	public boolean addNet(NetNode n) {
 		return nets.add(n);
@@ -178,36 +158,6 @@ public class DesignNode extends Node {
 	 */
 	public boolean hasNets() {
 		return (!nets.isEmpty());
-	}
-
-	/**
-	 * Checks to see if the design has any ports.
-	 * 
-	 * @return true, if there are ports false, otherwise
-	 */
-	public boolean hasPorts() {
-		return (!ports.isEmpty());
-	}
-
-	/**
-	 * Port set accessor method.
-	 * 
-	 * @return the set of all ports
-	 */
-	public Set<PortNode> getPorts() {
-		return ports;
-	}
-
-	/**
-	 * Port set addition method.
-	 * 
-	 * @param i
-	 *            the new PortNode to add
-	 * @return true, if the port isn't already part of the design false,
-	 *         otherwise
-	 */
-	public boolean addPort(PortNode p) {
-		return (ports.add(p));
 	}
 
 	@Override
@@ -289,12 +239,11 @@ public class DesignNode extends Node {
 	}
 
 	/**
-	 * Finds all InstanceNodes with the same base name (i.e. without any array
-	 * references) and returns a list of them.
+	 * Finds all InstanceNodes with the same base name (i.e. without any array references) and
+	 * returns a list of them.
 	 * 
-	 * The base name of an instance is the name without any array references.
-	 * For example, "my_inst(3)" is an instance name, and "my_inst" is its base
-	 * name.
+	 * The base name of an instance is the name without any array references. For example,
+	 * "my_inst(3)" is an instance name, and "my_inst" is its base name.
 	 * 
 	 * @param instName
 	 *            the base name of the Instance
@@ -331,8 +280,8 @@ public class DesignNode extends Node {
 	/**
 	 * Finds all NetNodes with the same base name and returns a list of them.
 	 * 
-	 * The base name of a net is the name without any array references. For
-	 * example, "my_net(12)" is a net name, and "my_net" is its base name.
+	 * The base name of a net is the name without any array references. For example, "my_net(12)" is
+	 * a net name, and "my_net" is its base name.
 	 * 
 	 * @param netName
 	 *            the base name of the Net
@@ -355,8 +304,8 @@ public class DesignNode extends Node {
 	}
 
 	/**
-	 * Goes through all Nodes attached to the DesignNode and prints out a
-	 * representation of the connections.
+	 * Goes through all Nodes attached to the DesignNode and prints out a representation of the
+	 * connections.
 	 */
 	public void printDesignNode() {
 		System.out.println(toString());
@@ -376,8 +325,7 @@ public class DesignNode extends Node {
 			}
 			for (PinNode p : iNode.getPins()) {
 				if (p.getNet() != null) {
-					System.out.println("\t\t" + p.toString() + " <= "
-							+ p.getNet().toString());
+					System.out.println("\t\t" + p.toString() + " <= " + p.getNet().toString());
 				} else {
 					System.out.println("\t\t" + p.toString());
 				}
@@ -403,10 +351,10 @@ public class DesignNode extends Node {
 		Map<Integer, PinNode> pinMap = new HashMap<Integer, PinNode>();
 
 		String format = "ordering=out;\r\n"
-				+ "	ranksep=.4;\r\n"
-				+ "	bgcolor=\"lightgrey\"; node [fixedsize=false, fontsize=12, fontname=\"Helvetica-bold\", fontcolor=\"blue\"\r\n"
-				+ "		width=.25, height=.25, color=\"black\", fillcolor=\"white\", style=\"filled, solid, bold\"];\r\n"
-				+ "	edge [arrowsize=.5, color=\"black\", style=\"bold\"]";
+			+ "	ranksep=.4;\r\n"
+			+ "	bgcolor=\"lightgrey\"; node [fixedsize=false, fontsize=12, fontname=\"Helvetica-bold\", fontcolor=\"blue\"\r\n"
+			+ "		width=.25, height=.25, color=\"black\", fillcolor=\"white\", style=\"filled, solid, bold\"];\r\n"
+			+ "	edge [arrowsize=.5, color=\"black\", style=\"bold\"]";
 
 		try {
 			dotty = new BufferedWriter(new FileWriter(fileName));
@@ -419,15 +367,14 @@ public class DesignNode extends Node {
 			dotty.write(format);
 
 			for (NetNode n : nets) {
-				dotty.write("  n" + netRef + " [label=\"" + n.getName()
-						+ "\"];\n");
+				dotty.write("  n" + netRef + " [label=\"" + n.getName() + "\"];\n");
 				netMap.put(netRef, n);
 				netRef++;
 			}
 			for (InstanceNode i : instances) {
 				for (PinNode p : i.getPins()) {
-					dotty.write("  p" + pinRef + " [label=\"" + i.getName()
-							+ "." + p.getName() + "\"];\n");
+					dotty.write("  p" + pinRef + " [label=\"" + i.getName() + "." + p.getName()
+						+ "\"];\n");
 					pinMap.put(pinRef, p);
 					pinRef++;
 				}
@@ -464,12 +411,10 @@ public class DesignNode extends Node {
 	}
 
 	/**
-	 * Finds all the InstanceNodes with the same base name and returns a list of
-	 * their indices.
+	 * Finds all the InstanceNodes with the same base name and returns a list of their indices.
 	 * 
-	 * The base name of an instance is the name without any array references.
-	 * For example, "my_inst(3)" is an instance name, and "my_inst" is its base
-	 * name.
+	 * The base name of an instance is the name without any array references. For example,
+	 * "my_inst(3)" is an instance name, and "my_inst" is its base name.
 	 * 
 	 * @param instName
 	 *            the base name of the instance
@@ -489,11 +434,10 @@ public class DesignNode extends Node {
 	}
 
 	/**
-	 * Finds all the NetNodes with the same base name and returns a list of
-	 * their indices.
+	 * Finds all the NetNodes with the same base name and returns a list of their indices.
 	 * 
-	 * The base name of an net is the name without any array references. For
-	 * example, "my_net(1)" is a net name, and "my_net" is its base name.
+	 * The base name of an net is the name without any array references. For example, "my_net(1)" is
+	 * a net name, and "my_net" is its base name.
 	 * 
 	 * @param netName
 	 *            the base name of the net
@@ -519,8 +463,7 @@ public class DesignNode extends Node {
 	 * 
 	 * @param dev
 	 *            the device to check
-	 * @return true, if there exists an instance that references the device
-	 *         false, otherwise
+	 * @return true, if there exists an instance that references the device false, otherwise
 	 */
 	public boolean isDeviceInstanced(DeviceNode dev) {
 		for (InstanceNode i : instances) {
@@ -562,8 +505,8 @@ public class DesignNode extends Node {
 	}
 
 	/**
-	 * Merges the names of the current net with the names of all neighbors by
-	 * using a depth-first search.
+	 * Merges the names of the current net with the names of all neighbors by using a depth-first
+	 * search.
 	 * 
 	 * @param current
 	 * @return net with merged name from all unvisited neighbor's names

@@ -1,17 +1,11 @@
 /*
-    Copyright (C) 2011  Brigham Young University
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, version 3.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Copyright (C) 2011 Brigham Young University This program is free software: you can redistribute
+ * it and/or modify it under the terms of the GNU General Public License as published by the Free
+ * Software Foundation, version 3. This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+ * PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received
+ * a copy of the GNU General Public License along with this program. If not, see
+ * <http://www.gnu.org/licenses/>.
  */
 
 package phdl.graph;
@@ -23,18 +17,17 @@ package phdl.graph;
  * @version 0.1
  */
 public abstract class Node implements Comparable<Object> {
-	
+
 	protected String name;
 	protected int line;
 	protected int pos;
 	protected String fileName;
 	protected String info;
-	
+
 	/**
 	 * FileName accessor method.
 	 * 
-	 * @return			the file name where the node's data
-	 * 					was found
+	 * @return the file name where the node's data was found
 	 */
 	public String getFileName() {
 		return fileName;
@@ -43,7 +36,8 @@ public abstract class Node implements Comparable<Object> {
 	/**
 	 * FileName mutator method.
 	 * 
-	 * @param fileName	the new file name
+	 * @param fileName
+	 *            the new file name
 	 */
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
@@ -52,7 +46,7 @@ public abstract class Node implements Comparable<Object> {
 	/**
 	 * Name accessor method.
 	 * 
-	 * @return			the name of the node
+	 * @return the name of the node
 	 */
 	public String getName() {
 		return name;
@@ -61,7 +55,7 @@ public abstract class Node implements Comparable<Object> {
 	/**
 	 * Line number accessor method.
 	 * 
-	 * @return			the line number of the node
+	 * @return the line number of the node
 	 */
 	public int getLine() {
 		return line;
@@ -70,7 +64,7 @@ public abstract class Node implements Comparable<Object> {
 	/**
 	 * Position accessor method.
 	 * 
-	 * @return			the position of the node
+	 * @return the position of the node
 	 */
 	public int getPosition() {
 		return pos;
@@ -79,7 +73,8 @@ public abstract class Node implements Comparable<Object> {
 	/**
 	 * Name mutator method.
 	 * 
-	 * @param name		the new name
+	 * @param name
+	 *            the new name
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -88,7 +83,8 @@ public abstract class Node implements Comparable<Object> {
 	/**
 	 * Line number mutator method.
 	 * 
-	 * @param line		the new line number
+	 * @param line
+	 *            the new line number
 	 */
 	public void setLine(int line) {
 		this.line = line;
@@ -97,7 +93,8 @@ public abstract class Node implements Comparable<Object> {
 	/**
 	 * Position mutator method.
 	 * 
-	 * @param pos		the new position
+	 * @param pos
+	 *            the new position
 	 */
 	public void setPosition(int pos) {
 		this.pos = pos;
@@ -106,8 +103,7 @@ public abstract class Node implements Comparable<Object> {
 	/**
 	 * Node type accessor method.
 	 * 
-	 * @return			an ennumerated type that
-	 * 					describes the Node
+	 * @return an ennumerated type that describes the Node
 	 */
 	public abstract NodeType getType();
 
@@ -154,9 +150,12 @@ public abstract class Node implements Comparable<Object> {
 	/**
 	 * Initializes a Node with basic location information.
 	 * 
-	 * @param line		the line number of the node
-	 * @param pos		the position of the node
-	 * @param fileName	the fileName for the node
+	 * @param line
+	 *            the line number of the node
+	 * @param pos
+	 *            the position of the node
+	 * @param fileName
+	 *            the fileName for the node
 	 */
 	public void setLocation(int line, int pos, String fileName) {
 		this.line = line;
@@ -176,12 +175,11 @@ public abstract class Node implements Comparable<Object> {
 	public int compareTo(Object o) {
 		return this.name.compareTo(((Node) o).getName());
 	}
-	
-	
+
 	public void appendInfo(String info) {
 		this.info += info;
 	}
-	
+
 	public String getInfo() {
 		return info;
 	}

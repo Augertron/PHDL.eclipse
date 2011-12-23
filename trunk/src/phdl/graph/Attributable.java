@@ -29,7 +29,7 @@ import java.util.TreeSet;
  */
 public abstract class Attributable extends Node {
 
-	protected Set<AttributeNode> attrs;
+	protected Set<AttributeNode> attributes;
 
 	/**
 	 * Default Constructor.
@@ -37,7 +37,7 @@ public abstract class Attributable extends Node {
 	 * Initializes the attributes set
 	 */
 	public Attributable() {
-		attrs = new TreeSet<AttributeNode>();
+		attributes = new TreeSet<AttributeNode>();
 	}
 
 	/**
@@ -46,7 +46,7 @@ public abstract class Attributable extends Node {
 	 * @return the set of AttributeNodes
 	 */
 	public Set<AttributeNode> getAttributes() {
-		return attrs;
+		return attributes;
 	}
 
 	/**
@@ -58,7 +58,7 @@ public abstract class Attributable extends Node {
 	 * 			false otherwise
 	 */
 	public boolean addAttribute(AttributeNode a) {
-		return attrs.add(a);
+		return attributes.add(a);
 	}
 
 }

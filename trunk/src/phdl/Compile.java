@@ -1,23 +1,16 @@
 /*
-    Copyright (C) 2011  Brigham Young University
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, version 3.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Copyright (C) 2011 Brigham Young University This program is free software: you can redistribute
+ * it and/or modify it under the terms of the GNU General Public License as published by the Free
+ * Software Foundation, version 3. This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+ * PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received
+ * a copy of the GNU General Public License along with this program. If not, see
+ * <http://www.gnu.org/licenses/>.
  */
 
 package phdl;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,7 +19,6 @@ import java.util.List;
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CharStream;
 import org.antlr.runtime.CommonTokenStream;
-import org.antlr.runtime.TokenStream;
 import org.antlr.runtime.tree.CommonTreeNodeStream;
 import org.antlr.runtime.tree.DOTTreeGenerator;
 import org.antlr.runtime.tree.Tree;
@@ -49,24 +41,7 @@ import phdl.graph.Node;
  */
 public class Compile {
 
-	/**
-	 * An array of attributes that every device declaration is required to have
-	 */
-	static String[] reqAttr = { "REFPREFIX", "PKG_TYPE" };
-
-	/**
-	 * A list of errors generated
-	 */
-	static List<String> errors = new ArrayList<String>();
-
-	/**
-	 * A list of warnings generated
-	 */
-	static List<String> warnings = new ArrayList<String>();
-
-	/**
-	 * Usage string for help directions
-	 */
+	/** Usage string for help directions */
 	static private String usage = "\nPHDL Compiler v0.1.\n\n"
 		+ " * Copyright (C) 2011 BYU Configurable Computing Lab This program is free software: you can\r\n"
 		+ " * redistribute it and/or modify it under the terms of the GNU General Public License as published\r\n"
@@ -82,25 +57,28 @@ public class Compile {
 		+ "\t-v\tenable verbose error reporting (will not bail out simple parse errors)\n"
 		+ "\t-e\toutput script for EAGLE PCB\n\n";
 
-	/**
-	 * Suppress warnings flag
-	 */
+	/** An array of attributes that every device declaration is required to have */
+	static String[] reqAttr = { "REFPREFIX", "PACKAGE", "LIBRARY" };
+
+	/** A list of errors generated */
+	static List<String> errors = new ArrayList<String>();
+
+	/** A list of warnings generated */
+	static List<String> warnings = new ArrayList<String>();
+
+	/** Suppress warnings flag */
 	static boolean supWarn = false;
-	/**
-	 * Dotty dump enable flag
-	 */
+
+	/** Dotty dump enable flag */
 	static boolean dumpEn = false;
-	/**
-	 * Verbose error messages flag
-	 */
+
+	/** Verbose error messages flag */
 	static boolean verbose = false;
-	/**
-	 * Eagle output enable flag
-	 */
+
+	/** Eagle output enable flag */
 	static boolean eagle = false;
-	/**
-	 * Remove all generated files before compiling
-	 */
+
+	/** * Remove all generated files before compiling */
 	static boolean clean = false;
 
 	/**
@@ -149,29 +127,15 @@ public class Compile {
 
 			String fileName = args[i].replace(".phdl", "");
 			System.out.println("Compiling..." + args[i]);
-
-			// remove generated files first
-			if (clean) {
-				ArrayList<File> deletes = new ArrayList<File>();
-				File xml = new File(fileName + ".xml");
-				File csv = new File(fileName + ".csv");
-				File bom = new File(fileName + "_bom.csv");
-				File asc = new File(fileName + ".asc");
-				deletes.add(xml);
-				deletes.add(csv);
-				deletes.add(bom);
-				deletes.add(asc);
-
-				for (File f : deletes) {
-					if (f.exists() && f.canWrite()) {
-						if (!f.delete())
-							System.err.println("Clean failed to delete: " + f.getName());
-					} else {
-						System.err.println("Clean failed to delete: " + f.getName());
-					}
-				}
-			}
-
+			/*
+			 * // remove generated files first if (clean) { ArrayList<File> deletes = new
+			 * ArrayList<File>(); File xml = new File(fileName + ".xml"); File csv = new
+			 * File(fileName + ".csv"); File bom = new File(fileName + "_bom.csv"); File asc = new
+			 * File(fileName + ".asc"); deletes.add(xml); deletes.add(csv); deletes.add(bom);
+			 * deletes.add(asc); for (File f : deletes) { if (f.exists() && f.canWrite()) { if
+			 * (!f.delete()) System.err.println("Clean failed to delete: " + f.getName()); } else {
+			 * System.err.println("Clean failed to delete: " + f.getName()); } } }
+			 */
 			// 1. Attempt to make a character stream from the source file and
 			// bail out if there is a
 			// problem with the source file
@@ -187,9 +151,7 @@ public class Compile {
 			// to parse the stream
 			// of tokens to a tree. Bail out of the compiler if there are any
 			// parser errors.
-			PhdlLexer l = new PhdlLexer(cs);
-			TokenStream ts = new CommonTokenStream(l);
-			PhdlParser p = new PhdlParser(ts);
+			PhdlParser p = new PhdlParser(new CommonTokenStream(new PhdlLexer(cs)));
 			try {
 				Object tree = p.sourceText().getTree();
 				CommonTreeNodeStream ns = new CommonTreeNodeStream(tree);
@@ -198,8 +160,7 @@ public class Compile {
 					errors.add(error);
 
 				if (dumpEn) {
-					// convert the AST to a dotty formatted string for graph
-					// viewing
+					// convert the AST to a dotty formatted string for debug
 					DOTTreeGenerator tg = new DOTTreeGenerator();
 					StringTemplate st = tg.toDOT((Tree) tree);
 					String astFileName = fileName + "_ast.dot";
@@ -219,12 +180,6 @@ public class Compile {
 
 				// print out all errors if there were any, and exit abnormally
 				printErrors();
-
-				/*
-				 * if (dumpEn) { // output a dotty graph before merging nodes for (DesignNode d :
-				 * walker.getDesignNodes()) { String graphFileName = fileName + "_graph.dot";
-				 * d.dottyDump(graphFileName); // d.printDesignNode(); } }
-				 */
 
 				// call the superNet algorithm on all nets in each design node
 				for (DesignNode d : walker.getDesignNodes()) {
