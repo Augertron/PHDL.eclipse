@@ -74,7 +74,6 @@ tokens {
 	
 	// imaginary tree nodes
 	WIDTH_DECL;
-	WIDTH_DECL;
 	DEVICE_DECL;
 	ATTR_DECL;
 	PIN_DECL;
@@ -99,10 +98,10 @@ tokens {
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 	package phdl.grammar;
-	import java.util.TreeSet;
 	import java.util.Set;
+	import java.util.TreeSet;
+	import java.util.HashSet;
 }
 
 @lexer::header {
@@ -124,6 +123,8 @@ tokens {
  */
 
 	package phdl.grammar;
+	import java.util.Set;
+	import java.util.HashSet;
 }
 
 @lexer::members {
@@ -135,9 +136,6 @@ tokens {
 		public CharStream input;
 		public int marker;
 		
-		/**
-		 * The constructor
-		 */
 		SaveStruct(CharStream input) {
 			this.input = input;
 			this.marker = input.mark();
@@ -147,7 +145,15 @@ tokens {
 	/**
 	 * The stack of saved character streams
 	 */
-	Stack<SaveStruct> includes = new Stack<SaveStruct>();
+	private Stack<SaveStruct> includes = new Stack<SaveStruct>();
+	private Set<String> includeNames = new HashSet<String>();
+	
+	public Set<String> getIncludeNames() {
+		return includeNames;
+	}
+	public void setIncludeNames(Set<String> includeNames) {
+		this.includeNames = includeNames;
+	}
 	
 	/**
 	 * Overridden nextToken method to accomodate the saved character stream states, and how to handle the tokens
@@ -221,16 +227,16 @@ attrDecl
 	;
 
 pinDecl
-	:	pinType widthDecl? IDENT EQUALS pinList SEMICOLON -> ^(PIN_DECL IDENT widthDecl? pinList pinType)
+	:	pinType widthDecl? IDENT EQUALS pinList SEMICOLON -> ^(PIN_DECL IDENT pinType widthDecl? pinList)
 	;
 
 pinType
-	:	PIN		-> ^(PIN_TYPE PIN)
+	:	(PIN	-> ^(PIN_TYPE PIN)
 	|	INPIN	-> ^(PIN_TYPE INPIN)
 	|	OUTPIN	-> ^(PIN_TYPE OUTPIN)
 	|	IOPIN	-> ^(PIN_TYPE IOPIN)
 	|	PWRPIN	-> ^(PIN_TYPE PWRPIN)
-	|	SUPPIN	-> ^(PIN_TYPE SUPPIN)
+	|	SUPPIN	-> ^(PIN_TYPE SUPPIN))
 	;
 
 widthDecl
@@ -238,7 +244,11 @@ widthDecl
 	;
 
 pinList
-	: 	LBRACE IDENT (COMMA IDENT)* RBRACE -> ^(PIN_LIST IDENT+)
+	: 	LBRACE pinNumber (COMMA pinNumber)* RBRACE -> ^(PIN_LIST pinNumber+)
+	;
+	
+pinNumber
+	:	IDENT | INT | PINNUM
 	;
 	
 /*------------------------------------------------------------------------------------------------------ 
@@ -270,11 +280,12 @@ IOPIN: I O P I N;
 PWRPIN: P W R P I N;
 SUPPIN: S U P P I N;
 
+fragment CHAR : ('a'..'z') | ('A'..'Z') | '_' | '+' | '-' | '$' | '/' ;
 fragment DIGIT : ('0'..'9') ;
-fragment CHAR : ('a'..'z') | ('A'..'Z') | ('0'..'9') | '_' | '+' | '-' | '$' | '/' ;
 
 INT: DIGIT+;
-IDENT: CHAR+; 
+IDENT: CHAR (CHAR | DIGIT)*;
+PINNUM: DIGIT (CHAR | DIGIT)*; 
 
 /**
  * A string has its wrapping quotes removed
@@ -323,10 +334,17 @@ MULTILINE_COMMENT
  * tokens to pass to the parser.
  */	
 INCLUDE_DECL
-	: 	INCLUDE (WHITESPACE)? fileName=STRING ';'
+	: 	INCLUDE (WHITESPACE)? fileName=STRING
 		{	
 			String name = fileName.getText();
 			name = name.substring(1,name.length()-1);
+			// check for duplicate include files
+			if (!includeNames.add(name)) {
+				System.out.println("ERROR: " + fileName.getInputStream().getSourceName() + " line " + 
+						fileName.getLine() + ":" + fileName.getCharPositionInLine() + 
+						" duplicate included file.");
+            	System.exit(1);
+			}
 			try {
 				// save the character stream by pushing it onto the stack
 				SaveStruct ss = new SaveStruct(input);
@@ -336,7 +354,7 @@ INCLUDE_DECL
 				setCharStream(new ANTLRFileStream(name));
 				reset();
 
-			} catch(Exception fnf) { 
+			} catch (Exception fnf) { 
 				// exit if the file cannot be found
 				System.out.println(input.getSourceName() + " " + fileName.getLine() 
 					+ ":" + fileName.getCharPositionInLine() + " " + 
@@ -346,7 +364,6 @@ INCLUDE_DECL
 		}
 	;
 
-// the alphabet for case-insensitive lexer keywords
 fragment A:('a'|'A');
 fragment B:('b'|'B');
 fragment C:('c'|'C');

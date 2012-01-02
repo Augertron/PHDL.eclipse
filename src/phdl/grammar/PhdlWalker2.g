@@ -64,53 +64,39 @@ options {
 
 @members {
 
-	/**
-	 * The set of required attributes
-	 */
+	/** The set of required attributes */
 	private Set<String> reqAttrs = new HashSet<String>();
-	/**
-	 * The list of errors
-	 */
+	/** The list of errors */
 	private List<String> errors = new ArrayList<String>();
-	/**
-	 * The list of warnings
-	 */
+	/** The list of warnings */
 	private List<String> warnings = new ArrayList<String>();
-	/**
-	 * The set of processed design nodes
-	 */
-	private Set<DesignNode> designNodes = new HashSet<DesignNode>();
+	/** * The set of processed design nodes  */
+	private Set<Design> designs = new HashSet<Design>();
+	/** The set of all Devices is global to the project build */
+	private Set<Device> devices = new HashSet<Device>();
+	/** Sets to check for duplicates while processing everything */
+	private Set<String> pinNames = new HashSet<String>();
+	private Set<String> netNames = new HashSet<String>();
+	private Set<String> instNames = new HashSet<String>();
 	
-	public DesignNode getDesignNode(String name) {
-		for (DesignNode d : designNodes) {
+	private Set<SubDesign> subDesigns = new HashSet<SubDesign>();
+	
+	public Design getDesign(String name) {
+		for (Design d : designs) {
 			if (d.getName().equals(name))
 				return d;
 		}
 		return null;
 	}
 	
-	/**
-	 * The set of all Devices is global to the project build
-	 */
-	private Set<DeviceNode> devices = new HashSet<DeviceNode>();
-	
-	public Set<DeviceNode> getDevices() {
+	public Set<Device> getDevices() {
 		return devices;
 	}
 	
-	public void setDevices(Set<DeviceNode> devices) {
+	public void setDevices(Set<Device> devices) {
 		this.devices = devices;
 	}
-	
-	private Set<SubDesignNode> designs = new HashSet<SubDesignNode>();
-	
-	/**
-	 * Sets to check for duplicates while processing everything
-	 */
-	private Set<String> pinDecls = new HashSet<String>();
-	private Set<String> netDecls = new HashSet<String>();
-	private Set<String> instanceDecls = new HashSet<String>();
-	
+		
 	/**
 	 * Called to obtain the errors if any exist after walking and processing the tree
 	 */
@@ -187,17 +173,15 @@ options {
 	/**
 	 * Called to obtain the set of design nodes after the walker has finished processing the tree
 	 */
-	public Set<DesignNode> getDesignNodes() {
-		return designNodes;
+	public Set<Design> getDesigns() {
+		return designs;
 	}
 	
 	/**
 	 * Called on the walker object to pass in a set of required attributes
 	 */
-	public void setRequiredAttributes(String[] attributes) {
-		for(int i = 0; i < attributes.length; i ++) {
-			reqAttrs.add(attributes[i]);
-		}
+	public void setRequiredAttributes(Set<String> reqAttrs) {
+		this.reqAttrs.addAll(reqAttrs);
 	}
 	
 	/**
@@ -223,21 +207,21 @@ sourceText
 	;
 	
 deviceDecl
-	:	^(DEVICE_DECL devName=ID 
+	:	^(DEVICE_DECL devName=IDENT 
 	
 		{	// make a new device node
-			DeviceNode dev = new DeviceNode($devName.text);
+			Device dev = new Device($devName.text);
 			dev.setLocation($devName.line, $devName.pos, 
 					devName.getToken().getInputStream().getSourceName());
-					
+			// check for duplicate device declarations
 			if (!devices.add(dev)) 
-				addError(dev, "Duplicate device declaration");
+				addError($devName, "Duplicate device declaration");
 			
 			// clear these sets each time a device is processed
-			pinDecls.clear();
+			pinNames.clear();
 		}
 	
-		attrDecl[dev]* 
+		(attrDecl[dev] | pinDecl[dev])* )
 		
 		{	// report any missing required attributes
 			for (String s : reqAttrs) {
@@ -246,53 +230,120 @@ deviceDecl
 					addError($devName, "required attribute \"" + s + "\" missing in device");
 			}
 		}
-		
-		pinDecl[dev]*)
 	;
 	
 attrDecl[Attributable parent]
 	:	^(ATTR_DECL attrName=IDENT attrValue=STRING)
 	
 		{	// make a new attribute node, assign its parent, and log its location
-	   		AttributeNode a  = new AttributeNode(parent);
+	   		Attribute a  = new Attribute(parent);
 	   		a.setName($attrName.text);
 			a.setValue($attrValue.text);
 	   		a.setLocation($attrName.line, $attrName.pos, 
 	   			attrName.getToken().getInputStream().getSourceName());
 	   			
 	   		// check for duplicate attributes while adding
-			if (!parent.addAttribute(a));
+			if (!parent.addAttribute(a))
 				addError($attrName, "duplicate attribute declaration");
 				
 			// check if the attribute is a refprefix attribute
-			if ($attrName.text.equals("REFPREFIX")) {
+			if (a.getName().equals("REFPREFIX")) {
 				// check to see if refPrefix begins with a letter
-				if (!Pattern.compile("^[A-Z]").matcher($attrValue.text).find())
+				if (!Pattern.compile("^[A-Z]").matcher(a.getValue()).find())
 					addError($attrName, "invalid refPrefix in device");
 			}			
 		}
 	;
 	
-pinDecl[DeviceNode dev]
-	:	{List<String> pList = new ArrayList<String>();}
-		{boolean width = false;}
+pinDecl[Device dev]
+	:	{boolean hasWidth = false;}
 		
-		^(PIN_DECL pinName=IDENT (widthDecl? {width = true;})
+		^(PIN_DECL pinName=IDENT pinType (widthDecl {hasWidth = true;})? pinList)
 		
-		pinList[pList] pinType)
+		{	// make a single pin if there is no width
+			if (!hasWidth || $widthDecl.width == 1) {
+				if ($pinList.list.size() != 1)
+					addError($pinName, "invalid pin list");
+				Pin p = new Pin(dev);
+				p.setName($pinName.text);
+				p.setPinType($pinType.type);
+				p.setLocation($pinName.line, $pinName.pos, 
+					pinName.getToken().getInputStream().getSourceName());
+				if (hasWidth) p.setIndex($widthDecl.msb);
+				// accessing the pinlist may throw an exception
+				try {
+					p.setPinNumber($pinList.list.get(0));
+				} catch (IndexOutOfBoundsException e) {
+					addError($pinName, "invalid pin list");
+				}
+				// report any duplicate pin declarations
+				if (!dev.addPin(p))
+	           		addError($pinName, "duplicate pin declaration");
+			} else {
+				// make an array of pins based on the width parameters
+				if ($widthDecl.width != $pinList.list.size())
+					addError($pinName, "invalid pin list");
+				if ($widthDecl.downto) {
+					// make array of pins for msb > lsb
+					for (int i = $widthDecl.msb; i >= $widthDecl.lsb; i--) {
+						Pin p = new Pin(dev);
+						p.setName($pinName.text);
+						p.setPinType($pinType.type);
+						p.setLocation($pinName.line, $pinName.pos,
+							pinName.getToken().getInputStream().getSourceName());
+						p.setIndex(i);
+						// accessing the pinlist may throw an exception
+						try {
+							p.setPinNumber($pinList.list.get($widthDecl.msb - i));
+						} catch (IndexOutOfBoundsException e) {
+							addError($pinName, "invalid pin list");
+						}
+						// report any duplicate pin declarations
+						if (!dev.addPin(p))
+			           		addError($pinName, "duplicate pin declaration");
+					}
+				} else {
+					// make array of pins for msb < lsb
+					for (int i = $widthDecl.msb; i <= $widthDecl.lsb; i++) {
+						Pin p = new Pin(dev);
+						p.setName($pinName.text);
+						p.setPinType($pinType.type);
+						p.setLocation($pinName.line, $pinName.pos,
+							pinName.getToken().getInputStream().getSourceName());
+						p.setIndex(i);
+						// accessing the pinlist may throw an exception
+						try {
+							p.setPinNumber($pinList.list.get(i));
+						} catch (IndexOutOfBoundsException e) {
+							addError($pinName, "invalid pin list");
+						}
+						// report any duplicate pin declarations
+						if (!dev.addPin(p))
+			           		addError($pinName, "duplicate pin declaration");
+					}
+				}
+				// check for overall duplicates based solely on the name
+				if (!pinNames.add($pinName.text))
+					addError($pinName, "duplicate pin declaration");
+			}
+		}
 	;
 	
-widthDecl returns [int msb, int lsb]
-	:	^(WIDTH_DECL val1=INT val2=INT)
-		{	$msb = Integer.parseInt($val1.text);
-			$lsb = Integer.parseInt($val2.text);
+widthDecl returns [int msb, int lsb, int width, boolean downto]
+	:	^(WIDTH_DECL hi=INT lo=INT)
+		{	$msb = Integer.parseInt($hi.text);
+			$lsb = Integer.parseInt($lo.text);
+			$width = Math.abs($msb - $lsb) + 1;
+			$downto = ($msb > $lsb)? true: false;
 		}
 	;
 
-pinList[List<String> pList]
+pinList returns [List<String> list]
+@init{list = new ArrayList<String>();}
 	:	^(PIN_LIST
-	(	num1=INT	{pList.add($num1.text);}
-	|	num2=IDENT	{pList.add($num2.text);})+
+	(	num1=INT	{$list.add($num1.text);}
+	|	num2=IDENT	{$list.add($num2.text);}
+	|	num3=PINNUM	{$list.add($num3.text);})+
 	)
 	;
 	

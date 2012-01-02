@@ -22,20 +22,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import phdl.graph.DesignNode;
-import phdl.graph.InstanceNode;
+import phdl.graph.Design;
+import phdl.graph.Instance;
 
 public class InfoGenerator {
 
 	String info;
-	DesignNode design;
+	Design design;
 	
-	public InfoGenerator(DesignNode design) {
+	public InfoGenerator(Design design) {
 		this.design = design;
 		StringBuilder sb = new StringBuilder();
 		sb.append("Design " + design.getName() + " Info\n" + design.getInfo() + "\n\n");
 		List<String> visited = new ArrayList<String>();
-		for (InstanceNode i : design.getInstances()) {
+		for (Instance i : design.getInstances()) {
 			if (!visited.contains(i.getInfo())) {
 				visited.add(i.getInfo());
 				int pos = i.getName().indexOf('(');

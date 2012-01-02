@@ -24,88 +24,22 @@ public abstract class Node implements Comparable<Object> {
 	protected String fileName;
 	protected String info;
 
-	/**
-	 * FileName accessor method.
-	 * 
-	 * @return the file name where the node's data was found
-	 */
-	public String getFileName() {
-		return fileName;
+	public void appendInfo(String info) {
+		this.info += info;
 	}
 
+	@Override
 	/**
-	 * FileName mutator method.
+	 * A method that compares the current node with another.
 	 * 
-	 * @param fileName
-	 *            the new file name
+	 * @param o			the Node to compare to
+	 * @return			0, if they are equal,
+	 * 					-1, if the current Node is less than the other
+	 * 					1, if the current Node is greater than the other
 	 */
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
+	public int compareTo(Object o) {
+		return this.name.compareTo(((Node) o).getName());
 	}
-
-	/**
-	 * Name accessor method.
-	 * 
-	 * @return the name of the node
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * Line number accessor method.
-	 * 
-	 * @return the line number of the node
-	 */
-	public int getLine() {
-		return line;
-	}
-
-	/**
-	 * Position accessor method.
-	 * 
-	 * @return the position of the node
-	 */
-	public int getPosition() {
-		return pos;
-	}
-
-	/**
-	 * Name mutator method.
-	 * 
-	 * @param name
-	 *            the new name
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	/**
-	 * Line number mutator method.
-	 * 
-	 * @param line
-	 *            the new line number
-	 */
-	public void setLine(int line) {
-		this.line = line;
-	}
-
-	/**
-	 * Position mutator method.
-	 * 
-	 * @param pos
-	 *            the new position
-	 */
-	public void setPosition(int pos) {
-		this.pos = pos;
-	}
-
-	/**
-	 * Node type accessor method.
-	 * 
-	 * @return an ennumerated type that describes the Node
-	 */
-	public abstract NodeType getType();
 
 	@Override
 	/**
@@ -119,6 +53,53 @@ public abstract class Node implements Comparable<Object> {
 		return name.equals(((Node) o).getName());
 	}
 
+	/**
+	 * FileName accessor method.
+	 * 
+	 * @return the file name where the node's data was found
+	 */
+	public String getFileName() {
+		return fileName;
+	}
+
+	public String getInfo() {
+		return info;
+	}
+
+	/**
+	 * Line number accessor method.
+	 * 
+	 * @return the line number of the node
+	 */
+	public int getLine() {
+		return line;
+	}
+
+	/**
+	 * Name accessor method.
+	 * 
+	 * @return the name of the node
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * Position accessor method.
+	 * 
+	 * @return the position of the node
+	 */
+	public int getPosition() {
+		return pos;
+	}
+
+	/**
+	 * Node type accessor method.
+	 * 
+	 * @return an ennumerated type that describes the Node
+	 */
+	public abstract NodeType getNodeType();
+
 	@Override
 	/**
 	 * A hash method for use in HashSets.
@@ -129,22 +110,32 @@ public abstract class Node implements Comparable<Object> {
 		return name.hashCode();
 	}
 
-	@Override
-	/**
-	 * A generic toString method.
-	 * 
-	 * @return 			a string representation of the Node
-	 */
-	public String toString() {
-		return getType().toString() + " " + name;
-	}
-
 	@Deprecated
 	public void initNode(String name, int line, int pos, String fileName) {
 		this.name = name;
 		this.line = line;
 		this.pos = pos;
 		this.fileName = fileName;
+	}
+
+	/**
+	 * FileName mutator method.
+	 * 
+	 * @param fileName
+	 *            the new file name
+	 */
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	/**
+	 * Line number mutator method.
+	 * 
+	 * @param line
+	 *            the new line number
+	 */
+	public void setLine(int line) {
+		this.line = line;
 	}
 
 	/**
@@ -163,24 +154,33 @@ public abstract class Node implements Comparable<Object> {
 		this.fileName = fileName;
 	}
 
+	/**
+	 * Name mutator method.
+	 * 
+	 * @param name
+	 *            the new name
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * Position mutator method.
+	 * 
+	 * @param pos
+	 *            the new position
+	 */
+	public void setPosition(int pos) {
+		this.pos = pos;
+	}
+
 	@Override
 	/**
-	 * A method that compares the current node with another.
+	 * A generic toString method.
 	 * 
-	 * @param o			the Node to compare to
-	 * @return			0, if they are equal,
-	 * 					-1, if the current Node is less than the other
-	 * 					1, if the current Node is greater than the other
+	 * @return 			a string representation of the Node
 	 */
-	public int compareTo(Object o) {
-		return this.name.compareTo(((Node) o).getName());
-	}
-
-	public void appendInfo(String info) {
-		this.info += info;
-	}
-
-	public String getInfo() {
-		return info;
+	public String toString() {
+		return getNodeType() + ": " + name;
 	}
 }

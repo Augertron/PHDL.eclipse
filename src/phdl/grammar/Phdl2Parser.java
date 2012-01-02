@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g 2011-12-23 16:28:51
+// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g 2012-01-02 15:28:40
 
 /*
     Copyright (C) 2011  Brigham Young University
@@ -16,10 +16,10 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 	package phdl.grammar;
-	import java.util.TreeSet;
 	import java.util.Set;
+	import java.util.TreeSet;
+	import java.util.HashSet;
 
 
 import org.antlr.runtime.*;
@@ -39,7 +39,7 @@ import org.antlr.runtime.tree.*;
  */
 public class Phdl2Parser extends Parser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "SEMICOLON", "COLON", "COMMA", "PERIOD", "EQUALS", "LPAREN", "RPAREN", "LBRACKET", "RBRACKET", "LBRACE", "RBRACE", "LANGLE", "RANGLE", "AMPERSAND", "DBLQUOTE", "DESIGN", "DEVICE", "SUBDESIGN", "INST", "SUBINST", "GROUP", "THIS", "OF", "NET", "ATTR", "NEWATTR", "BEGIN", "END", "COMBINE", "INCLUDE", "PIN", "INPIN", "OUTPIN", "IOPIN", "PWRPIN", "SUPPIN", "WIDTH_DECL", "DEVICE_DECL", "ATTR_DECL", "PIN_DECL", "PIN_LIST", "PIN_TYPE", "IDENT", "STRING", "INT", "D", "E", "S", "I", "G", "N", "V", "C", "U", "B", "T", "R", "O", "P", "H", "F", "A", "W", "M", "L", "DIGIT", "CHAR", "WHITESPACE", "LINE_COMMENT", "MULTILINE_COMMENT", "INCLUDE_DECL", "J", "K", "Q", "X", "Y", "Z"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "SEMICOLON", "COLON", "COMMA", "PERIOD", "EQUALS", "LPAREN", "RPAREN", "LBRACKET", "RBRACKET", "LBRACE", "RBRACE", "LANGLE", "RANGLE", "AMPERSAND", "DBLQUOTE", "DESIGN", "DEVICE", "SUBDESIGN", "INST", "SUBINST", "GROUP", "THIS", "OF", "NET", "ATTR", "NEWATTR", "BEGIN", "END", "COMBINE", "INCLUDE", "PIN", "INPIN", "OUTPIN", "IOPIN", "PWRPIN", "SUPPIN", "WIDTH_DECL", "DEVICE_DECL", "ATTR_DECL", "PIN_DECL", "PIN_LIST", "PIN_TYPE", "IDENT", "STRING", "INT", "PINNUM", "D", "E", "S", "I", "G", "N", "V", "C", "U", "B", "T", "R", "O", "P", "H", "F", "A", "W", "M", "L", "CHAR", "DIGIT", "WHITESPACE", "LINE_COMMENT", "MULTILINE_COMMENT", "INCLUDE_DECL", "J", "K", "Q", "X", "Y", "Z"
     };
     public static final int EOF=-1;
     public static final int SEMICOLON=4;
@@ -87,38 +87,39 @@ public class Phdl2Parser extends Parser {
     public static final int IDENT=46;
     public static final int STRING=47;
     public static final int INT=48;
-    public static final int D=49;
-    public static final int E=50;
-    public static final int S=51;
-    public static final int I=52;
-    public static final int G=53;
-    public static final int N=54;
-    public static final int V=55;
-    public static final int C=56;
-    public static final int U=57;
-    public static final int B=58;
-    public static final int T=59;
-    public static final int R=60;
-    public static final int O=61;
-    public static final int P=62;
-    public static final int H=63;
-    public static final int F=64;
-    public static final int A=65;
-    public static final int W=66;
-    public static final int M=67;
-    public static final int L=68;
-    public static final int DIGIT=69;
+    public static final int PINNUM=49;
+    public static final int D=50;
+    public static final int E=51;
+    public static final int S=52;
+    public static final int I=53;
+    public static final int G=54;
+    public static final int N=55;
+    public static final int V=56;
+    public static final int C=57;
+    public static final int U=58;
+    public static final int B=59;
+    public static final int T=60;
+    public static final int R=61;
+    public static final int O=62;
+    public static final int P=63;
+    public static final int H=64;
+    public static final int F=65;
+    public static final int A=66;
+    public static final int W=67;
+    public static final int M=68;
+    public static final int L=69;
     public static final int CHAR=70;
-    public static final int WHITESPACE=71;
-    public static final int LINE_COMMENT=72;
-    public static final int MULTILINE_COMMENT=73;
-    public static final int INCLUDE_DECL=74;
-    public static final int J=75;
-    public static final int K=76;
-    public static final int Q=77;
-    public static final int X=78;
-    public static final int Y=79;
-    public static final int Z=80;
+    public static final int DIGIT=71;
+    public static final int WHITESPACE=72;
+    public static final int LINE_COMMENT=73;
+    public static final int MULTILINE_COMMENT=74;
+    public static final int INCLUDE_DECL=75;
+    public static final int J=76;
+    public static final int K=77;
+    public static final int Q=78;
+    public static final int X=79;
+    public static final int Y=80;
+    public static final int Z=81;
 
     // delegates
     // delegators
@@ -142,7 +143,7 @@ public class Phdl2Parser extends Parser {
     }
 
     public String[] getTokenNames() { return Phdl2Parser.tokenNames; }
-    public String getGrammarFileName() { return "C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g"; }
+    public String getGrammarFileName() { return "C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g"; }
 
 
 
@@ -176,7 +177,7 @@ public class Phdl2Parser extends Parser {
     };
 
     // $ANTLR start "sourceText"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:211:1: sourceText : ( deviceDecl )+ ;
+    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:217:1: sourceText : ( deviceDecl )+ ;
     public final Phdl2Parser.sourceText_return sourceText() throws RecognitionException {
         Phdl2Parser.sourceText_return retval = new Phdl2Parser.sourceText_return();
         retval.start = input.LT(1);
@@ -188,12 +189,12 @@ public class Phdl2Parser extends Parser {
 
 
         try {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:212:2: ( ( deviceDecl )+ )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:212:4: ( deviceDecl )+
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:218:2: ( ( deviceDecl )+ )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:218:4: ( deviceDecl )+
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:212:4: ( deviceDecl )+
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:218:4: ( deviceDecl )+
             int cnt1=0;
             loop1:
             do {
@@ -207,9 +208,9 @@ public class Phdl2Parser extends Parser {
 
                 switch (alt1) {
             	case 1 :
-            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:212:5: deviceDecl
+            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:218:5: deviceDecl
             	    {
-            	    pushFollow(FOLLOW_deviceDecl_in_sourceText341);
+            	    pushFollow(FOLLOW_deviceDecl_in_sourceText337);
             	    deviceDecl1=deviceDecl();
 
             	    state._fsp--;
@@ -258,7 +259,7 @@ public class Phdl2Parser extends Parser {
     };
 
     // $ANTLR start "deviceDecl"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:215:1: deviceDecl : DEVICE IDENT LBRACE ( attrDecl | pinDecl )* RBRACE -> ^( DEVICE_DECL IDENT ( attrDecl )* ( pinDecl )* ) ;
+    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:221:1: deviceDecl : DEVICE IDENT LBRACE ( attrDecl | pinDecl )* RBRACE -> ^( DEVICE_DECL IDENT ( attrDecl )* ( pinDecl )* ) ;
     public final Phdl2Parser.deviceDecl_return deviceDecl() throws RecognitionException {
         Phdl2Parser.deviceDecl_return retval = new Phdl2Parser.deviceDecl_return();
         retval.start = input.LT(1);
@@ -285,19 +286,19 @@ public class Phdl2Parser extends Parser {
         RewriteRuleSubtreeStream stream_pinDecl=new RewriteRuleSubtreeStream(adaptor,"rule pinDecl");
         RewriteRuleSubtreeStream stream_attrDecl=new RewriteRuleSubtreeStream(adaptor,"rule attrDecl");
         try {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:216:2: ( DEVICE IDENT LBRACE ( attrDecl | pinDecl )* RBRACE -> ^( DEVICE_DECL IDENT ( attrDecl )* ( pinDecl )* ) )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:216:4: DEVICE IDENT LBRACE ( attrDecl | pinDecl )* RBRACE
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:222:2: ( DEVICE IDENT LBRACE ( attrDecl | pinDecl )* RBRACE -> ^( DEVICE_DECL IDENT ( attrDecl )* ( pinDecl )* ) )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:222:4: DEVICE IDENT LBRACE ( attrDecl | pinDecl )* RBRACE
             {
-            DEVICE2=(Token)match(input,DEVICE,FOLLOW_DEVICE_in_deviceDecl354); if (state.failed) return retval; 
+            DEVICE2=(Token)match(input,DEVICE,FOLLOW_DEVICE_in_deviceDecl350); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_DEVICE.add(DEVICE2);
 
-            IDENT3=(Token)match(input,IDENT,FOLLOW_IDENT_in_deviceDecl356); if (state.failed) return retval; 
+            IDENT3=(Token)match(input,IDENT,FOLLOW_IDENT_in_deviceDecl352); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_IDENT.add(IDENT3);
 
-            LBRACE4=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_deviceDecl358); if (state.failed) return retval; 
+            LBRACE4=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_deviceDecl354); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_LBRACE.add(LBRACE4);
 
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:216:24: ( attrDecl | pinDecl )*
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:222:24: ( attrDecl | pinDecl )*
             loop2:
             do {
                 int alt2=3;
@@ -313,9 +314,9 @@ public class Phdl2Parser extends Parser {
 
                 switch (alt2) {
             	case 1 :
-            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:216:25: attrDecl
+            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:222:25: attrDecl
             	    {
-            	    pushFollow(FOLLOW_attrDecl_in_deviceDecl361);
+            	    pushFollow(FOLLOW_attrDecl_in_deviceDecl357);
             	    attrDecl5=attrDecl();
 
             	    state._fsp--;
@@ -325,9 +326,9 @@ public class Phdl2Parser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:216:36: pinDecl
+            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:222:36: pinDecl
             	    {
-            	    pushFollow(FOLLOW_pinDecl_in_deviceDecl365);
+            	    pushFollow(FOLLOW_pinDecl_in_deviceDecl361);
             	    pinDecl6=pinDecl();
 
             	    state._fsp--;
@@ -342,13 +343,13 @@ public class Phdl2Parser extends Parser {
                 }
             } while (true);
 
-            RBRACE7=(Token)match(input,RBRACE,FOLLOW_RBRACE_in_deviceDecl369); if (state.failed) return retval; 
+            RBRACE7=(Token)match(input,RBRACE,FOLLOW_RBRACE_in_deviceDecl365); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_RBRACE.add(RBRACE7);
 
 
 
             // AST REWRITE
-            // elements: attrDecl, IDENT, pinDecl
+            // elements: pinDecl, IDENT, attrDecl
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -359,21 +360,21 @@ public class Phdl2Parser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (CommonTree)adaptor.nil();
-            // 216:53: -> ^( DEVICE_DECL IDENT ( attrDecl )* ( pinDecl )* )
+            // 222:53: -> ^( DEVICE_DECL IDENT ( attrDecl )* ( pinDecl )* )
             {
-                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:216:56: ^( DEVICE_DECL IDENT ( attrDecl )* ( pinDecl )* )
+                // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:222:56: ^( DEVICE_DECL IDENT ( attrDecl )* ( pinDecl )* )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(DEVICE_DECL, "DEVICE_DECL"), root_1);
 
                 adaptor.addChild(root_1, stream_IDENT.nextNode());
-                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:216:76: ( attrDecl )*
+                // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:222:76: ( attrDecl )*
                 while ( stream_attrDecl.hasNext() ) {
                     adaptor.addChild(root_1, stream_attrDecl.nextTree());
 
                 }
                 stream_attrDecl.reset();
-                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:216:86: ( pinDecl )*
+                // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:222:86: ( pinDecl )*
                 while ( stream_pinDecl.hasNext() ) {
                     adaptor.addChild(root_1, stream_pinDecl.nextTree());
 
@@ -414,7 +415,7 @@ public class Phdl2Parser extends Parser {
     };
 
     // $ANTLR start "attrDecl"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:219:1: attrDecl : ATTR IDENT EQUALS STRING SEMICOLON -> ^( ATTR_DECL IDENT STRING ) ;
+    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:225:1: attrDecl : ATTR IDENT EQUALS STRING SEMICOLON -> ^( ATTR_DECL IDENT STRING ) ;
     public final Phdl2Parser.attrDecl_return attrDecl() throws RecognitionException {
         Phdl2Parser.attrDecl_return retval = new Phdl2Parser.attrDecl_return();
         retval.start = input.LT(1);
@@ -439,28 +440,28 @@ public class Phdl2Parser extends Parser {
         RewriteRuleTokenStream stream_STRING=new RewriteRuleTokenStream(adaptor,"token STRING");
 
         try {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:220:2: ( ATTR IDENT EQUALS STRING SEMICOLON -> ^( ATTR_DECL IDENT STRING ) )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:220:4: ATTR IDENT EQUALS STRING SEMICOLON
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:226:2: ( ATTR IDENT EQUALS STRING SEMICOLON -> ^( ATTR_DECL IDENT STRING ) )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:226:4: ATTR IDENT EQUALS STRING SEMICOLON
             {
-            ATTR8=(Token)match(input,ATTR,FOLLOW_ATTR_in_attrDecl395); if (state.failed) return retval; 
+            ATTR8=(Token)match(input,ATTR,FOLLOW_ATTR_in_attrDecl391); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_ATTR.add(ATTR8);
 
-            IDENT9=(Token)match(input,IDENT,FOLLOW_IDENT_in_attrDecl397); if (state.failed) return retval; 
+            IDENT9=(Token)match(input,IDENT,FOLLOW_IDENT_in_attrDecl393); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_IDENT.add(IDENT9);
 
-            EQUALS10=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_attrDecl399); if (state.failed) return retval; 
+            EQUALS10=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_attrDecl395); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_EQUALS.add(EQUALS10);
 
-            STRING11=(Token)match(input,STRING,FOLLOW_STRING_in_attrDecl401); if (state.failed) return retval; 
+            STRING11=(Token)match(input,STRING,FOLLOW_STRING_in_attrDecl397); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_STRING.add(STRING11);
 
-            SEMICOLON12=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_attrDecl403); if (state.failed) return retval; 
+            SEMICOLON12=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_attrDecl399); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_SEMICOLON.add(SEMICOLON12);
 
 
 
             // AST REWRITE
-            // elements: STRING, IDENT
+            // elements: IDENT, STRING
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -471,9 +472,9 @@ public class Phdl2Parser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (CommonTree)adaptor.nil();
-            // 220:39: -> ^( ATTR_DECL IDENT STRING )
+            // 226:39: -> ^( ATTR_DECL IDENT STRING )
             {
-                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:220:42: ^( ATTR_DECL IDENT STRING )
+                // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:226:42: ^( ATTR_DECL IDENT STRING )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(ATTR_DECL, "ATTR_DECL"), root_1);
@@ -515,7 +516,7 @@ public class Phdl2Parser extends Parser {
     };
 
     // $ANTLR start "pinDecl"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:223:1: pinDecl : pinType ( widthDecl )? IDENT EQUALS pinList SEMICOLON -> ^( PIN_DECL IDENT ( widthDecl )? pinList pinType ) ;
+    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:229:1: pinDecl : pinType ( widthDecl )? IDENT EQUALS pinList SEMICOLON -> ^( PIN_DECL IDENT pinType ( widthDecl )? pinList ) ;
     public final Phdl2Parser.pinDecl_return pinDecl() throws RecognitionException {
         Phdl2Parser.pinDecl_return retval = new Phdl2Parser.pinDecl_return();
         retval.start = input.LT(1);
@@ -542,16 +543,16 @@ public class Phdl2Parser extends Parser {
         RewriteRuleSubtreeStream stream_pinType=new RewriteRuleSubtreeStream(adaptor,"rule pinType");
         RewriteRuleSubtreeStream stream_widthDecl=new RewriteRuleSubtreeStream(adaptor,"rule widthDecl");
         try {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:224:2: ( pinType ( widthDecl )? IDENT EQUALS pinList SEMICOLON -> ^( PIN_DECL IDENT ( widthDecl )? pinList pinType ) )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:224:4: pinType ( widthDecl )? IDENT EQUALS pinList SEMICOLON
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:230:2: ( pinType ( widthDecl )? IDENT EQUALS pinList SEMICOLON -> ^( PIN_DECL IDENT pinType ( widthDecl )? pinList ) )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:230:4: pinType ( widthDecl )? IDENT EQUALS pinList SEMICOLON
             {
-            pushFollow(FOLLOW_pinType_in_pinDecl424);
+            pushFollow(FOLLOW_pinType_in_pinDecl420);
             pinType13=pinType();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_pinType.add(pinType13.getTree());
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:224:12: ( widthDecl )?
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:230:12: ( widthDecl )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -560,9 +561,9 @@ public class Phdl2Parser extends Parser {
             }
             switch (alt3) {
                 case 1 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:0:0: widthDecl
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:0:0: widthDecl
                     {
-                    pushFollow(FOLLOW_widthDecl_in_pinDecl426);
+                    pushFollow(FOLLOW_widthDecl_in_pinDecl422);
                     widthDecl14=widthDecl();
 
                     state._fsp--;
@@ -574,25 +575,25 @@ public class Phdl2Parser extends Parser {
 
             }
 
-            IDENT15=(Token)match(input,IDENT,FOLLOW_IDENT_in_pinDecl429); if (state.failed) return retval; 
+            IDENT15=(Token)match(input,IDENT,FOLLOW_IDENT_in_pinDecl425); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_IDENT.add(IDENT15);
 
-            EQUALS16=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_pinDecl431); if (state.failed) return retval; 
+            EQUALS16=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_pinDecl427); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_EQUALS.add(EQUALS16);
 
-            pushFollow(FOLLOW_pinList_in_pinDecl433);
+            pushFollow(FOLLOW_pinList_in_pinDecl429);
             pinList17=pinList();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_pinList.add(pinList17.getTree());
-            SEMICOLON18=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_pinDecl435); if (state.failed) return retval; 
+            SEMICOLON18=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_pinDecl431); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_SEMICOLON.add(SEMICOLON18);
 
 
 
             // AST REWRITE
-            // elements: pinList, pinType, IDENT, widthDecl
+            // elements: IDENT, widthDecl, pinList, pinType
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -603,22 +604,22 @@ public class Phdl2Parser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (CommonTree)adaptor.nil();
-            // 224:54: -> ^( PIN_DECL IDENT ( widthDecl )? pinList pinType )
+            // 230:54: -> ^( PIN_DECL IDENT pinType ( widthDecl )? pinList )
             {
-                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:224:57: ^( PIN_DECL IDENT ( widthDecl )? pinList pinType )
+                // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:230:57: ^( PIN_DECL IDENT pinType ( widthDecl )? pinList )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(PIN_DECL, "PIN_DECL"), root_1);
 
                 adaptor.addChild(root_1, stream_IDENT.nextNode());
-                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:224:74: ( widthDecl )?
+                adaptor.addChild(root_1, stream_pinType.nextTree());
+                // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:230:82: ( widthDecl )?
                 if ( stream_widthDecl.hasNext() ) {
                     adaptor.addChild(root_1, stream_widthDecl.nextTree());
 
                 }
                 stream_widthDecl.reset();
                 adaptor.addChild(root_1, stream_pinList.nextTree());
-                adaptor.addChild(root_1, stream_pinType.nextTree());
 
                 adaptor.addChild(root_0, root_1);
                 }
@@ -654,7 +655,7 @@ public class Phdl2Parser extends Parser {
     };
 
     // $ANTLR start "pinType"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:227:1: pinType : ( PIN -> ^( PIN_TYPE PIN ) | INPIN -> ^( PIN_TYPE INPIN ) | OUTPIN -> ^( PIN_TYPE OUTPIN ) | IOPIN -> ^( PIN_TYPE IOPIN ) | PWRPIN -> ^( PIN_TYPE PWRPIN ) | SUPPIN -> ^( PIN_TYPE SUPPIN ) );
+    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:233:1: pinType : ( PIN -> ^( PIN_TYPE PIN ) | INPIN -> ^( PIN_TYPE INPIN ) | OUTPIN -> ^( PIN_TYPE OUTPIN ) | IOPIN -> ^( PIN_TYPE IOPIN ) | PWRPIN -> ^( PIN_TYPE PWRPIN ) | SUPPIN -> ^( PIN_TYPE SUPPIN ) ) ;
     public final Phdl2Parser.pinType_return pinType() throws RecognitionException {
         Phdl2Parser.pinType_return retval = new Phdl2Parser.pinType_return();
         retval.start = input.LT(1);
@@ -682,7 +683,10 @@ public class Phdl2Parser extends Parser {
         RewriteRuleTokenStream stream_PWRPIN=new RewriteRuleTokenStream(adaptor,"token PWRPIN");
 
         try {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:228:2: ( PIN -> ^( PIN_TYPE PIN ) | INPIN -> ^( PIN_TYPE INPIN ) | OUTPIN -> ^( PIN_TYPE OUTPIN ) | IOPIN -> ^( PIN_TYPE IOPIN ) | PWRPIN -> ^( PIN_TYPE PWRPIN ) | SUPPIN -> ^( PIN_TYPE SUPPIN ) )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:234:2: ( ( PIN -> ^( PIN_TYPE PIN ) | INPIN -> ^( PIN_TYPE INPIN ) | OUTPIN -> ^( PIN_TYPE OUTPIN ) | IOPIN -> ^( PIN_TYPE IOPIN ) | PWRPIN -> ^( PIN_TYPE PWRPIN ) | SUPPIN -> ^( PIN_TYPE SUPPIN ) ) )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:234:4: ( PIN -> ^( PIN_TYPE PIN ) | INPIN -> ^( PIN_TYPE INPIN ) | OUTPIN -> ^( PIN_TYPE OUTPIN ) | IOPIN -> ^( PIN_TYPE IOPIN ) | PWRPIN -> ^( PIN_TYPE PWRPIN ) | SUPPIN -> ^( PIN_TYPE SUPPIN ) )
+            {
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:234:4: ( PIN -> ^( PIN_TYPE PIN ) | INPIN -> ^( PIN_TYPE INPIN ) | OUTPIN -> ^( PIN_TYPE OUTPIN ) | IOPIN -> ^( PIN_TYPE IOPIN ) | PWRPIN -> ^( PIN_TYPE PWRPIN ) | SUPPIN -> ^( PIN_TYPE SUPPIN ) )
             int alt4=6;
             switch ( input.LA(1) ) {
             case PIN:
@@ -725,9 +729,9 @@ public class Phdl2Parser extends Parser {
 
             switch (alt4) {
                 case 1 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:228:4: PIN
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:234:5: PIN
                     {
-                    PIN19=(Token)match(input,PIN,FOLLOW_PIN_in_pinType461); if (state.failed) return retval; 
+                    PIN19=(Token)match(input,PIN,FOLLOW_PIN_in_pinType458); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_PIN.add(PIN19);
 
 
@@ -744,9 +748,9 @@ public class Phdl2Parser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CommonTree)adaptor.nil();
-                    // 228:9: -> ^( PIN_TYPE PIN )
+                    // 234:9: -> ^( PIN_TYPE PIN )
                     {
-                        // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:228:12: ^( PIN_TYPE PIN )
+                        // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:234:12: ^( PIN_TYPE PIN )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(PIN_TYPE, "PIN_TYPE"), root_1);
@@ -762,9 +766,9 @@ public class Phdl2Parser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:229:4: INPIN
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:235:4: INPIN
                     {
-                    INPIN20=(Token)match(input,INPIN,FOLLOW_INPIN_in_pinType475); if (state.failed) return retval; 
+                    INPIN20=(Token)match(input,INPIN,FOLLOW_INPIN_in_pinType471); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_INPIN.add(INPIN20);
 
 
@@ -781,9 +785,9 @@ public class Phdl2Parser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CommonTree)adaptor.nil();
-                    // 229:10: -> ^( PIN_TYPE INPIN )
+                    // 235:10: -> ^( PIN_TYPE INPIN )
                     {
-                        // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:229:13: ^( PIN_TYPE INPIN )
+                        // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:235:13: ^( PIN_TYPE INPIN )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(PIN_TYPE, "PIN_TYPE"), root_1);
@@ -799,9 +803,9 @@ public class Phdl2Parser extends Parser {
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:230:4: OUTPIN
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:236:4: OUTPIN
                     {
-                    OUTPIN21=(Token)match(input,OUTPIN,FOLLOW_OUTPIN_in_pinType488); if (state.failed) return retval; 
+                    OUTPIN21=(Token)match(input,OUTPIN,FOLLOW_OUTPIN_in_pinType484); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_OUTPIN.add(OUTPIN21);
 
 
@@ -818,9 +822,9 @@ public class Phdl2Parser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CommonTree)adaptor.nil();
-                    // 230:11: -> ^( PIN_TYPE OUTPIN )
+                    // 236:11: -> ^( PIN_TYPE OUTPIN )
                     {
-                        // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:230:14: ^( PIN_TYPE OUTPIN )
+                        // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:236:14: ^( PIN_TYPE OUTPIN )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(PIN_TYPE, "PIN_TYPE"), root_1);
@@ -836,9 +840,9 @@ public class Phdl2Parser extends Parser {
                     }
                     break;
                 case 4 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:231:4: IOPIN
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:237:4: IOPIN
                     {
-                    IOPIN22=(Token)match(input,IOPIN,FOLLOW_IOPIN_in_pinType501); if (state.failed) return retval; 
+                    IOPIN22=(Token)match(input,IOPIN,FOLLOW_IOPIN_in_pinType497); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_IOPIN.add(IOPIN22);
 
 
@@ -855,9 +859,9 @@ public class Phdl2Parser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CommonTree)adaptor.nil();
-                    // 231:10: -> ^( PIN_TYPE IOPIN )
+                    // 237:10: -> ^( PIN_TYPE IOPIN )
                     {
-                        // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:231:13: ^( PIN_TYPE IOPIN )
+                        // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:237:13: ^( PIN_TYPE IOPIN )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(PIN_TYPE, "PIN_TYPE"), root_1);
@@ -873,9 +877,9 @@ public class Phdl2Parser extends Parser {
                     }
                     break;
                 case 5 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:232:4: PWRPIN
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:238:4: PWRPIN
                     {
-                    PWRPIN23=(Token)match(input,PWRPIN,FOLLOW_PWRPIN_in_pinType514); if (state.failed) return retval; 
+                    PWRPIN23=(Token)match(input,PWRPIN,FOLLOW_PWRPIN_in_pinType510); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_PWRPIN.add(PWRPIN23);
 
 
@@ -892,9 +896,9 @@ public class Phdl2Parser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CommonTree)adaptor.nil();
-                    // 232:11: -> ^( PIN_TYPE PWRPIN )
+                    // 238:11: -> ^( PIN_TYPE PWRPIN )
                     {
-                        // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:232:14: ^( PIN_TYPE PWRPIN )
+                        // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:238:14: ^( PIN_TYPE PWRPIN )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(PIN_TYPE, "PIN_TYPE"), root_1);
@@ -910,9 +914,9 @@ public class Phdl2Parser extends Parser {
                     }
                     break;
                 case 6 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:233:4: SUPPIN
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:239:4: SUPPIN
                     {
-                    SUPPIN24=(Token)match(input,SUPPIN,FOLLOW_SUPPIN_in_pinType527); if (state.failed) return retval; 
+                    SUPPIN24=(Token)match(input,SUPPIN,FOLLOW_SUPPIN_in_pinType523); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_SUPPIN.add(SUPPIN24);
 
 
@@ -929,9 +933,9 @@ public class Phdl2Parser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CommonTree)adaptor.nil();
-                    // 233:11: -> ^( PIN_TYPE SUPPIN )
+                    // 239:11: -> ^( PIN_TYPE SUPPIN )
                     {
-                        // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:233:14: ^( PIN_TYPE SUPPIN )
+                        // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:239:14: ^( PIN_TYPE SUPPIN )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(PIN_TYPE, "PIN_TYPE"), root_1);
@@ -948,6 +952,10 @@ public class Phdl2Parser extends Parser {
                     break;
 
             }
+
+
+            }
+
             retval.stop = input.LT(-1);
 
             if ( state.backtracking==0 ) {
@@ -974,7 +982,7 @@ public class Phdl2Parser extends Parser {
     };
 
     // $ANTLR start "widthDecl"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:236:1: widthDecl : LBRACKET INT ( COLON INT )? RBRACKET -> ^( WIDTH_DECL ( INT )+ ) ;
+    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:242:1: widthDecl : LBRACKET INT ( COLON INT )? RBRACKET -> ^( WIDTH_DECL ( INT )+ ) ;
     public final Phdl2Parser.widthDecl_return widthDecl() throws RecognitionException {
         Phdl2Parser.widthDecl_return retval = new Phdl2Parser.widthDecl_return();
         retval.start = input.LT(1);
@@ -998,16 +1006,16 @@ public class Phdl2Parser extends Parser {
         RewriteRuleTokenStream stream_RBRACKET=new RewriteRuleTokenStream(adaptor,"token RBRACKET");
 
         try {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:237:2: ( LBRACKET INT ( COLON INT )? RBRACKET -> ^( WIDTH_DECL ( INT )+ ) )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:237:4: LBRACKET INT ( COLON INT )? RBRACKET
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:243:2: ( LBRACKET INT ( COLON INT )? RBRACKET -> ^( WIDTH_DECL ( INT )+ ) )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:243:4: LBRACKET INT ( COLON INT )? RBRACKET
             {
-            LBRACKET25=(Token)match(input,LBRACKET,FOLLOW_LBRACKET_in_widthDecl546); if (state.failed) return retval; 
+            LBRACKET25=(Token)match(input,LBRACKET,FOLLOW_LBRACKET_in_widthDecl543); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_LBRACKET.add(LBRACKET25);
 
-            INT26=(Token)match(input,INT,FOLLOW_INT_in_widthDecl548); if (state.failed) return retval; 
+            INT26=(Token)match(input,INT,FOLLOW_INT_in_widthDecl545); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_INT.add(INT26);
 
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:237:17: ( COLON INT )?
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:243:17: ( COLON INT )?
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -1016,12 +1024,12 @@ public class Phdl2Parser extends Parser {
             }
             switch (alt5) {
                 case 1 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:237:18: COLON INT
+                    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:243:18: COLON INT
                     {
-                    COLON27=(Token)match(input,COLON,FOLLOW_COLON_in_widthDecl551); if (state.failed) return retval; 
+                    COLON27=(Token)match(input,COLON,FOLLOW_COLON_in_widthDecl548); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_COLON.add(COLON27);
 
-                    INT28=(Token)match(input,INT,FOLLOW_INT_in_widthDecl553); if (state.failed) return retval; 
+                    INT28=(Token)match(input,INT,FOLLOW_INT_in_widthDecl550); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_INT.add(INT28);
 
 
@@ -1030,7 +1038,7 @@ public class Phdl2Parser extends Parser {
 
             }
 
-            RBRACKET29=(Token)match(input,RBRACKET,FOLLOW_RBRACKET_in_widthDecl557); if (state.failed) return retval; 
+            RBRACKET29=(Token)match(input,RBRACKET,FOLLOW_RBRACKET_in_widthDecl554); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_RBRACKET.add(RBRACKET29);
 
 
@@ -1047,9 +1055,9 @@ public class Phdl2Parser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (CommonTree)adaptor.nil();
-            // 237:39: -> ^( WIDTH_DECL ( INT )+ )
+            // 243:39: -> ^( WIDTH_DECL ( INT )+ )
             {
-                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:237:42: ^( WIDTH_DECL ( INT )+ )
+                // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:243:42: ^( WIDTH_DECL ( INT )+ )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(WIDTH_DECL, "WIDTH_DECL"), root_1);
@@ -1097,7 +1105,7 @@ public class Phdl2Parser extends Parser {
     };
 
     // $ANTLR start "pinList"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:240:1: pinList : LBRACE IDENT ( COMMA IDENT )* RBRACE -> ^( PIN_LIST ( IDENT )+ ) ;
+    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:246:1: pinList : LBRACE pinNumber ( COMMA pinNumber )* RBRACE -> ^( PIN_LIST ( pinNumber )+ ) ;
     public final Phdl2Parser.pinList_return pinList() throws RecognitionException {
         Phdl2Parser.pinList_return retval = new Phdl2Parser.pinList_return();
         retval.start = input.LT(1);
@@ -1105,32 +1113,34 @@ public class Phdl2Parser extends Parser {
         CommonTree root_0 = null;
 
         Token LBRACE30=null;
-        Token IDENT31=null;
         Token COMMA32=null;
-        Token IDENT33=null;
         Token RBRACE34=null;
+        Phdl2Parser.pinNumber_return pinNumber31 = null;
+
+        Phdl2Parser.pinNumber_return pinNumber33 = null;
+
 
         CommonTree LBRACE30_tree=null;
-        CommonTree IDENT31_tree=null;
         CommonTree COMMA32_tree=null;
-        CommonTree IDENT33_tree=null;
         CommonTree RBRACE34_tree=null;
-        RewriteRuleTokenStream stream_IDENT=new RewriteRuleTokenStream(adaptor,"token IDENT");
         RewriteRuleTokenStream stream_RBRACE=new RewriteRuleTokenStream(adaptor,"token RBRACE");
         RewriteRuleTokenStream stream_COMMA=new RewriteRuleTokenStream(adaptor,"token COMMA");
         RewriteRuleTokenStream stream_LBRACE=new RewriteRuleTokenStream(adaptor,"token LBRACE");
-
+        RewriteRuleSubtreeStream stream_pinNumber=new RewriteRuleSubtreeStream(adaptor,"rule pinNumber");
         try {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:241:2: ( LBRACE IDENT ( COMMA IDENT )* RBRACE -> ^( PIN_LIST ( IDENT )+ ) )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:241:5: LBRACE IDENT ( COMMA IDENT )* RBRACE
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:247:2: ( LBRACE pinNumber ( COMMA pinNumber )* RBRACE -> ^( PIN_LIST ( pinNumber )+ ) )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:247:5: LBRACE pinNumber ( COMMA pinNumber )* RBRACE
             {
-            LBRACE30=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_pinList578); if (state.failed) return retval; 
+            LBRACE30=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_pinList575); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_LBRACE.add(LBRACE30);
 
-            IDENT31=(Token)match(input,IDENT,FOLLOW_IDENT_in_pinList580); if (state.failed) return retval; 
-            if ( state.backtracking==0 ) stream_IDENT.add(IDENT31);
+            pushFollow(FOLLOW_pinNumber_in_pinList577);
+            pinNumber31=pinNumber();
 
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:241:18: ( COMMA IDENT )*
+            state._fsp--;
+            if (state.failed) return retval;
+            if ( state.backtracking==0 ) stream_pinNumber.add(pinNumber31.getTree());
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:247:22: ( COMMA pinNumber )*
             loop6:
             do {
                 int alt6=2;
@@ -1143,14 +1153,17 @@ public class Phdl2Parser extends Parser {
 
                 switch (alt6) {
             	case 1 :
-            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:241:19: COMMA IDENT
+            	    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:247:23: COMMA pinNumber
             	    {
-            	    COMMA32=(Token)match(input,COMMA,FOLLOW_COMMA_in_pinList583); if (state.failed) return retval; 
+            	    COMMA32=(Token)match(input,COMMA,FOLLOW_COMMA_in_pinList580); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_COMMA.add(COMMA32);
 
-            	    IDENT33=(Token)match(input,IDENT,FOLLOW_IDENT_in_pinList585); if (state.failed) return retval; 
-            	    if ( state.backtracking==0 ) stream_IDENT.add(IDENT33);
+            	    pushFollow(FOLLOW_pinNumber_in_pinList582);
+            	    pinNumber33=pinNumber();
 
+            	    state._fsp--;
+            	    if (state.failed) return retval;
+            	    if ( state.backtracking==0 ) stream_pinNumber.add(pinNumber33.getTree());
 
             	    }
             	    break;
@@ -1160,13 +1173,13 @@ public class Phdl2Parser extends Parser {
                 }
             } while (true);
 
-            RBRACE34=(Token)match(input,RBRACE,FOLLOW_RBRACE_in_pinList589); if (state.failed) return retval; 
+            RBRACE34=(Token)match(input,RBRACE,FOLLOW_RBRACE_in_pinList586); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_RBRACE.add(RBRACE34);
 
 
 
             // AST REWRITE
-            // elements: IDENT
+            // elements: pinNumber
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -1177,21 +1190,21 @@ public class Phdl2Parser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (CommonTree)adaptor.nil();
-            // 241:40: -> ^( PIN_LIST ( IDENT )+ )
+            // 247:48: -> ^( PIN_LIST ( pinNumber )+ )
             {
-                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl2.g:241:43: ^( PIN_LIST ( IDENT )+ )
+                // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:247:51: ^( PIN_LIST ( pinNumber )+ )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(PIN_LIST, "PIN_LIST"), root_1);
 
-                if ( !(stream_IDENT.hasNext()) ) {
+                if ( !(stream_pinNumber.hasNext()) ) {
                     throw new RewriteEarlyExitException();
                 }
-                while ( stream_IDENT.hasNext() ) {
-                    adaptor.addChild(root_1, stream_IDENT.nextNode());
+                while ( stream_pinNumber.hasNext() ) {
+                    adaptor.addChild(root_1, stream_pinNumber.nextTree());
 
                 }
-                stream_IDENT.reset();
+                stream_pinNumber.reset();
 
                 adaptor.addChild(root_0, root_1);
                 }
@@ -1221,44 +1234,103 @@ public class Phdl2Parser extends Parser {
     }
     // $ANTLR end "pinList"
 
+    public static class pinNumber_return extends ParserRuleReturnScope {
+        CommonTree tree;
+        public Object getTree() { return tree; }
+    };
+
+    // $ANTLR start "pinNumber"
+    // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:250:1: pinNumber : ( IDENT | INT | PINNUM );
+    public final Phdl2Parser.pinNumber_return pinNumber() throws RecognitionException {
+        Phdl2Parser.pinNumber_return retval = new Phdl2Parser.pinNumber_return();
+        retval.start = input.LT(1);
+
+        CommonTree root_0 = null;
+
+        Token set35=null;
+
+        CommonTree set35_tree=null;
+
+        try {
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:251:2: ( IDENT | INT | PINNUM )
+            // C:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:
+            {
+            root_0 = (CommonTree)adaptor.nil();
+
+            set35=(Token)input.LT(1);
+            if ( input.LA(1)==IDENT||(input.LA(1)>=INT && input.LA(1)<=PINNUM) ) {
+                input.consume();
+                if ( state.backtracking==0 ) adaptor.addChild(root_0, (CommonTree)adaptor.create(set35));
+                state.errorRecovery=false;state.failed=false;
+            }
+            else {
+                if (state.backtracking>0) {state.failed=true; return retval;}
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                throw mse;
+            }
+
+
+            }
+
+            retval.stop = input.LT(-1);
+
+            if ( state.backtracking==0 ) {
+
+            retval.tree = (CommonTree)adaptor.rulePostProcessing(root_0);
+            adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+    	retval.tree = (CommonTree)adaptor.errorNode(input, retval.start, input.LT(-1), re);
+
+        }
+        finally {
+        }
+        return retval;
+    }
+    // $ANTLR end "pinNumber"
+
     // Delegated rules
 
 
  
 
-    public static final BitSet FOLLOW_deviceDecl_in_sourceText341 = new BitSet(new long[]{0x0000000000100002L});
-    public static final BitSet FOLLOW_DEVICE_in_deviceDecl354 = new BitSet(new long[]{0x0000400000000000L});
-    public static final BitSet FOLLOW_IDENT_in_deviceDecl356 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_LBRACE_in_deviceDecl358 = new BitSet(new long[]{0x000000FC10004000L});
-    public static final BitSet FOLLOW_attrDecl_in_deviceDecl361 = new BitSet(new long[]{0x000000FC10004000L});
-    public static final BitSet FOLLOW_pinDecl_in_deviceDecl365 = new BitSet(new long[]{0x000000FC10004000L});
-    public static final BitSet FOLLOW_RBRACE_in_deviceDecl369 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ATTR_in_attrDecl395 = new BitSet(new long[]{0x0000400000000000L});
-    public static final BitSet FOLLOW_IDENT_in_attrDecl397 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_EQUALS_in_attrDecl399 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_STRING_in_attrDecl401 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_SEMICOLON_in_attrDecl403 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_pinType_in_pinDecl424 = new BitSet(new long[]{0x0000400000000800L});
-    public static final BitSet FOLLOW_widthDecl_in_pinDecl426 = new BitSet(new long[]{0x0000400000000000L});
-    public static final BitSet FOLLOW_IDENT_in_pinDecl429 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_EQUALS_in_pinDecl431 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_pinList_in_pinDecl433 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_SEMICOLON_in_pinDecl435 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_PIN_in_pinType461 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INPIN_in_pinType475 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_OUTPIN_in_pinType488 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IOPIN_in_pinType501 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_PWRPIN_in_pinType514 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SUPPIN_in_pinType527 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LBRACKET_in_widthDecl546 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_INT_in_widthDecl548 = new BitSet(new long[]{0x0000000000001020L});
-    public static final BitSet FOLLOW_COLON_in_widthDecl551 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_INT_in_widthDecl553 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_RBRACKET_in_widthDecl557 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LBRACE_in_pinList578 = new BitSet(new long[]{0x0000400000000000L});
-    public static final BitSet FOLLOW_IDENT_in_pinList580 = new BitSet(new long[]{0x0000000000004040L});
-    public static final BitSet FOLLOW_COMMA_in_pinList583 = new BitSet(new long[]{0x0000400000000000L});
-    public static final BitSet FOLLOW_IDENT_in_pinList585 = new BitSet(new long[]{0x0000000000004040L});
-    public static final BitSet FOLLOW_RBRACE_in_pinList589 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_deviceDecl_in_sourceText337 = new BitSet(new long[]{0x0000000000100002L});
+    public static final BitSet FOLLOW_DEVICE_in_deviceDecl350 = new BitSet(new long[]{0x0000400000000000L});
+    public static final BitSet FOLLOW_IDENT_in_deviceDecl352 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_LBRACE_in_deviceDecl354 = new BitSet(new long[]{0x000000FC10004000L});
+    public static final BitSet FOLLOW_attrDecl_in_deviceDecl357 = new BitSet(new long[]{0x000000FC10004000L});
+    public static final BitSet FOLLOW_pinDecl_in_deviceDecl361 = new BitSet(new long[]{0x000000FC10004000L});
+    public static final BitSet FOLLOW_RBRACE_in_deviceDecl365 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ATTR_in_attrDecl391 = new BitSet(new long[]{0x0000400000000000L});
+    public static final BitSet FOLLOW_IDENT_in_attrDecl393 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_EQUALS_in_attrDecl395 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_STRING_in_attrDecl397 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_SEMICOLON_in_attrDecl399 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_pinType_in_pinDecl420 = new BitSet(new long[]{0x0000400000000800L});
+    public static final BitSet FOLLOW_widthDecl_in_pinDecl422 = new BitSet(new long[]{0x0000400000000000L});
+    public static final BitSet FOLLOW_IDENT_in_pinDecl425 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_EQUALS_in_pinDecl427 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_pinList_in_pinDecl429 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_SEMICOLON_in_pinDecl431 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_PIN_in_pinType458 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INPIN_in_pinType471 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_OUTPIN_in_pinType484 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IOPIN_in_pinType497 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_PWRPIN_in_pinType510 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SUPPIN_in_pinType523 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LBRACKET_in_widthDecl543 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_INT_in_widthDecl545 = new BitSet(new long[]{0x0000000000001020L});
+    public static final BitSet FOLLOW_COLON_in_widthDecl548 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_INT_in_widthDecl550 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_RBRACKET_in_widthDecl554 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LBRACE_in_pinList575 = new BitSet(new long[]{0x0003400000000000L});
+    public static final BitSet FOLLOW_pinNumber_in_pinList577 = new BitSet(new long[]{0x0000000000004040L});
+    public static final BitSet FOLLOW_COMMA_in_pinList580 = new BitSet(new long[]{0x0003400000000000L});
+    public static final BitSet FOLLOW_pinNumber_in_pinList582 = new BitSet(new long[]{0x0000000000004040L});
+    public static final BitSet FOLLOW_RBRACE_in_pinList586 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_pinNumber0 = new BitSet(new long[]{0x0000000000000002L});
 
 }

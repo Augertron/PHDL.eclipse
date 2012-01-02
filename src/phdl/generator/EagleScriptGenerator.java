@@ -17,17 +17,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
-import phdl.graph.AttributeNode;
-import phdl.graph.DesignNode;
-import phdl.graph.InstanceNode;
-import phdl.graph.NetNode;
+import phdl.graph.Attribute;
+import phdl.graph.Design;
+import phdl.graph.Instance;
+import phdl.graph.Net;
 import phdl.graph.Node;
-import phdl.graph.PinNode;
+import phdl.graph.Pin;
 
 public class EagleScriptGenerator {
-	private DesignNode design;
+	private Design design;
 	private String contents;
-	private TreeMap<String, ArrayList<InstanceNode>> groupMap;
+	private TreeMap<String, ArrayList<Instance>> groupMap;
 	private DesignComparator desComp;
 	private boolean xmlExists;
 	private StringBuilder sb;
@@ -49,12 +49,12 @@ public class EagleScriptGenerator {
 	 * @param refMap
 	 *            the map of Reference Designators needed to generated the Eagle script.
 	 * 
-	 * @see DesignNode
+	 * @see Design
 	 * @see RefDesGenerator
 	 */
-	public EagleScriptGenerator(DesignNode design, DesignComparator desComp, boolean xmlExists) {
+	public EagleScriptGenerator(Design design, DesignComparator desComp, boolean xmlExists) {
 		this.design = design;
-		this.groupMap = new TreeMap<String, ArrayList<InstanceNode>>();
+		this.groupMap = new TreeMap<String, ArrayList<Instance>>();
 		this.desComp = desComp;
 		this.xmlExists = xmlExists;
 		this.sb = new StringBuilder();
@@ -75,12 +75,12 @@ public class EagleScriptGenerator {
 		if (!xmlExists) {
 			sb.append("# Initial Build.\n\n");
 			// sort the instances into their groups
-			for (InstanceNode i : design.getInstances()) {
+			for (Instance i : design.getInstances()) {
 				if (i.getGroupName() != null) {
 					if (groupMap.containsKey(i.getGroupName())) {
 						groupMap.get(i.getGroupName()).add(i);
 					} else {
-						ArrayList<InstanceNode> l = new ArrayList<InstanceNode>();
+						ArrayList<Instance> l = new ArrayList<Instance>();
 						l.add(i);
 						groupMap.put(i.getGroupName(), l);
 					}
@@ -88,7 +88,7 @@ public class EagleScriptGenerator {
 					if (groupMap.containsKey("")) {
 						groupMap.get("").add(i);
 					} else {
-						ArrayList<InstanceNode> l = new ArrayList<InstanceNode>();
+						ArrayList<Instance> l = new ArrayList<Instance>();
 						l.add(i);
 						groupMap.put("", l);
 					}
@@ -108,8 +108,8 @@ public class EagleScriptGenerator {
 				// left of each group
 				sb.append("TEXT '" + g + "' (" + -4 + " " + y + ");\n");
 
-				ArrayList<InstanceNode> group = groupMap.get(g);
-				for (InstanceNode i : group) {
+				ArrayList<Instance> group = groupMap.get(g);
+				for (Instance i : group) {
 
 					addInstance(i, x, y);
 					setValue(i);
@@ -121,7 +121,7 @@ public class EagleScriptGenerator {
 						+ i.getDevice().getName() + "';\n");
 
 					// add all the attributes except "values"
-					for (AttributeNode a : i.getAttributes()) {
+					for (Attribute a : i.getAttributes()) {
 						if (!a.getName().equals("VALUE"))
 							attribute(a);
 					}
@@ -146,13 +146,13 @@ public class EagleScriptGenerator {
 			sb.append("\n# SIGNALS #\n\n");
 
 			// assign all the nets
-			for (NetNode n : design.getNets()) {
+			for (Net n : design.getNets()) {
 
 				// ignore the open net
 				if (n.getName().equals("OPEN"))
 					continue;
 
-				signal((NetNode) n);
+				signal((Net) n);
 			}
 		} else {
 			// the design has been previously compiled, and is an iterative or
@@ -163,14 +163,14 @@ public class EagleScriptGenerator {
 			// Added Elements
 			sb.append("# Added elements #\n\n");
 			for (Node n : desComp.getAllAdditions()) {
-				switch (n.getType()) {
+				switch (n.getNodeType()) {
 				case INSTANCE:
 					// add the instance and set its value
-					addInstance((InstanceNode) n, 0, y);
-					setValue((InstanceNode) n);
+					addInstance((Instance) n, 0, y);
+					setValue((Instance) n);
 
 					// add all of it's attributes
-					for (AttributeNode a : ((InstanceNode) n).getAttributes()) {
+					for (Attribute a : ((Instance) n).getAttributes()) {
 						// the value attribute is handled with the setValue
 						// special case
 						if (!a.getName().equals("VALUE"))
@@ -178,8 +178,8 @@ public class EagleScriptGenerator {
 					}
 
 					// connect all of its nets
-					for (PinNode p : ((InstanceNode) n).getPins()) {
-						String refDes = ((InstanceNode) p.getParent()).getRefDes();
+					for (Pin p : ((Instance) n).getPins()) {
+						String refDes = ((Instance) p.getParent()).getRefDes();
 						String name = p.getNet().getName().toUpperCase();
 						sb.append("SIGNAL " + name + " " + refDes + " " + p.getName() + ";\n");
 					}
@@ -193,14 +193,14 @@ public class EagleScriptGenerator {
 					if (n.getName().equals("OPEN"))
 						continue;
 
-					signal((NetNode) n);
+					signal((Net) n);
 					break;
 
 				case ATTRIBUTE:
 					if (n.getName().equals("VALUE"))
-						setValue((InstanceNode) ((AttributeNode) n).getParent());
+						setValue((Instance) ((Attribute) n).getParent());
 					else
-						attribute((AttributeNode) n);
+						attribute((Attribute) n);
 
 				case PIN:
 					break;
@@ -217,14 +217,14 @@ public class EagleScriptGenerator {
 			List<Node> news = desComp.getAllModifyNews();
 			List<Node> olds = desComp.getAllModifyOlds();
 			for (int i = 0; i < news.size(); i++) {
-				switch (news.get(i).getType()) {
+				switch (news.get(i).getNodeType()) {
 				case ATTRIBUTE:
 					if (news.get(i).getName().equals("VALUE"))
-						setValue((InstanceNode) ((AttributeNode) news.get(i)).getParent());
+						setValue((Instance) ((Attribute) news.get(i)).getParent());
 					else if (news.get(i).getName().equals("PKG_TYPE"))
-						replacePackage((AttributeNode) news.get(i));
+						replacePackage((Attribute) news.get(i));
 					else
-						attribute((AttributeNode) news.get(i));
+						attribute((Attribute) news.get(i));
 					break;
 
 				case PIN:
@@ -246,15 +246,15 @@ public class EagleScriptGenerator {
 				}
 			}
 			for (Node n : signals) {
-				signal(((PinNode) n).getNet());
+				signal(((Pin) n).getNet());
 			}
 
 			// Deleted Elements
 			sb.append("\n# Deleted elements #\n\n");
 			for (Node n : desComp.getAllRemovals()) {
-				switch (n.getType()) {
+				switch (n.getNodeType()) {
 				case INSTANCE:
-					delete((InstanceNode) n);
+					delete((Instance) n);
 
 					break;
 				default:
@@ -296,14 +296,14 @@ public class EagleScriptGenerator {
 		System.out.println("Wrote Eagle script file: " + fileName);
 	}
 
-	private void setValue(InstanceNode i) {
-		AttributeNode a = i.getAttribute("VALUE");
+	private void setValue(Instance i) {
+		Attribute a = i.getAttribute("VALUE");
 		if (a != null) {
 			sb.append("VALUE " + i.getRefDes() + " " + a.getValue() + ";\n");
 		}
 	}
 
-	private void addInstance(InstanceNode i, double x, double y) {
+	private void addInstance(Instance i, double x, double y) {
 		// find the instance's library attribute
 		String lib = "";
 		if (i.getAttribute("LIBNAME") != null) {
@@ -315,27 +315,27 @@ public class EagleScriptGenerator {
 
 	}
 
-	private void attribute(AttributeNode a) {
-		String refDes = ((InstanceNode) ((AttributeNode) a).getParent()).getRefDes();
+	private void attribute(Attribute a) {
+		String refDes = ((Instance) ((Attribute) a).getParent()).getRefDes();
 		sb.append("ATTRIBUTE " + refDes + " " + a.getName() + " '" + a.getValue() + "';\n");
 	}
 
-	private void delete(InstanceNode i) {
+	private void delete(Instance i) {
 		sb.append("DELETE " + i.getRefDes() + ";\n");
 	}
 
-	private void signal(NetNode n) {
+	private void signal(Net n) {
 		sb.append("SIGNAL " + n.getName().toUpperCase());
-		for (PinNode p : n.getPinNodes()) {
-			String refDes = ((InstanceNode) p.getParent()).getRefDes();
+		for (Pin p : n.getPinNodes()) {
+			String refDes = ((Instance) p.getParent()).getRefDes();
 			sb.append(" " + refDes + " " + p.getName());
 		}
 		sb.append(";\n");
 	}
 
-	private void replacePackage(AttributeNode a) {
-		String refDes = ((InstanceNode) ((AttributeNode) a).getParent()).getRefDes();
-		String lib = ((InstanceNode) ((AttributeNode) a).getParent()).getAttribute("LIBNAME")
+	private void replacePackage(Attribute a) {
+		String refDes = ((Instance) ((Attribute) a).getParent()).getRefDes();
+		String lib = ((Instance) ((Attribute) a).getParent()).getAttribute("LIBNAME")
 			.getValue();
 		sb.append("REPLACE " + refDes + " '" + a.getValue() + "@" + lib + "';\n");
 	}

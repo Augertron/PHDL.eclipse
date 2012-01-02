@@ -14,19 +14,19 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import phdl.graph.AttributeNode;
-import phdl.graph.DesignNode;
-import phdl.graph.DeviceNode;
-import phdl.graph.InstanceNode;
-import phdl.graph.NetNode;
-import phdl.graph.PinNode;
+import phdl.graph.Attribute;
+import phdl.graph.Design;
+import phdl.graph.Device;
+import phdl.graph.Instance;
+import phdl.graph.Net;
+import phdl.graph.Pin;
 
 public class XMLGenerator {
 
-	private DesignNode design;
+	private Design design;
 	private String xml;
 
-	public XMLGenerator(DesignNode design) {
+	public XMLGenerator(Design design) {
 		this.design = design;
 		generate();
 	}
@@ -35,16 +35,16 @@ public class XMLGenerator {
 		StringBuilder sb = new StringBuilder();
 		sb.append("<design>");
 		sb.append("\n\t<name>" + design.getName() + "</name>");
-		for (DeviceNode d : design.getDevices()) {
+		for (Device d : design.getDevices()) {
 			sb.append("\n\t<device>");
 			sb.append("\n\t\t<name>" + d.getName() + "</name>");
-			for (AttributeNode a : d.getAttributes()) {
+			for (Attribute a : d.getAttributes()) {
 				sb.append("\n\t\t<attribute>");
 				sb.append("\n\t\t\t<name>" + a.getName() + "</name>");
 				sb.append("\n\t\t\t<value>" + a.getValue() + "</value>");
 				sb.append("\n\t\t</attribute>");
 			}
-			for (PinNode p : d.getPins()) {
+			for (Pin p : d.getPins()) {
 				sb.append("\n\t\t<pin>");
 				sb.append("\n\t\t\t<name>" + p.getName() + "</name>");
 				sb.append("\n\t\t\t<number>" + p.getName() + "</number>");
@@ -52,10 +52,10 @@ public class XMLGenerator {
 			}
 			sb.append("\n\t</device>");
 		}
-		for (NetNode n : design.getNets()) {
+		for (Net n : design.getNets()) {
 			sb.append("\n\t<net>");
 			sb.append("\n\t\t<name>" + n.getName() + "</name>");
-			for (AttributeNode a : n.getAttributes()) {
+			for (Attribute a : n.getAttributes()) {
 				sb.append("\n\t\t<attribute>");
 				sb.append("\n\t\t\t<name>" + a.getName() + "</name>");
 				sb.append("\n\t\t\t<value>" + a.getValue() + "</value>");
@@ -63,18 +63,18 @@ public class XMLGenerator {
 			}
 			sb.append("\n\t</net>");
 		}
-		for (InstanceNode i : design.getInstances()) {
+		for (Instance i : design.getInstances()) {
 			sb.append("\n\t<instance>");
 			sb.append("\n\t\t<name>" + i.getName() + "</name>");
 			sb.append("\n\t\t<refDes>" + i.getRefDes() + "</refDes>");
 			sb.append("\n\t\t<device_name>" + i.getDevice().getName() + "</device_name>");
-			for (AttributeNode a : i.getAttributes()) {
+			for (Attribute a : i.getAttributes()) {
 				sb.append("\n\t\t<attribute>");
 				sb.append("\n\t\t\t<name>" + a.getName() + "</name>");
 				sb.append("\n\t\t\t<value>" + a.getValue() + "</value>");
 				sb.append("\n\t\t</attribute>");
 			}
-			for (PinNode p : i.getPins()) {
+			for (Pin p : i.getPins()) {
 				sb.append("\n\t\t<instPin>");
 				sb.append("\n\t\t\t<name>" + p.getName() + "</name>");
 				sb.append("\n\t\t\t<net>" + p.getNet().getName() + "</net>");

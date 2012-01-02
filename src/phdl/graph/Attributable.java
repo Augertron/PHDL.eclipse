@@ -25,11 +25,11 @@ import java.util.TreeSet;
  * @author Richard Black and Brad Riching
  * @version 0.1
  * @see Node
- *
+ * 
  */
 public abstract class Attributable extends Node {
 
-	protected Set<AttributeNode> attributes;
+	protected Set<Attribute> attributes;
 
 	/**
 	 * Default Constructor.
@@ -37,7 +37,7 @@ public abstract class Attributable extends Node {
 	 * Initializes the attributes set
 	 */
 	public Attributable() {
-		attributes = new TreeSet<AttributeNode>();
+		this.attributes = new TreeSet<Attribute>();
 	}
 
 	/**
@@ -45,20 +45,34 @@ public abstract class Attributable extends Node {
 	 * 
 	 * @return the set of AttributeNodes
 	 */
-	public Set<AttributeNode> getAttributes() {
+	public Set<Attribute> getAttributes() {
 		return attributes;
 	}
 
 	/**
 	 * Attribute addition method.
 	 * 
-	 * @param a the AttributeNode to add to the set
-	 * @return	true if the AttributeNode wasn't already
-	 * in the set,
-	 * 			false otherwise
+	 * @param a
+	 *            the AttributeNode to add to the set
+	 * @return true if the AttributeNode wasn't already in the set, false otherwise
 	 */
-	public boolean addAttribute(AttributeNode a) {
+	public boolean addAttribute(Attribute a) {
 		return attributes.add(a);
+	}
+
+	/**
+	 * Single AttributeNode accessor method.
+	 * 
+	 * @param s
+	 *            the name of the attribute
+	 * @return the AttributeNode with that name
+	 */
+	public Attribute getAttribute(String name) {
+		for (Attribute a : attributes) {
+			if (a.getName().equals(name))
+				return a;
+		}
+		return null;
 	}
 
 }

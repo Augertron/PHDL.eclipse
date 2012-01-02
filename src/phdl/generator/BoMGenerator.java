@@ -24,9 +24,9 @@ import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import phdl.graph.AttributeNode;
-import phdl.graph.DesignNode;
-import phdl.graph.InstanceNode;
+import phdl.graph.Attribute;
+import phdl.graph.Design;
+import phdl.graph.Instance;
 
 /**
  * Bill of Materials Generator.
@@ -39,7 +39,7 @@ import phdl.graph.InstanceNode;
  */
 public class BoMGenerator {
 
-	private DesignNode design;
+	private Design design;
 	private List<Row> rows;
 	private List<String> headers;
 	private String bom;
@@ -83,9 +83,9 @@ public class BoMGenerator {
 	 * 
 	 * @param design
 	 *            the DesignNode that contains all of the attribute information.
-	 * @see DesignNode
+	 * @see Design
 	 */
-	public BoMGenerator(DesignNode d) {
+	public BoMGenerator(Design d) {
 		design = d;
 		rows = new ArrayList<Row>();
 		headers = new ArrayList<String>();
@@ -105,8 +105,8 @@ public class BoMGenerator {
 		excludes.add("REFDES");
 		excludes.add("PKG_TYPE");
 
-		for (InstanceNode i : design.getInstances()) {
-			for (AttributeNode a : i.getAttributes()) {
+		for (Instance i : design.getInstances()) {
+			for (Attribute a : i.getAttributes()) {
 				if (!excludes.contains(a.getName())
 						&& !headers.contains(a.getName())) {
 					headers.add(a.getName());
@@ -116,7 +116,7 @@ public class BoMGenerator {
 	}
 
 	private void initializeRows() {
-		for (InstanceNode i : design.getInstances()) {
+		for (Instance i : design.getInstances()) {
 			Row newRow = new Row();
 
 			for (int j = 0; j < headers.size(); j++) {
@@ -125,7 +125,7 @@ public class BoMGenerator {
 
 			newRow.name = i.getDevice().getName();
 			newRow.refDes = i.getRefDes();
-			for (AttributeNode a : i.getAttributes()) {
+			for (Attribute a : i.getAttributes()) {
 				if (a.getName().equals("PKG_TYPE")) {
 					newRow.pkg_type = a.getValue();
 				} else if (!a.getName().equals("REFPREFIX")
