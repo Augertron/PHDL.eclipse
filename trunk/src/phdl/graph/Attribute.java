@@ -17,7 +17,7 @@ package phdl.graph;
  * @version 0.1
  * 
  */
-public class AttributeNode extends Node {
+public class Attribute extends Node {
 
 	private Attributable parent;
 	private String value;
@@ -31,7 +31,7 @@ public class AttributeNode extends Node {
 	 * @param parent
 	 *            the parent of the attribute node
 	 */
-	public AttributeNode(Attributable parent) {
+	public Attribute(Attributable parent) {
 		setParent(parent);
 	}
 
@@ -43,7 +43,7 @@ public class AttributeNode extends Node {
 	 * @param parent
 	 *            the parent of the current node
 	 */
-	public AttributeNode(AttributeNode old, Attributable parent) {
+	public Attribute(Attribute old, Attributable parent) {
 		setParent(parent);
 		setName(old.getName());
 		setValue(old.getValue());
@@ -57,6 +57,57 @@ public class AttributeNode extends Node {
 	 */
 	public Attributable getParent() {
 		return parent;
+	}
+
+	@Override
+	/**
+	 * Type accessor method.
+	 * 
+	 * Returns the type of the Node as "ATTRIBUTE"
+	 * 
+	 * @return NodeType.ATTRIBUTE
+	 * @see NodeType
+	 */
+	public NodeType getNodeType() {
+		return NodeType.ATTRIBUTE;
+	}
+
+	/**
+	 * Value accessor method
+	 * 
+	 * @return the value of the attribute
+	 */
+	public String getValue() {
+		return value;
+	}
+
+	/**
+	 * Changes the attribute value and checks to see if it's already been changed once.
+	 * 
+	 * @param value
+	 *            the new attribute value
+	 * @return true if the attribute hasn't been overwritten before false if it has
+	 */
+	public boolean overwrite(String value) {
+		this.value = value;
+		if (!overwritten) {
+			overwritten = true;
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	/**
+	 * Name mutatior method.
+	 * 
+	 * Sets the name of the attribute by first making it
+	 * all upper case.
+	 * 
+	 * @param the new name of the attribute
+	 */
+	public void setName(String name) {
+		this.name = name.toUpperCase();
 	}
 
 	/**
@@ -79,28 +130,6 @@ public class AttributeNode extends Node {
 		this.value = value;
 	}
 
-	/**
-	 * Value accessor method
-	 * 
-	 * @return the value of the attribute
-	 */
-	public String getValue() {
-		return value;
-	}
-
-	@Override
-	/**
-	 * Type accessor method.
-	 * 
-	 * Returns the type of the Node as "ATTRIBUTE"
-	 * 
-	 * @return NodeType.ATTRIBUTE
-	 * @see NodeType
-	 */
-	public NodeType getType() {
-		return NodeType.ATTRIBUTE;
-	}
-
 	@Override
 	/**
 	 * String generation method.
@@ -110,35 +139,6 @@ public class AttributeNode extends Node {
 	 * @return the string representation
 	 */
 	public String toString() {
-		return super.toString() + " = " + value;
-	}
-
-	@Override
-	/**
-	 * Name mutatior method.
-	 * 
-	 * Sets the name of the attribute by first making it
-	 * all upper case.
-	 * 
-	 * @param the new name of the attribute
-	 */
-	public void setName(String name) {
-		this.name = name.toUpperCase();
-	}
-
-	/**
-	 * Changes the attribute value and checks to see if it's already been changed once.
-	 * 
-	 * @param value
-	 *            the new attribute value
-	 * @return true if the attribute hasn't been overwritten before false if it has
-	 */
-	public boolean overwrite(String value) {
-		this.value = value;
-		if (!overwritten) {
-			overwritten = true;
-			return true;
-		}
-		return false;
+		return super.toString() + "=" + value;
 	}
 }

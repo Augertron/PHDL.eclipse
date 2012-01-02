@@ -17,16 +17,16 @@ import java.util.LinkedList;
 import java.util.List;
 
 import phdl.graph.Attributable;
-import phdl.graph.AttributeNode;
-import phdl.graph.DesignNode;
-import phdl.graph.DeviceNode;
-import phdl.graph.InstanceNode;
-import phdl.graph.NetNode;
-import phdl.graph.PinNode;
+import phdl.graph.Attribute;
+import phdl.graph.Design;
+import phdl.graph.Device;
+import phdl.graph.Instance;
+import phdl.graph.Net;
+import phdl.graph.Pin;
 
 public class XMLtoDesignGenerator {
 
-	private DesignNode design = new DesignNode();
+	private Design design = new Design();
 
 	public XMLtoDesignGenerator(String fileName) {
 		try {
@@ -47,15 +47,15 @@ public class XMLtoDesignGenerator {
 		}
 	}
 
-	public DesignNode getDesign() {
+	public Design getDesign() {
 		return design;
 	}
 
 	private void process(String xml) {
-		DesignNode curDesign = null;
-		DeviceNode curDevice = null;
-		NetNode curNet = null;
-		InstanceNode curInst = null;
+		Design curDesign = null;
+		Device curDevice = null;
+		Net curNet = null;
+		Instance curInst = null;
 
 		String[] strings = xml.split("[<>]");
 
@@ -71,17 +71,17 @@ public class XMLtoDesignGenerator {
 			// System.out.println("Analyzing tag: " + tag);
 			// Start tags
 			if (tag.equals("design")) {
-				curDesign = new DesignNode();
+				curDesign = new Design();
 				i++;
 				curDesign.setName(tags.get(++i));
 				i++;
 			} else if (tag.equals("device")) {
-				curDevice = new DeviceNode(curDesign);
+				curDevice = new Device(curDesign);
 				i++;
 				curDevice.setName(tags.get(++i));
 				i++;
 			} else if (tag.equals("instance")) {
-				curInst = new InstanceNode(curDesign);
+				curInst = new Instance(curDesign);
 				i++;
 				curInst.setName(tags.get(++i));
 				i++;
@@ -94,7 +94,7 @@ public class XMLtoDesignGenerator {
 				curInst.setDevice(curDesign.getDevice(tags.get(++i)));
 				i++;
 			} else if (tag.equals("attribute")) {
-				AttributeNode a = null;
+				Attribute a = null;
 				Attributable dev = null;
 				if (curDevice != null) {
 					dev = curDevice;
@@ -104,7 +104,7 @@ public class XMLtoDesignGenerator {
 					dev = curNet;
 				}
 
-				a = new AttributeNode(dev);
+				a = new Attribute(dev);
 
 				i++;
 				a.setName(tags.get(++i));
@@ -123,7 +123,7 @@ public class XMLtoDesignGenerator {
 
 				dev.addAttribute(a);
 			} else if (tag.equals("pin")) {
-				PinNode p = new PinNode(curDevice);
+				Pin p = new Pin(curDevice);
 				i++;
 				p.setName(tags.get(++i));
 				i++;
@@ -136,13 +136,13 @@ public class XMLtoDesignGenerator {
 
 				curDevice.addPin(p);
 			} else if (tag.equals("net")) {
-				curNet = new NetNode(curDesign);
+				curNet = new Net(curDesign);
 				i++;
 				curNet.setName(tags.get(++i));
 				i++;
 			} else if (tag.equals("instPin")) {
 				i++;
-				PinNode p = new PinNode(curInst);
+				Pin p = new Pin(curInst);
 				String name = tags.get(++i);
 				p.setName(name);
 				p.setName(curInst.getDevice().getPin(name).getName());

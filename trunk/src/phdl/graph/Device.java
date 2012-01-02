@@ -21,10 +21,10 @@ import java.util.TreeSet;
  * @author Brad Riching and Richard Black
  * @version 0.1
  */
-public class DeviceNode extends Attributable {
+public class Device extends Attributable {
 
-	private List<PinNode> pins;
-	private Set<InstanceNode> instances;
+	private List<Pin> pins;
+	private Set<Instance> instances;
 
 	/**
 	 * Default Constructor.
@@ -32,29 +32,20 @@ public class DeviceNode extends Attributable {
 	 * @param design
 	 *            the parent DesignNode for this Device
 	 * 
-	 * @see DesignNode
-	 * @see AttributeNode
-	 * @see PinNode
-	 * @see InstanceNode
+	 * @see Design
+	 * @see Attribute
+	 * @see Pin
+	 * @see Instance
 	 */
-	public DeviceNode(DesignNode design) {
-		pins = new ArrayList<PinNode>();
-		instances = new TreeSet<InstanceNode>();
+	public Device(Design design) {
+		pins = new ArrayList<Pin>();
+		instances = new TreeSet<Instance>();
 	}
 
-	public DeviceNode(String name) {
+	public Device(String name) {
 		this.name = name;
-		pins = new ArrayList<PinNode>();
-		instances = new TreeSet<InstanceNode>();
-	}
-
-	/**
-	 * Instance Set accessor method
-	 * 
-	 * @return the set of all InstanceNodes connected to this device
-	 */
-	public Set<InstanceNode> getInstances() {
-		return instances;
+		pins = new ArrayList<Pin>();
+		instances = new TreeSet<Instance>();
 	}
 
 	/**
@@ -64,41 +55,8 @@ public class DeviceNode extends Attributable {
 	 *            the InstanceNode to be added
 	 * @return true, if the instance isn't already in the set false, otherwise
 	 */
-	public boolean addInstance(InstanceNode instance) {
+	public boolean addInstance(Instance instance) {
 		return instances.add(instance);
-	}
-
-	@Override
-	/**
-	 * Type accessor method.
-	 * 
-	 * @return NodeType.DEVICE
-	 */
-	public NodeType getType() {
-		return NodeType.DEVICE;
-	}
-
-	/**
-	 * Pins accessor method.
-	 * 
-	 * @return a list of PinNodes attached to this Device.
-	 */
-	public List<PinNode> getPins() {
-		return pins;
-	}
-
-	/**
-	 * Individual Pin Accessor method.
-	 * 
-	 * 
-	 */
-	public PinNode getPin(String pinName) {
-		for (PinNode p : pins) {
-			if (p.getName().equals(pinName)) {
-				return p;
-			}
-		}
-		return null;
 	}
 
 	/**
@@ -108,8 +66,50 @@ public class DeviceNode extends Attributable {
 	 *            the new PinNode
 	 * @return true, if the pin wasn't already in the List false, otherwise
 	 */
-	public boolean addPin(PinNode p) {
+	public boolean addPin(Pin p) {
 		return pins.add(p);
+	}
+
+	/**
+	 * Instance Set accessor method
+	 * 
+	 * @return the set of all InstanceNodes connected to this device
+	 */
+	public Set<Instance> getInstances() {
+		return instances;
+	}
+
+	/**
+	 * Individual Pin Accessor method.
+	 * 
+	 * 
+	 */
+	public Pin getPin(String pinName) {
+		for (Pin p : pins) {
+			if (p.getName().equals(pinName)) {
+				return p;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Pins accessor method.
+	 * 
+	 * @return a list of PinNodes attached to this Device.
+	 */
+	public List<Pin> getPins() {
+		return pins;
+	}
+
+	@Override
+	/**
+	 * Type accessor method.
+	 * 
+	 * @return NodeType.DEVICE
+	 */
+	public NodeType getNodeType() {
+		return NodeType.DEVICE;
 	}
 
 	/**
@@ -121,18 +121,14 @@ public class DeviceNode extends Attributable {
 		return (!pins.isEmpty());
 	}
 
-	/**
-	 * Single AttributeNode accessor method.
-	 * 
-	 * @param s
-	 *            the name of the attribute
-	 * @return the AttributeNode with that name
-	 */
-	public AttributeNode getAttribute(String s) {
-		for (AttributeNode a : attributes) {
-			if (a.getName().equals(s))
-				return a;
-		}
-		return null;
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(super.toString() + "\n");
+		for (Attribute a : attributes)
+			sb.append("\t" + a.toString() + "\n");
+		for (Pin p : pins)
+			sb.append("\t" + p.toString() + "\n");
+		return sb.toString();
 	}
 }

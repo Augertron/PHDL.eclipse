@@ -18,7 +18,7 @@ package phdl.generator;
 
 import java.io.File;
 
-import phdl.graph.DesignNode;
+import phdl.graph.Design;
 
 /**
  * A wrapper class that creates all the generator classes.
@@ -35,7 +35,7 @@ public class Generator {
 	XMLGenerator xmlGen;
 	XMLtoDesignGenerator xmlDesGen;
 	DesignComparator desComp;
-	DesignNode design;
+	Design design;
 	InfoGenerator infoGen;
 
 	/**
@@ -45,12 +45,12 @@ public class Generator {
 	 * 
 	 * @param design
 	 *            the DesignNode to be processed
-	 * @see DesignNode
+	 * @see Design
 	 * @see RefDesGenerator
 	 * @see BoMGenerator
 	 * @see NetListGenerator
 	 */
-	public Generator(DesignNode design, boolean eagle) {
+	public Generator(Design design, boolean eagle) {
 		this.design = design;
 		refDesGen = new RefDesGenerator(design);
 		bomGen = new BoMGenerator(design);

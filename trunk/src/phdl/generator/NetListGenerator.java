@@ -15,10 +15,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
 
-import phdl.graph.DesignNode;
-import phdl.graph.InstanceNode;
-import phdl.graph.NetNode;
-import phdl.graph.PinNode;
+import phdl.graph.Design;
+import phdl.graph.Instance;
+import phdl.graph.Net;
+import phdl.graph.Pin;
 
 /**
  * A class that generates a NetList (.asc) for use in PADS.
@@ -28,8 +28,8 @@ import phdl.graph.PinNode;
  */
 public class NetListGenerator {
 
-	private DesignNode design;
-	private Map<String, InstanceNode> refMap;
+	private Design design;
+	private Map<String, Instance> refMap;
 	private String contents;
 
 	/**
@@ -42,10 +42,10 @@ public class NetListGenerator {
 	 * @param refMap
 	 *            the map of Reference Designators needed to generated the NetList.
 	 * 
-	 * @see DesignNode
+	 * @see Design
 	 * @see RefDesGenerator
 	 */
-	public NetListGenerator(DesignNode design, Map<String, InstanceNode> refMap) {
+	public NetListGenerator(Design design, Map<String, Instance> refMap) {
 		this.design = design;
 		this.refMap = refMap;
 		generate();
@@ -57,13 +57,13 @@ public class NetListGenerator {
 		sb.append("*PART*\n");
 
 		for (String s : refMap.keySet()) {
-			InstanceNode i = refMap.get(s);
+			Instance i = refMap.get(s);
 			sb.append(s);
 			sb.append(" " + i.getDevice().getName().toUpperCase() + "@" + i.getFootprint() + "\n");
 		}
 		sb.append("*CONNECTION*\n");
 
-		for (NetNode n : design.getNets()) {
+		for (Net n : design.getNets()) {
 
 			if (n.getName().equals("OPEN"))
 				continue;
@@ -72,11 +72,11 @@ public class NetListGenerator {
 
 			for (int i = 0; i < n.getPinNodes().size() - 1; i++) {
 
-				PinNode pin1 = n.getPinNodes().get(i);
-				PinNode pin2 = n.getPinNodes().get(i + 1);
+				Pin pin1 = n.getPinNodes().get(i);
+				Pin pin2 = n.getPinNodes().get(i + 1);
 
-				String ref1 = ((InstanceNode) pin1.getParent()).getRefDes();
-				String ref2 = ((InstanceNode) pin2.getParent()).getRefDes();
+				String ref1 = ((Instance) pin1.getParent()).getRefDes();
+				String ref2 = ((Instance) pin2.getParent()).getRefDes();
 				String name1 = pin1.getName();
 				String name2 = pin2.getName();
 

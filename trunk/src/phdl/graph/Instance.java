@@ -19,11 +19,11 @@ import java.util.List;
  * @author Brad Riching and Richard Black
  * @version 0.1
  */
-public class InstanceNode extends Attributable {
+public class Instance extends Attributable {
 
-	private List<PinNode> pins;
-	private DesignNode design;
-	private DeviceNode device;
+	private List<Pin> pins;
+	private Design design;
+	private Device device;
 	private String refDes;
 	private String refPrefix;
 	private String footprint;
@@ -35,14 +35,14 @@ public class InstanceNode extends Attributable {
 	 * 
 	 * @param design
 	 *            the parent DesignNode for this instance
-	 * @see DesignNode
-	 * @see DeviceNode
-	 * @see PinNode
+	 * @see Design
+	 * @see Device
+	 * @see Pin
 	 */
-	public InstanceNode(DesignNode design) {
+	public Instance(Design design) {
 		super();
 		this.design = design;
-		this.pins = new ArrayList<PinNode>();
+		this.pins = new ArrayList<Pin>();
 		this.refDes = null;
 		this.refPrefix = null;
 		this.footprint = null;
@@ -55,7 +55,7 @@ public class InstanceNode extends Attributable {
 	 * 
 	 * @return the DesignNode attached to this Device
 	 */
-	public DesignNode getDesign() {
+	public Design getDesign() {
 		return design;
 	}
 
@@ -65,7 +65,7 @@ public class InstanceNode extends Attributable {
 	 * @param design
 	 *            the new DesignNode
 	 */
-	public void setDesign(DesignNode design) {
+	public void setDesign(Design design) {
 		this.design = design;
 	}
 
@@ -74,7 +74,7 @@ public class InstanceNode extends Attributable {
 	 * 
 	 * @return the List of PinNodes
 	 */
-	public List<PinNode> getPins() {
+	public List<Pin> getPins() {
 		return pins;
 	}
 
@@ -85,7 +85,7 @@ public class InstanceNode extends Attributable {
 	 *            the new PinNode
 	 * @return true, if the pin wasn't in the set false, otherwise
 	 */
-	public boolean addPin(PinNode p) {
+	public boolean addPin(Pin p) {
 		return pins.add(p);
 	}
 
@@ -142,7 +142,7 @@ public class InstanceNode extends Attributable {
 	 * @param device
 	 *            the new DeviceNode
 	 */
-	public void setDevice(DeviceNode device) {
+	public void setDevice(Device device) {
 		this.device = device;
 		this.device.addInstance(this);
 	}
@@ -152,7 +152,7 @@ public class InstanceNode extends Attributable {
 	 * 
 	 * @return the DeviceNode
 	 */
-	public DeviceNode getDevice() {
+	public Device getDevice() {
 		return device;
 	}
 
@@ -162,7 +162,7 @@ public class InstanceNode extends Attributable {
 	 * 
 	 * @return NodeType.INSTANCE
 	 */
-	public NodeType getType() {
+	public NodeType getNodeType() {
 		return NodeType.INSTANCE;
 	}
 
@@ -174,22 +174,8 @@ public class InstanceNode extends Attributable {
 	 */
 	public String toString() {
 		return super.toString() + " : " + getDevice().getName()
-			+ (refDes != null ? (" " + refDes) : "") + (groupName != null ? (" " + groupName) : "");
-	}
-
-	/**
-	 * Single attribute accessor method.
-	 * 
-	 * @param s
-	 *            the name of the attribute
-	 * @return the AttributeNode with that name
-	 */
-	public AttributeNode getAttribute(String s) {
-		for (AttributeNode a : attributes) {
-			if (s.toUpperCase().equals(a.getName().toUpperCase()))
-				return a;
-		}
-		return null;
+				+ (refDes != null ? (" " + refDes) : "")
+				+ (groupName != null ? (" " + groupName) : "");
 	}
 
 	/**
@@ -200,8 +186,8 @@ public class InstanceNode extends Attributable {
 	 * @param pinName
 	 * @return The list of pin nodes with the same name as pinName.
 	 */
-	public List<PinNode> getAllPins(String pinName) {
-		List<PinNode> allPins = new ArrayList<PinNode>();
+	public List<Pin> getAllPins(String pinName) {
+		List<Pin> allPins = new ArrayList<Pin>();
 		for (int i = 0; i < pins.size(); i++) {
 			if (pins.get(i).getName().length() < pinName.length())
 				continue;
@@ -223,8 +209,8 @@ public class InstanceNode extends Attributable {
 	 *            the name of the pin
 	 * @return the PinNode with that name
 	 */
-	public PinNode getPin(String s) {
-		for (PinNode p : pins) {
+	public Pin getPin(String s) {
+		for (Pin p : pins) {
 			if (p.getName().equals(s))
 				return p;
 		}
@@ -243,7 +229,7 @@ public class InstanceNode extends Attributable {
 	 */
 	public List<Integer> getAllIndices(String pinName) {
 		List<Integer> allIndices = new ArrayList<Integer>();
-		for (PinNode p : getAllPins(pinName)) {
+		for (Pin p : getAllPins(pinName)) {
 			int start = p.getName().indexOf('[');
 			int end = p.getName().indexOf(']');
 			if (start != -1 && end != -1) {
@@ -308,7 +294,7 @@ public class InstanceNode extends Attributable {
 
 	@Override
 	public boolean equals(Object o) {
-		return this.name.equals(((InstanceNode) o).getName())
-			&& this.index == ((InstanceNode) o).getIndex();
+		return this.name.equals(((Instance) o).getName())
+				&& this.index == ((Instance) o).getIndex();
 	}
 }

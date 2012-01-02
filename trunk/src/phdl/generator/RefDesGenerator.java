@@ -26,8 +26,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-import phdl.graph.DesignNode;
-import phdl.graph.InstanceNode;
+import phdl.graph.Design;
+import phdl.graph.Instance;
 
 /**
  * A class that generates a Reference Designator mapping and file.
@@ -38,8 +38,8 @@ import phdl.graph.InstanceNode;
  */
 public class RefDesGenerator {
 
-	private Map<String, InstanceNode> refMap = new TreeMap<String, InstanceNode>();
-	private DesignNode design;
+	private Map<String, Instance> refMap = new TreeMap<String, Instance>();
+	private Design design;
 
 	/**
 	 * Default Constructor.
@@ -49,9 +49,9 @@ public class RefDesGenerator {
 	 * @param design
 	 *            the DesignNode that contains the InstanceNode information.
 	 * 
-	 * @see DesignNode
+	 * @see Design
 	 */
-	public RefDesGenerator(DesignNode design) {
+	public RefDesGenerator(Design design) {
 		this.design = design;
 		generate();
 	}
@@ -59,7 +59,7 @@ public class RefDesGenerator {
 	private void generate() {
 
 		// map all of the refDes's that have been manually constrained
-		for (InstanceNode i : design.getInstances()) {
+		for (Instance i : design.getInstances()) {
 			if (i.getRefDes() != null && !i.getRefDes().equals("")) {
 				if (!refMap.keySet().contains(i.getRefDes())) {
 					refMap.put(i.getRefDes(), i);
@@ -80,7 +80,7 @@ public class RefDesGenerator {
 				String line = "";
 				while ((line = in.readLine()) != null) {
 					String[] refDes = line.split(",");
-					InstanceNode inst = design.getInstance(refDes[1]);
+					Instance inst = design.getInstance(refDes[1]);
 					if (inst.getRefDes() == null || inst.getRefDes().equals(""))
 						inst.setRefDes(refDes[0]);
 					if (!refMap.keySet().contains(refDes[0]))
@@ -93,7 +93,7 @@ public class RefDesGenerator {
 		}
 
 		// assign refDes's to everything else that hasn't been manually constrained
-		for (InstanceNode i : design.getInst_wo_RefDes()) {
+		for (Instance i : design.getInst_wo_RefDes()) {
 			for (int j = 1;; j++) {
 				String refDes = i.getRefPrefix() + j;
 				if (!refMap.keySet().contains(refDes)) {
@@ -109,10 +109,10 @@ public class RefDesGenerator {
 	 * Returns the RefDes mapping.
 	 * 
 	 * @return a map with RefDes as the key and InstanceNode as the value
-	 * @see InstanceNode
+	 * @see Instance
 	 * 
 	 */
-	public Map<String, InstanceNode> getRefMap() {
+	public Map<String, Instance> getRefMap() {
 		return refMap;
 	}
 

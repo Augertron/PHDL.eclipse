@@ -27,11 +27,11 @@ import java.util.TreeSet;
  * @author Brad Riching and Richard Black
  * @version 0.1
  */
-public class NetNode extends Attributable {
+public class Net extends Attributable {
 
-	private Set<NetNode> nets;
-	private List<PinNode> pins;
-	private DesignNode design;
+	private Set<Net> nets;
+	private List<Pin> pins;
+	private Design design;
 	private boolean visited = false;
 
 	/**
@@ -40,11 +40,11 @@ public class NetNode extends Attributable {
 	 * @param d
 	 *            the DesignNode that is the parent of this net
 	 */
-	public NetNode(DesignNode d) {
+	public Net(Design d) {
 		super();
 		setDesign(d);
-		nets = new TreeSet<NetNode>();
-		pins = new ArrayList<PinNode>();
+		nets = new TreeSet<Net>();
+		pins = new ArrayList<Pin>();
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class NetNode extends Attributable {
 	 * 
 	 * @return the set of PinNodes attached to this net
 	 */
-	public List<PinNode> getPinNodes() {
+	public List<Pin> getPinNodes() {
 		return pins;
 	}
 
@@ -84,7 +84,7 @@ public class NetNode extends Attributable {
 	 *            the new PinNode
 	 * @return true, if the pin wasn't in the List false, otherwise
 	 */
-	public boolean addPin(PinNode p) {
+	public boolean addPin(Pin p) {
 		return (!pins.add(p));
 	}
 
@@ -95,7 +95,7 @@ public class NetNode extends Attributable {
 	 * 
 	 * @return the set of NetNodes attached to this net
 	 */
-	public Set<NetNode> getNetNodes() {
+	public Set<Net> getNetNodes() {
 		return nets;
 	}
 
@@ -114,7 +114,7 @@ public class NetNode extends Attributable {
 	 * @param n
 	 *            the net to remove
 	 */
-	public void removeNet(NetNode n) {
+	public void removeNet(Net n) {
 		nets.remove(n);
 	}
 
@@ -125,7 +125,7 @@ public class NetNode extends Attributable {
 	 *            the new NetNode to add
 	 * @return true, if the NetNode isn't already connected, false otherwise
 	 */
-	public boolean addNet(NetNode n) {
+	public boolean addNet(Net n) {
 		return (!nets.add(n));
 	}
 
@@ -136,14 +136,14 @@ public class NetNode extends Attributable {
 	 *            the NetNode to merge with
 	 * @return true, if that NetNode is connected to this one, false otherwise
 	 */
-	public boolean mergeNet(NetNode n) {
-		for (NetNode m : this.getNetNodes()) {
+	public boolean mergeNet(Net n) {
+		for (Net m : this.getNetNodes()) {
 			if (m.equals(n)) {
-				for (NetNode a : m.getNetNodes()) {
+				for (Net a : m.getNetNodes()) {
 					addNet(a);
-					((NetNode) a).removeNet(m);
+					((Net) a).removeNet(m);
 				}
-				for (PinNode p : m.getPinNodes()) {
+				for (Pin p : m.getPinNodes()) {
 					addPin(p);
 				}
 				nets.remove(m);
@@ -161,7 +161,7 @@ public class NetNode extends Attributable {
 	 * 
 	 * @return NodeType.NET
 	 */
-	public NodeType getType() {
+	public NodeType getNodeType() {
 		return NodeType.NET;
 	}
 
@@ -171,7 +171,7 @@ public class NetNode extends Attributable {
 	 * @param design
 	 *            the new DesignNode
 	 */
-	public void setDesign(DesignNode design) {
+	public void setDesign(Design design) {
 		this.design = design;
 	}
 
@@ -180,7 +180,7 @@ public class NetNode extends Attributable {
 	 * 
 	 * @return the NetNode's parent DesignNode
 	 */
-	public DesignNode getDesign() {
+	public Design getDesign() {
 		return design;
 	}
 
@@ -192,11 +192,11 @@ public class NetNode extends Attributable {
 	 */
 	public String toString() {
 		String myString = super.toString() + " $ ";
-		for (NetNode n : nets) {
+		for (Net n : nets) {
 			myString += n.getName() + " $ ";
 		}
 		myString = myString.substring(0, myString.length() - 3);
-		for (AttributeNode a : attributes) {
+		for (Attribute a : attributes) {
 			myString += "\n\t\t" + a.toString();
 		}
 		return myString;
@@ -227,8 +227,8 @@ public class NetNode extends Attributable {
 	 * 
 	 * @return the first NetNode that is unvisited, null if there aren't any
 	 */
-	public NetNode getUnvisitedNet() {
-		for (NetNode n : nets) {
+	public Net getUnvisitedNet() {
+		for (Net n : nets) {
 			if (!n.isVisited())
 				return n;
 		}

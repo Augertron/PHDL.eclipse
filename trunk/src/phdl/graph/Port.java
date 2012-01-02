@@ -25,15 +25,15 @@ package phdl.graph;
  * @version 0.l
  *
  */
-public class PortNode extends Node {
+public class Port extends Node {
 	
-	private NetNode net;
-	private PinNode pin;
+	private Net net;
+	private Pin pin;
 
 	/**
 	 * Default Constructor.
 	 */
-	public PortNode() {
+	public Port() {
 		
 	}
 
@@ -42,7 +42,7 @@ public class PortNode extends Node {
 	 * 
 	 * @return		the NetNode connected to this port
 	 */
-	public NetNode getNet() {
+	public Net getNet() {
 		return net;
 	}
 
@@ -51,7 +51,7 @@ public class PortNode extends Node {
 	 * 
 	 * @param net	the new NetNode to connect to this port
 	 */
-	public void setNet(NetNode net) {
+	public void setNet(Net net) {
 		this.net = net;
 	}
 	
@@ -60,7 +60,7 @@ public class PortNode extends Node {
 	 * 
 	 * @return		the PinNode connected to this port
 	 */
-	public PinNode getPin() {
+	public Pin getPin() {
 		return pin;
 	}
 	
@@ -69,7 +69,7 @@ public class PortNode extends Node {
 	 * 
 	 * @param pin	the new PinNode to connect to this port
 	 */
-	public void setPin(PinNode pin) {
+	public void setPin(Pin pin) {
 		this.pin = pin;
 	}
 	
@@ -99,7 +99,7 @@ public class PortNode extends Node {
 	 * 
 	 * @return NodeType.PORT
 	 */
-	public NodeType getType() {
+	public NodeType getNodeType() {
 		return NodeType.PORT;
 	}
 	

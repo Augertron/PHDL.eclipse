@@ -121,10 +121,10 @@ public class PhdlWalker extends TreeParser {
     	/**
     	 * The set of processed design nodes
     	 */
-    	private Set<DesignNode> designNodes = new HashSet<DesignNode>();
+    	private Set<Design> designNodes = new HashSet<Design>();
     	
-    	public DesignNode getDesignNode(String name) {
-        for (DesignNode d : designNodes) {
+    	public Design getDesignNode(String name) {
+        for (Design d : designNodes) {
           if (d.getName().equals(name)) {
             return d;
           }
@@ -216,7 +216,7 @@ public class PhdlWalker extends TreeParser {
     	/**
     	 * Called to obtain the set of design nodes after the walker has finished processing the tree
     	 */
-    	public Set<DesignNode> getDesignNodes() {
+    	public Set<Design> getDesignNodes() {
     		return designNodes;
     	}
     	
@@ -233,7 +233,7 @@ public class PhdlWalker extends TreeParser {
     	 * Helper method for the pinAssignment rule.  Given a list of slices, concats, an instance node, and a pinNode
     	 * it assigns all relevant pins to their respective net.
     	 */
-    	private void assignPins(int start, List<Integer> slices, List<NetNode> concats, InstanceNode inst, CommonTree pinNode, boolean combine) {
+    	private void assignPins(int start, List<Integer> slices, List<Net> concats, Instance inst, CommonTree pinNode, boolean combine) {
     		if (start == -1) {
     			// Non-arrayed instance
     			assignNonArrayed(slices, concats, inst, pinNode);
@@ -250,15 +250,15 @@ public class PhdlWalker extends TreeParser {
     	/**
     	 * Helper method for assignPins for arrayed instances
     	 */
-    	private void assignArrayedCombine(int start, List<Integer> slices, List<NetNode> concats, InstanceNode inst, CommonTree pinNode) {
+    	private void assignArrayedCombine(int start, List<Integer> slices, List<Net> concats, Instance inst, CommonTree pinNode) {
     		String pinName = pinNode.getText();
     		if (slices.isEmpty()) {	// Single-bit lval
     			// Grab one net from concats
-    			PinNode p = inst.getPin(pinName);
+    			Pin p = inst.getPin(pinName);
     			setConcatToPin(p, concats.get(start), pinNode);
     		} else {	// Multi-bit lval
     			for (int i = 0; i < slices.size(); i++) {
-    				PinNode p = inst.getPin(pinName + "[" + slices.get(i) + "]");
+    				Pin p = inst.getPin(pinName + "[" + slices.get(i) + "]");
     				setConcatToPin(p, concats.get(i + start), pinNode);
     			}
     		}
@@ -267,15 +267,15 @@ public class PhdlWalker extends TreeParser {
     	/**
        * Helper method for assignPins for arrayed instances
        */
-      private void assignArrayedEach(List<Integer> slices, List<NetNode> concats, InstanceNode inst, CommonTree pinNode) {
+      private void assignArrayedEach(List<Integer> slices, List<Net> concats, Instance inst, CommonTree pinNode) {
         String pinName = pinNode.getText();
         if (slices.isEmpty()) { // Single-bit lval
           // Grab one net from concats
-          PinNode p = inst.getPin(pinName);
+          Pin p = inst.getPin(pinName);
           setConcatToPin(p, concats.get(0), pinNode);
         } else {  // Multi-bit lval
           for (int i = 0; i < slices.size(); i++) {
-            PinNode p = inst.getPin(pinName + "[" + slices.get(i) + "]");
+            Pin p = inst.getPin(pinName + "[" + slices.get(i) + "]");
             setConcatToPin(p, concats.get(i), pinNode);
           }
         }
@@ -284,7 +284,7 @@ public class PhdlWalker extends TreeParser {
     	/**
     	 * forms the link between a pin node and net node in the design.
     	 */
-    	private void setConcatToPin(PinNode p, NetNode n, CommonTree pinNode) {
+    	private void setConcatToPin(Pin p, Net n, CommonTree pinNode) {
     		if (p != null) {
     			if (p.hasNet()) {
     				addWarning(p, "pin " + p.getIndex() + " already assigned");
@@ -302,7 +302,7 @@ public class PhdlWalker extends TreeParser {
     	/**
     	 * Helper method for assignPins for non-arrayed instances
     	 */
-    	private void assignNonArrayed(List<Integer> slices, List<NetNode> concats, InstanceNode inst, CommonTree pinNode) {
+    	private void assignNonArrayed(List<Integer> slices, List<Net> concats, Instance inst, CommonTree pinNode) {
     		String pinName = pinNode.getText();
     		if (slices.isEmpty()) {	// Single-bit lval
     			if (concats.size() == 1) {	// Single-bit rval
@@ -314,7 +314,7 @@ public class PhdlWalker extends TreeParser {
     		} else {	// Multi-bit lval
     			if (concats.size() == slices.size()) {	// Verify same length
     				for (int i = 0; i < concats.size(); i++) {
-    					PinNode p = inst.getPin(pinName + "[" + slices.get(i) + "]");
+    					Pin p = inst.getPin(pinName + "[" + slices.get(i) + "]");
     					setConcatToPin(p, concats.get(i), pinNode);
     				}
     			} else {	// Invalid length, ERROR
@@ -410,7 +410,7 @@ public class PhdlWalker extends TreeParser {
             match(input, Token.DOWN, null); 
             desName=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_designDecl80); 
             	// make a new design based on the identifier and log its location
-            				DesignNode des = new DesignNode();
+            				Design des = new Design();
             				des.setName((desName!=null?desName.getText():null));
             				des.setLocation((desName!=null?desName.getLine():0), (desName!=null?desName.getCharPositionInLine():0), 
             					desName.getToken().getInputStream().getSourceName());
@@ -556,7 +556,7 @@ public class PhdlWalker extends TreeParser {
             					addError(des, "duplicate design unit");
             					
             				// report any unused device declarations
-            				for (DeviceNode dev : des.getDevices()) {
+            				for (Device dev : des.getDevices()) {
             					if (!des.isDeviceInstanced(dev))
             						addWarning(dev, "unused device declaration");
             				}
@@ -564,8 +564,8 @@ public class PhdlWalker extends TreeParser {
             				Set<String> refDesSet = new HashSet<String>();
             				
             				// report any dangling pins in all instances
-            				for (InstanceNode i : des.getInstances()) {
-            					for (PinNode p : i.getPins()) {
+            				for (Instance i : des.getInstances()) {
+            					for (Pin p : i.getPins()) {
             						if (!p.hasNet())
             							addError(i, "dangling pin " + p.getName() + " in instance");
             					}
@@ -588,7 +588,7 @@ public class PhdlWalker extends TreeParser {
 
     // $ANTLR start "subDesignInstance"
     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:368:1: subDesignInstance[DesignNode des] : ^( 'sub' ( arrayList[indices] )? subDesName= IDENT desName= IDENT ) ;
-    public final void subDesignInstance(DesignNode des) throws RecognitionException {
+    public final void subDesignInstance(Design des) throws RecognitionException {
         CommonTree subDesName=null;
         CommonTree desName=null;
 
@@ -599,7 +599,7 @@ public class PhdlWalker extends TreeParser {
             match(input,34,FOLLOW_34_in_subDesignInstance172); 
 
              // Set of instance nodes to check for duplicates
-                    List<DesignNode> subDesignNodes = new ArrayList<DesignNode>();
+                    List<Design> subDesignNodes = new ArrayList<Design>();
                     // List of indices to be derived from the arrayList
                     List<Integer> indices = new ArrayList<Integer>();
                   
@@ -681,7 +681,7 @@ public class PhdlWalker extends TreeParser {
 
     // $ANTLR start "groupStruct"
     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:420:1: groupStruct[DesignNode des] : ^( 'group' groupName= STRING ( instDecl[des, $groupName.text] | netAssign[des] )* ) ;
-    public final void groupStruct(DesignNode des) throws RecognitionException {
+    public final void groupStruct(Design des) throws RecognitionException {
         CommonTree groupName=null;
 
         try {
@@ -754,7 +754,7 @@ public class PhdlWalker extends TreeParser {
 
     // $ANTLR start "deviceDecl"
     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:424:1: deviceDecl[DesignNode des] : ^( 'device' devName= IDENT ( attributeDecl[devices] | pinDecl[dev] )* ) ;
-    public final void deviceDecl(DesignNode des) throws RecognitionException {
+    public final void deviceDecl(Design des) throws RecognitionException {
         CommonTree devName=null;
 
         try {
@@ -766,7 +766,7 @@ public class PhdlWalker extends TreeParser {
             match(input, Token.DOWN, null); 
             devName=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_deviceDecl327); 
             	// make a new device based on the identifier and log its location
-            				DeviceNode dev = new DeviceNode(des);
+            				Device dev = new Device(des);
             				dev.setName((devName!=null?devName.getText():null));
             				dev.setLocation((devName!=null?devName.getLine():0), (devName!=null?devName.getCharPositionInLine():0), 
             					devName.getToken().getInputStream().getSourceName());
@@ -869,7 +869,7 @@ public class PhdlWalker extends TreeParser {
             match(input, Token.UP, null); 
             	for (Attributable parent : parents) {
             		    		// make a new attribute node, assign its parent, and log its location
-            		    		AttributeNode a  = new AttributeNode(parent);
+            		    		Attribute a  = new Attribute(parent);
             		    		a.setName((attrName!=null?attrName.getText():null));
             					a.setValue((attrValue!=null?attrValue.getText():null));
             		    		a.setLocation((attrName!=null?attrName.getLine():0), (attrName!=null?attrName.getCharPositionInLine():0), 
@@ -904,7 +904,7 @@ public class PhdlWalker extends TreeParser {
 
     // $ANTLR start "pinDecl"
     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:510:1: pinDecl[DeviceNode dev] : ^( 'pin' ( sliceList[sList] )? pinName= IDENT pinList[pList] ) ;
-    public final void pinDecl(DeviceNode dev) throws RecognitionException {
+    public final void pinDecl(Device dev) throws RecognitionException {
         CommonTree pinName=null;
 
         try {
@@ -959,7 +959,7 @@ public class PhdlWalker extends TreeParser {
             				
             				// make new pin nodes for all slices by appending the slice reference in brackets to the name
             	        	for (int i = 0; i < sList.size(); i++) {
-            	        		PinNode newPin = new PinNode(dev);
+            	        		Pin newPin = new Pin(dev);
             	        		newPin.setName((pinName!=null?pinName.getText():null) + "[" + sList.get(i) + "]");
             					newPin.setLocation((pinName!=null?pinName.getLine():0), (pinName!=null?pinName.getCharPositionInLine():0), 
             						pinName.getToken().getInputStream().getSourceName());
@@ -978,7 +978,7 @@ public class PhdlWalker extends TreeParser {
             				
             				// otherwise make a new pin node directly from the name
             				if (sList.isEmpty()) {
-            					PinNode newPin = new PinNode(dev);
+            					Pin newPin = new Pin(dev);
             					newPin.setName((pinName!=null?pinName.getText():null));
             					newPin.setLocation((pinName!=null?pinName.getLine():0), (pinName!=null?pinName.getCharPositionInLine():0), 
             						pinName.getToken().getInputStream().getSourceName());
@@ -1016,7 +1016,7 @@ public class PhdlWalker extends TreeParser {
 
     // $ANTLR start "netDecl"
     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:593:1: netDecl[DesignNode des] : ^( 'net' ( sliceList[slices] )? firstName= IDENT ( COMMA nextName= IDENT )* ( attributeDecl[netNodes] )* ) ;
-    public final void netDecl(DesignNode des) throws RecognitionException {
+    public final void netDecl(Design des) throws RecognitionException {
         CommonTree firstName=null;
         CommonTree nextName=null;
 
@@ -1056,7 +1056,7 @@ public class PhdlWalker extends TreeParser {
 
             firstName=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_netDecl538); 
             	for (int i = 0; i < slices.size(); i++) {
-            					NetNode newNet = new NetNode(des);
+            					Net newNet = new Net(des);
             					newNet.setName((firstName!=null?firstName.getText():null) + "[" + slices.get(i) + "]");
             					newNet.setLocation((firstName!=null?firstName.getLine():0), (firstName!=null?firstName.getCharPositionInLine():0), 
             						firstName.getToken().getInputStream().getSourceName());
@@ -1064,7 +1064,7 @@ public class PhdlWalker extends TreeParser {
             				}
             				
             				if (slices.isEmpty()) {
-            					NetNode newNet = new NetNode(des);
+            					Net newNet = new Net(des);
             					newNet.setName((firstName!=null?firstName.getText():null));
             					newNet.setLocation((firstName!=null?firstName.getLine():0), (firstName!=null?firstName.getCharPositionInLine():0), 
             						firstName.getToken().getInputStream().getSourceName());
@@ -1090,7 +1090,7 @@ public class PhdlWalker extends TreeParser {
             	    match(input,COMMA,FOLLOW_COMMA_in_netDecl568); 
             	    nextName=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_netDecl572); 
             	    	for (int i = 0; i < slices.size(); i++) {
-            	    					NetNode newNet = new NetNode(des);
+            	    					Net newNet = new Net(des);
             	    					newNet.setName((nextName!=null?nextName.getText():null) + "[" + slices.get(i) + "]");
             	    					newNet.setLocation((nextName!=null?nextName.getLine():0), (nextName!=null?nextName.getCharPositionInLine():0), 
             	    						nextName.getToken().getInputStream().getSourceName());
@@ -1098,7 +1098,7 @@ public class PhdlWalker extends TreeParser {
             	    				}
             	    				
             	    				if (slices.isEmpty()) {
-            	    					NetNode newNet = new NetNode(des);
+            	    					Net newNet = new Net(des);
             	    					newNet.setName((nextName!=null?nextName.getText():null));
             	    					newNet.setLocation((nextName!=null?nextName.getLine():0), (nextName!=null?nextName.getCharPositionInLine():0), 
             	    						nextName.getToken().getInputStream().getSourceName());
@@ -1149,7 +1149,7 @@ public class PhdlWalker extends TreeParser {
             	for (Attributable n : netNodes) {
             			
             					// check for duplicate net declarations
-            					if(!des.addNet((NetNode) n))
+            					if(!des.addNet((Net) n))
             						addError(n, "duplicate net declaration");
             					
             					// check for overall duplicates based solely on the name of the net
@@ -1174,7 +1174,7 @@ public class PhdlWalker extends TreeParser {
 
     // $ANTLR start "instDecl"
     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:675:1: instDecl[DesignNode des, String groupName] : ^( 'inst' ( arrayList[indices] )? instName= IDENT devName= IDENT ( attrAssign[des, $instName.text] | pinAssign[des, $instName.text] | infoStruct )* ) ;
-    public final void instDecl(DesignNode des, String groupName) throws RecognitionException {
+    public final void instDecl(Design des, String groupName) throws RecognitionException {
         CommonTree instName=null;
         CommonTree devName=null;
         String infoStruct2 = null;
@@ -1187,7 +1187,7 @@ public class PhdlWalker extends TreeParser {
             match(input,32,FOLLOW_32_in_instDecl637); 
 
             	// Set of instance nodes to check for duplicates
-            				List<InstanceNode> instNodes = new ArrayList<InstanceNode>();
+            				List<Instance> instNodes = new ArrayList<Instance>();
             				// List of indices to be derived from the arrayList
             				List<Integer> indices = new ArrayList<Integer>();
             			
@@ -1220,22 +1220,22 @@ public class PhdlWalker extends TreeParser {
             	// make as many instance nodes as there are indices
             				for (int j = 0; j < indices.size(); j++) {
             				
-            					InstanceNode i = new InstanceNode(des);
+            					Instance i = new Instance(des);
             					i.setName((instName!=null?instName.getText():null) + "(" + indices.get(j) + ")");
             					i.setLocation((instName!=null?instName.getLine():0), (instName!=null?instName.getCharPositionInLine():0), 
             						instName.getToken().getInputStream().getSourceName());
             					i.setGroupName(groupName);
             					
             					// find the corresponding device declaration
-            					DeviceNode dev = des.getDevice((devName!=null?devName.getText():null));
+            					Device dev = des.getDevice((devName!=null?devName.getText():null));
             					if (dev != null) {
             						i.setDevice(dev);
             						// copy all of the attribute and pin nodes from the device definition
-            						for (AttributeNode a: dev.getAttributes()) {
-            							i.addAttribute(new AttributeNode(a, i));
+            						for (Attribute a: dev.getAttributes()) {
+            							i.addAttribute(new Attribute(a, i));
             						}
-            						for (PinNode pn: dev.getPins())
-            							i.addPin(new PinNode(pn, i));
+            						for (Pin pn: dev.getPins())
+            							i.addPin(new Pin(pn, i));
             						instNodes.add(i);
             					} else
             						bailOut(i, "instance references undeclared device");
@@ -1244,21 +1244,21 @@ public class PhdlWalker extends TreeParser {
             				
             				// otherwise make only one instance node based on the instName
             				if (indices.isEmpty()) {
-            					InstanceNode i = new InstanceNode(des);
+            					Instance i = new Instance(des);
             					i.setName((instName!=null?instName.getText():null));
             					i.setLocation((instName!=null?instName.getLine():0), (instName!=null?instName.getCharPositionInLine():0), 
             						instName.getToken().getInputStream().getSourceName());
             					i.setGroupName(groupName);
             					
             					// find the corresponding device declaration
-            					DeviceNode dev = des.getDevice((devName!=null?devName.getText():null));
+            					Device dev = des.getDevice((devName!=null?devName.getText():null));
             					if (dev != null) {
             						i.setDevice(dev);
             						// add all of the attribute and pin nodes from the device definition
-            						for (AttributeNode a: dev.getAttributes())
-            							i.addAttribute(new AttributeNode(a, i));
-            						for (PinNode pn: dev.getPins())
-            							i.addPin(new PinNode(pn, i));
+            						for (Attribute a: dev.getAttributes())
+            							i.addAttribute(new Attribute(a, i));
+            						for (Pin pn: dev.getPins())
+            							i.addPin(new Pin(pn, i));
             						instNodes.add(i);
             					} else
             						bailOut(i, "instance references undeclared device");
@@ -1266,7 +1266,7 @@ public class PhdlWalker extends TreeParser {
             				}
             			
             				// check for duplicates
-            				for (InstanceNode i : instNodes) {
+            				for (Instance i : instNodes) {
             					if(!des.addInstance(i))
             						addError(i, "duplicate instance declaration");
             				}
@@ -1326,20 +1326,20 @@ public class PhdlWalker extends TreeParser {
             match(input, Token.UP, null); 
             					
             				// obtain the device which the instance references
-            				DeviceNode dev = des.getDevice((devName!=null?devName.getText():null));
+            				Device dev = des.getDevice((devName!=null?devName.getText():null));
             				String refPrefix = null;
             				if (dev != null) {
             					// obtain the reference prefix defined in the device
-            					for (AttributeNode a : dev.getAttributes()) {
+            					for (Attribute a : dev.getAttributes()) {
             						if (a.getName().equals("REFPREFIX"))
             							refPrefix = a.getValue();
             					}
             				}
             				
             				// assign the reference prefix and designator if it exists
-            				for (InstanceNode i : des.getAllInstances((instName!=null?instName.getText():null))) {
+            				for (Instance i : des.getAllInstances((instName!=null?instName.getText():null))) {
             					i.appendInfo(info);
-            					for (AttributeNode a : i.getAttributes()) {
+            					for (Attribute a : i.getAttributes()) {
             						if (a.getName().equals("REFPREFIX"))
             							i.setRefPrefix(a.getValue());
             						if (a.getName().equals("PKG_TYPE"))
@@ -1366,7 +1366,7 @@ public class PhdlWalker extends TreeParser {
 
     // $ANTLR start "attrAssign"
     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:790:1: attrAssign[DesignNode des, String instName] : ^( EQUALS ( 'newattr' )? ( attributeQualifier[instName, indices, des] | arrayIndices[instName, indices, des] ) attrName= IDENT attrValue= STRING ) ;
-    public final void attrAssign(DesignNode des, String instName) throws RecognitionException {
+    public final void attrAssign(Design des, String instName) throws RecognitionException {
         CommonTree attrName=null;
         CommonTree attrValue=null;
 
@@ -1452,10 +1452,10 @@ public class PhdlWalker extends TreeParser {
             	// for every index in the instance qualifier array list
             				for(int i = 0; i < indices.size(); i++) {
             					// find the instance node in the design with the right index
-            					InstanceNode inst = des.getInstance(instName + "(" + indices.get(i) + ")");
+            					Instance inst = des.getInstance(instName + "(" + indices.get(i) + ")");
             					if(inst!=null){
             						// find its attribute by the attribute name
-            						AttributeNode a = inst.getAttribute((attrName!=null?attrName.getText():null));
+            						Attribute a = inst.getAttribute((attrName!=null?attrName.getText():null));
             						if (a!=null) {
             							// check if the attribute is a refprefix attribute
             							if (a.getName().equals("REFPREFIX")) {
@@ -1471,7 +1471,7 @@ public class PhdlWalker extends TreeParser {
             						} else {
             							if (newAttr) {
             								// make a new attribute if explicitly asked to do so
-            								AttributeNode newA = new AttributeNode(inst);
+            								Attribute newA = new Attribute(inst);
             								newA.setName((attrName!=null?attrName.getText():null));
             								newA.setValue((attrValue!=null?attrValue.getText():null));
             								newA.setLocation((attrName!=null?attrName.getLine():0), (attrName!=null?attrName.getCharPositionInLine():0), 
@@ -1491,9 +1491,9 @@ public class PhdlWalker extends TreeParser {
             				// if the instance is not arrayed
             				if (indices.isEmpty()) {
             					// for every instance node with this instance name
-            					for (InstanceNode inst : des.getAllInstances(instName)) {
+            					for (Instance inst : des.getAllInstances(instName)) {
             						// find its attribute by the attribute name
-            						AttributeNode a = inst.getAttribute((attrName!=null?attrName.getText():null));
+            						Attribute a = inst.getAttribute((attrName!=null?attrName.getText():null));
             						if (a!=null) {
             							// check if the attribute is a refprefix attribute
             							if (a.getName().equals("REFPREFIX")) {
@@ -1510,7 +1510,7 @@ public class PhdlWalker extends TreeParser {
             							// the attribute doesn't exist
             							if (newAttr) {
             								// make a new attribute if explicitly asked to do so
-            								AttributeNode newA = new AttributeNode(inst);
+            								Attribute newA = new Attribute(inst);
             								newA.setName((attrName!=null?attrName.getText():null));
             								newA.setValue((attrValue!=null?attrValue.getText():null));
             								newA.setLocation((attrName!=null?attrName.getLine():0), (attrName!=null?attrName.getCharPositionInLine():0), 
@@ -1541,7 +1541,7 @@ public class PhdlWalker extends TreeParser {
 
     // $ANTLR start "pinAssign"
     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:899:1: pinAssign[DesignNode des, String instName] : ^( EQUALS ( pinQualifier[instName, indices, des] | arrayIndices[instName, indices, des] ) pinName= IDENT ( sliceList[slices] | pinSlices[slices, $pinName.text, des, instName] ) concatenation[concats, assignWidth, des] ) ;
-    public final void pinAssign(DesignNode des, String instName) throws RecognitionException {
+    public final void pinAssign(Design des, String instName) throws RecognitionException {
         CommonTree pinName=null;
         boolean pinQualifier3 = false;
 
@@ -1554,7 +1554,7 @@ public class PhdlWalker extends TreeParser {
 
             	List<Integer> indices = new ArrayList<Integer>();
             				List<Integer> slices = new ArrayList<Integer>();
-            				List<NetNode> concats = new ArrayList<NetNode>();
+            				List<Net> concats = new ArrayList<Net>();
             			
             boolean combine = false;
 
@@ -1689,7 +1689,7 @@ public class PhdlWalker extends TreeParser {
             				// for all the indices in the array list
             				for (int j = 0; j < indices.size(); j++) {
             					// for all isntances with this pinName
-            					for (InstanceNode inst : des.getAllInstances(instName)) {
+            					for (Instance inst : des.getAllInstances(instName)) {
             						// assign pins for only those whose index is in the list of indices
             						if(inst.findIndex() == indices.get(j)) {
             							int start;
@@ -1703,7 +1703,7 @@ public class PhdlWalker extends TreeParser {
             					}
             				}
             				if (indices.isEmpty()) {
-            					InstanceNode inst = des.getInstance(instName);
+            					Instance inst = des.getInstance(instName);
             					assignPins(-1,slices, concats, inst, pinName, combine);
             				}
             				
@@ -1725,7 +1725,7 @@ public class PhdlWalker extends TreeParser {
 
     // $ANTLR start "netAssign"
     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:974:1: netAssign[DesignNode des] : ^( EQUALS netName= IDENT ( sliceList[slices] | netSlices[slices, $netName.text, des] ) concatenation[concats, slices.size(), des] ) ;
-    public final void netAssign(DesignNode des) throws RecognitionException {
+    public final void netAssign(Design des) throws RecognitionException {
         CommonTree netName=null;
 
         try {
@@ -1735,7 +1735,7 @@ public class PhdlWalker extends TreeParser {
             match(input,EQUALS,FOLLOW_EQUALS_in_netAssign934); 
 
             	List<Integer> slices = new ArrayList<Integer>();
-            				List<NetNode> concats = new ArrayList<NetNode>();
+            				List<Net> concats = new ArrayList<Net>();
             			
 
             match(input, Token.DOWN, null); 
@@ -1794,7 +1794,7 @@ public class PhdlWalker extends TreeParser {
             				}
             				if (slices.isEmpty()) {
             					if (concats.size() == 1) {
-            						NetNode n = des.getNet((netName!=null?netName.getText():null));
+            						Net n = des.getNet((netName!=null?netName.getText():null));
             						if (n != null) {
             							n.addNet(concats.get(0));
             							concats.get(0).addNet(n);
@@ -1808,7 +1808,7 @@ public class PhdlWalker extends TreeParser {
             				} else {
             					if (concats.size() == slices.size()) {
             						for (int i = 0; i < concats.size(); i++) {
-            							NetNode n = des.getNet((netName!=null?netName.getText():null) + "[" + slices.get(i) + "]");
+            							Net n = des.getNet((netName!=null?netName.getText():null) + "[" + slices.get(i) + "]");
             							if (n != null) { 
             								n.addNet(concats.get(i));
             								concats.get(i).addNet(n);
@@ -1839,7 +1839,7 @@ public class PhdlWalker extends TreeParser {
 
     // $ANTLR start "concatenation"
     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1024:1: concatenation[List<NetNode> concats, int assignWidth, DesignNode des] : ( (first= IDENT ( sliceList[slices] | concatSlices[slices, $first.text, des] ) (next= IDENT ( sliceList[slices] | concatSlices[slices, $next.text, des] ) )* ) | ( LEFTANGLE global= IDENT ( sliceList[slices] | concatSlices[slices, $global.text, des] ) ) | ( 'open' ) ) ;
-    public final void concatenation(List<NetNode> concats, int assignWidth, DesignNode des) throws RecognitionException {
+    public final void concatenation(List<Net> concats, int assignWidth, Design des) throws RecognitionException {
         CommonTree first=null;
         CommonTree next=null;
         CommonTree global=null;
@@ -1925,7 +1925,7 @@ public class PhdlWalker extends TreeParser {
                     }
 
                     	if(slices.size()==0) {
-                    					NetNode n = des.getNet((first!=null?first.getText():null));
+                    					Net n = des.getNet((first!=null?first.getText():null));
                     					if (n != null) {
                     						concats.add(n);
                     					} else {
@@ -1934,9 +1934,9 @@ public class PhdlWalker extends TreeParser {
                     				}
                     			
                     				for (int i = 0; i < slices.size(); i++) {
-                    					List<NetNode> nets = des.getAllNets((first!=null?first.getText():null));
+                    					List<Net> nets = des.getAllNets((first!=null?first.getText():null));
                     					if (!nets.isEmpty()) {
-                    						for (NetNode n : nets) {
+                    						for (Net n : nets) {
                     							if (n.getIndex() == slices.get(i))
                     								concats.add(n);
                     						}
@@ -2005,7 +2005,7 @@ public class PhdlWalker extends TreeParser {
                     	    }
 
                     	    	if(slices.size()==0) {
-                    	    					NetNode n = des.getNet((next!=null?next.getText():null));
+                    	    					Net n = des.getNet((next!=null?next.getText():null));
                     	    					if (n != null) {
                     	    						concats.add(n);
                     	    					} else {
@@ -2014,9 +2014,9 @@ public class PhdlWalker extends TreeParser {
                     	    				}
                     	    				
                     	    				for (int i = 0; i < slices.size(); i++) {
-                    	    					List<NetNode> nets = des.getAllNets((next!=null?next.getText():null));
+                    	    					List<Net> nets = des.getAllNets((next!=null?next.getText():null));
                     	    					if (!nets.isEmpty()) {
-                    	    						for (NetNode n : des.getAllNets((next!=null?next.getText():null))) {
+                    	    						for (Net n : des.getAllNets((next!=null?next.getText():null))) {
                     	    							if (n.getIndex() == slices.get(i))
                     	    								concats.add(n);
                     	    						}
@@ -2095,7 +2095,7 @@ public class PhdlWalker extends TreeParser {
 
                     	if (assignWidth==0) assignWidth++;
                     				if (slices.size()==1) {
-                    					NetNode n = des.getNet((global!=null?global.getText():null) + "[" + slices.get(0) + "]");
+                    					Net n = des.getNet((global!=null?global.getText():null) + "[" + slices.get(0) + "]");
                     					if (n != null) {
                     						for (int i = 0; i < assignWidth; i++)
                     							concats.add(n);
@@ -2103,7 +2103,7 @@ public class PhdlWalker extends TreeParser {
                     						bailOut(global, "undeclared net");
                     					}
                     				} else if(slices.isEmpty()) {
-                    					NetNode n = des.getNet((global!=null?global.getText():null));
+                    					Net n = des.getNet((global!=null?global.getText():null));
                     					if (n != null) {
                     						for (int i = 0; i < assignWidth; i++)
                     							concats.add(n);
@@ -2130,9 +2130,9 @@ public class PhdlWalker extends TreeParser {
                     	if (assignWidth==0)
                     					assignWidth++;
                     				
-                    				NetNode n = des.getNet("open");
+                    				Net n = des.getNet("open");
                     				if (n == null) {
-                    					n = new NetNode(des);
+                    					n = new Net(des);
                     					n.setName("open");
                     					n.setLocation(-1,-1, null);
                     					des.addNet(n);
@@ -2165,7 +2165,7 @@ public class PhdlWalker extends TreeParser {
 
     // $ANTLR start "attributeQualifier"
     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1135:1: attributeQualifier[String instName, List<Integer> indices, DesignNode des] : ^( PERIOD 'each' ( arrayList[indices] | arrayIndices[instName, indices, des] ) ) ;
-    public final void attributeQualifier(String instName, List<Integer> indices, DesignNode des) throws RecognitionException {
+    public final void attributeQualifier(String instName, List<Integer> indices, Design des) throws RecognitionException {
         try {
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1145:2: ( ^( PERIOD 'each' ( arrayList[indices] | arrayIndices[instName, indices, des] ) ) )
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1145:4: ^( PERIOD 'each' ( arrayList[indices] | arrayIndices[instName, indices, des] ) )
@@ -2235,7 +2235,7 @@ public class PhdlWalker extends TreeParser {
 
     // $ANTLR start "pinQualifier"
     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1148:1: pinQualifier[String instName, List<Integer> indices, DesignNode des] returns [boolean combine] : ^( PERIOD ( 'each' | 'combine' ) ( arrayList[indices] | arrayIndices[instName, indices, des] ) ) ;
-    public final boolean pinQualifier(String instName, List<Integer> indices, DesignNode des) throws RecognitionException {
+    public final boolean pinQualifier(String instName, List<Integer> indices, Design des) throws RecognitionException {
         boolean combine = false;
 
         try {
@@ -2342,7 +2342,7 @@ public class PhdlWalker extends TreeParser {
 
     // $ANTLR start "arrayIndices"
     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1161:1: arrayIndices[String instName, List<Integer> indices, DesignNode des] : ;
-    public final void arrayIndices(String instName, List<Integer> indices, DesignNode des) throws RecognitionException {
+    public final void arrayIndices(String instName, List<Integer> indices, Design des) throws RecognitionException {
         try {
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1166:2: ()
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1166:4: 
@@ -2361,12 +2361,12 @@ public class PhdlWalker extends TreeParser {
 
     // $ANTLR start "pinSlices"
     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1169:1: pinSlices[List<Integer> slices, String pinName, DesignNode des, String instName] : ;
-    public final void pinSlices(List<Integer> slices, String pinName, DesignNode des, String instName) throws RecognitionException {
+    public final void pinSlices(List<Integer> slices, String pinName, Design des, String instName) throws RecognitionException {
         try {
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1173:2: ()
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1173:4: 
             {
-            	InstanceNode inst = des.getAllInstances(instName).get(0);
+            	Instance inst = des.getAllInstances(instName).get(0);
             			List<Integer> pins = inst.getAllIndices(pinName);
             			slices.addAll(pins);
             		
@@ -2383,7 +2383,7 @@ public class PhdlWalker extends TreeParser {
 
     // $ANTLR start "netSlices"
     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1179:1: netSlices[List<Integer> slices, String netName, DesignNode des] : ;
-    public final void netSlices(List<Integer> slices, String netName, DesignNode des) throws RecognitionException {
+    public final void netSlices(List<Integer> slices, String netName, Design des) throws RecognitionException {
         try {
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1180:2: ()
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1180:4: 
@@ -2404,7 +2404,7 @@ public class PhdlWalker extends TreeParser {
 
     // $ANTLR start "concatSlices"
     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1185:1: concatSlices[List<Integer> slices, String netName, DesignNode des] : ;
-    public final void concatSlices(List<Integer> slices, String netName, DesignNode des) throws RecognitionException {
+    public final void concatSlices(List<Integer> slices, String netName, Design des) throws RecognitionException {
         try {
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1186:2: ()
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlWalker.g:1186:4: 
