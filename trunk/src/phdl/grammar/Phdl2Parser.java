@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:50:56 D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g 2012-01-04 08:34:01
+// $ANTLR 3.3 Nov 30, 2010 12:50:56 /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g 2012-01-04 12:06:21
 
 /*
     Copyright (C) 2011  Brigham Young University
@@ -155,7 +155,7 @@ public class Phdl2Parser extends Parser {
     }
 
     public String[] getTokenNames() { return Phdl2Parser.tokenNames; }
-    public String getGrammarFileName() { return "D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g"; }
+    public String getGrammarFileName() { return "/fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g"; }
 
 
 
@@ -189,7 +189,7 @@ public class Phdl2Parser extends Parser {
     };
 
     // $ANTLR start "sourceText"
-    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:229:1: sourceText : ( deviceDecl | designDecl )+ ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:229:1: sourceText : ( deviceDecl | designDecl )+ ;
     public final Phdl2Parser.sourceText_return sourceText() throws RecognitionException {
         Phdl2Parser.sourceText_return retval = new Phdl2Parser.sourceText_return();
         retval.start = input.LT(1);
@@ -203,12 +203,12 @@ public class Phdl2Parser extends Parser {
 
 
         try {
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:230:2: ( ( deviceDecl | designDecl )+ )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:230:4: ( deviceDecl | designDecl )+
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:230:2: ( ( deviceDecl | designDecl )+ )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:230:4: ( deviceDecl | designDecl )+
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:230:4: ( deviceDecl | designDecl )+
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:230:4: ( deviceDecl | designDecl )+
             int cnt1=0;
             loop1:
             do {
@@ -225,7 +225,7 @@ public class Phdl2Parser extends Parser {
 
                 switch (alt1) {
             	case 1 :
-            	    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:230:5: deviceDecl
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:230:5: deviceDecl
             	    {
             	    pushFollow(FOLLOW_deviceDecl_in_sourceText385);
             	    deviceDecl1=deviceDecl();
@@ -237,7 +237,7 @@ public class Phdl2Parser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:230:18: designDecl
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:230:18: designDecl
             	    {
             	    pushFollow(FOLLOW_designDecl_in_sourceText389);
             	    designDecl2=designDecl();
@@ -288,7 +288,7 @@ public class Phdl2Parser extends Parser {
     };
 
     // $ANTLR start "deviceDecl"
-    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:233:1: deviceDecl : DEVICE IDENT LBRACE ( infoDecl | attrDecl | pinDecl )* RBRACE -> ^( DEVICE_DECL IDENT ( infoDecl )* ( attrDecl )* ( pinDecl )* ) ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:233:1: deviceDecl : DEVICE IDENT LBRACE ( infoDecl | attrDecl | pinDecl )* RBRACE -> ^( DEVICE_DECL IDENT ( infoDecl )* ( attrDecl )* ( pinDecl )* ) ;
     public final Phdl2Parser.deviceDecl_return deviceDecl() throws RecognitionException {
         Phdl2Parser.deviceDecl_return retval = new Phdl2Parser.deviceDecl_return();
         retval.start = input.LT(1);
@@ -318,8 +318,8 @@ public class Phdl2Parser extends Parser {
         RewriteRuleSubtreeStream stream_attrDecl=new RewriteRuleSubtreeStream(adaptor,"rule attrDecl");
         RewriteRuleSubtreeStream stream_infoDecl=new RewriteRuleSubtreeStream(adaptor,"rule infoDecl");
         try {
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:234:2: ( DEVICE IDENT LBRACE ( infoDecl | attrDecl | pinDecl )* RBRACE -> ^( DEVICE_DECL IDENT ( infoDecl )* ( attrDecl )* ( pinDecl )* ) )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:234:4: DEVICE IDENT LBRACE ( infoDecl | attrDecl | pinDecl )* RBRACE
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:234:2: ( DEVICE IDENT LBRACE ( infoDecl | attrDecl | pinDecl )* RBRACE -> ^( DEVICE_DECL IDENT ( infoDecl )* ( attrDecl )* ( pinDecl )* ) )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:234:4: DEVICE IDENT LBRACE ( infoDecl | attrDecl | pinDecl )* RBRACE
             {
             DEVICE3=(Token)match(input,DEVICE,FOLLOW_DEVICE_in_deviceDecl402); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_DEVICE.add(DEVICE3);
@@ -330,7 +330,7 @@ public class Phdl2Parser extends Parser {
             LBRACE5=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_deviceDecl406); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_LBRACE.add(LBRACE5);
 
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:234:24: ( infoDecl | attrDecl | pinDecl )*
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:234:24: ( infoDecl | attrDecl | pinDecl )*
             loop2:
             do {
                 int alt2=4;
@@ -360,7 +360,7 @@ public class Phdl2Parser extends Parser {
 
                 switch (alt2) {
             	case 1 :
-            	    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:234:25: infoDecl
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:234:25: infoDecl
             	    {
             	    pushFollow(FOLLOW_infoDecl_in_deviceDecl409);
             	    infoDecl6=infoDecl();
@@ -372,7 +372,7 @@ public class Phdl2Parser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:234:36: attrDecl
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:234:36: attrDecl
             	    {
             	    pushFollow(FOLLOW_attrDecl_in_deviceDecl413);
             	    attrDecl7=attrDecl();
@@ -384,7 +384,7 @@ public class Phdl2Parser extends Parser {
             	    }
             	    break;
             	case 3 :
-            	    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:234:47: pinDecl
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:234:47: pinDecl
             	    {
             	    pushFollow(FOLLOW_pinDecl_in_deviceDecl417);
             	    pinDecl8=pinDecl();
@@ -407,7 +407,7 @@ public class Phdl2Parser extends Parser {
 
 
             // AST REWRITE
-            // elements: infoDecl, IDENT, pinDecl, attrDecl
+            // elements: infoDecl, attrDecl, pinDecl, IDENT
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -420,25 +420,25 @@ public class Phdl2Parser extends Parser {
             root_0 = (CommonTree)adaptor.nil();
             // 235:3: -> ^( DEVICE_DECL IDENT ( infoDecl )* ( attrDecl )* ( pinDecl )* )
             {
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:235:6: ^( DEVICE_DECL IDENT ( infoDecl )* ( attrDecl )* ( pinDecl )* )
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:235:6: ^( DEVICE_DECL IDENT ( infoDecl )* ( attrDecl )* ( pinDecl )* )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(DEVICE_DECL, "DEVICE_DECL"), root_1);
 
                 adaptor.addChild(root_1, stream_IDENT.nextNode());
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:235:26: ( infoDecl )*
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:235:26: ( infoDecl )*
                 while ( stream_infoDecl.hasNext() ) {
                     adaptor.addChild(root_1, stream_infoDecl.nextTree());
 
                 }
                 stream_infoDecl.reset();
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:235:36: ( attrDecl )*
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:235:36: ( attrDecl )*
                 while ( stream_attrDecl.hasNext() ) {
                     adaptor.addChild(root_1, stream_attrDecl.nextTree());
 
                 }
                 stream_attrDecl.reset();
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:235:46: ( pinDecl )*
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:235:46: ( pinDecl )*
                 while ( stream_pinDecl.hasNext() ) {
                     adaptor.addChild(root_1, stream_pinDecl.nextTree());
 
@@ -479,7 +479,7 @@ public class Phdl2Parser extends Parser {
     };
 
     // $ANTLR start "attrDecl"
-    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:238:1: attrDecl : ATTR IDENT EQUALS STRING SEMICOLON -> ^( ATTR_DECL IDENT STRING ) ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:238:1: attrDecl : ATTR IDENT EQUALS STRING SEMICOLON -> ^( ATTR_DECL IDENT STRING ) ;
     public final Phdl2Parser.attrDecl_return attrDecl() throws RecognitionException {
         Phdl2Parser.attrDecl_return retval = new Phdl2Parser.attrDecl_return();
         retval.start = input.LT(1);
@@ -504,8 +504,8 @@ public class Phdl2Parser extends Parser {
         RewriteRuleTokenStream stream_STRING=new RewriteRuleTokenStream(adaptor,"token STRING");
 
         try {
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:239:2: ( ATTR IDENT EQUALS STRING SEMICOLON -> ^( ATTR_DECL IDENT STRING ) )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:239:4: ATTR IDENT EQUALS STRING SEMICOLON
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:239:2: ( ATTR IDENT EQUALS STRING SEMICOLON -> ^( ATTR_DECL IDENT STRING ) )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:239:4: ATTR IDENT EQUALS STRING SEMICOLON
             {
             ATTR10=(Token)match(input,ATTR,FOLLOW_ATTR_in_attrDecl453); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_ATTR.add(ATTR10);
@@ -538,7 +538,7 @@ public class Phdl2Parser extends Parser {
             root_0 = (CommonTree)adaptor.nil();
             // 239:39: -> ^( ATTR_DECL IDENT STRING )
             {
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:239:42: ^( ATTR_DECL IDENT STRING )
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:239:42: ^( ATTR_DECL IDENT STRING )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(ATTR_DECL, "ATTR_DECL"), root_1);
@@ -580,7 +580,7 @@ public class Phdl2Parser extends Parser {
     };
 
     // $ANTLR start "pinDecl"
-    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:242:1: pinDecl : pinType ( LBRACKET widthDecl RBRACKET )? IDENT EQUALS pinList SEMICOLON -> ^( PIN_DECL IDENT pinType ( widthDecl )? pinList ) ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:242:1: pinDecl : pinType ( LBRACKET widthDecl RBRACKET )? IDENT EQUALS pinList SEMICOLON -> ^( PIN_DECL IDENT pinType ( widthDecl )? pinList ) ;
     public final Phdl2Parser.pinDecl_return pinDecl() throws RecognitionException {
         Phdl2Parser.pinDecl_return retval = new Phdl2Parser.pinDecl_return();
         retval.start = input.LT(1);
@@ -613,8 +613,8 @@ public class Phdl2Parser extends Parser {
         RewriteRuleSubtreeStream stream_pinType=new RewriteRuleSubtreeStream(adaptor,"rule pinType");
         RewriteRuleSubtreeStream stream_widthDecl=new RewriteRuleSubtreeStream(adaptor,"rule widthDecl");
         try {
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:243:2: ( pinType ( LBRACKET widthDecl RBRACKET )? IDENT EQUALS pinList SEMICOLON -> ^( PIN_DECL IDENT pinType ( widthDecl )? pinList ) )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:243:4: pinType ( LBRACKET widthDecl RBRACKET )? IDENT EQUALS pinList SEMICOLON
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:243:2: ( pinType ( LBRACKET widthDecl RBRACKET )? IDENT EQUALS pinList SEMICOLON -> ^( PIN_DECL IDENT pinType ( widthDecl )? pinList ) )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:243:4: pinType ( LBRACKET widthDecl RBRACKET )? IDENT EQUALS pinList SEMICOLON
             {
             pushFollow(FOLLOW_pinType_in_pinDecl482);
             pinType15=pinType();
@@ -622,7 +622,7 @@ public class Phdl2Parser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_pinType.add(pinType15.getTree());
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:243:12: ( LBRACKET widthDecl RBRACKET )?
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:243:12: ( LBRACKET widthDecl RBRACKET )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -631,7 +631,7 @@ public class Phdl2Parser extends Parser {
             }
             switch (alt3) {
                 case 1 :
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:243:13: LBRACKET widthDecl RBRACKET
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:243:13: LBRACKET widthDecl RBRACKET
                     {
                     LBRACKET16=(Token)match(input,LBRACKET,FOLLOW_LBRACKET_in_pinDecl485); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_LBRACKET.add(LBRACKET16);
@@ -669,7 +669,7 @@ public class Phdl2Parser extends Parser {
 
 
             // AST REWRITE
-            // elements: pinList, widthDecl, IDENT, pinType
+            // elements: pinType, pinList, IDENT, widthDecl
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -682,14 +682,14 @@ public class Phdl2Parser extends Parser {
             root_0 = (CommonTree)adaptor.nil();
             // 244:3: -> ^( PIN_DECL IDENT pinType ( widthDecl )? pinList )
             {
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:244:6: ^( PIN_DECL IDENT pinType ( widthDecl )? pinList )
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:244:6: ^( PIN_DECL IDENT pinType ( widthDecl )? pinList )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(PIN_DECL, "PIN_DECL"), root_1);
 
                 adaptor.addChild(root_1, stream_IDENT.nextNode());
                 adaptor.addChild(root_1, stream_pinType.nextTree());
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:244:31: ( widthDecl )?
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:244:31: ( widthDecl )?
                 if ( stream_widthDecl.hasNext() ) {
                     adaptor.addChild(root_1, stream_widthDecl.nextTree());
 
@@ -731,7 +731,7 @@ public class Phdl2Parser extends Parser {
     };
 
     // $ANTLR start "pinType"
-    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:247:1: pinType : ( PIN -> ^( PIN_TYPE PIN ) | INPIN -> ^( PIN_TYPE INPIN ) | OUTPIN -> ^( PIN_TYPE OUTPIN ) | IOPIN -> ^( PIN_TYPE IOPIN ) | PWRPIN -> ^( PIN_TYPE PWRPIN ) | SUPPIN -> ^( PIN_TYPE SUPPIN ) ) ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:247:1: pinType : ( PIN -> ^( PIN_TYPE PIN ) | INPIN -> ^( PIN_TYPE INPIN ) | OUTPIN -> ^( PIN_TYPE OUTPIN ) | IOPIN -> ^( PIN_TYPE IOPIN ) | PWRPIN -> ^( PIN_TYPE PWRPIN ) | SUPPIN -> ^( PIN_TYPE SUPPIN ) ) ;
     public final Phdl2Parser.pinType_return pinType() throws RecognitionException {
         Phdl2Parser.pinType_return retval = new Phdl2Parser.pinType_return();
         retval.start = input.LT(1);
@@ -759,10 +759,10 @@ public class Phdl2Parser extends Parser {
         RewriteRuleTokenStream stream_PWRPIN=new RewriteRuleTokenStream(adaptor,"token PWRPIN");
 
         try {
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:248:2: ( ( PIN -> ^( PIN_TYPE PIN ) | INPIN -> ^( PIN_TYPE INPIN ) | OUTPIN -> ^( PIN_TYPE OUTPIN ) | IOPIN -> ^( PIN_TYPE IOPIN ) | PWRPIN -> ^( PIN_TYPE PWRPIN ) | SUPPIN -> ^( PIN_TYPE SUPPIN ) ) )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:248:4: ( PIN -> ^( PIN_TYPE PIN ) | INPIN -> ^( PIN_TYPE INPIN ) | OUTPIN -> ^( PIN_TYPE OUTPIN ) | IOPIN -> ^( PIN_TYPE IOPIN ) | PWRPIN -> ^( PIN_TYPE PWRPIN ) | SUPPIN -> ^( PIN_TYPE SUPPIN ) )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:248:2: ( ( PIN -> ^( PIN_TYPE PIN ) | INPIN -> ^( PIN_TYPE INPIN ) | OUTPIN -> ^( PIN_TYPE OUTPIN ) | IOPIN -> ^( PIN_TYPE IOPIN ) | PWRPIN -> ^( PIN_TYPE PWRPIN ) | SUPPIN -> ^( PIN_TYPE SUPPIN ) ) )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:248:4: ( PIN -> ^( PIN_TYPE PIN ) | INPIN -> ^( PIN_TYPE INPIN ) | OUTPIN -> ^( PIN_TYPE OUTPIN ) | IOPIN -> ^( PIN_TYPE IOPIN ) | PWRPIN -> ^( PIN_TYPE PWRPIN ) | SUPPIN -> ^( PIN_TYPE SUPPIN ) )
             {
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:248:4: ( PIN -> ^( PIN_TYPE PIN ) | INPIN -> ^( PIN_TYPE INPIN ) | OUTPIN -> ^( PIN_TYPE OUTPIN ) | IOPIN -> ^( PIN_TYPE IOPIN ) | PWRPIN -> ^( PIN_TYPE PWRPIN ) | SUPPIN -> ^( PIN_TYPE SUPPIN ) )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:248:4: ( PIN -> ^( PIN_TYPE PIN ) | INPIN -> ^( PIN_TYPE INPIN ) | OUTPIN -> ^( PIN_TYPE OUTPIN ) | IOPIN -> ^( PIN_TYPE IOPIN ) | PWRPIN -> ^( PIN_TYPE PWRPIN ) | SUPPIN -> ^( PIN_TYPE SUPPIN ) )
             int alt4=6;
             switch ( input.LA(1) ) {
             case PIN:
@@ -805,7 +805,7 @@ public class Phdl2Parser extends Parser {
 
             switch (alt4) {
                 case 1 :
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:248:5: PIN
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:248:5: PIN
                     {
                     PIN23=(Token)match(input,PIN,FOLLOW_PIN_in_pinType529); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_PIN.add(PIN23);
@@ -826,7 +826,7 @@ public class Phdl2Parser extends Parser {
                     root_0 = (CommonTree)adaptor.nil();
                     // 248:9: -> ^( PIN_TYPE PIN )
                     {
-                        // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:248:12: ^( PIN_TYPE PIN )
+                        // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:248:12: ^( PIN_TYPE PIN )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(PIN_TYPE, "PIN_TYPE"), root_1);
@@ -842,7 +842,7 @@ public class Phdl2Parser extends Parser {
                     }
                     break;
                 case 2 :
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:249:4: INPIN
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:249:4: INPIN
                     {
                     INPIN24=(Token)match(input,INPIN,FOLLOW_INPIN_in_pinType542); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_INPIN.add(INPIN24);
@@ -863,7 +863,7 @@ public class Phdl2Parser extends Parser {
                     root_0 = (CommonTree)adaptor.nil();
                     // 249:10: -> ^( PIN_TYPE INPIN )
                     {
-                        // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:249:13: ^( PIN_TYPE INPIN )
+                        // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:249:13: ^( PIN_TYPE INPIN )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(PIN_TYPE, "PIN_TYPE"), root_1);
@@ -879,7 +879,7 @@ public class Phdl2Parser extends Parser {
                     }
                     break;
                 case 3 :
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:250:4: OUTPIN
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:250:4: OUTPIN
                     {
                     OUTPIN25=(Token)match(input,OUTPIN,FOLLOW_OUTPIN_in_pinType555); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_OUTPIN.add(OUTPIN25);
@@ -900,7 +900,7 @@ public class Phdl2Parser extends Parser {
                     root_0 = (CommonTree)adaptor.nil();
                     // 250:11: -> ^( PIN_TYPE OUTPIN )
                     {
-                        // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:250:14: ^( PIN_TYPE OUTPIN )
+                        // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:250:14: ^( PIN_TYPE OUTPIN )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(PIN_TYPE, "PIN_TYPE"), root_1);
@@ -916,7 +916,7 @@ public class Phdl2Parser extends Parser {
                     }
                     break;
                 case 4 :
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:251:4: IOPIN
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:251:4: IOPIN
                     {
                     IOPIN26=(Token)match(input,IOPIN,FOLLOW_IOPIN_in_pinType568); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_IOPIN.add(IOPIN26);
@@ -937,7 +937,7 @@ public class Phdl2Parser extends Parser {
                     root_0 = (CommonTree)adaptor.nil();
                     // 251:10: -> ^( PIN_TYPE IOPIN )
                     {
-                        // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:251:13: ^( PIN_TYPE IOPIN )
+                        // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:251:13: ^( PIN_TYPE IOPIN )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(PIN_TYPE, "PIN_TYPE"), root_1);
@@ -953,7 +953,7 @@ public class Phdl2Parser extends Parser {
                     }
                     break;
                 case 5 :
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:252:4: PWRPIN
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:252:4: PWRPIN
                     {
                     PWRPIN27=(Token)match(input,PWRPIN,FOLLOW_PWRPIN_in_pinType581); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_PWRPIN.add(PWRPIN27);
@@ -974,7 +974,7 @@ public class Phdl2Parser extends Parser {
                     root_0 = (CommonTree)adaptor.nil();
                     // 252:11: -> ^( PIN_TYPE PWRPIN )
                     {
-                        // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:252:14: ^( PIN_TYPE PWRPIN )
+                        // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:252:14: ^( PIN_TYPE PWRPIN )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(PIN_TYPE, "PIN_TYPE"), root_1);
@@ -990,7 +990,7 @@ public class Phdl2Parser extends Parser {
                     }
                     break;
                 case 6 :
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:253:4: SUPPIN
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:253:4: SUPPIN
                     {
                     SUPPIN28=(Token)match(input,SUPPIN,FOLLOW_SUPPIN_in_pinType594); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_SUPPIN.add(SUPPIN28);
@@ -1011,7 +1011,7 @@ public class Phdl2Parser extends Parser {
                     root_0 = (CommonTree)adaptor.nil();
                     // 253:11: -> ^( PIN_TYPE SUPPIN )
                     {
-                        // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:253:14: ^( PIN_TYPE SUPPIN )
+                        // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:253:14: ^( PIN_TYPE SUPPIN )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(PIN_TYPE, "PIN_TYPE"), root_1);
@@ -1058,7 +1058,7 @@ public class Phdl2Parser extends Parser {
     };
 
     // $ANTLR start "widthDecl"
-    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:256:1: widthDecl : INT COLON INT -> ^( WIDTH_DECL INT INT ) ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:256:1: widthDecl : INT COLON INT -> ^( WIDTH_DECL INT INT ) ;
     public final Phdl2Parser.widthDecl_return widthDecl() throws RecognitionException {
         Phdl2Parser.widthDecl_return retval = new Phdl2Parser.widthDecl_return();
         retval.start = input.LT(1);
@@ -1076,8 +1076,8 @@ public class Phdl2Parser extends Parser {
         RewriteRuleTokenStream stream_INT=new RewriteRuleTokenStream(adaptor,"token INT");
 
         try {
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:257:2: ( INT COLON INT -> ^( WIDTH_DECL INT INT ) )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:257:4: INT COLON INT
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:257:2: ( INT COLON INT -> ^( WIDTH_DECL INT INT ) )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:257:4: INT COLON INT
             {
             INT29=(Token)match(input,INT,FOLLOW_INT_in_widthDecl614); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_INT.add(INT29);
@@ -1104,7 +1104,7 @@ public class Phdl2Parser extends Parser {
             root_0 = (CommonTree)adaptor.nil();
             // 257:18: -> ^( WIDTH_DECL INT INT )
             {
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:257:21: ^( WIDTH_DECL INT INT )
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:257:21: ^( WIDTH_DECL INT INT )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(WIDTH_DECL, "WIDTH_DECL"), root_1);
@@ -1146,7 +1146,7 @@ public class Phdl2Parser extends Parser {
     };
 
     // $ANTLR start "pinList"
-    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:260:1: pinList : LBRACE pinNumber ( COMMA pinNumber )* RBRACE -> ^( PIN_LIST ( pinNumber )+ ) ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:260:1: pinList : LBRACE pinNumber ( COMMA pinNumber )* RBRACE -> ^( PIN_LIST ( pinNumber )+ ) ;
     public final Phdl2Parser.pinList_return pinList() throws RecognitionException {
         Phdl2Parser.pinList_return retval = new Phdl2Parser.pinList_return();
         retval.start = input.LT(1);
@@ -1169,8 +1169,8 @@ public class Phdl2Parser extends Parser {
         RewriteRuleTokenStream stream_LBRACE=new RewriteRuleTokenStream(adaptor,"token LBRACE");
         RewriteRuleSubtreeStream stream_pinNumber=new RewriteRuleSubtreeStream(adaptor,"rule pinNumber");
         try {
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:261:2: ( LBRACE pinNumber ( COMMA pinNumber )* RBRACE -> ^( PIN_LIST ( pinNumber )+ ) )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:261:5: LBRACE pinNumber ( COMMA pinNumber )* RBRACE
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:261:2: ( LBRACE pinNumber ( COMMA pinNumber )* RBRACE -> ^( PIN_LIST ( pinNumber )+ ) )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:261:5: LBRACE pinNumber ( COMMA pinNumber )* RBRACE
             {
             LBRACE32=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_pinList640); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_LBRACE.add(LBRACE32);
@@ -1181,7 +1181,7 @@ public class Phdl2Parser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_pinNumber.add(pinNumber33.getTree());
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:261:22: ( COMMA pinNumber )*
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:261:22: ( COMMA pinNumber )*
             loop5:
             do {
                 int alt5=2;
@@ -1194,7 +1194,7 @@ public class Phdl2Parser extends Parser {
 
                 switch (alt5) {
             	case 1 :
-            	    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:261:23: COMMA pinNumber
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:261:23: COMMA pinNumber
             	    {
             	    COMMA34=(Token)match(input,COMMA,FOLLOW_COMMA_in_pinList645); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_COMMA.add(COMMA34);
@@ -1233,7 +1233,7 @@ public class Phdl2Parser extends Parser {
             root_0 = (CommonTree)adaptor.nil();
             // 261:48: -> ^( PIN_LIST ( pinNumber )+ )
             {
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:261:51: ^( PIN_LIST ( pinNumber )+ )
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:261:51: ^( PIN_LIST ( pinNumber )+ )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(PIN_LIST, "PIN_LIST"), root_1);
@@ -1281,7 +1281,7 @@ public class Phdl2Parser extends Parser {
     };
 
     // $ANTLR start "pinNumber"
-    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:264:1: pinNumber : ( IDENT | INT | PINNUM );
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:264:1: pinNumber : ( IDENT | INT | PINNUM );
     public final Phdl2Parser.pinNumber_return pinNumber() throws RecognitionException {
         Phdl2Parser.pinNumber_return retval = new Phdl2Parser.pinNumber_return();
         retval.start = input.LT(1);
@@ -1293,8 +1293,8 @@ public class Phdl2Parser extends Parser {
         CommonTree set37_tree=null;
 
         try {
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:265:2: ( IDENT | INT | PINNUM )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:265:2: ( IDENT | INT | PINNUM )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -1339,7 +1339,7 @@ public class Phdl2Parser extends Parser {
     };
 
     // $ANTLR start "designDecl"
-    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:268:1: designDecl : DESIGN IDENT LBRACE ( designBody )* RBRACE -> ^( DESIGN_DECL IDENT ( designBody )* ) ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:268:1: designDecl : DESIGN IDENT LBRACE ( designBody )* RBRACE -> ^( DESIGN_DECL IDENT ( designBody )* ) ;
     public final Phdl2Parser.designDecl_return designDecl() throws RecognitionException {
         Phdl2Parser.designDecl_return retval = new Phdl2Parser.designDecl_return();
         retval.start = input.LT(1);
@@ -1363,8 +1363,8 @@ public class Phdl2Parser extends Parser {
         RewriteRuleTokenStream stream_LBRACE=new RewriteRuleTokenStream(adaptor,"token LBRACE");
         RewriteRuleSubtreeStream stream_designBody=new RewriteRuleSubtreeStream(adaptor,"rule designBody");
         try {
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:269:2: ( DESIGN IDENT LBRACE ( designBody )* RBRACE -> ^( DESIGN_DECL IDENT ( designBody )* ) )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:269:4: DESIGN IDENT LBRACE ( designBody )* RBRACE
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:269:2: ( DESIGN IDENT LBRACE ( designBody )* RBRACE -> ^( DESIGN_DECL IDENT ( designBody )* ) )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:269:4: DESIGN IDENT LBRACE ( designBody )* RBRACE
             {
             DESIGN38=(Token)match(input,DESIGN,FOLLOW_DESIGN_in_designDecl692); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_DESIGN.add(DESIGN38);
@@ -1375,7 +1375,7 @@ public class Phdl2Parser extends Parser {
             LBRACE40=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_designDecl696); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_LBRACE.add(LBRACE40);
 
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:269:24: ( designBody )*
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:269:24: ( designBody )*
             loop6:
             do {
                 int alt6=2;
@@ -1388,7 +1388,7 @@ public class Phdl2Parser extends Parser {
 
                 switch (alt6) {
             	case 1 :
-            	    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:0:0: designBody
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:0:0: designBody
             	    {
             	    pushFollow(FOLLOW_designBody_in_designDecl698);
             	    designBody41=designBody();
@@ -1424,13 +1424,13 @@ public class Phdl2Parser extends Parser {
             root_0 = (CommonTree)adaptor.nil();
             // 269:43: -> ^( DESIGN_DECL IDENT ( designBody )* )
             {
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:269:46: ^( DESIGN_DECL IDENT ( designBody )* )
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:269:46: ^( DESIGN_DECL IDENT ( designBody )* )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(DESIGN_DECL, "DESIGN_DECL"), root_1);
 
                 adaptor.addChild(root_1, stream_IDENT.nextNode());
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:269:66: ( designBody )*
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:269:66: ( designBody )*
                 while ( stream_designBody.hasNext() ) {
                     adaptor.addChild(root_1, stream_designBody.nextTree());
 
@@ -1471,7 +1471,7 @@ public class Phdl2Parser extends Parser {
     };
 
     // $ANTLR start "designBody"
-    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:272:1: designBody : ( infoDecl | netDecl | instDecl );
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:272:1: designBody : ( infoDecl | netDecl | instDecl );
     public final Phdl2Parser.designBody_return designBody() throws RecognitionException {
         Phdl2Parser.designBody_return retval = new Phdl2Parser.designBody_return();
         retval.start = input.LT(1);
@@ -1487,7 +1487,7 @@ public class Phdl2Parser extends Parser {
 
 
         try {
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:273:2: ( infoDecl | netDecl | instDecl )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:273:2: ( infoDecl | netDecl | instDecl )
             int alt7=3;
             switch ( input.LA(1) ) {
             case INFO:
@@ -1515,7 +1515,7 @@ public class Phdl2Parser extends Parser {
 
             switch (alt7) {
                 case 1 :
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:273:4: infoDecl
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:273:4: infoDecl
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -1529,7 +1529,7 @@ public class Phdl2Parser extends Parser {
                     }
                     break;
                 case 2 :
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:274:4: netDecl
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:274:4: netDecl
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -1543,7 +1543,7 @@ public class Phdl2Parser extends Parser {
                     }
                     break;
                 case 3 :
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:275:4: instDecl
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:275:4: instDecl
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -1584,7 +1584,7 @@ public class Phdl2Parser extends Parser {
     };
 
     // $ANTLR start "infoDecl"
-    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:278:1: infoDecl : INFO LBRACE ( STRING )+ RBRACE -> ^( INFO_DECL ( STRING )+ ) ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:278:1: infoDecl : INFO LBRACE ( STRING )+ RBRACE -> ^( INFO_DECL ( STRING )+ ) ;
     public final Phdl2Parser.infoDecl_return infoDecl() throws RecognitionException {
         Phdl2Parser.infoDecl_return retval = new Phdl2Parser.infoDecl_return();
         retval.start = input.LT(1);
@@ -1606,8 +1606,8 @@ public class Phdl2Parser extends Parser {
         RewriteRuleTokenStream stream_STRING=new RewriteRuleTokenStream(adaptor,"token STRING");
 
         try {
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:279:2: ( INFO LBRACE ( STRING )+ RBRACE -> ^( INFO_DECL ( STRING )+ ) )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:279:4: INFO LBRACE ( STRING )+ RBRACE
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:279:2: ( INFO LBRACE ( STRING )+ RBRACE -> ^( INFO_DECL ( STRING )+ ) )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:279:4: INFO LBRACE ( STRING )+ RBRACE
             {
             INFO46=(Token)match(input,INFO,FOLLOW_INFO_in_infoDecl746); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_INFO.add(INFO46);
@@ -1615,7 +1615,7 @@ public class Phdl2Parser extends Parser {
             LBRACE47=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_infoDecl748); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_LBRACE.add(LBRACE47);
 
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:279:16: ( STRING )+
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:279:16: ( STRING )+
             int cnt8=0;
             loop8:
             do {
@@ -1629,7 +1629,7 @@ public class Phdl2Parser extends Parser {
 
                 switch (alt8) {
             	case 1 :
-            	    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:0:0: STRING
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:0:0: STRING
             	    {
             	    STRING48=(Token)match(input,STRING,FOLLOW_STRING_in_infoDecl750); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_STRING.add(STRING48);
@@ -1667,7 +1667,7 @@ public class Phdl2Parser extends Parser {
             root_0 = (CommonTree)adaptor.nil();
             // 279:31: -> ^( INFO_DECL ( STRING )+ )
             {
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:279:34: ^( INFO_DECL ( STRING )+ )
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:279:34: ^( INFO_DECL ( STRING )+ )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(INFO_DECL, "INFO_DECL"), root_1);
@@ -1715,7 +1715,7 @@ public class Phdl2Parser extends Parser {
     };
 
     // $ANTLR start "netDecl"
-    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:282:1: netDecl : NET LBRACKET ( widthDecl )? RBRACKET IDENT ( COMMA IDENT )+ ( ( LBRACE ( attrDecl )* RBRACE ) | SEMICOLON ) -> ^( NET_DECL ( widthDecl )? ( IDENT )+ ( attrDecl )* ) ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:282:1: netDecl : NET LBRACKET ( widthDecl )? RBRACKET IDENT ( COMMA IDENT )+ ( ( LBRACE ( attrDecl )* RBRACE ) | SEMICOLON ) -> ^( NET_DECL ( widthDecl )? ( IDENT )+ ( attrDecl )* ) ;
     public final Phdl2Parser.netDecl_return netDecl() throws RecognitionException {
         Phdl2Parser.netDecl_return retval = new Phdl2Parser.netDecl_return();
         retval.start = input.LT(1);
@@ -1756,8 +1756,8 @@ public class Phdl2Parser extends Parser {
         RewriteRuleSubtreeStream stream_attrDecl=new RewriteRuleSubtreeStream(adaptor,"rule attrDecl");
         RewriteRuleSubtreeStream stream_widthDecl=new RewriteRuleSubtreeStream(adaptor,"rule widthDecl");
         try {
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:283:2: ( NET LBRACKET ( widthDecl )? RBRACKET IDENT ( COMMA IDENT )+ ( ( LBRACE ( attrDecl )* RBRACE ) | SEMICOLON ) -> ^( NET_DECL ( widthDecl )? ( IDENT )+ ( attrDecl )* ) )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:283:4: NET LBRACKET ( widthDecl )? RBRACKET IDENT ( COMMA IDENT )+ ( ( LBRACE ( attrDecl )* RBRACE ) | SEMICOLON )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:283:2: ( NET LBRACKET ( widthDecl )? RBRACKET IDENT ( COMMA IDENT )+ ( ( LBRACE ( attrDecl )* RBRACE ) | SEMICOLON ) -> ^( NET_DECL ( widthDecl )? ( IDENT )+ ( attrDecl )* ) )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:283:4: NET LBRACKET ( widthDecl )? RBRACKET IDENT ( COMMA IDENT )+ ( ( LBRACE ( attrDecl )* RBRACE ) | SEMICOLON )
             {
             NET50=(Token)match(input,NET,FOLLOW_NET_in_netDecl774); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_NET.add(NET50);
@@ -1765,7 +1765,7 @@ public class Phdl2Parser extends Parser {
             LBRACKET51=(Token)match(input,LBRACKET,FOLLOW_LBRACKET_in_netDecl776); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_LBRACKET.add(LBRACKET51);
 
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:283:17: ( widthDecl )?
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:283:17: ( widthDecl )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -1774,7 +1774,7 @@ public class Phdl2Parser extends Parser {
             }
             switch (alt9) {
                 case 1 :
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:0:0: widthDecl
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:0:0: widthDecl
                     {
                     pushFollow(FOLLOW_widthDecl_in_netDecl778);
                     widthDecl52=widthDecl();
@@ -1794,7 +1794,7 @@ public class Phdl2Parser extends Parser {
             IDENT54=(Token)match(input,IDENT,FOLLOW_IDENT_in_netDecl783); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_IDENT.add(IDENT54);
 
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:283:43: ( COMMA IDENT )+
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:283:43: ( COMMA IDENT )+
             int cnt10=0;
             loop10:
             do {
@@ -1808,7 +1808,7 @@ public class Phdl2Parser extends Parser {
 
                 switch (alt10) {
             	case 1 :
-            	    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:283:44: COMMA IDENT
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:283:44: COMMA IDENT
             	    {
             	    COMMA55=(Token)match(input,COMMA,FOLLOW_COMMA_in_netDecl786); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_COMMA.add(COMMA55);
@@ -1830,7 +1830,7 @@ public class Phdl2Parser extends Parser {
                 cnt10++;
             } while (true);
 
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:283:58: ( ( LBRACE ( attrDecl )* RBRACE ) | SEMICOLON )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:283:58: ( ( LBRACE ( attrDecl )* RBRACE ) | SEMICOLON )
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -1849,15 +1849,15 @@ public class Phdl2Parser extends Parser {
             }
             switch (alt12) {
                 case 1 :
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:283:59: ( LBRACE ( attrDecl )* RBRACE )
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:283:59: ( LBRACE ( attrDecl )* RBRACE )
                     {
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:283:59: ( LBRACE ( attrDecl )* RBRACE )
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:283:60: LBRACE ( attrDecl )* RBRACE
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:283:59: ( LBRACE ( attrDecl )* RBRACE )
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:283:60: LBRACE ( attrDecl )* RBRACE
                     {
                     LBRACE57=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_netDecl794); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_LBRACE.add(LBRACE57);
 
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:283:67: ( attrDecl )*
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:283:67: ( attrDecl )*
                     loop11:
                     do {
                         int alt11=2;
@@ -1870,7 +1870,7 @@ public class Phdl2Parser extends Parser {
 
                         switch (alt11) {
                     	case 1 :
-                    	    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:0:0: attrDecl
+                    	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:0:0: attrDecl
                     	    {
                     	    pushFollow(FOLLOW_attrDecl_in_netDecl796);
                     	    attrDecl58=attrDecl();
@@ -1897,7 +1897,7 @@ public class Phdl2Parser extends Parser {
                     }
                     break;
                 case 2 :
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:283:87: SEMICOLON
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:283:87: SEMICOLON
                     {
                     SEMICOLON60=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_netDecl804); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_SEMICOLON.add(SEMICOLON60);
@@ -1911,7 +1911,7 @@ public class Phdl2Parser extends Parser {
 
 
             // AST REWRITE
-            // elements: attrDecl, widthDecl, IDENT
+            // elements: IDENT, attrDecl, widthDecl
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -1924,12 +1924,12 @@ public class Phdl2Parser extends Parser {
             root_0 = (CommonTree)adaptor.nil();
             // 284:3: -> ^( NET_DECL ( widthDecl )? ( IDENT )+ ( attrDecl )* )
             {
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:284:6: ^( NET_DECL ( widthDecl )? ( IDENT )+ ( attrDecl )* )
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:284:6: ^( NET_DECL ( widthDecl )? ( IDENT )+ ( attrDecl )* )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(NET_DECL, "NET_DECL"), root_1);
 
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:284:17: ( widthDecl )?
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:284:17: ( widthDecl )?
                 if ( stream_widthDecl.hasNext() ) {
                     adaptor.addChild(root_1, stream_widthDecl.nextTree());
 
@@ -1943,7 +1943,7 @@ public class Phdl2Parser extends Parser {
 
                 }
                 stream_IDENT.reset();
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:284:35: ( attrDecl )*
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:284:35: ( attrDecl )*
                 while ( stream_attrDecl.hasNext() ) {
                     adaptor.addChild(root_1, stream_attrDecl.nextTree());
 
@@ -1984,7 +1984,7 @@ public class Phdl2Parser extends Parser {
     };
 
     // $ANTLR start "instDecl"
-    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:287:1: instDecl : INST ( LPAREN widthDecl RPAREN )? IDENT OF IDENT LBRACE ( infoDecl | attrAssign )* RBRACE -> ^( INST_DECL ( widthDecl )? IDENT IDENT ( infoDecl )* ( attrAssign )* ) ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:287:1: instDecl : INST ( LPAREN widthDecl RPAREN )? IDENT OF IDENT LBRACE ( infoDecl | attrAssign )* RBRACE -> ^( INST_DECL ( widthDecl )? IDENT IDENT ( infoDecl )* ( attrAssign )* ) ;
     public final Phdl2Parser.instDecl_return instDecl() throws RecognitionException {
         Phdl2Parser.instDecl_return retval = new Phdl2Parser.instDecl_return();
         retval.start = input.LT(1);
@@ -2025,13 +2025,13 @@ public class Phdl2Parser extends Parser {
         RewriteRuleSubtreeStream stream_widthDecl=new RewriteRuleSubtreeStream(adaptor,"rule widthDecl");
         RewriteRuleSubtreeStream stream_attrAssign=new RewriteRuleSubtreeStream(adaptor,"rule attrAssign");
         try {
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:288:2: ( INST ( LPAREN widthDecl RPAREN )? IDENT OF IDENT LBRACE ( infoDecl | attrAssign )* RBRACE -> ^( INST_DECL ( widthDecl )? IDENT IDENT ( infoDecl )* ( attrAssign )* ) )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:288:4: INST ( LPAREN widthDecl RPAREN )? IDENT OF IDENT LBRACE ( infoDecl | attrAssign )* RBRACE
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:288:2: ( INST ( LPAREN widthDecl RPAREN )? IDENT OF IDENT LBRACE ( infoDecl | attrAssign )* RBRACE -> ^( INST_DECL ( widthDecl )? IDENT IDENT ( infoDecl )* ( attrAssign )* ) )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:288:4: INST ( LPAREN widthDecl RPAREN )? IDENT OF IDENT LBRACE ( infoDecl | attrAssign )* RBRACE
             {
             INST61=(Token)match(input,INST,FOLLOW_INST_in_instDecl835); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_INST.add(INST61);
 
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:288:9: ( LPAREN widthDecl RPAREN )?
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:288:9: ( LPAREN widthDecl RPAREN )?
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -2040,7 +2040,7 @@ public class Phdl2Parser extends Parser {
             }
             switch (alt13) {
                 case 1 :
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:288:10: LPAREN widthDecl RPAREN
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:288:10: LPAREN widthDecl RPAREN
                     {
                     LPAREN62=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_instDecl838); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN62);
@@ -2072,7 +2072,7 @@ public class Phdl2Parser extends Parser {
             LBRACE68=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_instDecl852); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_LBRACE.add(LBRACE68);
 
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:288:58: ( infoDecl | attrAssign )*
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:288:58: ( infoDecl | attrAssign )*
             loop14:
             do {
                 int alt14=3;
@@ -2088,7 +2088,7 @@ public class Phdl2Parser extends Parser {
 
                 switch (alt14) {
             	case 1 :
-            	    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:288:59: infoDecl
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:288:59: infoDecl
             	    {
             	    pushFollow(FOLLOW_infoDecl_in_instDecl855);
             	    infoDecl69=infoDecl();
@@ -2100,7 +2100,7 @@ public class Phdl2Parser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:288:70: attrAssign
+            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:288:70: attrAssign
             	    {
             	    pushFollow(FOLLOW_attrAssign_in_instDecl859);
             	    attrAssign70=attrAssign();
@@ -2123,7 +2123,7 @@ public class Phdl2Parser extends Parser {
 
 
             // AST REWRITE
-            // elements: infoDecl, attrAssign, IDENT, IDENT, widthDecl
+            // elements: attrAssign, IDENT, IDENT, infoDecl, widthDecl
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -2136,12 +2136,12 @@ public class Phdl2Parser extends Parser {
             root_0 = (CommonTree)adaptor.nil();
             // 289:3: -> ^( INST_DECL ( widthDecl )? IDENT IDENT ( infoDecl )* ( attrAssign )* )
             {
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:289:6: ^( INST_DECL ( widthDecl )? IDENT IDENT ( infoDecl )* ( attrAssign )* )
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:289:6: ^( INST_DECL ( widthDecl )? IDENT IDENT ( infoDecl )* ( attrAssign )* )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(INST_DECL, "INST_DECL"), root_1);
 
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:289:18: ( widthDecl )?
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:289:18: ( widthDecl )?
                 if ( stream_widthDecl.hasNext() ) {
                     adaptor.addChild(root_1, stream_widthDecl.nextTree());
 
@@ -2149,13 +2149,13 @@ public class Phdl2Parser extends Parser {
                 stream_widthDecl.reset();
                 adaptor.addChild(root_1, stream_IDENT.nextNode());
                 adaptor.addChild(root_1, stream_IDENT.nextNode());
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:289:41: ( infoDecl )*
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:289:41: ( infoDecl )*
                 while ( stream_infoDecl.hasNext() ) {
                     adaptor.addChild(root_1, stream_infoDecl.nextTree());
 
                 }
                 stream_infoDecl.reset();
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:289:51: ( attrAssign )*
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:289:51: ( attrAssign )*
                 while ( stream_attrAssign.hasNext() ) {
                     adaptor.addChild(root_1, stream_attrAssign.nextTree());
 
@@ -2196,7 +2196,7 @@ public class Phdl2Parser extends Parser {
     };
 
     // $ANTLR start "attrAssign"
-    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:292:1: attrAssign : ( NEWATTR )? ( attrQual )? IDENT EQUALS STRING SEMICOLON -> ^( ATTR_ASSIGN ( NEWATTR )? ( attrQual )? IDENT STRING ) ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:292:1: attrAssign : ( NEWATTR )? ( attrQual )? IDENT EQUALS STRING SEMICOLON -> ^( ATTR_ASSIGN ( NEWATTR )? ( attrQual )? IDENT STRING ) ;
     public final Phdl2Parser.attrAssign_return attrAssign() throws RecognitionException {
         Phdl2Parser.attrAssign_return retval = new Phdl2Parser.attrAssign_return();
         retval.start = input.LT(1);
@@ -2223,10 +2223,10 @@ public class Phdl2Parser extends Parser {
         RewriteRuleTokenStream stream_STRING=new RewriteRuleTokenStream(adaptor,"token STRING");
         RewriteRuleSubtreeStream stream_attrQual=new RewriteRuleSubtreeStream(adaptor,"rule attrQual");
         try {
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:293:2: ( ( NEWATTR )? ( attrQual )? IDENT EQUALS STRING SEMICOLON -> ^( ATTR_ASSIGN ( NEWATTR )? ( attrQual )? IDENT STRING ) )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:293:4: ( NEWATTR )? ( attrQual )? IDENT EQUALS STRING SEMICOLON
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:293:2: ( ( NEWATTR )? ( attrQual )? IDENT EQUALS STRING SEMICOLON -> ^( ATTR_ASSIGN ( NEWATTR )? ( attrQual )? IDENT STRING ) )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:293:4: ( NEWATTR )? ( attrQual )? IDENT EQUALS STRING SEMICOLON
             {
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:293:4: ( NEWATTR )?
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:293:4: ( NEWATTR )?
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -2235,7 +2235,7 @@ public class Phdl2Parser extends Parser {
             }
             switch (alt15) {
                 case 1 :
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:0:0: NEWATTR
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:0:0: NEWATTR
                     {
                     NEWATTR72=(Token)match(input,NEWATTR,FOLLOW_NEWATTR_in_attrAssign896); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_NEWATTR.add(NEWATTR72);
@@ -2246,7 +2246,7 @@ public class Phdl2Parser extends Parser {
 
             }
 
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:293:13: ( attrQual )?
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:293:13: ( attrQual )?
             int alt16=2;
             int LA16_0 = input.LA(1);
 
@@ -2255,7 +2255,7 @@ public class Phdl2Parser extends Parser {
             }
             switch (alt16) {
                 case 1 :
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:0:0: attrQual
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:0:0: attrQual
                     {
                     pushFollow(FOLLOW_attrQual_in_attrAssign899);
                     attrQual73=attrQual();
@@ -2284,7 +2284,7 @@ public class Phdl2Parser extends Parser {
 
 
             // AST REWRITE
-            // elements: NEWATTR, attrQual, STRING, IDENT
+            // elements: STRING, NEWATTR, attrQual, IDENT
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -2297,18 +2297,18 @@ public class Phdl2Parser extends Parser {
             root_0 = (CommonTree)adaptor.nil();
             // 294:3: -> ^( ATTR_ASSIGN ( NEWATTR )? ( attrQual )? IDENT STRING )
             {
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:294:6: ^( ATTR_ASSIGN ( NEWATTR )? ( attrQual )? IDENT STRING )
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:294:6: ^( ATTR_ASSIGN ( NEWATTR )? ( attrQual )? IDENT STRING )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(ATTR_ASSIGN, "ATTR_ASSIGN"), root_1);
 
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:294:20: ( NEWATTR )?
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:294:20: ( NEWATTR )?
                 if ( stream_NEWATTR.hasNext() ) {
                     adaptor.addChild(root_1, stream_NEWATTR.nextNode());
 
                 }
                 stream_NEWATTR.reset();
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:294:29: ( attrQual )?
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:294:29: ( attrQual )?
                 if ( stream_attrQual.hasNext() ) {
                     adaptor.addChild(root_1, stream_attrQual.nextTree());
 
@@ -2351,7 +2351,7 @@ public class Phdl2Parser extends Parser {
     };
 
     // $ANTLR start "attrQual"
-    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:297:1: attrQual : THIS arrayList PERIOD -> ^( arrayList ) ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:297:1: attrQual : THIS arrayList PERIOD -> ^( arrayList ) ;
     public final Phdl2Parser.attrQual_return attrQual() throws RecognitionException {
         Phdl2Parser.attrQual_return retval = new Phdl2Parser.attrQual_return();
         retval.start = input.LT(1);
@@ -2369,8 +2369,8 @@ public class Phdl2Parser extends Parser {
         RewriteRuleTokenStream stream_THIS=new RewriteRuleTokenStream(adaptor,"token THIS");
         RewriteRuleSubtreeStream stream_arrayList=new RewriteRuleSubtreeStream(adaptor,"rule arrayList");
         try {
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:298:2: ( THIS arrayList PERIOD -> ^( arrayList ) )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:298:4: THIS arrayList PERIOD
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:298:2: ( THIS arrayList PERIOD -> ^( arrayList ) )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:298:4: THIS arrayList PERIOD
             {
             THIS78=(Token)match(input,THIS,FOLLOW_THIS_in_attrQual938); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_THIS.add(THIS78);
@@ -2400,7 +2400,7 @@ public class Phdl2Parser extends Parser {
             root_0 = (CommonTree)adaptor.nil();
             // 298:26: -> ^( arrayList )
             {
-                // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:298:29: ^( arrayList )
+                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:298:29: ^( arrayList )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(stream_arrayList.nextNode(), root_1);
@@ -2439,7 +2439,7 @@ public class Phdl2Parser extends Parser {
     };
 
     // $ANTLR start "arrayList"
-    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:301:1: arrayList : LPAREN listDecl RPAREN ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:301:1: arrayList : LPAREN listDecl RPAREN ;
     public final Phdl2Parser.arrayList_return arrayList() throws RecognitionException {
         Phdl2Parser.arrayList_return retval = new Phdl2Parser.arrayList_return();
         retval.start = input.LT(1);
@@ -2455,8 +2455,8 @@ public class Phdl2Parser extends Parser {
         CommonTree RPAREN83_tree=null;
 
         try {
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:302:2: ( LPAREN listDecl RPAREN )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:302:5: LPAREN listDecl RPAREN
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:302:2: ( LPAREN listDecl RPAREN )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:302:5: LPAREN listDecl RPAREN
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -2505,7 +2505,7 @@ public class Phdl2Parser extends Parser {
     };
 
     // $ANTLR start "sliceList"
-    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:305:1: sliceList : LBRACKET listDecl RBRACKET ;
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:305:1: sliceList : LBRACKET listDecl RBRACKET ;
     public final Phdl2Parser.sliceList_return sliceList() throws RecognitionException {
         Phdl2Parser.sliceList_return retval = new Phdl2Parser.sliceList_return();
         retval.start = input.LT(1);
@@ -2521,8 +2521,8 @@ public class Phdl2Parser extends Parser {
         CommonTree RBRACKET86_tree=null;
 
         try {
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:306:2: ( LBRACKET listDecl RBRACKET )
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:306:4: LBRACKET listDecl RBRACKET
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:306:2: ( LBRACKET listDecl RBRACKET )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:306:4: LBRACKET listDecl RBRACKET
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -2571,7 +2571,7 @@ public class Phdl2Parser extends Parser {
     };
 
     // $ANTLR start "listDecl"
-    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:309:1: listDecl : ( INT COLON INT -> ^( LIST_ARRAY INT INT ) | INT ( COMMA INT ( COMMA INT )* )? -> ^( LIST_SLICE ( INT )+ ) );
+    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:309:1: listDecl : ( INT COLON INT -> ^( LIST_ARRAY INT INT ) | INT ( COMMA INT ( COMMA INT )* )? -> ^( LIST_SLICE ( INT )+ ) );
     public final Phdl2Parser.listDecl_return listDecl() throws RecognitionException {
         Phdl2Parser.listDecl_return retval = new Phdl2Parser.listDecl_return();
         retval.start = input.LT(1);
@@ -2600,7 +2600,7 @@ public class Phdl2Parser extends Parser {
         RewriteRuleTokenStream stream_COMMA=new RewriteRuleTokenStream(adaptor,"token COMMA");
 
         try {
-            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:310:2: ( INT COLON INT -> ^( LIST_ARRAY INT INT ) | INT ( COMMA INT ( COMMA INT )* )? -> ^( LIST_SLICE ( INT )+ ) )
+            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:310:2: ( INT COLON INT -> ^( LIST_ARRAY INT INT ) | INT ( COMMA INT ( COMMA INT )* )? -> ^( LIST_SLICE ( INT )+ ) )
             int alt19=2;
             int LA19_0 = input.LA(1);
 
@@ -2630,7 +2630,7 @@ public class Phdl2Parser extends Parser {
             }
             switch (alt19) {
                 case 1 :
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:310:4: INT COLON INT
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:310:4: INT COLON INT
                     {
                     INT87=(Token)match(input,INT,FOLLOW_INT_in_listDecl993); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_INT.add(INT87);
@@ -2657,7 +2657,7 @@ public class Phdl2Parser extends Parser {
                     root_0 = (CommonTree)adaptor.nil();
                     // 310:22: -> ^( LIST_ARRAY INT INT )
                     {
-                        // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:310:25: ^( LIST_ARRAY INT INT )
+                        // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:310:25: ^( LIST_ARRAY INT INT )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(LIST_ARRAY, "LIST_ARRAY"), root_1);
@@ -2674,12 +2674,12 @@ public class Phdl2Parser extends Parser {
                     }
                     break;
                 case 2 :
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:311:5: INT ( COMMA INT ( COMMA INT )* )?
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:311:5: INT ( COMMA INT ( COMMA INT )* )?
                     {
                     INT90=(Token)match(input,INT,FOLLOW_INT_in_listDecl1017); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_INT.add(INT90);
 
-                    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:311:9: ( COMMA INT ( COMMA INT )* )?
+                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:311:9: ( COMMA INT ( COMMA INT )* )?
                     int alt18=2;
                     int LA18_0 = input.LA(1);
 
@@ -2688,7 +2688,7 @@ public class Phdl2Parser extends Parser {
                     }
                     switch (alt18) {
                         case 1 :
-                            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:311:10: COMMA INT ( COMMA INT )*
+                            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:311:10: COMMA INT ( COMMA INT )*
                             {
                             COMMA91=(Token)match(input,COMMA,FOLLOW_COMMA_in_listDecl1020); if (state.failed) return retval; 
                             if ( state.backtracking==0 ) stream_COMMA.add(COMMA91);
@@ -2696,7 +2696,7 @@ public class Phdl2Parser extends Parser {
                             INT92=(Token)match(input,INT,FOLLOW_INT_in_listDecl1022); if (state.failed) return retval; 
                             if ( state.backtracking==0 ) stream_INT.add(INT92);
 
-                            // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:311:20: ( COMMA INT )*
+                            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:311:20: ( COMMA INT )*
                             loop17:
                             do {
                                 int alt17=2;
@@ -2709,7 +2709,7 @@ public class Phdl2Parser extends Parser {
 
                                 switch (alt17) {
                             	case 1 :
-                            	    // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:311:21: COMMA INT
+                            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:311:21: COMMA INT
                             	    {
                             	    COMMA93=(Token)match(input,COMMA,FOLLOW_COMMA_in_listDecl1025); if (state.failed) return retval; 
                             	    if ( state.backtracking==0 ) stream_COMMA.add(COMMA93);
@@ -2748,7 +2748,7 @@ public class Phdl2Parser extends Parser {
                     root_0 = (CommonTree)adaptor.nil();
                     // 311:35: -> ^( LIST_SLICE ( INT )+ )
                     {
-                        // D:\\work\\phdl\\src\\phdl\\grammar\\Phdl2.g:311:38: ^( LIST_SLICE ( INT )+ )
+                        // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl2.g:311:38: ^( LIST_SLICE ( INT )+ )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(LIST_SLICE, "LIST_SLICE"), root_1);

@@ -54,10 +54,10 @@ December 1, 2011
 							'('
 							'1'
 							')'
-						'.'
+						'/'
 					instSpecifier			<---
 						'mysub1'				|
-						'.'						|
+						'/'						|
 					instSpecifier			<-----All use same rule	
 						'mysub2'				|
 						'.'						|

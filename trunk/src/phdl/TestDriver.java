@@ -31,28 +31,8 @@ public class TestDriver {
 	 */
 	public static void main(String[] args) {
 		boolean success = true;
-		/*
-		System.out.println("***Testing PHDLPin***");
-		success &= PHDLPin.unitTest();
-		System.out.println("***Testing PHDLNet***");
-		success &= PHDLNet.unitTest();
-		System.out.println("***Testing PHDLAttribute***");
-		success &= PHDLNet.unitTest();
-		System.out.println("***Testing PHDLNetList***");
-		success &= PHDLNetList.unitTest();
-		System.out.println("***Testing PHDLDevice***");
-		success &= PHDLDevice.unitTest();
-		System.out.println("***Testing PHDLInstance***");
-		success &= PHDLInstance.unitTest();
-		System.out.println("***Testing PHDLDesign***");
-		success &= PHDLDesign.unitTest();
-		System.out.println("***Testing RefDesGenerator***");
-		success &= RefDesGenerator.unitTest();
-		*/
-		
-		// success &= PHDLPreProcessor.unitTest();
-		//success &= phdl.analyzer.DesignHierarchy.unitTest();
-		//success &= phdl.preprocessor.Extractor.unitTest();
+		System.out.println("***Testing phdl.graph.Pin***");
+		success &= phdl.graph.Pin.unitTest();
 
 		System.out.println("\n***Testing Complete***");
 		if (success) {
@@ -62,10 +42,17 @@ public class TestDriver {
 		}
 	}
 
-	public static void err(String fun, String expected, String actual) {
-		System.out.println("Error in " + fun);
+	public static boolean displayError(int testNum, String fun, String description) {
+		System.out.println("Test " + testNum + ": Error in " + fun);
+		System.out.println("\t" + description);
+		return false;
+	}
+	
+	public static boolean displayError(int testNum, String fun, String description, String expected, String actual) {
+		displayError(testNum, fun, description);
 		System.out.println("\tExpected: " + expected);
 		System.out.println("\tActual: " + actual);
+		return false;
 	}
 
 }

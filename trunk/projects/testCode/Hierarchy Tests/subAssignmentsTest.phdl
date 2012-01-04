@@ -64,6 +64,7 @@
  *			Test 38:	December 1, 2011
  *		Complete subDesignInstance
  *			Test 39:	December 1, 2011
+ *			Test 40:	December 14, 2011
  *
  *	Tests Complete!
  *
@@ -728,4 +729,53 @@ sub(3:1) mySub1 of mydesign1 {
 	this(3).myinst1.value = "300K";
 	this(1:2).mysub1.refPrefix = "P";
 	this(3).mysub1.subinst1.tolerance = "5%";
+}
+
+/**********
+ *	Test 40
+ *	
+ *	Description:
+ *		Testing subDesignInstance as a whole.
+ *
+ *	Rule used:
+ *		subDesignInstance
+ *
+ *	Date of Successful Test: December 1, 2011
+ *	
+ **********/
+design memoryChip {
+	port w_en;
+	port r_en;
+	port[1:31] data;
+	port vcc, gnd;
+
+	include "devices.phdl";
+	inst eeprom_inst of eeprom {
+		data = data;
+		w_en = w_en;
+		r_en = r_en;
+		vcc = vcc;
+		gnd = gnd;
+		newattr supplier = "DigiKey";
+	}
+	inst(1:2) decoup_caps of capacitor {
+		value = "0.01uF";
+		combine(a) = <vcc>;
+		b = gnd;
+	}
+
+}
+
+design topLevel {
+	sub(1:5) mem of memoryChip {
+		refPrefix = "B";
+		combine(w_en) = control[2:6];
+		r_en = control[1];
+		data[1:31] = bus[1:31];
+		vcc = vcc;
+		gnd = gnd;
+
+		eeprom_inst.supplier = "National Instruments";
+		decoup_caps.value = "0.1uF";
+	}
 }

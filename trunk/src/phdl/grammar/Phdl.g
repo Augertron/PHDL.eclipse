@@ -171,8 +171,13 @@ sourceText
  */
 designDecl
 	:	'design'^ IDENT LEFTBRACE! 
-		(deviceDecl | netDecl | infoStruct | instanceDecl | netAssignment | groupStruct | subDesignInstance)*
+		(deviceDecl | netDecl | infoStruct | instanceDecl | netAssignment | groupStruct | subDesignInstance | portDecl)*
 		RIGHTBRACE!
+	;
+
+portDecl
+	:
+		'port' sliceDecl? IDENT (',' IDENT)* SEMICOLON!
 	;
 
 /** 
