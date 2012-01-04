@@ -54,14 +54,15 @@ public class Pin extends Node {
 	 *            the parent of the PinNode
 	 */
 	public Pin(Pin old, Attributable parent) {
-		setParent(parent);
-		pinNumber = old.getPinNumber();
-		net = old.getNet();
-		name = old.getName();
-		line = old.getLine();
-		pos = old.getPosition();
-		fileName = old.getFileName();
-		setIndex(old.getIndex());
+		this.parent = parent;
+		this.pinNumber = old.getPinNumber();
+		this.net = old.getNet();
+		this.name = old.getName();
+		this.line = old.getLine();
+		this.pos = old.getPosition();
+		this.fileName = old.getFileName();
+		this.index = old.getIndex();
+		this.pinType = old.getPinType();
 	}
 
 	@Override
@@ -168,7 +169,7 @@ public class Pin extends Node {
 	 * @return			a string representation
 	 */
 	public String toString() {
-		return getNodeType() + ": " + getPinType() + " " + name + " [" + index + "] = {"
-				+ pinNumber + "}";
+		return getNodeType() + ": " + getPinType() + " " + name
+				+ ((index == -1) ? ("") : ("[" + index + "]")) + "={" + pinNumber + "}";
 	}
 }

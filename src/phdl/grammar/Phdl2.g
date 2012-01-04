@@ -63,6 +63,7 @@ tokens {
 	END;
 	COMBINE;
 	INCLUDE;
+	INFO;
 	
 	// pin types
 	PIN;
@@ -74,11 +75,22 @@ tokens {
 	
 	// imaginary tree nodes
 	WIDTH_DECL;
+	ARRAY_DECL;
 	DEVICE_DECL;
 	ATTR_DECL;
 	PIN_DECL;
 	PIN_LIST;
 	PIN_TYPE;
+	INFO_DECL;
+	NET_DECL;
+	NAME_DECL;
+	DESIGN_DECL;
+	INST_DECL;
+	ATTR_ASSIGN;
+	ATTR_QUAL;
+	PIN_ASSIGN;
+	LIST_ARRAY;
+	LIST_SLICE;
 }
 
 @header {
@@ -215,11 +227,12 @@ tokens {
  *------------------------------------------------------------------------------------------------------*/
 
 sourceText
-	:	(deviceDecl)+
+	:	(deviceDecl | designDecl)+
 	;
 
 deviceDecl
-	:	DEVICE IDENT LBRACE (attrDecl | pinDecl)* RBRACE -> ^(DEVICE_DECL IDENT attrDecl* pinDecl*)
+	:	DEVICE IDENT LBRACE (infoDecl | attrDecl | pinDecl)* RBRACE 
+		-> ^(DEVICE_DECL IDENT infoDecl* attrDecl* pinDecl*)
 	;
 	
 attrDecl
@@ -227,7 +240,8 @@ attrDecl
 	;
 
 pinDecl
-	:	pinType widthDecl? IDENT EQUALS pinList SEMICOLON -> ^(PIN_DECL IDENT pinType widthDecl? pinList)
+	:	pinType (LBRACKET widthDecl RBRACKET)? IDENT EQUALS pinList SEMICOLON 
+		-> ^(PIN_DECL IDENT pinType widthDecl? pinList)
 	;
 
 pinType
@@ -240,7 +254,7 @@ pinType
 	;
 
 widthDecl
-	:	LBRACKET INT (COLON INT)? RBRACKET -> ^(WIDTH_DECL INT+)
+	:	INT COLON INT -> ^(WIDTH_DECL INT INT)
 	;
 
 pinList
@@ -250,6 +264,53 @@ pinList
 pinNumber
 	:	IDENT | INT | PINNUM
 	;
+	
+designDecl
+	:	DESIGN IDENT LBRACE designBody* RBRACE -> ^(DESIGN_DECL IDENT designBody*)
+	;
+	
+designBody
+	:	infoDecl
+	|	netDecl
+	|	instDecl
+	;
+	
+infoDecl
+	:	INFO LBRACE STRING+ RBRACE -> ^(INFO_DECL STRING+)
+	;
+	
+netDecl
+	:	NET LBRACKET widthDecl? RBRACKET IDENT (COMMA IDENT)+ ((LBRACE attrDecl* RBRACE) | SEMICOLON) 
+		-> ^(NET_DECL widthDecl? IDENT+ attrDecl*)
+	;
+	
+instDecl
+	:	INST (LPAREN widthDecl RPAREN)? IDENT OF IDENT LBRACE (infoDecl | attrAssign)* RBRACE
+		-> ^(INST_DECL widthDecl? IDENT IDENT infoDecl* attrAssign*)
+	;
+	
+attrAssign
+	:	NEWATTR? attrQual? IDENT EQUALS STRING SEMICOLON
+		-> ^(ATTR_ASSIGN NEWATTR? attrQual? IDENT STRING)
+	;
+	
+attrQual
+	:	THIS arrayList PERIOD -> ^(arrayList)
+	;
+	
+arrayList
+	: 	LPAREN listDecl RPAREN
+	;
+	
+sliceList
+	:	LBRACKET listDecl RBRACKET
+	;
+	
+listDecl
+	:	INT COLON INT					-> ^(LIST_ARRAY INT INT)
+	| 	INT (COMMA INT (COMMA INT)*)?	-> ^(LIST_SLICE INT+)
+	;
+
 	
 /*------------------------------------------------------------------------------------------------------ 
  * Lexer Rules
@@ -271,6 +332,7 @@ BEGIN: B E G I N;
 END: E N D;
 COMBINE: C O M B I N E;
 INCLUDE: I N C L U D E;
+INFO: I N F O;
 
 // pin type keywords
 PIN: P I N;
@@ -285,7 +347,7 @@ fragment DIGIT : ('0'..'9') ;
 
 INT: DIGIT+;
 IDENT: CHAR (CHAR | DIGIT)*;
-PINNUM: DIGIT (CHAR | DIGIT)*; 
+PINNUM: DIGIT CHAR+; 
 
 /**
  * A string has its wrapping quotes removed

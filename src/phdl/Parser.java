@@ -21,12 +21,12 @@ import java.util.Set;
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CharStream;
 import org.antlr.runtime.CommonTokenStream;
+import org.antlr.runtime.tree.CommonTree;
 import org.antlr.runtime.tree.CommonTreeNodeStream;
 import org.antlr.runtime.tree.DOTTreeGenerator;
 import org.antlr.runtime.tree.Tree;
 import org.antlr.stringtemplate.StringTemplate;
 
-import phdl.generator.Generator;
 import phdl.grammar.Phdl2Lexer;
 import phdl.grammar.Phdl2Parser;
 import phdl.grammar.PhdlWalker2;
@@ -45,7 +45,8 @@ public class Parser {
 	private Switches sw;
 
 	public Parser(Switches sw) {
-		this.setDevices(new HashSet<Device>());
+		this.devices = new HashSet<Device>();
+		this.designs = new HashSet<Design>();
 		this.reqAttr = new HashSet<String>();
 		this.errors = new ArrayList<String>();
 		this.warnings = new ArrayList<String>();
@@ -60,8 +61,11 @@ public class Parser {
 	 * Adds a warning from a Node object
 	 */
 	private void addWarning(Node n, String message) {
+		String index = "";
+		if (n instanceof Net)
+			index += ((Net) n).getIndex();
 		warnings.add(n.getFileName() + " line " + n.getLine() + ":" + n.getPosition() + " "
-				+ message + ": " + n.getName());
+				+ message + ": " + n.getName() + "[" + index + "]");
 	}
 
 	public void dumpToFile(String fileName, String fileData) {
@@ -97,7 +101,8 @@ public class Parser {
 
 		Phdl2Parser p = new Phdl2Parser(new CommonTokenStream(new Phdl2Lexer(cs)));
 		try {
-			Object tree = p.sourceText().getTree();
+
+			CommonTree tree = (CommonTree) p.sourceText().getTree();
 			CommonTreeNodeStream ns = new CommonTreeNodeStream(tree);
 			ns.setTokenStream(p.getTokenStream());
 
@@ -117,49 +122,48 @@ public class Parser {
 
 			// 3. walk the stream of nodes and attempt to obtain a set of
 			// all designs
-			PhdlWalker2 walker = new PhdlWalker2(ns);
-			walker.setRequiredAttributes(reqAttr);
-			walker.sourceText();
-			errors.addAll(walker.getErrors());
-			warnings.addAll(walker.getWarnings());
-			devices.addAll(walker.getDevices());
+			PhdlWalker2 w = new PhdlWalker2(ns);
+			w.setRequiredAttributes(reqAttr);
+			w.sourceText();
+			errors.addAll(w.getErrors());
+			warnings.addAll(w.getWarnings());
+			devices.addAll(w.getDevices());
+			designs.addAll(w.getDesigns());
 
 			// print out all errors if there were any, and exit abnormally
 			printErrors();
 
-			// call the superNet algorithm on all nets in each design node
-			for (Design d : walker.getDesigns()) {
-				d.superNet2();
-				// report any floating nets
-				for (Net n : d.getNets()) {
-					if ((n.getPinNodes().size() < 2) && (!n.getName().equals("OPEN")))
-						addWarning(n, "floating net");
-				}
-
-				Generator gen = new Generator(d, sw.isEagle());
-
-				gen.generateRefDes();
-				gen.generateBoM();
-				gen.generateNetList();
-				if (sw.isEagle())
-					gen.generateEagleScript();
-				gen.generateInfo();
-
-			}
-
-			if (sw.isDumpEn()) {
-				// output a dotty graph after merging all nodes
-				for (Design d : walker.getDesigns()) {
-					String graphFileName = fileName + "_graph_merged.dot";
-					d.dottyDump(graphFileName);
-					d.printDesignNode();
-				}
-			}
-			if (sw.isVerbose()) {
-				for (Design d : walker.getDesigns()) {
-					d.printDesignNode();
-				}
-			}
+			// // call the superNet algorithm on all nets in each design node
+			// for (Design d : walker.getDesigns()) {
+			// d.superNet2();
+			// // report any floating nets
+			// for (Net n : d.getNets()) {
+			// if ((n.getPinNodes().size() < 2) && (!n.getName().equals("OPEN")))
+			// addWarning(n, "floating net");
+			// }
+			//
+			// Generator gen = new Generator(d, sw.isEagle());
+			//
+			// gen.generateRefDes();
+			// gen.generateBoM();
+			// gen.generateNetList();
+			// if (sw.isEagle())
+			// gen.generateEagleScript();
+			// gen.generateInfo();
+			//
+			// }
+			// if (sw.isDumpEn()) { // output a dotty graph after merging all nodes
+			// for (Design d : walker.getDesigns()) {
+			// String graphFileName = fileName + "_graph_merged.dot";
+			// d.dottyDump(graphFileName);
+			// d.printDesignNode();
+			// }
+			// }
+			// if (sw.isVerbose()) {
+			// for (Design d : walker.getDesigns()) {
+			// d.printDesignNode();
+			// }
+			// }
 
 		} catch (Exception e) {
 			e.printStackTrace();

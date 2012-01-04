@@ -16,7 +16,6 @@ import java.io.IOException;
 
 import phdl.graph.Attribute;
 import phdl.graph.Design;
-import phdl.graph.Device;
 import phdl.graph.Instance;
 import phdl.graph.Net;
 import phdl.graph.Pin;
@@ -35,23 +34,23 @@ public class XMLGenerator {
 		StringBuilder sb = new StringBuilder();
 		sb.append("<design>");
 		sb.append("\n\t<name>" + design.getName() + "</name>");
-		for (Device d : design.getDevices()) {
-			sb.append("\n\t<device>");
-			sb.append("\n\t\t<name>" + d.getName() + "</name>");
-			for (Attribute a : d.getAttributes()) {
-				sb.append("\n\t\t<attribute>");
-				sb.append("\n\t\t\t<name>" + a.getName() + "</name>");
-				sb.append("\n\t\t\t<value>" + a.getValue() + "</value>");
-				sb.append("\n\t\t</attribute>");
-			}
-			for (Pin p : d.getPins()) {
-				sb.append("\n\t\t<pin>");
-				sb.append("\n\t\t\t<name>" + p.getName() + "</name>");
-				sb.append("\n\t\t\t<number>" + p.getName() + "</number>");
-				sb.append("\n\t\t</pin>");
-			}
-			sb.append("\n\t</device>");
-		}
+		// for (Device d : design.getDevices()) {
+		// sb.append("\n\t<device>");
+		// sb.append("\n\t\t<name>" + d.getName() + "</name>");
+		// for (Attribute a : d.getAttributes()) {
+		// sb.append("\n\t\t<attribute>");
+		// sb.append("\n\t\t\t<name>" + a.getName() + "</name>");
+		// sb.append("\n\t\t\t<value>" + a.getValue() + "</value>");
+		// sb.append("\n\t\t</attribute>");
+		// }
+		// for (Pin p : d.getPins()) {
+		// sb.append("\n\t\t<pin>");
+		// sb.append("\n\t\t\t<name>" + p.getName() + "</name>");
+		// sb.append("\n\t\t\t<number>" + p.getName() + "</number>");
+		// sb.append("\n\t\t</pin>");
+		// }
+		// sb.append("\n\t</device>");
+		// }
 		for (Net n : design.getNets()) {
 			sb.append("\n\t<net>");
 			sb.append("\n\t\t<name>" + n.getName() + "</name>");

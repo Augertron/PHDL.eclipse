@@ -69,7 +69,7 @@ public abstract class Attributable extends Node {
 	 */
 	public Attribute getAttribute(String name) {
 		for (Attribute a : attributes) {
-			if (a.getName().equals(name))
+			if (a.getName().equals(name.toUpperCase()))
 				return a;
 		}
 		return null;

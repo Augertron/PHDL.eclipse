@@ -26,7 +26,7 @@ public class Instance extends Attributable {
 	private Device device;
 	private String refDes;
 	private String refPrefix;
-	private String footprint;
+	private String pkg;
 	private String groupName;
 	private int index;
 
@@ -45,9 +45,10 @@ public class Instance extends Attributable {
 		this.pins = new ArrayList<Pin>();
 		this.refDes = null;
 		this.refPrefix = null;
-		this.footprint = null;
+		this.pkg = null;
 		this.info = "";
 		this.index = -1;
+		this.groupName = null;
 	}
 
 	/**
@@ -173,8 +174,8 @@ public class Instance extends Attributable {
 	 * @return			a string representation
 	 */
 	public String toString() {
-		return super.toString() + " : " + getDevice().getName()
-				+ (refDes != null ? (" " + refDes) : "")
+		return super.toString() + ((index == -1) ? ("") : ("(" + index + ")")) + " : "
+				+ getDevice().getName() + (refDes != null ? (" " + refDes) : "")
 				+ (groupName != null ? (" " + groupName) : "");
 	}
 
@@ -258,22 +259,22 @@ public class Instance extends Attributable {
 	}
 
 	/**
-	 * Footprint accessor method.
+	 * Package accessor method.
 	 * 
-	 * @return the footprint attribute
+	 * @return the package attribute
 	 */
-	public String getFootprint() {
-		return footprint;
+	public String getPackage() {
+		return pkg;
 	}
 
 	/**
-	 * Footprint mutator method.
+	 * Package mutator method.
 	 * 
 	 * @param footprint
-	 *            the new footprint attribute
+	 *            the new package attribute
 	 */
-	public void setFootprint(String footprint) {
-		this.footprint = footprint;
+	public void setPackage(String pkg) {
+		this.pkg = pkg;
 	}
 
 	public void setGroupName(String groupName) {

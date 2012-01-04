@@ -59,7 +59,7 @@ public class NetListGenerator {
 		for (String s : refMap.keySet()) {
 			Instance i = refMap.get(s);
 			sb.append(s);
-			sb.append(" " + i.getDevice().getName().toUpperCase() + "@" + i.getFootprint() + "\n");
+			sb.append(" " + i.getDevice().getName().toUpperCase() + "@" + i.getPackage() + "\n");
 		}
 		sb.append("*CONNECTION*\n");
 

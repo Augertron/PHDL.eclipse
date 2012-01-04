@@ -42,7 +42,7 @@ public class XMLtoDesignGenerator {
 			process(xml.toString());
 		} catch (IOException e) {
 			System.err
-				.println("File Reading Error - File may not exist or be open in another program.");
+					.println("File Reading Error - File may not exist or be open in another program.");
 			System.exit(1);
 		}
 	}
@@ -91,7 +91,7 @@ public class XMLtoDesignGenerator {
 				i++;
 
 				i++;
-				curInst.setDevice(curDesign.getDevice(tags.get(++i)));
+				// curInst.setDevice(curDesign.getDevice(tags.get(++i)));
 				i++;
 			} else if (tag.equals("attribute")) {
 				Attribute a = null;
@@ -161,7 +161,7 @@ public class XMLtoDesignGenerator {
 				design = curDesign;
 				curDesign = null;
 			} else if (tag.equals("/device")) {
-				curDesign.addDevice(curDevice);
+				// curDesign.addDevice(curDevice);
 				curDevice = null;
 			} else if (tag.equals("/instance")) {
 				curDesign.addInstance(curInst);
