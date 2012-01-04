@@ -308,7 +308,7 @@ public class EagleScriptGenerator {
 		String lib = "";
 		if (i.getAttribute("LIBNAME") != null) {
 			lib = i.getAttribute("LIBNAME").getValue();
-			sb.append("ADD " + i.getFootprint() + "@" + lib + " '" + i.getRefDes() + "' (" + x
+			sb.append("ADD " + i.getPackage() + "@" + lib + " '" + i.getRefDes() + "' (" + x
 				+ " " + y + ");\n");
 		} else
 			System.err.println("ERROR: libName attribute undeclared: " + i.getName());

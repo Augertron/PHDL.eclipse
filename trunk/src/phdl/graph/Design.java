@@ -30,7 +30,6 @@ import java.util.TreeSet;
  */
 public class Design extends Node {
 
-	private Set<Device> devices;
 	private List<Instance> instances;
 	private List<Net> nets;
 	private Set<Design> subDesigns;
@@ -46,7 +45,6 @@ public class Design extends Node {
 	 * @see Net
 	 */
 	public Design() {
-		devices = new TreeSet<Device>();
 		instances = new ArrayList<Instance>();
 		nets = new ArrayList<Net>();
 		info = "";
@@ -71,35 +69,6 @@ public class Design extends Node {
 	 */
 	public Set<Design> getSubDesigns() {
 		return subDesigns;
-	}
-
-	/**
-	 * Device set accessor method.
-	 * 
-	 * @return the set of all devices
-	 */
-	public Set<Device> getDevices() {
-		return devices;
-	}
-
-	/**
-	 * Device set addition method.
-	 * 
-	 * @param d
-	 *            the new DeviceNode to add
-	 * @return true, if the device wasn't already in the design false, otherwise
-	 */
-	public boolean addDevice(Device d) {
-		return devices.add(d);
-	}
-
-	/**
-	 * Checks to see if the design has any devices.
-	 * 
-	 * @return true, if there devices in the design false, otherwise
-	 */
-	public boolean hasDevices() {
-		return (!devices.isEmpty());
 	}
 
 	/**
@@ -175,37 +144,12 @@ public class Design extends Node {
 
 	@Override
 	/**
-	 * Generic toString method.
-	 * 
-	 * @return a string representation of the DesignNode
-	 */
-	public String toString() {
-		return "DESIGN " + name;
-	}
-
-	@Override
-	/**
 	 * Type accessor method.
 	 * 
 	 * @return NodeType.DESIGN
 	 */
 	public NodeType getNodeType() {
 		return NodeType.DESIGN;
-	}
-
-	/**
-	 * Finds and returns a DeviceNode that has a certain name.
-	 * 
-	 * @param devName
-	 *            the name of the DeviceNode
-	 * @return the DeviceNode with the device name
-	 */
-	public Device getDevice(String devName) {
-		for (Device d : devices) {
-			if (d.getName().equals(devName))
-				return d;
-		}
-		return null;
 	}
 
 	/**
@@ -249,20 +193,13 @@ public class Design extends Node {
 	 *            the base name of the Instance
 	 * @return a List of InstanceNodes with the base name
 	 */
-	public List<Instance> getAllInstances(String instName) {
-		List<Instance> allInstances = new ArrayList<Instance>();
+	public List<Instance> getInstances(String instName) {
+		List<Instance> insts = new ArrayList<Instance>();
 		for (Instance i : instances) {
-			if (i.getName().length() < instName.length())
-				continue;
-			String prefix = i.getName().substring(0, instName.length());
-			if (prefix.equals(instName)) {
-				String suffix = i.getName().substring(instName.length());
-				if (suffix.length() == 0 || suffix.charAt(0) == '(') {
-					allInstances.add(i);
-				}
-			}
+			if (i.getName().equals(instName))
+				insts.add(i);
 		}
-		return allInstances;
+		return insts;
 	}
 
 	/**
@@ -307,32 +244,21 @@ public class Design extends Node {
 	 * Goes through all Nodes attached to the DesignNode and prints out a representation of the
 	 * connections.
 	 */
-	public void printDesignNode() {
+	public void printDesign() {
 		System.out.println(toString());
-		for (Device dev : getDevices()) {
-			System.out.println("\t" + dev.toString());
-			for (Attribute a : dev.getAttributes()) {
-				System.out.println("\t\t" + a.toString());
-			}
-			for (Pin pn : dev.getPins()) {
-				System.out.println("\t\t" + pn.toString());
-			}
-		}
-		for (Instance iNode : getInstances()) {
-			System.out.println("\t" + iNode.toString());
-			for (Attribute a : iNode.getAttributes()) {
-				System.out.println("\t\t" + a.toString());
-			}
-			for (Pin p : iNode.getPins()) {
-				if (p.getNet() != null) {
-					System.out.println("\t\t" + p.toString() + " <= " + p.getNet().toString());
-				} else {
-					System.out.println("\t\t" + p.toString());
-				}
-			}
-		}
-		for (Net n : getNets()) {
+		for (Net n : getNets())
 			System.out.println("\t" + n.toString());
+		for (Instance i : getInstances()) {
+			System.out.println("\t" + i.toString());
+			for (Attribute a : i.getAttributes())
+				System.out.println("\t\t" + a.toString());
+			for (Pin p : i.getPins()) {
+				if (p.getNet() != null)
+					System.out.println("\t\t" + p.toString() + " <= " + p.getNet().toString());
+				else
+					System.out.println("\t\t" + p.toString());
+
+			}
 		}
 	}
 
@@ -351,10 +277,10 @@ public class Design extends Node {
 		Map<Integer, Pin> pinMap = new HashMap<Integer, Pin>();
 
 		String format = "ordering=out;\r\n"
-			+ "	ranksep=.4;\r\n"
-			+ "	bgcolor=\"lightgrey\"; node [fixedsize=false, fontsize=12, fontname=\"Helvetica-bold\", fontcolor=\"blue\"\r\n"
-			+ "		width=.25, height=.25, color=\"black\", fillcolor=\"white\", style=\"filled, solid, bold\"];\r\n"
-			+ "	edge [arrowsize=.5, color=\"black\", style=\"bold\"]";
+				+ "	ranksep=.4;\r\n"
+				+ "	bgcolor=\"lightgrey\"; node [fixedsize=false, fontsize=12, fontname=\"Helvetica-bold\", fontcolor=\"blue\"\r\n"
+				+ "		width=.25, height=.25, color=\"black\", fillcolor=\"white\", style=\"filled, solid, bold\"];\r\n"
+				+ "	edge [arrowsize=.5, color=\"black\", style=\"bold\"]";
 
 		try {
 			dotty = new BufferedWriter(new FileWriter(fileName));
@@ -374,7 +300,7 @@ public class Design extends Node {
 			for (Instance i : instances) {
 				for (Pin p : i.getPins()) {
 					dotty.write("  p" + pinRef + " [label=\"" + i.getName() + "." + p.getName()
-						+ "\"];\n");
+							+ "\"];\n");
 					pinMap.put(pinRef, p);
 					pinRef++;
 				}
@@ -422,7 +348,7 @@ public class Design extends Node {
 	 */
 	public List<Integer> getAllIndices(String instName) {
 		List<Integer> allIndices = new ArrayList<Integer>();
-		for (Instance i : getAllInstances(instName)) {
+		for (Instance i : getInstances(instName)) {
 			int start = i.getName().indexOf('(');
 			int end = i.getName().indexOf(')');
 			if (start != -1 && end != -1) {
@@ -467,9 +393,8 @@ public class Design extends Node {
 	 */
 	public boolean isDeviceInstanced(Device dev) {
 		for (Instance i : instances) {
-			if (i.getDevice().equals(dev)) {
+			if (i.getDevice().equals(dev))
 				return true;
-			}
 		}
 		return false;
 	}
@@ -493,15 +418,13 @@ public class Design extends Node {
 
 		// gather up all the nets to be deleted from the design
 		for (Net n : nets) {
-			if (n.isVisited()) {
+			if (n.isVisited())
 				deletes.add(n);
-			}
 		}
 
 		// delete these nets from the design
-		for (Net n : deletes) {
+		for (Net n : deletes)
 			nets.remove(n);
-		}
 	}
 
 	/**
@@ -538,9 +461,8 @@ public class Design extends Node {
 		}
 
 		// remove all current's connections to neighbors
-		for (Net r : removes) {
+		for (Net r : removes)
 			current.removeNet(r);
-		}
 
 		// propagate the merged net back up the call-stack
 		return current;

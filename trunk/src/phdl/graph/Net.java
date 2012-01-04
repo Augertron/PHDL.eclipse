@@ -32,6 +32,7 @@ public class Net extends Attributable {
 	private Set<Net> nets;
 	private List<Pin> pins;
 	private Design design;
+	private int index;
 	private boolean visited = false;
 
 	/**
@@ -40,11 +41,12 @@ public class Net extends Attributable {
 	 * @param d
 	 *            the DesignNode that is the parent of this net
 	 */
-	public Net(Design d) {
+	public Net(Design design) {
 		super();
-		setDesign(d);
-		nets = new TreeSet<Net>();
 		pins = new ArrayList<Pin>();
+		nets = new TreeSet<Net>();
+		this.design = design;
+		this.index = -1;
 	}
 
 	/**
@@ -191,15 +193,16 @@ public class Net extends Attributable {
 	 * @return a string representation of the NetNode
 	 */
 	public String toString() {
-		String myString = super.toString() + " $ ";
+		String netString = super.toString() + ((index == -1) ? ("") : ("[" + index + "]")) + " $ ";
 		for (Net n : nets) {
-			myString += n.getName() + " $ ";
+			netString += n.getName() + ((n.getIndex() == -1) ? ("") : ("[" + n.getIndex() + "]"))
+					+ " $ ";
 		}
-		myString = myString.substring(0, myString.length() - 3);
+		netString = netString.substring(0, netString.length() - 3);
 		for (Attribute a : attributes) {
-			myString += "\n\t\t" + a.toString();
+			netString += "\n\t\t" + a.toString();
 		}
-		return myString;
+		return netString;
 	}
 
 	/**
@@ -238,5 +241,14 @@ public class Net extends Attributable {
 	@Override
 	public void setName(String name) {
 		this.name = name.toUpperCase();
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		return this.name.equals(((Net) o).getName()) && this.index == ((Net) o).getIndex();
 	}
 }

@@ -13,6 +13,7 @@ package phdl;
 import java.util.ArrayList;
 import java.util.List;
 
+import phdl.graph.Design;
 import phdl.graph.Device;
 
 /**
@@ -64,6 +65,8 @@ public class Compile {
 			p.parse(fileName);
 			for (Device d : p.getDevices())
 				System.out.print(d.toString());
+			for (Design d : p.getDesigns())
+				d.printDesign();
 		}
 
 	}
