@@ -287,7 +287,7 @@ pinDecl[Device dev]
 				if (hasWidth) p.setIndex($widthDecl.msb);
 				// accessing the pinlist may throw an exception
 				try {
-					p.setPinNumber($pinList.list.get(0));
+					p.setPinMapping($pinList.list.get(0));
 				} catch (IndexOutOfBoundsException e) {
 					addError($pinName, "invalid pin list");
 				}
@@ -308,7 +308,7 @@ pinDecl[Device dev]
 						p.setIndex(i);
 						// accessing the pinlist may throw an exception
 						try {
-							p.setPinNumber($pinList.list.get($widthDecl.msb - i));
+							p.setPinMapping($pinList.list.get($widthDecl.msb - i));
 						} catch (IndexOutOfBoundsException e) {
 							addError($pinName, "invalid pin list");
 						}
@@ -326,7 +326,7 @@ pinDecl[Device dev]
 						p.setIndex(i);
 						// accessing the pinlist may throw an exception
 						try {
-							p.setPinNumber($pinList.list.get(i));
+							p.setPinMapping($pinList.list.get(i));
 						} catch (IndexOutOfBoundsException e) {
 							addError($pinName, "invalid pin list");
 						}
