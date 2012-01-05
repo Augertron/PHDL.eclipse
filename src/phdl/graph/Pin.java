@@ -24,7 +24,9 @@ import phdl.TestDriver;
  * @author Brad Riching and Richard Black
  * @version 0.1
  * 
- * Date of Last Code Review:	
+ * TODO: Add a boolean return to setter methods
+ * 
+ * Date of Last Code Review:	January 5, 2012
  */
 public class Pin extends Node {
 
@@ -43,9 +45,17 @@ public class Pin extends Node {
 	 * @see Net
 	 */
 	public Pin(Attributable parent) {
-		setParent(parent);
-		this.pinMapping = "";
+		if (parent != null) {
+			if (parent.getNodeType() == NodeType.DEVICE || parent.getNodeType() == NodeType.INSTANCE) {
+				setParent(parent);
+			}
+			else {
+				this.parent = null;
+			}
+		}
+		this.pinMapping = null;
 		this.net = null;
+		this.pinType = PinType.PIN;
 		setIndex(-1);
 	}
 
@@ -67,6 +77,7 @@ public class Pin extends Node {
 		this.fileName = old.getFileName();
 		this.index = old.getIndex();
 		this.pinType = old.getPinType();
+		this.info = old.getInfo();
 	}
 
 	@Override
@@ -129,7 +140,12 @@ public class Pin extends Node {
 	}
 
 	public void setIndex(int index) {
-		this.index = index;
+		if (index < 0) {
+			this.index = -1;
+		}
+		else {
+			this.index = index;
+		}
 	}
 
 	/**
@@ -139,7 +155,9 @@ public class Pin extends Node {
 	 *            the new NetNode
 	 */
 	public void setNet(Net net) {
-		this.net = net;
+		if (net != null) {
+			this.net = net;
+		}
 	}
 
 	/**
@@ -149,7 +167,11 @@ public class Pin extends Node {
 	 *            the new attributable parent node
 	 */
 	public void setParent(Attributable parent) {
-		this.parent = parent;
+		if (parent != null) {
+			if (parent.getNodeType() == NodeType.DEVICE || parent.getNodeType() == NodeType.INSTANCE) {
+				this.parent = parent;
+			}
+		}
 	}
 
 	/**
@@ -159,7 +181,9 @@ public class Pin extends Node {
 	 *            the new pinName
 	 */
 	public void setPinMapping(String pinMapping) {
-		this.pinMapping = pinMapping;
+		if (pinMapping != null) {
+			this.pinMapping = pinMapping;
+		}
 	}
 
 	public void setPinType(PinType type) {
@@ -174,7 +198,7 @@ public class Pin extends Node {
 	 */
 	public String toString() {
 		return getNodeType() + ": " + getPinType() + " " + name
-				+ ((index == -1) ? ("") : ("[" + index + "]")) + "={" + pinMapping + "}";
+				+ ((index == -1) ? ("") : ("[" + index + "]")) + " = {" + pinMapping + "}";
 	}
 	
 	/***********************************
@@ -192,11 +216,11 @@ public class Pin extends Node {
 	 * 		?	Untested
 	 *  
 	 * 	Member Variables
-	 * 		?	Attributable	parent
-	 * 		?	String			pinMapping
-	 * 		?	Net				net
-	 * 		?	PinType			pinType
-	 * 		?	int				index
+	 * 		Attributable	parent
+	 * 		String			pinMapping
+	 * 		Net				net
+	 * 		PinType			pinType
+	 * 		int				index
 	 * 
 	 * 	Methods
 	 * 		?	public Pin(Attributable parent);
@@ -251,7 +275,7 @@ public class Pin extends Node {
 		testNum++;
 		Net parentNet = new Net(null);
 		Pin testPin2 = new Pin(parentNet);
-		if (testPin1.parent != null) {
+		if (testPin2.parent != null) {
 			success = TestDriver.displayError(testNum, "public Pin(Attributable parent)", "parent member variable should be null when parameter is an invalid parent");
 		}
 		
@@ -277,7 +301,12 @@ public class Pin extends Node {
 		 *  	parent = null
 		 */
 		testNum++;
+		Net testNet3 = new Net(null);
+		testNet3.name = "test_net_3";
+		testPin3.net = testNet3;
+		testPin3.name = "test_pin_3";
 		Pin copyPin1 = new Pin(testPin3, null);
+		
 		if (copyPin1.parent != null) {
 			success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)", "member variable parent should be null", "\"null\"", copyPin1.parent.toString());
 		}
@@ -317,6 +346,7 @@ public class Pin extends Node {
 		 */
 		testNum++;
 		Net tempNet1 = new Net(null);
+		tempNet1.name = "temp_net_1";
 		copyPin1.fileName = "myfilename.phdl";
 		copyPin1.info = "myinfo; isn't that cool?";
 		copyPin1.line = 45;
@@ -449,6 +479,225 @@ public class Pin extends Node {
 		testPin4b.pos = 777;
 		if (!testPin4a.equals(testPin4b)) {
 			success = TestDriver.displayError(testNum, "public boolean equals(Object o)", "testPin4a and testPin4b should be equal when pos's are different");
+		}
+		
+		/**
+		 * Test 9
+		 * 	public int getIndex();
+		 */
+		testNum++;
+		Pin testPin5 = new Pin(null);
+		if (testPin5.getIndex() != -1) {
+			success = TestDriver.displayError(testNum, "public int getIndex()", "Upon initialization, index should be -1");
+		}
+		testPin5.index = 4;
+		if (testPin5.getIndex() != 4) {
+			success = TestDriver.displayError(testNum, "public int getIndex()", "Index incorrect", testPin5.index + "", testPin5.getIndex() + "");
+		}
+		
+		/**
+		 * Test 10
+		 * 	public Net getNet();
+		 */
+		testNum++;
+		if (testPin5.getNet() != null) {
+			success = TestDriver.displayError(testNum, "public Net getNet()", "Upon initialization, net should be null");
+		}
+		Net testNet5 = new Net(null);
+		testNet5.name = "test_net_5";
+		testPin5.net = testNet5;
+		if (!testPin5.getNet().equals(testNet5)) {
+			success = TestDriver.displayError(testNum, "public Net getNet()", "Net incorrect", testNet5.toString(), testPin5.getNet().toString());
+		}
+		
+		/**
+		 * Test 11
+		 * 	public NodeType getNodeType();
+		 */
+		testNum++;
+		if (testPin5.getNodeType() != NodeType.PIN) {
+			success = TestDriver.displayError(testNum, "public NodeType getNodeType()", "A Pin should have a nodeType of PIN");
+		}
+		
+		/**
+		 * Test 12
+		 * 	public Attributable getParent();
+		 */
+		testNum++;
+		if (testPin5.getParent() != null) {
+			success = TestDriver.displayError(testNum, "public NodeType getParent()", "Incorrect parent", "null", testPin5.getParent().toString());
+		}
+		Device parentDevice5 = new Device("parent_device_5");
+		testPin5.parent = parentDevice5;
+		if (!testPin5.getParent().equals(parentDevice5)) {
+			success = TestDriver.displayError(testNum, "public NodeType getParent()", "Incorrect parent", parentDevice5.toString(), testPin5.getParent().toString());
+		}
+		
+		/**
+		 * Test 13
+		 * 	public String getPinMapping();
+		 */
+		testNum++;
+		if (testPin5.getPinMapping() != null) {
+			success = TestDriver.displayError(testNum, "public NodeType getPinMapping()", "Upon initialization, pinMapping should be null", "null", testPin5.getPinMapping());
+		}
+		testPin5.pinMapping = "5ab";
+		if (!testPin5.getPinMapping().equals("5ab")) {
+			success = TestDriver.displayError(testNum, "public NodeType getPinMapping()", "pinMapping incorrect", testPin5.pinMapping, testPin5.getPinMapping());
+		}
+		
+		/**
+		 * Test 14
+		 * 	public String getPinMapping();
+		 */
+		testNum++;
+		if (testPin5.getPinType() != PinType.PIN) {
+			success = TestDriver.displayError(testNum, "public NodeType getPinType()", "Upon initialization, pinType should be PIN", testPin5.pinType.toString(), testPin5.getPinType().toString());
+		}
+		testPin5.pinType = PinType.PWRPIN;
+		if (testPin5.getPinType() != PinType.PWRPIN) {
+			success = TestDriver.displayError(testNum, "public NodeType getPinType()", "Upon initialization, pinType should be PWRPIN", testPin5.pinType.toString(), testPin5.getPinType().toString());
+		}
+		
+		/**
+		 * Test 15
+		 * 	public boolean hasNet();
+		 */
+		testNum++;
+		Pin testPin6 = new Pin(null);
+		if (testPin6.hasNet()) {
+			success = TestDriver.displayError(testNum, "public boolean hasNet()", "Upon initialization, there should be no net");
+		}
+		Net testNet6 = new Net(null);
+		testPin6.net = testNet6;
+		if (!testPin6.hasNet()) {
+			success = TestDriver.displayError(testNum, "public boolean hasNet()", "The Pin has a Net, but hasNet() returned false");
+		}
+		
+		/**
+		 * Test 16
+		 * 	public void setIndex(int index);
+		 */
+		testNum++;
+		testPin6.setIndex(14);
+		if (testPin6.getIndex() != 14) {
+			success = TestDriver.displayError(testNum, "public void setIndex(int index)", "Incorrect index", "14", testPin6.getIndex() + "");
+		}
+		testPin6.setIndex(-1);
+		if (testPin6.getIndex() != -1) {
+			success = TestDriver.displayError(testNum, "public void setIndex(int index)", "Incorrect index", "-1", testPin6.getIndex() + "");
+		}
+		testPin6.setIndex(-123);
+		if (testPin6.getIndex() != -1) {
+			success = TestDriver.displayError(testNum, "public void setIndex(int index)", "Index should default to -1 if less than 0", "-1", testPin6.getIndex() + "");
+		}
+		testPin6.setIndex(320584);
+		if (testPin6.getIndex() != 320584) {
+			success = TestDriver.displayError(testNum, "public void setIndex(int index)", "There should be no upper limit on index", "320584", testPin6.getIndex() + "");
+		}
+		
+		/**
+		 * Test 17
+		 * 	public void setNet(Net net);
+		 */
+		testNum++;
+		Pin testPin7 = new Pin(null);
+		Net testNet7 = new Net(null);
+		testNet7.name = "test_net_7";
+		testPin7.setNet(testNet7);
+		if (!testPin7.getNet().equals(testNet7)) {
+			success = TestDriver.displayError(testNum, "public void setNet(Net net)", "Incorrect Net", testNet7.toString(), testPin7.getNet().toString());			
+		}
+		testPin7.setNet(null);
+		if (testPin7.getNet() == null) {
+			success = TestDriver.displayError(testNum, "public void setNet(Net net)", "Should not be able to assign null via setNet()");
+		}
+		
+		/**
+		 * Test 18
+		 * 	public void setParent(Attributable parent);
+		 */
+		testNum++;
+		Device parentDevice7 = new Device("parent_device_7");
+		testPin7.setParent(parentDevice7);
+		if (!testPin7.getParent().equals(parentDevice7)) {
+			success = TestDriver.displayError(testNum, "public void setParent(Attributable parent)", "Incorrect Parent", parentDevice7.toString(), testPin7.getParent().toString());
+		}
+		testPin7.setParent(null);
+		if (testPin7.getParent() == null) {
+			success = TestDriver.displayError(testNum, "public void setParent(Attributable parent)", "Should not be able to assign null via setParent()");
+		}
+		
+		/**
+		 * Test 19
+		 * 	public void setPinMapping(String pinMapping);
+		 */
+		testNum++;
+		testPin7.setPinMapping("7xyz");
+		if (!testPin7.getPinMapping().equals("7xyz")) {
+			success = TestDriver.displayError(testNum, "public void setPinMapping(String pinMapping)", "Incorrect PinMapping", "7xyz", testPin7.getPinMapping());
+		}
+		testPin7.setPinMapping(null);
+		if (testPin7.getPinMapping() == null) {
+			success = TestDriver.displayError(testNum, "public void setPinMapping(String pinMapping)", "Should not be able to assign null via setPinMapping");
+		}
+		
+		/**
+		 * Test 20
+		 * 	public void setPinType(PinType type);
+		 */
+		testNum++;
+		testPin7.setPinType(PinType.INPIN);
+		if (testPin7.getPinType() != PinType.INPIN) {
+			success = TestDriver.displayError(testNum, "public void setPinType(PinType pinType)", "Incorrect PinType", PinType.INPIN.toString(), testPin7.getPinType().toString());
+		}
+		testPin7.setPinType(PinType.IOPIN);
+		if (testPin7.getPinType() != PinType.IOPIN) {
+			success = TestDriver.displayError(testNum, "public void setPinType(PinType pinType)", "Incorrect PinType", PinType.IOPIN.toString(), testPin7.getPinType().toString());
+		}
+		testPin7.setPinType(PinType.OUTPIN);
+		if (testPin7.getPinType() != PinType.OUTPIN) {
+			success = TestDriver.displayError(testNum, "public void setPinType(PinType pinType)", "Incorrect PinType", PinType.OUTPIN.toString(), testPin7.getPinType().toString());
+		}
+		testPin7.setPinType(PinType.PWRPIN);
+		if (testPin7.getPinType() != PinType.PWRPIN) {
+			success = TestDriver.displayError(testNum, "public void setPinType(PinType pinType)", "Incorrect PinType", PinType.PWRPIN.toString(), testPin7.getPinType().toString());
+		}
+		testPin7.setPinType(PinType.SUPPIN);
+		if (testPin7.getPinType() != PinType.SUPPIN) {
+			success = TestDriver.displayError(testNum, "public void setPinType(PinType pinType)", "Incorrect PinType", PinType.SUPPIN.toString(), testPin7.getPinType().toString());
+		}
+		testPin7.setPinType(PinType.PIN);
+		if (testPin7.getPinType() != PinType.PIN) {
+			success = TestDriver.displayError(testNum, "public void setPinType(PinType pinType)", "Incorrect PinType", PinType.PIN.toString(), testPin7.getPinType().toString());
+		}
+		
+		/**
+		 * Test 21
+		 * 	public String toString();
+		 */
+		testNum++;
+		Pin testPin8 = new Pin(null);
+		Net testNet8 = new Net(null);
+		testNet8.setName("net_test_8");
+		testPin8.setName("test_pin_8");
+		testPin8.setLine(18);
+		testPin8.setPosition(81);
+		testPin8.setFileName("8_pin_test.phdl");
+		testPin8.setIndex(-1);
+		testPin8.setPinMapping("8ijk");
+		testPin8.setPinType(PinType.INPIN);
+		testPin8.setNet(testNet8);
+		String testPin8Str = "PIN: INPIN test_pin_8 = {8ijk}";
+		
+		if (!testPin8.toString().equals(testPin8Str)) {
+			success = TestDriver.displayError(testNum, "public String toString()", "Incorrect Output w/o index", "\n" + testPin8Str, "\n" + testPin8.toString());
+		}
+		
+		testPin8.setIndex(24);
+		testPin8Str = "PIN: INPIN test_pin_8[24] = {8ijk}";
+		if (!testPin8.toString().equals(testPin8Str)) {
+			success = TestDriver.displayError(testNum, "public String toString()", "Incorrect Output w/ index", "\n" + testPin8Str, "\n" + testPin8.toString());
 		}
 		
 		return success;
