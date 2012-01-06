@@ -26,7 +26,7 @@ import phdl.TestDriver;
  * 
  * TODO: Add a boolean return to setter methods
  * 
- * Date of Last Code Review:	January 5, 2012
+ * Date of Last Code Review:	January 5, 2012 by Richard Black
  */
 public class Pin extends Node {
 
@@ -211,7 +211,7 @@ public class Pin extends Node {
 	 * 			and "toString."
 	 * 
 	 * 	Legend
-	 * 		#	Proper Behavior
+	 * 		#	Proper Behavior (as of January 6, 2012)
 	 * 		X	Improper Behavior
 	 * 		?	Untested
 	 *  
@@ -223,22 +223,22 @@ public class Pin extends Node {
 	 * 		int				index
 	 * 
 	 * 	Methods
-	 * 		?	public Pin(Attributable parent);
-	 * 		?	public Pin(Pin old, Attributable parent);
-	 * 		?	public boolean equals(Object o);
-	 * 		?	public int getIndex();
-	 * 		?	public Net getNet();
-	 * 		?	public NodeType getNodeType();
-	 * 		?	public Attributable getParent();
-	 * 		?	public String getPinMapping();
-	 * 		?	public PinType getPinType();
-	 * 		?	public boolean hasNet();
-	 * 		?	public void setIndex(int index);
-	 * 		?	public void setNet(Net net);
-	 * 		?	public void setParent(Attributable parent);
-	 * 		?	public void setPinMapping(String pinMapping);
-	 * 		?	public void setPinType(PinType type);
-	 * 		?	public String toString();
+	 * 		#	public Pin(Attributable parent);
+	 * 		#	public Pin(Pin old, Attributable parent);
+	 * 		#	public boolean equals(Object o);
+	 * 		#	public int getIndex();
+	 * 		#	public Net getNet();
+	 * 		#	public NodeType getNodeType();
+	 * 		#	public Attributable getParent();
+	 * 		#	public String getPinMapping();
+	 * 		#	public PinType getPinType();
+	 * 		#	public boolean hasNet();
+	 * 		#	public void setIndex(int index);
+	 * 		#	public void setNet(Net net);
+	 * 		#	public void setParent(Attributable parent);
+	 * 		#	public void setPinMapping(String pinMapping);
+	 * 		#	public void setPinType(PinType type);
+	 * 		#	public String toString();
 	 * 
 	 ***********************************/
 	public static boolean unitTest() {
@@ -447,14 +447,14 @@ public class Pin extends Node {
 		
 		testPin4b.index = testPin4a.index;
 		testPin4b.pinMapping = "ba";
-		if (testPin4a.equals(testPin4b)) {
-			success = TestDriver.displayError(testNum, "public boolean equals(Object o)", "testPin4a and testPin4b should not be equal when pinMappings are different");
+		if (!testPin4a.equals(testPin4b)) {
+			success = TestDriver.displayError(testNum, "public boolean equals(Object o)", "testPin4a and testPin4b should be equal when pinMappings are different");
 		}
 		
 		testPin4b.pinMapping = testPin4a.pinMapping;
 		testPin4b.pinType = PinType.INPIN;
-		if (testPin4a.equals(testPin4b)) {
-			success = TestDriver.displayError(testNum, "public boolean equals(Object o)", "testPin4a and testPin4b should not be equal when pinTypes are different");
+		if (!testPin4a.equals(testPin4b)) {
+			success = TestDriver.displayError(testNum, "public boolean equals(Object o)", "testPin4a and testPin4b should be equal when pinTypes are different");
 		}
 		
 		testPin4b.pinType = testPin4a.pinType;
