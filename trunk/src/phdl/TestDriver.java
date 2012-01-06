@@ -31,9 +31,7 @@ public class TestDriver {
 	 */
 	public static void main(String[] args) {
 		boolean success = true;
-		System.out.println("***Testing phdl.graph.Pin***");
-		success &= phdl.graph.Pin.unitTest();
-
+		success &= runTests(success);
 		System.out.println("\n***Testing Complete***");
 		if (success) {
 			System.out.println("***All Tests Successful***");
@@ -42,6 +40,15 @@ public class TestDriver {
 		}
 	}
 
+	private static boolean runTests(boolean success) {
+		System.out.println("***Testing phdl.graph.Pin***");
+		success &= phdl.graph.Pin.unitTest();
+		System.out.println("***Testing phdl.graph.Net***");
+		success &= phdl.graph.Net.unitTest();
+		
+		return success;
+	}
+	
 	public static boolean displayError(int testNum, String fun, String description) {
 		System.out.println("Test " + testNum + ": Error in " + fun);
 		System.out.println("\t" + description);
