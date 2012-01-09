@@ -42,7 +42,7 @@ public class XMLtoDesignGenerator {
 			process(xml.toString());
 		} catch (IOException e) {
 			System.err
-					.println("File Reading Error - File may not exist or be open in another program.");
+				.println("File Reading Error - File may not exist or be open in another program.");
 			System.exit(1);
 		}
 	}
@@ -150,7 +150,7 @@ public class XMLtoDesignGenerator {
 
 				i++;
 				String netName = tags.get(++i);
-				p.setNet(curDesign.getNet(netName));
+				// p.setNet(curDesign.getNet(netName));
 				i++;
 
 				i++;

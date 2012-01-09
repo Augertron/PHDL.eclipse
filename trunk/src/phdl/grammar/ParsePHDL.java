@@ -8,7 +8,7 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-package phdl;
+package phdl.grammar;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -19,32 +19,33 @@ import java.util.List;
 import java.util.Set;
 
 import org.antlr.runtime.ANTLRFileStream;
+import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CharStream;
 import org.antlr.runtime.CommonTokenStream;
+import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.tree.CommonTree;
 import org.antlr.runtime.tree.CommonTreeNodeStream;
 import org.antlr.runtime.tree.DOTTreeGenerator;
 import org.antlr.runtime.tree.Tree;
 import org.antlr.stringtemplate.StringTemplate;
 
-import phdl.grammar.Phdl2Lexer;
-import phdl.grammar.Phdl2Parser;
-import phdl.grammar.PhdlWalker2;
+import phdl.Configuration;
+import phdl.grammar.PhdlAST.operand_return;
 import phdl.graph.Design;
 import phdl.graph.Device;
 import phdl.graph.Net;
 import phdl.graph.Node;
 
-public class Parser {
+public class ParsePHDL {
 
 	private Set<Device> devices;
 	private Set<Design> designs;
 	private Set<String> reqAttr;
 	private List<String> errors;
 	private List<String> warnings;
-	private Switches sw;
+	private Configuration sw;
 
-	public Parser(Switches sw) {
+	public ParsePHDL(Configuration sw) {
 		this.devices = new HashSet<Device>();
 		this.designs = new HashSet<Design>();
 		this.reqAttr = new HashSet<String>();
@@ -65,7 +66,7 @@ public class Parser {
 		if (n instanceof Net)
 			index += ((Net) n).getIndex();
 		warnings.add(n.getFileName() + " line " + n.getLine() + ":" + n.getPosition() + " "
-				+ message + ": " + n.getName() + "[" + index + "]");
+			+ message + ": " + n.getName() + "[" + index + "]");
 	}
 
 	public void dumpToFile(String fileName, String fileData) {
@@ -90,7 +91,6 @@ public class Parser {
 	}
 
 	public void parse(String fileName) {
-
 		CharStream cs = null;
 		try {
 			cs = new ANTLRFileStream(fileName);
@@ -99,7 +99,7 @@ public class Parser {
 			System.exit(1);
 		}
 
-		Phdl2Parser p = new Phdl2Parser(new CommonTokenStream(new Phdl2Lexer(cs)));
+		PhdlParser p = new PhdlParser(new CommonTokenStream(new PhdlLexer(cs)));
 		try {
 
 			CommonTree tree = (CommonTree) p.sourceText().getTree();
@@ -111,8 +111,8 @@ public class Parser {
 
 			if (sw.isDumpEn()) {
 				// convert the AST to a dotty formatted string for debug
-				DOTTreeGenerator tg = new DOTTreeGenerator();
-				StringTemplate st = tg.toDOT((Tree) tree);
+				DOTTreeGenerator dtg = new DOTTreeGenerator();
+				StringTemplate st = dtg.toDOT((Tree) tree);
 				String astFileName = fileName + "_ast.dot";
 				dumpToFile(astFileName, st.toString());
 			}
@@ -120,15 +120,13 @@ public class Parser {
 			// bail out if there are errors
 			printErrors();
 
-			// 3. walk the stream of nodes and attempt to obtain a set of
-			// all designs
-			PhdlWalker2 w = new PhdlWalker2(ns);
-			w.setRequiredAttributes(reqAttr);
-			w.sourceText();
-			errors.addAll(w.getErrors());
-			warnings.addAll(w.getWarnings());
-			devices.addAll(w.getDevices());
-			designs.addAll(w.getDesigns());
+			PhdlAST ast = new PhdlAST(ns);
+			ast.setRequiredAttributes(reqAttr);
+			ast.sourceText();
+			errors.addAll(ast.getErrors());
+			warnings.addAll(ast.getWarnings());
+			devices.addAll(ast.getDevices());
+			designs.addAll(ast.getDesigns());
 
 			// print out all errors if there were any, and exit abnormally
 			printErrors();
@@ -207,4 +205,25 @@ public class Parser {
 		this.devices = devices;
 	}
 
+	public static boolean unitTest() {
+		// lots of TODO
+		PhdlLexer lexer = new PhdlLexer();
+		CommonTokenStream tokenStream = new CommonTokenStream(lexer);
+		PhdlParser parser = new PhdlParser(tokenStream);
+		PhdlAST ast;
+
+		CharStream cs = new ANTLRStringStream(" operand [0:3] ");
+		lexer.setCharStream(cs);
+		try {
+			ast = new PhdlAST(new CommonTreeNodeStream(parser.operand().getTree()));
+			operand_return oprtn = ast.operand();
+			// System.out.println(oprtn.name.getText() + " " + oprtn.indices);
+
+		} catch (RecognitionException e) {
+			e.printStackTrace();
+			return false;
+		}
+
+		return true;
+	}
 }

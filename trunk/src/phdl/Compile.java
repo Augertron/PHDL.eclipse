@@ -10,9 +10,7 @@
 
 package phdl;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import phdl.grammar.ParsePHDL;
 import phdl.graph.Design;
 import phdl.graph.Device;
 
@@ -30,45 +28,24 @@ public class Compile {
 	 * generates a net list for layout tools, and a bill of material for procurement.
 	 */
 	public static void main(String[] args) {
+		long stt = System.currentTimeMillis();
 
-		Configuration cfg = new Configuration();
-		Switches sw = new Switches();
-		List<String> fileNames = new ArrayList<String>();
+		Configuration cfg = new Configuration(args);
 
-		if (args.length == 0) {
-			System.out.println(cfg.getUsage());
-			System.exit(1);
-		}
-		for (int i = 0; i < args.length; i++) {
-			if (args[i].equals("-w"))
-				sw.setSupWarn(true);
-			else if (args[i].equals("-d"))
-				sw.setDumpEn(true);
-			else if (args[i].equals("-v"))
-				sw.setVerbose(true);
-			else if (args[i].equals("-e"))
-				sw.setEagle(true);
-			else if (args[i].equals("-c")) {
-				sw.setClean(true);
-			} else if (args[i].equals("?")) {
-				System.out.println(cfg.getUsage());
-				System.exit(1);
-			} else {
-				fileNames.add(args[i]);
-			}
-		}
-
-		for (String fileName : fileNames) {
-			Parser p = new Parser(sw);
+		for (String fileName : cfg.getFileNames()) {
+			ParsePHDL p = new ParsePHDL(cfg);
 			for (int i = 0; i < cfg.getReqAttr().length; i++)
 				p.addRequiredAttribute(cfg.getReqAttr()[i]);
 			p.parse(fileName);
+
 			for (Device d : p.getDevices())
 				System.out.print(d.toString());
 			for (Design d : p.getDesigns())
 				d.printDesign();
 		}
 
-	}
+		long end = System.currentTimeMillis();
+		System.out.println((end - stt) + " ms.");
 
+	}
 }
