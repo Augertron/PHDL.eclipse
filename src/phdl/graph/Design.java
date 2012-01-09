@@ -155,13 +155,13 @@ public class Design extends Node {
 	/**
 	 * Finds and returns a NetNode that has a certain name.
 	 * 
-	 * @param netName
+	 * @param name
 	 *            the name of the NetNode
 	 * @return the NetNode with the net name
 	 */
-	public Net getNet(String netName) {
+	public Net getNet(String name, int index) {
 		for (Net n : nets) {
-			if (n.getName().equals(netName.toUpperCase()))
+			if (n.getName().equals(name.toUpperCase()) && n.getIndex() == index)
 				return n;
 		}
 		return null;
@@ -170,13 +170,21 @@ public class Design extends Node {
 	/**
 	 * Finds and returns an InstanceNode that has a certain name.
 	 * 
-	 * @param instName
+	 * @param name
 	 *            the name of the InstanceNode
 	 * @return the InstanceNode with the instance name
 	 */
-	public Instance getInstance(String instName) {
+	public Instance getInstance(String name, int index) {
 		for (Instance i : instances) {
-			if (i.getName().equals(instName))
+			if (i.getName().equals(name) && i.getIndex() == index)
+				return i;
+		}
+		return null;
+	}
+
+	public Instance getInstance(String name) {
+		for (Instance i : instances) {
+			if (i.getName().equals(name))
 				return i;
 		}
 		return null;
@@ -227,15 +235,8 @@ public class Design extends Node {
 	public List<Net> getAllNets(String netName) {
 		List<Net> allNets = new ArrayList<Net>();
 		for (Net n : nets) {
-			if (n.getName().length() < netName.length())
-				continue;
-			String prefix = n.getName().substring(0, netName.length());
-			if (prefix.equals(netName.toUpperCase())) {
-				String suffix = n.getName().substring(netName.length());
-				if (suffix.length() == 0 || suffix.charAt(0) == '[') {
-					allNets.add(n);
-				}
-			}
+			if (n.getName().equals(netName.toUpperCase()))
+				allNets.add(n);
 		}
 		return allNets;
 	}
@@ -255,6 +256,8 @@ public class Design extends Node {
 			for (Pin p : i.getPins()) {
 				if (p.getNet() != null)
 					System.out.println("\t\t" + p.toString() + " <= " + p.getNet().toString());
+				else if (p.isOpen())
+					System.out.println("\t\t" + p.toString() + (p.isOpen() ? " <= OPEN" : ""));
 				else
 					System.out.println("\t\t" + p.toString());
 
@@ -277,10 +280,10 @@ public class Design extends Node {
 		Map<Integer, Pin> pinMap = new HashMap<Integer, Pin>();
 
 		String format = "ordering=out;\r\n"
-				+ "	ranksep=.4;\r\n"
-				+ "	bgcolor=\"lightgrey\"; node [fixedsize=false, fontsize=12, fontname=\"Helvetica-bold\", fontcolor=\"blue\"\r\n"
-				+ "		width=.25, height=.25, color=\"black\", fillcolor=\"white\", style=\"filled, solid, bold\"];\r\n"
-				+ "	edge [arrowsize=.5, color=\"black\", style=\"bold\"]";
+			+ "	ranksep=.4;\r\n"
+			+ "	bgcolor=\"lightgrey\"; node [fixedsize=false, fontsize=12, fontname=\"Helvetica-bold\", fontcolor=\"blue\"\r\n"
+			+ "		width=.25, height=.25, color=\"black\", fillcolor=\"white\", style=\"filled, solid, bold\"];\r\n"
+			+ "	edge [arrowsize=.5, color=\"black\", style=\"bold\"]";
 
 		try {
 			dotty = new BufferedWriter(new FileWriter(fileName));
@@ -300,7 +303,7 @@ public class Design extends Node {
 			for (Instance i : instances) {
 				for (Pin p : i.getPins()) {
 					dotty.write("  p" + pinRef + " [label=\"" + i.getName() + "." + p.getName()
-							+ "\"];\n");
+						+ "\"];\n");
 					pinMap.put(pinRef, p);
 					pinRef++;
 				}
@@ -336,6 +339,7 @@ public class Design extends Node {
 		System.out.println("Wrote file: " + fileName);
 	}
 
+	@Deprecated
 	/**
 	 * Finds all the InstanceNodes with the same base name and returns a list of their indices.
 	 * 
@@ -359,6 +363,7 @@ public class Design extends Node {
 		return allIndices;
 	}
 
+	@Deprecated
 	/**
 	 * Finds all the NetNodes with the same base name and returns a list of their indices.
 	 * 

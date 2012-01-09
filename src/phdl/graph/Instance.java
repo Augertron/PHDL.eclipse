@@ -174,9 +174,9 @@ public class Instance extends Attributable {
 	 * @return			a string representation
 	 */
 	public String toString() {
-		return super.toString() + ((index == -1) ? ("") : ("(" + index + ")")) + " : "
-				+ getDevice().getName() + (refDes != null ? (" " + refDes) : "")
-				+ (groupName != null ? (" " + groupName) : "");
+		return super.toString() + ((index == -1) ? ("") : ("(" + index + ")")) + " of "
+			+ getDevice().getName() + (refDes != null ? (" " + refDes) : "")
+			+ (groupName != null ? (" " + groupName) : "");
 	}
 
 	/**
@@ -187,34 +187,32 @@ public class Instance extends Attributable {
 	 * @param pinName
 	 * @return The list of pin nodes with the same name as pinName.
 	 */
-	public List<Pin> getAllPins(String pinName) {
+	public List<Pin> getAllPins(String name) {
 		List<Pin> allPins = new ArrayList<Pin>();
-		for (int i = 0; i < pins.size(); i++) {
-			if (pins.get(i).getName().length() < pinName.length())
-				continue;
-			String prefix = pins.get(i).getName().substring(0, pinName.length());
-			if (prefix.equals(pinName)) {
-				String suffix = pins.get(i).getName().substring(pinName.length());
-				if (suffix.length() == 0 || suffix.charAt(0) == '[') {
-					allPins.add(pins.get(i));
-				}
-			}
-		}
+		for (Pin p : pins)
+			if (p.getName().equals(name))
+				allPins.add(p);
 		return allPins;
 	}
 
 	/**
 	 * Single pin accessor method.
 	 * 
-	 * @param s
+	 * @param name
 	 *            the name of the pin
 	 * @return the PinNode with that name
 	 */
-	public Pin getPin(String s) {
-		for (Pin p : pins) {
-			if (p.getName().equals(s))
+	public Pin getPin(String name) {
+		for (Pin p : pins)
+			if (p.getName().equals(name))
 				return p;
-		}
+		return null;
+	}
+
+	public Pin getPin(String name, int index) {
+		for (Pin p : pins)
+			if (p.getName().equals(name) && p.getIndex() == index)
+				return p;
 		return null;
 	}
 
@@ -296,6 +294,6 @@ public class Instance extends Attributable {
 	@Override
 	public boolean equals(Object o) {
 		return this.name.equals(((Instance) o).getName())
-				&& this.index == ((Instance) o).getIndex();
+			&& this.index == ((Instance) o).getIndex();
 	}
 }

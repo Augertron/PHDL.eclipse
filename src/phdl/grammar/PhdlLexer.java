@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:50:56 /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g 2012-01-04 12:01:23
+// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g 2012-01-09 01:25:04
 
 /*
     Copyright (C) 2011  BYU Configurable Computing Lab
@@ -18,6 +18,8 @@
  */
 
 	package phdl.grammar;
+	import java.util.Set;
+	import java.util.HashSet;
 
 
 import org.antlr.runtime.*;
@@ -27,44 +29,108 @@ import java.util.ArrayList;
 
 public class PhdlLexer extends Lexer {
     public static final int EOF=-1;
-    public static final int T__27=27;
-    public static final int T__28=28;
-    public static final int T__29=29;
-    public static final int T__30=30;
-    public static final int T__31=31;
-    public static final int T__32=32;
-    public static final int T__33=33;
-    public static final int T__34=34;
-    public static final int T__35=35;
-    public static final int T__36=36;
-    public static final int T__37=37;
-    public static final int T__38=38;
-    public static final int T__39=39;
-    public static final int T__40=40;
-    public static final int T__41=41;
-    public static final int IDENT=4;
-    public static final int LEFTBRACE=5;
-    public static final int RIGHTBRACE=6;
-    public static final int SEMICOLON=7;
+    public static final int SEMICOLON=4;
+    public static final int COLON=5;
+    public static final int COMMA=6;
+    public static final int PERIOD=7;
     public static final int EQUALS=8;
-    public static final int STRING=9;
-    public static final int COMMA=10;
-    public static final int LEFTPAREN=11;
-    public static final int RIGHTPAREN=12;
-    public static final int PERIOD=13;
-    public static final int AMPERSAND=14;
-    public static final int LEFTANGLE=15;
-    public static final int RIGHTANGLE=16;
-    public static final int INTEGER=17;
-    public static final int LEFTBRACKET=18;
-    public static final int COLON=19;
-    public static final int RIGHTBRACKET=20;
-    public static final int CHAR=21;
-    public static final int DIGIT=22;
-    public static final int WHITESPACE=23;
-    public static final int LINE_COMMENT=24;
-    public static final int MULTILINE_COMMENT=25;
-    public static final int INCLUDE=26;
+    public static final int LPAREN=9;
+    public static final int RPAREN=10;
+    public static final int LBRACKET=11;
+    public static final int RBRACKET=12;
+    public static final int LBRACE=13;
+    public static final int RBRACE=14;
+    public static final int LANGLE=15;
+    public static final int RANGLE=16;
+    public static final int AMPERSAND=17;
+    public static final int DBLQUOTE=18;
+    public static final int DESIGN=19;
+    public static final int DEVICE=20;
+    public static final int SUBDESIGN=21;
+    public static final int INST=22;
+    public static final int SUBINST=23;
+    public static final int GROUP=24;
+    public static final int THIS=25;
+    public static final int OF=26;
+    public static final int NET=27;
+    public static final int ATTR=28;
+    public static final int NEWATTR=29;
+    public static final int BEGIN=30;
+    public static final int END=31;
+    public static final int COMBINE=32;
+    public static final int INCLUDE=33;
+    public static final int INFO=34;
+    public static final int PORT=35;
+    public static final int PIN=36;
+    public static final int INPIN=37;
+    public static final int OUTPIN=38;
+    public static final int IOPIN=39;
+    public static final int PWRPIN=40;
+    public static final int SUPPIN=41;
+    public static final int DESIGN_DECL=42;
+    public static final int DEVICE_DECL=43;
+    public static final int WIDTH_DECL=44;
+    public static final int NET_DECL=45;
+    public static final int GROUP_DECL=46;
+    public static final int INST_DECL=47;
+    public static final int ATTR_DECL=48;
+    public static final int PIN_DECL=49;
+    public static final int PORT_DECL=50;
+    public static final int INDEX_DECL=51;
+    public static final int SUBINST_DECL=52;
+    public static final int SUBATTR_ASSIGN=53;
+    public static final int PIN_LIST=54;
+    public static final int PIN_TYPE=55;
+    public static final int INFO_DECL=56;
+    public static final int ATTR_ASSIGN=57;
+    public static final int PIN_ASSIGN=58;
+    public static final int NET_ASSIGN=59;
+    public static final int PORT_ASSIGN=60;
+    public static final int ATTR_QUAL=61;
+    public static final int BOUNDS=62;
+    public static final int INDICES=63;
+    public static final int OPERAND=64;
+    public static final int NAME=65;
+    public static final int CONCAT_LIST=66;
+    public static final int CONCAT_REPL=67;
+    public static final int OPEN=68;
+    public static final int IDENT=69;
+    public static final int STRING=70;
+    public static final int INT=71;
+    public static final int PINNUM=72;
+    public static final int SUB=73;
+    public static final int D=74;
+    public static final int E=75;
+    public static final int S=76;
+    public static final int I=77;
+    public static final int G=78;
+    public static final int N=79;
+    public static final int V=80;
+    public static final int C=81;
+    public static final int U=82;
+    public static final int B=83;
+    public static final int T=84;
+    public static final int R=85;
+    public static final int O=86;
+    public static final int P=87;
+    public static final int H=88;
+    public static final int F=89;
+    public static final int A=90;
+    public static final int W=91;
+    public static final int M=92;
+    public static final int L=93;
+    public static final int CHAR=94;
+    public static final int DIGIT=95;
+    public static final int WHITESPACE=96;
+    public static final int LINE_COMMENT=97;
+    public static final int MULTILINE_COMMENT=98;
+    public static final int INCLUDE_DECL=99;
+    public static final int J=100;
+    public static final int K=101;
+    public static final int Q=102;
+    public static final int X=103;
+    public static final int Y=104;
+    public static final int Z=105;
 
 
     	/**
@@ -74,9 +140,6 @@ public class PhdlLexer extends Lexer {
     		public CharStream input;
     		public int marker;
     		
-    		/**
-    		 * The constructor
-    		 */
     		SaveStruct(CharStream input) {
     			this.input = input;
     			this.marker = input.mark();
@@ -86,7 +149,15 @@ public class PhdlLexer extends Lexer {
     	/**
     	 * The stack of saved character streams
     	 */
-    	Stack<SaveStruct> includes = new Stack<SaveStruct>();
+    	private Stack<SaveStruct> includes = new Stack<SaveStruct>();
+    	private Set<String> includeNames = new HashSet<String>();
+    	
+    	public Set<String> getIncludeNames() {
+    		return includeNames;
+    	}
+    	public void setIncludeNames(Set<String> includeNames) {
+    		this.includeNames = includeNames;
+    	}
     	
     	/**
     	 * Overridden nextToken method to accomodate the saved character stream states, and how to handle the tokens
@@ -128,330 +199,15 @@ public class PhdlLexer extends Lexer {
         super(input,state);
 
     }
-    public String getGrammarFileName() { return "/fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g"; }
-
-    // $ANTLR start "T__27"
-    public final void mT__27() throws RecognitionException {
-        try {
-            int _type = T__27;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:79:7: ( 'design' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:79:9: 'design'
-            {
-            match("design"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__27"
-
-    // $ANTLR start "T__28"
-    public final void mT__28() throws RecognitionException {
-        try {
-            int _type = T__28;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:80:7: ( 'port' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:80:9: 'port'
-            {
-            match("port"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__28"
-
-    // $ANTLR start "T__29"
-    public final void mT__29() throws RecognitionException {
-        try {
-            int _type = T__29;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:81:7: ( 'device' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:81:9: 'device'
-            {
-            match("device"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__29"
-
-    // $ANTLR start "T__30"
-    public final void mT__30() throws RecognitionException {
-        try {
-            int _type = T__30;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:82:7: ( 'attr' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:82:9: 'attr'
-            {
-            match("attr"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__30"
-
-    // $ANTLR start "T__31"
-    public final void mT__31() throws RecognitionException {
-        try {
-            int _type = T__31;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:83:7: ( 'pin' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:83:9: 'pin'
-            {
-            match("pin"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__31"
-
-    // $ANTLR start "T__32"
-    public final void mT__32() throws RecognitionException {
-        try {
-            int _type = T__32;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:84:7: ( 'net' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:84:9: 'net'
-            {
-            match("net"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__32"
-
-    // $ANTLR start "T__33"
-    public final void mT__33() throws RecognitionException {
-        try {
-            int _type = T__33;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:85:7: ( 'inst' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:85:9: 'inst'
-            {
-            match("inst"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__33"
-
-    // $ANTLR start "T__34"
-    public final void mT__34() throws RecognitionException {
-        try {
-            int _type = T__34;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:86:7: ( 'of' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:86:9: 'of'
-            {
-            match("of"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__34"
-
-    // $ANTLR start "T__35"
-    public final void mT__35() throws RecognitionException {
-        try {
-            int _type = T__35;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:87:7: ( 'sub' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:87:9: 'sub'
-            {
-            match("sub"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__35"
-
-    // $ANTLR start "T__36"
-    public final void mT__36() throws RecognitionException {
-        try {
-            int _type = T__36;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:88:7: ( 'combine' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:88:9: 'combine'
-            {
-            match("combine"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__36"
-
-    // $ANTLR start "T__37"
-    public final void mT__37() throws RecognitionException {
-        try {
-            int _type = T__37;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:89:7: ( 'newattr' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:89:9: 'newattr'
-            {
-            match("newattr"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__37"
-
-    // $ANTLR start "T__38"
-    public final void mT__38() throws RecognitionException {
-        try {
-            int _type = T__38;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:90:7: ( 'this' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:90:9: 'this'
-            {
-            match("this"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__38"
-
-    // $ANTLR start "T__39"
-    public final void mT__39() throws RecognitionException {
-        try {
-            int _type = T__39;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:91:7: ( 'info' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:91:9: 'info'
-            {
-            match("info"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__39"
-
-    // $ANTLR start "T__40"
-    public final void mT__40() throws RecognitionException {
-        try {
-            int _type = T__40;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:92:7: ( 'group' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:92:9: 'group'
-            {
-            match("group"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__40"
-
-    // $ANTLR start "T__41"
-    public final void mT__41() throws RecognitionException {
-        try {
-            int _type = T__41;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:93:7: ( 'open' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:93:9: 'open'
-            {
-            match("open"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__41"
+    public String getGrammarFileName() { return "C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g"; }
 
     // $ANTLR start "SEMICOLON"
     public final void mSEMICOLON() throws RecognitionException {
         try {
             int _type = SEMICOLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:414:10: ( ';' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:414:12: ';'
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:86:11: ( ';' )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:86:13: ';'
             {
             match(';'); 
 
@@ -470,8 +226,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = COLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:415:6: ( ':' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:415:8: ':'
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:87:7: ( ':' )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:87:9: ':'
             {
             match(':'); 
 
@@ -490,8 +246,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = COMMA;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:416:6: ( ',' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:416:8: ','
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:88:7: ( ',' )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:88:9: ','
             {
             match(','); 
 
@@ -510,8 +266,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = PERIOD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:417:7: ( '.' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:417:9: '.'
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:89:8: ( '.' )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:89:10: '.'
             {
             match('.'); 
 
@@ -530,8 +286,8 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = EQUALS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:418:7: ( '=' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:418:9: '='
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:90:8: ( '=' )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:90:10: '='
             {
             match('='); 
 
@@ -545,13 +301,13 @@ public class PhdlLexer extends Lexer {
     }
     // $ANTLR end "EQUALS"
 
-    // $ANTLR start "LEFTPAREN"
-    public final void mLEFTPAREN() throws RecognitionException {
+    // $ANTLR start "LPAREN"
+    public final void mLPAREN() throws RecognitionException {
         try {
-            int _type = LEFTPAREN;
+            int _type = LPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:419:10: ( '(' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:419:12: '('
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:91:8: ( '(' )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:91:10: '('
             {
             match('('); 
 
@@ -563,15 +319,15 @@ public class PhdlLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "LEFTPAREN"
+    // $ANTLR end "LPAREN"
 
-    // $ANTLR start "RIGHTPAREN"
-    public final void mRIGHTPAREN() throws RecognitionException {
+    // $ANTLR start "RPAREN"
+    public final void mRPAREN() throws RecognitionException {
         try {
-            int _type = RIGHTPAREN;
+            int _type = RPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:420:11: ( ')' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:420:13: ')'
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:92:8: ( ')' )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:92:10: ')'
             {
             match(')'); 
 
@@ -583,15 +339,15 @@ public class PhdlLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "RIGHTPAREN"
+    // $ANTLR end "RPAREN"
 
-    // $ANTLR start "LEFTBRACKET"
-    public final void mLEFTBRACKET() throws RecognitionException {
+    // $ANTLR start "LBRACKET"
+    public final void mLBRACKET() throws RecognitionException {
         try {
-            int _type = LEFTBRACKET;
+            int _type = LBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:421:12: ( '[' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:421:14: '['
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:93:10: ( '[' )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:93:12: '['
             {
             match('['); 
 
@@ -603,15 +359,15 @@ public class PhdlLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "LEFTBRACKET"
+    // $ANTLR end "LBRACKET"
 
-    // $ANTLR start "RIGHTBRACKET"
-    public final void mRIGHTBRACKET() throws RecognitionException {
+    // $ANTLR start "RBRACKET"
+    public final void mRBRACKET() throws RecognitionException {
         try {
-            int _type = RIGHTBRACKET;
+            int _type = RBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:422:13: ( ']' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:422:15: ']'
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:94:10: ( ']' )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:94:12: ']'
             {
             match(']'); 
 
@@ -623,15 +379,15 @@ public class PhdlLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "RIGHTBRACKET"
+    // $ANTLR end "RBRACKET"
 
-    // $ANTLR start "LEFTBRACE"
-    public final void mLEFTBRACE() throws RecognitionException {
+    // $ANTLR start "LBRACE"
+    public final void mLBRACE() throws RecognitionException {
         try {
-            int _type = LEFTBRACE;
+            int _type = LBRACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:423:10: ( '{' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:423:12: '{'
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:95:8: ( '{' )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:95:10: '{'
             {
             match('{'); 
 
@@ -643,15 +399,15 @@ public class PhdlLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "LEFTBRACE"
+    // $ANTLR end "LBRACE"
 
-    // $ANTLR start "RIGHTBRACE"
-    public final void mRIGHTBRACE() throws RecognitionException {
+    // $ANTLR start "RBRACE"
+    public final void mRBRACE() throws RecognitionException {
         try {
-            int _type = RIGHTBRACE;
+            int _type = RBRACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:424:11: ( '}' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:424:13: '}'
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:96:8: ( '}' )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:96:10: '}'
             {
             match('}'); 
 
@@ -663,15 +419,15 @@ public class PhdlLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "RIGHTBRACE"
+    // $ANTLR end "RBRACE"
 
-    // $ANTLR start "LEFTANGLE"
-    public final void mLEFTANGLE() throws RecognitionException {
+    // $ANTLR start "LANGLE"
+    public final void mLANGLE() throws RecognitionException {
         try {
-            int _type = LEFTANGLE;
+            int _type = LANGLE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:425:10: ( '<' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:425:12: '<'
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:97:8: ( '<' )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:97:10: '<'
             {
             match('<'); 
 
@@ -683,15 +439,15 @@ public class PhdlLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "LEFTANGLE"
+    // $ANTLR end "LANGLE"
 
-    // $ANTLR start "RIGHTANGLE"
-    public final void mRIGHTANGLE() throws RecognitionException {
+    // $ANTLR start "RANGLE"
+    public final void mRANGLE() throws RecognitionException {
         try {
-            int _type = RIGHTANGLE;
+            int _type = RANGLE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:426:11: ( '>' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:426:13: '>'
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:98:8: ( '>' )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:98:10: '>'
             {
             match('>'); 
 
@@ -703,15 +459,15 @@ public class PhdlLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "RIGHTANGLE"
+    // $ANTLR end "RANGLE"
 
     // $ANTLR start "AMPERSAND"
     public final void mAMPERSAND() throws RecognitionException {
         try {
             int _type = AMPERSAND;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:427:10: ( '&' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:427:12: '&'
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:99:11: ( '&' )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:99:13: '&'
             {
             match('&'); 
 
@@ -725,10 +481,604 @@ public class PhdlLexer extends Lexer {
     }
     // $ANTLR end "AMPERSAND"
 
+    // $ANTLR start "DBLQUOTE"
+    public final void mDBLQUOTE() throws RecognitionException {
+        try {
+            int _type = DBLQUOTE;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:100:10: ( '\"' )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:100:12: '\"'
+            {
+            match('\"'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "DBLQUOTE"
+
+    // $ANTLR start "DESIGN"
+    public final void mDESIGN() throws RecognitionException {
+        try {
+            int _type = DESIGN;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:390:7: ( D E S I G N )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:390:9: D E S I G N
+            {
+            mD(); 
+            mE(); 
+            mS(); 
+            mI(); 
+            mG(); 
+            mN(); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "DESIGN"
+
+    // $ANTLR start "DEVICE"
+    public final void mDEVICE() throws RecognitionException {
+        try {
+            int _type = DEVICE;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:391:7: ( D E V I C E )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:391:9: D E V I C E
+            {
+            mD(); 
+            mE(); 
+            mV(); 
+            mI(); 
+            mC(); 
+            mE(); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "DEVICE"
+
+    // $ANTLR start "SUBDESIGN"
+    public final void mSUBDESIGN() throws RecognitionException {
+        try {
+            int _type = SUBDESIGN;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:392:10: ( S U B D E S I G N )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:392:12: S U B D E S I G N
+            {
+            mS(); 
+            mU(); 
+            mB(); 
+            mD(); 
+            mE(); 
+            mS(); 
+            mI(); 
+            mG(); 
+            mN(); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "SUBDESIGN"
+
+    // $ANTLR start "INST"
+    public final void mINST() throws RecognitionException {
+        try {
+            int _type = INST;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:393:5: ( I N S T )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:393:7: I N S T
+            {
+            mI(); 
+            mN(); 
+            mS(); 
+            mT(); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "INST"
+
+    // $ANTLR start "SUB"
+    public final void mSUB() throws RecognitionException {
+        try {
+            int _type = SUB;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:394:4: ( S U B )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:394:6: S U B
+            {
+            mS(); 
+            mU(); 
+            mB(); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "SUB"
+
+    // $ANTLR start "GROUP"
+    public final void mGROUP() throws RecognitionException {
+        try {
+            int _type = GROUP;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:395:6: ( G R O U P )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:395:8: G R O U P
+            {
+            mG(); 
+            mR(); 
+            mO(); 
+            mU(); 
+            mP(); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "GROUP"
+
+    // $ANTLR start "THIS"
+    public final void mTHIS() throws RecognitionException {
+        try {
+            int _type = THIS;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:396:5: ( T H I S )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:396:7: T H I S
+            {
+            mT(); 
+            mH(); 
+            mI(); 
+            mS(); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "THIS"
+
+    // $ANTLR start "OF"
+    public final void mOF() throws RecognitionException {
+        try {
+            int _type = OF;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:397:3: ( O F )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:397:5: O F
+            {
+            mO(); 
+            mF(); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "OF"
+
+    // $ANTLR start "NET"
+    public final void mNET() throws RecognitionException {
+        try {
+            int _type = NET;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:398:4: ( N E T )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:398:6: N E T
+            {
+            mN(); 
+            mE(); 
+            mT(); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "NET"
+
+    // $ANTLR start "ATTR"
+    public final void mATTR() throws RecognitionException {
+        try {
+            int _type = ATTR;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:399:5: ( A T T R )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:399:7: A T T R
+            {
+            mA(); 
+            mT(); 
+            mT(); 
+            mR(); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "ATTR"
+
+    // $ANTLR start "NEWATTR"
+    public final void mNEWATTR() throws RecognitionException {
+        try {
+            int _type = NEWATTR;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:400:8: ( N E W A T T R )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:400:10: N E W A T T R
+            {
+            mN(); 
+            mE(); 
+            mW(); 
+            mA(); 
+            mT(); 
+            mT(); 
+            mR(); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "NEWATTR"
+
+    // $ANTLR start "BEGIN"
+    public final void mBEGIN() throws RecognitionException {
+        try {
+            int _type = BEGIN;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:401:6: ( B E G I N )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:401:8: B E G I N
+            {
+            mB(); 
+            mE(); 
+            mG(); 
+            mI(); 
+            mN(); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "BEGIN"
+
+    // $ANTLR start "END"
+    public final void mEND() throws RecognitionException {
+        try {
+            int _type = END;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:402:4: ( E N D )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:402:6: E N D
+            {
+            mE(); 
+            mN(); 
+            mD(); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "END"
+
+    // $ANTLR start "COMBINE"
+    public final void mCOMBINE() throws RecognitionException {
+        try {
+            int _type = COMBINE;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:403:8: ( C O M B I N E )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:403:10: C O M B I N E
+            {
+            mC(); 
+            mO(); 
+            mM(); 
+            mB(); 
+            mI(); 
+            mN(); 
+            mE(); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "COMBINE"
+
+    // $ANTLR start "INCLUDE"
+    public final void mINCLUDE() throws RecognitionException {
+        try {
+            int _type = INCLUDE;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:404:8: ( I N C L U D E )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:404:10: I N C L U D E
+            {
+            mI(); 
+            mN(); 
+            mC(); 
+            mL(); 
+            mU(); 
+            mD(); 
+            mE(); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "INCLUDE"
+
+    // $ANTLR start "INFO"
+    public final void mINFO() throws RecognitionException {
+        try {
+            int _type = INFO;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:405:5: ( I N F O )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:405:7: I N F O
+            {
+            mI(); 
+            mN(); 
+            mF(); 
+            mO(); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "INFO"
+
+    // $ANTLR start "OPEN"
+    public final void mOPEN() throws RecognitionException {
+        try {
+            int _type = OPEN;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:406:5: ( O P E N )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:406:7: O P E N
+            {
+            mO(); 
+            mP(); 
+            mE(); 
+            mN(); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "OPEN"
+
+    // $ANTLR start "PORT"
+    public final void mPORT() throws RecognitionException {
+        try {
+            int _type = PORT;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:407:5: ( P O R T )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:407:7: P O R T
+            {
+            mP(); 
+            mO(); 
+            mR(); 
+            mT(); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "PORT"
+
+    // $ANTLR start "PIN"
+    public final void mPIN() throws RecognitionException {
+        try {
+            int _type = PIN;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:410:4: ( P I N )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:410:6: P I N
+            {
+            mP(); 
+            mI(); 
+            mN(); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "PIN"
+
+    // $ANTLR start "INPIN"
+    public final void mINPIN() throws RecognitionException {
+        try {
+            int _type = INPIN;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:411:6: ( I N P I N )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:411:8: I N P I N
+            {
+            mI(); 
+            mN(); 
+            mP(); 
+            mI(); 
+            mN(); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "INPIN"
+
+    // $ANTLR start "OUTPIN"
+    public final void mOUTPIN() throws RecognitionException {
+        try {
+            int _type = OUTPIN;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:412:7: ( O U T P I N )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:412:9: O U T P I N
+            {
+            mO(); 
+            mU(); 
+            mT(); 
+            mP(); 
+            mI(); 
+            mN(); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "OUTPIN"
+
+    // $ANTLR start "IOPIN"
+    public final void mIOPIN() throws RecognitionException {
+        try {
+            int _type = IOPIN;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:413:6: ( I O P I N )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:413:8: I O P I N
+            {
+            mI(); 
+            mO(); 
+            mP(); 
+            mI(); 
+            mN(); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "IOPIN"
+
+    // $ANTLR start "PWRPIN"
+    public final void mPWRPIN() throws RecognitionException {
+        try {
+            int _type = PWRPIN;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:414:7: ( P W R P I N )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:414:9: P W R P I N
+            {
+            mP(); 
+            mW(); 
+            mR(); 
+            mP(); 
+            mI(); 
+            mN(); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "PWRPIN"
+
+    // $ANTLR start "SUPPIN"
+    public final void mSUPPIN() throws RecognitionException {
+        try {
+            int _type = SUPPIN;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:415:7: ( S U P P I N )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:415:9: S U P P I N
+            {
+            mS(); 
+            mU(); 
+            mP(); 
+            mP(); 
+            mI(); 
+            mN(); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "SUPPIN"
+
     // $ANTLR start "CHAR"
     public final void mCHAR() throws RecognitionException {
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:433:15: ( ( 'a' .. 'z' ) | ( 'A' .. 'Z' ) | '_' | '+' | '-' | '$' | '/' )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:417:15: ( ( 'a' .. 'z' ) | ( 'A' .. 'Z' ) | '_' | '+' | '-' | '$' | '/' )
             int alt1=7;
             switch ( input.LA(1) ) {
             case 'a':
@@ -825,10 +1175,10 @@ public class PhdlLexer extends Lexer {
 
             switch (alt1) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:433:17: ( 'a' .. 'z' )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:417:17: ( 'a' .. 'z' )
                     {
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:433:17: ( 'a' .. 'z' )
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:433:18: 'a' .. 'z'
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:417:17: ( 'a' .. 'z' )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:417:18: 'a' .. 'z'
                     {
                     matchRange('a','z'); 
 
@@ -838,10 +1188,10 @@ public class PhdlLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:433:30: ( 'A' .. 'Z' )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:417:30: ( 'A' .. 'Z' )
                     {
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:433:30: ( 'A' .. 'Z' )
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:433:31: 'A' .. 'Z'
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:417:30: ( 'A' .. 'Z' )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:417:31: 'A' .. 'Z'
                     {
                     matchRange('A','Z'); 
 
@@ -851,35 +1201,35 @@ public class PhdlLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:433:43: '_'
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:417:43: '_'
                     {
                     match('_'); 
 
                     }
                     break;
                 case 4 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:433:49: '+'
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:417:49: '+'
                     {
                     match('+'); 
 
                     }
                     break;
                 case 5 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:433:55: '-'
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:417:55: '-'
                     {
                     match('-'); 
 
                     }
                     break;
                 case 6 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:433:61: '$'
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:417:61: '$'
                     {
                     match('$'); 
 
                     }
                     break;
                 case 7 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:433:67: '/'
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:417:67: '/'
                     {
                     match('/'); 
 
@@ -896,11 +1246,11 @@ public class PhdlLexer extends Lexer {
     // $ANTLR start "DIGIT"
     public final void mDIGIT() throws RecognitionException {
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:438:16: ( ( '0' .. '9' ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:438:18: ( '0' .. '9' )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:418:16: ( ( '0' .. '9' ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:418:18: ( '0' .. '9' )
             {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:438:18: ( '0' .. '9' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:438:19: '0' .. '9'
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:418:18: ( '0' .. '9' )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:418:19: '0' .. '9'
             {
             matchRange('0','9'); 
 
@@ -915,15 +1265,15 @@ public class PhdlLexer extends Lexer {
     }
     // $ANTLR end "DIGIT"
 
-    // $ANTLR start "INTEGER"
-    public final void mINTEGER() throws RecognitionException {
+    // $ANTLR start "INT"
+    public final void mINT() throws RecognitionException {
         try {
-            int _type = INTEGER;
+            int _type = INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:443:9: ( ( DIGIT )+ )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:443:11: ( DIGIT )+
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:420:4: ( ( DIGIT )+ )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:420:6: ( DIGIT )+
             {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:443:11: ( DIGIT )+
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:420:6: ( DIGIT )+
             int cnt2=0;
             loop2:
             do {
@@ -937,7 +1287,7 @@ public class PhdlLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:443:11: DIGIT
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:420:6: DIGIT
             	    {
             	    mDIGIT(); 
 
@@ -962,78 +1312,43 @@ public class PhdlLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "INTEGER"
+    // $ANTLR end "INT"
 
-    // $ANTLR start "STRING"
-    public final void mSTRING() throws RecognitionException {
+    // $ANTLR start "IDENT"
+    public final void mIDENT() throws RecognitionException {
         try {
-            int _type = STRING;
+            int _type = IDENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            int c;
-
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:449:2: ( '\"' ( '/' '\"' | c=~ ( '\"' ) )* '\"' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:449:5: '\"' ( '/' '\"' | c=~ ( '\"' ) )* '\"'
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:421:6: ( CHAR ( CHAR | DIGIT )* )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:421:8: CHAR ( CHAR | DIGIT )*
             {
-            match('\"'); 
-            StringBuilder sb = new StringBuilder();
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:451:3: ( '/' '\"' | c=~ ( '\"' ) )*
+            mCHAR(); 
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:421:13: ( CHAR | DIGIT )*
             loop3:
             do {
                 int alt3=3;
                 int LA3_0 = input.LA(1);
 
-                if ( (LA3_0=='/') ) {
-                    int LA3_2 = input.LA(2);
-
-                    if ( (LA3_2=='\"') ) {
-                        int LA3_4 = input.LA(3);
-
-                        if ( ((LA3_4>='\u0000' && LA3_4<='\uFFFF')) ) {
-                            alt3=1;
-                        }
-
-                        else {
-                            alt3=2;
-                        }
-
-                    }
-                    else if ( ((LA3_2>='\u0000' && LA3_2<='!')||(LA3_2>='#' && LA3_2<='\uFFFF')) ) {
-                        alt3=2;
-                    }
-
-
+                if ( (LA3_0=='$'||LA3_0=='+'||LA3_0=='-'||LA3_0=='/'||(LA3_0>='A' && LA3_0<='Z')||LA3_0=='_'||(LA3_0>='a' && LA3_0<='z')) ) {
+                    alt3=1;
                 }
-                else if ( ((LA3_0>='\u0000' && LA3_0<='!')||(LA3_0>='#' && LA3_0<='.')||(LA3_0>='0' && LA3_0<='\uFFFF')) ) {
+                else if ( ((LA3_0>='0' && LA3_0<='9')) ) {
                     alt3=2;
                 }
 
 
                 switch (alt3) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:451:5: '/' '\"'
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:421:14: CHAR
             	    {
-            	    match('/'); 
-            	    match('\"'); 
-            	    sb.appendCodePoint('"');
+            	    mCHAR(); 
 
             	    }
             	    break;
             	case 2 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:452:5: c=~ ( '\"' )
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:421:21: DIGIT
             	    {
-            	    c= input.LA(1);
-            	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='\uFFFF') ) {
-            	        input.consume();
-
-            	    }
-            	    else {
-            	        MismatchedSetException mse = new MismatchedSetException(null,input);
-            	        recover(mse);
-            	        throw mse;}
-
-            	    	if (c!=' ' && c!='\t' && c!='\n' && c!='\r' && c!='\f' && c!='\u001D')
-            	    					sb.appendCodePoint(c);
-            	    			
+            	    mDIGIT(); 
 
             	    }
             	    break;
@@ -1043,8 +1358,6 @@ public class PhdlLexer extends Lexer {
                 }
             } while (true);
 
-            match('\"'); 
-            setText(sb.toString());
 
             }
 
@@ -1054,43 +1367,34 @@ public class PhdlLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "STRING"
+    // $ANTLR end "IDENT"
 
-    // $ANTLR start "IDENT"
-    public final void mIDENT() throws RecognitionException {
+    // $ANTLR start "PINNUM"
+    public final void mPINNUM() throws RecognitionException {
         try {
-            int _type = IDENT;
+            int _type = PINNUM;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:465:2: ( ( CHAR | DIGIT )+ )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:465:5: ( CHAR | DIGIT )+
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:422:7: ( DIGIT ( CHAR )+ )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:422:9: DIGIT ( CHAR )+
             {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:465:5: ( CHAR | DIGIT )+
+            mDIGIT(); 
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:422:15: ( CHAR )+
             int cnt4=0;
             loop4:
             do {
-                int alt4=3;
+                int alt4=2;
                 int LA4_0 = input.LA(1);
 
                 if ( (LA4_0=='$'||LA4_0=='+'||LA4_0=='-'||LA4_0=='/'||(LA4_0>='A' && LA4_0<='Z')||LA4_0=='_'||(LA4_0>='a' && LA4_0<='z')) ) {
                     alt4=1;
                 }
-                else if ( ((LA4_0>='0' && LA4_0<='9')) ) {
-                    alt4=2;
-                }
 
 
                 switch (alt4) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:465:6: CHAR
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:422:15: CHAR
             	    {
             	    mCHAR(); 
-
-            	    }
-            	    break;
-            	case 2 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:465:13: DIGIT
-            	    {
-            	    mDIGIT(); 
 
             	    }
             	    break;
@@ -1113,31 +1417,123 @@ public class PhdlLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "IDENT"
+    // $ANTLR end "PINNUM"
+
+    // $ANTLR start "STRING"
+    public final void mSTRING() throws RecognitionException {
+        try {
+            int _type = STRING;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            int c;
+
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:428:2: ( DBLQUOTE ( '/' DBLQUOTE | c=~ ( DBLQUOTE ) )* DBLQUOTE )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:428:5: DBLQUOTE ( '/' DBLQUOTE | c=~ ( DBLQUOTE ) )* DBLQUOTE
+            {
+            mDBLQUOTE(); 
+            StringBuilder sb = new StringBuilder();
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:429:3: ( '/' DBLQUOTE | c=~ ( DBLQUOTE ) )*
+            loop5:
+            do {
+                int alt5=3;
+                int LA5_0 = input.LA(1);
+
+                if ( (LA5_0=='/') ) {
+                    int LA5_2 = input.LA(2);
+
+                    if ( (LA5_2=='\"') ) {
+                        int LA5_4 = input.LA(3);
+
+                        if ( ((LA5_4>='\u0000' && LA5_4<='\uFFFF')) ) {
+                            alt5=1;
+                        }
+
+                        else {
+                            alt5=2;
+                        }
+
+                    }
+                    else if ( ((LA5_2>='\u0000' && LA5_2<='!')||(LA5_2>='#' && LA5_2<='\uFFFF')) ) {
+                        alt5=2;
+                    }
+
+
+                }
+                else if ( ((LA5_0>='\u0000' && LA5_0<='!')||(LA5_0>='#' && LA5_0<='.')||(LA5_0>='0' && LA5_0<='\uFFFF')) ) {
+                    alt5=2;
+                }
+
+
+                switch (alt5) {
+            	case 1 :
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:429:5: '/' DBLQUOTE
+            	    {
+            	    match('/'); 
+            	    mDBLQUOTE(); 
+            	    sb.appendCodePoint('"');
+
+            	    }
+            	    break;
+            	case 2 :
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:430:5: c=~ ( DBLQUOTE )
+            	    {
+            	    c= input.LA(1);
+            	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='\uFFFF') ) {
+            	        input.consume();
+
+            	    }
+            	    else {
+            	        MismatchedSetException mse = new MismatchedSetException(null,input);
+            	        recover(mse);
+            	        throw mse;}
+
+            	    	if (c!=' ' && c!='\t' && c!='\n' && c!='\r' && c!='\f' && c!='\u001D')
+            	    										sb.appendCodePoint(c);
+            	    								
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop5;
+                }
+            } while (true);
+
+            mDBLQUOTE(); 
+            setText(sb.toString());
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "STRING"
 
     // $ANTLR start "WHITESPACE"
     public final void mWHITESPACE() throws RecognitionException {
         try {
             int _type = WHITESPACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:472:2: ( ( ' ' | '\\t' | '\\n' | '\\r' | '\\f' | '\\u001D' )+ )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:472:4: ( ' ' | '\\t' | '\\n' | '\\r' | '\\f' | '\\u001D' )+
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:445:2: ( ( ' ' | '\\t' | '\\n' | '\\r' | '\\f' | '\\u001D' )+ )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:445:4: ( ' ' | '\\t' | '\\n' | '\\r' | '\\f' | '\\u001D' )+
             {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:472:4: ( ' ' | '\\t' | '\\n' | '\\r' | '\\f' | '\\u001D' )+
-            int cnt5=0;
-            loop5:
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:445:4: ( ' ' | '\\t' | '\\n' | '\\r' | '\\f' | '\\u001D' )+
+            int cnt6=0;
+            loop6:
             do {
-                int alt5=2;
-                int LA5_0 = input.LA(1);
+                int alt6=2;
+                int LA6_0 = input.LA(1);
 
-                if ( ((LA5_0>='\t' && LA5_0<='\n')||(LA5_0>='\f' && LA5_0<='\r')||LA5_0=='\u001D'||LA5_0==' ') ) {
-                    alt5=1;
+                if ( ((LA6_0>='\t' && LA6_0<='\n')||(LA6_0>='\f' && LA6_0<='\r')||LA6_0=='\u001D'||LA6_0==' ') ) {
+                    alt6=1;
                 }
 
 
-                switch (alt5) {
+                switch (alt6) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:
             	    {
             	    if ( (input.LA(1)>='\t' && input.LA(1)<='\n')||(input.LA(1)>='\f' && input.LA(1)<='\r')||input.LA(1)=='\u001D'||input.LA(1)==' ' ) {
             	        input.consume();
@@ -1153,12 +1549,12 @@ public class PhdlLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt5 >= 1 ) break loop5;
+            	    if ( cnt6 >= 1 ) break loop6;
                         EarlyExitException eee =
-                            new EarlyExitException(5, input);
+                            new EarlyExitException(6, input);
                         throw eee;
                 }
-                cnt5++;
+                cnt6++;
             } while (true);
 
             _channel = HIDDEN;
@@ -1178,28 +1574,28 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = LINE_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:480:2: ( '//' ( . )* ( '\\n' | '\\r' ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:480:4: '//' ( . )* ( '\\n' | '\\r' )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:453:2: ( '//' ( . )* ( '\\n' | '\\r' ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:453:4: '//' ( . )* ( '\\n' | '\\r' )
             {
             match("//"); 
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:480:9: ( . )*
-            loop6:
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:453:9: ( . )*
+            loop7:
             do {
-                int alt6=2;
-                int LA6_0 = input.LA(1);
+                int alt7=2;
+                int LA7_0 = input.LA(1);
 
-                if ( (LA6_0=='\n'||LA6_0=='\r') ) {
-                    alt6=2;
+                if ( (LA7_0=='\n'||LA7_0=='\r') ) {
+                    alt7=2;
                 }
-                else if ( ((LA6_0>='\u0000' && LA6_0<='\t')||(LA6_0>='\u000B' && LA6_0<='\f')||(LA6_0>='\u000E' && LA6_0<='\uFFFF')) ) {
-                    alt6=1;
+                else if ( ((LA7_0>='\u0000' && LA7_0<='\t')||(LA7_0>='\u000B' && LA7_0<='\f')||(LA7_0>='\u000E' && LA7_0<='\uFFFF')) ) {
+                    alt7=1;
                 }
 
 
-                switch (alt6) {
+                switch (alt7) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:480:9: .
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:453:9: .
             	    {
             	    matchAny(); 
 
@@ -1207,7 +1603,7 @@ public class PhdlLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop6;
+            	    break loop7;
                 }
             } while (true);
 
@@ -1237,37 +1633,37 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = MULTILINE_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:488:2: ( '/*' ( . )* '*/' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:488:4: '/*' ( . )* '*/'
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:461:2: ( '/*' ( . )* '*/' )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:461:4: '/*' ( . )* '*/'
             {
             match("/*"); 
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:488:9: ( . )*
-            loop7:
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:461:9: ( . )*
+            loop8:
             do {
-                int alt7=2;
-                int LA7_0 = input.LA(1);
+                int alt8=2;
+                int LA8_0 = input.LA(1);
 
-                if ( (LA7_0=='*') ) {
-                    int LA7_1 = input.LA(2);
+                if ( (LA8_0=='*') ) {
+                    int LA8_1 = input.LA(2);
 
-                    if ( (LA7_1=='/') ) {
-                        alt7=2;
+                    if ( (LA8_1=='/') ) {
+                        alt8=2;
                     }
-                    else if ( ((LA7_1>='\u0000' && LA7_1<='.')||(LA7_1>='0' && LA7_1<='\uFFFF')) ) {
-                        alt7=1;
+                    else if ( ((LA8_1>='\u0000' && LA8_1<='.')||(LA8_1>='0' && LA8_1<='\uFFFF')) ) {
+                        alt8=1;
                     }
 
 
                 }
-                else if ( ((LA7_0>='\u0000' && LA7_0<=')')||(LA7_0>='+' && LA7_0<='\uFFFF')) ) {
-                    alt7=1;
+                else if ( ((LA8_0>='\u0000' && LA8_0<=')')||(LA8_0>='+' && LA8_0<='\uFFFF')) ) {
+                    alt8=1;
                 }
 
 
-                switch (alt7) {
+                switch (alt8) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:488:9: .
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:461:9: .
             	    {
             	    matchAny(); 
 
@@ -1275,7 +1671,7 @@ public class PhdlLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop7;
+            	    break loop8;
                 }
             } while (true);
 
@@ -1293,28 +1689,27 @@ public class PhdlLexer extends Lexer {
     }
     // $ANTLR end "MULTILINE_COMMENT"
 
-    // $ANTLR start "INCLUDE"
-    public final void mINCLUDE() throws RecognitionException {
+    // $ANTLR start "INCLUDE_DECL"
+    public final void mINCLUDE_DECL() throws RecognitionException {
         try {
-            int _type = INCLUDE;
+            int _type = INCLUDE_DECL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
             CommonToken fileName=null;
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:498:2: ( 'include' ( WHITESPACE )? fileName= STRING ';' )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:498:5: 'include' ( WHITESPACE )? fileName= STRING ';'
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:471:2: ( INCLUDE ( WHITESPACE )? fileName= STRING )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:471:5: INCLUDE ( WHITESPACE )? fileName= STRING
             {
-            match("include"); 
+            mINCLUDE(); 
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:471:13: ( WHITESPACE )?
+            int alt9=2;
+            int LA9_0 = input.LA(1);
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:498:15: ( WHITESPACE )?
-            int alt8=2;
-            int LA8_0 = input.LA(1);
-
-            if ( ((LA8_0>='\t' && LA8_0<='\n')||(LA8_0>='\f' && LA8_0<='\r')||LA8_0=='\u001D'||LA8_0==' ') ) {
-                alt8=1;
+            if ( ((LA9_0>='\t' && LA9_0<='\n')||(LA9_0>='\f' && LA9_0<='\r')||LA9_0=='\u001D'||LA9_0==' ') ) {
+                alt9=1;
             }
-            switch (alt8) {
+            switch (alt9) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:498:16: WHITESPACE
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:471:14: WHITESPACE
                     {
                     mWHITESPACE(); 
 
@@ -1323,33 +1718,40 @@ public class PhdlLexer extends Lexer {
 
             }
 
-            int fileNameStart529 = getCharIndex();
-            int fileNameStartLine529 = getLine();
-            int fileNameStartCharPos529 = getCharPositionInLine();
+            int fileNameStart788 = getCharIndex();
+            int fileNameStartLine788 = getLine();
+            int fileNameStartCharPos788 = getCharPositionInLine();
             mSTRING(); 
-            fileName = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, fileNameStart529, getCharIndex()-1);
-            fileName.setLine(fileNameStartLine529);
-            fileName.setCharPositionInLine(fileNameStartCharPos529);
-            match(';'); 
-            	String name = fileName.getText();
-            				name = name.substring(1,name.length()-1);
-            				try {
-            					// save the character stream by pushing it onto the stack
-            					SaveStruct ss = new SaveStruct(input);
-            					includes.push(ss);
+            fileName = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, fileNameStart788, getCharIndex()-1);
+            fileName.setLine(fileNameStartLine788);
+            fileName.setCharPositionInLine(fileNameStartCharPos788);
+            	
+            			String name = fileName.getText();
+            			name = name.substring(1,name.length()-1);
+            			// check for duplicate include files
+            			if (!includeNames.add(name)) {
+            				System.out.println("ERROR: " + fileName.getInputStream().getSourceName() + " line " + 
+            						fileName.getLine() + ":" + fileName.getCharPositionInLine() + 
+            						" duplicate included file.");
+                        	System.exit(1);
+            			}
+            			try {
+            				// save the character stream by pushing it onto the stack
+            				SaveStruct ss = new SaveStruct(input);
+            				includes.push(ss);
 
-            					// make a new ANTLRFileStream and switch to it
-            					setCharStream(new ANTLRFileStream(name));
-            					reset();
+            				// make a new ANTLRFileStream and switch to it
+            				setCharStream(new ANTLRFileStream(name));
+            				reset();
 
-            				} catch(Exception fnf) { 
-            					// exit if the file cannot be found
-            					System.out.println(input.getSourceName() + " " + fileName.getLine() 
-            						+ ":" + fileName.getCharPositionInLine() + " " + 
-            						"Include file not found: " + fileName.getText()); 
-            					System.exit(1);
-            				}
-            			
+            			} catch (Exception fnf) { 
+            				// exit if the file cannot be found
+            				System.out.println(input.getSourceName() + " " + fileName.getLine() 
+            					+ ":" + fileName.getCharPositionInLine() + " " + 
+            					"Include file not found: " + fileName.getText()); 
+            				System.exit(1);
+            			}
+            		
 
             }
 
@@ -1359,324 +1761,1036 @@ public class PhdlLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "INCLUDE"
+    // $ANTLR end "INCLUDE_DECL"
+
+    // $ANTLR start "A"
+    public final void mA() throws RecognitionException {
+        try {
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:501:11: ( ( 'a' | 'A' ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:501:12: ( 'a' | 'A' )
+            {
+            if ( input.LA(1)=='A'||input.LA(1)=='a' ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+
+            }
+
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "A"
+
+    // $ANTLR start "B"
+    public final void mB() throws RecognitionException {
+        try {
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:502:11: ( ( 'b' | 'B' ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:502:12: ( 'b' | 'B' )
+            {
+            if ( input.LA(1)=='B'||input.LA(1)=='b' ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+
+            }
+
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "B"
+
+    // $ANTLR start "C"
+    public final void mC() throws RecognitionException {
+        try {
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:503:11: ( ( 'c' | 'C' ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:503:12: ( 'c' | 'C' )
+            {
+            if ( input.LA(1)=='C'||input.LA(1)=='c' ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+
+            }
+
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "C"
+
+    // $ANTLR start "D"
+    public final void mD() throws RecognitionException {
+        try {
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:504:11: ( ( 'd' | 'D' ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:504:12: ( 'd' | 'D' )
+            {
+            if ( input.LA(1)=='D'||input.LA(1)=='d' ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+
+            }
+
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "D"
+
+    // $ANTLR start "E"
+    public final void mE() throws RecognitionException {
+        try {
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:505:11: ( ( 'e' | 'E' ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:505:12: ( 'e' | 'E' )
+            {
+            if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+
+            }
+
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "E"
+
+    // $ANTLR start "F"
+    public final void mF() throws RecognitionException {
+        try {
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:506:11: ( ( 'f' | 'F' ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:506:12: ( 'f' | 'F' )
+            {
+            if ( input.LA(1)=='F'||input.LA(1)=='f' ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+
+            }
+
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "F"
+
+    // $ANTLR start "G"
+    public final void mG() throws RecognitionException {
+        try {
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:507:11: ( ( 'g' | 'G' ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:507:12: ( 'g' | 'G' )
+            {
+            if ( input.LA(1)=='G'||input.LA(1)=='g' ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+
+            }
+
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "G"
+
+    // $ANTLR start "H"
+    public final void mH() throws RecognitionException {
+        try {
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:508:11: ( ( 'h' | 'H' ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:508:12: ( 'h' | 'H' )
+            {
+            if ( input.LA(1)=='H'||input.LA(1)=='h' ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+
+            }
+
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "H"
+
+    // $ANTLR start "I"
+    public final void mI() throws RecognitionException {
+        try {
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:509:11: ( ( 'i' | 'I' ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:509:12: ( 'i' | 'I' )
+            {
+            if ( input.LA(1)=='I'||input.LA(1)=='i' ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+
+            }
+
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "I"
+
+    // $ANTLR start "J"
+    public final void mJ() throws RecognitionException {
+        try {
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:510:11: ( ( 'j' | 'J' ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:510:12: ( 'j' | 'J' )
+            {
+            if ( input.LA(1)=='J'||input.LA(1)=='j' ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+
+            }
+
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "J"
+
+    // $ANTLR start "K"
+    public final void mK() throws RecognitionException {
+        try {
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:511:11: ( ( 'k' | 'K' ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:511:12: ( 'k' | 'K' )
+            {
+            if ( input.LA(1)=='K'||input.LA(1)=='k' ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+
+            }
+
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "K"
+
+    // $ANTLR start "L"
+    public final void mL() throws RecognitionException {
+        try {
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:512:11: ( ( 'l' | 'L' ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:512:12: ( 'l' | 'L' )
+            {
+            if ( input.LA(1)=='L'||input.LA(1)=='l' ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+
+            }
+
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "L"
+
+    // $ANTLR start "M"
+    public final void mM() throws RecognitionException {
+        try {
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:513:11: ( ( 'm' | 'M' ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:513:12: ( 'm' | 'M' )
+            {
+            if ( input.LA(1)=='M'||input.LA(1)=='m' ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+
+            }
+
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "M"
+
+    // $ANTLR start "N"
+    public final void mN() throws RecognitionException {
+        try {
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:514:11: ( ( 'n' | 'N' ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:514:12: ( 'n' | 'N' )
+            {
+            if ( input.LA(1)=='N'||input.LA(1)=='n' ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+
+            }
+
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "N"
+
+    // $ANTLR start "O"
+    public final void mO() throws RecognitionException {
+        try {
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:515:11: ( ( 'o' | 'O' ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:515:12: ( 'o' | 'O' )
+            {
+            if ( input.LA(1)=='O'||input.LA(1)=='o' ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+
+            }
+
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "O"
+
+    // $ANTLR start "P"
+    public final void mP() throws RecognitionException {
+        try {
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:516:11: ( ( 'p' | 'P' ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:516:12: ( 'p' | 'P' )
+            {
+            if ( input.LA(1)=='P'||input.LA(1)=='p' ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+
+            }
+
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "P"
+
+    // $ANTLR start "Q"
+    public final void mQ() throws RecognitionException {
+        try {
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:517:11: ( ( 'q' | 'Q' ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:517:12: ( 'q' | 'Q' )
+            {
+            if ( input.LA(1)=='Q'||input.LA(1)=='q' ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+
+            }
+
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "Q"
+
+    // $ANTLR start "R"
+    public final void mR() throws RecognitionException {
+        try {
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:518:11: ( ( 'r' | 'R' ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:518:12: ( 'r' | 'R' )
+            {
+            if ( input.LA(1)=='R'||input.LA(1)=='r' ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+
+            }
+
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "R"
+
+    // $ANTLR start "S"
+    public final void mS() throws RecognitionException {
+        try {
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:519:11: ( ( 's' | 'S' ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:519:12: ( 's' | 'S' )
+            {
+            if ( input.LA(1)=='S'||input.LA(1)=='s' ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+
+            }
+
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "S"
+
+    // $ANTLR start "T"
+    public final void mT() throws RecognitionException {
+        try {
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:520:11: ( ( 't' | 'T' ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:520:12: ( 't' | 'T' )
+            {
+            if ( input.LA(1)=='T'||input.LA(1)=='t' ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+
+            }
+
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T"
+
+    // $ANTLR start "U"
+    public final void mU() throws RecognitionException {
+        try {
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:521:11: ( ( 'u' | 'U' ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:521:12: ( 'u' | 'U' )
+            {
+            if ( input.LA(1)=='U'||input.LA(1)=='u' ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+
+            }
+
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "U"
+
+    // $ANTLR start "V"
+    public final void mV() throws RecognitionException {
+        try {
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:522:11: ( ( 'v' | 'V' ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:522:12: ( 'v' | 'V' )
+            {
+            if ( input.LA(1)=='V'||input.LA(1)=='v' ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+
+            }
+
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "V"
+
+    // $ANTLR start "W"
+    public final void mW() throws RecognitionException {
+        try {
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:523:11: ( ( 'w' | 'W' ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:523:12: ( 'w' | 'W' )
+            {
+            if ( input.LA(1)=='W'||input.LA(1)=='w' ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+
+            }
+
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "W"
+
+    // $ANTLR start "X"
+    public final void mX() throws RecognitionException {
+        try {
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:524:11: ( ( 'x' | 'X' ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:524:12: ( 'x' | 'X' )
+            {
+            if ( input.LA(1)=='X'||input.LA(1)=='x' ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+
+            }
+
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "X"
+
+    // $ANTLR start "Y"
+    public final void mY() throws RecognitionException {
+        try {
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:525:11: ( ( 'y' | 'Y' ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:525:12: ( 'y' | 'Y' )
+            {
+            if ( input.LA(1)=='Y'||input.LA(1)=='y' ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+
+            }
+
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "Y"
+
+    // $ANTLR start "Z"
+    public final void mZ() throws RecognitionException {
+        try {
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:526:11: ( ( 'z' | 'Z' ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:526:12: ( 'z' | 'Z' )
+            {
+            if ( input.LA(1)=='Z'||input.LA(1)=='z' ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+
+            }
+
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "Z"
 
     public void mTokens() throws RecognitionException {
-        // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:8: ( T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | SEMICOLON | COLON | COMMA | PERIOD | EQUALS | LEFTPAREN | RIGHTPAREN | LEFTBRACKET | RIGHTBRACKET | LEFTBRACE | RIGHTBRACE | LEFTANGLE | RIGHTANGLE | AMPERSAND | INTEGER | STRING | IDENT | WHITESPACE | LINE_COMMENT | MULTILINE_COMMENT | INCLUDE )
-        int alt9=36;
-        alt9 = dfa9.predict(input);
-        switch (alt9) {
+        // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:8: ( SEMICOLON | COLON | COMMA | PERIOD | EQUALS | LPAREN | RPAREN | LBRACKET | RBRACKET | LBRACE | RBRACE | LANGLE | RANGLE | AMPERSAND | DBLQUOTE | DESIGN | DEVICE | SUBDESIGN | INST | SUB | GROUP | THIS | OF | NET | ATTR | NEWATTR | BEGIN | END | COMBINE | INCLUDE | INFO | OPEN | PORT | PIN | INPIN | OUTPIN | IOPIN | PWRPIN | SUPPIN | INT | IDENT | PINNUM | STRING | WHITESPACE | LINE_COMMENT | MULTILINE_COMMENT | INCLUDE_DECL )
+        int alt10=47;
+        alt10 = dfa10.predict(input);
+        switch (alt10) {
             case 1 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:10: T__27
-                {
-                mT__27(); 
-
-                }
-                break;
-            case 2 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:16: T__28
-                {
-                mT__28(); 
-
-                }
-                break;
-            case 3 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:22: T__29
-                {
-                mT__29(); 
-
-                }
-                break;
-            case 4 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:28: T__30
-                {
-                mT__30(); 
-
-                }
-                break;
-            case 5 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:34: T__31
-                {
-                mT__31(); 
-
-                }
-                break;
-            case 6 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:40: T__32
-                {
-                mT__32(); 
-
-                }
-                break;
-            case 7 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:46: T__33
-                {
-                mT__33(); 
-
-                }
-                break;
-            case 8 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:52: T__34
-                {
-                mT__34(); 
-
-                }
-                break;
-            case 9 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:58: T__35
-                {
-                mT__35(); 
-
-                }
-                break;
-            case 10 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:64: T__36
-                {
-                mT__36(); 
-
-                }
-                break;
-            case 11 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:70: T__37
-                {
-                mT__37(); 
-
-                }
-                break;
-            case 12 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:76: T__38
-                {
-                mT__38(); 
-
-                }
-                break;
-            case 13 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:82: T__39
-                {
-                mT__39(); 
-
-                }
-                break;
-            case 14 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:88: T__40
-                {
-                mT__40(); 
-
-                }
-                break;
-            case 15 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:94: T__41
-                {
-                mT__41(); 
-
-                }
-                break;
-            case 16 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:100: SEMICOLON
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:10: SEMICOLON
                 {
                 mSEMICOLON(); 
 
                 }
                 break;
-            case 17 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:110: COLON
+            case 2 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:20: COLON
                 {
                 mCOLON(); 
 
                 }
                 break;
-            case 18 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:116: COMMA
+            case 3 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:26: COMMA
                 {
                 mCOMMA(); 
 
                 }
                 break;
-            case 19 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:122: PERIOD
+            case 4 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:32: PERIOD
                 {
                 mPERIOD(); 
 
                 }
                 break;
-            case 20 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:129: EQUALS
+            case 5 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:39: EQUALS
                 {
                 mEQUALS(); 
 
                 }
                 break;
-            case 21 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:136: LEFTPAREN
+            case 6 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:46: LPAREN
                 {
-                mLEFTPAREN(); 
+                mLPAREN(); 
 
                 }
                 break;
-            case 22 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:146: RIGHTPAREN
+            case 7 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:53: RPAREN
                 {
-                mRIGHTPAREN(); 
+                mRPAREN(); 
 
                 }
                 break;
-            case 23 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:157: LEFTBRACKET
+            case 8 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:60: LBRACKET
                 {
-                mLEFTBRACKET(); 
+                mLBRACKET(); 
 
                 }
                 break;
-            case 24 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:169: RIGHTBRACKET
+            case 9 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:69: RBRACKET
                 {
-                mRIGHTBRACKET(); 
+                mRBRACKET(); 
 
                 }
                 break;
-            case 25 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:182: LEFTBRACE
+            case 10 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:78: LBRACE
                 {
-                mLEFTBRACE(); 
+                mLBRACE(); 
 
                 }
                 break;
-            case 26 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:192: RIGHTBRACE
+            case 11 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:85: RBRACE
                 {
-                mRIGHTBRACE(); 
+                mRBRACE(); 
 
                 }
                 break;
-            case 27 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:203: LEFTANGLE
+            case 12 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:92: LANGLE
                 {
-                mLEFTANGLE(); 
+                mLANGLE(); 
 
                 }
                 break;
-            case 28 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:213: RIGHTANGLE
+            case 13 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:99: RANGLE
                 {
-                mRIGHTANGLE(); 
+                mRANGLE(); 
 
                 }
                 break;
-            case 29 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:224: AMPERSAND
+            case 14 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:106: AMPERSAND
                 {
                 mAMPERSAND(); 
 
                 }
                 break;
+            case 15 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:116: DBLQUOTE
+                {
+                mDBLQUOTE(); 
+
+                }
+                break;
+            case 16 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:125: DESIGN
+                {
+                mDESIGN(); 
+
+                }
+                break;
+            case 17 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:132: DEVICE
+                {
+                mDEVICE(); 
+
+                }
+                break;
+            case 18 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:139: SUBDESIGN
+                {
+                mSUBDESIGN(); 
+
+                }
+                break;
+            case 19 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:149: INST
+                {
+                mINST(); 
+
+                }
+                break;
+            case 20 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:154: SUB
+                {
+                mSUB(); 
+
+                }
+                break;
+            case 21 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:158: GROUP
+                {
+                mGROUP(); 
+
+                }
+                break;
+            case 22 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:164: THIS
+                {
+                mTHIS(); 
+
+                }
+                break;
+            case 23 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:169: OF
+                {
+                mOF(); 
+
+                }
+                break;
+            case 24 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:172: NET
+                {
+                mNET(); 
+
+                }
+                break;
+            case 25 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:176: ATTR
+                {
+                mATTR(); 
+
+                }
+                break;
+            case 26 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:181: NEWATTR
+                {
+                mNEWATTR(); 
+
+                }
+                break;
+            case 27 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:189: BEGIN
+                {
+                mBEGIN(); 
+
+                }
+                break;
+            case 28 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:195: END
+                {
+                mEND(); 
+
+                }
+                break;
+            case 29 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:199: COMBINE
+                {
+                mCOMBINE(); 
+
+                }
+                break;
             case 30 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:234: INTEGER
-                {
-                mINTEGER(); 
-
-                }
-                break;
-            case 31 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:242: STRING
-                {
-                mSTRING(); 
-
-                }
-                break;
-            case 32 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:249: IDENT
-                {
-                mIDENT(); 
-
-                }
-                break;
-            case 33 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:255: WHITESPACE
-                {
-                mWHITESPACE(); 
-
-                }
-                break;
-            case 34 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:266: LINE_COMMENT
-                {
-                mLINE_COMMENT(); 
-
-                }
-                break;
-            case 35 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:279: MULTILINE_COMMENT
-                {
-                mMULTILINE_COMMENT(); 
-
-                }
-                break;
-            case 36 :
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g:1:297: INCLUDE
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:207: INCLUDE
                 {
                 mINCLUDE(); 
 
                 }
                 break;
+            case 31 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:215: INFO
+                {
+                mINFO(); 
+
+                }
+                break;
+            case 32 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:220: OPEN
+                {
+                mOPEN(); 
+
+                }
+                break;
+            case 33 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:225: PORT
+                {
+                mPORT(); 
+
+                }
+                break;
+            case 34 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:230: PIN
+                {
+                mPIN(); 
+
+                }
+                break;
+            case 35 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:234: INPIN
+                {
+                mINPIN(); 
+
+                }
+                break;
+            case 36 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:240: OUTPIN
+                {
+                mOUTPIN(); 
+
+                }
+                break;
+            case 37 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:247: IOPIN
+                {
+                mIOPIN(); 
+
+                }
+                break;
+            case 38 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:253: PWRPIN
+                {
+                mPWRPIN(); 
+
+                }
+                break;
+            case 39 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:260: SUPPIN
+                {
+                mSUPPIN(); 
+
+                }
+                break;
+            case 40 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:267: INT
+                {
+                mINT(); 
+
+                }
+                break;
+            case 41 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:271: IDENT
+                {
+                mIDENT(); 
+
+                }
+                break;
+            case 42 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:277: PINNUM
+                {
+                mPINNUM(); 
+
+                }
+                break;
+            case 43 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:284: STRING
+                {
+                mSTRING(); 
+
+                }
+                break;
+            case 44 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:291: WHITESPACE
+                {
+                mWHITESPACE(); 
+
+                }
+                break;
+            case 45 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:302: LINE_COMMENT
+                {
+                mLINE_COMMENT(); 
+
+                }
+                break;
+            case 46 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:315: MULTILINE_COMMENT
+                {
+                mMULTILINE_COMMENT(); 
+
+                }
+                break;
+            case 47 :
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:333: INCLUDE_DECL
+                {
+                mINCLUDE_DECL(); 
+
+                }
+                break;
 
         }
 
     }
 
 
-    protected DFA9 dfa9 = new DFA9(this);
-    static final String DFA9_eotS =
-        "\1\uffff\12\33\16\uffff\1\52\2\uffff\1\33\1\uffff\6\33\1\67\5\33"+
-        "\1\uffff\1\33\1\uffff\3\33\1\111\1\33\1\113\4\33\1\uffff\1\33\1"+
-        "\121\3\33\1\uffff\12\33\1\127\1\uffff\1\130\1\uffff\1\33\1\132\1"+
-        "\133\1\33\1\135\1\uffff\1\33\1\137\3\33\2\uffff\1\33\2\uffff\1\33"+
-        "\1\uffff\1\33\1\uffff\1\146\1\147\1\150\3\33\3\uffff\1\154\1\33"+
-        "\1\156\3\uffff";
-    static final String DFA9_eofS =
-        "\157\uffff";
-    static final String DFA9_minS =
-        "\1\11\1\145\1\151\1\164\1\145\1\156\1\146\1\165\1\157\1\150\1\162"+
-        "\16\uffff\1\44\2\uffff\1\52\1\uffff\1\163\1\162\1\156\2\164\1\143"+
-        "\1\44\1\145\1\142\1\155\1\151\1\157\1\uffff\1\0\1\uffff\2\151\1"+
-        "\164\1\44\1\162\1\44\1\141\1\164\1\157\1\154\1\uffff\1\156\1\44"+
-        "\1\142\1\163\1\165\1\uffff\10\0\1\147\1\143\1\44\1\uffff\1\44\1"+
-        "\uffff\1\164\2\44\1\165\1\44\1\uffff\1\151\1\44\1\160\1\156\1\145"+
-        "\2\uffff\1\164\2\uffff\1\144\1\uffff\1\156\1\uffff\3\44\1\162\2"+
-        "\145\3\uffff\1\44\1\11\1\44\3\uffff";
-    static final String DFA9_maxS =
-        "\1\175\1\145\1\157\1\164\1\145\1\156\1\160\1\165\1\157\1\150\1\162"+
-        "\16\uffff\1\172\2\uffff\1\57\1\uffff\1\166\1\162\1\156\1\164\1\167"+
-        "\1\163\1\172\1\145\1\142\1\155\1\151\1\157\1\uffff\1\uffff\1\uffff"+
-        "\2\151\1\164\1\172\1\162\1\172\1\141\1\164\1\157\1\154\1\uffff\1"+
-        "\156\1\172\1\142\1\163\1\165\1\uffff\10\uffff\1\147\1\143\1\172"+
-        "\1\uffff\1\172\1\uffff\1\164\2\172\1\165\1\172\1\uffff\1\151\1\172"+
-        "\1\160\1\156\1\145\2\uffff\1\164\2\uffff\1\144\1\uffff\1\156\1\uffff"+
-        "\3\172\1\162\2\145\3\uffff\1\172\1\42\1\172\3\uffff";
-    static final String DFA9_acceptS =
-        "\13\uffff\1\20\1\21\1\22\1\23\1\24\1\25\1\26\1\27\1\30\1\31\1\32"+
-        "\1\33\1\34\1\35\1\uffff\1\37\1\40\1\uffff\1\41\14\uffff\1\36\1\uffff"+
-        "\1\43\12\uffff\1\10\5\uffff\1\42\13\uffff\1\5\1\uffff\1\6\5\uffff"+
-        "\1\11\5\uffff\1\2\1\4\1\uffff\1\7\1\15\1\uffff\1\17\1\uffff\1\14"+
-        "\6\uffff\1\16\1\1\1\3\3\uffff\1\13\1\44\1\12";
-    static final String DFA9_specialS =
-        "\53\uffff\1\3\22\uffff\1\0\1\1\1\2\1\6\1\5\1\10\1\7\1\4\51\uffff}>";
-    static final String[] DFA9_transitionS = {
-            "\2\35\1\uffff\2\35\17\uffff\1\35\2\uffff\1\35\1\uffff\1\32\1"+
-            "\uffff\1\33\1\uffff\1\30\1\uffff\1\20\1\21\1\uffff\1\33\1\15"+
-            "\1\33\1\16\1\34\12\31\1\14\1\13\1\26\1\17\1\27\2\uffff\32\33"+
-            "\1\22\1\uffff\1\23\1\uffff\1\33\1\uffff\1\3\1\33\1\10\1\1\2"+
-            "\33\1\12\1\33\1\5\4\33\1\4\1\6\1\2\2\33\1\7\1\11\6\33\1\24\1"+
-            "\uffff\1\25",
-            "\1\36",
-            "\1\40\5\uffff\1\37",
-            "\1\41",
-            "\1\42",
-            "\1\43",
-            "\1\44\11\uffff\1\45",
-            "\1\46",
-            "\1\47",
-            "\1\50",
-            "\1\51",
+    protected DFA10 dfa10 = new DFA10(this);
+    static final String DFA10_eotS =
+        "\17\uffff\1\54\14\51\1\120\14\51\1\uffff\1\51\3\uffff\14\51\1\152"+
+        "\2\51\1\152\22\51\2\uffff\1\51\1\uffff\4\51\1\u008e\1\51\1\u008e"+
+        "\17\51\1\uffff\4\51\1\u00a5\1\51\1\u00a5\5\51\2\u00ac\4\51\2\u00b1"+
+        "\2\51\1\uffff\14\51\1\uffff\4\51\2\u00bc\2\51\2\u00bf\6\51\2\u00c6"+
+        "\2\u00c7\2\51\1\uffff\2\51\2\u00cc\2\51\1\uffff\2\51\2\u00d1\1\uffff"+
+        "\12\51\1\uffff\2\51\1\uffff\2\u00de\2\u00df\2\u00e0\2\uffff\4\51"+
+        "\1\uffff\2\u00e5\2\51\1\uffff\2\51\2\u00ea\2\u00eb\2\51\2\u00ee"+
+        "\2\51\3\uffff\2\u00f1\2\51\1\uffff\2\51\2\u00f6\2\uffff\2\51\1\uffff"+
+        "\2\u00f9\1\uffff\2\u00fb\2\u00fc\1\uffff\2\51\4\uffff\2\u00ff\1"+
+        "\uffff";
+    static final String DFA10_eofS =
+        "\u0100\uffff";
+    static final String DFA10_minS =
+        "\1\11\16\uffff\1\0\1\105\1\125\1\116\1\122\1\110\1\106\1\105\1"+
+        "\124\1\105\1\116\1\117\1\111\1\44\1\105\1\125\1\116\1\122\1\110"+
+        "\1\106\1\105\1\124\1\105\1\116\1\117\1\111\1\uffff\1\52\3\uffff"+
+        "\2\123\2\102\1\103\1\120\1\103\1\120\2\117\2\111\1\44\1\105\1\124"+
+        "\1\44\1\105\5\124\2\107\2\104\2\115\1\122\1\116\2\122\1\116\1\122"+
+        "\2\uffff\1\0\1\uffff\4\111\1\44\1\120\1\44\1\120\1\124\1\114\1\117"+
+        "\1\111\1\124\1\114\1\117\3\111\2\125\2\123\1\uffff\2\116\2\120\1"+
+        "\44\1\101\1\44\1\101\2\122\2\111\2\44\2\102\2\124\2\44\2\120\1\uffff"+
+        "\10\0\2\107\2\103\1\uffff\2\105\2\111\2\44\2\125\2\44\4\116\2\120"+
+        "\4\44\2\111\1\uffff\2\124\2\44\2\116\1\uffff\2\111\2\44\1\uffff"+
+        "\2\111\2\116\2\105\2\123\2\116\1\uffff\2\104\1\uffff\6\44\2\uffff"+
+        "\2\116\2\124\1\uffff\2\44\2\116\1\uffff\2\116\4\44\2\111\2\44\2"+
+        "\105\3\uffff\2\44\2\122\1\uffff\2\105\2\44\2\uffff\2\107\1\uffff"+
+        "\2\11\1\uffff\4\44\1\uffff\2\116\4\uffff\2\44\1\uffff";
+    static final String DFA10_maxS =
+        "\1\175\16\uffff\1\uffff\1\145\1\165\1\157\1\162\1\150\1\165\1\145"+
+        "\1\164\1\145\1\156\1\157\1\167\1\172\1\145\1\165\1\157\1\162\1\150"+
+        "\1\165\1\145\1\164\1\145\1\156\1\157\1\167\1\uffff\1\57\3\uffff"+
+        "\2\166\2\160\1\163\1\160\1\163\1\160\2\157\2\151\1\172\1\145\1\164"+
+        "\1\172\1\145\1\164\2\167\2\164\2\147\2\144\2\155\1\162\1\156\2\162"+
+        "\1\156\1\162\2\uffff\1\uffff\1\uffff\4\151\1\172\1\160\1\172\1\160"+
+        "\1\164\1\154\1\157\1\151\1\164\1\154\1\157\3\151\2\165\2\163\1\uffff"+
+        "\2\156\2\160\1\172\1\141\1\172\1\141\2\162\2\151\2\172\2\142\2\164"+
+        "\2\172\2\160\1\uffff\10\uffff\2\147\2\143\1\uffff\2\145\2\151\2"+
+        "\172\2\165\2\172\4\156\2\160\4\172\2\151\1\uffff\2\164\2\172\2\156"+
+        "\1\uffff\2\151\2\172\1\uffff\2\151\2\156\2\145\2\163\2\156\1\uffff"+
+        "\2\144\1\uffff\6\172\2\uffff\2\156\2\164\1\uffff\2\172\2\156\1\uffff"+
+        "\2\156\4\172\2\151\2\172\2\145\3\uffff\2\172\2\162\1\uffff\2\145"+
+        "\2\172\2\uffff\2\147\1\uffff\2\172\1\uffff\4\172\1\uffff\2\156\4"+
+        "\uffff\2\172\1\uffff";
+    static final String DFA10_acceptS =
+        "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1"+
+        "\15\1\16\32\uffff\1\51\1\uffff\1\54\1\17\1\53\42\uffff\1\50\1\52"+
+        "\1\uffff\1\56\26\uffff\1\27\26\uffff\1\55\14\uffff\1\24\26\uffff"+
+        "\1\30\6\uffff\1\34\4\uffff\1\42\12\uffff\1\23\2\uffff\1\37\6\uffff"+
+        "\1\26\1\40\4\uffff\1\31\4\uffff\1\41\14\uffff\1\43\1\45\1\25\4\uffff"+
+        "\1\33\4\uffff\1\20\1\21\2\uffff\1\47\2\uffff\1\44\4\uffff\1\46\2"+
+        "\uffff\1\36\1\57\1\32\1\35\2\uffff\1\22";
+    static final String DFA10_specialS =
+        "\17\uffff\1\6\102\uffff\1\7\57\uffff\1\0\1\1\1\3\1\2\1\5\1\4\1"+
+        "\11\1\10\166\uffff}>";
+    static final String[] DFA10_transitionS = {
+            "\2\53\1\uffff\2\53\17\uffff\1\53\2\uffff\1\53\1\uffff\1\17"+
+            "\1\uffff\1\51\1\uffff\1\16\1\uffff\1\6\1\7\1\uffff\1\51\1\3"+
+            "\1\51\1\4\1\52\12\34\1\2\1\1\1\14\1\5\1\15\2\uffff\1\44\1\45"+
+            "\1\47\1\35\1\46\1\51\1\40\1\51\1\37\4\51\1\43\1\42\1\50\2\51"+
+            "\1\36\1\41\6\51\1\10\1\uffff\1\11\1\uffff\1\51\1\uffff\1\27"+
+            "\1\30\1\32\1\20\1\31\1\51\1\23\1\51\1\22\4\51\1\26\1\25\1\33"+
+            "\2\51\1\21\1\24\6\51\1\12\1\uffff\1\13",
             "",
             "",
             "",
@@ -1691,393 +2805,607 @@ public class PhdlLexer extends Lexer {
             "",
             "",
             "",
-            "\1\33\6\uffff\1\33\1\uffff\1\33\1\uffff\1\33\12\31\7\uffff"+
-            "\32\33\4\uffff\1\33\1\uffff\32\33",
+            "\0\55",
+            "\1\57\37\uffff\1\56",
+            "\1\61\37\uffff\1\60",
+            "\1\64\1\65\36\uffff\1\62\1\63",
+            "\1\67\37\uffff\1\66",
+            "\1\71\37\uffff\1\70",
+            "\1\75\11\uffff\1\76\4\uffff\1\77\20\uffff\1\72\11\uffff\1"+
+            "\73\4\uffff\1\74",
+            "\1\101\37\uffff\1\100",
+            "\1\103\37\uffff\1\102",
+            "\1\105\37\uffff\1\104",
+            "\1\107\37\uffff\1\106",
+            "\1\111\37\uffff\1\110",
+            "\1\116\5\uffff\1\115\7\uffff\1\117\21\uffff\1\113\5\uffff"+
+            "\1\112\7\uffff\1\114",
+            "\1\121\6\uffff\1\121\1\uffff\1\121\1\uffff\1\121\21\uffff"+
+            "\32\121\4\uffff\1\121\1\uffff\32\121",
+            "\1\57\37\uffff\1\56",
+            "\1\61\37\uffff\1\60",
+            "\1\64\1\65\36\uffff\1\62\1\63",
+            "\1\67\37\uffff\1\66",
+            "\1\71\37\uffff\1\70",
+            "\1\75\11\uffff\1\76\4\uffff\1\77\20\uffff\1\72\11\uffff\1"+
+            "\73\4\uffff\1\74",
+            "\1\101\37\uffff\1\100",
+            "\1\103\37\uffff\1\102",
+            "\1\105\37\uffff\1\104",
+            "\1\107\37\uffff\1\106",
+            "\1\111\37\uffff\1\110",
+            "\1\116\5\uffff\1\115\7\uffff\1\117\21\uffff\1\113\5\uffff"+
+            "\1\112\7\uffff\1\114",
             "",
-            "",
-            "\1\54\4\uffff\1\53",
-            "",
-            "\1\55\2\uffff\1\56",
-            "\1\57",
-            "\1\60",
-            "\1\61",
-            "\1\62\2\uffff\1\63",
-            "\1\66\2\uffff\1\65\14\uffff\1\64",
-            "\1\33\6\uffff\1\33\1\uffff\1\33\1\uffff\13\33\7\uffff\32\33"+
-            "\4\uffff\1\33\1\uffff\32\33",
-            "\1\70",
-            "\1\71",
-            "\1\72",
-            "\1\73",
-            "\1\74",
-            "",
-            "\44\75\1\103\6\75\1\101\1\75\1\102\1\75\1\104\12\105\7\75\32"+
-            "\77\4\75\1\100\1\75\32\76\uff85\75",
-            "",
-            "\1\106",
-            "\1\107",
-            "\1\110",
-            "\1\33\6\uffff\1\33\1\uffff\1\33\1\uffff\13\33\7\uffff\32\33"+
-            "\4\uffff\1\33\1\uffff\32\33",
-            "\1\112",
-            "\1\33\6\uffff\1\33\1\uffff\1\33\1\uffff\13\33\7\uffff\32\33"+
-            "\4\uffff\1\33\1\uffff\32\33",
-            "\1\114",
-            "\1\115",
-            "\1\116",
-            "\1\117",
-            "",
-            "\1\120",
-            "\1\33\6\uffff\1\33\1\uffff\1\33\1\uffff\13\33\7\uffff\32\33"+
-            "\4\uffff\1\33\1\uffff\32\33",
-            "\1\122",
-            "\1\123",
-            "\1\124",
-            "",
-            "\44\75\1\103\6\75\1\101\1\75\1\102\1\75\1\104\12\105\7\75\32"+
-            "\77\4\75\1\100\1\75\32\76\uff85\75",
-            "\44\75\1\103\6\75\1\101\1\75\1\102\1\75\1\104\12\105\7\75\32"+
-            "\77\4\75\1\100\1\75\32\76\uff85\75",
-            "\44\75\1\103\6\75\1\101\1\75\1\102\1\75\1\104\12\105\7\75\32"+
-            "\77\4\75\1\100\1\75\32\76\uff85\75",
-            "\44\75\1\103\6\75\1\101\1\75\1\102\1\75\1\104\12\105\7\75\32"+
-            "\77\4\75\1\100\1\75\32\76\uff85\75",
-            "\44\75\1\103\6\75\1\101\1\75\1\102\1\75\1\104\12\105\7\75\32"+
-            "\77\4\75\1\100\1\75\32\76\uff85\75",
-            "\44\75\1\103\6\75\1\101\1\75\1\102\1\75\1\104\12\105\7\75\32"+
-            "\77\4\75\1\100\1\75\32\76\uff85\75",
-            "\44\75\1\103\6\75\1\101\1\75\1\102\1\75\1\104\12\105\7\75\32"+
-            "\77\4\75\1\100\1\75\32\76\uff85\75",
-            "\44\75\1\103\6\75\1\101\1\75\1\102\1\75\1\104\12\105\7\75\32"+
-            "\77\4\75\1\100\1\75\32\76\uff85\75",
-            "\1\125",
-            "\1\126",
-            "\1\33\6\uffff\1\33\1\uffff\1\33\1\uffff\13\33\7\uffff\32\33"+
-            "\4\uffff\1\33\1\uffff\32\33",
-            "",
-            "\1\33\6\uffff\1\33\1\uffff\1\33\1\uffff\13\33\7\uffff\32\33"+
-            "\4\uffff\1\33\1\uffff\32\33",
-            "",
-            "\1\131",
-            "\1\33\6\uffff\1\33\1\uffff\1\33\1\uffff\13\33\7\uffff\32\33"+
-            "\4\uffff\1\33\1\uffff\32\33",
-            "\1\33\6\uffff\1\33\1\uffff\1\33\1\uffff\13\33\7\uffff\32\33"+
-            "\4\uffff\1\33\1\uffff\32\33",
-            "\1\134",
-            "\1\33\6\uffff\1\33\1\uffff\1\33\1\uffff\13\33\7\uffff\32\33"+
-            "\4\uffff\1\33\1\uffff\32\33",
-            "",
-            "\1\136",
-            "\1\33\6\uffff\1\33\1\uffff\1\33\1\uffff\13\33\7\uffff\32\33"+
-            "\4\uffff\1\33\1\uffff\32\33",
-            "\1\140",
-            "\1\141",
-            "\1\142",
-            "",
-            "",
-            "\1\143",
-            "",
-            "",
-            "\1\144",
-            "",
-            "\1\145",
-            "",
-            "\1\33\6\uffff\1\33\1\uffff\1\33\1\uffff\13\33\7\uffff\32\33"+
-            "\4\uffff\1\33\1\uffff\32\33",
-            "\1\33\6\uffff\1\33\1\uffff\1\33\1\uffff\13\33\7\uffff\32\33"+
-            "\4\uffff\1\33\1\uffff\32\33",
-            "\1\33\6\uffff\1\33\1\uffff\1\33\1\uffff\13\33\7\uffff\32\33"+
-            "\4\uffff\1\33\1\uffff\32\33",
-            "\1\151",
-            "\1\152",
-            "\1\153",
+            "\1\123\4\uffff\1\122",
             "",
             "",
             "",
-            "\1\33\6\uffff\1\33\1\uffff\1\33\1\uffff\13\33\7\uffff\32\33"+
-            "\4\uffff\1\33\1\uffff\32\33",
-            "\2\155\1\uffff\2\155\17\uffff\1\155\2\uffff\1\155\1\uffff\1"+
-            "\155",
-            "\1\33\6\uffff\1\33\1\uffff\1\33\1\uffff\13\33\7\uffff\32\33"+
-            "\4\uffff\1\33\1\uffff\32\33",
+            "\1\126\2\uffff\1\127\34\uffff\1\124\2\uffff\1\125",
+            "\1\126\2\uffff\1\127\34\uffff\1\124\2\uffff\1\125",
+            "\1\132\15\uffff\1\133\21\uffff\1\130\15\uffff\1\131",
+            "\1\132\15\uffff\1\133\21\uffff\1\130\15\uffff\1\131",
+            "\1\141\2\uffff\1\142\11\uffff\1\143\2\uffff\1\140\17\uffff"+
+            "\1\135\2\uffff\1\136\11\uffff\1\137\2\uffff\1\134",
+            "\1\145\37\uffff\1\144",
+            "\1\141\2\uffff\1\142\11\uffff\1\143\2\uffff\1\140\17\uffff"+
+            "\1\135\2\uffff\1\136\11\uffff\1\137\2\uffff\1\134",
+            "\1\145\37\uffff\1\144",
+            "\1\147\37\uffff\1\146",
+            "\1\147\37\uffff\1\146",
+            "\1\151\37\uffff\1\150",
+            "\1\151\37\uffff\1\150",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\154\37\uffff\1\153",
+            "\1\156\37\uffff\1\155",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\154\37\uffff\1\153",
+            "\1\156\37\uffff\1\155",
+            "\1\161\2\uffff\1\162\34\uffff\1\157\2\uffff\1\160",
+            "\1\161\2\uffff\1\162\34\uffff\1\157\2\uffff\1\160",
+            "\1\164\37\uffff\1\163",
+            "\1\164\37\uffff\1\163",
+            "\1\166\37\uffff\1\165",
+            "\1\166\37\uffff\1\165",
+            "\1\170\37\uffff\1\167",
+            "\1\170\37\uffff\1\167",
+            "\1\172\37\uffff\1\171",
+            "\1\172\37\uffff\1\171",
+            "\1\174\37\uffff\1\173",
+            "\1\176\37\uffff\1\175",
+            "\1\u0080\37\uffff\1\177",
+            "\1\174\37\uffff\1\173",
+            "\1\176\37\uffff\1\175",
+            "\1\u0080\37\uffff\1\177",
             "",
             "",
+            "\44\u0081\1\u0087\6\u0081\1\u0085\1\u0081\1\u0086\1\u0081"+
+            "\1\u0088\12\u0089\7\u0081\32\u0083\4\u0081\1\u0084\1\u0081\32"+
+            "\u0082\uff85\u0081",
+            "",
+            "\1\u008b\37\uffff\1\u008a",
+            "\1\u008d\37\uffff\1\u008c",
+            "\1\u008b\37\uffff\1\u008a",
+            "\1\u008d\37\uffff\1\u008c",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\3\51"+
+            "\1\u0090\26\51\4\uffff\1\51\1\uffff\3\51\1\u008f\26\51",
+            "\1\u0092\37\uffff\1\u0091",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\3\51"+
+            "\1\u0090\26\51\4\uffff\1\51\1\uffff\3\51\1\u008f\26\51",
+            "\1\u0092\37\uffff\1\u0091",
+            "\1\u0094\37\uffff\1\u0093",
+            "\1\u0096\37\uffff\1\u0095",
+            "\1\u0098\37\uffff\1\u0097",
+            "\1\u009a\37\uffff\1\u0099",
+            "\1\u0094\37\uffff\1\u0093",
+            "\1\u0096\37\uffff\1\u0095",
+            "\1\u0098\37\uffff\1\u0097",
+            "\1\u009a\37\uffff\1\u0099",
+            "\1\u009c\37\uffff\1\u009b",
+            "\1\u009c\37\uffff\1\u009b",
+            "\1\u009e\37\uffff\1\u009d",
+            "\1\u009e\37\uffff\1\u009d",
+            "\1\u00a0\37\uffff\1\u009f",
+            "\1\u00a0\37\uffff\1\u009f",
+            "",
+            "\1\u00a2\37\uffff\1\u00a1",
+            "\1\u00a2\37\uffff\1\u00a1",
+            "\1\u00a4\37\uffff\1\u00a3",
+            "\1\u00a4\37\uffff\1\u00a3",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\u00a7\37\uffff\1\u00a6",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\u00a7\37\uffff\1\u00a6",
+            "\1\u00a9\37\uffff\1\u00a8",
+            "\1\u00a9\37\uffff\1\u00a8",
+            "\1\u00ab\37\uffff\1\u00aa",
+            "\1\u00ab\37\uffff\1\u00aa",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\u00ae\37\uffff\1\u00ad",
+            "\1\u00ae\37\uffff\1\u00ad",
+            "\1\u00b0\37\uffff\1\u00af",
+            "\1\u00b0\37\uffff\1\u00af",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\u00b3\37\uffff\1\u00b2",
+            "\1\u00b3\37\uffff\1\u00b2",
+            "",
+            "\44\u0081\1\u0087\6\u0081\1\u0085\1\u0081\1\u0086\1\u0081"+
+            "\1\u0088\12\u0089\7\u0081\32\u0083\4\u0081\1\u0084\1\u0081\32"+
+            "\u0082\uff85\u0081",
+            "\44\u0081\1\u0087\6\u0081\1\u0085\1\u0081\1\u0086\1\u0081"+
+            "\1\u0088\12\u0089\7\u0081\32\u0083\4\u0081\1\u0084\1\u0081\32"+
+            "\u0082\uff85\u0081",
+            "\44\u0081\1\u0087\6\u0081\1\u0085\1\u0081\1\u0086\1\u0081"+
+            "\1\u0088\12\u0089\7\u0081\32\u0083\4\u0081\1\u0084\1\u0081\32"+
+            "\u0082\uff85\u0081",
+            "\44\u0081\1\u0087\6\u0081\1\u0085\1\u0081\1\u0086\1\u0081"+
+            "\1\u0088\12\u0089\7\u0081\32\u0083\4\u0081\1\u0084\1\u0081\32"+
+            "\u0082\uff85\u0081",
+            "\44\u0081\1\u0087\6\u0081\1\u0085\1\u0081\1\u0086\1\u0081"+
+            "\1\u0088\12\u0089\7\u0081\32\u0083\4\u0081\1\u0084\1\u0081\32"+
+            "\u0082\uff85\u0081",
+            "\44\u0081\1\u0087\6\u0081\1\u0085\1\u0081\1\u0086\1\u0081"+
+            "\1\u0088\12\u0089\7\u0081\32\u0083\4\u0081\1\u0084\1\u0081\32"+
+            "\u0082\uff85\u0081",
+            "\44\u0081\1\u0087\6\u0081\1\u0085\1\u0081\1\u0086\1\u0081"+
+            "\1\u0088\12\u0089\7\u0081\32\u0083\4\u0081\1\u0084\1\u0081\32"+
+            "\u0082\uff85\u0081",
+            "\44\u0081\1\u0087\6\u0081\1\u0085\1\u0081\1\u0086\1\u0081"+
+            "\1\u0088\12\u0089\7\u0081\32\u0083\4\u0081\1\u0084\1\u0081\32"+
+            "\u0082\uff85\u0081",
+            "\1\u00b5\37\uffff\1\u00b4",
+            "\1\u00b5\37\uffff\1\u00b4",
+            "\1\u00b7\37\uffff\1\u00b6",
+            "\1\u00b7\37\uffff\1\u00b6",
+            "",
+            "\1\u00b9\37\uffff\1\u00b8",
+            "\1\u00b9\37\uffff\1\u00b8",
+            "\1\u00bb\37\uffff\1\u00ba",
+            "\1\u00bb\37\uffff\1\u00ba",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\u00be\37\uffff\1\u00bd",
+            "\1\u00be\37\uffff\1\u00bd",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\u00c1\37\uffff\1\u00c0",
+            "\1\u00c1\37\uffff\1\u00c0",
+            "\1\u00c3\37\uffff\1\u00c2",
+            "\1\u00c3\37\uffff\1\u00c2",
+            "\1\u00c5\37\uffff\1\u00c4",
+            "\1\u00c5\37\uffff\1\u00c4",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\u00c9\37\uffff\1\u00c8",
+            "\1\u00c9\37\uffff\1\u00c8",
+            "",
+            "\1\u00cb\37\uffff\1\u00ca",
+            "\1\u00cb\37\uffff\1\u00ca",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\u00ce\37\uffff\1\u00cd",
+            "\1\u00ce\37\uffff\1\u00cd",
+            "",
+            "\1\u00d0\37\uffff\1\u00cf",
+            "\1\u00d0\37\uffff\1\u00cf",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "",
+            "\1\u00d3\37\uffff\1\u00d2",
+            "\1\u00d3\37\uffff\1\u00d2",
+            "\1\u00d5\37\uffff\1\u00d4",
+            "\1\u00d5\37\uffff\1\u00d4",
+            "\1\u00d7\37\uffff\1\u00d6",
+            "\1\u00d7\37\uffff\1\u00d6",
+            "\1\u00d9\37\uffff\1\u00d8",
+            "\1\u00d9\37\uffff\1\u00d8",
+            "\1\u00db\37\uffff\1\u00da",
+            "\1\u00db\37\uffff\1\u00da",
+            "",
+            "\1\u00dd\37\uffff\1\u00dc",
+            "\1\u00dd\37\uffff\1\u00dc",
+            "",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "",
+            "",
+            "\1\u00e2\37\uffff\1\u00e1",
+            "\1\u00e2\37\uffff\1\u00e1",
+            "\1\u00e4\37\uffff\1\u00e3",
+            "\1\u00e4\37\uffff\1\u00e3",
+            "",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\u00e7\37\uffff\1\u00e6",
+            "\1\u00e7\37\uffff\1\u00e6",
+            "",
+            "\1\u00e9\37\uffff\1\u00e8",
+            "\1\u00e9\37\uffff\1\u00e8",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\u00ed\37\uffff\1\u00ec",
+            "\1\u00ed\37\uffff\1\u00ec",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\u00f0\37\uffff\1\u00ef",
+            "\1\u00f0\37\uffff\1\u00ef",
+            "",
+            "",
+            "",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\u00f3\37\uffff\1\u00f2",
+            "\1\u00f3\37\uffff\1\u00f2",
+            "",
+            "\1\u00f5\37\uffff\1\u00f4",
+            "\1\u00f5\37\uffff\1\u00f4",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "",
+            "",
+            "\1\u00f8\37\uffff\1\u00f7",
+            "\1\u00f8\37\uffff\1\u00f7",
+            "",
+            "\2\u00fa\1\uffff\2\u00fa\17\uffff\1\u00fa\2\uffff\1\u00fa"+
+            "\1\uffff\1\u00fa\1\uffff\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff"+
+            "\13\51\7\uffff\32\51\4\uffff\1\51\1\uffff\32\51",
+            "\2\u00fa\1\uffff\2\u00fa\17\uffff\1\u00fa\2\uffff\1\u00fa"+
+            "\1\uffff\1\u00fa\1\uffff\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff"+
+            "\13\51\7\uffff\32\51\4\uffff\1\51\1\uffff\32\51",
+            "",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "",
+            "\1\u00fe\37\uffff\1\u00fd",
+            "\1\u00fe\37\uffff\1\u00fd",
+            "",
+            "",
+            "",
+            "",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
+            "\1\51\6\uffff\1\51\1\uffff\1\51\1\uffff\13\51\7\uffff\32\51"+
+            "\4\uffff\1\51\1\uffff\32\51",
             ""
     };
 
-    static final short[] DFA9_eot = DFA.unpackEncodedString(DFA9_eotS);
-    static final short[] DFA9_eof = DFA.unpackEncodedString(DFA9_eofS);
-    static final char[] DFA9_min = DFA.unpackEncodedStringToUnsignedChars(DFA9_minS);
-    static final char[] DFA9_max = DFA.unpackEncodedStringToUnsignedChars(DFA9_maxS);
-    static final short[] DFA9_accept = DFA.unpackEncodedString(DFA9_acceptS);
-    static final short[] DFA9_special = DFA.unpackEncodedString(DFA9_specialS);
-    static final short[][] DFA9_transition;
+    static final short[] DFA10_eot = DFA.unpackEncodedString(DFA10_eotS);
+    static final short[] DFA10_eof = DFA.unpackEncodedString(DFA10_eofS);
+    static final char[] DFA10_min = DFA.unpackEncodedStringToUnsignedChars(DFA10_minS);
+    static final char[] DFA10_max = DFA.unpackEncodedStringToUnsignedChars(DFA10_maxS);
+    static final short[] DFA10_accept = DFA.unpackEncodedString(DFA10_acceptS);
+    static final short[] DFA10_special = DFA.unpackEncodedString(DFA10_specialS);
+    static final short[][] DFA10_transition;
 
     static {
-        int numStates = DFA9_transitionS.length;
-        DFA9_transition = new short[numStates][];
+        int numStates = DFA10_transitionS.length;
+        DFA10_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA9_transition[i] = DFA.unpackEncodedString(DFA9_transitionS[i]);
+            DFA10_transition[i] = DFA.unpackEncodedString(DFA10_transitionS[i]);
         }
     }
 
-    class DFA9 extends DFA {
+    class DFA10 extends DFA {
 
-        public DFA9(BaseRecognizer recognizer) {
+        public DFA10(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 9;
-            this.eot = DFA9_eot;
-            this.eof = DFA9_eof;
-            this.min = DFA9_min;
-            this.max = DFA9_max;
-            this.accept = DFA9_accept;
-            this.special = DFA9_special;
-            this.transition = DFA9_transition;
+            this.decisionNumber = 10;
+            this.eot = DFA10_eot;
+            this.eof = DFA10_eof;
+            this.min = DFA10_min;
+            this.max = DFA10_max;
+            this.accept = DFA10_accept;
+            this.special = DFA10_special;
+            this.transition = DFA10_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | SEMICOLON | COLON | COMMA | PERIOD | EQUALS | LEFTPAREN | RIGHTPAREN | LEFTBRACKET | RIGHTBRACKET | LEFTBRACE | RIGHTBRACE | LEFTANGLE | RIGHTANGLE | AMPERSAND | INTEGER | STRING | IDENT | WHITESPACE | LINE_COMMENT | MULTILINE_COMMENT | INCLUDE );";
+            return "1:1: Tokens : ( SEMICOLON | COLON | COMMA | PERIOD | EQUALS | LPAREN | RPAREN | LBRACKET | RBRACKET | LBRACE | RBRACE | LANGLE | RANGLE | AMPERSAND | DBLQUOTE | DESIGN | DEVICE | SUBDESIGN | INST | SUB | GROUP | THIS | OF | NET | ATTR | NEWATTR | BEGIN | END | COMBINE | INCLUDE | INFO | OPEN | PORT | PIN | INPIN | OUTPIN | IOPIN | PWRPIN | SUPPIN | INT | IDENT | PINNUM | STRING | WHITESPACE | LINE_COMMENT | MULTILINE_COMMENT | INCLUDE_DECL );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA9_62 = input.LA(1);
+                        int LA10_130 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA9_62>='\u0000' && LA9_62<='#')||(LA9_62>='%' && LA9_62<='*')||LA9_62==','||LA9_62=='.'||(LA9_62>=':' && LA9_62<='@')||(LA9_62>='[' && LA9_62<='^')||LA9_62=='`'||(LA9_62>='{' && LA9_62<='\uFFFF')) ) {s = 61;}
+                        if ( ((LA10_130>='\u0000' && LA10_130<='#')||(LA10_130>='%' && LA10_130<='*')||LA10_130==','||LA10_130=='.'||(LA10_130>=':' && LA10_130<='@')||(LA10_130>='[' && LA10_130<='^')||LA10_130=='`'||(LA10_130>='{' && LA10_130<='\uFFFF')) ) {s = 129;}
 
-                        else if ( ((LA9_62>='a' && LA9_62<='z')) ) {s = 62;}
+                        else if ( ((LA10_130>='a' && LA10_130<='z')) ) {s = 130;}
 
-                        else if ( ((LA9_62>='A' && LA9_62<='Z')) ) {s = 63;}
+                        else if ( ((LA10_130>='A' && LA10_130<='Z')) ) {s = 131;}
 
-                        else if ( (LA9_62=='_') ) {s = 64;}
+                        else if ( (LA10_130=='_') ) {s = 132;}
 
-                        else if ( (LA9_62=='+') ) {s = 65;}
+                        else if ( (LA10_130=='+') ) {s = 133;}
 
-                        else if ( (LA9_62=='-') ) {s = 66;}
+                        else if ( (LA10_130=='-') ) {s = 134;}
 
-                        else if ( (LA9_62=='$') ) {s = 67;}
+                        else if ( (LA10_130=='$') ) {s = 135;}
 
-                        else if ( (LA9_62=='/') ) {s = 68;}
+                        else if ( (LA10_130=='/') ) {s = 136;}
 
-                        else if ( ((LA9_62>='0' && LA9_62<='9')) ) {s = 69;}
+                        else if ( ((LA10_130>='0' && LA10_130<='9')) ) {s = 137;}
 
-                        else s = 27;
+                        else s = 41;
 
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA9_63 = input.LA(1);
+                        int LA10_131 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA9_63>='\u0000' && LA9_63<='#')||(LA9_63>='%' && LA9_63<='*')||LA9_63==','||LA9_63=='.'||(LA9_63>=':' && LA9_63<='@')||(LA9_63>='[' && LA9_63<='^')||LA9_63=='`'||(LA9_63>='{' && LA9_63<='\uFFFF')) ) {s = 61;}
+                        if ( ((LA10_131>='\u0000' && LA10_131<='#')||(LA10_131>='%' && LA10_131<='*')||LA10_131==','||LA10_131=='.'||(LA10_131>=':' && LA10_131<='@')||(LA10_131>='[' && LA10_131<='^')||LA10_131=='`'||(LA10_131>='{' && LA10_131<='\uFFFF')) ) {s = 129;}
 
-                        else if ( ((LA9_63>='a' && LA9_63<='z')) ) {s = 62;}
+                        else if ( ((LA10_131>='a' && LA10_131<='z')) ) {s = 130;}
 
-                        else if ( ((LA9_63>='A' && LA9_63<='Z')) ) {s = 63;}
+                        else if ( ((LA10_131>='A' && LA10_131<='Z')) ) {s = 131;}
 
-                        else if ( (LA9_63=='_') ) {s = 64;}
+                        else if ( (LA10_131=='_') ) {s = 132;}
 
-                        else if ( (LA9_63=='+') ) {s = 65;}
+                        else if ( (LA10_131=='+') ) {s = 133;}
 
-                        else if ( (LA9_63=='-') ) {s = 66;}
+                        else if ( (LA10_131=='-') ) {s = 134;}
 
-                        else if ( (LA9_63=='$') ) {s = 67;}
+                        else if ( (LA10_131=='$') ) {s = 135;}
 
-                        else if ( (LA9_63=='/') ) {s = 68;}
+                        else if ( (LA10_131=='/') ) {s = 136;}
 
-                        else if ( ((LA9_63>='0' && LA9_63<='9')) ) {s = 69;}
+                        else if ( ((LA10_131>='0' && LA10_131<='9')) ) {s = 137;}
 
-                        else s = 27;
+                        else s = 41;
 
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA9_64 = input.LA(1);
+                        int LA10_133 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA9_64>='\u0000' && LA9_64<='#')||(LA9_64>='%' && LA9_64<='*')||LA9_64==','||LA9_64=='.'||(LA9_64>=':' && LA9_64<='@')||(LA9_64>='[' && LA9_64<='^')||LA9_64=='`'||(LA9_64>='{' && LA9_64<='\uFFFF')) ) {s = 61;}
+                        if ( ((LA10_133>='\u0000' && LA10_133<='#')||(LA10_133>='%' && LA10_133<='*')||LA10_133==','||LA10_133=='.'||(LA10_133>=':' && LA10_133<='@')||(LA10_133>='[' && LA10_133<='^')||LA10_133=='`'||(LA10_133>='{' && LA10_133<='\uFFFF')) ) {s = 129;}
 
-                        else if ( ((LA9_64>='a' && LA9_64<='z')) ) {s = 62;}
+                        else if ( ((LA10_133>='a' && LA10_133<='z')) ) {s = 130;}
 
-                        else if ( ((LA9_64>='A' && LA9_64<='Z')) ) {s = 63;}
+                        else if ( ((LA10_133>='A' && LA10_133<='Z')) ) {s = 131;}
 
-                        else if ( (LA9_64=='_') ) {s = 64;}
+                        else if ( (LA10_133=='_') ) {s = 132;}
 
-                        else if ( (LA9_64=='+') ) {s = 65;}
+                        else if ( (LA10_133=='+') ) {s = 133;}
 
-                        else if ( (LA9_64=='-') ) {s = 66;}
+                        else if ( (LA10_133=='-') ) {s = 134;}
 
-                        else if ( (LA9_64=='$') ) {s = 67;}
+                        else if ( (LA10_133=='$') ) {s = 135;}
 
-                        else if ( (LA9_64=='/') ) {s = 68;}
+                        else if ( (LA10_133=='/') ) {s = 136;}
 
-                        else if ( ((LA9_64>='0' && LA9_64<='9')) ) {s = 69;}
+                        else if ( ((LA10_133>='0' && LA10_133<='9')) ) {s = 137;}
 
-                        else s = 27;
+                        else s = 41;
 
                         if ( s>=0 ) return s;
                         break;
                     case 3 : 
-                        int LA9_43 = input.LA(1);
+                        int LA10_132 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA9_43>='\u0000' && LA9_43<='#')||(LA9_43>='%' && LA9_43<='*')||LA9_43==','||LA9_43=='.'||(LA9_43>=':' && LA9_43<='@')||(LA9_43>='[' && LA9_43<='^')||LA9_43=='`'||(LA9_43>='{' && LA9_43<='\uFFFF')) ) {s = 61;}
+                        if ( ((LA10_132>='\u0000' && LA10_132<='#')||(LA10_132>='%' && LA10_132<='*')||LA10_132==','||LA10_132=='.'||(LA10_132>=':' && LA10_132<='@')||(LA10_132>='[' && LA10_132<='^')||LA10_132=='`'||(LA10_132>='{' && LA10_132<='\uFFFF')) ) {s = 129;}
 
-                        else if ( ((LA9_43>='a' && LA9_43<='z')) ) {s = 62;}
+                        else if ( ((LA10_132>='a' && LA10_132<='z')) ) {s = 130;}
 
-                        else if ( ((LA9_43>='A' && LA9_43<='Z')) ) {s = 63;}
+                        else if ( ((LA10_132>='A' && LA10_132<='Z')) ) {s = 131;}
 
-                        else if ( (LA9_43=='_') ) {s = 64;}
+                        else if ( (LA10_132=='_') ) {s = 132;}
 
-                        else if ( (LA9_43=='+') ) {s = 65;}
+                        else if ( (LA10_132=='+') ) {s = 133;}
 
-                        else if ( (LA9_43=='-') ) {s = 66;}
+                        else if ( (LA10_132=='-') ) {s = 134;}
 
-                        else if ( (LA9_43=='$') ) {s = 67;}
+                        else if ( (LA10_132=='$') ) {s = 135;}
 
-                        else if ( (LA9_43=='/') ) {s = 68;}
+                        else if ( (LA10_132=='/') ) {s = 136;}
 
-                        else if ( ((LA9_43>='0' && LA9_43<='9')) ) {s = 69;}
+                        else if ( ((LA10_132>='0' && LA10_132<='9')) ) {s = 137;}
 
-                        else s = 27;
+                        else s = 41;
 
                         if ( s>=0 ) return s;
                         break;
                     case 4 : 
-                        int LA9_69 = input.LA(1);
+                        int LA10_135 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA9_69>='\u0000' && LA9_69<='#')||(LA9_69>='%' && LA9_69<='*')||LA9_69==','||LA9_69=='.'||(LA9_69>=':' && LA9_69<='@')||(LA9_69>='[' && LA9_69<='^')||LA9_69=='`'||(LA9_69>='{' && LA9_69<='\uFFFF')) ) {s = 61;}
+                        if ( ((LA10_135>='\u0000' && LA10_135<='#')||(LA10_135>='%' && LA10_135<='*')||LA10_135==','||LA10_135=='.'||(LA10_135>=':' && LA10_135<='@')||(LA10_135>='[' && LA10_135<='^')||LA10_135=='`'||(LA10_135>='{' && LA10_135<='\uFFFF')) ) {s = 129;}
 
-                        else if ( ((LA9_69>='a' && LA9_69<='z')) ) {s = 62;}
+                        else if ( ((LA10_135>='a' && LA10_135<='z')) ) {s = 130;}
 
-                        else if ( ((LA9_69>='A' && LA9_69<='Z')) ) {s = 63;}
+                        else if ( ((LA10_135>='A' && LA10_135<='Z')) ) {s = 131;}
 
-                        else if ( (LA9_69=='_') ) {s = 64;}
+                        else if ( (LA10_135=='_') ) {s = 132;}
 
-                        else if ( (LA9_69=='+') ) {s = 65;}
+                        else if ( (LA10_135=='+') ) {s = 133;}
 
-                        else if ( (LA9_69=='-') ) {s = 66;}
+                        else if ( (LA10_135=='-') ) {s = 134;}
 
-                        else if ( (LA9_69=='$') ) {s = 67;}
+                        else if ( (LA10_135=='$') ) {s = 135;}
 
-                        else if ( (LA9_69=='/') ) {s = 68;}
+                        else if ( (LA10_135=='/') ) {s = 136;}
 
-                        else if ( ((LA9_69>='0' && LA9_69<='9')) ) {s = 69;}
+                        else if ( ((LA10_135>='0' && LA10_135<='9')) ) {s = 137;}
 
-                        else s = 27;
+                        else s = 41;
 
                         if ( s>=0 ) return s;
                         break;
                     case 5 : 
-                        int LA9_66 = input.LA(1);
+                        int LA10_134 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA9_66>='\u0000' && LA9_66<='#')||(LA9_66>='%' && LA9_66<='*')||LA9_66==','||LA9_66=='.'||(LA9_66>=':' && LA9_66<='@')||(LA9_66>='[' && LA9_66<='^')||LA9_66=='`'||(LA9_66>='{' && LA9_66<='\uFFFF')) ) {s = 61;}
+                        if ( ((LA10_134>='\u0000' && LA10_134<='#')||(LA10_134>='%' && LA10_134<='*')||LA10_134==','||LA10_134=='.'||(LA10_134>=':' && LA10_134<='@')||(LA10_134>='[' && LA10_134<='^')||LA10_134=='`'||(LA10_134>='{' && LA10_134<='\uFFFF')) ) {s = 129;}
 
-                        else if ( ((LA9_66>='a' && LA9_66<='z')) ) {s = 62;}
+                        else if ( ((LA10_134>='a' && LA10_134<='z')) ) {s = 130;}
 
-                        else if ( ((LA9_66>='A' && LA9_66<='Z')) ) {s = 63;}
+                        else if ( ((LA10_134>='A' && LA10_134<='Z')) ) {s = 131;}
 
-                        else if ( (LA9_66=='_') ) {s = 64;}
+                        else if ( (LA10_134=='_') ) {s = 132;}
 
-                        else if ( (LA9_66=='+') ) {s = 65;}
+                        else if ( (LA10_134=='+') ) {s = 133;}
 
-                        else if ( (LA9_66=='-') ) {s = 66;}
+                        else if ( (LA10_134=='-') ) {s = 134;}
 
-                        else if ( (LA9_66=='$') ) {s = 67;}
+                        else if ( (LA10_134=='$') ) {s = 135;}
 
-                        else if ( (LA9_66=='/') ) {s = 68;}
+                        else if ( (LA10_134=='/') ) {s = 136;}
 
-                        else if ( ((LA9_66>='0' && LA9_66<='9')) ) {s = 69;}
+                        else if ( ((LA10_134>='0' && LA10_134<='9')) ) {s = 137;}
 
-                        else s = 27;
+                        else s = 41;
 
                         if ( s>=0 ) return s;
                         break;
                     case 6 : 
-                        int LA9_65 = input.LA(1);
+                        int LA10_15 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA9_65>='\u0000' && LA9_65<='#')||(LA9_65>='%' && LA9_65<='*')||LA9_65==','||LA9_65=='.'||(LA9_65>=':' && LA9_65<='@')||(LA9_65>='[' && LA9_65<='^')||LA9_65=='`'||(LA9_65>='{' && LA9_65<='\uFFFF')) ) {s = 61;}
+                        if ( ((LA10_15>='\u0000' && LA10_15<='\uFFFF')) ) {s = 45;}
 
-                        else if ( ((LA9_65>='a' && LA9_65<='z')) ) {s = 62;}
-
-                        else if ( ((LA9_65>='A' && LA9_65<='Z')) ) {s = 63;}
-
-                        else if ( (LA9_65=='_') ) {s = 64;}
-
-                        else if ( (LA9_65=='+') ) {s = 65;}
-
-                        else if ( (LA9_65=='-') ) {s = 66;}
-
-                        else if ( (LA9_65=='$') ) {s = 67;}
-
-                        else if ( (LA9_65=='/') ) {s = 68;}
-
-                        else if ( ((LA9_65>='0' && LA9_65<='9')) ) {s = 69;}
-
-                        else s = 27;
+                        else s = 44;
 
                         if ( s>=0 ) return s;
                         break;
                     case 7 : 
-                        int LA9_68 = input.LA(1);
+                        int LA10_82 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA9_68>='\u0000' && LA9_68<='#')||(LA9_68>='%' && LA9_68<='*')||LA9_68==','||LA9_68=='.'||(LA9_68>=':' && LA9_68<='@')||(LA9_68>='[' && LA9_68<='^')||LA9_68=='`'||(LA9_68>='{' && LA9_68<='\uFFFF')) ) {s = 61;}
+                        if ( ((LA10_82>='\u0000' && LA10_82<='#')||(LA10_82>='%' && LA10_82<='*')||LA10_82==','||LA10_82=='.'||(LA10_82>=':' && LA10_82<='@')||(LA10_82>='[' && LA10_82<='^')||LA10_82=='`'||(LA10_82>='{' && LA10_82<='\uFFFF')) ) {s = 129;}
 
-                        else if ( ((LA9_68>='a' && LA9_68<='z')) ) {s = 62;}
+                        else if ( ((LA10_82>='a' && LA10_82<='z')) ) {s = 130;}
 
-                        else if ( ((LA9_68>='A' && LA9_68<='Z')) ) {s = 63;}
+                        else if ( ((LA10_82>='A' && LA10_82<='Z')) ) {s = 131;}
 
-                        else if ( (LA9_68=='_') ) {s = 64;}
+                        else if ( (LA10_82=='_') ) {s = 132;}
 
-                        else if ( (LA9_68=='+') ) {s = 65;}
+                        else if ( (LA10_82=='+') ) {s = 133;}
 
-                        else if ( (LA9_68=='-') ) {s = 66;}
+                        else if ( (LA10_82=='-') ) {s = 134;}
 
-                        else if ( (LA9_68=='$') ) {s = 67;}
+                        else if ( (LA10_82=='$') ) {s = 135;}
 
-                        else if ( (LA9_68=='/') ) {s = 68;}
+                        else if ( (LA10_82=='/') ) {s = 136;}
 
-                        else if ( ((LA9_68>='0' && LA9_68<='9')) ) {s = 69;}
+                        else if ( ((LA10_82>='0' && LA10_82<='9')) ) {s = 137;}
 
-                        else s = 27;
+                        else s = 41;
 
                         if ( s>=0 ) return s;
                         break;
                     case 8 : 
-                        int LA9_67 = input.LA(1);
+                        int LA10_137 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA9_67>='\u0000' && LA9_67<='#')||(LA9_67>='%' && LA9_67<='*')||LA9_67==','||LA9_67=='.'||(LA9_67>=':' && LA9_67<='@')||(LA9_67>='[' && LA9_67<='^')||LA9_67=='`'||(LA9_67>='{' && LA9_67<='\uFFFF')) ) {s = 61;}
+                        if ( ((LA10_137>='\u0000' && LA10_137<='#')||(LA10_137>='%' && LA10_137<='*')||LA10_137==','||LA10_137=='.'||(LA10_137>=':' && LA10_137<='@')||(LA10_137>='[' && LA10_137<='^')||LA10_137=='`'||(LA10_137>='{' && LA10_137<='\uFFFF')) ) {s = 129;}
 
-                        else if ( ((LA9_67>='a' && LA9_67<='z')) ) {s = 62;}
+                        else if ( ((LA10_137>='a' && LA10_137<='z')) ) {s = 130;}
 
-                        else if ( ((LA9_67>='A' && LA9_67<='Z')) ) {s = 63;}
+                        else if ( ((LA10_137>='A' && LA10_137<='Z')) ) {s = 131;}
 
-                        else if ( (LA9_67=='_') ) {s = 64;}
+                        else if ( (LA10_137=='_') ) {s = 132;}
 
-                        else if ( (LA9_67=='+') ) {s = 65;}
+                        else if ( (LA10_137=='+') ) {s = 133;}
 
-                        else if ( (LA9_67=='-') ) {s = 66;}
+                        else if ( (LA10_137=='-') ) {s = 134;}
 
-                        else if ( (LA9_67=='$') ) {s = 67;}
+                        else if ( (LA10_137=='$') ) {s = 135;}
 
-                        else if ( (LA9_67=='/') ) {s = 68;}
+                        else if ( (LA10_137=='/') ) {s = 136;}
 
-                        else if ( ((LA9_67>='0' && LA9_67<='9')) ) {s = 69;}
+                        else if ( ((LA10_137>='0' && LA10_137<='9')) ) {s = 137;}
 
-                        else s = 27;
+                        else s = 41;
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 9 : 
+                        int LA10_136 = input.LA(1);
+
+                        s = -1;
+                        if ( ((LA10_136>='\u0000' && LA10_136<='#')||(LA10_136>='%' && LA10_136<='*')||LA10_136==','||LA10_136=='.'||(LA10_136>=':' && LA10_136<='@')||(LA10_136>='[' && LA10_136<='^')||LA10_136=='`'||(LA10_136>='{' && LA10_136<='\uFFFF')) ) {s = 129;}
+
+                        else if ( ((LA10_136>='a' && LA10_136<='z')) ) {s = 130;}
+
+                        else if ( ((LA10_136>='A' && LA10_136<='Z')) ) {s = 131;}
+
+                        else if ( (LA10_136=='_') ) {s = 132;}
+
+                        else if ( (LA10_136=='+') ) {s = 133;}
+
+                        else if ( (LA10_136=='-') ) {s = 134;}
+
+                        else if ( (LA10_136=='$') ) {s = 135;}
+
+                        else if ( (LA10_136=='/') ) {s = 136;}
+
+                        else if ( ((LA10_136>='0' && LA10_136<='9')) ) {s = 137;}
+
+                        else s = 41;
 
                         if ( s>=0 ) return s;
                         break;
             }
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 9, _s, input);
+                new NoViableAltException(getDescription(), 10, _s, input);
             error(nvae);
             throw nvae;
         }

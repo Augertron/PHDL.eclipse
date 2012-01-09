@@ -26,7 +26,7 @@
  * @author Richard Black and Brad Riching
  * @version 0.1
  */
-tree grammar PhdlWalker;
+tree grammar PhdlASTold;
 
 options {
 	language = Java;
