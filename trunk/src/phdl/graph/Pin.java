@@ -205,29 +205,51 @@ public class Pin extends Node {
 	}
 
 	/***********************************
-	 * Unit Test Code Author: Richard Black Date: January 4, 2012
+	 * Unit Test Code
+	 * 	Author: Richard Black
+	 * 	Date: January 4, 2012
 	 * 
-	 * WARNING: This test code assumes that certain methods work in other objects. Common
-	 * occurrences of this are "equals," "compare," and "toString."
+	 * 	WARNING: This test code assumes that certain methods work in other objects. Common
+	 * 	occurrences of this are "equals," "compare," and "toString."
 	 * 
-	 * Legend # Proper Behavior (as of January 6, 2012) X Improper Behavior ? Untested
+	 * 	Legend
+	 * 	# 	Proper Behavior (as of January 6, 2012)
+	 * 	X 	Improper Behavior
+	 * 	? 	Untested
 	 * 
-	 * Member Variables Attributable parent String pinMapping Net net PinType pinType int index
+	 * 	Member Variables
+	 * 		Attributable parent
+	 * 		String pinMapping
+	 * 		Net net
+	 * 		PinType pinType
+	 * 		int index
 	 * 
-	 * Methods # public Pin(Attributable parent); # public Pin(Pin old, Attributable parent); #
-	 * public boolean equals(Object o); # public int getIndex(); # public Net getNet(); # public
-	 * NodeType getNodeType(); # public Attributable getParent(); # public String getPinMapping(); #
-	 * public PinType getPinType(); # public boolean hasNet(); # public void setIndex(int index); #
-	 * public void setNet(Net net); # public void setParent(Attributable parent); # public void
-	 * setPinMapping(String pinMapping); # public void setPinType(PinType type); # public String
-	 * toString();
+	 * 	Methods
+	 * 		# 	public Pin(Attributable parent);
+	 * 		# 	public Pin(Pin old, Attributable parent);
+	 * 		#	public boolean equals(Object o);
+	 * 		# 	public int getIndex();
+	 * 		# 	public Net getNet();
+	 * 		# 	public NodeType getNodeType();
+	 * 		# 	public Attributable getParent();
+	 * 		# 	public String getPinMapping();
+	 * 		#	public PinType getPinType();
+	 * 		# 	public boolean hasNet();
+	 * 		# 	public void setIndex(int index);
+	 * 		#	public void setNet(Net net);
+	 * 		#	public void setParent(Attributable parent);
+	 * 		# 	public void setPinMapping(String pinMapping);
+	 * 		# 	public void setPinType(PinType type);
+	 * 		# 	public String toString();
 	 * 
 	 ***********************************/
 	public static boolean unitTest() {
 		boolean success = true;
 		int testNum = 0;
 		/**
-		 * Test 1 public pin(Attributable parent); parent = null;
+		 * Test 1
+		 * 	public pin(Attributable parent);
+		 * 		parent = null
 		 */
 		testNum++;
 		Pin testPin1 = new Pin(null);
@@ -255,7 +277,9 @@ public class Pin extends Node {
 		}
 
 		/**
-		 * Test 2 public pin(Attributable parent); parent = Net object
+		 * Test 2
+		 * 	public pin(Attributable parent);
+		 * 		parent = Net object
 		 */
 		testNum++;
 		Net parentNet = new Net(null);
@@ -266,7 +290,9 @@ public class Pin extends Node {
 		}
 
 		/**
-		 * Test 3 public pin(Attributable parent); parent = Device object
+		 * Test 3
+		 * 	public pin(Attributable parent);
+		 * 		parent = Device object
 		 */
 		testNum++;
 		Device parentDevice = new Device("null");
@@ -281,7 +307,10 @@ public class Pin extends Node {
 		}
 
 		/**
-		 * Test 4 public Pin(Pin old, Attributable parent); old = testPin3 parent = null
+		 * Test 4
+		 * 	public Pin(Pin old, Attributable parent);
+		 * 		old = testPin3
+		 * 		parent = null
 		 */
 		testNum++;
 		Net testNet3 = new Net(null);
@@ -335,7 +364,10 @@ public class Pin extends Node {
 		}
 
 		/**
-		 * Test 5 public Pin(Pin old, Attributable parent); old = copyPin1 modified parent = null
+		 * Test 5
+		 * 	public Pin(Pin old, Attributable parent);
+		 * 		old = copyPin1 modified
+		 * 		parent = null
 		 */
 		testNum++;
 		Net tempNet1 = new Net(null);
@@ -392,7 +424,9 @@ public class Pin extends Node {
 		}
 
 		/**
-		 * Test 6 public boolean equals(Object o); o = copyPin1, copyPin2
+		 * Test 6
+		 * 	public boolean equals(Object o);
+		 * 		o = copyPin1, copyPin2
 		 */
 		testNum++;
 		if (!copyPin1.equals(copyPin2)) {
@@ -418,7 +452,9 @@ public class Pin extends Node {
 		}
 
 		/**
-		 * Test 8 public boolean equals(Object o); o = testPin4a, testPin4b, gradually modified
+		 * Test 8
+		 * 	public boolean equals(Object o);
+		 * 		o = testPin4a, testPin4b, gradually modified
 		 */
 		testNum++;
 		Pin testPin4a = new Pin(null);
@@ -509,7 +545,8 @@ public class Pin extends Node {
 		}
 
 		/**
-		 * Test 10 public Net getNet();
+		 * Test 10 public
+		 * 	Net getNet();
 		 */
 		testNum++;
 		if (testPin5.getNet() != null) {
@@ -525,7 +562,8 @@ public class Pin extends Node {
 		}
 
 		/**
-		 * Test 11 public NodeType getNodeType();
+		 * Test 11
+		 * 	public NodeType getNodeType();
 		 */
 		testNum++;
 		if (testPin5.getNodeType() != NodeType.PIN) {
@@ -534,7 +572,8 @@ public class Pin extends Node {
 		}
 
 		/**
-		 * Test 12 public Attributable getParent();
+		 * Test 12
+		 * 	public Attributable getParent();
 		 */
 		testNum++;
 		if (testPin5.getParent() != null) {
@@ -549,7 +588,8 @@ public class Pin extends Node {
 		}
 
 		/**
-		 * Test 13 public String getPinMapping();
+		 * Test 13
+		 * 	public String getPinMapping();
 		 */
 		testNum++;
 		if (testPin5.getPinMapping() != null) {
@@ -563,7 +603,8 @@ public class Pin extends Node {
 		}
 
 		/**
-		 * Test 14 public String getPinMapping();
+		 * Test 14
+		 * 	public String getPinMapping();
 		 */
 		testNum++;
 		if (testPin5.getPinType() != PinType.PIN) {
@@ -579,7 +620,8 @@ public class Pin extends Node {
 		}
 
 		/**
-		 * Test 15 public boolean hasNet();
+		 * Test 15
+		 * 	public boolean hasNet();
 		 */
 		testNum++;
 		Pin testPin6 = new Pin(null);
@@ -595,7 +637,8 @@ public class Pin extends Node {
 		}
 
 		/**
-		 * Test 16 public void setIndex(int index);
+		 * Test 16
+		 * 	public void setIndex(int index);
 		 */
 		testNum++;
 		testPin6.setIndex(14);
@@ -620,7 +663,8 @@ public class Pin extends Node {
 		}
 
 		/**
-		 * Test 17 public void setNet(Net net);
+		 * Test 17
+		 * 	public void setNet(Net net);
 		 */
 		testNum++;
 		Pin testPin7 = new Pin(null);
@@ -638,7 +682,8 @@ public class Pin extends Node {
 		}
 
 		/**
-		 * Test 18 public void setParent(Attributable parent);
+		 * Test 18
+		 * 	public void setParent(Attributable parent);
 		 */
 		testNum++;
 		Device parentDevice7 = new Device("parent_device_7");
@@ -656,7 +701,8 @@ public class Pin extends Node {
 		}
 
 		/**
-		 * Test 19 public void setPinMapping(String pinMapping);
+		 * Test 19
+		 * 	public void setPinMapping(String pinMapping);
 		 */
 		testNum++;
 		testPin7.setPinMapping("7xyz");
@@ -673,7 +719,8 @@ public class Pin extends Node {
 		}
 
 		/**
-		 * Test 20 public void setPinType(PinType type);
+		 * Test 20
+		 * 	public void setPinType(PinType type);
 		 */
 		testNum++;
 		testPin7.setPinType(PinType.INPIN);
@@ -708,7 +755,8 @@ public class Pin extends Node {
 		}
 
 		/**
-		 * Test 21 public String toString();
+		 * Test 21
+		 * 	public String toString();
 		 */
 		testNum++;
 		Pin testPin8 = new Pin(null);

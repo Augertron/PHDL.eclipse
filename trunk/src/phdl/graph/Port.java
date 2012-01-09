@@ -25,72 +25,14 @@ package phdl.graph;
  * @version 0.l
  *
  */
-public class Port extends Node {
-	
-	private Net net;
-	private Pin pin;
+public class Port extends Connection {
 
-	/**
-	 * Default Constructor.
-	 */
-	public Port() {
-		
-	}
-
-	/**
-	 * NetNode accessor method.
-	 * 
-	 * @return		the NetNode connected to this port
-	 */
-	public Net getNet() {
-		return net;
-	}
-
-	/**
-	 * NetNode mutator method.
-	 * 
-	 * @param net	the new NetNode to connect to this port
-	 */
-	public void setNet(Net net) {
-		this.net = net;
+	public Port(DesignUnit design) {
+		super(design);
 	}
 	
-	/**
-	 * PinNode accessor method
-	 * 
-	 * @return		the PinNode connected to this port
-	 */
-	public Pin getPin() {
-		return pin;
-	}
-	
-	/**
-	 * PinNode mutator method
-	 * 
-	 * @param pin	the new PinNode to connect to this port
-	 */
-	public void setPin(Pin pin) {
-		this.pin = pin;
-	}
-	
-	/**
-	 * Checks to see if the port is connected to a pin
-	 * 
-	 * @return	true, if the port is connected to a pin
-	 * 			false, otherwise
-	 */
-	public boolean isPinConnected() {
-		return (pin!=null);
-	}
-	
-	/**
-	 * Checks to see if the port is connected to a net
-	 * 
-	 * @return	true, if the port is connected to a net
-	 * 			false, otherwise
-	 */
-	public boolean isNetConnected() {
-		return (net!=null);
+	public Port(DesignUnit design, String name) {
+		super(design, name);
 	}
 
 	@Override

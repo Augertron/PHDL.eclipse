@@ -1,13 +1,23 @@
 package phdl.graph;
 
-import java.util.List;
-
-public class SubInstance {
-	protected List<Port> ports;
-	protected List<Instance> instances;
-	protected String refPrefix;
+public class SubInstance extends HierarchyUnit {
+	
+	private String refPrefix;
 
 	public SubInstance() {
-
+		refPrefix = null;
 	}
+	
+	public String getRefPrefix() {
+		return refPrefix;
+	}
+
+	public void setRefPrefix(String refPrefix) {
+		this.refPrefix = refPrefix;
+	}
+	
+	public NodeType getNodeType() {
+		return NodeType.SUBINSTANCE;
+	}
+	
 }
