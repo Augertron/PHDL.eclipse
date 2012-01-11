@@ -38,6 +38,8 @@ public class TestDriver {
 		success &= phdl.graph.Pin.unitTest();
 		System.out.println("***Testing phdl.graph.Net***");
 		success &= phdl.graph.Net.unitTest();
+		System.out.println("***Testing phdl.generator.InfoGenerator***");
+		success &= phdl.generator.InfoGenerator.unitTest();
 
 		// TODO
 		System.out.println("***Testing phdl.grammar.PhdlAST***");
