@@ -12,4 +12,12 @@ public class SubDesign extends DesignUnit {
 	public NodeType getNodeType() {
 		return NodeType.SUBDESIGN;
 	}
+
+	public String getRefPrefix() {
+		return refPrefix;
+	}
+
+	public void setRefPrefix(String refPrefix) {
+		this.refPrefix = refPrefix;
+	}
 }

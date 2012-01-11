@@ -12,8 +12,6 @@ package phdl.graph;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * A class that represents a device in PHDL.
@@ -24,7 +22,7 @@ import java.util.TreeSet;
 public class Device extends Attributable {
 
 	private List<Pin> pins;
-	private Set<Instance> instances;
+	private List<Instance> instances;
 
 	/**
 	 * Default Constructor.
@@ -38,14 +36,16 @@ public class Device extends Attributable {
 	 * @see Instance
 	 */
 	public Device(Design design) {
-		pins = new ArrayList<Pin>();
-		instances = new TreeSet<Instance>();
+		this.info = "";
+		this.pins = new ArrayList<Pin>();
+		this.instances = new ArrayList<Instance>();
 	}
 
 	public Device(String name) {
+		this.info = "";
 		this.name = name;
-		pins = new ArrayList<Pin>();
-		instances = new TreeSet<Instance>();
+		this.pins = new ArrayList<Pin>();
+		this.instances = new ArrayList<Instance>();
 	}
 
 	/**
@@ -75,7 +75,7 @@ public class Device extends Attributable {
 	 * 
 	 * @return the set of all InstanceNodes connected to this device
 	 */
-	public Set<Instance> getInstances() {
+	public List<Instance> getInstances() {
 		return instances;
 	}
 
@@ -130,5 +130,59 @@ public class Device extends Attributable {
 		for (Pin p : pins)
 			sb.append("\t" + p.toString() + "\n");
 		return sb.toString();
+	}
+
+	public void printDevice() {
+		System.out.println();
+		System.out.println("  --------------------------------------------------------");
+		System.out.println("  Device: " + getName() + ", file: " + getFileName() + ", line "
+			+ getLine() + ":" + getPosition());
+		System.out.println();
+
+		if (!attributes.isEmpty()) {
+			System.out.println("      Attr        Name                 Value              ");
+			System.out.println("      ----  ----------------  -----------------------     ");
+			int attrCount = 1;
+			for (Attribute a : attributes) {
+				System.out.printf("%10d%2s%-16s%2s%-24s\n", attrCount, "  ", a.getName(), "  ", a
+					.getValue().equals("") ? "(empty)" : a.getValue());
+				attrCount++;
+			}
+			System.out.println();
+		}
+
+		if (!pins.isEmpty()) {
+			System.out.println("      Pin    Type          Name          PinNum ");
+			System.out.println("      ----  --------  ----------------  --------");
+			int pinCount = 1;
+			for (Pin p : pins) {
+				System.out.printf("%10d%2s%-8s%2s%-16s%2s%-8s\n", pinCount, "  ", p.getPinType(),
+					"  ", p.getName() + (p.getIndex() == -1 ? "" : ("[" + p.getIndex() + "]")),
+					"  ", p.getPinMapping());
+				pinCount++;
+			}
+			System.out.println();
+		}
+
+		if (!instances.isEmpty()) {
+			System.out.println("      Inst      Name             Location");
+			System.out.println("      ----  ----------------  ------------------");
+			int instCount = 1;
+			for (Instance i : instances) {
+				System.out.printf("%10d%2s%-16s%2s%-22s\n", instCount, "  ",
+					i.getName() + ((i.getIndex() == -1) ? "" : ("(" + i.getIndex() + ")")), "  ",
+					i.getFileName() + ", " + i.getLine() + ":" + i.getPosition());
+				instCount++;
+			}
+			System.out.println();
+		}
+
+		if (!getInfo().equals("")) {
+			System.out.println("      Info");
+			System.out.println("      ----");
+			System.out.println("      " + getInfo());
+			System.out.println();
+		}
+
 	}
 }

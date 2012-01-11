@@ -110,14 +110,6 @@ public abstract class Node implements Comparable<Object> {
 		return name.hashCode();
 	}
 
-	@Deprecated
-	public void initNode(String name, int line, int pos, String fileName) {
-		this.name = name;
-		this.line = line;
-		this.pos = pos;
-		this.fileName = fileName;
-	}
-
 	/**
 	 * FileName mutator method.
 	 * 

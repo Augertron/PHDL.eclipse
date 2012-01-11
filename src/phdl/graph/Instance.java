@@ -22,7 +22,7 @@ import java.util.List;
 public class Instance extends Attributable {
 
 	private List<Pin> pins;
-	private Design design;
+	private DesignUnit design;
 	private Device device;
 	private String refDes;
 	private String refPrefix;
@@ -39,7 +39,7 @@ public class Instance extends Attributable {
 	 * @see Device
 	 * @see Pin
 	 */
-	public Instance(Design design) {
+	public Instance(DesignUnit design) {
 		super();
 		this.design = design;
 		this.pins = new ArrayList<Pin>();
@@ -56,7 +56,7 @@ public class Instance extends Attributable {
 	 * 
 	 * @return the DesignNode attached to this Device
 	 */
-	public Design getDesign() {
+	public DesignUnit getDesign() {
 		return design;
 	}
 

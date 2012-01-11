@@ -170,10 +170,4 @@ public abstract class Connection extends Attributable {
 	public void setIndex(int index) {
 		this.index = index;
 	}
-
-	@Override
-	public boolean equals(Object o) {
-		return this.name.equals(((Net) o).getName()) && this.index == ((Net) o).getIndex();
-	}
-	
 }

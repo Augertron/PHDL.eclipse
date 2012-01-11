@@ -11,7 +11,6 @@
 package phdl;
 
 import phdl.grammar.ParsePHDL;
-import phdl.graph.Design;
 import phdl.graph.Device;
 
 /**
@@ -39,9 +38,12 @@ public class Compile {
 			p.parse(fileName);
 
 			for (Device d : p.getDevices())
-				System.out.print(d.toString());
-			for (Design d : p.getDesigns())
-				d.printDesign();
+				d.printDevice();
+			// Design d = p.getTopDesign();
+			// if (d != null)
+			// d.printDesign();
+			// for (SubDesign s : p.getSubDesigns())
+			// s.printDesign();
 		}
 
 		long end = System.currentTimeMillis();

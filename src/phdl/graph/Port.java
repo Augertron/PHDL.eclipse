@@ -45,4 +45,10 @@ public class Port extends Connection {
 		return NodeType.PORT;
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		return this.getName().equals(((Port) o).getName())
+			&& this.getIndex() == ((Port) o).getIndex();
+	}
+
 }
