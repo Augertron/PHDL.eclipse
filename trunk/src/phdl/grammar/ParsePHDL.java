@@ -35,11 +35,13 @@ import phdl.graph.Design;
 import phdl.graph.Device;
 import phdl.graph.Net;
 import phdl.graph.Node;
+import phdl.graph.SubDesign;
 
 public class ParsePHDL {
 
 	private Set<Device> devices;
-	private Set<Design> designs;
+	private Design topDesign;
+	private Set<SubDesign> subDesigns;
 	private Set<String> reqAttr;
 	private List<String> errors;
 	private List<String> warnings;
@@ -47,7 +49,7 @@ public class ParsePHDL {
 
 	public ParsePHDL(Configuration sw) {
 		this.devices = new HashSet<Device>();
-		this.designs = new HashSet<Design>();
+		this.subDesigns = new HashSet<SubDesign>();
 		this.reqAttr = new HashSet<String>();
 		this.errors = new ArrayList<String>();
 		this.warnings = new ArrayList<String>();
@@ -82,8 +84,12 @@ public class ParsePHDL {
 		System.out.println("Wrote file: " + fileName);
 	}
 
-	public Set<Design> getDesigns() {
-		return designs;
+	public Design getTopDesign() {
+		return topDesign;
+	}
+
+	public Set<SubDesign> getSubDesigns() {
+		return subDesigns;
 	}
 
 	public Set<Device> getDevices() {
@@ -121,12 +127,12 @@ public class ParsePHDL {
 			printErrors();
 
 			PhdlAST ast = new PhdlAST(ns);
-			ast.setRequiredAttributes(reqAttr);
 			ast.sourceText();
 			errors.addAll(ast.getErrors());
 			warnings.addAll(ast.getWarnings());
 			devices.addAll(ast.getDevices());
-			designs.addAll(ast.getDesigns());
+			topDesign = ast.getTopDesign();
+			subDesigns = ast.getSubDesigns();
 
 			// print out all errors if there were any, and exit abnormally
 			printErrors();
@@ -197,8 +203,12 @@ public class ParsePHDL {
 		return false;
 	}
 
-	public void setDesigns(Set<Design> designs) {
-		this.designs = designs;
+	public void setTopDesign(Design design) {
+		this.topDesign = design;
+	}
+
+	public void setSubDesigns(Set<SubDesign> subDesigns) {
+		this.subDesigns = subDesigns;
 	}
 
 	public void setDevices(Set<Device> devices) {
@@ -217,7 +227,7 @@ public class ParsePHDL {
 		try {
 			ast = new PhdlAST(new CommonTreeNodeStream(parser.operand().getTree()));
 			operand_return oprtn = ast.operand();
-			// System.out.println(oprtn.name.getText() + " " + oprtn.indices);
+			//System.out.println(oprtn.name.getText() + " " + oprtn.indices);
 
 		} catch (RecognitionException e) {
 			e.printStackTrace();

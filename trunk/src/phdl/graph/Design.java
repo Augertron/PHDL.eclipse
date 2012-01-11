@@ -25,6 +25,8 @@ import java.util.Map;
  */
 public class Design extends HierarchyUnit {
 
+	private List<Net> nets;
+
 	@Override
 	/**
 	 * Type accessor method.

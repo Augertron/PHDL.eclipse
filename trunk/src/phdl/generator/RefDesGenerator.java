@@ -87,16 +87,16 @@ public class RefDesGenerator {
 		}
 
 		// assign refDes's to everything else that hasn't been manually constrained
-		for (Instance i : design.getInst_wo_RefDes()) {
-			for (int j = 1;; j++) {
-				String refDes = i.getRefPrefix() + j;
-				if (!refMap.keySet().contains(refDes)) {
-					refMap.put(refDes, i);
-					i.setRefDes(refDes);
-					break;
-				}
-			}
-		}
+		// for (Instance i : design.getInst_wo_RefDes()) {
+		// for (int j = 1;; j++) {
+		// String refDes = i.getRefPrefix() + j;
+		// if (!refMap.keySet().contains(refDes)) {
+		// refMap.put(refDes, i);
+		// i.setRefDes(refDes);
+		// break;
+		// }
+		// }
+		// }
 	}
 
 	/**

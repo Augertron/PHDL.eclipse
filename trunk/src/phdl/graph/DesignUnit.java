@@ -22,11 +22,11 @@ public abstract class DesignUnit extends Node {
 	 * @see SubInstance
 	 */
 	public DesignUnit() {
-		instances = new ArrayList<Instance>();
-		nets = new ArrayList<Net>();
-		info = "";
-		subInsts = new ArrayList<SubInstance>();
 		ports = new ArrayList<Port>();
+		nets = new ArrayList<Net>();
+		instances = new ArrayList<Instance>();
+		subInsts = new ArrayList<SubInstance>();
+		info = "";
 	}
 	
 	/**
@@ -41,15 +41,15 @@ public abstract class DesignUnit extends Node {
 	 * @see SubInstance
 	 */
 	public DesignUnit(DesignUnit old) {
-		this.instances = new ArrayList<Instance>();
-		this.nets = new ArrayList<Net>();
-		this.subInsts = new ArrayList<SubInstance>();
 		this.ports = new ArrayList<Port>();
+		this.nets = new ArrayList<Net>();
+		this.instances = new ArrayList<Instance>();
+		this.subInsts = new ArrayList<SubInstance>();
 		
-		this.instances.addAll(old.instances);
 		this.nets.addAll(old.nets);
-		this.info = old.info;
+		this.instances.addAll(old.instances);
 		this.subInsts.addAll(old.subInsts);
+		this.info = old.info;
 	}
 	
 	public List<Instance> getInstances() {
@@ -166,6 +166,14 @@ public abstract class DesignUnit extends Node {
 		return null;
 	}
 	
+	public SubInstance getSubInstance(String name, int index) {
+		for (SubInstance s : subInsts) {
+			if (s.getName().equals(name) && s.getIndex() == index)
+				return s;
+		}
+		return null;
+	}
+
 	/**
 	 * Finds and return an InstanceNode that has a certain name.
 	 * If the Instance Node has an index, the function returns null.
@@ -189,6 +197,15 @@ public abstract class DesignUnit extends Node {
 		for (Instance i : instances) {
 			if (i.getName().equals(instName))
 				insts.add(i);
+		}
+		return insts;
+	}
+
+	public List<SubInstance> getSubInstancesByName(String instName) {
+		List<SubInstance> insts = new ArrayList<SubInstance>();
+		for (SubInstance s : subInsts) {
+			if (s.getName().equals(instName))
+				insts.add(s);
 		}
 		return insts;
 	}
@@ -336,7 +353,7 @@ public abstract class DesignUnit extends Node {
 	 * 			false, otherwise
 	 */
 	public boolean equals(Object o) {
-		return name.equals(((Design) o).getName());
+		return name.equals(((DesignUnit) o).getName());
 	}
 	
 	
