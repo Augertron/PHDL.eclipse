@@ -18,7 +18,7 @@ package phdl;
  */
 
 public class TestDriver {
-
+	
 	/**
 	 * @param args
 	 */
@@ -40,7 +40,7 @@ public class TestDriver {
 		success &= phdl.graph.Net.unitTest();
 
 		// TODO
-		System.out.println("***Testing parser rules***");
+		System.out.println("***Testing phdl.grammar.PhdlAST***");
 		success &= phdl.grammar.ParsePHDL.unitTest();
 
 		return success;

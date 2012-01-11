@@ -13,6 +13,7 @@ package phdl.graph;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,17 +38,28 @@ public class Design extends HierarchyUnit {
 		return NodeType.DESIGN;
 	}
 	
+	/**
+	 * 
+	 * @param newCon
+	 * @return	true, if the connection wasn't already in the list and was added successfully
+	 * 			false, otherwise
+	 */
 	@Override
-	public List<Port> getPorts() {
-		throw new UnsupportedOperationException();
+	public boolean addConnection(Connection newCon) {
+		if (!connections.contains(newCon) && newCon instanceof phdl.graph.Net) {
+			return connections.add(newCon);
+		}
+		return false;
 	}
+	
 	@Override
-	public void setPorts(List<Port> ports) {
-		throw new UnsupportedOperationException();
-	}
-	@Override
-	public boolean addPort(Port newPort) {
-		throw new UnsupportedOperationException();
+	public void setConnections(List<Connection> connections) {
+		connections = new ArrayList<Connection>();
+		for (Connection c : connections) {
+			if (c instanceof phdl.graph.Net) {
+				connections.add(c);
+			}
+		}
 	}
 
 	/**
