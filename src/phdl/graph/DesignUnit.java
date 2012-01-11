@@ -7,9 +7,8 @@ import java.util.Set;
 
 public abstract class DesignUnit extends Node {
 	protected List<Instance> instances;
-	protected List<Net> nets;
+	protected List<Connection> connections;
 	protected List<SubInstance> subInsts;
-	protected List<Port> ports;
 	
 	/**
 	 * Default Constructor.
@@ -22,8 +21,7 @@ public abstract class DesignUnit extends Node {
 	 * @see SubInstance
 	 */
 	public DesignUnit() {
-		ports = new ArrayList<Port>();
-		nets = new ArrayList<Net>();
+		connections = new ArrayList<Connection>();
 		instances = new ArrayList<Instance>();
 		subInsts = new ArrayList<SubInstance>();
 		info = "";
@@ -41,12 +39,11 @@ public abstract class DesignUnit extends Node {
 	 * @see SubInstance
 	 */
 	public DesignUnit(DesignUnit old) {
-		this.ports = new ArrayList<Port>();
-		this.nets = new ArrayList<Net>();
+		this.connections = new ArrayList<Connection>();
 		this.instances = new ArrayList<Instance>();
 		this.subInsts = new ArrayList<SubInstance>();
 		
-		this.nets.addAll(old.nets);
+		this.connections.addAll(old.connections);
 		this.instances.addAll(old.instances);
 		this.subInsts.addAll(old.subInsts);
 		this.info = old.info;
@@ -73,23 +70,23 @@ public abstract class DesignUnit extends Node {
 		return false;
 	}
 
-	public List<Net> getNets() {
-		return nets;
+	public List<Connection> getConnections() {
+		return connections;
 	}
 
-	public void setNets(List<Net> nets) {
-		this.nets = nets;
+	public void setConnections(List<Connection> connections) {
+		this.connections = connections;
 	}
 	
 	/**
 	 * 
-	 * @param newNet
-	 * @return	true, if the net wasn't already in the list and was added successfully
+	 * @param newCon
+	 * @return	true, if the connection wasn't already in the list and was added successfully
 	 * 			false, otherwise
 	 */
-	public boolean addNet(Net newNet) {
-		if (!nets.contains(newNet)) {
-			return nets.add(newNet);
+	public boolean addConnection(Connection newCon) {
+		if (!connections.contains(newCon)) {
+			return connections.add(newCon);
 		}
 		return false;
 	}
@@ -114,39 +111,41 @@ public abstract class DesignUnit extends Node {
 		}
 		return false;
 	}
-
-	public List<Port> getPorts() {
-		return ports;
-	}
-
-	public void setPorts(List<Port> ports) {
-		this.ports = ports;
-	}
 	
 	/**
-	 * 
-	 * @param newPort
-	 * @return	true, if the port wasn't already in the list and was added successfully
-	 * 			false, otherwise
-	 */
-	public boolean addPort(Port newPort) {
-		if (!ports.contains(newPort)) {
-			return ports.add(newPort);
-		}
-		return false;
-	}
-	
-	/**
-	 * Finds and returns a NetNode that has a certain name.
+	 * Finds and returns a Net that has a certain name.
 	 * 
 	 * @param name
 	 *            the name of the NetNode
 	 * @return the NetNode with the net name
 	 */
 	public Net getNet(String name, int index) {
-		for (Net n : nets) {
+		for (Connection c : connections) {
+			if (!(c instanceof phdl.graph.Net)) {
+				continue;
+			}
+			Net n = (Net)c;
 			if (n.getName().equals(name.toUpperCase()) && n.getIndex() == index)
 				return n;
+		}
+		return null;
+	}
+	
+	/**
+	 * Finds and returns a Port that has a certain name.
+	 * 
+	 * @param name
+	 *            the name of the NetNode
+	 * @return the NetNode with the net name
+	 */
+	public Port getPort(String name, int index) {
+		for (Connection c : connections) {
+			if (!(c instanceof phdl.graph.Port)) {
+				continue;
+			}
+			Port p = (Port)c;
+			if (p.getName().equals(name.toUpperCase()) && p.getIndex() == index)
+				return p;
 		}
 		return null;
 	}
@@ -218,7 +217,11 @@ public abstract class DesignUnit extends Node {
 	 */
 	public List<Net> getAllNetsByName(String netName) {
 		List<Net> allNets = new ArrayList<Net>();
-		for (Net n : nets) {
+		for (Connection c : connections) {
+			if (!(c instanceof phdl.graph.Net)) {
+				continue;
+			}
+			Net n = (Net)c;
 			if (n.getName().equals(netName.toUpperCase())) {
 				allNets.add(n);
 			}
@@ -247,13 +250,8 @@ public abstract class DesignUnit extends Node {
 	 */
 	public void printDesign() {
 		System.out.println(toString());
-		if (getNodeType() != NodeType.DESIGN) {
-			for (Port p : getPorts()) {
-				System.out.println("\t" + p.toString());
-			}
-		}
-		for (Net n : getNets()) {
-			System.out.println("\t" + n.toString());
+		for (Connection c : getConnections()) {
+			System.out.println("\t" + c.toString());
 		}
 		for (Instance i : getInstances()) {
 			System.out.println("\t" + i.toString());
@@ -266,7 +264,6 @@ public abstract class DesignUnit extends Node {
 					System.out.println("\t\t" + p.toString() + (p.isOpen() ? " <= OPEN" : ""));
 				else
 					System.out.println("\t\t" + p.toString());
-
 			}
 		}
 		for (SubInstance s : getSubInstances()) {
@@ -282,7 +279,11 @@ public abstract class DesignUnit extends Node {
 		Set<Net> deletes = new HashSet<Net>();
 
 		// go through all nets in the design
-		for (Net n : nets) {
+		for (Connection c : connections) {
+			if (!(c instanceof phdl.graph.Net)) {
+				continue;
+			}
+			Net n = (Net)c;
 			if (!n.isVisited()) {
 				// call the merge routine on any unvisited net
 				n = merge(n);
@@ -292,14 +293,18 @@ public abstract class DesignUnit extends Node {
 		}
 
 		// gather up all the nets to be deleted from the design
-		for (Net n : nets) {
+		for (Connection c : connections) {
+			if (!(c instanceof phdl.graph.Net)) {
+				continue;
+			}
+			Net n = (Net)c;
 			if (n.isVisited())
 				deletes.add(n);
 		}
 
 		// delete these nets from the design
 		for (Net n : deletes)
-			nets.remove(n);
+			connections.remove(n);
 	}
 	
 	/**
