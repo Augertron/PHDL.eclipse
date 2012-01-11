@@ -90,6 +90,16 @@ public abstract class DesignUnit extends Node {
 		}
 		return false;
 	}
+	
+	public List<Net> getNets() {
+		List<Net> nets = new ArrayList<Net>();
+		for (Connection c : connections) {
+			if (c instanceof phdl.graph.Net) {
+				nets.add((Net)c);
+			}
+		}
+		return nets;
+	}
 
 	public List<SubInstance> getSubInstances() {
 		return subInsts;
