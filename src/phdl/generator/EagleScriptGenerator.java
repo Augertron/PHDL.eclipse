@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.TreeMap;
 
 import phdl.graph.Attribute;
+import phdl.graph.Connection;
 import phdl.graph.Design;
 import phdl.graph.Instance;
 import phdl.graph.Net;
@@ -180,7 +181,7 @@ public class EagleScriptGenerator {
 					// connect all of its nets
 					for (Pin p : ((Instance) n).getPins()) {
 						String refDes = ((Instance) p.getParent()).getRefDes();
-						String name = p.getNet().getName().toUpperCase();
+						String name = p.getConnection().getName().toUpperCase();
 						sb.append("SIGNAL " + name + " " + refDes + " " + p.getName() + ";\n");
 					}
 
@@ -246,7 +247,7 @@ public class EagleScriptGenerator {
 				}
 			}
 			for (Node n : signals) {
-				signal(((Pin) n).getNet());
+				signal(((Pin) n).getConnection());
 			}
 
 			// Deleted Elements
@@ -324,9 +325,9 @@ public class EagleScriptGenerator {
 		sb.append("DELETE " + i.getRefDes() + ";\n");
 	}
 
-	private void signal(Net n) {
-		sb.append("SIGNAL " + n.getName().toUpperCase());
-		for (Pin p : n.getPinNodes()) {
+	private void signal(Connection connection) {
+		sb.append("SIGNAL " + connection.getName().toUpperCase());
+		for (Pin p : connection.getPins()) {
 			String refDes = ((Instance) p.getParent()).getRefDes();
 			sb.append(" " + refDes + " " + p.getName());
 		}

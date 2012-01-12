@@ -16,6 +16,8 @@
 
 package phdl.graph;
 
+import java.util.Set;
+
 /**
  * This class will represent a Port in PHDL.
  * 
@@ -44,11 +46,19 @@ public class Port extends Connection {
 	public NodeType getNodeType() {
 		return NodeType.PORT;
 	}
-	
+
 	@Override
-	public boolean equals(Object o) {
-		return this.getName().equals(((Port) o).getName())
-			&& this.getIndex() == ((Port) o).getIndex();
+	public Set<Attribute> getAttributes() {
+		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	public boolean addAttribute(Attribute a) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public Attribute getAttribute(String name) {
+		throw new UnsupportedOperationException();
+	}
 }

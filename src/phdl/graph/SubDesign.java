@@ -8,6 +8,11 @@ public class SubDesign extends DesignUnit {
 		super();
 	}
 	
+	public SubDesign(String name) {
+		super();
+		this.name = name;
+	}
+
 	@Override
 	public NodeType getNodeType() {
 		return NodeType.SUBDESIGN;

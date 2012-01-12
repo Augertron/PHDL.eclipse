@@ -253,7 +253,7 @@ public class DesignComparator {
 			} else { // Pin Nets
 				for (Pin o : oldPins) {
 					if (o.equals(p) && o.getParent().equals(p.getParent())) {
-						if (!o.getNet().equals(p.getNet())) {
+						if (!o.getConnection().equals(p.getConnection())) {
 							changes.add(new Change(ChangeType.MODIFY, o, p));
 							break;
 						}

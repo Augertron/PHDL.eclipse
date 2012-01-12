@@ -76,7 +76,7 @@ public class XMLGenerator {
 			for (Pin p : i.getPins()) {
 				sb.append("\n\t\t<instPin>");
 				sb.append("\n\t\t\t<name>" + p.getName() + "</name>");
-				sb.append("\n\t\t\t<net>" + p.getNet().getName() + "</net>");
+				sb.append("\n\t\t\t<net>" + p.getConnection().getName() + "</net>");
 				sb.append("\n\t\t</instPin>");
 			}
 			sb.append("\n\t</instance>");

@@ -22,7 +22,7 @@ import java.util.List;
 public class Instance extends Attributable {
 
 	private List<Pin> pins;
-	private DesignUnit design;
+	private DesignUnit parent;
 	private Device device;
 	private String refDes;
 	private String refPrefix;
@@ -33,15 +33,15 @@ public class Instance extends Attributable {
 	/**
 	 * Default Constructor.
 	 * 
-	 * @param design
+	 * @param parent
 	 *            the parent DesignNode for this instance
 	 * @see Design
 	 * @see Device
 	 * @see Pin
 	 */
-	public Instance(DesignUnit design) {
+	public Instance(DesignUnit parent) {
 		super();
-		this.design = design;
+		this.parent = parent;
 		this.pins = new ArrayList<Pin>();
 		this.refDes = null;
 		this.refPrefix = null;
@@ -51,23 +51,37 @@ public class Instance extends Attributable {
 		this.groupName = null;
 	}
 
+	public Instance(DesignUnit parent, String name, Device device) {
+		super();
+		this.parent = parent;
+		this.pins = new ArrayList<Pin>();
+		this.refDes = null;
+		this.refPrefix = null;
+		this.pkg = null;
+		this.info = "";
+		this.index = -1;
+		this.groupName = null;
+		this.name = name;
+		setDevice(device);
+	}
+
 	/**
 	 * Design accessor method.
 	 * 
 	 * @return the DesignNode attached to this Device
 	 */
-	public DesignUnit getDesign() {
-		return design;
+	public DesignUnit getParent() {
+		return parent;
 	}
 
 	/**
 	 * Design mutator method.
 	 * 
-	 * @param design
+	 * @param parent
 	 *            the new DesignNode
 	 */
-	public void setDesign(Design design) {
-		this.design = design;
+	public void setParent(Design parent) {
+		this.parent = parent;
 	}
 
 	/**

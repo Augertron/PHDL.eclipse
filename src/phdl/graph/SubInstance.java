@@ -5,10 +5,13 @@ public class SubInstance extends HierarchyUnit {
 	private String refPrefix;
 	private SubDesign subDesign;
 	private int index;
+	private DesignUnit parent;
 
-	public SubInstance(DesignUnit old) {
-		super(old);
-		refPrefix = null;
+	public SubInstance(SubDesign subDesign, String name) {
+		super(subDesign);
+		this.refPrefix = null;
+		this.name = name;
+		this.subDesign = subDesign;
 	}
 	
 	public String getRefPrefix() {
@@ -24,7 +27,7 @@ public class SubInstance extends HierarchyUnit {
 		return NodeType.SUBINSTANCE;
 	}
 
-	public SubDesign getDesign() {
+	public SubDesign getSubDesign() {
 		return subDesign;
 	}
 
@@ -43,5 +46,13 @@ public class SubInstance extends HierarchyUnit {
 	@Override
 	public boolean equals(Object o) {
 		return super.equals(o) && this.index == ((SubInstance) o).getIndex();
+	}
+
+	public DesignUnit getParent() {
+		return parent;
+	}
+
+	public void setParent(DesignUnit parent) {
+		this.parent = parent;
 	}
 }

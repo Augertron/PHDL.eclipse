@@ -67,12 +67,6 @@ public class Net extends Connection {
 		return NodeType.NET;
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		return this.getName().equals(((Net) o).getName())
-			&& this.getIndex() == ((Net) o).getIndex();
-	}
-
 	/**
 	 * Unit Test Code
 	 * Author: Richard Black
