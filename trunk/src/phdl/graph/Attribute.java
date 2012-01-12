@@ -35,6 +35,12 @@ public class Attribute extends Node {
 		setParent(parent);
 	}
 
+	public Attribute(Attributable parent, String name, String value) {
+		setParent(parent);
+		setName(name);
+		setValue(value);
+	}
+
 	/**
 	 * Copy Constructor.
 	 * 
@@ -141,4 +147,10 @@ public class Attribute extends Node {
 	public String toString() {
 		return super.toString() + "=" + value;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		return this.getName().equals(((Attribute) o).getName());
+	}
+
 }

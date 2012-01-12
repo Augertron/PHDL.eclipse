@@ -70,10 +70,10 @@ public class NetListGenerator {
 
 			sb.append("*SIGNAL* " + n.getName().toUpperCase() + "\n");
 
-			for (int i = 0; i < n.getPinNodes().size() - 1; i++) {
+			for (int i = 0; i < n.getPins().size() - 1; i++) {
 
-				Pin pin1 = n.getPinNodes().get(i);
-				Pin pin2 = n.getPinNodes().get(i + 1);
+				Pin pin1 = n.getPins().get(i);
+				Pin pin2 = n.getPins().get(i + 1);
 
 				String ref1 = ((Instance) pin1.getParent()).getRefDes();
 				String ref2 = ((Instance) pin2.getParent()).getRefDes();

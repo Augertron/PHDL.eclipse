@@ -91,8 +91,9 @@ tokens {
 
 	ATTR_ASSIGN;
 	SUBATTR_ASSIGN;
+	PIN_ASSIGN;
+	PORT_ASSIGN;
 	CONNECT_ASSIGN;
-	NET_ASSIGN;
 	
 	CONCAT_LIST;
 	CONCAT_REPL;
@@ -300,7 +301,7 @@ designBody
 	:	infoDecl
 	|	connectDecl
 	|	instDecl
-	|	netAssign
+	|	connectAssign
 	|	groupDecl
 	;
 
@@ -336,11 +337,11 @@ connectDecl
  * order shown.
  */
 instDecl
-	:	INST (LPAREN width RPAREN)? IDENT OF IDENT LBRACE (infoDecl | attrAssign | connectAssign)* RBRACE
-		-> ^(INST_DECL width? IDENT IDENT infoDecl* attrAssign* connectAssign*)
+	:	INST (LPAREN width RPAREN)? IDENT OF IDENT LBRACE (infoDecl | attrAssign | pinAssign)* RBRACE
+		-> ^(INST_DECL width? IDENT IDENT infoDecl* attrAssign* pinAssign*)
 		
-	|	SUBINST (LPAREN width RPAREN)? IDENT OF IDENT LBRACE (infoDecl | subAttrAssign | connectAssign)* RBRACE
-		-> ^(SUBINST_DECL width? IDENT IDENT infoDecl* subAttrAssign* connectAssign*)
+	|	SUBINST (LPAREN width RPAREN)? IDENT OF IDENT LBRACE (infoDecl | subAttrAssign | portAssign)* RBRACE
+		-> ^(SUBINST_DECL width? IDENT IDENT infoDecl* subAttrAssign* portAssign*)
 	;
 
 /**
@@ -367,18 +368,23 @@ subAttrAssign
 		-> ^(SUBATTR_ASSIGN NEWATTR? qualifier? name* IDENT STRING)
 	;
 
-connectAssign
-	:	((COMBINE LPAREN qualifier? operand RPAREN) | qualifier? operand) EQUALS concatenation SEMICOLON 
-		-> ^(CONNECT_ASSIGN COMBINE? qualifier? operand concatenation)
+pinAssign
+	:	((COMBINE LPAREN qualifier? operand RPAREN) | qualifier? operand) EQUALS concat SEMICOLON 
+		-> ^(PIN_ASSIGN COMBINE? qualifier? operand concat)
+	;
+	
+portAssign
+	:	((COMBINE LPAREN qualifier? operand RPAREN) | qualifier? operand) EQUALS concat SEMICOLON 
+		-> ^(PORT_ASSIGN COMBINE? qualifier? operand concat)
 	;	
 
 /**
- * The netAssign rule begins with an operand, and equals sign followed by a
- * concatenation sequence and terminating semicolon.  The subtree is rooted in
- * the NET_ASSIGN node, followed by the operand and concatenation as children.
+ * The connectAssign rule begins with an operand, and equals sign followed by a
+ * concat sequence and terminating semicolon.  The subtree is rooted in
+ * the NET_ASSIGN node, followed by the operand and concat as children.
  */
-netAssign
-	:	operand EQUALS concatenation SEMICOLON -> ^(NET_ASSIGN operand concatenation)
+connectAssign
+	:	operand EQUALS concat SEMICOLON -> ^(CONNECT_ASSIGN operand concat)
 	;
 	
 /**
@@ -400,7 +406,7 @@ groupBody
 	:	infoDecl
 	|	connectDecl
 	|	instDecl
-	|	netAssign
+	|	connectAssign
 	;
 
 /**
@@ -465,12 +471,12 @@ index
 	;
 	
 /**
- * The concatenation rule looks for three possible scenarios: operands separated
+ * The concat rule looks for three possible scenarios: operands separated
  * by ampersands, one single operand surrounded with angle brackets, or the open
  * keyword.  In each case, a subtree is constructed respectively, with either
  * the CONCAT_LIST, CONCAT_REPL (replicate), or CONCAT_OPEN node as the root.
  */
-concatenation
+concat
 	:	operand (AMPERSAND operand)* 	-> ^(CONCAT_LIST operand+) 
 	|	LANGLE operand RANGLE			-> ^(CONCAT_REPL operand)
 	| 	OPEN							-> ^(CONCAT_OPEN)

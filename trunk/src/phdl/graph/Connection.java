@@ -7,23 +7,23 @@ import java.util.TreeSet;
 
 public abstract class Connection extends Attributable {
 
-	private Set<Net> nets;
+	private Set<Connection> cons;
 	private List<Pin> pins;
-	private DesignUnit design;
+	private DesignUnit parent;
 	private int index;
 	
-	public Connection(DesignUnit design) {
+	public Connection(DesignUnit parent) {
 		pins = new ArrayList<Pin>();
-		nets = new TreeSet<Net>();
-		this.design = design;
+		cons = new TreeSet<Connection>();
+		this.parent = parent;
 		this.name = null;
 		this.index = -1;
 	}
 	
-	public Connection(DesignUnit design, String name) {
+	public Connection(DesignUnit parent, String name) {
 		pins = new ArrayList<Pin>();
-		nets = new TreeSet<Net>();
-		this.design = design;
+		cons = new TreeSet<Connection>();
+		this.parent = parent;
 		this.name = name;
 		this.index = -1;
 	}
@@ -35,7 +35,7 @@ public abstract class Connection extends Attributable {
 	 * 
 	 * @return the set of PinNodes attached to this net
 	 */
-	public List<Pin> getPinNodes() {
+	public List<Pin> getPins() {
 		return pins;
 	}
 
@@ -60,8 +60,8 @@ public abstract class Connection extends Attributable {
 	 * 
 	 * @return the set of NetNodes attached to this net
 	 */
-	public Set<Net> getNetNodes() {
-		return nets;
+	public Set<Connection> getConnections() {
+		return cons;
 	}
 
 	/**
@@ -69,8 +69,8 @@ public abstract class Connection extends Attributable {
 	 * 
 	 * @return true, if there are nets attached, false, if there aren't
 	 */
-	public boolean hasNets() {
-		return (!nets.isEmpty());
+	public boolean hasConnections() {
+		return (!cons.isEmpty());
 	}
 
 	/**
@@ -79,8 +79,8 @@ public abstract class Connection extends Attributable {
 	 * @param n
 	 *            the net to remove
 	 */
-	public void removeNet(Net n) {
-		nets.remove(n);
+	public void removeConnection(Net n) {
+		cons.remove(n);
 	}
 
 	/**
@@ -90,20 +90,20 @@ public abstract class Connection extends Attributable {
 	 *            the new NetNode to add
 	 * @return true, if the NetNode isn't already connected, false otherwise
 	 */
-	public boolean addNet(Net n) {
-		if (n != null)
-			return nets.add(n);
+	public boolean addConnection(Connection c) {
+		if (c != null)
+			return cons.add(c);
 		return false;
 	}
 	
 	/**
 	 * Parent DesignNode mutator method.
 	 * 
-	 * @param design
+	 * @param parent
 	 *            the new DesignNode
 	 */
-	public void setDesign(DesignUnit design) {
-		this.design = design;
+	public void setParent(DesignUnit parent) {
+		this.parent = parent;
 	}
 
 	/**
@@ -111,8 +111,8 @@ public abstract class Connection extends Attributable {
 	 * 
 	 * @return the NetNode's parent DesignNode
 	 */
-	public DesignUnit getDesign() {
-		return design;
+	public DesignUnit getParent() {
+		return parent;
 	}
 	
 	@Override
@@ -124,8 +124,8 @@ public abstract class Connection extends Attributable {
 	public String toString() {
 		String conString = super.toString() + ((index == -1) ? ("") : ("[" + index + "]")) + " $ ";
 		
-		for (Net n : nets) {
-			conString += n.getName() + ((n.getIndex() == -1) ? ("") : ("[" + n.getIndex() + "]")) 
+		for (Connection c : cons) {
+			conString += c.getName() + ((c.getIndex() == -1) ? ("") : ("[" + c.getIndex() + "]"))
 					+ " $ ";
 		}
 		conString = conString.substring(0, conString.length() - 3);
@@ -154,10 +154,10 @@ public abstract class Connection extends Attributable {
 	 * 
 	 * @return the first NetNode that is unvisited, null if there aren't any
 	 */
-	public Net getUnvisitedNet() {
-		for (Net n : nets) {
-			if (!n.isVisited())
-				return n;
+	public Connection getUnvisitedConnection() {
+		for (Connection c : cons) {
+			if (!((Net) c).isVisited())
+				return c;
 		}
 		return null;
 	}
@@ -169,5 +169,12 @@ public abstract class Connection extends Attributable {
 
 	public void setIndex(int index) {
 		this.index = index;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		return this.getName().equals(((Connection) o).getName())
+			&& this.getParent().equals(((Connection) o).getParent())
+			&& this.getIndex() == ((Connection) o).getIndex();
 	}
 }

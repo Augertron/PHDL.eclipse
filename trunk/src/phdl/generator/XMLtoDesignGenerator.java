@@ -167,7 +167,7 @@ public class XMLtoDesignGenerator {
 				curDesign.addInstance(curInst);
 				curInst = null;
 			} else if (tag.equals("/net")) {
-				curDesign.addNet(curNet);
+				curDesign.addConnection(curNet);
 				curNet = null;
 			}
 		}

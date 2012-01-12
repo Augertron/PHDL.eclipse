@@ -124,65 +124,57 @@ public class Device extends Attributable {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(super.toString() + "\n");
-		for (Attribute a : attributes)
-			sb.append("\t" + a.toString() + "\n");
-		for (Pin p : pins)
-			sb.append("\t" + p.toString() + "\n");
-		return sb.toString();
-	}
-
-	public void printDevice() {
-		System.out.println();
-		System.out.println("  --------------------------------------------------------");
-		System.out.println("  Device: " + getName() + ", file: " + getFileName() + ", line "
-			+ getLine() + ":" + getPosition());
-		System.out.println();
+		sb.append("\n");
+		sb.append("  --------------------------------------------------------\n");
+		sb.append("  Device: " + getName() + ", file: " + getFileName() + ", line " + getLine()
+			+ ":" + getPosition() + "\n\n");
 
 		if (!attributes.isEmpty()) {
-			System.out.println("      Attr        Name                 Value              ");
-			System.out.println("      ----  ----------------  -----------------------     ");
+			sb.append("      Attr        Name                 Value              \n");
+			sb.append("      ----  ----------------  -----------------------     \n");
 			int attrCount = 1;
 			for (Attribute a : attributes) {
-				System.out.printf("%10d%2s%-16s%2s%-24s\n", attrCount, "  ", a.getName(), "  ", a
-					.getValue().equals("") ? "(empty)" : a.getValue());
+				sb.append(String.format("%10d%2s%-16s%2s%-24s\n", attrCount, "  ", a.getName(),
+					"  ", a.getValue().equals("") ? "(empty)" : a.getValue()));
 				attrCount++;
 			}
-			System.out.println();
+			sb.append("\n");
 		}
 
 		if (!pins.isEmpty()) {
-			System.out.println("      Pin    Type          Name          PinNum ");
-			System.out.println("      ----  --------  ----------------  --------");
+			sb.append("      Pin    Type          Name          Number \n");
+			sb.append("      ----  --------  ----------------  --------\n");
 			int pinCount = 1;
 			for (Pin p : pins) {
-				System.out.printf("%10d%2s%-8s%2s%-16s%2s%-8s\n", pinCount, "  ", p.getPinType(),
+				sb.append(String.format("%10d%2s%-8s%2s%-16s%2s%-8s\n", pinCount, "  ",
+					p.getPinType(),
 					"  ", p.getName() + (p.getIndex() == -1 ? "" : ("[" + p.getIndex() + "]")),
-					"  ", p.getPinMapping());
+ "  ",
+					p.getPinMapping()));
 				pinCount++;
 			}
-			System.out.println();
+			sb.append("\n");
 		}
 
 		if (!instances.isEmpty()) {
-			System.out.println("      Inst      Name             Location");
-			System.out.println("      ----  ----------------  ------------------");
+			sb.append("      Inst      Name             Location       \n");
+			sb.append("      ----  ----------------  ------------------\n");
 			int instCount = 1;
 			for (Instance i : instances) {
-				System.out.printf("%10d%2s%-16s%2s%-22s\n", instCount, "  ",
+				sb.append(String.format("%10d%2s%-16s%2s%-22s\n", instCount, "  ",
 					i.getName() + ((i.getIndex() == -1) ? "" : ("(" + i.getIndex() + ")")), "  ",
-					i.getFileName() + ", " + i.getLine() + ":" + i.getPosition());
+					i.getFileName() + ", " + i.getLine() + ":" + i.getPosition()));
 				instCount++;
 			}
-			System.out.println();
+			sb.append("\n");
 		}
 
 		if (!getInfo().equals("")) {
-			System.out.println("      Info");
-			System.out.println("      ----");
-			System.out.println("      " + getInfo());
-			System.out.println();
+			sb.append("      Info\n");
+			sb.append("      ----\n");
+			sb.append("      " + getInfo());
+			sb.append("\n");
 		}
-
+		return sb.toString();
 	}
 }

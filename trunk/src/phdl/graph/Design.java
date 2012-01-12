@@ -28,6 +28,15 @@ public class Design extends HierarchyUnit {
 
 	private List<Net> nets;
 
+	public Design() {
+		super();
+	}
+
+	public Design(String name) {
+		super();
+		this.name = name;
+	}
+
 	@Override
 	/**
 	 * Type accessor method.
@@ -107,7 +116,7 @@ public class Design extends HierarchyUnit {
 			}
 
 			for (int k = 0; k < netMap.keySet().size(); k++) {
-				for (Net n : netMap.get(k).getNetNodes()) {
+				for (Connection n : netMap.get(k).getConnections()) {
 					for (Integer i : netMap.keySet()) {
 						if (netMap.get(i).getName().equals(n.getName())) {
 							dotty.write("  n" + k + " -> " + "n" + i + ";\n");
@@ -118,7 +127,7 @@ public class Design extends HierarchyUnit {
 
 			for (Integer i : pinMap.keySet()) {
 				for (Integer j : netMap.keySet()) {
-					Net n = pinMap.get(i).getNet();
+					Net n = (Net) pinMap.get(i).getConnection();
 					if (n != null) {
 						if (netMap.get(j).getName().equals(n.getName())) {
 							dotty.write("  p" + i + " -> " + "n" + j + ";\n");
