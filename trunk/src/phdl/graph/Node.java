@@ -18,11 +18,27 @@ package phdl.graph;
  */
 public abstract class Node implements Comparable<Object> {
 
-	protected String name;
-	protected int line;
-	protected int pos;
-	protected String fileName;
-	protected String info;
+	protected String name = "";
+	protected int line = 0;
+	protected int pos = 0;
+	protected String fileName = "";
+	protected String info = "";
+
+	public Node() {
+		this.name = "";
+		this.line = 0;
+		this.pos = 0;
+		this.fileName = "";
+		this.info = "";
+	}
+
+	public Node(Node old) {
+		this.name = old.name;
+		this.line = old.line;
+		this.pos = old.pos;
+		this.fileName = old.fileName;
+		this.info = old.info;
+	}
 
 	public void appendInfo(String info) {
 		this.info += info;
@@ -85,6 +101,13 @@ public abstract class Node implements Comparable<Object> {
 	}
 
 	/**
+	 * Node type accessor method.
+	 * 
+	 * @return an ennumerated type that describes the Node
+	 */
+	public abstract NodeType getNodeType();
+
+	/**
 	 * Position accessor method.
 	 * 
 	 * @return the position of the node
@@ -92,13 +115,6 @@ public abstract class Node implements Comparable<Object> {
 	public int getPosition() {
 		return pos;
 	}
-
-	/**
-	 * Node type accessor method.
-	 * 
-	 * @return an ennumerated type that describes the Node
-	 */
-	public abstract NodeType getNodeType();
 
 	@Override
 	/**
@@ -118,6 +134,10 @@ public abstract class Node implements Comparable<Object> {
 	 */
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
+	}
+
+	public void setInfo(String info) {
+		this.info = info;
 	}
 
 	/**
@@ -173,6 +193,12 @@ public abstract class Node implements Comparable<Object> {
 	 * @return 			a string representation of the Node
 	 */
 	public String toString() {
-		return getNodeType() + ": " + name;
+		String fieldFmtStr = "  %-8s%2s%-26.26s\n";
+		StringBuilder sb = new StringBuilder();
+		sb.append("\n======================================================================\n"
+			+ getNodeType() + "\n\n");
+		sb.append(String.format(fieldFmtStr, "File:", "", getFileName() + ", " + getLine() + ":"
+			+ getPosition()));
+		return sb.toString();
 	}
 }

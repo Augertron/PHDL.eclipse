@@ -29,7 +29,8 @@ public class Configuration {
 	private boolean verbose;
 	private boolean eagle;
 	private boolean clean;
-	private List<String> fileNames;
+	private boolean report;
+	private final List<String> fileNames;
 
 	public Configuration(String[] args) {
 		this.fileNames = new ArrayList<String>();
@@ -47,15 +48,21 @@ public class Configuration {
 				setVerbose(true);
 			else if (args[i].equals("-e"))
 				setEagle(true);
-			else if (args[i].equals("-c")) {
+			else if (args[i].equals("-c"))
 				setClean(true);
-			} else if (args[i].equals("?") || args[i].equals("-help")) {
+			else if (args[i].equals("-r"))
+				setReport(true);
+			else if (args[i].equals("?") || args[i].equals("-help")) {
 				System.out.println(getUsage());
 				System.exit(1);
 			} else {
 				fileNames.add(args[i]);
 			}
 		}
+	}
+
+	public List<String> getFileNames() {
+		return fileNames;
 	}
 
 	public String[] getReqAttr() {
@@ -70,10 +77,6 @@ public class Configuration {
 		return version;
 	}
 
-	public List<String> getFileNames() {
-		return fileNames;
-	}
-
 	public boolean isClean() {
 		return clean;
 	}
@@ -84,6 +87,10 @@ public class Configuration {
 
 	public boolean isEagle() {
 		return eagle;
+	}
+
+	public boolean isReport() {
+		return report;
 	}
 
 	public boolean isSupWarn() {
@@ -104,6 +111,10 @@ public class Configuration {
 
 	public void setEagle(boolean eagle) {
 		this.eagle = eagle;
+	}
+
+	public void setReport(boolean report) {
+		this.report = report;
 	}
 
 	public void setSupWarn(boolean supWarn) {

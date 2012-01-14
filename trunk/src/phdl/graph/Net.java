@@ -30,12 +30,14 @@ public class Net extends Connection {
 	 */
 	public Net(DesignUnit design) {
 		super(design);
-		visited = false;
 	}
 
 	public Net(DesignUnit design, String name) {
 		super(design, name);
-		visited = false;
+	}
+
+	public Net(DesignUnit parent, Net oldNet) {
+		super(parent, oldNet);
 	}
 
 	/**

@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g 2012-01-12 00:20:20
+// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g 2012-01-14 01:51:42
 
 /*
     Copyright (C) 2011  BYU Configurable Computing Lab
@@ -1894,176 +1894,29 @@ public class PhdlLexer extends Lexer {
     }
     // $ANTLR end "DIGIT"
 
-    // $ANTLR start "ESC"
-    public final void mESC() throws RecognitionException {
-        try {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:568:2: ( '\\\\' ( 'n' | 'r' | 't' | 'b' | 'f' | '\"' | '\\'' | '/' | '\\\\' ) )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:568:4: '\\\\' ( 'n' | 'r' | 't' | 'b' | 'f' | '\"' | '\\'' | '/' | '\\\\' )
-            {
-            match('\\'); 
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:569:3: ( 'n' | 'r' | 't' | 'b' | 'f' | '\"' | '\\'' | '/' | '\\\\' )
-            int alt2=9;
-            switch ( input.LA(1) ) {
-            case 'n':
-                {
-                alt2=1;
-                }
-                break;
-            case 'r':
-                {
-                alt2=2;
-                }
-                break;
-            case 't':
-                {
-                alt2=3;
-                }
-                break;
-            case 'b':
-                {
-                alt2=4;
-                }
-                break;
-            case 'f':
-                {
-                alt2=5;
-                }
-                break;
-            case '\"':
-                {
-                alt2=6;
-                }
-                break;
-            case '\'':
-                {
-                alt2=7;
-                }
-                break;
-            case '/':
-                {
-                alt2=8;
-                }
-                break;
-            case '\\':
-                {
-                alt2=9;
-                }
-                break;
-            default:
-                NoViableAltException nvae =
-                    new NoViableAltException("", 2, 0, input);
-
-                throw nvae;
-            }
-
-            switch (alt2) {
-                case 1 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:569:5: 'n'
-                    {
-                    match('n'); 
-                    setText("\n");
-
-                    }
-                    break;
-                case 2 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:570:5: 'r'
-                    {
-                    match('r'); 
-                    setText("\r");
-
-                    }
-                    break;
-                case 3 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:571:5: 't'
-                    {
-                    match('t'); 
-                    setText("\t");
-
-                    }
-                    break;
-                case 4 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:572:5: 'b'
-                    {
-                    match('b'); 
-                    setText("\b");
-
-                    }
-                    break;
-                case 5 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:573:5: 'f'
-                    {
-                    match('f'); 
-                    setText("\f");
-
-                    }
-                    break;
-                case 6 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:574:5: '\"'
-                    {
-                    match('\"'); 
-                    setText("\"");
-
-                    }
-                    break;
-                case 7 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:575:5: '\\''
-                    {
-                    match('\''); 
-                    setText("\'");
-
-                    }
-                    break;
-                case 8 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:576:5: '/'
-                    {
-                    match('/'); 
-                    setText("/");
-
-                    }
-                    break;
-                case 9 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:577:5: '\\\\'
-                    {
-                    match('\\'); 
-                    setText("\\");
-
-                    }
-                    break;
-
-            }
-
-
-            }
-
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "ESC"
-
     // $ANTLR start "INT"
     public final void mINT() throws RecognitionException {
         try {
             int _type = INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:581:4: ( ( DIGIT )+ )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:581:6: ( DIGIT )+
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:567:4: ( ( DIGIT )+ )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:567:6: ( DIGIT )+
             {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:581:6: ( DIGIT )+
-            int cnt3=0;
-            loop3:
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:567:6: ( DIGIT )+
+            int cnt2=0;
+            loop2:
             do {
-                int alt3=2;
-                int LA3_0 = input.LA(1);
+                int alt2=2;
+                int LA2_0 = input.LA(1);
 
-                if ( ((LA3_0>='0' && LA3_0<='9')) ) {
-                    alt3=1;
+                if ( ((LA2_0>='0' && LA2_0<='9')) ) {
+                    alt2=1;
                 }
 
 
-                switch (alt3) {
+                switch (alt2) {
             	case 1 :
-            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:581:6: DIGIT
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:567:6: DIGIT
             	    {
             	    mDIGIT(); 
 
@@ -2071,12 +1924,12 @@ public class PhdlLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt3 >= 1 ) break loop3;
+            	    if ( cnt2 >= 1 ) break loop2;
                         EarlyExitException eee =
-                            new EarlyExitException(3, input);
+                            new EarlyExitException(2, input);
                         throw eee;
                 }
-                cnt3++;
+                cnt2++;
             } while (true);
 
 
@@ -2095,34 +1948,34 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = IDENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:582:6: ( CHAR ( CHAR | DIGIT )* )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:582:8: CHAR ( CHAR | DIGIT )*
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:568:6: ( CHAR ( CHAR | DIGIT )* )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:568:8: CHAR ( CHAR | DIGIT )*
             {
             mCHAR(); 
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:582:13: ( CHAR | DIGIT )*
-            loop4:
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:568:13: ( CHAR | DIGIT )*
+            loop3:
             do {
-                int alt4=3;
-                int LA4_0 = input.LA(1);
+                int alt3=3;
+                int LA3_0 = input.LA(1);
 
-                if ( (LA4_0=='$'||LA4_0=='+'||LA4_0=='-'||LA4_0=='/'||(LA4_0>='A' && LA4_0<='Z')||LA4_0=='_'||(LA4_0>='a' && LA4_0<='z')) ) {
-                    alt4=1;
+                if ( (LA3_0=='$'||LA3_0=='+'||LA3_0=='-'||LA3_0=='/'||(LA3_0>='A' && LA3_0<='Z')||LA3_0=='_'||(LA3_0>='a' && LA3_0<='z')) ) {
+                    alt3=1;
                 }
-                else if ( ((LA4_0>='0' && LA4_0<='9')) ) {
-                    alt4=2;
+                else if ( ((LA3_0>='0' && LA3_0<='9')) ) {
+                    alt3=2;
                 }
 
 
-                switch (alt4) {
+                switch (alt3) {
             	case 1 :
-            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:582:14: CHAR
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:568:14: CHAR
             	    {
             	    mCHAR(); 
 
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:582:21: DIGIT
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:568:21: DIGIT
             	    {
             	    mDIGIT(); 
 
@@ -2130,7 +1983,7 @@ public class PhdlLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop4;
+            	    break loop3;
                 }
             } while (true);
 
@@ -2150,25 +2003,25 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = PINNUM;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:583:7: ( DIGIT ( CHAR )+ )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:583:9: DIGIT ( CHAR )+
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:569:7: ( DIGIT ( CHAR )+ )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:569:9: DIGIT ( CHAR )+
             {
             mDIGIT(); 
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:583:15: ( CHAR )+
-            int cnt5=0;
-            loop5:
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:569:15: ( CHAR )+
+            int cnt4=0;
+            loop4:
             do {
-                int alt5=2;
-                int LA5_0 = input.LA(1);
+                int alt4=2;
+                int LA4_0 = input.LA(1);
 
-                if ( (LA5_0=='$'||LA5_0=='+'||LA5_0=='-'||LA5_0=='/'||(LA5_0>='A' && LA5_0<='Z')||LA5_0=='_'||(LA5_0>='a' && LA5_0<='z')) ) {
-                    alt5=1;
+                if ( (LA4_0=='$'||LA4_0=='+'||LA4_0=='-'||LA4_0=='/'||(LA4_0>='A' && LA4_0<='Z')||LA4_0=='_'||(LA4_0>='a' && LA4_0<='z')) ) {
+                    alt4=1;
                 }
 
 
-                switch (alt5) {
+                switch (alt4) {
             	case 1 :
-            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:583:15: CHAR
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:569:15: CHAR
             	    {
             	    mCHAR(); 
 
@@ -2176,12 +2029,12 @@ public class PhdlLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt5 >= 1 ) break loop5;
+            	    if ( cnt4 >= 1 ) break loop4;
                         EarlyExitException eee =
-                            new EarlyExitException(5, input);
+                            new EarlyExitException(4, input);
                         throw eee;
                 }
-                cnt5++;
+                cnt4++;
             } while (true);
 
 
@@ -2204,41 +2057,41 @@ public class PhdlLexer extends Lexer {
             int normal;
 
             StringBuilder lBuf = new StringBuilder();
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:587:5: ( DBLQUOTE (escaped= ESC | normal=~ ( DBLQUOTE | '\\\\' ) )* DBLQUOTE )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:587:9: DBLQUOTE (escaped= ESC | normal=~ ( DBLQUOTE | '\\\\' ) )* DBLQUOTE
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:573:5: ( DBLQUOTE (escaped= ESC | normal=~ ( DBLQUOTE | '\\\\' ) )* DBLQUOTE )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:573:9: DBLQUOTE (escaped= ESC | normal=~ ( DBLQUOTE | '\\\\' ) )* DBLQUOTE
             {
             mDBLQUOTE(); 
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:588:3: (escaped= ESC | normal=~ ( DBLQUOTE | '\\\\' ) )*
-            loop6:
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:574:3: (escaped= ESC | normal=~ ( DBLQUOTE | '\\\\' ) )*
+            loop5:
             do {
-                int alt6=3;
-                int LA6_0 = input.LA(1);
+                int alt5=3;
+                int LA5_0 = input.LA(1);
 
-                if ( (LA6_0=='\\') ) {
-                    alt6=1;
+                if ( (LA5_0=='\\') ) {
+                    alt5=1;
                 }
-                else if ( ((LA6_0>='\u0000' && LA6_0<='!')||(LA6_0>='#' && LA6_0<='[')||(LA6_0>=']' && LA6_0<='\uFFFF')) ) {
-                    alt6=2;
+                else if ( ((LA5_0>='\u0000' && LA5_0<='!')||(LA5_0>='#' && LA5_0<='[')||(LA5_0>=']' && LA5_0<='\uFFFF')) ) {
+                    alt5=2;
                 }
 
 
-                switch (alt6) {
+                switch (alt5) {
             	case 1 :
-            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:588:5: escaped= ESC
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:574:5: escaped= ESC
             	    {
-            	    int escapedStart1078 = getCharIndex();
-            	    int escapedStartLine1078 = getLine();
-            	    int escapedStartCharPos1078 = getCharPositionInLine();
+            	    int escapedStart960 = getCharIndex();
+            	    int escapedStartLine960 = getLine();
+            	    int escapedStartCharPos960 = getCharPositionInLine();
             	    mESC(); 
-            	    escaped = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, escapedStart1078, getCharIndex()-1);
-            	    escaped.setLine(escapedStartLine1078);
-            	    escaped.setCharPositionInLine(escapedStartCharPos1078);
+            	    escaped = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, escapedStart960, getCharIndex()-1);
+            	    escaped.setLine(escapedStartLine960);
+            	    escaped.setCharPositionInLine(escapedStartCharPos960);
             	    lBuf.append(escaped.getText());
 
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:589:5: normal=~ ( DBLQUOTE | '\\\\' )
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:575:5: normal=~ ( DBLQUOTE | '\\\\' )
             	    {
             	    normal= input.LA(1);
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
@@ -2256,7 +2109,7 @@ public class PhdlLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop6;
+            	    break loop5;
                 }
             } while (true);
 
@@ -2278,22 +2131,22 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = WHITESPACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:600:2: ( ( ' ' | '\\t' | '\\n' | '\\r' | '\\f' | '\\u001D' )+ )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:600:4: ( ' ' | '\\t' | '\\n' | '\\r' | '\\f' | '\\u001D' )+
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:586:2: ( ( ' ' | '\\t' | '\\n' | '\\r' | '\\f' | '\\u001D' )+ )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:586:4: ( ' ' | '\\t' | '\\n' | '\\r' | '\\f' | '\\u001D' )+
             {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:600:4: ( ' ' | '\\t' | '\\n' | '\\r' | '\\f' | '\\u001D' )+
-            int cnt7=0;
-            loop7:
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:586:4: ( ' ' | '\\t' | '\\n' | '\\r' | '\\f' | '\\u001D' )+
+            int cnt6=0;
+            loop6:
             do {
-                int alt7=2;
-                int LA7_0 = input.LA(1);
+                int alt6=2;
+                int LA6_0 = input.LA(1);
 
-                if ( ((LA7_0>='\t' && LA7_0<='\n')||(LA7_0>='\f' && LA7_0<='\r')||LA7_0=='\u001D'||LA7_0==' ') ) {
-                    alt7=1;
+                if ( ((LA6_0>='\t' && LA6_0<='\n')||(LA6_0>='\f' && LA6_0<='\r')||LA6_0=='\u001D'||LA6_0==' ') ) {
+                    alt6=1;
                 }
 
 
-                switch (alt7) {
+                switch (alt6) {
             	case 1 :
             	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:
             	    {
@@ -2311,12 +2164,12 @@ public class PhdlLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt7 >= 1 ) break loop7;
+            	    if ( cnt6 >= 1 ) break loop6;
                         EarlyExitException eee =
-                            new EarlyExitException(7, input);
+                            new EarlyExitException(6, input);
                         throw eee;
                 }
-                cnt7++;
+                cnt6++;
             } while (true);
 
             _channel = HIDDEN;
@@ -2336,47 +2189,43 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = LINE_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:608:2: ( '//' ( . )* ( '\\n' | '\\r' ) )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:608:4: '//' ( . )* ( '\\n' | '\\r' )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:594:2: ( '//' (~ ( '\\n' | '\\r' ) )* )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:594:4: '//' (~ ( '\\n' | '\\r' ) )*
             {
             match("//"); 
 
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:608:9: ( . )*
-            loop8:
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:594:9: (~ ( '\\n' | '\\r' ) )*
+            loop7:
             do {
-                int alt8=2;
-                int LA8_0 = input.LA(1);
+                int alt7=2;
+                int LA7_0 = input.LA(1);
 
-                if ( (LA8_0=='\n'||LA8_0=='\r') ) {
-                    alt8=2;
-                }
-                else if ( ((LA8_0>='\u0000' && LA8_0<='\t')||(LA8_0>='\u000B' && LA8_0<='\f')||(LA8_0>='\u000E' && LA8_0<='\uFFFF')) ) {
-                    alt8=1;
+                if ( ((LA7_0>='\u0000' && LA7_0<='\t')||(LA7_0>='\u000B' && LA7_0<='\f')||(LA7_0>='\u000E' && LA7_0<='\uFFFF')) ) {
+                    alt7=1;
                 }
 
 
-                switch (alt8) {
+                switch (alt7) {
             	case 1 :
-            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:608:9: .
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:594:9: ~ ( '\\n' | '\\r' )
             	    {
-            	    matchAny(); 
+            	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
+            	        input.consume();
+
+            	    }
+            	    else {
+            	        MismatchedSetException mse = new MismatchedSetException(null,input);
+            	        recover(mse);
+            	        throw mse;}
+
 
             	    }
             	    break;
 
             	default :
-            	    break loop8;
+            	    break loop7;
                 }
             } while (true);
-
-            if ( input.LA(1)=='\n'||input.LA(1)=='\r' ) {
-                input.consume();
-
-            }
-            else {
-                MismatchedSetException mse = new MismatchedSetException(null,input);
-                recover(mse);
-                throw mse;}
 
             _channel = HIDDEN;
 
@@ -2395,37 +2244,37 @@ public class PhdlLexer extends Lexer {
         try {
             int _type = MULTILINE_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:616:2: ( '/*' ( . )* '*/' )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:616:4: '/*' ( . )* '*/'
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:602:2: ( '/*' ( . )* '*/' )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:602:4: '/*' ( . )* '*/'
             {
             match("/*"); 
 
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:616:9: ( . )*
-            loop9:
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:602:9: ( . )*
+            loop8:
             do {
-                int alt9=2;
-                int LA9_0 = input.LA(1);
+                int alt8=2;
+                int LA8_0 = input.LA(1);
 
-                if ( (LA9_0=='*') ) {
-                    int LA9_1 = input.LA(2);
+                if ( (LA8_0=='*') ) {
+                    int LA8_1 = input.LA(2);
 
-                    if ( (LA9_1=='/') ) {
-                        alt9=2;
+                    if ( (LA8_1=='/') ) {
+                        alt8=2;
                     }
-                    else if ( ((LA9_1>='\u0000' && LA9_1<='.')||(LA9_1>='0' && LA9_1<='\uFFFF')) ) {
-                        alt9=1;
+                    else if ( ((LA8_1>='\u0000' && LA8_1<='.')||(LA8_1>='0' && LA8_1<='\uFFFF')) ) {
+                        alt8=1;
                     }
 
 
                 }
-                else if ( ((LA9_0>='\u0000' && LA9_0<=')')||(LA9_0>='+' && LA9_0<='\uFFFF')) ) {
-                    alt9=1;
+                else if ( ((LA8_0>='\u0000' && LA8_0<=')')||(LA8_0>='+' && LA8_0<='\uFFFF')) ) {
+                    alt8=1;
                 }
 
 
-                switch (alt9) {
+                switch (alt8) {
             	case 1 :
-            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:616:9: .
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:602:9: .
             	    {
             	    matchAny(); 
 
@@ -2433,7 +2282,7 @@ public class PhdlLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop9;
+            	    break loop8;
                 }
             } while (true);
 
@@ -2458,20 +2307,20 @@ public class PhdlLexer extends Lexer {
             int _channel = DEFAULT_TOKEN_CHANNEL;
             CommonToken fileName=null;
 
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:626:2: ( INCLUDE ( WHITESPACE )? fileName= STRING )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:626:5: INCLUDE ( WHITESPACE )? fileName= STRING
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:612:2: ( INCLUDE ( WHITESPACE )? fileName= STRING )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:612:5: INCLUDE ( WHITESPACE )? fileName= STRING
             {
             mINCLUDE(); 
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:626:13: ( WHITESPACE )?
-            int alt10=2;
-            int LA10_0 = input.LA(1);
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:612:13: ( WHITESPACE )?
+            int alt9=2;
+            int LA9_0 = input.LA(1);
 
-            if ( ((LA10_0>='\t' && LA10_0<='\n')||(LA10_0>='\f' && LA10_0<='\r')||LA10_0=='\u001D'||LA10_0==' ') ) {
-                alt10=1;
+            if ( ((LA9_0>='\t' && LA9_0<='\n')||(LA9_0>='\f' && LA9_0<='\r')||LA9_0=='\u001D'||LA9_0==' ') ) {
+                alt9=1;
             }
-            switch (alt10) {
+            switch (alt9) {
                 case 1 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:626:13: WHITESPACE
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:612:13: WHITESPACE
                     {
                     mWHITESPACE(); 
 
@@ -2480,16 +2329,16 @@ public class PhdlLexer extends Lexer {
 
             }
 
-            int fileNameStart1236 = getCharIndex();
-            int fileNameStartLine1236 = getLine();
-            int fileNameStartCharPos1236 = getCharPositionInLine();
+            int fileNameStart1117 = getCharIndex();
+            int fileNameStartLine1117 = getLine();
+            int fileNameStartCharPos1117 = getCharPositionInLine();
             mSTRING(); 
-            fileName = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, fileNameStart1236, getCharIndex()-1);
-            fileName.setLine(fileNameStartLine1236);
-            fileName.setCharPositionInLine(fileNameStartCharPos1236);
-            	
-            			String name = fileName.getText();
+            fileName = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, fileNameStart1117, getCharIndex()-1);
+            fileName.setLine(fileNameStartLine1117);
+            fileName.setCharPositionInLine(fileNameStartCharPos1117);
+            	String name = fileName.getText();
             			name = name.substring(1,name.length()-1);
+            			System.out.println("  -- Including: " + name);
             			// check for duplicate include files
             			if (!includeNames.add(name)) {
             				System.out.println("ERROR: " + fileName.getInputStream().getSourceName() + " line " + 
@@ -2524,6 +2373,153 @@ public class PhdlLexer extends Lexer {
         }
     }
     // $ANTLR end "INCLUDE_DECL"
+
+    // $ANTLR start "ESC"
+    public final void mESC() throws RecognitionException {
+        try {
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:643:2: ( '\\\\' ( 'n' | 'r' | 't' | 'b' | 'f' | '\"' | '\\'' | '/' | '\\\\' ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:643:4: '\\\\' ( 'n' | 'r' | 't' | 'b' | 'f' | '\"' | '\\'' | '/' | '\\\\' )
+            {
+            match('\\'); 
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:644:3: ( 'n' | 'r' | 't' | 'b' | 'f' | '\"' | '\\'' | '/' | '\\\\' )
+            int alt10=9;
+            switch ( input.LA(1) ) {
+            case 'n':
+                {
+                alt10=1;
+                }
+                break;
+            case 'r':
+                {
+                alt10=2;
+                }
+                break;
+            case 't':
+                {
+                alt10=3;
+                }
+                break;
+            case 'b':
+                {
+                alt10=4;
+                }
+                break;
+            case 'f':
+                {
+                alt10=5;
+                }
+                break;
+            case '\"':
+                {
+                alt10=6;
+                }
+                break;
+            case '\'':
+                {
+                alt10=7;
+                }
+                break;
+            case '/':
+                {
+                alt10=8;
+                }
+                break;
+            case '\\':
+                {
+                alt10=9;
+                }
+                break;
+            default:
+                NoViableAltException nvae =
+                    new NoViableAltException("", 10, 0, input);
+
+                throw nvae;
+            }
+
+            switch (alt10) {
+                case 1 :
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:644:5: 'n'
+                    {
+                    match('n'); 
+                    setText("\n");
+
+                    }
+                    break;
+                case 2 :
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:645:5: 'r'
+                    {
+                    match('r'); 
+                    setText("\r");
+
+                    }
+                    break;
+                case 3 :
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:646:5: 't'
+                    {
+                    match('t'); 
+                    setText("\t");
+
+                    }
+                    break;
+                case 4 :
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:647:5: 'b'
+                    {
+                    match('b'); 
+                    setText("\b");
+
+                    }
+                    break;
+                case 5 :
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:648:5: 'f'
+                    {
+                    match('f'); 
+                    setText("\f");
+
+                    }
+                    break;
+                case 6 :
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:649:5: '\"'
+                    {
+                    match('\"'); 
+                    setText("\"");
+
+                    }
+                    break;
+                case 7 :
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:650:5: '\\''
+                    {
+                    match('\''); 
+                    setText("\'");
+
+                    }
+                    break;
+                case 8 :
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:651:5: '/'
+                    {
+                    match('/'); 
+                    setText("/");
+
+                    }
+                    break;
+                case 9 :
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:652:5: '\\\\'
+                    {
+                    match('\\'); 
+                    setText("\\");
+
+                    }
+                    break;
+
+            }
+
+
+            }
+
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "ESC"
 
     public void mTokens() throws RecognitionException {
         // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:1:8: ( SEMICOLON | COLON | COMMA | PERIOD | EQUALS | LPAREN | RPAREN | LBRACKET | RBRACKET | LBRACE | RBRACE | LANGLE | RANGLE | AMPERSAND | DBLQUOTE | DESIGN | DEVICE | SUBDESIGN | INST | SUBINST | GROUP | THIS | OF | NET | ATTR | NEWATTR | BEGIN | END | COMBINE | INCLUDE | INFO | OPEN | PORT | PIN | INPIN | OUTPIN | IOPIN | PWRPIN | SUPPIN | INT | IDENT | PINNUM | STRING | WHITESPACE | LINE_COMMENT | MULTILINE_COMMENT | INCLUDE_DECL )
@@ -2869,7 +2865,7 @@ public class PhdlLexer extends Lexer {
     static final String DFA11_eotS =
         "\17\uffff\1\54\14\51\1\120\14\51\1\uffff\1\51\3\uffff\14\51\1\152"+
         "\2\51\1\152\22\51\2\uffff\1\51\1\uffff\26\51\1\uffff\4\51\1\u00a6"+
-        "\1\51\1\u00a6\5\51\2\u00ad\4\51\2\u00b2\2\51\1\uffff\22\51\2\u00bf"+
+        "\1\51\1\u00a6\5\51\2\u00ad\4\51\2\u00b2\12\51\1\uffff\12\51\2\u00bf"+
         "\2\51\2\u00c2\6\51\2\u00c9\2\u00ca\2\51\1\uffff\2\51\2\u00cf\2\51"+
         "\1\uffff\2\51\2\u00d4\1\uffff\14\51\1\uffff\2\51\1\uffff\2\u00e3"+
         "\2\u00e4\2\u00e5\2\uffff\4\51\1\uffff\2\u00ea\2\51\1\uffff\2\51"+
@@ -2886,8 +2882,8 @@ public class PhdlLexer extends Lexer {
         "\1\44\1\105\5\124\2\107\2\104\2\115\1\122\1\116\2\122\1\116\1\122"+
         "\2\uffff\1\0\1\uffff\4\111\1\104\1\120\1\104\1\120\1\124\1\114\1"+
         "\117\1\111\1\124\1\114\1\117\3\111\2\125\2\123\1\uffff\2\116\2\120"+
-        "\1\44\1\101\1\44\1\101\2\122\2\111\2\44\2\102\2\124\2\44\2\120\1"+
-        "\uffff\10\0\2\107\2\103\1\105\1\116\1\105\1\116\2\111\2\44\2\125"+
+        "\1\44\1\101\1\44\1\101\2\122\2\111\2\44\2\102\2\124\2\44\2\120\10"+
+        "\0\1\uffff\2\107\2\103\1\105\1\116\1\105\1\116\2\111\2\44\2\125"+
         "\2\44\4\116\2\120\4\44\2\111\1\uffff\2\124\2\44\2\116\1\uffff\2"+
         "\111\2\44\1\uffff\2\111\2\116\2\105\4\123\2\116\1\uffff\2\104\1"+
         "\uffff\6\44\2\uffff\2\116\2\124\1\uffff\2\44\2\116\1\uffff\2\116"+
@@ -2903,7 +2899,7 @@ public class PhdlLexer extends Lexer {
         "\1\156\1\162\2\uffff\1\uffff\1\uffff\5\151\1\160\1\151\1\160\1\164"+
         "\1\154\1\157\1\151\1\164\1\154\1\157\3\151\2\165\2\163\1\uffff\2"+
         "\156\2\160\1\172\1\141\1\172\1\141\2\162\2\151\2\172\2\142\2\164"+
-        "\2\172\2\160\1\uffff\10\uffff\2\147\2\143\1\145\1\156\1\145\1\156"+
+        "\2\172\2\160\10\uffff\1\uffff\2\147\2\143\1\145\1\156\1\145\1\156"+
         "\2\151\2\172\2\165\2\172\4\156\2\160\4\172\2\151\1\uffff\2\164\2"+
         "\172\2\156\1\uffff\2\151\2\172\1\uffff\2\151\2\156\2\145\4\163\2"+
         "\156\1\uffff\2\144\1\uffff\6\172\2\uffff\2\156\2\164\1\uffff\2\172"+
@@ -2913,14 +2909,14 @@ public class PhdlLexer extends Lexer {
     static final String DFA11_acceptS =
         "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1"+
         "\15\1\16\32\uffff\1\51\1\uffff\1\54\1\17\1\53\42\uffff\1\50\1\52"+
-        "\1\uffff\1\56\26\uffff\1\27\26\uffff\1\55\44\uffff\1\30\6\uffff"+
+        "\1\uffff\1\56\26\uffff\1\27\36\uffff\1\55\34\uffff\1\30\6\uffff"+
         "\1\34\4\uffff\1\42\14\uffff\1\23\2\uffff\1\37\6\uffff\1\26\1\40"+
         "\4\uffff\1\31\4\uffff\1\41\16\uffff\1\43\1\45\1\25\4\uffff\1\33"+
         "\4\uffff\1\20\1\21\4\uffff\1\47\2\uffff\1\44\4\uffff\1\46\2\uffff"+
         "\1\24\1\36\1\57\1\32\1\35\2\uffff\1\22";
     static final String DFA11_specialS =
-        "\17\uffff\1\1\102\uffff\1\0\57\uffff\1\4\1\3\1\5\1\10\1\11\1\6"+
-        "\1\7\1\2\176\uffff}>";
+        "\17\uffff\1\6\102\uffff\1\10\56\uffff\1\0\1\1\1\3\1\2\1\5\1\4\1"+
+        "\7\1\11\177\uffff}>";
     static final String[] DFA11_transitionS = {
             "\2\53\1\uffff\2\53\17\uffff\1\53\2\uffff\1\53\1\uffff\1\17"+
             "\1\uffff\1\51\1\uffff\1\16\1\uffff\1\6\1\7\1\uffff\1\51\1\3"+
@@ -3019,9 +3015,9 @@ public class PhdlLexer extends Lexer {
             "\1\u0080\37\uffff\1\177",
             "",
             "",
-            "\44\u0081\1\u0087\6\u0081\1\u0085\1\u0081\1\u0086\1\u0081"+
-            "\1\u0088\12\u0089\7\u0081\32\u0083\4\u0081\1\u0084\1\u0081\32"+
-            "\u0082\uff85\u0081",
+            "\12\u0089\1\uffff\2\u0089\1\uffff\26\u0089\1\u0086\6\u0089"+
+            "\1\u0084\1\u0089\1\u0085\1\u0089\1\u0087\12\u0088\7\u0089\32"+
+            "\u0082\4\u0089\1\u0083\1\u0089\32\u0081\uff85\u0089",
             "",
             "\1\u008b\37\uffff\1\u008a",
             "\1\u008d\37\uffff\1\u008c",
@@ -3074,31 +3070,31 @@ public class PhdlLexer extends Lexer {
             "\4\uffff\1\51\1\uffff\32\51",
             "\1\u00b4\37\uffff\1\u00b3",
             "\1\u00b4\37\uffff\1\u00b3",
+            "\12\u0089\1\uffff\2\u0089\1\uffff\26\u0089\1\u0086\6\u0089"+
+            "\1\u0084\1\u0089\1\u0085\1\u0089\1\u0087\12\u0088\7\u0089\32"+
+            "\u0082\4\u0089\1\u0083\1\u0089\32\u0081\uff85\u0089",
+            "\12\u0089\1\uffff\2\u0089\1\uffff\26\u0089\1\u0086\6\u0089"+
+            "\1\u0084\1\u0089\1\u0085\1\u0089\1\u0087\12\u0088\7\u0089\32"+
+            "\u0082\4\u0089\1\u0083\1\u0089\32\u0081\uff85\u0089",
+            "\12\u0089\1\uffff\2\u0089\1\uffff\26\u0089\1\u0086\6\u0089"+
+            "\1\u0084\1\u0089\1\u0085\1\u0089\1\u0087\12\u0088\7\u0089\32"+
+            "\u0082\4\u0089\1\u0083\1\u0089\32\u0081\uff85\u0089",
+            "\12\u0089\1\uffff\2\u0089\1\uffff\26\u0089\1\u0086\6\u0089"+
+            "\1\u0084\1\u0089\1\u0085\1\u0089\1\u0087\12\u0088\7\u0089\32"+
+            "\u0082\4\u0089\1\u0083\1\u0089\32\u0081\uff85\u0089",
+            "\12\u0089\1\uffff\2\u0089\1\uffff\26\u0089\1\u0086\6\u0089"+
+            "\1\u0084\1\u0089\1\u0085\1\u0089\1\u0087\12\u0088\7\u0089\32"+
+            "\u0082\4\u0089\1\u0083\1\u0089\32\u0081\uff85\u0089",
+            "\12\u0089\1\uffff\2\u0089\1\uffff\26\u0089\1\u0086\6\u0089"+
+            "\1\u0084\1\u0089\1\u0085\1\u0089\1\u0087\12\u0088\7\u0089\32"+
+            "\u0082\4\u0089\1\u0083\1\u0089\32\u0081\uff85\u0089",
+            "\12\u0089\1\uffff\2\u0089\1\uffff\26\u0089\1\u0086\6\u0089"+
+            "\1\u0084\1\u0089\1\u0085\1\u0089\1\u0087\12\u0088\7\u0089\32"+
+            "\u0082\4\u0089\1\u0083\1\u0089\32\u0081\uff85\u0089",
+            "\12\u0089\1\uffff\2\u0089\1\uffff\26\u0089\1\u0086\6\u0089"+
+            "\1\u0084\1\u0089\1\u0085\1\u0089\1\u0087\12\u0088\7\u0089\32"+
+            "\u0082\4\u0089\1\u0083\1\u0089\32\u0081\uff85\u0089",
             "",
-            "\44\u0081\1\u0087\6\u0081\1\u0085\1\u0081\1\u0086\1\u0081"+
-            "\1\u0088\12\u0089\7\u0081\32\u0083\4\u0081\1\u0084\1\u0081\32"+
-            "\u0082\uff85\u0081",
-            "\44\u0081\1\u0087\6\u0081\1\u0085\1\u0081\1\u0086\1\u0081"+
-            "\1\u0088\12\u0089\7\u0081\32\u0083\4\u0081\1\u0084\1\u0081\32"+
-            "\u0082\uff85\u0081",
-            "\44\u0081\1\u0087\6\u0081\1\u0085\1\u0081\1\u0086\1\u0081"+
-            "\1\u0088\12\u0089\7\u0081\32\u0083\4\u0081\1\u0084\1\u0081\32"+
-            "\u0082\uff85\u0081",
-            "\44\u0081\1\u0087\6\u0081\1\u0085\1\u0081\1\u0086\1\u0081"+
-            "\1\u0088\12\u0089\7\u0081\32\u0083\4\u0081\1\u0084\1\u0081\32"+
-            "\u0082\uff85\u0081",
-            "\44\u0081\1\u0087\6\u0081\1\u0085\1\u0081\1\u0086\1\u0081"+
-            "\1\u0088\12\u0089\7\u0081\32\u0083\4\u0081\1\u0084\1\u0081\32"+
-            "\u0082\uff85\u0081",
-            "\44\u0081\1\u0087\6\u0081\1\u0085\1\u0081\1\u0086\1\u0081"+
-            "\1\u0088\12\u0089\7\u0081\32\u0083\4\u0081\1\u0084\1\u0081\32"+
-            "\u0082\uff85\u0081",
-            "\44\u0081\1\u0087\6\u0081\1\u0085\1\u0081\1\u0086\1\u0081"+
-            "\1\u0088\12\u0089\7\u0081\32\u0083\4\u0081\1\u0084\1\u0081\32"+
-            "\u0082\uff85\u0081",
-            "\44\u0081\1\u0087\6\u0081\1\u0085\1\u0081\1\u0086\1\u0081"+
-            "\1\u0088\12\u0089\7\u0081\32\u0083\4\u0081\1\u0084\1\u0081\32"+
-            "\u0082\uff85\u0081",
             "\1\u00b6\37\uffff\1\u00b5",
             "\1\u00b6\37\uffff\1\u00b5",
             "\1\u00b8\37\uffff\1\u00b7",
@@ -3306,62 +3302,78 @@ public class PhdlLexer extends Lexer {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA11_82 = input.LA(1);
+                        int LA11_129 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA11_82>='\u0000' && LA11_82<='#')||(LA11_82>='%' && LA11_82<='*')||LA11_82==','||LA11_82=='.'||(LA11_82>=':' && LA11_82<='@')||(LA11_82>='[' && LA11_82<='^')||LA11_82=='`'||(LA11_82>='{' && LA11_82<='\uFFFF')) ) {s = 129;}
+                        if ( ((LA11_129>='a' && LA11_129<='z')) ) {s = 129;}
 
-                        else if ( ((LA11_82>='a' && LA11_82<='z')) ) {s = 130;}
+                        else if ( ((LA11_129>='A' && LA11_129<='Z')) ) {s = 130;}
 
-                        else if ( ((LA11_82>='A' && LA11_82<='Z')) ) {s = 131;}
+                        else if ( (LA11_129=='_') ) {s = 131;}
 
-                        else if ( (LA11_82=='_') ) {s = 132;}
+                        else if ( (LA11_129=='+') ) {s = 132;}
 
-                        else if ( (LA11_82=='+') ) {s = 133;}
+                        else if ( (LA11_129=='-') ) {s = 133;}
 
-                        else if ( (LA11_82=='-') ) {s = 134;}
+                        else if ( (LA11_129=='$') ) {s = 134;}
 
-                        else if ( (LA11_82=='$') ) {s = 135;}
+                        else if ( (LA11_129=='/') ) {s = 135;}
 
-                        else if ( (LA11_82=='/') ) {s = 136;}
+                        else if ( ((LA11_129>='0' && LA11_129<='9')) ) {s = 136;}
 
-                        else if ( ((LA11_82>='0' && LA11_82<='9')) ) {s = 137;}
+                        else if ( ((LA11_129>='\u0000' && LA11_129<='\t')||(LA11_129>='\u000B' && LA11_129<='\f')||(LA11_129>='\u000E' && LA11_129<='#')||(LA11_129>='%' && LA11_129<='*')||LA11_129==','||LA11_129=='.'||(LA11_129>=':' && LA11_129<='@')||(LA11_129>='[' && LA11_129<='^')||LA11_129=='`'||(LA11_129>='{' && LA11_129<='\uFFFF')) ) {s = 137;}
 
                         else s = 41;
 
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA11_15 = input.LA(1);
+                        int LA11_130 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA11_15>='\u0000' && LA11_15<='\uFFFF')) ) {s = 45;}
+                        if ( ((LA11_130>='a' && LA11_130<='z')) ) {s = 129;}
 
-                        else s = 44;
+                        else if ( ((LA11_130>='A' && LA11_130<='Z')) ) {s = 130;}
+
+                        else if ( (LA11_130=='_') ) {s = 131;}
+
+                        else if ( (LA11_130=='+') ) {s = 132;}
+
+                        else if ( (LA11_130=='-') ) {s = 133;}
+
+                        else if ( (LA11_130=='$') ) {s = 134;}
+
+                        else if ( (LA11_130=='/') ) {s = 135;}
+
+                        else if ( ((LA11_130>='0' && LA11_130<='9')) ) {s = 136;}
+
+                        else if ( ((LA11_130>='\u0000' && LA11_130<='\t')||(LA11_130>='\u000B' && LA11_130<='\f')||(LA11_130>='\u000E' && LA11_130<='#')||(LA11_130>='%' && LA11_130<='*')||LA11_130==','||LA11_130=='.'||(LA11_130>=':' && LA11_130<='@')||(LA11_130>='[' && LA11_130<='^')||LA11_130=='`'||(LA11_130>='{' && LA11_130<='\uFFFF')) ) {s = 137;}
+
+                        else s = 41;
 
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA11_137 = input.LA(1);
+                        int LA11_132 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA11_137>='\u0000' && LA11_137<='#')||(LA11_137>='%' && LA11_137<='*')||LA11_137==','||LA11_137=='.'||(LA11_137>=':' && LA11_137<='@')||(LA11_137>='[' && LA11_137<='^')||LA11_137=='`'||(LA11_137>='{' && LA11_137<='\uFFFF')) ) {s = 129;}
+                        if ( ((LA11_132>='a' && LA11_132<='z')) ) {s = 129;}
 
-                        else if ( ((LA11_137>='a' && LA11_137<='z')) ) {s = 130;}
+                        else if ( ((LA11_132>='A' && LA11_132<='Z')) ) {s = 130;}
 
-                        else if ( ((LA11_137>='A' && LA11_137<='Z')) ) {s = 131;}
+                        else if ( (LA11_132=='_') ) {s = 131;}
 
-                        else if ( (LA11_137=='_') ) {s = 132;}
+                        else if ( (LA11_132=='+') ) {s = 132;}
 
-                        else if ( (LA11_137=='+') ) {s = 133;}
+                        else if ( (LA11_132=='-') ) {s = 133;}
 
-                        else if ( (LA11_137=='-') ) {s = 134;}
+                        else if ( (LA11_132=='$') ) {s = 134;}
 
-                        else if ( (LA11_137=='$') ) {s = 135;}
+                        else if ( (LA11_132=='/') ) {s = 135;}
 
-                        else if ( (LA11_137=='/') ) {s = 136;}
+                        else if ( ((LA11_132>='0' && LA11_132<='9')) ) {s = 136;}
 
-                        else if ( ((LA11_137>='0' && LA11_137<='9')) ) {s = 137;}
+                        else if ( ((LA11_132>='\u0000' && LA11_132<='\t')||(LA11_132>='\u000B' && LA11_132<='\f')||(LA11_132>='\u000E' && LA11_132<='#')||(LA11_132>='%' && LA11_132<='*')||LA11_132==','||LA11_132=='.'||(LA11_132>=':' && LA11_132<='@')||(LA11_132>='[' && LA11_132<='^')||LA11_132=='`'||(LA11_132>='{' && LA11_132<='\uFFFF')) ) {s = 137;}
 
                         else s = 41;
 
@@ -3371,179 +3383,163 @@ public class PhdlLexer extends Lexer {
                         int LA11_131 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA11_131>='\u0000' && LA11_131<='#')||(LA11_131>='%' && LA11_131<='*')||LA11_131==','||LA11_131=='.'||(LA11_131>=':' && LA11_131<='@')||(LA11_131>='[' && LA11_131<='^')||LA11_131=='`'||(LA11_131>='{' && LA11_131<='\uFFFF')) ) {s = 129;}
+                        if ( ((LA11_131>='a' && LA11_131<='z')) ) {s = 129;}
 
-                        else if ( ((LA11_131>='a' && LA11_131<='z')) ) {s = 130;}
+                        else if ( ((LA11_131>='A' && LA11_131<='Z')) ) {s = 130;}
 
-                        else if ( ((LA11_131>='A' && LA11_131<='Z')) ) {s = 131;}
+                        else if ( (LA11_131=='_') ) {s = 131;}
 
-                        else if ( (LA11_131=='_') ) {s = 132;}
+                        else if ( (LA11_131=='+') ) {s = 132;}
 
-                        else if ( (LA11_131=='+') ) {s = 133;}
+                        else if ( (LA11_131=='-') ) {s = 133;}
 
-                        else if ( (LA11_131=='-') ) {s = 134;}
+                        else if ( (LA11_131=='$') ) {s = 134;}
 
-                        else if ( (LA11_131=='$') ) {s = 135;}
+                        else if ( (LA11_131=='/') ) {s = 135;}
 
-                        else if ( (LA11_131=='/') ) {s = 136;}
+                        else if ( ((LA11_131>='0' && LA11_131<='9')) ) {s = 136;}
 
-                        else if ( ((LA11_131>='0' && LA11_131<='9')) ) {s = 137;}
+                        else if ( ((LA11_131>='\u0000' && LA11_131<='\t')||(LA11_131>='\u000B' && LA11_131<='\f')||(LA11_131>='\u000E' && LA11_131<='#')||(LA11_131>='%' && LA11_131<='*')||LA11_131==','||LA11_131=='.'||(LA11_131>=':' && LA11_131<='@')||(LA11_131>='[' && LA11_131<='^')||LA11_131=='`'||(LA11_131>='{' && LA11_131<='\uFFFF')) ) {s = 137;}
 
                         else s = 41;
 
                         if ( s>=0 ) return s;
                         break;
                     case 4 : 
-                        int LA11_130 = input.LA(1);
+                        int LA11_134 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA11_130>='\u0000' && LA11_130<='#')||(LA11_130>='%' && LA11_130<='*')||LA11_130==','||LA11_130=='.'||(LA11_130>=':' && LA11_130<='@')||(LA11_130>='[' && LA11_130<='^')||LA11_130=='`'||(LA11_130>='{' && LA11_130<='\uFFFF')) ) {s = 129;}
+                        if ( ((LA11_134>='a' && LA11_134<='z')) ) {s = 129;}
 
-                        else if ( ((LA11_130>='a' && LA11_130<='z')) ) {s = 130;}
+                        else if ( ((LA11_134>='A' && LA11_134<='Z')) ) {s = 130;}
 
-                        else if ( ((LA11_130>='A' && LA11_130<='Z')) ) {s = 131;}
+                        else if ( (LA11_134=='_') ) {s = 131;}
 
-                        else if ( (LA11_130=='_') ) {s = 132;}
+                        else if ( (LA11_134=='+') ) {s = 132;}
 
-                        else if ( (LA11_130=='+') ) {s = 133;}
+                        else if ( (LA11_134=='-') ) {s = 133;}
 
-                        else if ( (LA11_130=='-') ) {s = 134;}
+                        else if ( (LA11_134=='$') ) {s = 134;}
 
-                        else if ( (LA11_130=='$') ) {s = 135;}
+                        else if ( (LA11_134=='/') ) {s = 135;}
 
-                        else if ( (LA11_130=='/') ) {s = 136;}
+                        else if ( ((LA11_134>='0' && LA11_134<='9')) ) {s = 136;}
 
-                        else if ( ((LA11_130>='0' && LA11_130<='9')) ) {s = 137;}
+                        else if ( ((LA11_134>='\u0000' && LA11_134<='\t')||(LA11_134>='\u000B' && LA11_134<='\f')||(LA11_134>='\u000E' && LA11_134<='#')||(LA11_134>='%' && LA11_134<='*')||LA11_134==','||LA11_134=='.'||(LA11_134>=':' && LA11_134<='@')||(LA11_134>='[' && LA11_134<='^')||LA11_134=='`'||(LA11_134>='{' && LA11_134<='\uFFFF')) ) {s = 137;}
 
                         else s = 41;
 
                         if ( s>=0 ) return s;
                         break;
                     case 5 : 
-                        int LA11_132 = input.LA(1);
+                        int LA11_133 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA11_132>='\u0000' && LA11_132<='#')||(LA11_132>='%' && LA11_132<='*')||LA11_132==','||LA11_132=='.'||(LA11_132>=':' && LA11_132<='@')||(LA11_132>='[' && LA11_132<='^')||LA11_132=='`'||(LA11_132>='{' && LA11_132<='\uFFFF')) ) {s = 129;}
+                        if ( ((LA11_133>='a' && LA11_133<='z')) ) {s = 129;}
 
-                        else if ( ((LA11_132>='a' && LA11_132<='z')) ) {s = 130;}
+                        else if ( ((LA11_133>='A' && LA11_133<='Z')) ) {s = 130;}
 
-                        else if ( ((LA11_132>='A' && LA11_132<='Z')) ) {s = 131;}
+                        else if ( (LA11_133=='_') ) {s = 131;}
 
-                        else if ( (LA11_132=='_') ) {s = 132;}
+                        else if ( (LA11_133=='+') ) {s = 132;}
 
-                        else if ( (LA11_132=='+') ) {s = 133;}
+                        else if ( (LA11_133=='-') ) {s = 133;}
 
-                        else if ( (LA11_132=='-') ) {s = 134;}
+                        else if ( (LA11_133=='$') ) {s = 134;}
 
-                        else if ( (LA11_132=='$') ) {s = 135;}
+                        else if ( (LA11_133=='/') ) {s = 135;}
 
-                        else if ( (LA11_132=='/') ) {s = 136;}
+                        else if ( ((LA11_133>='0' && LA11_133<='9')) ) {s = 136;}
 
-                        else if ( ((LA11_132>='0' && LA11_132<='9')) ) {s = 137;}
+                        else if ( ((LA11_133>='\u0000' && LA11_133<='\t')||(LA11_133>='\u000B' && LA11_133<='\f')||(LA11_133>='\u000E' && LA11_133<='#')||(LA11_133>='%' && LA11_133<='*')||LA11_133==','||LA11_133=='.'||(LA11_133>=':' && LA11_133<='@')||(LA11_133>='[' && LA11_133<='^')||LA11_133=='`'||(LA11_133>='{' && LA11_133<='\uFFFF')) ) {s = 137;}
 
                         else s = 41;
 
                         if ( s>=0 ) return s;
                         break;
                     case 6 : 
-                        int LA11_135 = input.LA(1);
+                        int LA11_15 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA11_135>='\u0000' && LA11_135<='#')||(LA11_135>='%' && LA11_135<='*')||LA11_135==','||LA11_135=='.'||(LA11_135>=':' && LA11_135<='@')||(LA11_135>='[' && LA11_135<='^')||LA11_135=='`'||(LA11_135>='{' && LA11_135<='\uFFFF')) ) {s = 129;}
+                        if ( ((LA11_15>='\u0000' && LA11_15<='\uFFFF')) ) {s = 45;}
 
-                        else if ( ((LA11_135>='a' && LA11_135<='z')) ) {s = 130;}
-
-                        else if ( ((LA11_135>='A' && LA11_135<='Z')) ) {s = 131;}
-
-                        else if ( (LA11_135=='_') ) {s = 132;}
-
-                        else if ( (LA11_135=='+') ) {s = 133;}
-
-                        else if ( (LA11_135=='-') ) {s = 134;}
-
-                        else if ( (LA11_135=='$') ) {s = 135;}
-
-                        else if ( (LA11_135=='/') ) {s = 136;}
-
-                        else if ( ((LA11_135>='0' && LA11_135<='9')) ) {s = 137;}
-
-                        else s = 41;
+                        else s = 44;
 
                         if ( s>=0 ) return s;
                         break;
                     case 7 : 
-                        int LA11_136 = input.LA(1);
+                        int LA11_135 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA11_136>='\u0000' && LA11_136<='#')||(LA11_136>='%' && LA11_136<='*')||LA11_136==','||LA11_136=='.'||(LA11_136>=':' && LA11_136<='@')||(LA11_136>='[' && LA11_136<='^')||LA11_136=='`'||(LA11_136>='{' && LA11_136<='\uFFFF')) ) {s = 129;}
+                        if ( ((LA11_135>='a' && LA11_135<='z')) ) {s = 129;}
 
-                        else if ( ((LA11_136>='a' && LA11_136<='z')) ) {s = 130;}
+                        else if ( ((LA11_135>='A' && LA11_135<='Z')) ) {s = 130;}
 
-                        else if ( ((LA11_136>='A' && LA11_136<='Z')) ) {s = 131;}
+                        else if ( (LA11_135=='_') ) {s = 131;}
 
-                        else if ( (LA11_136=='_') ) {s = 132;}
+                        else if ( (LA11_135=='+') ) {s = 132;}
 
-                        else if ( (LA11_136=='+') ) {s = 133;}
+                        else if ( (LA11_135=='-') ) {s = 133;}
 
-                        else if ( (LA11_136=='-') ) {s = 134;}
+                        else if ( (LA11_135=='$') ) {s = 134;}
 
-                        else if ( (LA11_136=='$') ) {s = 135;}
+                        else if ( (LA11_135=='/') ) {s = 135;}
 
-                        else if ( (LA11_136=='/') ) {s = 136;}
+                        else if ( ((LA11_135>='0' && LA11_135<='9')) ) {s = 136;}
 
-                        else if ( ((LA11_136>='0' && LA11_136<='9')) ) {s = 137;}
+                        else if ( ((LA11_135>='\u0000' && LA11_135<='\t')||(LA11_135>='\u000B' && LA11_135<='\f')||(LA11_135>='\u000E' && LA11_135<='#')||(LA11_135>='%' && LA11_135<='*')||LA11_135==','||LA11_135=='.'||(LA11_135>=':' && LA11_135<='@')||(LA11_135>='[' && LA11_135<='^')||LA11_135=='`'||(LA11_135>='{' && LA11_135<='\uFFFF')) ) {s = 137;}
 
                         else s = 41;
 
                         if ( s>=0 ) return s;
                         break;
                     case 8 : 
-                        int LA11_133 = input.LA(1);
+                        int LA11_82 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA11_133>='\u0000' && LA11_133<='#')||(LA11_133>='%' && LA11_133<='*')||LA11_133==','||LA11_133=='.'||(LA11_133>=':' && LA11_133<='@')||(LA11_133>='[' && LA11_133<='^')||LA11_133=='`'||(LA11_133>='{' && LA11_133<='\uFFFF')) ) {s = 129;}
+                        if ( ((LA11_82>='a' && LA11_82<='z')) ) {s = 129;}
 
-                        else if ( ((LA11_133>='a' && LA11_133<='z')) ) {s = 130;}
+                        else if ( ((LA11_82>='A' && LA11_82<='Z')) ) {s = 130;}
 
-                        else if ( ((LA11_133>='A' && LA11_133<='Z')) ) {s = 131;}
+                        else if ( (LA11_82=='_') ) {s = 131;}
 
-                        else if ( (LA11_133=='_') ) {s = 132;}
+                        else if ( (LA11_82=='+') ) {s = 132;}
 
-                        else if ( (LA11_133=='+') ) {s = 133;}
+                        else if ( (LA11_82=='-') ) {s = 133;}
 
-                        else if ( (LA11_133=='-') ) {s = 134;}
+                        else if ( (LA11_82=='$') ) {s = 134;}
 
-                        else if ( (LA11_133=='$') ) {s = 135;}
+                        else if ( (LA11_82=='/') ) {s = 135;}
 
-                        else if ( (LA11_133=='/') ) {s = 136;}
+                        else if ( ((LA11_82>='0' && LA11_82<='9')) ) {s = 136;}
 
-                        else if ( ((LA11_133>='0' && LA11_133<='9')) ) {s = 137;}
+                        else if ( ((LA11_82>='\u0000' && LA11_82<='\t')||(LA11_82>='\u000B' && LA11_82<='\f')||(LA11_82>='\u000E' && LA11_82<='#')||(LA11_82>='%' && LA11_82<='*')||LA11_82==','||LA11_82=='.'||(LA11_82>=':' && LA11_82<='@')||(LA11_82>='[' && LA11_82<='^')||LA11_82=='`'||(LA11_82>='{' && LA11_82<='\uFFFF')) ) {s = 137;}
 
                         else s = 41;
 
                         if ( s>=0 ) return s;
                         break;
                     case 9 : 
-                        int LA11_134 = input.LA(1);
+                        int LA11_136 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA11_134>='\u0000' && LA11_134<='#')||(LA11_134>='%' && LA11_134<='*')||LA11_134==','||LA11_134=='.'||(LA11_134>=':' && LA11_134<='@')||(LA11_134>='[' && LA11_134<='^')||LA11_134=='`'||(LA11_134>='{' && LA11_134<='\uFFFF')) ) {s = 129;}
+                        if ( ((LA11_136>='a' && LA11_136<='z')) ) {s = 129;}
 
-                        else if ( ((LA11_134>='a' && LA11_134<='z')) ) {s = 130;}
+                        else if ( ((LA11_136>='A' && LA11_136<='Z')) ) {s = 130;}
 
-                        else if ( ((LA11_134>='A' && LA11_134<='Z')) ) {s = 131;}
+                        else if ( (LA11_136=='_') ) {s = 131;}
 
-                        else if ( (LA11_134=='_') ) {s = 132;}
+                        else if ( (LA11_136=='+') ) {s = 132;}
 
-                        else if ( (LA11_134=='+') ) {s = 133;}
+                        else if ( (LA11_136=='-') ) {s = 133;}
 
-                        else if ( (LA11_134=='-') ) {s = 134;}
+                        else if ( (LA11_136=='$') ) {s = 134;}
 
-                        else if ( (LA11_134=='$') ) {s = 135;}
+                        else if ( (LA11_136=='/') ) {s = 135;}
 
-                        else if ( (LA11_134=='/') ) {s = 136;}
+                        else if ( ((LA11_136>='0' && LA11_136<='9')) ) {s = 136;}
 
-                        else if ( ((LA11_134>='0' && LA11_134<='9')) ) {s = 137;}
+                        else if ( ((LA11_136>='\u0000' && LA11_136<='\t')||(LA11_136>='\u000B' && LA11_136<='\f')||(LA11_136>='\u000E' && LA11_136<='#')||(LA11_136>='%' && LA11_136<='*')||LA11_136==','||LA11_136=='.'||(LA11_136>=':' && LA11_136<='@')||(LA11_136>='[' && LA11_136<='^')||LA11_136=='`'||(LA11_136>='{' && LA11_136<='\uFFFF')) ) {s = 137;}
 
                         else s = 41;
 
