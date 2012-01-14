@@ -21,8 +21,8 @@ import java.util.List;
  */
 public class Device extends Attributable {
 
-	private List<Pin> pins;
-	private List<Instance> instances;
+	private final List<Pin> pins;
+	private final List<Instance> instances;
 
 	/**
 	 * Default Constructor.
@@ -36,12 +36,14 @@ public class Device extends Attributable {
 	 * @see Instance
 	 */
 	public Device(Design design) {
+		super();
 		this.info = "";
 		this.pins = new ArrayList<Pin>();
 		this.instances = new ArrayList<Instance>();
 	}
 
 	public Device(String name) {
+		super();
 		this.info = "";
 		this.name = name;
 		this.pins = new ArrayList<Pin>();
@@ -79,6 +81,16 @@ public class Device extends Attributable {
 		return instances;
 	}
 
+	@Override
+	/**
+	 * Type accessor method.
+	 * 
+	 * @return NodeType.DEVICE
+	 */
+	public NodeType getNodeType() {
+		return NodeType.DEVICE;
+	}
+
 	/**
 	 * Individual Pin Accessor method.
 	 * 
@@ -102,16 +114,6 @@ public class Device extends Attributable {
 		return pins;
 	}
 
-	@Override
-	/**
-	 * Type accessor method.
-	 * 
-	 * @return NodeType.DEVICE
-	 */
-	public NodeType getNodeType() {
-		return NodeType.DEVICE;
-	}
-
 	/**
 	 * Checks to see if the device has any pins attached.
 	 * 
@@ -123,56 +125,84 @@ public class Device extends Attributable {
 
 	@Override
 	public String toString() {
+
 		StringBuilder sb = new StringBuilder();
+		sb.append(super.toString());
+
+		String nameFmtStr = "  %-8s%2s%-26.26s\n";
+		sb.append(String.format(nameFmtStr, "Name:", "", getName()));
 		sb.append("\n");
-		sb.append("  --------------------------------------------------------\n");
-		sb.append("  Device: " + getName() + ", file: " + getFileName() + ", line " + getLine()
-			+ ":" + getPosition() + "\n\n");
+
+		String attrFmtStr = "  %4d%2s%-16.16s%2s%-24.24s\n";
+		String pinFmtStr = "  %4d%2s%-8.8s%2s%-16.16s%2s%-16.16s\n";
+		String instFmtStr = "  %4d%2s%-16.16s%2s%-20.20s%2s%-16.16s\n";
 
 		if (!attributes.isEmpty()) {
-			sb.append("      Attr        Name                 Value              \n");
-			sb.append("      ----  ----------------  -----------------------     \n");
+			sb.append("  Attr        Name                   Value           \n");
+			sb.append("  ----  ----------------  -------------------------- \n");
 			int attrCount = 1;
 			for (Attribute a : attributes) {
-				sb.append(String.format("%10d%2s%-16s%2s%-24s\n", attrCount, "  ", a.getName(),
-					"  ", a.getValue().equals("") ? "(empty)" : a.getValue()));
+				sb.append(String.format(attrFmtStr, attrCount, "", a.getName(), "", a.getValue()
+					.equals("") ? "(empty)" : a.getValue()));
 				attrCount++;
 			}
 			sb.append("\n");
 		}
 
 		if (!pins.isEmpty()) {
-			sb.append("      Pin    Type          Name          Number \n");
-			sb.append("      ----  --------  ----------------  --------\n");
+			sb.append("  Pin     Type          Name             Number      \n");
+			sb.append("  ----  --------  ----------------  ---------------- \n");
 			int pinCount = 1;
 			for (Pin p : pins) {
-				sb.append(String.format("%10d%2s%-8s%2s%-16s%2s%-8s\n", pinCount, "  ",
-					p.getPinType(),
-					"  ", p.getName() + (p.getIndex() == -1 ? "" : ("[" + p.getIndex() + "]")),
- "  ",
-					p.getPinMapping()));
+				String index = p.getIndex() == -1 ? "" : ("[" + p.getIndex() + "]");
+				sb.append(String.format(pinFmtStr, pinCount, "", p.getPinType(), "", p.getName()
+					+ index, "", p.getPinMapping()));
 				pinCount++;
 			}
 			sb.append("\n");
 		}
 
 		if (!instances.isEmpty()) {
-			sb.append("      Inst      Name             Location       \n");
-			sb.append("      ----  ----------------  ------------------\n");
+			sb.append("  Inst        Name              Location             Parent      \n");
+			sb.append("  ----  ----------------  --------------------  ---------------- \n");
 			int instCount = 1;
 			for (Instance i : instances) {
-				sb.append(String.format("%10d%2s%-16s%2s%-22s\n", instCount, "  ",
-					i.getName() + ((i.getIndex() == -1) ? "" : ("(" + i.getIndex() + ")")), "  ",
-					i.getFileName() + ", " + i.getLine() + ":" + i.getPosition()));
+				String index = ((i.getIndex() == -1) ? "" : ("(" + i.getIndex() + ")"));
+				String pIndex = "";
+				if (i.getParent() instanceof SubInstance) {
+					if (((SubInstance) i.getParent()).getIndex() == -1)
+						pIndex = "";
+					else
+						pIndex = ("(" + ((SubInstance) i.getParent()).getIndex() + ")");
+				}
+				sb.append(String.format(instFmtStr, instCount, "", i.getName() + index, "",
+					i.getFileName() + ", " + i.getLine() + ":" + i.getPosition(), "", i.getParent()
+						.getName() + pIndex));
 				instCount++;
 			}
 			sb.append("\n");
 		}
 
 		if (!getInfo().equals("")) {
-			sb.append("      Info\n");
-			sb.append("      ----\n");
-			sb.append("      " + getInfo());
+			int lineLength = 60;
+			sb.append("  Info\n");
+			sb.append("  ----\n");
+			String info = getInfo();
+			String[] infos = info.split("\\s+");
+			StringBuilder line = new StringBuilder();
+			line.append("  ");
+			for (int i = 0; i < infos.length; i++) {
+				if (line.length() < lineLength) {
+					line.append(infos[i] + " ");
+					if (i == infos.length - 1)
+						sb.append(line.toString() + "\n");
+				} else {
+					i--;
+					sb.append(line.toString() + "\n");
+					line.setLength(0);
+					line.append("  ");
+				}
+			}
 			sb.append("\n");
 		}
 		return sb.toString();

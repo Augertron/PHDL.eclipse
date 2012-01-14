@@ -50,6 +50,23 @@ public class Pin extends Node {
 		setIndex(-1);
 	}
 
+	/**
+	 * Copy Constructor.
+	 * 
+	 * @param old
+	 *            the old PinNode to copy
+	 * @param parent
+	 *            the parent of the PinNode
+	 */
+	public Pin(Attributable parent, Pin old) {
+		super(old);
+		this.parent = parent;
+		this.pinMapping = old.getPinMapping();
+		this.index = old.getIndex();
+		this.pinType = old.getPinType();
+		this.isOpen = old.isOpen();
+	}
+
 	public Pin(Attributable parent, String name, PinType type) {
 		if (parent != null) {
 			if (parent.getNodeType() == NodeType.DEVICE
@@ -61,42 +78,9 @@ public class Pin extends Node {
 		setIndex(-1);
 	}
 
-	/**
-	 * Copy Constructor.
-	 * 
-	 * @param old
-	 *            the old PinNode to copy
-	 * @param parent
-	 *            the parent of the PinNode
-	 */
-	public Pin(Pin old, Attributable parent) {
-		this.parent = parent;
-		this.pinMapping = old.getPinMapping();
-		this.connection = old.getConnection();
-		this.name = old.getName();
-		this.line = old.getLine();
-		this.pos = old.getPosition();
-		this.fileName = old.getFileName();
-		this.index = old.getIndex();
-		this.pinType = old.getPinType();
-		this.info = old.getInfo();
-	}
-
-	public boolean isOpen() {
-		return isOpen;
-	}
-
-	public void setOpen(boolean isOpen) {
-		this.isOpen = isOpen;
-	}
-
 	@Override
 	public boolean equals(Object o) {
 		return name.equals(((Pin) o).getName()) && index == ((Pin) o).getIndex();
-	}
-
-	public int getIndex() {
-		return index;
 	}
 
 	/**
@@ -106,6 +90,10 @@ public class Pin extends Node {
 	 */
 	public Connection getConnection() {
 		return connection;
+	}
+
+	public int getIndex() {
+		return index;
 	}
 
 	@Override
@@ -149,12 +137,8 @@ public class Pin extends Node {
 		return (connection != null);
 	}
 
-	public void setIndex(int index) {
-		if (index < 0) {
-			this.index = -1;
-		} else {
-			this.index = index;
-		}
+	public boolean isOpen() {
+		return isOpen;
 	}
 
 	/**
@@ -167,6 +151,18 @@ public class Pin extends Node {
 		if (connection != null) {
 			this.connection = connection;
 		}
+	}
+
+	public void setIndex(int index) {
+		if (index < 0) {
+			this.index = -1;
+		} else {
+			this.index = index;
+		}
+	}
+
+	public void setOpen(boolean isOpen) {
+		this.isOpen = isOpen;
 	}
 
 	/**
@@ -324,7 +320,7 @@ public class Pin extends Node {
 		testNet3.name = "test_net_3";
 		testPin3.connection = testNet3;
 		testPin3.name = "test_pin_3";
-		Pin copyPin1 = new Pin(testPin3, null);
+		Pin copyPin1 = new Pin(null, testPin3);
 
 		if (copyPin1.parent != null) {
 			success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)",
@@ -389,7 +385,7 @@ public class Pin extends Node {
 		copyPin1.pinType = PinType.OUTPIN;
 		copyPin1.index = 5;
 
-		Pin copyPin2 = new Pin(copyPin1, null);
+		Pin copyPin2 = new Pin(null, copyPin1);
 		if (copyPin2.fileName != copyPin1.fileName) {
 			success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)",
 				"member variable filename doesn't match", copyPin1.fileName, copyPin2.fileName);
@@ -475,7 +471,7 @@ public class Pin extends Node {
 		testPin4a.line = 456;
 		testPin4a.pos = 123;
 
-		Pin testPin4b = new Pin(testPin4a, null);
+		Pin testPin4b = new Pin(null, testPin4a);
 		if (!testPin4a.equals(testPin4b)) {
 			success = TestDriver.displayError(testNum, "public boolean equals(Object o)",
 				"testPin4a and testPin4b should be equal");

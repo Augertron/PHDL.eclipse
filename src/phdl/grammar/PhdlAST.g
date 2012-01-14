@@ -331,6 +331,7 @@ designDecl
 				subDesigns.add((SubDesign) des);
 			}
 
+			System.out.println("  -- Compiling: " + $desName.text);
 			setLocation(des, $desName);							
 				
 			// sets check for duplicate names within the scope of a design.
@@ -374,6 +375,7 @@ portDecl[DesignUnit subDes]
 			} else {
 				for (int i = 0; i < $width.indices.size(); i++) {
 					Port p = new Port(subDes, $portName.text);
+					setLocation(p, $portName);
 					p.setIndex($width.indices.get(i));
 					if (!subDes.addConnection(p))
 						addError($portName, "duplicate port declaration");
@@ -401,6 +403,7 @@ netDecl[DesignUnit des]
 				} else {
 					for (int i = 0; i < $width.indices.size(); i++) {
 						Net n = new Net(des, $netName.text);
+						setLocation(n, $netName);
 						n.setIndex($width.indices.get(i));
 						if (!des.addConnection(n))
 							addError($netName, "duplicate net declaration");
@@ -424,31 +427,23 @@ instDecl[DesignUnit des, String groupName]
 			if (dev == null)
 				bailOut($instName, "instance references undeclared device");
 			if ($width.indices == null || $width.indices.size() == 1) {
-				Instance i = new Instance(des, $instName.text, dev);
+				Instance i = new Instance(des, dev, $instName.text);
 				setLocation(i, $instName);
 				i.setGroupName(groupName);
+				i.setInfo(dev.getInfo());
 				if ($width.indices != null)
 					i.setIndex($width.indices.get(0));
-				// copy all of the attribute and pin nodes from the device
-				for (Attribute a: dev.getAttributes())
-					i.addAttribute(new Attribute(a, i));
-				for (Pin p: dev.getPins())
-					i.addPin(new Pin(p, i));
 				// check for duplicates
 				if (!des.addInstance(i))
 					addError($instName, "duplicate instance declaration");
 			
 			} else {
 				for (int j = 0; j < $width.indices.size(); j ++) {
-					Instance i = new Instance(des, $instName.text, dev);
+					Instance i = new Instance(des, dev, $instName.text);
 					setLocation(i, $instName);
 					i.setGroupName(groupName);
+					i.setInfo(dev.getInfo());
 					i.setIndex($width.indices.get(j));
-					// copy all of the attribute and pin nodes from the device
-					for (Attribute a: dev.getAttributes())
-						i.addAttribute(new Attribute(a, i));
-					for (Pin p: dev.getPins())
-						i.addPin(new Pin(p, i));
 					// check for duplicates
 					if (!des.addInstance(i))
 						addError($instName, "duplicate instance declaration");
@@ -460,7 +455,7 @@ instDecl[DesignUnit des, String groupName]
 			{	List<Instance> insts = des.getInstancesByName($instName.text);
 				if ($infoDecl.indices == null) {
 					for (Instance i : insts)
-						i.appendInfo($infoDecl.info.getText());
+						i.appendInfo(" " + $infoDecl.info.getText());
 				} else {
 					// for all the indices in the array list declaration
 					for (Integer index : $infoDecl.indices) {
@@ -471,7 +466,7 @@ instDecl[DesignUnit des, String groupName]
 								i = inst;
 						
 						if (i != null) {
-							i.appendInfo($infoDecl.info.getText());
+							i.appendInfo(" " + $infoDecl.info.getText());
 						// the instance referenced by the index doesn't exist
 						} else
 							addWarning($infoDecl.info, "instance index (" + index + ") does not exist");
@@ -669,13 +664,13 @@ pinAssign[DesignUnit des, String instName]
 	;
 	
 subInstDecl[DesignUnit des]
-	:	^(SUBINST_DECL width? instName=IDENT desName=IDENT 
-	
+	:	^(SUBINST_DECL width? instName=IDENT desName=IDENT
+
 		{	SubDesign subDes = getSubDesign($desName.text);
 			if (subDes == null)
 				bailOut($instName, "subdesign " + $desName.text + " is undeclared");
 			if ($width.indices == null || $width.indices.size() == 1) {
-				SubInstance s = new SubInstance(subDes, $instName.text);
+				SubInstance s = new SubInstance(des, subDes, $instName.text);
 				setLocation(s, $instName);
 				if ($width.indices != null)
 					s.setIndex($width.indices.get(0));
@@ -685,11 +680,10 @@ subInstDecl[DesignUnit des]
 					addError($instName, "duplicate subdesign instance declaration");
 			
 			} else {
-				for (int j = 0; j < $width.indices.size(); j ++) {
-					SubInstance s = new SubInstance(subDes, $instName.text);
+				for (int i = 0; i < $width.indices.size(); i++) {
+					SubInstance s = new SubInstance(des, subDes, $instName.text);
 					setLocation(s, $instName);
-					s.setIndex($width.indices.get(j));
-	
+					s.setIndex($width.indices.get(i));
 					// check for duplicates
 					if (!des.addSubInst(s))
 						addError($instName, "duplicate subdesign instance declaration");
@@ -784,7 +778,10 @@ portAssign[DesignUnit des, String subInstName]
 					}
 					
 					for (int i = 0; i < ports.size(); i++) {
-						// assign the pin based on the flags
+						// remap the port location
+						setLocation(ports.get(i), $operand.id);
+						
+						// assign the port based on the flags
 						if ($concat.isReplicated) {
 							ports.get(i).addConnection($concat.cons.get(0));
 							$concat.cons.get(0).addConnection(ports.get(i));
@@ -807,7 +804,7 @@ portAssign[DesignUnit des, String subInstName]
 					if ($operand.indices == null) {
 						ports.addAll(s.getAllPorts($operand.id.getText()));
 						if (ports.size() == 0)
-							bailOut($operand.id, "undeclared pin");
+							bailOut($operand.id, "undeclared port");
 					} else {
 						for (Integer i : $operand.indices) {
 							Port p = s.getPort($operand.id.getText(), i);
@@ -819,7 +816,10 @@ portAssign[DesignUnit des, String subInstName]
 					}
 					
 					for (int i = 0; i < ports.size(); i++) {
-						// assign the pin based on the flags
+						// remap the port location
+						setLocation(ports.get(i), $operand.id);
+					
+						// assign the port based on the flags
 						if ($concat.isReplicated) {
 							ports.get(i).addConnection($concat.cons.get(0));
 							$concat.cons.get(0).addConnection(ports.get(i));
@@ -836,7 +836,7 @@ portAssign[DesignUnit des, String subInstName]
 						}
 					}
 					
-					// clear the list in preparation for the next instance's pins
+					// clear the list in preparation for the next instance's ports
 					ports.clear();
 				}
 			}

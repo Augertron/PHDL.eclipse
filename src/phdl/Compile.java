@@ -13,6 +13,7 @@ package phdl;
 import phdl.grammar.ParsePHDL;
 import phdl.graph.Design;
 import phdl.graph.Device;
+import phdl.graph.SubDesign;
 
 /**
  * A wrapper class which contains the main entry point of the phdl compiler.
@@ -29,6 +30,7 @@ public class Compile {
 	 */
 	public static void main(String[] args) {
 		long stt = System.currentTimeMillis();
+		System.out.println();
 
 		Configuration cfg = new Configuration(args);
 
@@ -38,17 +40,19 @@ public class Compile {
 				p.addRequiredAttribute(cfg.getReqAttr()[i]);
 			p.parse(fileName);
 
-			for (Device d : p.getDevices())
-				System.out.print(d.toString());
-			Design d = p.getTopDesign();
-			if (d != null)
-				d.printDesign();
-			// for (SubDesign s : p.getSubDesigns())
-			// s.printDesign();
+			if (cfg.isReport()) {
+				for (Device d : p.getDevices())
+					System.out.print(d.toString().replace("\n", "\n  "));
+				Design d = p.getTopDesign();
+				if (d != null)
+					System.out.print(d.toString().replace("\n", "\n  "));
+				for (SubDesign s : p.getSubDesigns())
+					System.out.print(s.toString().replace("\n", "\n  "));
+			}
 		}
 
 		long end = System.currentTimeMillis();
-		System.out.println((end - stt) + " ms.");
+		System.out.println("  -- Elapsed: " + (end - stt) + " ms.");
 
 	}
 }

@@ -26,7 +26,6 @@ import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.tree.CommonTree;
 import org.antlr.runtime.tree.CommonTreeNodeStream;
 import org.antlr.runtime.tree.DOTTreeGenerator;
-import org.antlr.runtime.tree.Tree;
 import org.antlr.stringtemplate.StringTemplate;
 
 import phdl.Configuration;
@@ -42,10 +41,10 @@ public class ParsePHDL {
 	private Set<Device> devices;
 	private Design topDesign;
 	private Set<SubDesign> subDesigns;
-	private Set<String> reqAttr;
-	private List<String> errors;
-	private List<String> warnings;
-	private Configuration sw;
+	private final Set<String> reqAttr;
+	private final List<String> errors;
+	private final List<String> warnings;
+	private final Configuration sw;
 
 	public ParsePHDL(Configuration sw) {
 		this.devices = new HashSet<Device>();
@@ -81,19 +80,19 @@ public class ParsePHDL {
 			System.out.println("Prolem writing dotty file.");
 			System.exit(1);
 		}
-		System.out.println("Wrote file: " + fileName);
+		System.out.println("  -- Generated: " + fileName);
 	}
 
-	public Design getTopDesign() {
-		return topDesign;
+	public Set<Device> getDevices() {
+		return devices;
 	}
 
 	public Set<SubDesign> getSubDesigns() {
 		return subDesigns;
 	}
 
-	public Set<Device> getDevices() {
-		return devices;
+	public Design getTopDesign() {
+		return topDesign;
 	}
 
 	public void parse(String fileName) {
@@ -118,8 +117,8 @@ public class ParsePHDL {
 			if (sw.isDumpEn()) {
 				// convert the AST to a dotty formatted string for debug
 				DOTTreeGenerator dtg = new DOTTreeGenerator();
-				StringTemplate st = dtg.toDOT((Tree) tree);
-				String astFileName = fileName + "_ast.dot";
+				StringTemplate st = dtg.toDOT(tree);
+				String astFileName = "ast.dot";
 				dumpToFile(astFileName, st.toString());
 			}
 
@@ -179,9 +178,6 @@ public class ParsePHDL {
 		// print out all warnings if they exist.
 		if (!sw.isSupWarn())
 			printWarnings();
-
-		System.out.println("Parsed file: " + fileName);
-
 	}
 
 	public void printErrors() {
@@ -203,16 +199,16 @@ public class ParsePHDL {
 		return false;
 	}
 
-	public void setTopDesign(Design design) {
-		this.topDesign = design;
+	public void setDevices(Set<Device> devices) {
+		this.devices = devices;
 	}
 
 	public void setSubDesigns(Set<SubDesign> subDesigns) {
 		this.subDesigns = subDesigns;
 	}
 
-	public void setDevices(Set<Device> devices) {
-		this.devices = devices;
+	public void setTopDesign(Design design) {
+		this.topDesign = design;
 	}
 
 	public static boolean unitTest() {

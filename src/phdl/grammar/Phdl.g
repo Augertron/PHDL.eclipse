@@ -246,7 +246,7 @@ tokens {
  * or design or subdesign declaration.
  */
 sourceText
-	:	(deviceDecl | designDecl)+
+	:	(deviceDecl | designDecl)+ EOF
 	;
 
 /**
@@ -564,20 +564,6 @@ fragment Z:('z'|'Z');
 fragment CHAR : ('a'..'z') | ('A'..'Z') | '_' | '+' | '-' | '$' | '/' ;
 fragment DIGIT : ('0'..'9') ;
 
-fragment ESC
-	:	'\\'
-		(	'n'    {setText("\n");}
-		|	'r'    {setText("\r");}
-		|	't'    {setText("\t");}
-		|	'b'    {setText("\b");}
-		|	'f'    {setText("\f");}
-		|	'"'    {setText("\"");}
-		|	'\''   {setText("\'");}
-		|	'/'    {setText("/");}
-		|	'\\'   {setText("\\");}
-		)
-    ;
-
 INT: DIGIT+;
 IDENT: CHAR (CHAR | DIGIT)*;
 PINNUM: DIGIT CHAR+; 
@@ -605,7 +591,7 @@ WHITESPACE
  * return characters are placed on the hidden channel for the parser to ignore.
  */
 LINE_COMMENT 
-	: '//' .* ('\n' | '\r') {$channel = HIDDEN;}
+	: '//' ~('\n' | '\r')* {$channel = HIDDEN;}
 	;
 
 /**
@@ -624,9 +610,9 @@ MULTILINE_COMMENT
  */	
 INCLUDE_DECL
 	: 	INCLUDE WHITESPACE? fileName=STRING
-		{	
-			String name = fileName.getText();
+		{	String name = fileName.getText();
 			name = name.substring(1,name.length()-1);
+			System.out.println("  -- Including: " + name);
 			// check for duplicate include files
 			if (!includeNames.add(name)) {
 				System.out.println("ERROR: " + fileName.getInputStream().getSourceName() + " line " + 
@@ -652,3 +638,18 @@ INCLUDE_DECL
 			}
 		}
 	;
+	
+fragment ESC
+	:	'\\'
+		(	'n'    {setText("\n");}
+		|	'r'    {setText("\r");}
+		|	't'    {setText("\t");}
+		|	'b'    {setText("\b");}
+		|	'f'    {setText("\f");}
+		|	'"'    {setText("\"");}
+		|	'\''   {setText("\'");}
+		|	'/'    {setText("/");}
+		|	'\\'   {setText("\\");}
+		)
+    ;
+

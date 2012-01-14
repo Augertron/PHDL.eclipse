@@ -20,7 +20,7 @@ package phdl.graph;
 public class Attribute extends Node {
 
 	private Attributable parent;
-	private String value;
+	private String value = "";;
 	private boolean overwritten = false;
 
 	/**
@@ -32,13 +32,7 @@ public class Attribute extends Node {
 	 *            the parent of the attribute node
 	 */
 	public Attribute(Attributable parent) {
-		setParent(parent);
-	}
-
-	public Attribute(Attributable parent, String name, String value) {
-		setParent(parent);
-		setName(name);
-		setValue(value);
+		this.parent = parent;
 	}
 
 	/**
@@ -49,20 +43,24 @@ public class Attribute extends Node {
 	 * @param parent
 	 *            the parent of the current node
 	 */
-	public Attribute(Attribute old, Attributable parent) {
-		setParent(parent);
+	public Attribute(Attributable parent, Attribute old) {
+		super(old);
+		this.parent = parent;
+		this.value = old.value;
+		this.overwritten = old.isOverwritten();
 		setName(old.getName());
-		setValue(old.getValue());
 		setLocation(old.getLine(), old.getPosition(), old.getFileName());
 	}
 
-	/**
-	 * Parent Node accessor method.
-	 * 
-	 * @return the parent node
-	 */
-	public Attributable getParent() {
-		return parent;
+	public Attribute(Attributable parent, String name, String value) {
+		this.parent = parent;
+		this.name = name.toUpperCase();
+		this.value = value;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		return this.getName().equals(((Attribute) o).getName());
 	}
 
 	@Override
@@ -79,12 +77,25 @@ public class Attribute extends Node {
 	}
 
 	/**
+	 * Parent Node accessor method.
+	 * 
+	 * @return the parent node
+	 */
+	public Attributable getParent() {
+		return parent;
+	}
+
+	/**
 	 * Value accessor method
 	 * 
 	 * @return the value of the attribute
 	 */
 	public String getValue() {
 		return value;
+	}
+
+	public boolean isOverwritten() {
+		return overwritten;
 	}
 
 	/**
@@ -145,12 +156,7 @@ public class Attribute extends Node {
 	 * @return the string representation
 	 */
 	public String toString() {
-		return super.toString() + "=" + value;
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		return this.getName().equals(((Attribute) o).getName());
+		return getNodeType() + ": parent=" + parent.getName() + ", " + name + "=" + value;
 	}
 
 }

@@ -40,13 +40,11 @@ public abstract class Attributable extends Node {
 		this.attributes = new TreeSet<Attribute>();
 	}
 
-	/**
-	 * Attribute set accessor method.
-	 * 
-	 * @return the set of AttributeNodes
-	 */
-	public Set<Attribute> getAttributes() {
-		return attributes;
+	public Attributable(Attributable old) {
+		super(old);
+		this.attributes = new TreeSet<Attribute>();
+		for (Attribute oldAttr : old.attributes)
+			this.attributes.add(new Attribute(old, oldAttr));
 	}
 
 	/**
@@ -75,4 +73,12 @@ public abstract class Attributable extends Node {
 		return null;
 	}
 
+	/**
+	 * Attribute set accessor method.
+	 * 
+	 * @return the set of AttributeNodes
+	 */
+	public Set<Attribute> getAttributes() {
+		return attributes;
+	}
 }

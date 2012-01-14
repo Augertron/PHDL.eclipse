@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Set;
 
 public abstract class DesignUnit extends Node {
-	protected List<Connection> connections;
 	protected List<Instance> instances;
 	protected List<SubInstance> subInsts;
-	
+	protected List<Connection> connections;
+
 	/**
 	 * Default Constructor.
 	 * 
@@ -21,42 +21,25 @@ public abstract class DesignUnit extends Node {
 	 * @see SubInstance
 	 */
 	public DesignUnit() {
-		connections = new ArrayList<Connection>();
+		super();
 		instances = new ArrayList<Instance>();
 		subInsts = new ArrayList<SubInstance>();
-		info = "";
+		connections = new ArrayList<Connection>();
 	}
 
 	/**
-	 * Copy Constructor.
 	 * 
-	 * Initializes all sets and lists of ports, sub instances, instances, and nets
-	 * based upon another DesignUnit.
-	 * 
-	 * @see Port
-	 * @see Instance
-	 * @see Net
-	 * @see SubInstance
+	 * @param newCon
+	 * @return	true, if the connection wasn't already in the list and was added successfully
+	 * 			false, otherwise
 	 */
-	public DesignUnit(DesignUnit old) {
-		this.connections = new ArrayList<Connection>();
-		this.instances = new ArrayList<Instance>();
-		this.subInsts = new ArrayList<SubInstance>();
-		
-		this.connections.addAll(old.connections);
-		this.instances.addAll(old.instances);
-		this.subInsts.addAll(old.subInsts);
-		this.info = old.info;
-	}
-	
-	public List<Instance> getInstances() {
-		return instances;
+	public boolean addConnection(Connection newCon) {
+		if (!connections.contains(newCon)) {
+			return connections.add(newCon);
+		}
+		return false;
 	}
 
-	public void setInstances(List<Instance> instances) {
-		this.instances = instances;
-	}
-	
 	/**
 	 * 
 	 * @param newInst
@@ -70,53 +53,6 @@ public abstract class DesignUnit extends Node {
 		return false;
 	}
 
-	public List<Connection> getConnections() {
-		return connections;
-	}
-
-	public void setConnections(List<Connection> connections) {
-		this.connections = connections;
-	}
-	
-	/**
-	 * 
-	 * @param newCon
-	 * @return	true, if the connection wasn't already in the list and was added successfully
-	 * 			false, otherwise
-	 */
-	public boolean addConnection(Connection newCon) {
-		if (!connections.contains(newCon)) {
-			return connections.add(newCon);
-		}
-		return false;
-	}
-	
-	public Connection getConnection(String name, int index) {
-		for (Connection c : connections) {
-			if (c.getName().equals(name) && c.getIndex() == index)
-				return c;
-		}
-		return null;
-	}
-
-	public List<Net> getNets() {
-		List<Net> nets = new ArrayList<Net>();
-		for (Connection c : connections) {
-			if (c instanceof phdl.graph.Net) {
-				nets.add((Net)c);
-			}
-		}
-		return nets;
-	}
-
-	public List<SubInstance> getSubInstances() {
-		return subInsts;
-	}
-
-	public void setSubInstances(List<SubInstance> subInsts) {
-		this.subInsts = subInsts;
-	}
-	
 	/**
 	 * 
 	 * @param newSub
@@ -128,43 +64,20 @@ public abstract class DesignUnit extends Node {
 			return subInsts.add(newSub);
 		return false;
 	}
-	
+
+	@Override
 	/**
-	 * Finds and returns a Net that has a certain name.
+	 * Checks to see if the current DesignNode is equal to
+	 * another.
 	 * 
-	 * @param name
-	 *            the name of the NetNode
-	 * @return the NetNode with the net name
+	 * @param o	the DesignNode being compared against
+	 * @return 	true, if the designs are equals
+	 * 			false, otherwise
 	 */
-	public Net getNet(String name, int index) {
-		for (Connection c : connections) {
-			if (c instanceof Net) {
-				Net n = (Net) c;
-				if (n.getName().equals(name.toUpperCase()) && n.getIndex() == index)
-					return n;
-			}
-		}
-		return null;
+	public boolean equals(Object o) {
+		return name.equals(((DesignUnit) o).getName());
 	}
-	
-	/**
-	 * Finds and returns a Port that has a certain name.
-	 * 
-	 * @param name
-	 *            the name of the NetNode
-	 * @return the NetNode with the net name
-	 */
-	public Port getPort(String name, int index) {
-		for (Connection c : connections) {
-			if (c instanceof phdl.graph.Port) {
-				Port p = (Port) c;
-				if (p.getName().equals(name.toUpperCase()) && p.getIndex() == index)
-					return p;
-			}
-		}
-		return null;
-	}
-	
+
 	public List<Port> getAllPorts(String name) {
 		List<Port> allPorts = new ArrayList<Port>();
 		for (Connection c : connections) {
@@ -174,6 +87,38 @@ public abstract class DesignUnit extends Node {
 			}
 		}
 		return allPorts;
+	}
+
+	public Connection getConnection(String name, int index) {
+		for (Connection c : connections) {
+			if (c.getName().equals(name) && c.getIndex() == index)
+				return c;
+		}
+		return null;
+	}
+
+	public List<Connection> getConnections() {
+		return connections;
+	}
+
+	public List<Connection> getConnectionsByName(String name) {
+		List<Connection> allCons = new ArrayList<Connection>();
+		for (Connection c : connections) {
+			if (c.getName().equals(name.toUpperCase()))
+				allCons.add(c);
+		}
+		return allCons;
+	}
+
+	/**
+	 * Finds and return an InstanceNode that has a certain name.
+	 * If the Instance Node has an index, the function returns null.
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public Instance getInstance(String name) {
+		return getInstance(name, -1);
 	}
 
 	/**
@@ -190,24 +135,9 @@ public abstract class DesignUnit extends Node {
 		}
 		return null;
 	}
-	
-	public SubInstance getSubInstance(String name, int index) {
-		for (SubInstance s : subInsts) {
-			if (s.getName().equals(name) && s.getIndex() == index)
-				return s;
-		}
-		return null;
-	}
 
-	/**
-	 * Finds and return an InstanceNode that has a certain name.
-	 * If the Instance Node has an index, the function returns null.
-	 * 
-	 * @param name
-	 * @return
-	 */
-	public Instance getInstance(String name) {
-		return getInstance(name, -1);
+	public List<Instance> getInstances() {
+		return instances;
 	}
 
 	/**
@@ -226,13 +156,32 @@ public abstract class DesignUnit extends Node {
 		return insts;
 	}
 
-	public List<SubInstance> getSubInstancesByName(String instName) {
-		List<SubInstance> insts = new ArrayList<SubInstance>();
-		for (SubInstance s : subInsts) {
-			if (s.getName().equals(instName))
-				insts.add(s);
+	/**
+	 * Finds and returns a Net that has a certain name.
+	 * 
+	 * @param name
+	 *            the name of the NetNode
+	 * @return the NetNode with the net name
+	 */
+	public Net getNet(String name, int index) {
+		for (Connection c : connections) {
+			if (c instanceof Net) {
+				Net n = (Net) c;
+				if (n.getName().equals(name.toUpperCase()) && n.getIndex() == index)
+					return n;
+			}
 		}
-		return insts;
+		return null;
+	}
+
+	public List<Net> getNets() {
+		List<Net> nets = new ArrayList<Net>();
+		for (Connection c : connections) {
+			if (c instanceof phdl.graph.Net) {
+				nets.add((Net) c);
+			}
+		}
+		return nets;
 	}
 
 	/**
@@ -246,13 +195,31 @@ public abstract class DesignUnit extends Node {
 		for (Connection c : connections) {
 			if (!(c instanceof phdl.graph.Net))
 				continue;
-			Net n = (Net)c;
+			Net n = (Net) c;
 			if (n.getName().equals(netName.toUpperCase()))
 				allNets.add(n);
 		}
 		return allNets;
 	}
-	
+
+	/**
+	 * Finds and returns a Port that has a certain name.
+	 * 
+	 * @param name
+	 *            the name of the NetNode
+	 * @return the NetNode with the net name
+	 */
+	public Port getPort(String name, int index) {
+		for (Connection c : connections) {
+			if (c instanceof phdl.graph.Port) {
+				Port p = (Port) c;
+				if (p.getName().equals(name.toUpperCase()) && p.getIndex() == index)
+					return p;
+			}
+		}
+		return null;
+	}
+
 	public List<Port> getPortsByName(String portName) {
 		List<Port> allPorts = new ArrayList<Port>();
 		for (Connection c : connections) {
@@ -265,13 +232,25 @@ public abstract class DesignUnit extends Node {
 		return allPorts;
 	}
 
-	public List<Connection> getConnectionsByName(String name) {
-		List<Connection> allCons = new ArrayList<Connection>();
-		for (Connection c : connections) {
-			if (c.getName().equals(name.toUpperCase()))
-				allCons.add(c);
+	public SubInstance getSubInstance(String name, int index) {
+		for (SubInstance s : subInsts) {
+			if (s.getName().equals(name) && s.getIndex() == index)
+				return s;
 		}
-		return allCons;
+		return null;
+	}
+
+	public List<SubInstance> getSubInstances() {
+		return subInsts;
+	}
+
+	public List<SubInstance> getSubInstancesByName(String instName) {
+		List<SubInstance> insts = new ArrayList<SubInstance>();
+		for (SubInstance s : subInsts) {
+			if (s.getName().equals(instName))
+				insts.add(s);
+		}
+		return insts;
 	}
 
 	/**
@@ -288,70 +267,7 @@ public abstract class DesignUnit extends Node {
 		}
 		return false;
 	}
-	
-	/**
-	 * Goes through all Nodes attached to the DesignUnit and prints
-	 * out a representation of the connections.
-	 */
-	public void printDesign() {
-		System.out.println(toString());
-		for (Connection c : getConnections()) {
-			System.out.println("\t" + c.toString());
-		}
-		for (Instance i : getInstances()) {
-			System.out.println("\t" + i.toString());
-			for (Attribute a : i.getAttributes())
-				System.out.println("\t\t" + a.toString());
-			for (Pin p : i.getPins()) {
-				if (p.getConnection() != null)
-					System.out.println("\t\t" + p.toString() + " <= " + p.getConnection().toString());
-				else if (p.isOpen())
-					System.out.println("\t\t" + p.toString() + (p.isOpen() ? " <= OPEN" : ""));
-				else
-					System.out.println("\t\t" + p.toString());
-			}
-		}
-		for (SubInstance s : getSubInstances()) {
-			System.out.println("\t" + s.toString());
-		}
-	}
-	
-	/**
-	 * Merges all net-net connections.
-	 */
-	public void superNet2() {
-		// any net that is set as visited will be deleted
-		Set<Net> deletes = new HashSet<Net>();
 
-		// go through all nets in the design
-		for (Connection c : connections) {
-			if (!(c instanceof phdl.graph.Net)) {
-				continue;
-			}
-			Net n = (Net)c;
-			if (!n.isVisited()) {
-				// call the merge routine on any unvisited net
-				n = merge(n);
-				// make sure merged net isn't deleted.
-				n.setVisited(false);
-			}
-		}
-
-		// gather up all the nets to be deleted from the design
-		for (Connection c : connections) {
-			if (!(c instanceof phdl.graph.Net)) {
-				continue;
-			}
-			Net n = (Net)c;
-			if (n.isVisited())
-				deletes.add(n);
-		}
-
-		// delete these nets from the design
-		for (Net n : deletes)
-			connections.remove(n);
-	}
-	
 	/**
 	 * Merges the names of the current net with the names of all neighbors by using a depth-first
 	 * search.
@@ -392,20 +308,159 @@ public abstract class DesignUnit extends Node {
 		// propagate the merged net back up the call-stack
 		return (Net) neighbor2;
 	}
-	
-	@Override
-	/**
-	 * Checks to see if the current DesignNode is equal to
-	 * another.
-	 * 
-	 * @param o	the DesignNode being compared against
-	 * @return 	true, if the designs are equals
-	 * 			false, otherwise
-	 */
-	public boolean equals(Object o) {
-		return name.equals(((DesignUnit) o).getName());
+
+	public void setConnections(List<Connection> connections) {
+		this.connections = connections;
 	}
-	
-	
-	
+
+	public void setInstances(List<Instance> instances) {
+		this.instances = instances;
+	}
+
+	public void setSubInstances(List<SubInstance> subInsts) {
+		this.subInsts = subInsts;
+	}
+
+	/**
+	 * Merges all net-net connections.
+	 */
+	public void superNet2() {
+		// any net that is set as visited will be deleted
+		Set<Net> deletes = new HashSet<Net>();
+
+		// go through all nets in the design
+		for (Connection c : connections) {
+			if (!(c instanceof phdl.graph.Net)) {
+				continue;
+			}
+			Net n = (Net) c;
+			if (!n.isVisited()) {
+				// call the merge routine on any unvisited net
+				n = merge(n);
+				// make sure merged net isn't deleted.
+				n.setVisited(false);
+			}
+		}
+
+		// gather up all the nets to be deleted from the design
+		for (Connection c : connections) {
+			if (!(c instanceof phdl.graph.Net)) {
+				continue;
+			}
+			Net n = (Net) c;
+			if (n.isVisited())
+				deletes.add(n);
+		}
+
+		// delete these nets from the design
+		for (Net n : deletes)
+			connections.remove(n);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(super.toString());
+		String fieldFmtStr = "  %-8s%2s%-26.26s\n";
+		String connFmtStr = "    %4d%2s%-8.8s%2s%-16.16s\n";
+		String instFmtStr = "    %4d%1s%-16.16s%1s%-12.12s%1s%-16.16s%1s%-16.16s\n";
+		String subFmtStr = "    %4d%1s%-16.16s%1s%-16.16s%1s%-24.24s\n";
+		String instIndent = "    ";
+		String connIndent = "    ";
+
+		String idx = "";
+		if (this instanceof SubInstance)
+			idx = (((SubInstance) this).getIndex() == -1) ? "" : ("("
+				+ ((SubInstance) this).getIndex() + ")");
+		sb.append(String.format(fieldFmtStr, "Name:", "", getName() + idx));
+		sb.append("\n");
+
+		if (!connections.isEmpty() || !instances.isEmpty() || !subInsts.isEmpty())
+			sb.append("  Summary:\n\n");
+
+		if (!connections.isEmpty()) {
+			sb.append("    Conn    Type          Name      \n");
+			sb.append("    ----  --------  ---------------- \n");
+			int connCount = 1;
+			for (Connection c : connections) {
+				String index = c.getIndex() != -1 ? ("[" + c.getIndex() + "]") : "";
+				sb.append(String.format(connFmtStr, connCount, " ", c.getNodeType(), " ",
+					c.getName() + index));
+				connCount++;
+			}
+			sb.append("\n");
+		}
+
+		if (!instances.isEmpty()) {
+			sb.append("    Inst       Name          Device         Parent           Group        \n");
+			sb.append("    ---- ---------------- ------------ ---------------- ----------------  \n");
+			int instCount = 1;
+			for (Instance i : instances) {
+				sb.append(String.format(instFmtStr, instCount, "", i.getName()
+					+ (i.getIndex() == -1 ? "" : ("(" + i.getIndex() + ")")), "", i.getDevice()
+					.getName(), "", i.getParent().getName(), " ", i.getGroupName()));
+				instCount++;
+			}
+			sb.append("\n");
+		}
+
+		if (!subInsts.isEmpty()) {
+			sb.append("    Sub        Name          SubDesign             Location          \n");
+			sb.append("    ---- ---------------- ---------------- ------------------------  \n");
+			int subCount = 1;
+			for (SubInstance s : subInsts) {
+				String index = s.getIndex() != -1 ? ("(" + s.getIndex() + ")") : "";
+				sb.append(String.format(subFmtStr, subCount, "", s.getName() + index, "", s
+					.getSubDesign().getName(), "",
+					s.getFileName() + ", " + s.getLine() + ":" + s.getPosition()));
+			}
+			sb.append("\n");
+		}
+
+		if (!connections.isEmpty() || !instances.isEmpty())
+			sb.append("  Details:\n");
+
+		if (!instances.isEmpty()) {
+			for (Instance i : instances) {
+				sb.append(i.toString().replace("\n", "\n" + instIndent));
+			}
+			sb.append("\n");
+		}
+
+		if (!connections.isEmpty()) {
+			for (Connection c : connections) {
+				sb.append(c.toString().replace("\n", "\n" + connIndent));
+			}
+			sb.append("\n");
+		}
+
+		if (!subInsts.isEmpty()) {
+			String nameFmtStr = "    %-8s%2s%-26.26s\n";
+			for (SubInstance s : subInsts) {
+				sb.append("\n  ======================================================================\n"
+					+ "  " + s.getNodeType() + "\n\n");
+				sb.append(String.format(nameFmtStr, "File:", "", getFileName() + ", " + getLine()
+					+ ":" + getPosition()));
+				String index = s.getIndex() != -1 ? ("(" + s.getIndex() + ")") : "";
+				sb.append(String.format(nameFmtStr, "Name: ", "", s.getName() + index));
+				String pidx = "";
+				if (s.getParent() instanceof SubInstance)
+					pidx = (((SubInstance) s.getParent()).getIndex() != -1) ? ("("
+						+ ((SubInstance) s.getParent()).getIndex() + ")") : "";
+				sb.append(String.format(nameFmtStr, "Parent: ", "", s.getParent().getName() + pidx));
+				sb.append("\n");
+
+				List<Port> ports = s.getPorts();
+				if (ports.size() > 0) {
+					for (Port p : ports) {
+						sb.append(p.toString().replace("\n", "\n    "));
+					}
+				}
+
+			}
+			sb.append("\n");
+		}
+
+		return sb.toString();
+	}
 }

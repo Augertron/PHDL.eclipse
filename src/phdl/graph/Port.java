@@ -32,9 +32,13 @@ public class Port extends Connection {
 	public Port(DesignUnit design) {
 		super(design);
 	}
-	
+
 	public Port(DesignUnit design, String name) {
 		super(design, name);
+	}
+
+	public Port(DesignUnit parent, Port oldPort) {
+		super(parent, oldPort);
 	}
 
 	@Override
