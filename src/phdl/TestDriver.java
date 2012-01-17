@@ -10,6 +10,10 @@
 
 package phdl;
 
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+
 /**
  * A unit test driver
  * 
@@ -34,16 +38,15 @@ public class TestDriver {
 	}
 
 	private static boolean runTests(boolean success) {
+		System.out.println("***Testing phdl.grammar.PhdlAST***");
+		success &= phdl.grammar.ParsePHDL.unitTest();
+		
 		System.out.println("***Testing phdl.graph.Pin***");
 		success &= phdl.graph.Pin.unitTest();
 		System.out.println("***Testing phdl.graph.Net***");
 		success &= phdl.graph.Net.unitTest();
 		System.out.println("***Testing phdl.generator.InfoGenerator***");
 		success &= phdl.generator.InfoGenerator.unitTest();
-
-		// TODO
-		System.out.println("***Testing phdl.grammar.PhdlAST***");
-		success &= phdl.grammar.ParsePHDL.unitTest();
 
 		return success;
 	}
@@ -60,6 +63,43 @@ public class TestDriver {
 		System.out.println("\tExpected: " + expected);
 		System.out.println("\tActual: " + actual);
 		return false;
+	}
+	
+	public static boolean isSubset(Collection a, Collection b) {
+		for (Object ao : a) {
+			if (!b.contains(ao)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public static boolean isEqual(Collection a, Collection b) {
+		return isSubset(a,b) && isSubset(b,a);
+	}
+	
+	public static boolean sameOrdering(List a, List b) {
+		Iterator ia = a.iterator();
+		Iterator ib = b.iterator();
+		while (ia.hasNext() && ib.hasNext()) {
+			if (!ia.next().equals(ib.next())) {
+				return false;
+			}
+		}
+		if (ia.hasNext() || ib.hasNext()) {
+			return false;
+		}
+		return true;
+	}
+	
+	public static String collToString(Collection a) {
+		String str = "";
+		for (Object ao : a) {
+			str += ao.toString();
+			str += ", ";
+		}
+		str = str.substring(0, str.length() - 2);
+		return str;
 	}
 
 }
