@@ -26,15 +26,16 @@ public abstract class Connection extends Attributable {
 		cons = new TreeSet<Connection>();
 		this.index = old.getIndex();
 		this.parent = parent;
+		setName(old.getName());
 	}
 
 	public Connection(DesignUnit parent, String name) {
 		super();
 		pins = new ArrayList<Pin>();
 		cons = new TreeSet<Connection>();
-		this.parent = parent;
-		this.name = name;
 		this.index = -1;
+		this.parent = parent;
+		setName(name);
 	}
 
 	/**
@@ -150,8 +151,8 @@ public abstract class Connection extends Attributable {
 	 * @param n
 	 *            the net to remove
 	 */
-	public void removeConnection(Net n) {
-		cons.remove(n);
+	public void removeConnection(Connection c) {
+		cons.remove(c);
 	}
 
 	public void setIndex(int index) {

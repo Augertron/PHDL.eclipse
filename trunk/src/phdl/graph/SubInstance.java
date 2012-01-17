@@ -18,48 +18,59 @@ public class SubInstance extends HierarchyUnit {
 	 */
 	public SubInstance(DesignUnit parent, SubDesign subDesign, String name) {
 		super();
+		System.out.println(name);
 		this.name = name;
 		this.parent = parent;
 		this.subDesign = subDesign;
 
-		// recursive constructor to instance each nested referenced SubDesign
 		for (SubInstance s : subDesign.subInsts) {
-			SubInstance newSubInst = new SubInstance(this, s.getSubDesign(), s.getName());
-			newSubInst.setIndex(s.getIndex());
-			newSubInst.setLine(s.getLine());
-			newSubInst.setPosition(s.getPosition());
-			newSubInst.setFileName(s.getFileName());
-			newSubInst.setInfo(s.getInfo());
-			this.subInsts.add(newSubInst);
+			SubInstance inst = new SubInstance(this, s.getSubDesign(), s.getName());
+			inst.setIndex(s.getIndex());
+			inst.setLine(s.getLine());
+			inst.setPosition(s.getPosition());
+			inst.setFileName(s.getFileName());
+			inst.setInfo(s.getInfo());
+			if (!this.subInsts.add(inst))
+				System.out.println("duplicate subinstance");
 		}
 
 		// make copies of all instances
 		for (int i = 0; i < subDesign.instances.size(); i++) {
 			Instance newInst = new Instance(this, subDesign.instances.get(i));
-			this.instances.add(newInst);
+			System.out.print(newInst);
+			if (!this.instances.add(newInst))
+				System.out.println("duplicate instance");
 		}
 
 		// make new ports and nets
 		for (int i = 0; i < subDesign.connections.size(); i++) {
 			Connection c = subDesign.connections.get(i);
-			if (c instanceof Port)
-				this.connections.add(new Port(this, (Port) c));
-			else if (c instanceof Net)
-				this.connections.add(new Net(this, (Net) c));
+			System.out.print(c);
+			if (c instanceof Port) {
+				Port newPort = new Port(this, (Port) c);
+				if (!this.connections.add(newPort))
+					System.out.print("duplicate port");
+			} else if (c instanceof Net) {
+				Net newNet = new Net(this, (Net) c);
+				if (!this.connections.add(newNet))
+					System.out.print("duplicate net");
+			}
 		}
 
-		// reconstruct all of the connection connectivity
+		// reconstruct all net and port connectivity
 		for (int i = 0; i < subDesign.connections.size(); i++) {
 			for (Connection c : subDesign.connections.get(i).getConnections()) {
 				int index = subDesign.connections.indexOf(c);
-				this.connections.get(i).addConnection(this.connections.get(index));
+				//System.out.println(c);
+				if (index > 0)
+					this.connections.get(i).addConnection(this.connections.get(index));
 			}
 		}
 
 		// reconstruct all of the pin connectivity
 		for (int i = 0; i < subDesign.instances.size(); i++) {
 			for (int p = 0; p < subDesign.instances.get(i).getPins().size(); p++) {
-				//System.out.println(subDesign.instances.get(i).getPins().get(p).toString());
+				//System.out.println(subDesign.instances.get(i).getPins().get(p));
 				if (subDesign.instances.get(i).getPins().get(p).hasConnection()) {
 					Connection subC = subDesign.instances.get(i).getPins().get(p).getConnection();
 					int index = subDesign.connections.indexOf(subC);
@@ -73,11 +84,22 @@ public class SubInstance extends HierarchyUnit {
 
 	@Override
 	public boolean equals(Object o) {
-		return super.equals(o) && this.index == ((SubInstance) o).getIndex();
+		return super.equals(((SubInstance) o).getName())
+			&& this.index == ((SubInstance) o).getIndex();
 	}
 
 	public int getIndex() {
 		return index;
+	}
+
+	@Override
+	public List<Net> getNets() {
+		List<Net> nets = new ArrayList<Net>();
+		for (Connection c : connections) {
+			if (c instanceof Net)
+				nets.add((Net) c);
+		}
+		return nets;
 	}
 
 	@Override

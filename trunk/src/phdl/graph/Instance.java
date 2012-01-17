@@ -28,7 +28,7 @@ public class Instance extends Attributable {
 	private String refPrefix;
 	private String pkg;
 	private String groupName;
-	private int index;
+	private int index = -1;;
 
 	/**
 	 * Default Constructor.
@@ -46,8 +46,6 @@ public class Instance extends Attributable {
 		this.refDes = null;
 		this.refPrefix = null;
 		this.pkg = null;
-		this.info = "";
-		this.index = -1;
 		this.groupName = null;
 	}
 
@@ -337,8 +335,7 @@ public class Instance extends Attributable {
 		String attrFmtStr = "  %4d%2s%-16.16s%2s%-24.24s%2s%-4s\n";
 		String pinFmtStr = "  %4d%2s%-8.8s%2s%-16.16s%2s%-20.20s\n";
 
-		String idx = "";
-		idx = (getIndex() == -1) ? "" : ("(" + getIndex() + ")");
+		String idx = (getIndex() == -1) ? "" : ("(" + getIndex() + ")");
 		sb.append(String.format(fieldFmtStr, "Name:", "", getName() + idx));
 		sb.append(String.format(fieldFmtStr, "Parent:", "", getParent().getName()));
 		sb.append("\n");
