@@ -82,7 +82,7 @@ public abstract class DesignUnit extends Node {
 		List<Port> allPorts = new ArrayList<Port>();
 		for (Connection c : connections) {
 			if (c instanceof Port) {
-				if (c.getName().equals(name))
+				if (c.getName().equals(name.toUpperCase()))
 					allPorts.add((Port) c);
 			}
 		}
@@ -91,7 +91,7 @@ public abstract class DesignUnit extends Node {
 
 	public Connection getConnection(String name, int index) {
 		for (Connection c : connections) {
-			if (c.getName().equals(name) && c.getIndex() == index)
+			if (c.getName().equals(name.toUpperCase()) && c.getIndex() == index)
 				return c;
 		}
 		return null;
@@ -420,13 +420,6 @@ public abstract class DesignUnit extends Node {
 		if (!connections.isEmpty() || !instances.isEmpty())
 			sb.append("  Details:\n");
 
-		if (!instances.isEmpty()) {
-			for (Instance i : instances) {
-				sb.append(i.toString().replace("\n", "\n" + instIndent));
-			}
-			sb.append("\n");
-		}
-
 		if (!connections.isEmpty()) {
 			for (Connection c : connections) {
 				sb.append(c.toString().replace("\n", "\n" + connIndent));
@@ -434,11 +427,18 @@ public abstract class DesignUnit extends Node {
 			sb.append("\n");
 		}
 
+		if (!instances.isEmpty()) {
+			for (Instance i : instances) {
+				sb.append(i.toString().replace("\n", "\n" + instIndent));
+			}
+			sb.append("\n");
+		}
+
 		if (!subInsts.isEmpty()) {
 			String nameFmtStr = "    %-8s%2s%-26.26s\n";
 			for (SubInstance s : subInsts) {
-				sb.append("\n  ======================================================================\n"
-					+ "  " + s.getNodeType() + "\n\n");
+				sb.append("\n    ======================================================================\n"
+					+ "    " + s.getNodeType() + "\n\n");
 				sb.append(String.format(nameFmtStr, "File:", "", getFileName() + ", " + getLine()
 					+ ":" + getPosition()));
 				String index = s.getIndex() != -1 ? ("(" + s.getIndex() + ")") : "";

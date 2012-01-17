@@ -776,29 +776,28 @@ portAssign[DesignUnit des, String subInstName]
 								ports.add(p);
 						}
 					}
+				}
+				for (int i = 0; i < ports.size(); i++) {
 					
-					for (int i = 0; i < ports.size(); i++) {
-						// remap the port location
-						setLocation(ports.get(i), $operand.id);
-						
-						// assign the port based on the flags
-						if ($concat.isReplicated) {
-							ports.get(i).addConnection($concat.cons.get(0));
-							$concat.cons.get(0).addConnection(ports.get(i));
-						} else if ($concat.isOpen) {
-							addWarning($operand.id, "open port will isolate design hierarchy");
-						} else {
-							// check for width mismatch
-							if (ports.size() != $concat.cons.size()) {
-								bailOut($operand.id, "port assignment left size [" + ports.size() + 
-									"] does not match right size [" + $concat.cons.size() + "]");
-							}	
-							ports.get(i).addConnection($concat.cons.get(i));
-							$concat.cons.get(i).addConnection(ports.get(i));
-						}
+					// remap the port location
+					setLocation(ports.get(i), $operand.id);
+					
+					// assign the port based on the flags
+					if ($concat.isReplicated) {
+						ports.get(i).addConnection($concat.cons.get(0));
+						$concat.cons.get(0).addConnection(ports.get(i));
+					} else if ($concat.isOpen) {
+						addWarning($operand.id, "open port will isolate design hierarchy");
+					} else {
+						// check for width mismatch
+						if (ports.size() != $concat.cons.size()) {
+							bailOut($operand.id, "port assignment left size [" + ports.size() + 
+								"] does not match right size [" + $concat.cons.size() + "]");
+						}	
+						ports.get(i).addConnection($concat.cons.get(i));
+						$concat.cons.get(i).addConnection(ports.get(i));
 					}
 				}
-					
 			} else {
 				for (SubInstance s : subInsts) {
 					if ($operand.indices == null) {

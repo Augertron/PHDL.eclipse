@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g 2012-01-14 01:51:41
+// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g 2012-01-14 11:22:20
 
 /*
     Copyright (C) 2011  Brigham Young University
@@ -687,7 +687,7 @@ public class PhdlParser extends Parser {
 
 
             // AST REWRITE
-            // elements: pinList, width, IDENT, pinType
+            // elements: width, pinList, pinType, IDENT
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -1502,7 +1502,7 @@ public class PhdlParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: IDENT, width, attrDecl
+                    // elements: width, IDENT, attrDecl
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -1882,7 +1882,7 @@ public class PhdlParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: pinAssign, IDENT, attrAssign, infoDecl, IDENT, width
+                    // elements: attrAssign, IDENT, infoDecl, IDENT, width, pinAssign
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -2036,7 +2036,7 @@ public class PhdlParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: portAssign, subAttrAssign, IDENT, width, infoDecl, IDENT
+                    // elements: subAttrAssign, infoDecl, width, portAssign, IDENT, IDENT
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -2205,7 +2205,7 @@ public class PhdlParser extends Parser {
 
 
             // AST REWRITE
-            // elements: IDENT, NEWATTR, STRING, qualifier
+            // elements: qualifier, STRING, IDENT, NEWATTR
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -2405,7 +2405,7 @@ public class PhdlParser extends Parser {
 
 
             // AST REWRITE
-            // elements: name, qualifier, NEWATTR, STRING, IDENT
+            // elements: qualifier, NEWATTR, IDENT, STRING, name
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -2639,7 +2639,7 @@ public class PhdlParser extends Parser {
 
 
             // AST REWRITE
-            // elements: COMBINE, operand, concat, qualifier
+            // elements: qualifier, concat, operand, COMBINE
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -2867,7 +2867,7 @@ public class PhdlParser extends Parser {
 
 
             // AST REWRITE
-            // elements: concat, operand, qualifier, COMBINE
+            // elements: operand, qualifier, COMBINE, concat
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -3106,7 +3106,7 @@ public class PhdlParser extends Parser {
 
 
             // AST REWRITE
-            // elements: STRING, groupBody
+            // elements: groupBody, STRING
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -4624,7 +4624,7 @@ public class PhdlParser extends Parser {
 
 
             // AST REWRITE
-            // elements: index, IDENT
+            // elements: IDENT, index
             // token labels: 
             // rule labels: retval
             // token list labels: 

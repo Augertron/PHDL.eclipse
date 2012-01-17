@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g 2012-01-14 01:51:43
+// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g 2012-01-14 11:22:22
 
 /*
     Copyright (C) 2011  Brigham Young University
@@ -2221,29 +2221,28 @@ public class PhdlAST extends TreeParser {
             								ports.add(p);
             						}
             					}
+            				}
+            				for (int i = 0; i < ports.size(); i++) {
             					
-            					for (int i = 0; i < ports.size(); i++) {
-            						// remap the port location
-            						setLocation(ports.get(i), (operand18!=null?operand18.id:null));
-            						
-            						// assign the port based on the flags
-            						if ((concat19!=null?concat19.isReplicated:false)) {
-            							ports.get(i).addConnection((concat19!=null?concat19.cons:null).get(0));
-            							(concat19!=null?concat19.cons:null).get(0).addConnection(ports.get(i));
-            						} else if ((concat19!=null?concat19.isOpen:false)) {
-            							addWarning((operand18!=null?operand18.id:null), "open port will isolate design hierarchy");
-            						} else {
-            							// check for width mismatch
-            							if (ports.size() != (concat19!=null?concat19.cons:null).size()) {
-            								bailOut((operand18!=null?operand18.id:null), "port assignment left size [" + ports.size() + 
-            									"] does not match right size [" + (concat19!=null?concat19.cons:null).size() + "]");
-            							}	
-            							ports.get(i).addConnection((concat19!=null?concat19.cons:null).get(i));
-            							(concat19!=null?concat19.cons:null).get(i).addConnection(ports.get(i));
-            						}
+            					// remap the port location
+            					setLocation(ports.get(i), (operand18!=null?operand18.id:null));
+            					
+            					// assign the port based on the flags
+            					if ((concat19!=null?concat19.isReplicated:false)) {
+            						ports.get(i).addConnection((concat19!=null?concat19.cons:null).get(0));
+            						(concat19!=null?concat19.cons:null).get(0).addConnection(ports.get(i));
+            					} else if ((concat19!=null?concat19.isOpen:false)) {
+            						addWarning((operand18!=null?operand18.id:null), "open port will isolate design hierarchy");
+            					} else {
+            						// check for width mismatch
+            						if (ports.size() != (concat19!=null?concat19.cons:null).size()) {
+            							bailOut((operand18!=null?operand18.id:null), "port assignment left size [" + ports.size() + 
+            								"] does not match right size [" + (concat19!=null?concat19.cons:null).size() + "]");
+            						}	
+            						ports.get(i).addConnection((concat19!=null?concat19.cons:null).get(i));
+            						(concat19!=null?concat19.cons:null).get(i).addConnection(ports.get(i));
             					}
             				}
-            					
             			} else {
             				for (SubInstance s : subInsts) {
             					if ((operand18!=null?operand18.indices:null) == null) {
@@ -2302,7 +2301,7 @@ public class PhdlAST extends TreeParser {
 
 
     // $ANTLR start "connectAssign"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:846:1: connectAssign[DesignUnit des] : ^( CONNECT_ASSIGN operand concat[des] ) ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:845:1: connectAssign[DesignUnit des] : ^( CONNECT_ASSIGN operand concat[des] ) ;
     public final void connectAssign(DesignUnit des) throws RecognitionException {
         PhdlAST.concat_return concat20 = null;
 
@@ -2310,8 +2309,8 @@ public class PhdlAST extends TreeParser {
 
 
         try {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:847:2: ( ^( CONNECT_ASSIGN operand concat[des] ) )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:847:4: ^( CONNECT_ASSIGN operand concat[des] )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:846:2: ( ^( CONNECT_ASSIGN operand concat[des] ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:846:4: ^( CONNECT_ASSIGN operand concat[des] )
             {
             match(input,CONNECT_ASSIGN,FOLLOW_CONNECT_ASSIGN_in_connectAssign715); 
 
@@ -2382,7 +2381,7 @@ public class PhdlAST extends TreeParser {
     };
 
     // $ANTLR start "concat"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:884:1: concat[DesignUnit des] returns [List<Connection> cons, boolean isReplicated, boolean isOpen] : ( ^( CONCAT_LIST ( operand )* ) | ^( CONCAT_REPL operand ) | ^( CONCAT_OPEN ) );
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:883:1: concat[DesignUnit des] returns [List<Connection> cons, boolean isReplicated, boolean isOpen] : ( ^( CONCAT_LIST ( operand )* ) | ^( CONCAT_REPL operand ) | ^( CONCAT_OPEN ) );
     public final PhdlAST.concat_return concat(DesignUnit des) throws RecognitionException {
         PhdlAST.concat_return retval = new PhdlAST.concat_return();
         retval.start = input.LT(1);
@@ -2394,7 +2393,7 @@ public class PhdlAST extends TreeParser {
 
         retval.cons = new ArrayList<Connection>();
         try {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:896:2: ( ^( CONCAT_LIST ( operand )* ) | ^( CONCAT_REPL operand ) | ^( CONCAT_OPEN ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:895:2: ( ^( CONCAT_LIST ( operand )* ) | ^( CONCAT_REPL operand ) | ^( CONCAT_OPEN ) )
             int alt32=3;
             switch ( input.LA(1) ) {
             case CONCAT_LIST:
@@ -2421,13 +2420,13 @@ public class PhdlAST extends TreeParser {
 
             switch (alt32) {
                 case 1 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:896:4: ^( CONCAT_LIST ( operand )* )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:895:4: ^( CONCAT_LIST ( operand )* )
                     {
                     match(input,CONCAT_LIST,FOLLOW_CONCAT_LIST_in_concat753); 
 
                     if ( input.LA(1)==Token.DOWN ) {
                         match(input, Token.DOWN, null); 
-                        // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:896:18: ( operand )*
+                        // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:895:18: ( operand )*
                         loop31:
                         do {
                             int alt31=2;
@@ -2440,7 +2439,7 @@ public class PhdlAST extends TreeParser {
 
                             switch (alt31) {
                         	case 1 :
-                        	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:896:19: operand
+                        	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:895:19: operand
                         	    {
                         	    pushFollow(FOLLOW_operand_in_concat756);
                         	    operand22=operand();
@@ -2481,7 +2480,7 @@ public class PhdlAST extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:918:4: ^( CONCAT_REPL operand )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:917:4: ^( CONCAT_REPL operand )
                     {
                     match(input,CONCAT_REPL,FOLLOW_CONCAT_REPL_in_concat776); 
 
@@ -2522,7 +2521,7 @@ public class PhdlAST extends TreeParser {
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:947:4: ^( CONCAT_OPEN )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:946:4: ^( CONCAT_OPEN )
                     {
                     match(input,CONCAT_OPEN,FOLLOW_CONCAT_OPEN_in_concat798); 
 
@@ -2554,7 +2553,7 @@ public class PhdlAST extends TreeParser {
     };
 
     // $ANTLR start "operand"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:950:1: operand returns [CommonTree id, List<Integer> indices] : ^( OPERAND val= IDENT ( index )? ) ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:949:1: operand returns [CommonTree id, List<Integer> indices] : ^( OPERAND val= IDENT ( index )? ) ;
     public final PhdlAST.operand_return operand() throws RecognitionException {
         PhdlAST.operand_return retval = new PhdlAST.operand_return();
         retval.start = input.LT(1);
@@ -2564,15 +2563,15 @@ public class PhdlAST extends TreeParser {
 
 
         try {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:954:2: ( ^( OPERAND val= IDENT ( index )? ) )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:954:4: ^( OPERAND val= IDENT ( index )? )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:953:2: ( ^( OPERAND val= IDENT ( index )? ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:953:4: ^( OPERAND val= IDENT ( index )? )
             {
             match(input,OPERAND,FOLLOW_OPERAND_in_operand819); 
 
             match(input, Token.DOWN, null); 
             val=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_operand823); 
             retval.id = val;
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:954:38: ( index )?
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:953:38: ( index )?
             int alt33=2;
             int LA33_0 = input.LA(1);
 
@@ -2581,7 +2580,7 @@ public class PhdlAST extends TreeParser {
             }
             switch (alt33) {
                 case 1 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:954:39: index
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:953:39: index
                     {
                     pushFollow(FOLLOW_index_in_operand828);
                     index24=index();
@@ -2617,7 +2616,7 @@ public class PhdlAST extends TreeParser {
     };
 
     // $ANTLR start "name"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:957:1: name returns [CommonTree id, List<Integer> indices] : ^( NAME val= IDENT ( index )? ) ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:956:1: name returns [CommonTree id, List<Integer> indices] : ^( NAME val= IDENT ( index )? ) ;
     public final PhdlAST.name_return name() throws RecognitionException {
         PhdlAST.name_return retval = new PhdlAST.name_return();
         retval.start = input.LT(1);
@@ -2627,15 +2626,15 @@ public class PhdlAST extends TreeParser {
 
 
         try {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:961:2: ( ^( NAME val= IDENT ( index )? ) )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:961:4: ^( NAME val= IDENT ( index )? )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:960:2: ( ^( NAME val= IDENT ( index )? ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:960:4: ^( NAME val= IDENT ( index )? )
             {
             match(input,NAME,FOLLOW_NAME_in_name851); 
 
             match(input, Token.DOWN, null); 
             val=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_name855); 
             retval.id = val;
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:961:35: ( index )?
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:960:35: ( index )?
             int alt34=2;
             int LA34_0 = input.LA(1);
 
@@ -2644,7 +2643,7 @@ public class PhdlAST extends TreeParser {
             }
             switch (alt34) {
                 case 1 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:961:36: index
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:960:36: index
                     {
                     pushFollow(FOLLOW_index_in_name860);
                     index25=index();
@@ -2676,7 +2675,7 @@ public class PhdlAST extends TreeParser {
 
 
     // $ANTLR start "index"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:964:1: index returns [List<Integer> indices] : ( ^( BOUNDS hi= INT lo= INT ) | ^( INDICES (idx= INT )+ ) );
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:963:1: index returns [List<Integer> indices] : ( ^( BOUNDS hi= INT lo= INT ) | ^( INDICES (idx= INT )+ ) );
     public final List<Integer> index() throws RecognitionException {
         List<Integer> indices = null;
 
@@ -2686,7 +2685,7 @@ public class PhdlAST extends TreeParser {
 
         indices = new ArrayList<Integer>();
         try {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:971:2: ( ^( BOUNDS hi= INT lo= INT ) | ^( INDICES (idx= INT )+ ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:970:2: ( ^( BOUNDS hi= INT lo= INT ) | ^( INDICES (idx= INT )+ ) )
             int alt36=2;
             int LA36_0 = input.LA(1);
 
@@ -2704,7 +2703,7 @@ public class PhdlAST extends TreeParser {
             }
             switch (alt36) {
                 case 1 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:971:4: ^( BOUNDS hi= INT lo= INT )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:970:4: ^( BOUNDS hi= INT lo= INT )
                     {
                     match(input,BOUNDS,FOLLOW_BOUNDS_in_index887); 
 
@@ -2726,12 +2725,12 @@ public class PhdlAST extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:981:4: ^( INDICES (idx= INT )+ )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:980:4: ^( INDICES (idx= INT )+ )
                     {
                     match(input,INDICES,FOLLOW_INDICES_in_index906); 
 
                     match(input, Token.DOWN, null); 
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:981:14: (idx= INT )+
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:980:14: (idx= INT )+
                     int cnt35=0;
                     loop35:
                     do {
@@ -2745,7 +2744,7 @@ public class PhdlAST extends TreeParser {
 
                         switch (alt35) {
                     	case 1 :
-                    	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:981:15: idx= INT
+                    	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:980:15: idx= INT
                     	    {
                     	    idx=(CommonTree)match(input,INT,FOLLOW_INT_in_index911); 
                     	    indices.add(Integer.parseInt((idx!=null?idx.getText():null)));
@@ -2782,7 +2781,7 @@ public class PhdlAST extends TreeParser {
 
 
     // $ANTLR start "width"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:984:1: width returns [List<Integer> indices] : ^( WIDTH hi= INT lo= INT ) ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:983:1: width returns [List<Integer> indices] : ^( WIDTH hi= INT lo= INT ) ;
     public final List<Integer> width() throws RecognitionException {
         List<Integer> indices = null;
 
@@ -2791,8 +2790,8 @@ public class PhdlAST extends TreeParser {
 
         indices = new ArrayList<Integer>();
         try {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:986:2: ( ^( WIDTH hi= INT lo= INT ) )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:986:4: ^( WIDTH hi= INT lo= INT )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:985:2: ( ^( WIDTH hi= INT lo= INT ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:985:4: ^( WIDTH hi= INT lo= INT )
             {
             match(input,WIDTH,FOLLOW_WIDTH_in_width937); 
 
@@ -2826,7 +2825,7 @@ public class PhdlAST extends TreeParser {
 
 
     // $ANTLR start "pinList"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:998:1: pinList returns [List<String> list] : ^( PIN_LIST (num1= INT | num2= IDENT | num3= PINNUM )+ ) ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:997:1: pinList returns [List<String> list] : ^( PIN_LIST (num1= INT | num2= IDENT | num3= PINNUM )+ ) ;
     public final List<String> pinList() throws RecognitionException {
         List<String> list = null;
 
@@ -2836,13 +2835,13 @@ public class PhdlAST extends TreeParser {
 
         list = new ArrayList<String>();
         try {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1000:2: ( ^( PIN_LIST (num1= INT | num2= IDENT | num3= PINNUM )+ ) )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1000:4: ^( PIN_LIST (num1= INT | num2= IDENT | num3= PINNUM )+ )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:999:2: ( ^( PIN_LIST (num1= INT | num2= IDENT | num3= PINNUM )+ ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:999:4: ^( PIN_LIST (num1= INT | num2= IDENT | num3= PINNUM )+ )
             {
             match(input,PIN_LIST,FOLLOW_PIN_LIST_in_pinList970); 
 
             match(input, Token.DOWN, null); 
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1001:2: (num1= INT | num2= IDENT | num3= PINNUM )+
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1000:2: (num1= INT | num2= IDENT | num3= PINNUM )+
             int cnt37=0;
             loop37:
             do {
@@ -2868,7 +2867,7 @@ public class PhdlAST extends TreeParser {
 
                 switch (alt37) {
             	case 1 :
-            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1001:4: num1= INT
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1000:4: num1= INT
             	    {
             	    num1=(CommonTree)match(input,INT,FOLLOW_INT_in_pinList977); 
             	    list.add((num1!=null?num1.getText():null));
@@ -2876,7 +2875,7 @@ public class PhdlAST extends TreeParser {
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1002:4: num2= IDENT
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1001:4: num2= IDENT
             	    {
             	    num2=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_pinList986); 
             	    list.add((num2!=null?num2.getText():null));
@@ -2884,7 +2883,7 @@ public class PhdlAST extends TreeParser {
             	    }
             	    break;
             	case 3 :
-            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1003:4: num3= PINNUM
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1002:4: num3= PINNUM
             	    {
             	    num3=(CommonTree)match(input,PINNUM,FOLLOW_PINNUM_in_pinList995); 
             	    list.add((num3!=null?num3.getText():null));
@@ -2919,18 +2918,18 @@ public class PhdlAST extends TreeParser {
 
 
     // $ANTLR start "pinType"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1007:1: pinType returns [PinType type] : ^( PIN_TYPE ( PIN | INPIN | OUTPIN | IOPIN | PWRPIN | SUPPIN ) ) ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1006:1: pinType returns [PinType type] : ^( PIN_TYPE ( PIN | INPIN | OUTPIN | IOPIN | PWRPIN | SUPPIN ) ) ;
     public final PinType pinType() throws RecognitionException {
         PinType type = null;
 
         try {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1008:2: ( ^( PIN_TYPE ( PIN | INPIN | OUTPIN | IOPIN | PWRPIN | SUPPIN ) ) )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1008:4: ^( PIN_TYPE ( PIN | INPIN | OUTPIN | IOPIN | PWRPIN | SUPPIN ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1007:2: ( ^( PIN_TYPE ( PIN | INPIN | OUTPIN | IOPIN | PWRPIN | SUPPIN ) ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1007:4: ^( PIN_TYPE ( PIN | INPIN | OUTPIN | IOPIN | PWRPIN | SUPPIN ) )
             {
             match(input,PIN_TYPE,FOLLOW_PIN_TYPE_in_pinType1019); 
 
             match(input, Token.DOWN, null); 
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1009:2: ( PIN | INPIN | OUTPIN | IOPIN | PWRPIN | SUPPIN )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1008:2: ( PIN | INPIN | OUTPIN | IOPIN | PWRPIN | SUPPIN )
             int alt38=6;
             switch ( input.LA(1) ) {
             case PIN:
@@ -2972,7 +2971,7 @@ public class PhdlAST extends TreeParser {
 
             switch (alt38) {
                 case 1 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1009:4: PIN
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1008:4: PIN
                     {
                     match(input,PIN,FOLLOW_PIN_in_pinType1025); 
                     type = PinType.PIN;
@@ -2980,7 +2979,7 @@ public class PhdlAST extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1010:4: INPIN
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1009:4: INPIN
                     {
                     match(input,INPIN,FOLLOW_INPIN_in_pinType1033); 
                     type = PinType.INPIN;
@@ -2988,7 +2987,7 @@ public class PhdlAST extends TreeParser {
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1011:4: OUTPIN
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1010:4: OUTPIN
                     {
                     match(input,OUTPIN,FOLLOW_OUTPIN_in_pinType1040); 
                     type = PinType.OUTPIN;
@@ -2996,7 +2995,7 @@ public class PhdlAST extends TreeParser {
                     }
                     break;
                 case 4 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1012:4: IOPIN
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1011:4: IOPIN
                     {
                     match(input,IOPIN,FOLLOW_IOPIN_in_pinType1047); 
                     type = PinType.IOPIN;
@@ -3004,7 +3003,7 @@ public class PhdlAST extends TreeParser {
                     }
                     break;
                 case 5 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1013:4: PWRPIN
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1012:4: PWRPIN
                     {
                     match(input,PWRPIN,FOLLOW_PWRPIN_in_pinType1054); 
                     type = PinType.PWRPIN;
@@ -3012,7 +3011,7 @@ public class PhdlAST extends TreeParser {
                     }
                     break;
                 case 6 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1014:4: SUPPIN
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1013:4: SUPPIN
                     {
                     match(input,SUPPIN,FOLLOW_SUPPIN_in_pinType1061); 
                     type = PinType.SUPPIN;
@@ -3044,7 +3043,7 @@ public class PhdlAST extends TreeParser {
     };
 
     // $ANTLR start "infoDecl"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1017:1: infoDecl returns [CommonTree info, List<Integer> indices] : ^( INFO_DECL ( index )? (st= STRING )+ ) ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1016:1: infoDecl returns [CommonTree info, List<Integer> indices] : ^( INFO_DECL ( index )? (st= STRING )+ ) ;
     public final PhdlAST.infoDecl_return infoDecl() throws RecognitionException {
         PhdlAST.infoDecl_return retval = new PhdlAST.infoDecl_return();
         retval.start = input.LT(1);
@@ -3054,13 +3053,13 @@ public class PhdlAST extends TreeParser {
 
 
         try {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1018:2: ( ^( INFO_DECL ( index )? (st= STRING )+ ) )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1018:5: ^( INFO_DECL ( index )? (st= STRING )+ )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1017:2: ( ^( INFO_DECL ( index )? (st= STRING )+ ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1017:5: ^( INFO_DECL ( index )? (st= STRING )+ )
             {
             match(input,INFO_DECL,FOLLOW_INFO_DECL_in_infoDecl1083); 
 
             match(input, Token.DOWN, null); 
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1018:17: ( index )?
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1017:17: ( index )?
             int alt39=2;
             int LA39_0 = input.LA(1);
 
@@ -3069,7 +3068,7 @@ public class PhdlAST extends TreeParser {
             }
             switch (alt39) {
                 case 1 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1018:17: index
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1017:17: index
                     {
                     pushFollow(FOLLOW_index_in_infoDecl1085);
                     index26=index();
@@ -3083,7 +3082,7 @@ public class PhdlAST extends TreeParser {
             }
 
             retval.indices = index26;
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1019:3: (st= STRING )+
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1018:3: (st= STRING )+
             int cnt40=0;
             loop40:
             do {
@@ -3097,7 +3096,7 @@ public class PhdlAST extends TreeParser {
 
                 switch (alt40) {
             	case 1 :
-            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1019:4: st= STRING
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1018:4: st= STRING
             	    {
             	    st=(CommonTree)match(input,STRING,FOLLOW_STRING_in_infoDecl1096); 
             	    retval.info = st;
