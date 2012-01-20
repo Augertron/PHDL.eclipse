@@ -1,13 +1,14 @@
 package phdl.graph;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SubInstance extends HierarchyUnit {
 
 	private String refPrefix;
 	private SubDesign subDesign;
-	private int index = -1;
 	private DesignUnit parent;
 
 	/**
@@ -18,7 +19,6 @@ public class SubInstance extends HierarchyUnit {
 	 */
 	public SubInstance(DesignUnit parent, SubDesign subDesign, String name) {
 		super();
-		System.out.println(name);
 		this.name = name;
 		this.parent = parent;
 		this.subDesign = subDesign;
@@ -30,29 +30,27 @@ public class SubInstance extends HierarchyUnit {
 			inst.setPosition(s.getPosition());
 			inst.setFileName(s.getFileName());
 			inst.setInfo(s.getInfo());
-			if (!this.subInsts.add(inst))
+			if (!this.addSubInst(inst))
 				System.out.println("duplicate subinstance");
 		}
 
 		// make copies of all instances
 		for (int i = 0; i < subDesign.instances.size(); i++) {
 			Instance newInst = new Instance(this, subDesign.instances.get(i));
-			System.out.print(newInst);
-			if (!this.instances.add(newInst))
+			if (!this.addInstance(newInst))
 				System.out.println("duplicate instance");
 		}
 
 		// make new ports and nets
 		for (int i = 0; i < subDesign.connections.size(); i++) {
 			Connection c = subDesign.connections.get(i);
-			System.out.print(c);
 			if (c instanceof Port) {
 				Port newPort = new Port(this, (Port) c);
-				if (!this.connections.add(newPort))
+				if (!this.addConnection(newPort))
 					System.out.print("duplicate port");
 			} else if (c instanceof Net) {
 				Net newNet = new Net(this, (Net) c);
-				if (!this.connections.add(newNet))
+				if (!this.addConnection(newNet))
 					System.out.print("duplicate net");
 			}
 		}
@@ -61,21 +59,18 @@ public class SubInstance extends HierarchyUnit {
 		for (int i = 0; i < subDesign.connections.size(); i++) {
 			for (Connection c : subDesign.connections.get(i).getConnections()) {
 				int index = subDesign.connections.indexOf(c);
-				//System.out.println(c);
-				if (index > 0)
-					this.connections.get(i).addConnection(this.connections.get(index));
+				if (index != -1)
+					this.getConnection(i).addConnection(this.getConnection(index));
 			}
 		}
 
 		// reconstruct all of the pin connectivity
 		for (int i = 0; i < subDesign.instances.size(); i++) {
 			for (int p = 0; p < subDesign.instances.get(i).getPins().size(); p++) {
-				//System.out.println(subDesign.instances.get(i).getPins().get(p));
 				if (subDesign.instances.get(i).getPins().get(p).hasConnection()) {
 					Connection subC = subDesign.instances.get(i).getPins().get(p).getConnection();
 					int index = subDesign.connections.indexOf(subC);
-					this.instances.get(i).getPins().get(p)
-						.setConnection(this.connections.get(index));
+					this.instances.get(i).getPins().get(p).setConnection(this.connections.get(index));
 					this.connections.get(index).addPin(this.instances.get(i).getPins().get(p));
 				}
 			}
@@ -84,12 +79,7 @@ public class SubInstance extends HierarchyUnit {
 
 	@Override
 	public boolean equals(Object o) {
-		return super.equals(((SubInstance) o).getName())
-			&& this.index == ((SubInstance) o).getIndex();
-	}
-
-	public int getIndex() {
-		return index;
+		return this.name.equals(((SubInstance) o).getName()) && this.getIndex() == ((SubInstance) o).getIndex();
 	}
 
 	@Override
@@ -128,12 +118,23 @@ public class SubInstance extends HierarchyUnit {
 		return subDesign;
 	}
 
-	public void setDesign(SubDesign design) {
-		this.subDesign = design;
+	public Map<String, List<Port>> portsToMap() {
+		Map<String, List<Port>> map = new HashMap<String, List<Port>>();
+		for (Connection c : connections) {
+			if (c instanceof Port) {
+				if (!map.keySet().contains(c.getName())) {
+					List<Port> newList = new ArrayList<Port>();
+					newList.add((Port) c);
+					map.put(c.getName(), newList);
+				} else
+					map.get(c.getName()).add((Port) c);
+			}
+		}
+		return map;
 	}
 
-	public void setIndex(int index) {
-		this.index = index;
+	public void setDesign(SubDesign design) {
+		this.subDesign = design;
 	}
 
 	public void setParent(DesignUnit parent) {

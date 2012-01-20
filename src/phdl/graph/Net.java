@@ -20,8 +20,6 @@ import phdl.TestDriver;
  */
 public class Net extends Connection {
 
-	private boolean visited;
-
 	/**
 	 * Default Constructor.
 	 * 
@@ -32,31 +30,12 @@ public class Net extends Connection {
 		super(design);
 	}
 
-	public Net(DesignUnit design, String name) {
-		super(design, name);
-	}
-
 	public Net(DesignUnit parent, Net oldNet) {
 		super(parent, oldNet);
 	}
 
-	/**
-	 * Helper acccessor method for a Depth First Search.
-	 * 
-	 * @return true, if this Node has been visited false, otherwise
-	 */
-	public boolean isVisited() {
-		return visited;
-	}
-
-	/**
-	 * Helper mutator method for a Depth First Search.
-	 * 
-	 * @param visited
-	 *            the new value of visited
-	 */
-	public void setVisited(boolean visited) {
-		this.visited = visited;
+	public Net(DesignUnit design, String name) {
+		super(design, name);
 	}
 
 	@Override
@@ -103,9 +82,8 @@ public class Net extends Connection {
 		 */
 		testNum++;
 		Net testNet1 = new Net(null);
-		if (testNet1.visited != false) {
-			success = TestDriver.displayError(testNum, "public Net(Design design)",
-				"visited should be false");
+		if (testNet1.isVisited() != false) {
+			success = TestDriver.displayError(testNum, "public Net(Design design)", "visited should be false");
 		}
 
 		/**
@@ -128,10 +106,9 @@ public class Net extends Connection {
 			success = TestDriver.displayError(testNum, "public Net(Design design)",
 				"initially, the net should not be marked visited");
 		}
-		testNet2.visited = true;
+		testNet2.setVisited(true);
 		if (!testNet2.isVisited()) {
-			success = TestDriver.displayError(testNum, "public Net(Design design)",
-				"the net should be marked visited");
+			success = TestDriver.displayError(testNum, "public Net(Design design)", "the net should be marked visited");
 		}
 
 		/**
@@ -140,8 +117,8 @@ public class Net extends Connection {
 		 */
 		testNum++;
 		if (testNet2.getNodeType() != NodeType.NET) {
-			success = TestDriver.displayError(testNum, "public NodeType getNodeType()",
-				"incorrect node type", NodeType.NET.toString(), testNet2.getNodeType().toString());
+			success = TestDriver.displayError(testNum, "public NodeType getNodeType()", "incorrect node type",
+				NodeType.NET.toString(), testNet2.getNodeType().toString());
 		}
 
 		return success;

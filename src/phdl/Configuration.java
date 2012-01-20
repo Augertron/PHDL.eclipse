@@ -13,10 +13,9 @@ public class Configuration {
 		+ " * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR\r\n"
 		+ " * PURPOSE. See the GNU General Public License for more details. You should have received a copy of\r\n"
 		+ " * the GNU General Public License along with this program. If not, see\r\n"
-		+ " * <http://www.gnu.org/licenses/>.\n\n" + "" + "Usage:\n\n"
-		+ "\t<*.phdl> <*.phdl> ... [-w][-d][-v]\n\n"
-		+ "\tOne or more design phdl files followed by optional switches.\n"
-		+ "\t-w\tsupress warnings\n" + "\t-d\tenable dotty file dump for graph viewing\n"
+		+ " * <http://www.gnu.org/licenses/>.\n\n" + "" + "Usage:\n\n" + "\t<*.phdl> <*.phdl> ... [-w][-d][-v]\n\n"
+		+ "\tOne or more design phdl files followed by optional switches.\n" + "\t-w\tsupress warnings\n"
+		+ "\t-d\tenable dotty file dump for graph viewing\n"
 		+ "\t-v\tenable verbose error reporting (will not bail out simple parse errors)\n"
 		+ "\t-e\toutput script for EAGLE PCB\n\n";
 
@@ -30,6 +29,7 @@ public class Configuration {
 	private boolean eagle;
 	private boolean clean;
 	private boolean report;
+	private boolean hierarchy;
 	private final List<String> fileNames;
 
 	public Configuration(String[] args) {
@@ -52,6 +52,8 @@ public class Configuration {
 				setClean(true);
 			else if (args[i].equals("-r"))
 				setReport(true);
+			else if (args[i].equals("-h"))
+				setHierarchy(true);
 			else if (args[i].equals("?") || args[i].equals("-help")) {
 				System.out.println(getUsage());
 				System.exit(1);
@@ -89,6 +91,10 @@ public class Configuration {
 		return eagle;
 	}
 
+	public boolean isHierarchy() {
+		return hierarchy;
+	}
+
 	public boolean isReport() {
 		return report;
 	}
@@ -111,6 +117,10 @@ public class Configuration {
 
 	public void setEagle(boolean eagle) {
 		this.eagle = eagle;
+	}
+
+	public void setHierarchy(boolean hiearchy) {
+		this.hierarchy = hiearchy;
 	}
 
 	public void setReport(boolean report) {

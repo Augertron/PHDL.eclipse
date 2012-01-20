@@ -11,7 +11,9 @@
 package phdl.graph;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A class that represents a device instance in PHDL.
@@ -101,8 +103,7 @@ public class Instance extends Attributable {
 
 	@Override
 	public boolean equals(Object o) {
-		return this.name.equals(((Instance) o).getName())
-			&& this.index == ((Instance) o).getIndex();
+		return this.name.equals(((Instance) o).getName()) && this.index == ((Instance) o).getIndex();
 	}
 
 	/**
@@ -176,6 +177,10 @@ public class Instance extends Attributable {
 
 	public int getIndex() {
 		return index;
+	}
+
+	public String getNameIndex() {
+		return this.name + (hasIndex() ? this.index : "");
 	}
 
 	@Override
@@ -254,6 +259,13 @@ public class Instance extends Attributable {
 		return refPrefix;
 	}
 
+	public boolean hasIndex() {
+		if (getIndex() == -1)
+			return false;
+		else
+			return true;
+	}
+
 	/**
 	 * Checks to see if there are any pins in the Instance.
 	 * 
@@ -261,6 +273,19 @@ public class Instance extends Attributable {
 	 */
 	public boolean hasPins() {
 		return (!pins.isEmpty());
+	}
+
+	public Map<String, List<Pin>> pinsToMap() {
+		Map<String, List<Pin>> map = new HashMap<String, List<Pin>>();
+		for (Pin p : pins) {
+			if (!map.keySet().contains(p.getName())) {
+				List<Pin> newList = new ArrayList<Pin>();
+				newList.add(p);
+				map.put(p.getName(), newList);
+			} else
+				map.get(p.getName()).add(p);
+		}
+		return map;
 	}
 
 	/**
@@ -338,6 +363,7 @@ public class Instance extends Attributable {
 		String idx = (getIndex() == -1) ? "" : ("(" + getIndex() + ")");
 		sb.append(String.format(fieldFmtStr, "Name:", "", getName() + idx));
 		sb.append(String.format(fieldFmtStr, "Parent:", "", getParent().getName()));
+		sb.append(String.format(fieldFmtStr, "ID:", "", Integer.toHexString(System.identityHashCode(this))));
 		sb.append("\n");
 
 		if (!getAttributes().isEmpty()) {
@@ -345,9 +371,8 @@ public class Instance extends Attributable {
 			sb.append("  ----  ----------------  ------------------------  ----  \n");
 			int attrCount = 1;
 			for (Attribute a : getAttributes()) {
-				sb.append(String.format(attrFmtStr, attrCount, "  ", a.getName(), "  ", a
-					.getValue().equals("") ? "(empty)" : a.getValue(), "  ",
-					a.isOverwritten() ? "yes" : "no"));
+				sb.append(String.format(attrFmtStr, attrCount, "  ", a.getName(), "  ",
+					a.getValue().equals("") ? "(empty)" : a.getValue(), "  ", a.isOverwritten() ? "yes" : "no"));
 				attrCount++;
 			}
 		}
@@ -361,16 +386,15 @@ public class Instance extends Attributable {
 				String index = (p.getIndex() != -1 ? ("[" + p.getIndex() + "]") : "");
 				String connection = "";
 				if (p.hasConnection()) {
-					connection = p.getConnection().getNodeType() + ": "
-						+ p.getConnection().getName();
+					connection = p.getConnection().getNodeType() + ": " + p.getConnection().getName();
 					if (p.getConnection().getIndex() != -1)
 						connection += "[" + p.getConnection().getIndex() + "]";
 				} else if (p.isOpen())
 					connection += "OPEN";
 				else
 					connection += "(not assigned)";
-				sb.append(String.format(pinFmtStr, pinCount, "  ", p.getPinType(), "  ",
-					p.getName() + index, "  ", connection));
+				sb.append(String.format(pinFmtStr, pinCount, "  ", p.getPinType(), "  ", p.getName() + index, "  ",
+					connection));
 				pinCount++;
 			}
 			sb.append("\n");
