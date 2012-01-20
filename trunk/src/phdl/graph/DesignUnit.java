@@ -1,14 +1,20 @@
 package phdl.graph;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public abstract class DesignUnit extends Node {
 	protected List<Instance> instances;
 	protected List<SubInstance> subInsts;
 	protected List<Connection> connections;
+	protected int index = -1;
 
 	/**
 	 * Default Constructor.
@@ -65,6 +71,11 @@ public abstract class DesignUnit extends Node {
 		return false;
 	}
 
+	private void clearVisitedConnections() {
+		for (Connection c : connections)
+			c.setVisited(false);
+	}
+
 	@Override
 	/**
 	 * Checks to see if the current DesignNode is equal to
@@ -75,7 +86,7 @@ public abstract class DesignUnit extends Node {
 	 * 			false, otherwise
 	 */
 	public boolean equals(Object o) {
-		return name.equals(((DesignUnit) o).getName());
+		return name.equals(((DesignUnit) o).getName()) && index == ((DesignUnit) o).index;
 	}
 
 	public List<Port> getAllPorts(String name) {
@@ -87,6 +98,10 @@ public abstract class DesignUnit extends Node {
 			}
 		}
 		return allPorts;
+	}
+
+	public Connection getConnection(int i) {
+		return connections.get(i);
 	}
 
 	public Connection getConnection(String name, int index) {
@@ -108,6 +123,10 @@ public abstract class DesignUnit extends Node {
 				allCons.add(c);
 		}
 		return allCons;
+	}
+
+	public int getIndex() {
+		return index;
 	}
 
 	/**
@@ -154,6 +173,10 @@ public abstract class DesignUnit extends Node {
 				insts.add(i);
 		}
 		return insts;
+	}
+
+	public String getNameIndex() {
+		return this.name + (hasIndex() ? this.index : "");
 	}
 
 	/**
@@ -253,6 +276,13 @@ public abstract class DesignUnit extends Node {
 		return insts;
 	}
 
+	public boolean hasIndex() {
+		if (getIndex() == -1)
+			return false;
+		else
+			return true;
+	}
+
 	/**
 	 * Checks to see if a particular device is instanced in the design.
 	 * 
@@ -309,8 +339,27 @@ public abstract class DesignUnit extends Node {
 		return (Net) neighbor2;
 	}
 
+	private Map<String, List<Net>> netsToMap() {
+		Map<String, List<Net>> map = new HashMap<String, List<Net>>();
+		for (Connection c : connections) {
+			if (c instanceof Net) {
+				if (!map.keySet().contains(c.getName())) {
+					List<Net> newList = new ArrayList<Net>();
+					newList.add((Net) c);
+					map.put(c.getName(), newList);
+				} else
+					map.get(c.getName()).add((Net) c);
+			}
+		}
+		return map;
+	}
+
 	public void setConnections(List<Connection> connections) {
 		this.connections = connections;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
 	}
 
 	public void setInstances(List<Instance> instances) {
@@ -357,6 +406,232 @@ public abstract class DesignUnit extends Node {
 			connections.remove(n);
 	}
 
+	/**
+	 * Recursive routine that generates a DOT formated string of each DesignUnit
+	 * 
+	 * @param fileName
+	 *            the name of the file being written
+	 */
+	public void toDot() {
+		StringBuilder sb = new StringBuilder();
+
+		// Header information
+		String desType = "(SUBDESIGN)";
+		if (this instanceof Design)
+			desType = " (TOP)";
+		sb.append("//PHDL Generated Dot file\n//Design unit: " + this.getName() + desType + "\n//File: "
+			+ this.getFileName() + ", line " + this.getLine() + ":" + this.getPosition() + "\n\n");
+		sb.append("graph " + this.getName() + " {\n\n");
+
+		// Instances
+		sb.append("\t// Instances\n");
+		for (Instance i : this.instances) {
+			String iName = i.getNameIndex();
+			sb.append("\tsubgraph \"cluster_" + iName + "\" {\n");
+			sb.append("\t\tstyle=filled;\n");
+			sb.append("\t\tcolor=lightgrey;\n");
+			sb.append("\t\tlabel=\"Instance: " + iName + "\";\n");
+
+			// Instance Attributes
+			if (!i.getAttributes().isEmpty()) {
+				sb.append("\t\tsubgraph \"cluster_" + iName + "_attributes\" {\n");
+				sb.append("\t\t\tlabel=\"Attributes:\";\n");
+				sb.append("\t\t\tnode [shape=none];\n");
+				sb.append("\t\t\t\"" + iName + "_attrs\" [label=\"");
+			}
+			for (Attribute a : i.getAttributes())
+				sb.append(a.getName() + " = " + a.getValue() + "\\n");
+			if (!i.getAttributes().isEmpty())
+				sb.append("\"];\n\t\t}\n");
+
+			// Instance Pins
+			Map<String, List<Pin>> map = i.pinsToMap();
+			if (!map.isEmpty()) {
+				sb.append("\t\tsubgraph \"cluster_" + iName + "_pins\" {\n");
+				sb.append("\t\t\tlabel=\"Pins:\";\n");
+				sb.append("\t\t\tnode [shape=record, width=0.25, height=0.25];\n");
+			}
+			for (String s : map.keySet()) {
+				int msb = map.get(s).get(0).getIndex();
+				int lsb = map.get(s).get(map.get(s).size() - 1).getIndex();
+				String array = (msb == lsb) ? "[" + msb + "]" : "[" + msb + ":" + lsb + "]";
+				sb.append("\t\t\tsubgraph \"cluster_" + iName + "_pins_" + s + array + "\" {\n");
+				if (map.get(s).size() == 1) {
+					Pin p = map.get(s).get(0);
+					sb.append("\t\t\t\tlabel=\"" + s + (p.hasIndex() ? array : "") + "\";\n");
+					sb.append("\t\t\t\t\"" + iName + "_" + s);
+					sb.append("\" [label=\"<" + p.getIndex() + "> " + p.getPinMapping() + "\"];\n");
+					sb.append("\t\t\t}\n");
+				} else {
+					sb.append("\t\t\t\tlabel=\"" + s + array + "\";\n");
+					sb.append("\t\t\t\t\"" + iName + "_" + s + "\" [label=\"");
+					for (Pin p : map.get(s))
+						sb.append("<" + p.getIndex() + "> " + p.getPinMapping() + " |");
+					sb.delete(sb.length() - 2, sb.length());
+					sb.append("\"];\n\t\t\t}\n");
+				}
+			}
+			if (!map.isEmpty())
+				sb.append("\t\t}\n");
+
+			sb.append("\t}\n\n");
+		}
+
+		// SubInstances
+		sb.append("\t// SubInstances\n");
+		for (SubInstance i : subInsts) {
+			String iName = i.getNameIndex();
+			sb.append("\tsubgraph \"cluster_" + iName + "\" {\n");
+			sb.append("\t\tstyle=filled;\n");
+			sb.append("\t\tcolor=lightgrey;\n");
+			sb.append("\t\tlabel=\"SubInstance: " + iName + "\";\n");
+
+			// SubInstance ports
+			Map<String, List<Port>> map = i.portsToMap();
+			if (!map.isEmpty()) {
+				sb.append("\t\tsubgraph \"cluster_" + iName + "_ports\" {\n");
+				sb.append("\t\t\tlabel=\"Ports:\";\n");
+				sb.append("\t\t\tnode [shape=record, width=0.25, height=0.25];\n");
+			}
+			for (String s : map.keySet()) {
+				int msb = map.get(s).get(0).getIndex();
+				int lsb = map.get(s).get(map.get(s).size() - 1).getIndex();
+				String array = (msb == lsb) ? "[" + msb + "]" : "[" + msb + ":" + lsb + "]";
+				sb.append("\t\t\tsubgraph \"cluster_" + iName + "_ports_" + s + array + "\" {\n");
+				if (map.get(s).size() == 1) {
+					Port p = map.get(s).get(0);
+					sb.append("\t\t\t\tlabel=\"" + s + (p.hasIndex() ? array : "") + "\";\n");
+					sb.append("\t\t\t\t\"" + iName + "_" + s);
+					sb.append("\" [label=\"<" + p.getIndex() + "> " + p.getIndex() + "\"];\n");
+					sb.append("\t\t\t}\n");
+				} else {
+					sb.append("\t\t\t\tlabel=\"" + s + array + "\";\n");
+					sb.append("\t\t\t\t\"" + iName + "_" + s + "\" [label=\"");
+					for (Port p : map.get(s))
+						sb.append("<" + p.getIndex() + "> " + p.getIndex() + " |");
+					sb.delete(sb.length() - 2, sb.length());
+					sb.append("\"];\n\t\t\t}\n");
+				}
+			}
+			if (!map.isEmpty())
+				sb.append("\t\t}\n");
+
+			sb.append("\t}\n\n");
+		}
+
+		// Nets
+		sb.append("\t// Nets\n");
+		Map<String, List<Net>> netMap = this.netsToMap();
+		for (String s : netMap.keySet()) {
+			int msb = netMap.get(s).get(0).getIndex();
+			int lsb = netMap.get(s).get(netMap.get(s).size() - 1).getIndex();
+			String array = (msb == lsb) ? "[" + msb + "]" : "[" + msb + ":" + lsb + "]";
+			sb.append("\tsubgraph \"cluster_nets_" + s + array + "\" {\n");
+			sb.append("\t\tstyle=filled;\n");
+			sb.append("\t\tcolor=lightgrey;\n");
+			sb.append("\t\tnode [shape=record, width=0.25, height=0.25];\n");
+			sb.append("\t\tlabel=\"" + s + array + "\";\n");
+			if (netMap.get(s).size() == 1) {
+				Net n = netMap.get(s).get(0);
+				sb.append("\t\t\"" + s + "\"");
+				sb.append(" [label=\"<" + n.getIndex() + "> " + n.getIndex() + "\"];\n");
+				sb.append("\t}\n");
+			} else {
+				sb.append("\t\t\"" + s + "\" [label=\"");
+				for (Net n : netMap.get(s))
+					sb.append("<" + n.getIndex() + "> " + n.getIndex() + " |");
+				sb.delete(sb.length() - 2, sb.length());
+				sb.append("\"];\n\t}\n");
+			}
+		}
+		sb.append("\n");
+
+		// Ports
+		if (this instanceof SubInstance) {
+			sb.append("\t// Ports\n");
+			Map<String, List<Port>> portMap = ((SubInstance) this).portsToMap();
+			for (String s : portMap.keySet()) {
+				int msb = portMap.get(s).get(0).getIndex();
+				int lsb = portMap.get(s).get(portMap.get(s).size() - 1).getIndex();
+				String array = (msb == lsb) ? "[" + msb + "]" : "[" + msb + ":" + lsb + "]";
+				sb.append("\tsubgraph \"cluster_nets_" + s + array + "\" {\n");
+				sb.append("\t\tstyle=filled;\n");
+				sb.append("\t\tcolor=lightgrey;\n");
+				sb.append("\t\tnode [shape=record, width=0.25, height=0.25];\n");
+				sb.append("\t\tlabel=\"" + s + array + "\";\n");
+				if (portMap.get(s).size() == 1) {
+					Port p = portMap.get(s).get(0);
+					sb.append("\t\t\"" + s + "\"");
+					sb.append(" [label=\"<" + p.getIndex() + "> " + p.getIndex() + "\"];\n");
+					sb.append("\t}\n");
+				} else {
+					sb.append("\t\t\"" + s + "\" [label=\"");
+					for (Port p : portMap.get(s))
+						sb.append("<" + p.getIndex() + "> " + p.getIndex() + " |");
+					sb.delete(sb.length() - 2, sb.length());
+					sb.append("\"];\n\t}\n");
+				}
+			}
+			sb.append("\n\n");
+		}
+
+		// Connections
+		sb.append("\t// Connections (Edges)\n");
+		clearVisitedConnections();
+		//System.out.println(connections);
+		for (Connection c : connections) {
+			for (Pin p : c.getPins()) {
+				Instance i = ((Instance) p.getParent());
+				String parent = i.getName() + (i.hasIndex() ? i.getIndex() : "");
+				sb.append("\t\"" + c.getName() + "\":" + c.getIndex() + " -- \"");
+				sb.append(parent + "_" + p.getName() + "\":" + p.getIndex() + ";\n");
+			}
+
+			for (Connection dest : c.getConnections()) {
+				if (!dest.isVisited()) {
+					String parent = "";
+					if (dest.getParent() instanceof SubInstance)
+						parent = ((SubInstance) dest.getParent()).getNameIndex() + "_";
+					sb.append("\t\"" + c.getName() + "\":" + c.getIndex() + " -- \"");
+					sb.append(parent + dest.getName() + "\":" + dest.getIndex() + ";\n");
+				}
+				dest.setVisited(true);
+			}
+			c.setVisited(true);
+		}
+
+		sb.append("}\n");
+
+		String fileName = "";
+		if (this instanceof Design)
+			fileName = this.getName();
+		else
+			fileName = ((SubInstance) this).getNameIndex();
+		toFile(fileName + ".dot", sb.toString());
+
+		// recursively output all SubInstances
+		for (SubInstance s : subInsts)
+			s.toDot();
+	}
+
+	/**
+	 * Writes a string to file
+	 * @param fileName
+	 * @param fileData
+	 */
+	public void toFile(String fileName, String fileData) {
+		BufferedWriter dotty = null;
+		try {
+			dotty = new BufferedWriter(new FileWriter(fileName));
+			dotty.write(fileData);
+			dotty.close();
+		} catch (IOException e) {
+			System.out.println("Prolem writing file: " + fileName);
+			System.exit(1);
+		}
+		System.out.println("  -- Generated: " + fileName);
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
@@ -370,9 +645,9 @@ public abstract class DesignUnit extends Node {
 
 		String idx = "";
 		if (this instanceof SubInstance)
-			idx = (((SubInstance) this).getIndex() == -1) ? "" : ("("
-				+ ((SubInstance) this).getIndex() + ")");
+			idx = (((SubInstance) this).hasIndex()) ? ("(" + ((SubInstance) this).getIndex() + ")") : "";
 		sb.append(String.format(fieldFmtStr, "Name:", "", getName() + idx));
+		sb.append(String.format(fieldFmtStr, "ID:", "", Integer.toHexString(System.identityHashCode(this))));
 		sb.append("\n");
 
 		if (!connections.isEmpty() || !instances.isEmpty() || !subInsts.isEmpty())
@@ -383,9 +658,8 @@ public abstract class DesignUnit extends Node {
 			sb.append("    ----  --------  ---------------- \n");
 			int connCount = 1;
 			for (Connection c : connections) {
-				String index = c.getIndex() != -1 ? ("[" + c.getIndex() + "]") : "";
-				sb.append(String.format(connFmtStr, connCount, " ", c.getNodeType(), " ",
-					c.getName() + index));
+				String index = c.hasIndex() ? ("[" + c.getIndex() + "]") : "";
+				sb.append(String.format(connFmtStr, connCount, " ", c.getNodeType(), " ", c.getName() + index));
 				connCount++;
 			}
 			sb.append("\n");
@@ -397,8 +671,8 @@ public abstract class DesignUnit extends Node {
 			int instCount = 1;
 			for (Instance i : instances) {
 				sb.append(String.format(instFmtStr, instCount, "", i.getName()
-					+ (i.getIndex() == -1 ? "" : ("(" + i.getIndex() + ")")), "", i.getDevice()
-					.getName(), "", i.getParent().getName(), " ", i.getGroupName()));
+					+ (i.hasIndex() ? ("(" + i.getIndex() + ")") : ""), "", i.getDevice().getName(), "", i.getParent()
+					.getName(), " ", i.getGroupName()));
 				instCount++;
 			}
 			sb.append("\n");
@@ -409,10 +683,9 @@ public abstract class DesignUnit extends Node {
 			sb.append("    ---- ---------------- ---------------- ------------------------  \n");
 			int subCount = 1;
 			for (SubInstance s : subInsts) {
-				String index = s.getIndex() != -1 ? ("(" + s.getIndex() + ")") : "";
-				sb.append(String.format(subFmtStr, subCount, "", s.getName() + index, "", s
-					.getSubDesign().getName(), "",
-					s.getFileName() + ", " + s.getLine() + ":" + s.getPosition()));
+				String index = s.hasIndex() ? ("(" + s.getIndex() + ")") : "";
+				sb.append(String.format(subFmtStr, subCount, "", s.getName() + index, "", s.getSubDesign().getName(),
+					"", s.getFileName() + ", " + s.getLine() + ":" + s.getPosition()));
 			}
 			sb.append("\n");
 		}
@@ -437,23 +710,24 @@ public abstract class DesignUnit extends Node {
 		if (!subInsts.isEmpty()) {
 			String nameFmtStr = "    %-8s%2s%-26.26s\n";
 			for (SubInstance s : subInsts) {
-				sb.append("\n    ======================================================================\n"
-					+ "    " + s.getNodeType() + "\n\n");
-				sb.append(String.format(nameFmtStr, "File:", "", getFileName() + ", " + getLine()
-					+ ":" + getPosition()));
-				String index = s.getIndex() != -1 ? ("(" + s.getIndex() + ")") : "";
+				sb.append("\n    ======================================================================\n" + "    "
+					+ s.getNodeType() + "\n\n");
+				sb.append(String
+					.format(nameFmtStr, "File:", "", getFileName() + ", " + getLine() + ":" + getPosition()));
+				String index = s.hasIndex() ? ("(" + s.getIndex() + ")") : "";
 				sb.append(String.format(nameFmtStr, "Name: ", "", s.getName() + index));
+				sb.append(String.format(nameFmtStr, "ID:", "", Integer.toHexString(System.identityHashCode(s))));
 				String pidx = "";
 				if (s.getParent() instanceof SubInstance)
-					pidx = (((SubInstance) s.getParent()).getIndex() != -1) ? ("("
-						+ ((SubInstance) s.getParent()).getIndex() + ")") : "";
+					pidx = (((SubInstance) s.getParent()).hasIndex()) ? ("(" + ((SubInstance) s.getParent()).getIndex() + ")")
+						: "";
 				sb.append(String.format(nameFmtStr, "Parent: ", "", s.getParent().getName() + pidx));
 				sb.append("\n");
 
 				List<Port> ports = s.getPorts();
 				if (ports.size() > 0) {
 					for (Port p : ports) {
-						sb.append(p.toString().replace("\n", "\n    "));
+						sb.append(p.toString().replace("\n", "\n      "));
 					}
 				}
 

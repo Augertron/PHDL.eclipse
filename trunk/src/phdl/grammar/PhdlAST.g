@@ -346,7 +346,8 @@ designDecl
 	|	subInstDecl[des]
 	|	connectAssign[des]
 	|	(infoDecl		{des.appendInfo($infoDecl.info.getText());})
-	)*))
+	)* //{System.out.print(des);}
+	))
 	;
 	
 groupDecl[DesignUnit des]
@@ -793,9 +794,10 @@ portAssign[DesignUnit des, String subInstName]
 						if (ports.size() != $concat.cons.size()) {
 							bailOut($operand.id, "port assignment left size [" + ports.size() + 
 								"] does not match right size [" + $concat.cons.size() + "]");
-						}	
-						ports.get(i).addConnection($concat.cons.get(i));
-						$concat.cons.get(i).addConnection(ports.get(i));
+						} else {
+							ports.get(i).addConnection($concat.cons.get(i));
+							$concat.cons.get(i).addConnection(ports.get(i));
+						}
 					}
 				}
 			} else {
@@ -829,13 +831,15 @@ portAssign[DesignUnit des, String subInstName]
 							if (ports.size() != $concat.cons.size()) {
 								bailOut($operand.id, "port assignment left size [" + ports.size() + 
 									"] does not match right size [" + $concat.cons.size() + "]");
-							}	
-							ports.get(i).addConnection($concat.cons.get(i));
-							$concat.cons.get(i).addConnection(ports.get(i));
+							} else {	
+								ports.get(i).addConnection($concat.cons.get(i));
+								$concat.cons.get(i).addConnection(ports.get(i));
+							}
 						}
 					}
 					
 					// clear the list in preparation for the next instance's ports
+					System.out.print(ports);
 					ports.clear();
 				}
 			}

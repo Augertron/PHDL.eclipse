@@ -11,6 +11,7 @@ public abstract class Connection extends Attributable {
 	private final List<Pin> pins;
 	private DesignUnit parent;
 	private int index;
+	private boolean visited;
 
 	public Connection(DesignUnit parent) {
 		super();
@@ -67,8 +68,8 @@ public abstract class Connection extends Attributable {
 
 	@Override
 	public boolean equals(Object o) {
-		return this.getName().equals(((Connection) o).getName())
-			&& this.getIndex() == ((Connection) o).getIndex();
+		return this.getName().equals(((Connection) o).getName()) && this.getIndex() == ((Connection) o).getIndex()
+			&& this.getParent().equals(((Connection) o).getParent());
 	}
 
 	public Connection getConnectionByName(String name) {
@@ -98,6 +99,10 @@ public abstract class Connection extends Attributable {
 	 */
 	public int getIndex() {
 		return index;
+	}
+
+	public String getNameIndex() {
+		return this.name + (hasIndex() ? this.index : "");
 	}
 
 	/**
@@ -145,6 +150,22 @@ public abstract class Connection extends Attributable {
 		return (!cons.isEmpty());
 	}
 
+	public boolean hasIndex() {
+		if (getIndex() == -1)
+			return false;
+		else
+			return true;
+	}
+
+	/**
+	 * Helper acccessor method for a Depth First Search.
+	 * 
+	 * @return true, if this Node has been visited false, otherwise
+	 */
+	public boolean isVisited() {
+		return visited;
+	}
+
 	/**
 	 * Removes a net connection from this net.
 	 * 
@@ -174,6 +195,16 @@ public abstract class Connection extends Attributable {
 		this.parent = parent;
 	}
 
+	/**
+	 * Helper mutator method for a Depth First Search.
+	 * 
+	 * @param visited
+	 *            the new value of visited
+	 */
+	public void setVisited(boolean visited) {
+		this.visited = visited;
+	}
+
 	@Override
 	/**
 	 * Generic toString method.
@@ -191,11 +222,12 @@ public abstract class Connection extends Attributable {
 		String idx = (getIndex() == -1) ? "" : ("[" + getIndex() + "]");
 		String pidx = "";
 		if (getParent() instanceof SubInstance) {
-			pidx = (((SubInstance) getParent()).getIndex() != -1) ? ("("
-				+ ((SubInstance) getParent()).getIndex() + ")") : "";
+			pidx = (((SubInstance) getParent()).getIndex() != -1) ? ("(" + ((SubInstance) getParent()).getIndex() + ")")
+				: "";
 		}
 		sb.append(String.format(fieldFmtStr, "Name:", "", getName() + idx));
 		sb.append(String.format(fieldFmtStr, "Parent:", "", getParent().getName() + pidx));
+		sb.append(String.format(fieldFmtStr, "ID:", "", Integer.toHexString(System.identityHashCode(this))));
 		sb.append("\n");
 
 		if (!attributes.isEmpty()) {
@@ -203,8 +235,8 @@ public abstract class Connection extends Attributable {
 			sb.append("  ----  ----------------  -------------------------- \n");
 			int attrCount = 1;
 			for (Attribute a : attributes) {
-				sb.append(String.format(attrFmtStr, attrCount, "", a.getName(), "", a.getValue()
-					.equals("") ? "(empty)" : a.getValue()));
+				sb.append(String.format(attrFmtStr, attrCount, "", a.getName(), "", a.getValue().equals("") ? "(empty)"
+					: a.getValue()));
 				attrCount++;
 			}
 			sb.append("\n");
@@ -218,16 +250,14 @@ public abstract class Connection extends Attributable {
 				String index = p.getIndex() == -1 ? "" : ("[" + p.getIndex() + "]");
 				String pindex = "";
 				if (p.getParent() instanceof Instance)
-					pindex = (((Instance) p.getParent()).getIndex() != -1) ? ("("
-						+ ((Instance) p.getParent()).getIndex() + ")") : ("");
+					pindex = (((Instance) p.getParent()).hasIndex()) ? ("(" + ((Instance) p.getParent()).getIndex() + ")")
+						: ("");
 				String dindex = "";
 				if (((Instance) p.getParent()).getParent() instanceof SubInstance)
 					dindex = (((SubInstance) ((Instance) p.getParent()).getParent()).getIndex() != -1) ? ("("
-						+ ((SubInstance) ((Instance) p.getParent()).getParent()).getIndex() + ")")
-						: "";
-				sb.append(String.format(pinFmtStr, pinCount, "", p.getPinType(), "", p.getName()
-					+ index, "", p.getParent().getName() + pindex, "", ((Instance) p.getParent())
-					.getParent().getName() + dindex));
+						+ ((SubInstance) ((Instance) p.getParent()).getParent()).getIndex() + ")") : "";
+				sb.append(String.format(pinFmtStr, pinCount, "", p.getPinType(), "", p.getName() + index, "", p
+					.getParent().getName() + pindex, "", ((Instance) p.getParent()).getParent().getName() + dindex));
 				pinCount++;
 			}
 			sb.append("\n");
@@ -238,9 +268,8 @@ public abstract class Connection extends Attributable {
 			sb.append("  ----  --------  ----------------  ---------------- \n");
 			int connCount = 1;
 			for (Connection c : cons) {
-				String index = c.getIndex() == -1 ? "" : ("[" + c.getIndex() + "]");
-				sb.append(String.format(connFmtStr, connCount, "", c.getNodeType(), "", c.getName()
-					+ index, "", c.getParent().getName()));
+				sb.append(String.format(connFmtStr, connCount, "", c.getNodeType(), "", c.getNameIndex(), "", c
+					.getParent().getNameIndex()));
 				connCount++;
 			}
 			sb.append("\n");

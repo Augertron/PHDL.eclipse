@@ -40,8 +40,7 @@ public class Pin extends Node {
 	 */
 	public Pin(Attributable parent) {
 		if (parent != null) {
-			if (parent.getNodeType() == NodeType.DEVICE
-				|| parent.getNodeType() == NodeType.INSTANCE)
+			if (parent.getNodeType() == NodeType.DEVICE || parent.getNodeType() == NodeType.INSTANCE)
 				setParent(parent);
 		}
 		this.pinMapping = null;
@@ -69,8 +68,7 @@ public class Pin extends Node {
 
 	public Pin(Attributable parent, String name, PinType type) {
 		if (parent != null) {
-			if (parent.getNodeType() == NodeType.DEVICE
-				|| parent.getNodeType() == NodeType.INSTANCE)
+			if (parent.getNodeType() == NodeType.DEVICE || parent.getNodeType() == NodeType.INSTANCE)
 				setParent(parent);
 		}
 		this.name = name;
@@ -137,6 +135,13 @@ public class Pin extends Node {
 		return (connection != null);
 	}
 
+	public boolean hasIndex() {
+		if (getIndex() == -1)
+			return false;
+		else
+			return true;
+	}
+
 	public boolean isOpen() {
 		return isOpen;
 	}
@@ -173,8 +178,7 @@ public class Pin extends Node {
 	 */
 	public void setParent(Attributable parent) {
 		if (parent != null) {
-			if (parent.getNodeType() == NodeType.DEVICE
-				|| parent.getNodeType() == NodeType.INSTANCE) {
+			if (parent.getNodeType() == NodeType.DEVICE || parent.getNodeType() == NodeType.INSTANCE) {
 				this.parent = parent;
 			}
 		}
@@ -203,8 +207,8 @@ public class Pin extends Node {
 	 * @return			a string representation
 	 */
 	public String toString() {
-		return getNodeType() + ": " + getPinType() + " " + name
-			+ ((index == -1) ? ("") : ("[" + index + "]")) + " = {" + pinMapping + "}";
+		return getNodeType() + ": " + getPinType() + " " + name + ((index == -1) ? ("") : ("[" + index + "]")) + " = {"
+			+ pinMapping + "}";
 	}
 
 	/***********************************
@@ -261,10 +265,8 @@ public class Pin extends Node {
 				"parent member variable should be null", "null", testPin1.parent.toString());
 		}
 		if (testPin1.pinMapping != null) {
-			success = TestDriver
-				.displayError(testNum, "public Pin(Attributable parent)",
-					"pinMapping member variable should be null", "null",
-					testPin1.pinMapping.toString());
+			success = TestDriver.displayError(testNum, "public Pin(Attributable parent)",
+				"pinMapping member variable should be null", "null", testPin1.pinMapping.toString());
 		}
 		if (testPin1.connection != null) {
 			success = TestDriver.displayError(testNum, "public Pin(Attributable parent)",
@@ -320,11 +322,12 @@ public class Pin extends Node {
 		testNet3.name = "test_net_3";
 		testPin3.connection = testNet3;
 		testPin3.name = "test_pin_3";
-		Pin copyPin1 = new Pin(null, testPin3);
+		testPin3.parent = parentDevice;
+		Pin copyPin1 = new Pin(parentDevice, testPin3);
 
-		if (copyPin1.parent != null) {
+		if (copyPin1.parent == null) {
 			success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)",
-				"member variable parent should be null", "\"null\"", copyPin1.parent.toString());
+				"member variable parent should not be null", "\"null\"", copyPin1.parent.toString());
 		}
 		if (copyPin1.fileName != testPin3.fileName) {
 			success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)",
@@ -346,20 +349,13 @@ public class Pin extends Node {
 			success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)",
 				"member variable pos doesn't match", testPin3.pos + "", copyPin1.pos + "");
 		}
-		if (!copyPin1.connection.equals(testPin3.connection)) {
-			success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)",
-				"member variable net doesn't match", testPin3.connection.toString(),
-				copyPin1.connection.toString());
-		}
 		if (copyPin1.pinMapping != testPin3.pinMapping) {
 			success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)",
-				"member variable pinMapping doesn't match", testPin3.pinMapping,
-				copyPin1.pinMapping);
+				"member variable pinMapping doesn't match", testPin3.pinMapping, copyPin1.pinMapping);
 		}
 		if (copyPin1.pinType != testPin3.pinType) {
 			success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)",
-				"member variable pinType doesn't match", testPin3.pinType.toString(),
-				copyPin1.pinType.toString());
+				"member variable pinType doesn't match", testPin3.pinType.toString(), copyPin1.pinType.toString());
 		}
 		if (copyPin1.index != testPin3.index) {
 			success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)",
@@ -406,20 +402,13 @@ public class Pin extends Node {
 			success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)",
 				"member variable pos doesn't match", copyPin1.pos + "", copyPin2.pos + "");
 		}
-		if (!copyPin2.connection.equals(copyPin1.connection)) {
-			success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)",
-				"member variable net doesn't match", copyPin1.connection.toString(),
-				copyPin2.connection.toString());
-		}
 		if (copyPin2.pinMapping != copyPin1.pinMapping) {
 			success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)",
-				"member variable pinMapping doesn't match", copyPin1.pinMapping,
-				copyPin2.pinMapping);
+				"member variable pinMapping doesn't match", copyPin1.pinMapping, copyPin2.pinMapping);
 		}
 		if (copyPin2.pinType != copyPin1.pinType) {
 			success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)",
-				"member variable pinType doesn't match", copyPin1.pinType.toString(),
-				copyPin2.pinType.toString());
+				"member variable pinType doesn't match", copyPin1.pinType.toString(), copyPin2.pinType.toString());
 		}
 		if (copyPin2.index != copyPin1.index) {
 			success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)",
@@ -543,8 +532,8 @@ public class Pin extends Node {
 		}
 		testPin5.index = 4;
 		if (testPin5.getIndex() != 4) {
-			success = TestDriver.displayError(testNum, "public int getIndex()", "Index incorrect",
-				testPin5.index + "", testPin5.getIndex() + "");
+			success = TestDriver.displayError(testNum, "public int getIndex()", "Index incorrect", testPin5.index + "",
+				testPin5.getIndex() + "");
 		}
 
 		/**
@@ -553,15 +542,15 @@ public class Pin extends Node {
 		 */
 		testNum++;
 		if (testPin5.getConnection() != null) {
-			success = TestDriver.displayError(testNum, "public Net getNet()",
-				"Upon initialization, net should be null");
+			success = TestDriver
+				.displayError(testNum, "public Net getNet()", "Upon initialization, net should be null");
 		}
 		Net testNet5 = new Net(null);
 		testNet5.name = "test_net_5";
 		testPin5.connection = testNet5;
 		if (!testPin5.getConnection().equals(testNet5)) {
-			success = TestDriver.displayError(testNum, "public Net getNet()", "Net incorrect",
-				testNet5.toString(), testPin5.getConnection().toString());
+			success = TestDriver.displayError(testNum, "public Net getNet()", "Net incorrect", testNet5.toString(),
+				testPin5.getConnection().toString());
 		}
 
 		/**
@@ -580,14 +569,14 @@ public class Pin extends Node {
 		 */
 		testNum++;
 		if (testPin5.getParent() != null) {
-			success = TestDriver.displayError(testNum, "public NodeType getParent()",
-				"Incorrect parent", "null", testPin5.getParent().toString());
+			success = TestDriver.displayError(testNum, "public NodeType getParent()", "Incorrect parent", "null",
+				testPin5.getParent().toString());
 		}
 		Device parentDevice5 = new Device("parent_device_5");
 		testPin5.parent = parentDevice5;
 		if (!testPin5.getParent().equals(parentDevice5)) {
-			success = TestDriver.displayError(testNum, "public NodeType getParent()",
-				"Incorrect parent", parentDevice5.toString(), testPin5.getParent().toString());
+			success = TestDriver.displayError(testNum, "public NodeType getParent()", "Incorrect parent",
+				parentDevice5.toString(), testPin5.getParent().toString());
 		}
 
 		/**
@@ -601,8 +590,8 @@ public class Pin extends Node {
 		}
 		testPin5.pinMapping = "5ab";
 		if (!testPin5.getPinMapping().equals("5ab")) {
-			success = TestDriver.displayError(testNum, "public NodeType getPinMapping()",
-				"pinMapping incorrect", testPin5.pinMapping, testPin5.getPinMapping());
+			success = TestDriver.displayError(testNum, "public NodeType getPinMapping()", "pinMapping incorrect",
+				testPin5.pinMapping, testPin5.getPinMapping());
 		}
 
 		/**
@@ -612,14 +601,14 @@ public class Pin extends Node {
 		testNum++;
 		if (testPin5.getPinType() != PinType.PIN) {
 			success = TestDriver.displayError(testNum, "public NodeType getPinType()",
-				"Upon initialization, pinType should be PIN", testPin5.pinType.toString(), testPin5
-					.getPinType().toString());
+				"Upon initialization, pinType should be PIN", testPin5.pinType.toString(), testPin5.getPinType()
+					.toString());
 		}
 		testPin5.pinType = PinType.PWRPIN;
 		if (testPin5.getPinType() != PinType.PWRPIN) {
 			success = TestDriver.displayError(testNum, "public NodeType getPinType()",
-				"Upon initialization, pinType should be PWRPIN", testPin5.pinType.toString(),
-				testPin5.getPinType().toString());
+				"Upon initialization, pinType should be PWRPIN", testPin5.pinType.toString(), testPin5.getPinType()
+					.toString());
 		}
 
 		/**
@@ -646,13 +635,13 @@ public class Pin extends Node {
 		testNum++;
 		testPin6.setIndex(14);
 		if (testPin6.getIndex() != 14) {
-			success = TestDriver.displayError(testNum, "public void setIndex(int index)",
-				"Incorrect index", "14", testPin6.getIndex() + "");
+			success = TestDriver.displayError(testNum, "public void setIndex(int index)", "Incorrect index", "14",
+				testPin6.getIndex() + "");
 		}
 		testPin6.setIndex(-1);
 		if (testPin6.getIndex() != -1) {
-			success = TestDriver.displayError(testNum, "public void setIndex(int index)",
-				"Incorrect index", "-1", testPin6.getIndex() + "");
+			success = TestDriver.displayError(testNum, "public void setIndex(int index)", "Incorrect index", "-1",
+				testPin6.getIndex() + "");
 		}
 		testPin6.setIndex(-123);
 		if (testPin6.getIndex() != -1) {
@@ -675,8 +664,8 @@ public class Pin extends Node {
 		testNet7.name = "test_net_7";
 		testPin7.setConnection(testNet7);
 		if (!testPin7.getConnection().equals(testNet7)) {
-			success = TestDriver.displayError(testNum, "public void setNet(Net net)",
-				"Incorrect Net", testNet7.toString(), testPin7.getConnection().toString());
+			success = TestDriver.displayError(testNum, "public void setNet(Net net)", "Incorrect Net",
+				testNet7.toString(), testPin7.getConnection().toString());
 		}
 		testPin7.setConnection(null);
 		if (testPin7.getConnection() == null) {
@@ -692,14 +681,12 @@ public class Pin extends Node {
 		Device parentDevice7 = new Device("parent_device_7");
 		testPin7.setParent(parentDevice7);
 		if (!testPin7.getParent().equals(parentDevice7)) {
-			success = TestDriver.displayError(testNum,
-				"public void setParent(Attributable parent)", "Incorrect Parent",
-				parentDevice7.toString(), testPin7.getParent().toString());
+			success = TestDriver.displayError(testNum, "public void setParent(Attributable parent)",
+				"Incorrect Parent", parentDevice7.toString(), testPin7.getParent().toString());
 		}
 		testPin7.setParent(null);
 		if (testPin7.getParent() == null) {
-			success = TestDriver.displayError(testNum,
-				"public void setParent(Attributable parent)",
+			success = TestDriver.displayError(testNum, "public void setParent(Attributable parent)",
 				"Should not be able to assign null via setParent()");
 		}
 
@@ -710,14 +697,12 @@ public class Pin extends Node {
 		testNum++;
 		testPin7.setPinMapping("7xyz");
 		if (!testPin7.getPinMapping().equals("7xyz")) {
-			success = TestDriver.displayError(testNum,
-				"public void setPinMapping(String pinMapping)", "Incorrect PinMapping", "7xyz",
-				testPin7.getPinMapping());
+			success = TestDriver.displayError(testNum, "public void setPinMapping(String pinMapping)",
+				"Incorrect PinMapping", "7xyz", testPin7.getPinMapping());
 		}
 		testPin7.setPinMapping(null);
 		if (testPin7.getPinMapping() == null) {
-			success = TestDriver.displayError(testNum,
-				"public void setPinMapping(String pinMapping)",
+			success = TestDriver.displayError(testNum, "public void setPinMapping(String pinMapping)",
 				"Should not be able to assign null via setPinMapping");
 		}
 
@@ -728,33 +713,33 @@ public class Pin extends Node {
 		testNum++;
 		testPin7.setPinType(PinType.INPIN);
 		if (testPin7.getPinType() != PinType.INPIN) {
-			success = TestDriver.displayError(testNum, "public void setPinType(PinType pinType)",
-				"Incorrect PinType", PinType.INPIN.toString(), testPin7.getPinType().toString());
+			success = TestDriver.displayError(testNum, "public void setPinType(PinType pinType)", "Incorrect PinType",
+				PinType.INPIN.toString(), testPin7.getPinType().toString());
 		}
 		testPin7.setPinType(PinType.IOPIN);
 		if (testPin7.getPinType() != PinType.IOPIN) {
-			success = TestDriver.displayError(testNum, "public void setPinType(PinType pinType)",
-				"Incorrect PinType", PinType.IOPIN.toString(), testPin7.getPinType().toString());
+			success = TestDriver.displayError(testNum, "public void setPinType(PinType pinType)", "Incorrect PinType",
+				PinType.IOPIN.toString(), testPin7.getPinType().toString());
 		}
 		testPin7.setPinType(PinType.OUTPIN);
 		if (testPin7.getPinType() != PinType.OUTPIN) {
-			success = TestDriver.displayError(testNum, "public void setPinType(PinType pinType)",
-				"Incorrect PinType", PinType.OUTPIN.toString(), testPin7.getPinType().toString());
+			success = TestDriver.displayError(testNum, "public void setPinType(PinType pinType)", "Incorrect PinType",
+				PinType.OUTPIN.toString(), testPin7.getPinType().toString());
 		}
 		testPin7.setPinType(PinType.PWRPIN);
 		if (testPin7.getPinType() != PinType.PWRPIN) {
-			success = TestDriver.displayError(testNum, "public void setPinType(PinType pinType)",
-				"Incorrect PinType", PinType.PWRPIN.toString(), testPin7.getPinType().toString());
+			success = TestDriver.displayError(testNum, "public void setPinType(PinType pinType)", "Incorrect PinType",
+				PinType.PWRPIN.toString(), testPin7.getPinType().toString());
 		}
 		testPin7.setPinType(PinType.SUPPIN);
 		if (testPin7.getPinType() != PinType.SUPPIN) {
-			success = TestDriver.displayError(testNum, "public void setPinType(PinType pinType)",
-				"Incorrect PinType", PinType.SUPPIN.toString(), testPin7.getPinType().toString());
+			success = TestDriver.displayError(testNum, "public void setPinType(PinType pinType)", "Incorrect PinType",
+				PinType.SUPPIN.toString(), testPin7.getPinType().toString());
 		}
 		testPin7.setPinType(PinType.PIN);
 		if (testPin7.getPinType() != PinType.PIN) {
-			success = TestDriver.displayError(testNum, "public void setPinType(PinType pinType)",
-				"Incorrect PinType", PinType.PIN.toString(), testPin7.getPinType().toString());
+			success = TestDriver.displayError(testNum, "public void setPinType(PinType pinType)", "Incorrect PinType",
+				PinType.PIN.toString(), testPin7.getPinType().toString());
 		}
 
 		/**
@@ -776,15 +761,15 @@ public class Pin extends Node {
 		String testPin8Str = "PIN: INPIN test_pin_8 = {8ijk}";
 
 		if (!testPin8.toString().equals(testPin8Str)) {
-			success = TestDriver.displayError(testNum, "public String toString()",
-				"Incorrect Output w/o index", "\n" + testPin8Str, "\n" + testPin8.toString());
+			success = TestDriver.displayError(testNum, "public String toString()", "Incorrect Output w/o index", "\n"
+				+ testPin8Str, "\n" + testPin8.toString());
 		}
 
 		testPin8.setIndex(24);
 		testPin8Str = "PIN: INPIN test_pin_8[24] = {8ijk}";
 		if (!testPin8.toString().equals(testPin8Str)) {
-			success = TestDriver.displayError(testNum, "public String toString()",
-				"Incorrect Output w/ index", "\n" + testPin8Str, "\n" + testPin8.toString());
+			success = TestDriver.displayError(testNum, "public String toString()", "Incorrect Output w/ index", "\n"
+				+ testPin8Str, "\n" + testPin8.toString());
 		}
 
 		return success;

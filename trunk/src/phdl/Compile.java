@@ -44,11 +44,13 @@ public class Compile {
 				for (Device d : p.getDevices())
 					System.out.print(d.toString().replace("\n", "\n  "));
 				Design d = p.getTopDesign();
-				if (d != null)
+				if (d != null) {
 					System.out.print(d.toString().replace("\n", "\n  "));
+				}
 				for (SubDesign s : p.getSubDesigns())
 					System.out.print(s.toString().replace("\n", "\n  "));
 			}
+			p.getTopDesign().toDot();
 		}
 
 		long end = System.currentTimeMillis();
