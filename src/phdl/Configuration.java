@@ -19,7 +19,7 @@ public class Configuration {
 		+ "\t-v\tenable verbose error reporting (will not bail out simple parse errors)\n"
 		+ "\t-e\toutput script for EAGLE PCB\n\n";
 
-	private final String version = "PHDL Version 2.0";
+	private final String version = "PHDL Compiler v2.0";
 
 	private final String[] reqAttr = { "REFPREFIX", "PACKAGE", "LIBRARY" };
 

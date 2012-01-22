@@ -71,7 +71,7 @@ public abstract class DesignUnit extends Node {
 		return false;
 	}
 
-	private void clearVisitedConnections() {
+	private void clearVisited() {
 		for (Connection c : connections)
 			c.setVisited(false);
 	}
@@ -87,6 +87,20 @@ public abstract class DesignUnit extends Node {
 	 */
 	public boolean equals(Object o) {
 		return name.equals(((DesignUnit) o).getName()) && index == ((DesignUnit) o).index;
+	}
+
+	public void execDot(String fileName) {
+		try {
+			Process p = Runtime.getRuntime().exec("dot -Tpng " + fileName + ".dot -o " + fileName + ".png");
+			try {
+				p.waitFor();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		} catch (IOException e) {
+			System.out.println("ERROR: DOT is not included on PATH environment variable.");
+		}
+		System.out.println("  -- Hierarchy: " + fileName + ".png");
 	}
 
 	public List<Port> getAllPorts(String name) {
@@ -339,7 +353,7 @@ public abstract class DesignUnit extends Node {
 		return (Net) neighbor2;
 	}
 
-	private Map<String, List<Net>> netsToMap() {
+	public Map<String, List<Net>> netsToMap() {
 		Map<String, List<Net>> map = new HashMap<String, List<Net>>();
 		for (Connection c : connections) {
 			if (c instanceof Net) {
@@ -416,12 +430,15 @@ public abstract class DesignUnit extends Node {
 		StringBuilder sb = new StringBuilder();
 
 		// Header information
-		String desType = "(SUBDESIGN)";
+		String name = "";
 		if (this instanceof Design)
-			desType = " (TOP)";
-		sb.append("//PHDL Generated Dot file\n//Design unit: " + this.getName() + desType + "\n//File: "
-			+ this.getFileName() + ", line " + this.getLine() + ":" + this.getPosition() + "\n\n");
+			name = this.getName() + " (TOP)";
+		else
+			name = this.getNameIndex() + " (SUBDESIGN)";
+		sb.append("//PHDL Generated Dot file\n//Design unit: " + name + "\n//File: " + this.getFileName() + ", line "
+			+ this.getLine() + ":" + this.getPosition() + "\n\n");
 		sb.append("graph " + this.getName() + " {\n\n");
+		sb.append("\tsplines=false;\n\n");
 
 		// Instances
 		sb.append("\t// Instances\n");
@@ -520,8 +537,9 @@ public abstract class DesignUnit extends Node {
 		}
 
 		// Nets
-		sb.append("\t// Nets\n");
 		Map<String, List<Net>> netMap = this.netsToMap();
+		if (!netMap.isEmpty())
+			sb.append("\t// Nets\n");
 		for (String s : netMap.keySet()) {
 			int msb = netMap.get(s).get(0).getIndex();
 			int lsb = netMap.get(s).get(netMap.get(s).size() - 1).getIndex();
@@ -575,11 +593,11 @@ public abstract class DesignUnit extends Node {
 			sb.append("\n\n");
 		}
 
-		// Connections
-		sb.append("\t// Connections (Edges)\n");
-		clearVisitedConnections();
-		//System.out.println(connections);
+		// Edges
+		sb.append("\t// Edges\n");
+		clearVisited();
 		for (Connection c : connections) {
+			// form edges from pins
 			for (Pin p : c.getPins()) {
 				Instance i = ((Instance) p.getParent());
 				String parent = i.getName() + (i.hasIndex() ? i.getIndex() : "");
@@ -587,27 +605,51 @@ public abstract class DesignUnit extends Node {
 				sb.append(parent + "_" + p.getName() + "\":" + p.getIndex() + ";\n");
 			}
 
+			// form edges from other connections
 			for (Connection dest : c.getConnections()) {
 				if (!dest.isVisited()) {
-					String parent = "";
-					if (dest.getParent() instanceof SubInstance)
-						parent = ((SubInstance) dest.getParent()).getNameIndex() + "_";
-					sb.append("\t\"" + c.getName() + "\":" + c.getIndex() + " -- \"");
-					sb.append(parent + dest.getName() + "\":" + dest.getIndex() + ";\n");
+					if (dest.getParent() instanceof Design) {
+						sb.append("\t\"" + c.getName() + "\":" + c.getIndex() + " -- \"");
+						sb.append(dest.getName() + "\":" + dest.getIndex() + ";\n");
+					}
 				}
-				dest.setVisited(true);
+				if (!(dest instanceof Port))
+					dest.setVisited(true);
 			}
 			c.setVisited(true);
+		}
+		clearVisited();
+		for (SubInstance s : subInsts) {
+			for (Port p : s.getPorts()) {
+				if (p.hasConnection()) {
+					sb.append("\t\"" + p.getParent().getNameIndex() + "_" + p.getName() + "\":" + p.getIndex());
+					sb.append(" -- \"" + p.getConnection().getName() + "\":" + p.getConnection().getIndex() + ";\n");
+				}
+			}
 		}
 
 		sb.append("}\n");
 
-		String fileName = "";
+		// formulate a unique hierarchical filename
+		StringBuilder fileName = new StringBuilder();
 		if (this instanceof Design)
-			fileName = this.getName();
-		else
-			fileName = ((SubInstance) this).getNameIndex();
-		toFile(fileName + ".dot", sb.toString());
+			fileName.append(this.getName());
+		else {
+			DesignUnit parent = this;
+			while (parent instanceof SubInstance) {
+				fileName.insert(0, "." + ((SubInstance) parent).getNameIndex());
+				parent = ((SubInstance) parent).getParent();
+			}
+			fileName.insert(0, parent.getName());
+		}
+
+		// write the dot to file, convert it to a PNG
+		toFile(fileName.toString() + ".dot", sb.toString());
+		execDot(fileName.toString());
+		/*
+		File f = new File(fileName.toString() + ".dot");
+		if (f.exists() && f.isFile())
+			f.delete();*/
 
 		// recursively output all SubInstances
 		for (SubInstance s : subInsts)
@@ -629,7 +671,6 @@ public abstract class DesignUnit extends Node {
 			System.out.println("Prolem writing file: " + fileName);
 			System.exit(1);
 		}
-		System.out.println("  -- Generated: " + fileName);
 	}
 
 	@Override

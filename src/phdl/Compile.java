@@ -30,9 +30,9 @@ public class Compile {
 	 */
 	public static void main(String[] args) {
 		long stt = System.currentTimeMillis();
-		System.out.println();
 
 		Configuration cfg = new Configuration(args);
+		System.out.println("\n" + cfg.getVersion() + "\n");
 
 		for (String fileName : cfg.getFileNames()) {
 			ParsePHDL p = new ParsePHDL(cfg);
@@ -50,7 +50,8 @@ public class Compile {
 				for (SubDesign s : p.getSubDesigns())
 					System.out.print(s.toString().replace("\n", "\n  "));
 			}
-			p.getTopDesign().toDot();
+			if (cfg.isHierarchy())
+				p.getTopDesign().toDot();
 		}
 
 		long end = System.currentTimeMillis();

@@ -360,7 +360,7 @@ public class Instance extends Attributable {
 		String attrFmtStr = "  %4d%2s%-16.16s%2s%-24.24s%2s%-4s\n";
 		String pinFmtStr = "  %4d%2s%-8.8s%2s%-16.16s%2s%-20.20s\n";
 
-		String idx = (getIndex() == -1) ? "" : ("(" + getIndex() + ")");
+		String idx = hasIndex() ? ("(" + getIndex() + ")") : "";
 		sb.append(String.format(fieldFmtStr, "Name:", "", getName() + idx));
 		sb.append(String.format(fieldFmtStr, "Parent:", "", getParent().getName()));
 		sb.append(String.format(fieldFmtStr, "ID:", "", Integer.toHexString(System.identityHashCode(this))));
@@ -383,11 +383,11 @@ public class Instance extends Attributable {
 			sb.append("  ----  --------  ----------------  --------------------  \n");
 			int pinCount = 1;
 			for (Pin p : getPins()) {
-				String index = (p.getIndex() != -1 ? ("[" + p.getIndex() + "]") : "");
+				String index = (p.hasIndex() ? ("[" + p.getIndex() + "]") : "");
 				String connection = "";
 				if (p.hasConnection()) {
 					connection = p.getConnection().getNodeType() + ": " + p.getConnection().getName();
-					if (p.getConnection().getIndex() != -1)
+					if (p.getConnection().hasIndex())
 						connection += "[" + p.getConnection().getIndex() + "]";
 				} else if (p.isOpen())
 					connection += "OPEN";
