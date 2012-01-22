@@ -29,16 +29,42 @@ import java.util.Set;
  */
 public class Port extends Connection {
 
+	private Connection connection;
+
 	public Port(DesignUnit design) {
 		super(design);
+	}
+
+	public Port(DesignUnit parent, Port oldPort) {
+		super(parent, oldPort);
 	}
 
 	public Port(DesignUnit design, String name) {
 		super(design, name);
 	}
 
-	public Port(DesignUnit parent, Port oldPort) {
-		super(parent, oldPort);
+	@Override
+	public boolean addAttribute(Attribute a) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public Attribute getAttribute(String name) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public Set<Attribute> getAttributes() {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Connection getter method.
+	 * 
+	 * @return the NetNode attached to the Pin
+	 */
+	public Connection getConnection() {
+		return connection;
 	}
 
 	@Override
@@ -51,18 +77,16 @@ public class Port extends Connection {
 		return NodeType.PORT;
 	}
 
-	@Override
-	public Set<Attribute> getAttributes() {
-		throw new UnsupportedOperationException();
+	/**
+	 * Checks to see if the Pin has a Connection.
+	 * 
+	 * @return true, if there is a Connection false, otherwise
+	 */
+	public boolean hasConnection() {
+		return (connection != null);
 	}
 
-	@Override
-	public boolean addAttribute(Attribute a) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public Attribute getAttribute(String name) {
-		throw new UnsupportedOperationException();
+	public void setConnection(Connection connection) {
+		this.connection = connection;
 	}
 }

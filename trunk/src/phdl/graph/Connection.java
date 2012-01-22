@@ -67,6 +67,14 @@ public abstract class Connection extends Attributable {
 	}
 
 	@Override
+	public int compareTo(Object o) {
+		if (this.equals(o))
+			return 0;
+		else
+			return 1;
+	}
+
+	@Override
 	public boolean equals(Object o) {
 		return this.getName().equals(((Connection) o).getName()) && this.getIndex() == ((Connection) o).getIndex()
 			&& this.getParent().equals(((Connection) o).getParent());
@@ -228,6 +236,18 @@ public abstract class Connection extends Attributable {
 		sb.append(String.format(fieldFmtStr, "Name:", "", getName() + idx));
 		sb.append(String.format(fieldFmtStr, "Parent:", "", getParent().getName() + pidx));
 		sb.append(String.format(fieldFmtStr, "ID:", "", Integer.toHexString(System.identityHashCode(this))));
+		if (this instanceof Port) {
+			Port p = ((Port) this);
+			String index = (p.hasIndex() ? ("[" + p.getIndex() + "]") : "");
+			String connection = "";
+			if (p.hasConnection()) {
+				connection = p.getConnection().getNodeType() + ": " + p.getConnection().getName();
+				if (p.getConnection().hasIndex())
+					connection += "[" + p.getConnection().getIndex() + "]";
+			} else
+				connection += "(not assigned)";
+			sb.append(String.format(fieldFmtStr, "Conn:", "", connection));
+		}
 		sb.append("\n");
 
 		if (!attributes.isEmpty()) {

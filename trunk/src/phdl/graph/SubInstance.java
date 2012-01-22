@@ -61,6 +61,12 @@ public class SubInstance extends HierarchyUnit {
 				int index = subDesign.connections.indexOf(c);
 				if (index != -1)
 					this.getConnection(i).addConnection(this.getConnection(index));
+				else {
+					SubInstance s = this.getSubInstance(c.getParent().getName(), c.getParent().getIndex());
+					Port p = s.getPort(c.getName(), c.getIndex());
+					p.setConnection(this.getConnection(i));
+
+				}
 			}
 		}
 
@@ -79,7 +85,8 @@ public class SubInstance extends HierarchyUnit {
 
 	@Override
 	public boolean equals(Object o) {
-		return this.name.equals(((SubInstance) o).getName()) && this.getIndex() == ((SubInstance) o).getIndex();
+		return this.name.equals(((SubInstance) o).getName()) && this.getIndex() == ((SubInstance) o).getIndex()
+			&& this.parent.equals(((SubInstance) o).getParent());
 	}
 
 	@Override

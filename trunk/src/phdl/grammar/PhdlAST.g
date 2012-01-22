@@ -346,7 +346,7 @@ designDecl
 	|	subInstDecl[des]
 	|	connectAssign[des]
 	|	(infoDecl		{des.appendInfo($infoDecl.info.getText());})
-	)* //{System.out.print(des);}
+	)*//{System.out.print(des);}
 	))
 	;
 	
@@ -363,29 +363,29 @@ groupDecl[DesignUnit des]
 portDecl[DesignUnit subDes]
 	:	^(PORT_DECL width? (portName=IDENT
 	
-		{	// verify the port is not in a design
-			if (subDes instanceof Design)
-				bailOut($portName, "ports are only allowed in subdesigns");
-			if ($width.indices == null || $width.indices.size() == 1) {
-				Port p = new Port(subDes, $portName.text);
-				setLocation(p, $portName);
-				if ($width.indices != null)
-					p.setIndex($width.indices.get(0));
-				if(!subDes.addConnection(p));
-					addError($portName, "duplicate port declaration");
-			} else {
-				for (int i = 0; i < $width.indices.size(); i++) {
+			{	// verify the port is not in a design
+				if (subDes instanceof Design)
+					bailOut($portName, "ports are only allowed in subdesigns");
+				if ($width.indices == null || $width.indices.size() == 1) {
 					Port p = new Port(subDes, $portName.text);
 					setLocation(p, $portName);
-					p.setIndex($width.indices.get(i));
-					if (!subDes.addConnection(p))
+					if ($width.indices != null)
+						p.setIndex($width.indices.get(0));
+					if(!subDes.addConnection(p));
 						addError($portName, "duplicate port declaration");
+				} else {
+					for (int i = 0; i < $width.indices.size(); i++) {
+						Port p = new Port(subDes, $portName.text);
+						setLocation(p, $portName);
+						p.setIndex($width.indices.get(i));
+						if (!subDes.addConnection(p))
+							addError($portName, "duplicate port declaration");
+					}
 				}
+				// check for duplicates based soley on the name of the port
+				if (!conNames.add($portName.text))
+					addError($portName, "duplicate port declaration");
 			}
-			// check for duplicates based soley on the name of the port
-			if (!conNames.add($portName.text))
-				addError($portName, "duplicate port declaration");
-		}
 		)*)
 	;
 	
@@ -580,7 +580,7 @@ pinAssign[DesignUnit des, String instName]
 						for (Integer i : $operand.indices) {
 							Pin p = inst.getPin($operand.id.getText(), i);
 							if (p == null)
-								bailOut($operand.id, "undeclared pin or invalid pin slice [" + i + "]");
+								bailOut($operand.id, "undeclared pin or invalid pin index [" + i + "]");
 							else
 								pins.add(p);
 						}
@@ -591,10 +591,10 @@ pinAssign[DesignUnit des, String instName]
 				
 					// check to see if the pin is already assigned
 					if (pins.get(i).hasConnection()) {
-						String index = (pins.get(i).getIndex() == -1)?("pin"):("slice [" + pins.get(i).getIndex() + "] of pin");
+						String index = (pins.get(i).hasIndex())?("index [" + pins.get(i).getIndex() + "]"):("pin");
 						bailOut($operand.id, index + " is already assigned");
 					} else if (pins.get(i).isOpen()) {
-						String index = (pins.get(i).getIndex() == -1)?("pin"):("slice [" + pins.get(i).getIndex() + "] of pin");
+						String index = (pins.get(i).hasIndex())?("index [" + pins.get(i).getIndex() + "]"):("pin");
 						bailOut($operand.id, index + " is already open");
 						
 					// assign the pin based on the flags
@@ -608,9 +608,10 @@ pinAssign[DesignUnit des, String instName]
 						if (pins.size() != $concat.cons.size()) {
 							bailOut($operand.id, "pin assignment left size [" + pins.size() + 
 								"] does not match right size [" + $concat.cons.size() + "]");
-						}	
-						pins.get(i).setConnection($concat.cons.get(i));
-						$concat.cons.get(i).addPin(pins.get(i));
+						} else {
+							pins.get(i).setConnection($concat.cons.get(i));
+							$concat.cons.get(i).addPin(pins.get(i));
+						}
 					}
 				}
 				
@@ -625,7 +626,7 @@ pinAssign[DesignUnit des, String instName]
 						for (Integer i : $operand.indices) {
 							Pin p = inst.getPin($operand.id.getText(), i);
 							if (p == null)
-								bailOut($operand.id, "undeclared pin or invalid pin slice [" + i + "]");
+								bailOut($operand.id, "undeclared pin or invalid pin index [" + i + "]");
 							else
 								pins.add(p);
 						}
@@ -635,10 +636,10 @@ pinAssign[DesignUnit des, String instName]
 					
 						// check to see if the pin is already assigned
 						if (pins.get(i).hasConnection()) {
-							String index = (pins.get(i).getIndex() == -1)?("pin"):("slice [" + pins.get(i).getIndex() + "] of pin");
+							String index = (pins.get(i).hasIndex())?("index [" + pins.get(i).getIndex() + "]"):("pin");
 							bailOut($operand.id, index + " is already assigned");
 						} else if (pins.get(i).isOpen()) {
-							String index = (pins.get(i).getIndex() == -1)?("pin"):("slice [" + pins.get(i).getIndex() + "] of pin");
+							String index = (pins.get(i).hasIndex())?("index [" + pins.get(i).getIndex() + "]"):("pin");
 							bailOut($operand.id, index + " is already open");
 							
 						// assign the pin based on the flags
@@ -652,9 +653,10 @@ pinAssign[DesignUnit des, String instName]
 							if (pins.size() != $concat.cons.size()) {
 								bailOut($operand.id, "pin assignment left size [" + pins.size() + 
 									"] does not match right size [" + $concat.cons.size() + "]");
-							}	
-							pins.get(i).setConnection($concat.cons.get(i));
-							$concat.cons.get(i).addPin(pins.get(i));
+							} else {
+								pins.get(i).setConnection($concat.cons.get(i));
+								$concat.cons.get(i).addPin(pins.get(i));
+							}
 						}
 					}
 					// clear the list in preparation for the next instance's pins
@@ -772,7 +774,7 @@ portAssign[DesignUnit des, String subInstName]
 						for (Integer i : $operand.indices) {
 							Port p = s.getPort($operand.id.getText(), i);
 							if (p == null)
-								bailOut($operand.id, "undeclared port or invalid port slice [" + i + "]");
+								bailOut($operand.id, "undeclared port or invalid port index [" + i + "]");
 							else
 								ports.add(p);
 						}
@@ -782,6 +784,12 @@ portAssign[DesignUnit des, String subInstName]
 					
 					// remap the port location
 					setLocation(ports.get(i), $operand.id);
+					
+					// check to see if the pin is already assigned
+					if (ports.get(i).hasConnection()) {
+						String index = (ports.get(i).hasIndex())?("index [" + ports.get(i).getIndex() + "]"):("port");
+						bailOut($operand.id, index + " is already assigned");
+					}
 					
 					// assign the port based on the flags
 					if ($concat.isReplicated) {
@@ -795,7 +803,7 @@ portAssign[DesignUnit des, String subInstName]
 							bailOut($operand.id, "port assignment left size [" + ports.size() + 
 								"] does not match right size [" + $concat.cons.size() + "]");
 						} else {
-							ports.get(i).addConnection($concat.cons.get(i));
+							ports.get(i).setConnection($concat.cons.get(i));
 							$concat.cons.get(i).addConnection(ports.get(i));
 						}
 					}
@@ -810,7 +818,7 @@ portAssign[DesignUnit des, String subInstName]
 						for (Integer i : $operand.indices) {
 							Port p = s.getPort($operand.id.getText(), i);
 							if (p == null)
-								bailOut($operand.id, "undeclared port or invalid port slice [" + i + "]");
+								bailOut($operand.id, "undeclared port or invalid port index [" + i + "]");
 							else
 								ports.add(p);
 						}
@@ -819,6 +827,12 @@ portAssign[DesignUnit des, String subInstName]
 					for (int i = 0; i < ports.size(); i++) {
 						// remap the port location
 						setLocation(ports.get(i), $operand.id);
+						
+						// check to see if the pin is already assigned
+						if (ports.get(i).hasConnection()) {
+							String index = (ports.get(i).hasIndex())?("index [" + ports.get(i).getIndex() + "]"):("port");
+							bailOut($operand.id, index + " is already assigned");
+						}
 					
 						// assign the port based on the flags
 						if ($concat.isReplicated) {
@@ -831,15 +845,14 @@ portAssign[DesignUnit des, String subInstName]
 							if (ports.size() != $concat.cons.size()) {
 								bailOut($operand.id, "port assignment left size [" + ports.size() + 
 									"] does not match right size [" + $concat.cons.size() + "]");
-							} else {	
-								ports.get(i).addConnection($concat.cons.get(i));
+							} else {
+								ports.get(i).setConnection($concat.cons.get(i));
 								$concat.cons.get(i).addConnection(ports.get(i));
 							}
 						}
 					}
 					
 					// clear the list in preparation for the next instance's ports
-					System.out.print(ports);
 					ports.clear();
 				}
 			}

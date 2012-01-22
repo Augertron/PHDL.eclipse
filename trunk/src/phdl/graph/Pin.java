@@ -25,11 +25,11 @@ import phdl.TestDriver;
 public class Pin extends Node {
 
 	private Attributable parent;
-	private String pinMapping;
 	private Connection connection;
+	private String pinMapping;
 	private PinType pinType;
 	private int index;
-	private boolean isOpen;
+	private boolean open;
 
 	/**
 	 * Default Constructor.
@@ -63,7 +63,7 @@ public class Pin extends Node {
 		this.pinMapping = old.getPinMapping();
 		this.index = old.getIndex();
 		this.pinType = old.getPinType();
-		this.isOpen = old.isOpen();
+		this.open = old.isOpen();
 	}
 
 	public Pin(Attributable parent, String name, PinType type) {
@@ -82,7 +82,7 @@ public class Pin extends Node {
 	}
 
 	/**
-	 * Net accessor method.
+	 * Connection getter method.
 	 * 
 	 * @return the NetNode attached to the Pin
 	 */
@@ -127,9 +127,9 @@ public class Pin extends Node {
 	}
 
 	/**
-	 * Checks to see if the PinNode has a NetNode.
+	 * Checks to see if the Pin has a Connection.
 	 * 
-	 * @return true, if there is a NetNode false, otherwise
+	 * @return true, if there is a Connection false, otherwise
 	 */
 	public boolean hasConnection() {
 		return (connection != null);
@@ -143,7 +143,7 @@ public class Pin extends Node {
 	}
 
 	public boolean isOpen() {
-		return isOpen;
+		return open;
 	}
 
 	/**
@@ -167,7 +167,7 @@ public class Pin extends Node {
 	}
 
 	public void setOpen(boolean isOpen) {
-		this.isOpen = isOpen;
+		this.open = isOpen;
 	}
 
 	/**
