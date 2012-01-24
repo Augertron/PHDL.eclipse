@@ -489,6 +489,7 @@ public class ParsePHDL {
 		 * Test 5
 		 * name
 		 */
+		/*
 		testNum++;
 		Object[] object_return_array = (Object[]) getRuleObject(PhdlAST.NAME, "my_name", null);
 		CommonTree actual5_1_tree = (CommonTree) object_return_array[0];
@@ -505,6 +506,7 @@ public class ParsePHDL {
 			success &= TestDriver.displayError(testNum, "width", "Incorrect Ordering",
 				TestDriver.collToString(expected5_2), TestDriver.collToString(actual5_2));
 		}
+		*/
 
 		return success;
 	}
