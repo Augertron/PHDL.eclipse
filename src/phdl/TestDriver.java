@@ -42,11 +42,12 @@ public class TestDriver {
 		success &= phdl.grammar.ParsePHDL.unitTest();
 		
 		System.out.println("***Testing phdl.graph.Pin***");
-		success &= phdl.graph.Pin.unitTest();
+		//success &= phdl.graph.Pin.unitTest();
 		System.out.println("***Testing phdl.graph.Net***");
 		success &= phdl.graph.Net.unitTest();
 		System.out.println("***Testing phdl.generator.InfoGenerator***");
 		success &= phdl.generator.InfoGenerator.unitTest();
+		success &= phdl.generator.RefDesGenerator.unitTest();
 
 		return success;
 	}

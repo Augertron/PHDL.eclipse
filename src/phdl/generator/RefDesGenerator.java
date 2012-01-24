@@ -21,7 +21,10 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import phdl.graph.Design;
+import phdl.graph.DesignUnit;
+import phdl.graph.HierarchyUnit;
 import phdl.graph.Instance;
+import phdl.graph.SubInstance;
 
 /**
  * A class that generates a Reference Designator mapping and file.
@@ -34,6 +37,8 @@ public class RefDesGenerator {
 
 	private Map<String, Instance> refMap = new TreeMap<String, Instance>();
 	private Design design;
+	private boolean flag;
+	private final int max_index = 100000;
 
 	/**
 	 * Default Constructor.
@@ -46,57 +51,121 @@ public class RefDesGenerator {
 	 * @see Design
 	 */
 	public RefDesGenerator(Design design) {
+		this.flag = false;
 		this.design = design;
-		generate();
+		generate_pass_1(design);
+		generate_pass_2(design);
 	}
-
-	private void generate() {
-
-		// map all of the refDes's that have been manually constrained
-		for (Instance i : design.getInstances()) {
-			if (i.getRefDes() != null && !i.getRefDes().equals("")) {
-				if (!refMap.keySet().contains(i.getRefDes())) {
-					refMap.put(i.getRefDes(), i);
-					i.setRefDes(i.getRefDes());
-				} else {
-					System.out.println("Duplicate RefDes detected in RefDesGenerator.");
-				}
+	
+	public RefDesGenerator(Design design, boolean flag) {
+		this.flag = flag;
+		this.design = design;
+		generate_pass_1(design);
+		generate_pass_2(design);
+	}
+	
+	private void generate_pass_1(HierarchyUnit des) {
+		if (des instanceof SubInstance) {
+			SubInstance sdes = (SubInstance)des;
+			String prefix = "";
+			if (sdes.getRefPrefix() != null) {
+				prefix = sdes.getRefPrefix();
+			}
+			if (sdes.getParent() instanceof SubInstance) {
+				SubInstance sparent = (SubInstance)sdes.getParent();
+				prefix = sparent.getRefPrefix() + prefix;
+			}
+			if (sdes.hasIndex()) {
+				prefix = prefix + sdes.getIndex();
+			}
+			if (!prefix.equals("")) {
+				sdes.setRefPrefix(prefix + ".");
+			}
+			else {
+				sdes.setRefPrefix("");
 			}
 		}
-
-		// grab all of the other refdes's from the CSV file
-		String fileName = design.getName() + ".csv";
-		try {
-			File file = new File(fileName);
-			if (file.exists()) {
-				System.out.println("File Exists!");
-				BufferedReader in = new BufferedReader(new FileReader(fileName));
-				String line = "";
-				while ((line = in.readLine()) != null) {
-					String[] refDes = line.split(",");
-					Instance inst = design.getInstance(refDes[1]);
-					if (inst.getRefDes() == null || inst.getRefDes().equals(""))
-						inst.setRefDes(refDes[0]);
-					if (!refMap.keySet().contains(refDes[0]))
-						refMap.put(refDes[0], inst);
-				}
-			}
-		} catch (IOException e) {
-			System.err.println("File Reading Error - filename may be corrupt");
-			System.exit(1);
+		
+		map_constrained(des);
+		for (SubInstance s : des.getSubInstances()) {
+			generate_pass_1(s);
 		}
-
-		// assign refDes's to everything else that hasn't been manually constrained
-		// for (Instance i : design.getInst_wo_RefDes()) {
-		// for (int j = 1;; j++) {
-		// String refDes = i.getRefPrefix() + j;
-		// if (!refMap.keySet().contains(refDes)) {
-		// refMap.put(refDes, i);
-		// i.setRefDes(refDes);
-		// break;
-		// }
-		// }
-		// }
+	}
+	
+	private void generate_pass_2(HierarchyUnit des) {
+		for (SubInstance s : des.getSubInstances()) {
+			generate_pass_2(s);
+		}
+		map_unconstrained(des);
+	}
+	
+	private void map_constrained(HierarchyUnit des) {
+		String prefix = "";
+		for (Instance i : des.getInstances()) {
+			if (i.hasRefDes()) {
+				if (des instanceof SubInstance) {
+					prefix = ((SubInstance)des).getRefPrefix();
+				}
+				String ref = prefix + i.getRefDes();
+				System.out.println("Reference Constrained: " + ref);
+				i.setRefDes(ref);
+				add_to_map(i);
+			}
+		}
+	}
+	
+	private void map_unconstrained(HierarchyUnit des) {
+		for (Instance i : des.getInstances()) {
+			if (!i.hasRefDes()) {
+				if (des instanceof SubInstance) {
+					String prefix = ((SubInstance)des).getRefPrefix();
+					i.setRefPrefix(prefix + i.getRefPrefix());
+				}
+				String ref = generate_reference(i);
+				System.out.println("Reference Generated: " + ref);
+				i.setRefDes(ref);
+				add_to_map(i);
+			}
+			else {
+				System.out.println("Instance " + i.getName() + " already had a refDes");
+			}
+		}
+	}
+	
+	private void add_to_map(Instance i) {
+		if (!refMap.keySet().contains(i.getRefDes())) {
+			refMap.put(i.getRefDes(), i);
+		} else {
+			System.out.println("Duplicate RefDes detected in RefDesGenerator.");
+			System.out.println("  In Instance " + i);
+			System.out.println("  And in Instance " + refMap.get(i.getRefDes()));
+		}
+	}
+	
+	private String generate_reference(Instance inst) {
+		String str = "";
+		int i;
+		int max = flag ? 5*max_index : max_index;
+		
+		for (i = 1; i < max; i++) {
+			str = inst.getRefPrefix() + i;
+			if (!refMap.keySet().contains(str)) {
+				break;
+			}
+		}
+		
+		if (i >= max) {
+			if (!flag) {
+				System.out.println("Maximum RefDes index reached: " + max);
+				System.out.println("  To run with 5x the maximum, use -m on the command line");
+			}
+			else {
+				System.out.println("Maximum RefDes index reached: " + max);
+				System.out.println("  No possible way to increase the cap on indices");
+			}
+		}
+		
+		return str;
 	}
 
 	/**
@@ -137,5 +206,153 @@ public class RefDesGenerator {
 			sb.append(refMap.get(s).getName() + "\n");
 		}
 		return sb.toString();
+	}
+	
+	public static boolean unitTest() {
+		boolean success = true;
+		
+		/**
+		 * Test 1
+		 *  No hierarchy
+		 */
+		
+		/**
+		 * Test 2
+		 *  One-level hierarchy
+		 */
+		
+		/**
+		 * Test 3
+		 *  Multi-level hierarchy
+		 */
+		
+		/**
+		 * Test 4
+		 *  Multi-level hierarchy
+		 *  Some levels w/o RefPrefix
+		 */
+		Design des4 = new Design("top_design_4");
+		{
+			Instance inst1 = new Instance(des4);
+			inst1.setName("Inst1");
+			inst1.setRefDes("R1");
+			des4.addInstance(inst1);
+			
+			Instance inst2 = new Instance(des4);
+			inst2.setName("Inst2");
+			inst2.setRefDes("C3");
+			des4.addInstance(inst2);
+			
+			Instance inst3 = new Instance(des4);
+			inst3.setName("Inst3");
+			inst3.setRefDes("R4");
+			des4.addInstance(inst3);
+			
+			Instance[] inst4 = new Instance[4];
+			for (int i = 0; i < 4; i++) {
+				inst4[i] = new Instance(des4);
+				inst4[i].setName("Inst4(" + (i+1) + ")");
+				inst4[i].setRefPrefix("C");
+				des4.addInstance(inst4[i]);
+			}
+		
+			SubInstance sub1 = new SubInstance(des4, "SubInst1"); {
+				Instance sub1_inst1 = new Instance(sub1);
+				sub1_inst1.setName("SubInst1.Inst1");
+				sub1_inst1.setRefDes("R1");
+				sub1.addInstance(sub1_inst1);
+				
+				Instance sub1_inst2 = new Instance(sub1);
+				sub1_inst2.setName("SubInst1.Inst2");
+				sub1_inst2.setRefPrefix("C");
+				sub1.addInstance(sub1_inst2);
+				
+				Instance sub1_inst3 = new Instance(sub1);
+				sub1_inst3.setName("SubInst1.Inst3");
+				sub1_inst3.setRefDes("C3");
+				sub1.addInstance(sub1_inst3);
+			}
+			sub1.setRefPrefix("A");
+			des4.addSubInst(sub1);
+			
+			SubInstance sub2 = new SubInstance(des4, "SubInst2"); {
+				Instance sub2_inst1 = new Instance(sub2);
+				sub2_inst1.setName("SubInst2.Inst1");
+				sub2_inst1.setRefDes("R2");
+				sub2.addInstance(sub2_inst1);
+				
+				Instance[] sub2_inst2 = new Instance[5];
+				for (int i = 4; i >= 0; i--) {
+					sub2_inst2[i] = new Instance(sub2);
+					sub2_inst2[i].setName("SubInst2.Inst2(" + (i+1) + ")");
+					sub2_inst2[i].setRefPrefix("R");
+					sub2.addInstance(sub2_inst2[i]);
+				}
+				
+				Instance sub2_inst3 = new Instance(sub2);
+				sub2_inst3.setName("SubInst2.Inst3");
+				sub2_inst3.setRefDes("C5");
+				sub2.addInstance(sub2_inst3);
+			}
+			des4.addSubInst(sub2);
+			
+			SubInstance sub3 = new SubInstance(des4, "SubInst3"); {
+				SubInstance sub4 = new SubInstance(sub3, "SubInst4"); {
+					Instance sub3_sub4_inst1 = new Instance(sub4);
+					sub3_sub4_inst1.setName("SubInst3.SubInst4.Inst1");
+					sub3_sub4_inst1.setRefPrefix("R");
+					sub4.addInstance(sub3_sub4_inst1);
+					
+					Instance sub3_sub4_inst2 = new Instance(sub4);
+					sub3_sub4_inst2.setName("SubInst3.SubInst4.Inst2");
+					sub3_sub4_inst2.setRefPrefix("C");
+					sub4.addInstance(sub3_sub4_inst2);
+				}
+				sub4.setRefPrefix("C");
+				sub3.addSubInst(sub4);
+			}
+			sub3.setRefPrefix("B");
+			des4.addSubInst(sub3);
+			
+			SubInstance[] sub5 = new SubInstance[3];
+			Instance[] sub5_inst1 = new Instance[3];
+			Instance[] sub5_inst2 = new Instance[3];
+			Instance[] sub5_inst3 = new Instance[3];
+			Integer[] index = new Integer[3];
+			index[0] = 1;
+			index[1] = 4;
+			index[2] = 3;
+			for (int i = 0; i < 3; i++) {
+				sub5[i] = new SubInstance(des4, "SubInst5(" + index[i] + ")"); {
+					sub5_inst1[i] = new Instance(sub5[i]);
+					sub5_inst1[i].setName("SubInst5(" + index[i] + ").Inst1");
+					sub5_inst1[i].setRefPrefix("R");
+					sub5[i].addInstance(sub5_inst1[i]);
+					
+					sub5_inst2[i] = new Instance(sub5[i]);
+					sub5_inst2[i].setName("SubInst5(" + index[i] + ").Inst2");
+					sub5_inst2[i].setRefPrefix("D");
+					sub5[i].addInstance(sub5_inst2[i]);
+					
+					sub5_inst3[i] = new Instance(sub5[i]);
+					sub5_inst3[i].setName("SubInst5(" + index[i] + ").Inst3");
+					sub5_inst3[i].setRefDes("R2");
+					sub5[i].addInstance(sub5_inst3[i]);
+				}
+				sub5[i].setIndex(index[i]);
+				sub5[i].setRefPrefix("X");
+				des4.addSubInst(sub5[i]);
+			}
+		}
+		
+		
+		
+		RefDesGenerator rdGen4 = new RefDesGenerator(des4);
+		
+		rdGen4.outputToFile("top_design_4.csv");
+				
+		
+		
+		return success;
 	}
 }

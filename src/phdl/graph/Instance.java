@@ -30,7 +30,7 @@ public class Instance extends Attributable {
 	private String refPrefix;
 	private String pkg;
 	private String groupName;
-	private int index = -1;;
+	private int index = -1;
 
 	/**
 	 * Default Constructor.
@@ -274,6 +274,13 @@ public class Instance extends Attributable {
 	public boolean hasPins() {
 		return (!pins.isEmpty());
 	}
+	
+	public boolean hasRefDes() {
+		if (refDes != null)
+			return !refDes.equals("");
+		return false;
+	}
+	
 
 	public Map<String, List<Pin>> pinsToMap() {
 		Map<String, List<Pin>> map = new HashMap<String, List<Pin>>();

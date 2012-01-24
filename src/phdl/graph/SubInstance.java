@@ -82,6 +82,13 @@ public class SubInstance extends HierarchyUnit {
 			}
 		}
 	}
+	
+	public SubInstance(DesignUnit parent, String name) {
+		super();
+		this.name = name;
+		this.parent = parent;
+		this.subDesign = null;
+	}
 
 	@Override
 	public boolean equals(Object o) {
