@@ -25,7 +25,7 @@ import phdl.TestDriver;
 public class Pin extends Node {
 
 	private Attributable parent;
-	private Connection connection;
+	private Connection assignment;
 	private String pinMapping;
 	private PinType pinType;
 	private int index;
@@ -44,7 +44,7 @@ public class Pin extends Node {
 				setParent(parent);
 		}
 		this.pinMapping = null;
-		this.connection = null;
+		this.assignment = null;
 		this.pinType = PinType.PIN;
 		setIndex(-1);
 	}
@@ -82,12 +82,12 @@ public class Pin extends Node {
 	}
 
 	/**
-	 * Connection getter method.
+	 * Assignment getter method
 	 * 
-	 * @return the NetNode attached to the Pin
+	 * @return the connection assigned to this Pin
 	 */
-	public Connection getConnection() {
-		return connection;
+	public Connection getAssignment() {
+		return assignment;
 	}
 
 	public int getIndex() {
@@ -131,8 +131,8 @@ public class Pin extends Node {
 	 * 
 	 * @return true, if there is a Connection false, otherwise
 	 */
-	public boolean hasConnection() {
-		return (connection != null);
+	public boolean hasAssignment() {
+		return (assignment != null);
 	}
 
 	public boolean hasIndex() {
@@ -152,9 +152,9 @@ public class Pin extends Node {
 	 * @param net
 	 *            the new NetNode
 	 */
-	public void setConnection(Connection connection) {
-		if (connection != null) {
-			this.connection = connection;
+	public void setAssignment(Connection assignment) {
+		if (assignment != null) {
+			this.assignment = assignment;
 		}
 	}
 
@@ -268,9 +268,9 @@ public class Pin extends Node {
 			success = TestDriver.displayError(testNum, "public Pin(Attributable parent)",
 				"pinMapping member variable should be null", "null", testPin1.pinMapping.toString());
 		}
-		if (testPin1.connection != null) {
+		if (testPin1.assignment != null) {
 			success = TestDriver.displayError(testNum, "public Pin(Attributable parent)",
-				"net member variable should be null", "null", testPin1.connection.toString());
+				"net member variable should be null", "null", testPin1.assignment.toString());
 		}
 		if (testPin1.pinType != PinType.PIN) {
 			success = TestDriver.displayError(testNum, "public Pin(Attributable parent)",
@@ -320,7 +320,7 @@ public class Pin extends Node {
 		testNum++;
 		Net testNet3 = new Net(null);
 		testNet3.name = "test_net_3";
-		testPin3.connection = testNet3;
+		testPin3.assignment = testNet3;
 		testPin3.name = "test_pin_3";
 		testPin3.parent = parentDevice;
 		Pin copyPin1 = new Pin(parentDevice, testPin3);
@@ -376,7 +376,7 @@ public class Pin extends Node {
 		copyPin1.line = 45;
 		copyPin1.pos = 21;
 		copyPin1.name = "copy_Pin_1";
-		copyPin1.connection = tempNet1;
+		copyPin1.assignment = tempNet1;
 		copyPin1.pinMapping = "AB";
 		copyPin1.pinType = PinType.OUTPIN;
 		copyPin1.index = 5;
@@ -452,7 +452,7 @@ public class Pin extends Node {
 		Pin testPin4a = new Pin(null);
 		testPin4a.name = "same_name";
 		testPin4a.index = 4;
-		testPin4a.connection = null;
+		testPin4a.assignment = null;
 		testPin4a.pinMapping = "ab";
 		testPin4a.pinType = PinType.SUPPIN;
 		testPin4a.fileName = "my_filename";
@@ -541,16 +541,16 @@ public class Pin extends Node {
 		 * 	Net getNet();
 		 */
 		testNum++;
-		if (testPin5.getConnection() != null) {
+		if (testPin5.getAssignment() != null) {
 			success = TestDriver
 				.displayError(testNum, "public Net getNet()", "Upon initialization, net should be null");
 		}
 		Net testNet5 = new Net(null);
 		testNet5.name = "test_net_5";
-		testPin5.connection = testNet5;
-		if (!testPin5.getConnection().equals(testNet5)) {
+		testPin5.assignment = testNet5;
+		if (!testPin5.getAssignment().equals(testNet5)) {
 			success = TestDriver.displayError(testNum, "public Net getNet()", "Net incorrect", testNet5.toString(),
-				testPin5.getConnection().toString());
+				testPin5.getAssignment().toString());
 		}
 
 		/**
@@ -617,13 +617,13 @@ public class Pin extends Node {
 		 */
 		testNum++;
 		Pin testPin6 = new Pin(null);
-		if (testPin6.hasConnection()) {
+		if (testPin6.hasAssignment()) {
 			success = TestDriver.displayError(testNum, "public boolean hasNet()",
 				"Upon initialization, there should be no net");
 		}
 		Net testNet6 = new Net(null);
-		testPin6.connection = testNet6;
-		if (!testPin6.hasConnection()) {
+		testPin6.assignment = testNet6;
+		if (!testPin6.hasAssignment()) {
 			success = TestDriver.displayError(testNum, "public boolean hasNet()",
 				"The Pin has a Net, but hasNet() returned false");
 		}
@@ -662,13 +662,13 @@ public class Pin extends Node {
 		Pin testPin7 = new Pin(null);
 		Net testNet7 = new Net(null);
 		testNet7.name = "test_net_7";
-		testPin7.setConnection(testNet7);
-		if (!testPin7.getConnection().equals(testNet7)) {
+		testPin7.setAssignment(testNet7);
+		if (!testPin7.getAssignment().equals(testNet7)) {
 			success = TestDriver.displayError(testNum, "public void setNet(Net net)", "Incorrect Net",
-				testNet7.toString(), testPin7.getConnection().toString());
+				testNet7.toString(), testPin7.getAssignment().toString());
 		}
-		testPin7.setConnection(null);
-		if (testPin7.getConnection() == null) {
+		testPin7.setAssignment(null);
+		if (testPin7.getAssignment() == null) {
 			success = TestDriver.displayError(testNum, "public void setNet(Net net)",
 				"Should not be able to assign null via setNet()");
 		}
@@ -757,7 +757,7 @@ public class Pin extends Node {
 		testPin8.setIndex(-1);
 		testPin8.setPinMapping("8ijk");
 		testPin8.setPinType(PinType.INPIN);
-		testPin8.setConnection(testNet8);
+		testPin8.setAssignment(testNet8);
 		String testPin8Str = "PIN: INPIN test_pin_8 = {8ijk}";
 
 		if (!testPin8.toString().equals(testPin8Str)) {

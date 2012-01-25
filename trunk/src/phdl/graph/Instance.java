@@ -392,10 +392,10 @@ public class Instance extends Attributable {
 			for (Pin p : getPins()) {
 				String index = (p.hasIndex() ? ("[" + p.getIndex() + "]") : "");
 				String connection = "";
-				if (p.hasConnection()) {
-					connection = p.getConnection().getNodeType() + ": " + p.getConnection().getName();
-					if (p.getConnection().hasIndex())
-						connection += "[" + p.getConnection().getIndex() + "]";
+				if (p.hasAssignment()) {
+					connection = p.getAssignment().getNodeType() + ": " + p.getAssignment().getName();
+					if (p.getAssignment().hasIndex())
+						connection += "[" + p.getAssignment().getIndex() + "]";
 				} else if (p.isOpen())
 					connection += "OPEN";
 				else
