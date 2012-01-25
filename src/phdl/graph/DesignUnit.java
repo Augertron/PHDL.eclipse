@@ -339,7 +339,7 @@ public abstract class DesignUnit extends Node {
 				// grab all of its neighbors pins
 				for (Pin p : neighbor.getPins()) {
 					neighbor2.addPin(p);
-					p.setConnection(neighbor2);
+					p.setAssignment(neighbor2);
 				}
 
 			}
@@ -621,9 +621,9 @@ public abstract class DesignUnit extends Node {
 		clearVisited();
 		for (SubInstance s : subInsts) {
 			for (Port p : s.getPorts()) {
-				if (p.hasConnection()) {
+				if (p.hasAssignment()) {
 					sb.append("\t\"" + p.getParent().getNameIndex() + "_" + p.getName() + "\":" + p.getIndex());
-					sb.append(" -- \"" + p.getConnection().getName() + "\":" + p.getConnection().getIndex() + ";\n");
+					sb.append(" -- \"" + p.getAssignment().getName() + "\":" + p.getAssignment().getIndex() + ";\n");
 				}
 			}
 		}

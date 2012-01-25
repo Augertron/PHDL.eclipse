@@ -29,7 +29,7 @@ import java.util.Set;
  */
 public class Port extends Connection {
 
-	private Connection connection;
+	private Connection assignment;
 
 	public Port(DesignUnit design) {
 		super(design);
@@ -63,8 +63,8 @@ public class Port extends Connection {
 	 * 
 	 * @return the NetNode attached to the Pin
 	 */
-	public Connection getConnection() {
-		return connection;
+	public Connection getAssignment() {
+		return assignment;
 	}
 
 	@Override
@@ -78,15 +78,15 @@ public class Port extends Connection {
 	}
 
 	/**
-	 * Checks to see if the Pin has a Connection.
+	 * Checks to see if the Port has a Connection.
 	 * 
 	 * @return true, if there is a Connection false, otherwise
 	 */
-	public boolean hasConnection() {
-		return (connection != null);
+	public boolean hasAssignment() {
+		return (assignment != null);
 	}
 
-	public void setConnection(Connection connection) {
-		this.connection = connection;
+	public void setAssignment(Connection assignment) {
+		this.assignment = assignment;
 	}
 }

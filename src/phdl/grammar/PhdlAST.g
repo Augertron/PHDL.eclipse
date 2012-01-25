@@ -328,7 +328,8 @@ designDecl
 					bailOut($desName, "top level design already declared");
 			} else {
 				des = new SubDesign($desName.text);
-				subDesigns.add((SubDesign) des);
+				if (!subDesigns.add((SubDesign) des))
+					bailOut($desName, "duplicate subdesign declaration");
 			}
 
 			System.out.println("  -- Compiling: " + $desName.text);
@@ -345,9 +346,8 @@ designDecl
 	|	instDecl[des, null]
 	|	subInstDecl[des]
 	|	connectAssign[des]
-	|	(infoDecl		{des.appendInfo($infoDecl.info.getText());})
-	)*//{System.out.print(des);}
-	))
+	|	(infoDecl			{des.appendInfo($infoDecl.info.getText());})
+	)*))
 	;
 	
 groupDecl[DesignUnit des]
@@ -356,7 +356,7 @@ groupDecl[DesignUnit des]
 	|	netDecl[des]
 	|	instDecl[des, $groupName.text]
 	|	connectAssign[des]
-	|	(infoDecl		{des.appendInfo($infoDecl.info.getText());})
+	|	(infoDecl			{des.appendInfo($infoDecl.info.getText());})
 	)*)
 	;
 	
@@ -371,7 +371,7 @@ portDecl[DesignUnit subDes]
 					setLocation(p, $portName);
 					if ($width.indices != null)
 						p.setIndex($width.indices.get(0));
-					if(!subDes.addConnection(p));
+					if(!subDes.addConnection(p))
 						addError($portName, "duplicate port declaration");
 				} else {
 					for (int i = 0; i < $width.indices.size(); i++) {
@@ -590,7 +590,7 @@ pinAssign[DesignUnit des, String instName]
 				for (int i = 0; i < pins.size(); i++) {
 				
 					// check to see if the pin is already assigned
-					if (pins.get(i).hasConnection()) {
+					if (pins.get(i).hasAssignment()) {
 						String index = (pins.get(i).hasIndex())?("index [" + pins.get(i).getIndex() + "]"):("pin");
 						bailOut($operand.id, index + " is already assigned");
 					} else if (pins.get(i).isOpen()) {
@@ -599,7 +599,7 @@ pinAssign[DesignUnit des, String instName]
 						
 					// assign the pin based on the flags
 					} else if ($concat.isReplicated) {
-						pins.get(i).setConnection($concat.cons.get(0));
+						pins.get(i).setAssignment($concat.cons.get(0));
 						$concat.cons.get(0).addPin(pins.get(i));
 					} else if ($concat.isOpen) {
 						pins.get(i).setOpen(true);
@@ -609,7 +609,7 @@ pinAssign[DesignUnit des, String instName]
 							bailOut($operand.id, "pin assignment left size [" + pins.size() + 
 								"] does not match right size [" + $concat.cons.size() + "]");
 						} else {
-							pins.get(i).setConnection($concat.cons.get(i));
+							pins.get(i).setAssignment($concat.cons.get(i));
 							$concat.cons.get(i).addPin(pins.get(i));
 						}
 					}
@@ -635,7 +635,7 @@ pinAssign[DesignUnit des, String instName]
 					for (int i = 0; i < pins.size(); i++) {
 					
 						// check to see if the pin is already assigned
-						if (pins.get(i).hasConnection()) {
+						if (pins.get(i).hasAssignment()) {
 							String index = (pins.get(i).hasIndex())?("index [" + pins.get(i).getIndex() + "]"):("pin");
 							bailOut($operand.id, index + " is already assigned");
 						} else if (pins.get(i).isOpen()) {
@@ -644,7 +644,7 @@ pinAssign[DesignUnit des, String instName]
 							
 						// assign the pin based on the flags
 						} else if ($concat.isReplicated) {
-							pins.get(i).setConnection($concat.cons.get(0));
+							pins.get(i).setAssignment($concat.cons.get(0));
 							$concat.cons.get(0).addPin(pins.get(i));
 						} else if ($concat.isOpen) {
 							pins.get(i).setOpen(true);
@@ -654,7 +654,7 @@ pinAssign[DesignUnit des, String instName]
 								bailOut($operand.id, "pin assignment left size [" + pins.size() + 
 									"] does not match right size [" + $concat.cons.size() + "]");
 							} else {
-								pins.get(i).setConnection($concat.cons.get(i));
+								pins.get(i).setAssignment($concat.cons.get(i));
 								$concat.cons.get(i).addPin(pins.get(i));
 							}
 						}
@@ -694,7 +694,7 @@ subInstDecl[DesignUnit des]
 			} 
 		}
 	
-		(infoDecl 
+		(infoDecl
 			{	List<SubInstance> subs = des.getSubInstances();
 				if ($infoDecl.indices == null) {
 					for (SubInstance s : subs)
@@ -724,11 +724,15 @@ subInstDecl[DesignUnit des]
 				addError($instName, "duplicate instance name exists in design unit");
 		}
 	
-		subAttrAssign* portAssign[des, $instName.text]*)
+		subAttrAssign[des, $instName.text]* 
+		portAssign[des, $instName.text]*)
 	;
 	
-subAttrAssign
-	:	^(SUBATTR_ASSIGN NEWATTR? index? name* IDENT STRING)
+subAttrAssign[DesignUnit des, String subInstName]
+@init{boolean newAttr = false;}
+	:	^(SUBATTR_ASSIGN (NEWATTR {newAttr = true;})? index? name* attrName=IDENT attrValue=STRING)
+		{	
+		}
 	; 	
 	
 portAssign[DesignUnit des, String subInstName]
@@ -786,14 +790,14 @@ portAssign[DesignUnit des, String subInstName]
 					setLocation(ports.get(i), $operand.id);
 					
 					// check to see if the pin is already assigned
-					if (ports.get(i).hasConnection()) {
+					if (ports.get(i).hasAssignment()) {
 						String index = (ports.get(i).hasIndex())?("index [" + ports.get(i).getIndex() + "]"):("port");
 						bailOut($operand.id, index + " is already assigned");
 					}
 					
 					// assign the port based on the flags
 					if ($concat.isReplicated) {
-						ports.get(i).addConnection($concat.cons.get(0));
+						ports.get(i).setAssignment($concat.cons.get(0));
 						$concat.cons.get(0).addConnection(ports.get(i));
 					} else if ($concat.isOpen) {
 						addWarning($operand.id, "open port will isolate design hierarchy");
@@ -803,7 +807,7 @@ portAssign[DesignUnit des, String subInstName]
 							bailOut($operand.id, "port assignment left size [" + ports.size() + 
 								"] does not match right size [" + $concat.cons.size() + "]");
 						} else {
-							ports.get(i).setConnection($concat.cons.get(i));
+							ports.get(i).setAssignment($concat.cons.get(i));
 							$concat.cons.get(i).addConnection(ports.get(i));
 						}
 					}
@@ -829,14 +833,14 @@ portAssign[DesignUnit des, String subInstName]
 						setLocation(ports.get(i), $operand.id);
 						
 						// check to see if the pin is already assigned
-						if (ports.get(i).hasConnection()) {
+						if (ports.get(i).hasAssignment()) {
 							String index = (ports.get(i).hasIndex())?("index [" + ports.get(i).getIndex() + "]"):("port");
 							bailOut($operand.id, index + " is already assigned");
 						}
 					
 						// assign the port based on the flags
 						if ($concat.isReplicated) {
-							ports.get(i).addConnection($concat.cons.get(0));
+							ports.get(i).setAssignment($concat.cons.get(0));
 							$concat.cons.get(0).addConnection(ports.get(i));
 						} else if ($concat.isOpen) {
 							addWarning($operand.id, "open port will isolate design hierarchy");
@@ -846,7 +850,7 @@ portAssign[DesignUnit des, String subInstName]
 								bailOut($operand.id, "port assignment left size [" + ports.size() + 
 									"] does not match right size [" + $concat.cons.size() + "]");
 							} else {
-								ports.get(i).setConnection($concat.cons.get(i));
+								ports.get(i).setAssignment($concat.cons.get(i));
 								$concat.cons.get(i).addConnection(ports.get(i));
 							}
 						}
@@ -912,16 +916,19 @@ concat[DesignUnit des] returns [List<Connection> cons, boolean isReplicated, boo
 	:	^(CONCAT_LIST (operand
 	
 			{	// for each operand, if no indices were specified, return all relevant connections from the design
-				if ($operand.indices == null)
-					$cons.addAll(des.getConnectionsByName($operand.id.getText()));
+				if ($operand.indices == null) {
+					List<Connection> connects = des.getConnectionsByName($operand.id.getText());
+					if (connects.size() == 0)
+						bailOut($operand.id, "undeclared connection");
+					$cons.addAll(connects);
 				
 				// otherwise, only return connections with matching indices
-				else {
+				} else {
 					for (int i = 0; i < $operand.indices.size(); i++) {
 						Connection c = des.getConnection($operand.id.getText(), $operand.indices.get(i));
 						if (c == null) {
 							if (des.getConnectionsByName($operand.id.getText()).size() > 0)
-								bailOut($operand.id, "invalid connection slice [" + $operand.indices.get(i) + "]");
+								bailOut($operand.id, "invalid connection index [" + $operand.indices.get(i) + "]");
 							else
 								bailOut($operand.id, "undeclared connection");
 						} else

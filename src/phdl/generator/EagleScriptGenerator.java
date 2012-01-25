@@ -181,7 +181,7 @@ public class EagleScriptGenerator {
 					// connect all of its nets
 					for (Pin p : ((Instance) n).getPins()) {
 						String refDes = ((Instance) p.getParent()).getRefDes();
-						String name = p.getConnection().getName().toUpperCase();
+						String name = p.getAssignment().getName().toUpperCase();
 						sb.append("SIGNAL " + name + " " + refDes + " " + p.getName() + ";\n");
 					}
 
@@ -247,7 +247,7 @@ public class EagleScriptGenerator {
 				}
 			}
 			for (Node n : signals) {
-				signal(((Pin) n).getConnection());
+				signal(((Pin) n).getAssignment());
 			}
 
 			// Deleted Elements

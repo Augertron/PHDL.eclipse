@@ -64,7 +64,7 @@ public class SubInstance extends HierarchyUnit {
 				else {
 					SubInstance s = this.getSubInstance(c.getParent().getName(), c.getParent().getIndex());
 					Port p = s.getPort(c.getName(), c.getIndex());
-					p.setConnection(this.getConnection(i));
+					p.setAssignment(this.getConnection(i));
 
 				}
 			}
@@ -73,10 +73,10 @@ public class SubInstance extends HierarchyUnit {
 		// reconstruct all of the pin connectivity
 		for (int i = 0; i < subDesign.instances.size(); i++) {
 			for (int p = 0; p < subDesign.instances.get(i).getPins().size(); p++) {
-				if (subDesign.instances.get(i).getPins().get(p).hasConnection()) {
-					Connection subC = subDesign.instances.get(i).getPins().get(p).getConnection();
+				if (subDesign.instances.get(i).getPins().get(p).hasAssignment()) {
+					Connection subC = subDesign.instances.get(i).getPins().get(p).getAssignment();
 					int index = subDesign.connections.indexOf(subC);
-					this.instances.get(i).getPins().get(p).setConnection(this.connections.get(index));
+					this.instances.get(i).getPins().get(p).setAssignment(this.connections.get(index));
 					this.connections.get(index).addPin(this.instances.get(i).getPins().get(p));
 				}
 			}
