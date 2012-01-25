@@ -47,6 +47,7 @@ public class TestDriver {
 		success &= phdl.graph.Net.unitTest();
 		System.out.println("***Testing phdl.generator.InfoGenerator***");
 		success &= phdl.generator.InfoGenerator.unitTest();
+		System.out.println("***Testing phdl.generator.RefDesGenerator***");
 		success &= phdl.generator.RefDesGenerator.unitTest();
 
 		return success;
