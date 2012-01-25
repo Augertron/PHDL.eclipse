@@ -1,0 +1,58 @@
+
+/**
+ *	Programmable Sound Card
+ *	
+ */
+
+include "ADC.phdl";
+include "DAC.phdl";
+include "DSP.phdl";
+include "clock.phdl";
+include "powerJack.phdl";
+include "jtag.phdl"; 
+include "rcl.phdl";
+
+device miniJack {
+	attr refPrefix = "J";
+	attr library = "connector";
+	attr package = "mini_jack";
+	outpin[1:2] channel = {1,2};
+}
+
+design soundCard {
+
+	net vcc, gnd;
+	inst power of powerJack {
+		vcc = vcc;
+		gnd = gnd;
+	}
+
+	net[1:2] in_channel;
+	inst in_jack of miniJack {
+		channel = in_channel;
+	}
+	
+	net [1:2] out_channel;
+	inst out_jack of miniJack {
+		channel = out_channel;
+	}
+	
+	net clk;
+	subinst clock of ClockLogic {
+		pullup_res
+		clk = clk;
+		vcc = vcc;
+		gnd = gnd;
+	}
+	
+	subinst DSP of dualChDSP {
+		//Inputs
+		channel = channel;
+		sample_rate = sample_rate;
+		clk = clk;
+		
+		//Outputs
+		channel_out = channel_out;
+	}
+	
+}
