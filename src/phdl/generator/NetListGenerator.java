@@ -13,12 +13,18 @@ package phdl.generator;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
+import phdl.graph.Connection;
 import phdl.graph.Design;
+import phdl.graph.DesignUnit;
+import phdl.graph.HierarchyUnit;
 import phdl.graph.Instance;
 import phdl.graph.Net;
 import phdl.graph.Pin;
+import phdl.graph.SubInstance;
 
 /**
  * A class that generates a NetList (.asc) for use in PADS.
@@ -50,8 +56,73 @@ public class NetListGenerator {
 		this.refMap = refMap;
 		generate();
 	}
-
+	
 	private void generate() {
+		StringBuilder netlist = new StringBuilder();
+		clear_visited(design);
+		netlist.append(generate_header() + "\n\n");
+		netlist.append(generate_parts() + "\n");
+		netlist.append(generate_connections());
+		netlist.append("\n*END*");
+		contents = netlist.toString();
+	}
+	
+	private void clear_visited(HierarchyUnit des) {
+		des.clearVisited();
+		for (SubInstance s : des.getSubInstances()) {
+			clear_visited(s);
+		}
+	}
+	
+	private String generate_header() {
+		StringBuilder header = new StringBuilder();
+		header.append("!PADS-POWERPCB-V9.0-MILS! NETLIST FILE FROM PADS LOGIC V9.3");
+		return header.toString();
+	}
+	
+	private String generate_parts() {
+		StringBuilder devices = new StringBuilder();
+		devices.append("*PART*\n");
+		for (String s : refMap.keySet()) {
+			Instance i = refMap.get(s);
+			devices.append(s);
+			devices.append("\n " + i.getDevice().getName().toUpperCase() + "@" + i.getPackage());
+		}
+		return devices.toString();
+	}
+	
+	private String generate_connections() {
+		StringBuilder connections = new StringBuilder();
+		connections.append("*CONNECTION*\n");
+		
+		List<List<Pin>> total_netlist = new ArrayList<List<Pin>>();
+		total_netlist.addAll(retrieve_all_pins(design));
+		//TODO translate netlist into text
+		return connections.toString();
+	}
+	
+	private List<List<Pin>> retrieve_all_pins(HierarchyUnit des) {
+		List<List<Pin>> total_netlist = new ArrayList<List<Pin>>();
+		for (Net n : des.getNets()) {
+			List<Pin> single_netlist = retrieve_pins(n);
+			total_netlist.add(single_netlist);
+		}
+		for (SubInstance s : des.getSubInstances()) {
+			total_netlist.addAll(retrieve_all_pins(s));
+		}
+		return total_netlist;
+	}
+	
+	private List<Pin> retrieve_pins(Connection c) {
+		List<Pin> netlist = new ArrayList<Pin>();
+		if (!c.isVisited()) {
+			netlist.addAll(c.getPins());
+			c.setVisited(true);
+		}
+		return netlist;
+	}
+
+	private void generate_old() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("!PADS-POWERPCB-V9.0-MILS! NETLIST FILE FROM PADS LOGIC V9.3 \n\n");
 		sb.append("*PART*\n");

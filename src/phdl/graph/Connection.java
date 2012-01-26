@@ -63,7 +63,6 @@ public abstract class Connection extends Attributable {
 		if (p != null)
 			return (!pins.add(p));
 		return false;
-
 	}
 
 	@Override
