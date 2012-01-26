@@ -4,19 +4,22 @@
  *	
  */
 
-include "ADC.phdl";
-include "DAC.phdl";
-include "DSP.phdl";
+include "brad_jtag.phdl";
+include "button.phdl";
 include "clock.phdl";
-include "powerJack.phdl";
-include "jtag.phdl"; 
+include "DSP.phdl";
+include "header.phdl";
+include "hpc-connector";
+include "jack_connector.phdl";
+include "led.phdl";
 include "rcl.phdl";
+include "switch.phdl";
 
 device miniJack {
 	attr refPrefix = "J";
 	attr library = "connector";
 	attr package = "mini_jack";
-	outpin[1:2] channel = {1,2};
+	pin[1:2] channel = {1,2};
 }
 
 design soundCard {
@@ -26,33 +29,49 @@ design soundCard {
 		vcc = vcc;
 		gnd = gnd;
 	}
+	
+	net clk;
+	subinst clock of ClockLogic {
+		clk = clk;
+		vcc = vcc;
+		gnd = gnd;
+	}
 
 	net[1:2] in_channel;
 	inst in_jack of miniJack {
 		channel = in_channel;
 	}
 	
-	net [1:2] out_channel;
+	net[1:2] out_channel;
 	inst out_jack of miniJack {
 		channel = out_channel;
 	}
 	
-	net clk;
-	subinst clock of ClockLogic {
-		pullup_res
-		clk = clk;
-		vcc = vcc;
-		gnd = gnd;
+	net[1:8] sw_net;
+	inst(1:8) sw of swDPDT {
+		off[1:2] = <gnd>;
+		on[1:2] = <vcc>; //High Asserted
+		combine(out) = sw_net;
 	}
 	
-	subinst DSP of dualChDSP {
-		//Inputs
-		channel = channel;
-		sample_rate = sample_rate;
-		clk = clk;
-		
-		//Outputs
-		channel_out = channel_out;
+	net[1:4] btn_net;
+	inst(1:4) btn of btnpush {
+		combine(out) = btn_net;
+		gnd = vcc; //High Asserted
 	}
+	
+	net[1:8] led_net;
+	inst(1:8) leds of led {
+		combine(anode) = led_net;
+		combine(cathode) = vcc; //High Asserted 
+	}
+	
+	net[1:38] 40pin_io_net;
+	inst 40pin of 40PinConnector {
+		vcc = vcc;
+		gnd = gnd;
+		iopins = 40pin_io_net;
+	}
+	
 	
 }

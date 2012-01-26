@@ -71,7 +71,7 @@ public abstract class DesignUnit extends Node {
 		return false;
 	}
 
-	private void clearVisited() {
+	public void clearVisited() {
 		for (Connection c : connections)
 			c.setVisited(false);
 	}
