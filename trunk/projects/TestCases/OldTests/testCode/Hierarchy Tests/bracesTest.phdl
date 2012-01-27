@@ -1,0 +1,115 @@
+/******************************
+ *	
+ *	Hierarchy Test Code
+ *		Braces Test
+ *
+ *	Date:	November 29, 2011
+ *	Author:	Richard Black
+ *	
+ *	Testing Objective:
+ *		Making sure that the parser will compile code where
+ *		the "is" and "end" keywords are replaced with curly
+ *		braces
+ *
+ *	Testing Procedure:
+ *		The code below is copied into the Eclipse ANTLR Interpreter
+ *		for the PHDL.g file.
+ *
+ *		Note that ANTLR has some strange issues when running with
+ *		the default settings.  Save the test code under the
+ *		appropriate rule and select "Run (Java)" in the dropdown
+ *		menu found under the "Run" button.
+ *
+ *	Date of Successful Tests:
+ *		Test 1:	November 29, 2011
+ *		Test 2:	November 29, 2011
+ *		Test 3: November 29, 2011
+ *		Test 4: November 29, 2011
+ *		Test 5: November 29, 2011
+ *
+ *	Tests Complete!
+ *
+ ******************************/
+
+/**********
+ *	Test 1
+ *	
+ *	Description:
+ *		Testing "design" construct
+ *
+ *	Rule used:
+ *		designDecl
+ *
+ *	Date of Successful Test: November 29, 2011
+ *	
+ **********/
+
+design testDesign {
+	
+}
+
+/**********
+ *	Test 2
+ *	
+ *	Description:
+ *		Testing "device" construct
+ *
+ *	Rule used:
+ *		deviceDecl
+ *
+ *	Date of Successful Test: November 29, 2011
+ *	
+ **********/
+device testDevice {
+	
+}
+
+
+/**********
+ *	Test 3
+ *	
+ *	Description:
+ *		Testing "net" construct
+ *
+ *	Rule used:
+ *		netDecl
+ *
+ *	Date of Successful Test: November 29, 2011
+ *	
+ **********/
+net testNet {
+	
+}
+
+
+/**********
+ *	Test 4
+ *	
+ *	Description:
+ *		Testing "inst" construct
+ *
+ *	Rule used:
+ *		instanceDecl
+ *
+ *	Date of Successful Test: November 29, 2011
+ *	
+ **********/
+inst testInst of testDevice {
+	
+}
+
+/**********
+ *	Test 5
+ *	
+ *	Description:
+ *		Testing "group" construct
+ *
+ *	Rule used:
+ *		groupStruct
+ *
+ *	Date of Successful Test: November 29, 2011
+ *	
+ **********/
+group "testGroup" {
+	
+}
