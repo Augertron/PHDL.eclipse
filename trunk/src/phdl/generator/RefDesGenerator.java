@@ -252,8 +252,7 @@ public class RefDesGenerator {
 			des4.addInstance(inst1);
 			
 			Instance inst2 = new Instance(des4);
-			inst2.setName("Inst2");RefDesGenerator rdGen4 = new RefDesGenerator(des4);
-			rdGen4.outputToFile("top_design_4.csv");
+			inst2.setName("Inst2");
 			inst2.setRefDes("C3");
 			des4.addInstance(inst2);
 			

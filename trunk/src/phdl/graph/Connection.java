@@ -67,10 +67,11 @@ public abstract class Connection extends Attributable {
 
 	@Override
 	public int compareTo(Object o) {
-		if (this.equals(o))
+		Connection c = (Connection)o;
+		if (this.equals(c)) {
 			return 0;
-		else
-			return 1;
+		}
+		return this.getNameIndex().compareTo(c.getNameIndex());
 	}
 
 	@Override
@@ -109,7 +110,7 @@ public abstract class Connection extends Attributable {
 	}
 
 	public String getNameIndex() {
-		return this.name + (hasIndex() ? this.index : "");
+		return this.name + (hasIndex() ? "[" + this.index + "]" : "");
 	}
 
 	/**
