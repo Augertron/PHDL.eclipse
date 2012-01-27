@@ -299,16 +299,16 @@ public class NetListGenerator {
 		 * 	No Hierarchy and no arrayed instances/nets/pins
 		 */
 		{
-			Design design = new Design("Design_Test_1");
+			Design design = new Design("test1");
 			{
 				Instance inst1 = new Instance(design); {
-					Device dev1 = new Device("Device_1_Test_1");
+					Device dev1 = new Device("Device1");
 					inst1.setDevice(dev1);
 					inst1.setRefDes("A1");
-					inst1.setName("Inst_1_Test_1");
+					inst1.setName("Inst1");
 					inst1.setPackage("package1");
 					Pin pin = new Pin(inst1); {
-						pin.setName("Inst_1_Pin_1_Test_1");
+						pin.setName("Pin1");
 						pin.setPinMapping("1");
 					}
 					inst1.addPin(pin);
@@ -316,13 +316,13 @@ public class NetListGenerator {
 				design.addInstance(inst1);
 				
 				Instance inst2 = new Instance(design); {
-					Device dev2 = new Device("Device_2_Test_1");
+					Device dev2 = new Device("Device2");
 					inst2.setDevice(dev2);
 					inst2.setRefDes("B1");
-					inst2.setName("Inst2_Test_1");
-					inst2.setPackage("package_2");
+					inst2.setName("Inst2");
+					inst2.setPackage("package2");
 					Pin pin = new Pin(inst2); {
-						pin.setName("Inst2_Pin_1_Test_1");
+						pin.setName("Pin2");
 						pin.setPinMapping("2");
 					}
 					inst2.addPin(pin);
@@ -330,16 +330,22 @@ public class NetListGenerator {
 				design.addInstance(inst2);
 				
 				Net net1 = new Net(design); {
-					net1.setName("Net_1_Test_1");
-					net1.addPin(inst1.getPin("Inst_1_Pin_1_Test_1"));
-					net1.addPin(inst2.getPin("Inst_2_Pin_1_Test_1"));
+					net1.setName("Net1");
+					net1.addPin(inst1.getPin("Pin1"));
+					net1.addPin(inst2.getPin("Pin2"));
 				}
 				design.addConnection(net1);
 			}
 			RefDesGenerator refGen = new RefDesGenerator(design);
 			NetListGenerator netGen = new NetListGenerator(design, refGen.getRefMap());
-			System.out.println(netGen.getContents());
-			netGen.outputToFile(design.getName() + ".asc");
+			netGen.outputToFile("TestsOutput/NetListOutput/" + design.getName() + ".asc");
+		}
+		/**
+		 * Test 2
+		 *  No hierarchy, with arrayed instances/pins/nets
+		 */
+		{
+			
 		}
 		
 		return success;

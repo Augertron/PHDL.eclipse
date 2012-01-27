@@ -38,11 +38,11 @@ public class TestDriver {
 	}
 
 	private static boolean runTests(boolean success) {
-		//System.out.println("***Testing phdl.grammar.PhdlAST***");
-		//success &= phdl.grammar.ParsePHDL.unitTest();
+		System.out.println("***Testing phdl.grammar.PhdlAST***");
+		success &= phdl.grammar.ParsePHDL.unitTest();
 		
 		System.out.println("***Testing phdl.graph.Pin***");
-		//success &= phdl.graph.Pin.unitTest();
+		success &= phdl.graph.Pin.unitTest();
 		System.out.println("***Testing phdl.graph.Net***");
 		success &= phdl.graph.Net.unitTest();
 		System.out.println("***Testing phdl.generator.InfoGenerator***");

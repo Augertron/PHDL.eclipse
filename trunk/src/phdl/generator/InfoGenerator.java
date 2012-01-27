@@ -96,7 +96,7 @@ public class InfoGenerator {
 	public static boolean unitTest() {
 		boolean success = true;
 		Design testDesign1 = new Design();
-		testDesign1.setName("testDesign1");
+		testDesign1.setName("test1");
 		testDesign1.appendInfo("Lorem ipsum dolor sit amet.");
 
 		Instance testInst1 = new Instance(testDesign1);
@@ -121,7 +121,7 @@ public class InfoGenerator {
 		testDesign1.addInstance(testInst2);
 
 		InfoGenerator infoGen = new InfoGenerator(testDesign1);
-		infoGen.outputToFile("testinfo1.info");
+		infoGen.outputToFile("TestsOutput/InfoOutput/" + testDesign1.getName() + ".info");
 
 		return success;
 	}
