@@ -105,6 +105,14 @@ public class Pin extends Node {
 	}
 
 	/**
+	 * 
+	 * @return
+	 */
+	public String getNameIndex() {
+		return this.name + (hasIndex() ? "[" + this.index + "]" : "");
+	}
+	
+	/**
 	 * ParentNode accessor method.
 	 * 
 	 * @return the attributable parent node

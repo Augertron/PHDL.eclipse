@@ -164,16 +164,18 @@ public class NetListGenerator {
 	private String generate_pin_list(Net n) {
 		StringBuilder sb = new StringBuilder();
 		List<Pin> pins = netlist.get(n);
-		for (int i = 0; i < pins.size() - 1; i++) {
-			Pin pin1 = pins.get(i);
-			Pin pin2 = pins.get(i+1);
-			
-			String ref1 = ((Instance)pin1.getParent()).getRefDes();
-			String ref2 = ((Instance)pin2.getParent()).getRefDes();
-			
-			sb.append(" " + ref1 + "." + pin1.getPinMapping());
-			sb.append(" " + ref2 + "." + pin2.getPinMapping());
-			sb.append("\n");
+		if (pins != null) {
+			for (int i = 0; i < pins.size() - 1; i++) {
+				Pin pin1 = pins.get(i);
+				Pin pin2 = pins.get(i+1);
+				
+				String ref1 = ((Instance)pin1.getParent()).getRefDes();
+				String ref2 = ((Instance)pin2.getParent()).getRefDes();
+				
+				sb.append(" " + ref1 + "." + pin1.getPinMapping());
+				sb.append(" " + ref2 + "." + pin2.getPinMapping());
+				sb.append("\n");
+			}
 		}
 		return sb.toString();
 	}
@@ -345,10 +347,120 @@ public class NetListGenerator {
 		 *  No hierarchy, with arrayed instances/pins/nets
 		 */
 		{
-			
+			Design design = new Design("test2"); {
+				Instance inst1 = new Instance(design); {
+					Device dev = new Device("Device1");
+					inst1.setDevice(dev);
+					inst1.setRefDes("A1");
+					inst1.setName("Inst1");
+					inst1.setPackage("package1");
+					
+					Pin a = new Pin(inst1); {
+						a.setName("a");
+						a.setPinMapping("1");
+					}
+					inst1.addPin(a);
+					
+					Pin d = new Pin(inst1); {
+						d.setName("d");
+						d.setPinMapping("2");
+					}
+					inst1.addPin(d);
+				}
+				design.addInstance(inst1);
+				
+				Instance inst2 = new Instance(design); {
+					Device dev = new Device("Device2");
+					inst2.setDevice(dev);
+					inst2.setRefDes("B1");
+					inst2.setName("Inst2");
+					inst2.setPackage("package2");
+					
+					Pin b = new Pin(inst2); {
+						b.setName("b");
+						b.setPinMapping("2");
+					}
+					inst2.addPin(b);
+					
+					Pin[] e = new Pin[2];
+					for (int i = 0; i < 2; i++) {
+						e[i] = new Pin(inst2); {
+							e[i].setName("e");
+							e[i].setIndex(i+1);
+						}
+					}
+					e[0].setPinMapping("1");
+					e[1].setPinMapping("3");
+					inst2.addPin(e[0]);
+					inst2.addPin(e[1]);
+				}
+				design.addInstance(inst2);
+				
+				Instance[] inst3 = new Instance[2];
+				Pin[][] c = new Pin[2][3];
+				Device dev = new Device("Device3");
+				for (int i = 0; i < 2; i++) {
+					inst3[i] = new Instance(design); {
+						inst3[i].setName("inst3");
+						inst3[i].setIndex(i+1);
+						inst3[i].setDevice(dev);
+						inst3[i].setRefDes("C" + (i+1));
+						inst3[i].setPackage("package3");
+					}
+					
+					for (int j = 0; j < 3; j++) {
+						c[i][j] = new Pin(inst3[i]);
+						c[i][j].setName("c");
+						c[i][j].setIndex(j+1);
+					}
+					c[i][0].setPinMapping("8");
+					c[i][1].setPinMapping("9");
+					c[i][2].setPinMapping("10");
+					
+					inst3[i].addPin(c[i][0]);
+					inst3[i].addPin(c[i][1]);
+					inst3[i].addPin(c[i][2]);
+				}
+				design.addInstance(inst3[0]);
+				design.addInstance(inst3[1]);
+				
+				Net net2 = new Net(design); {
+					net2.setName("Net2");
+					net2.addPin(inst1.getPin("d"));
+					net2.addPin(inst3[0].getPin("c", 1));
+					net2.addPin(inst3[0].getPin("c", 2));
+					net2.addPin(inst3[0].getPin("c", 3));
+				}
+				design.addConnection(net2);
+				
+				Net[] net1 = new Net[3]; {
+					for (int i = 0; i < 3; i++) {
+						net1[i] = new Net(design); {
+							net1[i].setName("Net1");
+							net1[i].setIndex(3-i);
+						}
+					}
+					net1[0].addPin(inst1.getPin("a"));
+					net1[0].addPin(inst2.getPin("b"));
+					net1[0].addPin(inst3[1].getPin("c",1));
+					
+					net1[1].addPin(inst2.getPin("e",1));
+					net1[1].addPin(inst3[1].getPin("c",2));
+					
+					net1[2].addPin(inst2.getPin("e",2));
+					net1[2].addPin(inst3[1].getPin("c",3));
+				}
+				design.addConnection(net1[0]);
+				design.addConnection(net1[1]);
+				design.addConnection(net1[2]);
+			}
+			RefDesGenerator refGen = new RefDesGenerator(design);
+			NetListGenerator netGen = new NetListGenerator(design, refGen.getRefMap());
+			netGen.outputToFile("TestsOutput/NetListOutput/" + design.getName() + ".asc");
 		}
 		
 		return success;
 	}
 
 }
+
