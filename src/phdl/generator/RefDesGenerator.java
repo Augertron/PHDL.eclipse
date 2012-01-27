@@ -244,7 +244,7 @@ public class RefDesGenerator {
 		 *  Multi-level hierarchy
 		 *  Some levels w/o RefPrefix
 		 */
-		Design des4 = new Design("top_design_4");
+		Design des4 = new Design("test4");
 		{
 			Instance inst1 = new Instance(des4);
 			inst1.setName("Inst1");
@@ -364,14 +364,14 @@ public class RefDesGenerator {
 		}
 		
 		RefDesGenerator rdGen4 = new RefDesGenerator(des4);
-		rdGen4.outputToFile("top_design_4.csv");
+		rdGen4.outputToFile("TestsOutput/RefDesOutput/" + des4.getName() + ".csv");
 				
 		/**
 		 * Test 5
 		 *  Multi-level hierarchy
 		 *  Some levels w/o RefPrefix
 		 */
-		Design des5 = new Design("Design_5");
+		Design des5 = new Design("test5");
 		{
 			Instance inst1 = new Instance(des5); {
 				inst1.setName("Inst1");
@@ -520,7 +520,7 @@ public class RefDesGenerator {
 			}
 		}
 		RefDesGenerator rdGen5 = new RefDesGenerator(des5);
-		rdGen5.outputToFile("Design_5.csv");
+		rdGen5.outputToFile("TestsOutput/RefDesOutput/" + des5.getName() + ".csv");
 		
 		return success;
 	}

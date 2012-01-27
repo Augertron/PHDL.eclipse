@@ -545,7 +545,8 @@ public class Pin extends Node {
 			success = TestDriver
 				.displayError(testNum, "public Net getNet()", "Upon initialization, net should be null");
 		}
-		Net testNet5 = new Net(null);
+		Design dummy_des = new Design("dummy");
+		Net testNet5 = new Net(dummy_des);
 		testNet5.name = "test_net_5";
 		testPin5.assignment = testNet5;
 		if (!testPin5.getAssignment().equals(testNet5)) {
@@ -660,7 +661,7 @@ public class Pin extends Node {
 		 */
 		testNum++;
 		Pin testPin7 = new Pin(null);
-		Net testNet7 = new Net(null);
+		Net testNet7 = new Net(dummy_des);
 		testNet7.name = "test_net_7";
 		testPin7.setAssignment(testNet7);
 		if (!testPin7.getAssignment().equals(testNet7)) {
