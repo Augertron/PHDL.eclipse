@@ -38,8 +38,8 @@ public class TestDriver {
 	}
 
 	private static boolean runTests(boolean success) {
-		System.out.println("***Testing phdl.grammar.PhdlAST***");
-		success &= phdl.grammar.ParsePHDL.unitTest();
+		//System.out.println("***Testing phdl.grammar.PhdlAST***");
+		//success &= phdl.grammar.ParsePHDL.unitTest();
 		
 		System.out.println("***Testing phdl.graph.Pin***");
 		//success &= phdl.graph.Pin.unitTest();
@@ -49,6 +49,8 @@ public class TestDriver {
 		success &= phdl.generator.InfoGenerator.unitTest();
 		System.out.println("***Testing phdl.generator.RefDesGenerator***");
 		success &= phdl.generator.RefDesGenerator.unitTest();
+		System.out.println("***Testing phdl.generator.NetListGenerator***");
+		success &= phdl.generator.NetListGenerator.unitTest();
 
 		return success;
 	}
