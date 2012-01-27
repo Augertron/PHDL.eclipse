@@ -14,12 +14,15 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import phdl.graph.Connection;
 import phdl.graph.Design;
 import phdl.graph.DesignUnit;
+import phdl.graph.Device;
 import phdl.graph.HierarchyUnit;
 import phdl.graph.Instance;
 import phdl.graph.Net;
@@ -36,6 +39,7 @@ public class NetListGenerator {
 
 	private Design design;
 	private Map<String, Instance> refMap;
+	private Map<Net, List<Pin>> netlist;
 	private String contents;
 
 	/**
@@ -54,19 +58,37 @@ public class NetListGenerator {
 	public NetListGenerator(Design design, Map<String, Instance> refMap) {
 		this.design = design;
 		this.refMap = refMap;
+		netlist = new TreeMap<Net, List<Pin>>();
 		generate();
 	}
 	
+	/**
+	 * generate
+	 * 
+	 * Generates the netlist and a string representation of it
+	 * and stores it into global variables.
+	 */
 	private void generate() {
-		StringBuilder netlist = new StringBuilder();
+		StringBuilder sb = new StringBuilder();
 		clear_visited(design);
-		netlist.append(generate_header() + "\n\n");
-		netlist.append(generate_parts() + "\n");
-		netlist.append(generate_connections());
-		netlist.append("\n*END*");
-		contents = netlist.toString();
+		
+		sb.append(generate_header() + "\n\n");
+		sb.append(generate_parts() + "\n");
+		sb.append(generate_connections());
+		sb.append("\n*END*");
+		
+		contents = sb.toString();
 	}
 	
+	/**
+	 * clear_visited
+	 * 
+	 * Recursively iterates through and sets all Net's visited
+	 * boolean variable to unvisited.
+	 *  
+	 * @param des	The HierarchyUnit whose Nets will be set
+	 * 				to unvisited.
+	 */
 	private void clear_visited(HierarchyUnit des) {
 		des.clearVisited();
 		for (SubInstance s : des.getSubInstances()) {
@@ -74,54 +96,137 @@ public class NetListGenerator {
 		}
 	}
 	
+	/**
+	 * generate_header
+	 * 
+	 * Generates the header of the asc netlist file.
+	 * 
+	 * @return	a string representation of the header in a PADS
+	 * 			netlist
+	 */
 	private String generate_header() {
 		StringBuilder header = new StringBuilder();
 		header.append("!PADS-POWERPCB-V9.0-MILS! NETLIST FILE FROM PADS LOGIC V9.3");
 		return header.toString();
 	}
 	
+	/**
+	 * generate_parts
+	 * 
+	 * Generates the list of parts used on the board in for the
+	 * asc netlist file.
+	 * 
+	 * @return	a string representation of the part list for a 
+	 * 			PADS netlist 
+	 */
 	private String generate_parts() {
 		StringBuilder devices = new StringBuilder();
 		devices.append("*PART*\n");
 		for (String s : refMap.keySet()) {
 			Instance i = refMap.get(s);
 			devices.append(s);
-			devices.append("\n " + i.getDevice().getName().toUpperCase() + "@" + i.getPackage());
+			devices.append(" " + i.getDevice().getName().toUpperCase() + "@" + i.getPackage() + "\n");
 		}
 		return devices.toString();
 	}
 	
+	/**
+	 * generate_connections
+	 * 
+	 * Generates the list of nets and the pins associated
+	 * connected to them for the asc netlist file.
+	 * 
+	 * @return	a string representation of the nets and pins
+	 * 			for a PADS netlist
+	 */
 	private String generate_connections() {
 		StringBuilder connections = new StringBuilder();
 		connections.append("*CONNECTION*\n");
 		
-		List<List<Pin>> total_netlist = new ArrayList<List<Pin>>();
-		total_netlist.addAll(retrieve_all_pins(design));
-		//TODO translate netlist into text
+		retrieve_netlist(design);
+		for (Net n : netlist.keySet()) {
+			connections.append(generate_net_header(n));
+			connections.append(generate_pin_list(n));
+		}
 		return connections.toString();
 	}
 	
-	private List<List<Pin>> retrieve_all_pins(HierarchyUnit des) {
-		List<List<Pin>> total_netlist = new ArrayList<List<Pin>>();
-		for (Net n : des.getNets()) {
-			List<Pin> single_netlist = retrieve_pins(n);
-			total_netlist.add(single_netlist);
+	private String generate_net_header(Net n) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("*SIGNAL* " + n.getName().toUpperCase());
+		if (n.hasIndex()) {
+			sb.append("[" + n.getIndex() + "]");
 		}
-		for (SubInstance s : des.getSubInstances()) {
-			total_netlist.addAll(retrieve_all_pins(s));
-		}
-		return total_netlist;
+		sb.append("\n");
+		return sb.toString();
 	}
 	
+	private String generate_pin_list(Net n) {
+		StringBuilder sb = new StringBuilder();
+		List<Pin> pins = netlist.get(n);
+		for (int i = 0; i < pins.size() - 1; i++) {
+			Pin pin1 = pins.get(i);
+			Pin pin2 = pins.get(i+1);
+			
+			String ref1 = ((Instance)pin1.getParent()).getRefDes();
+			String ref2 = ((Instance)pin2.getParent()).getRefDes();
+			
+			sb.append(" " + ref1 + "." + pin1.getPinMapping());
+			sb.append(" " + ref2 + "." + pin2.getPinMapping());
+			sb.append("\n");
+		}
+		return sb.toString();
+	}
+	
+	/**
+	 * retrieve_netlist
+	 * 
+	 * Collects recursively all the nets and pins found in
+	 * the entire design and inserts them into the global
+	 * netlist map.
+	 * 
+	 * @param des	The HierarchyUnit in which to search for
+	 * 				nets and pins
+	 */
+	private void retrieve_netlist(HierarchyUnit des) {
+		for (Net n : des.getNets()) {
+			List<Pin> single_netlist = retrieve_pins(n);
+			if (single_netlist != null) {
+				netlist.put(n, single_netlist);
+			}
+		}
+		for (SubInstance s : des.getSubInstances()) {
+			retrieve_netlist(s);
+		}
+	}
+	
+	/**
+	 * retrieve_pins
+	 * 
+	 * Recursively collects all the pins connected to a
+	 * Connection.
+	 * 
+	 * @param c		The Connection whose pins are to be
+	 * 				collected
+	 * @return	A list of all the pins found on the connection
+	 */
 	private List<Pin> retrieve_pins(Connection c) {
 		List<Pin> netlist = new ArrayList<Pin>();
 		if (!c.isVisited()) {
 			netlist.addAll(c.getPins());
 			c.setVisited(true);
+			return netlist;
 		}
-		return netlist;
+		else {
+			return null;
+		}
 	}
 
+	/**
+	 * generate_old
+	 * 
+	 * This is the generate method used for version 1.0
+	 */
 	private void generate_old() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("!PADS-POWERPCB-V9.0-MILS! NETLIST FILE FROM PADS LOGIC V9.3 \n\n");
@@ -184,6 +289,60 @@ public class NetListGenerator {
 			System.exit(1);
 		}
 		System.out.println("Wrote netlist file: " + design.getName() + ".asc");
+	}
+	
+	public static boolean unitTest() {
+		boolean success = true;
+		
+		/**
+		 * Test 1
+		 * 	No Hierarchy and no arrayed instances/nets/pins
+		 */
+		{
+			Design design = new Design("Design_Test_1");
+			{
+				Instance inst1 = new Instance(design); {
+					Device dev1 = new Device("Device_1_Test_1");
+					inst1.setDevice(dev1);
+					inst1.setRefDes("A1");
+					inst1.setName("Inst_1_Test_1");
+					inst1.setPackage("package1");
+					Pin pin = new Pin(inst1); {
+						pin.setName("Inst_1_Pin_1_Test_1");
+						pin.setPinMapping("1");
+					}
+					inst1.addPin(pin);
+				}
+				design.addInstance(inst1);
+				
+				Instance inst2 = new Instance(design); {
+					Device dev2 = new Device("Device_2_Test_1");
+					inst2.setDevice(dev2);
+					inst2.setRefDes("B1");
+					inst2.setName("Inst2_Test_1");
+					inst2.setPackage("package_2");
+					Pin pin = new Pin(inst2); {
+						pin.setName("Inst2_Pin_1_Test_1");
+						pin.setPinMapping("2");
+					}
+					inst2.addPin(pin);
+				}
+				design.addInstance(inst2);
+				
+				Net net1 = new Net(design); {
+					net1.setName("Net_1_Test_1");
+					net1.addPin(inst1.getPin("Inst_1_Pin_1_Test_1"));
+					net1.addPin(inst2.getPin("Inst_2_Pin_1_Test_1"));
+				}
+				design.addConnection(net1);
+			}
+			RefDesGenerator refGen = new RefDesGenerator(design);
+			NetListGenerator netGen = new NetListGenerator(design, refGen.getRefMap());
+			System.out.println(netGen.getContents());
+			netGen.outputToFile(design.getName() + ".asc");
+		}
+		
+		return success;
 	}
 
 }
