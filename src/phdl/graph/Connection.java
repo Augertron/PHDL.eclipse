@@ -64,6 +64,10 @@ public abstract class Connection extends Attributable {
 			return (!pins.add(p));
 		return false;
 	}
+	
+	public boolean hasPins() {
+		return !pins.isEmpty();
+	}
 
 	@Override
 	public int compareTo(Object o) {

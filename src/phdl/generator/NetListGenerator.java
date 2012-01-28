@@ -14,14 +14,12 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 import phdl.graph.Connection;
 import phdl.graph.Design;
-import phdl.graph.DesignUnit;
 import phdl.graph.Device;
 import phdl.graph.HierarchyUnit;
 import phdl.graph.Instance;
@@ -151,6 +149,15 @@ public class NetListGenerator {
 		return connections.toString();
 	}
 	
+	/**
+	 * generate_net_header
+	 * 
+	 * Generates the header for a net in a design for the
+	 * asc netlist file.
+	 * 
+	 * @param n	the net whose header is to be generatedd
+	 * @return	a string representation of the header
+	 */
 	private String generate_net_header(Net n) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("*SIGNAL* " + n.getName().toUpperCase());
@@ -161,6 +168,15 @@ public class NetListGenerator {
 		return sb.toString();
 	}
 	
+	/**
+	 * generate_pin_list
+	 * 
+	 * Generates the list of pins attached to a net in a
+	 * design for the asc netlist file.
+	 * 
+	 * @param n	the net whose pins will be in the list
+	 * @return	a string representation of the pin list
+	 */
 	private String generate_pin_list(Net n) {
 		StringBuilder sb = new StringBuilder();
 		List<Pin> pins = netlist.get(n);
@@ -193,7 +209,7 @@ public class NetListGenerator {
 	private void retrieve_netlist(HierarchyUnit des) {
 		for (Net n : des.getNets()) {
 			List<Pin> single_netlist = retrieve_pins(n);
-			if (single_netlist != null) {
+			if (single_netlist != null && !single_netlist.isEmpty()) {
 				netlist.put(n, single_netlist);
 			}
 		}
@@ -213,57 +229,15 @@ public class NetListGenerator {
 	 * @return	A list of all the pins found on the connection
 	 */
 	private List<Pin> retrieve_pins(Connection c) {
-		List<Pin> netlist = new ArrayList<Pin>();
+		List<Pin> pinlist = new ArrayList<Pin>();
 		if (!c.isVisited()) {
-			netlist.addAll(c.getPins());
+			pinlist.addAll(c.getPins());
 			c.setVisited(true);
-			return netlist;
-		}
-		else {
-			return null;
-		}
-	}
-
-	/**
-	 * generate_old
-	 * 
-	 * This is the generate method used for version 1.0
-	 */
-	private void generate_old() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("!PADS-POWERPCB-V9.0-MILS! NETLIST FILE FROM PADS LOGIC V9.3 \n\n");
-		sb.append("*PART*\n");
-
-		for (String s : refMap.keySet()) {
-			Instance i = refMap.get(s);
-			sb.append(s);
-			sb.append(" " + i.getDevice().getName().toUpperCase() + "@" + i.getPackage() + "\n");
-		}
-		sb.append("*CONNECTION*\n");
-
-		for (Net n : design.getNets()) {
-
-			if (n.getName().equals("OPEN"))
-				continue;
-
-			sb.append("*SIGNAL* " + n.getName().toUpperCase() + "\n");
-
-			for (int i = 0; i < n.getPins().size() - 1; i++) {
-
-				Pin pin1 = n.getPins().get(i);
-				Pin pin2 = n.getPins().get(i + 1);
-
-				String ref1 = ((Instance) pin1.getParent()).getRefDes();
-				String ref2 = ((Instance) pin2.getParent()).getRefDes();
-				String name1 = pin1.getName();
-				String name2 = pin2.getName();
-
-				sb.append(" " + refMap.get(ref1).getRefDes() + "." + name1);
-				sb.append(" " + refMap.get(ref2).getRefDes() + "." + name2 + "\n");
+			for (Connection next : c.getConnections()) {
+				pinlist.addAll(retrieve_pins(next));
 			}
 		}
-		sb.append("\n*END*");
-		contents = sb.toString();
+		return pinlist;
 	}
 
 	/**
@@ -293,6 +267,13 @@ public class NetListGenerator {
 		System.out.println("Wrote netlist file: " + design.getName() + ".asc");
 	}
 	
+	/**
+	 * unitTest
+	 * 
+	 * Unit testing code.
+	 * 
+	 * @return	a boolean indicating if the tests were successful
+	 */
 	public static boolean unitTest() {
 		boolean success = true;
 		
@@ -458,6 +439,151 @@ public class NetListGenerator {
 			NetListGenerator netGen = new NetListGenerator(design, refGen.getRefMap());
 			netGen.outputToFile("TestsOutput/NetListOutput/" + design.getName() + ".asc");
 		}
+		
+		/**
+		 * Test 3
+		 *  No hierarchy, with arrayed instances/pins/nets
+		 *  Intermittent nets
+		 */
+		{
+			Design design = new Design("test3"); {
+				Instance inst1 = new Instance(design); {
+					Device dev = new Device("Device1");
+					inst1.setDevice(dev);
+					inst1.setRefDes("A1");
+					inst1.setName("Inst1");
+					inst1.setPackage("package1");
+					
+					Pin a = new Pin(inst1); {
+						a.setName("a");
+						a.setPinMapping("1");
+					}
+					inst1.addPin(a);
+					
+					Pin d = new Pin(inst1); {
+						d.setName("d");
+						d.setPinMapping("2");
+					}
+					inst1.addPin(d);
+				}
+				design.addInstance(inst1);
+				
+				Instance inst2 = new Instance(design); {
+					Device dev = new Device("Device2");
+					inst2.setDevice(dev);
+					inst2.setRefDes("B1");
+					inst2.setName("Inst2");
+					inst2.setPackage("package2");
+					
+					Pin b = new Pin(inst2); {
+						b.setName("b");
+						b.setPinMapping("2");
+					}
+					inst2.addPin(b);
+					
+					Pin[] e = new Pin[2];
+					for (int i = 0; i < 2; i++) {
+						e[i] = new Pin(inst2); {
+							e[i].setName("e");
+							e[i].setIndex(i+1);
+						}
+					}
+					e[0].setPinMapping("1");
+					e[1].setPinMapping("3");
+					inst2.addPin(e[0]);
+					inst2.addPin(e[1]);
+				}
+				design.addInstance(inst2);
+				
+				Instance[] inst3 = new Instance[2];
+				Pin[][] c = new Pin[2][3];
+				Device dev = new Device("Device3");
+				for (int i = 0; i < 2; i++) {
+					inst3[i] = new Instance(design); {
+						inst3[i].setName("inst3");
+						inst3[i].setIndex(i+1);
+						inst3[i].setDevice(dev);
+						inst3[i].setRefDes("C" + (i+1));
+						inst3[i].setPackage("package3");
+					}
+					
+					for (int j = 0; j < 3; j++) {
+						c[i][j] = new Pin(inst3[i]);
+						c[i][j].setName("c");
+						c[i][j].setIndex(j+1);
+					}
+					c[i][0].setPinMapping("8");
+					c[i][1].setPinMapping("9");
+					c[i][2].setPinMapping("10");
+					
+					inst3[i].addPin(c[i][0]);
+					inst3[i].addPin(c[i][1]);
+					inst3[i].addPin(c[i][2]);
+				}
+				design.addInstance(inst3[0]);
+				design.addInstance(inst3[1]);
+				
+				Net net2 = new Net(design); {
+					net2.setName("Net2");
+					net2.addPin(inst1.getPin("d"));
+					net2.addPin(inst3[0].getPin("c", 1));
+					net2.addPin(inst3[0].getPin("c", 2));
+					net2.addPin(inst3[0].getPin("c", 3));
+				}
+				
+				Net net3 = new Net(design); {
+					net3.setName("Net3");
+					net3.addPin(inst2.getPin("e",2));
+				}
+				
+				Net net4 = new Net(design); {
+					net4.setName("Net4");
+					net4.addPin(inst3[1].getPin("c",2));
+				}
+				
+				Net[] net1 = new Net[3]; {
+					for (int i = 0; i < 3; i++) {
+						net1[i] = new Net(design); {
+							net1[i].setName("Net1");
+							net1[i].setIndex(3-i);
+						}
+					}
+					net1[0].addPin(inst1.getPin("a"));
+					net1[0].addPin(inst2.getPin("b"));
+					net1[0].addPin(inst3[1].getPin("c",1));
+					
+					net1[1].addPin(inst2.getPin("e",1));
+					
+					net1[2].addPin(inst3[1].getPin("c",3));
+				}
+				
+				net4.addConnection(net1[1]);
+				net1[1].addConnection(net4);
+				
+				net3.addConnection(net1[2]);
+				net1[2].addConnection(net3);
+				
+				design.addConnection(net1[0]);
+				design.addConnection(net1[1]);
+				design.addConnection(net1[2]);
+				design.addConnection(net2);
+				design.addConnection(net3);
+				design.addConnection(net4);
+				
+			}
+			RefDesGenerator refGen = new RefDesGenerator(design);
+			NetListGenerator netGen = new NetListGenerator(design, refGen.getRefMap());
+			netGen.outputToFile("TestsOutput/NetListOutput/" + design.getName() + ".asc");
+		}
+		/**
+		 * Test 4
+		 *	Netlist with single layer of hiearchy
+		 */
+		
+		/**
+		 * Test 5
+		 * 	Netlist with two layers of hierarchy
+		 */
 		
 		return success;
 	}
