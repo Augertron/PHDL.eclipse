@@ -94,6 +94,14 @@ public class Pin extends Node {
 		return index;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
+	public String getNameIndex() {
+		return this.name + (hasIndex() ? "[" + this.index + "]" : "");
+	}
+
 	@Override
 	/**
 	 * Type accessor method.
@@ -104,14 +112,6 @@ public class Pin extends Node {
 		return NodeType.PIN;
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
-	public String getNameIndex() {
-		return this.name + (hasIndex() ? "[" + this.index + "]" : "");
-	}
-	
 	/**
 	 * ParentNode accessor method.
 	 * 
@@ -134,20 +134,20 @@ public class Pin extends Node {
 		return pinType;
 	}
 
-	/**
-	 * Checks to see if the Pin has a Connection.
-	 * 
-	 * @return true, if there is a Connection false, otherwise
-	 */
-	public boolean hasAssignment() {
-		return (assignment != null);
-	}
-
 	public boolean hasIndex() {
 		if (getIndex() == -1)
 			return false;
 		else
 			return true;
+	}
+
+	/**
+	 * Checks to see if the Pin has a Connection.
+	 * 
+	 * @return true, if there is a Connection false, otherwise
+	 */
+	public boolean isAssigned() {
+		return (assignment != null);
 	}
 
 	public boolean isOpen() {
@@ -626,13 +626,13 @@ public class Pin extends Node {
 		 */
 		testNum++;
 		Pin testPin6 = new Pin(null);
-		if (testPin6.hasAssignment()) {
+		if (testPin6.isAssigned()) {
 			success = TestDriver.displayError(testNum, "public boolean hasNet()",
 				"Upon initialization, there should be no net");
 		}
 		Net testNet6 = new Net(null);
 		testPin6.assignment = testNet6;
-		if (!testPin6.hasAssignment()) {
+		if (!testPin6.isAssigned()) {
 			success = TestDriver.displayError(testNum, "public boolean hasNet()",
 				"The Pin has a Net, but hasNet() returned false");
 		}

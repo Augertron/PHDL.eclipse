@@ -82,7 +82,7 @@ public class Port extends Connection {
 	 * 
 	 * @return true, if there is a Connection false, otherwise
 	 */
-	public boolean hasAssignment() {
+	public boolean isAssigned() {
 		return (assignment != null);
 	}
 

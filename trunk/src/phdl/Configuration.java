@@ -24,7 +24,7 @@ public class Configuration {
 	private final String[] reqAttr = { "REFPREFIX", "PACKAGE", "LIBRARY" };
 
 	private boolean supWarn;
-	private boolean dumpEn;
+	private boolean dotAST;
 	private boolean verbose;
 	private boolean eagle;
 	private boolean clean;
@@ -43,7 +43,7 @@ public class Configuration {
 			if (args[i].equals("-w"))
 				setSupWarn(true);
 			else if (args[i].equals("-d"))
-				setDumpEn(true);
+				setDotAST(true);
 			else if (args[i].equals("-v"))
 				setVerbose(true);
 			else if (args[i].equals("-e"))
@@ -83,8 +83,8 @@ public class Configuration {
 		return clean;
 	}
 
-	public boolean isDumpEn() {
-		return dumpEn;
+	public boolean isDotAST() {
+		return dotAST;
 	}
 
 	public boolean isEagle() {
@@ -111,8 +111,8 @@ public class Configuration {
 		this.clean = clean;
 	}
 
-	public void setDumpEn(boolean dumpEn) {
-		this.dumpEn = dumpEn;
+	public void setDotAST(boolean dotAST) {
+		this.dotAST = dotAST;
 	}
 
 	public void setEagle(boolean eagle) {

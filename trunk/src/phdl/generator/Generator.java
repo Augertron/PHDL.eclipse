@@ -18,6 +18,7 @@ package phdl.generator;
 
 import java.io.File;
 
+import phdl.Configuration;
 import phdl.graph.Design;
 
 /**
@@ -50,7 +51,7 @@ public class Generator {
 	 * @see BoMGenerator
 	 * @see NetListGenerator
 	 */
-	public Generator(Design design, boolean eagle) {
+	public Generator(Design design, Configuration cfg) {
 		this.design = design;
 		refDesGen = new RefDesGenerator(design);
 		bomGen = new BoMGenerator(design);
@@ -68,17 +69,8 @@ public class Generator {
 		infoGen = new InfoGenerator(design);
 		xmlGen = new XMLGenerator(design);
 		generateXML();
-		if (eagle)
+		if (cfg.isEagle())
 			eagleScriptGen = new EagleScriptGenerator(design, desComp, xmlExists);
-	}
-
-	/**
-	 * Generates a Reference Designator file based on the name of the DesignNode.
-	 * 
-	 * @see RefDesGenerator
-	 */
-	public void generateRefDes() {
-		refDesGen.outputToFile(design.getName() + ".csv");
 	}
 
 	/**
@@ -91,15 +83,6 @@ public class Generator {
 	}
 
 	/**
-	 * Generates a Netlist file based on the name of the DesignNode.
-	 * 
-	 * @see NetListGenerator
-	 */
-	public void generateNetList() {
-		netListGen.outputToFile(design.getName() + ".asc");
-	}
-
-	/**
 	 * Generates an Eagle script file based on the name of the DesignNode.
 	 * 
 	 * @see EagleScriptGenerator
@@ -109,20 +92,38 @@ public class Generator {
 	}
 
 	/**
-	 * Generates a Netlist file based on the name of the DesignNode.
-	 * 
-	 * @see XMLGenerator
-	 */
-	public void generateXML() {
-		xmlGen.outputToFile(design.getName() + ".xml");
-	}
-
-	/**
 	 * Generates an Info file based on the info structures in the DesignNode.
 	 * 
 	 * @see InfoGenerator
 	 */
 	public void generateInfo() {
 		infoGen.outputToFile(design.getName() + ".info");
+	}
+
+	/**
+	 * Generates a Netlist file based on the name of the DesignNode.
+	 * 
+	 * @see NetListGenerator
+	 */
+	public void generateNetList() {
+		netListGen.outputToFile(design.getName() + ".asc");
+	}
+
+	/**
+	 * Generates a Reference Designator file based on the name of the DesignNode.
+	 * 
+	 * @see RefDesGenerator
+	 */
+	public void generateRefDes() {
+		refDesGen.outputToFile(design.getName() + ".csv");
+	}
+
+	/**
+	 * Generates a Netlist file based on the name of the DesignNode.
+	 * 
+	 * @see XMLGenerator
+	 */
+	public void generateXML() {
+		xmlGen.outputToFile(design.getName() + ".xml");
 	}
 }

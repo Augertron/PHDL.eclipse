@@ -69,13 +69,13 @@ options {
 	private List<String> warnings = new ArrayList<String>();
 	
 	/** The set of all Devices is global to the project build */
-	private Set<Device> devices = new HashSet<Device>();
+	private Set<Device> devices;
 	
 	/** The top level design */
 	private	Design topDesign;
 	
 	/** The set of subDesigns */
-	private Set<SubDesign> subDesigns = new HashSet<SubDesign>();
+	private Set<SubDesign> subDesigns;
 	
 	/** Sets to check for duplicates while processing everything */
 	private Set<String> pinNames = new HashSet<String>();
@@ -106,8 +106,8 @@ options {
 		return topDesign;
 	}
 	
-	public void setTopDesign(Design des) {
-		this.topDesign = des;
+	public void setTopDesign(Design topDesign) {
+		this.topDesign = topDesign;
 	}
 	
 	public Set<SubDesign> getSubDesigns() {
@@ -590,7 +590,7 @@ pinAssign[DesignUnit des, String instName]
 				for (int i = 0; i < pins.size(); i++) {
 				
 					// check to see if the pin is already assigned
-					if (pins.get(i).hasAssignment()) {
+					if (pins.get(i).isAssigned()) {
 						String index = (pins.get(i).hasIndex())?("index [" + pins.get(i).getIndex() + "]"):("pin");
 						bailOut($operand.id, index + " is already assigned");
 					} else if (pins.get(i).isOpen()) {
@@ -635,7 +635,7 @@ pinAssign[DesignUnit des, String instName]
 					for (int i = 0; i < pins.size(); i++) {
 					
 						// check to see if the pin is already assigned
-						if (pins.get(i).hasAssignment()) {
+						if (pins.get(i).isAssigned()) {
 							String index = (pins.get(i).hasIndex())?("index [" + pins.get(i).getIndex() + "]"):("pin");
 							bailOut($operand.id, index + " is already assigned");
 						} else if (pins.get(i).isOpen()) {
@@ -765,6 +765,7 @@ portAssign[DesignUnit des, String subInstName]
 			// list of ports to assign connections to
 			List<Port> ports = new ArrayList<Port>();
 			
+			
 			if (isCombined) {
 				if ($operand.indices == null) {
 					// get all possible instances
@@ -790,7 +791,7 @@ portAssign[DesignUnit des, String subInstName]
 					setLocation(ports.get(i), $operand.id);
 					
 					// check to see if the pin is already assigned
-					if (ports.get(i).hasAssignment()) {
+					if (ports.get(i).isAssigned()) {
 						String index = (ports.get(i).hasIndex())?("index [" + ports.get(i).getIndex() + "]"):("port");
 						bailOut($operand.id, index + " is already assigned");
 					}
@@ -833,7 +834,7 @@ portAssign[DesignUnit des, String subInstName]
 						setLocation(ports.get(i), $operand.id);
 						
 						// check to see if the pin is already assigned
-						if (ports.get(i).hasAssignment()) {
+						if (ports.get(i).isAssigned()) {
 							String index = (ports.get(i).hasIndex())?("index [" + ports.get(i).getIndex() + "]"):("port");
 							bailOut($operand.id, index + " is already assigned");
 						}
@@ -855,7 +856,7 @@ portAssign[DesignUnit des, String subInstName]
 							}
 						}
 					}
-					
+
 					// clear the list in preparation for the next instance's ports
 					ports.clear();
 				}
