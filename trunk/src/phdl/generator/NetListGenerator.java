@@ -25,6 +25,8 @@ import phdl.graph.HierarchyUnit;
 import phdl.graph.Instance;
 import phdl.graph.Net;
 import phdl.graph.Pin;
+import phdl.graph.Port;
+import phdl.graph.SubDesign;
 import phdl.graph.SubInstance;
 
 /**
@@ -579,6 +581,103 @@ public class NetListGenerator {
 		 * Test 4
 		 *	Netlist with single layer of hiearchy
 		 */
+		{
+			SubDesign subDesign = new SubDesign("sub1"); {
+				Instance inst1 = new Instance(subDesign); {
+					Device dev = new Device("dev1");
+					inst1.setDevice(dev);
+					inst1.setName("SubInst1.Inst1");
+					inst1.setRefDes("C1");
+					inst1.setPackage("pkg3");
+					
+					Pin f = new Pin(inst1); {
+						f.setName("f");
+						f.setPinMapping("1");
+					}
+					inst1.addPin(f);
+					
+					Pin g = new Pin(inst1); {
+						g.setName("g");
+						g.setPinMapping("2");
+					}
+					inst1.addPin(g);
+				}
+				subDesign.addInstance(inst1);
+				
+				Instance[] inst2 = new Instance[3];
+				Pin[][] e = new Pin[3][2]; {
+					for (int i = 0 ; i < 3; i++) {
+						inst2[i] = new Instance(subDesign); {
+							Device dev = new Device("dev2");
+							inst2[i].setDevice(dev);
+							inst2[i].setName("SubInst1.Inst1");
+							inst2[i].setIndex(3-i);
+							inst2[i].setPackage("pkg4");
+						}
+						for (int j = 0; j < 2; j++) {
+							e[i][j] = new Pin(inst2[i]); {
+								e[i][j].setName("e");
+								e[i][j].setIndex(j+1);
+								e[i][j].setPinMapping("" + (j+1));
+							}
+							inst2[i].addPin(e[i][j]);
+						}
+						subDesign.addInstance(inst2[i]);
+					}
+				}
+				
+				Port[] p1 = new Port[3]; {
+					for (int i = 0; i < 3; i++) {
+						p1[i] = new Port(subDesign);
+						p1[i].setName("p1");
+						p1[i].setIndex(i+1);
+					}
+				}
+				
+				Port p2 = new Port(subDesign); { 
+					p2.setName("p2");
+				}
+				
+				Port p3 = new Port(subDesign); {
+					p3.setName("p3");
+				}
+				
+				Net net1 = new Net(subDesign); {
+					net1.setName("net1");
+					net1.addPin(inst1.getPin("g"));
+					net1.addPin(inst2[2].getPin("e",1));
+				}
+				
+				Net net2 = new Net(subDesign); {
+					net2.setName("net2");
+					net2.addPin(inst2[2].getPin("e", 2));
+					net2.addPin(inst2[3].getPin("e", 1));
+					net2.addConnection(p1[2]);
+					net2.addConnection(p2);
+				}
+				
+				p1[0].addPin(inst1.getPin("f"));
+				p1[1].addPin(inst2[0].getPin("e", 2));
+				p1[1].addPin(inst2[1].getPin("e", 1));
+				p1[2].addConnection(net2);
+				p2.addConnection(net2);
+				p3.addPin(inst2[3].getPin("e", 2));
+				
+				subDesign.addConnection(p1[0]);
+				subDesign.addConnection(p1[1]);
+				subDesign.addConnection(p1[2]);
+				subDesign.addConnection(p2);
+				subDesign.addConnection(net2);
+				subDesign.addConnection(p3);
+				subDesign.addConnection(net1);
+			}
+			
+			Design design = new Design("test4"); {
+				SubInstance subinst1 = new SubInstance(design, subDesign, "SubInst1");
+				design.addSubInst(subinst1);
+				
+			}
+		}
 		
 		/**
 		 * Test 5
