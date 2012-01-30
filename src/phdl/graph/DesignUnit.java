@@ -77,6 +77,12 @@ public abstract class DesignUnit extends Node {
 	}
 
 	@Override
+	public int compareTo(Object o) {
+		// TODO Auto-generated method stub
+		return this.getNameIndex().compareTo(((DesignUnit) o).getNameIndex());
+	}
+
+	@Override
 	/**
 	 * Checks to see if the current DesignNode is equal to
 	 * another.
@@ -112,10 +118,6 @@ public abstract class DesignUnit extends Node {
 			}
 		}
 		return allPorts;
-	}
-
-	public Connection getConnection(int i) {
-		return connections.get(i);
 	}
 
 	public Connection getConnection(String name, int index) {
@@ -621,9 +623,12 @@ public abstract class DesignUnit extends Node {
 		clearVisited();
 		for (SubInstance s : subInsts) {
 			for (Port p : s.getPorts()) {
-				if (p.hasAssignment()) {
+				if (p.isAssigned()) {
+					sb.append("\t//edges from ports\n");
 					sb.append("\t\"" + p.getParent().getNameIndex() + "_" + p.getName() + "\":" + p.getIndex());
 					sb.append(" -- \"" + p.getAssignment().getName() + "\":" + p.getAssignment().getIndex() + ";\n");
+				} else {
+					//System.out.println(p);
 				}
 			}
 		}

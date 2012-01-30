@@ -274,13 +274,12 @@ public class Instance extends Attributable {
 	public boolean hasPins() {
 		return (!pins.isEmpty());
 	}
-	
+
 	public boolean hasRefDes() {
 		if (refDes != null)
 			return !refDes.equals("");
 		return false;
 	}
-	
 
 	public Map<String, List<Pin>> pinsToMap() {
 		Map<String, List<Pin>> map = new HashMap<String, List<Pin>>();
@@ -392,7 +391,7 @@ public class Instance extends Attributable {
 			for (Pin p : getPins()) {
 				String index = (p.hasIndex() ? ("[" + p.getIndex() + "]") : "");
 				String connection = "";
-				if (p.hasAssignment()) {
+				if (p.isAssigned()) {
 					connection = p.getAssignment().getNodeType() + ": " + p.getAssignment().getName();
 					if (p.getAssignment().hasIndex())
 						connection += "[" + p.getAssignment().getIndex() + "]";

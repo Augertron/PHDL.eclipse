@@ -39,25 +39,19 @@ import phdl.graph.SubDesign;
 
 public class ParsePHDL {
 
-	private Set<Device> devices;
+	private final Configuration cfg;
+	private final Set<Device> devices;
+	private final Set<SubDesign> subDesigns;
 	private Design topDesign;
-	private Set<SubDesign> subDesigns;
-	private final Set<String> reqAttr;
 	private final List<String> errors;
 	private final List<String> warnings;
-	private final Configuration sw;
 
-	public ParsePHDL(Configuration sw) {
+	public ParsePHDL(Configuration cfg) {
+		this.cfg = cfg;
 		this.devices = new HashSet<Device>();
 		this.subDesigns = new HashSet<SubDesign>();
-		this.reqAttr = new HashSet<String>();
 		this.errors = new ArrayList<String>();
 		this.warnings = new ArrayList<String>();
-		this.sw = sw;
-	}
-
-	public void addRequiredAttribute(String attr) {
-		this.reqAttr.add(attr);
 	}
 
 	public Set<Device> getDevices() {
@@ -72,55 +66,74 @@ public class ParsePHDL {
 		return topDesign;
 	}
 
-	public void parse(String fileName) {
-		CharStream cs = null;
-		try {
-			cs = new ANTLRFileStream(fileName);
-		} catch (IOException e) {
-			System.err.println("Source file not found: " + fileName);
-			System.exit(1);
-		}
+	public void parse() {
 
-		PhdlParser p = new PhdlParser(new CommonTokenStream(new PhdlLexer(cs)));
-		try {
+		for (String fileName : cfg.getFileNames()) {
 
-			CommonTree tree = (CommonTree) p.sourceText().getTree();
-			CommonTreeNodeStream ns = new CommonTreeNodeStream(tree);
-			ns.setTokenStream(p.getTokenStream());
-
-			for (String error : p.getErrors())
-				errors.add(error);
-
-			if (sw.isDumpEn()) {
-				// convert the AST to a dotty formatted string for debug
-				DOTTreeGenerator dtg = new DOTTreeGenerator();
-				StringTemplate st = dtg.toDOT(tree);
-				String astFileName = "ast.dot";
-				toFile(astFileName, st.toString());
+			// make a new character stream based on the filename
+			CharStream cs = null;
+			try {
+				cs = new ANTLRFileStream(fileName);
+			} catch (IOException e) {
+				System.err.println("Source file not found: " + fileName);
+				System.exit(1);
 			}
 
-			printErrors();
+			// make a new parser and feed it the lexer-wrapped character stream
+			PhdlParser p = new PhdlParser(new CommonTokenStream(new PhdlLexer(cs)));
+			try {
+				CommonTree tree = (CommonTree) p.sourceText().getTree();
+				CommonTreeNodeStream ns = new CommonTreeNodeStream(tree);
+				ns.setTokenStream(p.getTokenStream());
 
-			PhdlAST ast = new PhdlAST(ns);
-			ast.sourceText();
-			errors.addAll(ast.getErrors());
-			warnings.addAll(ast.getWarnings());
-			devices.addAll(ast.getDevices());
-			topDesign = ast.getTopDesign();
-			subDesigns = ast.getSubDesigns();
+				// accumulate any errors in the parser
+				for (String error : p.getErrors())
+					errors.add(error);
 
-			printErrors();
+				if (cfg.isDotAST()) {
+					// convert the AST to a dotty formatted string for debug
+					DOTTreeGenerator dtg = new DOTTreeGenerator();
+					StringTemplate st = dtg.toDOT(tree);
+					String astFileName = "ast.dot";
+					toFile(astFileName, st.toString());
+				}
+				printErrors();
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			errors.add("ERROR: " + e.getStackTrace());
-			// print out any parsing errors, and do not continue on.
-			printErrors();
+				PhdlAST ast = new PhdlAST(ns);
+				ast.setDevices(devices);
+				ast.setSubDesigns(subDesigns);
+				ast.setTopDesign(topDesign);
+				ast.sourceText();
+				topDesign = ast.getTopDesign();
+
+				// accumulate the errors and warnings
+				errors.addAll(ast.getErrors());
+				warnings.addAll(ast.getWarnings());
+				printErrors();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				errors.add("ERROR: " + e.getStackTrace());
+				// print out any parsing errors, and do not continue on.
+				printErrors();
+			}
+
+			// print out all warnings if suppress warnings is enabled
+			if (!cfg.isSupWarn())
+				printWarnings();
 		}
 
-		// print out all warnings if they exist.
-		if (!sw.isSupWarn())
-			printWarnings();
+		if (cfg.isReport()) {
+			for (Device d : devices)
+				System.out.print(d.toString().replace("\n", "\n  "));
+			if (topDesign != null)
+				System.out.print(topDesign.toString().replace("\n", "\n  "));
+			for (SubDesign s : subDesigns)
+				System.out.print(s.toString().replace("\n", "\n  "));
+		}
+		if (cfg.isHierarchy())
+			topDesign.toDot();
+
 	}
 
 	public void printErrors() {
@@ -128,7 +141,7 @@ public class ParsePHDL {
 			for (String s : errors)
 				System.out.println("ERROR: " + s);
 			// only bail out if verbose mode is not set
-			if (!sw.isVerbose())
+			if (!cfg.isVerbose())
 				System.exit(1);
 		}
 	}
@@ -140,18 +153,6 @@ public class ParsePHDL {
 			return true;
 		}
 		return false;
-	}
-
-	public void setDevices(Set<Device> devices) {
-		this.devices = devices;
-	}
-
-	public void setSubDesigns(Set<SubDesign> subDesigns) {
-		this.subDesigns = subDesigns;
-	}
-
-	public void setTopDesign(Design design) {
-		this.topDesign = design;
 	}
 
 	public void toFile(String fileName, String fileData) {

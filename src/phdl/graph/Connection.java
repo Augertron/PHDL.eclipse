@@ -64,18 +64,17 @@ public abstract class Connection extends Attributable {
 			return (!pins.add(p));
 		return false;
 	}
-	
-	public boolean hasPins() {
-		return !pins.isEmpty();
-	}
 
 	@Override
 	public int compareTo(Object o) {
-		Connection c = (Connection)o;
+		Connection c = (Connection) o;
 		if (this.equals(c)) {
 			return 0;
 		}
-		return this.getNameIndex().compareTo(c.getNameIndex());
+		if (this.getNameIndex().compareTo(c.getNameIndex()) == 0)
+			return this.getParent().compareTo(c.getParent());
+		else
+			return this.getNameIndex().compareTo(c.getNameIndex());
 	}
 
 	@Override
@@ -169,6 +168,10 @@ public abstract class Connection extends Attributable {
 			return true;
 	}
 
+	public boolean hasPins() {
+		return !pins.isEmpty();
+	}
+
 	/**
 	 * Helper acccessor method for a Depth First Search.
 	 * 
@@ -244,13 +247,13 @@ public abstract class Connection extends Attributable {
 			Port p = ((Port) this);
 			String index = (p.hasIndex() ? ("[" + p.getIndex() + "]") : "");
 			String connection = "";
-			if (p.hasAssignment()) {
+			if (p.isAssigned()) {
 				connection = p.getAssignment().getNodeType() + ": " + p.getAssignment().getName();
 				if (p.getAssignment().hasIndex())
 					connection += "[" + p.getAssignment().getIndex() + "]";
 			} else
 				connection += "(not assigned)";
-			sb.append(String.format(fieldFmtStr, "Conn:", "", connection));
+			sb.append(String.format(fieldFmtStr, "Assign:", "", connection));
 		}
 		sb.append("\n");
 
