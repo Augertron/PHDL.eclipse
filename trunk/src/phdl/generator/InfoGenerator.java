@@ -87,10 +87,11 @@ public class InfoGenerator {
 			out.write(info);
 			out.close();
 		} catch (IOException e) {
+			System.err.println();
 			System.err.println("File Reading Error - filename may be corrupt");
 			System.exit(1);
 		}
-		System.out.println("Wrote info file: " + design.getName() + ".info");
+		System.out.println("  -- Generated: " + fileName);
 	}
 
 	public static boolean unitTest() {
@@ -106,8 +107,7 @@ public class InfoGenerator {
 			+ "Vestibulum vitae tortor non diam consequat venenatis quis sed eros. "
 			+ "Donec eget sapien velit, at varius risus. In elementum urna a leo"
 			+ "vulputate iaculis. Duis eu lectus orci. Suspendisse potenti. Mauris"
-			+ "sollicitudin fringilla sapien, sodales ullamcorper nulla euismod vel. "
-			+ "Sed in imperdiet neque.");
+			+ "sollicitudin fringilla sapien, sodales ullamcorper nulla euismod vel. " + "Sed in imperdiet neque.");
 		testDesign1.addInstance(testInst1);
 
 		Instance testInst2 = new Instance(testDesign1);

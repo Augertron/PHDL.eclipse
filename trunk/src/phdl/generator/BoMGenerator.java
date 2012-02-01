@@ -39,17 +39,12 @@ import phdl.graph.Instance;
  */
 public class BoMGenerator {
 
-	private Design design;
-	private List<Row> rows;
-	private List<String> headers;
-	private String bom;
-
 	private class Row {
 		private int quantity;
 		private String name;
 		private String refDes;
 		private String pkg_type;
-		private List<String> entries;
+		private final List<String> entries;
 
 		public Row() {
 			quantity = 1;
@@ -75,6 +70,12 @@ public class BoMGenerator {
 		}
 	}
 
+	private final Design design;
+	private final List<Row> rows;
+	private final List<String> headers;
+
+	private String bom;
+
 	/**
 	 * Default Constructor.
 	 * 
@@ -93,54 +94,6 @@ public class BoMGenerator {
 		generateString();
 	}
 
-	private void generate() {
-		populateHeaders();
-		initializeRows();
-		consolidateRows();
-	}
-
-	private void populateHeaders() {
-		List<String> excludes = new ArrayList<String>();
-		excludes.add("REFPREFIX");
-		excludes.add("REFDES");
-		excludes.add("PKG_TYPE");
-
-		for (Instance i : design.getInstances()) {
-			for (Attribute a : i.getAttributes()) {
-				if (!excludes.contains(a.getName())
-						&& !headers.contains(a.getName())) {
-					headers.add(a.getName());
-				}
-			}
-		}
-	}
-
-	private void initializeRows() {
-		for (Instance i : design.getInstances()) {
-			Row newRow = new Row();
-
-			for (int j = 0; j < headers.size(); j++) {
-				newRow.entries.add("");
-			}
-
-			newRow.name = i.getDevice().getName();
-			newRow.refDes = i.getRefDes();
-			for (Attribute a : i.getAttributes()) {
-				if (a.getName().equals("PKG_TYPE")) {
-					newRow.pkg_type = a.getValue();
-				} else if (!a.getName().equals("REFPREFIX")
-						&& !a.getName().equals("REFDES")) {
-					for (int j = 0; j < headers.size(); j++) {
-						if (headers.get(j).equals(a.getName())) {
-							newRow.entries.set(j, a.getValue());
-						}
-					}
-				}
-			}
-			rows.add(newRow);
-		}
-	}
-
 	private void consolidateRows() {
 		SortedSet<Integer> deletes = new TreeSet<Integer>();
 		for (int i = 0; i < rows.size(); i++) {
@@ -149,8 +102,7 @@ public class BoMGenerator {
 			for (int j = i + 1; j < rows.size(); j++) {
 				if (rows.get(i).equals(rows.get(j))) {
 					rows.get(i).quantity++;
-					rows.get(i).refDes = rows.get(i).refDes + "; "
-							+ rows.get(j).refDes;
+					rows.get(i).refDes = rows.get(i).refDes + "; " + rows.get(j).refDes;
 					deletes.add(j);
 				}
 			}
@@ -162,6 +114,12 @@ public class BoMGenerator {
 		}
 	}
 
+	private void generate() {
+		populateHeaders();
+		initializeRows();
+		consolidateRows();
+	}
+
 	private void generateString() {
 		StringBuilder sb = new StringBuilder();
 		// sb.append("Bill of Materials - " + design.getName() + "\n");
@@ -170,8 +128,7 @@ public class BoMGenerator {
 			sb.append(", " + headers.get(i));
 		}
 		for (Row r : rows) {
-			sb.append("\n" + r.quantity + ", " + r.name + ", " + r.refDes
-					+ ", " + r.pkg_type);
+			sb.append("\n" + r.quantity + ", " + r.name + ", " + r.refDes + ", " + r.pkg_type);
 			for (int i = 0; i < r.entries.size(); i++) {
 				sb.append(", " + r.entries.get(i));
 			}
@@ -189,6 +146,31 @@ public class BoMGenerator {
 		return bom;
 	}
 
+	private void initializeRows() {
+		for (Instance i : design.getInstances()) {
+			Row newRow = new Row();
+
+			for (int j = 0; j < headers.size(); j++) {
+				newRow.entries.add("");
+			}
+
+			newRow.name = i.getDevice().getName();
+			newRow.refDes = i.getRefDes();
+			for (Attribute a : i.getAttributes()) {
+				if (a.getName().equals("PKG_TYPE")) {
+					newRow.pkg_type = a.getValue();
+				} else if (!a.getName().equals("REFPREFIX") && !a.getName().equals("REFDES")) {
+					for (int j = 0; j < headers.size(); j++) {
+						if (headers.get(j).equals(a.getName())) {
+							newRow.entries.set(j, a.getValue());
+						}
+					}
+				}
+			}
+			rows.add(newRow);
+		}
+	}
+
 	/**
 	 * Produces a .bom file which contains the comma-separated table of
 	 * attributes.
@@ -202,13 +184,26 @@ public class BoMGenerator {
 			out.write(bom);
 			out.close();
 		} catch (IOException e) {
-			System.err.println("File Writing Error - " + fileName + "\n"
-					+ "\tPossible Reasons:\n"
-					+ "\t\t*filename may be corrupt\n"
-					+ "\t\t*file may currently be open\n");
+			System.err.println("File Writing Error - " + fileName + "\n" + "\tPossible Reasons:\n"
+				+ "\t\t*filename may be corrupt\n" + "\t\t*file may currently be open\n");
 			System.exit(1);
 		}
-		System.out.println("Wrote BoM file: " + fileName);
+		System.out.println("  -- Generated: \\" + fileName);
+	}
+
+	private void populateHeaders() {
+		List<String> excludes = new ArrayList<String>();
+		excludes.add("REFPREFIX");
+		excludes.add("REFDES");
+		excludes.add("PKG_TYPE");
+
+		for (Instance i : design.getInstances()) {
+			for (Attribute a : i.getAttributes()) {
+				if (!excludes.contains(a.getName()) && !headers.contains(a.getName())) {
+					headers.add(a.getName());
+				}
+			}
+		}
 	}
 
 }

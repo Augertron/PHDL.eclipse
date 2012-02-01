@@ -183,6 +183,16 @@ tokens {
 		this.includeNames = includeNames;
 	}
 	
+	private String directory;
+	
+	public void setDirectory(String directory) {
+		this.directory = directory;
+	}
+	
+	public String getDirectory() {
+		return directory;
+	}
+	
 	/**
 	 * Overridden nextToken method to accomodate the saved character stream states, and how to handle the tokens
 	 * entering and leaving an included file.
@@ -612,7 +622,9 @@ INCLUDE_DECL
 	: 	INCLUDE WHITESPACE? fileName=STRING
 		{	String name = fileName.getText();
 			name = name.substring(1,name.length()-1);
-			System.out.println("  -- Including: " + name);
+			if (directory != null)
+				name = directory + "\\" + name;
+			System.out.println("  -- Including: " + ((directory != null)?("\\" + name):(name)));
 			// check for duplicate include files
 			if (!includeNames.add(name)) {
 				System.out.println("ERROR: " + fileName.getInputStream().getSourceName() + " line " + 

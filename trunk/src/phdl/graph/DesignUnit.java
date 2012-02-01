@@ -385,18 +385,18 @@ public abstract class DesignUnit extends Node {
 	}
 
 	public void printHierarchy() {
-		System.out.println("\n  Hierarchy:");
-		printHierarchyRecursive(4);
+		System.out.println("\n  Design unit hierarchy:");
+		printHierarchyRecursive(3);
 		System.out.println();
 	}
 
-	public void printHierarchyRecursive(int tabs) {
+	public void printHierarchyRecursive(int numIndents) {
 		String space = "";
-		for (int i = 0; i < tabs; i++)
+		for (int i = 0; i < numIndents; i++)
 			space += "  ";
 		System.out.println(space + getNameIndex());
 		for (SubInstance s : subInsts)
-			s.printHierarchyRecursive(tabs + 1);
+			s.printHierarchyRecursive(numIndents + 1);
 	}
 
 	public void setConnections(List<Connection> connections) {
@@ -452,12 +452,29 @@ public abstract class DesignUnit extends Node {
 	}
 
 	/**
+	 * Writes a string to file
+	 * @param fileName
+	 * @param fileData
+	 */
+	public void toFile(String filePathName, String fileData) {
+		BufferedWriter bw = null;
+		try {
+			bw = new BufferedWriter(new FileWriter(filePathName));
+			bw.write(fileData);
+			bw.close();
+		} catch (IOException e) {
+			System.out.println("Prolem writing file: " + filePathName + fileName);
+			System.exit(1);
+		}
+	}
+
+	/**
 	 * Recursive routine that generates a DOT formated string of each DesignUnit
 	 * 
 	 * @param fileName
 	 *            the name of the file being written
 	 */
-	public void toDot() {
+	public void toPNG() {
 		StringBuilder sb = new StringBuilder();
 
 		// Header information
@@ -678,40 +695,24 @@ public abstract class DesignUnit extends Node {
 			path.insert(0, current.getParent().getName() + "\\" + current.getNameIndex() + "\\");
 		} else if (this instanceof Design || this instanceof SubDesign)
 			path.insert(0, getName() + "\\");
-		path.insert(0, "dot\\");
-
-		//System.out.println(path.toString());
+		path.insert(0, "png\\");
 
 		// attempt to make the directory structure
 		File file = new File(path.toString());
 		if (!file.isDirectory())
 			file.mkdirs();
 
-		// write the dot to file, convert it to a PNG
+		// write the dot to file, convert it to a PNG, then delete the dot file.
 		String fileName = path.toString() + getNameIndex();
 		toFile(fileName + ".dot", sb.toString());
 		execSysCommand("dot -Tpng " + fileName + ".dot -o " + fileName + ".png");
+		File delFile = new File(fileName + ".dot");
+		delFile.delete();
+		System.out.println("  -- Generated: \\" + fileName + ".png");
 
 		// recursively output all SubInstances
 		for (SubInstance s : subInsts)
-			s.toDot();
-	}
-
-	/**
-	 * Writes a string to file
-	 * @param fileName
-	 * @param fileData
-	 */
-	public void toFile(String filePathName, String fileData) {
-		BufferedWriter bw = null;
-		try {
-			bw = new BufferedWriter(new FileWriter(filePathName));
-			bw.write(fileData);
-			bw.close();
-		} catch (IOException e) {
-			System.out.println("Prolem writing file: " + filePathName + fileName);
-			System.exit(1);
-		}
+			s.toPNG();
 	}
 
 	@Override
