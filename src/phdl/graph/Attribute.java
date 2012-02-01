@@ -107,11 +107,10 @@ public class Attribute extends Node {
 	 */
 	public boolean overwrite(String value) {
 		this.value = value;
-		if (!overwritten) {
-			overwritten = true;
-			return true;
-		}
-		return false;
+		if (overwritten)
+			return false;
+		overwritten = true;
+		return true;
 	}
 
 	@Override
@@ -125,6 +124,10 @@ public class Attribute extends Node {
 	 */
 	public void setName(String name) {
 		this.name = name.toUpperCase();
+	}
+
+	public void setOverwritten(boolean overwritten) {
+		this.overwritten = overwritten;
 	}
 
 	/**

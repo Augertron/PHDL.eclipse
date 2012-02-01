@@ -43,8 +43,6 @@ public abstract class Attributable extends Node {
 	public Attributable(Attributable old) {
 		super(old);
 		this.attributes = new TreeSet<Attribute>();
-		for (Attribute oldAttr : old.attributes)
-			this.attributes.add(new Attribute(old, oldAttr));
 	}
 
 	/**

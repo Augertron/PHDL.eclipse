@@ -66,6 +66,8 @@ public class Instance extends Attributable {
 		this.parent = parent;
 		this.name = name;
 		setDevice(old);
+		for (Attribute a : old.getAttributes())
+			this.attributes.add(new Attribute(this, a));
 		for (Pin p : old.getPins())
 			this.pins.add(new Pin(this, p));
 	}
@@ -81,13 +83,15 @@ public class Instance extends Attributable {
 		super(old);
 		this.pins = new ArrayList<Pin>();
 		this.parent = parent;
-		this.name = old.getName();
+		//this.name = old.getName();
 		this.index = old.getIndex();
 		this.pkg = old.getPackage();
 		this.groupName = old.getGroupName();
 		setDevice(old.getDevice());
-		for (Pin p : old.getPins())
-			this.pins.add(new Pin(this, p));
+		for (Attribute oldAttr : old.getAttributes())
+			this.attributes.add(new Attribute(this, oldAttr));
+		for (Pin oldPin : old.getPins())
+			this.pins.add(new Pin(this, oldPin));
 	}
 
 	/**
@@ -104,23 +108,6 @@ public class Instance extends Attributable {
 	@Override
 	public boolean equals(Object o) {
 		return this.name.equals(((Instance) o).getName()) && this.index == ((Instance) o).getIndex();
-	}
-
-	/**
-	 * Returns the index of the current Instance, assuming that it has an array reference.
-	 * 
-	 * @return the index of the Instance
-	 */
-	public int findIndex() {
-		int start = getName().indexOf('(');
-		int end = getName().indexOf(')');
-
-		if (start == -1 || end == -1) {
-			return -1;
-		}
-
-		String index = getName().substring(start + 1, end);
-		return Integer.parseInt(index);
 	}
 
 	/**
@@ -180,7 +167,7 @@ public class Instance extends Attributable {
 	}
 
 	public String getNameIndex() {
-		return this.name + (hasIndex() ? this.index : "");
+		return this.name + (hasIndex() ? "(" + this.index + ")" : "");
 	}
 
 	@Override
@@ -368,7 +355,7 @@ public class Instance extends Attributable {
 
 		String idx = hasIndex() ? ("(" + getIndex() + ")") : "";
 		sb.append(String.format(fieldFmtStr, "Name:", "", getName() + idx));
-		sb.append(String.format(fieldFmtStr, "Parent:", "", getParent().getName()));
+		sb.append(String.format(fieldFmtStr, "Parent:", "", getParent().getNameIndex()));
 		sb.append(String.format(fieldFmtStr, "ID:", "", Integer.toHexString(System.identityHashCode(this))));
 		sb.append("\n");
 

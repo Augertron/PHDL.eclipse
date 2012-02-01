@@ -11,6 +11,7 @@
 package phdl.grammar;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,7 +29,6 @@ import org.antlr.runtime.tree.CommonTreeNodeStream;
 import org.antlr.runtime.tree.DOTTreeGenerator;
 import org.antlr.stringtemplate.StringTemplate;
 
-import phdl.Configuration;
 import phdl.TestDriver;
 import phdl.graph.Attributable;
 import phdl.graph.Design;
@@ -37,21 +37,25 @@ import phdl.graph.Device;
 import phdl.graph.PinType;
 import phdl.graph.SubDesign;
 
+import com.martiansoftware.jsap.JSAPResult;
+
 public class ParsePHDL {
 
-	private final Configuration cfg;
+	private final JSAPResult cfg;
 	private final Set<Device> devices;
 	private final Set<SubDesign> subDesigns;
 	private Design topDesign;
 	private final List<String> errors;
 	private final List<String> warnings;
+	private final Set<String> includeNames;
 
-	public ParsePHDL(Configuration cfg) {
+	public ParsePHDL(JSAPResult cfg) {
 		this.cfg = cfg;
 		this.devices = new HashSet<Device>();
 		this.subDesigns = new HashSet<SubDesign>();
 		this.errors = new ArrayList<String>();
 		this.warnings = new ArrayList<String>();
+		this.includeNames = new HashSet<String>();
 	}
 
 	public Set<Device> getDevices() {
@@ -68,19 +72,25 @@ public class ParsePHDL {
 
 	public void parse() {
 
-		for (String fileName : cfg.getFileNames()) {
+		String[] fileNames = cfg.getStringArray("fileName");
+		for (int i = 0; i < fileNames.length; i++) {
 
 			// make a new character stream based on the filename
 			CharStream cs = null;
 			try {
-				cs = new ANTLRFileStream(fileName);
+				cs = new ANTLRFileStream(fileNames[i]);
 			} catch (IOException e) {
-				System.err.println("Source file not found: " + fileName);
+				System.err.println("Source file not found: " + fileNames[i]);
 				System.exit(1);
 			}
 
-			// make a new parser and feed it the lexer-wrapped character stream
-			PhdlParser p = new PhdlParser(new CommonTokenStream(new PhdlLexer(cs)));
+			// set up the lexer and parser and accumulate included names from the lexer
+			PhdlLexer l = new PhdlLexer();
+			l.setIncludeNames(includeNames);
+			l.setCharStream(cs);
+			PhdlParser p = new PhdlParser(new CommonTokenStream(l));
+			includeNames.addAll(l.getIncludeNames());
+
 			try {
 				CommonTree tree = (CommonTree) p.sourceText().getTree();
 				CommonTreeNodeStream ns = new CommonTreeNodeStream(tree);
@@ -90,15 +100,21 @@ public class ParsePHDL {
 				for (String error : p.getErrors())
 					errors.add(error);
 
-				if (cfg.isDotAST()) {
+				if (cfg.getBoolean("ast")) {
 					// convert the AST to a dotty formatted string for debug
 					DOTTreeGenerator dtg = new DOTTreeGenerator();
 					StringTemplate st = dtg.toDOT(tree);
-					String astFileName = "ast.dot";
+					String astFileName = "ast\\" + fileNames[i] + "_ast.dot";
+					File file = new File(astFileName);
+					if (!file.getParentFile().isDirectory())
+						file.getParentFile().mkdir();
 					toFile(astFileName, st.toString());
 				}
+
+				// bail out if there are errors at this point
 				printErrors();
 
+				// set up the ast grammar
 				PhdlAST ast = new PhdlAST(ns);
 				ast.setDevices(devices);
 				ast.setSubDesigns(subDesigns);
@@ -119,11 +135,11 @@ public class ParsePHDL {
 			}
 
 			// print out all warnings if suppress warnings is enabled
-			if (!cfg.isSupWarn())
+			if (!cfg.getBoolean("suppress"))
 				printWarnings();
 		}
 
-		if (cfg.isReport()) {
+		if (cfg.getBoolean("report")) {
 			for (Device d : devices)
 				System.out.print(d.toString().replace("\n", "\n  "));
 			if (topDesign != null)
@@ -131,28 +147,33 @@ public class ParsePHDL {
 			for (SubDesign s : subDesigns)
 				System.out.print(s.toString().replace("\n", "\n  "));
 		}
-		if (cfg.isHierarchy())
+		if (cfg.getBoolean("dot")) {
 			topDesign.toDot();
+			for (SubDesign s : subDesigns)
+				s.toDot();
+		}
 
+		// print out the hierarchy
+		topDesign.printHierarchy();
 	}
 
 	public void printErrors() {
 		if (!errors.isEmpty()) {
+			System.out.println();
 			for (String s : errors)
 				System.out.println("ERROR: " + s);
 			// only bail out if verbose mode is not set
-			if (!cfg.isVerbose())
+			if (!cfg.getBoolean("verbose"))
 				System.exit(1);
 		}
 	}
 
-	public boolean printWarnings() {
+	public void printWarnings() {
 		if (!warnings.isEmpty()) {
+			System.out.println();
 			for (String s : warnings)
 				System.out.println("WARNING: " + s);
-			return true;
 		}
-		return false;
 	}
 
 	public void toFile(String fileName, String fileData) {

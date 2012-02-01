@@ -21,8 +21,6 @@ import java.util.List;
  */
 public class Design extends HierarchyUnit {
 
-	private List<Net> nets;
-
 	public Design() {
 		super();
 	}
