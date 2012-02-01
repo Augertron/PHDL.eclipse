@@ -340,8 +340,8 @@ instDecl
 	:	INST (LPAREN width RPAREN)? IDENT OF IDENT LBRACE (infoDecl | attrAssign | pinAssign)* RBRACE
 		-> ^(INST_DECL width? IDENT IDENT infoDecl* attrAssign* pinAssign*)
 		
-	|	SUBINST (LPAREN width RPAREN)? IDENT OF IDENT LBRACE (infoDecl | subAttrAssign | portAssign)* RBRACE
-		-> ^(SUBINST_DECL width? IDENT IDENT infoDecl* subAttrAssign* portAssign*)
+	|	SUBINST (LPAREN width RPAREN)? IDENT STRING? OF IDENT LBRACE (infoDecl | subAttrAssign | portAssign)* RBRACE
+		-> ^(SUBINST_DECL width? IDENT STRING? IDENT infoDecl* subAttrAssign* portAssign*)
 	;
 
 /**
@@ -364,8 +364,8 @@ attrAssign
  * SUBATTR_ASSIGN node, with all relevant information as children in the tree.
  */
 subAttrAssign
-	:	NEWATTR? qualifier? (name PERIOD)* IDENT EQUALS STRING SEMICOLON
-		-> ^(SUBATTR_ASSIGN NEWATTR? qualifier? name* IDENT STRING)
+	:	NEWATTR? qualifier? (name PERIOD)+ IDENT EQUALS STRING SEMICOLON
+		-> ^(SUBATTR_ASSIGN NEWATTR? qualifier? name+ IDENT STRING)
 	;
 
 pinAssign
@@ -456,7 +456,7 @@ pinNumber
  * indices are included in the overall tree.
  */	
 qualifier
-	:	THIS! LPAREN! index RPAREN! PERIOD!
+	:	THIS (LPAREN index RPAREN)? PERIOD -> ^(THIS index?)
 	;
 
 /**

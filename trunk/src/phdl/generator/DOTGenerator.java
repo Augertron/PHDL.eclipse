@@ -14,7 +14,7 @@ public class DOTGenerator {
 	}
 
 	public void generate() {
-		if (cfg.isHierarchy()) {
+		if (cfg.isDot()) {
 
 		}
 	}

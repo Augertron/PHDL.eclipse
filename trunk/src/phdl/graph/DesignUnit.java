@@ -1,6 +1,7 @@
 package phdl.graph;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -78,7 +79,6 @@ public abstract class DesignUnit extends Node {
 
 	@Override
 	public int compareTo(Object o) {
-		// TODO Auto-generated method stub
 		return this.getNameIndex().compareTo(((DesignUnit) o).getNameIndex());
 	}
 
@@ -95,18 +95,17 @@ public abstract class DesignUnit extends Node {
 		return name.equals(((DesignUnit) o).getName()) && index == ((DesignUnit) o).index;
 	}
 
-	public void execDot(String fileName) {
+	public void execSysCommand(String command) {
 		try {
-			Process p = Runtime.getRuntime().exec("dot -Tpng " + fileName + ".dot -o " + fileName + ".png");
+			Process p = Runtime.getRuntime().exec(command);
 			try {
 				p.waitFor();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		} catch (IOException e) {
-			System.out.println("ERROR: DOT is not included on PATH environment variable.");
+			e.printStackTrace();
 		}
-		System.out.println("  -- Hierarchy: " + fileName + ".png");
 	}
 
 	public List<Port> getAllPorts(String name) {
@@ -192,7 +191,7 @@ public abstract class DesignUnit extends Node {
 	}
 
 	public String getNameIndex() {
-		return this.name + (hasIndex() ? this.index : "");
+		return this.name + (hasIndex() ? "(" + this.index + ")" : "");
 	}
 
 	/**
@@ -370,6 +369,36 @@ public abstract class DesignUnit extends Node {
 		return map;
 	}
 
+	public Map<String, List<Port>> portsToMap() {
+		Map<String, List<Port>> map = new HashMap<String, List<Port>>();
+		for (Connection c : connections) {
+			if (c instanceof Port) {
+				if (!map.keySet().contains(c.getName())) {
+					List<Port> newList = new ArrayList<Port>();
+					newList.add((Port) c);
+					map.put(c.getName(), newList);
+				} else
+					map.get(c.getName()).add((Port) c);
+			}
+		}
+		return map;
+	}
+
+	public void printHierarchy() {
+		System.out.println("\n  Hierarchy:");
+		printHierarchyRecursive(4);
+		System.out.println();
+	}
+
+	public void printHierarchyRecursive(int tabs) {
+		String space = "";
+		for (int i = 0; i < tabs; i++)
+			space += "  ";
+		System.out.println(space + getNameIndex());
+		for (SubInstance s : subInsts)
+			s.printHierarchyRecursive(tabs + 1);
+	}
+
 	public void setConnections(List<Connection> connections) {
 		this.connections = connections;
 	}
@@ -442,9 +471,53 @@ public abstract class DesignUnit extends Node {
 		sb.append("graph " + this.getName() + " {\n\n");
 		sb.append("\tsplines=false;\n\n");
 
+		// SubInstances
+		if (!subInsts.isEmpty())
+			sb.append("\t// SubInstances\n");
+		for (SubInstance i : subInsts) {
+			String iName = i.getNameIndex();
+			sb.append("\tsubgraph \"cluster_" + iName + "\" {\n");
+			sb.append("\t\tstyle=filled;\n");
+			sb.append("\t\tcolor=lightgrey;\n");
+			sb.append("\t\tlabel=\"SubInstance: " + iName + "\";\n");
+
+			// SubInstance ports
+			Map<String, List<Port>> map = i.portsToMap();
+			if (!map.isEmpty()) {
+				sb.append("\t\tsubgraph \"cluster_" + iName + "_ports\" {\n");
+				sb.append("\t\t\tlabel=\"Ports:\";\n");
+				sb.append("\t\t\tnode [shape=record, width=0.25, height=0.25];\n");
+			}
+			for (String s : map.keySet()) {
+				int msb = map.get(s).get(0).getIndex();
+				int lsb = map.get(s).get(map.get(s).size() - 1).getIndex();
+				String array = (msb == lsb) ? "[" + msb + "]" : "[" + msb + ":" + lsb + "]";
+				sb.append("\t\t\tsubgraph \"cluster_" + iName + "_ports_" + s + array + "\" {\n");
+				if (map.get(s).size() == 1) {
+					Port p = map.get(s).get(0);
+					sb.append("\t\t\t\tlabel=\"" + s + (p.hasIndex() ? array : "") + "\";\n");
+					sb.append("\t\t\t\t\"" + iName + "_" + s);
+					sb.append("\" [label=\"<" + p.getIndex() + "> " + p.getIndex() + "\"];\n");
+					sb.append("\t\t\t}\n");
+				} else {
+					sb.append("\t\t\t\tlabel=\"" + s + array + "\";\n");
+					sb.append("\t\t\t\t\"" + iName + "_" + s + "\" [label=\"");
+					for (Port p : map.get(s))
+						sb.append("<" + p.getIndex() + "> " + p.getIndex() + " |");
+					sb.delete(sb.length() - 2, sb.length());
+					sb.append("\"];\n\t\t\t}\n");
+				}
+			}
+			if (!map.isEmpty())
+				sb.append("\t\t}\n");
+
+			sb.append("\t}\n\n");
+		}
+
 		// Instances
-		sb.append("\t// Instances\n");
-		for (Instance i : this.instances) {
+		if (!instances.isEmpty())
+			sb.append("\t// Instances\n");
+		for (Instance i : instances) {
 			String iName = i.getNameIndex();
 			sb.append("\tsubgraph \"cluster_" + iName + "\" {\n");
 			sb.append("\t\tstyle=filled;\n");
@@ -496,48 +569,6 @@ public abstract class DesignUnit extends Node {
 			sb.append("\t}\n\n");
 		}
 
-		// SubInstances
-		sb.append("\t// SubInstances\n");
-		for (SubInstance i : subInsts) {
-			String iName = i.getNameIndex();
-			sb.append("\tsubgraph \"cluster_" + iName + "\" {\n");
-			sb.append("\t\tstyle=filled;\n");
-			sb.append("\t\tcolor=lightgrey;\n");
-			sb.append("\t\tlabel=\"SubInstance: " + iName + "\";\n");
-
-			// SubInstance ports
-			Map<String, List<Port>> map = i.portsToMap();
-			if (!map.isEmpty()) {
-				sb.append("\t\tsubgraph \"cluster_" + iName + "_ports\" {\n");
-				sb.append("\t\t\tlabel=\"Ports:\";\n");
-				sb.append("\t\t\tnode [shape=record, width=0.25, height=0.25];\n");
-			}
-			for (String s : map.keySet()) {
-				int msb = map.get(s).get(0).getIndex();
-				int lsb = map.get(s).get(map.get(s).size() - 1).getIndex();
-				String array = (msb == lsb) ? "[" + msb + "]" : "[" + msb + ":" + lsb + "]";
-				sb.append("\t\t\tsubgraph \"cluster_" + iName + "_ports_" + s + array + "\" {\n");
-				if (map.get(s).size() == 1) {
-					Port p = map.get(s).get(0);
-					sb.append("\t\t\t\tlabel=\"" + s + (p.hasIndex() ? array : "") + "\";\n");
-					sb.append("\t\t\t\t\"" + iName + "_" + s);
-					sb.append("\" [label=\"<" + p.getIndex() + "> " + p.getIndex() + "\"];\n");
-					sb.append("\t\t\t}\n");
-				} else {
-					sb.append("\t\t\t\tlabel=\"" + s + array + "\";\n");
-					sb.append("\t\t\t\t\"" + iName + "_" + s + "\" [label=\"");
-					for (Port p : map.get(s))
-						sb.append("<" + p.getIndex() + "> " + p.getIndex() + " |");
-					sb.delete(sb.length() - 2, sb.length());
-					sb.append("\"];\n\t\t\t}\n");
-				}
-			}
-			if (!map.isEmpty())
-				sb.append("\t\t}\n");
-
-			sb.append("\t}\n\n");
-		}
-
 		// Nets
 		Map<String, List<Net>> netMap = this.netsToMap();
 		if (!netMap.isEmpty())
@@ -567,9 +598,10 @@ public abstract class DesignUnit extends Node {
 		sb.append("\n");
 
 		// Ports
-		if (this instanceof SubInstance) {
-			sb.append("\t// Ports\n");
-			Map<String, List<Port>> portMap = ((SubInstance) this).portsToMap();
+		if (this instanceof SubInstance || this instanceof SubDesign) {
+			Map<String, List<Port>> portMap = this.portsToMap();
+			if (!portMap.isEmpty())
+				sb.append("\t// Ports\n");
 			for (String s : portMap.keySet()) {
 				int msb = portMap.get(s).get(0).getIndex();
 				int lsb = portMap.get(s).get(portMap.get(s).size() - 1).getIndex();
@@ -596,65 +628,69 @@ public abstract class DesignUnit extends Node {
 		}
 
 		// Edges
-		sb.append("\t// Edges\n");
-		clearVisited();
-		for (Connection c : connections) {
-			// form edges from pins
-			for (Pin p : c.getPins()) {
-				Instance i = ((Instance) p.getParent());
-				String parent = i.getName() + (i.hasIndex() ? i.getIndex() : "");
-				sb.append("\t\"" + c.getName() + "\":" + c.getIndex() + " -- \"");
-				sb.append(parent + "_" + p.getName() + "\":" + p.getIndex() + ";\n");
-			}
-
-			// form edges from other connections
-			for (Connection dest : c.getConnections()) {
-				if (!dest.isVisited()) {
-					if (dest.getParent() instanceof Design) {
-						sb.append("\t\"" + c.getName() + "\":" + c.getIndex() + " -- \"");
-						sb.append(dest.getName() + "\":" + dest.getIndex() + ";\n");
-					}
+		if (!connections.isEmpty()) {
+			sb.append("\t// Edges\n");
+			clearVisited();
+			for (Connection c : connections) {
+				// form edges from pins
+				for (Pin p : c.getPins()) {
+					Instance i = ((Instance) p.getParent());
+					sb.append("\t\"" + c.getName() + "\":" + c.getIndex() + " -- \"");
+					sb.append(i.getNameIndex() + "_" + p.getName() + "\":" + p.getIndex() + ";\n");
 				}
-				if (!(dest instanceof Port))
-					dest.setVisited(true);
+
+				// form edges from other connections
+				for (Connection dest : c.getConnections()) {
+					if (!dest.isVisited()) {
+						if (dest.getParent() instanceof Design) {
+							sb.append("\t\"" + c.getName() + "\":" + c.getIndex() + " -- \"");
+							sb.append(dest.getName() + "\":" + dest.getIndex() + ";\n");
+						}
+					}
+					if (!(dest instanceof Port))
+						dest.setVisited(true);
+				}
+				c.setVisited(true);
 			}
-			c.setVisited(true);
+			clearVisited();
 		}
-		clearVisited();
+
 		for (SubInstance s : subInsts) {
 			for (Port p : s.getPorts()) {
 				if (p.isAssigned()) {
-					sb.append("\t//edges from ports\n");
+					sb.append("\t//edge from port\n");
 					sb.append("\t\"" + p.getParent().getNameIndex() + "_" + p.getName() + "\":" + p.getIndex());
 					sb.append(" -- \"" + p.getAssignment().getName() + "\":" + p.getAssignment().getIndex() + ";\n");
-				} else {
-					//System.out.println(p);
 				}
 			}
 		}
 
 		sb.append("}\n");
 
-		// formulate a unique hierarchical filename
-		StringBuilder fileName = new StringBuilder();
-		if (this instanceof Design)
-			fileName.append(this.getName());
-		else {
-			DesignUnit parent = this;
-			while (parent instanceof SubInstance) {
-				fileName.insert(0, "." + ((SubInstance) parent).getNameIndex());
-				parent = ((SubInstance) parent).getParent();
+		// build up the path name based on the position in hierarchy
+		StringBuilder path = new StringBuilder();
+		if (this instanceof SubInstance) {
+			SubInstance current = (SubInstance) this;
+			while (current.getParent() instanceof SubInstance) {
+				path.insert(0, current.getNameIndex() + "\\");
+				current = (SubInstance) current.getParent();
 			}
-			fileName.insert(0, parent.getName());
-		}
+			path.insert(0, current.getParent().getName() + "\\" + current.getNameIndex() + "\\");
+		} else if (this instanceof Design || this instanceof SubDesign)
+			path.insert(0, getName() + "\\");
+		path.insert(0, "dot\\");
+
+		//System.out.println(path.toString());
+
+		// attempt to make the directory structure
+		File file = new File(path.toString());
+		if (!file.isDirectory())
+			file.mkdirs();
 
 		// write the dot to file, convert it to a PNG
-		toFile(fileName.toString() + ".dot", sb.toString());
-		execDot(fileName.toString());
-		/*
-		File f = new File(fileName.toString() + ".dot");
-		if (f.exists() && f.isFile())
-			f.delete();*/
+		String fileName = path.toString() + getNameIndex();
+		toFile(fileName + ".dot", sb.toString());
+		execSysCommand("dot -Tpng " + fileName + ".dot -o " + fileName + ".png");
 
 		// recursively output all SubInstances
 		for (SubInstance s : subInsts)
@@ -666,14 +702,14 @@ public abstract class DesignUnit extends Node {
 	 * @param fileName
 	 * @param fileData
 	 */
-	public void toFile(String fileName, String fileData) {
-		BufferedWriter dotty = null;
+	public void toFile(String filePathName, String fileData) {
+		BufferedWriter bw = null;
 		try {
-			dotty = new BufferedWriter(new FileWriter(fileName));
-			dotty.write(fileData);
-			dotty.close();
+			bw = new BufferedWriter(new FileWriter(filePathName));
+			bw.write(fileData);
+			bw.close();
 		} catch (IOException e) {
-			System.out.println("Prolem writing file: " + fileName);
+			System.out.println("Prolem writing file: " + filePathName + fileName);
 			System.exit(1);
 		}
 	}
@@ -689,10 +725,10 @@ public abstract class DesignUnit extends Node {
 		String instIndent = "    ";
 		String connIndent = "    ";
 
-		String idx = "";
 		if (this instanceof SubInstance)
-			idx = (((SubInstance) this).hasIndex()) ? ("(" + ((SubInstance) this).getIndex() + ")") : "";
-		sb.append(String.format(fieldFmtStr, "Name:", "", getName() + idx));
+			sb.append(String.format(fieldFmtStr, "Name:", "", getNameIndex()));
+		else
+			sb.append(String.format(fieldFmtStr, "Name:", "", getName()));
 		sb.append(String.format(fieldFmtStr, "ID:", "", Integer.toHexString(System.identityHashCode(this))));
 		sb.append("\n");
 
@@ -704,8 +740,7 @@ public abstract class DesignUnit extends Node {
 			sb.append("    ----  --------  ---------------- \n");
 			int connCount = 1;
 			for (Connection c : connections) {
-				String index = c.hasIndex() ? ("[" + c.getIndex() + "]") : "";
-				sb.append(String.format(connFmtStr, connCount, " ", c.getNodeType(), " ", c.getName() + index));
+				sb.append(String.format(connFmtStr, connCount, " ", c.getNodeType(), " ", c.getNameIndex()));
 				connCount++;
 			}
 			sb.append("\n");
@@ -716,9 +751,8 @@ public abstract class DesignUnit extends Node {
 			sb.append("    ---- ---------------- ------------ ---------------- ----------------  \n");
 			int instCount = 1;
 			for (Instance i : instances) {
-				sb.append(String.format(instFmtStr, instCount, "", i.getName()
-					+ (i.hasIndex() ? ("(" + i.getIndex() + ")") : ""), "", i.getDevice().getName(), "", i.getParent()
-					.getName(), " ", i.getGroupName()));
+				sb.append(String.format(instFmtStr, instCount, "", i.getNameIndex(), "", i.getDevice().getName(), "", i
+					.getParent().getName(), " ", i.getGroupName()));
 				instCount++;
 			}
 			sb.append("\n");
@@ -729,9 +763,8 @@ public abstract class DesignUnit extends Node {
 			sb.append("    ---- ---------------- ---------------- ------------------------  \n");
 			int subCount = 1;
 			for (SubInstance s : subInsts) {
-				String index = s.hasIndex() ? ("(" + s.getIndex() + ")") : "";
-				sb.append(String.format(subFmtStr, subCount, "", s.getName() + index, "", s.getSubDesign().getName(),
-					"", s.getFileName() + ", " + s.getLine() + ":" + s.getPosition()));
+				sb.append(String.format(subFmtStr, subCount, "", s.getNameIndex(), "", s.getSubDesign().getName(), "",
+					s.getFileName() + ", " + s.getLine() + ":" + s.getPosition()));
 			}
 			sb.append("\n");
 		}
@@ -760,23 +793,18 @@ public abstract class DesignUnit extends Node {
 					+ s.getNodeType() + "\n\n");
 				sb.append(String
 					.format(nameFmtStr, "File:", "", getFileName() + ", " + getLine() + ":" + getPosition()));
-				String index = s.hasIndex() ? ("(" + s.getIndex() + ")") : "";
-				sb.append(String.format(nameFmtStr, "Name: ", "", s.getName() + index));
+				sb.append(String.format(nameFmtStr, "Name: ", "", s.getNameIndex()));
 				sb.append(String.format(nameFmtStr, "ID:", "", Integer.toHexString(System.identityHashCode(s))));
-				String pidx = "";
 				if (s.getParent() instanceof SubInstance)
-					pidx = (((SubInstance) s.getParent()).hasIndex()) ? ("(" + ((SubInstance) s.getParent()).getIndex() + ")")
-						: "";
-				sb.append(String.format(nameFmtStr, "Parent: ", "", s.getParent().getName() + pidx));
+					sb.append(String.format(nameFmtStr, "Parent: ", "", s.getParent().getNameIndex()));
+				else
+					sb.append(String.format(nameFmtStr, "Parent: ", "", s.getParent().getName()));
 				sb.append("\n");
 
 				List<Port> ports = s.getPorts();
-				if (ports.size() > 0) {
-					for (Port p : ports) {
-						sb.append(p.toString().replace("\n", "\n      "));
-					}
+				for (Port p : ports) {
+					sb.append(p.toString().replace("\n", "\n      "));
 				}
-
 			}
 			sb.append("\n");
 		}

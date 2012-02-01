@@ -204,6 +204,73 @@ options {
 			ct.getToken().getInputStream().getSourceName());
 	}
 	
+	private void subInstAttr(SubInstance subInst, Stack<name_return> names, CommonTree attrName, CommonTree attrValue, boolean newAttr) {
+		
+		// the current name to reference either subinstances' or instances' attributes
+		name_return currName = names.pop();
+		
+		//System.out.println(currName.id.getText() + " " + attrName.getText() + " " + attrValue.getText());
+		
+		List<SubInstance> subInsts = new ArrayList<SubInstance>();
+		List<Instance> insts = new ArrayList<Instance>();
+		
+		// gather all relevant subinstances or instances
+		if (currName.indices == null) {
+			subInsts.addAll(subInst.getSubInstancesByName(currName.id.getText()));
+			insts.addAll(subInst.getInstancesByName(currName.id.getText()));
+		} else {
+			for (Integer i : currName.indices) {
+				SubInstance s = subInst.getSubInstance(currName.id.getText(), i);
+				if (s != null)
+					subInsts.add(s);
+				else {
+					Instance inst = subInst.getInstance(currName.id.getText(), i);
+					if (inst != null)
+						insts.add(inst);
+					else
+						bailOut(currName.id, "invalid subinstance or instance reference");
+				}
+			}
+		}
+			
+		// if both lists turn up empty, the current name does not reference a subinstance or instance
+		if (subInsts.isEmpty() && insts.isEmpty())
+			bailOut(currName.id, "subinstance or instance name does not exist in " + subInst.getName());
+		
+		// if the stack is empty, assign the attribute
+		if (names.isEmpty()) {
+			//System.out.println("the stack is empty:" + insts.size());
+			for (Instance i : insts) {
+				Attribute a = i.getAttribute(attrName.getText());
+				if (a != null) {
+					if (newAttr)
+						addError(attrName, "new attribute already declared");
+					if (!a.overwrite(attrValue.getText()))
+						addWarning(attrName, "attribute already overwritten");
+					setLocation(a, attrName);
+					//System.out.println(((Instance) a.getParent()).getParent().getName());
+				} else if (newAttr) {
+					Attribute newA = new Attribute(i, attrName.getText(), attrValue.getText());
+					setLocation(newA, attrName);
+					i.addAttribute(newA);
+				} else
+					addError(attrName, "undeclared attribute");
+				//System.out.print(i.getParent());
+			}
+		// otherwise go down a level of hierarchy to find the attribute to assign
+		} else {
+			if (subInsts.isEmpty())
+				bailOut(names.peek().id, "subinstance or instance name does not exist in " + subInst.getName());
+			for (SubInstance s : subInsts) {
+				//System.out.println("going down to: " + s.getNameIndex());
+				subInstAttr(s, names, attrName, attrValue, newAttr);
+				//System.out.println("coming up to: " + subInst.getNameIndex());
+			}
+		}
+		
+		names.push(currName);
+	}
+	
 	/**
 	 * Necessary to properly report AST errors without bailing out of the whole application
 	 */
@@ -486,79 +553,52 @@ instDecl[DesignUnit des, String groupName]
 	
 attrAssign[DesignUnit des, String instName]
 @init{boolean newAttr = false;}
-	:	^(ATTR_ASSIGN (NEWATTR {newAttr = true;})? index? attrName=IDENT attrValue=STRING)
+	:	^(ATTR_ASSIGN (NEWATTR {newAttr = true;})? qualifier? attrName=IDENT attrValue=STRING)
 		
 		{	// a list of all candidate instances from the design
-			List<Instance> insts = des.getInstancesByName(instName);
+			List<Instance> insts = new ArrayList<Instance>();
+			if ($qualifier.indices == null)
+				insts.addAll(des.getInstancesByName(instName));
+			else {
+				for (Integer i : $qualifier.indices) {
+					Instance inst = des.getInstance(instName, i);
+					if (inst == null)
+						bailOut($qualifier.name, "invalid instance qualifier index (" + i + ")");
+					else
+						insts.add(inst);
+				}
+			}
 			
-			// process all instances (global attribute)
-			if ($index.indices == null) {
-				for (Instance i : insts) {
-					Attribute a = i.getAttribute($attrName.text);
-					if (a != null) {
-						if (newAttr)
-							addError($attrName, "new attribute already declared");
-						if (!a.overwrite($attrValue.text))
-							addWarning($attrName, "attribute already overwritten");
-					} else if (newAttr) {
-						Attribute newA = new Attribute(i, $attrName.text, $attrValue.text);
-						setLocation(newA, $attrName);
-						i.addAttribute(newA);
-					} else
-						addError($attrName, "undeclared attribute");
-				}
-			} else {
-				// iterate over the indices in the array list declaration
-				for (Integer index : $index.indices) {
-					// search for the instance with this index
-					Instance inst = null;
-					for (Instance i : insts)
-						if (index == i.getIndex()) 
-							inst = i;
-					
-					if (inst != null) {
-						Attribute a = inst.getAttribute($attrName.text);
-						if (a != null) {
-							if (newAttr)
-								addError($attrName, "new attribute already declared");
-							if (!a.overwrite($attrValue.text))
-								addWarning($attrName, "attribute already overwritten");
-						} else if (newAttr) {
-							Attribute newA = new Attribute(inst, $attrName.text, $attrValue.text);
-							setLocation(newA, $attrName);
-							inst.addAttribute(newA);
-						} else
-							addError($attrName, "undeclared attribute");
-					// the instance referenced by the index doesn't exist
-					} else
-						addError($attrName, "instance index (" + index + ") does not exist for attribute");
-				}
+			for (Instance i : insts) {
+				Attribute a = i.getAttribute($attrName.text);
+				if (a != null) {
+					if (newAttr)
+						addError($attrName, "new attribute already declared");
+					if (!a.overwrite($attrValue.text))
+						addWarning($attrName, "attribute already overwritten");
+					setLocation(a, $attrName);
+				} else if (newAttr) {
+					Attribute newA = new Attribute(i, $attrName.text, $attrValue.text);
+					setLocation(newA, $attrName);
+					i.addAttribute(newA);
+				} else
+					addError($attrName, "undeclared attribute");
 			}
 		}
 	;
 	
 pinAssign[DesignUnit des, String instName]
 @init{boolean isCombined = false;}
-	:	^(PIN_ASSIGN (COMBINE {isCombined = true;})? index? operand concat[des])
-		{	
-			// check for duplicate qualifier indices
-			Set<Integer> indices = new HashSet<Integer>();
-			if ($index.indices != null) {
-				for (Integer i : $index.indices)
-					if (!indices.add(i))
-						bailOut($operand.id, "duplicate instance qualifier index");
-			}
-
-			// gather the relevant instances in a list
+	:	^(PIN_ASSIGN (COMBINE {isCombined = true;})? qualifier? operand concat[des])
+		{	// gather the relevant instances in a list
 			List<Instance> insts = new ArrayList<Instance>();
-			if ($index.indices == null) {
-				for (Instance inst : des.getInstancesByName(instName))
-					insts.add(inst);
-			} else {
-				for (Integer i : $index.indices) {
+			if ($qualifier.indices == null)
+				insts.addAll(des.getInstancesByName(instName));
+			else {
+				for (Integer i : $qualifier.indices) {
 					Instance inst = des.getInstance(instName, i);
 					if (inst == null)
-						bailOut($operand.id, "invalid instance qualifier index (" + i + ")");
+						bailOut($qualifier.name, "invalid instance qualifier index (" + i + ")");
 					else
 						insts.add(inst);
 				}
@@ -667,7 +707,7 @@ pinAssign[DesignUnit des, String instName]
 	;
 	
 subInstDecl[DesignUnit des]
-	:	^(SUBINST_DECL width? instName=IDENT desName=IDENT
+	:	^(SUBINST_DECL width? instName=IDENT refPrefix=STRING? desName=IDENT
 
 		{	SubDesign subDes = getSubDesign($desName.text);
 			if (subDes == null)
@@ -675,6 +715,7 @@ subInstDecl[DesignUnit des]
 			if ($width.indices == null || $width.indices.size() == 1) {
 				SubInstance s = new SubInstance(des, subDes, $instName.text);
 				setLocation(s, $instName);
+				s.setRefPrefix($refPrefix.text);
 				if ($width.indices != null)
 					s.setIndex($width.indices.get(0));
 				
@@ -686,6 +727,7 @@ subInstDecl[DesignUnit des]
 				for (int i = 0; i < $width.indices.size(); i++) {
 					SubInstance s = new SubInstance(des, subDes, $instName.text);
 					setLocation(s, $instName);
+					s.setRefPrefix($refPrefix.text);
 					s.setIndex($width.indices.get(i));
 					// check for duplicates
 					if (!des.addSubInst(s))
@@ -724,36 +766,51 @@ subInstDecl[DesignUnit des]
 				addError($instName, "duplicate instance name exists in design unit");
 		}
 	
-		subAttrAssign[des, $instName.text]* 
+		subAttrAssign[des, $instName]* 
 		portAssign[des, $instName.text]*)
 	;
 	
-subAttrAssign[DesignUnit des, String subInstName]
-@init{boolean newAttr = false;}
-	:	^(SUBATTR_ASSIGN (NEWATTR {newAttr = true;})? index? name* attrName=IDENT attrValue=STRING)
-		{	
+subAttrAssign[DesignUnit des, CommonTree subInstName]
+@init{
+	boolean newAttr = false;
+	List<name_return> ids = new ArrayList<name_return>();
+}
+	:	^(SUBATTR_ASSIGN (NEWATTR {newAttr = true;})? qualifier? (id=name {ids.add(id);})+ attrName=IDENT attrValue=STRING)
+		{	Stack<name_return> names = new Stack<name_return>();
+			for (int i = ids.size()-1; i >= 0; i--)
+				names.push(ids.get(i));
+		
+			// gather the relevant subdesign instances in a list
+			List<SubInstance> subInsts = new ArrayList<SubInstance>();
+			if ($qualifier.indices == null) {
+				for (SubInstance subInst : des.getSubInstancesByName(subInstName.getText()))
+					subInsts.add(subInst);
+			} else {
+				for (Integer i : $qualifier.indices) {
+					SubInstance subInst = des.getSubInstance(subInstName.getText(), i);
+					if (subInst == null)
+						bailOut($qualifier.name, "invalid subinstance qualifier index (" + i + ")");
+					else
+						subInsts.add(subInst);
+				}
+			}
+			
+			// call the recursive SubInstance attribute routine on each SubInstance
+			for (SubInstance subInst : subInsts)
+				subInstAttr(subInst, names, $attrName, $attrValue, newAttr);
 		}
 	; 	
 	
 portAssign[DesignUnit des, String subInstName]
 @init{boolean isCombined = false;}
-	:	^(PORT_ASSIGN (COMBINE {isCombined = true;})? index? operand concat[des])
+	:	^(PORT_ASSIGN (COMBINE {isCombined = true;})? qualifier? operand concat[des])
 		
-		{	// check for duplicate qualifier indices
-			Set<Integer> indices = new HashSet<Integer>();
-			if ($index.indices != null) {
-				for (Integer i : $index.indices)
-					if (!indices.add(i))
-						bailOut($operand.id, "duplicate instance qualifier index");
-			}
-
-			// gather the relevant subdesign instances in a list
+		{	// gather the relevant subdesign instances in a list
 			List<SubInstance> subInsts = new ArrayList<SubInstance>();
-			if ($index.indices == null) {
-				for (SubInstance subInst : des.getSubInstancesByName(subInstName))
-					subInsts.add(subInst);
-			} else {
-				for (Integer i : $index.indices) {
+			if ($qualifier.indices == null)
+				subInsts.addAll(des.getSubInstancesByName(subInstName));
+			else {
+				for (Integer i : $qualifier.indices) {
 					SubInstance subInst = des.getSubInstance(subInstName, i);
 					if (subInst == null)
 						bailOut($operand.id, "invalid instance qualifier index (" + i + ")");
@@ -985,6 +1042,13 @@ name returns [CommonTree id, List<Integer> indices]
 	:	^(NAME val=IDENT {$id = $val;} (index {$indices = $index.indices;})?)
 	;
 
+qualifier returns [List<Integer> indices, CommonTree name]
+	:	^(keyword=THIS index?)
+		{	$name = $keyword;
+			$indices = $index.indices;
+		}
+	;
+
 /**
  * The index rule looks for a subtree rooted in either a BOUNDS or INDICES node.  It returns a list
  * populated with all appropriate indices either specified by a mininum and maximum value (the bounds)
@@ -993,16 +1057,22 @@ name returns [CommonTree id, List<Integer> indices]
 index returns [List<Integer> indices]
 @init{$indices = new ArrayList<Integer>();}
 	:	^(BOUNDS hi=INT lo=INT)
-		{	int msb = Integer.parseInt($hi.text);
-			int lsb = Integer.parseInt($lo.text);
-			if (msb < lsb)
-				for (int i = msb; i <= lsb; i++)
-					$indices.add(i);
-			else
-				for (int i = msb; i >= lsb; i--)
-					$indices.add(i);
-		}
-	|	^(INDICES (idx=INT {$indices.add(Integer.parseInt($idx.text));})+)
+			{	int msb = Integer.parseInt($hi.text);
+				int lsb = Integer.parseInt($lo.text);
+				if (msb < lsb)
+					for (int i = msb; i <= lsb; i++)
+						$indices.add(i);
+				else
+					for (int i = msb; i >= lsb; i--)
+						$indices.add(i);
+			}
+	|	^(INDICES (idx=INT 
+			{	if ($indices.contains(Integer.parseInt($idx.text)))
+					bailOut($idx, "duplicate index");
+				else
+					$indices.add(Integer.parseInt($idx.text));
+			}
+		)+)
 	;
 	
 width returns [List<Integer> indices]
@@ -1038,7 +1108,12 @@ pinType returns [PinType type]
 	|	SUPPIN	{$type = PinType.SUPPIN;}))
 	;
 	
-infoDecl returns [CommonTree info, List<Integer> indices]
-	: 	^(INFO_DECL index? 	{$indices = $index.indices;}
-		(st=STRING 			{$info = $st;})+)
+infoDecl returns [CommonTree name, CommonTree info, List<Integer> indices]
+	: 	^(INFO_DECL qualifier? 	
+		{	
+			$indices = $qualifier.indices;
+			$name = $qualifier.name;
+		}
+		(string=STRING 				{$info = $string;})+)
 	;
+	

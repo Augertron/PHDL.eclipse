@@ -19,17 +19,17 @@ public class Configuration {
 		+ "\t-v\tenable verbose error reporting (will not bail out simple parse errors)\n"
 		+ "\t-e\toutput script for EAGLE PCB\n\n";
 
-	private final String version = "PHDL Compiler v2.0";
+	private final String version = "PHDL Compiler v2.0 Java v1.6 ANTLR v3.2 Feb 01 2012";
 
 	private final String[] reqAttr = { "REFPREFIX", "PACKAGE", "LIBRARY" };
 
 	private boolean supWarn;
-	private boolean dotAST;
+	private boolean ast;
 	private boolean verbose;
 	private boolean eagle;
 	private boolean clean;
 	private boolean report;
-	private boolean hierarchy;
+	private boolean dot;
 	private final List<String> fileNames;
 
 	public Configuration(String[] args) {
@@ -39,11 +39,12 @@ public class Configuration {
 			System.exit(1);
 		}
 
+		// sort out the compiler switches
 		for (int i = 0; i < args.length; i++) {
 			if (args[i].equals("-w"))
 				setSupWarn(true);
-			else if (args[i].equals("-d"))
-				setDotAST(true);
+			else if (args[i].equals("-a"))
+				setAst(true);
 			else if (args[i].equals("-v"))
 				setVerbose(true);
 			else if (args[i].equals("-e"))
@@ -52,13 +53,17 @@ public class Configuration {
 				setClean(true);
 			else if (args[i].equals("-r"))
 				setReport(true);
-			else if (args[i].equals("-h"))
-				setHierarchy(true);
+			else if (args[i].equals("-d"))
+				setDot(true);
 			else if (args[i].equals("?") || args[i].equals("-help")) {
 				System.out.println(getUsage());
 				System.exit(1);
 			} else {
-				fileNames.add(args[i]);
+				if (args[i].startsWith("-")) {
+					System.out.println("Invalid compiler switch: " + args[i] + "\n");
+					System.exit(1);
+				} else
+					fileNames.add(args[i]);
 			}
 		}
 	}
@@ -79,20 +84,20 @@ public class Configuration {
 		return version;
 	}
 
+	public boolean isAst() {
+		return ast;
+	}
+
 	public boolean isClean() {
 		return clean;
 	}
 
-	public boolean isDotAST() {
-		return dotAST;
+	public boolean isDot() {
+		return dot;
 	}
 
 	public boolean isEagle() {
 		return eagle;
-	}
-
-	public boolean isHierarchy() {
-		return hierarchy;
 	}
 
 	public boolean isReport() {
@@ -107,20 +112,20 @@ public class Configuration {
 		return verbose;
 	}
 
+	public void setAst(boolean ast) {
+		this.ast = ast;
+	}
+
 	public void setClean(boolean clean) {
 		this.clean = clean;
 	}
 
-	public void setDotAST(boolean dotAST) {
-		this.dotAST = dotAST;
+	public void setDot(boolean dot) {
+		this.dot = dot;
 	}
 
 	public void setEagle(boolean eagle) {
 		this.eagle = eagle;
-	}
-
-	public void setHierarchy(boolean hiearchy) {
-		this.hierarchy = hiearchy;
 	}
 
 	public void setReport(boolean report) {

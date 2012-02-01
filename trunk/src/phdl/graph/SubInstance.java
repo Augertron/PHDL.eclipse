@@ -1,9 +1,7 @@
 package phdl.graph;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class SubInstance extends HierarchyUnit {
 
@@ -19,7 +17,7 @@ public class SubInstance extends HierarchyUnit {
 	}
 
 	/**
-	 * Hierarchical constructor
+	 * Hierarchical constructor called when instancing a subDesign
 	 * @param parent
 	 * @param subDesign
 	 * @param name
@@ -29,9 +27,11 @@ public class SubInstance extends HierarchyUnit {
 		this.name = name;
 		this.parent = parent;
 		this.subDesign = subDesign;
+		this.refPrefix = subDesign.getRefPrefix();
 
+		// make new SubInstances
 		for (SubInstance s : subDesign.subInsts) {
-			SubInstance inst = new SubInstance(this, s.getSubDesign(), s.getName());
+			SubInstance inst = new SubInstance(this, s);
 			inst.setIndex(s.getIndex());
 			inst.setLine(s.getLine());
 			inst.setPosition(s.getPosition());
@@ -42,8 +42,8 @@ public class SubInstance extends HierarchyUnit {
 		}
 
 		// make copies of all instances
-		for (int i = 0; i < subDesign.instances.size(); i++) {
-			Instance newInst = new Instance(this, subDesign.instances.get(i));
+		for (Instance i : subDesign.instances) {
+			Instance newInst = new Instance(this, i);
 			if (!this.addInstance(newInst))
 				System.out.println("duplicate instance");
 		}
@@ -82,6 +82,81 @@ public class SubInstance extends HierarchyUnit {
 				if (subDesign.instances.get(i).getPins().get(p).isAssigned()) {
 					Connection subC = subDesign.instances.get(i).getPins().get(p).getAssignment();
 					int index = subDesign.connections.indexOf(subC);
+					this.instances.get(i).getPins().get(p).setAssignment(this.connections.get(index));
+					this.connections.get(index).addPin(this.instances.get(i).getPins().get(p));
+				}
+			}
+		}
+	}
+
+	/**
+	 * SubInstance recursive copy constructor
+	 * @param parent
+	 * @param old
+	 */
+	public SubInstance(DesignUnit parent, SubInstance old) {
+		super();
+		this.name = old.getName();
+		this.parent = parent;
+		this.subDesign = old.getSubDesign();
+		this.refPrefix = old.getRefPrefix();
+
+		// make new SubInstances
+		for (SubInstance s : old.subInsts) {
+			SubInstance inst = new SubInstance(this, s);
+			inst.setIndex(s.getIndex());
+			inst.setLine(s.getLine());
+			inst.setPosition(s.getPosition());
+			inst.setFileName(s.getFileName());
+			inst.setInfo(s.getInfo());
+			if (!this.addSubInst(inst))
+				System.out.println("duplicate subinstance");
+		}
+
+		// make copies of all instances
+		for (Instance i : old.instances) {
+			Instance newInst = new Instance(this, i);
+			if (!this.addInstance(newInst))
+				System.out.println("duplicate instance");
+			// clear all of the overwritten flags on attributes
+			for (Attribute a : newInst.getAttributes())
+				a.setOverwritten(false);
+		}
+
+		// make new ports and nets
+		for (int i = 0; i < old.connections.size(); i++) {
+			Connection c = old.connections.get(i);
+			if (c instanceof Port) {
+				Port newPort = new Port(this, (Port) c);
+				if (!this.addConnection(newPort))
+					System.out.print("duplicate port");
+			} else if (c instanceof Net) {
+				Net newNet = new Net(this, (Net) c);
+				if (!this.addConnection(newNet))
+					System.out.print("duplicate net");
+			}
+		}
+
+		// reconstruct all net and port connectivity
+		for (int i = 0; i < old.connections.size(); i++) {
+			for (Connection c : old.connections.get(i).getConnections()) {
+				int index = old.connections.indexOf(c);
+				if (index != -1)
+					this.connections.get(i).addConnection(this.connections.get(index));
+				else {
+					SubInstance s = this.getSubInstance(c.getParent().getName(), c.getParent().getIndex());
+					Port p = s.getPort(c.getName(), c.getIndex());
+					p.setAssignment(this.connections.get(i));
+				}
+			}
+		}
+
+		// reconstruct all of the pin connectivity
+		for (int i = 0; i < old.instances.size(); i++) {
+			for (int p = 0; p < old.instances.get(i).getPins().size(); p++) {
+				if (old.instances.get(i).getPins().get(p).isAssigned()) {
+					Connection subC = old.instances.get(i).getPins().get(p).getAssignment();
+					int index = old.connections.indexOf(subC);
 					this.instances.get(i).getPins().get(p).setAssignment(this.connections.get(index));
 					this.connections.get(index).addPin(this.instances.get(i).getPins().get(p));
 				}
@@ -129,21 +204,6 @@ public class SubInstance extends HierarchyUnit {
 
 	public SubDesign getSubDesign() {
 		return subDesign;
-	}
-
-	public Map<String, List<Port>> portsToMap() {
-		Map<String, List<Port>> map = new HashMap<String, List<Port>>();
-		for (Connection c : connections) {
-			if (c instanceof Port) {
-				if (!map.keySet().contains(c.getName())) {
-					List<Port> newList = new ArrayList<Port>();
-					newList.add((Port) c);
-					map.put(c.getName(), newList);
-				} else
-					map.get(c.getName()).add((Port) c);
-			}
-		}
-		return map;
 	}
 
 	public void setDesign(SubDesign design) {
