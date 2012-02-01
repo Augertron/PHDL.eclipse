@@ -166,8 +166,20 @@ public class SubInstance extends HierarchyUnit {
 
 	@Override
 	public boolean equals(Object o) {
+		if (!(this.parent instanceof SubInstance)) {
+			return false;
+		}
 		return this.name.equals(((SubInstance) o).getName()) && this.getIndex() == ((SubInstance) o).getIndex()
 			&& this.parent.equals(((SubInstance) o).getParent());
+	}
+	
+	public String getHierarchyName() {
+		if (parent instanceof SubInstance) {
+			return getHierarchyName() + "." + this.getNameIndex();
+		}
+		else {
+			return this.getNameIndex();
+		}
 	}
 
 	@Override
