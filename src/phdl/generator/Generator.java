@@ -18,7 +18,6 @@ package phdl.generator;
 
 import java.io.File;
 
-import phdl.Configuration;
 import phdl.graph.Design;
 
 /**
@@ -51,11 +50,16 @@ public class Generator {
 	 * @see BoMGenerator
 	 * @see NetListGenerator
 	 */
-	public Generator(Design design, Configuration cfg) {
+	public Generator(Design design) {
 		this.design = design;
 		refDesGen = new RefDesGenerator(design);
 		bomGen = new BoMGenerator(design);
 		netListGen = new NetListGenerator(design, refDesGen.getRefMap());
+		infoGen = new InfoGenerator(design);
+		//xmlGen = new XMLGenerator(design);
+		//eagleScriptGen = new EagleScriptGenerator(design, desComp);
+
+		/*
 		File xml = new File(design.getName() + ".xml");
 		boolean xmlExists = xml.exists();
 		if (xmlExists) {
@@ -65,12 +69,9 @@ public class Generator {
 			desComp.printChanges();
 		} else {
 			System.out.println("********Initial Build*******");
-		}
-		infoGen = new InfoGenerator(design);
-		xmlGen = new XMLGenerator(design);
-		generateXML();
-		if (cfg.isEagle())
-			eagleScriptGen = new EagleScriptGenerator(design, desComp, xmlExists);
+		}*/
+
+		//generateXML();
 	}
 
 	/**
@@ -79,7 +80,8 @@ public class Generator {
 	 * @see BoMGenerator
 	 */
 	public void generateBoM() {
-		bomGen.outputToFile(design.getName() + "_bom.csv");
+		makeDirectory("bom\\");
+		bomGen.outputToFile("bom\\" + design.getName() + ".csv");
 	}
 
 	/**
@@ -88,7 +90,8 @@ public class Generator {
 	 * @see EagleScriptGenerator
 	 */
 	public void generateEagleScript() {
-		eagleScriptGen.outputToFile(design.getName() + ".scr");
+		makeDirectory("scr\\");
+		eagleScriptGen.outputToFile("scr\\" + design.getName() + ".scr");
 	}
 
 	/**
@@ -106,7 +109,8 @@ public class Generator {
 	 * @see NetListGenerator
 	 */
 	public void generateNetList() {
-		netListGen.outputToFile(design.getName() + ".asc");
+		makeDirectory("asc\\");
+		netListGen.outputToFile("asc\\" + design.getName() + ".asc");
 	}
 
 	/**
@@ -115,7 +119,8 @@ public class Generator {
 	 * @see RefDesGenerator
 	 */
 	public void generateRefDes() {
-		refDesGen.outputToFile(design.getName() + ".csv");
+		makeDirectory("csv\\");
+		refDesGen.outputToFile("csv\\" + design.getName() + ".csv");
 	}
 
 	/**
@@ -124,6 +129,13 @@ public class Generator {
 	 * @see XMLGenerator
 	 */
 	public void generateXML() {
-		xmlGen.outputToFile(design.getName() + ".xml");
+		makeDirectory("xml\\");
+		xmlGen.outputToFile("xml\\" + design.getName() + ".xml");
+	}
+
+	private void makeDirectory(String directory) {
+		File file = new File(directory);
+		if (!file.isDirectory())
+			file.mkdir();
 	}
 }

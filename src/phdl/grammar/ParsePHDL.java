@@ -72,20 +72,34 @@ public class ParsePHDL {
 
 	public void parse() {
 
-		String[] fileNames = cfg.getStringArray("fileName");
-		for (int i = 0; i < fileNames.length; i++) {
+		// maintain a list of all of the source file names
+		List<String> fileNames = new ArrayList<String>();
+		String[] fNames = cfg.getStringArray("fileName");
+		String dir = cfg.getString("directory");
+		for (int i = 0; i < fNames.length; i++)
+			fileNames.add(((dir != null) ? (dir + "\\") : "") + fNames[i]);
+
+		// if the top level design is specified, make sure to compile it last
+		String topFileName = cfg.getString("topFileName");
+		if (topFileName != null)
+			fileNames.add(((dir != null) ? (dir + "\\") : "") + topFileName);
+
+		for (String fileName : fileNames) {
 
 			// make a new character stream based on the filename
 			CharStream cs = null;
 			try {
-				cs = new ANTLRFileStream(fileNames[i]);
+				cs = new ANTLRFileStream(fileName);
 			} catch (IOException e) {
-				System.err.println("Source file not found: " + fileNames[i]);
+				System.err.println();
+				System.err.println("ERROR: Source file not found: " + fileName);
 				System.exit(1);
 			}
 
 			// set up the lexer and parser and accumulate included names from the lexer
 			PhdlLexer l = new PhdlLexer();
+			if (dir != null)
+				l.setDirectory(dir);
 			l.setIncludeNames(includeNames);
 			l.setCharStream(cs);
 			PhdlParser p = new PhdlParser(new CommonTokenStream(l));
@@ -104,7 +118,7 @@ public class ParsePHDL {
 					// convert the AST to a dotty formatted string for debug
 					DOTTreeGenerator dtg = new DOTTreeGenerator();
 					StringTemplate st = dtg.toDOT(tree);
-					String astFileName = "ast\\" + fileNames[i] + "_ast.dot";
+					String astFileName = "ast\\" + fileName + "_ast.dot";
 					File file = new File(astFileName);
 					if (!file.getParentFile().isDirectory())
 						file.getParentFile().mkdir();
@@ -138,23 +152,6 @@ public class ParsePHDL {
 			if (!cfg.getBoolean("suppress"))
 				printWarnings();
 		}
-
-		if (cfg.getBoolean("report")) {
-			for (Device d : devices)
-				System.out.print(d.toString().replace("\n", "\n  "));
-			if (topDesign != null)
-				System.out.print(topDesign.toString().replace("\n", "\n  "));
-			for (SubDesign s : subDesigns)
-				System.out.print(s.toString().replace("\n", "\n  "));
-		}
-		if (cfg.getBoolean("dot")) {
-			topDesign.toDot();
-			for (SubDesign s : subDesigns)
-				s.toDot();
-		}
-
-		// print out the hierarchy
-		topDesign.printHierarchy();
 	}
 
 	public void printErrors() {

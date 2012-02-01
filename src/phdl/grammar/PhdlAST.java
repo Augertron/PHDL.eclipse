@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:50:56 /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g 2012-01-30 10:48:51
+// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g 2012-01-31 22:33:35
 
 /*
     Copyright (C) 2011  Brigham Young University
@@ -164,7 +164,7 @@ public class PhdlAST extends TreeParser {
         
 
     public String[] getTokenNames() { return PhdlAST.tokenNames; }
-    public String getGrammarFileName() { return "/fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g"; }
+    public String getGrammarFileName() { return "C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g"; }
 
 
     	
@@ -310,6 +310,73 @@ public class PhdlAST extends TreeParser {
     			ct.getToken().getInputStream().getSourceName());
     	}
     	
+    	private void subInstAttr(SubInstance subInst, Stack<name_return> names, CommonTree attrName, CommonTree attrValue, boolean newAttr) {
+    		
+    		// the current name to reference either subinstances' or instances' attributes
+    		name_return currName = names.pop();
+    		
+    		//System.out.println(currName.id.getText() + " " + attrName.getText() + " " + attrValue.getText());
+    		
+    		List<SubInstance> subInsts = new ArrayList<SubInstance>();
+    		List<Instance> insts = new ArrayList<Instance>();
+    		
+    		// gather all relevant subinstances or instances
+    		if (currName.indices == null) {
+    			subInsts.addAll(subInst.getSubInstancesByName(currName.id.getText()));
+    			insts.addAll(subInst.getInstancesByName(currName.id.getText()));
+    		} else {
+    			for (Integer i : currName.indices) {
+    				SubInstance s = subInst.getSubInstance(currName.id.getText(), i);
+    				if (s != null)
+    					subInsts.add(s);
+    				else {
+    					Instance inst = subInst.getInstance(currName.id.getText(), i);
+    					if (inst != null)
+    						insts.add(inst);
+    					else
+    						bailOut(currName.id, "invalid subinstance or instance reference");
+    				}
+    			}
+    		}
+    			
+    		// if both lists turn up empty, the current name does not reference a subinstance or instance
+    		if (subInsts.isEmpty() && insts.isEmpty())
+    			bailOut(currName.id, "subinstance or instance name does not exist in " + subInst.getName());
+    		
+    		// if the stack is empty, assign the attribute
+    		if (names.isEmpty()) {
+    			//System.out.println("the stack is empty:" + insts.size());
+    			for (Instance i : insts) {
+    				Attribute a = i.getAttribute(attrName.getText());
+    				if (a != null) {
+    					if (newAttr)
+    						addError(attrName, "new attribute already declared");
+    					if (!a.overwrite(attrValue.getText()))
+    						addWarning(attrName, "attribute already overwritten");
+    					setLocation(a, attrName);
+    					//System.out.println(((Instance) a.getParent()).getParent().getName());
+    				} else if (newAttr) {
+    					Attribute newA = new Attribute(i, attrName.getText(), attrValue.getText());
+    					setLocation(newA, attrName);
+    					i.addAttribute(newA);
+    				} else
+    					addError(attrName, "undeclared attribute");
+    				//System.out.print(i.getParent());
+    			}
+    		// otherwise go down a level of hierarchy to find the attribute to assign
+    		} else {
+    			if (subInsts.isEmpty())
+    				bailOut(names.peek().id, "subinstance or instance name does not exist in " + subInst.getName());
+    			for (SubInstance s : subInsts) {
+    				//System.out.println("going down to: " + s.getNameIndex());
+    				subInstAttr(s, names, attrName, attrValue, newAttr);
+    				//System.out.println("coming up to: " + subInst.getNameIndex());
+    			}
+    		}
+    		
+    		names.push(currName);
+    	}
+    	
     	/**
     	 * Necessary to properly report AST errors without bailing out of the whole application
     	 */
@@ -330,13 +397,13 @@ public class PhdlAST extends TreeParser {
 
 
     // $ANTLR start "sourceText"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:225:1: sourceText : ( deviceDecl | designDecl )+ ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:292:1: sourceText : ( deviceDecl | designDecl )+ ;
     public final void sourceText() throws RecognitionException {
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:226:2: ( ( deviceDecl | designDecl )+ )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:226:4: ( deviceDecl | designDecl )+
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:293:2: ( ( deviceDecl | designDecl )+ )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:293:4: ( deviceDecl | designDecl )+
             {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:226:4: ( deviceDecl | designDecl )+
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:293:4: ( deviceDecl | designDecl )+
             int cnt1=0;
             loop1:
             do {
@@ -353,7 +420,7 @@ public class PhdlAST extends TreeParser {
 
                 switch (alt1) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:226:5: deviceDecl
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:293:5: deviceDecl
             	    {
             	    pushFollow(FOLLOW_deviceDecl_in_sourceText60);
             	    deviceDecl();
@@ -364,7 +431,7 @@ public class PhdlAST extends TreeParser {
             	    }
             	    break;
             	case 2 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:226:18: designDecl
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:293:18: designDecl
             	    {
             	    pushFollow(FOLLOW_designDecl_in_sourceText64);
             	    designDecl();
@@ -400,15 +467,15 @@ public class PhdlAST extends TreeParser {
 
 
     // $ANTLR start "deviceDecl"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:229:1: deviceDecl : ^( DEVICE_DECL devName= IDENT ( infoDecl )* ( attrDecl[devs] )* ( pinDecl[dev] )* ) ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:296:1: deviceDecl : ^( DEVICE_DECL devName= IDENT ( infoDecl )* ( attrDecl[devs] )* ( pinDecl[dev] )* ) ;
     public final void deviceDecl() throws RecognitionException {
         CommonTree devName=null;
         PhdlAST.infoDecl_return infoDecl1 = null;
 
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:230:2: ( ^( DEVICE_DECL devName= IDENT ( infoDecl )* ( attrDecl[devs] )* ( pinDecl[dev] )* ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:230:4: ^( DEVICE_DECL devName= IDENT ( infoDecl )* ( attrDecl[devs] )* ( pinDecl[dev] )* )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:297:2: ( ^( DEVICE_DECL devName= IDENT ( infoDecl )* ( attrDecl[devs] )* ( pinDecl[dev] )* ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:297:4: ^( DEVICE_DECL devName= IDENT ( infoDecl )* ( attrDecl[devs] )* ( pinDecl[dev] )* )
             {
             match(input,DEVICE_DECL,FOLLOW_DEVICE_DECL_in_deviceDecl79); 
 
@@ -426,7 +493,7 @@ public class PhdlAST extends TreeParser {
             			// clear the set of pin names that check for duplicates
             			pinNames.clear();
             		
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:245:3: ( infoDecl )*
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:312:3: ( infoDecl )*
             loop2:
             do {
                 int alt2=2;
@@ -439,7 +506,7 @@ public class PhdlAST extends TreeParser {
 
                 switch (alt2) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:245:4: infoDecl
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:312:4: infoDecl
             	    {
             	    pushFollow(FOLLOW_infoDecl_in_deviceDecl97);
             	    infoDecl1=infoDecl();
@@ -456,7 +523,7 @@ public class PhdlAST extends TreeParser {
                 }
             } while (true);
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:247:3: ( attrDecl[devs] )*
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:314:3: ( attrDecl[devs] )*
             loop3:
             do {
                 int alt3=2;
@@ -469,7 +536,7 @@ public class PhdlAST extends TreeParser {
 
                 switch (alt3) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:247:3: attrDecl[devs]
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:314:3: attrDecl[devs]
             	    {
             	    pushFollow(FOLLOW_attrDecl_in_deviceDecl110);
             	    attrDecl(devs);
@@ -485,7 +552,7 @@ public class PhdlAST extends TreeParser {
                 }
             } while (true);
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:247:19: ( pinDecl[dev] )*
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:314:19: ( pinDecl[dev] )*
             loop4:
             do {
                 int alt4=2;
@@ -498,7 +565,7 @@ public class PhdlAST extends TreeParser {
 
                 switch (alt4) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:247:19: pinDecl[dev]
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:314:19: pinDecl[dev]
             	    {
             	    pushFollow(FOLLOW_pinDecl_in_deviceDecl114);
             	    pinDecl(dev);
@@ -532,14 +599,14 @@ public class PhdlAST extends TreeParser {
 
 
     // $ANTLR start "attrDecl"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:250:1: attrDecl[List<Attributable> parents] : ^( ATTR_DECL attrName= IDENT attrValue= STRING ) ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:317:1: attrDecl[List<Attributable> parents] : ^( ATTR_DECL attrName= IDENT attrValue= STRING ) ;
     public final void attrDecl(List<Attributable> parents) throws RecognitionException {
         CommonTree attrName=null;
         CommonTree attrValue=null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:251:2: ( ^( ATTR_DECL attrName= IDENT attrValue= STRING ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:251:4: ^( ATTR_DECL attrName= IDENT attrValue= STRING )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:318:2: ( ^( ATTR_DECL attrName= IDENT attrValue= STRING ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:318:4: ^( ATTR_DECL attrName= IDENT attrValue= STRING )
             {
             match(input,ATTR_DECL,FOLLOW_ATTR_DECL_in_attrDecl132); 
 
@@ -581,7 +648,7 @@ public class PhdlAST extends TreeParser {
 
 
     // $ANTLR start "pinDecl"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:272:1: pinDecl[Device dev] : ^( PIN_DECL pinName= IDENT pinType ( width )? pinList ) ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:339:1: pinDecl[Device dev] : ^( PIN_DECL pinName= IDENT pinType ( width )? pinList ) ;
     public final void pinDecl(Device dev) throws RecognitionException {
         CommonTree pinName=null;
         List<Integer> width2 = null;
@@ -592,8 +659,8 @@ public class PhdlAST extends TreeParser {
 
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:273:2: ( ^( PIN_DECL pinName= IDENT pinType ( width )? pinList ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:273:4: ^( PIN_DECL pinName= IDENT pinType ( width )? pinList )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:340:2: ( ^( PIN_DECL pinName= IDENT pinType ( width )? pinList ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:340:4: ^( PIN_DECL pinName= IDENT pinType ( width )? pinList )
             {
             match(input,PIN_DECL,FOLLOW_PIN_DECL_in_pinDecl161); 
 
@@ -604,7 +671,7 @@ public class PhdlAST extends TreeParser {
 
             state._fsp--;
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:273:37: ( width )?
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:340:37: ( width )?
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -613,7 +680,7 @@ public class PhdlAST extends TreeParser {
             }
             switch (alt5) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:273:37: width
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:340:37: width
                     {
                     pushFollow(FOLLOW_width_in_pinDecl169);
                     width2=width();
@@ -690,7 +757,7 @@ public class PhdlAST extends TreeParser {
 
 
     // $ANTLR start "designDecl"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:318:1: designDecl : ^( (desKeyword= DESIGN_DECL | SUBDESIGN_DECL ) (desName= IDENT ( groupDecl[des] | portDecl[des] | netDecl[des] | instDecl[des, null] | subInstDecl[des] | connectAssign[des] | ( infoDecl ) )* ) ) ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:385:1: designDecl : ^( (desKeyword= DESIGN_DECL | SUBDESIGN_DECL ) (desName= IDENT ( groupDecl[des] | portDecl[des] | netDecl[des] | instDecl[des, null] | subInstDecl[des] | connectAssign[des] | ( infoDecl ) )* ) ) ;
     public final void designDecl() throws RecognitionException {
         CommonTree desKeyword=null;
         CommonTree desName=null;
@@ -698,10 +765,10 @@ public class PhdlAST extends TreeParser {
 
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:319:2: ( ^( (desKeyword= DESIGN_DECL | SUBDESIGN_DECL ) (desName= IDENT ( groupDecl[des] | portDecl[des] | netDecl[des] | instDecl[des, null] | subInstDecl[des] | connectAssign[des] | ( infoDecl ) )* ) ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:319:4: ^( (desKeyword= DESIGN_DECL | SUBDESIGN_DECL ) (desName= IDENT ( groupDecl[des] | portDecl[des] | netDecl[des] | instDecl[des, null] | subInstDecl[des] | connectAssign[des] | ( infoDecl ) )* ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:386:2: ( ^( (desKeyword= DESIGN_DECL | SUBDESIGN_DECL ) (desName= IDENT ( groupDecl[des] | portDecl[des] | netDecl[des] | instDecl[des, null] | subInstDecl[des] | connectAssign[des] | ( infoDecl ) )* ) ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:386:4: ^( (desKeyword= DESIGN_DECL | SUBDESIGN_DECL ) (desName= IDENT ( groupDecl[des] | portDecl[des] | netDecl[des] | instDecl[des, null] | subInstDecl[des] | connectAssign[des] | ( infoDecl ) )* ) )
             {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:319:6: (desKeyword= DESIGN_DECL | SUBDESIGN_DECL )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:386:6: (desKeyword= DESIGN_DECL | SUBDESIGN_DECL )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -719,14 +786,14 @@ public class PhdlAST extends TreeParser {
             }
             switch (alt6) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:319:7: desKeyword= DESIGN_DECL
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:386:7: desKeyword= DESIGN_DECL
                     {
                     desKeyword=(CommonTree)match(input,DESIGN_DECL,FOLLOW_DESIGN_DECL_in_designDecl196); 
 
                     }
                     break;
                 case 2 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:319:32: SUBDESIGN_DECL
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:386:32: SUBDESIGN_DECL
                     {
                     match(input,SUBDESIGN_DECL,FOLLOW_SUBDESIGN_DECL_in_designDecl200); 
 
@@ -737,8 +804,8 @@ public class PhdlAST extends TreeParser {
 
 
             match(input, Token.DOWN, null); 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:319:48: (desName= IDENT ( groupDecl[des] | portDecl[des] | netDecl[des] | instDecl[des, null] | subInstDecl[des] | connectAssign[des] | ( infoDecl ) )* )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:319:49: desName= IDENT ( groupDecl[des] | portDecl[des] | netDecl[des] | instDecl[des, null] | subInstDecl[des] | connectAssign[des] | ( infoDecl ) )*
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:386:48: (desName= IDENT ( groupDecl[des] | portDecl[des] | netDecl[des] | instDecl[des, null] | subInstDecl[des] | connectAssign[des] | ( infoDecl ) )* )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:386:49: desName= IDENT ( groupDecl[des] | portDecl[des] | netDecl[des] | instDecl[des, null] | subInstDecl[des] | connectAssign[des] | ( infoDecl ) )*
             {
             desName=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_designDecl206); 
             	// make a new design based on the identifier and log its location
@@ -762,7 +829,7 @@ public class PhdlAST extends TreeParser {
             			conNames.clear();
             			instNames.clear();
             		
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:343:2: ( groupDecl[des] | portDecl[des] | netDecl[des] | instDecl[des, null] | subInstDecl[des] | connectAssign[des] | ( infoDecl ) )*
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:410:2: ( groupDecl[des] | portDecl[des] | netDecl[des] | instDecl[des, null] | subInstDecl[des] | connectAssign[des] | ( infoDecl ) )*
             loop7:
             do {
                 int alt7=8;
@@ -807,7 +874,7 @@ public class PhdlAST extends TreeParser {
 
                 switch (alt7) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:343:4: groupDecl[des]
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:410:4: groupDecl[des]
             	    {
             	    pushFollow(FOLLOW_groupDecl_in_designDecl220);
             	    groupDecl(des);
@@ -818,7 +885,7 @@ public class PhdlAST extends TreeParser {
             	    }
             	    break;
             	case 2 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:344:4: portDecl[des]
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:411:4: portDecl[des]
             	    {
             	    pushFollow(FOLLOW_portDecl_in_designDecl226);
             	    portDecl(des);
@@ -829,7 +896,7 @@ public class PhdlAST extends TreeParser {
             	    }
             	    break;
             	case 3 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:345:4: netDecl[des]
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:412:4: netDecl[des]
             	    {
             	    pushFollow(FOLLOW_netDecl_in_designDecl233);
             	    netDecl(des);
@@ -840,7 +907,7 @@ public class PhdlAST extends TreeParser {
             	    }
             	    break;
             	case 4 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:346:4: instDecl[des, null]
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:413:4: instDecl[des, null]
             	    {
             	    pushFollow(FOLLOW_instDecl_in_designDecl239);
             	    instDecl(des, null);
@@ -851,7 +918,7 @@ public class PhdlAST extends TreeParser {
             	    }
             	    break;
             	case 5 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:347:4: subInstDecl[des]
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:414:4: subInstDecl[des]
             	    {
             	    pushFollow(FOLLOW_subInstDecl_in_designDecl245);
             	    subInstDecl(des);
@@ -862,7 +929,7 @@ public class PhdlAST extends TreeParser {
             	    }
             	    break;
             	case 6 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:348:4: connectAssign[des]
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:415:4: connectAssign[des]
             	    {
             	    pushFollow(FOLLOW_connectAssign_in_designDecl251);
             	    connectAssign(des);
@@ -873,10 +940,10 @@ public class PhdlAST extends TreeParser {
             	    }
             	    break;
             	case 7 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:349:4: ( infoDecl )
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:416:4: ( infoDecl )
             	    {
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:349:4: ( infoDecl )
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:349:5: infoDecl
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:416:4: ( infoDecl )
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:416:5: infoDecl
             	    {
             	    pushFollow(FOLLOW_infoDecl_in_designDecl258);
             	    infoDecl5=infoDecl();
@@ -917,21 +984,21 @@ public class PhdlAST extends TreeParser {
 
 
     // $ANTLR start "groupDecl"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:353:1: groupDecl[DesignUnit des] : ^( GROUP_DECL groupName= STRING ( portDecl[des] | netDecl[des] | instDecl[des, $groupName.text] | connectAssign[des] | ( infoDecl ) )* ) ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:420:1: groupDecl[DesignUnit des] : ^( GROUP_DECL groupName= STRING ( portDecl[des] | netDecl[des] | instDecl[des, $groupName.text] | connectAssign[des] | ( infoDecl ) )* ) ;
     public final void groupDecl(DesignUnit des) throws RecognitionException {
         CommonTree groupName=null;
         PhdlAST.infoDecl_return infoDecl6 = null;
 
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:354:2: ( ^( GROUP_DECL groupName= STRING ( portDecl[des] | netDecl[des] | instDecl[des, $groupName.text] | connectAssign[des] | ( infoDecl ) )* ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:354:4: ^( GROUP_DECL groupName= STRING ( portDecl[des] | netDecl[des] | instDecl[des, $groupName.text] | connectAssign[des] | ( infoDecl ) )* )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:421:2: ( ^( GROUP_DECL groupName= STRING ( portDecl[des] | netDecl[des] | instDecl[des, $groupName.text] | connectAssign[des] | ( infoDecl ) )* ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:421:4: ^( GROUP_DECL groupName= STRING ( portDecl[des] | netDecl[des] | instDecl[des, $groupName.text] | connectAssign[des] | ( infoDecl ) )* )
             {
             match(input,GROUP_DECL,FOLLOW_GROUP_DECL_in_groupDecl283); 
 
             match(input, Token.DOWN, null); 
             groupName=(CommonTree)match(input,STRING,FOLLOW_STRING_in_groupDecl287); 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:355:2: ( portDecl[des] | netDecl[des] | instDecl[des, $groupName.text] | connectAssign[des] | ( infoDecl ) )*
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:422:2: ( portDecl[des] | netDecl[des] | instDecl[des, $groupName.text] | connectAssign[des] | ( infoDecl ) )*
             loop8:
             do {
                 int alt8=6;
@@ -966,7 +1033,7 @@ public class PhdlAST extends TreeParser {
 
                 switch (alt8) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:355:4: portDecl[des]
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:422:4: portDecl[des]
             	    {
             	    pushFollow(FOLLOW_portDecl_in_groupDecl292);
             	    portDecl(des);
@@ -977,7 +1044,7 @@ public class PhdlAST extends TreeParser {
             	    }
             	    break;
             	case 2 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:356:4: netDecl[des]
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:423:4: netDecl[des]
             	    {
             	    pushFollow(FOLLOW_netDecl_in_groupDecl298);
             	    netDecl(des);
@@ -988,7 +1055,7 @@ public class PhdlAST extends TreeParser {
             	    }
             	    break;
             	case 3 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:357:4: instDecl[des, $groupName.text]
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:424:4: instDecl[des, $groupName.text]
             	    {
             	    pushFollow(FOLLOW_instDecl_in_groupDecl304);
             	    instDecl(des, (groupName!=null?groupName.getText():null));
@@ -999,7 +1066,7 @@ public class PhdlAST extends TreeParser {
             	    }
             	    break;
             	case 4 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:358:4: connectAssign[des]
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:425:4: connectAssign[des]
             	    {
             	    pushFollow(FOLLOW_connectAssign_in_groupDecl310);
             	    connectAssign(des);
@@ -1010,10 +1077,10 @@ public class PhdlAST extends TreeParser {
             	    }
             	    break;
             	case 5 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:359:4: ( infoDecl )
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:426:4: ( infoDecl )
             	    {
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:359:4: ( infoDecl )
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:359:5: infoDecl
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:426:4: ( infoDecl )
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:426:5: infoDecl
             	    {
             	    pushFollow(FOLLOW_infoDecl_in_groupDecl317);
             	    infoDecl6=infoDecl();
@@ -1051,21 +1118,21 @@ public class PhdlAST extends TreeParser {
 
 
     // $ANTLR start "portDecl"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:363:1: portDecl[DesignUnit subDes] : ^( PORT_DECL ( width )? (portName= IDENT )* ) ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:430:1: portDecl[DesignUnit subDes] : ^( PORT_DECL ( width )? (portName= IDENT )* ) ;
     public final void portDecl(DesignUnit subDes) throws RecognitionException {
         CommonTree portName=null;
         List<Integer> width7 = null;
 
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:364:2: ( ^( PORT_DECL ( width )? (portName= IDENT )* ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:364:4: ^( PORT_DECL ( width )? (portName= IDENT )* )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:431:2: ( ^( PORT_DECL ( width )? (portName= IDENT )* ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:431:4: ^( PORT_DECL ( width )? (portName= IDENT )* )
             {
             match(input,PORT_DECL,FOLLOW_PORT_DECL_in_portDecl341); 
 
             if ( input.LA(1)==Token.DOWN ) {
                 match(input, Token.DOWN, null); 
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:364:16: ( width )?
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:431:16: ( width )?
                 int alt9=2;
                 int LA9_0 = input.LA(1);
 
@@ -1074,7 +1141,7 @@ public class PhdlAST extends TreeParser {
                 }
                 switch (alt9) {
                     case 1 :
-                        // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:364:16: width
+                        // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:431:16: width
                         {
                         pushFollow(FOLLOW_width_in_portDecl343);
                         width7=width();
@@ -1087,7 +1154,7 @@ public class PhdlAST extends TreeParser {
 
                 }
 
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:364:23: (portName= IDENT )*
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:431:23: (portName= IDENT )*
                 loop10:
                 do {
                     int alt10=2;
@@ -1100,7 +1167,7 @@ public class PhdlAST extends TreeParser {
 
                     switch (alt10) {
                 	case 1 :
-                	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:364:24: portName= IDENT
+                	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:431:24: portName= IDENT
                 	    {
                 	    portName=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_portDecl349); 
                 	    	// verify the port is not in a design
@@ -1154,7 +1221,7 @@ public class PhdlAST extends TreeParser {
 
 
     // $ANTLR start "netDecl"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:392:1: netDecl[DesignUnit des] : ^( NET_DECL ( width )? (netName= IDENT )* ( attrDecl[nets] )* ) ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:459:1: netDecl[DesignUnit des] : ^( NET_DECL ( width )? (netName= IDENT )* ( attrDecl[nets] )* ) ;
     public final void netDecl(DesignUnit des) throws RecognitionException {
         CommonTree netName=null;
         List<Integer> width8 = null;
@@ -1162,14 +1229,14 @@ public class PhdlAST extends TreeParser {
 
         List<Attributable> nets = new ArrayList<Attributable>();
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:394:2: ( ^( NET_DECL ( width )? (netName= IDENT )* ( attrDecl[nets] )* ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:394:4: ^( NET_DECL ( width )? (netName= IDENT )* ( attrDecl[nets] )* )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:461:2: ( ^( NET_DECL ( width )? (netName= IDENT )* ( attrDecl[nets] )* ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:461:4: ^( NET_DECL ( width )? (netName= IDENT )* ( attrDecl[nets] )* )
             {
             match(input,NET_DECL,FOLLOW_NET_DECL_in_netDecl380); 
 
             if ( input.LA(1)==Token.DOWN ) {
                 match(input, Token.DOWN, null); 
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:394:15: ( width )?
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:461:15: ( width )?
                 int alt11=2;
                 int LA11_0 = input.LA(1);
 
@@ -1178,7 +1245,7 @@ public class PhdlAST extends TreeParser {
                 }
                 switch (alt11) {
                     case 1 :
-                        // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:394:15: width
+                        // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:461:15: width
                         {
                         pushFollow(FOLLOW_width_in_netDecl382);
                         width8=width();
@@ -1191,7 +1258,7 @@ public class PhdlAST extends TreeParser {
 
                 }
 
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:394:22: (netName= IDENT )*
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:461:22: (netName= IDENT )*
                 loop12:
                 do {
                     int alt12=2;
@@ -1204,7 +1271,7 @@ public class PhdlAST extends TreeParser {
 
                     switch (alt12) {
                 	case 1 :
-                	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:394:23: netName= IDENT
+                	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:461:23: netName= IDENT
                 	    {
                 	    netName=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_netDecl388); 
                 	    	if (width8 == null || width8.size() == 1) {
@@ -1239,7 +1306,7 @@ public class PhdlAST extends TreeParser {
                     }
                 } while (true);
 
-                // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:421:3: ( attrDecl[nets] )*
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:488:3: ( attrDecl[nets] )*
                 loop13:
                 do {
                     int alt13=2;
@@ -1252,7 +1319,7 @@ public class PhdlAST extends TreeParser {
 
                     switch (alt13) {
                 	case 1 :
-                	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:421:3: attrDecl[nets]
+                	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:488:3: attrDecl[nets]
                 	    {
                 	    pushFollow(FOLLOW_attrDecl_in_netDecl408);
                 	    attrDecl(nets);
@@ -1287,7 +1354,7 @@ public class PhdlAST extends TreeParser {
 
 
     // $ANTLR start "instDecl"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:424:1: instDecl[DesignUnit des, String groupName] : ^( INST_DECL ( width )? instName= IDENT devName= IDENT ( infoDecl )* ( attrAssign[des, $instName.text] )* ( pinAssign[des, $instName.text] )* ) ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:491:1: instDecl[DesignUnit des, String groupName] : ^( INST_DECL ( width )? instName= IDENT devName= IDENT ( infoDecl )* ( attrAssign[des, $instName.text] )* ( pinAssign[des, $instName.text] )* ) ;
     public final void instDecl(DesignUnit des, String groupName) throws RecognitionException {
         CommonTree instName=null;
         CommonTree devName=null;
@@ -1297,13 +1364,13 @@ public class PhdlAST extends TreeParser {
 
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:425:2: ( ^( INST_DECL ( width )? instName= IDENT devName= IDENT ( infoDecl )* ( attrAssign[des, $instName.text] )* ( pinAssign[des, $instName.text] )* ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:425:4: ^( INST_DECL ( width )? instName= IDENT devName= IDENT ( infoDecl )* ( attrAssign[des, $instName.text] )* ( pinAssign[des, $instName.text] )* )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:492:2: ( ^( INST_DECL ( width )? instName= IDENT devName= IDENT ( infoDecl )* ( attrAssign[des, $instName.text] )* ( pinAssign[des, $instName.text] )* ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:492:4: ^( INST_DECL ( width )? instName= IDENT devName= IDENT ( infoDecl )* ( attrAssign[des, $instName.text] )* ( pinAssign[des, $instName.text] )* )
             {
             match(input,INST_DECL,FOLLOW_INST_DECL_in_instDecl425); 
 
             match(input, Token.DOWN, null); 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:425:16: ( width )?
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:492:16: ( width )?
             int alt14=2;
             int LA14_0 = input.LA(1);
 
@@ -1312,7 +1379,7 @@ public class PhdlAST extends TreeParser {
             }
             switch (alt14) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:425:16: width
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:492:16: width
                     {
                     pushFollow(FOLLOW_width_in_instDecl427);
                     width9=width();
@@ -1354,7 +1421,7 @@ public class PhdlAST extends TreeParser {
             				}
             			} 
             		
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:455:3: ( infoDecl )*
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:522:3: ( infoDecl )*
             loop15:
             do {
                 int alt15=2;
@@ -1367,7 +1434,7 @@ public class PhdlAST extends TreeParser {
 
                 switch (alt15) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:455:4: infoDecl
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:522:4: infoDecl
             	    {
             	    pushFollow(FOLLOW_infoDecl_in_instDecl452);
             	    infoDecl10=infoDecl();
@@ -1408,7 +1475,7 @@ public class PhdlAST extends TreeParser {
             			if (!instNames.add((instName!=null?instName.getText():null)))
             				addError(instName, "duplicate instance name exists in design unit");
             		
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:484:3: ( attrAssign[des, $instName.text] )*
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:551:3: ( attrAssign[des, $instName.text] )*
             loop16:
             do {
                 int alt16=2;
@@ -1421,7 +1488,7 @@ public class PhdlAST extends TreeParser {
 
                 switch (alt16) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:484:3: attrAssign[des, $instName.text]
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:551:3: attrAssign[des, $instName.text]
             	    {
             	    pushFollow(FOLLOW_attrAssign_in_instDecl477);
             	    attrAssign(des, (instName!=null?instName.getText():null));
@@ -1437,7 +1504,7 @@ public class PhdlAST extends TreeParser {
                 }
             } while (true);
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:484:36: ( pinAssign[des, $instName.text] )*
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:551:36: ( pinAssign[des, $instName.text] )*
             loop17:
             do {
                 int alt17=2;
@@ -1450,7 +1517,7 @@ public class PhdlAST extends TreeParser {
 
                 switch (alt17) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:484:36: pinAssign[des, $instName.text]
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:551:36: pinAssign[des, $instName.text]
             	    {
             	    pushFollow(FOLLOW_pinAssign_in_instDecl481);
             	    pinAssign(des, (instName!=null?instName.getText():null));
@@ -1484,22 +1551,22 @@ public class PhdlAST extends TreeParser {
 
 
     // $ANTLR start "attrAssign"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:487:1: attrAssign[DesignUnit des, String instName] : ^( ATTR_ASSIGN ( NEWATTR )? ( index )? attrName= IDENT attrValue= STRING ) ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:554:1: attrAssign[DesignUnit des, String instName] : ^( ATTR_ASSIGN ( NEWATTR )? ( qualifier )? attrName= IDENT attrValue= STRING ) ;
     public final void attrAssign(DesignUnit des, String instName) throws RecognitionException {
         CommonTree attrName=null;
         CommonTree attrValue=null;
-        List<Integer> index11 = null;
+        PhdlAST.qualifier_return qualifier11 = null;
 
 
         boolean newAttr = false;
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:489:2: ( ^( ATTR_ASSIGN ( NEWATTR )? ( index )? attrName= IDENT attrValue= STRING ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:489:4: ^( ATTR_ASSIGN ( NEWATTR )? ( index )? attrName= IDENT attrValue= STRING )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:556:2: ( ^( ATTR_ASSIGN ( NEWATTR )? ( qualifier )? attrName= IDENT attrValue= STRING ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:556:4: ^( ATTR_ASSIGN ( NEWATTR )? ( qualifier )? attrName= IDENT attrValue= STRING )
             {
             match(input,ATTR_ASSIGN,FOLLOW_ATTR_ASSIGN_in_attrAssign502); 
 
             match(input, Token.DOWN, null); 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:489:18: ( NEWATTR )?
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:556:18: ( NEWATTR )?
             int alt18=2;
             int LA18_0 = input.LA(1);
 
@@ -1508,7 +1575,7 @@ public class PhdlAST extends TreeParser {
             }
             switch (alt18) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:489:19: NEWATTR
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:556:19: NEWATTR
                     {
                     match(input,NEWATTR,FOLLOW_NEWATTR_in_attrAssign505); 
                     newAttr = true;
@@ -1518,19 +1585,19 @@ public class PhdlAST extends TreeParser {
 
             }
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:489:47: ( index )?
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:556:47: ( qualifier )?
             int alt19=2;
             int LA19_0 = input.LA(1);
 
-            if ( ((LA19_0>=BOUNDS && LA19_0<=INDICES)) ) {
+            if ( (LA19_0==THIS) ) {
                 alt19=1;
             }
             switch (alt19) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:489:47: index
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:556:47: qualifier
                     {
-                    pushFollow(FOLLOW_index_in_attrAssign511);
-                    index11=index();
+                    pushFollow(FOLLOW_qualifier_in_attrAssign511);
+                    qualifier11=qualifier();
 
                     state._fsp--;
 
@@ -1545,50 +1612,33 @@ public class PhdlAST extends TreeParser {
 
             match(input, Token.UP, null); 
             	// a list of all candidate instances from the design
-            			List<Instance> insts = des.getInstancesByName(instName);
+            			List<Instance> insts = new ArrayList<Instance>();
+            			if ((qualifier11!=null?qualifier11.indices:null) == null)
+            				insts.addAll(des.getInstancesByName(instName));
+            			else {
+            				for (Integer i : (qualifier11!=null?qualifier11.indices:null)) {
+            					Instance inst = des.getInstance(instName, i);
+            					if (inst == null)
+            						bailOut((qualifier11!=null?qualifier11.name:null), "invalid instance qualifier index (" + i + ")");
+            					else
+            						insts.add(inst);
+            				}
+            			}
             			
-            			// process all instances (global attribute)
-            			if (index11 == null) {
-            				for (Instance i : insts) {
-            					Attribute a = i.getAttribute((attrName!=null?attrName.getText():null));
-            					if (a != null) {
-            						if (newAttr)
-            							addError(attrName, "new attribute already declared");
-            						if (!a.overwrite((attrValue!=null?attrValue.getText():null)))
-            							addWarning(attrName, "attribute already overwritten");
-            					} else if (newAttr) {
-            						Attribute newA = new Attribute(i, (attrName!=null?attrName.getText():null), (attrValue!=null?attrValue.getText():null));
-            						setLocation(newA, attrName);
-            						i.addAttribute(newA);
-            					} else
-            						addError(attrName, "undeclared attribute");
-            				}
-            			} else {
-            				// iterate over the indices in the array list declaration
-            				for (Integer index : index11) {
-            					// search for the instance with this index
-            					Instance inst = null;
-            					for (Instance i : insts)
-            						if (index == i.getIndex()) 
-            							inst = i;
-            					
-            					if (inst != null) {
-            						Attribute a = inst.getAttribute((attrName!=null?attrName.getText():null));
-            						if (a != null) {
-            							if (newAttr)
-            								addError(attrName, "new attribute already declared");
-            							if (!a.overwrite((attrValue!=null?attrValue.getText():null)))
-            								addWarning(attrName, "attribute already overwritten");
-            						} else if (newAttr) {
-            							Attribute newA = new Attribute(inst, (attrName!=null?attrName.getText():null), (attrValue!=null?attrValue.getText():null));
-            							setLocation(newA, attrName);
-            							inst.addAttribute(newA);
-            						} else
-            							addError(attrName, "undeclared attribute");
-            					// the instance referenced by the index doesn't exist
-            					} else
-            						addError(attrName, "instance index (" + index + ") does not exist for attribute");
-            				}
+            			for (Instance i : insts) {
+            				Attribute a = i.getAttribute((attrName!=null?attrName.getText():null));
+            				if (a != null) {
+            					if (newAttr)
+            						addError(attrName, "new attribute already declared");
+            					if (!a.overwrite((attrValue!=null?attrValue.getText():null)))
+            						addWarning(attrName, "attribute already overwritten");
+            					setLocation(a, attrName);
+            				} else if (newAttr) {
+            					Attribute newA = new Attribute(i, (attrName!=null?attrName.getText():null), (attrValue!=null?attrValue.getText():null));
+            					setLocation(newA, attrName);
+            					i.addAttribute(newA);
+            				} else
+            					addError(attrName, "undeclared attribute");
             			}
             		
 
@@ -1607,9 +1657,9 @@ public class PhdlAST extends TreeParser {
 
 
     // $ANTLR start "pinAssign"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:540:1: pinAssign[DesignUnit des, String instName] : ^( PIN_ASSIGN ( COMBINE )? ( index )? operand concat[des] ) ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:590:1: pinAssign[DesignUnit des, String instName] : ^( PIN_ASSIGN ( COMBINE )? ( qualifier )? operand concat[des] ) ;
     public final void pinAssign(DesignUnit des, String instName) throws RecognitionException {
-        List<Integer> index12 = null;
+        PhdlAST.qualifier_return qualifier12 = null;
 
         PhdlAST.operand_return operand13 = null;
 
@@ -1618,13 +1668,13 @@ public class PhdlAST extends TreeParser {
 
         boolean isCombined = false;
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:542:2: ( ^( PIN_ASSIGN ( COMBINE )? ( index )? operand concat[des] ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:542:4: ^( PIN_ASSIGN ( COMBINE )? ( index )? operand concat[des] )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:592:2: ( ^( PIN_ASSIGN ( COMBINE )? ( qualifier )? operand concat[des] ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:592:4: ^( PIN_ASSIGN ( COMBINE )? ( qualifier )? operand concat[des] )
             {
             match(input,PIN_ASSIGN,FOLLOW_PIN_ASSIGN_in_pinAssign546); 
 
             match(input, Token.DOWN, null); 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:542:17: ( COMBINE )?
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:592:17: ( COMBINE )?
             int alt20=2;
             int LA20_0 = input.LA(1);
 
@@ -1633,7 +1683,7 @@ public class PhdlAST extends TreeParser {
             }
             switch (alt20) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:542:18: COMBINE
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:592:18: COMBINE
                     {
                     match(input,COMBINE,FOLLOW_COMBINE_in_pinAssign549); 
                     isCombined = true;
@@ -1643,19 +1693,19 @@ public class PhdlAST extends TreeParser {
 
             }
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:542:49: ( index )?
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:592:49: ( qualifier )?
             int alt21=2;
             int LA21_0 = input.LA(1);
 
-            if ( ((LA21_0>=BOUNDS && LA21_0<=INDICES)) ) {
+            if ( (LA21_0==THIS) ) {
                 alt21=1;
             }
             switch (alt21) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:542:49: index
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:592:49: qualifier
                     {
-                    pushFollow(FOLLOW_index_in_pinAssign555);
-                    index12=index();
+                    pushFollow(FOLLOW_qualifier_in_pinAssign555);
+                    qualifier12=qualifier();
 
                     state._fsp--;
 
@@ -1677,25 +1727,15 @@ public class PhdlAST extends TreeParser {
 
 
             match(input, Token.UP, null); 
-            	
-            			// check for duplicate qualifier indices
-            			Set<Integer> indices = new HashSet<Integer>();
-            			if (index12 != null) {
-            				for (Integer i : index12)
-            					if (!indices.add(i))
-            						bailOut((operand13!=null?operand13.id:null), "duplicate instance qualifier index");
-            			}
-
-            			// gather the relevant instances in a list
+            	// gather the relevant instances in a list
             			List<Instance> insts = new ArrayList<Instance>();
-            			if (index12 == null) {
-            				for (Instance inst : des.getInstancesByName(instName))
-            					insts.add(inst);
-            			} else {
-            				for (Integer i : index12) {
+            			if ((qualifier12!=null?qualifier12.indices:null) == null)
+            				insts.addAll(des.getInstancesByName(instName));
+            			else {
+            				for (Integer i : (qualifier12!=null?qualifier12.indices:null)) {
             					Instance inst = des.getInstance(instName, i);
             					if (inst == null)
-            						bailOut((operand13!=null?operand13.id:null), "invalid instance qualifier index (" + i + ")");
+            						bailOut((qualifier12!=null?qualifier12.name:null), "invalid instance qualifier index (" + i + ")");
             					else
             						insts.add(inst);
             				}
@@ -1817,9 +1857,10 @@ public class PhdlAST extends TreeParser {
 
 
     // $ANTLR start "subInstDecl"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:669:1: subInstDecl[DesignUnit des] : ^( SUBINST_DECL ( width )? instName= IDENT desName= IDENT ( infoDecl )* ( subAttrAssign[des, $instName.text] )* ( portAssign[des, $instName.text] )* ) ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:709:1: subInstDecl[DesignUnit des] : ^( SUBINST_DECL ( width )? instName= IDENT (refPrefix= STRING )? desName= IDENT ( infoDecl )* ( subAttrAssign[des, $instName] )* ( portAssign[des, $instName.text] )* ) ;
     public final void subInstDecl(DesignUnit des) throws RecognitionException {
         CommonTree instName=null;
+        CommonTree refPrefix=null;
         CommonTree desName=null;
         List<Integer> width15 = null;
 
@@ -1827,13 +1868,13 @@ public class PhdlAST extends TreeParser {
 
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:670:2: ( ^( SUBINST_DECL ( width )? instName= IDENT desName= IDENT ( infoDecl )* ( subAttrAssign[des, $instName.text] )* ( portAssign[des, $instName.text] )* ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:670:4: ^( SUBINST_DECL ( width )? instName= IDENT desName= IDENT ( infoDecl )* ( subAttrAssign[des, $instName.text] )* ( portAssign[des, $instName.text] )* )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:710:2: ( ^( SUBINST_DECL ( width )? instName= IDENT (refPrefix= STRING )? desName= IDENT ( infoDecl )* ( subAttrAssign[des, $instName] )* ( portAssign[des, $instName.text] )* ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:710:4: ^( SUBINST_DECL ( width )? instName= IDENT (refPrefix= STRING )? desName= IDENT ( infoDecl )* ( subAttrAssign[des, $instName] )* ( portAssign[des, $instName.text] )* )
             {
             match(input,SUBINST_DECL,FOLLOW_SUBINST_DECL_in_subInstDecl580); 
 
             match(input, Token.DOWN, null); 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:670:19: ( width )?
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:710:19: ( width )?
             int alt22=2;
             int LA22_0 = input.LA(1);
 
@@ -1842,7 +1883,7 @@ public class PhdlAST extends TreeParser {
             }
             switch (alt22) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:670:19: width
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:710:19: width
                     {
                     pushFollow(FOLLOW_width_in_subInstDecl582);
                     width15=width();
@@ -1856,13 +1897,32 @@ public class PhdlAST extends TreeParser {
             }
 
             instName=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_subInstDecl587); 
-            desName=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_subInstDecl591); 
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:710:50: (refPrefix= STRING )?
+            int alt23=2;
+            int LA23_0 = input.LA(1);
+
+            if ( (LA23_0==STRING) ) {
+                alt23=1;
+            }
+            switch (alt23) {
+                case 1 :
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:710:50: refPrefix= STRING
+                    {
+                    refPrefix=(CommonTree)match(input,STRING,FOLLOW_STRING_in_subInstDecl591); 
+
+                    }
+                    break;
+
+            }
+
+            desName=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_subInstDecl596); 
             	SubDesign subDes = getSubDesign((desName!=null?desName.getText():null));
             			if (subDes == null)
             				bailOut(instName, "subdesign " + (desName!=null?desName.getText():null) + " is undeclared");
             			if (width15 == null || width15.size() == 1) {
             				SubInstance s = new SubInstance(des, subDes, (instName!=null?instName.getText():null));
             				setLocation(s, instName);
+            				s.setRefPrefix((refPrefix!=null?refPrefix.getText():null));
             				if (width15 != null)
             					s.setIndex(width15.get(0));
             				
@@ -1874,6 +1934,7 @@ public class PhdlAST extends TreeParser {
             				for (int i = 0; i < width15.size(); i++) {
             					SubInstance s = new SubInstance(des, subDes, (instName!=null?instName.getText():null));
             					setLocation(s, instName);
+            					s.setRefPrefix((refPrefix!=null?refPrefix.getText():null));
             					s.setIndex(width15.get(i));
             					// check for duplicates
             					if (!des.addSubInst(s))
@@ -1881,22 +1942,22 @@ public class PhdlAST extends TreeParser {
             				}
             			} 
             		
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:697:3: ( infoDecl )*
-            loop23:
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:739:3: ( infoDecl )*
+            loop24:
             do {
-                int alt23=2;
-                int LA23_0 = input.LA(1);
+                int alt24=2;
+                int LA24_0 = input.LA(1);
 
-                if ( (LA23_0==INFO_DECL) ) {
-                    alt23=1;
+                if ( (LA24_0==INFO_DECL) ) {
+                    alt24=1;
                 }
 
 
-                switch (alt23) {
+                switch (alt24) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:697:4: infoDecl
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:739:4: infoDecl
             	    {
-            	    pushFollow(FOLLOW_infoDecl_in_subInstDecl603);
+            	    pushFollow(FOLLOW_infoDecl_in_subInstDecl608);
             	    infoDecl16=infoDecl();
 
             	    state._fsp--;
@@ -1928,7 +1989,7 @@ public class PhdlAST extends TreeParser {
             	    break;
 
             	default :
-            	    break loop23;
+            	    break loop24;
                 }
             } while (true);
 
@@ -1936,52 +1997,23 @@ public class PhdlAST extends TreeParser {
             			if (!instNames.add((instName!=null?instName.getText():null)))
             				addError(instName, "duplicate instance name exists in design unit");
             		
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:727:3: ( subAttrAssign[des, $instName.text] )*
-            loop24:
-            do {
-                int alt24=2;
-                int LA24_0 = input.LA(1);
-
-                if ( (LA24_0==SUBATTR_ASSIGN) ) {
-                    alt24=1;
-                }
-
-
-                switch (alt24) {
-            	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:727:3: subAttrAssign[des, $instName.text]
-            	    {
-            	    pushFollow(FOLLOW_subAttrAssign_in_subInstDecl627);
-            	    subAttrAssign(des, (instName!=null?instName.getText():null));
-
-            	    state._fsp--;
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop24;
-                }
-            } while (true);
-
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:728:3: ( portAssign[des, $instName.text] )*
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:769:3: ( subAttrAssign[des, $instName] )*
             loop25:
             do {
                 int alt25=2;
                 int LA25_0 = input.LA(1);
 
-                if ( (LA25_0==PORT_ASSIGN) ) {
+                if ( (LA25_0==SUBATTR_ASSIGN) ) {
                     alt25=1;
                 }
 
 
                 switch (alt25) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:728:3: portAssign[des, $instName.text]
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:769:3: subAttrAssign[des, $instName]
             	    {
-            	    pushFollow(FOLLOW_portAssign_in_subInstDecl634);
-            	    portAssign(des, (instName!=null?instName.getText():null));
+            	    pushFollow(FOLLOW_subAttrAssign_in_subInstDecl632);
+            	    subAttrAssign(des, instName);
 
             	    state._fsp--;
 
@@ -1991,6 +2023,35 @@ public class PhdlAST extends TreeParser {
 
             	default :
             	    break loop25;
+                }
+            } while (true);
+
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:770:3: ( portAssign[des, $instName.text] )*
+            loop26:
+            do {
+                int alt26=2;
+                int LA26_0 = input.LA(1);
+
+                if ( (LA26_0==PORT_ASSIGN) ) {
+                    alt26=1;
+                }
+
+
+                switch (alt26) {
+            	case 1 :
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:770:3: portAssign[des, $instName.text]
+            	    {
+            	    pushFollow(FOLLOW_portAssign_in_subInstDecl639);
+            	    portAssign(des, (instName!=null?instName.getText():null));
+
+            	    state._fsp--;
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop26;
                 }
             } while (true);
 
@@ -2012,31 +2073,38 @@ public class PhdlAST extends TreeParser {
 
 
     // $ANTLR start "subAttrAssign"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:731:1: subAttrAssign[DesignUnit des, String subInstName] : ^( SUBATTR_ASSIGN ( NEWATTR )? ( index )? ( name )* attrName= IDENT attrValue= STRING ) ;
-    public final void subAttrAssign(DesignUnit des, String subInstName) throws RecognitionException {
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:773:1: subAttrAssign[DesignUnit des, CommonTree subInstName] : ^( SUBATTR_ASSIGN ( NEWATTR )? ( qualifier )? (id= name )+ attrName= IDENT attrValue= STRING ) ;
+    public final void subAttrAssign(DesignUnit des, CommonTree subInstName) throws RecognitionException {
         CommonTree attrName=null;
         CommonTree attrValue=null;
+        PhdlAST.name_return id = null;
 
-        boolean newAttr = false;
+        PhdlAST.qualifier_return qualifier17 = null;
+
+
+
+        	boolean newAttr = false;
+        	List<name_return> ids = new ArrayList<name_return>();
+
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:733:2: ( ^( SUBATTR_ASSIGN ( NEWATTR )? ( index )? ( name )* attrName= IDENT attrValue= STRING ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:733:4: ^( SUBATTR_ASSIGN ( NEWATTR )? ( index )? ( name )* attrName= IDENT attrValue= STRING )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:778:2: ( ^( SUBATTR_ASSIGN ( NEWATTR )? ( qualifier )? (id= name )+ attrName= IDENT attrValue= STRING ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:778:4: ^( SUBATTR_ASSIGN ( NEWATTR )? ( qualifier )? (id= name )+ attrName= IDENT attrValue= STRING )
             {
-            match(input,SUBATTR_ASSIGN,FOLLOW_SUBATTR_ASSIGN_in_subAttrAssign655); 
+            match(input,SUBATTR_ASSIGN,FOLLOW_SUBATTR_ASSIGN_in_subAttrAssign660); 
 
             match(input, Token.DOWN, null); 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:733:21: ( NEWATTR )?
-            int alt26=2;
-            int LA26_0 = input.LA(1);
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:778:21: ( NEWATTR )?
+            int alt27=2;
+            int LA27_0 = input.LA(1);
 
-            if ( (LA26_0==NEWATTR) ) {
-                alt26=1;
+            if ( (LA27_0==NEWATTR) ) {
+                alt27=1;
             }
-            switch (alt26) {
+            switch (alt27) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:733:22: NEWATTR
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:778:22: NEWATTR
                     {
-                    match(input,NEWATTR,FOLLOW_NEWATTR_in_subAttrAssign658); 
+                    match(input,NEWATTR,FOLLOW_NEWATTR_in_subAttrAssign663); 
                     newAttr = true;
 
                     }
@@ -2044,19 +2112,19 @@ public class PhdlAST extends TreeParser {
 
             }
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:733:50: ( index )?
-            int alt27=2;
-            int LA27_0 = input.LA(1);
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:778:50: ( qualifier )?
+            int alt28=2;
+            int LA28_0 = input.LA(1);
 
-            if ( ((LA27_0>=BOUNDS && LA27_0<=INDICES)) ) {
-                alt27=1;
+            if ( (LA28_0==THIS) ) {
+                alt28=1;
             }
-            switch (alt27) {
+            switch (alt28) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:733:50: index
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:778:50: qualifier
                     {
-                    pushFollow(FOLLOW_index_in_subAttrAssign664);
-                    index();
+                    pushFollow(FOLLOW_qualifier_in_subAttrAssign669);
+                    qualifier17=qualifier();
 
                     state._fsp--;
 
@@ -2066,40 +2134,67 @@ public class PhdlAST extends TreeParser {
 
             }
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:733:57: ( name )*
-            loop28:
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:778:61: (id= name )+
+            int cnt29=0;
+            loop29:
             do {
-                int alt28=2;
-                int LA28_0 = input.LA(1);
+                int alt29=2;
+                int LA29_0 = input.LA(1);
 
-                if ( (LA28_0==NAME) ) {
-                    alt28=1;
+                if ( (LA29_0==NAME) ) {
+                    alt29=1;
                 }
 
 
-                switch (alt28) {
+                switch (alt29) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:733:57: name
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:778:62: id= name
             	    {
-            	    pushFollow(FOLLOW_name_in_subAttrAssign667);
-            	    name();
+            	    pushFollow(FOLLOW_name_in_subAttrAssign675);
+            	    id=name();
 
             	    state._fsp--;
 
+            	    ids.add(id);
 
             	    }
             	    break;
 
             	default :
-            	    break loop28;
+            	    if ( cnt29 >= 1 ) break loop29;
+                        EarlyExitException eee =
+                            new EarlyExitException(29, input);
+                        throw eee;
                 }
+                cnt29++;
             } while (true);
 
-            attrName=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_subAttrAssign672); 
-            attrValue=(CommonTree)match(input,STRING,FOLLOW_STRING_in_subAttrAssign676); 
+            attrName=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_subAttrAssign683); 
+            attrValue=(CommonTree)match(input,STRING,FOLLOW_STRING_in_subAttrAssign687); 
 
             match(input, Token.UP, null); 
-            	
+            	Stack<name_return> names = new Stack<name_return>();
+            			for (int i = ids.size()-1; i >= 0; i--)
+            				names.push(ids.get(i));
+            		
+            			// gather the relevant subdesign instances in a list
+            			List<SubInstance> subInsts = new ArrayList<SubInstance>();
+            			if ((qualifier17!=null?qualifier17.indices:null) == null) {
+            				for (SubInstance subInst : des.getSubInstancesByName(subInstName.getText()))
+            					subInsts.add(subInst);
+            			} else {
+            				for (Integer i : (qualifier17!=null?qualifier17.indices:null)) {
+            					SubInstance subInst = des.getSubInstance(subInstName.getText(), i);
+            					if (subInst == null)
+            						bailOut((qualifier17!=null?qualifier17.name:null), "invalid subinstance qualifier index (" + i + ")");
+            					else
+            						subInsts.add(subInst);
+            				}
+            			}
+            			
+            			// call the recursive SubInstance attribute routine on each SubInstance
+            			for (SubInstance subInst : subInsts)
+            				subInstAttr(subInst, names, attrName, attrValue, newAttr);
             		
 
             }
@@ -2117,35 +2212,35 @@ public class PhdlAST extends TreeParser {
 
 
     // $ANTLR start "portAssign"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:738:1: portAssign[DesignUnit des, String subInstName] : ^( PORT_ASSIGN ( COMBINE )? ( index )? operand concat[des] ) ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:804:1: portAssign[DesignUnit des, String subInstName] : ^( PORT_ASSIGN ( COMBINE )? ( qualifier )? operand concat[des] ) ;
     public final void portAssign(DesignUnit des, String subInstName) throws RecognitionException {
-        List<Integer> index17 = null;
+        PhdlAST.qualifier_return qualifier18 = null;
 
-        PhdlAST.operand_return operand18 = null;
+        PhdlAST.operand_return operand19 = null;
 
-        PhdlAST.concat_return concat19 = null;
+        PhdlAST.concat_return concat20 = null;
 
 
         boolean isCombined = false;
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:740:2: ( ^( PORT_ASSIGN ( COMBINE )? ( index )? operand concat[des] ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:740:4: ^( PORT_ASSIGN ( COMBINE )? ( index )? operand concat[des] )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:806:2: ( ^( PORT_ASSIGN ( COMBINE )? ( qualifier )? operand concat[des] ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:806:4: ^( PORT_ASSIGN ( COMBINE )? ( qualifier )? operand concat[des] )
             {
-            match(input,PORT_ASSIGN,FOLLOW_PORT_ASSIGN_in_portAssign701); 
+            match(input,PORT_ASSIGN,FOLLOW_PORT_ASSIGN_in_portAssign712); 
 
             match(input, Token.DOWN, null); 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:740:18: ( COMBINE )?
-            int alt29=2;
-            int LA29_0 = input.LA(1);
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:806:18: ( COMBINE )?
+            int alt30=2;
+            int LA30_0 = input.LA(1);
 
-            if ( (LA29_0==COMBINE) ) {
-                alt29=1;
+            if ( (LA30_0==COMBINE) ) {
+                alt30=1;
             }
-            switch (alt29) {
+            switch (alt30) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:740:19: COMBINE
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:806:19: COMBINE
                     {
-                    match(input,COMBINE,FOLLOW_COMBINE_in_portAssign704); 
+                    match(input,COMBINE,FOLLOW_COMBINE_in_portAssign715); 
                     isCombined = true;
 
                     }
@@ -2153,19 +2248,19 @@ public class PhdlAST extends TreeParser {
 
             }
 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:740:50: ( index )?
-            int alt30=2;
-            int LA30_0 = input.LA(1);
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:806:50: ( qualifier )?
+            int alt31=2;
+            int LA31_0 = input.LA(1);
 
-            if ( ((LA30_0>=BOUNDS && LA30_0<=INDICES)) ) {
-                alt30=1;
+            if ( (LA31_0==THIS) ) {
+                alt31=1;
             }
-            switch (alt30) {
+            switch (alt31) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:740:50: index
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:806:50: qualifier
                     {
-                    pushFollow(FOLLOW_index_in_portAssign710);
-                    index17=index();
+                    pushFollow(FOLLOW_qualifier_in_portAssign721);
+                    qualifier18=qualifier();
 
                     state._fsp--;
 
@@ -2175,36 +2270,27 @@ public class PhdlAST extends TreeParser {
 
             }
 
-            pushFollow(FOLLOW_operand_in_portAssign713);
-            operand18=operand();
+            pushFollow(FOLLOW_operand_in_portAssign724);
+            operand19=operand();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_concat_in_portAssign715);
-            concat19=concat(des);
+            pushFollow(FOLLOW_concat_in_portAssign726);
+            concat20=concat(des);
 
             state._fsp--;
 
 
             match(input, Token.UP, null); 
-            	// check for duplicate qualifier indices
-            			Set<Integer> indices = new HashSet<Integer>();
-            			if (index17 != null) {
-            				for (Integer i : index17)
-            					if (!indices.add(i))
-            						bailOut((operand18!=null?operand18.id:null), "duplicate instance qualifier index");
-            			}
-
-            			// gather the relevant subdesign instances in a list
+            	// gather the relevant subdesign instances in a list
             			List<SubInstance> subInsts = new ArrayList<SubInstance>();
-            			if (index17 == null) {
-            				for (SubInstance subInst : des.getSubInstancesByName(subInstName))
-            					subInsts.add(subInst);
-            			} else {
-            				for (Integer i : index17) {
+            			if ((qualifier18!=null?qualifier18.indices:null) == null)
+            				subInsts.addAll(des.getSubInstancesByName(subInstName));
+            			else {
+            				for (Integer i : (qualifier18!=null?qualifier18.indices:null)) {
             					SubInstance subInst = des.getSubInstance(subInstName, i);
             					if (subInst == null)
-            						bailOut((operand18!=null?operand18.id:null), "invalid instance qualifier index (" + i + ")");
+            						bailOut((operand19!=null?operand19.id:null), "invalid instance qualifier index (" + i + ")");
             					else
             						subInsts.add(subInst);
             				}
@@ -2215,19 +2301,19 @@ public class PhdlAST extends TreeParser {
             			
             			
             			if (isCombined) {
-            				if ((operand18!=null?operand18.indices:null) == null) {
+            				if ((operand19!=null?operand19.indices:null) == null) {
             					// get all possible instances
             					for (SubInstance s : subInsts)
-            						ports.addAll(s.getAllPorts((operand18!=null?operand18.id:null).getText()));
+            						ports.addAll(s.getAllPorts((operand19!=null?operand19.id:null).getText()));
             					if (ports.size() == 0)
-            						bailOut((operand18!=null?operand18.id:null), "undeclared port");
+            						bailOut((operand19!=null?operand19.id:null), "undeclared port");
             				} else {
             					// get only those instances with the indices in the list
             					for (SubInstance s : subInsts) {
-            						for (Integer i : (operand18!=null?operand18.indices:null)) {
-            							Port p = s.getPort((operand18!=null?operand18.id:null).getText(), i);
+            						for (Integer i : (operand19!=null?operand19.indices:null)) {
+            							Port p = s.getPort((operand19!=null?operand19.id:null).getText(), i);
             							if (p == null)
-            								bailOut((operand18!=null?operand18.id:null), "undeclared port or invalid port index [" + i + "]");
+            								bailOut((operand19!=null?operand19.id:null), "undeclared port or invalid port index [" + i + "]");
             							else
             								ports.add(p);
             						}
@@ -2236,42 +2322,42 @@ public class PhdlAST extends TreeParser {
             				for (int i = 0; i < ports.size(); i++) {
             					
             					// remap the port location
-            					setLocation(ports.get(i), (operand18!=null?operand18.id:null));
+            					setLocation(ports.get(i), (operand19!=null?operand19.id:null));
             					
             					// check to see if the pin is already assigned
             					if (ports.get(i).isAssigned()) {
             						String index = (ports.get(i).hasIndex())?("index [" + ports.get(i).getIndex() + "]"):("port");
-            						bailOut((operand18!=null?operand18.id:null), index + " is already assigned");
+            						bailOut((operand19!=null?operand19.id:null), index + " is already assigned");
             					}
             					
             					// assign the port based on the flags
-            					if ((concat19!=null?concat19.isReplicated:false)) {
-            						ports.get(i).setAssignment((concat19!=null?concat19.cons:null).get(0));
-            						(concat19!=null?concat19.cons:null).get(0).addConnection(ports.get(i));
-            					} else if ((concat19!=null?concat19.isOpen:false)) {
-            						addWarning((operand18!=null?operand18.id:null), "open port will isolate design hierarchy");
+            					if ((concat20!=null?concat20.isReplicated:false)) {
+            						ports.get(i).setAssignment((concat20!=null?concat20.cons:null).get(0));
+            						(concat20!=null?concat20.cons:null).get(0).addConnection(ports.get(i));
+            					} else if ((concat20!=null?concat20.isOpen:false)) {
+            						addWarning((operand19!=null?operand19.id:null), "open port will isolate design hierarchy");
             					} else {
             						// check for width mismatch
-            						if (ports.size() != (concat19!=null?concat19.cons:null).size()) {
-            							bailOut((operand18!=null?operand18.id:null), "port assignment left size [" + ports.size() + 
-            								"] does not match right size [" + (concat19!=null?concat19.cons:null).size() + "]");
+            						if (ports.size() != (concat20!=null?concat20.cons:null).size()) {
+            							bailOut((operand19!=null?operand19.id:null), "port assignment left size [" + ports.size() + 
+            								"] does not match right size [" + (concat20!=null?concat20.cons:null).size() + "]");
             						} else {
-            							ports.get(i).setAssignment((concat19!=null?concat19.cons:null).get(i));
-            							(concat19!=null?concat19.cons:null).get(i).addConnection(ports.get(i));
+            							ports.get(i).setAssignment((concat20!=null?concat20.cons:null).get(i));
+            							(concat20!=null?concat20.cons:null).get(i).addConnection(ports.get(i));
             						}
             					}
             				}
             			} else {
             				for (SubInstance s : subInsts) {
-            					if ((operand18!=null?operand18.indices:null) == null) {
-            						ports.addAll(s.getAllPorts((operand18!=null?operand18.id:null).getText()));
+            					if ((operand19!=null?operand19.indices:null) == null) {
+            						ports.addAll(s.getAllPorts((operand19!=null?operand19.id:null).getText()));
             						if (ports.size() == 0)
-            							bailOut((operand18!=null?operand18.id:null), "undeclared port");
+            							bailOut((operand19!=null?operand19.id:null), "undeclared port");
             					} else {
-            						for (Integer i : (operand18!=null?operand18.indices:null)) {
-            							Port p = s.getPort((operand18!=null?operand18.id:null).getText(), i);
+            						for (Integer i : (operand19!=null?operand19.indices:null)) {
+            							Port p = s.getPort((operand19!=null?operand19.id:null).getText(), i);
             							if (p == null)
-            								bailOut((operand18!=null?operand18.id:null), "undeclared port or invalid port index [" + i + "]");
+            								bailOut((operand19!=null?operand19.id:null), "undeclared port or invalid port index [" + i + "]");
             							else
             								ports.add(p);
             						}
@@ -2279,28 +2365,28 @@ public class PhdlAST extends TreeParser {
             					
             					for (int i = 0; i < ports.size(); i++) {
             						// remap the port location
-            						setLocation(ports.get(i), (operand18!=null?operand18.id:null));
+            						setLocation(ports.get(i), (operand19!=null?operand19.id:null));
             						
             						// check to see if the pin is already assigned
             						if (ports.get(i).isAssigned()) {
             							String index = (ports.get(i).hasIndex())?("index [" + ports.get(i).getIndex() + "]"):("port");
-            							bailOut((operand18!=null?operand18.id:null), index + " is already assigned");
+            							bailOut((operand19!=null?operand19.id:null), index + " is already assigned");
             						}
             					
             						// assign the port based on the flags
-            						if ((concat19!=null?concat19.isReplicated:false)) {
-            							ports.get(i).setAssignment((concat19!=null?concat19.cons:null).get(0));
-            							(concat19!=null?concat19.cons:null).get(0).addConnection(ports.get(i));
-            						} else if ((concat19!=null?concat19.isOpen:false)) {
-            							addWarning((operand18!=null?operand18.id:null), "open port will isolate design hierarchy");
+            						if ((concat20!=null?concat20.isReplicated:false)) {
+            							ports.get(i).setAssignment((concat20!=null?concat20.cons:null).get(0));
+            							(concat20!=null?concat20.cons:null).get(0).addConnection(ports.get(i));
+            						} else if ((concat20!=null?concat20.isOpen:false)) {
+            							addWarning((operand19!=null?operand19.id:null), "open port will isolate design hierarchy");
             						} else {
             							// check for width mismatch
-            							if (ports.size() != (concat19!=null?concat19.cons:null).size()) {
-            								bailOut((operand18!=null?operand18.id:null), "port assignment left size [" + ports.size() + 
-            									"] does not match right size [" + (concat19!=null?concat19.cons:null).size() + "]");
+            							if (ports.size() != (concat20!=null?concat20.cons:null).size()) {
+            								bailOut((operand19!=null?operand19.id:null), "port assignment left size [" + ports.size() + 
+            									"] does not match right size [" + (concat20!=null?concat20.cons:null).size() + "]");
             							} else {
-            								ports.get(i).setAssignment((concat19!=null?concat19.cons:null).get(i));
-            								(concat19!=null?concat19.cons:null).get(i).addConnection(ports.get(i));
+            								ports.get(i).setAssignment((concat20!=null?concat20.cons:null).get(i));
+            								(concat20!=null?concat20.cons:null).get(i).addConnection(ports.get(i));
             							}
             						}
             					}
@@ -2326,62 +2412,62 @@ public class PhdlAST extends TreeParser {
 
 
     // $ANTLR start "connectAssign"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:867:1: connectAssign[DesignUnit des] : ^( CONNECT_ASSIGN operand concat[des] ) ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:924:1: connectAssign[DesignUnit des] : ^( CONNECT_ASSIGN operand concat[des] ) ;
     public final void connectAssign(DesignUnit des) throws RecognitionException {
-        PhdlAST.concat_return concat20 = null;
+        PhdlAST.concat_return concat21 = null;
 
-        PhdlAST.operand_return operand21 = null;
+        PhdlAST.operand_return operand22 = null;
 
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:868:2: ( ^( CONNECT_ASSIGN operand concat[des] ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:868:4: ^( CONNECT_ASSIGN operand concat[des] )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:925:2: ( ^( CONNECT_ASSIGN operand concat[des] ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:925:4: ^( CONNECT_ASSIGN operand concat[des] )
             {
-            match(input,CONNECT_ASSIGN,FOLLOW_CONNECT_ASSIGN_in_connectAssign738); 
+            match(input,CONNECT_ASSIGN,FOLLOW_CONNECT_ASSIGN_in_connectAssign749); 
 
             match(input, Token.DOWN, null); 
-            pushFollow(FOLLOW_operand_in_connectAssign740);
-            operand21=operand();
+            pushFollow(FOLLOW_operand_in_connectAssign751);
+            operand22=operand();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_concat_in_connectAssign742);
-            concat20=concat(des);
+            pushFollow(FOLLOW_concat_in_connectAssign753);
+            concat21=concat(des);
 
             state._fsp--;
 
 
             match(input, Token.UP, null); 
-            	if ((concat20!=null?concat20.isOpen:false))
-            				bailOut((operand21!=null?operand21.id:null), "connections cannot be open");
+            	if ((concat21!=null?concat21.isOpen:false))
+            				bailOut((operand22!=null?operand22.id:null), "connections cannot be open");
             				
             			// a list of connections on the left hand side
             			List<Connection> cons = new ArrayList<Connection>();
-            			if ((operand21!=null?operand21.indices:null) == null) {
-            				cons.addAll(des.getConnectionsByName((operand21!=null?operand21.id:null).getText()));
+            			if ((operand22!=null?operand22.indices:null) == null) {
+            				cons.addAll(des.getConnectionsByName((operand22!=null?operand22.id:null).getText()));
             			} else {
-            				for (Integer i : (operand21!=null?operand21.indices:null)) {
-            					Connection c = des.getConnection((operand21!=null?operand21.id:null).getText(), i);
+            				for (Integer i : (operand22!=null?operand22.indices:null)) {
+            					Connection c = des.getConnection((operand22!=null?operand22.id:null).getText(), i);
             					if (c == null)
-            						bailOut((operand21!=null?operand21.id:null), "undeclared connection or invalid index (" + i + ")");
+            						bailOut((operand22!=null?operand22.id:null), "undeclared connection or invalid index (" + i + ")");
             					else
             						cons.add(c);
             				}
             			}
             			
             			// check for assignment width mismatch
-            			if (cons.size() != (concat20!=null?concat20.cons:null).size()) {
-            				bailOut((operand21!=null?operand21.id:null), "assignment left size [" + cons.size() + 
-            					"] does not match right size [" + (concat20!=null?concat20.cons:null).size() + "]");
+            			if (cons.size() != (concat21!=null?concat21.cons:null).size()) {
+            				bailOut((operand22!=null?operand22.id:null), "assignment left size [" + cons.size() + 
+            					"] does not match right size [" + (concat21!=null?concat21.cons:null).size() + "]");
             			}
             			
             			for (int i = 0; i < cons.size(); i++) {
-            				if ((concat20!=null?concat20.isReplicated:false)) {
-            					cons.get(i).addConnection((concat20!=null?concat20.cons:null).get(0));
-            					(concat20!=null?concat20.cons:null).get(0).addConnection(cons.get(i));
+            				if ((concat21!=null?concat21.isReplicated:false)) {
+            					cons.get(i).addConnection((concat21!=null?concat21.cons:null).get(0));
+            					(concat21!=null?concat21.cons:null).get(0).addConnection(cons.get(i));
             				} else {
-            					cons.get(i).addConnection((concat20!=null?concat20.cons:null).get(i));
-            					(concat20!=null?concat20.cons:null).get(i).addConnection(cons.get(i));
+            					cons.get(i).addConnection((concat21!=null?concat21.cons:null).get(i));
+            					(concat21!=null?concat21.cons:null).get(i).addConnection(cons.get(i));
             				}
             			}
             		
@@ -2406,87 +2492,87 @@ public class PhdlAST extends TreeParser {
     };
 
     // $ANTLR start "concat"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:905:1: concat[DesignUnit des] returns [List<Connection> cons, boolean isReplicated, boolean isOpen] : ( ^( CONCAT_LIST ( operand )* ) | ^( CONCAT_REPL operand ) | ^( CONCAT_OPEN ) );
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:962:1: concat[DesignUnit des] returns [List<Connection> cons, boolean isReplicated, boolean isOpen] : ( ^( CONCAT_LIST ( operand )* ) | ^( CONCAT_REPL operand ) | ^( CONCAT_OPEN ) );
     public final PhdlAST.concat_return concat(DesignUnit des) throws RecognitionException {
         PhdlAST.concat_return retval = new PhdlAST.concat_return();
         retval.start = input.LT(1);
 
-        PhdlAST.operand_return operand22 = null;
-
         PhdlAST.operand_return operand23 = null;
+
+        PhdlAST.operand_return operand24 = null;
 
 
         retval.cons = new ArrayList<Connection>();
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:917:2: ( ^( CONCAT_LIST ( operand )* ) | ^( CONCAT_REPL operand ) | ^( CONCAT_OPEN ) )
-            int alt32=3;
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:974:2: ( ^( CONCAT_LIST ( operand )* ) | ^( CONCAT_REPL operand ) | ^( CONCAT_OPEN ) )
+            int alt33=3;
             switch ( input.LA(1) ) {
             case CONCAT_LIST:
                 {
-                alt32=1;
+                alt33=1;
                 }
                 break;
             case CONCAT_REPL:
                 {
-                alt32=2;
+                alt33=2;
                 }
                 break;
             case CONCAT_OPEN:
                 {
-                alt32=3;
+                alt33=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 32, 0, input);
+                    new NoViableAltException("", 33, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt32) {
+            switch (alt33) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:917:4: ^( CONCAT_LIST ( operand )* )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:974:4: ^( CONCAT_LIST ( operand )* )
                     {
-                    match(input,CONCAT_LIST,FOLLOW_CONCAT_LIST_in_concat776); 
+                    match(input,CONCAT_LIST,FOLLOW_CONCAT_LIST_in_concat787); 
 
                     if ( input.LA(1)==Token.DOWN ) {
                         match(input, Token.DOWN, null); 
-                        // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:917:18: ( operand )*
-                        loop31:
+                        // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:974:18: ( operand )*
+                        loop32:
                         do {
-                            int alt31=2;
-                            int LA31_0 = input.LA(1);
+                            int alt32=2;
+                            int LA32_0 = input.LA(1);
 
-                            if ( (LA31_0==OPERAND) ) {
-                                alt31=1;
+                            if ( (LA32_0==OPERAND) ) {
+                                alt32=1;
                             }
 
 
-                            switch (alt31) {
+                            switch (alt32) {
                         	case 1 :
-                        	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:917:19: operand
+                        	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:974:19: operand
                         	    {
-                        	    pushFollow(FOLLOW_operand_in_concat779);
-                        	    operand22=operand();
+                        	    pushFollow(FOLLOW_operand_in_concat790);
+                        	    operand23=operand();
 
                         	    state._fsp--;
 
                         	    	// for each operand, if no indices were specified, return all relevant connections from the design
-                        	    				if ((operand22!=null?operand22.indices:null) == null) {
-                        	    					List<Connection> connects = des.getConnectionsByName((operand22!=null?operand22.id:null).getText());
+                        	    				if ((operand23!=null?operand23.indices:null) == null) {
+                        	    					List<Connection> connects = des.getConnectionsByName((operand23!=null?operand23.id:null).getText());
                         	    					if (connects.size() == 0)
-                        	    						bailOut((operand22!=null?operand22.id:null), "undeclared connection");
+                        	    						bailOut((operand23!=null?operand23.id:null), "undeclared connection");
                         	    					retval.cons.addAll(connects);
                         	    				
                         	    				// otherwise, only return connections with matching indices
                         	    				} else {
-                        	    					for (int i = 0; i < (operand22!=null?operand22.indices:null).size(); i++) {
-                        	    						Connection c = des.getConnection((operand22!=null?operand22.id:null).getText(), (operand22!=null?operand22.indices:null).get(i));
+                        	    					for (int i = 0; i < (operand23!=null?operand23.indices:null).size(); i++) {
+                        	    						Connection c = des.getConnection((operand23!=null?operand23.id:null).getText(), (operand23!=null?operand23.indices:null).get(i));
                         	    						if (c == null) {
-                        	    							if (des.getConnectionsByName((operand22!=null?operand22.id:null).getText()).size() > 0)
-                        	    								bailOut((operand22!=null?operand22.id:null), "invalid connection index [" + (operand22!=null?operand22.indices:null).get(i) + "]");
+                        	    							if (des.getConnectionsByName((operand23!=null?operand23.id:null).getText()).size() > 0)
+                        	    								bailOut((operand23!=null?operand23.id:null), "invalid connection index [" + (operand23!=null?operand23.indices:null).get(i) + "]");
                         	    							else
-                        	    								bailOut((operand22!=null?operand22.id:null), "undeclared connection");
+                        	    								bailOut((operand23!=null?operand23.id:null), "undeclared connection");
                         	    						} else
                         	    							retval.cons.add(c);
                         	    					}
@@ -2497,7 +2583,7 @@ public class PhdlAST extends TreeParser {
                         	    break;
 
                         	default :
-                        	    break loop31;
+                        	    break loop32;
                             }
                         } while (true);
 
@@ -2508,37 +2594,37 @@ public class PhdlAST extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:942:4: ^( CONCAT_REPL operand )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:999:4: ^( CONCAT_REPL operand )
                     {
-                    match(input,CONCAT_REPL,FOLLOW_CONCAT_REPL_in_concat799); 
+                    match(input,CONCAT_REPL,FOLLOW_CONCAT_REPL_in_concat810); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_operand_in_concat801);
-                    operand23=operand();
+                    pushFollow(FOLLOW_operand_in_concat812);
+                    operand24=operand();
 
                     state._fsp--;
 
                     	retval.isReplicated = true;
                     				
                     				// if no indices were specified, return the relevant connection from the design
-                    				if ((operand23!=null?operand23.indices:null) == null) {
-                    					List<Connection> cons = des.getConnectionsByName((operand23!=null?operand23.id:null).getText());
+                    				if ((operand24!=null?operand24.indices:null) == null) {
+                    					List<Connection> cons = des.getConnectionsByName((operand24!=null?operand24.id:null).getText());
                     					if (cons.size() == 0)
-                    						bailOut((operand23!=null?operand23.id:null), "undeclared connection");
+                    						bailOut((operand24!=null?operand24.id:null), "undeclared connection");
                     					if (cons.size() > 1)
-                    						bailOut((operand23!=null?operand23.id:null), "assignment cannot replicate a an arrayed connection");
+                    						bailOut((operand24!=null?operand24.id:null), "assignment cannot replicate a an arrayed connection");
                     					retval.cons.add(cons.get(0));
                     					
                     				// otherwise, return the connection with the matching index
                     				} else {
-                    					if ((operand23!=null?operand23.indices:null).size() != 1)
-                    						bailOut((operand23!=null?operand23.id:null), "assignment cannot replicate an arrayed connection");
-                    					Connection c = des.getConnection((operand23!=null?operand23.id:null).getText(), (operand23!=null?operand23.indices:null).get(0));
+                    					if ((operand24!=null?operand24.indices:null).size() != 1)
+                    						bailOut((operand24!=null?operand24.id:null), "assignment cannot replicate an arrayed connection");
+                    					Connection c = des.getConnection((operand24!=null?operand24.id:null).getText(), (operand24!=null?operand24.indices:null).get(0));
                     					if (c == null) {
-                    						if (des.getConnectionsByName((operand23!=null?operand23.id:null).getText()).size() > 0)
-                    							bailOut((operand23!=null?operand23.id:null), "invalid connection slice [" + (operand23!=null?operand23.indices:null).get(0) + "]");
+                    						if (des.getConnectionsByName((operand24!=null?operand24.id:null).getText()).size() > 0)
+                    							bailOut((operand24!=null?operand24.id:null), "invalid connection slice [" + (operand24!=null?operand24.indices:null).get(0) + "]");
                     						else	
-                    							bailOut((operand23!=null?operand23.id:null), "undeclared connection");
+                    							bailOut((operand24!=null?operand24.id:null), "undeclared connection");
                     					} else
                     						retval.cons.add(c);
                     				}
@@ -2549,9 +2635,9 @@ public class PhdlAST extends TreeParser {
                     }
                     break;
                 case 3 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:971:4: ^( CONCAT_OPEN )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1028:4: ^( CONCAT_OPEN )
                     {
-                    match(input,CONCAT_OPEN,FOLLOW_CONCAT_OPEN_in_concat821); 
+                    match(input,CONCAT_OPEN,FOLLOW_CONCAT_OPEN_in_concat832); 
 
                     retval.isOpen = true;
 
@@ -2581,41 +2667,41 @@ public class PhdlAST extends TreeParser {
     };
 
     // $ANTLR start "operand"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:974:1: operand returns [CommonTree id, List<Integer> indices] : ^( OPERAND val= IDENT ( index )? ) ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1031:1: operand returns [CommonTree id, List<Integer> indices] : ^( OPERAND val= IDENT ( index )? ) ;
     public final PhdlAST.operand_return operand() throws RecognitionException {
         PhdlAST.operand_return retval = new PhdlAST.operand_return();
         retval.start = input.LT(1);
 
         CommonTree val=null;
-        List<Integer> index24 = null;
+        List<Integer> index25 = null;
 
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:978:2: ( ^( OPERAND val= IDENT ( index )? ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:978:4: ^( OPERAND val= IDENT ( index )? )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1035:2: ( ^( OPERAND val= IDENT ( index )? ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1035:4: ^( OPERAND val= IDENT ( index )? )
             {
-            match(input,OPERAND,FOLLOW_OPERAND_in_operand842); 
+            match(input,OPERAND,FOLLOW_OPERAND_in_operand853); 
 
             match(input, Token.DOWN, null); 
-            val=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_operand846); 
+            val=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_operand857); 
             retval.id = val;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:978:38: ( index )?
-            int alt33=2;
-            int LA33_0 = input.LA(1);
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1035:38: ( index )?
+            int alt34=2;
+            int LA34_0 = input.LA(1);
 
-            if ( ((LA33_0>=BOUNDS && LA33_0<=INDICES)) ) {
-                alt33=1;
+            if ( ((LA34_0>=BOUNDS && LA34_0<=INDICES)) ) {
+                alt34=1;
             }
-            switch (alt33) {
+            switch (alt34) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:978:39: index
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1035:39: index
                     {
-                    pushFollow(FOLLOW_index_in_operand851);
-                    index24=index();
+                    pushFollow(FOLLOW_index_in_operand862);
+                    index25=index();
 
                     state._fsp--;
 
-                    retval.indices = index24;
+                    retval.indices = index25;
 
                     }
                     break;
@@ -2644,41 +2730,41 @@ public class PhdlAST extends TreeParser {
     };
 
     // $ANTLR start "name"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:981:1: name returns [CommonTree id, List<Integer> indices] : ^( NAME val= IDENT ( index )? ) ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1038:1: name returns [CommonTree id, List<Integer> indices] : ^( NAME val= IDENT ( index )? ) ;
     public final PhdlAST.name_return name() throws RecognitionException {
         PhdlAST.name_return retval = new PhdlAST.name_return();
         retval.start = input.LT(1);
 
         CommonTree val=null;
-        List<Integer> index25 = null;
+        List<Integer> index26 = null;
 
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:985:2: ( ^( NAME val= IDENT ( index )? ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:985:4: ^( NAME val= IDENT ( index )? )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1042:2: ( ^( NAME val= IDENT ( index )? ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1042:4: ^( NAME val= IDENT ( index )? )
             {
-            match(input,NAME,FOLLOW_NAME_in_name874); 
+            match(input,NAME,FOLLOW_NAME_in_name885); 
 
             match(input, Token.DOWN, null); 
-            val=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_name878); 
+            val=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_name889); 
             retval.id = val;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:985:35: ( index )?
-            int alt34=2;
-            int LA34_0 = input.LA(1);
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1042:35: ( index )?
+            int alt35=2;
+            int LA35_0 = input.LA(1);
 
-            if ( ((LA34_0>=BOUNDS && LA34_0<=INDICES)) ) {
-                alt34=1;
+            if ( ((LA35_0>=BOUNDS && LA35_0<=INDICES)) ) {
+                alt35=1;
             }
-            switch (alt34) {
+            switch (alt35) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:985:36: index
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1042:36: index
                     {
-                    pushFollow(FOLLOW_index_in_name883);
-                    index25=index();
+                    pushFollow(FOLLOW_index_in_name894);
+                    index26=index();
 
                     state._fsp--;
 
-                    retval.indices = index25;
+                    retval.indices = index26;
 
                     }
                     break;
@@ -2701,9 +2787,74 @@ public class PhdlAST extends TreeParser {
     }
     // $ANTLR end "name"
 
+    public static class qualifier_return extends TreeRuleReturnScope {
+        public List<Integer> indices;
+        public CommonTree name;
+    };
+
+    // $ANTLR start "qualifier"
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1045:1: qualifier returns [List<Integer> indices, CommonTree name] : ^(keyword= THIS ( index )? ) ;
+    public final PhdlAST.qualifier_return qualifier() throws RecognitionException {
+        PhdlAST.qualifier_return retval = new PhdlAST.qualifier_return();
+        retval.start = input.LT(1);
+
+        CommonTree keyword=null;
+        List<Integer> index27 = null;
+
+
+        try {
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1046:2: ( ^(keyword= THIS ( index )? ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1046:4: ^(keyword= THIS ( index )? )
+            {
+            keyword=(CommonTree)match(input,THIS,FOLLOW_THIS_in_qualifier917); 
+
+            if ( input.LA(1)==Token.DOWN ) {
+                match(input, Token.DOWN, null); 
+                // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1046:19: ( index )?
+                int alt36=2;
+                int LA36_0 = input.LA(1);
+
+                if ( ((LA36_0>=BOUNDS && LA36_0<=INDICES)) ) {
+                    alt36=1;
+                }
+                switch (alt36) {
+                    case 1 :
+                        // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1046:19: index
+                        {
+                        pushFollow(FOLLOW_index_in_qualifier919);
+                        index27=index();
+
+                        state._fsp--;
+
+
+                        }
+                        break;
+
+                }
+
+
+                match(input, Token.UP, null); 
+            }
+            	retval.name = keyword;
+            			retval.indices = index27;
+            		
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+        }
+        return retval;
+    }
+    // $ANTLR end "qualifier"
+
 
     // $ANTLR start "index"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:988:1: index returns [List<Integer> indices] : ( ^( BOUNDS hi= INT lo= INT ) | ^( INDICES (idx= INT )+ ) );
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1052:1: index returns [List<Integer> indices] : ( ^( BOUNDS hi= INT lo= INT ) | ^( INDICES (idx= INT )+ ) );
     public final List<Integer> index() throws RecognitionException {
         List<Integer> indices = null;
 
@@ -2713,80 +2864,84 @@ public class PhdlAST extends TreeParser {
 
         indices = new ArrayList<Integer>();
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:995:2: ( ^( BOUNDS hi= INT lo= INT ) | ^( INDICES (idx= INT )+ ) )
-            int alt36=2;
-            int LA36_0 = input.LA(1);
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1059:2: ( ^( BOUNDS hi= INT lo= INT ) | ^( INDICES (idx= INT )+ ) )
+            int alt38=2;
+            int LA38_0 = input.LA(1);
 
-            if ( (LA36_0==BOUNDS) ) {
-                alt36=1;
+            if ( (LA38_0==BOUNDS) ) {
+                alt38=1;
             }
-            else if ( (LA36_0==INDICES) ) {
-                alt36=2;
+            else if ( (LA38_0==INDICES) ) {
+                alt38=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 36, 0, input);
+                    new NoViableAltException("", 38, 0, input);
 
                 throw nvae;
             }
-            switch (alt36) {
+            switch (alt38) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:995:4: ^( BOUNDS hi= INT lo= INT )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1059:4: ^( BOUNDS hi= INT lo= INT )
                     {
-                    match(input,BOUNDS,FOLLOW_BOUNDS_in_index910); 
+                    match(input,BOUNDS,FOLLOW_BOUNDS_in_index947); 
 
                     match(input, Token.DOWN, null); 
-                    hi=(CommonTree)match(input,INT,FOLLOW_INT_in_index914); 
-                    lo=(CommonTree)match(input,INT,FOLLOW_INT_in_index918); 
+                    hi=(CommonTree)match(input,INT,FOLLOW_INT_in_index951); 
+                    lo=(CommonTree)match(input,INT,FOLLOW_INT_in_index955); 
 
                     match(input, Token.UP, null); 
                     	int msb = Integer.parseInt((hi!=null?hi.getText():null));
-                    			int lsb = Integer.parseInt((lo!=null?lo.getText():null));
-                    			if (msb < lsb)
-                    				for (int i = msb; i <= lsb; i++)
-                    					indices.add(i);
-                    			else
-                    				for (int i = msb; i >= lsb; i--)
-                    					indices.add(i);
-                    		
+                    				int lsb = Integer.parseInt((lo!=null?lo.getText():null));
+                    				if (msb < lsb)
+                    					for (int i = msb; i <= lsb; i++)
+                    						indices.add(i);
+                    				else
+                    					for (int i = msb; i >= lsb; i--)
+                    						indices.add(i);
+                    			
 
                     }
                     break;
                 case 2 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:1005:4: ^( INDICES (idx= INT )+ )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1069:4: ^( INDICES (idx= INT )+ )
                     {
-                    match(input,INDICES,FOLLOW_INDICES_in_index929); 
+                    match(input,INDICES,FOLLOW_INDICES_in_index967); 
 
                     match(input, Token.DOWN, null); 
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:1005:14: (idx= INT )+
-                    int cnt35=0;
-                    loop35:
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1069:14: (idx= INT )+
+                    int cnt37=0;
+                    loop37:
                     do {
-                        int alt35=2;
-                        int LA35_0 = input.LA(1);
+                        int alt37=2;
+                        int LA37_0 = input.LA(1);
 
-                        if ( (LA35_0==INT) ) {
-                            alt35=1;
+                        if ( (LA37_0==INT) ) {
+                            alt37=1;
                         }
 
 
-                        switch (alt35) {
+                        switch (alt37) {
                     	case 1 :
-                    	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:1005:15: idx= INT
+                    	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1069:15: idx= INT
                     	    {
-                    	    idx=(CommonTree)match(input,INT,FOLLOW_INT_in_index934); 
-                    	    indices.add(Integer.parseInt((idx!=null?idx.getText():null)));
+                    	    idx=(CommonTree)match(input,INT,FOLLOW_INT_in_index972); 
+                    	    	if (indices.contains(Integer.parseInt((idx!=null?idx.getText():null))))
+                    	    					bailOut(idx, "duplicate index");
+                    	    				else
+                    	    					indices.add(Integer.parseInt((idx!=null?idx.getText():null)));
+                    	    			
 
                     	    }
                     	    break;
 
                     	default :
-                    	    if ( cnt35 >= 1 ) break loop35;
+                    	    if ( cnt37 >= 1 ) break loop37;
                                 EarlyExitException eee =
-                                    new EarlyExitException(35, input);
+                                    new EarlyExitException(37, input);
                                 throw eee;
                         }
-                        cnt35++;
+                        cnt37++;
                     } while (true);
 
 
@@ -2809,7 +2964,7 @@ public class PhdlAST extends TreeParser {
 
 
     // $ANTLR start "width"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:1008:1: width returns [List<Integer> indices] : ^( WIDTH hi= INT lo= INT ) ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1078:1: width returns [List<Integer> indices] : ^( WIDTH hi= INT lo= INT ) ;
     public final List<Integer> width() throws RecognitionException {
         List<Integer> indices = null;
 
@@ -2818,14 +2973,14 @@ public class PhdlAST extends TreeParser {
 
         indices = new ArrayList<Integer>();
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:1010:2: ( ^( WIDTH hi= INT lo= INT ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:1010:4: ^( WIDTH hi= INT lo= INT )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1080:2: ( ^( WIDTH hi= INT lo= INT ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1080:4: ^( WIDTH hi= INT lo= INT )
             {
-            match(input,WIDTH,FOLLOW_WIDTH_in_width960); 
+            match(input,WIDTH,FOLLOW_WIDTH_in_width1005); 
 
             match(input, Token.DOWN, null); 
-            hi=(CommonTree)match(input,INT,FOLLOW_INT_in_width964); 
-            lo=(CommonTree)match(input,INT,FOLLOW_INT_in_width968); 
+            hi=(CommonTree)match(input,INT,FOLLOW_INT_in_width1009); 
+            lo=(CommonTree)match(input,INT,FOLLOW_INT_in_width1013); 
 
             match(input, Token.UP, null); 
             	int msb = Integer.parseInt((hi!=null?hi.getText():null));
@@ -2853,7 +3008,7 @@ public class PhdlAST extends TreeParser {
 
 
     // $ANTLR start "pinList"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:1022:1: pinList returns [List<String> list] : ^( PIN_LIST (num1= INT | num2= IDENT | num3= PINNUM )+ ) ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1092:1: pinList returns [List<String> list] : ^( PIN_LIST (num1= INT | num2= IDENT | num3= PINNUM )+ ) ;
     public final List<String> pinList() throws RecognitionException {
         List<String> list = null;
 
@@ -2863,69 +3018,69 @@ public class PhdlAST extends TreeParser {
 
         list = new ArrayList<String>();
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:1024:2: ( ^( PIN_LIST (num1= INT | num2= IDENT | num3= PINNUM )+ ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:1024:4: ^( PIN_LIST (num1= INT | num2= IDENT | num3= PINNUM )+ )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1094:2: ( ^( PIN_LIST (num1= INT | num2= IDENT | num3= PINNUM )+ ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1094:4: ^( PIN_LIST (num1= INT | num2= IDENT | num3= PINNUM )+ )
             {
-            match(input,PIN_LIST,FOLLOW_PIN_LIST_in_pinList993); 
+            match(input,PIN_LIST,FOLLOW_PIN_LIST_in_pinList1038); 
 
             match(input, Token.DOWN, null); 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:1025:2: (num1= INT | num2= IDENT | num3= PINNUM )+
-            int cnt37=0;
-            loop37:
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1095:2: (num1= INT | num2= IDENT | num3= PINNUM )+
+            int cnt39=0;
+            loop39:
             do {
-                int alt37=4;
+                int alt39=4;
                 switch ( input.LA(1) ) {
                 case INT:
                     {
-                    alt37=1;
+                    alt39=1;
                     }
                     break;
                 case IDENT:
                     {
-                    alt37=2;
+                    alt39=2;
                     }
                     break;
                 case PINNUM:
                     {
-                    alt37=3;
+                    alt39=3;
                     }
                     break;
 
                 }
 
-                switch (alt37) {
+                switch (alt39) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:1025:4: num1= INT
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1095:4: num1= INT
             	    {
-            	    num1=(CommonTree)match(input,INT,FOLLOW_INT_in_pinList1000); 
+            	    num1=(CommonTree)match(input,INT,FOLLOW_INT_in_pinList1045); 
             	    list.add((num1!=null?num1.getText():null));
 
             	    }
             	    break;
             	case 2 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:1026:4: num2= IDENT
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1096:4: num2= IDENT
             	    {
-            	    num2=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_pinList1009); 
+            	    num2=(CommonTree)match(input,IDENT,FOLLOW_IDENT_in_pinList1054); 
             	    list.add((num2!=null?num2.getText():null));
 
             	    }
             	    break;
             	case 3 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:1027:4: num3= PINNUM
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1097:4: num3= PINNUM
             	    {
-            	    num3=(CommonTree)match(input,PINNUM,FOLLOW_PINNUM_in_pinList1018); 
+            	    num3=(CommonTree)match(input,PINNUM,FOLLOW_PINNUM_in_pinList1063); 
             	    list.add((num3!=null?num3.getText():null));
 
             	    }
             	    break;
 
             	default :
-            	    if ( cnt37 >= 1 ) break loop37;
+            	    if ( cnt39 >= 1 ) break loop39;
                         EarlyExitException eee =
-                            new EarlyExitException(37, input);
+                            new EarlyExitException(39, input);
                         throw eee;
                 }
-                cnt37++;
+                cnt39++;
             } while (true);
 
 
@@ -2946,102 +3101,102 @@ public class PhdlAST extends TreeParser {
 
 
     // $ANTLR start "pinType"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:1031:1: pinType returns [PinType type] : ^( PIN_TYPE ( PIN | INPIN | OUTPIN | IOPIN | PWRPIN | SUPPIN ) ) ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1101:1: pinType returns [PinType type] : ^( PIN_TYPE ( PIN | INPIN | OUTPIN | IOPIN | PWRPIN | SUPPIN ) ) ;
     public final PinType pinType() throws RecognitionException {
         PinType type = null;
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:1032:2: ( ^( PIN_TYPE ( PIN | INPIN | OUTPIN | IOPIN | PWRPIN | SUPPIN ) ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:1032:4: ^( PIN_TYPE ( PIN | INPIN | OUTPIN | IOPIN | PWRPIN | SUPPIN ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1102:2: ( ^( PIN_TYPE ( PIN | INPIN | OUTPIN | IOPIN | PWRPIN | SUPPIN ) ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1102:4: ^( PIN_TYPE ( PIN | INPIN | OUTPIN | IOPIN | PWRPIN | SUPPIN ) )
             {
-            match(input,PIN_TYPE,FOLLOW_PIN_TYPE_in_pinType1042); 
+            match(input,PIN_TYPE,FOLLOW_PIN_TYPE_in_pinType1087); 
 
             match(input, Token.DOWN, null); 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:1033:2: ( PIN | INPIN | OUTPIN | IOPIN | PWRPIN | SUPPIN )
-            int alt38=6;
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1103:2: ( PIN | INPIN | OUTPIN | IOPIN | PWRPIN | SUPPIN )
+            int alt40=6;
             switch ( input.LA(1) ) {
             case PIN:
                 {
-                alt38=1;
+                alt40=1;
                 }
                 break;
             case INPIN:
                 {
-                alt38=2;
+                alt40=2;
                 }
                 break;
             case OUTPIN:
                 {
-                alt38=3;
+                alt40=3;
                 }
                 break;
             case IOPIN:
                 {
-                alt38=4;
+                alt40=4;
                 }
                 break;
             case PWRPIN:
                 {
-                alt38=5;
+                alt40=5;
                 }
                 break;
             case SUPPIN:
                 {
-                alt38=6;
+                alt40=6;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 38, 0, input);
+                    new NoViableAltException("", 40, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt38) {
+            switch (alt40) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:1033:4: PIN
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1103:4: PIN
                     {
-                    match(input,PIN,FOLLOW_PIN_in_pinType1048); 
+                    match(input,PIN,FOLLOW_PIN_in_pinType1093); 
                     type = PinType.PIN;
 
                     }
                     break;
                 case 2 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:1034:4: INPIN
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1104:4: INPIN
                     {
-                    match(input,INPIN,FOLLOW_INPIN_in_pinType1056); 
+                    match(input,INPIN,FOLLOW_INPIN_in_pinType1101); 
                     type = PinType.INPIN;
 
                     }
                     break;
                 case 3 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:1035:4: OUTPIN
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1105:4: OUTPIN
                     {
-                    match(input,OUTPIN,FOLLOW_OUTPIN_in_pinType1063); 
+                    match(input,OUTPIN,FOLLOW_OUTPIN_in_pinType1108); 
                     type = PinType.OUTPIN;
 
                     }
                     break;
                 case 4 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:1036:4: IOPIN
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1106:4: IOPIN
                     {
-                    match(input,IOPIN,FOLLOW_IOPIN_in_pinType1070); 
+                    match(input,IOPIN,FOLLOW_IOPIN_in_pinType1115); 
                     type = PinType.IOPIN;
 
                     }
                     break;
                 case 5 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:1037:4: PWRPIN
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1107:4: PWRPIN
                     {
-                    match(input,PWRPIN,FOLLOW_PWRPIN_in_pinType1077); 
+                    match(input,PWRPIN,FOLLOW_PWRPIN_in_pinType1122); 
                     type = PinType.PWRPIN;
 
                     }
                     break;
                 case 6 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:1038:4: SUPPIN
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1108:4: SUPPIN
                     {
-                    match(input,SUPPIN,FOLLOW_SUPPIN_in_pinType1084); 
+                    match(input,SUPPIN,FOLLOW_SUPPIN_in_pinType1129); 
                     type = PinType.SUPPIN;
 
                     }
@@ -3066,40 +3221,41 @@ public class PhdlAST extends TreeParser {
     // $ANTLR end "pinType"
 
     public static class infoDecl_return extends TreeRuleReturnScope {
+        public CommonTree name;
         public CommonTree info;
         public List<Integer> indices;
     };
 
     // $ANTLR start "infoDecl"
-    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:1041:1: infoDecl returns [CommonTree info, List<Integer> indices] : ^( INFO_DECL ( index )? (st= STRING )+ ) ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1111:1: infoDecl returns [CommonTree name, CommonTree info, List<Integer> indices] : ^( INFO_DECL ( qualifier )? (string= STRING )+ ) ;
     public final PhdlAST.infoDecl_return infoDecl() throws RecognitionException {
         PhdlAST.infoDecl_return retval = new PhdlAST.infoDecl_return();
         retval.start = input.LT(1);
 
-        CommonTree st=null;
-        List<Integer> index26 = null;
+        CommonTree string=null;
+        PhdlAST.qualifier_return qualifier28 = null;
 
 
         try {
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:1042:2: ( ^( INFO_DECL ( index )? (st= STRING )+ ) )
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:1042:5: ^( INFO_DECL ( index )? (st= STRING )+ )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1112:2: ( ^( INFO_DECL ( qualifier )? (string= STRING )+ ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1112:5: ^( INFO_DECL ( qualifier )? (string= STRING )+ )
             {
-            match(input,INFO_DECL,FOLLOW_INFO_DECL_in_infoDecl1106); 
+            match(input,INFO_DECL,FOLLOW_INFO_DECL_in_infoDecl1151); 
 
             match(input, Token.DOWN, null); 
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:1042:17: ( index )?
-            int alt39=2;
-            int LA39_0 = input.LA(1);
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1112:17: ( qualifier )?
+            int alt41=2;
+            int LA41_0 = input.LA(1);
 
-            if ( ((LA39_0>=BOUNDS && LA39_0<=INDICES)) ) {
-                alt39=1;
+            if ( (LA41_0==THIS) ) {
+                alt41=1;
             }
-            switch (alt39) {
+            switch (alt41) {
                 case 1 :
-                    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:1042:17: index
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1112:17: qualifier
                     {
-                    pushFollow(FOLLOW_index_in_infoDecl1108);
-                    index26=index();
+                    pushFollow(FOLLOW_qualifier_in_infoDecl1153);
+                    qualifier28=qualifier();
 
                     state._fsp--;
 
@@ -3109,36 +3265,39 @@ public class PhdlAST extends TreeParser {
 
             }
 
-            retval.indices = index26;
-            // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:1043:3: (st= STRING )+
-            int cnt40=0;
-            loop40:
+            	
+            			retval.indices = (qualifier28!=null?qualifier28.indices:null);
+            			retval.name = (qualifier28!=null?qualifier28.name:null);
+            		
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1117:3: (string= STRING )+
+            int cnt42=0;
+            loop42:
             do {
-                int alt40=2;
-                int LA40_0 = input.LA(1);
+                int alt42=2;
+                int LA42_0 = input.LA(1);
 
-                if ( (LA40_0==STRING) ) {
-                    alt40=1;
+                if ( (LA42_0==STRING) ) {
+                    alt42=1;
                 }
 
 
-                switch (alt40) {
+                switch (alt42) {
             	case 1 :
-            	    // /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/PhdlAST.g:1043:4: st= STRING
+            	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\PhdlAST.g:1117:4: string= STRING
             	    {
-            	    st=(CommonTree)match(input,STRING,FOLLOW_STRING_in_infoDecl1119); 
-            	    retval.info = st;
+            	    string=(CommonTree)match(input,STRING,FOLLOW_STRING_in_infoDecl1167); 
+            	    retval.info = string;
 
             	    }
             	    break;
 
             	default :
-            	    if ( cnt40 >= 1 ) break loop40;
+            	    if ( cnt42 >= 1 ) break loop42;
                         EarlyExitException eee =
-                            new EarlyExitException(40, input);
+                            new EarlyExitException(42, input);
                         throw eee;
                 }
-                cnt40++;
+                cnt42++;
             } while (true);
 
 
@@ -3209,68 +3368,71 @@ public class PhdlAST extends TreeParser {
     public static final BitSet FOLLOW_attrAssign_in_instDecl477 = new BitSet(new long[]{0x0140000000000008L});
     public static final BitSet FOLLOW_pinAssign_in_instDecl481 = new BitSet(new long[]{0x0100000000000008L});
     public static final BitSet FOLLOW_ATTR_ASSIGN_in_attrAssign502 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_NEWATTR_in_attrAssign505 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000026L});
-    public static final BitSet FOLLOW_index_in_attrAssign511 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_NEWATTR_in_attrAssign505 = new BitSet(new long[]{0x0000000002000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_qualifier_in_attrAssign511 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
     public static final BitSet FOLLOW_IDENT_in_attrAssign516 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
     public static final BitSet FOLLOW_STRING_in_attrAssign520 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_PIN_ASSIGN_in_pinAssign546 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_COMBINE_in_pinAssign549 = new BitSet(new long[]{0x0000000000000000L,0x000000000000000EL});
-    public static final BitSet FOLLOW_index_in_pinAssign555 = new BitSet(new long[]{0x0000000000000000L,0x000000000000000EL});
+    public static final BitSet FOLLOW_COMBINE_in_pinAssign549 = new BitSet(new long[]{0x0000000002000000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_qualifier_in_pinAssign555 = new BitSet(new long[]{0x0000000002000000L,0x0000000000000008L});
     public static final BitSet FOLLOW_operand_in_pinAssign558 = new BitSet(new long[]{0x3800000000000000L});
     public static final BitSet FOLLOW_concat_in_pinAssign560 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_SUBINST_DECL_in_subInstDecl580 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_width_in_subInstDecl582 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_IDENT_in_subInstDecl587 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_IDENT_in_subInstDecl591 = new BitSet(new long[]{0x02A0000000000008L});
-    public static final BitSet FOLLOW_infoDecl_in_subInstDecl603 = new BitSet(new long[]{0x02A0000000000008L});
-    public static final BitSet FOLLOW_subAttrAssign_in_subInstDecl627 = new BitSet(new long[]{0x0280000000000008L});
-    public static final BitSet FOLLOW_portAssign_in_subInstDecl634 = new BitSet(new long[]{0x0200000000000008L});
-    public static final BitSet FOLLOW_SUBATTR_ASSIGN_in_subAttrAssign655 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_NEWATTR_in_subAttrAssign658 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000036L});
-    public static final BitSet FOLLOW_index_in_subAttrAssign664 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000030L});
-    public static final BitSet FOLLOW_name_in_subAttrAssign667 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000030L});
-    public static final BitSet FOLLOW_IDENT_in_subAttrAssign672 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
-    public static final BitSet FOLLOW_STRING_in_subAttrAssign676 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_PORT_ASSIGN_in_portAssign701 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_COMBINE_in_portAssign704 = new BitSet(new long[]{0x0000000000000000L,0x000000000000000EL});
-    public static final BitSet FOLLOW_index_in_portAssign710 = new BitSet(new long[]{0x0000000000000000L,0x000000000000000EL});
-    public static final BitSet FOLLOW_operand_in_portAssign713 = new BitSet(new long[]{0x3800000000000000L});
-    public static final BitSet FOLLOW_concat_in_portAssign715 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_CONNECT_ASSIGN_in_connectAssign738 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_operand_in_connectAssign740 = new BitSet(new long[]{0x3800000000000000L});
-    public static final BitSet FOLLOW_concat_in_connectAssign742 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_CONCAT_LIST_in_concat776 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_operand_in_concat779 = new BitSet(new long[]{0x0000000000000008L,0x000000000000000EL});
-    public static final BitSet FOLLOW_CONCAT_REPL_in_concat799 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_operand_in_concat801 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_CONCAT_OPEN_in_concat821 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_OPERAND_in_operand842 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_IDENT_in_operand846 = new BitSet(new long[]{0x0000000000000008L,0x0000000000000006L});
-    public static final BitSet FOLLOW_index_in_operand851 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_NAME_in_name874 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_IDENT_in_name878 = new BitSet(new long[]{0x0000000000000008L,0x0000000000000006L});
-    public static final BitSet FOLLOW_index_in_name883 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_BOUNDS_in_index910 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_INT_in_index914 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
-    public static final BitSet FOLLOW_INT_in_index918 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_INDICES_in_index929 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_INT_in_index934 = new BitSet(new long[]{0x0000000000000008L,0x0000000000000080L});
-    public static final BitSet FOLLOW_WIDTH_in_width960 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_INT_in_width964 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
-    public static final BitSet FOLLOW_INT_in_width968 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_PIN_LIST_in_pinList993 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_INT_in_pinList1000 = new BitSet(new long[]{0x0000000000000008L,0x00000000000001A0L});
-    public static final BitSet FOLLOW_IDENT_in_pinList1009 = new BitSet(new long[]{0x0000000000000008L,0x00000000000001A0L});
-    public static final BitSet FOLLOW_PINNUM_in_pinList1018 = new BitSet(new long[]{0x0000000000000008L,0x00000000000001A0L});
-    public static final BitSet FOLLOW_PIN_TYPE_in_pinType1042 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_PIN_in_pinType1048 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_INPIN_in_pinType1056 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_OUTPIN_in_pinType1063 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_IOPIN_in_pinType1070 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_PWRPIN_in_pinType1077 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_SUPPIN_in_pinType1084 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_INFO_DECL_in_infoDecl1106 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_index_in_infoDecl1108 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
-    public static final BitSet FOLLOW_STRING_in_infoDecl1119 = new BitSet(new long[]{0x0000000000000008L,0x0000000000000040L});
+    public static final BitSet FOLLOW_IDENT_in_subInstDecl587 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000060L});
+    public static final BitSet FOLLOW_STRING_in_subInstDecl591 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_IDENT_in_subInstDecl596 = new BitSet(new long[]{0x02A0000000000008L});
+    public static final BitSet FOLLOW_infoDecl_in_subInstDecl608 = new BitSet(new long[]{0x02A0000000000008L});
+    public static final BitSet FOLLOW_subAttrAssign_in_subInstDecl632 = new BitSet(new long[]{0x0280000000000008L});
+    public static final BitSet FOLLOW_portAssign_in_subInstDecl639 = new BitSet(new long[]{0x0200000000000008L});
+    public static final BitSet FOLLOW_SUBATTR_ASSIGN_in_subAttrAssign660 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_NEWATTR_in_subAttrAssign663 = new BitSet(new long[]{0x0000000002000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_qualifier_in_subAttrAssign669 = new BitSet(new long[]{0x0000000002000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_name_in_subAttrAssign675 = new BitSet(new long[]{0x0000000002000000L,0x0000000000000030L});
+    public static final BitSet FOLLOW_IDENT_in_subAttrAssign683 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
+    public static final BitSet FOLLOW_STRING_in_subAttrAssign687 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_PORT_ASSIGN_in_portAssign712 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_COMBINE_in_portAssign715 = new BitSet(new long[]{0x0000000002000000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_qualifier_in_portAssign721 = new BitSet(new long[]{0x0000000002000000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_operand_in_portAssign724 = new BitSet(new long[]{0x3800000000000000L});
+    public static final BitSet FOLLOW_concat_in_portAssign726 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_CONNECT_ASSIGN_in_connectAssign749 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_operand_in_connectAssign751 = new BitSet(new long[]{0x3800000000000000L});
+    public static final BitSet FOLLOW_concat_in_connectAssign753 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_CONCAT_LIST_in_concat787 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_operand_in_concat790 = new BitSet(new long[]{0x0000000002000008L,0x0000000000000008L});
+    public static final BitSet FOLLOW_CONCAT_REPL_in_concat810 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_operand_in_concat812 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_CONCAT_OPEN_in_concat832 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_OPERAND_in_operand853 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_IDENT_in_operand857 = new BitSet(new long[]{0x0000000000000008L,0x0000000000000006L});
+    public static final BitSet FOLLOW_index_in_operand862 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_NAME_in_name885 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_IDENT_in_name889 = new BitSet(new long[]{0x0000000000000008L,0x0000000000000006L});
+    public static final BitSet FOLLOW_index_in_name894 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_THIS_in_qualifier917 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_index_in_qualifier919 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_BOUNDS_in_index947 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_INT_in_index951 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
+    public static final BitSet FOLLOW_INT_in_index955 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_INDICES_in_index967 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_INT_in_index972 = new BitSet(new long[]{0x0000000000000008L,0x0000000000000080L});
+    public static final BitSet FOLLOW_WIDTH_in_width1005 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_INT_in_width1009 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
+    public static final BitSet FOLLOW_INT_in_width1013 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_PIN_LIST_in_pinList1038 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_INT_in_pinList1045 = new BitSet(new long[]{0x0000000000000008L,0x00000000000001A0L});
+    public static final BitSet FOLLOW_IDENT_in_pinList1054 = new BitSet(new long[]{0x0000000000000008L,0x00000000000001A0L});
+    public static final BitSet FOLLOW_PINNUM_in_pinList1063 = new BitSet(new long[]{0x0000000000000008L,0x00000000000001A0L});
+    public static final BitSet FOLLOW_PIN_TYPE_in_pinType1087 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_PIN_in_pinType1093 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_INPIN_in_pinType1101 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_OUTPIN_in_pinType1108 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_IOPIN_in_pinType1115 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_PWRPIN_in_pinType1122 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_SUPPIN_in_pinType1129 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_INFO_DECL_in_infoDecl1151 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_qualifier_in_infoDecl1153 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
+    public static final BitSet FOLLOW_STRING_in_infoDecl1167 = new BitSet(new long[]{0x0000000000000008L,0x0000000000000040L});
 
 }
