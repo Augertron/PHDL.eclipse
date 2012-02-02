@@ -1,0 +1,53 @@
+device res {
+	attr refPrefix = "R";
+	attr value = "100k";
+	pin a = {1};
+	pin b = {2};
+}
+
+device cap {
+	attr refPrefix = "C";
+	attr value = "0.1u";
+	pin pos = {+};
+	pin neg = {-};
+}
+
+device pot {
+	attr refPrefix = "R";
+	attr value = "10k";
+	pin a = {1};
+	pin b = {2};
+	pin c = {3};
+}
+
+device rca {
+	attr refPrefix = "J";
+	attr value = "";
+	pin sig = {1};
+	pin gnd = {2};
+}
+
+device opamp {
+	attr refPrefix = "U";
+	attr value = "TL072";
+	pwrpin vss = {4};
+	pwrpin vdd = {8};
+	outpin[0:1] out = {1,7};
+	inpin[0:1] +in = {3,5};
+	inpin[0:1] -in = {2,6};
+}
+
+device jack {
+	attr refPrefix = "J";
+	attr value = "phones";
+	pin tip = {1};
+	pin ring = {2};
+	pin sleeve = {3};
+}
+
+device battery {
+	attr refPrefix = "B";
+	attr value = "9V";
+	pin pos = {1};
+	pin neg = {2};
+}

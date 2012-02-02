@@ -90,7 +90,7 @@ public class RefDesGenerator {
 				prefix = prefix + sdes.getIndex();
 			}
 			if (!prefix.equals("")) {
-				sdes.setRefPrefix(prefix + ".");
+				sdes.setRefPrefix(prefix + "/");
 			} else {
 				StringBuilder warn = new StringBuilder();
 				warn.append("\n");
@@ -178,6 +178,7 @@ public class RefDesGenerator {
 				if (des instanceof SubInstance) {
 					String prefix = ((SubInstance) des).getRefPrefix();
 					i.setRefPrefix(prefix + i.getRefPrefix());
+					//System.out.println("New Prefix: " + i.getRefPrefix());
 				}
 				String ref = generate_reference(i);
 				i.setRefDes(ref);

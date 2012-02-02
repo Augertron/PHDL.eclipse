@@ -1,0 +1,426 @@
+/**
+ * Design: fmc_module.phdl
+ * Adapted from PADS fmc_module.prj
+ * Submitted by: Pete Dudley, Sandia Labs
+ * Translated by: Brad Riching, Brigham Young University
+ * Feb 1, 2012
+ *
+ * Dependencies: devices.phdl
+ *
+ * Notes:
+ * This is an exact translation of the design to phdl.  
+ */
+ 
+include "devices.phdl"
+
+design fmc_module {
+	
+	//port0 transciever nets
+	net DP0_C2M_P;
+	net DP0_C2M_N;
+	net DP0_M2C_P;
+	net DP0_M2C_N;
+	net SMA_DPO_M2C_P;
+	net SMA_DPO_M2C_N;
+	
+	//port1 transciever nets
+	net DP1_C2M_P;
+	net DP1_C2M_N;
+	net DP1_M2C_P;
+	net DP1_M2C_N;
+	net SMA_DP1_M2C_P;
+	net SMA_DP1_M2C_N;
+	
+	//port2 transciever nets
+	net DP2_C2M_P;
+	net DP2_C2M_N;
+	net DP2_M2C_P;
+	net DP2_M2C_N;
+	net SMA_DP2_M2C_P;
+	net SMA_DP2_M2C_N;
+	
+	//port3 transciever nets
+	net DP3_C2M_P;
+	net DP3_C2M_N;
+	net DP3_M2C_P;
+	net DP3_M2C_N;
+	net SMA_DP3_M2C_P;
+	net SMA_DP3_M2C_N;
+	
+	//port4 transciever nets
+	net DP4_C2M_P;
+	net DP4_C2M_N;
+	net DP4_M2C_P;
+	net DP4_M2C_N;
+	net SMA_DP4_M2C_P;
+	net SMA_DP4_M2C_N;
+	
+	//port5 transciever nets
+	net DP5_C2M_P;
+	net DP5_C2M_N;
+	net DP5_M2C_P;
+	net DP5_M2C_N;
+	net SMA_DP5_M2C_P;
+	net SMA_DP5_M2C_N;
+	
+	// clock nets
+	net CLK250P;
+	net CLK250N;
+	net CLK250;
+	net DIFF_CLK_RTN;
+	net SINGLE_CLK_RTN;
+	net CLK250N_BAL;
+	net CLK250P_BAL;
+	net CLK250_BAL_N;
+	net CLK250_BAL_P;
+	
+	// misc nets
+	net $3N205;
+	net $3N212;
+	net $3N213;
+	net $3N195;
+	net $3N1;
+	net $3N193;
+	net $3N222;
+	net $3N42;
+	net $3N44;
+	net $3N163;
+	net $3N164;
+	net $4N126;
+	
+	// power supply
+	net +3V3;
+	net gnd;
+	
+	// gigabit transceiver clock nets
+	net GBTCLK0_M2C_P;
+	net GBTCLK0_M2C_N;
+	net GBTCLK1_M2C_P;
+	net GBTCLK1_M2C_N;
+	
+	// nets for sync connectors signals
+	net SYNC_OUT;
+	net SYNC_IN;
+	
+	net[7:0] DISCRETE;
+	
+	// an array of four sma connectors for port0
+	inst(1:4) port0 of SMA_CON {
+
+		// all signal pin assignments
+		this(1).sig = DP0_C2M_P;
+		this(2).sig = DP0_C2M_N;
+		this(3).sig = SMA_DPO_M2C_P;
+		this(4).sig = SMA_DPO_M2C_N;
+		gnd = <gnd>;
+	}
+	
+	inst(1:4) port1 of SMA_CON {
+		
+		this(1).sig = DP1_C2M_P;
+		this(2).sig = DP1_C2M_N;
+		this(3).sig = SMA_DP1_M2C_P;
+		this(4).sig = SMA_DP1_M2C_N;
+		gnd = <gnd>;
+	}
+	
+	inst(1:4) port2 of SMA_CON {
+
+		this(1).sig = DP2_C2M_P;
+		this(2).sig = DP2_C2M_N;
+		this(3).sig = SMA_DP2_M2C_P;
+		this(4).sig = SMA_DP2_M2C_N;
+		gnd = <gnd>;
+	}
+	
+	inst(1:4) port3 of SMA_CON {
+
+		this(1).sig = DP3_C2M_P;
+		this(2).sig = DP3_C2M_N;
+		this(3).sig = SMA_DP3_M2C_P;
+		this(4).sig = SMA_DP3_M2C_N;
+		gnd = <gnd>;
+	}
+	
+	inst(1:4) port4 of SMA_CON {
+
+		this(1).sig = DP4_C2M_P;
+		this(2).sig = DP4_C2M_N;
+		this(3).sig = SMA_DP4_M2C_P;
+		this(4).sig = SMA_DP4_M2C_N;
+		gnd = <gnd>;
+	}
+	
+	inst(1:4) port5 of SMA_CON {
+	
+		this(1).sig = DP5_C2M_P;
+		this(2).sig = DP5_C2M_N;
+		this(3).sig = SMA_DP5_M2C_P;
+		this(4).sig = SMA_DP5_M2C_N;
+		gnd = <gnd>;
+	}
+	
+	// all receiver coupling capacitors for all sma ports
+	inst(1:12) rx_coupling_caps of cap_0402 {
+		// all values are 1uF.
+		value = "1uF";
+
+		// all coupling caps a-side
+		this(1).a = SMA_DPO_M2C_P;
+		this(2).a = SMA_DPO_M2C_N;
+		this(3).a = SMA_DP1_M2C_P;
+		this(4).a = SMA_DP1_M2C_N;
+		this(5).a = SMA_DP2_M2C_P;
+		this(6).a = SMA_DP2_M2C_N;
+		this(7).a = SMA_DP3_M2C_P;
+		this(8).a = SMA_DP3_M2C_N;
+		this(9).a = SMA_DP4_M2C_P;
+		this(10).a = SMA_DP4_M2C_N;
+		this(11).a = SMA_DP5_M2C_P;
+		this(12).a = SMA_DP5_M2C_N;
+		// all coupling caps b-side
+		
+		this(1).b = DP0_M2C_P;
+		this(2).b = DP0_M2C_N;
+		this(3).b = DP1_M2C_P;
+		this(4).b = DP1_M2C_N;
+		this(5).b = DP2_M2C_P;
+		this(6).b = DP2_M2C_N;
+		this(7).b = DP3_M2C_P;
+		this(8).b = DP3_M2C_N;
+		this(9).b = DP4_M2C_P;
+		this(10).b = DP4_M2C_N;
+		this(11).b = DP5_M2C_P;
+		this(12).b = DP5_M2C_N;
+	}
+	 
+	 // the differential clock connectors
+	inst(1:2) diff_clk_input of SMA_CON {
+		this(1).sig = CLK250P;
+		this(2).sig = CLK250N;
+		gnd = <DIFF_CLK_RTN>;
+	}
+	
+	// the single ended clock connector
+	inst single_ended_clk_input of SMA_CON {
+		sig = CLK250;
+		gnd = <SINGLE_CLK_RTN>;
+	}
+	
+	inst diff_iso_transformer of TC4-14 {
+		pri_p = CLK250P;
+		pri_n = CLK250N;
+		sec_p = $3N212;
+		sec_tap = $3N205;
+		sec_n = $3N213;
+	}
+	
+	inst single_iso_transformer of TC4-14 {
+		pri_p = SINGLE_CLK_RTN;
+		pri_n = CLK250;
+		sec_p = $3N195;
+		sec_tap = $3N1;
+		sec_n = $3N193;
+	}
+	
+	// the clock impedance matching-biasing resitor network
+	inst(1:10) clk_biasing_network of res_0603 {
+		// constrained values
+		this(1:2).value = "100";
+		this(3:4).value = "49.9";
+		this(5:8).value = "150";
+		this(9).value = "200";
+		this(10).value = "100";
+		
+		// impedance matching network
+		this(1).a = CLK250N_BAL;
+		this(1).b = $3N212;
+		this(2).a = CLK250P_BAL;
+		this(2).b = $3N213;
+		this(3).a = CLK250_BAL_N;
+		this(3).b = $3N193;
+		this(4).a = CLK250_BAL_P;
+		this(4).b = $3N195;
+		
+		// biasing network
+		this(5:6).a = <+3V3>;
+		this(5).b = $3N205;
+		this(6).b = $3N1;
+		this(7).a = $3N205;
+		this(8).a = $3N1;
+		this(7:8).b = <gnd>;
+		
+		// terminating network
+		this(9).a = CLK250N_BAL;
+		this(9).b = CLK250P_BAL;
+		this(10).a = CLK250_BAL_N;
+		this(10).b = CLK250_BAL_P;
+	}
+	
+	// all of the power supply's decoupling capacitors
+	inst(1:10) decoupling_caps of tant_cap {
+		pos = <+3V3>;
+		neg = <gnd>;
+	}
+	
+	// the instantiated clock buffer IC
+	inst clock_buffer of sy898533 {
+		vcc = <+3V3>;
+		clk_p = CLK250P_BAL;
+		clk_n = CLK250N_BAL;
+		pclk_p = CLK250_BAL_P;
+		pclk_n = CLK250_BAL_N;
+		clk_en = +3V3;
+		clk_sel = $3N222;
+		nc = open;
+		q0_p = $3N42;
+		q0_n = $3N44;
+		q1_p = $3N163;
+		q1_n = $3N164;
+		q2_p = open;
+		q2_n = open;
+		q3_p = open;
+		q3_n = open;
+		vee = gnd;
+	}
+	
+	// clock buffer output isolation capacitors
+	inst(1:4) clk_buffer_iso_caps of cap_0402 {
+		value = "1uF";
+		this(1).a = $3N42;
+		this(2).a = $3N44;
+		this(3).a = $3N163;
+		this(4).a = $3N164;
+		this(1).b = GBTCLK0_M2C_P;
+		this(2).b = GBTCLK0_M2C_N;
+		this(3).b = GBTCLK1_M2C_P;
+		this(4).b = GBTCLK1_M2C_N;
+	}
+	
+	// clock buffer output terminations
+	inst(1:4) clk_buffer_terminations of res_0603 {
+		value = "120";
+		this(1).a = $3N42;
+		this(2).a = $3N44;
+		this(3).a = $3N163;
+		this(4).a = $3N164;
+		b = <gnd>;
+	}
+	
+	// the differential or single ended clock input select switch
+	inst diff_single_select of slide_switch {
+
+		// circuit 1
+		p1_1 = +3V3;
+		p2_1 = gnd;
+		s_1 = $3N222;
+		
+		// circuit 2 (not used)
+		p1_2 = +3V3;
+		p2_2 = gnd;
+		s_2 = open;
+	}
+	
+	// the synchronization connectors
+	inst(1:2) sync_connectors of SMA_CON {
+		this(1).sig = SYNC_OUT;
+		this(2).sig = SYNC_IN;
+		gnd = <gnd>;
+	}
+	
+	// a sync termination resitor
+	inst sync_termination of res_0603 {
+		value = "10K";
+		a = SYNC_IN;
+		b = gnd;
+	}
+	 
+	inst docking_connector of asp_134488 {
+		
+		// data ports 1 through 5
+		a[2] = DP1_M2C_P;
+		a[3] = DP1_M2C_N;
+		a[6] = DP2_M2C_P;
+		a[7] = DP2_M2C_N;
+		a[10] = DP3_M2C_P;
+		a[11] = DP3_M2C_N;
+		a[14] = DP4_M2C_P;
+		a[15] = DP4_M2C_N;
+		a[18] = DP5_M2C_P;
+		a[19] = DP5_M2C_N;
+		a[22] = DP1_C2M_P;
+		a[23] = DP1_C2M_N;
+		a[26] = DP2_C2M_P;
+		a[27] = DP2_C2M_N;
+		a[30] = DP3_C2M_P;
+		a[31] = DP3_C2M_N;
+		a[34] = DP4_C2M_P;
+		a[35] = DP4_C2M_N;
+		a[38] = DP5_C2M_P;
+		a[39] = DP5_C2M_N;
+		
+		// gigabit transceiver clock 1 m2C
+		b[20] = GBTCLK1_M2C_P;
+		b[21] = GBTCLK1_M2C_N;
+		b[1,4,5,8,9,12,13,16,17,24,25,28,29,32,33,36,37,40] = open;
+		
+		// data port 0 and sync signals
+		c[2] = DP0_C2M_P;
+		c[3] = DP0_C2M_N;
+		c[6] = DP0_M2C_P;
+		c[7] = DP0_M2C_N;
+		c[10] = SYNC_OUT;
+		c[11] = SYNC_IN;
+		c[14] = DISCRETE[0];
+		c[15] = DISCRETE[1];
+		c[18] = DISCRETE[2];
+		c[19] = DISCRETE[3];
+		c[22] = DISCRETE[4];
+		c[23] = DISCRETE[5];
+		c[26] = DISCRETE[6];
+		c[27] = DISCRETE[7];
+		c[39] = +3V3;
+		c[30,31,34,35,37] = open;
+		
+		// gigabit transceiver clock 0 m2c
+		d[1] = GBTCLK0_M2C_P;
+		d[4] = GBTCLK0_M2C_N;
+		d[30] = $4N126;
+		d[31] = $4N126;
+		d[36] = +3V3;
+		d[38] = +3V3;
+		d[40] = +3V3;
+		d[5,8,9,11,12,14,15,17,18,20,21,23,24,26,27,29,32,33,34,35] = open;
+		
+		// opens
+		e[2,3,6,7,9,10,12,13,15,16,18,19,21,22,24,25,27,28,30,31,33,34,36,37,39] = open;
+		f[1,4,5,7,8,10,11,13,14,16,17,19,20,22,23,25,26,28,29,31,32,34,35,37,38,40] = open;
+		g[2,3,6,7,9,10,12,13,15,16,18,19,21,22,24,25,27,28,30,31,33,34,36,37,39] = open;
+		h[1,2,4,5,7,8,10,11,13,14,16,17,19,20,22,23,25,26,28,29,31,32,34,35,37,38,40] = open;
+		j[2,3,6,7,9,10,12,13,15,16,18,19,21,22,24,25,27,28,30,31,33,34,36,37,39] = open;
+		k[1,4,5,7,8,10,11,13,14,16,17,19,20,22,23,25,26,28,29,31,32,34,35,37,38,40] = open;
+		
+		// grounds
+		a[1,4,5,8,9,12,13,16,17,20,21,24,25,28,29,32,33,36,37,40] = <gnd>;
+		b[2,3,6,7,10,11,14,15,18,19,22,23,26,27,30,31,34,35,38,39] = <gnd>;
+		c[1,4,5,8,9,12,13,16,17,20,21,24,25,28,29,32,33,36,38,40] = <gnd>;
+		d[2,3,6,7,10,13,16,19,22,25,28,37,39] = <gnd>;
+		e[1,4,5,8,11,14,17,20,23,26,29,32,35,38,40] = <gnd>;
+		f[2,3,6,9,12,15,18,21,24,27,30,33,36,39] = <gnd>;
+		g[1,4,5,8,11,14,17,20,23,26,29,32,35,38,40] = <gnd>;
+		h[3,6,9,12,15,18,21,24,27,30,33,36,39] = <gnd>;
+		j[1,4,5,8,11,14,17,20,23,26,29,32,35,38,40] = <gnd>;
+		k[2,3,6,9,12,15,18,21,24,27,30,33,36,39] = <gnd>;
+
+	}
+	
+	// the I/O header
+	inst header_IO of hdr_2x8 {
+		sig = DISCRETE;
+		gnd = <gnd>;
+	}
+	
+	inst(1:4) mounting_holes of mount_hole_125 {
+	}
+	
+}  

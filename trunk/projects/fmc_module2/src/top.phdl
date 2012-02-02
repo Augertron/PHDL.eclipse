@@ -1,0 +1,161 @@
+/**
+ * Design: top.phdl
+ * Adapted from PADS fmc_module.prj
+ * Submitted by: Pete Dudley, Sandia Labs
+ * Translated by: Brad Riching, Brigham Young University
+ * Feb 02, 2012
+ *
+ * Dependencies: devices.phdl, transceiver.phdl
+ */
+
+include "devices.phdl"
+include "transceiver.phdl"
+include "clock.phdl"
+
+design top {
+
+	net gnd;
+	net +3v3;
+	
+	// Data port nets
+	net[5:0] dp_c2m_p;
+	net[5:0] dp_c2m_n;
+	net[5:0] dp_m2c_p;
+	net[5:0] dp_m2c_n;
+	
+	net sync_out, sync_in, loopback;
+	
+	// the header signals
+	net[7:0] discrete;
+	
+	net[0:1] gbtclk_m2c_p;
+	net[0:1] gbtclk_m2c_n;
+
+	// transceiver ports
+	subinst(5:0) xcvr_ports "XVR" of transceiver {
+		combine(c2m_p) = dp_c2m_p;
+		combine(c2m_n) = dp_c2m_n;
+		combine(m2c_p) = dp_m2c_p;
+		combine(m2c_n) = dp_m2c_n;
+		gnd = <gnd>;
+	}
+
+	// the clock buffer sub-circuit
+	subinst clock_buf "CLK" of clock {
+		gbtclk_m2c_p = gbtclk_m2c_p;
+		gbtclk_m2c_n = gbtclk_m2c_n;
+		+3v3 = +3v3;
+		gnd = gnd;
+	}
+	
+	// the synchronization connectors
+	inst(1:2) sync_conns of SMA_CON {
+		this(1).sig = sync_out;
+		this(2).sig = sync_in;
+		gnd = <gnd>;
+	}
+	
+	// a sync termination resitor
+	inst sync_term of res_0603 {
+		value = "10K";
+		a = sync_in;
+		b = gnd;
+	}
+	
+	// all power supply decoupling capacitors
+	inst(1:10) decoup_caps of tant_cap {
+		pos = <+3V3>;
+		neg = <gnd>;
+	}
+	
+	// the I/O header
+	inst io_hdr of hdr_2x8 {
+		sig = discrete;
+		gnd = <gnd>;
+	}
+	
+	// the docking connector
+	inst dock_con of asp_134488 {
+		
+		// data ports 1 through 5
+		a[2] = dp_m2c_p[1];
+		a[3] = dp_m2c_n[1];
+		a[6] = dp_m2c_p[2];
+		a[7] = dp_m2c_n[2];
+		a[10] = dp_m2c_p[3];
+		a[11] = dp_m2c_n[3];
+		a[14] = dp_m2c_p[4];
+		a[15] = dp_m2c_n[4];
+		a[18] = dp_m2c_p[5];
+		a[19] = dp_m2c_n[5];
+		a[22] = dp_c2m_p[1];
+		a[23] = dp_c2m_n[1];
+		a[26] = dp_c2m_p[2];
+		a[27] = dp_c2m_n[2];
+		a[30] = dp_c2m_p[3];
+		a[31] = dp_c2m_n[3];
+		a[34] = dp_c2m_p[4];
+		a[35] = dp_c2m_n[4];
+		a[38] = dp_c2m_p[5];
+		a[39] = dp_c2m_n[5];
+		
+		
+		
+		// gigabit transceiver clock 1 m2C
+		b[20] = gbtclk_m2c_p[1];
+		b[21] = gbtclk_m2c_n[1];
+		b[1,4,5,8,9,12,13,16,17,24,25,28,29,32,33,36,37,40] = open;
+		
+		// data port 0 and sync signals
+		c[2] = dp_c2m_p[0];
+		c[3] = dp_c2m_n[0];
+		c[6] = dp_m2c_p[0];
+		c[7] = dp_m2c_n[0];
+		c[10] = sync_out;
+		c[11] = sync_in;
+		c[14] = discrete[0];
+		c[15] = discrete[1];
+		c[18] = discrete[2];
+		c[19] = discrete[3];
+		c[22] = discrete[4];
+		c[23] = discrete[5];
+		c[26] = discrete[6];
+		c[27] = discrete[7];
+		c[39] = +3V3;
+		c[30,31,34,35,37] = open;
+		
+		// gigabit transceiver clock 0 m2c
+		d[1] = gbtclk_m2c_p[0];
+		d[4] = gbtclk_m2c_n[0];
+		d[30] = loopback;
+		d[31] = loopback;
+		d[36] = +3V3;
+		d[38] = +3V3;
+		d[40] = +3V3;
+		d[5,8,9,11,12,14,15,17,18,20,21,23,24,26,27,29,32,33,34,35] = open;
+		
+		// opens
+		e[2,3,6,7,9,10,12,13,15,16,18,19,21,22,24,25,27,28,30,31,33,34,36,37,39] = open;
+		f[1,4,5,7,8,10,11,13,14,16,17,19,20,22,23,25,26,28,29,31,32,34,35,37,38,40] = open;
+		g[2,3,6,7,9,10,12,13,15,16,18,19,21,22,24,25,27,28,30,31,33,34,36,37,39] = open;
+		h[1,2,4,5,7,8,10,11,13,14,16,17,19,20,22,23,25,26,28,29,31,32,34,35,37,38,40] = open;
+		j[2,3,6,7,9,10,12,13,15,16,18,19,21,22,24,25,27,28,30,31,33,34,36,37,39] = open;
+		k[1,4,5,7,8,10,11,13,14,16,17,19,20,22,23,25,26,28,29,31,32,34,35,37,38,40] = open;
+		
+		// grounds
+		a[1,4,5,8,9,12,13,16,17,20,21,24,25,28,29,32,33,36,37,40] = <gnd>;
+		b[2,3,6,7,10,11,14,15,18,19,22,23,26,27,30,31,34,35,38,39] = <gnd>;
+		c[1,4,5,8,9,12,13,16,17,20,21,24,25,28,29,32,33,36,38,40] = <gnd>;
+		d[2,3,6,7,10,13,16,19,22,25,28,37,39] = <gnd>;
+		e[1,4,5,8,11,14,17,20,23,26,29,32,35,38,40] = <gnd>;
+		f[2,3,6,9,12,15,18,21,24,27,30,33,36,39] = <gnd>;
+		g[1,4,5,8,11,14,17,20,23,26,29,32,35,38,40] = <gnd>;
+		h[3,6,9,12,15,18,21,24,27,30,33,36,39] = <gnd>;
+		j[1,4,5,8,11,14,17,20,23,26,29,32,35,38,40] = <gnd>;
+		k[2,3,6,9,12,15,18,21,24,27,30,33,36,39] = <gnd>;
+
+	}
+	
+	// mounting holes for the board
+	inst(1:4) mtg_holes of mount_hole_125 {}
+}

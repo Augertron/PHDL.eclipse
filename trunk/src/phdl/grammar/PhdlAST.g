@@ -62,6 +62,10 @@ options {
 
 @members {
 	
+	
+	/** The set of required attributes */
+	private Set<String> reqAttrs = new HashSet<String>();
+	
 	/** The list of errors */
 	private List<String> errors = new ArrayList<String>();
 	
@@ -124,6 +128,15 @@ options {
 				return s;
 		}
 		return null;
+	}
+	
+	/**
+	 * Called on the walker object to pass in a set of required attributes
+	 */
+	public void setRequiredAttributes(String[] attributes) {
+		for(int i = 0; i < attributes.length; i ++) {
+			reqAttrs.add(attributes[i]);
+		}
 	}
 		
 	/**
@@ -311,7 +324,19 @@ deviceDecl
 	
 		(infoDecl 	{dev.appendInfo($infoDecl.info.getText());})* 
 		
-		attrDecl[devs]* pinDecl[dev]* )
+		attrDecl[devs]* 
+		
+		{	// report any missing required attributes
+			for(String s : reqAttrs) {
+				s = s.toUpperCase();
+				if(dev.getAttribute(s)==null)
+					addError($devName, "required attribute \"" + s + "\" missing in device");
+			}
+		}
+		
+		pinDecl[dev]* 
+		
+		)
 	;
 	
 attrDecl[List<Attributable> parents]
@@ -329,7 +354,7 @@ attrDecl[List<Attributable> parents]
 				// check if the attribute is a refprefix attribute
 				if (a.getName().equals("REFPREFIX")) {
 					// check to see if refPrefix begins with a letter
-					if (!Pattern.compile("^[A-Z]").matcher(a.getValue()).find())
+					if (!Pattern.compile("^[A-Z,a-z]").matcher(a.getValue()).find())
 						addError($attrName, "invalid refPrefix in device");
 				}
 			}	
@@ -543,12 +568,28 @@ instDecl[DesignUnit des, String groupName]
 			}
 		)*
 		
-		{	// check for duplicates based solely on the raw instance name
-			if (!instNames.add($instName.text))
-				addError($instName, "duplicate instance name exists in design unit");
-		}
+			{	// check for duplicates based solely on the raw instance name
+				if (!instNames.add($instName.text))
+					addError($instName, "duplicate instance name exists in design unit");
+			}
 		
-		attrAssign[des, $instName.text]* pinAssign[des, $instName.text]*)
+		attrAssign[des, $instName.text]* pinAssign[des, $instName.text]*
+		
+			{	// assign the refprefix, refdes, package, and library if it exists
+				for (Instance i : des.getInstancesByName($instName.text)) {
+					for (Attribute a : i.getAttributes()) {
+						if (a.getName().equals("REFPREFIX"))
+							i.setRefPrefix(a.getValue());
+						else if (a.getName().equals("REFDES"))
+							i.setRefDes(a.getValue());
+						else if (a.getName().equals("PACKAGE"))
+							i.setPackage(a.getValue());
+						else if (a.getName().equals("LIBRARY"))
+							i.setLibrary(a.getValue());
+					}
+				}
+			}
+		)
 	;
 	
 attrAssign[DesignUnit des, String instName]

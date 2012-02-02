@@ -1,0 +1,15 @@
+device c_dev {
+	attr c_name = "c_value";
+	attr package = "my_package";
+	attr library = "my_library";
+	attr refPrefix = "C";
+	pin c_pin = {1};
+}
+
+subdesign c_sub {
+	port c_port;
+	
+	inst c_inst of c_dev {
+		c_pin = c_port;
+	}
+}

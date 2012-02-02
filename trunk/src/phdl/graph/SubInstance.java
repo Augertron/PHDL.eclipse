@@ -29,18 +29,6 @@ public class SubInstance extends HierarchyUnit {
 		this.subDesign = subDesign;
 		this.refPrefix = subDesign.getRefPrefix();
 
-		// make new SubInstances
-		for (SubInstance s : subDesign.subInsts) {
-			SubInstance inst = new SubInstance(this, s);
-			inst.setIndex(s.getIndex());
-			inst.setLine(s.getLine());
-			inst.setPosition(s.getPosition());
-			inst.setFileName(s.getFileName());
-			inst.setInfo(s.getInfo());
-			if (!this.addSubInst(inst))
-				System.out.println("duplicate subinstance");
-		}
-
 		// make copies of all instances
 		for (Instance i : subDesign.instances) {
 			Instance newInst = new Instance(this, i);
@@ -60,6 +48,18 @@ public class SubInstance extends HierarchyUnit {
 				if (!this.addConnection(newNet))
 					System.out.print("duplicate net");
 			}
+		}
+
+		// make new SubInstances
+		for (SubInstance s : subDesign.subInsts) {
+			SubInstance inst = new SubInstance(this, s);
+			inst.setIndex(s.getIndex());
+			inst.setLine(s.getLine());
+			inst.setPosition(s.getPosition());
+			inst.setFileName(s.getFileName());
+			inst.setInfo(s.getInfo());
+			if (!this.addSubInst(inst))
+				System.out.println("duplicate subinstance");
 		}
 
 		// reconstruct all net and port connectivity
@@ -101,18 +101,6 @@ public class SubInstance extends HierarchyUnit {
 		this.subDesign = old.getSubDesign();
 		this.refPrefix = old.getRefPrefix();
 
-		// make new SubInstances
-		for (SubInstance s : old.subInsts) {
-			SubInstance inst = new SubInstance(this, s);
-			inst.setIndex(s.getIndex());
-			inst.setLine(s.getLine());
-			inst.setPosition(s.getPosition());
-			inst.setFileName(s.getFileName());
-			inst.setInfo(s.getInfo());
-			if (!this.addSubInst(inst))
-				System.out.println("duplicate subinstance");
-		}
-
 		// make copies of all instances
 		for (Instance i : old.instances) {
 			Instance newInst = new Instance(this, i);
@@ -137,18 +125,35 @@ public class SubInstance extends HierarchyUnit {
 			}
 		}
 
+		// make new SubInstances
+		for (SubInstance s : old.subInsts) {
+			SubInstance inst = new SubInstance(this, s);
+			inst.setIndex(s.getIndex());
+			inst.setLine(s.getLine());
+			inst.setPosition(s.getPosition());
+			inst.setFileName(s.getFileName());
+			inst.setInfo(s.getInfo());
+			if (!this.addSubInst(inst))
+				System.out.println("duplicate subinstance");
+		}
+
 		// reconstruct all net and port connectivity
 		for (int i = 0; i < old.connections.size(); i++) {
-			for (Connection c : old.connections.get(i).getConnections()) {
+			Connection oldConnection = old.connections.get(i);
+			for (Connection c : oldConnection.getConnections()) {
 				int index = old.connections.indexOf(c);
-				if (index != -1)
-					this.connections.get(i).addConnection(this.connections.get(index));
-				else {
-					SubInstance s = this.getSubInstance(c.getParent().getName(), c.getParent().getIndex());
-					Port p = s.getPort(c.getName(), c.getIndex());
-					p.setAssignment(this.connections.get(i));
-				}
+				this.connections.get(i).addConnection(this.connections.get(index));
 			}
+			// reconstruct connections across levels of hierarchy
+			if (oldConnection instanceof Port) {
+				Connection oldAssign = ((Port) oldConnection).getAssignment();
+				int index = old.getParent().connections.indexOf(oldAssign);
+				Connection newAssign = this.getParent().connections.get(index);
+				Port newConnection = (Port) this.connections.get(i);
+				newAssign.addConnection(newConnection);
+				newConnection.setAssignment(newAssign);
+			}
+
 		}
 
 		// reconstruct all of the pin connectivity
@@ -159,6 +164,7 @@ public class SubInstance extends HierarchyUnit {
 					int index = old.connections.indexOf(subC);
 					this.instances.get(i).getPins().get(p).setAssignment(this.connections.get(index));
 					this.connections.get(index).addPin(this.instances.get(i).getPins().get(p));
+
 				}
 			}
 		}
@@ -166,18 +172,17 @@ public class SubInstance extends HierarchyUnit {
 
 	@Override
 	public boolean equals(Object o) {
-		if (!(this.parent instanceof SubInstance)) {
+		if (!(o instanceof SubInstance)) {
 			return false;
 		}
 		return this.name.equals(((SubInstance) o).getName()) && this.getIndex() == ((SubInstance) o).getIndex()
 			&& this.parent.equals(((SubInstance) o).getParent());
 	}
-	
+
 	public String getHierarchyName() {
 		if (parent instanceof SubInstance) {
-			return getHierarchyName() + "." + this.getNameIndex();
-		}
-		else {
+			return ((SubInstance) parent).getHierarchyName() + "$" + this.getNameIndex();
+		} else {
 			return this.getNameIndex();
 		}
 	}

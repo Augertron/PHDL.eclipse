@@ -1,0 +1,30 @@
+include "devices.phdl"
+include "mix.phdl"
+
+design minimix {
+
+	net left_out, right_out;
+	net pwr, gnd;
+
+	inst phones_jack of jack {
+		tip = left_out;
+		ring = right_out;
+		sleeve = gnd;
+	}
+	
+	inst battery_9v of battery {
+		pos = pwr;
+		neg = gnd;
+	}
+
+	subinst(0:1) left_right of mix {
+		this(1).mix_buffer.value = "TL073";
+		//newattr this(1).mix_buffer.package = "DIL14";
+		//this(1).inputs(1,3).trim.value = "20K";
+	
+		this(0).out = left_out;
+		this(1).out = right_out;
+		pwr = pwr;
+		gnd = gnd;
+	}
+}

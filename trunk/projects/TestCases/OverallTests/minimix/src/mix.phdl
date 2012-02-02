@@ -1,0 +1,73 @@
+include "input_stage.phdl"
+
+subdesign mix {
+
+	port out;
+	port pwr;
+	port gnd;
+	
+	net sum;
+	net inv;
+	net bias;
+	net block;
+	net feedback;
+	
+	subinst(0:3) inputs of input_stage {
+		this(1,3).trim.value = "50K";
+		newattr this(1,3).trim.brad = "riching";
+		signal = <sum>;
+		ground = <gnd>;
+	}
+	
+	inst mix_buffer of opamp {
+		+in[0] = bias;
+		-in[0] = sum;
+		out[0] = inv;
+		
+		+in[1] = bias;
+		-in[1] = feedback;
+		out[1] = block;
+
+		vdd = pwr;
+		vss = gnd;
+	}
+	
+	inst curr_res of res {
+		a = inv;
+		b = feedback;
+	}
+	
+	inst(0:1) feedback_res of res {
+		this(0).a = sum;
+		this(0).b = inv;
+		this(1).a = feedback;
+		this(1).b = block;
+	}
+	
+	inst(0:1) bias_res of res {
+		this(0).a = gnd;
+		this(0).b = bias;
+		this(1).a = bias;
+		this(1).b = pwr;
+	}
+	
+	inst(0:1) bias_cap of cap {
+		this(0).pos = bias;
+		this(0).neg = gnd;
+		this(1).pos = pwr;
+		this(1).neg = gnd;
+	}
+	
+	inst block_cap of cap {
+		value = "2.2u";
+		pos = block;
+		neg = out;
+	}
+	
+	inst out_res of res {
+		value = "1Meg";
+		a = out;
+		b = gnd;
+	}
+
+}

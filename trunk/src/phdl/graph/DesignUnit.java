@@ -385,7 +385,7 @@ public abstract class DesignUnit extends Node {
 	}
 
 	public void printHierarchy() {
-		System.out.println("\n  Design unit hierarchy:");
+		System.out.println("\n  Design hierarchy:");
 		printHierarchyRecursive(3);
 		System.out.println();
 	}
