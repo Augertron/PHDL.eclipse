@@ -1,5 +1,6 @@
 phdl
-phdl.analyzer
-phdl.designer
-phdl.exception
-phdl.parser
+phdl.generator
+phdl.grammar
+phdl.graph
+phdl.xml
+utils.csv2phdl
