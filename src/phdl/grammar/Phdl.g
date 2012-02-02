@@ -379,12 +379,12 @@ subAttrAssign
 	;
 
 pinAssign
-	:	((COMBINE LPAREN qualifier? operand RPAREN) | qualifier? operand) EQUALS concat SEMICOLON 
+	:	((COMBINE LPAREN qualifier? operand RPAREN) | (qualifier? operand)) EQUALS concat SEMICOLON 
 		-> ^(PIN_ASSIGN COMBINE? qualifier? operand concat)
 	;
 	
 portAssign
-	:	((COMBINE LPAREN qualifier? operand RPAREN) | qualifier? operand) EQUALS concat SEMICOLON 
+	:	((COMBINE LPAREN qualifier? operand RPAREN) | (qualifier? operand)) EQUALS concat SEMICOLON 
 		-> ^(PORT_ASSIGN COMBINE? qualifier? operand concat)
 	;	
 

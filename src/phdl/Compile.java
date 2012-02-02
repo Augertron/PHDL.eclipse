@@ -42,7 +42,7 @@ public class Compile {
 		+ " http://www.gnu.org/licenses/.\n";
 
 	static String version = "PHDL Compiler v2.0 Java v1.6 ANTLR v3.2 Feb 01 2012";
-	static String[] reqAttr = { "REFPREFIX", "PACKAGE", "LIBRARY" };
+	static String[] reqAttrs = { "REFPREFIX", "PACKAGE", "LIBRARY" };
 	static String[] dirs = { "png", "ast", "bom", "asc", "scr", "csv" };
 
 	static JSAP jsap;
@@ -177,7 +177,7 @@ public class Compile {
 
 		// call the parser, and obtain all of the design units
 		ParsePHDL p = new ParsePHDL(cfg);
-		p.parse();
+		p.parse(reqAttrs);
 
 		// print out the reports if requested
 		if (cfg.getBoolean("report")) {
@@ -208,7 +208,7 @@ public class Compile {
 		gen.generateRefDes();
 		gen.generateBoM();
 		gen.generateNetList();
-		gen.generateInfo();
+		//gen.generateInfo();
 
 		// display the hierarchy on the console
 		p.getTopDesign().printHierarchy();

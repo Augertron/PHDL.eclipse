@@ -1,0 +1,29 @@
+subdesign input_stage {
+	port signal;
+	port ground;
+	
+	net input;
+	net wiper;
+	net block;
+	
+	inst input_sig of rca {
+		sig = input;
+		gnd = ground;
+	}
+	
+	inst trim of pot {
+		a = input;
+		b = wiper;
+		c = ground;
+	}
+	
+	inst dc_block of cap {
+		pos = wiper;
+		neg = block;
+	}
+	
+	inst curr_lim of res {
+		a = block;
+		b = signal;
+	}
+}

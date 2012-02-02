@@ -1,0 +1,75 @@
+//PHDL Generated Dot file
+//Design unit: b_sub (SUBDESIGN)
+//File: b_sub.phdl, line 8:10
+
+graph b_sub {
+
+	splines=false;
+
+	// SubInstances
+	subgraph "cluster_c_subinst(0)" {
+		style=filled;
+		color=lightgrey;
+		label="SubInstance: c_subinst(0)";
+		subgraph "cluster_c_subinst(0)_ports" {
+			label="Ports:";
+			node [shape=record, width=0.25, height=0.25];
+			subgraph "cluster_c_subinst(0)_ports_C_PORT[-1]" {
+				label="C_PORT";
+				"c_subinst(0)_C_PORT" [label="<-1> -1"];
+			}
+		}
+	}
+
+	subgraph "cluster_c_subinst(1)" {
+		style=filled;
+		color=lightgrey;
+		label="SubInstance: c_subinst(1)";
+		subgraph "cluster_c_subinst(1)_ports" {
+			label="Ports:";
+			node [shape=record, width=0.25, height=0.25];
+			subgraph "cluster_c_subinst(1)_ports_C_PORT[-1]" {
+				label="C_PORT";
+				"c_subinst(1)_C_PORT" [label="<-1> -1"];
+			}
+		}
+	}
+
+	// Instances
+	subgraph "cluster_b_inst" {
+		style=filled;
+		color=lightgrey;
+		label="Instance: b_inst";
+		subgraph "cluster_b_inst_attributes" {
+			label="Attributes:";
+			node [shape=none];
+			"b_inst_attrs" [label="B_NAME = b_value\n"];
+		}
+		subgraph "cluster_b_inst_pins" {
+			label="Pins:";
+			node [shape=record, width=0.25, height=0.25];
+			subgraph "cluster_b_inst_pins_b_pin[-1]" {
+				label="b_pin";
+				"b_inst_b_pin" [label="<-1> 1"];
+			}
+		}
+	}
+
+
+	// Ports
+	subgraph "cluster_nets_B_PORT[-1]" {
+		style=filled;
+		color=lightgrey;
+		node [shape=record, width=0.25, height=0.25];
+		label="B_PORT[-1]";
+		"B_PORT" [label="<-1> -1"];
+	}
+
+
+	// Edges
+	"B_PORT":-1 -- "b_inst_b_pin":-1;
+	//edge from port
+	"c_subinst(0)_C_PORT":-1 -- "B_PORT":-1;
+	//edge from port
+	"c_subinst(1)_C_PORT":-1 -- "B_PORT":-1;
+}

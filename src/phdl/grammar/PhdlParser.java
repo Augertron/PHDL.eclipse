@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g 2012-02-01 00:35:37
+// $ANTLR 3.3 Nov 30, 2010 12:50:56 C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g 2012-02-01 17:59:45
 
 /*
     Copyright (C) 2011  Brigham Young University
@@ -425,7 +425,7 @@ public class PhdlParser extends Parser {
 
 
             // AST REWRITE
-            // elements: attrDecl, pinDecl, infoDecl, IDENT
+            // elements: infoDecl, attrDecl, IDENT, pinDecl
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -543,7 +543,7 @@ public class PhdlParser extends Parser {
 
 
             // AST REWRITE
-            // elements: IDENT, STRING
+            // elements: STRING, IDENT
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -687,7 +687,7 @@ public class PhdlParser extends Parser {
 
 
             // AST REWRITE
-            // elements: pinType, width, IDENT, pinList
+            // elements: IDENT, pinType, pinList, width
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -1502,7 +1502,7 @@ public class PhdlParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: attrDecl, width, IDENT
+                    // elements: attrDecl, IDENT, width
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -1623,7 +1623,7 @@ public class PhdlParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: IDENT, width
+                    // elements: width, IDENT
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -1885,7 +1885,7 @@ public class PhdlParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: infoDecl, width, IDENT, IDENT, pinAssign, attrAssign
+                    // elements: IDENT, IDENT, width, attrAssign, infoDecl, pinAssign
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -2059,7 +2059,7 @@ public class PhdlParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: portAssign, STRING, IDENT, IDENT, width, infoDecl, subAttrAssign
+                    // elements: subAttrAssign, IDENT, width, STRING, IDENT, portAssign, infoDecl
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -2234,7 +2234,7 @@ public class PhdlParser extends Parser {
 
 
             // AST REWRITE
-            // elements: NEWATTR, qualifier, IDENT, STRING
+            // elements: STRING, NEWATTR, qualifier, IDENT
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -2440,7 +2440,7 @@ public class PhdlParser extends Parser {
 
 
             // AST REWRITE
-            // elements: IDENT, NEWATTR, STRING, name, qualifier
+            // elements: name, STRING, IDENT, qualifier, NEWATTR
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -2515,7 +2515,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "pinAssign"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:381:1: pinAssign : ( ( COMBINE LPAREN ( qualifier )? operand RPAREN ) | ( qualifier )? operand ) EQUALS concat SEMICOLON -> ^( PIN_ASSIGN ( COMBINE )? ( qualifier )? operand concat ) ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:381:1: pinAssign : ( ( COMBINE LPAREN ( qualifier )? operand RPAREN ) | ( ( qualifier )? operand ) ) EQUALS concat SEMICOLON -> ^( PIN_ASSIGN ( COMBINE )? ( qualifier )? operand concat ) ;
     public final PhdlParser.pinAssign_return pinAssign() throws RecognitionException {
         PhdlParser.pinAssign_return retval = new PhdlParser.pinAssign_return();
         retval.start = input.LT(1);
@@ -2552,10 +2552,10 @@ public class PhdlParser extends Parser {
         RewriteRuleSubtreeStream stream_operand=new RewriteRuleSubtreeStream(adaptor,"rule operand");
         RewriteRuleSubtreeStream stream_concat=new RewriteRuleSubtreeStream(adaptor,"rule concat");
         try {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:382:2: ( ( ( COMBINE LPAREN ( qualifier )? operand RPAREN ) | ( qualifier )? operand ) EQUALS concat SEMICOLON -> ^( PIN_ASSIGN ( COMBINE )? ( qualifier )? operand concat ) )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:382:4: ( ( COMBINE LPAREN ( qualifier )? operand RPAREN ) | ( qualifier )? operand ) EQUALS concat SEMICOLON
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:382:2: ( ( ( COMBINE LPAREN ( qualifier )? operand RPAREN ) | ( ( qualifier )? operand ) ) EQUALS concat SEMICOLON -> ^( PIN_ASSIGN ( COMBINE )? ( qualifier )? operand concat ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:382:4: ( ( COMBINE LPAREN ( qualifier )? operand RPAREN ) | ( ( qualifier )? operand ) ) EQUALS concat SEMICOLON
             {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:382:4: ( ( COMBINE LPAREN ( qualifier )? operand RPAREN ) | ( qualifier )? operand )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:382:4: ( ( COMBINE LPAREN ( qualifier )? operand RPAREN ) | ( ( qualifier )? operand ) )
             int alt29=2;
             int LA29_0 = input.LA(1);
 
@@ -2624,9 +2624,12 @@ public class PhdlParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:382:50: ( qualifier )? operand
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:382:50: ( ( qualifier )? operand )
                     {
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:382:50: ( qualifier )?
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:382:50: ( ( qualifier )? operand )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:382:51: ( qualifier )? operand
+                    {
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:382:51: ( qualifier )?
                     int alt28=2;
                     int LA28_0 = input.LA(1);
 
@@ -2637,7 +2640,7 @@ public class PhdlParser extends Parser {
                         case 1 :
                             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:0:0: qualifier
                             {
-                            pushFollow(FOLLOW_qualifier_in_pinAssign1080);
+                            pushFollow(FOLLOW_qualifier_in_pinAssign1081);
                             qualifier107=qualifier();
 
                             state._fsp--;
@@ -2649,7 +2652,7 @@ public class PhdlParser extends Parser {
 
                     }
 
-                    pushFollow(FOLLOW_operand_in_pinAssign1083);
+                    pushFollow(FOLLOW_operand_in_pinAssign1084);
                     operand108=operand();
 
                     state._fsp--;
@@ -2657,26 +2660,29 @@ public class PhdlParser extends Parser {
                     if ( state.backtracking==0 ) stream_operand.add(operand108.getTree());
 
                     }
+
+
+                    }
                     break;
 
             }
 
-            EQUALS109=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_pinAssign1086); if (state.failed) return retval; 
+            EQUALS109=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_pinAssign1088); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_EQUALS.add(EQUALS109);
 
-            pushFollow(FOLLOW_concat_in_pinAssign1088);
+            pushFollow(FOLLOW_concat_in_pinAssign1090);
             concat110=concat();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_concat.add(concat110.getTree());
-            SEMICOLON111=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_pinAssign1090); if (state.failed) return retval; 
+            SEMICOLON111=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_pinAssign1092); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_SEMICOLON.add(SEMICOLON111);
 
 
 
             // AST REWRITE
-            // elements: operand, concat, COMBINE, qualifier
+            // elements: concat, qualifier, operand, COMBINE
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -2743,7 +2749,7 @@ public class PhdlParser extends Parser {
     };
 
     // $ANTLR start "portAssign"
-    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:386:1: portAssign : ( ( COMBINE LPAREN ( qualifier )? operand RPAREN ) | ( qualifier )? operand ) EQUALS concat SEMICOLON -> ^( PORT_ASSIGN ( COMBINE )? ( qualifier )? operand concat ) ;
+    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:386:1: portAssign : ( ( COMBINE LPAREN ( qualifier )? operand RPAREN ) | ( ( qualifier )? operand ) ) EQUALS concat SEMICOLON -> ^( PORT_ASSIGN ( COMBINE )? ( qualifier )? operand concat ) ;
     public final PhdlParser.portAssign_return portAssign() throws RecognitionException {
         PhdlParser.portAssign_return retval = new PhdlParser.portAssign_return();
         retval.start = input.LT(1);
@@ -2780,10 +2786,10 @@ public class PhdlParser extends Parser {
         RewriteRuleSubtreeStream stream_operand=new RewriteRuleSubtreeStream(adaptor,"rule operand");
         RewriteRuleSubtreeStream stream_concat=new RewriteRuleSubtreeStream(adaptor,"rule concat");
         try {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:387:2: ( ( ( COMBINE LPAREN ( qualifier )? operand RPAREN ) | ( qualifier )? operand ) EQUALS concat SEMICOLON -> ^( PORT_ASSIGN ( COMBINE )? ( qualifier )? operand concat ) )
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:387:4: ( ( COMBINE LPAREN ( qualifier )? operand RPAREN ) | ( qualifier )? operand ) EQUALS concat SEMICOLON
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:387:2: ( ( ( COMBINE LPAREN ( qualifier )? operand RPAREN ) | ( ( qualifier )? operand ) ) EQUALS concat SEMICOLON -> ^( PORT_ASSIGN ( COMBINE )? ( qualifier )? operand concat ) )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:387:4: ( ( COMBINE LPAREN ( qualifier )? operand RPAREN ) | ( ( qualifier )? operand ) ) EQUALS concat SEMICOLON
             {
-            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:387:4: ( ( COMBINE LPAREN ( qualifier )? operand RPAREN ) | ( qualifier )? operand )
+            // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:387:4: ( ( COMBINE LPAREN ( qualifier )? operand RPAREN ) | ( ( qualifier )? operand ) )
             int alt32=2;
             int LA32_0 = input.LA(1);
 
@@ -2807,10 +2813,10 @@ public class PhdlParser extends Parser {
                     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:387:5: ( COMBINE LPAREN ( qualifier )? operand RPAREN )
                     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:387:6: COMBINE LPAREN ( qualifier )? operand RPAREN
                     {
-                    COMBINE112=(Token)match(input,COMBINE,FOLLOW_COMBINE_in_portAssign1123); if (state.failed) return retval; 
+                    COMBINE112=(Token)match(input,COMBINE,FOLLOW_COMBINE_in_portAssign1125); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_COMBINE.add(COMBINE112);
 
-                    LPAREN113=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_portAssign1125); if (state.failed) return retval; 
+                    LPAREN113=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_portAssign1127); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN113);
 
                     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:387:21: ( qualifier )?
@@ -2824,7 +2830,7 @@ public class PhdlParser extends Parser {
                         case 1 :
                             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:0:0: qualifier
                             {
-                            pushFollow(FOLLOW_qualifier_in_portAssign1127);
+                            pushFollow(FOLLOW_qualifier_in_portAssign1129);
                             qualifier114=qualifier();
 
                             state._fsp--;
@@ -2836,13 +2842,13 @@ public class PhdlParser extends Parser {
 
                     }
 
-                    pushFollow(FOLLOW_operand_in_portAssign1130);
+                    pushFollow(FOLLOW_operand_in_portAssign1132);
                     operand115=operand();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_operand.add(operand115.getTree());
-                    RPAREN116=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_portAssign1132); if (state.failed) return retval; 
+                    RPAREN116=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_portAssign1134); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN116);
 
 
@@ -2852,9 +2858,12 @@ public class PhdlParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:387:50: ( qualifier )? operand
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:387:50: ( ( qualifier )? operand )
                     {
-                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:387:50: ( qualifier )?
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:387:50: ( ( qualifier )? operand )
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:387:51: ( qualifier )? operand
+                    {
+                    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:387:51: ( qualifier )?
                     int alt31=2;
                     int LA31_0 = input.LA(1);
 
@@ -2865,7 +2874,7 @@ public class PhdlParser extends Parser {
                         case 1 :
                             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:0:0: qualifier
                             {
-                            pushFollow(FOLLOW_qualifier_in_portAssign1137);
+                            pushFollow(FOLLOW_qualifier_in_portAssign1140);
                             qualifier117=qualifier();
 
                             state._fsp--;
@@ -2877,7 +2886,7 @@ public class PhdlParser extends Parser {
 
                     }
 
-                    pushFollow(FOLLOW_operand_in_portAssign1140);
+                    pushFollow(FOLLOW_operand_in_portAssign1143);
                     operand118=operand();
 
                     state._fsp--;
@@ -2885,26 +2894,29 @@ public class PhdlParser extends Parser {
                     if ( state.backtracking==0 ) stream_operand.add(operand118.getTree());
 
                     }
+
+
+                    }
                     break;
 
             }
 
-            EQUALS119=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_portAssign1143); if (state.failed) return retval; 
+            EQUALS119=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_portAssign1147); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_EQUALS.add(EQUALS119);
 
-            pushFollow(FOLLOW_concat_in_portAssign1145);
+            pushFollow(FOLLOW_concat_in_portAssign1149);
             concat120=concat();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_concat.add(concat120.getTree());
-            SEMICOLON121=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_portAssign1147); if (state.failed) return retval; 
+            SEMICOLON121=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_portAssign1151); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_SEMICOLON.add(SEMICOLON121);
 
 
 
             // AST REWRITE
-            // elements: operand, qualifier, concat, COMBINE
+            // elements: qualifier, COMBINE, concat, operand
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -2995,28 +3007,28 @@ public class PhdlParser extends Parser {
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:397:2: ( operand EQUALS concat SEMICOLON -> ^( CONNECT_ASSIGN operand concat ) )
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:397:4: operand EQUALS concat SEMICOLON
             {
-            pushFollow(FOLLOW_operand_in_connectAssign1180);
+            pushFollow(FOLLOW_operand_in_connectAssign1184);
             operand122=operand();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_operand.add(operand122.getTree());
-            EQUALS123=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_connectAssign1182); if (state.failed) return retval; 
+            EQUALS123=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_connectAssign1186); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_EQUALS.add(EQUALS123);
 
-            pushFollow(FOLLOW_concat_in_connectAssign1184);
+            pushFollow(FOLLOW_concat_in_connectAssign1188);
             concat124=concat();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_concat.add(concat124.getTree());
-            SEMICOLON125=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_connectAssign1186); if (state.failed) return retval; 
+            SEMICOLON125=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_connectAssign1190); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_SEMICOLON.add(SEMICOLON125);
 
 
 
             // AST REWRITE
-            // elements: concat, operand
+            // elements: operand, concat
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -3098,13 +3110,13 @@ public class PhdlParser extends Parser {
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:407:2: ( GROUP STRING LBRACE ( groupBody )* RBRACE -> ^( GROUP_DECL STRING ( groupBody )* ) )
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:407:5: GROUP STRING LBRACE ( groupBody )* RBRACE
             {
-            GROUP126=(Token)match(input,GROUP,FOLLOW_GROUP_in_groupDecl1211); if (state.failed) return retval; 
+            GROUP126=(Token)match(input,GROUP,FOLLOW_GROUP_in_groupDecl1215); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_GROUP.add(GROUP126);
 
-            STRING127=(Token)match(input,STRING,FOLLOW_STRING_in_groupDecl1213); if (state.failed) return retval; 
+            STRING127=(Token)match(input,STRING,FOLLOW_STRING_in_groupDecl1217); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_STRING.add(STRING127);
 
-            LBRACE128=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_groupDecl1215); if (state.failed) return retval; 
+            LBRACE128=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_groupDecl1219); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_LBRACE.add(LBRACE128);
 
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:407:25: ( groupBody )*
@@ -3122,7 +3134,7 @@ public class PhdlParser extends Parser {
             	case 1 :
             	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:0:0: groupBody
             	    {
-            	    pushFollow(FOLLOW_groupBody_in_groupDecl1217);
+            	    pushFollow(FOLLOW_groupBody_in_groupDecl1221);
             	    groupBody129=groupBody();
 
             	    state._fsp--;
@@ -3137,7 +3149,7 @@ public class PhdlParser extends Parser {
                 }
             } while (true);
 
-            RBRACE130=(Token)match(input,RBRACE,FOLLOW_RBRACE_in_groupDecl1220); if (state.failed) return retval; 
+            RBRACE130=(Token)match(input,RBRACE,FOLLOW_RBRACE_in_groupDecl1224); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_RBRACE.add(RBRACE130);
 
 
@@ -3261,7 +3273,7 @@ public class PhdlParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    pushFollow(FOLLOW_infoDecl_in_groupBody1245);
+                    pushFollow(FOLLOW_infoDecl_in_groupBody1249);
                     infoDecl131=infoDecl();
 
                     state._fsp--;
@@ -3275,7 +3287,7 @@ public class PhdlParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    pushFollow(FOLLOW_connectDecl_in_groupBody1250);
+                    pushFollow(FOLLOW_connectDecl_in_groupBody1254);
                     connectDecl132=connectDecl();
 
                     state._fsp--;
@@ -3289,7 +3301,7 @@ public class PhdlParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    pushFollow(FOLLOW_instDecl_in_groupBody1255);
+                    pushFollow(FOLLOW_instDecl_in_groupBody1259);
                     instDecl133=instDecl();
 
                     state._fsp--;
@@ -3303,7 +3315,7 @@ public class PhdlParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    pushFollow(FOLLOW_connectAssign_in_groupBody1260);
+                    pushFollow(FOLLOW_connectAssign_in_groupBody1264);
                     connectAssign134=connectAssign();
 
                     state._fsp--;
@@ -3361,13 +3373,13 @@ public class PhdlParser extends Parser {
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:429:2: ( INT COLON INT -> ^( WIDTH INT INT ) )
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:429:4: INT COLON INT
             {
-            INT135=(Token)match(input,INT,FOLLOW_INT_in_width1273); if (state.failed) return retval; 
+            INT135=(Token)match(input,INT,FOLLOW_INT_in_width1277); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_INT.add(INT135);
 
-            COLON136=(Token)match(input,COLON,FOLLOW_COLON_in_width1275); if (state.failed) return retval; 
+            COLON136=(Token)match(input,COLON,FOLLOW_COLON_in_width1279); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_COLON.add(COLON136);
 
-            INT137=(Token)match(input,INT,FOLLOW_INT_in_width1277); if (state.failed) return retval; 
+            INT137=(Token)match(input,INT,FOLLOW_INT_in_width1281); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_INT.add(INT137);
 
 
@@ -3504,7 +3516,7 @@ public class PhdlParser extends Parser {
                 case 1 :
                     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:438:5: PIN
                     {
-                    PIN138=(Token)match(input,PIN,FOLLOW_PIN_in_pinType1303); if (state.failed) return retval; 
+                    PIN138=(Token)match(input,PIN,FOLLOW_PIN_in_pinType1307); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_PIN.add(PIN138);
 
 
@@ -3541,7 +3553,7 @@ public class PhdlParser extends Parser {
                 case 2 :
                     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:439:4: INPIN
                     {
-                    INPIN139=(Token)match(input,INPIN,FOLLOW_INPIN_in_pinType1316); if (state.failed) return retval; 
+                    INPIN139=(Token)match(input,INPIN,FOLLOW_INPIN_in_pinType1320); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_INPIN.add(INPIN139);
 
 
@@ -3578,7 +3590,7 @@ public class PhdlParser extends Parser {
                 case 3 :
                     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:440:4: OUTPIN
                     {
-                    OUTPIN140=(Token)match(input,OUTPIN,FOLLOW_OUTPIN_in_pinType1329); if (state.failed) return retval; 
+                    OUTPIN140=(Token)match(input,OUTPIN,FOLLOW_OUTPIN_in_pinType1333); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_OUTPIN.add(OUTPIN140);
 
 
@@ -3615,7 +3627,7 @@ public class PhdlParser extends Parser {
                 case 4 :
                     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:441:4: IOPIN
                     {
-                    IOPIN141=(Token)match(input,IOPIN,FOLLOW_IOPIN_in_pinType1342); if (state.failed) return retval; 
+                    IOPIN141=(Token)match(input,IOPIN,FOLLOW_IOPIN_in_pinType1346); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_IOPIN.add(IOPIN141);
 
 
@@ -3652,7 +3664,7 @@ public class PhdlParser extends Parser {
                 case 5 :
                     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:442:4: PWRPIN
                     {
-                    PWRPIN142=(Token)match(input,PWRPIN,FOLLOW_PWRPIN_in_pinType1355); if (state.failed) return retval; 
+                    PWRPIN142=(Token)match(input,PWRPIN,FOLLOW_PWRPIN_in_pinType1359); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_PWRPIN.add(PWRPIN142);
 
 
@@ -3689,7 +3701,7 @@ public class PhdlParser extends Parser {
                 case 6 :
                     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:443:4: SUPPIN
                     {
-                    SUPPIN143=(Token)match(input,SUPPIN,FOLLOW_SUPPIN_in_pinType1368); if (state.failed) return retval; 
+                    SUPPIN143=(Token)match(input,SUPPIN,FOLLOW_SUPPIN_in_pinType1372); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_SUPPIN.add(SUPPIN143);
 
 
@@ -3781,10 +3793,10 @@ public class PhdlParser extends Parser {
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:451:2: ( LBRACE pinNumber ( COMMA pinNumber )* RBRACE -> ^( PIN_LIST ( pinNumber )+ ) )
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:451:5: LBRACE pinNumber ( COMMA pinNumber )* RBRACE
             {
-            LBRACE144=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_pinList1391); if (state.failed) return retval; 
+            LBRACE144=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_pinList1395); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_LBRACE.add(LBRACE144);
 
-            pushFollow(FOLLOW_pinNumber_in_pinList1393);
+            pushFollow(FOLLOW_pinNumber_in_pinList1397);
             pinNumber145=pinNumber();
 
             state._fsp--;
@@ -3805,10 +3817,10 @@ public class PhdlParser extends Parser {
             	case 1 :
             	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:451:23: COMMA pinNumber
             	    {
-            	    COMMA146=(Token)match(input,COMMA,FOLLOW_COMMA_in_pinList1396); if (state.failed) return retval; 
+            	    COMMA146=(Token)match(input,COMMA,FOLLOW_COMMA_in_pinList1400); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_COMMA.add(COMMA146);
 
-            	    pushFollow(FOLLOW_pinNumber_in_pinList1398);
+            	    pushFollow(FOLLOW_pinNumber_in_pinList1402);
             	    pinNumber147=pinNumber();
 
             	    state._fsp--;
@@ -3823,7 +3835,7 @@ public class PhdlParser extends Parser {
                 }
             } while (true);
 
-            RBRACE148=(Token)match(input,RBRACE,FOLLOW_RBRACE_in_pinList1402); if (state.failed) return retval; 
+            RBRACE148=(Token)match(input,RBRACE,FOLLOW_RBRACE_in_pinList1406); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_RBRACE.add(RBRACE148);
 
 
@@ -3975,7 +3987,7 @@ public class PhdlParser extends Parser {
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:469:2: ( THIS ( LPAREN index RPAREN )? PERIOD -> ^( THIS ( index )? ) )
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:469:4: THIS ( LPAREN index RPAREN )? PERIOD
             {
-            THIS150=(Token)match(input,THIS,FOLLOW_THIS_in_qualifier1447); if (state.failed) return retval; 
+            THIS150=(Token)match(input,THIS,FOLLOW_THIS_in_qualifier1451); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_THIS.add(THIS150);
 
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:469:9: ( LPAREN index RPAREN )?
@@ -3989,16 +4001,16 @@ public class PhdlParser extends Parser {
                 case 1 :
                     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:469:10: LPAREN index RPAREN
                     {
-                    LPAREN151=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_qualifier1450); if (state.failed) return retval; 
+                    LPAREN151=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_qualifier1454); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN151);
 
-                    pushFollow(FOLLOW_index_in_qualifier1452);
+                    pushFollow(FOLLOW_index_in_qualifier1456);
                     index152=index();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_index.add(index152.getTree());
-                    RPAREN153=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_qualifier1454); if (state.failed) return retval; 
+                    RPAREN153=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_qualifier1458); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN153);
 
 
@@ -4007,13 +4019,13 @@ public class PhdlParser extends Parser {
 
             }
 
-            PERIOD154=(Token)match(input,PERIOD,FOLLOW_PERIOD_in_qualifier1458); if (state.failed) return retval; 
+            PERIOD154=(Token)match(input,PERIOD,FOLLOW_PERIOD_in_qualifier1462); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_PERIOD.add(PERIOD154);
 
 
 
             // AST REWRITE
-            // elements: index, THIS
+            // elements: THIS, index
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -4133,13 +4145,13 @@ public class PhdlParser extends Parser {
                 case 1 :
                     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:479:4: INT COLON INT
                     {
-                    INT155=(Token)match(input,INT,FOLLOW_INT_in_index1481); if (state.failed) return retval; 
+                    INT155=(Token)match(input,INT,FOLLOW_INT_in_index1485); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_INT.add(INT155);
 
-                    COLON156=(Token)match(input,COLON,FOLLOW_COLON_in_index1483); if (state.failed) return retval; 
+                    COLON156=(Token)match(input,COLON,FOLLOW_COLON_in_index1487); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_COLON.add(COLON156);
 
-                    INT157=(Token)match(input,INT,FOLLOW_INT_in_index1485); if (state.failed) return retval; 
+                    INT157=(Token)match(input,INT,FOLLOW_INT_in_index1489); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_INT.add(INT157);
 
 
@@ -4177,7 +4189,7 @@ public class PhdlParser extends Parser {
                 case 2 :
                     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:480:5: INT ( COMMA INT ( COMMA INT )* )?
                     {
-                    INT158=(Token)match(input,INT,FOLLOW_INT_in_index1505); if (state.failed) return retval; 
+                    INT158=(Token)match(input,INT,FOLLOW_INT_in_index1509); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_INT.add(INT158);
 
                     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:480:9: ( COMMA INT ( COMMA INT )* )?
@@ -4191,10 +4203,10 @@ public class PhdlParser extends Parser {
                         case 1 :
                             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:480:10: COMMA INT ( COMMA INT )*
                             {
-                            COMMA159=(Token)match(input,COMMA,FOLLOW_COMMA_in_index1508); if (state.failed) return retval; 
+                            COMMA159=(Token)match(input,COMMA,FOLLOW_COMMA_in_index1512); if (state.failed) return retval; 
                             if ( state.backtracking==0 ) stream_COMMA.add(COMMA159);
 
-                            INT160=(Token)match(input,INT,FOLLOW_INT_in_index1510); if (state.failed) return retval; 
+                            INT160=(Token)match(input,INT,FOLLOW_INT_in_index1514); if (state.failed) return retval; 
                             if ( state.backtracking==0 ) stream_INT.add(INT160);
 
                             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:480:20: ( COMMA INT )*
@@ -4212,10 +4224,10 @@ public class PhdlParser extends Parser {
                             	case 1 :
                             	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:480:21: COMMA INT
                             	    {
-                            	    COMMA161=(Token)match(input,COMMA,FOLLOW_COMMA_in_index1513); if (state.failed) return retval; 
+                            	    COMMA161=(Token)match(input,COMMA,FOLLOW_COMMA_in_index1517); if (state.failed) return retval; 
                             	    if ( state.backtracking==0 ) stream_COMMA.add(COMMA161);
 
-                            	    INT162=(Token)match(input,INT,FOLLOW_INT_in_index1515); if (state.failed) return retval; 
+                            	    INT162=(Token)match(input,INT,FOLLOW_INT_in_index1519); if (state.failed) return retval; 
                             	    if ( state.backtracking==0 ) stream_INT.add(INT162);
 
 
@@ -4357,7 +4369,7 @@ public class PhdlParser extends Parser {
                 case 1 :
                     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:490:4: operand ( AMPERSAND operand )*
                     {
-                    pushFollow(FOLLOW_operand_in_concat1542);
+                    pushFollow(FOLLOW_operand_in_concat1546);
                     operand163=operand();
 
                     state._fsp--;
@@ -4378,10 +4390,10 @@ public class PhdlParser extends Parser {
                     	case 1 :
                     	    // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:490:13: AMPERSAND operand
                     	    {
-                    	    AMPERSAND164=(Token)match(input,AMPERSAND,FOLLOW_AMPERSAND_in_concat1545); if (state.failed) return retval; 
+                    	    AMPERSAND164=(Token)match(input,AMPERSAND,FOLLOW_AMPERSAND_in_concat1549); if (state.failed) return retval; 
                     	    if ( state.backtracking==0 ) stream_AMPERSAND.add(AMPERSAND164);
 
-                    	    pushFollow(FOLLOW_operand_in_concat1547);
+                    	    pushFollow(FOLLOW_operand_in_concat1551);
                     	    operand165=operand();
 
                     	    state._fsp--;
@@ -4437,16 +4449,16 @@ public class PhdlParser extends Parser {
                 case 2 :
                     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:491:4: LANGLE operand RANGLE
                     {
-                    LANGLE166=(Token)match(input,LANGLE,FOLLOW_LANGLE_in_concat1565); if (state.failed) return retval; 
+                    LANGLE166=(Token)match(input,LANGLE,FOLLOW_LANGLE_in_concat1569); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_LANGLE.add(LANGLE166);
 
-                    pushFollow(FOLLOW_operand_in_concat1567);
+                    pushFollow(FOLLOW_operand_in_concat1571);
                     operand167=operand();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_operand.add(operand167.getTree());
-                    RANGLE168=(Token)match(input,RANGLE,FOLLOW_RANGLE_in_concat1569); if (state.failed) return retval; 
+                    RANGLE168=(Token)match(input,RANGLE,FOLLOW_RANGLE_in_concat1573); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_RANGLE.add(RANGLE168);
 
 
@@ -4483,7 +4495,7 @@ public class PhdlParser extends Parser {
                 case 3 :
                     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:492:5: OPEN
                     {
-                    OPEN169=(Token)match(input,OPEN,FOLLOW_OPEN_in_concat1585); if (state.failed) return retval; 
+                    OPEN169=(Token)match(input,OPEN,FOLLOW_OPEN_in_concat1589); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_OPEN.add(OPEN169);
 
 
@@ -4567,7 +4579,7 @@ public class PhdlParser extends Parser {
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:501:2: ( IDENT ( LBRACKET index RBRACKET )? -> ^( OPERAND IDENT ( index )? ) )
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:501:4: IDENT ( LBRACKET index RBRACKET )?
             {
-            IDENT170=(Token)match(input,IDENT,FOLLOW_IDENT_in_operand1610); if (state.failed) return retval; 
+            IDENT170=(Token)match(input,IDENT,FOLLOW_IDENT_in_operand1614); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_IDENT.add(IDENT170);
 
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:501:10: ( LBRACKET index RBRACKET )?
@@ -4581,16 +4593,16 @@ public class PhdlParser extends Parser {
                 case 1 :
                     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:501:11: LBRACKET index RBRACKET
                     {
-                    LBRACKET171=(Token)match(input,LBRACKET,FOLLOW_LBRACKET_in_operand1613); if (state.failed) return retval; 
+                    LBRACKET171=(Token)match(input,LBRACKET,FOLLOW_LBRACKET_in_operand1617); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_LBRACKET.add(LBRACKET171);
 
-                    pushFollow(FOLLOW_index_in_operand1615);
+                    pushFollow(FOLLOW_index_in_operand1619);
                     index172=index();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_index.add(index172.getTree());
-                    RBRACKET173=(Token)match(input,RBRACKET,FOLLOW_RBRACKET_in_operand1617); if (state.failed) return retval; 
+                    RBRACKET173=(Token)match(input,RBRACKET,FOLLOW_RBRACKET_in_operand1621); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_RBRACKET.add(RBRACKET173);
 
 
@@ -4602,7 +4614,7 @@ public class PhdlParser extends Parser {
 
 
             // AST REWRITE
-            // elements: index, IDENT
+            // elements: IDENT, index
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -4686,7 +4698,7 @@ public class PhdlParser extends Parser {
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:510:2: ( IDENT ( LPAREN index RPAREN )? -> ^( NAME IDENT ( index )? ) )
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:510:4: IDENT ( LPAREN index RPAREN )?
             {
-            IDENT174=(Token)match(input,IDENT,FOLLOW_IDENT_in_name1644); if (state.failed) return retval; 
+            IDENT174=(Token)match(input,IDENT,FOLLOW_IDENT_in_name1648); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_IDENT.add(IDENT174);
 
             // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:510:10: ( LPAREN index RPAREN )?
@@ -4700,16 +4712,16 @@ public class PhdlParser extends Parser {
                 case 1 :
                     // C:\\Users\\brad\\eclipse\\phdl\\src\\phdl\\grammar\\Phdl.g:510:11: LPAREN index RPAREN
                     {
-                    LPAREN175=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_name1647); if (state.failed) return retval; 
+                    LPAREN175=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_name1651); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN175);
 
-                    pushFollow(FOLLOW_index_in_name1649);
+                    pushFollow(FOLLOW_index_in_name1653);
                     index176=index();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_index.add(index176.getTree());
-                    RPAREN177=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_name1651); if (state.failed) return retval; 
+                    RPAREN177=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_name1655); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN177);
 
 
@@ -4721,7 +4733,7 @@ public class PhdlParser extends Parser {
 
 
             // AST REWRITE
-            // elements: IDENT, index
+            // elements: index, IDENT
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -5025,76 +5037,76 @@ public class PhdlParser extends Parser {
     public static final BitSet FOLLOW_qualifier_in_pinAssign1070 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
     public static final BitSet FOLLOW_operand_in_pinAssign1073 = new BitSet(new long[]{0x0000000000000400L});
     public static final BitSet FOLLOW_RPAREN_in_pinAssign1075 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_qualifier_in_pinAssign1080 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_operand_in_pinAssign1083 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_EQUALS_in_pinAssign1086 = new BitSet(new long[]{0x0000001000008000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_concat_in_pinAssign1088 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_SEMICOLON_in_pinAssign1090 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_COMBINE_in_portAssign1123 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_LPAREN_in_portAssign1125 = new BitSet(new long[]{0x0000000002000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_qualifier_in_portAssign1127 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_operand_in_portAssign1130 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_RPAREN_in_portAssign1132 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_qualifier_in_portAssign1137 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_operand_in_portAssign1140 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_EQUALS_in_portAssign1143 = new BitSet(new long[]{0x0000001000008000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_concat_in_portAssign1145 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_SEMICOLON_in_portAssign1147 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_operand_in_connectAssign1180 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_EQUALS_in_connectAssign1182 = new BitSet(new long[]{0x0000001000008000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_concat_in_connectAssign1184 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_SEMICOLON_in_connectAssign1186 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_GROUP_in_groupDecl1211 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
-    public static final BitSet FOLLOW_STRING_in_groupDecl1213 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_LBRACE_in_groupDecl1215 = new BitSet(new long[]{0x0000000C0AC04000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_groupBody_in_groupDecl1217 = new BitSet(new long[]{0x0000000C0AC04000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_RBRACE_in_groupDecl1220 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_infoDecl_in_groupBody1245 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_connectDecl_in_groupBody1250 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_instDecl_in_groupBody1255 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_connectAssign_in_groupBody1260 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INT_in_width1273 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_COLON_in_width1275 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
-    public static final BitSet FOLLOW_INT_in_width1277 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_PIN_in_pinType1303 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INPIN_in_pinType1316 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_OUTPIN_in_pinType1329 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IOPIN_in_pinType1342 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_PWRPIN_in_pinType1355 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SUPPIN_in_pinType1368 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LBRACE_in_pinList1391 = new BitSet(new long[]{0x0000000000000000L,0x00000000000001A0L});
-    public static final BitSet FOLLOW_pinNumber_in_pinList1393 = new BitSet(new long[]{0x0000000000004040L});
-    public static final BitSet FOLLOW_COMMA_in_pinList1396 = new BitSet(new long[]{0x0000000000000000L,0x00000000000001A0L});
-    public static final BitSet FOLLOW_pinNumber_in_pinList1398 = new BitSet(new long[]{0x0000000000004040L});
-    public static final BitSet FOLLOW_RBRACE_in_pinList1402 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_qualifier_in_pinAssign1081 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_operand_in_pinAssign1084 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_EQUALS_in_pinAssign1088 = new BitSet(new long[]{0x0000001000008000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_concat_in_pinAssign1090 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_SEMICOLON_in_pinAssign1092 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_COMBINE_in_portAssign1125 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_LPAREN_in_portAssign1127 = new BitSet(new long[]{0x0000000002000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_qualifier_in_portAssign1129 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_operand_in_portAssign1132 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_RPAREN_in_portAssign1134 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_qualifier_in_portAssign1140 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_operand_in_portAssign1143 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_EQUALS_in_portAssign1147 = new BitSet(new long[]{0x0000001000008000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_concat_in_portAssign1149 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_SEMICOLON_in_portAssign1151 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_operand_in_connectAssign1184 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_EQUALS_in_connectAssign1186 = new BitSet(new long[]{0x0000001000008000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_concat_in_connectAssign1188 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_SEMICOLON_in_connectAssign1190 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_GROUP_in_groupDecl1215 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
+    public static final BitSet FOLLOW_STRING_in_groupDecl1217 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_LBRACE_in_groupDecl1219 = new BitSet(new long[]{0x0000000C0AC04000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_groupBody_in_groupDecl1221 = new BitSet(new long[]{0x0000000C0AC04000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_RBRACE_in_groupDecl1224 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_infoDecl_in_groupBody1249 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_connectDecl_in_groupBody1254 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_instDecl_in_groupBody1259 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_connectAssign_in_groupBody1264 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INT_in_width1277 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_COLON_in_width1279 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
+    public static final BitSet FOLLOW_INT_in_width1281 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_PIN_in_pinType1307 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INPIN_in_pinType1320 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_OUTPIN_in_pinType1333 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IOPIN_in_pinType1346 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_PWRPIN_in_pinType1359 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SUPPIN_in_pinType1372 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LBRACE_in_pinList1395 = new BitSet(new long[]{0x0000000000000000L,0x00000000000001A0L});
+    public static final BitSet FOLLOW_pinNumber_in_pinList1397 = new BitSet(new long[]{0x0000000000004040L});
+    public static final BitSet FOLLOW_COMMA_in_pinList1400 = new BitSet(new long[]{0x0000000000000000L,0x00000000000001A0L});
+    public static final BitSet FOLLOW_pinNumber_in_pinList1402 = new BitSet(new long[]{0x0000000000004040L});
+    public static final BitSet FOLLOW_RBRACE_in_pinList1406 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_set_in_pinNumber0 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_THIS_in_qualifier1447 = new BitSet(new long[]{0x0000000000000280L});
-    public static final BitSet FOLLOW_LPAREN_in_qualifier1450 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
-    public static final BitSet FOLLOW_index_in_qualifier1452 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_RPAREN_in_qualifier1454 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_PERIOD_in_qualifier1458 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INT_in_index1481 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_COLON_in_index1483 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
-    public static final BitSet FOLLOW_INT_in_index1485 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INT_in_index1505 = new BitSet(new long[]{0x0000000000000042L});
-    public static final BitSet FOLLOW_COMMA_in_index1508 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
-    public static final BitSet FOLLOW_INT_in_index1510 = new BitSet(new long[]{0x0000000000000042L});
-    public static final BitSet FOLLOW_COMMA_in_index1513 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
-    public static final BitSet FOLLOW_INT_in_index1515 = new BitSet(new long[]{0x0000000000000042L});
-    public static final BitSet FOLLOW_operand_in_concat1542 = new BitSet(new long[]{0x0000000000020002L});
-    public static final BitSet FOLLOW_AMPERSAND_in_concat1545 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_operand_in_concat1547 = new BitSet(new long[]{0x0000000000020002L});
-    public static final BitSet FOLLOW_LANGLE_in_concat1565 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_operand_in_concat1567 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_RANGLE_in_concat1569 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_OPEN_in_concat1585 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENT_in_operand1610 = new BitSet(new long[]{0x0000000000000802L});
-    public static final BitSet FOLLOW_LBRACKET_in_operand1613 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
-    public static final BitSet FOLLOW_index_in_operand1615 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_RBRACKET_in_operand1617 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENT_in_name1644 = new BitSet(new long[]{0x0000000000000202L});
-    public static final BitSet FOLLOW_LPAREN_in_name1647 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
-    public static final BitSet FOLLOW_index_in_name1649 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_RPAREN_in_name1651 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_THIS_in_qualifier1451 = new BitSet(new long[]{0x0000000000000280L});
+    public static final BitSet FOLLOW_LPAREN_in_qualifier1454 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
+    public static final BitSet FOLLOW_index_in_qualifier1456 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_RPAREN_in_qualifier1458 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_PERIOD_in_qualifier1462 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INT_in_index1485 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_COLON_in_index1487 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
+    public static final BitSet FOLLOW_INT_in_index1489 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INT_in_index1509 = new BitSet(new long[]{0x0000000000000042L});
+    public static final BitSet FOLLOW_COMMA_in_index1512 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
+    public static final BitSet FOLLOW_INT_in_index1514 = new BitSet(new long[]{0x0000000000000042L});
+    public static final BitSet FOLLOW_COMMA_in_index1517 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
+    public static final BitSet FOLLOW_INT_in_index1519 = new BitSet(new long[]{0x0000000000000042L});
+    public static final BitSet FOLLOW_operand_in_concat1546 = new BitSet(new long[]{0x0000000000020002L});
+    public static final BitSet FOLLOW_AMPERSAND_in_concat1549 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_operand_in_concat1551 = new BitSet(new long[]{0x0000000000020002L});
+    public static final BitSet FOLLOW_LANGLE_in_concat1569 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_operand_in_concat1571 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_RANGLE_in_concat1573 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_OPEN_in_concat1589 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENT_in_operand1614 = new BitSet(new long[]{0x0000000000000802L});
+    public static final BitSet FOLLOW_LBRACKET_in_operand1617 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
+    public static final BitSet FOLLOW_index_in_operand1619 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_RBRACKET_in_operand1621 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENT_in_name1648 = new BitSet(new long[]{0x0000000000000202L});
+    public static final BitSet FOLLOW_LPAREN_in_name1651 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
+    public static final BitSet FOLLOW_index_in_name1653 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_RPAREN_in_name1655 = new BitSet(new long[]{0x0000000000000002L});
 
 }

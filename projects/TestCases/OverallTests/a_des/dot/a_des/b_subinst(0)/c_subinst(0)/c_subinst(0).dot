@@ -1,0 +1,42 @@
+//PHDL Generated Dot file
+//Design unit: c_subinst(0) (SUBDESIGN)
+//File: b_sub.phdl, line 15:14
+
+graph c_subinst {
+
+	splines=false;
+
+	// Instances
+	subgraph "cluster_c_inst" {
+		style=filled;
+		color=lightgrey;
+		label="Instance: c_inst";
+		subgraph "cluster_c_inst_attributes" {
+			label="Attributes:";
+			node [shape=none];
+			"c_inst_attrs" [label="C_NAME = top_Value\n"];
+		}
+		subgraph "cluster_c_inst_pins" {
+			label="Pins:";
+			node [shape=record, width=0.25, height=0.25];
+			subgraph "cluster_c_inst_pins_c_pin[-1]" {
+				label="c_pin";
+				"c_inst_c_pin" [label="<-1> 1"];
+			}
+		}
+	}
+
+
+	// Ports
+	subgraph "cluster_nets_C_PORT[-1]" {
+		style=filled;
+		color=lightgrey;
+		node [shape=record, width=0.25, height=0.25];
+		label="C_PORT[-1]";
+		"C_PORT" [label="<-1> -1"];
+	}
+
+
+	// Edges
+	"C_PORT":-1 -- "c_inst_c_pin":-1;
+}

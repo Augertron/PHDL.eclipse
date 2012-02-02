@@ -1,0 +1,23 @@
+//include "b_sub.phdl"
+
+device a_dev {
+	attr a_name = "a_value";
+	attr package = "my_package";
+	attr library = "my_library";
+	attr refPrefix = "a";
+	pin a_pin = {1};
+}
+
+design a_des {
+	
+	net a_net;
+
+	inst a_inst of a_dev {
+		a_pin = a_net;
+	}
+	
+	subinst(0:1) b_subinst of b_sub {
+		this(0).c_subinst.c_inst.c_name = "top_Value";
+		b_port = a_net;	
+	}
+}

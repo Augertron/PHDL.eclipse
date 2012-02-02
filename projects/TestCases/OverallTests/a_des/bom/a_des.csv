@@ -1,0 +1,2 @@
+QUANTITY, NAME, REFDES, PKG_TYPE, A_NAME, LIBRARY, PACKAGE
+1, a_dev, a1, , a_value, my_library, my_package

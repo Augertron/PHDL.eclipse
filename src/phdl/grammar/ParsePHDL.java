@@ -70,7 +70,7 @@ public class ParsePHDL {
 		return topDesign;
 	}
 
-	public void parse() {
+	public void parse(String[] reqAttrs) {
 
 		// maintain a list of all of the source file names
 		List<String> fileNames = new ArrayList<String>();
@@ -130,6 +130,7 @@ public class ParsePHDL {
 
 				// set up the ast grammar
 				PhdlAST ast = new PhdlAST(ns);
+				ast.setRequiredAttributes(reqAttrs);
 				ast.setDevices(devices);
 				ast.setSubDesigns(subDesigns);
 				ast.setTopDesign(topDesign);

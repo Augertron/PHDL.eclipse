@@ -103,6 +103,14 @@ public abstract class Connection extends Attributable {
 		return cons;
 	}
 
+	public String getHierarchyName() {
+		if (parent instanceof SubInstance) {
+			return ((SubInstance) parent).getHierarchyName() + "$" + this.getNameIndex();
+		} else {
+			return this.getNameIndex();
+		}
+	}
+
 	/**
 	 * Returns the index of the current Net, assuming that it has an array reference.
 	 * 
@@ -116,15 +124,6 @@ public abstract class Connection extends Attributable {
 		return this.name + (hasIndex() ? "[" + this.index + "]" : "");
 	}
 
-	public String getHierarchyName() {
-		if (parent instanceof SubInstance) {
-			return ((SubInstance)parent).getHierarchyName() + "." + this.getNameIndex();	
-		}
-		else {
-			return this.getNameIndex();
-		}
-	}
-	
 	/**
 	 * Parent DesignNode accessor method.
 	 * 

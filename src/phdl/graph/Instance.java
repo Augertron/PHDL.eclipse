@@ -29,6 +29,7 @@ public class Instance extends Attributable {
 	private String refDes;
 	private String refPrefix;
 	private String pkg;
+	private String library;
 	private String groupName;
 	private int index = -1;
 
@@ -83,9 +84,11 @@ public class Instance extends Attributable {
 		super(old);
 		this.pins = new ArrayList<Pin>();
 		this.parent = parent;
-		//this.name = old.getName();
 		this.index = old.getIndex();
+		this.refPrefix = old.getRefPrefix();
+		this.refDes = old.getRefDes();
 		this.pkg = old.getPackage();
+		this.library = old.getLibrary();
 		this.groupName = old.getGroupName();
 		setDevice(old.getDevice());
 		for (Attribute oldAttr : old.getAttributes())
@@ -164,6 +167,10 @@ public class Instance extends Attributable {
 
 	public int getIndex() {
 		return index;
+	}
+
+	public String getLibrary() {
+		return library;
 	}
 
 	public String getNameIndex() {
@@ -298,6 +305,10 @@ public class Instance extends Attributable {
 
 	public void setIndex(int index) {
 		this.index = index;
+	}
+
+	public void setLibrary(String library) {
+		this.library = library;
 	}
 
 	/**
