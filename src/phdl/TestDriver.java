@@ -51,6 +51,8 @@ public class TestDriver {
 		success &= phdl.generator.RefDesGenerator.unitTest();
 		System.out.println("***Testing phdl.generator.NetListGenerator***");
 		success &= phdl.generator.NetListGenerator.unitTest();
+		System.out.println("***Testing phdl.generator.BoMGenerator***");
+		success &= phdl.generator.BoMGenerator.unitTest();
 
 		return success;
 	}

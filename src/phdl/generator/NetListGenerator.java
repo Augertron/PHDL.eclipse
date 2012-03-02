@@ -288,6 +288,7 @@ public class NetListGenerator {
 					inst1.setRefDes("A1");
 					inst1.setName("Inst1");
 					inst1.setPackage("package1");
+					inst1.setLibrary("library1");
 					Pin pin = new Pin(inst1);
 					{
 						pin.setName("Pin1");
@@ -304,6 +305,7 @@ public class NetListGenerator {
 					inst2.setRefDes("B1");
 					inst2.setName("Inst2");
 					inst2.setPackage("package2");
+					inst2.setLibrary("library2");
 					Pin pin = new Pin(inst2);
 					{
 						pin.setName("Pin2");
@@ -339,6 +341,7 @@ public class NetListGenerator {
 					inst1.setRefDes("A1");
 					inst1.setName("Inst1");
 					inst1.setPackage("package1");
+					inst1.setLibrary("library1");
 
 					Pin a = new Pin(inst1);
 					{
@@ -363,6 +366,7 @@ public class NetListGenerator {
 					inst2.setRefDes("B1");
 					inst2.setName("Inst2");
 					inst2.setPackage("package2");
+					inst2.setLibrary("library2");
 
 					Pin b = new Pin(inst2);
 					{
@@ -397,6 +401,7 @@ public class NetListGenerator {
 						inst3[i].setDevice(dev);
 						inst3[i].setRefDes("C" + (i + 1));
 						inst3[i].setPackage("package3");
+						inst3[i].setLibrary("library3");
 					}
 
 					for (int j = 0; j < 3; j++) {
@@ -467,6 +472,7 @@ public class NetListGenerator {
 					inst1.setDevice(dev);
 					inst1.setRefDes("A1");
 					inst1.setName("Inst1");
+					inst1.setLibrary("library1");
 					inst1.setPackage("package1");
 
 					Pin a = new Pin(inst1);
@@ -492,6 +498,7 @@ public class NetListGenerator {
 					inst2.setRefDes("B1");
 					inst2.setName("Inst2");
 					inst2.setPackage("package2");
+					inst2.setLibrary("library2");
 
 					Pin b = new Pin(inst2);
 					{
@@ -526,6 +533,7 @@ public class NetListGenerator {
 						inst3[i].setDevice(dev);
 						inst3[i].setRefDes("C" + (i + 1));
 						inst3[i].setPackage("package3");
+						inst3[i].setLibrary("library3");
 					}
 
 					for (int j = 0; j < 3; j++) {
@@ -616,6 +624,7 @@ public class NetListGenerator {
 					inst1.setName("SubInst1.Inst1");
 					inst1.setRefDes("C1");
 					inst1.setPackage("pkg3");
+					inst1.setLibrary("lib3");
 
 					Pin f = new Pin(inst1);
 					{
@@ -644,6 +653,7 @@ public class NetListGenerator {
 							inst2[i].setName("SubInst1.Inst2");
 							inst2[i].setIndex(3 - i);
 							inst2[i].setPackage("pkg4");
+							inst2[i].setLibrary("lib4");
 							inst2[i].setRefDes("D" + (3 - i));
 						}
 						for (int j = 0; j < 2; j++) {
@@ -725,6 +735,7 @@ public class NetListGenerator {
 							inst1[i].setRefDes("A" + (i + 1));
 							inst1[i].setDevice(dev);
 							inst1[i].setPackage("pkg1");
+							inst1[i].setLibrary("lib1");
 
 							for (int j = 0; j < 2; j++) {
 								a[i][j] = new Pin(inst1[i]);
@@ -753,6 +764,7 @@ public class NetListGenerator {
 					inst2.setName("Inst2");
 					inst2.setRefDes("B1");
 					inst2.setPackage("pkg2");
+					inst2.setLibrary("lib2");
 					inst2.setDevice(dev);
 
 					Pin c = new Pin(inst2);
