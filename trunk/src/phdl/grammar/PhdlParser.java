@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:50:56 /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g 2012-02-06 13:01:51
+// $ANTLR 3.3 Nov 30, 2010 12:50:56 /fpga/fpga1/users/rablack/workspace/PHDL/src/phdl/grammar/Phdl.g 2012-03-02 10:03:00
 
 /*
     Copyright (C) 2011  Brigham Young University
@@ -425,7 +425,7 @@ public class PhdlParser extends Parser {
 
 
             // AST REWRITE
-            // elements: pinDecl, IDENT, attrDecl, infoDecl
+            // elements: attrDecl, pinDecl, infoDecl, IDENT
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -687,7 +687,7 @@ public class PhdlParser extends Parser {
 
 
             // AST REWRITE
-            // elements: pinType, pinList, width, IDENT
+            // elements: pinType, width, pinList, IDENT
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -1502,7 +1502,7 @@ public class PhdlParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: attrDecl, width, IDENT
+                    // elements: IDENT, width, attrDecl
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -1885,7 +1885,7 @@ public class PhdlParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: IDENT, IDENT, pinAssign, attrAssign, width, infoDecl
+                    // elements: infoDecl, width, attrAssign, pinAssign, IDENT, IDENT
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -2059,7 +2059,7 @@ public class PhdlParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: width, subAttrAssign, portAssign, IDENT, infoDecl, IDENT, STRING
+                    // elements: portAssign, infoDecl, IDENT, subAttrAssign, IDENT, STRING, width
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -2234,7 +2234,7 @@ public class PhdlParser extends Parser {
 
 
             // AST REWRITE
-            // elements: NEWATTR, IDENT, qualifier, STRING
+            // elements: IDENT, STRING, NEWATTR, qualifier
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -2440,7 +2440,7 @@ public class PhdlParser extends Parser {
 
 
             // AST REWRITE
-            // elements: IDENT, qualifier, NEWATTR, STRING, name
+            // elements: NEWATTR, name, qualifier, STRING, IDENT
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -2682,7 +2682,7 @@ public class PhdlParser extends Parser {
 
 
             // AST REWRITE
-            // elements: operand, concat, qualifier, COMBINE
+            // elements: qualifier, COMBINE, concat, operand
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -2916,7 +2916,7 @@ public class PhdlParser extends Parser {
 
 
             // AST REWRITE
-            // elements: concat, COMBINE, operand, qualifier
+            // elements: concat, operand, qualifier, COMBINE
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -3028,7 +3028,7 @@ public class PhdlParser extends Parser {
 
 
             // AST REWRITE
-            // elements: concat, operand
+            // elements: operand, concat
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -3155,7 +3155,7 @@ public class PhdlParser extends Parser {
 
 
             // AST REWRITE
-            // elements: STRING, groupBody
+            // elements: groupBody, STRING
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -4614,7 +4614,7 @@ public class PhdlParser extends Parser {
 
 
             // AST REWRITE
-            // elements: IDENT, index
+            // elements: index, IDENT
             // token labels: 
             // rule labels: retval
             // token list labels: 

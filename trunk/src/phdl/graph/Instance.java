@@ -110,7 +110,9 @@ public class Instance extends Attributable {
 
 	@Override
 	public boolean equals(Object o) {
-		return this.name.equals(((Instance) o).getName()) && this.index == ((Instance) o).getIndex();
+		return this.name.equals(((Instance) o).getName())
+				&& this.index == ((Instance) o).getIndex()
+				&& this.parent.equals(((Instance)o).getParent());
 	}
 
 	/**

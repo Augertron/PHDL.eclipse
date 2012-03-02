@@ -21,6 +21,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import phdl.graph.Design;
+import phdl.graph.HierarchyUnit;
 import phdl.graph.Instance;
 
 public class InfoGenerator {
@@ -29,46 +30,95 @@ public class InfoGenerator {
 	Design design;
 
 	public InfoGenerator(Design design) {
-		int i;
 		this.design = design;
+		StringBuilder sb = new StringBuilder();
+		sb.append("Layout Supplementary Information\n");
+		sb.append("--------------------------------\n\n");
+		
+		sb.append(appendDesignInfo(design,1));
+		info = sb.toString();
+	}
+	
+	private StringBuilder appendDesignInfo(HierarchyUnit des, int tabs_cnt) {
 		StringBuilder sb_des = new StringBuilder();
-		sb_des.append("Design " + design.getName() + "\n");
-		//System.out.println(sb_des.length() + "");
-
-		String buffer = "";
-		for (i = 0; i < sb_des.length(); i++) {
-			buffer += '-';
+		
+		StringBuilder sb_tabs = new StringBuilder();
+		for (int i = 0; i < tabs_cnt; i++) {
+			sb_tabs.append("\t");
 		}
+		sb_des.append(sb_tabs);
+		sb_des.append(des.getNodeType().toString() + " " + des.getName() + "\n");
+
+		StringBuilder buffer = new StringBuilder();
+		for (int i = 0; i < sb_des.length()-1; i++) {
+			buffer.append('-');
+		}
+		sb_des.append(sb_tabs);
 		sb_des.append(buffer);
 		sb_des.append("\n");
 
-		if (!design.getInfo().equals("")) {
-			sb_des.append(design.getInfo());
+		if (!des.getInfo().equals("")) {
+			sb_des.append(sb_tabs);
+			sb_des.append(des.getInfo());
 			sb_des.append("\n");
 		}
 		sb_des.append("\n");
 
-		for (Instance inst : design.getInstances()) {
-			int j;
-			if (!inst.getInfo().trim().equals("")) {
-				StringBuilder sb_inst = new StringBuilder("Instance " + inst.getName() + "\n");
-
-				String bufferI = "";
-				for (j = 0; j < sb_inst.length(); j++) {
-					bufferI += "-";
-				}
-				sb_inst.append(bufferI + "\n");
-
-				sb_inst.append(inst.getInfo() + "\n");
-
-				sb_inst.append(bufferI + "\n");
-				sb_des.append(sb_inst.toString() + "\n");
-			}
+		for (Instance inst : des.getInstances()) {
+			sb_des.append(appendInstanceInfo(inst, tabs_cnt+1) + "\n");
 		}
 
+		sb_des.append(sb_tabs);
 		sb_des.append(buffer);
+		return sb_des;
+	}
+	
+	private StringBuilder appendInstanceInfo(Instance inst, int tabs_cnt) {
+		int j;
+		StringBuilder sb_inst = new StringBuilder();
+		
+		StringBuilder sb_tabs = new StringBuilder();
+		for (int i = 0; i < tabs_cnt; i++) {
+			sb_tabs.append("\t");
+		}
+		
+		if (!inst.getInfo().trim().equals("")) {
+			sb_inst.append(sb_tabs);
+			sb_inst.append("INSTANCE " + inst.getName() + "\n");
 
-		info = sb_des.toString();
+			String bufferI = "";
+			for (j = 0; j < sb_inst.length(); j++) {
+				bufferI += "-";
+			}
+			sb_inst.append(sb_tabs);
+			sb_inst.append(bufferI + "\n");
+
+			sb_inst.append(sb_tabs);
+			sb_inst.append(wordWrap(inst.getInfo(), sb_tabs) + "\n");
+
+			sb_inst.append(sb_tabs);
+			sb_inst.append(bufferI + "\n");
+		}
+		return sb_inst;
+	}
+	
+	private StringBuilder wordWrap(String info, StringBuilder sb_tabs) {
+		int length = info.length();
+		String[] words = info.split(" ");
+		int char_count_max = 60;
+		int char_count = 0;
+		
+		StringBuilder sb_wrap = new StringBuilder();
+		for (int i = 0; i < words.length; i++) {
+			if (char_count >= char_count_max) {
+				char_count = 0;
+				sb_wrap.append("\n");
+				sb_wrap.append(sb_tabs);
+			}
+			sb_wrap.append(words[i] + " ");
+			char_count += words[i].length() + 1;
+		}
+		return sb_wrap;
 	}
 
 	public String getInfo() {
