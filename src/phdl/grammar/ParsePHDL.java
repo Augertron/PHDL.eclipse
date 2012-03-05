@@ -102,6 +102,7 @@ public class ParsePHDL {
 				l.setDirectory(dir);
 			l.setIncludeNames(includeNames);
 			l.setCharStream(cs);
+			//errors.addAll(l.getErrors());
 			PhdlParser p = new PhdlParser(new CommonTokenStream(l));
 			includeNames.addAll(l.getIncludeNames());
 
@@ -110,15 +111,13 @@ public class ParsePHDL {
 				CommonTreeNodeStream ns = new CommonTreeNodeStream(tree);
 				ns.setTokenStream(p.getTokenStream());
 
-				// accumulate any errors in the parser
-				for (String error : p.getErrors())
-					errors.add(error);
+				errors.addAll(p.getErrors());
 
 				if (cfg.getBoolean("ast")) {
 					// convert the AST to a dotty formatted string for debug
 					DOTTreeGenerator dtg = new DOTTreeGenerator();
 					StringTemplate st = dtg.toDOT(tree);
-					String astFileName = "ast\\" + fileName + "_ast.dot";
+					String astFileName = fileName + "_ast.dot";
 					File file = new File(astFileName);
 					if (!file.getParentFile().isDirectory())
 						file.getParentFile().mkdir();

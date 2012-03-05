@@ -169,6 +169,8 @@ tokens {
 		}
 	}
 	
+	private List<String> errors = new ArrayList<String>();
+	
 	/** The stack of saved character streams */
 	private Stack<SaveStruct> includes = new Stack<SaveStruct>();
 	
@@ -191,6 +193,10 @@ tokens {
 	
 	public String getDirectory() {
 		return directory;
+	}
+	
+	public List<String> getErrors() {
+		return errors;
 	}
 	
 	/**
@@ -220,6 +226,13 @@ tokens {
 			
 		return token;
 	}
+	
+	private void bailOut(CommonToken ct, String message) {
+   		System.out.println("ERROR: " + ct.getInputStream().getSourceName() + " line "
+   				+ ct.getLine() + ":" + ct.getCharPositionInLine() + " " + message + ": "
+   				+ ct.getText());
+   		System.exit(1);
+   	}
 }
 
 @parser::members {
@@ -603,7 +616,7 @@ WHITESPACE
 LINE_COMMENT 
 	: '//' ~('\n' | '\r')* {$channel = HIDDEN;}
 	;
-
+	
 /**
  * Multi-line comments begin and end with the usual indicators.  Everything up to and including the terminating
  * token is placed on the hidden channel for the parser to ignore.
@@ -611,6 +624,10 @@ LINE_COMMENT
 MULTILINE_COMMENT 
 	: '/*' .* '*/' {$channel = HIDDEN;}
 	;
+
+//UNTERMINATED_COMMENT
+//	: token='/*' ~('*/')* EOF {bailOut(token, "unterminated comment");}
+//	;
 
 /**
  * Include statements push the current character stream onto a stack and set up a new stream based on the
