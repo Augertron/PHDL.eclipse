@@ -23,6 +23,8 @@ import java.io.IOException;
 import phdl.graph.Design;
 import phdl.graph.HierarchyUnit;
 import phdl.graph.Instance;
+import phdl.graph.Net;
+import phdl.graph.SubInstance;
 
 public class InfoGenerator {
 
@@ -59,18 +61,54 @@ public class InfoGenerator {
 
 		if (!des.getInfo().equals("")) {
 			sb_des.append(sb_tabs);
-			sb_des.append(des.getInfo());
+			sb_des.append(wordWrap(des.getInfo(), sb_tabs));
 			sb_des.append("\n");
 		}
 		sb_des.append("\n");
 
+		for (Net net : des.getNets()) {
+			sb_des.append(appendNetInfo(net, tabs_cnt+1) + "\n");
+		}
 		for (Instance inst : des.getInstances()) {
 			sb_des.append(appendInstanceInfo(inst, tabs_cnt+1) + "\n");
+		}
+		for (SubInstance sinst : des.getSubInstances()) {
+			sb_des.append(appendDesignInfo(sinst, tabs_cnt+1) + "\n");
 		}
 
 		sb_des.append(sb_tabs);
 		sb_des.append(buffer);
 		return sb_des;
+	}
+	
+	private StringBuilder appendNetInfo(Net net, int tabs_cnt) {
+		int j;
+		StringBuilder sb_net = new StringBuilder();
+		
+		StringBuilder sb_tabs = new StringBuilder();
+		for (int i = 0; i < tabs_cnt; i++) {
+			sb_tabs.append("\t");
+		}
+		
+		if (!net.getInfo().trim().equals("")) {
+			sb_net.append(sb_tabs);
+			sb_net.append("NET " + net.getName() + "\n");
+			
+			String bufferI = "";
+			for (j = 0; j < sb_net.length(); j++) {
+				bufferI += "-";
+			}
+			sb_net.append(sb_tabs);
+			sb_net.append(bufferI + "\n");
+
+			sb_net.append(sb_tabs);
+			sb_net.append(wordWrap(net.getInfo(), sb_tabs) + "\n");
+
+			sb_net.append(sb_tabs);
+			sb_net.append(bufferI + "\n");
+		}
+		
+		return sb_net;
 	}
 	
 	private StringBuilder appendInstanceInfo(Instance inst, int tabs_cnt) {
@@ -155,20 +193,46 @@ public class InfoGenerator {
 		testInst1.appendInfo("Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
 			+ "Praesent viverra dolor at risus faucibus in dictum nisl dapibus. "
 			+ "Vestibulum vitae tortor non diam consequat venenatis quis sed eros. "
-			+ "Donec eget sapien velit, at varius risus. In elementum urna a leo"
-			+ "vulputate iaculis. Duis eu lectus orci. Suspendisse potenti. Mauris"
+			+ "Donec eget sapien velit, at varius risus. In elementum urna a leo "
+			+ "vulputate iaculis. Duis eu lectus orci. Suspendisse potenti. Mauris "
 			+ "sollicitudin fringilla sapien, sodales ullamcorper nulla euismod vel. " + "Sed in imperdiet neque.");
 		testDesign1.addInstance(testInst1);
 
 		Instance testInst2 = new Instance(testDesign1);
 		testInst2.setName("testInst2");
-		testInst2.appendInfo("Ut laoreet hendrerit ligula, eu interdum neque tincidunt dapibus. In"
-			+ "et turpis at lacus lobortis ultricies. Nam sollicitudin sapien eu nisi"
-			+ "facilisis commodo. Nullam ullamcorper gravida sapien, tempor iaculis"
-			+ "massa dignissim ac. Nunc iaculis dolor et orci pellentesque at convallis"
-			+ "orci porttitor. Ut sit amet magna a magna imperdiet tincidunt id et"
+		testInst2.appendInfo("Ut laoreet hendrerit ligula, eu interdum neque tincidunt dapibus. In "
+			+ "et turpis at lacus lobortis ultricies. Nam sollicitudin sapien eu nisi "
+			+ "facilisis commodo. Nullam ullamcorper gravida sapien, tempor iaculis "
+			+ "massa dignissim ac. Nunc iaculis dolor et orci pellentesque at convallis "
+			+ "orci porttitor. Ut sit amet magna a magna imperdiet tincidunt id et "
 			+ "libero. Nullam id tellus vitae odio convallis ultrices.");
 		testDesign1.addInstance(testInst2);
+		
+		Net testNet1 = new Net(testDesign1);
+		testNet1.setName("testNet1");
+		testNet1.appendInfo("Leo pretium. Felis sit. Sed culpa eu neque tellus ipsum adipiscing, "
+			+ "pellentesque turpis ac. Tortor sed mattis tortor felis adipiscing, urna mauris "
+			+ "mauris, cursus duis, porta condimentum.");
+		testDesign1.addConnection(testNet1);
+		
+		SubInstance subInst1 = new SubInstance(testDesign1, "subInst1");
+		subInst1.appendInfo("Nec dictum nec eget ipsum aenean nulla, lacus nunc diam ipsum "
+			+ "vel luctus, vel non amet. Praesent pellentesque quis. Auctor et sed "
+			+ "pellentesque libero integer. Donec mauris non urna iaculis ac, dolor "
+			+ "taciti blandit sagittis eleifend vel leo. Est gravida lorem, cras praesent "
+			+ "vestibulum litora, suscipit magna ligula suspendisse lobortis varius, nulla "
+			+ "tempus eaque ipsum lobortis. Vitae feugiat vulputate euismod ac lectus "
+			+ "bibendum, id turpis tempor amet, ut et accumsan, a sit morbi magnis vel duis.");
+		Instance testInst3 = new Instance(subInst1);
+		testInst3.setName("testInst3");
+		testInst3.appendInfo("Consectetuer aliquet sollicitudin et, aliquam orci velit mollis "
+			+ "suspendisse mus. Tincidunt faucibus natoque. Purus tortor pellentesque amet, sed "
+			+ "sit, odio vulputate. Cras repellat malesuada ut posuere, feugiat pellentesque "
+			+ "vestibulum risus, arcu pellentesque. Turpis quis neque dictum, aliquam id bibendum "
+			+ "vivamus ut aliquam dignissim, ridiculus nec orci interdum donec, in lorem.");
+		subInst1.addInstance(testInst3);
+		
+		testDesign1.addSubInst(subInst1);
 
 		InfoGenerator infoGen = new InfoGenerator(testDesign1);
 		infoGen.outputToFile("TestsOutput/InfoOutput/" + testDesign1.getName() + ".info");
