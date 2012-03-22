@@ -17,6 +17,7 @@
 package phdl.generator;
 
 import java.io.File;
+import java.util.Map;
 
 import phdl.graph.Design;
 
@@ -28,15 +29,17 @@ import phdl.graph.Design;
  */
 public class Generator {
 
-	RefDesGenerator refDesGen;
-	NetListGenerator netListGen;
-	EagleScriptGenerator eagleScriptGen;
-	BoMGenerator bomGen;
-	XMLGenerator xmlGen;
-	XMLtoDesignGenerator xmlDesGen;
-	DesignComparator desComp;
-	Design design;
-	InfoGenerator infoGen;
+	private final RefDesGenerator refDesGen;
+	private final NetListGenerator netListGen;
+	private EagleScriptGenerator eagleScriptGen;
+	private final BoMGenerator bomGen;
+	private XMLGenerator xmlGen;
+	private final Design design;
+	private final InfoGenerator infoGen;
+	private final Map<String, String> dirs;
+
+	//private XMLtoDesignGenerator xmlDesGen;
+	//private DesignComparator desComp;
 
 	/**
 	 * Default Constructor.
@@ -50,12 +53,14 @@ public class Generator {
 	 * @see BoMGenerator
 	 * @see NetListGenerator
 	 */
-	public Generator(Design design) {
+	public Generator(Design design, Map<String, String> dirs) {
 		this.design = design;
-		refDesGen = new RefDesGenerator(design);
-		bomGen = new BoMGenerator(design);
-		netListGen = new NetListGenerator(design, refDesGen.getRefMap());
-		infoGen = new InfoGenerator(design);
+		this.refDesGen = new RefDesGenerator(design);
+		this.bomGen = new BoMGenerator(design);
+		this.netListGen = new NetListGenerator(design, refDesGen.getRefMap());
+		this.infoGen = new InfoGenerator(design);
+		this.dirs = dirs;
+
 		//xmlGen = new XMLGenerator(design);
 		//eagleScriptGen = new EagleScriptGenerator(design, desComp);
 
@@ -74,63 +79,14 @@ public class Generator {
 		//generateXML();
 	}
 
-	/**
-	 * Generates a Bill of Materials file based on the name of the DesignNode.
-	 * 
-	 * @see BoMGenerator
-	 */
-	public void generateBoM() {
-		makeDirectory("bom\\");
-		bomGen.outputToFile("bom\\" + design.getName() + ".csv");
-	}
+	public void generate() {
+		for (String s : dirs.keySet()) {
+			makeDirectory(dirs.get(s));
+		}
+		refDesGen.outputToFile(dirs.get("ReferenceDesignatorMapping") + design.getName() + ".csv");
+		bomGen.outputToFile(dirs.get("BillOfMaterial") + design.getName() + ".csv");
+		netListGen.outputToFile(dirs.get("PADSNetlist") + design.getName() + ".asc");
 
-	/**
-	 * Generates an Eagle script file based on the name of the DesignNode.
-	 * 
-	 * @see EagleScriptGenerator
-	 */
-	public void generateEagleScript() {
-		makeDirectory("scr\\");
-		eagleScriptGen.outputToFile("scr\\" + design.getName() + ".scr");
-	}
-
-	/**
-	 * Generates an Info file based on the info structures in the DesignNode.
-	 * 
-	 * @see InfoGenerator
-	 */
-	public void generateInfo() {
-		infoGen.outputToFile(design.getName() + ".info");
-	}
-
-	/**
-	 * Generates a Netlist file based on the name of the DesignNode.
-	 * 
-	 * @see NetListGenerator
-	 */
-	public void generateNetList() {
-		makeDirectory("asc\\");
-		netListGen.outputToFile("asc\\" + design.getName() + ".asc");
-	}
-
-	/**
-	 * Generates a Reference Designator file based on the name of the DesignNode.
-	 * 
-	 * @see RefDesGenerator
-	 */
-	public void generateRefDes() {
-		makeDirectory("csv\\");
-		refDesGen.outputToFile("csv\\" + design.getName() + ".csv");
-	}
-
-	/**
-	 * Generates a Netlist file based on the name of the DesignNode.
-	 * 
-	 * @see XMLGenerator
-	 */
-	public void generateXML() {
-		makeDirectory("xml\\");
-		xmlGen.outputToFile("xml\\" + design.getName() + ".xml");
 	}
 
 	private void makeDirectory(String directory) {

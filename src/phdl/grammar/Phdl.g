@@ -489,8 +489,8 @@ qualifier
  * indices as descendants of the tree.
  */	
 index
-	:	INT COLON INT					-> ^(BOUNDS INT INT)
-	| 	INT (COMMA INT (COMMA INT)*)?	-> ^(INDICES INT+)
+	:	INT COLON INT		-> ^(BOUNDS INT INT)
+	| 	INT (COMMA INT)*	-> ^(INDICES INT+)
 	;
 	
 /**
@@ -528,33 +528,31 @@ name
  * Lexer Rules
  *----------------------------------------------------------------------------*/
 
-// case insensitive keywords
-DESIGN: D E S I G N;
-DEVICE: D E V I C E;
-SUBDESIGN: S U B D E S I G N;
-INST: I N S T;
-SUBINST: S U B I N S T;
-GROUP: G R O U P;
-THIS: T H I S;
-OF: O F;
-NET: N E T;
-ATTR: A T T R;
-NEWATTR: N E W A T T R;
-BEGIN: B E G I N;
-END: E N D;
-COMBINE: C O M B I N E;
-INCLUDE: I N C L U D E;
-INFO: I N F O;
-OPEN: O P E N;
-PORT: P O R T;
+// keywords
+DESIGN: 'design';
+DEVICE: 'device';
+SUBDESIGN: 'subdesign';
+INST: 'inst';
+SUBINST: 'subinst';
+GROUP: 'group';
+THIS: 'this';
+OF: 'of';
+NET: 'net';
+ATTR: 'attr';
+NEWATTR: 'newattr';
+COMBINE: 'combine';
+INCLUDE: 'include';
+INFO: 'info';
+OPEN: 'open';
+PORT: 'port';
 
 // case insensitive pin type keywords
-PIN: P I N;
-INPIN: I N P I N;
-OUTPIN: O U T P I N;
-IOPIN: I O P I N;
-PWRPIN: P W R P I N;
-SUPPIN: S U P P I N;
+PIN: 'pin';
+INPIN: 'inpin';
+OUTPIN: 'outpin';
+IOPIN: 'iopin';
+PWRPIN: 'pwrpin';
+SUPPIN: 'suppin';
 
 // the case-insensitive alphabet
 fragment A:('a'|'A');
