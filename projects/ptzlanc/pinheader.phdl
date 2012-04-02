@@ -1,19 +1,19 @@
 
-	device HDR_1X2 is
+	device HDR_1X2 {
 		attr refPrefix = "J";
 		attr pkg_type = "SIP-100-02-40";
 		attr libName = "con-headers-jp";
 		pin[2:1] p = {2,1};
-	end;
+	}
 	
-	device HDR_1X3 is
+	device HDR_1X3 {
 		attr refPrefix = "J";
 		attr pkg_type = "SIP-100-03-40";
 		attr libName = "con-headers-jp";
 		pin[3:1] p = {3,2,1};
-	end;
+	}
 	
-	device HDR_1X5 is
+	device HDR_1X5 {
 		attr refPrefix = "J";
 		attr pkg_type = "SIP-100-05-40";
 		attr libName = "con-headers-jp";
@@ -22,23 +22,23 @@
 		attr mfgr = "";
 		attr partNumber = "";
 		pin[5:1] p = {5,4,3,2,1};
-	end;
+	}
 	
-	device HDR_1X6 is
+	device HDR_1X6 {
 		attr refPrefix = "J";
 		attr pkg_type = "SIP-100-06-40";
 		attr libName = "con-headers-jp";
 		pin[6:1] p = {6,5,4,3,2,1};
-	end;
+	}
 	
-	device HDR_2X3 is
+	device HDR_2X3 {
 		attr refPrefix = "J";
 		attr pkg_type = "DIL-100-2X03";
 		attr libName = "con-headers-jp";
 		pin[6:1] p = {6,5,4,3,2,1};
-	end;
+	}
 	
-	device HDR_2X7 is
+	device HDR_2X7 {
 		attr refprefix = "J";
 		attr pkg_type = "DIL-100-2X07";
 		attr libName = "con-headers-jp";
@@ -46,4 +46,4 @@
 		attr supplier = "";
 		attr cost = "";
 		pin [14:1] p = {14,13,12,11,10,9,8,7,6,5,4,3,2,1};
-	end;
+	}

@@ -1,6 +1,6 @@
 	// discrete semiconductor devices
 	
-	device LD0603 is
+	device LD0603 {
 		attr refPrefix = "LD";
 		attr pkg_type = "0603MP";
 		attr libName = "led";
@@ -10,9 +10,9 @@
 		attr cost = "";
 		pin a = {a};
 		pin c = {c};
-	end;
+	}
 	
-	device DO214AC is
+	device DO214AC {
 		attr refPrefix = "D";
 		attr pkg_type = "DO214AC";
 		attr libName = "diode";
@@ -23,9 +23,9 @@
 		attr dataSheet = "doc/DS25002.pdf";
 		pin a = {a};
 		pin c = {c};
-	end;
+	}
 	
-	device TO252 is
+	device TO252 {
 		attr refPrefix = "Q";
 		attr pkg_type = "TO252";
 		attr libName = "ref-packages-smd-ipc";
@@ -36,9 +36,9 @@
 		pin g = {1};
 		pin s = {2};
 		pin d = {3};
-	end;
+	}
 	
-	device BSR14 is
+	device BSR14 {
 		attr refPrefix = "Q";
 		attr pkg_type = "SOT23-BEC";
 		attr libName = "transistor-npn";
@@ -50,4 +50,4 @@
 		pin b = {b};
 		pin c = {c};
 		pin e = {e};
-	end;
+	}

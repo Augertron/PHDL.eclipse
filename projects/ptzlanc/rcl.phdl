@@ -1,6 +1,6 @@
 	
 	// resistor definitions
-	device R0603 is
+	device R0603 {
 		attr refPrefix = "R";
 		attr pkg_type = "R0603MP";
 		attr libName = "rc-master-smd";
@@ -13,10 +13,10 @@
 		attr partNumber = "";
 		pin a = {1};
 		pin b = {2};
-	end;
+	}
 	
 	// capacitor definitions
-	device C0603 is
+	device C0603 {
 		attr refPrefix = "C";
 		attr pkg_type = "C0603MP";
 		attr libName = "rc-master-smd";
@@ -28,9 +28,9 @@
 		attr partNumber = "";
 		pin a = {2};
 		pin b = {1};
-	end;
+	}
 	
-	device CP_1206MP/T is
+	device CP_1206MP/T {
 		attr refPrefix = "C";
 		attr pkg_type = "C1206MP/T";
 		attr libName = "rc-master-smd";
@@ -42,9 +42,9 @@
 		attr partNumber = "";
 		pin pos = {+};
 		pin neg = {-};
-	end;
+	}
 	
-	device CSV-E/F is
+	device CSV-E/F {
 		attr refPrefix = "C";
 		attr pkg_type = "CSV-E/F";
 		attr libName = "rc-master-smd";
@@ -56,9 +56,9 @@
 		attr partNumber = "";
 		pin pos = {+};
 		pin neg = {-};
-	end;
+	}
 	
-	device CSV-D is
+	device CSV-D {
 		attr refPrefix = "C";
 		attr pkg_type = "CSV-D";
 		attr libName = "rc-master-smd";
@@ -70,4 +70,4 @@
 		attr partNumber = "";
 		pin pos = {+};
 		pin neg = {-};
-	end;
+	}
