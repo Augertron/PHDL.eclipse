@@ -1,5 +1,5 @@
 	// Device declaration extracted from Xilinx top_tq144_pad.csv
-	device top_tq144 is
+	device top_tq144 {
 		attr refPrefix = "U";
 		attr pkg_type = "tq144";
 		attr mfgr = "XILINX";
@@ -66,10 +66,10 @@
 		pin[1:0] VCCO_5 = {P43,P54};
 		pin  VCCO_6 = {P34};
 		pin[1:0] VCCO_7 = {P19,P3};
-	end;
+	}
 	
 	// flash rom
-	device rom is
+	device rom {
 		attr refPrefix = "U";
 		attr pkg_type = "TSSOP20";
 		attr libName = "xilinx-flash";
@@ -93,10 +93,10 @@
 		pin vcco = {19};
 		pin vccj = {20};
 		pin[5:0] nc = {2,9,12,14,15,16};
-	end;
+	}
 	
 	// 256k X 16 static ram
-	device RAM256KX16 is
+	device RAM256KX16 {
 		attr refPrefix = "U";
 		attr pkg_type = "TSOPII44";
 		attr libName = "memory-issi";
@@ -115,10 +115,10 @@
 		pin nc = {28};
 		pin[1:0] vdd = {33,11};
 		pin[1:0] gnd = {34,12};
-	end;
+	}
 	
 	// 50MHz oscillator
-	device OSC_50MHZ is
+	device OSC_50MHZ {
 		attr refPrefix = "X";
 		attr pkg_type = "SM77H";
 		attr libName = "crystal";
@@ -131,10 +131,10 @@
 		pin gnd = {2};
 		pin output = {3};
 		pin vcc = {4};
-	end;
+	}
 	
 	// 5V tolerant hex schmitt inverter
-	device 7414_SOIC is
+	device 7414_SOIC {
 		attr refPrefix = "U";
 		attr pkg_type = "SO14";
 		attr libName = "ref-packages-smd-ipc";
@@ -147,10 +147,10 @@
 		pin gnd = {7};
 		pin[5:0] din = {13,11,9,5,3,1};
 		pin[5:0] dout = {12,10,8,6,4,2};
-	end;
+	}
 	
 	// BLDC driver ic
-	device HIP4086 is
+	device HIP4086 {
 		attr refPrefix = "U";
 		attr pkg_type = "SO24W";
 		attr libName = "ref-packages-smd-ipc";
@@ -183,9 +183,9 @@
 		pin blo = {22};
 		pin bhs = {23};
 		pin bho = {24};
-	end;
+	}
 	
-	device LMD18200T is
+	device LMD18200T {
 		attr refPrefix = "U";
 		attr pkg_type = "TO-220-11";
 		attr libName = "national-semi";
@@ -205,9 +205,9 @@
 		pin thermal = {9};
 		pin out2 = {10};
 		pin boot2 = {11};
-	end;
+	}
 	
-	device ST3232C is
+	device ST3232C {
 		attr refPrefix = "U";
 		attr pkg_type = "SO16";
 		attr libName = "ref-packages-smd-ipc";
@@ -232,9 +232,9 @@
 		pin t1out = {14};
 		pin gnd = {15};
 		pin vcc = {16};
-	end;
+	}
 	
-	device L7805 is
+	device L7805 {
 		attr refPrefix = "U";
 		attr pkg_type = "D2PACK";
 		attr libName = "v-reg";
@@ -246,9 +246,9 @@
 		pin input = {1};
 		pin output = {3};
 		pin ground = {2};
-	end;
+	}
 
-	device LM1086CS is
+	device LM1086CS {
 		attr refPrefix = "U";
 		attr pkg_type = "TO263";
 		attr libName = "v-reg";
@@ -261,9 +261,9 @@
 		pin output = {2};
 		pin adj/gnd = {1};
 		pin tab = {tab};
-	end;
+	}
 	
-	device LF25CDT is
+	device LF25CDT {
 		attr refPrefix = "U";
 		attr pkg_type = "DPACK";
 		attr libName = "v-reg";
@@ -275,9 +275,9 @@
 		pin input = {1};
 		pin output = {3};
 		pin gnd = {4};
-	end;
+	}
 	
-	device LD1117 is
+	device LD1117 {
 		attr refPrefix = "U";
 		attr pkg_type = "DPACK";
 		attr libName = "v-reg";
@@ -289,9 +289,9 @@
 		pin input = {3};
 		pin output = {4};
 		pin gnd = {1};
-	end;
+	}
 	
-	device DAC121S101 is
+	device DAC121S101 {
 		attr refPrefix = "U";
 		attr pkg_type = "SOT23-6";
 		attr libName = "ref-packages-smd-ipc";
@@ -306,4 +306,4 @@
 		pin sdata = {4};
 		pin sclk = {5};
 		pin sync = {6};
-	end;
+	}

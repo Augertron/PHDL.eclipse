@@ -3,7 +3,14 @@
  * Author: Brad Riching
  */
  
-design ptzlanc is
+ // 3.6mm mounting hole
+device 3mm6_hole {
+	attr refPrefix = "H";
+	attr pkg_type = "3,6";
+	attr libName = "holes";
+}
+ 
+design ptzlanc {
 	
 	// resistor and capacitor definitions
 	include "rcl.phdl";
@@ -21,13 +28,6 @@ design ptzlanc is
 	include "discrete.phdl";
 	
 	include "connector.phdl";
-	
-	// 3.6mm mounting hole
-	device 3mm6_hole is
-		attr refPrefix = "H";
-		attr pkg_type = "3,6";
-		attr libName = "holes";
-	end;
 	
 	// power supply
 	net vmot, vdd, vu, vcco, vccaux, vccint, gnd;  // <= 40V, 12V, 5V, 3.3V, 2.5V, 1.2V, 0V respectively
@@ -88,13 +88,11 @@ design ptzlanc is
 	// lanc nets
 	net lanc_res, lanc_base, lanc_line;
 
-begin
-
 	/*********************************************************************************
 	 * Spartan3 FPGA, decoupling capacitors, mode switches, and HSWAP_EN select
 	 */
-	group "FPGA" is
-		inst fpga of top_tq144 is
+	group "FPGA" {
+		inst fpga of top_tq144 {
 			newattr libName = "xilinx_devices";
 			partnumber = "122-1717-ND";
 			newattr supplier = "DIGI-KEY";
@@ -161,143 +159,143 @@ begin
 			VCCO_5 = <vcco>;
 			VCCO_6 = <vcco>;
 			VCCO_7 = <vcco>;
-		end;
+		}
 		
 		// small vcco decoupling caps
-		inst(1:12) fpga_vcco_small of C0603 is
+		inst(1:12) fpga_vcco_small of C0603 {
 			value = "0.047u";
 			voltage = "50v";
 			cost = "0.12";
 			supplier = "DIGI-KEY";
 			mfgr = "TDK";
 			partNumber = "445-1313-1-ND";
-			each.a = vcco;
-			each.b = gnd;
-		end;
+			a = vcco;
+			b = gnd;
+		}
 		
 		// small vccaux decoupling caps
-		inst(1:8) fpga_vccaux_small of C0603 is
+		inst(1:8) fpga_vccaux_small of C0603 {
 			value = "0.01u";
 			voltage = "50v";
 			cost = "0.08";
 			supplier = "DIGI-KEY";
 			mfgr = "TDK";
 			partNumber = "445-1311-1-ND";
-			each.a = vccaux;
-			each.b = gnd;
-		end;
+			a = vccaux;
+			b = gnd;
+		}
 		
 		// small vccint decoupling caps
-		inst(1:8) fpga_vccint_small of C0603 is
-			each(1:4).value = "0.047u";
-			each(5:8).value = "0.01u";
-			each(1:4).cost = "0.12";
-			each(5:8).cost = "0.08";
-			each(1:4).partNumber = "445-1313-1-ND";
-			each(5:8).partNumber = "445-1311-1-ND";
+		inst(1:8) fpga_vccint_small of C0603 {
+			this(1:4).value = "0.047u";
+			this(5:8).value = "0.01u";
+			this(1:4).cost = "0.12";
+			this(5:8).cost = "0.08";
+			this(1:4).partNumber = "445-1313-1-ND";
+			this(5:8).partNumber = "445-1311-1-ND";
 			voltage = "50v";
 			supplier = "DIGI-KEY";
 			mfgr = "TDK";
-			each.a = vccint;
-			each.b = gnd;
-		end;
+			a = vccint;
+			b = gnd;
+		}
 		
 		// large vcco decoupling caps
-		inst(1:3) fpga_vcco_large of CP_1206MP/T is
+		inst(1:3) fpga_vcco_large of CP_1206MP/T {
 			value = "10u";
 			voltage = "16v";
 			cost = "0.47";
 			supplier = "DIGI-KEY";
 			mfgr = "AVX";
 			partNumber = "478-1655-1-ND";
-			each.pos = vcco;
-			each.neg = gnd;
-		end;
+			pos = vcco;
+			neg = gnd;
+		}
 		
 		// large vccaux decoupling caps
-		inst(1:2) fpga_vccaux_large of CP_1206MP/T is
+		inst(1:2) fpga_vccaux_large of CP_1206MP/T {
 			value = "10u";
 			voltage = "16v";
 			cost = "0.47";
 			supplier = "DIGI-KEY";
 			mfgr = "AVX";
 			partNumber = "478-1655-1-ND";
-			each.pos = vccaux;
-			each.neg = gnd;
-		end;
+			pos = vccaux;
+			neg = gnd;
+		}
 		
 		// large vccint decoupling caps
-		inst(1:2) fpga_vccint_large of CP_1206MP/T is
+		inst(1:2) fpga_vccint_large of CP_1206MP/T {
 			value = "10u";
 			voltage = "16v";
 			cost = "0.47";
 			supplier = "DIGI-KEY";
 			mfgr = "AVX";
 			partNumber = "478-1655-1-ND";
-			each.pos = vccint;
-			each.neg = gnd;
-		end;
-	end;
+			pos = vccint;
+			neg = gnd;
+		}
+	}
 	
 	/*********************************************************************************
 	 * DIP Switches and resistor network
 	 */
-	group "SWITCHES" is
-		inst fpga_switches of dipswitch is
+	group "SWITCHES" {
+		inst fpga_switches of dipswitch {
 			a = <vcco>;
 			b = sw_res;
-		end;
+		}
 		
-		inst(7:0) sw_pulldown of R0603 is
+		inst(7:0) sw_pulldown of R0603 {
 			value = "4.7k";
 			partNumber = "P4.7KGCT-ND";
-			combine.a = sw_res;
-			each.b = gnd;
-		end;
+			combine(a) = sw_res;
+			b = gnd;
+		}
 		
-		inst(7:0) sw_lim of R0603 is
+		inst(7:0) sw_lim of R0603 {
 			value = "4.7k";
 			partNumber = "P4.7KGCT-ND";
-			combine.a = sw_res;
-			combine.b = sw;
-		end;
-	end;
+			combine(a) = sw_res;
+			combine(b) = sw;
+		}
+	}
 	
 	/*********************************************************************************
 	 * LEDS and resistor network
 	 */
-	group "LEDS" is
-		inst(7:0) fpga_leds of LD0603 is
+	group "LEDS" {
+		inst(7:0) fpga_leds of LD0603 {
 			mfgr = "OSRAM";
 			supplier = "DIGI-KEY";
 			partNumber = "475-2506-1-ND";
 			cost = "0.15";
 			newattr refDes = "";
-			each(0).refDes = "LD0";
-			each(1).refDes = "LD1";
-			each(2).refDes = "LD2";
-			each(3).refDes = "LD3";
-			each(4).refDes = "LD4";
-			each(5).refDes = "LD5";
-			each(6).refDes = "LD6";
-			each(7).refDes = "LD7";
-			combine.a = led_res;
-			each.c = gnd;
-		end;
+			this(0).refDes = "LD0";
+			this(1).refDes = "LD1";
+			this(2).refDes = "LD2";
+			this(3).refDes = "LD3";
+			this(4).refDes = "LD4";
+			this(5).refDes = "LD5";
+			this(6).refDes = "LD6";
+			this(7).refDes = "LD7";
+			combine(a) = led_res;
+			c = gnd;
+		}
 		
-		inst(7:0) led_lim of R0603 is
+		inst(7:0) led_lim of R0603 {
 			value = "390R";
 			partNumber = "P390GCT-ND";
-			combine.a = led_res;
-			combine.b = led;
-		end;
-	end;
+			combine(a) = led_res;
+			combine(b) = led;
+		}
+	}
 	
 	/*********************************************************************************
 	 * Memory and decoupling capacitors
 	 */
-	group "MEMORY" is
-		inst mem0 of RAM256KX16 is 
+	group "MEMORY" {
+		inst mem0 of RAM256KX16 { 
 			addr = addr;
 			data[7:0] = data;
 			data[8:15] = data;
@@ -309,9 +307,9 @@ begin
 			vdd = <vcco>;
 			gnd = <gnd>;
 			nc = open;
-		end;
+		}
 		
-		inst mem1 of RAM256KX16 is
+		inst mem1 of RAM256KX16 {
 			// address lines remapped for memory on both sides of board
 			addr[17] = addr[0];
 			addr[16] = addr[1];
@@ -342,32 +340,32 @@ begin
 			vdd = <vcco>;
 			gnd = <gnd>;
 			nc = open;
-		end;
+		}
 		
-		inst(1:8) mem_cap of C0603 is
+		inst(1:8) mem_cap of C0603 {
 			value = "0.047u";
 			voltage = "50v";
 			cost = "0.12";
 			supplier = "DIGI-KEY";
 			mfgr = "TDK";
 			partNumber = "445-1313-1-ND";
-			each.a = vcco;
-			each.b = gnd;
-		end;
-	end;
+			a = vcco;
+			b = gnd;
+		}
+	}
 	
 	/*********************************************************************************
 	 * FPGA Clock and reset
 	 */
-	group "CLOCK" is
-		inst clk of OSC_50MHZ is
+	group "CLOCK" {
+		inst clk of OSC_50MHZ {
 			oe = gnd;
 			gnd = gnd;
 			output = clk;
 			vcc = vcco;
-		end;
+		}
 		
-		inst clk_cap of C0603 is
+		inst clk_cap of C0603 {
 			value = "0.01u";
 			voltage = "50v";
 			cost = "0.08";
@@ -376,58 +374,58 @@ begin
 			partNumber = "445-1311-1-ND";
 			a = vcco;
 			b = gnd;
-		end;
-	end;
+		}
+	}
 	
-	group "RESET" is
-		inst rst_btn of TL1105T is
+	group "RESET" {
+		inst rst_btn of TL1105T {
 			a = <reset_res>;
 			b = <gnd>;
-		end;
+		}
 		
-		inst(1:0) rst_res of R0603 is
+		inst(1:0) rst_res of R0603 {
 			value = "4.7k";
 			partNumber = "P4.7KGCT-ND";
-			each(0).a = vcco;
-			each(0).b = reset_res;
-			each(1).a = reset_res;
-			each(1).b = rst;
-		end;		
-	end;
+			this(0).a = vcco;
+			this(0).b = reset_res;
+			this(1).a = reset_res;
+			this(1).b = rst;
+		}		
+	}
 	
 	/*********************************************************************************
 	 * FPGA GPIO and mode select jumpers
 	 */
-	group "FPGA CONFIG" is
-		inst pmod_hdr0 of HDR_1X6 is
+	group "FPGA CONFIG" {
+		inst pmod_hdr0 of HDR_1X6 {
 			pkg_type = "1X06/90";
 			libName = "pinhead";
 			p = gpio[3:0] & gnd & vcco;
-		end;
+		}
 		
-		inst pmod_hdr1 of HDR_1X6 is
+		inst pmod_hdr1 of HDR_1X6 {
 			pkg_type = "1X06/90";
 			libName = "pinhead";
 			p = gpio[7:4] & gnd & vcco;
-		end;
+		}
 		
 		// sets the configuration mode of the fpga
-		inst mode_sel of HDR_2X3 is
+		inst mode_sel of HDR_2X3 {
 			p[6,4,2] = M0 & M1 & M2;
 			p[5,3,1] = <gnd>;
-		end;
+		}
 		
 		// enable/disable internal pullup resistors during fpga configuration
-		inst hswap_sel of HDR_1X3 is
+		inst hswap_sel of HDR_1X3 {
 			p = gnd & HSWAP_EN & vcco;
-		end;
-	end;
+		}
+	}
 	
 	/*********************************************************************************
 	 * FLASH ROM
 	 */
-	group "FLASH" is
-		inst flash of rom is 
+	group "FLASH" {
+		inst flash of rom { 
 			d0 = d0;
 			clk = rom_clk;
 			tdi = TDO;
@@ -443,74 +441,74 @@ begin
 			vcco = vcco;
 			vccj = vcco;
 			nc = open;
-		end;
+		}
 		
-		inst(1:3) flash_cap of C0603 is
+		inst(1:3) flash_cap of C0603 {
 			value = "0.047u";
 			voltage = "50v";
 			cost = "0.12";
 			supplier = "DIGI-KEY";
 			mfgr = "TDK";
 			partNumber = "445-1313-1-ND";
-			each.a = vcco;
-			each.b = gnd;
-		end;
-	end;
+			a = vcco;
+			b = gnd;
+		}
+	}
 	
 	/*********************************************************************************
 	 * JTAG programming chain
 	 */
-	group "JTAG" is
-		inst(1:3) cfg_pullup of R0603 is
-			each(1,2).value = "4.7k";
-			each(1,2).partNumber = "P4.7KGCT-ND";
-			each(3).value = "270R";
-			each(3).partNumber = "P270GCT-ND";
-			each.a = vccaux;
-			each(1).b = init_b;
-			each(2).b = PROG_B;
-			each(3).b = DONE;
-		end;
+	group "JTAG" {
+		inst(1:3) cfg_pullup of R0603 {
+			this(1,2).value = "4.7k";
+			this(1,2).partNumber = "P4.7KGCT-ND";
+			this(3).value = "270R";
+			this(3).partNumber = "P270GCT-ND";
+			a = vccaux;
+			this(1).b = init_b;
+			this(2).b = PROG_B;
+			this(3).b = DONE;
+		}
 		
-		inst done_led of LD0603 is
+		inst done_led of LD0603 {
 			mfgr = "OSRAM";
 			supplier = "DIGI-KEY";
 			partNumber = "475-2709-1-ND";
 			cost = "0.16";
 			a = DONE;
 			c = gnd;
-		end;
+		}
 		
-		inst(1:4) jtag_res of R0603 is 
-			each(1,2).value = "100R";
-			each(1,2).partNumber = "P100GCT-ND";
-			each(3).value = "4.7k";
-			each(3).partNumber = "P4.7KGCT-ND";
-			each(4).value = "75R";
-			each(4).partNumber = "P75GCT-ND";
-			each(1).a = PROG_B;
-			each(1).b = prog_sw;
-			each(2).a = din;
-			each(2).b = d0;
-			each(3).a = vcco;
-			each(3).b = rom_ce;
-			each(4).a = CCLK;
-			each(4).b = rom_clk;
-		end;
+		inst(1:4) jtag_res of R0603 { 
+			this(1,2).value = "100R";
+			this(1,2).partNumber = "P100GCT-ND";
+			this(3).value = "4.7k";
+			this(3).partNumber = "P4.7KGCT-ND";
+			this(4).value = "75R";
+			this(4).partNumber = "P75GCT-ND";
+			this(1).a = PROG_B;
+			this(1).b = prog_sw;
+			this(2).a = din;
+			this(2).b = d0;
+			this(3).a = vcco;
+			this(3).b = rom_ce;
+			this(4).a = CCLK;
+			this(4).b = rom_clk;
+		}
 		
 		// reprogram switch
-		inst prog_fpga of TL1105T is
+		inst prog_fpga of TL1105T {
 			a = <prog_sw>;
 			b = <gnd>;
-		end;
+		}
 		
 		// rom enable jumper
-		inst rom_en of HDR_1X3 is
+		inst rom_en of HDR_1X3 {
 			p = gnd & rom_ce & DONE;
-		end;
+		}
 		
 		// JTAG Parallel IV header
-		inst jtag_par_iv_hdr of HDR_2X7 is
+		inst jtag_par_iv_hdr of HDR_2X7 {
 			pkg_type = "79107-14";
 			libName = "con-headers-jp";
 			partNumber = "WM17469-ND";
@@ -523,10 +521,10 @@ begin
 			p[10] = TDI;
 			p[12,14] = open;
 			p[1,3,5,7,9,11,13] = <gnd>;
-		end;
+		}
 		
 		// JTAG interface header and current limiting resistors
-		inst jtag_hdr of HDR_1X6 is
+		inst jtag_hdr of HDR_1X6 {
 			pkg_type = "1X06/90";
 			libName = "pinhead";
 			p[1] = tms_ext;
@@ -535,35 +533,35 @@ begin
 			p[4] = tck_ext;
 			p[5] = gnd;
 			p[6] = vcco;
-		end;
+		}
 		
-		inst(1:3) jtag_hdr_res of R0603 is
+		inst(1:3) jtag_hdr_res of R0603 {
 			value = "100R";
 			partNumber = "P100GCT-ND";
-			each(1).a = tms_ext;
-			each(2).a = tdi_ext;
-			each(3).a = tck_ext;
-			each(1).b = TMS;
-			each(2).b = TDI;
-			each(3).b = TCK;
-		end;
-	end;
+			this(1).a = tms_ext;
+			this(2).a = tdi_ext;
+			this(3).a = tck_ext;
+			this(1).b = TMS;
+			this(2).b = TDI;
+			this(3).b = TCK;
+		}
+	}
 	
 	/*********************************************************************************
 	 * 12-bit DAC
 	 */
-	group "DAC" is
-		inst dac of DAC121S101 is
+	group "DAC" {
+		inst dac of DAC121S101 {
 			vout = dac_out;
 			gnd = gnd;
 			va = vu;
 			sdata = sdata;
 			sclk = sclk;
 			sync = sync;
-		end;
+		}
 		
 		// decoupling capacitor
-		inst dac_cap of C0603 is
+		inst dac_cap of C0603 {
 			value = "0.1u";
 			voltage = "50v";
 			cost = "0.035";
@@ -572,39 +570,39 @@ begin
 			partNumber = "311-1344-1-ND";
 			a = vu;
 			b = gnd;
-		end;
+		}
 		
 		// output connector
-		inst dac_hdr of HDR_1X2 is
+		inst dac_hdr of HDR_1X2 {
 			pkg_type = "70543-02";
 			libName = "con-molex";
 			p = dac_out & gnd;
-		end;
-	end;
+		}
+	}
 	
 	/*********************************************************************************
 	 * Hex schmitt trigger inverter buffers and encoder header connectors
 	 */
-	group "ENCODERS" is
-		inst enc_buf of 7414_SOIC is
+	group "ENCODERS" {
+		inst enc_buf of 7414_SOIC {
 			vcc = vcco;
 			gnd = gnd;
 			din = e1 & e0[0] & e0[1] & e0[2];
 			dout = enc1 & enc0[0] & enc0[1] & enc0[2];
-		end;
+		}
 		
-		inst(0:1) enc_hdrs of HDR_1X5 is
+		inst(0:1) enc_hdrs of HDR_1X5 {
 			pkg_type = "70543-05";
 			libName = "con-molex";
 			cost = "1.43";
 			supplier = "DIGI-KEY";
 			mfgr = "Molex";
 			partNumber = "WM4803-ND";
-			each(0).p = e0 & vu & gnd;
-			each(1).p = e1 & vu & gnd;
-		end;
+			this(0).p = e0 & vu & gnd;
+			this(1).p = e1 & vu & gnd;
+		}
 		
-		inst enc_cap of C0603 is
+		inst enc_cap of C0603 {
 			value = "0.1u";
 			voltage = "50v";
 			cost = "0.035";
@@ -613,41 +611,41 @@ begin
 			partNumber = "311-1344-1-ND";
 			a = vcco;
 			b = gnd;
-		end;
-	end;
+		}
+	}
 	
 	/*********************************************************************************
 	 * Hex schmitt trigger inverter buffers and brushless motor sensor inputs
 	 */
-	group "BLDC SENSE" is
-		inst sense_buf of 7414_SOIC is
+	group "BLDC SENSE" {
+		inst sense_buf of 7414_SOIC {
 			vcc = vcco;
 			gnd = gnd;
 			din = s1 & s0[1] & s0[2] & s0[3];
 			dout = sense1 & sense0[0] & sense0[1] & sense0[2];
-		end;
+		}
 		
-		inst(0:1) sense_hdrs of HDR_1X5 is
+		inst(0:1) sense_hdrs of HDR_1X5 {
 			pkg_type = "70543-05";
 			libName = "con-molex";
 			cost = "1.43";
 			supplier = "DIGI-KEY";
 			mfgr = "Molex";
 			partNumber = "WM4803-ND";
-			each(0).p = s0 & vu & gnd;
-			each(1).p = s1 & vu & gnd;
-		end;
+			this(0).p = s0 & vu & gnd;
+			this(1).p = s1 & vu & gnd;
+		}
 		
 		// pullups on all brushless motor sensor lines
-		inst(5:0) sense_pullup of R0603 is
+		inst(5:0) sense_pullup of R0603 {
 			value = "1k";
 			partNumber = "P1.0KGCT-ND";
-			each.a = vu;
-			combine(5,4,3).b = s1;
-			combine(2,1,0).b = s0;
-		end;
+			a = vu;
+			combine(this(5,4,3).b) = s1;
+			combine(this(2,1,0).b) = s0;
+		}
 		
-		inst sense_cap of C0603 is
+		inst sense_cap of C0603 {
 			value = "0.1u";
 			voltage = "50v";
 			cost = "0.035";
@@ -656,39 +654,39 @@ begin
 			partNumber = "311-1344-1-ND";
 			a = vcco;
 			b = gnd;
-		end;
-	end;
+		}
+	}
 	
 	/*********************************************************************************
 	 * Brushless motor 0 and 1 drive
 	 */
-	group "FET DRIVERS" is
-		inst(0:1) fet_drivers of HIP4086 is
-			combine.bhb = bhb;
-			combine.bhi = bhi;
-			combine.bli = bli;
-			combine.ali = ali;
-			combine.ahi = ahi;
-			each.vss = gnd;
-			combine.rdel = rdel;
-			combine.uvlo = uvlo;
-			combine.rfsh = rfsh;
-			each.dis = gnd;
-			combine.cli = cli;
-			combine.chi = chi;
-			combine.chb = chb;
-			combine.cho = cho;
-			combine.chs = chs;
-			combine.ahb = ahb;
-			combine.aho = aho;
-			combine.ahs = ahs;
-			combine.clo = clo;
-			each.vdd = vdd;
-			combine.alo = alo;
-			combine.blo = blo;
-			combine.bhs = bhs;
-			combine.bho = bho;
-		end;
+	group "FET DRIVERS" {
+		inst(0:1) fet_drivers of HIP4086 {
+			combine(this(0:1).bhb) = bhb;
+			combine(this(0:1).bhi) = bhi;
+			combine(this(0:1).bli) = bli;
+			combine(this(0:1).ali) = ali;
+			combine(this(0:1).ahi) = ahi;
+			vss = gnd;
+			combine(this(0:1).rdel) = rdel;
+			combine(this(0:1).uvlo) = uvlo;
+			combine(this(0:1).rfsh) = rfsh;
+			dis = gnd;
+			combine(this(0:1).cli) = cli;
+			combine(this(0:1).chi) = chi;
+			combine(this(0:1).chb) = chb;
+			combine(this(0:1).cho) = cho;
+			combine(this(0:1).chs) = chs;
+			combine(this(0:1).ahb) = ahb;
+			combine(this(0:1).aho) = aho;
+			combine(this(0:1).ahs) = ahs;
+			combine(this(0:1).clo) = clo;
+			vdd = vdd;
+			combine(this(0:1).alo) = alo;
+			combine(this(0:1).blo) = blo;
+			combine(this(0:1).bhs) = bhs;
+			combine(this(0:1).bho) = bho;
+		}
 		
 		// re-map vectors from fpga
 		ahi = high0[2] & high1[2];
@@ -699,242 +697,242 @@ begin
 		cli = low0[0] & low1[0];
 		
 		// power supply decoupling caps
-		inst(1:4) fet_driver_cap of CP_1206MP/T is
-			each(1,2).value = "4.7u";
-			each(1,2).voltage = "20v";
-			each(1,2).cost = "0.38";
-			each(1,2).partNumber = "478-1668-1-ND";
-			each(3,4).value = "1u";
-			each(3,4).voltage = "25v";
-			each(3,4).cost = "0.38";
-			each(3,4).partNumber = "478-3857-1-ND";
+		inst(1:4) fet_driver_cap of CP_1206MP/T {
+			this(1,2).value = "4.7u";
+			this(1,2).voltage = "20v";
+			this(1,2).cost = "0.38";
+			this(1,2).partNumber = "478-1668-1-ND";
+			this(3,4).value = "1u";
+			this(3,4).voltage = "25v";
+			this(3,4).cost = "0.38";
+			this(3,4).partNumber = "478-3857-1-ND";
 			supplier = "DIGI-KEY";
 			mfgr = "AVX";
-			each.pos = vdd;
-			each.neg = gnd;
-		end;
+			pos = vdd;
+			neg = gnd;
+		}
 		
 		// configuration resistors
-		inst(1:4) config_res of R0603 is
-			each(1,3).value = "22K";
-			each(1,3).partNumber = "P22KGCT-ND";
-			each(1,3).a = vdd;
-			combine(1,3).b = rdel;
-			each(2,4).value = "47K";
-			each(2,4).partNumber = "P47KGCT-ND";
-			combine(2,4).a = uvlo;
-			each(2,4).b = gnd;
-		end;
+		inst(1:4) config_res of R0603 {
+			this(1,3).value = "22K";
+			this(1,3).partNumber = "P22KGCT-ND";
+			this(1,3).a = vdd;
+			combine(this(1,3).b) = rdel;
+			this(2,4).value = "47K";
+			this(2,4).partNumber = "P47KGCT-ND";
+			combine(this(2,4).a) = uvlo;
+			this(2,4).b = gnd;
+		}
 		
-		inst(1:2) rfsh_cap of C0603 is
+		inst(1:2) rfsh_cap of C0603 {
 			value = "470p";
 			voltage = "50v";
 			cost = "0.10";
 			supplier = "DIGI-KEY";
 			mfgr = "TDK";
 			partNumber = "445-1307-1-ND";
-			each.a = gnd;
-			combine.b = rfsh;
-		end;
+			a = gnd;
+			b = rfsh;
+		}
 		
 		// bootstrap capacitors
-		inst(1:6) bldc_boot_cap of C0603 is
+		inst(1:6) bldc_boot_cap of C0603 {
 			value = "0.22u";
 			voltage = "50v";
 			cost = "0.31";
 			supplier = "DIGI-KEY";
 			mfgr = "Murata";
 			partNumber = "490-5402-1-ND";
-			combine(1,4).a = ahb;
-			combine(2,5).a = bhb;
-			combine(3,6).a = chb;
-			combine(1,4).b = ahs;
-			combine(2,5).b = bhs;
-			combine(3,6).b = chs;
-		end;
+			combine(this(1,4).a) = ahb;
+			combine(this(2,5).a) = bhb;
+			combine(this(3,6).a) = chb;
+			combine(this(1,4).b) = ahs;
+			combine(this(2,5).b) = bhs;
+			combine(this(3,6).b) = chs;
+		}
 		
 		// bootstrap diodes
-		inst(1:6) bldc_boot_diode of DO214AC is
+		inst(1:6) bldc_boot_diode of DO214AC {
 			cost = "0.403";
 			supplier = "DIGI-KEY";
 			mfgr = "Vishay";
 			partNumber = "US1D-E3/61TGICT-ND";
-			each.a = vdd;
-			combine(1,4).c = ahb;
-			combine(2,5).c = bhb;
-			combine(3,6).c = chb;
-		end;
+			a = vdd;
+			combine(this(1,4).c) = ahb;
+			combine(this(2,5).c) = bhb;
+			combine(this(3,6).c) = chb;
+		}
 		
 		// clamp diodes to prevent negative transients on the floating sense lines
-		inst(1:12) bldc_clamp of DO214AC is
+		inst(1:12) bldc_clamp of DO214AC {
 			cost = "0.403";
 			supplier = "DIGI-KEY";
 			mfgr = "Vishay";
 			partNumber = "US1D-E3/61TGICT-ND";
-			each(1:6).a = gnd;
-			combine(1:6).c = clamps;
-			combine(7:12).a = clamps;
-			combine(7:12).c = ahs & bhs & chs;
-		end;
+			this(1:6).a = gnd;
+			combine(this(1:6).c) = clamps;
+			combine(this(7:12).a) = clamps;
+			combine(this(7:12).c) = ahs & bhs & chs;
+		}
 		
 		// phase sense resistors
-		inst(1:6) sense_res of R0603 is
+		inst(1:6) sense_res of R0603 {
 			value = "1R";
 			partNumber = "P1.0GCT-ND";
-			combine(1,4).a = ahs;
-			combine(1,4).b = mot0[2] & mot1[2];
-			combine(2,5).a = bhs;
-			combine(2,5).b = mot0[1] & mot1[1];
-			combine(3,6).a = chs;
-			combine(3,6).b = mot0[0] & mot1[0];
-		end;
+			combine(this(1,4).a) = ahs;
+			combine(this(1,4).b) = mot0[2] & mot1[2];
+			combine(this(2,5).a) = bhs;
+			combine(this(2,5).b) = mot0[1] & mot1[1];
+			combine(this(3,6).a) = chs;
+			combine(this(3,6).b) = mot0[0] & mot1[0];
+		}
 		
 		// gate resistors to dampen any ringing
-		inst(1:12) gate_res of R0603 is
+		inst(1:12) gate_res of R0603 {
 			value = "10R";
 			partNumber = "P10GCT-ND";
-			combine(1,7).a = aho;
-			combine(1,7).b = ahg;
-			combine(2,8).a = bho;
-			combine(2,8).b = bhg;
-			combine(3,9).a = cho;
-			combine(3,9).b = chg;
-			combine(4,10).a = alo;
-			combine(4,10).b = alg;
-			combine(5,11).a = blo;
-			combine(5,11).b = blg;
-			combine(6,12).a = clo;
-			combine(6,12).b = clg;
-		end;
-	end;
+			combine(this(1,7).a) = aho;
+			combine(this(1,7).b) = ahg;
+			combine(this(2,8).a) = bho;
+			combine(this(2,8).b) = bhg;
+			combine(this(3,9).a) = cho;
+			combine(this(3,9).b) = chg;
+			combine(this(4,10).a) = alo;
+			combine(this(4,10).b) = alg;
+			combine(this(5,11).a) = blo;
+			combine(this(5,11).b) = blg;
+			combine(this(6,12).a) = clo;
+			combine(this(6,12).b) = clg;
+		}
+	}
 	
-	group "POWER FETS" is
-		// 6 FETS for each brushless motor
-		inst(1:12) drive_fet of TO252 is
+	group "POWER FETS" {
+		// 6 FETS for this brushless motor
+		inst(1:12) drive_fet of TO252 {
 			mfgr = "Fairchild";
 			partNumber = "FDD3682CT-ND";
 			supplier = "DIGI-KEY";
 			cost = "1.56";
 			
 			// high-side drivers
-			combine(1,7).g = ahg;
-			combine(2,8).g = bhg;
-			combine(3,9).g = chg;
+			combine(this(1,7).g) = ahg;
+			combine(this(2,8).g) = bhg;
+			combine(this(3,9).g) = chg;
 			
 			// low-side drivers
-			combine(4,10).g = alg;
-			combine(5,11).g = blg;
-			combine(6,12).g = clg;
+			combine(this(4,10).g) = alg;
+			combine(this(5,11).g) = blg;
+			combine(this(6,12).g) = clg;
 			
 			// power supply to drivers
-			combine(1,2,3,7,8,9).d = <vmot>;
-			combine(4,5,6,10,11,12).s = <gnd>;
+			combine(this(1,2,3,7,8,9).d) = <vmot>;
+			combine(this(4,5,6,10,11,12).s) = <gnd>;
 			
 			// mot0 outputs
-			combine(1,2,3).s = mot0;
-			combine(4,5,6).d = mot0;
+			combine(this(1,2,3).s) = mot0;
+			combine(this(4,5,6).d) = mot0;
 			
 			// mot1 outputs
-			combine(7,8,9).s = mot1;
-			combine(10,11,12).d = mot1;
-		end;
+			combine(this(7,8,9).s) = mot1;
+			combine(this(10,11,12).d) = mot1;
+		}
 		
 		// gate-source resistors make sure lower stages are off on powerup
-		inst(1:6) gate_source_res of R0603 is
+		inst(1:6) gate_source_res of R0603 {
 			value = "4.7k";
 			partNumber = "P4.7KGCT-ND";
-			combine(1,4).a = alg;
-			combine(2,5).a = blg;
-			combine(3,6).a = clg;
-			each.b = gnd;
-		end;
+			combine(this(1,4).a) = alg;
+			combine(this(2,5).a) = blg;
+			combine(this(3,6).a) = clg;
+			b = gnd;
+		}
 		
 		// output connector
-		inst(0:1) bldc_out of HDR_1X3 is
+		inst(0:1) bldc_out of HDR_1X3 {
 			pkg_type = "22-23-2031";
 			libName = "con-molex";
-			each(0).p = mot0;
-			each(1).p = mot1;
-		end;
-	end;
+			this(0).p = mot0;
+			this(1).p = mot1;
+		}
+	}
 	
 	/*********************************************************************************
 	 * Brushed motor 0 and 1 drive
 	 */
-	group "DC DRIVE" is
-		inst(0:1) h_bridges of LMD18200T is
-			combine.pwm = pwm;
-			combine.dir = dir;
-			combine.out1 = out1;
-			combine.out2 = out2;
-			combine.boot1 = boot1;
-			combine.boot2 = boot2;
-			combine.sense = open;
-			combine.thermal = open;
-			each.brake = gnd;
-			each.vss = vmot;
-			each.gnd = gnd;
-		end;
+	group "DC DRIVE" {
+		inst(0:1) h_bridges of LMD18200T {
+			combine(this(0:1).pwm) = pwm;
+			combine(this(0:1).dir) = dir;
+			combine(this(0:1).out1) = out1;
+			combine(this(0:1).out2) = out2;
+			combine(this(0:1).boot1) = boot1;
+			combine(this(0:1).boot2) = boot2;
+			combine(this(0:1).sense) = open;
+			combine(this(0:1).thermal) = open;
+			brake = gnd;
+			vss = vmot;
+			gnd = gnd;
+		}
 		
 		// remap vectors
 		pwm = pwm0 & pwm1;
 		dir = dir0 & dir1;
 		
 		// bootstrap capactitors
-		inst(1:4) bridge_boot of C0603 is
+		inst(1:4) bridge_boot of C0603 {
 			value = "0.01u";
 			voltage = "50v";
 			cost = "0.08";
 			supplier = "DIGI-KEY";
 			mfgr = "TDK";
 			partNumber = "445-1311-1-ND";
-			combine(1,3).a = boot1;
-			combine(1,3).b = out1;
-			combine(2,4).a = boot2;
-			combine(2,4).b = out2;
-		end;
+			combine(this(1,3).a) = boot1;
+			combine(this(1,3).b) = out1;
+			combine(this(2,4).a) = boot2;
+			combine(this(2,4).b) = out2;
+		}
 		
 		// output connectors
-		inst(0:1) brushed_out of HDR_1X2 is
+		inst(0:1) brushed_out of HDR_1X2 {
 			pkg_type = "22-23-2021";
 			libName = "con-molex";
-			each(0).p = out1[0] & out2[0];
-			each(1).p = out1[1] & out2[1];
-		end;
+			this(0).p = out1[0] & out2[0];
+			this(1).p = out1[1] & out2[1];
+		}
 		
 		// motor power
-		inst motor_power of HDR_1X2 is
+		inst motor_power of HDR_1X2 {
 			pkg_type = "22-23-2021";
 			libName = "con-molex";
 			p = vmot & gnd;
-		end;
+		}
 		
 		// motor power caps
-		inst(1:6) motor_power_caps of CSV-E/F is
+		inst(1:6) motor_power_caps of CSV-E/F {
 			value = "47u";
 			voltage = "63v";
 			cost = "0.82";
 			supplier = "DIGI-KEY";
 			mfgr = "Panasonic";
 			partNumber = "PCE3946CT-ND";
-			each.pos = vmot;
-			each.neg = gnd;
-		end;
+			pos = vmot;
+			neg = gnd;
+		}
 		
 		// pull down resistors on all bridge inputs so they remain low during fpga configuration
-		inst(1:4) pulldowns of R0603 is
+		inst(1:4) pulldowns of R0603 {
 			value = "4.7K";
 			partNumber = "P4.7KGCT-ND";
-			combine.a = pwm & dir;
-			each.b = gnd;
-		end;
-	end;
+			combine(this(1:4).a) = pwm & dir;
+			b = gnd;
+		}
+	}
 	
 	/*********************************************************************************
 	 * RS232 Serial port
 	 */
-	group "RS232" is
-		inst level_conv of ST3232C is
+	group "RS232" {
+		inst level_conv of ST3232C {
 			c1+ = c1+;
 			v+ = v+;
 			c1- = c1-;
@@ -951,40 +949,40 @@ begin
 			t1out = t1out;
 			gnd = gnd;
 			vcc = vcco;
-		end;
+		}
 		
 		t1in = txd;
 		t2in = txd_a;
 		
-		inst(1:2) rxd_res of R0603 is
+		inst(1:2) rxd_res of R0603 {
 			value = "100R";
 			partNumber = "P100GCT-ND";
-			each(1).a = rxd;
-			each(1).b = r1out;
-			each(2).a = rxd_a;
-			each(2).b = r2out;
-		end;
+			this(1).a = rxd;
+			this(1).b = r1out;
+			this(2).a = rxd_a;
+			this(2).b = r2out;
+		}
 		
-		inst(1:5) conv_cap of C0603 is
+		inst(1:5) conv_cap of C0603 {
 			value = "0.1u";
 			voltage = "50v";
 			cost = "0.035";
 			supplier = "DIGI-KEY";
 			mfgr = "Yageo";
 			partNumber = "311-1344-1-ND";
-			each(1).a = c1+;
-			each(1).b = c1-;
-			each(2).a = c2+;
-			each(2).b = c2-;
-			each(3).a = vcco;
-			each(3).b = v+;
-			each(4).a = v-;
-			each(4).b = gnd;
-			each(5).a = vcco;
-			each(5).b = gnd;
-		end;
+			this(1).a = c1+;
+			this(1).b = c1-;
+			this(2).a = c2+;
+			this(2).b = c2-;
+			this(3).a = vcco;
+			this(3).b = v+;
+			this(4).a = v-;
+			this(4).b = gnd;
+			this(5).a = vcco;
+			this(5).b = gnd;
+		}
 		
-		inst rs232_port of SUBD9F is
+		inst rs232_port of SUBD9F {
 			p1 = rs232_com;
 			p2 = t1out;
 			p3 = r1in;
@@ -996,250 +994,250 @@ begin
 			p9 = open;
 			g1 = gnd;
 			g2 = gnd;
-		end;
+		}
 		
-		inst rs232_aux_port of HDR_1X3 is
+		inst rs232_aux_port of HDR_1X3 {
 			p = t2out & r2in & gnd;
-		end;
-	end;
+		}
+	}
 	
 	/*********************************************************************************
 	 * LANC interface
 	 */
-	group "LANC" is
-		inst lanc_bjt of BSR14 is
+	group "LANC" {
+		inst lanc_bjt of BSR14 {
 			e = gnd;
 			c = lanc_res;
 			b = lanc_base;
-		end;
+		}
 		
 		// biasing and current limiting resistors
-		inst(1:4) lanc_res of R0603 is
-			each(1).value = "220R";
-			each(1).partNumber = "P220GCT-ND";
-			each(2,3).value = "1k";
-			each(2,3).partNumber = "P1.0KGCT-ND";
-			each(4).value = "100R";
-			each(4).partNumber = "P100GCT-ND";
-			each(1).a = lrx;
-			each(1).b = lanc_res;
-			each(2).a = ltx;
-			each(2).b = lanc_base;
-			each(3).a = vu;
-			each(3).b = lanc_res;
-			each(4).a = lanc_res;
-			each(4).b = lanc_line;
-		end;
+		inst(1:4) lanc_res of R0603 {
+			this(1).value = "220R";
+			this(1).partNumber = "P220GCT-ND";
+			this(2,3).value = "1k";
+			this(2,3).partNumber = "P1.0KGCT-ND";
+			this(4).value = "100R";
+			this(4).partNumber = "P100GCT-ND";
+			this(1).a = lrx;
+			this(1).b = lanc_res;
+			this(2).a = ltx;
+			this(2).b = lanc_base;
+			this(3).a = vu;
+			this(3).b = lanc_res;
+			this(4).a = lanc_res;
+			this(4).b = lanc_line;
+		}
 		
 		// LANC connector
-		inst lanc of HDR_1X2 is
+		inst lanc of HDR_1X2 {
 			pkg_type = "70543-02";
 			libName = "con-molex";
 			p = lanc_line & gnd;
-		end;
-	end;
+		}
+	}
 	
 	/*********************************************************************************
 	 * Power Supply
 	 */
-	group "5v REG" is
+	group "5v REG" {
 		// DC input jack
-		inst 12vdc_in of DC_JACK is
+		inst 12vdc_in of DC_JACK {
 			tip = vdd;
 			sleeve = gnd;
 			switch = gnd;
-		end;
+		}
 		
-		inst(1:2) 12v_pcap of CSV-D is
+		inst(1:2) 12v_pcap of CSV-D {
 			value = "100u";
 			voltage = "25v";
 			cost = "0.63";
 			supplier = "DIGI-KEY";
 			mfgr = "Panasonic";
 			partNumber = "PCE3898CT-ND";
-			each.pos = vdd;
-			each.neg = gnd;
-		end;
+			pos = vdd;
+			neg = gnd;
+		}
 		
 		// 5V regulator
-		inst 5v_reg of L7805 is
+		inst 5v_reg of L7805 {
 			input = vdd;
 			output = vu;
 			ground = gnd;
-		end;
+		}
 		
-		inst(1:2) 5v_pcap of CSV-D is
+		inst(1:2) 5v_pcap of CSV-D {
 			value = "100u";
 			voltage = "25v";
 			cost = "0.63";
 			supplier = "DIGI-KEY";
 			mfgr = "Panasonic";
 			partNumber = "PCE3898CT-ND";
-			each.pos = vu;
-			each.neg = gnd;
-		end;
+			pos = vu;
+			neg = gnd;
+		}
 		
-		inst(1:2) 5v_reg_cap of C0603 is
-			each(1).value = "0.33u";
-			each(1).voltage = "50v";
-			each(1).cost = "0.16";
-			each(1).supplier = "DIGI-KEY";
-			each(1).mfgr = "TDK";
-			each(1).partNumber = "445-5093-1-ND";
-			each(2).value = "0.1u";
-			each(2).voltage = "50v";
-			each(2).cost = "0.035";
-			each(2).supplier = "DIGI-KEY";
-			each(2).mfgr = "Yageo";
-			each(2).partNumber = "311-1344-1-ND";
-			each(1).a = vdd;
-			each(2).a = vu;
-			each.b = gnd;
-		end;
+		inst(1:2) 5v_reg_cap of C0603 {
+			this(1).value = "0.33u";
+			this(1).voltage = "50v";
+			this(1).cost = "0.16";
+			this(1).supplier = "DIGI-KEY";
+			this(1).mfgr = "TDK";
+			this(1).partNumber = "445-5093-1-ND";
+			this(2).value = "0.1u";
+			this(2).voltage = "50v";
+			this(2).cost = "0.035";
+			this(2).supplier = "DIGI-KEY";
+			this(2).mfgr = "Yageo";
+			this(2).partNumber = "311-1344-1-ND";
+			this(1).a = vdd;
+			this(2).a = vu;
+			this.b = gnd;
+		}
 		
-		inst 5v_led of LD0603 is
+		inst 5v_led of LD0603 {
 			mfgr = "OSRAM";
 			supplier = "DIGI-KEY";
 			partNumber = "475-2709-1-ND";
 			cost = "0.16";
 			a = 5v_pwr;
 			c = gnd;
-		end;
+		}
 		
-		inst 5v_led_res of R0603 is
+		inst 5v_led_res of R0603 {
 			value = "1k";
 			partNumber = "P1.0KGCT-ND";
 			a = vu;
 			b = 5v_pwr;
-		end;
-	end;
+		}
+	}
 	
 	// 3.3V Regulator
-	group "3.3v REG" is
-		inst 3v3_reg of LM1086CS is
+	group "3.3v REG" {
+		inst 3v3_reg of LM1086CS {
 			input = vu;
 			output = vcco;
 			tab = vcco;
 			adj/gnd = 3v3_sense;
-		end;
+		}
 		
-		inst(1:4) 3v3_cap of CP_1206MP/T is
-			each(1).value = "22u";
-			each(1).voltage = "10v";
-			each(1).cost = "0.49";
-			each(1).partNumber = "478-5798-1-ND";
-			each(2,3,4).value = "10u";
-			each(2,3,4).voltage = "16v";
-			each(2,3,4).cost = "0.47";
-			each(2,3,4).partNumber = "478-1655-1-ND";
+		inst(1:4) 3v3_cap of CP_1206MP/T {
+			this(1).value = "22u";
+			this(1).voltage = "10v";
+			this(1).cost = "0.49";
+			this(1).partNumber = "478-5798-1-ND";
+			this(2,3,4).value = "10u";
+			this(2,3,4).voltage = "16v";
+			this(2,3,4).cost = "0.47";
+			this(2,3,4).partNumber = "478-1655-1-ND";
 			supplier = "DIGI-KEY";
 			mfgr = "AVX";
-			each(1,2).pos = vu;
-			each(3).pos = 3v3_sense;
-			each(4).pos = vcco;
-			each.neg = gnd;
-		end;
+			this(1,2).pos = vu;
+			this(3).pos = 3v3_sense;
+			this(4).pos = vcco;
+			this.neg = gnd;
+		}
 		
-		inst(1:2) 3v3_pcap of CSV-D is
+		inst(1:2) 3v3_pcap of CSV-D {
 			value = "100u";
 			voltage = "25v";
 			cost = "0.63";
 			supplier = "DIGI-KEY";
 			mfgr = "Panasonic";
 			partNumber = "PCE3898CT-ND";
-			each.pos = vcco;
-			each.neg = gnd;
-		end;
+			pos = vcco;
+			neg = gnd;
+		}
 		
-		inst(1:2) 3v3_res of R0603 is
-			each(1).value = "240R";
-			each(2).value = "390R";
-			each(1).partNumber = "P240GCT-ND";
-			each(2).partNumber = "P390GCT-ND";
-			each(1).a = vcco;
-			each(1).b = 3v3_sense;
-			each(2).a = 3v3_sense;
-			each(2).b = gnd;
-		end;
+		inst(1:2) 3v3_res of R0603 {
+			this(1).value = "240R";
+			this(2).value = "390R";
+			this(1).partNumber = "P240GCT-ND";
+			this(2).partNumber = "P390GCT-ND";
+			this(1).a = vcco;
+			this(1).b = 3v3_sense;
+			this(2).a = 3v3_sense;
+			this(2).b = gnd;
+		}
 		
-		inst 3v3_led of LD0603 is
+		inst 3v3_led of LD0603 {
 			mfgr = "OSRAM";
 			supplier = "DIGI-KEY";
 			partNumber = "475-2709-1-ND";
 			cost = "0.16";
 			a = 3v3_pwr;
 			c = gnd;
-		end;
+		}
 		
-		inst 3v3_led_res of R0603 is
+		inst 3v3_led_res of R0603 {
 			value = "470R";
 			partNumber = "P470GCT-ND";
 			a = vcco;
 			b = 3v3_pwr;
-		end;
-	end;
+		}
+	}
 	
 	// 2.5V Regulator
-	group "2.5v REG" is
-		inst 2v5_reg of LF25CDT is
+	group "2.5v REG" {
+		inst 2v5_reg of LF25CDT {
 			input = vcco;
 			output = vccaux;
 			gnd = gnd;
-		end;
+		}
 		
-		inst(1:3) 2v5_cap of CP_1206MP/T is
-			each(1).value = "22u";
-			each(1).voltage = "10v";
-			each(1).cost = "0.49";
-			each(1).partNumber = "478-5798-1-ND";
-			each(2).value = "0.1u";
-			each(2).voltage = "50v";
-			each(2).cost = "0.75";
-			each(2).partNumber = "478-1648-1-ND";
-			each(3).value = "10u";
-			each(3).voltage = "16v";
-			each(3).cost = "0.47";
-			each(3).partNumber = "478-1655-1-ND";
+		inst(1:3) 2v5_cap of CP_1206MP/T {
+			this(1).value = "22u";
+			this(1).voltage = "10v";
+			this(1).cost = "0.49";
+			this(1).partNumber = "478-5798-1-ND";
+			this(2).value = "0.1u";
+			this(2).voltage = "50v";
+			this(2).cost = "0.75";
+			this(2).partNumber = "478-1648-1-ND";
+			this(3).value = "10u";
+			this(3).voltage = "16v";
+			this(3).cost = "0.47";
+			this(3).partNumber = "478-1655-1-ND";
 			supplier = "DIGI-KEY";
 			mfgr = "AVX";
-			each(1,2).pos = vcco;
-			each(3).pos = vccaux;
-			each.neg = gnd;
-		end;
+			this(1,2).pos = vcco;
+			this(3).pos = vccaux;
+			neg = gnd;
+		}
 		
-		inst 2v5_res of R0603 is
+		inst 2v5_res of R0603 {
 			value = "2.2k";
 			partNumber = "P2.2KGCT-ND";
 			a = vccaux;
 			b = gnd;
-		end;
+		}
 		
-		inst 2v5_led of LD0603 is
+		inst 2v5_led of LD0603 {
 			mfgr = "OSRAM";
 			supplier = "DIGI-KEY";
 			partNumber = "475-2709-1-ND";
 			cost = "0.16";
 			a = 2v5_pwr;
 			c = gnd;
-		end;
+		}
 		
-		inst 2v5_led_res of R0603 is
+		inst 2v5_led_res of R0603 {
 			value = "270R";
 			partNumber = "P270GCT-ND";
 			a = vccaux;
 			b = 2v5_pwr;
-		end;
-	end;
+		}
+	}
 	
 	// 1.2V Regulator
-	group "1.2v REG" is
-		inst 1v2_reg of LD1117 is
+	group "1.2v REG" {
+		inst 1v2_reg of LD1117 {
 			input = vcco;
 			output = vccint;
 			gnd = gnd;
-		end;
+		}
 		
-		inst 1v2_cap of CP_1206MP/T is
+		inst 1v2_cap of CP_1206MP/T {
 			value = "22u";
 			voltage = "10v";
 			cost = "0.49";
@@ -1248,16 +1246,16 @@ begin
 			mfgr = "AVX";
 			pos = vccint;
 			neg = gnd;
-		end;
+		}
 		
-		inst 1v2_res of R0603 is
+		inst 1v2_res of R0603 {
 			value = "120R";
 			partNumber = "P120GCT-ND";
 			a = vccint;
 			b = gnd;
-		end;
+		}
 		
-		inst 1v2_reg_cap of C0603 is
+		inst 1v2_reg_cap of C0603 {
 			value = "0.01u";
 			voltage = "50v";
 			cost = "0.08";
@@ -1266,11 +1264,11 @@ begin
 			partNumber = "445-1311-1-ND";
 			a = vcco;
 			b = gnd;
-		end;
-	end;
+		}
+	}
 	
 	// some mounting holes
-	inst(1:4) mounts of 3mm6_hole is
-	end;
+	inst(1:4) mounts of 3mm6_hole {
+	}
 	
-end design ptzlanc;
+}

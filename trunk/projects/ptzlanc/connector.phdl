@@ -1,4 +1,4 @@
-	device DC_JACK is
+	device DC_JACK {
 		attr refPrefix = "J";
 		attr pkg_type = "DCJ0202";
 		attr libName = "con-jack";
@@ -10,9 +10,9 @@
 		pin tip = {1};
 		pin sleeve = {2};
 		pin switch = {3};
-	end;
+	}
 	
-	device SUBD9F is
+	device SUBD9F {
 		attr refPrefix = "J";
 		attr pkg_type = "09HP";
 		attr libName = "con-subd";
@@ -32,4 +32,4 @@
 		pin p9 = {9};
 		pin g1 = {g1};
 		pin g2 = {g2};
-	end device;
+	}
