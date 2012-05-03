@@ -846,6 +846,181 @@ public class NetListGenerator {
 		 * Test 5
 		 * 	Netlist with two layers of hierarchy
 		 */
+		{
+			Design design = new Design("test5");
+			{
+				Instance inst4 = new Instance(design); {
+					inst4.setDevice(new Device("dev4"));
+					inst4.setRefDes("C1");
+					inst4.setName("inst4");
+					inst4.setPackage("package4");
+					inst4.setLibrary("library4");
+					
+					Pin g = new Pin(inst4); {
+						g.setName("g");
+						g.setPinMapping("1");
+					}
+					inst4.addPin(g);
+					
+					Pin h = new Pin(inst4); {
+						h.setName("h");
+						h.setPinMapping("2");
+					}
+					inst4.addPin(h);
+				}
+				
+				SubInstance[] subInst2 = new SubInstance[2];
+				for (int i = 0; i < 2; i++) {
+					subInst2[i] = new SubInstance(design, "SubInst2(" + i + ")");
+					{
+						subInst2[i].setIndex(i);
+						subInst2[i].setRefPrefix("Z");
+						Instance inst3 = new Instance(design); {
+							inst3.setDevice(new Device("dev3"));
+							inst3.setRefDes("B1");
+							inst3.setName("subInst2.inst3");
+							inst3.setPackage("package1_1");
+							inst3.setLibrary("library1_1");
+							
+							Pin e = new Pin(inst3); {
+								e.setName("e");
+								e.setPinMapping("1");
+							}
+							inst3.addPin(e);
+							
+							Pin f = new Pin(inst3); {
+								f.setName("f");
+								f.setPinMapping("2");
+							}
+							inst3.addPin(f);
+						}
+						
+						SubInstance subInst1 = new SubInstance(subInst2[i], "SubInst2(" + i + ")_SubInst1");
+						{
+							subInst1.setRefPrefix("Y");
+							Instance inst1 = new Instance(subInst1); {
+								inst1.setDevice(new Device("dev1"));
+								inst1.setRefDes("A1");
+								inst1.setName("subInst11.inst1");
+								inst1.setPackage("package11_1");
+								inst1.setLibrary("library11_1");
+								
+								Pin a = new Pin(inst1); {
+									a.setName("a");
+									a.setPinMapping("1");
+								}
+								inst1.addPin(a);
+								
+								Pin b = new Pin(inst1); {
+									b.setName("b");
+									b.setPinMapping("2");
+								}
+								inst1.addPin(b);
+							}
+							
+							Instance inst2 = new Instance(subInst1); {
+								inst2.setDevice(new Device("dev2"));
+								inst2.setRefDes("A2");
+								inst2.setName("subInst11.inst2");
+								inst2.setPackage("package11_2");
+								inst2.setLibrary("library11_2");
+								
+								Pin c = new Pin(inst2); {
+									c.setName("c");
+									c.setPinMapping("1");
+								}
+								inst2.addPin(c);
+								
+								Pin d = new Pin(inst2); {
+									d.setName("d");
+									d.setPinMapping("2");
+								}
+								inst2.addPin(d);
+							}
+							
+							Port pa = new Port(subInst1); {
+								pa.setName("pa");
+								pa.addPin(inst1.getPin("b"));
+							}
+							subInst1.addConnection(pa);
+							
+							Port pb = new Port(subInst1); {
+								pb.setName("pb");
+								pb.addPin(inst2.getPin("d"));
+							}
+							subInst1.addConnection(pb);
+							
+							Net net1 = new Net(subInst1); {
+								net1.setName("net1");
+								net1.addPin(inst1.getPin("a"));
+								net1.addPin(inst2.getPin("c"));
+							}
+							subInst1.addConnection(net1);
+							
+							subInst1.addInstance(inst1);
+							subInst1.addInstance(inst2);
+						}
+						
+						Port pc = new Port(subInst2[i]); {
+							pc.setName("pc");
+							pc.addPin(inst3.getPin("e"));
+						}
+						subInst2[i].addConnection(pc);
+						//System.out.println(pc);
+						
+						Port pd = new Port(subInst2[i]); {
+							pd.setName("pd");
+							pd.addConnection(subInst1.getPort("pb", -1));
+						}
+						subInst2[i].addConnection(pd);
+						
+						Net net1 = new Net(subInst2[i]); {
+							net1.setName("net1");
+							net1.addPin(inst3.getPin("f"));
+							net1.addConnection(subInst1.getPort("pa", -1));
+						}
+						subInst2[i].addConnection(net1);
+						
+						subInst2[i].addSubInst(subInst1);
+						subInst2[i].addInstance(inst3);
+					}
+				}
+				
+				Net net1 = new Net(design); {
+					net1.setName("net1");
+					net1.addPin(inst4.getPin("g"));
+					net1.addConnection(subInst2[0].getPort("pc", -1));
+					net1.addConnection(subInst2[1].getPort("pc", -1));
+				}
+				
+				System.out.println(net1);
+				System.out.println(subInst2[0].getPort("pc", -1));
+				System.out.println(subInst2[0].getPort("pd", -1));
+				
+				subInst2[0].getPort("pc", -1).addConnection(net1);
+				subInst2[1].getPort("pc", -1).addConnection(net1);
+				
+				Net net2 = new Net(design); {
+					net2.setName("net2");
+					net2.addPin(inst4.getPin("h"));
+					net2.addConnection(subInst2[0].getPort("pd", -1));
+					net2.addConnection(subInst2[1].getPort("pd", -1));
+				}
+				subInst2[0].getPort("pd", -1).addConnection(net2);
+				subInst2[1].getPort("pd", -1).addConnection(net2);
+				
+				design.addConnection(net1);
+				design.addConnection(net2);
+				design.addInstance(inst4);
+				design.addSubInst(subInst2[0]);
+				design.addSubInst(subInst2[1]);
+			}
+			
+			RefDesGenerator refGen = new RefDesGenerator(design);
+			NetListGenerator netGen = new NetListGenerator(design, refGen.getRefMap());
+			netGen.outputToFile("TestsOutput/NetListOutput/" + design.getName() + ".asc");
+		}
+		
 
 		return success;
 	}
