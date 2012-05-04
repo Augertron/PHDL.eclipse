@@ -79,8 +79,19 @@ public abstract class Connection extends Attributable {
 
 	@Override
 	public boolean equals(Object o) {
-		return this.getName().equals(((Connection) o).getName()) && this.getIndex() == ((Connection) o).getIndex()
-			&& this.getParent().equals(((Connection) o).getParent());
+		boolean result = this.getName().equals(((Connection) o).getName()) && this.getIndex() == ((Connection) o).getIndex(); 
+		
+		if (this.getParent() instanceof SubInstance && ((Connection)o).getParent() instanceof SubInstance) {
+			result &= ((SubInstance)this.getParent()).equals(((SubInstance)((Connection)o).getParent()));
+		}
+		else if (this.getParent() instanceof SubInstance || ((Connection)o).getParent() instanceof SubInstance) {
+			result &= false;
+		}
+		else {
+			result &= this.getParent().equals(((Connection) o).getParent());
+		}
+		
+		return result; 
 	}
 
 	public Connection getConnectionByName(String name) {

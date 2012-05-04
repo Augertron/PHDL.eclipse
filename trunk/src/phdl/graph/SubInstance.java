@@ -175,8 +175,9 @@ public class SubInstance extends HierarchyUnit {
 		if (!(o instanceof SubInstance)) {
 			return false;
 		}
-		return this.name.equals(((SubInstance) o).getName()) && this.getIndex() == ((SubInstance) o).getIndex()
-			&& this.parent.equals(((SubInstance) o).getParent());
+		boolean result = this.name.equals(((SubInstance) o).getName()) && this.getIndex() == ((SubInstance) o).getIndex()
+				&& this.parent.equals(((SubInstance) o).getParent());
+		return result;
 	}
 
 	public String getHierarchyName() {
