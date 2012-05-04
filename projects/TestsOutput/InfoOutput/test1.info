@@ -1,15 +1,59 @@
-Design test1
--------------
-Lorem ipsum dolor sit amet.
+Layout Supplementary Information
+--------------------------------
 
-Instance testInst1
--------------------
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent viverra dolor at risus faucibus in dictum nisl dapibus. Vestibulum vitae tortor non diam consequat venenatis quis sed eros. Donec eget sapien velit, at varius risus. In elementum urna a leovulputate iaculis. Duis eu lectus orci. Suspendisse potenti. Maurissollicitudin fringilla sapien, sodales ullamcorper nulla euismod vel. Sed in imperdiet neque.
--------------------
+	DESIGN test1
+	-------------
+	Lorem ipsum dolor sit amet. 
 
-Instance testInst2
--------------------
-Ut laoreet hendrerit ligula, eu interdum neque tincidunt dapibus. Inet turpis at lacus lobortis ultricies. Nam sollicitudin sapien eu nisifacilisis commodo. Nullam ullamcorper gravida sapien, tempor iaculismassa dignissim ac. Nunc iaculis dolor et orci pellentesque at convallisorci porttitor. Ut sit amet magna a magna imperdiet tincidunt id etlibero. Nullam id tellus vitae odio convallis ultrices.
--------------------
+		NET TESTNET1
+		---------------
+		Leo pretium. Felis sit. Sed culpa eu neque tellus ipsum adipiscing, 
+		pellentesque turpis ac. Tortor sed mattis tortor felis adipiscing, 
+		urna mauris mauris, cursus duis, porta condimentum. 
+		---------------
 
--------------
+		INSTANCE testInst1
+		---------------------
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent 
+		viverra dolor at risus faucibus in dictum nisl dapibus. Vestibulum 
+		vitae tortor non diam consequat venenatis quis sed eros. Donec 
+		eget sapien velit, at varius risus. In elementum urna a leo 
+		vulputate iaculis. Duis eu lectus orci. Suspendisse potenti. 
+		Mauris sollicitudin fringilla sapien, sodales ullamcorper nulla 
+		euismod vel. Sed in imperdiet neque. 
+		---------------------
+
+		INSTANCE testInst2
+		---------------------
+		Ut laoreet hendrerit ligula, eu interdum neque tincidunt dapibus. 
+		In et turpis at lacus lobortis ultricies. Nam sollicitudin sapien 
+		eu nisi facilisis commodo. Nullam ullamcorper gravida sapien, 
+		tempor iaculis massa dignissim ac. Nunc iaculis dolor et orci 
+		pellentesque at convallis orci porttitor. Ut sit amet magna 
+		a magna imperdiet tincidunt id et libero. Nullam id tellus vitae 
+		odio convallis ultrices. 
+		---------------------
+
+		SUBINSTANCE subInst1
+		----------------------
+		Nec dictum nec eget ipsum aenean nulla, lacus nunc diam ipsum 
+		vel luctus, vel non amet. Praesent pellentesque quis. Auctor 
+		et sed pellentesque libero integer. Donec mauris non urna iaculis 
+		ac, dolor taciti blandit sagittis eleifend vel leo. Est gravida 
+		lorem, cras praesent vestibulum litora, suscipit magna ligula 
+		suspendisse lobortis varius, nulla tempus eaque ipsum lobortis. 
+		Vitae feugiat vulputate euismod ac lectus bibendum, id turpis 
+		tempor amet, ut et accumsan, a sit morbi magnis vel duis. 
+
+			INSTANCE testInst3
+			----------------------
+			Consectetuer aliquet sollicitudin et, aliquam orci velit mollis 
+			suspendisse mus. Tincidunt faucibus natoque. Purus tortor pellentesque 
+			amet, sed sit, odio vulputate. Cras repellat malesuada ut posuere, 
+			feugiat pellentesque vestibulum risus, arcu pellentesque. Turpis 
+			quis neque dictum, aliquam id bibendum vivamus ut aliquam dignissim, 
+			ridiculus nec orci interdum donec, in lorem. 
+			----------------------
+
+		----------------------
+	-------------

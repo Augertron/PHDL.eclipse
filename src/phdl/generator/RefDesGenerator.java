@@ -86,10 +86,10 @@ public class RefDesGenerator {
 				SubInstance sparent = (SubInstance) sdes.getParent();
 				prefix = sparent.getRefPrefix() + prefix;
 			}
-			if (sdes.hasIndex()) {
+			if (sdes.hasIndex() && !prefix.trim().equals("")) {
 				prefix = prefix + sdes.getIndex();
 			}
-			if (!prefix.equals("")) {
+			if (!prefix.trim().equals("")) {
 				sdes.setRefPrefix(prefix + "/");
 			} else {
 				StringBuilder warn = new StringBuilder();
