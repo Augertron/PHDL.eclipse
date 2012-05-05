@@ -1,9 +1,11 @@
 package phdl.graph;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -96,8 +98,20 @@ public abstract class DesignUnit extends Node {
 	}
 
 	public void execSysCommand(String command) {
+		String s = null;
 		try {
 			Process p = Runtime.getRuntime().exec(command);
+			BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
+			BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+
+			while ((s = stdInput.readLine()) != null) {
+				System.out.println(s);
+			}
+
+			while ((s = stdError.readLine()) != null) {
+				System.out.println(s);
+			}
+
 			try {
 				p.waitFor();
 			} catch (InterruptedException e) {
@@ -686,16 +700,17 @@ public abstract class DesignUnit extends Node {
 
 		// build up the path name based on the position in hierarchy
 		StringBuilder path = new StringBuilder();
+		String separator = System.getProperty("file.separator");
 		if (this instanceof SubInstance) {
 			SubInstance current = (SubInstance) this;
 			while (current.getParent() instanceof SubInstance) {
-				path.insert(0, current.getNameIndex() + "\\");
+				path.insert(0, current.getNameIndex() + separator);
 				current = (SubInstance) current.getParent();
 			}
-			path.insert(0, current.getParent().getName() + "\\" + current.getNameIndex() + "\\");
+			path.insert(0, current.getParent().getName() + separator + current.getNameIndex() + separator);
 		} else if (this instanceof Design || this instanceof SubDesign)
-			path.insert(0, getName() + "\\");
-		path.insert(0, "png\\");
+			path.insert(0, getName() + separator);
+		path.insert(0, "png" + separator);
 
 		// attempt to make the directory structure
 		File file = new File(path.toString());
@@ -708,7 +723,7 @@ public abstract class DesignUnit extends Node {
 		execSysCommand("dot -Tpng " + fileName + ".dot -o " + fileName + ".png");
 		File delFile = new File(fileName + ".dot");
 		delFile.delete();
-		System.out.println("  -- Generated: \\" + fileName + ".png");
+		System.out.println("  -- Generated: " + separator + fileName + ".png");
 
 		// recursively output all SubInstances
 		for (SubInstance s : subInsts)
