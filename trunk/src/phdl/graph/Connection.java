@@ -68,13 +68,14 @@ public abstract class Connection extends Attributable {
 	@Override
 	public int compareTo(Object o) {
 		Connection c = (Connection) o;
+		int result = -1;
 		if (this.equals(c)) {
-			return 0;
+			result = 0;
 		}
-		if (this.getNameIndex().compareTo(c.getNameIndex()) == 0)
-			return this.getParent().compareTo(c.getParent());
-		else
-			return this.getNameIndex().compareTo(c.getNameIndex());
+		else {
+			result = this.getHierarchyName().compareTo(c.getHierarchyName());
+		}
+		return result;
 	}
 
 	@Override
@@ -90,7 +91,6 @@ public abstract class Connection extends Attributable {
 		else {
 			result &= this.getParent().equals(((Connection) o).getParent());
 		}
-		
 		return result; 
 	}
 

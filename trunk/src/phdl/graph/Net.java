@@ -83,7 +83,7 @@ public class Net extends Connection {
 		testNum++;
 		Net testNet1 = new Net(null);
 		if (testNet1.isVisited() != false) {
-			success = TestDriver.displayError(testNum, "public Net(Design design)", "visited should be false");
+			success &= TestDriver.displayError(testNum, "public Net(Design design)", "visited should be false");
 		}
 
 		/**
@@ -103,24 +103,51 @@ public class Net extends Connection {
 		 */
 		testNum++;
 		if (testNet2.isVisited()) {
-			success = TestDriver.displayError(testNum, "public Net(Design design)",
+			success &= TestDriver.displayError(testNum, "public Net(Design design)",
 				"initially, the net should not be marked visited");
 		}
 		testNet2.setVisited(true);
 		if (!testNet2.isVisited()) {
-			success = TestDriver.displayError(testNum, "public Net(Design design)", "the net should be marked visited");
+			success &= TestDriver.displayError(testNum, "public Net(Design design)", "the net should be marked visited");
 		}
 
 		/**
-		 * Test 10
+		 * Test 4
 		 * 	public NodeType getNodeType();
 		 */
 		testNum++;
 		if (testNet2.getNodeType() != NodeType.NET) {
-			success = TestDriver.displayError(testNum, "public NodeType getNodeType()", "incorrect node type",
+			success &= TestDriver.displayError(testNum, "public NodeType getNodeType()", "incorrect node type",
 				NodeType.NET.toString(), testNet2.getNodeType().toString());
 		}
 
+		/**
+		 *  Test 5
+		 *   public boolean equals()
+		 */
+		testNum++;
+		Design top = new Design();
+		
+		SubInstance outer1 = new SubInstance(top, "outer");
+		outer1.setIndex(1);
+		SubInstance inner1 = new SubInstance(outer1, "inner");
+		Net net11 = new Net(inner1);
+		net11.setName("net1");
+		inner1.addConnection(net11);
+		outer1.addSubInst(inner1);
+		
+		SubInstance outer2 = new SubInstance(top, "outer");
+		outer2.setIndex(2);
+		SubInstance inner2 = new SubInstance(outer2, "inner");
+		Net net12 = new Net(inner2);
+		net12.setName("net1");
+		inner2.addConnection(net12);
+		outer2.addSubInst(inner2);
+		
+		if (net11.equals(net12)) {
+			success &= TestDriver.displayError(testNum, "public boolean equals()","Incorrect value","true","false");
+		}
+		
 		return success;
 	}
 

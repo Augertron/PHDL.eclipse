@@ -1,0 +1,31 @@
+/**
+ *	Hierarchy Test 7
+ **/
+ 
+device A {
+	attr refPrefix = "A";
+	attr library = "libA";
+	attr package = "pkgA";
+	pin a = {a};
+	pin b = {b};
+}
+
+subdesign inner {	
+	net net_a;
+	inst instA of A {
+		a = net_a;
+		b = net_a;
+	}
+}
+
+subdesign outer {
+	subinst inner_i of inner {
+
+	}
+}
+
+design top {
+	subinst(1:9) outer_i of outer {
+
+	}
+}
