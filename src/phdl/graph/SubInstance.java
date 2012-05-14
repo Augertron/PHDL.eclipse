@@ -175,8 +175,25 @@ public class SubInstance extends HierarchyUnit {
 		if (!(o instanceof SubInstance)) {
 			return false;
 		}
-		boolean result = this.name.equals(((SubInstance) o).getName()) && this.getIndex() == ((SubInstance) o).getIndex()
+		boolean result = this.name.equals(((SubInstance) o).getName())
+				&& this.getIndex() == ((SubInstance) o).getIndex()
 				&& this.parent.equals(((SubInstance) o).getParent());
+		return result;
+	}
+	
+	@Override
+	public int compareTo(Object o) {
+		int result = -1;
+		SubInstance other = (SubInstance)o;
+		if (this.equals(o)) {
+			result = 0;
+		}
+		else if (!this.getNameIndex().equals(other.getNameIndex())) {
+			result = this.getNameIndex().compareTo(other.getNameIndex());
+		}
+		else {
+			this.getParent().compareTo(other.getParent());
+		}
 		return result;
 	}
 

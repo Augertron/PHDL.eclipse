@@ -38,7 +38,7 @@ public class NetListGenerator {
 
 	private final Design design;
 	private final Map<String, Instance> refMap;
-	private final Map<String, List<Pin>> netlist;
+	private final Map<Net, List<Pin>> netlist;
 	private String contents;
 
 	/**
@@ -57,7 +57,7 @@ public class NetListGenerator {
 	public NetListGenerator(Design design, Map<String, Instance> refMap) {
 		this.design = design;
 		this.refMap = refMap;
-		netlist = new TreeMap<String, List<Pin>>();
+		netlist = new TreeMap<Net, List<Pin>>();
 		generate();
 	}
 
@@ -84,6 +84,7 @@ public class NetListGenerator {
 	 * and stores it into global variables.
 	 */
 	private void generate() {
+		System.out.println("Generating NetList\n");
 		StringBuilder sb = new StringBuilder();
 		clear_visited(design);
 
@@ -109,7 +110,7 @@ public class NetListGenerator {
 		connections.append("*CONNECTION*\n");
 
 		retrieve_netlist(design);
-		for (String n : netlist.keySet()) {
+		for (Net n : netlist.keySet()) {
 			connections.append(generate_net_header(n));
 			connections.append(generate_pin_list(n));
 		}
@@ -139,9 +140,9 @@ public class NetListGenerator {
 	 * @param n	the net whose header is to be generatedd
 	 * @return	a string representation of the header
 	 */
-	private String generate_net_header(String n) {
+	private String generate_net_header(Net n) {
 		StringBuilder sb = new StringBuilder();
-		sb.append("*SIGNAL* " + n.toUpperCase());
+		sb.append("*SIGNAL* " + n.getHierarchyName().toUpperCase());
 		sb.append("\n");
 		return sb.toString();
 	}
@@ -174,7 +175,7 @@ public class NetListGenerator {
 	 * @param n	the net whose pins will be in the list
 	 * @return	a string representation of the pin list
 	 */
-	private String generate_pin_list(String n) {
+	private String generate_pin_list(Net n) {
 		StringBuilder sb = new StringBuilder();
 		List<Pin> pins = netlist.get(n);
 		if (pins != null) {
@@ -234,7 +235,7 @@ public class NetListGenerator {
 		for (Net n : des.getNets()) {
 			List<Pin> single_netlist = retrieve_pins(n);
 			if (single_netlist != null && !single_netlist.isEmpty()) {
-				netlist.put(n.getHierarchyName(), single_netlist);
+				netlist.put(n, single_netlist);
 			}
 		}
 		for (SubInstance s : des.getSubInstances()) {
@@ -966,6 +967,7 @@ public class NetListGenerator {
 							pc.addPin(inst3.getPin("e"));
 						}
 						subInst2[i].addConnection(pc);
+						//System.out.println(pc);
 						
 						Port pd = new Port(subInst2[i]); {
 							pd.setName("pd");
@@ -991,6 +993,10 @@ public class NetListGenerator {
 					net1.addConnection(subInst2[0].getPort("pc", -1));
 					net1.addConnection(subInst2[1].getPort("pc", -1));
 				}
+				
+				System.out.println(net1);
+				System.out.println(subInst2[0].getPort("pc", -1));
+				System.out.println(subInst2[0].getPort("pd", -1));
 				
 				subInst2[0].getPort("pc", -1).addConnection(net1);
 				subInst2[1].getPort("pc", -1).addConnection(net1);

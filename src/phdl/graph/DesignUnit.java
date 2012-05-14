@@ -94,7 +94,8 @@ public abstract class DesignUnit extends Node {
 	 * 			false, otherwise
 	 */
 	public boolean equals(Object o) {
-		return name.equals(((DesignUnit) o).getName()) && index == ((DesignUnit) o).index;
+		boolean result = name.equals(((DesignUnit) o).getName()) && index == ((DesignUnit) o).index;
+		return result;
 	}
 
 	public void execSysCommand(String command) {
