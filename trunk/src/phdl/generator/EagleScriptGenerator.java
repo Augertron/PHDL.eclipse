@@ -29,7 +29,6 @@ public class EagleScriptGenerator {
 	private final Design design;
 	private String contents;
 	private final TreeMap<String, ArrayList<Instance>> groupMap;
-	private final DesignComparator desComp;
 	private final StringBuilder sb;
 	private final List<Node> signals;
 
@@ -52,10 +51,9 @@ public class EagleScriptGenerator {
 	 * @see Design
 	 * @see RefDesGenerator
 	 */
-	public EagleScriptGenerator(Design design, DesignComparator desComp) {
+	public EagleScriptGenerator(Design design) {
 		this.design = design;
 		this.groupMap = new TreeMap<String, ArrayList<Instance>>();
-		this.desComp = desComp;
 		this.sb = new StringBuilder();
 		this.signals = new ArrayList<Node>();
 		generate();
@@ -200,7 +198,7 @@ public class EagleScriptGenerator {
 			System.err.println("File Reading Error - filename may be corrupt");
 			System.exit(1);
 		}
-		System.out.println("Wrote Eagle script file: " + fileName);
+		System.out.println("  -- Generated: " + DirectoryCodes.SEPARATOR + fileName);
 	}
 
 	private void replacePackage(Attribute a) {

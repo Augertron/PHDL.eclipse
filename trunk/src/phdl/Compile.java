@@ -11,9 +11,8 @@
 package phdl;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 
+import phdl.generator.DirectoryCodes;
 import phdl.generator.Generator;
 import phdl.grammar.ParsePHDL;
 import phdl.graph.Device;
@@ -45,15 +44,6 @@ public class Compile {
 
 	static String version = "PHDL Compiler v2.0 Java v1.6 ANTLR v3.2 Feb 01 2012";
 	static String[] reqAttrs = { "REFPREFIX", "PACKAGE", "LIBRARY" };
-
-	static final Map<String, String> dirs = new HashMap<String, String>();
-	static {
-		dirs.put("ReferenceDesignatorMapping", "rdm\\");
-		dirs.put("BillOfMaterial", "bom\\");
-		dirs.put("PADSNetlist", "asc\\");
-		dirs.put("LayoutSupplementaryInformation", "lsi\\");
-		dirs.put("EAGLEScript", "scr\\");
-	}
 
 	static JSAP jsap;
 
@@ -104,13 +94,6 @@ public class Compile {
 		swSuppress.setLongFlag("suppress");
 		swSuppress.setHelp("Suppress all warnings from the compiler.");
 		jsap.registerParameter(swSuppress);
-
-		// generate EAGLE script flag
-		Switch swEagle = new Switch("eagle");
-		swEagle.setShortFlag('e');
-		swEagle.setLongFlag("eagle");
-		swEagle.setHelp("Generate an EAGLE script file.");
-		jsap.registerParameter(swEagle);
 
 		// report design hierarchy on the command line flag
 		Switch swReport = new Switch("report");
@@ -179,10 +162,17 @@ public class Compile {
 
 		// clean up everything if the clean flag is set
 		if (cfg.getBoolean("clean")) {
-			for (String s : dirs.keySet()) {
-				delete(new File(dirs.get(s)));
-				System.out.println("  -- Cleaned:   \\" + dirs.get(s) + "*.*");
-			}
+			delete(new File(DirectoryCodes.REF_DES_MAPPING));
+			System.out.println("  -- Cleaned:   " + DirectoryCodes.SEPARATOR + DirectoryCodes.REF_DES_MAPPING + "*.*");
+			delete(new File(DirectoryCodes.BILL_OF_MATERIAL));
+			System.out.println("  -- Cleaned:   " + DirectoryCodes.SEPARATOR + DirectoryCodes.BILL_OF_MATERIAL + "*.*");
+			delete(new File(DirectoryCodes.PADS_NETLIST));
+			System.out.println("  -- Cleaned:   " + DirectoryCodes.SEPARATOR + DirectoryCodes.PADS_NETLIST + "*.*");
+			delete(new File(DirectoryCodes.EAGLE_SCRIPT));
+			System.out.println("  -- Cleaned:   " + DirectoryCodes.SEPARATOR + DirectoryCodes.EAGLE_SCRIPT + "*.*");
+			delete(new File(DirectoryCodes.LAYOUT_SUPPLEMENTARY_INFO));
+			System.out.println("  -- Cleaned:   " + DirectoryCodes.SEPARATOR + DirectoryCodes.LAYOUT_SUPPLEMENTARY_INFO
+				+ "*.*");
 		}
 
 		// call the parser, and obtain all of the design units
@@ -214,7 +204,7 @@ public class Compile {
 		}
 
 		// generate output files
-		Generator gen = new Generator(p.getTopDesign(), dirs);
+		Generator gen = new Generator(p.getTopDesign());
 		gen.generate();
 
 		// display the hierarchy on the console

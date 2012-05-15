@@ -203,7 +203,7 @@ public class RefDesGenerator {
 			System.err.println("File Reading Error - filename may be corrupt");
 			System.exit(1);
 		}
-		System.out.println("  -- Generated: \\" + fileName);
+		System.out.println("  -- Generated: " + DirectoryCodes.SEPARATOR + fileName);
 	}
 
 	@Override

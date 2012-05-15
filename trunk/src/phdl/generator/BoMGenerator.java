@@ -178,7 +178,7 @@ public class BoMGenerator {
 			}
 			rows.add(newRow);
 		}
-		
+
 		for (SubInstance s : des.getSubInstances()) {
 			initializeRows(s);
 		}
@@ -213,7 +213,7 @@ public class BoMGenerator {
 
 		populateHeaders(design);
 	}
-	
+
 	private void populateHeaders(HierarchyUnit des) {
 		for (Instance i : des.getInstances()) {
 			for (Attribute a : i.getAttributes()) {
@@ -226,7 +226,7 @@ public class BoMGenerator {
 			populateHeaders(s);
 		}
 	}
-	
+
 	public static boolean unitTest() {
 		{
 			Design des = new Design();
@@ -235,8 +235,9 @@ public class BoMGenerator {
 			Device dev3 = new Device("Dev3");
 			Device dev4 = new Device("Dev4");
 			Device dev5 = new Device("Dev5");
-			
-			des.setName("test1"); {
+
+			des.setName("test1");
+			{
 				Instance inst1 = new Instance(des);
 				inst1.setName("inst1");
 				inst1.setRefDes("R1");
@@ -245,7 +246,7 @@ public class BoMGenerator {
 				inst1.addAttribute(new Attribute(inst1, "Library", "lib1"));
 				inst1.addAttribute(new Attribute(inst1, "Value", "Bob"));
 				inst1.setDevice(dev1);
-				
+
 				Instance inst2 = new Instance(des);
 				inst2.setName("inst2");
 				inst2.setRefDes("R2");
@@ -253,7 +254,7 @@ public class BoMGenerator {
 				inst2.addAttribute(new Attribute(inst2, "Library", "lib1"));
 				inst2.addAttribute(new Attribute(inst2, "Value", "Jim"));
 				inst2.setDevice(dev1);
-				
+
 				Instance inst3 = new Instance(des);
 				inst3.setName("inst3");
 				inst3.setRefDes("C1");
@@ -261,21 +262,22 @@ public class BoMGenerator {
 				inst3.addAttribute(new Attribute(inst3, "Library", "lib1"));
 				inst3.addAttribute(new Attribute(inst3, "Value", "Kay"));
 				inst3.setDevice(dev2);
-				
+
 				des.addInstance(inst1);
 				des.addInstance(inst2);
 				des.addInstance(inst3);
 			}
-			
+
 			SubDesign subDes1 = new SubDesign();
 			subDes1.setName("subDes1");
-			
+
 			SubDesign subDes2 = new SubDesign();
 			subDes2.setName("subDes2");
-			
-			SubInstance subInst1 = new SubInstance(des, "subInst1"); {
+
+			SubInstance subInst1 = new SubInstance(des, "subInst1");
+			{
 				subInst1.setDesign(subDes1);
-				
+
 				Instance inst2 = new Instance(subInst1);
 				inst2.setName("inst2");
 				inst2.setRefDes("K2");
@@ -284,7 +286,7 @@ public class BoMGenerator {
 				inst2.addAttribute(new Attribute(inst2, "Super", "Fred"));
 				inst2.addAttribute(new Attribute(inst2, "Home", "Iowa"));
 				inst2.setDevice(dev3);
-				
+
 				Instance inst3 = new Instance(subInst1);
 				inst3.setName("inst3");
 				inst3.setRefDes("K2");
@@ -294,7 +296,7 @@ public class BoMGenerator {
 				inst3.addAttribute(new Attribute(inst3, "Home", "Georgia"));
 				inst3.addAttribute(new Attribute(inst3, "Song", "L-O-V-E"));
 				inst3.setDevice(dev3);
-				
+
 				Instance inst1 = new Instance(subInst1);
 				inst1.setName("inst1");
 				inst1.setRefDes("J5");
@@ -302,22 +304,24 @@ public class BoMGenerator {
 				inst1.addAttribute(new Attribute(inst1, "Library", "lib2"));
 				inst1.addAttribute(new Attribute(inst1, "vAlUE", "Sam"));
 				inst1.setDevice(dev2);
-				
+
 				subInst1.addInstance(inst2);
 				subInst1.addInstance(inst3);
 				subInst1.addInstance(inst1);
 			}
-			
+
 			des.addSubInst(subInst1);
-			
-			SubInstance subInst2_1 = new SubInstance(des, "subInst2_1"); {
+
+			SubInstance subInst2_1 = new SubInstance(des, "subInst2_1");
+			{
 				subInst2_1.setDesign(subDes2);
 				Instance[] inst1 = new Instance[5];
 				for (int i = 0; i < 5; i++) {
-					inst1[i] = new Instance(subInst2_1); {
+					inst1[i] = new Instance(subInst2_1);
+					{
 						inst1[i].setName("inst1");
-						inst1[i].setRefDes("A1_" + (i+1));
-						inst1[i].setIndex(i+1);
+						inst1[i].setRefDes("A1_" + (i + 1));
+						inst1[i].setIndex(i + 1);
 						inst1[i].addAttribute(new Attribute(inst1[i], "Package", "pkg2"));
 						inst1[i].addAttribute(new Attribute(inst1[i], "Library", "lib3"));
 						inst1[i].addAttribute(new Attribute(inst1[i], "Store", "Shopko"));
@@ -325,8 +329,9 @@ public class BoMGenerator {
 					}
 					subInst2_1.addInstance(inst1[i]);
 				}
-				
-				Instance inst2 = new Instance(subInst2_1); {
+
+				Instance inst2 = new Instance(subInst2_1);
+				{
 					inst2.setName("inst2");
 					inst2.setRefDes("B1_7");
 					inst2.addAttribute(new Attribute(inst2, "Package", "pkg1"));
@@ -336,17 +341,19 @@ public class BoMGenerator {
 				}
 				subInst2_1.addInstance(inst2);
 			}
-			
+
 			des.addSubInst(subInst2_1);
-			
-			SubInstance subInst2_2 = new SubInstance(des, "subInst2_2"); {
+
+			SubInstance subInst2_2 = new SubInstance(des, "subInst2_2");
+			{
 				subInst2_2.setDesign(subDes2);
 				Instance[] inst1 = new Instance[5];
 				for (int i = 0; i < 5; i++) {
-					inst1[i] = new Instance(subInst2_2); {
+					inst1[i] = new Instance(subInst2_2);
+					{
 						inst1[i].setName("inst1");
-						inst1[i].setRefDes("A2_" + (i+1));
-						inst1[i].setIndex(i+1);
+						inst1[i].setRefDes("A2_" + (i + 1));
+						inst1[i].setIndex(i + 1);
 						inst1[i].addAttribute(new Attribute(inst1[i], "Package", "pkg2"));
 						inst1[i].addAttribute(new Attribute(inst1[i], "Library", "lib3"));
 						inst1[i].addAttribute(new Attribute(inst1[i], "Store", "Shopko"));
@@ -354,8 +361,9 @@ public class BoMGenerator {
 					}
 					subInst2_2.addInstance(inst1[i]);
 				}
-				
-				Instance inst2 = new Instance(subInst2_2); {
+
+				Instance inst2 = new Instance(subInst2_2);
+				{
 					inst2.setName("inst2");
 					inst2.setRefDes("B2_7");
 					inst2.addAttribute(new Attribute(inst2, "Package", "pkg1"));
@@ -373,6 +381,3 @@ public class BoMGenerator {
 	}
 
 }
-
-
-
