@@ -17,7 +17,6 @@
 package phdl.generator;
 
 import java.io.File;
-import java.util.Map;
 
 import phdl.graph.Design;
 
@@ -31,12 +30,11 @@ public class Generator {
 
 	private final RefDesGenerator refDesGen;
 	private final NetListGenerator netListGen;
-	private EagleScriptGenerator eagleScriptGen;
+	private final EagleGenerator eagleScriptGen;
 	private final BoMGenerator bomGen;
 	private XMLGenerator xmlGen;
 	private final Design design;
 	private final InfoGenerator infoGen;
-	private final Map<String, String> dirs;
 
 	//private XMLtoDesignGenerator xmlDesGen;
 	//private DesignComparator desComp;
@@ -53,40 +51,27 @@ public class Generator {
 	 * @see BoMGenerator
 	 * @see NetListGenerator
 	 */
-	public Generator(Design design, Map<String, String> dirs) {
+	public Generator(Design design) {
 		this.design = design;
 		this.refDesGen = new RefDesGenerator(design);
 		this.bomGen = new BoMGenerator(design);
 		this.netListGen = new NetListGenerator(design, refDesGen.getRefMap());
 		this.infoGen = new InfoGenerator(design);
-		this.dirs = dirs;
+		eagleScriptGen = new EagleGenerator(design, refDesGen.getRefMap());
 
-		//xmlGen = new XMLGenerator(design);
-		//eagleScriptGen = new EagleScriptGenerator(design, desComp);
-
-		/*
-		File xml = new File(design.getName() + ".xml");
-		boolean xmlExists = xml.exists();
-		if (xmlExists) {
-			xmlDesGen = new XMLtoDesignGenerator(design.getName() + ".xml");
-			desComp = new DesignComparator();
-			desComp.compareDesign(xmlDesGen.getDesign(), design);
-			desComp.printChanges();
-		} else {
-			System.out.println("********Initial Build*******");
-		}*/
-
-		//generateXML();
 	}
 
 	public void generate() {
-		for (String s : dirs.keySet()) {
-			makeDirectory(dirs.get(s));
-		}
-		refDesGen.outputToFile(dirs.get("ReferenceDesignatorMapping") + design.getName() + ".csv");
-		bomGen.outputToFile(dirs.get("BillOfMaterial") + design.getName() + ".csv");
-		netListGen.outputToFile(dirs.get("PADSNetlist") + design.getName() + ".asc");
-
+		makeDirectory(DirectoryCodes.REF_DES_MAPPING);
+		refDesGen.outputToFile(DirectoryCodes.REF_DES_MAPPING + design.getName() + ".csv");
+		makeDirectory(DirectoryCodes.BILL_OF_MATERIAL);
+		bomGen.outputToFile(DirectoryCodes.BILL_OF_MATERIAL + design.getName() + ".csv");
+		makeDirectory(DirectoryCodes.PADS_NETLIST);
+		netListGen.outputToFile(DirectoryCodes.PADS_NETLIST + design.getName() + ".asc");
+		makeDirectory(DirectoryCodes.EAGLE_SCRIPT);
+		eagleScriptGen.outputToFile(DirectoryCodes.EAGLE_SCRIPT + design.getName() + ".scr");
+		makeDirectory(DirectoryCodes.LAYOUT_SUPPLEMENTARY_INFO);
+		infoGen.outputToFile(DirectoryCodes.LAYOUT_SUPPLEMENTARY_INFO + design.getName() + ".lsi");
 	}
 
 	private void makeDirectory(String directory) {

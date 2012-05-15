@@ -36,14 +36,14 @@ public class InfoGenerator {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Layout Supplementary Information\n");
 		sb.append("--------------------------------\n\n");
-		
-		sb.append(appendDesignInfo(design,1));
+
+		sb.append(appendDesignInfo(design, 1));
 		info = sb.toString();
 	}
-	
+
 	private StringBuilder appendDesignInfo(HierarchyUnit des, int tabs_cnt) {
 		StringBuilder sb_des = new StringBuilder();
-		
+
 		StringBuilder sb_tabs = new StringBuilder();
 		for (int i = 0; i < tabs_cnt; i++) {
 			sb_tabs.append("\t");
@@ -52,7 +52,7 @@ public class InfoGenerator {
 		sb_des.append(des.getNodeType().toString() + " " + des.getName() + "\n");
 
 		StringBuilder buffer = new StringBuilder();
-		for (int i = 0; i < sb_des.length()-1; i++) {
+		for (int i = 0; i < sb_des.length() - 1; i++) {
 			buffer.append('-');
 		}
 		sb_des.append(sb_tabs);
@@ -67,59 +67,29 @@ public class InfoGenerator {
 		sb_des.append("\n");
 
 		for (Net net : des.getNets()) {
-			sb_des.append(appendNetInfo(net, tabs_cnt+1) + "\n");
+			sb_des.append(appendNetInfo(net, tabs_cnt + 1) + "\n");
 		}
 		for (Instance inst : des.getInstances()) {
-			sb_des.append(appendInstanceInfo(inst, tabs_cnt+1) + "\n");
+			sb_des.append(appendInstanceInfo(inst, tabs_cnt + 1) + "\n");
 		}
 		for (SubInstance sinst : des.getSubInstances()) {
-			sb_des.append(appendDesignInfo(sinst, tabs_cnt+1) + "\n");
+			sb_des.append(appendDesignInfo(sinst, tabs_cnt + 1) + "\n");
 		}
 
 		sb_des.append(sb_tabs);
 		sb_des.append(buffer);
 		return sb_des;
 	}
-	
-	private StringBuilder appendNetInfo(Net net, int tabs_cnt) {
-		int j;
-		StringBuilder sb_net = new StringBuilder();
-		
-		StringBuilder sb_tabs = new StringBuilder();
-		for (int i = 0; i < tabs_cnt; i++) {
-			sb_tabs.append("\t");
-		}
-		
-		if (!net.getInfo().trim().equals("")) {
-			sb_net.append(sb_tabs);
-			sb_net.append("NET " + net.getName() + "\n");
-			
-			String bufferI = "";
-			for (j = 0; j < sb_net.length(); j++) {
-				bufferI += "-";
-			}
-			sb_net.append(sb_tabs);
-			sb_net.append(bufferI + "\n");
 
-			sb_net.append(sb_tabs);
-			sb_net.append(wordWrap(net.getInfo(), sb_tabs) + "\n");
-
-			sb_net.append(sb_tabs);
-			sb_net.append(bufferI + "\n");
-		}
-		
-		return sb_net;
-	}
-	
 	private StringBuilder appendInstanceInfo(Instance inst, int tabs_cnt) {
 		int j;
 		StringBuilder sb_inst = new StringBuilder();
-		
+
 		StringBuilder sb_tabs = new StringBuilder();
 		for (int i = 0; i < tabs_cnt; i++) {
 			sb_tabs.append("\t");
 		}
-		
+
 		if (!inst.getInfo().trim().equals("")) {
 			sb_inst.append(sb_tabs);
 			sb_inst.append("INSTANCE " + inst.getName() + "\n");
@@ -139,24 +109,35 @@ public class InfoGenerator {
 		}
 		return sb_inst;
 	}
-	
-	private StringBuilder wordWrap(String info, StringBuilder sb_tabs) {
-		int length = info.length();
-		String[] words = info.split(" ");
-		int char_count_max = 60;
-		int char_count = 0;
-		
-		StringBuilder sb_wrap = new StringBuilder();
-		for (int i = 0; i < words.length; i++) {
-			if (char_count >= char_count_max) {
-				char_count = 0;
-				sb_wrap.append("\n");
-				sb_wrap.append(sb_tabs);
-			}
-			sb_wrap.append(words[i] + " ");
-			char_count += words[i].length() + 1;
+
+	private StringBuilder appendNetInfo(Net net, int tabs_cnt) {
+		int j;
+		StringBuilder sb_net = new StringBuilder();
+
+		StringBuilder sb_tabs = new StringBuilder();
+		for (int i = 0; i < tabs_cnt; i++) {
+			sb_tabs.append("\t");
 		}
-		return sb_wrap;
+
+		if (!net.getInfo().trim().equals("")) {
+			sb_net.append(sb_tabs);
+			sb_net.append("NET " + net.getName() + "\n");
+
+			String bufferI = "";
+			for (j = 0; j < sb_net.length(); j++) {
+				bufferI += "-";
+			}
+			sb_net.append(sb_tabs);
+			sb_net.append(bufferI + "\n");
+
+			sb_net.append(sb_tabs);
+			sb_net.append(wordWrap(net.getInfo(), sb_tabs) + "\n");
+
+			sb_net.append(sb_tabs);
+			sb_net.append(bufferI + "\n");
+		}
+
+		return sb_net;
 	}
 
 	public String getInfo() {
@@ -179,7 +160,26 @@ public class InfoGenerator {
 			System.err.println("File Reading Error - filename may be corrupt");
 			System.exit(1);
 		}
-		System.out.println("  -- Generated: " + fileName);
+		System.out.println("  -- Generated: " + DirectoryCodes.SEPARATOR + fileName);
+	}
+
+	private StringBuilder wordWrap(String info, StringBuilder sb_tabs) {
+		int length = info.length();
+		String[] words = info.split(" ");
+		int char_count_max = 60;
+		int char_count = 0;
+
+		StringBuilder sb_wrap = new StringBuilder();
+		for (int i = 0; i < words.length; i++) {
+			if (char_count >= char_count_max) {
+				char_count = 0;
+				sb_wrap.append("\n");
+				sb_wrap.append(sb_tabs);
+			}
+			sb_wrap.append(words[i] + " ");
+			char_count += words[i].length() + 1;
+		}
+		return sb_wrap;
 	}
 
 	public static boolean unitTest() {
@@ -207,14 +207,14 @@ public class InfoGenerator {
 			+ "orci porttitor. Ut sit amet magna a magna imperdiet tincidunt id et "
 			+ "libero. Nullam id tellus vitae odio convallis ultrices.");
 		testDesign1.addInstance(testInst2);
-		
+
 		Net testNet1 = new Net(testDesign1);
 		testNet1.setName("testNet1");
 		testNet1.appendInfo("Leo pretium. Felis sit. Sed culpa eu neque tellus ipsum adipiscing, "
 			+ "pellentesque turpis ac. Tortor sed mattis tortor felis adipiscing, urna mauris "
 			+ "mauris, cursus duis, porta condimentum.");
 		testDesign1.addConnection(testNet1);
-		
+
 		SubInstance subInst1 = new SubInstance(testDesign1, "subInst1");
 		subInst1.appendInfo("Nec dictum nec eget ipsum aenean nulla, lacus nunc diam ipsum "
 			+ "vel luctus, vel non amet. Praesent pellentesque quis. Auctor et sed "
@@ -231,7 +231,7 @@ public class InfoGenerator {
 			+ "vestibulum risus, arcu pellentesque. Turpis quis neque dictum, aliquam id bibendum "
 			+ "vivamus ut aliquam dignissim, ridiculus nec orci interdum donec, in lorem.");
 		subInst1.addInstance(testInst3);
-		
+
 		testDesign1.addSubInst(subInst1);
 
 		InfoGenerator infoGen = new InfoGenerator(testDesign1);
