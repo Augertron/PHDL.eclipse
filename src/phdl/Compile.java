@@ -42,7 +42,7 @@ public class Compile {
 		+ " a copy of the GNU General Public License along with this program. If not, see\r\n"
 		+ " http://www.gnu.org/licenses/.\n";
 
-	static String version = "PHDL Compiler v2.0 Java v1.6 ANTLR v3.2 Feb 01 2012";
+	static String version = "PHDL Compiler v2.0 Build 001 Java v1.6 ANTLR v3.2 Feb 01 2012";
 	static String[] reqAttrs = { "REFPREFIX", "PACKAGE", "LIBRARY" };
 
 	static JSAP jsap;
