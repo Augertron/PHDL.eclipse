@@ -1,0 +1,4 @@
+To use with VIM:
+
+Copy ftdetect/phdl.vim  to ~/.vim/ftdetect/
+Copy syntax/phdl.vim to ~/.vim/syntax/
