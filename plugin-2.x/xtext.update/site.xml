@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/edu.byu.ee.phdl.xtext.feature_1.0.0.201207021933.jar" id="edu.byu.ee.phdl.xtext.feature" version="1.0.0.201207021933" os="linux,macosx,win32">
+      <category name="PHDL Plugin"/>
+   </feature>
+   <category-def name="PHDL Plugin" label="PHDL Plugin"/>
+</site>
