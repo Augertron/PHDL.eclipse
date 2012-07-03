@@ -1,0 +1,30 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: edu.byu.ee.phdl.xtext.ui
+Bundle-Vendor: Brigham Young University
+Bundle-Version: 1.0.0
+Bundle-SymbolicName: edu.byu.ee.phdl.xtext.ui; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: edu.byu.ee.phdl.xtext;visibility:=reexport,
+ org.eclipse.xtext.ui,
+ org.eclipse.ui.editors;bundle-version="3.5.0",
+ org.eclipse.ui.ide;bundle-version="3.5.0",
+ org.eclipse.xtext.ui.shared,
+ org.eclipse.ui,
+ org.eclipse.xtext.builder,
+ org.antlr.runtime,
+ org.eclipse.xtext.common.types.ui,
+ org.eclipse.xtext.ui.codetemplates.ui,
+ org.eclipse.compare,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.xtend,
+ org.eclipse.xpand,
+ org.eclipse.xtext.xbase.ui
+Import-Package: org.apache.log4j,
+ org.apache.commons.logging
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: edu.byu.ee.phdl.ui.contentassist,
+ edu.byu.ee.phdl.ui.contentassist.antlr,
+ edu.byu.ee.phdl.ui.internal
+Bundle-Activator: edu.byu.ee.phdl.ui.internal.PhdlActivator
