@@ -1,0 +1,28 @@
+«IMPORT edu::byu::ee::phdl::ui::wizard»
+
+«DEFINE main FOR PhdlProjectInfo»
+«EXPAND model FOR this»
+«EXPAND workflow FOR this»
+«ENDDEFINE»
+
+«DEFINE model FOR PhdlProjectInfo»
+«FILE "src/model/Model.phdl"-»
+/*
+ * This is an example model
+ */
+Hello Xtext!
+«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE workflow FOR PhdlProjectInfo»
+«FILE "src/Generator.mwe2"-»
+module Generator
+
+var targetDir = "src-gen"
+var modelPath = "src/model"
+
+Workflow {
+	component = @workflow.PhdlGenerator auto-inject {}
+}
+«ENDFILE»
+«ENDDEFINE»
