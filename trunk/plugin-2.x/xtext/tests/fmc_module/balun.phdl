@@ -1,0 +1,44 @@
+/**
+ * Design: balun.phdl
+ * Adapted from PADS fmc_module.prj
+ * Submitted by: Pete Dudley, Sandia Labs
+ * Translated by: Brad Riching, Brigham Young University
+ * Feb 02, 2012
+ *
+ * Dependencies: devices.phdl
+ */
+ 
+ subdesign balun {
+	port in_p, in_n;
+	port out_p, out_n;
+	port +3v3;
+	port gnd;
+	
+	net sec_p, sec_n, sec_tap;
+ 
+	// the isolation transformer
+	inst iso_txfmr of TC4_14 {
+		pri_p = in_p;
+		pri_n = in_n;
+		sec_p = sec_p;
+		sec_tap = sec_tap;
+		sec_n = sec_n;
+	}
+	
+	// the clock biasing and impedance resitor network
+	inst(1:5) res_network of res_0603 {
+		this(1,2).value = "100R";
+		this(1).a = sec_p;
+		this(1).b = out_p;
+		this(2).a = sec_n;
+		this(2).b = out_n;
+		this(3).value = "200R";
+		this(3).a = out_p;
+		this(3).b = out_n;
+		this(4,5).value = "150R";
+		this(4,5).b = sec_tap;
+		this(4).a = +3v3;
+		this(5).a = gnd;
+	}  
+ }
+ 

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/edu.byu.ee.phdl.xtext/src-gen"
+    editDirectory="/edu.byu.ee.phdl.xtext.edit/src" editorDirectory="/edu.byu.ee.phdl.xtext.editor/src"
+    modelPluginID="edu.byu.ee.phdl.xtext" forceOverwrite="true" modelName="Phdl" updateClasspath="false"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" complianceLevel="5.0"
+    copyrightFields="false" editPluginID="edu.byu.ee.phdl.xtext.edit" editorPluginID="edu.byu.ee.phdl.xtext.editor">
+  <genPackages prefix="Phdl" basePackage="edu.byu.ee.phdl" disposableProviderFactory="true"
+      ecorePackage="Phdl.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Phdl.ecore#//PinType">
+      <genEnumLiterals ecoreEnumLiteral="Phdl.ecore#//PinType/Pin"/>
+      <genEnumLiterals ecoreEnumLiteral="Phdl.ecore#//PinType/Input"/>
+      <genEnumLiterals ecoreEnumLiteral="Phdl.ecore#//PinType/Output"/>
+      <genEnumLiterals ecoreEnumLiteral="Phdl.ecore#//PinType/InOut"/>
+      <genEnumLiterals ecoreEnumLiteral="Phdl.ecore#//PinType/Power"/>
+      <genEnumLiterals ecoreEnumLiteral="Phdl.ecore#//PinType/Supply"/>
+      <genEnumLiterals ecoreEnumLiteral="Phdl.ecore#//PinType/OpenCollector"/>
+      <genEnumLiterals ecoreEnumLiteral="Phdl.ecore#//PinType/OpenEmitter"/>
+      <genEnumLiterals ecoreEnumLiteral="Phdl.ecore#//PinType/Tristate"/>
+      <genEnumLiterals ecoreEnumLiteral="Phdl.ecore#//PinType/Passive"/>
+      <genEnumLiterals ecoreEnumLiteral="Phdl.ecore#//PinType/NoConnect"/>
+    </genEnums>
+    <genClasses ecoreClass="Phdl.ecore#//PhdlModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Phdl.ecore#//PhdlModel/imports"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Phdl.ecore#//PhdlModel/packages"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Phdl.ecore#//PhdlModel/devices"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Phdl.ecore#//PhdlModel/designs"/>
+    </genClasses>
+    <genClasses ecoreClass="Phdl.ecore#//Package">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Package/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Phdl.ecore#//Package/imports"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Phdl.ecore#//Package/devices"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Phdl.ecore#//Package/designs"/>
+    </genClasses>
+    <genClasses ecoreClass="Phdl.ecore#//Import">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Import/importedNamespace"/>
+    </genClasses>
+    <genClasses ecoreClass="Phdl.ecore#//Device">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Device/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Phdl.ecore#//Device/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Phdl.ecore#//DeviceElement"/>
+    <genClasses ecoreClass="Phdl.ecore#//Attr">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Attr/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Attr/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Phdl.ecore#//Pin">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Pin/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Phdl.ecore#//Pin/vector"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Pin/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Pin/pinNames"/>
+    </genClasses>
+    <genClasses ecoreClass="Phdl.ecore#//Info">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Info/info"/>
+    </genClasses>
+    <genClasses ecoreClass="Phdl.ecore#//Design">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Design/design"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Design/subdesign"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Design/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Phdl.ecore#//Design/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Phdl.ecore#//DesignElement"/>
+    <genClasses ecoreClass="Phdl.ecore#//Connection">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Connection/net"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Phdl.ecore#//Connection/vector"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Phdl.ecore#//Connection/names"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Phdl.ecore#//Connection/elements"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Connection/port"/>
+    </genClasses>
+    <genClasses ecoreClass="Phdl.ecore#//NetElement"/>
+    <genClasses ecoreClass="Phdl.ecore#//PortElement"/>
+    <genClasses ecoreClass="Phdl.ecore#//Instance">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Instance/inst"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Phdl.ecore#//Instance/array"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Instance/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Phdl.ecore#//Instance/device"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Phdl.ecore#//Instance/elements"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Instance/subInst"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Phdl.ecore#//Instance/subDesign"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Instance/prefix"/>
+    </genClasses>
+    <genClasses ecoreClass="Phdl.ecore#//InstanceElement"/>
+    <genClasses ecoreClass="Phdl.ecore#//SubInstanceElement"/>
+    <genClasses ecoreClass="Phdl.ecore#//RefAttr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Phdl.ecore#//RefAttr/qualifier"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Phdl.ecore#//RefAttr/ref"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//RefAttr/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Phdl.ecore#//NewAttr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Phdl.ecore#//NewAttr/qualifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//NewAttr/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//NewAttr/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Phdl.ecore#//PinAssign">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//PinAssign/combined"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Phdl.ecore#//PinAssign/qualifier"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Phdl.ecore#//PinAssign/ref"/>
+    </genClasses>
+    <genClasses ecoreClass="Phdl.ecore#//SubAttr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Phdl.ecore#//SubAttr/qualifier"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Phdl.ecore#//SubAttr/ref"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Phdl.ecore#//SubAttr/refIndices"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Phdl.ecore#//SubAttr/tail"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//SubAttr/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Phdl.ecore#//RefTail">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Phdl.ecore#//RefTail/ref"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Phdl.ecore#//RefTail/refIndices"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Phdl.ecore#//RefTail/tail"/>
+    </genClasses>
+    <genClasses ecoreClass="Phdl.ecore#//PortAssign">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//PortAssign/combined"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Phdl.ecore#//PortAssign/qualifier"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Phdl.ecore#//PortAssign/ref"/>
+    </genClasses>
+    <genClasses ecoreClass="Phdl.ecore#//ConnectionAssign">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Phdl.ecore#//ConnectionAssign/ref"/>
+    </genClasses>
+    <genClasses ecoreClass="Phdl.ecore#//Concatenation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Phdl.ecore#//Concatenation/connections"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Concatenation/replicated"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Phdl.ecore#//Concatenation/replicate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Concatenation/open"/>
+    </genClasses>
+    <genClasses ecoreClass="Phdl.ecore#//ConnectionRef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Phdl.ecore#//ConnectionRef/ref"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Phdl.ecore#//ConnectionRef/slices"/>
+    </genClasses>
+    <genClasses ecoreClass="Phdl.ecore#//ConnectionName">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//ConnectionName/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Phdl.ecore#//Indices">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Indices/msb"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Indices/array"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Indices/lsb"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Indices/indices"/>
+    </genClasses>
+    <genClasses ecoreClass="Phdl.ecore#//Slices">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Slices/msb"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Slices/vector"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Slices/lsb"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Slices/slices"/>
+    </genClasses>
+    <genClasses ecoreClass="Phdl.ecore#//Vector">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Vector/msb"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Vector/vector"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Vector/lsb"/>
+    </genClasses>
+    <genClasses ecoreClass="Phdl.ecore#//Array">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Array/msb"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Array/array"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Phdl.ecore#//Array/lsb"/>
+    </genClasses>
+    <genClasses ecoreClass="Phdl.ecore#//Qualifier">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Phdl.ecore#//Qualifier/indices"/>
+    </genClasses>
+    <genClasses ecoreClass="Phdl.ecore#//Referenceable"/>
+    <genClasses ecoreClass="Phdl.ecore#//Assignable">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Phdl.ecore#//Assignable/slices"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Phdl.ecore#//Assignable/concatenation"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
