@@ -59,7 +59,7 @@ public class AbstractPhdlSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Syntax:
-	 *     ('{' '}') | ';'
+	 *     ';' | ('{' '}')
 	 */
 	protected void emit_Connection_SemicolonKeyword_1_4_1_or___LeftCurlyBracketKeyword_1_4_0_0_RightCurlyBracketKeyword_1_4_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

@@ -23,7 +23,7 @@ Require-Bundle: edu.byu.ee.phdl.xtext;visibility:=reexport,
  org.eclipse.xtext.xbase.ui
 Import-Package: org.apache.log4j,
  org.apache.commons.logging
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: edu.byu.ee.phdl.ui.contentassist,
  edu.byu.ee.phdl.ui.contentassist.antlr,
  edu.byu.ee.phdl.ui.internal
