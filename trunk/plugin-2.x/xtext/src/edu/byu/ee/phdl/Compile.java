@@ -23,8 +23,6 @@ import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Provider;
 import com.google.inject.name.Named;
-import com.martiansoftware.jsap.JSAP;
-import com.martiansoftware.jsap.JSAPException;
 
 public class Compile {
 
@@ -43,8 +41,6 @@ public class Compile {
 	@Inject
 	@Named(Constants.FILE_EXTENSIONS)
 	private String fileExtension;
-
-	private static JSAP jsap;
 
 	private List<String> getSourceFiles(String folderName) throws IOException {
 		List<String> result = new ArrayList<String>();
@@ -110,12 +106,7 @@ public class Compile {
 	}
 
 	public static void main(String[] args) {
-		try {
-			parseArgs(args);
-		} catch (JSAPException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		parseArgs(args);
 		try {
 			Injector injector = new PhdlStandaloneSetupGenerated().createInjectorAndDoEMFRegistration();
 			Compile compileInstance = injector.getInstance(Compile.class);
@@ -127,7 +118,7 @@ public class Compile {
 		}
 	}
 
-	private static void parseArgs(String[] args) throws JSAPException {
+	private static void parseArgs(String[] args) {
 		// jsap = new JSAP();
 		//
 		// // directory containing phdl source files
