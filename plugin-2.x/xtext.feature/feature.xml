@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="edu.byu.ee.phdl.xtext.feature"
+      label="PHDL IDE"
+      version="1.0.0.qualifier"
+      os="linux,macosx,win32">
+
+   <description url="http://phdl.svn.sourceforge.net/svnroot/phdl/trunk/plugin-2.x/description.txt">
+      [Enter Feature Description here.]
+   </description>
+
+   <copyright url="http://phdl.svn.sourceforge.net/svnroot/phdl/trunk/plugin-2.x/copyright.txt">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://phdl.svn.sourceforge.net/svnroot/phdl/trunk/plugin-2.x/license.txt">
+      [Enter License Description here.]
+   </license>
+
+   <url>
+      <update label="PHDL IDE Update Site" url="http://phdl.svn.sourceforge.net/svnroot/phdl/trunk/plugin-2.x/xtext.update"/>
+   </url>
+
+   <plugin
+         id="edu.byu.ee.phdl.xtext"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.byu.ee.phdl.xtext.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
