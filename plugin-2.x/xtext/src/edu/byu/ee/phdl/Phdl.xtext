@@ -1,0 +1,152 @@
+grammar edu.byu.ee.phdl.Phdl
+
+hidden(ML_COMMENT, SL_COMMENT, WS)
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+generate phdl "http://ee.byu.edu/phdl"
+
+PhdlModel: 
+	imports+=Import* (packages+=Package | devices+=Device | designs+=Design)*;
+	
+Package: 
+	'package' name=ID '{' imports+=Import* (devices+=Device | designs+=Design)* '}';
+	
+Import:
+	'import' importedNamespace=QualifiedNameWithWildCard ';';
+
+Device: 
+	'device' name=PhdlID '{' elements+=DeviceElement* '}';
+	
+DeviceElement:
+	Attr | Pin | Info;
+
+Attr:
+	'attr' name=ID '=' value=STRING ';';
+
+Pin:
+	type=PinType vector=Vector name=PhdlID '=' '{' (pinNames+=PhdlID (',' pinNames+=PhdlID)* )? '}' ';';
+
+Info:
+	'info' '{' info=STRING '}';
+
+Design:
+	(design?='design' | subdesign?='subdesign') name=ID '{' elements+=DesignElement* '}';
+
+DesignElement:
+	Connection | Instance | ConnectionAssign | Info;
+
+Connection:
+	(	net?='net' vector=Vector names+=ConnectionName (',' names+=ConnectionName)* (('{' elements+=NetElement* '}') | ';')
+	| 	port?='port' vector=Vector names+=ConnectionName (',' names+=ConnectionName)* (('{' elements+=PortElement* '}') | ';')
+	);
+	
+NetElement:
+	Attr | Info;
+	
+PortElement:
+	Info;
+
+Instance:
+	(inst?='inst' array=Array name=ID 'of' device=[Device | QualifiedName] '{' elements+=InstanceElement* '}') |
+	(subInst?='subinst' array=Array name=ID 'of' subDesign=[Design | QualifiedName] prefix=STRING? '{' elements+=SubInstanceElement* '}');
+	
+InstanceElement:
+	NewAttr | RefAttr | PinAssign | Info;
+	
+SubInstanceElement:
+	Attr | SubAttr | PortAssign | Info;
+
+RefAttr:
+	qualifier=Qualifier? ref=[Attr] '=' value=STRING ';';
+
+NewAttr:
+	'newattr' qualifier=Qualifier? name=ID '=' value=STRING ';';
+
+PinAssign:
+	(	(combined?='combine' '(' qualifier=Qualifier? ref=[Pin | PhdlID] slices=Slices? ')') 
+	|	(qualifier=Qualifier? ref=[Pin | PhdlID] slices=Slices?)) 
+	'=' concatenation=Concatenation ';';
+
+SubAttr:
+	qualifier=Qualifier? (ref=[Referenceable | ID] refIndices=Indices?) tail=RefTail '=' value=STRING ';';
+
+RefTail:
+	'.' ref=[Referenceable | ID] refIndices=Indices? tail=RefTail?;
+
+PortAssign:
+	(	(combined?='combine' '(' qualifier=Qualifier? ref=[ConnectionName | PhdlID] slices=Slices? ')') 
+	|	(qualifier=Qualifier? ref=[ConnectionName | PhdlID] slices=Slices?)) '=' concatenation=Concatenation ';';
+
+ConnectionAssign:
+	ref=[ConnectionName | PhdlID] slices=Slices? '=' concatenation=Concatenation ';';
+
+Concatenation:
+	(connections+=ConnectionRef ('&' connections+=ConnectionRef)*) |
+	(replicated?='<' replicate=ConnectionRef '>') | 
+	(open?='open');
+	
+ConnectionRef:
+	ref=[ConnectionName | PhdlID] slices=Slices?;
+
+ConnectionName:
+	name=PhdlID;
+	
+Indices:	
+	('(' ((msb=INT array?=':' lsb=INT) | (indices+=INT (',' indices+=INT)*)) ')');
+	
+Slices:
+	('[' ((msb=INT vector?=':' lsb=INT) | (slices+=INT (',' slices+=INT)*)) ']');
+	
+Vector:
+	{Vector} ('[' msb=INT vector?=':' lsb=INT ']')?;
+
+Array:
+	{Array} ('(' msb=INT array?=':' lsb=INT ')')?;
+	
+Qualifier:
+	'this' indices=Indices '.';
+	
+Referenceable:
+	Instance | Attr | NewAttr | RefAttr;
+
+Assignable:
+	PinAssign | PortAssign | ConnectionAssign;
+
+enum PinType:
+		Pin='pin'			
+	| 	Input='inpin'
+	|	Output='outpin'
+	|	InOut='iopin'
+	|	Power='pwrpin'
+	|	Supply='suppin'
+	|	OpenCollector='ocpin'
+	|	OpenEmitter='oepin'
+	|	Tristate='tripin'
+	|	Passive='passpin'
+	|	NoConnect='ncpin'
+	;
+
+QualifiedName: 
+	PhdlID ('.' PhdlID)?;
+	
+PhdlID: 
+	INT | ID | PINNUM;
+
+QualifiedNameWithWildCard:
+	QualifiedName ('.' '*')?;
+	
+terminal ID:  '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')* ;
+terminal INT returns ecore::EInt: ('0'..'9') | (('1'..'9') ('0'..'9')+ ) ;
+terminal PINNUM: ('0'..'9'|'a'..'z'|'A'..'Z'|'_'|'+'|'-'|'$'|'/'|'@')+ ;
+
+terminal STRING	: 
+			'"' ( '\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') | !('\\'|'"') )* '"' |
+			"'" ( '\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') | !('\\'|"'") )* "'";   
+
+//terminal DOC_COMMENT: '/**' -> '*/';
+terminal ML_COMMENT: '/*' -> '*/' ;
+terminal SL_COMMENT: '//' !('\n'|'\r')* ('\r'? '\n')? ;
+terminal WS: (' '|'\t'|'\r'|'\n')+ ;
+
+//terminal UNCLOSED_COMMENT: '/*' (!EOF)* EOF;
