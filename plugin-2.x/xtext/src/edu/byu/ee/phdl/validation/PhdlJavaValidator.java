@@ -1371,12 +1371,12 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 			Connection connDecl = (Connection) assignment.getRef().eContainer();
 			if (assignment.getSlices() != null) {
 				if (assignment.getSlices().isVector())
-					return (Math.abs(assignment.getSlices().getMsb() - assignment.getSlices().getLsb() + 1));
+					return Math.abs(assignment.getSlices().getMsb() - assignment.getSlices().getLsb()) + 1;
 				else
 					return assignment.getSlices().getSlices().size();
 			} else {
 				if (connDecl.getVector().isVector())
-					return Math.abs(connDecl.getVector().getMsb() - connDecl.getVector().getLsb() + 1);
+					return Math.abs(connDecl.getVector().getMsb() - connDecl.getVector().getLsb()) + 1;
 				else
 					return 1;
 			}
