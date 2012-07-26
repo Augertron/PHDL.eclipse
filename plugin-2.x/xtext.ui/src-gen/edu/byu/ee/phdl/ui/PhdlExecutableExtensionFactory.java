@@ -8,6 +8,8 @@ import org.osgi.framework.Bundle;
 
 import com.google.inject.Injector;
 
+import edu.byu.ee.phdl.ui.internal.PhdlActivator;
+
 /**
  * This class was generated. Customizations should only happen in a newly
  * introduced subclass. 
@@ -16,12 +18,12 @@ public class PhdlExecutableExtensionFactory extends AbstractGuiceAwareExecutable
 
 	@Override
 	protected Bundle getBundle() {
-		return edu.byu.ee.phdl.ui.internal.PhdlActivator.getInstance().getBundle();
+		return PhdlActivator.getInstance().getBundle();
 	}
 	
 	@Override
 	protected Injector getInjector() {
-		return edu.byu.ee.phdl.ui.internal.PhdlActivator.getInstance().getInjector("edu.byu.ee.phdl.Phdl");
+		return PhdlActivator.getInstance().getInjector(PhdlActivator.EDU_BYU_EE_PHDL_PHDL);
 	}
 	
 }

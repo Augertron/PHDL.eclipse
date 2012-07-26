@@ -19,7 +19,7 @@ import edu.byu.ee.phdl.phdl.Design;
 import edu.byu.ee.phdl.phdl.Package;
 import edu.byu.ee.phdl.phdl.PhdlModel;
 
-public class PhdlGenerator implements IGenerator {
+public class MyPhdlGenerator implements IGenerator {
 
 	@Inject
 	PhdlElaborator elaborator;
