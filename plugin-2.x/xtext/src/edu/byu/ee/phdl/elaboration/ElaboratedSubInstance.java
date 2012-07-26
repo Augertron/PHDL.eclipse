@@ -148,10 +148,12 @@ public class ElaboratedSubInstance extends ElaboratedHierarchyUnit {
 			if (oldConnection instanceof ElaboratedPort) {
 				ElaboratedConnection oldAssign = ((ElaboratedPort) oldConnection).getAssignment();
 				int index = old.getParent().connections.indexOf(oldAssign);
-				ElaboratedConnection newAssign = this.getParent().connections.get(index);
-				ElaboratedPort newConnection = (ElaboratedPort) this.connections.get(i);
-				newAssign.addConnection(newConnection);
-				newConnection.setAssignment(newAssign);
+				if (index >= 0) {
+					ElaboratedConnection newAssign = this.getParent().connections.get(index);
+					ElaboratedPort newConnection = (ElaboratedPort) this.connections.get(i);
+					newAssign.addConnection(newConnection);
+					newConnection.setAssignment(newAssign);
+				}
 			}
 
 		}

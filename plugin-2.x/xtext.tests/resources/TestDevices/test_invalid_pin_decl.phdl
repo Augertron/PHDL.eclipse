@@ -1,7 +1,8 @@
-device mydevice {
+device test_device {
 	attr REFPREFIX = "R";
 	attr FOOTPRINT = "footprint";
 	attr LIBRARY = "library";
-	pin 1 = {1};
-	pin 1 = {1};
+	pin a = {1,2};
+	pin b = {3,4};
+	pin[1:0] c = {5};
 }
