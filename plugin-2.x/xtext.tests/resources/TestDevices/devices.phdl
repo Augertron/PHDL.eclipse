@@ -1,0 +1,7 @@
+device mydevice {
+	attr REFPREFIX = "R";
+	attr FOOTPRINT = "footprint";
+	attr LIBRARY = "library";
+	pin 1 = {1};
+	pin 1 = {1};
+}

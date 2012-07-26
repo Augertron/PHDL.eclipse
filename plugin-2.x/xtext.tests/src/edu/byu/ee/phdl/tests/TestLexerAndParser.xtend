@@ -2,9 +2,6 @@ package edu.byu.ee.phdl.tests
 
 import org.eclipse.xtext.junit4.InjectWith
 import org.junit.runner.RunWith
-import com.google.inject.Inject
-import org.eclipse.xtext.junit4.util.ParseHelper
-import edu.byu.ee.phdl.phdl.PhdlModel
 import org.junit.Test
 
 import static org.junit.Assert.*
@@ -14,9 +11,7 @@ import edu.byu.ee.phdl.PhdlInjectorProvider
 
 @InjectWith(typeof(PhdlInjectorProvider))
 @RunWith(typeof(XtextRunner2))
-class PhdlTest extends XtextTest {
-	@Inject
-	ParseHelper<PhdlModel> parser
+class TestLexerAndParser extends XtextTest {
 	
 	@Test
 	def void test_ID() {
@@ -164,43 +159,29 @@ class PhdlTest extends XtextTest {
 
 	@Test
 	def void test_Array() {
-		testParserRule("(3:0)", "Array")
-		testParserRuleErrors("[3:0]", "Array")
+		testParserRule("(1:0)", "Array")
+		testParserRuleErrors("[1:0]", "Array")
 		testParserRuleErrors("(a:b)", "Array")
 	}
 	
 	@Test
 	def void test_Vector() {
-		testParserRule("[3:0]", "Vector")
-		testParserRuleErrors("(3:0)", "Vector")
+		testParserRule("[1:0]", "Vector")
+		testParserRuleErrors("(1:0)", "Vector")
 		testParserRuleErrors("[a:b]", "Vector")
 	}
 	
 	@Test
 	def void test_Slices() {
-		testParserRule("[3:0]", "Slices")
+		testParserRule("[1:0]", "Slices")
 		testParserRule("[3,2,1,0]", "Slices")
-		testParserRule("[3]", "Slices")
+		testParserRule("[1]", "Slices")
 	}
 	
 	@Test
 	def void test_Indices() {
-		testParserRule("(3:0)", "Indices")
+		testParserRule("(1:0)", "Indices")
 		testParserRule("(3,2,1,0)", "Indices")
-		testParserRule("(3)", "Indices")
+		testParserRule("(1)", "Indices")
 	}
-	
-//	@Test
-//	def void parsePhdlModel() {
-//		val model = parser.parse('''
-//			device resistor {
-//				attr name1 = "value";
-//				attr name1 = "value";
-//			}
-//			'''			
-//		)
-//		val resource = model.eResource
-//		println(resource.errors.get(0).message)
-//		assertTrue(resource.errors.get(0).message.equals("Duplicate attribute declaration 'name1'"));
-//	}
 }
