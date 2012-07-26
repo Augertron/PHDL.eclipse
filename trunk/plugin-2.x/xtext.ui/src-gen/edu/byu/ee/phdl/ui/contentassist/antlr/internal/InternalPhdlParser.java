@@ -2545,21 +2545,98 @@ public class InternalPhdlParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "ruleQualifier"
 
 
+    // $ANTLR start "entryRuleQualifiedNameWithWildCard"
+    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:977:1: entryRuleQualifiedNameWithWildCard : ruleQualifiedNameWithWildCard EOF ;
+    public final void entryRuleQualifiedNameWithWildCard() throws RecognitionException {
+        try {
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:978:1: ( ruleQualifiedNameWithWildCard EOF )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:979:1: ruleQualifiedNameWithWildCard EOF
+            {
+             before(grammarAccess.getQualifiedNameWithWildCardRule()); 
+            pushFollow(FOLLOW_ruleQualifiedNameWithWildCard_in_entryRuleQualifiedNameWithWildCard2041);
+            ruleQualifiedNameWithWildCard();
+
+            state._fsp--;
+
+             after(grammarAccess.getQualifiedNameWithWildCardRule()); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedNameWithWildCard2048); 
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+        }
+        return ;
+    }
+    // $ANTLR end "entryRuleQualifiedNameWithWildCard"
+
+
+    // $ANTLR start "ruleQualifiedNameWithWildCard"
+    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:986:1: ruleQualifiedNameWithWildCard : ( ( rule__QualifiedNameWithWildCard__Group__0 ) ) ;
+    public final void ruleQualifiedNameWithWildCard() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:990:5: ( ( ( rule__QualifiedNameWithWildCard__Group__0 ) ) )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:991:1: ( ( rule__QualifiedNameWithWildCard__Group__0 ) )
+            {
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:991:1: ( ( rule__QualifiedNameWithWildCard__Group__0 ) )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:992:1: ( rule__QualifiedNameWithWildCard__Group__0 )
+            {
+             before(grammarAccess.getQualifiedNameWithWildCardAccess().getGroup()); 
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:993:1: ( rule__QualifiedNameWithWildCard__Group__0 )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:993:2: rule__QualifiedNameWithWildCard__Group__0
+            {
+            pushFollow(FOLLOW_rule__QualifiedNameWithWildCard__Group__0_in_ruleQualifiedNameWithWildCard2078);
+            rule__QualifiedNameWithWildCard__Group__0();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getQualifiedNameWithWildCardAccess().getGroup()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "ruleQualifiedNameWithWildCard"
+
+
     // $ANTLR start "entryRuleQualifiedName"
-    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:977:1: entryRuleQualifiedName : ruleQualifiedName EOF ;
+    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1005:1: entryRuleQualifiedName : ruleQualifiedName EOF ;
     public final void entryRuleQualifiedName() throws RecognitionException {
         try {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:978:1: ( ruleQualifiedName EOF )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:979:1: ruleQualifiedName EOF
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1006:1: ( ruleQualifiedName EOF )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1007:1: ruleQualifiedName EOF
             {
              before(grammarAccess.getQualifiedNameRule()); 
-            pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName2041);
+            pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName2105);
             ruleQualifiedName();
 
             state._fsp--;
 
              after(grammarAccess.getQualifiedNameRule()); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedName2048); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedName2112); 
 
             }
 
@@ -2576,23 +2653,23 @@ public class InternalPhdlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleQualifiedName"
-    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:986:1: ruleQualifiedName : ( ( rule__QualifiedName__Group__0 ) ) ;
+    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1014:1: ruleQualifiedName : ( ( rule__QualifiedName__Group__0 ) ) ;
     public final void ruleQualifiedName() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:990:5: ( ( ( rule__QualifiedName__Group__0 ) ) )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:991:1: ( ( rule__QualifiedName__Group__0 ) )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1018:5: ( ( ( rule__QualifiedName__Group__0 ) ) )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1019:1: ( ( rule__QualifiedName__Group__0 ) )
             {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:991:1: ( ( rule__QualifiedName__Group__0 ) )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:992:1: ( rule__QualifiedName__Group__0 )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1019:1: ( ( rule__QualifiedName__Group__0 ) )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1020:1: ( rule__QualifiedName__Group__0 )
             {
              before(grammarAccess.getQualifiedNameAccess().getGroup()); 
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:993:1: ( rule__QualifiedName__Group__0 )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:993:2: rule__QualifiedName__Group__0
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1021:1: ( rule__QualifiedName__Group__0 )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1021:2: rule__QualifiedName__Group__0
             {
-            pushFollow(FOLLOW_rule__QualifiedName__Group__0_in_ruleQualifiedName2078);
+            pushFollow(FOLLOW_rule__QualifiedName__Group__0_in_ruleQualifiedName2142);
             rule__QualifiedName__Group__0();
 
             state._fsp--;
@@ -2623,20 +2700,20 @@ public class InternalPhdlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRulePhdlID"
-    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1005:1: entryRulePhdlID : rulePhdlID EOF ;
+    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1033:1: entryRulePhdlID : rulePhdlID EOF ;
     public final void entryRulePhdlID() throws RecognitionException {
         try {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1006:1: ( rulePhdlID EOF )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1007:1: rulePhdlID EOF
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1034:1: ( rulePhdlID EOF )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1035:1: rulePhdlID EOF
             {
              before(grammarAccess.getPhdlIDRule()); 
-            pushFollow(FOLLOW_rulePhdlID_in_entryRulePhdlID2105);
+            pushFollow(FOLLOW_rulePhdlID_in_entryRulePhdlID2169);
             rulePhdlID();
 
             state._fsp--;
 
              after(grammarAccess.getPhdlIDRule()); 
-            match(input,EOF,FOLLOW_EOF_in_entryRulePhdlID2112); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulePhdlID2176); 
 
             }
 
@@ -2653,23 +2730,23 @@ public class InternalPhdlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rulePhdlID"
-    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1014:1: rulePhdlID : ( ( rule__PhdlID__Alternatives ) ) ;
+    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1042:1: rulePhdlID : ( ( rule__PhdlID__Alternatives ) ) ;
     public final void rulePhdlID() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1018:5: ( ( ( rule__PhdlID__Alternatives ) ) )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1019:1: ( ( rule__PhdlID__Alternatives ) )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1046:5: ( ( ( rule__PhdlID__Alternatives ) ) )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1047:1: ( ( rule__PhdlID__Alternatives ) )
             {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1019:1: ( ( rule__PhdlID__Alternatives ) )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1020:1: ( rule__PhdlID__Alternatives )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1047:1: ( ( rule__PhdlID__Alternatives ) )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1048:1: ( rule__PhdlID__Alternatives )
             {
              before(grammarAccess.getPhdlIDAccess().getAlternatives()); 
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1021:1: ( rule__PhdlID__Alternatives )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1021:2: rule__PhdlID__Alternatives
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1049:1: ( rule__PhdlID__Alternatives )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1049:2: rule__PhdlID__Alternatives
             {
-            pushFollow(FOLLOW_rule__PhdlID__Alternatives_in_rulePhdlID2142);
+            pushFollow(FOLLOW_rule__PhdlID__Alternatives_in_rulePhdlID2206);
             rule__PhdlID__Alternatives();
 
             state._fsp--;
@@ -2697,83 +2774,6 @@ public class InternalPhdlParser extends AbstractInternalContentAssistParser {
         return ;
     }
     // $ANTLR end "rulePhdlID"
-
-
-    // $ANTLR start "entryRuleQualifiedNameWithWildCard"
-    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1033:1: entryRuleQualifiedNameWithWildCard : ruleQualifiedNameWithWildCard EOF ;
-    public final void entryRuleQualifiedNameWithWildCard() throws RecognitionException {
-        try {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1034:1: ( ruleQualifiedNameWithWildCard EOF )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1035:1: ruleQualifiedNameWithWildCard EOF
-            {
-             before(grammarAccess.getQualifiedNameWithWildCardRule()); 
-            pushFollow(FOLLOW_ruleQualifiedNameWithWildCard_in_entryRuleQualifiedNameWithWildCard2169);
-            ruleQualifiedNameWithWildCard();
-
-            state._fsp--;
-
-             after(grammarAccess.getQualifiedNameWithWildCardRule()); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedNameWithWildCard2176); 
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-        }
-        return ;
-    }
-    // $ANTLR end "entryRuleQualifiedNameWithWildCard"
-
-
-    // $ANTLR start "ruleQualifiedNameWithWildCard"
-    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1042:1: ruleQualifiedNameWithWildCard : ( ( rule__QualifiedNameWithWildCard__Group__0 ) ) ;
-    public final void ruleQualifiedNameWithWildCard() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1046:5: ( ( ( rule__QualifiedNameWithWildCard__Group__0 ) ) )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1047:1: ( ( rule__QualifiedNameWithWildCard__Group__0 ) )
-            {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1047:1: ( ( rule__QualifiedNameWithWildCard__Group__0 ) )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1048:1: ( rule__QualifiedNameWithWildCard__Group__0 )
-            {
-             before(grammarAccess.getQualifiedNameWithWildCardAccess().getGroup()); 
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1049:1: ( rule__QualifiedNameWithWildCard__Group__0 )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:1049:2: rule__QualifiedNameWithWildCard__Group__0
-            {
-            pushFollow(FOLLOW_rule__QualifiedNameWithWildCard__Group__0_in_ruleQualifiedNameWithWildCard2206);
-            rule__QualifiedNameWithWildCard__Group__0();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getQualifiedNameWithWildCardAccess().getGroup()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "ruleQualifiedNameWithWildCard"
 
 
     // $ANTLR start "rulePinType"
@@ -19759,345 +19759,22 @@ public class InternalPhdlParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Qualifier__Group__2__Impl"
 
 
-    // $ANTLR start "rule__QualifiedName__Group__0"
-    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7267:1: rule__QualifiedName__Group__0 : rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 ;
-    public final void rule__QualifiedName__Group__0() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7271:1: ( rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7272:2: rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1
-            {
-            pushFollow(FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__014720);
-            rule__QualifiedName__Group__0__Impl();
-
-            state._fsp--;
-
-            pushFollow(FOLLOW_rule__QualifiedName__Group__1_in_rule__QualifiedName__Group__014723);
-            rule__QualifiedName__Group__1();
-
-            state._fsp--;
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__QualifiedName__Group__0"
-
-
-    // $ANTLR start "rule__QualifiedName__Group__0__Impl"
-    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7279:1: rule__QualifiedName__Group__0__Impl : ( rulePhdlID ) ;
-    public final void rule__QualifiedName__Group__0__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7283:1: ( ( rulePhdlID ) )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7284:1: ( rulePhdlID )
-            {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7284:1: ( rulePhdlID )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7285:1: rulePhdlID
-            {
-             before(grammarAccess.getQualifiedNameAccess().getPhdlIDParserRuleCall_0()); 
-            pushFollow(FOLLOW_rulePhdlID_in_rule__QualifiedName__Group__0__Impl14750);
-            rulePhdlID();
-
-            state._fsp--;
-
-             after(grammarAccess.getQualifiedNameAccess().getPhdlIDParserRuleCall_0()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__QualifiedName__Group__0__Impl"
-
-
-    // $ANTLR start "rule__QualifiedName__Group__1"
-    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7296:1: rule__QualifiedName__Group__1 : rule__QualifiedName__Group__1__Impl ;
-    public final void rule__QualifiedName__Group__1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7300:1: ( rule__QualifiedName__Group__1__Impl )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7301:2: rule__QualifiedName__Group__1__Impl
-            {
-            pushFollow(FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__114779);
-            rule__QualifiedName__Group__1__Impl();
-
-            state._fsp--;
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__QualifiedName__Group__1"
-
-
-    // $ANTLR start "rule__QualifiedName__Group__1__Impl"
-    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7307:1: rule__QualifiedName__Group__1__Impl : ( ( rule__QualifiedName__Group_1__0 )? ) ;
-    public final void rule__QualifiedName__Group__1__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7311:1: ( ( ( rule__QualifiedName__Group_1__0 )? ) )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7312:1: ( ( rule__QualifiedName__Group_1__0 )? )
-            {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7312:1: ( ( rule__QualifiedName__Group_1__0 )? )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7313:1: ( rule__QualifiedName__Group_1__0 )?
-            {
-             before(grammarAccess.getQualifiedNameAccess().getGroup_1()); 
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7314:1: ( rule__QualifiedName__Group_1__0 )?
-            int alt56=2;
-            int LA56_0 = input.LA(1);
-
-            if ( (LA56_0==KEYWORD_6) ) {
-                int LA56_1 = input.LA(2);
-
-                if ( ((LA56_1>=RULE_ID && LA56_1<=RULE_PINNUM)) ) {
-                    alt56=1;
-                }
-            }
-            switch (alt56) {
-                case 1 :
-                    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7314:2: rule__QualifiedName__Group_1__0
-                    {
-                    pushFollow(FOLLOW_rule__QualifiedName__Group_1__0_in_rule__QualifiedName__Group__1__Impl14806);
-                    rule__QualifiedName__Group_1__0();
-
-                    state._fsp--;
-
-
-                    }
-                    break;
-
-            }
-
-             after(grammarAccess.getQualifiedNameAccess().getGroup_1()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__QualifiedName__Group__1__Impl"
-
-
-    // $ANTLR start "rule__QualifiedName__Group_1__0"
-    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7328:1: rule__QualifiedName__Group_1__0 : rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1 ;
-    public final void rule__QualifiedName__Group_1__0() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7332:1: ( rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1 )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7333:2: rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1
-            {
-            pushFollow(FOLLOW_rule__QualifiedName__Group_1__0__Impl_in_rule__QualifiedName__Group_1__014841);
-            rule__QualifiedName__Group_1__0__Impl();
-
-            state._fsp--;
-
-            pushFollow(FOLLOW_rule__QualifiedName__Group_1__1_in_rule__QualifiedName__Group_1__014844);
-            rule__QualifiedName__Group_1__1();
-
-            state._fsp--;
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__QualifiedName__Group_1__0"
-
-
-    // $ANTLR start "rule__QualifiedName__Group_1__0__Impl"
-    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7340:1: rule__QualifiedName__Group_1__0__Impl : ( KEYWORD_6 ) ;
-    public final void rule__QualifiedName__Group_1__0__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7344:1: ( ( KEYWORD_6 ) )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7345:1: ( KEYWORD_6 )
-            {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7345:1: ( KEYWORD_6 )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7346:1: KEYWORD_6
-            {
-             before(grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0()); 
-            match(input,KEYWORD_6,FOLLOW_KEYWORD_6_in_rule__QualifiedName__Group_1__0__Impl14872); 
-             after(grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__QualifiedName__Group_1__0__Impl"
-
-
-    // $ANTLR start "rule__QualifiedName__Group_1__1"
-    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7359:1: rule__QualifiedName__Group_1__1 : rule__QualifiedName__Group_1__1__Impl ;
-    public final void rule__QualifiedName__Group_1__1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7363:1: ( rule__QualifiedName__Group_1__1__Impl )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7364:2: rule__QualifiedName__Group_1__1__Impl
-            {
-            pushFollow(FOLLOW_rule__QualifiedName__Group_1__1__Impl_in_rule__QualifiedName__Group_1__114903);
-            rule__QualifiedName__Group_1__1__Impl();
-
-            state._fsp--;
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__QualifiedName__Group_1__1"
-
-
-    // $ANTLR start "rule__QualifiedName__Group_1__1__Impl"
-    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7370:1: rule__QualifiedName__Group_1__1__Impl : ( rulePhdlID ) ;
-    public final void rule__QualifiedName__Group_1__1__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7374:1: ( ( rulePhdlID ) )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7375:1: ( rulePhdlID )
-            {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7375:1: ( rulePhdlID )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7376:1: rulePhdlID
-            {
-             before(grammarAccess.getQualifiedNameAccess().getPhdlIDParserRuleCall_1_1()); 
-            pushFollow(FOLLOW_rulePhdlID_in_rule__QualifiedName__Group_1__1__Impl14930);
-            rulePhdlID();
-
-            state._fsp--;
-
-             after(grammarAccess.getQualifiedNameAccess().getPhdlIDParserRuleCall_1_1()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__QualifiedName__Group_1__1__Impl"
-
-
     // $ANTLR start "rule__QualifiedNameWithWildCard__Group__0"
-    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7391:1: rule__QualifiedNameWithWildCard__Group__0 : rule__QualifiedNameWithWildCard__Group__0__Impl rule__QualifiedNameWithWildCard__Group__1 ;
+    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7267:1: rule__QualifiedNameWithWildCard__Group__0 : rule__QualifiedNameWithWildCard__Group__0__Impl rule__QualifiedNameWithWildCard__Group__1 ;
     public final void rule__QualifiedNameWithWildCard__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7395:1: ( rule__QualifiedNameWithWildCard__Group__0__Impl rule__QualifiedNameWithWildCard__Group__1 )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7396:2: rule__QualifiedNameWithWildCard__Group__0__Impl rule__QualifiedNameWithWildCard__Group__1
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7271:1: ( rule__QualifiedNameWithWildCard__Group__0__Impl rule__QualifiedNameWithWildCard__Group__1 )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7272:2: rule__QualifiedNameWithWildCard__Group__0__Impl rule__QualifiedNameWithWildCard__Group__1
             {
-            pushFollow(FOLLOW_rule__QualifiedNameWithWildCard__Group__0__Impl_in_rule__QualifiedNameWithWildCard__Group__014963);
+            pushFollow(FOLLOW_rule__QualifiedNameWithWildCard__Group__0__Impl_in_rule__QualifiedNameWithWildCard__Group__014720);
             rule__QualifiedNameWithWildCard__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__QualifiedNameWithWildCard__Group__1_in_rule__QualifiedNameWithWildCard__Group__014966);
+            pushFollow(FOLLOW_rule__QualifiedNameWithWildCard__Group__1_in_rule__QualifiedNameWithWildCard__Group__014723);
             rule__QualifiedNameWithWildCard__Group__1();
 
             state._fsp--;
@@ -20121,20 +19798,20 @@ public class InternalPhdlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedNameWithWildCard__Group__0__Impl"
-    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7403:1: rule__QualifiedNameWithWildCard__Group__0__Impl : ( ruleQualifiedName ) ;
+    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7279:1: rule__QualifiedNameWithWildCard__Group__0__Impl : ( ruleQualifiedName ) ;
     public final void rule__QualifiedNameWithWildCard__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7407:1: ( ( ruleQualifiedName ) )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7408:1: ( ruleQualifiedName )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7283:1: ( ( ruleQualifiedName ) )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7284:1: ( ruleQualifiedName )
             {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7408:1: ( ruleQualifiedName )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7409:1: ruleQualifiedName
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7284:1: ( ruleQualifiedName )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7285:1: ruleQualifiedName
             {
              before(grammarAccess.getQualifiedNameWithWildCardAccess().getQualifiedNameParserRuleCall_0()); 
-            pushFollow(FOLLOW_ruleQualifiedName_in_rule__QualifiedNameWithWildCard__Group__0__Impl14993);
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__QualifiedNameWithWildCard__Group__0__Impl14750);
             ruleQualifiedName();
 
             state._fsp--;
@@ -20162,16 +19839,16 @@ public class InternalPhdlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedNameWithWildCard__Group__1"
-    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7420:1: rule__QualifiedNameWithWildCard__Group__1 : rule__QualifiedNameWithWildCard__Group__1__Impl ;
+    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7296:1: rule__QualifiedNameWithWildCard__Group__1 : rule__QualifiedNameWithWildCard__Group__1__Impl ;
     public final void rule__QualifiedNameWithWildCard__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7424:1: ( rule__QualifiedNameWithWildCard__Group__1__Impl )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7425:2: rule__QualifiedNameWithWildCard__Group__1__Impl
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7300:1: ( rule__QualifiedNameWithWildCard__Group__1__Impl )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7301:2: rule__QualifiedNameWithWildCard__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__QualifiedNameWithWildCard__Group__1__Impl_in_rule__QualifiedNameWithWildCard__Group__115022);
+            pushFollow(FOLLOW_rule__QualifiedNameWithWildCard__Group__1__Impl_in_rule__QualifiedNameWithWildCard__Group__114779);
             rule__QualifiedNameWithWildCard__Group__1__Impl();
 
             state._fsp--;
@@ -20195,31 +19872,31 @@ public class InternalPhdlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedNameWithWildCard__Group__1__Impl"
-    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7431:1: rule__QualifiedNameWithWildCard__Group__1__Impl : ( ( rule__QualifiedNameWithWildCard__Group_1__0 )? ) ;
+    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7307:1: rule__QualifiedNameWithWildCard__Group__1__Impl : ( ( rule__QualifiedNameWithWildCard__Group_1__0 )? ) ;
     public final void rule__QualifiedNameWithWildCard__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7435:1: ( ( ( rule__QualifiedNameWithWildCard__Group_1__0 )? ) )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7436:1: ( ( rule__QualifiedNameWithWildCard__Group_1__0 )? )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7311:1: ( ( ( rule__QualifiedNameWithWildCard__Group_1__0 )? ) )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7312:1: ( ( rule__QualifiedNameWithWildCard__Group_1__0 )? )
             {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7436:1: ( ( rule__QualifiedNameWithWildCard__Group_1__0 )? )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7437:1: ( rule__QualifiedNameWithWildCard__Group_1__0 )?
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7312:1: ( ( rule__QualifiedNameWithWildCard__Group_1__0 )? )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7313:1: ( rule__QualifiedNameWithWildCard__Group_1__0 )?
             {
              before(grammarAccess.getQualifiedNameWithWildCardAccess().getGroup_1()); 
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7438:1: ( rule__QualifiedNameWithWildCard__Group_1__0 )?
-            int alt57=2;
-            int LA57_0 = input.LA(1);
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7314:1: ( rule__QualifiedNameWithWildCard__Group_1__0 )?
+            int alt56=2;
+            int LA56_0 = input.LA(1);
 
-            if ( (LA57_0==KEYWORD_6) ) {
-                alt57=1;
+            if ( (LA56_0==KEYWORD_6) ) {
+                alt56=1;
             }
-            switch (alt57) {
+            switch (alt56) {
                 case 1 :
-                    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7438:2: rule__QualifiedNameWithWildCard__Group_1__0
+                    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7314:2: rule__QualifiedNameWithWildCard__Group_1__0
                     {
-                    pushFollow(FOLLOW_rule__QualifiedNameWithWildCard__Group_1__0_in_rule__QualifiedNameWithWildCard__Group__1__Impl15049);
+                    pushFollow(FOLLOW_rule__QualifiedNameWithWildCard__Group_1__0_in_rule__QualifiedNameWithWildCard__Group__1__Impl14806);
                     rule__QualifiedNameWithWildCard__Group_1__0();
 
                     state._fsp--;
@@ -20253,21 +19930,21 @@ public class InternalPhdlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedNameWithWildCard__Group_1__0"
-    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7452:1: rule__QualifiedNameWithWildCard__Group_1__0 : rule__QualifiedNameWithWildCard__Group_1__0__Impl rule__QualifiedNameWithWildCard__Group_1__1 ;
+    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7328:1: rule__QualifiedNameWithWildCard__Group_1__0 : rule__QualifiedNameWithWildCard__Group_1__0__Impl rule__QualifiedNameWithWildCard__Group_1__1 ;
     public final void rule__QualifiedNameWithWildCard__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7456:1: ( rule__QualifiedNameWithWildCard__Group_1__0__Impl rule__QualifiedNameWithWildCard__Group_1__1 )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7457:2: rule__QualifiedNameWithWildCard__Group_1__0__Impl rule__QualifiedNameWithWildCard__Group_1__1
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7332:1: ( rule__QualifiedNameWithWildCard__Group_1__0__Impl rule__QualifiedNameWithWildCard__Group_1__1 )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7333:2: rule__QualifiedNameWithWildCard__Group_1__0__Impl rule__QualifiedNameWithWildCard__Group_1__1
             {
-            pushFollow(FOLLOW_rule__QualifiedNameWithWildCard__Group_1__0__Impl_in_rule__QualifiedNameWithWildCard__Group_1__015084);
+            pushFollow(FOLLOW_rule__QualifiedNameWithWildCard__Group_1__0__Impl_in_rule__QualifiedNameWithWildCard__Group_1__014841);
             rule__QualifiedNameWithWildCard__Group_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__QualifiedNameWithWildCard__Group_1__1_in_rule__QualifiedNameWithWildCard__Group_1__015087);
+            pushFollow(FOLLOW_rule__QualifiedNameWithWildCard__Group_1__1_in_rule__QualifiedNameWithWildCard__Group_1__014844);
             rule__QualifiedNameWithWildCard__Group_1__1();
 
             state._fsp--;
@@ -20291,20 +19968,20 @@ public class InternalPhdlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedNameWithWildCard__Group_1__0__Impl"
-    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7464:1: rule__QualifiedNameWithWildCard__Group_1__0__Impl : ( KEYWORD_6 ) ;
+    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7340:1: rule__QualifiedNameWithWildCard__Group_1__0__Impl : ( KEYWORD_6 ) ;
     public final void rule__QualifiedNameWithWildCard__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7468:1: ( ( KEYWORD_6 ) )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7469:1: ( KEYWORD_6 )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7344:1: ( ( KEYWORD_6 ) )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7345:1: ( KEYWORD_6 )
             {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7469:1: ( KEYWORD_6 )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7470:1: KEYWORD_6
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7345:1: ( KEYWORD_6 )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7346:1: KEYWORD_6
             {
              before(grammarAccess.getQualifiedNameWithWildCardAccess().getFullStopKeyword_1_0()); 
-            match(input,KEYWORD_6,FOLLOW_KEYWORD_6_in_rule__QualifiedNameWithWildCard__Group_1__0__Impl15115); 
+            match(input,KEYWORD_6,FOLLOW_KEYWORD_6_in_rule__QualifiedNameWithWildCard__Group_1__0__Impl14872); 
              after(grammarAccess.getQualifiedNameWithWildCardAccess().getFullStopKeyword_1_0()); 
 
             }
@@ -20328,16 +20005,16 @@ public class InternalPhdlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedNameWithWildCard__Group_1__1"
-    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7483:1: rule__QualifiedNameWithWildCard__Group_1__1 : rule__QualifiedNameWithWildCard__Group_1__1__Impl ;
+    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7359:1: rule__QualifiedNameWithWildCard__Group_1__1 : rule__QualifiedNameWithWildCard__Group_1__1__Impl ;
     public final void rule__QualifiedNameWithWildCard__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7487:1: ( rule__QualifiedNameWithWildCard__Group_1__1__Impl )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7488:2: rule__QualifiedNameWithWildCard__Group_1__1__Impl
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7363:1: ( rule__QualifiedNameWithWildCard__Group_1__1__Impl )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7364:2: rule__QualifiedNameWithWildCard__Group_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__QualifiedNameWithWildCard__Group_1__1__Impl_in_rule__QualifiedNameWithWildCard__Group_1__115146);
+            pushFollow(FOLLOW_rule__QualifiedNameWithWildCard__Group_1__1__Impl_in_rule__QualifiedNameWithWildCard__Group_1__114903);
             rule__QualifiedNameWithWildCard__Group_1__1__Impl();
 
             state._fsp--;
@@ -20361,20 +20038,20 @@ public class InternalPhdlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedNameWithWildCard__Group_1__1__Impl"
-    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7494:1: rule__QualifiedNameWithWildCard__Group_1__1__Impl : ( KEYWORD_4 ) ;
+    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7370:1: rule__QualifiedNameWithWildCard__Group_1__1__Impl : ( KEYWORD_4 ) ;
     public final void rule__QualifiedNameWithWildCard__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7498:1: ( ( KEYWORD_4 ) )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7499:1: ( KEYWORD_4 )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7374:1: ( ( KEYWORD_4 ) )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7375:1: ( KEYWORD_4 )
             {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7499:1: ( KEYWORD_4 )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7500:1: KEYWORD_4
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7375:1: ( KEYWORD_4 )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7376:1: KEYWORD_4
             {
              before(grammarAccess.getQualifiedNameWithWildCardAccess().getAsteriskKeyword_1_1()); 
-            match(input,KEYWORD_4,FOLLOW_KEYWORD_4_in_rule__QualifiedNameWithWildCard__Group_1__1__Impl15174); 
+            match(input,KEYWORD_4,FOLLOW_KEYWORD_4_in_rule__QualifiedNameWithWildCard__Group_1__1__Impl14931); 
              after(grammarAccess.getQualifiedNameWithWildCardAccess().getAsteriskKeyword_1_1()); 
 
             }
@@ -20395,6 +20072,329 @@ public class InternalPhdlParser extends AbstractInternalContentAssistParser {
         return ;
     }
     // $ANTLR end "rule__QualifiedNameWithWildCard__Group_1__1__Impl"
+
+
+    // $ANTLR start "rule__QualifiedName__Group__0"
+    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7393:1: rule__QualifiedName__Group__0 : rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 ;
+    public final void rule__QualifiedName__Group__0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7397:1: ( rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7398:2: rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1
+            {
+            pushFollow(FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__014966);
+            rule__QualifiedName__Group__0__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__QualifiedName__Group__1_in_rule__QualifiedName__Group__014969);
+            rule__QualifiedName__Group__1();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__QualifiedName__Group__0"
+
+
+    // $ANTLR start "rule__QualifiedName__Group__0__Impl"
+    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7405:1: rule__QualifiedName__Group__0__Impl : ( rulePhdlID ) ;
+    public final void rule__QualifiedName__Group__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7409:1: ( ( rulePhdlID ) )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7410:1: ( rulePhdlID )
+            {
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7410:1: ( rulePhdlID )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7411:1: rulePhdlID
+            {
+             before(grammarAccess.getQualifiedNameAccess().getPhdlIDParserRuleCall_0()); 
+            pushFollow(FOLLOW_rulePhdlID_in_rule__QualifiedName__Group__0__Impl14996);
+            rulePhdlID();
+
+            state._fsp--;
+
+             after(grammarAccess.getQualifiedNameAccess().getPhdlIDParserRuleCall_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__QualifiedName__Group__0__Impl"
+
+
+    // $ANTLR start "rule__QualifiedName__Group__1"
+    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7422:1: rule__QualifiedName__Group__1 : rule__QualifiedName__Group__1__Impl ;
+    public final void rule__QualifiedName__Group__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7426:1: ( rule__QualifiedName__Group__1__Impl )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7427:2: rule__QualifiedName__Group__1__Impl
+            {
+            pushFollow(FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__115025);
+            rule__QualifiedName__Group__1__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__QualifiedName__Group__1"
+
+
+    // $ANTLR start "rule__QualifiedName__Group__1__Impl"
+    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7433:1: rule__QualifiedName__Group__1__Impl : ( ( rule__QualifiedName__Group_1__0 )? ) ;
+    public final void rule__QualifiedName__Group__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7437:1: ( ( ( rule__QualifiedName__Group_1__0 )? ) )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7438:1: ( ( rule__QualifiedName__Group_1__0 )? )
+            {
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7438:1: ( ( rule__QualifiedName__Group_1__0 )? )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7439:1: ( rule__QualifiedName__Group_1__0 )?
+            {
+             before(grammarAccess.getQualifiedNameAccess().getGroup_1()); 
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7440:1: ( rule__QualifiedName__Group_1__0 )?
+            int alt57=2;
+            int LA57_0 = input.LA(1);
+
+            if ( (LA57_0==KEYWORD_6) ) {
+                int LA57_1 = input.LA(2);
+
+                if ( ((LA57_1>=RULE_ID && LA57_1<=RULE_PINNUM)) ) {
+                    alt57=1;
+                }
+            }
+            switch (alt57) {
+                case 1 :
+                    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7440:2: rule__QualifiedName__Group_1__0
+                    {
+                    pushFollow(FOLLOW_rule__QualifiedName__Group_1__0_in_rule__QualifiedName__Group__1__Impl15052);
+                    rule__QualifiedName__Group_1__0();
+
+                    state._fsp--;
+
+
+                    }
+                    break;
+
+            }
+
+             after(grammarAccess.getQualifiedNameAccess().getGroup_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__QualifiedName__Group__1__Impl"
+
+
+    // $ANTLR start "rule__QualifiedName__Group_1__0"
+    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7454:1: rule__QualifiedName__Group_1__0 : rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1 ;
+    public final void rule__QualifiedName__Group_1__0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7458:1: ( rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1 )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7459:2: rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1
+            {
+            pushFollow(FOLLOW_rule__QualifiedName__Group_1__0__Impl_in_rule__QualifiedName__Group_1__015087);
+            rule__QualifiedName__Group_1__0__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__QualifiedName__Group_1__1_in_rule__QualifiedName__Group_1__015090);
+            rule__QualifiedName__Group_1__1();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__QualifiedName__Group_1__0"
+
+
+    // $ANTLR start "rule__QualifiedName__Group_1__0__Impl"
+    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7466:1: rule__QualifiedName__Group_1__0__Impl : ( KEYWORD_6 ) ;
+    public final void rule__QualifiedName__Group_1__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7470:1: ( ( KEYWORD_6 ) )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7471:1: ( KEYWORD_6 )
+            {
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7471:1: ( KEYWORD_6 )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7472:1: KEYWORD_6
+            {
+             before(grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0()); 
+            match(input,KEYWORD_6,FOLLOW_KEYWORD_6_in_rule__QualifiedName__Group_1__0__Impl15118); 
+             after(grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__QualifiedName__Group_1__0__Impl"
+
+
+    // $ANTLR start "rule__QualifiedName__Group_1__1"
+    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7485:1: rule__QualifiedName__Group_1__1 : rule__QualifiedName__Group_1__1__Impl ;
+    public final void rule__QualifiedName__Group_1__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7489:1: ( rule__QualifiedName__Group_1__1__Impl )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7490:2: rule__QualifiedName__Group_1__1__Impl
+            {
+            pushFollow(FOLLOW_rule__QualifiedName__Group_1__1__Impl_in_rule__QualifiedName__Group_1__115149);
+            rule__QualifiedName__Group_1__1__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__QualifiedName__Group_1__1"
+
+
+    // $ANTLR start "rule__QualifiedName__Group_1__1__Impl"
+    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7496:1: rule__QualifiedName__Group_1__1__Impl : ( rulePhdlID ) ;
+    public final void rule__QualifiedName__Group_1__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7500:1: ( ( rulePhdlID ) )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7501:1: ( rulePhdlID )
+            {
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7501:1: ( rulePhdlID )
+            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/internal/InternalPhdlParser.g:7502:1: rulePhdlID
+            {
+             before(grammarAccess.getQualifiedNameAccess().getPhdlIDParserRuleCall_1_1()); 
+            pushFollow(FOLLOW_rulePhdlID_in_rule__QualifiedName__Group_1__1__Impl15176);
+            rulePhdlID();
+
+            state._fsp--;
+
+             after(grammarAccess.getQualifiedNameAccess().getPhdlIDParserRuleCall_1_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__QualifiedName__Group_1__1__Impl"
 
 
     // $ANTLR start "rule__PhdlModel__ImportsAssignment_0"
@@ -24845,15 +24845,15 @@ public class InternalPhdlParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_ruleQualifier_in_entryRuleQualifier1973 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleQualifier1980 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Qualifier__Group__0_in_ruleQualifier2010 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName2041 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName2048 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group__0_in_ruleQualifiedName2078 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePhdlID_in_entryRulePhdlID2105 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulePhdlID2112 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PhdlID__Alternatives_in_rulePhdlID2142 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedNameWithWildCard_in_entryRuleQualifiedNameWithWildCard2169 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedNameWithWildCard2176 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedNameWithWildCard__Group__0_in_ruleQualifiedNameWithWildCard2206 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedNameWithWildCard_in_entryRuleQualifiedNameWithWildCard2041 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedNameWithWildCard2048 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedNameWithWildCard__Group__0_in_ruleQualifiedNameWithWildCard2078 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName2105 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName2112 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group__0_in_ruleQualifiedName2142 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePhdlID_in_entryRulePhdlID2169 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulePhdlID2176 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PhdlID__Alternatives_in_rulePhdlID2206 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__PinType__Alternatives_in_rulePinType2243 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__PhdlModel__PackagesAssignment_1_0_in_rule__PhdlModel__Alternatives_12278 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__PhdlModel__DevicesAssignment_1_1_in_rule__PhdlModel__Alternatives_12296 = new BitSet(new long[]{0x0000000000000002L});
@@ -25400,26 +25400,26 @@ public class InternalPhdlParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__Qualifier__IndicesAssignment_1_in_rule__Qualifier__Group__1__Impl14625 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Qualifier__Group__2__Impl_in_rule__Qualifier__Group__214655 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_KEYWORD_6_in_rule__Qualifier__Group__2__Impl14683 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__014720 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group__1_in_rule__QualifiedName__Group__014723 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePhdlID_in_rule__QualifiedName__Group__0__Impl14750 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__114779 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__0_in_rule__QualifiedName__Group__1__Impl14806 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__0__Impl_in_rule__QualifiedName__Group_1__014841 = new BitSet(new long[]{0x0001C00000000000L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__1_in_rule__QualifiedName__Group_1__014844 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_KEYWORD_6_in_rule__QualifiedName__Group_1__0__Impl14872 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__1__Impl_in_rule__QualifiedName__Group_1__114903 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePhdlID_in_rule__QualifiedName__Group_1__1__Impl14930 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedNameWithWildCard__Group__0__Impl_in_rule__QualifiedNameWithWildCard__Group__014963 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_rule__QualifiedNameWithWildCard__Group__1_in_rule__QualifiedNameWithWildCard__Group__014966 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__QualifiedNameWithWildCard__Group__0__Impl14993 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedNameWithWildCard__Group__1__Impl_in_rule__QualifiedNameWithWildCard__Group__115022 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedNameWithWildCard__Group_1__0_in_rule__QualifiedNameWithWildCard__Group__1__Impl15049 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedNameWithWildCard__Group_1__0__Impl_in_rule__QualifiedNameWithWildCard__Group_1__015084 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_rule__QualifiedNameWithWildCard__Group_1__1_in_rule__QualifiedNameWithWildCard__Group_1__015087 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_KEYWORD_6_in_rule__QualifiedNameWithWildCard__Group_1__0__Impl15115 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedNameWithWildCard__Group_1__1__Impl_in_rule__QualifiedNameWithWildCard__Group_1__115146 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_KEYWORD_4_in_rule__QualifiedNameWithWildCard__Group_1__1__Impl15174 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedNameWithWildCard__Group__0__Impl_in_rule__QualifiedNameWithWildCard__Group__014720 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_rule__QualifiedNameWithWildCard__Group__1_in_rule__QualifiedNameWithWildCard__Group__014723 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__QualifiedNameWithWildCard__Group__0__Impl14750 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedNameWithWildCard__Group__1__Impl_in_rule__QualifiedNameWithWildCard__Group__114779 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedNameWithWildCard__Group_1__0_in_rule__QualifiedNameWithWildCard__Group__1__Impl14806 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedNameWithWildCard__Group_1__0__Impl_in_rule__QualifiedNameWithWildCard__Group_1__014841 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_rule__QualifiedNameWithWildCard__Group_1__1_in_rule__QualifiedNameWithWildCard__Group_1__014844 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_KEYWORD_6_in_rule__QualifiedNameWithWildCard__Group_1__0__Impl14872 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedNameWithWildCard__Group_1__1__Impl_in_rule__QualifiedNameWithWildCard__Group_1__114903 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_KEYWORD_4_in_rule__QualifiedNameWithWildCard__Group_1__1__Impl14931 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__014966 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group__1_in_rule__QualifiedName__Group__014969 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePhdlID_in_rule__QualifiedName__Group__0__Impl14996 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__115025 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__0_in_rule__QualifiedName__Group__1__Impl15052 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__0__Impl_in_rule__QualifiedName__Group_1__015087 = new BitSet(new long[]{0x0001C00000000000L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__1_in_rule__QualifiedName__Group_1__015090 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_KEYWORD_6_in_rule__QualifiedName__Group_1__0__Impl15118 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__1__Impl_in_rule__QualifiedName__Group_1__115149 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePhdlID_in_rule__QualifiedName__Group_1__1__Impl15176 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleImport_in_rule__PhdlModel__ImportsAssignment_015214 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePackage_in_rule__PhdlModel__PackagesAssignment_1_015245 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleDevice_in_rule__PhdlModel__DevicesAssignment_1_115276 = new BitSet(new long[]{0x0000000000000002L});

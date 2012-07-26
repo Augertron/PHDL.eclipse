@@ -1,0 +1,8 @@
+device test_device {
+	attr RefPrefix = "R";
+	attr FootPrint = "footprint";
+	attr Library = "library";
+	attr mfgr = "mfgr";
+	attr cost = "cost";
+	attr partnum = "partnum";
+}

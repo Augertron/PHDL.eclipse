@@ -428,7 +428,7 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 				Attr a = (Attr) element;
 				if (a.getName().toUpperCase().equals("REFPREFIX")) {
 					if (!a.getValue().toUpperCase().equals(a.getValue()))
-						warning("Only uppercase REFPREFIX value recommended", a, PhdlPackage.Literals.ATTR__VALUE, -1);
+						warning("Only uppercase REFPREFIX value recommended.", a, PhdlPackage.Literals.ATTR__VALUE, -1);
 				}
 			}
 		}

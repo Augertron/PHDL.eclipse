@@ -1845,6 +1845,35 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getConnectionAssignParserRuleCall_2() { return cConnectionAssignParserRuleCall_2; }
 	}
 
+	public class QualifiedNameWithWildCardElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "QualifiedNameWithWildCard");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cQualifiedNameParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Keyword cAsteriskKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		
+		//QualifiedNameWithWildCard:
+		//
+		//	QualifiedName ("." "*")?;
+		public ParserRule getRule() { return rule; }
+
+		//QualifiedName ("." "*")?
+		public Group getGroup() { return cGroup; }
+
+		//QualifiedName
+		public RuleCall getQualifiedNameParserRuleCall_0() { return cQualifiedNameParserRuleCall_0; }
+
+		//("." "*")?
+		public Group getGroup_1() { return cGroup_1; }
+
+		//"."
+		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
+
+		//"*"
+		public Keyword getAsteriskKeyword_1_1() { return cAsteriskKeyword_1_1; }
+	}
+
 	public class QualifiedNameElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "QualifiedName");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -1897,35 +1926,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 
 		//PINNUM
 		public RuleCall getPINNUMTerminalRuleCall_2() { return cPINNUMTerminalRuleCall_2; }
-	}
-
-	public class QualifiedNameWithWildCardElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "QualifiedNameWithWildCard");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cQualifiedNameParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Keyword cAsteriskKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
-		
-		//QualifiedNameWithWildCard:
-		//
-		//	QualifiedName ("." "*")?;
-		public ParserRule getRule() { return rule; }
-
-		//QualifiedName ("." "*")?
-		public Group getGroup() { return cGroup; }
-
-		//QualifiedName
-		public RuleCall getQualifiedNameParserRuleCall_0() { return cQualifiedNameParserRuleCall_0; }
-
-		//("." "*")?
-		public Group getGroup_1() { return cGroup_1; }
-
-		//"."
-		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
-
-		//"*"
-		public Keyword getAsteriskKeyword_1_1() { return cAsteriskKeyword_1_1; }
 	}
 	
 	
@@ -2068,9 +2068,9 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	private ReferenceableElements pReferenceable;
 	private AssignableElements pAssignable;
 	private PinTypeElements unknownRulePinType;
+	private QualifiedNameWithWildCardElements pQualifiedNameWithWildCard;
 	private QualifiedNameElements pQualifiedName;
 	private PhdlIDElements pPhdlID;
-	private QualifiedNameWithWildCardElements pQualifiedNameWithWildCard;
 	private TerminalRule tID;
 	private TerminalRule tINT;
 	private TerminalRule tPINNUM;
@@ -2497,6 +2497,17 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		return getPinTypeAccess().getRule();
 	}
 
+	//QualifiedNameWithWildCard:
+	//
+	//	QualifiedName ("." "*")?;
+	public QualifiedNameWithWildCardElements getQualifiedNameWithWildCardAccess() {
+		return (pQualifiedNameWithWildCard != null) ? pQualifiedNameWithWildCard : (pQualifiedNameWithWildCard = new QualifiedNameWithWildCardElements());
+	}
+	
+	public ParserRule getQualifiedNameWithWildCardRule() {
+		return getQualifiedNameWithWildCardAccess().getRule();
+	}
+
 	//QualifiedName:
 	//
 	//	PhdlID ("." PhdlID)?;
@@ -2519,17 +2530,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		return getPhdlIDAccess().getRule();
 	}
 
-	//QualifiedNameWithWildCard:
-	//
-	//	QualifiedName ("." "*")?;
-	public QualifiedNameWithWildCardElements getQualifiedNameWithWildCardAccess() {
-		return (pQualifiedNameWithWildCard != null) ? pQualifiedNameWithWildCard : (pQualifiedNameWithWildCard = new QualifiedNameWithWildCardElements());
-	}
-	
-	public ParserRule getQualifiedNameWithWildCardRule() {
-		return getQualifiedNameWithWildCardAccess().getRule();
-	}
-
 	//terminal ID:
 	//
 	//	("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;
@@ -2546,7 +2546,7 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 
 	//terminal PINNUM:
 	//
-	//	("0".."9" | "a".."z" | "A".."Z" | "_" | "+" | "-" | "$" | "@" | "!")+;
+	//	("0".."9" | "a".."z" | "A".."Z" | "_" | "+" | "-" | "$" | "/" | "@" | "!")+;
 	public TerminalRule getPINNUMRule() {
 		return (tPINNUM != null) ? tPINNUM : (tPINNUM = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "PINNUM"));
 	} 

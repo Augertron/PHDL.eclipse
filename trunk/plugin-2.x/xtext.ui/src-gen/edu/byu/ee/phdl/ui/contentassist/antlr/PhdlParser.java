@@ -105,10 +105,10 @@ public class PhdlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getArrayAccess().getGroup(), "rule__Array__Group__0");
 					put(grammarAccess.getArrayAccess().getGroup_1(), "rule__Array__Group_1__0");
 					put(grammarAccess.getQualifierAccess().getGroup(), "rule__Qualifier__Group__0");
-					put(grammarAccess.getQualifiedNameAccess().getGroup(), "rule__QualifiedName__Group__0");
-					put(grammarAccess.getQualifiedNameAccess().getGroup_1(), "rule__QualifiedName__Group_1__0");
 					put(grammarAccess.getQualifiedNameWithWildCardAccess().getGroup(), "rule__QualifiedNameWithWildCard__Group__0");
 					put(grammarAccess.getQualifiedNameWithWildCardAccess().getGroup_1(), "rule__QualifiedNameWithWildCard__Group_1__0");
+					put(grammarAccess.getQualifiedNameAccess().getGroup(), "rule__QualifiedName__Group__0");
+					put(grammarAccess.getQualifiedNameAccess().getGroup_1(), "rule__QualifiedName__Group_1__0");
 					put(grammarAccess.getPhdlModelAccess().getImportsAssignment_0(), "rule__PhdlModel__ImportsAssignment_0");
 					put(grammarAccess.getPhdlModelAccess().getPackagesAssignment_1_0(), "rule__PhdlModel__PackagesAssignment_1_0");
 					put(grammarAccess.getPhdlModelAccess().getDevicesAssignment_1_1(), "rule__PhdlModel__DevicesAssignment_1_1");

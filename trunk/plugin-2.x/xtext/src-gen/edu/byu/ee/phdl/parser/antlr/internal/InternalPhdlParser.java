@@ -7152,8 +7152,123 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleQualifier"
 
 
+    // $ANTLR start "entryRuleQualifiedNameWithWildCard"
+    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2946:1: entryRuleQualifiedNameWithWildCard returns [String current=null] : iv_ruleQualifiedNameWithWildCard= ruleQualifiedNameWithWildCard EOF ;
+    public final String entryRuleQualifiedNameWithWildCard() throws RecognitionException {
+        String current = null;
+
+        AntlrDatatypeRuleToken iv_ruleQualifiedNameWithWildCard = null;
+
+
+        try {
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2947:2: (iv_ruleQualifiedNameWithWildCard= ruleQualifiedNameWithWildCard EOF )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2948:2: iv_ruleQualifiedNameWithWildCard= ruleQualifiedNameWithWildCard EOF
+            {
+             newCompositeNode(grammarAccess.getQualifiedNameWithWildCardRule()); 
+            pushFollow(FOLLOW_ruleQualifiedNameWithWildCard_in_entryRuleQualifiedNameWithWildCard6058);
+            iv_ruleQualifiedNameWithWildCard=ruleQualifiedNameWithWildCard();
+
+            state._fsp--;
+
+             current =iv_ruleQualifiedNameWithWildCard.getText(); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedNameWithWildCard6069); 
+
+            }
+
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleQualifiedNameWithWildCard"
+
+
+    // $ANTLR start "ruleQualifiedNameWithWildCard"
+    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2955:1: ruleQualifiedNameWithWildCard returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_QualifiedName_0= ruleQualifiedName (kw= '.' kw= '*' )? ) ;
+    public final AntlrDatatypeRuleToken ruleQualifiedNameWithWildCard() throws RecognitionException {
+        AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
+
+        Token kw=null;
+        AntlrDatatypeRuleToken this_QualifiedName_0 = null;
+
+
+         enterRule(); 
+            
+        try {
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2958:28: ( (this_QualifiedName_0= ruleQualifiedName (kw= '.' kw= '*' )? ) )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2959:1: (this_QualifiedName_0= ruleQualifiedName (kw= '.' kw= '*' )? )
+            {
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2959:1: (this_QualifiedName_0= ruleQualifiedName (kw= '.' kw= '*' )? )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2960:5: this_QualifiedName_0= ruleQualifiedName (kw= '.' kw= '*' )?
+            {
+             
+                    newCompositeNode(grammarAccess.getQualifiedNameWithWildCardAccess().getQualifiedNameParserRuleCall_0()); 
+                
+            pushFollow(FOLLOW_ruleQualifiedName_in_ruleQualifiedNameWithWildCard6116);
+            this_QualifiedName_0=ruleQualifiedName();
+
+            state._fsp--;
+
+
+            		current.merge(this_QualifiedName_0);
+                
+             
+                    afterParserOrEnumRuleCall();
+                
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2970:1: (kw= '.' kw= '*' )?
+            int alt52=2;
+            int LA52_0 = input.LA(1);
+
+            if ( (LA52_0==32) ) {
+                alt52=1;
+            }
+            switch (alt52) {
+                case 1 :
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2971:2: kw= '.' kw= '*'
+                    {
+                    kw=(Token)match(input,32,FOLLOW_32_in_ruleQualifiedNameWithWildCard6135); 
+
+                            current.merge(kw);
+                            newLeafNode(kw, grammarAccess.getQualifiedNameWithWildCardAccess().getFullStopKeyword_1_0()); 
+                        
+                    kw=(Token)match(input,41,FOLLOW_41_in_ruleQualifiedNameWithWildCard6148); 
+
+                            current.merge(kw);
+                            newLeafNode(kw, grammarAccess.getQualifiedNameWithWildCardAccess().getAsteriskKeyword_1_1()); 
+                        
+
+                    }
+                    break;
+
+            }
+
+
+            }
+
+
+            }
+
+             leaveRule(); 
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleQualifiedNameWithWildCard"
+
+
     // $ANTLR start "entryRuleQualifiedName"
-    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2946:1: entryRuleQualifiedName returns [String current=null] : iv_ruleQualifiedName= ruleQualifiedName EOF ;
+    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2990:1: entryRuleQualifiedName returns [String current=null] : iv_ruleQualifiedName= ruleQualifiedName EOF ;
     public final String entryRuleQualifiedName() throws RecognitionException {
         String current = null;
 
@@ -7161,17 +7276,17 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2947:2: (iv_ruleQualifiedName= ruleQualifiedName EOF )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2948:2: iv_ruleQualifiedName= ruleQualifiedName EOF
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2991:2: (iv_ruleQualifiedName= ruleQualifiedName EOF )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2992:2: iv_ruleQualifiedName= ruleQualifiedName EOF
             {
              newCompositeNode(grammarAccess.getQualifiedNameRule()); 
-            pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName6058);
+            pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName6191);
             iv_ruleQualifiedName=ruleQualifiedName();
 
             state._fsp--;
 
              current =iv_ruleQualifiedName.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedName6069); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedName6202); 
 
             }
 
@@ -7189,7 +7304,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleQualifiedName"
-    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2955:1: ruleQualifiedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_PhdlID_0= rulePhdlID (kw= '.' this_PhdlID_2= rulePhdlID )? ) ;
+    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2999:1: ruleQualifiedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_PhdlID_0= rulePhdlID (kw= '.' this_PhdlID_2= rulePhdlID )? ) ;
     public final AntlrDatatypeRuleToken ruleQualifiedName() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -7202,16 +7317,16 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2958:28: ( (this_PhdlID_0= rulePhdlID (kw= '.' this_PhdlID_2= rulePhdlID )? ) )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2959:1: (this_PhdlID_0= rulePhdlID (kw= '.' this_PhdlID_2= rulePhdlID )? )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3002:28: ( (this_PhdlID_0= rulePhdlID (kw= '.' this_PhdlID_2= rulePhdlID )? ) )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3003:1: (this_PhdlID_0= rulePhdlID (kw= '.' this_PhdlID_2= rulePhdlID )? )
             {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2959:1: (this_PhdlID_0= rulePhdlID (kw= '.' this_PhdlID_2= rulePhdlID )? )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2960:5: this_PhdlID_0= rulePhdlID (kw= '.' this_PhdlID_2= rulePhdlID )?
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3003:1: (this_PhdlID_0= rulePhdlID (kw= '.' this_PhdlID_2= rulePhdlID )? )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3004:5: this_PhdlID_0= rulePhdlID (kw= '.' this_PhdlID_2= rulePhdlID )?
             {
              
                     newCompositeNode(grammarAccess.getQualifiedNameAccess().getPhdlIDParserRuleCall_0()); 
                 
-            pushFollow(FOLLOW_rulePhdlID_in_ruleQualifiedName6116);
+            pushFollow(FOLLOW_rulePhdlID_in_ruleQualifiedName6249);
             this_PhdlID_0=rulePhdlID();
 
             state._fsp--;
@@ -7222,22 +7337,22 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
              
                     afterParserOrEnumRuleCall();
                 
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2970:1: (kw= '.' this_PhdlID_2= rulePhdlID )?
-            int alt52=2;
-            int LA52_0 = input.LA(1);
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3014:1: (kw= '.' this_PhdlID_2= rulePhdlID )?
+            int alt53=2;
+            int LA53_0 = input.LA(1);
 
-            if ( (LA52_0==32) ) {
-                int LA52_1 = input.LA(2);
+            if ( (LA53_0==32) ) {
+                int LA53_1 = input.LA(2);
 
-                if ( (LA52_1==RULE_ID||(LA52_1>=RULE_INT && LA52_1<=RULE_PINNUM)) ) {
-                    alt52=1;
+                if ( (LA53_1==RULE_ID||(LA53_1>=RULE_INT && LA53_1<=RULE_PINNUM)) ) {
+                    alt53=1;
                 }
             }
-            switch (alt52) {
+            switch (alt53) {
                 case 1 :
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2971:2: kw= '.' this_PhdlID_2= rulePhdlID
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3015:2: kw= '.' this_PhdlID_2= rulePhdlID
                     {
-                    kw=(Token)match(input,32,FOLLOW_32_in_ruleQualifiedName6135); 
+                    kw=(Token)match(input,32,FOLLOW_32_in_ruleQualifiedName6268); 
 
                             current.merge(kw);
                             newLeafNode(kw, grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0()); 
@@ -7245,7 +7360,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                      
                             newCompositeNode(grammarAccess.getQualifiedNameAccess().getPhdlIDParserRuleCall_1_1()); 
                         
-                    pushFollow(FOLLOW_rulePhdlID_in_ruleQualifiedName6157);
+                    pushFollow(FOLLOW_rulePhdlID_in_ruleQualifiedName6290);
                     this_PhdlID_2=rulePhdlID();
 
                     state._fsp--;
@@ -7283,7 +7398,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePhdlID"
-    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2995:1: entryRulePhdlID returns [String current=null] : iv_rulePhdlID= rulePhdlID EOF ;
+    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3039:1: entryRulePhdlID returns [String current=null] : iv_rulePhdlID= rulePhdlID EOF ;
     public final String entryRulePhdlID() throws RecognitionException {
         String current = null;
 
@@ -7291,17 +7406,17 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2996:2: (iv_rulePhdlID= rulePhdlID EOF )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2997:2: iv_rulePhdlID= rulePhdlID EOF
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3040:2: (iv_rulePhdlID= rulePhdlID EOF )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3041:2: iv_rulePhdlID= rulePhdlID EOF
             {
              newCompositeNode(grammarAccess.getPhdlIDRule()); 
-            pushFollow(FOLLOW_rulePhdlID_in_entryRulePhdlID6205);
+            pushFollow(FOLLOW_rulePhdlID_in_entryRulePhdlID6338);
             iv_rulePhdlID=rulePhdlID();
 
             state._fsp--;
 
              current =iv_rulePhdlID.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRulePhdlID6216); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulePhdlID6349); 
 
             }
 
@@ -7319,7 +7434,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePhdlID"
-    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3004:1: rulePhdlID returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_INT_0= RULE_INT | this_ID_1= RULE_ID | this_PINNUM_2= RULE_PINNUM ) ;
+    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3048:1: rulePhdlID returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_INT_0= RULE_INT | this_ID_1= RULE_ID | this_PINNUM_2= RULE_PINNUM ) ;
     public final AntlrDatatypeRuleToken rulePhdlID() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -7330,39 +7445,39 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3007:28: ( (this_INT_0= RULE_INT | this_ID_1= RULE_ID | this_PINNUM_2= RULE_PINNUM ) )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3008:1: (this_INT_0= RULE_INT | this_ID_1= RULE_ID | this_PINNUM_2= RULE_PINNUM )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3051:28: ( (this_INT_0= RULE_INT | this_ID_1= RULE_ID | this_PINNUM_2= RULE_PINNUM ) )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3052:1: (this_INT_0= RULE_INT | this_ID_1= RULE_ID | this_PINNUM_2= RULE_PINNUM )
             {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3008:1: (this_INT_0= RULE_INT | this_ID_1= RULE_ID | this_PINNUM_2= RULE_PINNUM )
-            int alt53=3;
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3052:1: (this_INT_0= RULE_INT | this_ID_1= RULE_ID | this_PINNUM_2= RULE_PINNUM )
+            int alt54=3;
             switch ( input.LA(1) ) {
             case RULE_INT:
                 {
-                alt53=1;
+                alt54=1;
                 }
                 break;
             case RULE_ID:
                 {
-                alt53=2;
+                alt54=2;
                 }
                 break;
             case RULE_PINNUM:
                 {
-                alt53=3;
+                alt54=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 53, 0, input);
+                    new NoViableAltException("", 54, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt53) {
+            switch (alt54) {
                 case 1 :
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3008:6: this_INT_0= RULE_INT
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3052:6: this_INT_0= RULE_INT
                     {
-                    this_INT_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_rulePhdlID6256); 
+                    this_INT_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_rulePhdlID6389); 
 
                     		current.merge(this_INT_0);
                         
@@ -7373,9 +7488,9 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3016:10: this_ID_1= RULE_ID
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3060:10: this_ID_1= RULE_ID
                     {
-                    this_ID_1=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_rulePhdlID6282); 
+                    this_ID_1=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_rulePhdlID6415); 
 
                     		current.merge(this_ID_1);
                         
@@ -7386,9 +7501,9 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3024:10: this_PINNUM_2= RULE_PINNUM
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3068:10: this_PINNUM_2= RULE_PINNUM
                     {
-                    this_PINNUM_2=(Token)match(input,RULE_PINNUM,FOLLOW_RULE_PINNUM_in_rulePhdlID6308); 
+                    this_PINNUM_2=(Token)match(input,RULE_PINNUM,FOLLOW_RULE_PINNUM_in_rulePhdlID6441); 
 
                     		current.merge(this_PINNUM_2);
                         
@@ -7416,121 +7531,6 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
         return current;
     }
     // $ANTLR end "rulePhdlID"
-
-
-    // $ANTLR start "entryRuleQualifiedNameWithWildCard"
-    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3039:1: entryRuleQualifiedNameWithWildCard returns [String current=null] : iv_ruleQualifiedNameWithWildCard= ruleQualifiedNameWithWildCard EOF ;
-    public final String entryRuleQualifiedNameWithWildCard() throws RecognitionException {
-        String current = null;
-
-        AntlrDatatypeRuleToken iv_ruleQualifiedNameWithWildCard = null;
-
-
-        try {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3040:2: (iv_ruleQualifiedNameWithWildCard= ruleQualifiedNameWithWildCard EOF )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3041:2: iv_ruleQualifiedNameWithWildCard= ruleQualifiedNameWithWildCard EOF
-            {
-             newCompositeNode(grammarAccess.getQualifiedNameWithWildCardRule()); 
-            pushFollow(FOLLOW_ruleQualifiedNameWithWildCard_in_entryRuleQualifiedNameWithWildCard6354);
-            iv_ruleQualifiedNameWithWildCard=ruleQualifiedNameWithWildCard();
-
-            state._fsp--;
-
-             current =iv_ruleQualifiedNameWithWildCard.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedNameWithWildCard6365); 
-
-            }
-
-        }
-         
-            catch (RecognitionException re) { 
-                recover(input,re); 
-                appendSkippedTokens();
-            } 
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "entryRuleQualifiedNameWithWildCard"
-
-
-    // $ANTLR start "ruleQualifiedNameWithWildCard"
-    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3048:1: ruleQualifiedNameWithWildCard returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_QualifiedName_0= ruleQualifiedName (kw= '.' kw= '*' )? ) ;
-    public final AntlrDatatypeRuleToken ruleQualifiedNameWithWildCard() throws RecognitionException {
-        AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
-
-        Token kw=null;
-        AntlrDatatypeRuleToken this_QualifiedName_0 = null;
-
-
-         enterRule(); 
-            
-        try {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3051:28: ( (this_QualifiedName_0= ruleQualifiedName (kw= '.' kw= '*' )? ) )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3052:1: (this_QualifiedName_0= ruleQualifiedName (kw= '.' kw= '*' )? )
-            {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3052:1: (this_QualifiedName_0= ruleQualifiedName (kw= '.' kw= '*' )? )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3053:5: this_QualifiedName_0= ruleQualifiedName (kw= '.' kw= '*' )?
-            {
-             
-                    newCompositeNode(grammarAccess.getQualifiedNameWithWildCardAccess().getQualifiedNameParserRuleCall_0()); 
-                
-            pushFollow(FOLLOW_ruleQualifiedName_in_ruleQualifiedNameWithWildCard6412);
-            this_QualifiedName_0=ruleQualifiedName();
-
-            state._fsp--;
-
-
-            		current.merge(this_QualifiedName_0);
-                
-             
-                    afterParserOrEnumRuleCall();
-                
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3063:1: (kw= '.' kw= '*' )?
-            int alt54=2;
-            int LA54_0 = input.LA(1);
-
-            if ( (LA54_0==32) ) {
-                alt54=1;
-            }
-            switch (alt54) {
-                case 1 :
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3064:2: kw= '.' kw= '*'
-                    {
-                    kw=(Token)match(input,32,FOLLOW_32_in_ruleQualifiedNameWithWildCard6431); 
-
-                            current.merge(kw);
-                            newLeafNode(kw, grammarAccess.getQualifiedNameWithWildCardAccess().getFullStopKeyword_1_0()); 
-                        
-                    kw=(Token)match(input,41,FOLLOW_41_in_ruleQualifiedNameWithWildCard6444); 
-
-                            current.merge(kw);
-                            newLeafNode(kw, grammarAccess.getQualifiedNameWithWildCardAccess().getAsteriskKeyword_1_1()); 
-                        
-
-                    }
-                    break;
-
-            }
-
-
-            }
-
-
-            }
-
-             leaveRule(); 
-        }
-         
-            catch (RecognitionException re) { 
-                recover(input,re); 
-                appendSkippedTokens();
-            } 
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "ruleQualifiedNameWithWildCard"
 
 
     // $ANTLR start "rulePinType"
@@ -8215,21 +8215,21 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_40_in_ruleQualifier5984 = new BitSet(new long[]{0x0000000040000000L});
     public static final BitSet FOLLOW_ruleIndices_in_ruleQualifier6005 = new BitSet(new long[]{0x0000000100000000L});
     public static final BitSet FOLLOW_32_in_ruleQualifier6017 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName6058 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName6069 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePhdlID_in_ruleQualifiedName6116 = new BitSet(new long[]{0x0000000100000002L});
-    public static final BitSet FOLLOW_32_in_ruleQualifiedName6135 = new BitSet(new long[]{0x00000000000000D0L});
-    public static final BitSet FOLLOW_rulePhdlID_in_ruleQualifiedName6157 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePhdlID_in_entryRulePhdlID6205 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulePhdlID6216 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INT_in_rulePhdlID6256 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rulePhdlID6282 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_PINNUM_in_rulePhdlID6308 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedNameWithWildCard_in_entryRuleQualifiedNameWithWildCard6354 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedNameWithWildCard6365 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleQualifiedNameWithWildCard6412 = new BitSet(new long[]{0x0000000100000002L});
-    public static final BitSet FOLLOW_32_in_ruleQualifiedNameWithWildCard6431 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_41_in_ruleQualifiedNameWithWildCard6444 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedNameWithWildCard_in_entryRuleQualifiedNameWithWildCard6058 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedNameWithWildCard6069 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleQualifiedNameWithWildCard6116 = new BitSet(new long[]{0x0000000100000002L});
+    public static final BitSet FOLLOW_32_in_ruleQualifiedNameWithWildCard6135 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_41_in_ruleQualifiedNameWithWildCard6148 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName6191 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName6202 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePhdlID_in_ruleQualifiedName6249 = new BitSet(new long[]{0x0000000100000002L});
+    public static final BitSet FOLLOW_32_in_ruleQualifiedName6268 = new BitSet(new long[]{0x00000000000000D0L});
+    public static final BitSet FOLLOW_rulePhdlID_in_ruleQualifiedName6290 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePhdlID_in_entryRulePhdlID6338 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulePhdlID6349 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INT_in_rulePhdlID6389 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rulePhdlID6415 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_PINNUM_in_rulePhdlID6441 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_42_in_rulePinType6500 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_43_in_rulePinType6517 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_44_in_rulePinType6534 = new BitSet(new long[]{0x0000000000000002L});

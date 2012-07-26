@@ -14,12 +14,46 @@ import edu.byu.ee.phdl.PhdlInjectorProvider
 class TestDevices extends XtextTest {
 	
 	@Test
-	def void test_device_duplicate() {
-		testFile("TestDevices/devices.phdl")
-		assertConstraints(
-			issues.errorsOnly()
-			.nOfThemContain(2, "Duplicate DeviceElement '1' in Device 'mydevice")
-			.nOfThemContain(2, "Duplicate physical pin name.")
-		)
+	def void test_physical_pin() {
+		testFile("TestDevices/test_physical_pin.phdl")
+		assertConstraints(issues.nOfThemContain(6,"Duplicate physical pin name."))
+		assertConstraints(issues.errorsOnly().sizeIs(6))
+	}
+	
+	@Test
+	def void test_pin_decls() {
+		testFile("TestDevices/test_invalid_pin_decl.phdl")
+		assertConstraints(issues.errorsOnly().nOfThemContain(3,"Invalid pin declaration."))
+	}
+	
+	@Test
+	def void test_req_attrs() {
+		testFile("TestDevices/test_req_attrs.phdl")
+		assertConstraints(issues.oneOfThemContains("Required attribute 'REFPREFIX' missing."))
+		assertConstraints(issues.oneOfThemContains("Required attribute 'LIBRARY' missing."))
+		assertConstraints(issues.oneOfThemContains("Required attribute 'FOOTPRINT' missing."))
+		assertConstraints(issues.errorsOnly().sizeIs(3))
+	}
+	
+	@Test
+	def void test_refprefix_attr() {
+		testFile("TestDevices/test_refprefix_attr.phdl")
+		assertConstraints(issues.allOfThemContain("Only uppercase REFPREFIX value recommended."))
+		assertConstraints(issues.warningsOnly().sizeIs(1))
+	}
+	
+	@Test
+	def void test_pincount_attr() {
+		testFile("TestDevices/test_pincount_attr.phdl")
+		assertConstraints(issues.oneOfThemContains("Expected 3 declared pins, found 4."))
+		assertConstraints(issues.oneOfThemContains("PINCOUNT attribute must be an integer."))
+		assertConstraints(issues.errorsOnly().sizeIs(2))
+	}
+	
+	@Test
+	def void test_uppercase_attrs() {
+		testFile("TestDevices/test_uppercase_attrs.phdl")
+		assertConstraints(issues.allOfThemContain("Only uppercase attribute names are recommended"))
+		assertConstraints(issues.warningsOnly().sizeIs(6))
 	}
 }

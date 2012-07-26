@@ -41,6 +41,7 @@ class TestLexerAndParser extends XtextTest {
 		testNotTerminal("000001", "INT")
 		testNotTerminal("-1", "INT")
 		testNotTerminal("0.01", "INT")
+		testNotTerminal("3.5", "INT")
 	}
 	
 	@Test
@@ -89,6 +90,7 @@ class TestLexerAndParser extends XtextTest {
 		testParserRule("-VSS", "PhdlID")
 		testParserRule("$NET", "PhdlID")
 		testParserRule("!ENABLE", "PhdlID")
+		testParserRule("CS/EN", "PhdlID")
 	}
 	
 	@Test

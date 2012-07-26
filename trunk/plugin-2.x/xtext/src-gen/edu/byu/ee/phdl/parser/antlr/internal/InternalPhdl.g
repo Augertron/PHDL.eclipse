@@ -2942,6 +2942,50 @@ ruleQualifier returns [EObject current=null]
 
 
 
+// Entry rule entryRuleQualifiedNameWithWildCard
+entryRuleQualifiedNameWithWildCard returns [String current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getQualifiedNameWithWildCardRule()); } 
+	 iv_ruleQualifiedNameWithWildCard=ruleQualifiedNameWithWildCard 
+	 { $current=$iv_ruleQualifiedNameWithWildCard.current.getText(); }  
+	 EOF 
+;
+
+// Rule QualifiedNameWithWildCard
+ruleQualifiedNameWithWildCard returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+    { 
+        newCompositeNode(grammarAccess.getQualifiedNameWithWildCardAccess().getQualifiedNameParserRuleCall_0()); 
+    }
+    this_QualifiedName_0=ruleQualifiedName    {
+		$current.merge(this_QualifiedName_0);
+    }
+
+    { 
+        afterParserOrEnumRuleCall();
+    }
+(
+	kw='.' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getQualifiedNameWithWildCardAccess().getFullStopKeyword_1_0()); 
+    }
+
+	kw='*' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getQualifiedNameWithWildCardAccess().getAsteriskKeyword_1_1()); 
+    }
+)?)
+    ;
+
+
+
+
+
 // Entry rule entryRuleQualifiedName
 entryRuleQualifiedName returns [String current=null] 
 	:
@@ -3035,50 +3079,6 @@ rulePhdlID returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
 
 
 
-// Entry rule entryRuleQualifiedNameWithWildCard
-entryRuleQualifiedNameWithWildCard returns [String current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getQualifiedNameWithWildCardRule()); } 
-	 iv_ruleQualifiedNameWithWildCard=ruleQualifiedNameWithWildCard 
-	 { $current=$iv_ruleQualifiedNameWithWildCard.current.getText(); }  
-	 EOF 
-;
-
-// Rule QualifiedNameWithWildCard
-ruleQualifiedNameWithWildCard returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(
-    { 
-        newCompositeNode(grammarAccess.getQualifiedNameWithWildCardAccess().getQualifiedNameParserRuleCall_0()); 
-    }
-    this_QualifiedName_0=ruleQualifiedName    {
-		$current.merge(this_QualifiedName_0);
-    }
-
-    { 
-        afterParserOrEnumRuleCall();
-    }
-(
-	kw='.' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getQualifiedNameWithWildCardAccess().getFullStopKeyword_1_0()); 
-    }
-
-	kw='*' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getQualifiedNameWithWildCardAccess().getAsteriskKeyword_1_1()); 
-    }
-)?)
-    ;
-
-
-
-
-
 // Rule PinType
 rulePinType returns [Enumerator current=null] 
     @init { enterRule(); }
@@ -3156,7 +3156,7 @@ RULE_ID : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
 RULE_INT : ('0'..'9'|'1'..'9' ('0'..'9')+);
 
-RULE_PINNUM : ('0'..'9'|'a'..'z'|'A'..'Z'|'_'|'+'|'-'|'$'|'@'|'!')+;
+RULE_PINNUM : ('0'..'9'|'a'..'z'|'A'..'Z'|'_'|'+'|'-'|'$'|'/'|'@'|'!')+;
 
 RULE_STRING : ('"' ('\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\')|~(('\\'|'"')))* '"'|'\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\')|~(('\\'|'\'')))* '\'');
 
