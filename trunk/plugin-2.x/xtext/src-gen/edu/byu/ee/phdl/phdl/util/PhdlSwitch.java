@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
-
  */
 package edu.byu.ee.phdl.phdl.util;
 

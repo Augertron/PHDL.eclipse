@@ -151,6 +151,28 @@
     </extension>
 
 
+    <!-- marker definitions for edu.byu.ee.phdl.Phdl -->
+    <extension
+            id="phdl.check.fast"
+            name="Phdl Problem"
+            point="org.eclipse.core.resources.markers">
+        <super type="org.eclipse.xtext.ui.check.fast"/>
+        <persistent value="true"/>
+    </extension>
+    <extension
+            id="phdl.check.normal"
+            name="Phdl Problem"
+            point="org.eclipse.core.resources.markers">
+        <super type="org.eclipse.xtext.ui.check.normal"/>
+        <persistent value="true"/>
+    </extension>
+    <extension
+            id="phdl.check.expensive"
+            name="Phdl Problem"
+            point="org.eclipse.core.resources.markers">
+        <super type="org.eclipse.xtext.ui.check.expensive"/>
+        <persistent value="true"/>
+    </extension>
 
    <extension
          point="org.eclipse.xtext.builder.participant">
@@ -216,13 +238,34 @@
 			</command>
 		</menuContribution>
 	</extension>
-   <!-- quickfix marker resolution generator -->
-   <extension
-         point="org.eclipse.ui.ide.markerResolution">
-      <markerResolutionGenerator
-            class="edu.byu.ee.phdl.ui.PhdlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator">
-      </markerResolutionGenerator>
-   </extension>
+    <!-- quickfix marker resolution generator for edu.byu.ee.phdl.Phdl -->
+    <extension
+            point="org.eclipse.ui.ide.markerResolution">
+        <markerResolutionGenerator
+            class="edu.byu.ee.phdl.ui.PhdlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+            markerType="edu.byu.ee.phdl.ui.phdl.check.fast">
+            <attribute
+                name="FIXABLE_KEY"
+                value="true">
+            </attribute>
+        </markerResolutionGenerator>
+        <markerResolutionGenerator
+            class="edu.byu.ee.phdl.ui.PhdlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+            markerType="edu.byu.ee.phdl.ui.phdl.check.normal">
+            <attribute
+                name="FIXABLE_KEY"
+                value="true">
+            </attribute>
+        </markerResolutionGenerator>
+        <markerResolutionGenerator
+            class="edu.byu.ee.phdl.ui.PhdlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+            markerType="edu.byu.ee.phdl.ui.phdl.check.expensive">
+            <attribute
+                name="FIXABLE_KEY"
+                value="true">
+            </attribute>
+        </markerResolutionGenerator>
+    </extension>
 
    <extension
          point="org.eclipse.ui.newWizards">

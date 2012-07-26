@@ -127,18 +127,18 @@ enum PinType:
 	|	NoConnect='ncpin'
 	;
 
+QualifiedNameWithWildCard:
+	QualifiedName ('.' '*')?;
+
 QualifiedName: 
 	PhdlID ('.' PhdlID)?;
 	
 PhdlID: 
 	INT | ID | PINNUM;
-
-QualifiedNameWithWildCard:
-	QualifiedName ('.' '*')?;
 	
-terminal ID:  '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')* ;
+terminal ID:  ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')* ;
 terminal INT returns ecore::EInt: ('0'..'9') | (('1'..'9') ('0'..'9')+ ) ;
-terminal PINNUM: ('0'..'9'|'a'..'z'|'A'..'Z'|'_'|'+'|'-'|'$'|'/'|'@')+ ;
+terminal PINNUM: ('0'..'9'|'a'..'z'|'A'..'Z'|'_'|'+'|'-'|'$'|'@'|'!')+ ;
 
 terminal STRING	: 
 			'"' ( '\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') | !('\\'|'"') )* '"' |
