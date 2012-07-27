@@ -38,20 +38,28 @@ class TestGenerator extends XtextTest {
 	@Test
 	def void test1() {
 		LOGGER.info("testing method " + this.getClass().getSimpleName() + "." + new Throwable().stackTrace.get(0).methodName)
-		var source = readFile("resources/TestGenerator/test1/source.phdl")
-		var model = parseHelper.parse(source)
+		var model = parseHelper.parse(readFile("resources/TestGenerator/test1/source.phdl"))
 		var fsa = new InMemoryFileSystemAccess()
 		underTest.doGenerate(model.eResource, fsa)
+		testOutputFileNames(fsa, getOutputPath("top"))
+		testOutputFiles(fsa, "resources/TestGenerator/test1/golden", getOutputPath("top"))
+	}
+	
+	def void testOutputFileNames(InMemoryFileSystemAccess fsa, String path) {
 		assertEquals(5, fsa.files.size)
-		
-		var golden_asc = readFile("resources/TestGenerator/test1/golden.asc")
-		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT+"top" + separator + "top.asc"))
-		assertEquals(golden_asc, fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT+"top" + separator + "top.asc").toString)
-		
-		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT+"top" + separator + "top.bom"))
-		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT+"top" + separator + "top.lsi"))
-		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT+"top" + separator + "top.rdm"))
-		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT+"top" + separator + "top.scr"))
+		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + path + ".asc"))
+		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + path + ".bom"))
+		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + path + ".lsi"))
+		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + path + ".rdm"))
+		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + path + ".scr"))
+	}
+	
+	def void testOutputFiles(InMemoryFileSystemAccess fsa, String expected, String actual) {
+		assertEquals(readFile(expected + ".asc"), fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + actual + ".asc").toString)
+	}
+	
+	def String getOutputPath(String designName) {
+		return designName + separator + designName
 	}
 	
 	def String readFile(String fileName) {
