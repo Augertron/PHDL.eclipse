@@ -18,10 +18,16 @@ class TestExamples extends XtextTest {
 		ignoreFormattingDifferences();
 		var dir = "TestExamples/fmc_module/"
 		testFile(dir + "devices.phdl", dir + "balun.phdl", dir + "clock.phdl", dir + "transceiver.phdl", dir + "top.phdl")
+		assertConstraints(issues.sizeIs(0))
 	}
 	
 	@Test
-	def void test_hierarchy() {
-		
+	def void test_atlys() {
+		ignoreFormattingDifferences();
+		var dir = "TestExamples/atlys/"
+		testFile(dir + "s6_devices.phdl", dir + "top.phdl")
+		//assertConstraints(issues.nOfThemContain(2, "Ports may not be open."))
+		//assertConstraints(issues.errorsOnly().sizeIs(2))
+		assertConstraints(issues.sizeIs(0))
 	}
 }

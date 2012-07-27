@@ -1021,8 +1021,13 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 			}
 		}
 
-		if (p.getConcatenation().isReplicated() || p.getConcatenation().isOpen())
+		if (p.getConcatenation().isReplicated())
 			return;
+		if (p.getConcatenation().isOpen()) {
+			EStructuralFeature f = PhdlPackage.Literals.CONCATENATION__OPEN;
+			error("Ports may not be open.", p.getConcatenation(), f, -1);
+			return;
+		}
 
 		int leftWidth = getAssignLeftWidth(p);
 		int rightWidth = 0;
