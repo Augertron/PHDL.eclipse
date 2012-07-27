@@ -56,4 +56,10 @@ class TestDevices extends XtextTest {
 		assertConstraints(issues.allOfThemContain("Only uppercase attribute names are recommended"))
 		assertConstraints(issues.warningsOnly().sizeIs(6))
 	}
+	
+	@Test
+	def void test_valid_device() {
+		testFile("TestDevices/test_valid_device.phdl")
+		assertConstraints(issues.sizeIs(0))
+	}
 }
