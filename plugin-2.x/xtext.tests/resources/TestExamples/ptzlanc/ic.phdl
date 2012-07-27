@@ -1,0 +1,300 @@
+	// Device declaration extracted from Xilinx top_tq144_pad.csv
+	device top_tq144 {
+		attr REFPREFIX = "U";
+		attr FOOTPRINT = "tq144";
+		attr LIBRARY = "custom";
+		attr MFGR = "XILINX";
+		attr PARTNUMBER = "xc3s400-4tq144";
+
+		// User I/O pins.
+		pin[17:0] addr = {P4,P5,P6,P25,P26,P27,P28,P30,P36,P35,P33,P32,P31,P8,P7,P2,P1,P141};
+		pin  ce0_n = {P140};
+		pin  ce1_n = {P137};
+		pin  clk = {P52};
+		pin[7:0] data = {P23,P21,P20,P18,P17,P15,P14,P13};
+		pin  din = {P65};
+		pin  dir0 = {P90};
+		pin  dir1 = {P93};
+		pin[2:0] enc0 = {P69,P68,P63};
+		pin[2:0] enc1 = {P70,P73,P74};
+		pin[7:0] gpio = {P124,P123,P122,P119,P118,P116,P113,P112};
+		pin[2:0] high0 = {P104,P108,P102};
+		pin[2:0] high1 = {P97,P100,P95};
+		pin  init_b = {P58};
+		pin  lb_n = {P12};
+		pin[7:0] led = {P50,P51,P53,P55,P56,P57,P59,P60};
+		pin[2:0] low0 = {P105,P107,P103};
+		pin[2:0] low1 = {P98,P99,P96};
+		pin  lrx = {P84};
+		pin  ltx = {P83};
+		pin  oe_n = {P10};
+		pin  pwm0 = {P89};
+		pin  pwm1 = {P92};
+		pin  rst = {P40};
+		pin  rxd = {P47};
+		pin  rxd_a = {P41};
+		pin  sclk = {P86};
+		pin  sdata = {P87};
+		pin[2:0] sense0 = {P78,P77,P76};
+		pin[2:0] sense1 = {P79,P80,P82};
+		pin[7:0] sw = {P135,P132,P131,P130,P129,P128,P127,P125};
+		pin  sync = {P85};
+		pin  txd = {P46};
+		pin  txd_a = {P44};
+		pin  ub_n = {P11};
+		pin  we_n = {P24};
+
+		// Power and dedicated FPGA pins.
+		pin  CCLK = {P72};
+		pin  DONE = {P71};
+		pin[15:0] GND = {P101,P114,P117,P136,P139,P16,P22,P29,P42,P45,P64,P67,P81,P88,P9,P94};
+		pin  HSWAP_EN = {P142};
+		pin  M0 = {P38};
+		pin  M1 = {P37};
+		pin  M2 = {P39};
+		pin  PROG_B = {P143};
+		pin  TCK = {P110};
+		pin  TDI = {P144};
+		pin  TDO = {P109};
+		pin  TMS = {P111};
+		pin[3:0] VCCAUX = {P120,P134,P48,P62};
+		pin[3:0] VCCINT = {P121,P133,P49,P61};
+		pin  VCCO_0 = {P138};
+		pin[1:0] VCCO_1 = {P115,P126};
+		pin  VCCO_2 = {P106};
+		pin[1:0] VCCO_3 = {P75,P91};
+		pin  VCCO_4 = {P66};
+		pin[1:0] VCCO_5 = {P43,P54};
+		pin  VCCO_6 = {P34};
+		pin[1:0] VCCO_7 = {P19,P3};
+	}
+	
+	// flash rom
+	device rom {
+		attr REFPREFIX = "U";
+		attr FOOTPRINT = "TSSOP20";
+		attr LIBRARY = "xilinx-flash";
+		attr MFGR = "XILINX";
+		attr SUPPLIER = "DIGI-KEY";
+		attr PARTNUMBER = "122-1287-5-ND";
+		attr COST = "4.25";
+		pin d0 = {1};
+		pin clk = {3};
+		pin tdi = {4};
+		pin tms = {5};
+		pin tck = {6};
+		pin cf_n = {7};
+		pin oe = {8};
+		pin ce_n = {10};
+		pin gnd = {11};
+		pin ceo_n = {13};
+		pin tdo = {17};
+		pin vccint = {18};
+		pin vcco = {19};
+		pin vccj = {20};
+		pin[5:0] nc = {2,9,12,14,15,16};
+	}
+	
+	// 256k X 16 static ram
+	device RAM256KX16 {
+		attr REFPREFIX = "U";
+		attr FOOTPRINT = "TSOPII44";
+		attr LIBRARY = "memory-issi";
+		attr MFGR = "ISSI";
+		attr SUPPLIER = "DIGI-KEY";
+		attr PARTNUMBER = "706-1035-ND";
+		attr COST = "6.60";
+		pin[17:0] addr = {44,43,42,27,26,25,24,23,22,21,20,19,18,5,4,3,2,1};
+		pin[15:0] data = {38,37,36,35,32,31,30,29,16,15,14,13,10,9,8,7};
+		pin ce_n = {6};
+		pin oe_n = {41};
+		pin we_n = {17};
+		pin lb_n = {39};
+		pin ub_n = {40};
+		pin nc = {28};
+		pin[1:0] vdd = {33,11};
+		pin[1:0] gnd = {34,12};
+	}
+	
+	// 50MHz oscillator
+	device OSC_50MHZ {
+		attr REFPREFIX = "X";
+		attr FOOTPRINT = "SM77H";
+		attr LIBRARY = "crystal";
+		attr MFGR = "Abracon";
+		attr SUPPLIER = "DIGI-KEY";
+		attr PARTNUMBER = "535-9330-1-ND";
+		attr COST = "2.63";
+		pin oe = {1};
+		pin gnd = {2};
+		pin output = {3};
+		pin vcc = {4};
+	}
+	
+	// 5V tolerant hex schmitt inverter
+	device 7414_SOIC {
+		attr REFPREFIX = "U";
+		attr FOOTPRINT = "SO14";
+		attr LIBRARY = "ref-packages-smd-ipc";
+		attr MFGR = "Fairchild";
+		attr SUPPLIER = "DIGI-KEY";
+		attr PARTNUMBER = "74LCX14MXCT-ND";
+		attr COST = "0.54";
+		attr DATASHEET = "doc/74LCX14.pdf";
+		pin vcc = {14};
+		pin gnd = {7};
+		pin[5:0] din = {13,11,9,5,3,1};
+		pin[5:0] dout = {12,10,8,6,4,2};
+	}
+	
+	// BLDC driver ic
+	device HIP4086 {
+		attr REFPREFIX = "U";
+		attr FOOTPRINT = "SO24W";
+		attr LIBRARY = "ref-packages-smd-ipc";
+		attr MFGR = "Intersil";
+		attr SUPPLIER = "DIGI-KEY";
+		attr PARTNUMBER = "HIP4086ABZTCT-ND";
+		attr COST = "9.15";
+		pin bhb = {1};
+		pin bhi = {2};
+		pin bli = {3};
+		pin ali = {4};
+		pin ahi = {5};
+		pin vss = {6};
+		pin rdel = {7};
+		pin uvlo = {8};
+		pin rfsh = {9};
+		pin dis = {10};
+		pin cli = {11};
+		pin chi = {12};
+		pin chb = {13};
+		pin cho = {14};
+		pin chs = {15};
+		pin ahb = {16};
+		pin aho = {17};
+		pin ahs = {18};
+		pin clo = {19};
+		pin vdd = {20};
+		pin alo = {21};
+		pin blo = {22};
+		pin bhs = {23};
+		pin bho = {24};
+	}
+	
+	device LMD18200T {
+		attr REFPREFIX = "U";
+		attr FOOTPRINT = "TO-220-11";
+		attr LIBRARY = "national-semi";
+		attr MFGR = "National";
+		attr SUPPLIER = "DIGI-KEY";
+		attr PARTNUMBER = "LMD18200T-ND";
+		attr COST = "17.78";
+		pin boot1 = {1};
+		pin out1 = {2};
+		pin dir = {3};
+		pin brake = {4};
+		pin pwm = {5};
+		pin vss = {6};
+		pin gnd = {7};
+		pin sense = {8};
+		pin thermal = {9};
+		pin out2 = {10};
+		pin boot2 = {11};
+	}
+	
+	device ST3232C {
+		attr REFPREFIX = "U";
+		attr FOOTPRINT = "SO16";
+		attr LIBRARY = "ref-packages-smd-ipc";
+		attr MFGR = "ST Micro";
+		attr SUPPLIER = "DIGI-KEY";
+		attr PARTNUMBER = "497-3731-1-ND";
+		attr COST = "2.33";
+		pin c1+ = {1};
+		pin v+ = {2};
+		pin c1- = {3};
+		pin c2+ = {4};
+		pin c2- = {5};
+		pin v- = {6};
+		pin t2out = {7};
+		pin r2in = {8};
+		pin r2out = {9};
+		pin t2in = {10};
+		pin t1in = {11};
+		pin r1out = {12};
+		pin r1in = {13};
+		pin t1out = {14};
+		pin gnd = {15};
+		pin vcc = {16};
+	}
+	
+	device L7805 {
+		attr REFPREFIX = "U";
+		attr FOOTPRINT = "D2PACK";
+		attr LIBRARY = "v-reg";
+		attr MFGR = "ST Micro";
+		attr SUPPLIER = "DIGI-KEY";
+		attr PARTNUMBER = "497-1170-1-ND";
+		attr COST = "0.92";
+		attr DATASHEET = "doc/CD00000444.pdf";
+		pin input = {1};
+		pin output = {3};
+		pin ground = {2};
+	}
+
+	device LM1086CS {
+		attr REFPREFIX = "U";
+		attr FOOTPRINT = "TO263";
+		attr LIBRARY = "v-reg";
+		attr MFGR = "National";
+		attr SUPPLIER = "DIGI-KEY";
+		attr PARTNUMBER = "LM1086IS-ADJ-ND";
+		attr COST = "2.39";
+		pin input = {3};
+		pin output = {2};
+		pin adj/gnd = {1};
+		pin tab = {tab};
+	}
+	
+	device LF25CDT {
+		attr REFPREFIX = "U";
+		attr FOOTPRINT = "DPACK";
+		attr LIBRARY = "v-reg";
+		attr MFGR = "ST Micro";
+		attr SUPPLIER = "DIGI-KEY";
+		attr PARTNUMBER = "497-6449-1-ND";
+		attr COST = "1.76";
+		pin input = {1};
+		pin output = {3};
+		pin gnd = {4};
+	}
+	
+	device LD1117 {
+		attr REFPREFIX = "U";
+		attr FOOTPRINT = "DPACK";
+		attr LIBRARY = "v-reg";
+		attr MFGR = "ST Micro";
+		attr SUPPLIER = "DIGI-KEY";
+		attr PARTNUMBER = "497-1231-1-ND";
+		attr COST = "0.86";
+		pin input = {3};
+		pin output = {4};
+		pin gnd = {1};
+	}
+	
+	device DAC121S101 {
+		attr REFPREFIX = "U";
+		attr FOOTPRINT = "SOT23-6";
+		attr LIBRARY = "ref-packages-smd-ipc";
+		attr MFGR = "National";
+		attr SUPPLIER = "DIGI-KEY";
+		attr PARTNUMBER = "DAC121S101CIMKTR-ND";
+		attr COST = "1.53";
+		pin vout = {1};
+		pin gnd = {2};
+		pin va = {3};
+		pin sdata = {4};
+		pin sclk = {5};
+		pin sync = {6};
+	}

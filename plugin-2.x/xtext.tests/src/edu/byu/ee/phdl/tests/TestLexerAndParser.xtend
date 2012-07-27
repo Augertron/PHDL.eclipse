@@ -8,13 +8,17 @@ import static org.junit.Assert.*
 import org.eclipselabs.xtext.utils.unittesting.XtextTest
 import org.eclipselabs.xtext.utils.unittesting.XtextRunner2
 import edu.byu.ee.phdl.PhdlInjectorProvider
+import org.apache.log4j.Logger
 
 @InjectWith(typeof(PhdlInjectorProvider))
 @RunWith(typeof(XtextRunner2))
 class TestLexerAndParser extends XtextTest {
 	
+	private static Logger LOGGER = Logger::getLogger(typeof(XtextTest));
+	
 	@Test
 	def void test_ID() {
+		LOGGER.info("testing method " + this.getClass().getSimpleName() + "." + new Throwable().stackTrace.get(0).methodName)
 		// valid identifiers
 		testTerminal("a", "ID")
 		testTerminal("aBc", "ID")
@@ -31,6 +35,7 @@ class TestLexerAndParser extends XtextTest {
 	
 	@Test
 	def void test_INT() {
+		LOGGER.info("testing method " + this.getClass().getSimpleName() + "." + new Throwable().stackTrace.get(0).methodName)
 		// valid integers
 		testTerminal("0", "INT")
 		testTerminal("9", "INT")
@@ -46,6 +51,7 @@ class TestLexerAndParser extends XtextTest {
 	
 	@Test
 	def void test_PINNUM() {
+		LOGGER.info("testing method " + this.getClass().getSimpleName() + "." + new Throwable().stackTrace.get(0).methodName)
 		// valid pinnums
 		testTerminal("123aBc", "PINNUM")
 		testTerminal("+5V", "PINNUM")
@@ -61,6 +67,7 @@ class TestLexerAndParser extends XtextTest {
 	
 	@Test
 	def void test_STRING() {
+		LOGGER.info("testing method " + this.getClass().getSimpleName() + "." + new Throwable().stackTrace.get(0).methodName)
 		testTerminal("'This is a string'", "STRING")
 		testTerminal("'This is a string with \" a double quote inside'", "STRING")
 		testTerminal("\"This is a string with ' a single quote inside \"", "STRING")
@@ -69,6 +76,7 @@ class TestLexerAndParser extends XtextTest {
 	
 	@Test
 	def void test_ML_COMMENT() {
+		LOGGER.info("testing method " + this.getClass().getSimpleName() + "." + new Throwable().stackTrace.get(0).methodName)
 		testTerminal("/* This \\r\\n is a multi-line \\r\\n comment */", "ML_COMMENT")
 		testTerminal("/** Does it work for Javadoc? */", "ML_COMMENT")
 		testNotTerminal("/* Unclosed comment!!!", "ML_COMMENT")
@@ -76,12 +84,14 @@ class TestLexerAndParser extends XtextTest {
 	
 	@Test
 	def void test_SL_COMMENT() {
+		LOGGER.info("testing method " + this.getClass().getSimpleName() + "." + new Throwable().stackTrace.get(0).methodName)
 		testTerminal("// This is a single line comment", "SL_COMMENT")
 		testNotTerminal("This is not a comment.", "SL_COMMENT")
 	}
 	
 	@Test
 	def void test_PhdlID() {
+		LOGGER.info("testing method " + this.getClass().getSimpleName() + "." + new Throwable().stackTrace.get(0).methodName)
 		testParserRule("1", "PhdlID")
 		testParserRule("a", "PhdlID")
 		testParserRule("a1", "PhdlID")
@@ -95,16 +105,19 @@ class TestLexerAndParser extends XtextTest {
 	
 	@Test
 	def void test_QualifiedName() {
+		LOGGER.info("testing method " + this.getClass().getSimpleName() + "." + new Throwable().stackTrace.get(0).methodName)
 		testParserRule("abc123.123abc", "QualifiedName")
 	}
 	
 	@Test
 	def void QualifiedNameWithWildCard() {
+		LOGGER.info("testing method " + this.getClass().getSimpleName() + "." + new Throwable().stackTrace.get(0).methodName)
 		testParserRule("abc123.*", "QualifiedNameWithWildCard")
 	}
 	
 	@Test
 	def void test_keywords() {
+		LOGGER.info("testing method " + this.getClass().getSimpleName() + "." + new Throwable().stackTrace.get(0).methodName)
 		// general keywords
 		testKeyword("this")
 		testKeyword("open")
@@ -154,6 +167,7 @@ class TestLexerAndParser extends XtextTest {
 	
 	@Test
 	def void test_Qualifier() {
+		LOGGER.info("testing method " + this.getClass().getSimpleName() + "." + new Throwable().stackTrace.get(0).methodName)
 		testParserRule("this(0).", "Qualifier")
 		testParserRule("this(1).", "Qualifier")
 		testParserRuleErrors("this(a).", "Qualifier")
@@ -161,6 +175,7 @@ class TestLexerAndParser extends XtextTest {
 
 	@Test
 	def void test_Array() {
+		LOGGER.info("testing method " + this.getClass().getSimpleName() + "." + new Throwable().stackTrace.get(0).methodName)
 		testParserRule("(1:0)", "Array")
 		testParserRuleErrors("[1:0]", "Array")
 		testParserRuleErrors("(a:b)", "Array")
@@ -168,6 +183,7 @@ class TestLexerAndParser extends XtextTest {
 	
 	@Test
 	def void test_Vector() {
+		LOGGER.info("testing method " + this.getClass().getSimpleName() + "." + new Throwable().stackTrace.get(0).methodName)
 		testParserRule("[1:0]", "Vector")
 		testParserRuleErrors("(1:0)", "Vector")
 		testParserRuleErrors("[a:b]", "Vector")
@@ -175,6 +191,7 @@ class TestLexerAndParser extends XtextTest {
 	
 	@Test
 	def void test_Slices() {
+		LOGGER.info("testing method " + this.getClass().getSimpleName() + "." + new Throwable().stackTrace.get(0).methodName)
 		testParserRule("[1:0]", "Slices")
 		testParserRule("[3,2,1,0]", "Slices")
 		testParserRule("[1]", "Slices")
@@ -182,6 +199,7 @@ class TestLexerAndParser extends XtextTest {
 	
 	@Test
 	def void test_Indices() {
+		LOGGER.info("testing method " + this.getClass().getSimpleName() + "." + new Throwable().stackTrace.get(0).methodName)
 		testParserRule("(1:0)", "Indices")
 		testParserRule("(3,2,1,0)", "Indices")
 		testParserRule("(1)", "Indices")
