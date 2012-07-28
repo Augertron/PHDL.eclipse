@@ -36,7 +36,7 @@ design ss_Control {
    // The resistors used to drain current so that
    // the leds don't burn out.
    inst(1:8) rArray of Resistor {
-      newattr VALUE = "120";
+      VALUE = "120";
       combine(a) = r2sw;
       b = gnd;
    }
