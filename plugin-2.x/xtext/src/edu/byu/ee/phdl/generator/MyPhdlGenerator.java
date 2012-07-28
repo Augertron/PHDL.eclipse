@@ -52,18 +52,14 @@ public class MyPhdlGenerator implements IGenerator {
 	public void generate(IFileSystemAccess fsa, String fileName, Design design) {
 		ElaboratedDesign eDesign = elaborator.elaborate(design);
 		RefDesGenerator refDesGen = new RefDesGenerator(eDesign);
-		fsa.generateFile(getFileName(ExtensionCodes.REF_DES_MAPPING, fileName), refDesGen.getContents());
+		fsa.generateFile(fileName + ExtensionCodes.REFDES_EXT, refDesGen.getContents());
 		BoMGenerator bomGen = new BoMGenerator(eDesign);
-		fsa.generateFile(getFileName(ExtensionCodes.BILL_OF_MATERIAL, fileName), bomGen.getContents());
+		fsa.generateFile(fileName + ExtensionCodes.BOM_EXT, bomGen.getContents());
 		InfoGenerator infoGen = new InfoGenerator(eDesign);
-		fsa.generateFile(getFileName(ExtensionCodes.LAYOUT_SUPPLEMENTARY_INFO, fileName), infoGen.getContents());
+		fsa.generateFile(fileName + ExtensionCodes.INFO_EXT, infoGen.getContents());
 		NetListGenerator netListGen = new NetListGenerator(eDesign, refDesGen.getRefMap());
-		fsa.generateFile(getFileName(ExtensionCodes.PADS_NETLIST, fileName), netListGen.getContents());
+		fsa.generateFile(fileName + ExtensionCodes.PADS_EXT, netListGen.getContents());
 		EagleGenerator eagleGen = new EagleGenerator(eDesign, refDesGen.getRefMap());
-		fsa.generateFile(getFileName(ExtensionCodes.EAGLE_SCRIPT, fileName), eagleGen.getContents());
-	}
-
-	private String getFileName(String extension, String fileName) {
-		return fileName + File.separator + fileName + "." + extension;
+		fsa.generateFile(fileName + ExtensionCodes.EAGLE_EXT, eagleGen.getContents());
 	}
 }
