@@ -22,6 +22,7 @@ device Resistor {
    attr LIBRARY = "rcl"; 
    attr FOOTPRINT = "M0805"; 
    attr COST = "0.05";
+   attr VALUE = "";
    pin a = {1};
    pin b = {2};
 } 
