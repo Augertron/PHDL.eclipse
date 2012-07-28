@@ -287,5 +287,17 @@
             extensions="phdl">
     </provider>
   </extension>
+  <extension
+        id="product"
+        point="org.eclipse.core.runtime.products">
+     <product
+           application="org.eclipse.ui.ide.workbench"
+           name="PHDL">
+        <property
+              name="appName"
+              value="PHDL">
+        </property>
+     </product>
+  </extension>
 
 </plugin>

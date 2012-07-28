@@ -62,10 +62,20 @@ class TestGenerator extends XtextTest {
 	}
 	
 	def void testOutputFiles(InMemoryFileSystemAccess fsa, String expected, String actual) {
-		assertEquals(FileToString::readFile(expected + ExtensionCodes::PADS_EXT), fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + actual + ExtensionCodes::PADS_EXT).toString)
-		assertEquals(FileToString::readFile(expected + ExtensionCodes::BOM_EXT), fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + actual + ExtensionCodes::BOM_EXT).toString)
-		assertEquals(FileToString::readFile(expected + ExtensionCodes::INFO_EXT), fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + actual + ExtensionCodes::INFO_EXT).toString)
-		assertEquals(FileToString::readFile(expected + ExtensionCodes::REFDES_EXT), fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + actual + ExtensionCodes::REFDES_EXT).toString)
-		assertEquals(FileToString::readFile(expected + ExtensionCodes::EAGLE_EXT), fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + actual + ExtensionCodes::EAGLE_EXT).toString)
+		assertEquals(FileToString::readFile(expected + ExtensionCodes::PADS_EXT), 
+			fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + actual + ExtensionCodes::PADS_EXT).toString
+		)
+		assertEquals(FileToString::readFile(expected + ExtensionCodes::BOM_EXT), 
+			fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + actual + ExtensionCodes::BOM_EXT).toString
+		)
+		assertEquals(FileToString::readFile(expected + ExtensionCodes::INFO_EXT), 
+			fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + actual + ExtensionCodes::INFO_EXT).toString
+		)
+		assertEquals(FileToString::readFile(expected + ExtensionCodes::REFDES_EXT), 
+			fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + actual + ExtensionCodes::REFDES_EXT).toString
+		)
+		assertEquals(FileToString::readFile(expected + ExtensionCodes::EAGLE_EXT), 
+			fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + actual + ExtensionCodes::EAGLE_EXT).toString
+		)
 	}
 }

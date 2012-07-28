@@ -1,7 +1,6 @@
 package edu.byu.ee.phdl.generator;
 
-import java.io.File;
-
+import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
@@ -20,6 +19,8 @@ import edu.byu.ee.phdl.phdl.Package;
 import edu.byu.ee.phdl.phdl.PhdlModel;
 
 public class MyPhdlGenerator implements IGenerator {
+
+	private static Logger logger = Logger.getLogger(MyPhdlGenerator.class);
 
 	@Inject
 	PhdlElaborator elaborator;
@@ -50,6 +51,8 @@ public class MyPhdlGenerator implements IGenerator {
 	}
 
 	public void generate(IFileSystemAccess fsa, String fileName, Design design) {
+		logger.info("Generating Output.");
+
 		ElaboratedDesign eDesign = elaborator.elaborate(design);
 		RefDesGenerator refDesGen = new RefDesGenerator(eDesign);
 		fsa.generateFile(fileName + ExtensionCodes.REFDES_EXT, refDesGen.getContents());
@@ -61,5 +64,7 @@ public class MyPhdlGenerator implements IGenerator {
 		fsa.generateFile(fileName + ExtensionCodes.PADS_EXT, netListGen.getContents());
 		EagleGenerator eagleGen = new EagleGenerator(eDesign, refDesGen.getRefMap());
 		fsa.generateFile(fileName + ExtensionCodes.EAGLE_EXT, eagleGen.getContents());
+
+		logger.info("Finished.");
 	}
 }
