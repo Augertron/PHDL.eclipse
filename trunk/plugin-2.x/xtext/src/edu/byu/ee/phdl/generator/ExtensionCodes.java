@@ -2,13 +2,15 @@ package edu.byu.ee.phdl.generator;
 
 
 public interface ExtensionCodes {
-	String REF_DES_MAPPING = "rdm";
+	String REFDES_EXT = ".rdm";
 
-	String BILL_OF_MATERIAL = "bom";
+	String BOM_EXT = ".bom";
 
-	String PADS_NETLIST = "asc";
+	String PADS_EXT = ".asc";
 
-	String EAGLE_SCRIPT = "scr";
+	String EAGLE_EXT = ".scr";
 
-	String LAYOUT_SUPPLEMENTARY_INFO = "lsi";
+	String INFO_EXT = ".lsi";
+	
+	String PHDL_EXT = ".phdl";
 }

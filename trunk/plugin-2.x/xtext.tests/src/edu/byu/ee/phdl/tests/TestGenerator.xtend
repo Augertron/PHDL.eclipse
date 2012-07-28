@@ -8,22 +8,15 @@ import org.eclipse.xtext.generator.IGenerator
 import com.google.inject.Inject
 import org.eclipse.xtext.junit4.util.ParseHelper
 import org.eclipse.xtext.generator.InMemoryFileSystemAccess
-import org.eclipse.emf.common.util.URI
 import org.eclipse.xtext.generator.IFileSystemAccess
 import edu.byu.ee.phdl.phdl.PhdlModel
-import com.google.inject.Provider
-import org.eclipse.emf.ecore.resource.ResourceSet
-import java.util.LinkedHashSet
-import org.eclipse.emf.ecore.resource.Resource
 import org.eclipselabs.xtext.utils.unittesting.XtextRunner2
 import org.apache.log4j.Logger
 import org.eclipselabs.xtext.utils.unittesting.XtextTest
-import java.io.BufferedReader
-import java.io.FileReader
-import java.io.IOException
-import java.io.File
+import edu.byu.ee.phdl.generator.ExtensionCodes
 
 import static org.junit.Assert.*
+
 
 @InjectWith(typeof(PhdlInjectorProvider))
 @RunWith(typeof(XtextRunner2))
@@ -32,47 +25,47 @@ class TestGenerator extends XtextTest {
 	@Inject IGenerator underTest
 	@Inject ParseHelper<PhdlModel> parseHelper
 	
-	val separator = java::io::File::separator
+	//val separator = java::io::File::separator
 	private static Logger LOGGER = Logger::getLogger(typeof(XtextTest));
+	
+	var path = "resources/" + getClass().getSimpleName() + "/"
 	
 	@Test
 	def void test1() {
 		LOGGER.info("testing method " + this.getClass().getSimpleName() + "." + new Throwable().stackTrace.get(0).methodName)
-		var model = parseHelper.parse(readFile("resources/TestGenerator/test1/source.phdl"))
+		var testDir = path + "test1/"
+		var model = parseHelper.parse(FileToString::readFile(testDir + "test" + ExtensionCodes::PHDL_EXT))
 		var fsa = new InMemoryFileSystemAccess()
 		underTest.doGenerate(model.eResource, fsa)
-		testOutputFileNames(fsa, getOutputPath("top"))
-		testOutputFiles(fsa, "resources/TestGenerator/test1/golden", getOutputPath("top"))
+		testOutputFileNames(fsa, "top")
+		testOutputFiles(fsa, testDir + "golden", "top")
+	}
+	
+	@Test
+	def void test2() {
+		LOGGER.info("testing method " + this.getClass().getSimpleName() + "." + new Throwable().stackTrace.get(0).methodName)
+		var testDir = path + "test2/"
+		var model = parseHelper.parse(FileToString::readFile(testDir + "test" + ExtensionCodes::PHDL_EXT))
+		var fsa = new InMemoryFileSystemAccess()
+		underTest.doGenerate(model.eResource, fsa)
+		testOutputFileNames(fsa, "top")
+		testOutputFiles(fsa, testDir + "golden", "top")
 	}
 	
 	def void testOutputFileNames(InMemoryFileSystemAccess fsa, String path) {
 		assertEquals(5, fsa.files.size)
-		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + path + ".asc"))
-		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + path + ".bom"))
-		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + path + ".lsi"))
-		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + path + ".rdm"))
-		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + path + ".scr"))
+		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + path + ExtensionCodes::PADS_EXT))
+		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + path + ExtensionCodes::BOM_EXT))
+		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + path + ExtensionCodes::INFO_EXT))
+		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + path + ExtensionCodes::REFDES_EXT))
+		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + path + ExtensionCodes::EAGLE_EXT))
 	}
 	
 	def void testOutputFiles(InMemoryFileSystemAccess fsa, String expected, String actual) {
-		assertEquals(readFile(expected + ".asc"), fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + actual + ".asc").toString)
-	}
-	
-	def String getOutputPath(String designName) {
-		return designName + separator + designName
-	}
-	
-	def String readFile(String fileName) {
-		var sb = new StringBuilder();
-		try {
-		    var br = new BufferedReader(new FileReader(fileName));
-		    var String str;
-		    while ((str = br.readLine()) != null) {
-		        sb.append(str + "\n")
-		    }
-		    br.close();
-		    return sb.subSequence(0, sb.length-1).toString
-		} catch (IOException e) {
-		}
+		assertEquals(FileToString::readFile(expected + ExtensionCodes::PADS_EXT), fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + actual + ExtensionCodes::PADS_EXT).toString)
+		assertEquals(FileToString::readFile(expected + ExtensionCodes::BOM_EXT), fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + actual + ExtensionCodes::BOM_EXT).toString)
+		assertEquals(FileToString::readFile(expected + ExtensionCodes::INFO_EXT), fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + actual + ExtensionCodes::INFO_EXT).toString)
+		assertEquals(FileToString::readFile(expected + ExtensionCodes::REFDES_EXT), fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + actual + ExtensionCodes::REFDES_EXT).toString)
+		assertEquals(FileToString::readFile(expected + ExtensionCodes::EAGLE_EXT), fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + actual + ExtensionCodes::EAGLE_EXT).toString)
 	}
 }
