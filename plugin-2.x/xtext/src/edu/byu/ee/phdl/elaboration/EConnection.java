@@ -11,7 +11,8 @@ public abstract class EConnection extends Attributable {
 	private int index;
 	private EDesignUnit parent;
 	private final List<EPin> pins;
-	private boolean visited;
+	private boolean isVisited;
+	private boolean isFlat;
 
 	public EConnection(EDesignUnit parent) {
 		super();
@@ -195,13 +196,17 @@ public abstract class EConnection extends Attributable {
 		return !pins.isEmpty();
 	}
 
+	public boolean isFlat() {
+		return isFlat;
+	}
+
 	/**
 	 * Helper acccessor method for a Depth First Search.
 	 * 
 	 * @return true, if this Node has been visited false, otherwise
 	 */
 	public boolean isVisited() {
-		return visited;
+		return isVisited;
 	}
 
 	/**
@@ -212,6 +217,10 @@ public abstract class EConnection extends Attributable {
 	 */
 	public void removeConnection(EConnection c) {
 		cons.remove(c);
+	}
+
+	public void setFlat(boolean isFlat) {
+		this.isFlat = isFlat;
 	}
 
 	public void setIndex(int index) {
@@ -240,7 +249,7 @@ public abstract class EConnection extends Attributable {
 	 *            the new value of visited
 	 */
 	public void setVisited(boolean visited) {
-		this.visited = visited;
+		this.isVisited = visited;
 	}
 
 	@Override

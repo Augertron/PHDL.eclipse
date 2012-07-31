@@ -14,10 +14,6 @@
 
 package edu.byu.ee.phdl.generator;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-
 import org.apache.log4j.Logger;
 
 import edu.byu.ee.phdl.elaboration.EDesign;
@@ -27,64 +23,6 @@ import edu.byu.ee.phdl.elaboration.ENet;
 import edu.byu.ee.phdl.elaboration.ESubInstance;
 
 public class InfoGenerator {
-
-	public static boolean unitTest() {
-		boolean success = true;
-		EDesign testDesign1 = new EDesign();
-		testDesign1.setName("test1");
-		testDesign1.appendInfo("Lorem ipsum dolor sit amet.");
-
-		EInstance testInst1 = new EInstance(testDesign1);
-		testInst1.setName("testInst1");
-		testInst1.appendInfo("Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
-				+ "Praesent viverra dolor at risus faucibus in dictum nisl dapibus. "
-				+ "Vestibulum vitae tortor non diam consequat venenatis quis sed eros. "
-				+ "Donec eget sapien velit, at varius risus. In elementum urna a leo "
-				+ "vulputate iaculis. Duis eu lectus orci. Suspendisse potenti. Mauris "
-				+ "sollicitudin fringilla sapien, sodales ullamcorper nulla euismod vel. " + "Sed in imperdiet neque.");
-		testDesign1.addInstance(testInst1);
-
-		EInstance testInst2 = new EInstance(testDesign1);
-		testInst2.setName("testInst2");
-		testInst2.appendInfo("Ut laoreet hendrerit ligula, eu interdum neque tincidunt dapibus. In "
-				+ "et turpis at lacus lobortis ultricies. Nam sollicitudin sapien eu nisi "
-				+ "facilisis commodo. Nullam ullamcorper gravida sapien, tempor iaculis "
-				+ "massa dignissim ac. Nunc iaculis dolor et orci pellentesque at convallis "
-				+ "orci porttitor. Ut sit amet magna a magna imperdiet tincidunt id et "
-				+ "libero. Nullam id tellus vitae odio convallis ultrices.");
-		testDesign1.addInstance(testInst2);
-
-		ENet testNet1 = new ENet(testDesign1);
-		testNet1.setName("testNet1");
-		testNet1.appendInfo("Leo pretium. Felis sit. Sed culpa eu neque tellus ipsum adipiscing, "
-				+ "pellentesque turpis ac. Tortor sed mattis tortor felis adipiscing, urna mauris "
-				+ "mauris, cursus duis, porta condimentum.");
-		testDesign1.addConnection(testNet1);
-
-		ESubInstance subInst1 = new ESubInstance(testDesign1, "subInst1");
-		subInst1.appendInfo("Nec dictum nec eget ipsum aenean nulla, lacus nunc diam ipsum "
-				+ "vel luctus, vel non amet. Praesent pellentesque quis. Auctor et sed "
-				+ "pellentesque libero integer. Donec mauris non urna iaculis ac, dolor "
-				+ "taciti blandit sagittis eleifend vel leo. Est gravida lorem, cras praesent "
-				+ "vestibulum litora, suscipit magna ligula suspendisse lobortis varius, nulla "
-				+ "tempus eaque ipsum lobortis. Vitae feugiat vulputate euismod ac lectus "
-				+ "bibendum, id turpis tempor amet, ut et accumsan, a sit morbi magnis vel duis.");
-		EInstance testInst3 = new EInstance(subInst1);
-		testInst3.setName("testInst3");
-		testInst3.appendInfo("Consectetuer aliquet sollicitudin et, aliquam orci velit mollis "
-				+ "suspendisse mus. Tincidunt faucibus natoque. Purus tortor pellentesque amet, sed "
-				+ "sit, odio vulputate. Cras repellat malesuada ut posuere, feugiat pellentesque "
-				+ "vestibulum risus, arcu pellentesque. Turpis quis neque dictum, aliquam id bibendum "
-				+ "vivamus ut aliquam dignissim, ridiculus nec orci interdum donec, in lorem.");
-		subInst1.addInstance(testInst3);
-
-		testDesign1.addSubInst(subInst1);
-
-		InfoGenerator infoGen = new InfoGenerator(testDesign1);
-		infoGen.outputToFile("TestsOutput/InfoOutput/" + testDesign1.getName() + ".info");
-
-		return success;
-	}
 
 	private final String info;
 	private static final Logger logger = Logger.getLogger(InfoGenerator.class);
@@ -96,28 +34,6 @@ public class InfoGenerator {
 
 		sb.append(appendDesignInfo(design, 1));
 		info = sb.toString();
-	}
-
-	public String getContents() {
-		return info;
-	}
-
-	/**
-	 * Generates a .info file containing all the info structures
-	 * 
-	 * @param fileName
-	 *            the name of the file to be written
-	 */
-	public void outputToFile(String fileName) {
-		try {
-			BufferedWriter out = new BufferedWriter(new FileWriter(fileName));
-			out.write(info);
-			out.close();
-		} catch (IOException e) {
-			logger.fatal("unable to write file: " + fileName);
-			System.exit(1);
-		}
-		logger.info("wrote file: " + fileName);
 	}
 
 	private StringBuilder appendDesignInfo(EHierarchyUnit des, int tabs_cnt) {
@@ -217,6 +133,10 @@ public class InfoGenerator {
 		}
 
 		return sb_net;
+	}
+
+	public String getContents() {
+		return info;
 	}
 
 	private StringBuilder wordWrap(String info, StringBuilder sb_tabs) {

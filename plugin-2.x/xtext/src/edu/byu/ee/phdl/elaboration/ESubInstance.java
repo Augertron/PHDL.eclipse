@@ -9,13 +9,6 @@ public class ESubInstance extends EHierarchyUnit {
 	private ESubDesign subDesign;
 	private EDesignUnit parent;
 
-	public ESubInstance(EDesignUnit parent, String name) {
-		super();
-		this.name = name;
-		this.parent = parent;
-		this.subDesign = null;
-	}
-
 	/**
 	 * Hierarchical constructor called when instancing a subDesign
 	 * 
@@ -174,15 +167,21 @@ public class ESubInstance extends EHierarchyUnit {
 		}
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		if (!(o instanceof ESubInstance)) {
-			return false;
+	public ESubInstance(EDesignUnit parent, String name) {
+		super();
+		this.name = name;
+		this.parent = parent;
+		this.subDesign = null;
+	}
+
+	public void appendToNetlistMap(List<EConnection> netlist) {
+		for (EConnection c : connections) {
+			if (c.isFlat())
+				netlist.add(c);
 		}
-		boolean result = this.name.equals(((ESubInstance) o).getName())
-				&& this.getIndex() == ((ESubInstance) o).getIndex()
-				&& this.parent.equals(((ESubInstance) o).getParent());
-		return result;
+		for (ESubInstance s : subInsts)
+			s.appendToNetlistMap(netlist);
+
 	}
 
 	@Override
@@ -196,6 +195,17 @@ public class ESubInstance extends EHierarchyUnit {
 		} else {
 			this.getParent().compareTo(other.getParent());
 		}
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof ESubInstance)) {
+			return false;
+		}
+		boolean result = this.name.equals(((ESubInstance) o).getName())
+				&& this.getIndex() == ((ESubInstance) o).getIndex()
+				&& this.parent.equals(((ESubInstance) o).getParent());
 		return result;
 	}
 

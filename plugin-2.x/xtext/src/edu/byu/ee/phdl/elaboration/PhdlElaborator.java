@@ -33,8 +33,6 @@ import edu.byu.ee.phdl.utils.PhdlUtils;
 
 public class PhdlElaborator {
 
-	private static final Logger logger = Logger.getLogger(PhdlElaborator.class);
-
 	public class Reference {
 		private final String name;
 		private final Indices indices;
@@ -54,6 +52,8 @@ public class PhdlElaborator {
 
 	}
 
+	private static final Logger logger = Logger.getLogger(PhdlElaborator.class);
+
 	/**
 	 * Elaborates a Design. The elaboration process is essentially a graph
 	 * transformation where the syntax graph represented by the Design is
@@ -68,6 +68,8 @@ public class PhdlElaborator {
 	public EDesign elaborate(Design design) {
 		EDesign eDesign = new EDesign(design.getName());
 		elaborateDesignElements(eDesign, design);
+		eDesign.flatten2();
+		eDesign.makeNetlistMap();
 		return eDesign;
 	}
 

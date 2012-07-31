@@ -21,24 +21,28 @@ import java.util.List;
  */
 public class EDesign extends EHierarchyUnit {
 
+	private final List<EConnection> netlist;
+
 	public EDesign() {
 		super();
+		netlist = new ArrayList<EConnection>();
 	}
 
 	public EDesign(String name) {
 		super();
 		this.name = name;
+		netlist = new ArrayList<EConnection>();
 	}
 
 	/**
 	 * 
 	 * @param newCon
-	 * @return true, if the connection wasn't already in the list and was added successfully false,
-	 *         otherwise
+	 * @return true, if the connection wasn't already in the list and was added
+	 *         successfully false, otherwise
 	 */
 	@Override
 	public boolean addConnection(EConnection newCon) {
-		if (!connections.contains(newCon) && newCon instanceof edu.byu.ee.phdl.elaboration.ENet)
+		if (!connections.contains(newCon) && newCon instanceof ENet)
 			return connections.add(newCon);
 		return false;
 	}
@@ -48,21 +52,31 @@ public class EDesign extends EHierarchyUnit {
 		return this.name;
 	}
 
+	public List<EConnection> getNetlist() {
+		return netlist;
+	}
+
 	@Override
-	/**
-	 * Type accessor method.
-	 * 
-	 * @return NodeType.DESIGN
-	 */
 	public NodeType getNodeType() {
 		return NodeType.DESIGN;
+	}
+
+	public void makeNetlistMap() {
+		for (EConnection c : connections) {
+			if (c.isFlat()) {
+				netlist.add(c);
+			}
+		}
+		for (ESubInstance s : subInsts) {
+			s.appendToNetlistMap(netlist);
+		}
 	}
 
 	@Override
 	public void setConnections(List<EConnection> connections) {
 		connections = new ArrayList<EConnection>();
 		for (EConnection c : connections) {
-			if (c instanceof edu.byu.ee.phdl.elaboration.ENet) {
+			if (c instanceof ENet) {
 				connections.add(c);
 			}
 		}
