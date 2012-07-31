@@ -16,6 +16,6 @@ package edu.byu.ee.phdl.elaboration;
  * @author Brad Riching and Richard Black
  * @version 0.1
  */
-public enum ElaboratedPinType {
+public enum EPinType {
 	PIN, INPIN, OUTPIN, IOPIN, PWRPIN, SUPPIN,
 }

@@ -29,7 +29,7 @@ import java.util.TreeSet;
  */
 public abstract class Attributable extends Node {
 
-	protected Set<ElaboratedAttribute> attributes;
+	protected Set<EAttribute> attributes;
 
 	/**
 	 * Default Constructor.
@@ -37,12 +37,12 @@ public abstract class Attributable extends Node {
 	 * Initializes the attributes set
 	 */
 	public Attributable() {
-		this.attributes = new TreeSet<ElaboratedAttribute>();
+		this.attributes = new TreeSet<EAttribute>();
 	}
 
 	public Attributable(Attributable old) {
 		super(old);
-		this.attributes = new TreeSet<ElaboratedAttribute>();
+		this.attributes = new TreeSet<EAttribute>();
 	}
 
 	/**
@@ -52,7 +52,7 @@ public abstract class Attributable extends Node {
 	 *            the AttributeNode to add to the set
 	 * @return true if the AttributeNode wasn't already in the set, false otherwise
 	 */
-	public boolean addAttribute(ElaboratedAttribute a) {
+	public boolean addAttribute(EAttribute a) {
 		return attributes.add(a);
 	}
 
@@ -63,8 +63,8 @@ public abstract class Attributable extends Node {
 	 *            the name of the attribute
 	 * @return the AttributeNode with that name
 	 */
-	public ElaboratedAttribute getAttribute(String name) {
-		for (ElaboratedAttribute a : attributes) {
+	public EAttribute getAttribute(String name) {
+		for (EAttribute a : attributes) {
 			if (a.getName().equals(name.toUpperCase()))
 				return a;
 		}
@@ -76,7 +76,7 @@ public abstract class Attributable extends Node {
 	 * 
 	 * @return the set of AttributeNodes
 	 */
-	public Set<ElaboratedAttribute> getAttributes() {
+	public Set<EAttribute> getAttributes() {
 		return attributes;
 	}
 }

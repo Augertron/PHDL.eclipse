@@ -21,11 +21,11 @@ import java.util.Map;
  * @author Brad Riching and Richard Black
  * @version 0.1
  */
-public class ElaboratedInstance extends Attributable {
+public class EInstance extends Attributable {
 
-	private final List<ElaboratedPin> pins;
-	private ElaboratedDesignUnit parent;
-	private ElaboratedDevice device;
+	private final List<EPin> pins;
+	private EDesignUnit parent;
+	private EDevice device;
 	private String refDes;
 	private String refPrefix;
 	private String pkg;
@@ -38,14 +38,14 @@ public class ElaboratedInstance extends Attributable {
 	 * 
 	 * @param parent
 	 *            the parent DesignUnit for this instance
-	 * @see ElaboratedDesign
-	 * @see ElaboratedDevice
-	 * @see ElaboratedPin
+	 * @see EDesign
+	 * @see EDevice
+	 * @see EPin
 	 */
-	public ElaboratedInstance(ElaboratedDesignUnit parent) {
+	public EInstance(EDesignUnit parent) {
 		super();
 		this.parent = parent;
-		this.pins = new ArrayList<ElaboratedPin>();
+		this.pins = new ArrayList<EPin>();
 		this.refDes = null;
 		this.refPrefix = null;
 		this.pkg = null;
@@ -54,35 +54,37 @@ public class ElaboratedInstance extends Attributable {
 
 	/**
 	 * Copy Constructor from a Device
-	 * @param parent 
-	 * 		the parent DesignUnit for this instance
-	 * @param old 
-	 * 		the Device that this instance is based off of
-	 * @param name 
-	 * 		the name of this instance
+	 * 
+	 * @param parent
+	 *            the parent DesignUnit for this instance
+	 * @param old
+	 *            the Device that this instance is based off of
+	 * @param name
+	 *            the name of this instance
 	 */
-	public ElaboratedInstance(ElaboratedDesignUnit parent, ElaboratedDevice old, String name) {
+	public EInstance(EDesignUnit parent, EDevice old, String name) {
 		super(old);
-		this.pins = new ArrayList<ElaboratedPin>();
+		this.pins = new ArrayList<EPin>();
 		this.parent = parent;
 		this.name = name;
 		setDevice(old);
-		for (ElaboratedAttribute a : old.getAttributes())
-			this.attributes.add(new ElaboratedAttribute(this, a));
-		for (ElaboratedPin p : old.getPins())
-			this.pins.add(new ElaboratedPin(this, p));
+		for (EAttribute a : old.getAttributes())
+			this.attributes.add(new EAttribute(this, a));
+		for (EPin p : old.getPins())
+			this.pins.add(new EPin(this, p));
 	}
 
 	/**
 	 * Copy Constructor from another Instance
+	 * 
 	 * @param parent
-	 * 		the parent DesignUnit for this instance
+	 *            the parent DesignUnit for this instance
 	 * @param old
-	 * 		the instance that this instance is based off of
+	 *            the instance that this instance is based off of
 	 */
-	public ElaboratedInstance(ElaboratedDesignUnit parent, ElaboratedInstance old) {
+	public EInstance(EDesignUnit parent, EInstance old) {
 		super(old);
-		this.pins = new ArrayList<ElaboratedPin>();
+		this.pins = new ArrayList<EPin>();
 		this.parent = parent;
 		this.index = old.getIndex();
 		this.refPrefix = old.getRefPrefix();
@@ -91,10 +93,10 @@ public class ElaboratedInstance extends Attributable {
 		this.library = old.getLibrary();
 		this.groupName = old.getGroupName();
 		setDevice(old.getDevice());
-		for (ElaboratedAttribute oldAttr : old.getAttributes())
-			this.attributes.add(new ElaboratedAttribute(this, oldAttr));
-		for (ElaboratedPin oldPin : old.getPins())
-			this.pins.add(new ElaboratedPin(this, oldPin));
+		for (EAttribute oldAttr : old.getAttributes())
+			this.attributes.add(new EAttribute(this, oldAttr));
+		for (EPin oldPin : old.getPins())
+			this.pins.add(new EPin(this, oldPin));
 	}
 
 	/**
@@ -104,22 +106,22 @@ public class ElaboratedInstance extends Attributable {
 	 *            the new PinNode
 	 * @return true, if the pin wasn't in the set false, otherwise
 	 */
-	public boolean addPin(ElaboratedPin p) {
+	public boolean addPin(EPin p) {
 		return pins.add(p);
 	}
 
 	@Override
 	public boolean equals(Object o) {
-		return this.name.equals(((ElaboratedInstance) o).getName())
-				&& this.index == ((ElaboratedInstance) o).getIndex()
-				&& this.parent.equals(((ElaboratedInstance)o).getParent());
+		return this.name.equals(((EInstance) o).getName()) && this.index == ((EInstance) o).getIndex()
+				&& this.parent.equals(((EInstance) o).getParent());
 	}
 
 	/**
-	 * Finds all PinNodes with the pinName as the base name and returns a List of their indices.
+	 * Finds all PinNodes with the pinName as the base name and returns a List
+	 * of their indices.
 	 * 
-	 * The base name of a pin is the name without any array references. For example, "my_pin(7)" is
-	 * a pin name, and "my_pin" is its base name.
+	 * The base name of a pin is the name without any array references. For
+	 * example, "my_pin(7)" is a pin name, and "my_pin" is its base name.
 	 * 
 	 * @param pinName
 	 *            the base name of the pin
@@ -127,7 +129,7 @@ public class ElaboratedInstance extends Attributable {
 	 */
 	public List<Integer> getAllIndices(String pinName) {
 		List<Integer> allIndices = new ArrayList<Integer>();
-		for (ElaboratedPin p : getAllPins(pinName)) {
+		for (EPin p : getAllPins(pinName)) {
 			int start = p.getName().indexOf('[');
 			int end = p.getName().indexOf(']');
 			if (start != -1 && end != -1) {
@@ -139,16 +141,17 @@ public class ElaboratedInstance extends Attributable {
 	}
 
 	/**
-	 * Returns a list of PinNodes with the same name as the name passed in. Valid names are an exact
-	 * match (suffix length is zero), or those that are suffixed by an array index (the start of
-	 * which is marked by an open parentheses character.)
+	 * Returns a list of PinNodes with the same name as the name passed in.
+	 * Valid names are an exact match (suffix length is zero), or those that are
+	 * suffixed by an array index (the start of which is marked by an open
+	 * parentheses character.)
 	 * 
 	 * @param pinName
 	 * @return The list of pin nodes with the same name as pinName.
 	 */
-	public List<ElaboratedPin> getAllPins(String name) {
-		List<ElaboratedPin> allPins = new ArrayList<ElaboratedPin>();
-		for (ElaboratedPin p : pins)
+	public List<EPin> getAllPins(String name) {
+		List<EPin> allPins = new ArrayList<EPin>();
+		for (EPin p : pins)
 			if (p.getName().equals(name))
 				allPins.add(p);
 		return allPins;
@@ -159,7 +162,7 @@ public class ElaboratedInstance extends Attributable {
 	 * 
 	 * @return the DeviceNode
 	 */
-	public ElaboratedDevice getDevice() {
+	public EDevice getDevice() {
 		return device;
 	}
 
@@ -203,7 +206,7 @@ public class ElaboratedInstance extends Attributable {
 	 * 
 	 * @return the DesignNode attached to this Device
 	 */
-	public ElaboratedDesignUnit getParent() {
+	public EDesignUnit getParent() {
 		return parent;
 	}
 
@@ -214,18 +217,33 @@ public class ElaboratedInstance extends Attributable {
 	 *            the name of the pin
 	 * @return the PinNode with that name
 	 */
-	public ElaboratedPin getPin(String name) {
-		for (ElaboratedPin p : pins)
+	public EPin getPin(String name) {
+		for (EPin p : pins)
 			if (p.getName().equals(name))
 				return p;
 		return null;
 	}
 
-	public ElaboratedPin getPin(String name, int index) {
-		for (ElaboratedPin p : pins)
+	public EPin getPin(String name, int index) {
+		for (EPin p : pins)
 			if (p.getName().equals(name) && p.getIndex() == index)
 				return p;
 		return null;
+	}
+
+	public String getHierarchyPrefix() {
+		StringBuilder sb = new StringBuilder();
+		EDesignUnit current = this.parent;
+		if (current instanceof EDesign)
+			return "";
+		while (current != null) {
+			if (current instanceof ESubInstance) {
+				sb.insert(0, current.getNameIndex() + "/");
+				current = ((ESubInstance) current).getParent();
+			} else
+				current = null;
+		}
+		return sb.toString();
 	}
 
 	/**
@@ -233,7 +251,7 @@ public class ElaboratedInstance extends Attributable {
 	 * 
 	 * @return the List of PinNodes
 	 */
-	public List<ElaboratedPin> getPins() {
+	public List<EPin> getPins() {
 		return pins;
 	}
 
@@ -277,11 +295,11 @@ public class ElaboratedInstance extends Attributable {
 		return false;
 	}
 
-	public Map<String, List<ElaboratedPin>> pinsToMap() {
-		Map<String, List<ElaboratedPin>> map = new HashMap<String, List<ElaboratedPin>>();
-		for (ElaboratedPin p : pins) {
+	public Map<String, List<EPin>> pinsToMap() {
+		Map<String, List<EPin>> map = new HashMap<String, List<EPin>>();
+		for (EPin p : pins) {
 			if (!map.keySet().contains(p.getName())) {
-				List<ElaboratedPin> newList = new ArrayList<ElaboratedPin>();
+				List<EPin> newList = new ArrayList<EPin>();
 				newList.add(p);
 				map.put(p.getName(), newList);
 			} else
@@ -296,7 +314,7 @@ public class ElaboratedInstance extends Attributable {
 	 * @param device
 	 *            the new DeviceNode
 	 */
-	public void setDevice(ElaboratedDevice device) {
+	public void setDevice(EDevice device) {
 		this.device = device;
 		this.device.addInstance(this);
 	}
@@ -329,7 +347,7 @@ public class ElaboratedInstance extends Attributable {
 	 * @param parent
 	 *            the new DesignNode
 	 */
-	public void setParent(ElaboratedDesign parent) {
+	public void setParent(EDesign parent) {
 		this.parent = parent;
 	}
 
@@ -376,9 +394,9 @@ public class ElaboratedInstance extends Attributable {
 			sb.append("  Attr        Name                 Value            o/w?  \n");
 			sb.append("  ----  ----------------  ------------------------  ----  \n");
 			int attrCount = 1;
-			for (ElaboratedAttribute a : getAttributes()) {
+			for (EAttribute a : getAttributes()) {
 				sb.append(String.format(attrFmtStr, attrCount, "  ", a.getName(), "  ",
-					a.getValue().equals("") ? "(empty)" : a.getValue(), "  ", a.isOverwritten() ? "yes" : "no"));
+						a.getValue().equals("") ? "(empty)" : a.getValue(), "  ", a.isOverwritten() ? "yes" : "no"));
 				attrCount++;
 			}
 		}
@@ -388,7 +406,7 @@ public class ElaboratedInstance extends Attributable {
 			sb.append("  Pin     Type          Name             Connection       \n");
 			sb.append("  ----  --------  ----------------  --------------------  \n");
 			int pinCount = 1;
-			for (ElaboratedPin p : getPins()) {
+			for (EPin p : getPins()) {
 				String index = (p.hasIndex() ? ("[" + p.getIndex() + "]") : "");
 				String connection = "";
 				if (p.isAssigned()) {
@@ -400,7 +418,7 @@ public class ElaboratedInstance extends Attributable {
 				else
 					connection += "(not assigned)";
 				sb.append(String.format(pinFmtStr, pinCount, "  ", p.getPinType(), "  ", p.getName() + index, "  ",
-					connection));
+						connection));
 				pinCount++;
 			}
 			sb.append("\n");

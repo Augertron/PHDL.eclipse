@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.byu.ee.phdl.phdl.Attr;
@@ -32,6 +33,8 @@ import edu.byu.ee.phdl.utils.PhdlUtils;
 
 public class PhdlElaborator {
 
+	private static final Logger logger = Logger.getLogger(PhdlElaborator.class);
+
 	public class Reference {
 		private final String name;
 		private final Indices indices;
@@ -51,24 +54,33 @@ public class PhdlElaborator {
 
 	}
 
-	public ElaboratedDesign elaborate(Design design) {
-		ElaboratedDesign eDesign = new ElaboratedDesign(design.getName());
-		elaborateDesign(eDesign, design);
+	/**
+	 * Elaborates a Design. The elaboration process is essentially a graph
+	 * transformation where the syntax graph represented by the Design is
+	 * translated into a new circuit description graph represented by an
+	 * ElaboratedDesign. The is because the AST is not sufficient to represent
+	 * the circuit with instanced devices, and multiple levels of hierarchy.
+	 * 
+	 * @param design
+	 *            the Design to elaborate
+	 * @return the elaborated design
+	 */
+	public EDesign elaborate(Design design) {
+		EDesign eDesign = new EDesign(design.getName());
+		elaborateDesignElements(eDesign, design);
 		return eDesign;
 	}
 
-	private void elaborateAssign(ElaboratedDesignUnit eDesign,
-			ConnectionAssign connectionAssign) {
+	private void elaborateAssign(EDesignUnit eDesign, ConnectionAssign connectionAssign) {
 		ConnectionName ref = connectionAssign.getRef();
-		List<ElaboratedConnection> lVals = new ArrayList<ElaboratedConnection>();
+		List<EConnection> lVals = new ArrayList<EConnection>();
 		if (connectionAssign.getSlices() != null) {
 			for (Integer i : getSlices(connectionAssign.getSlices()))
 				lVals.add(eDesign.getConnection(ref.getName(), i));
 		} else
 			lVals.addAll(eDesign.getConnectionsByName(ref.getName()));
 
-		List<ElaboratedConnection> rVals = getRelevantConnections(eDesign,
-				connectionAssign.getConcatenation());
+		List<EConnection> rVals = getRelevantConnections(eDesign, connectionAssign.getConcatenation());
 		for (int i = 0; i < lVals.size(); i++) {
 			if (connectionAssign.getConcatenation().isReplicated()) {
 				lVals.get(i).addConnection(rVals.get(0));
@@ -80,103 +92,118 @@ public class PhdlElaborator {
 		}
 	}
 
-	private void elaborateConnection(ElaboratedDesignUnit eDesign,
-			Connection connection) {
+	/**
+	 * Iterates over all Connection declarations and elaborates them.
+	 * 
+	 * @param eDesign
+	 * @param connection
+	 */
+	private void elaborateConnection(EDesignUnit eDesign, Connection connection) {
 		for (ConnectionName connectionName : connection.getNames()) {
 			if (connection.isNet()) {
 				if (connection.getVector().isVector()) {
-					for (Integer index : PhdlUtils.getIndices(connection
-							.getVector().getMsb(), connection.getVector()
+					for (Integer index : PhdlUtils.getIndices(connection.getVector().getMsb(), connection.getVector()
 							.getLsb())) {
-						ElaboratedNet eNet = new ElaboratedNet(eDesign,
-								connectionName.getName());
+						ENet eNet = new ENet(eDesign, connectionName.getName());
 						for (EObject element : connection.getElements()) {
 							if (element instanceof Attr) {
 								Attr attribute = (Attr) element;
-								ElaboratedAttribute eAttribute = new ElaboratedAttribute(
-										eNet);
+								EAttribute eAttribute = new EAttribute(eNet);
 								eAttribute.setName(attribute.getName());
 								eAttribute.setValue(attribute.getValue());
 								eNet.addAttribute(eAttribute);
 							} else if (element instanceof Info) {
 								Info info = (Info) element;
 								eNet.appendInfo(info.getInfo());
+							} else {
+								logger.error("unrecognized connection element: " + element.getClass().getSimpleName());
 							}
 						}
 						eNet.setIndex(index);
 						eDesign.addConnection(eNet);
 					}
 				} else {
-					ElaboratedNet eNet = new ElaboratedNet(eDesign,
-							connectionName.getName());
+					ENet eNet = new ENet(eDesign, connectionName.getName());
 					eDesign.addConnection(eNet);
 				}
 			} else if (connection.isPort()) {
 				if (connection.getVector().isVector()) {
-					for (Integer index : PhdlUtils.getIndices(connection
-							.getVector().getMsb(), connection.getVector()
+					for (Integer index : PhdlUtils.getIndices(connection.getVector().getMsb(), connection.getVector()
 							.getLsb())) {
-						ElaboratedPort ePort = new ElaboratedPort(eDesign,
-								connectionName.getName());
+						EPort ePort = new EPort(eDesign, connectionName.getName());
+						for (EObject element : connection.getElements()) {
+							if (element instanceof Info) {
+								Info info = (Info) element;
+								ePort.appendInfo(info.getInfo());
+							} else {
+								logger.error("unrecognized connection element: " + element.getClass().getSimpleName());
+							}
+						}
 						ePort.setIndex(index);
 						eDesign.addConnection(ePort);
 					}
 				} else {
-					ElaboratedPort ePort = new ElaboratedPort(eDesign,
-							connectionName.getName());
+					EPort ePort = new EPort(eDesign, connectionName.getName());
 					eDesign.addConnection(ePort);
 				}
+			} else {
+				logger.error("unrecognized Connection: " + connection.getClass().getSimpleName());
 			}
 		}
 	}
 
-	private void elaborateDesign(ElaboratedDesignUnit eDesign, Design design) {
+	/**
+	 * Iterates over and Elaborates all DesignElements in a design. Unrecognized
+	 * types are logged.
+	 */
+	private void elaborateDesignElements(EDesignUnit eDesign, Design design) {
 		for (DesignElement element : design.getElements()) {
 			if (element instanceof Connection) {
 				Connection connection = (Connection) element;
 				elaborateConnection(eDesign, connection);
 			} else if (element instanceof Instance) {
 				Instance instance = (Instance) element;
-				if (instance.isInst())
+				if (instance.isInst()) {
 					elaborateInstance(eDesign, instance);
-				if (instance.isSubInst())
+				} else if (instance.isSubInst()) {
 					elaborateSubInstance(eDesign, instance);
+				} else {
+					logger.error("unrecognized DesignElement: " + element.getClass().getSimpleName());
+				}
 			} else if (element instanceof ConnectionAssign) {
 				ConnectionAssign connectionAssign = (ConnectionAssign) element;
 				elaborateAssign(eDesign, connectionAssign);
 			} else if (element instanceof Info) {
 				Info info = (Info) element;
 				eDesign.appendInfo(info.getInfo());
+			} else {
+				logger.error("unrecognized DesignElement: " + element.getClass().getSimpleName());
 			}
 		}
 	}
 
-	private ElaboratedDevice elaborateDevice(Device device) {
-		ElaboratedDevice eDevice = new ElaboratedDevice(device.getName());
+	private EDevice elaborateDevice(Device device) {
+		EDevice eDevice = new EDevice(device.getName());
 		for (DeviceElement element : device.getElements()) {
 			if (element instanceof Attr) {
 				Attr attribute = (Attr) element;
-				ElaboratedAttribute eAttribute = new ElaboratedAttribute(
-						eDevice);
+				EAttribute eAttribute = new EAttribute(eDevice);
 				eAttribute.setName(attribute.getName());
 				eAttribute.setValue(attribute.getValue());
 				eDevice.addAttribute(eAttribute);
 			} else if (element instanceof Pin) {
 				Pin pin = (Pin) element;
-				ElaboratedPinType pinType = elaboratePinType(pin);
+				EPinType pinType = elaboratePinType(pin);
 				if (pin.getVector().isVector()) {
 					int i = 0;
-					for (Integer index : PhdlUtils.getIndices(pin.getVector()
-							.getMsb(), pin.getVector().getLsb())) {
-						ElaboratedPin ePin = new ElaboratedPin(eDevice,
-								pin.getName(), pinType);
+					for (Integer index : PhdlUtils.getIndices(pin.getVector().getMsb(), pin.getVector().getLsb())) {
+						EPin ePin = new EPin(eDevice, pin.getName(), pinType);
 						ePin.setIndex(index);
 						ePin.setPinMapping(pin.getPinNames().get(i++));
 						eDevice.addPin(ePin);
 					}
 				} else {
-					ElaboratedPin ePin = new ElaboratedPin(eDevice,
-							pin.getName(), pinType);
+					EPin ePin = new EPin(eDevice, pin.getName(), pinType);
 					ePin.setPinMapping(pin.getPinNames().get(0));
 					eDevice.addPin(ePin);
 				}
@@ -188,57 +215,45 @@ public class PhdlElaborator {
 		return eDevice;
 	}
 
-	private void elaborateInstance(ElaboratedDesignUnit eDesign,
-			Instance instance) {
-		ElaboratedDevice eDevice = elaborateDevice(instance.getDevice());
+	private void elaborateInstance(EDesignUnit eDesign, Instance instance) {
+		EDevice eDevice = elaborateDevice(instance.getDevice());
 		if (instance.getArray().isArray()) {
-			for (Integer index : PhdlUtils.getIndices(instance.getArray()
-					.getMsb(), instance.getArray().getLsb())) {
-				ElaboratedInstance eInstance = new ElaboratedInstance(eDesign,
-						eDevice, instance.getName());
+			for (Integer index : PhdlUtils.getIndices(instance.getArray().getMsb(), instance.getArray().getLsb())) {
+				EInstance eInstance = new EInstance(eDesign, eDevice, instance.getName());
 				eInstance.setIndex(index);
 				eDesign.addInstance(eInstance);
 			}
 		} else {
-			ElaboratedInstance eInstance = new ElaboratedInstance(eDesign,
-					eDevice, instance.getName());
+			EInstance eInstance = new EInstance(eDesign, eDevice, instance.getName());
 			eDesign.addInstance(eInstance);
 		}
 
 		for (EObject element : instance.getElements()) {
 			if (element instanceof RefAttr) {
 				RefAttr refAttr = (RefAttr) element;
-				for (ElaboratedInstance inst : getRelevantInstances(eDesign,
-						instance, refAttr))
-					inst.getAttribute(refAttr.getRef().getName()).setValue(
-							refAttr.getValue());
+				for (EInstance inst : getRelevantInstances(eDesign, instance, refAttr))
+					inst.getAttribute(refAttr.getRef().getName()).setValue(refAttr.getValue());
 			} else if (element instanceof NewAttr) {
 				NewAttr newAttr = (NewAttr) element;
-				for (ElaboratedInstance inst : getRelevantInstances(eDesign,
-						instance, newAttr)) {
-					ElaboratedAttribute eAttribute = new ElaboratedAttribute(
-							inst, newAttr.getName(), newAttr.getValue());
+				for (EInstance inst : getRelevantInstances(eDesign, instance, newAttr)) {
+					EAttribute eAttribute = new EAttribute(inst, newAttr.getName(), newAttr.getValue());
 					inst.addAttribute(eAttribute);
 				}
 			} else if (element instanceof PinAssign) {
 				PinAssign pinAssign = (PinAssign) element;
-				List<ElaboratedInstance> insts = getRelevantInstances(eDesign,
-						instance, pinAssign);
-				List<ElaboratedPin> pins = new ArrayList<ElaboratedPin>();
+				List<EInstance> insts = getRelevantInstances(eDesign, instance, pinAssign);
+				List<EPin> pins = new ArrayList<EPin>();
 				Concatenation concatenation = pinAssign.getConcatenation();
-				List<ElaboratedConnection> cons = getRelevantConnections(
-						eDesign, concatenation);
+				List<EConnection> cons = getRelevantConnections(eDesign, concatenation);
 				if (pinAssign.isCombined()) {
 					if (pinAssign.getSlices() != null) {
-						for (ElaboratedInstance inst : insts)
+						for (EInstance inst : insts)
 							for (Integer i : getSlices(pinAssign.getSlices())) {
-								pins.add(inst.getPin(pinAssign.getRef()
-										.getName(), i));
+								pins.add(inst.getPin(pinAssign.getRef().getName(), i));
 							}
 					} else {
-						for (ElaboratedInstance inst : insts)
-							pins.addAll(inst.getAllPins(pinAssign.getRef()
-									.getName()));
+						for (EInstance inst : insts)
+							pins.addAll(inst.getAllPins(pinAssign.getRef().getName()));
 					}
 					for (int i = 0; i < pins.size(); i++) {
 						if (concatenation.isReplicated()) {
@@ -252,14 +267,12 @@ public class PhdlElaborator {
 						}
 					}
 				} else {
-					for (ElaboratedInstance inst : insts) {
+					for (EInstance inst : insts) {
 						if (pinAssign.getSlices() != null) {
 							for (Integer i : getSlices(pinAssign.getSlices()))
-								pins.add(inst.getPin(pinAssign.getRef()
-										.getName(), i));
+								pins.add(inst.getPin(pinAssign.getRef().getName(), i));
 						} else
-							pins.addAll(inst.getAllPins(pinAssign.getRef()
-									.getName()));
+							pins.addAll(inst.getAllPins(pinAssign.getRef().getName()));
 						for (int i = 0; i < pins.size(); i++) {
 							if (concatenation.isReplicated()) {
 								pins.get(i).setAssignment(cons.get(0));
@@ -276,9 +289,8 @@ public class PhdlElaborator {
 				}
 			}
 		}
-		for (ElaboratedInstance i : eDesign.getInstancesByName(instance
-				.getName())) {
-			for (ElaboratedAttribute a : i.getAttributes()) {
+		for (EInstance i : eDesign.getInstancesByName(instance.getName())) {
+			for (EAttribute a : i.getAttributes()) {
 				if (a.getName().equals("REFPREFIX"))
 					i.setRefPrefix(a.getValue());
 				else if (a.getName().equals("REFDES"))
@@ -291,30 +303,25 @@ public class PhdlElaborator {
 		}
 	}
 
-	private ElaboratedPinType elaboratePinType(Pin pin) {
+	private EPinType elaboratePinType(Pin pin) {
 		switch (pin.getType()) {
 		case PIN:
-			return ElaboratedPinType.PIN;
+			return EPinType.PIN;
 		}
 		return null;
 	}
 
-	private void elaborateSubInstance(ElaboratedDesignUnit eDesign,
-			Instance subInstance) {
-		ElaboratedSubDesign eSubDesign = new ElaboratedSubDesign(subInstance
-				.getSubDesign().getName());
-		elaborateDesign(eSubDesign, subInstance.getSubDesign());
+	private void elaborateSubInstance(EDesignUnit eDesign, Instance subInstance) {
+		ESubDesign eSubDesign = new ESubDesign(subInstance.getSubDesign().getName());
+		elaborateDesignElements(eSubDesign, subInstance.getSubDesign());
 		if (subInstance.getArray().isArray()) {
-			for (Integer i : PhdlUtils.getIndices(subInstance.getArray()
-					.getMsb(), subInstance.getArray().getLsb())) {
-				ElaboratedSubInstance eSubInstance = new ElaboratedSubInstance(
-						eDesign, eSubDesign, subInstance.getName());
+			for (Integer i : PhdlUtils.getIndices(subInstance.getArray().getMsb(), subInstance.getArray().getLsb())) {
+				ESubInstance eSubInstance = new ESubInstance(eDesign, eSubDesign, subInstance.getName());
 				eSubInstance.setIndex(i);
 				eDesign.addSubInst(eSubInstance);
 			}
 		} else {
-			ElaboratedSubInstance eSubInstance = new ElaboratedSubInstance(
-					eDesign, eSubDesign, subInstance.getName());
+			ESubInstance eSubInstance = new ESubInstance(eDesign, eSubDesign, subInstance.getName());
 			eDesign.addSubInst(eSubInstance);
 		}
 
@@ -322,9 +329,8 @@ public class PhdlElaborator {
 			if (element instanceof Attr) {
 				Attr attr = (Attr) element;
 				if (attr.getName().equalsIgnoreCase("REFPREFIX")) {
-					List<ElaboratedSubInstance> subInsts = eDesign
-							.getSubInstancesByName(subInstance.getName());
-					for (ElaboratedSubInstance subInst : subInsts) {
+					List<ESubInstance> subInsts = eDesign.getSubInstancesByName(subInstance.getName());
+					for (ESubInstance subInst : subInsts) {
 						subInst.setRefPrefix(attr.getValue());
 					}
 				}
@@ -336,44 +342,34 @@ public class PhdlElaborator {
 				for (int i = refList.size() - 1; i >= 0; i--)
 					refStack.push(refList.get(i));
 
-				List<ElaboratedSubInstance> subInsts = new ArrayList<ElaboratedSubInstance>();
+				List<ESubInstance> subInsts = new ArrayList<ESubInstance>();
 				if (subAttr.getQualifier() != null) {
-					for (Integer i : PhdlUtils.getIndices(subAttr
-							.getQualifier().getIndices()))
-						subInsts.add(eDesign.getSubInstance(
-								subInstance.getName(), i));
+					for (Integer i : PhdlUtils.getIndices(subAttr.getQualifier().getIndices()))
+						subInsts.add(eDesign.getSubInstance(subInstance.getName(), i));
 				} else
-					subInsts.addAll(eDesign.getSubInstancesByName(subInstance
-							.getName()));
-				for (ElaboratedSubInstance subInst : subInsts)
-					subInstAttr(subInst, refStack, lastRef.getName(),
-							subAttr.getValue());
+					subInsts.addAll(eDesign.getSubInstancesByName(subInstance.getName()));
+				for (ESubInstance subInst : subInsts)
+					subInstAttr(subInst, refStack, lastRef.getName(), subAttr.getValue());
 			} else if (element instanceof PortAssign) {
 				PortAssign portAssign = (PortAssign) element;
-				List<ElaboratedSubInstance> subInsts = new ArrayList<ElaboratedSubInstance>();
+				List<ESubInstance> subInsts = new ArrayList<ESubInstance>();
 				if (portAssign.getQualifier() != null) {
-					for (Integer i : PhdlUtils.getIndices(portAssign
-							.getQualifier().getIndices()))
-						subInsts.add(eDesign.getSubInstance(
-								subInstance.getName(), i));
+					for (Integer i : PhdlUtils.getIndices(portAssign.getQualifier().getIndices()))
+						subInsts.add(eDesign.getSubInstance(subInstance.getName(), i));
 				} else
-					subInsts.addAll(eDesign.getSubInstancesByName(subInstance
-							.getName()));
+					subInsts.addAll(eDesign.getSubInstancesByName(subInstance.getName()));
 
-				List<ElaboratedPort> ports = new ArrayList<ElaboratedPort>();
+				List<EPort> ports = new ArrayList<EPort>();
 				Concatenation concatenation = portAssign.getConcatenation();
-				List<ElaboratedConnection> cons = getRelevantConnections(
-						eDesign, concatenation);
+				List<EConnection> cons = getRelevantConnections(eDesign, concatenation);
 				if (portAssign.isCombined()) {
 					if (portAssign.getSlices() != null) {
-						for (ElaboratedSubInstance subInst : subInsts)
+						for (ESubInstance subInst : subInsts)
 							for (Integer i : getSlices(portAssign.getSlices()))
-								ports.add(subInst.getPort(portAssign.getRef()
-										.getName(), i));
+								ports.add(subInst.getPort(portAssign.getRef().getName(), i));
 					} else {
-						for (ElaboratedSubInstance subInst : subInsts)
-							ports.addAll(subInst.getAllPorts(portAssign
-									.getRef().getName()));
+						for (ESubInstance subInst : subInsts)
+							ports.addAll(subInst.getAllPorts(portAssign.getRef().getName()));
 					}
 					for (int i = 0; i < ports.size(); i++) {
 						if (concatenation.isReplicated()) {
@@ -386,14 +382,12 @@ public class PhdlElaborator {
 						}
 					}
 				} else {
-					for (ElaboratedSubInstance subInst : subInsts) {
+					for (ESubInstance subInst : subInsts) {
 						if (portAssign.getSlices() != null) {
 							for (Integer i : getSlices(portAssign.getSlices()))
-								ports.add(subInst.getPort(portAssign.getRef()
-										.getName(), i));
+								ports.add(subInst.getPort(portAssign.getRef().getName(), i));
 						} else
-							ports.addAll(subInst.getAllPorts(portAssign
-									.getRef().getName()));
+							ports.addAll(subInst.getAllPorts(portAssign.getRef().getName()));
 						for (int i = 0; i < ports.size(); i++) {
 							if (concatenation.isReplicated()) {
 								ports.get(i).setAssignment(cons.get(0));
@@ -409,46 +403,37 @@ public class PhdlElaborator {
 				}
 			}
 		}
-		if (subInstance.getPrefix() != null
-				&& !subInstance.getPrefix().equals("")) {
-			List<ElaboratedSubInstance> subInsts = eDesign
-					.getSubInstancesByName(subInstance.getName());
-			for (ElaboratedSubInstance subInst : subInsts) {
+		if (subInstance.getPrefix() != null && !subInstance.getPrefix().equals("")) {
+			List<ESubInstance> subInsts = eDesign.getSubInstancesByName(subInstance.getName());
+			for (ESubInstance subInst : subInsts) {
 				subInst.setRefPrefix(subInstance.getPrefix());
 			}
 		}
 	}
 
-	private List<ElaboratedConnection> getRelevantConnections(
-			ElaboratedDesignUnit eDesign, Concatenation concatenation) {
-		List<ElaboratedConnection> connections = new ArrayList<ElaboratedConnection>();
+	private List<EConnection> getRelevantConnections(EDesignUnit eDesign, Concatenation concatenation) {
+		List<EConnection> connections = new ArrayList<EConnection>();
 		if (!concatenation.isOpen() && !concatenation.isReplicated()) {
 			for (ConnectionRef ref : concatenation.getConnections()) {
 				if (ref.getSlices() != null) {
 					for (Integer index : getSlices(ref.getSlices()))
-						connections.add(eDesign.getConnection(ref.getRef()
-								.getName(), index));
+						connections.add(eDesign.getConnection(ref.getRef().getName(), index));
 				} else
-					connections.addAll(eDesign.getConnectionsByName(ref
-							.getRef().getName()));
+					connections.addAll(eDesign.getConnectionsByName(ref.getRef().getName()));
 			}
 		} else if (concatenation.isReplicated()) {
 			ConnectionRef ref = concatenation.getReplicate();
 			if (ref.getSlices() != null) {
 				for (Integer index : getSlices(ref.getSlices()))
-					connections.add(eDesign.getConnection(ref.getRef()
-							.getName(), index));
+					connections.add(eDesign.getConnection(ref.getRef().getName(), index));
 			} else
-				connections.addAll(eDesign.getConnectionsByName(ref.getRef()
-						.getName()));
+				connections.addAll(eDesign.getConnectionsByName(ref.getRef().getName()));
 		}
 		return connections;
 	}
 
-	private List<ElaboratedInstance> getRelevantInstances(
-			ElaboratedDesignUnit eDesign, Instance instance,
-			InstanceElement element) {
-		List<ElaboratedInstance> instances = new ArrayList<ElaboratedInstance>();
+	private List<EInstance> getRelevantInstances(EDesignUnit eDesign, Instance instance, InstanceElement element) {
+		List<EInstance> instances = new ArrayList<EInstance>();
 		boolean isQualified = false;
 		Indices indices = null;
 		if (element instanceof RefAttr) {
@@ -500,32 +485,27 @@ public class PhdlElaborator {
 
 	private List<Reference> getSubAttrRefs(SubAttr subAttr) {
 		List<Reference> refs = new ArrayList<Reference>();
-		refs.add(new Reference(((Instance) subAttr.getRef()).getName(), subAttr
-				.getRefIndices()));
+		refs.add(new Reference(((Instance) subAttr.getRef()).getName(), subAttr.getRefIndices()));
 
 		RefTail tail = subAttr.getTail();
 		while (tail != null) {
 			if (tail.getRef() instanceof Instance)
-				refs.add(new Reference(((Instance) tail.getRef()).getName(),
-						tail.getRefIndices()));
+				refs.add(new Reference(((Instance) tail.getRef()).getName(), tail.getRefIndices()));
 			else if (tail.getRef() instanceof Attr)
 				refs.add(new Reference(((Attr) tail.getRef()).getName(), null));
 			else if (tail.getRef() instanceof NewAttr)
-				refs.add(new Reference(((NewAttr) tail.getRef()).getName(),
-						null));
+				refs.add(new Reference(((NewAttr) tail.getRef()).getName(), null));
 			else if (tail.getRef() instanceof RefAttr)
-				refs.add(new Reference(((RefAttr) tail.getRef()).getRef()
-						.getName(), null));
+				refs.add(new Reference(((RefAttr) tail.getRef()).getRef().getName(), null));
 			tail = tail.getTail();
 		}
 		return refs;
 	}
 
-	private void subInstAttr(ElaboratedSubInstance subInst,
-			Stack<Reference> refStack, String name, String value) {
+	private void subInstAttr(ESubInstance subInst, Stack<Reference> refStack, String name, String value) {
 		Reference currRef = refStack.pop();
-		List<ElaboratedSubInstance> subInsts = new ArrayList<ElaboratedSubInstance>();
-		List<ElaboratedInstance> insts = new ArrayList<ElaboratedInstance>();
+		List<ESubInstance> subInsts = new ArrayList<ESubInstance>();
+		List<EInstance> insts = new ArrayList<EInstance>();
 		if (currRef.indices == null) {
 			subInsts.addAll(subInst.getSubInstancesByName(currRef.getName()));
 			insts.addAll(subInst.getInstancesByName(currRef.getName()));
@@ -536,10 +516,10 @@ public class PhdlElaborator {
 			}
 		}
 		if (refStack.isEmpty()) {
-			for (ElaboratedInstance i : insts)
+			for (EInstance i : insts)
 				i.getAttribute(name).setValue(value);
 		} else {
-			for (ElaboratedSubInstance s : subInsts)
+			for (ESubInstance s : subInsts)
 				subInstAttr(s, refStack, name, value);
 		}
 	}

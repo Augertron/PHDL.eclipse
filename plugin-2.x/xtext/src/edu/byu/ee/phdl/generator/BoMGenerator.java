@@ -18,11 +18,11 @@ import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import edu.byu.ee.phdl.elaboration.ElaboratedAttribute;
-import edu.byu.ee.phdl.elaboration.ElaboratedDesign;
-import edu.byu.ee.phdl.elaboration.ElaboratedHierarchyUnit;
-import edu.byu.ee.phdl.elaboration.ElaboratedInstance;
-import edu.byu.ee.phdl.elaboration.ElaboratedSubInstance;
+import edu.byu.ee.phdl.elaboration.EAttribute;
+import edu.byu.ee.phdl.elaboration.EDesign;
+import edu.byu.ee.phdl.elaboration.EHierarchyUnit;
+import edu.byu.ee.phdl.elaboration.EInstance;
+import edu.byu.ee.phdl.elaboration.ESubInstance;
 
 /**
  * Bill of Materials Generator.
@@ -69,7 +69,7 @@ public class BoMGenerator {
 		}
 	}
 
-	private final ElaboratedDesign design;
+	private final EDesign design;
 	private final List<Row> rows;
 	private final List<String> headers;
 	private List<String> excludes;
@@ -82,9 +82,9 @@ public class BoMGenerator {
 	 * the table.
 	 * 
 	 * @param design the DesignNode that contains all of the attribute information.
-	 * @see ElaboratedDesign
+	 * @see EDesign
 	 */
-	public BoMGenerator(ElaboratedDesign d) {
+	public BoMGenerator(EDesign d) {
 		design = d;
 		rows = new ArrayList<Row>();
 		headers = new ArrayList<String>();
@@ -137,8 +137,8 @@ public class BoMGenerator {
 		return bom;
 	}
 
-	private void initializeRows(ElaboratedHierarchyUnit des) {
-		for (ElaboratedInstance i : des.getInstances()) {
+	private void initializeRows(EHierarchyUnit des) {
+		for (EInstance i : des.getInstances()) {
 			Row newRow = new Row();
 
 			for (int j = 0; j < headers.size(); j++) {
@@ -147,7 +147,7 @@ public class BoMGenerator {
 
 			newRow.name = i.getDevice().getName();
 			newRow.refDes = i.getRefDes();
-			for (ElaboratedAttribute a : i.getAttributes()) {
+			for (EAttribute a : i.getAttributes()) {
 				if (a.getName().equals("FOOTPRINT")) {
 					newRow.pkg = a.getValue();
 				} else if (a.getName().equals("LIBRARY")) {
@@ -163,7 +163,7 @@ public class BoMGenerator {
 			rows.add(newRow);
 		}
 
-		for (ElaboratedSubInstance s : des.getSubInstances()) {
+		for (ESubInstance s : des.getSubInstances()) {
 			initializeRows(s);
 		}
 	}
@@ -196,15 +196,15 @@ public class BoMGenerator {
 		populateHeaders(design);
 	}
 
-	private void populateHeaders(ElaboratedHierarchyUnit des) {
-		for (ElaboratedInstance i : des.getInstances()) {
-			for (ElaboratedAttribute a : i.getAttributes()) {
+	private void populateHeaders(EHierarchyUnit des) {
+		for (EInstance i : des.getInstances()) {
+			for (EAttribute a : i.getAttributes()) {
 				if (!excludes.contains(a.getName()) && !headers.contains(a.getName())) {
 					headers.add(a.getName());
 				}
 			}
 		}
-		for (ElaboratedSubInstance s : des.getSubInstances()) {
+		for (ESubInstance s : des.getSubInstances()) {
 			populateHeaders(s);
 		}
 	}

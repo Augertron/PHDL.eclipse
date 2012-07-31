@@ -19,10 +19,10 @@ import java.util.List;
  * @author Brad Riching and Richard Black
  * @version 0.1
  */
-public class ElaboratedDevice extends Attributable {
+public class EDevice extends Attributable {
 
-	private final List<ElaboratedPin> pins;
-	private final List<ElaboratedInstance> instances;
+	private final List<EPin> pins;
+	private final List<EInstance> instances;
 
 	/**
 	 * Default Constructor.
@@ -30,24 +30,24 @@ public class ElaboratedDevice extends Attributable {
 	 * @param design
 	 *            the parent DesignNode for this Device
 	 * 
-	 * @see ElaboratedDesign
-	 * @see ElaboratedAttribute
-	 * @see ElaboratedPin
-	 * @see ElaboratedInstance
+	 * @see EDesign
+	 * @see EAttribute
+	 * @see EPin
+	 * @see EInstance
 	 */
-	public ElaboratedDevice(ElaboratedDesign design) {
+	public EDevice(EDesign design) {
 		super();
 		this.info = "";
-		this.pins = new ArrayList<ElaboratedPin>();
-		this.instances = new ArrayList<ElaboratedInstance>();
+		this.pins = new ArrayList<EPin>();
+		this.instances = new ArrayList<EInstance>();
 	}
 
-	public ElaboratedDevice(String name) {
+	public EDevice(String name) {
 		super();
 		this.info = "";
 		this.name = name;
-		this.pins = new ArrayList<ElaboratedPin>();
-		this.instances = new ArrayList<ElaboratedInstance>();
+		this.pins = new ArrayList<EPin>();
+		this.instances = new ArrayList<EInstance>();
 	}
 
 	/**
@@ -57,7 +57,7 @@ public class ElaboratedDevice extends Attributable {
 	 *            the InstanceNode to be added
 	 * @return true, if the instance isn't already in the set false, otherwise
 	 */
-	public boolean addInstance(ElaboratedInstance instance) {
+	public boolean addInstance(EInstance instance) {
 		return instances.add(instance);
 	}
 
@@ -68,7 +68,7 @@ public class ElaboratedDevice extends Attributable {
 	 *            the new PinNode
 	 * @return true, if the pin wasn't already in the List false, otherwise
 	 */
-	public boolean addPin(ElaboratedPin p) {
+	public boolean addPin(EPin p) {
 		return pins.add(p);
 	}
 
@@ -77,7 +77,7 @@ public class ElaboratedDevice extends Attributable {
 	 * 
 	 * @return the set of all InstanceNodes connected to this device
 	 */
-	public List<ElaboratedInstance> getInstances() {
+	public List<EInstance> getInstances() {
 		return instances;
 	}
 
@@ -96,8 +96,8 @@ public class ElaboratedDevice extends Attributable {
 	 * 
 	 * 
 	 */
-	public ElaboratedPin getPin(String pinName) {
-		for (ElaboratedPin p : pins) {
+	public EPin getPin(String pinName) {
+		for (EPin p : pins) {
 			if (p.getName().equals(pinName)) {
 				return p;
 			}
@@ -110,7 +110,7 @@ public class ElaboratedDevice extends Attributable {
 	 * 
 	 * @return a list of PinNodes attached to this Device.
 	 */
-	public List<ElaboratedPin> getPins() {
+	public List<EPin> getPins() {
 		return pins;
 	}
 
@@ -141,7 +141,7 @@ public class ElaboratedDevice extends Attributable {
 			sb.append("  Attr        Name                   Value           \n");
 			sb.append("  ----  ----------------  -------------------------- \n");
 			int attrCount = 1;
-			for (ElaboratedAttribute a : attributes) {
+			for (EAttribute a : attributes) {
 				sb.append(String.format(attrFmtStr, attrCount, "", a.getName(), "", a.getValue()
 					.equals("") ? "(empty)" : a.getValue()));
 				attrCount++;
@@ -153,7 +153,7 @@ public class ElaboratedDevice extends Attributable {
 			sb.append("  Pin     Type          Name             Number      \n");
 			sb.append("  ----  --------  ----------------  ---------------- \n");
 			int pinCount = 1;
-			for (ElaboratedPin p : pins) {
+			for (EPin p : pins) {
 				String index = p.getIndex() == -1 ? "" : ("[" + p.getIndex() + "]");
 				sb.append(String.format(pinFmtStr, pinCount, "", p.getPinType(), "", p.getName()
 					+ index, "", p.getPinMapping()));
@@ -166,14 +166,14 @@ public class ElaboratedDevice extends Attributable {
 			sb.append("  Inst        Name              Location             Parent      \n");
 			sb.append("  ----  ----------------  --------------------  ---------------- \n");
 			int instCount = 1;
-			for (ElaboratedInstance i : instances) {
+			for (EInstance i : instances) {
 				String index = ((i.getIndex() == -1) ? "" : ("(" + i.getIndex() + ")"));
 				String pIndex = "";
-				if (i.getParent() instanceof ElaboratedSubInstance) {
-					if (((ElaboratedSubInstance) i.getParent()).getIndex() == -1)
+				if (i.getParent() instanceof ESubInstance) {
+					if (((ESubInstance) i.getParent()).getIndex() == -1)
 						pIndex = "";
 					else
-						pIndex = ("(" + ((ElaboratedSubInstance) i.getParent()).getIndex() + ")");
+						pIndex = ("(" + ((ESubInstance) i.getParent()).getIndex() + ")");
 				}
 				sb.append(String.format(instFmtStr, instCount, "", i.getName() + index, "",
 					i.getFileName() + ", " + i.getLine() + ":" + i.getPosition(), "", i.getParent()

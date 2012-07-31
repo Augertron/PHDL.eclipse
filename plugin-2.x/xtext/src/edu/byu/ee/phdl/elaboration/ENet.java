@@ -18,22 +18,22 @@ package edu.byu.ee.phdl.elaboration;
  * @author Brad Riching and Richard Black
  * @version 0.1
  */
-public class ElaboratedNet extends ElaboratedConnection {
+public class ENet extends EConnection {
 
 	/**
 	 * Default Constructor.
 	 * 
 	 * @param d the DesignNode that is the parent of this net
 	 */
-	public ElaboratedNet(ElaboratedDesignUnit design) {
+	public ENet(EDesignUnit design) {
 		super(design);
 	}
 
-	public ElaboratedNet(ElaboratedDesignUnit parent, ElaboratedNet oldNet) {
+	public ENet(EDesignUnit parent, ENet oldNet) {
 		super(parent, oldNet);
 	}
 
-	public ElaboratedNet(ElaboratedDesignUnit design, String name) {
+	public ENet(EDesignUnit design, String name) {
 		super(design, name);
 	}
 

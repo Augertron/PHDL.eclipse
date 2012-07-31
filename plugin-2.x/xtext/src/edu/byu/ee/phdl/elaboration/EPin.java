@@ -22,14 +22,14 @@ package edu.byu.ee.phdl.elaboration;
  * 
  *          Date of Last Code Review: January 5, 2012 by Richard Black
  */
-public class ElaboratedPin extends Node {
+public class EPin extends Node {
 
-	private ElaboratedConnection assignment;
+	private EConnection assignment;
 	private int index;
 	private boolean open;
 	private Attributable parent;
 	private String pinMapping;
-	private ElaboratedPinType pinType;
+	private EPinType pinType;
 
 	/**
 	 * Default Constructor.
@@ -37,14 +37,14 @@ public class ElaboratedPin extends Node {
 	 * @param parent the Parent to set
 	 * @see Attributable
 	 */
-	public ElaboratedPin(Attributable parent) {
+	public EPin(Attributable parent) {
 		if (parent != null) {
 			if (parent.getNodeType() == NodeType.DEVICE || parent.getNodeType() == NodeType.INSTANCE)
 				setParent(parent);
 		}
 		this.pinMapping = null;
 		this.assignment = null;
-		this.pinType = ElaboratedPinType.PIN;
+		this.pinType = EPinType.PIN;
 		setIndex(-1);
 	}
 
@@ -54,7 +54,7 @@ public class ElaboratedPin extends Node {
 	 * @param old the old PinNode to copy
 	 * @param parent the parent of the PinNode
 	 */
-	public ElaboratedPin(Attributable parent, ElaboratedPin old) {
+	public EPin(Attributable parent, EPin old) {
 		super(old);
 		this.parent = parent;
 		this.pinMapping = old.getPinMapping();
@@ -63,7 +63,7 @@ public class ElaboratedPin extends Node {
 		this.open = old.isOpen();
 	}
 
-	public ElaboratedPin(Attributable parent, String name, ElaboratedPinType type) {
+	public EPin(Attributable parent, String name, EPinType type) {
 		if (parent != null) {
 			if (parent.getNodeType() == NodeType.DEVICE || parent.getNodeType() == NodeType.INSTANCE)
 				setParent(parent);
@@ -75,7 +75,7 @@ public class ElaboratedPin extends Node {
 
 	@Override
 	public boolean equals(Object o) {
-		return name.equals(((ElaboratedPin) o).getName()) && index == ((ElaboratedPin) o).getIndex();
+		return name.equals(((EPin) o).getName()) && index == ((EPin) o).getIndex();
 	}
 
 	/**
@@ -83,7 +83,7 @@ public class ElaboratedPin extends Node {
 	 * 
 	 * @return the connection assigned to this Pin
 	 */
-	public ElaboratedConnection getAssignment() {
+	public EConnection getAssignment() {
 		return assignment;
 	}
 
@@ -127,7 +127,7 @@ public class ElaboratedPin extends Node {
 		return pinMapping;
 	}
 
-	public ElaboratedPinType getPinType() {
+	public EPinType getPinType() {
 		return pinType;
 	}
 
@@ -156,7 +156,7 @@ public class ElaboratedPin extends Node {
 	 * 
 	 * @param net the new NetNode
 	 */
-	public void setAssignment(ElaboratedConnection assignment) {
+	public void setAssignment(EConnection assignment) {
 		if (assignment != null) {
 			this.assignment = assignment;
 		}
@@ -198,7 +198,7 @@ public class ElaboratedPin extends Node {
 		}
 	}
 
-	public void setPinType(ElaboratedPinType type) {
+	public void setPinType(EPinType type) {
 		this.pinType = type;
 	}
 
