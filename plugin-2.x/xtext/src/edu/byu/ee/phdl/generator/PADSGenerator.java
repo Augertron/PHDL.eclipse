@@ -13,8 +13,6 @@ package edu.byu.ee.phdl.generator;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
-
 import edu.byu.ee.phdl.elaboration.EConnection;
 import edu.byu.ee.phdl.elaboration.EDesign;
 import edu.byu.ee.phdl.elaboration.EInstance;
@@ -28,7 +26,6 @@ import edu.byu.ee.phdl.elaboration.EPin;
  */
 public class PADSGenerator {
 
-	private static final Logger logger = Logger.getLogger(PADSGenerator.class);
 	private final EDesign design;
 	private final Map<String, EInstance> refMap;
 	private String contents;

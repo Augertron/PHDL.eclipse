@@ -14,8 +14,6 @@
 
 package edu.byu.ee.phdl.generator;
 
-import org.apache.log4j.Logger;
-
 import edu.byu.ee.phdl.elaboration.EDesign;
 import edu.byu.ee.phdl.elaboration.EHierarchyUnit;
 import edu.byu.ee.phdl.elaboration.EInstance;
@@ -25,7 +23,6 @@ import edu.byu.ee.phdl.elaboration.ESubInstance;
 public class InfoGenerator {
 
 	private final String info;
-	private static final Logger logger = Logger.getLogger(InfoGenerator.class);
 
 	public InfoGenerator(EDesign design) {
 		StringBuilder sb = new StringBuilder();
@@ -140,7 +137,7 @@ public class InfoGenerator {
 	}
 
 	private StringBuilder wordWrap(String info, StringBuilder sb_tabs) {
-		int length = info.length();
+		// int length = info.length();
 		String[] words = info.split(" ");
 		int char_count_max = 60;
 		int char_count = 0;
