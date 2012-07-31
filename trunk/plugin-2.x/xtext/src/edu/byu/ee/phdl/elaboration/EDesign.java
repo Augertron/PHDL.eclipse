@@ -19,13 +19,13 @@ import java.util.List;
  * @author Brad Riching and Richard Black
  * @version 2.1
  */
-public class ElaboratedDesign extends ElaboratedHierarchyUnit {
+public class EDesign extends EHierarchyUnit {
 
-	public ElaboratedDesign() {
+	public EDesign() {
 		super();
 	}
 
-	public ElaboratedDesign(String name) {
+	public EDesign(String name) {
 		super();
 		this.name = name;
 	}
@@ -37,8 +37,8 @@ public class ElaboratedDesign extends ElaboratedHierarchyUnit {
 	 *         otherwise
 	 */
 	@Override
-	public boolean addConnection(ElaboratedConnection newCon) {
-		if (!connections.contains(newCon) && newCon instanceof edu.byu.ee.phdl.elaboration.ElaboratedNet)
+	public boolean addConnection(EConnection newCon) {
+		if (!connections.contains(newCon) && newCon instanceof edu.byu.ee.phdl.elaboration.ENet)
 			return connections.add(newCon);
 		return false;
 	}
@@ -59,10 +59,10 @@ public class ElaboratedDesign extends ElaboratedHierarchyUnit {
 	}
 
 	@Override
-	public void setConnections(List<ElaboratedConnection> connections) {
-		connections = new ArrayList<ElaboratedConnection>();
-		for (ElaboratedConnection c : connections) {
-			if (c instanceof edu.byu.ee.phdl.elaboration.ElaboratedNet) {
+	public void setConnections(List<EConnection> connections) {
+		connections = new ArrayList<EConnection>();
+		for (EConnection c : connections) {
+			if (c instanceof edu.byu.ee.phdl.elaboration.ENet) {
 				connections.add(c);
 			}
 		}

@@ -17,7 +17,7 @@ package edu.byu.ee.phdl.elaboration;
  * @version 0.1
  * 
  */
-public class ElaboratedAttribute extends Node {
+public class EAttribute extends Node {
 
 	private Attributable parent;
 	private String value = "";;
@@ -31,7 +31,7 @@ public class ElaboratedAttribute extends Node {
 	 * @param parent
 	 *            the parent of the attribute node
 	 */
-	public ElaboratedAttribute(Attributable parent) {
+	public EAttribute(Attributable parent) {
 		this.parent = parent;
 	}
 
@@ -43,7 +43,7 @@ public class ElaboratedAttribute extends Node {
 	 * @param parent
 	 *            the parent of the current node
 	 */
-	public ElaboratedAttribute(Attributable parent, ElaboratedAttribute old) {
+	public EAttribute(Attributable parent, EAttribute old) {
 		super(old);
 		this.parent = parent;
 		this.value = old.value;
@@ -52,7 +52,7 @@ public class ElaboratedAttribute extends Node {
 		setLocation(old.getLine(), old.getPosition(), old.getFileName());
 	}
 
-	public ElaboratedAttribute(Attributable parent, String name, String value) {
+	public EAttribute(Attributable parent, String name, String value) {
 		this.parent = parent;
 		this.name = name.toUpperCase();
 		this.value = value;
@@ -60,7 +60,7 @@ public class ElaboratedAttribute extends Node {
 
 	@Override
 	public boolean equals(Object o) {
-		return this.getName().equals(((ElaboratedAttribute) o).getName());
+		return this.getName().equals(((EAttribute) o).getName());
 	}
 
 	@Override

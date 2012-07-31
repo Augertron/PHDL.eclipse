@@ -1,14 +1,14 @@
 package edu.byu.ee.phdl.elaboration;
 
-public class ElaboratedSubDesign extends ElaboratedDesignUnit {
+public class ESubDesign extends EDesignUnit {
 
 	private String refPrefix;
 
-	public ElaboratedSubDesign() {
+	public ESubDesign() {
 		super();
 	}
 	
-	public ElaboratedSubDesign(String name) {
+	public ESubDesign(String name) {
 		super();
 		this.name = name;
 	}

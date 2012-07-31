@@ -9,13 +9,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import edu.byu.ee.phdl.elaboration.ElaboratedConnection;
-import edu.byu.ee.phdl.elaboration.ElaboratedDesign;
-import edu.byu.ee.phdl.elaboration.ElaboratedHierarchyUnit;
-import edu.byu.ee.phdl.elaboration.ElaboratedInstance;
-import edu.byu.ee.phdl.elaboration.ElaboratedNet;
-import edu.byu.ee.phdl.elaboration.ElaboratedPin;
-import edu.byu.ee.phdl.elaboration.ElaboratedSubInstance;
+import edu.byu.ee.phdl.elaboration.EConnection;
+import edu.byu.ee.phdl.elaboration.EDesign;
+import edu.byu.ee.phdl.elaboration.EHierarchyUnit;
+import edu.byu.ee.phdl.elaboration.EInstance;
+import edu.byu.ee.phdl.elaboration.ENet;
+import edu.byu.ee.phdl.elaboration.EPin;
+import edu.byu.ee.phdl.elaboration.ESubInstance;
 
 public class EagleGenerator {
 
@@ -27,21 +27,21 @@ public class EagleGenerator {
 	private double x;
 	private double y;
 
-	private final ElaboratedDesign design;
-	private final Map<String, ElaboratedInstance> refMap;
-	private final Map<ElaboratedNet, List<ElaboratedPin>> netlist;
+	private final EDesign design;
+	private final Map<String, EInstance> refMap;
+	private final Map<ENet, List<EPin>> netlist;
 	private String contents;
 
-	public EagleGenerator(ElaboratedDesign design, Map<String, ElaboratedInstance> refMap) {
+	public EagleGenerator(EDesign design, Map<String, EInstance> refMap) {
 		this.design = design;
 		this.refMap = refMap;
-		netlist = new TreeMap<ElaboratedNet, List<ElaboratedPin>>();
+		netlist = new TreeMap<ENet, List<EPin>>();
 		generate();
 	}
 
-	private void clear_visited(ElaboratedHierarchyUnit des) {
+	private void clear_visited(EHierarchyUnit des) {
 		des.clearVisited();
-		for (ElaboratedSubInstance s : des.getSubInstances()) {
+		for (ESubInstance s : des.getSubInstances()) {
 			clear_visited(s);
 		}
 	}
@@ -62,7 +62,7 @@ public class EagleGenerator {
 		connections.append("# SIGNALS #\n");
 
 		retrieve_netlist(design);
-		for (ElaboratedNet n : netlist.keySet()) {
+		for (ENet n : netlist.keySet()) {
 			connections.append("SIGNAL '" + n.getHierarchyName().toUpperCase() + "'");
 			connections.append(generate_pin_list(n));
 		}
@@ -73,19 +73,19 @@ public class EagleGenerator {
 		StringBuilder devices = new StringBuilder();
 		devices.append("# PARTS #\n");
 		for (String s : refMap.keySet()) {
-			ElaboratedInstance i = refMap.get(s);
+			EInstance i = refMap.get(s);
 			devices.append("ADD " + i.getFootprint() + "@" + i.getLibrary() + " '" + s + "' (" + getX() + " " + getY()
 				+ ");\n");
 		}
 		return devices.toString();
 	}
 
-	private String generate_pin_list(ElaboratedNet n) {
+	private String generate_pin_list(ENet n) {
 		StringBuilder sb = new StringBuilder();
-		List<ElaboratedPin> pins = netlist.get(n);
+		List<EPin> pins = netlist.get(n);
 
-		for (ElaboratedPin p : netlist.get(n))
-			sb.append(" " + ((ElaboratedInstance) p.getParent()).getRefDes() + " " + p.getPinMapping());
+		for (EPin p : netlist.get(n))
+			sb.append(" " + ((EInstance) p.getParent()).getRefDes() + " " + p.getPinMapping());
 
 		sb.append(";\n");
 		return sb.toString();
@@ -130,24 +130,24 @@ public class EagleGenerator {
 		System.out.println("  -- Generated: " + File.separator + fileName);
 	}
 
-	private void retrieve_netlist(ElaboratedHierarchyUnit des) {
-		for (ElaboratedNet n : des.getNets()) {
-			List<ElaboratedPin> single_netlist = retrieve_pins(n);
+	private void retrieve_netlist(EHierarchyUnit des) {
+		for (ENet n : des.getNets()) {
+			List<EPin> single_netlist = retrieve_pins(n);
 			if (single_netlist != null && !single_netlist.isEmpty()) {
 				netlist.put(n, single_netlist);
 			}
 		}
-		for (ElaboratedSubInstance s : des.getSubInstances()) {
+		for (ESubInstance s : des.getSubInstances()) {
 			retrieve_netlist(s);
 		}
 	}
 
-	private List<ElaboratedPin> retrieve_pins(ElaboratedConnection c) {
-		List<ElaboratedPin> pinlist = new ArrayList<ElaboratedPin>();
+	private List<EPin> retrieve_pins(EConnection c) {
+		List<EPin> pinlist = new ArrayList<EPin>();
 		if (!c.isVisited()) {
 			pinlist.addAll(c.getPins());
 			c.setVisited(true);
-			for (ElaboratedConnection next : c.getConnections()) {
+			for (EConnection next : c.getConnections()) {
 				pinlist.addAll(retrieve_pins(next));
 			}
 		}

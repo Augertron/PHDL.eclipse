@@ -27,34 +27,34 @@ import java.util.Set;
  * @version 0.l
  *
  */
-public class ElaboratedPort extends ElaboratedConnection {
+public class EPort extends EConnection {
 
-	private ElaboratedConnection assignment;
+	private EConnection assignment;
 
-	public ElaboratedPort(ElaboratedDesignUnit design) {
+	public EPort(EDesignUnit design) {
 		super(design);
 	}
 
-	public ElaboratedPort(ElaboratedDesignUnit parent, ElaboratedPort oldPort) {
+	public EPort(EDesignUnit parent, EPort oldPort) {
 		super(parent, oldPort);
 	}
 
-	public ElaboratedPort(ElaboratedDesignUnit design, String name) {
+	public EPort(EDesignUnit design, String name) {
 		super(design, name);
 	}
 
 	@Override
-	public boolean addAttribute(ElaboratedAttribute a) {
+	public boolean addAttribute(EAttribute a) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public ElaboratedAttribute getAttribute(String name) {
+	public EAttribute getAttribute(String name) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public Set<ElaboratedAttribute> getAttributes() {
+	public Set<EAttribute> getAttributes() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -63,7 +63,7 @@ public class ElaboratedPort extends ElaboratedConnection {
 	 * 
 	 * @return the NetNode attached to the Pin
 	 */
-	public ElaboratedConnection getAssignment() {
+	public EConnection getAssignment() {
 		return assignment;
 	}
 
@@ -86,7 +86,7 @@ public class ElaboratedPort extends ElaboratedConnection {
 		return (assignment != null);
 	}
 
-	public void setAssignment(ElaboratedConnection assignment) {
+	public void setAssignment(EConnection assignment) {
 		this.assignment = assignment;
 	}
 }

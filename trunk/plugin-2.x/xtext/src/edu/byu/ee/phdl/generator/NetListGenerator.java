@@ -19,15 +19,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import edu.byu.ee.phdl.elaboration.ElaboratedConnection;
-import edu.byu.ee.phdl.elaboration.ElaboratedDesign;
-import edu.byu.ee.phdl.elaboration.ElaboratedDevice;
-import edu.byu.ee.phdl.elaboration.ElaboratedHierarchyUnit;
-import edu.byu.ee.phdl.elaboration.ElaboratedInstance;
-import edu.byu.ee.phdl.elaboration.ElaboratedNet;
-import edu.byu.ee.phdl.elaboration.ElaboratedPin;
-import edu.byu.ee.phdl.elaboration.ElaboratedPort;
-import edu.byu.ee.phdl.elaboration.ElaboratedSubInstance;
+import edu.byu.ee.phdl.elaboration.EConnection;
+import edu.byu.ee.phdl.elaboration.EDesign;
+import edu.byu.ee.phdl.elaboration.EDevice;
+import edu.byu.ee.phdl.elaboration.EHierarchyUnit;
+import edu.byu.ee.phdl.elaboration.EInstance;
+import edu.byu.ee.phdl.elaboration.ENet;
+import edu.byu.ee.phdl.elaboration.EPin;
+import edu.byu.ee.phdl.elaboration.EPort;
+import edu.byu.ee.phdl.elaboration.ESubInstance;
 
 /**
  * A class that generates a NetList (.asc) for use in PADS.
@@ -37,10 +37,10 @@ import edu.byu.ee.phdl.elaboration.ElaboratedSubInstance;
  */
 public class NetListGenerator {
 
-	private final ElaboratedDesign design;
+	private final EDesign design;
 
-	private final Map<String, ElaboratedInstance> refMap;
-	private final Map<ElaboratedNet, List<ElaboratedPin>> netlist;
+	private final Map<String, EInstance> refMap;
+	private final Map<ENet, List<EPin>> netlist;
 	private String contents;
 
 	/**
@@ -51,13 +51,13 @@ public class NetListGenerator {
 	 * @param design the DesignNode where all the net information is stored.
 	 * @param refMap the map of Reference Designators needed to generated the NetList.
 	 * 
-	 * @see ElaboratedDesign
+	 * @see EDesign
 	 * @see RefDesGenerator
 	 */
-	public NetListGenerator(ElaboratedDesign design, Map<String, ElaboratedInstance> refMap) {
+	public NetListGenerator(EDesign design, Map<String, EInstance> refMap) {
 		this.design = design;
 		this.refMap = refMap;
-		netlist = new TreeMap<ElaboratedNet, List<ElaboratedPin>>();
+		netlist = new TreeMap<ENet, List<EPin>>();
 		generate();
 	}
 
@@ -69,9 +69,9 @@ public class NetListGenerator {
 	 * 
 	 * @param des The ElaboratedHierarchyUnit whose Nets will be set to unvisited.
 	 */
-	private void clear_visited(ElaboratedHierarchyUnit des) {
+	private void clear_visited(EHierarchyUnit des) {
 		des.clearVisited();
-		for (ElaboratedSubInstance s : des.getSubInstances()) {
+		for (ESubInstance s : des.getSubInstances()) {
 			clear_visited(s);
 		}
 	}
@@ -106,7 +106,7 @@ public class NetListGenerator {
 		connections.append("*CONNECTION*\n");
 
 		retrieve_netlist(design);
-		for (ElaboratedNet n : netlist.keySet()) {
+		for (ENet n : netlist.keySet()) {
 			connections.append(generate_net_header(n));
 			connections.append(generate_pin_list(n));
 		}
@@ -134,7 +134,7 @@ public class NetListGenerator {
 	 * @param n the net whose header is to be generatedd
 	 * @return a string representation of the header
 	 */
-	private String generate_net_header(ElaboratedNet n) {
+	private String generate_net_header(ENet n) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("*SIGNAL* " + n.getHierarchyName().toUpperCase());
 		sb.append("\n");
@@ -152,7 +152,7 @@ public class NetListGenerator {
 		StringBuilder devices = new StringBuilder();
 		devices.append("*PART*\n");
 		for (String s : refMap.keySet()) {
-			ElaboratedInstance i = refMap.get(s);
+			EInstance i = refMap.get(s);
 			devices.append(s + " ");
 			devices.append(i.getLibrary());
 			devices.append("@" + i.getFootprint() + "\n");
@@ -168,16 +168,16 @@ public class NetListGenerator {
 	 * @param n the net whose pins will be in the list
 	 * @return a string representation of the pin list
 	 */
-	private String generate_pin_list(ElaboratedNet n) {
+	private String generate_pin_list(ENet n) {
 		StringBuilder sb = new StringBuilder();
-		List<ElaboratedPin> pins = netlist.get(n);
+		List<EPin> pins = netlist.get(n);
 		if (pins != null) {
 			for (int i = 0; i < pins.size() - 1; i++) {
-				ElaboratedPin pin1 = pins.get(i);
-				ElaboratedPin pin2 = pins.get(i + 1);
+				EPin pin1 = pins.get(i);
+				EPin pin2 = pins.get(i + 1);
 
-				String ref1 = ((ElaboratedInstance) pin1.getParent()).getRefDes();
-				String ref2 = ((ElaboratedInstance) pin2.getParent()).getRefDes();
+				String ref1 = ((EInstance) pin1.getParent()).getRefDes();
+				String ref2 = ((EInstance) pin2.getParent()).getRefDes();
 
 				sb.append(" " + ref1 + "." + pin1.getPinMapping());
 				sb.append(" " + ref2 + "." + pin2.getPinMapping());
@@ -221,14 +221,14 @@ public class NetListGenerator {
 	 * 
 	 * @param des The ElaboratedHierarchyUnit in which to search for nets and pins
 	 */
-	private void retrieve_netlist(ElaboratedHierarchyUnit des) {
-		for (ElaboratedNet n : des.getNets()) {
-			List<ElaboratedPin> single_netlist = retrieve_pins(n);
+	private void retrieve_netlist(EHierarchyUnit des) {
+		for (ENet n : des.getNets()) {
+			List<EPin> single_netlist = retrieve_pins(n);
 			if (single_netlist != null && !single_netlist.isEmpty()) {
 				netlist.put(n, single_netlist);
 			}
 		}
-		for (ElaboratedSubInstance s : des.getSubInstances()) {
+		for (ESubInstance s : des.getSubInstances()) {
 			retrieve_netlist(s);
 		}
 	}
@@ -241,12 +241,12 @@ public class NetListGenerator {
 	 * @param c The ElaboratedConnection whose pins are to be collected
 	 * @return A list of all the pins found on the connection
 	 */
-	private List<ElaboratedPin> retrieve_pins(ElaboratedConnection c) {
-		List<ElaboratedPin> pinlist = new ArrayList<ElaboratedPin>();
+	private List<EPin> retrieve_pins(EConnection c) {
+		List<EPin> pinlist = new ArrayList<EPin>();
 		if (!c.isVisited()) {
 			pinlist.addAll(c.getPins());
 			c.setVisited(true);
-			for (ElaboratedConnection next : c.getConnections()) {
+			for (EConnection next : c.getConnections()) {
 				pinlist.addAll(retrieve_pins(next));
 			}
 		}
@@ -267,17 +267,17 @@ public class NetListGenerator {
 		 * Test 1 No Hierarchy and no arrayed instances/nets/pins
 		 */
 		{
-			ElaboratedDesign design = new ElaboratedDesign("test1");
+			EDesign design = new EDesign("test1");
 			{
-				ElaboratedInstance inst1 = new ElaboratedInstance(design);
+				EInstance inst1 = new EInstance(design);
 				{
-					ElaboratedDevice dev1 = new ElaboratedDevice("Device1");
+					EDevice dev1 = new EDevice("Device1");
 					inst1.setDevice(dev1);
 					inst1.setRefDes("A1");
 					inst1.setName("Inst1");
 					inst1.setFootprint("package1");
 					inst1.setLibrary("library1");
-					ElaboratedPin pin = new ElaboratedPin(inst1);
+					EPin pin = new EPin(inst1);
 					{
 						pin.setName("Pin1");
 						pin.setPinMapping("1");
@@ -286,15 +286,15 @@ public class NetListGenerator {
 				}
 				design.addInstance(inst1);
 
-				ElaboratedInstance inst2 = new ElaboratedInstance(design);
+				EInstance inst2 = new EInstance(design);
 				{
-					ElaboratedDevice dev2 = new ElaboratedDevice("Device2");
+					EDevice dev2 = new EDevice("Device2");
 					inst2.setDevice(dev2);
 					inst2.setRefDes("B1");
 					inst2.setName("Inst2");
 					inst2.setFootprint("package2");
 					inst2.setLibrary("library2");
-					ElaboratedPin pin = new ElaboratedPin(inst2);
+					EPin pin = new EPin(inst2);
 					{
 						pin.setName("Pin2");
 						pin.setPinMapping("2");
@@ -303,7 +303,7 @@ public class NetListGenerator {
 				}
 				design.addInstance(inst2);
 
-				ElaboratedNet net1 = new ElaboratedNet(design);
+				ENet net1 = new ENet(design);
 				{
 					net1.setName("Net1");
 					net1.addPin(inst1.getPin("Pin1"));
@@ -319,25 +319,25 @@ public class NetListGenerator {
 		 * Test 2 No hierarchy, with arrayed instances/pins/nets
 		 */
 		{
-			ElaboratedDesign design = new ElaboratedDesign("test2");
+			EDesign design = new EDesign("test2");
 			{
-				ElaboratedInstance inst1 = new ElaboratedInstance(design);
+				EInstance inst1 = new EInstance(design);
 				{
-					ElaboratedDevice dev = new ElaboratedDevice("Device1");
+					EDevice dev = new EDevice("Device1");
 					inst1.setDevice(dev);
 					inst1.setRefDes("A1");
 					inst1.setName("Inst1");
 					inst1.setFootprint("package1");
 					inst1.setLibrary("library1");
 
-					ElaboratedPin a = new ElaboratedPin(inst1);
+					EPin a = new EPin(inst1);
 					{
 						a.setName("a");
 						a.setPinMapping("1");
 					}
 					inst1.addPin(a);
 
-					ElaboratedPin d = new ElaboratedPin(inst1);
+					EPin d = new EPin(inst1);
 					{
 						d.setName("d");
 						d.setPinMapping("2");
@@ -346,25 +346,25 @@ public class NetListGenerator {
 				}
 				design.addInstance(inst1);
 
-				ElaboratedInstance inst2 = new ElaboratedInstance(design);
+				EInstance inst2 = new EInstance(design);
 				{
-					ElaboratedDevice dev = new ElaboratedDevice("Device2");
+					EDevice dev = new EDevice("Device2");
 					inst2.setDevice(dev);
 					inst2.setRefDes("B1");
 					inst2.setName("Inst2");
 					inst2.setFootprint("package2");
 					inst2.setLibrary("library2");
 
-					ElaboratedPin b = new ElaboratedPin(inst2);
+					EPin b = new EPin(inst2);
 					{
 						b.setName("b");
 						b.setPinMapping("2");
 					}
 					inst2.addPin(b);
 
-					ElaboratedPin[] e = new ElaboratedPin[2];
+					EPin[] e = new EPin[2];
 					for (int i = 0; i < 2; i++) {
-						e[i] = new ElaboratedPin(inst2);
+						e[i] = new EPin(inst2);
 						{
 							e[i].setName("e");
 							e[i].setIndex(i + 1);
@@ -377,11 +377,11 @@ public class NetListGenerator {
 				}
 				design.addInstance(inst2);
 
-				ElaboratedInstance[] inst3 = new ElaboratedInstance[2];
-				ElaboratedPin[][] c = new ElaboratedPin[2][3];
-				ElaboratedDevice dev = new ElaboratedDevice("Device3");
+				EInstance[] inst3 = new EInstance[2];
+				EPin[][] c = new EPin[2][3];
+				EDevice dev = new EDevice("Device3");
 				for (int i = 0; i < 2; i++) {
-					inst3[i] = new ElaboratedInstance(design);
+					inst3[i] = new EInstance(design);
 					{
 						inst3[i].setName("inst3");
 						inst3[i].setIndex(i + 1);
@@ -392,7 +392,7 @@ public class NetListGenerator {
 					}
 
 					for (int j = 0; j < 3; j++) {
-						c[i][j] = new ElaboratedPin(inst3[i]);
+						c[i][j] = new EPin(inst3[i]);
 						c[i][j].setName("c");
 						c[i][j].setIndex(j + 1);
 					}
@@ -407,7 +407,7 @@ public class NetListGenerator {
 				design.addInstance(inst3[0]);
 				design.addInstance(inst3[1]);
 
-				ElaboratedNet net2 = new ElaboratedNet(design);
+				ENet net2 = new ENet(design);
 				{
 					net2.setName("Net2");
 					net2.addPin(inst1.getPin("d"));
@@ -417,10 +417,10 @@ public class NetListGenerator {
 				}
 				design.addConnection(net2);
 
-				ElaboratedNet[] net1 = new ElaboratedNet[3];
+				ENet[] net1 = new ENet[3];
 				{
 					for (int i = 0; i < 3; i++) {
-						net1[i] = new ElaboratedNet(design);
+						net1[i] = new ENet(design);
 						{
 							net1[i].setName("Net1");
 							net1[i].setIndex(3 - i);
@@ -449,25 +449,25 @@ public class NetListGenerator {
 		 * Test 3 No hierarchy, with arrayed instances/pins/nets Intermittent nets
 		 */
 		{
-			ElaboratedDesign design = new ElaboratedDesign("test3");
+			EDesign design = new EDesign("test3");
 			{
-				ElaboratedInstance inst1 = new ElaboratedInstance(design);
+				EInstance inst1 = new EInstance(design);
 				{
-					ElaboratedDevice dev = new ElaboratedDevice("Device1");
+					EDevice dev = new EDevice("Device1");
 					inst1.setDevice(dev);
 					inst1.setRefDes("A1");
 					inst1.setName("Inst1");
 					inst1.setLibrary("library1");
 					inst1.setFootprint("package1");
 
-					ElaboratedPin a = new ElaboratedPin(inst1);
+					EPin a = new EPin(inst1);
 					{
 						a.setName("a");
 						a.setPinMapping("1");
 					}
 					inst1.addPin(a);
 
-					ElaboratedPin d = new ElaboratedPin(inst1);
+					EPin d = new EPin(inst1);
 					{
 						d.setName("d");
 						d.setPinMapping("2");
@@ -476,25 +476,25 @@ public class NetListGenerator {
 				}
 				design.addInstance(inst1);
 
-				ElaboratedInstance inst2 = new ElaboratedInstance(design);
+				EInstance inst2 = new EInstance(design);
 				{
-					ElaboratedDevice dev = new ElaboratedDevice("Device2");
+					EDevice dev = new EDevice("Device2");
 					inst2.setDevice(dev);
 					inst2.setRefDes("B1");
 					inst2.setName("Inst2");
 					inst2.setFootprint("package2");
 					inst2.setLibrary("library2");
 
-					ElaboratedPin b = new ElaboratedPin(inst2);
+					EPin b = new EPin(inst2);
 					{
 						b.setName("b");
 						b.setPinMapping("2");
 					}
 					inst2.addPin(b);
 
-					ElaboratedPin[] e = new ElaboratedPin[2];
+					EPin[] e = new EPin[2];
 					for (int i = 0; i < 2; i++) {
-						e[i] = new ElaboratedPin(inst2);
+						e[i] = new EPin(inst2);
 						{
 							e[i].setName("e");
 							e[i].setIndex(i + 1);
@@ -507,11 +507,11 @@ public class NetListGenerator {
 				}
 				design.addInstance(inst2);
 
-				ElaboratedInstance[] inst3 = new ElaboratedInstance[2];
-				ElaboratedPin[][] c = new ElaboratedPin[2][3];
-				ElaboratedDevice dev = new ElaboratedDevice("Device3");
+				EInstance[] inst3 = new EInstance[2];
+				EPin[][] c = new EPin[2][3];
+				EDevice dev = new EDevice("Device3");
 				for (int i = 0; i < 2; i++) {
-					inst3[i] = new ElaboratedInstance(design);
+					inst3[i] = new EInstance(design);
 					{
 						inst3[i].setName("inst3");
 						inst3[i].setIndex(i + 1);
@@ -522,7 +522,7 @@ public class NetListGenerator {
 					}
 
 					for (int j = 0; j < 3; j++) {
-						c[i][j] = new ElaboratedPin(inst3[i]);
+						c[i][j] = new EPin(inst3[i]);
 						c[i][j].setName("c");
 						c[i][j].setIndex(j + 1);
 					}
@@ -537,7 +537,7 @@ public class NetListGenerator {
 				design.addInstance(inst3[0]);
 				design.addInstance(inst3[1]);
 
-				ElaboratedNet net2 = new ElaboratedNet(design);
+				ENet net2 = new ENet(design);
 				{
 					net2.setName("Net2");
 					net2.addPin(inst1.getPin("d"));
@@ -546,22 +546,22 @@ public class NetListGenerator {
 					net2.addPin(inst3[0].getPin("c", 3));
 				}
 
-				ElaboratedNet net3 = new ElaboratedNet(design);
+				ENet net3 = new ENet(design);
 				{
 					net3.setName("Net3");
 					net3.addPin(inst2.getPin("e", 2));
 				}
 
-				ElaboratedNet net4 = new ElaboratedNet(design);
+				ENet net4 = new ENet(design);
 				{
 					net4.setName("Net4");
 					net4.addPin(inst3[1].getPin("c", 2));
 				}
 
-				ElaboratedNet[] net1 = new ElaboratedNet[3];
+				ENet[] net1 = new ENet[3];
 				{
 					for (int i = 0; i < 3; i++) {
-						net1[i] = new ElaboratedNet(design);
+						net1[i] = new ENet(design);
 						{
 							net1[i].setName("Net1");
 							net1[i].setIndex(3 - i);
@@ -598,26 +598,26 @@ public class NetListGenerator {
 		 * Test 4 Netlist with single layer of hierarchy
 		 */
 		{
-			ElaboratedDesign design = new ElaboratedDesign("test4");
-			ElaboratedSubInstance subinst1 = new ElaboratedSubInstance(design, "SubInst1");
+			EDesign design = new EDesign("test4");
+			ESubInstance subinst1 = new ESubInstance(design, "SubInst1");
 			{
-				ElaboratedInstance inst1 = new ElaboratedInstance(subinst1);
+				EInstance inst1 = new EInstance(subinst1);
 				{
-					ElaboratedDevice dev = new ElaboratedDevice("dev3");
+					EDevice dev = new EDevice("dev3");
 					inst1.setDevice(dev);
 					inst1.setName("SubInst1.Inst1");
 					inst1.setRefDes("C1");
 					inst1.setFootprint("pkg3");
 					inst1.setLibrary("lib3");
 
-					ElaboratedPin f = new ElaboratedPin(inst1);
+					EPin f = new EPin(inst1);
 					{
 						f.setName("f");
 						f.setPinMapping("1");
 					}
 					inst1.addPin(f);
 
-					ElaboratedPin g = new ElaboratedPin(inst1);
+					EPin g = new EPin(inst1);
 					{
 						g.setName("g");
 						g.setPinMapping("2");
@@ -626,13 +626,13 @@ public class NetListGenerator {
 				}
 				subinst1.addInstance(inst1);
 
-				ElaboratedInstance[] inst2 = new ElaboratedInstance[3];
-				ElaboratedPin[][] e = new ElaboratedPin[3][2];
+				EInstance[] inst2 = new EInstance[3];
+				EPin[][] e = new EPin[3][2];
 				{
 					for (int i = 0; i < 3; i++) {
-						inst2[i] = new ElaboratedInstance(subinst1);
+						inst2[i] = new EInstance(subinst1);
 						{
-							ElaboratedDevice dev = new ElaboratedDevice("dev4");
+							EDevice dev = new EDevice("dev4");
 							inst2[i].setDevice(dev);
 							inst2[i].setName("SubInst1.Inst2");
 							inst2[i].setIndex(3 - i);
@@ -641,7 +641,7 @@ public class NetListGenerator {
 							inst2[i].setRefDes("D" + (3 - i));
 						}
 						for (int j = 0; j < 2; j++) {
-							e[i][j] = new ElaboratedPin(inst2[i]);
+							e[i][j] = new EPin(inst2[i]);
 							{
 								e[i][j].setName("e");
 								e[i][j].setIndex(j + 1);
@@ -653,33 +653,33 @@ public class NetListGenerator {
 					}
 				}
 
-				ElaboratedPort[] p1 = new ElaboratedPort[3];
+				EPort[] p1 = new EPort[3];
 				{
 					for (int i = 0; i < 3; i++) {
-						p1[i] = new ElaboratedPort(subinst1);
+						p1[i] = new EPort(subinst1);
 						p1[i].setName("p1");
 						p1[i].setIndex(i + 1);
 					}
 				}
 
-				ElaboratedPort p2 = new ElaboratedPort(subinst1);
+				EPort p2 = new EPort(subinst1);
 				{
 					p2.setName("p2");
 				}
 
-				ElaboratedPort p3 = new ElaboratedPort(subinst1);
+				EPort p3 = new EPort(subinst1);
 				{
 					p3.setName("p3");
 				}
 
-				ElaboratedNet net1 = new ElaboratedNet(subinst1);
+				ENet net1 = new ENet(subinst1);
 				{
 					net1.setName("net1");
 					net1.addPin(inst1.getPin("g"));
 					net1.addPin(inst2[0].getPin("e", 1));
 				}
 
-				ElaboratedNet net2 = new ElaboratedNet(subinst1);
+				ENet net2 = new ENet(subinst1);
 				{
 					net2.setName("net2");
 					net2.addPin(inst2[1].getPin("e", 2));
@@ -707,13 +707,13 @@ public class NetListGenerator {
 			{
 				design.addSubInst(subinst1);
 
-				ElaboratedInstance[] inst1 = new ElaboratedInstance[4];
-				ElaboratedPin[][] a = new ElaboratedPin[4][2];
+				EInstance[] inst1 = new EInstance[4];
+				EPin[][] a = new EPin[4][2];
 				{
 					for (int i = 0; i < 4; i++) {
-						inst1[i] = new ElaboratedInstance(design);
+						inst1[i] = new EInstance(design);
 						{
-							ElaboratedDevice dev = new ElaboratedDevice("dev1");
+							EDevice dev = new EDevice("dev1");
 							inst1[i].setName("Inst1");
 							inst1[i].setIndex(i + 1);
 							inst1[i].setRefDes("A" + (i + 1));
@@ -722,7 +722,7 @@ public class NetListGenerator {
 							inst1[i].setLibrary("lib1");
 
 							for (int j = 0; j < 2; j++) {
-								a[i][j] = new ElaboratedPin(inst1[i]);
+								a[i][j] = new EPin(inst1[i]);
 								{
 									a[i][j].setName("a");
 									a[i][j].setIndex(j + 1);
@@ -731,7 +731,7 @@ public class NetListGenerator {
 								inst1[i].addPin(a[i][j]);
 							}
 
-							ElaboratedPin b = new ElaboratedPin(inst1[i]);
+							EPin b = new EPin(inst1[i]);
 							{
 								b.setName("b");
 								b.setPinMapping("3");
@@ -742,25 +742,25 @@ public class NetListGenerator {
 					}
 				}
 
-				ElaboratedInstance inst2 = new ElaboratedInstance(design);
+				EInstance inst2 = new EInstance(design);
 				{
-					ElaboratedDevice dev = new ElaboratedDevice("dev2");
+					EDevice dev = new EDevice("dev2");
 					inst2.setName("Inst2");
 					inst2.setRefDes("B1");
 					inst2.setFootprint("pkg2");
 					inst2.setLibrary("lib2");
 					inst2.setDevice(dev);
 
-					ElaboratedPin c = new ElaboratedPin(inst2);
+					EPin c = new EPin(inst2);
 					{
 						c.setName("c");
 						c.setPinMapping("1");
 					}
 					inst2.addPin(c);
 
-					ElaboratedPin[] d = new ElaboratedPin[2];
+					EPin[] d = new EPin[2];
 					for (int i = 0; i < 2; i++) {
-						d[i] = new ElaboratedPin(inst2);
+						d[i] = new EPin(inst2);
 						{
 							d[i].setName("d");
 							d[i].setIndex(2 - i);
@@ -771,7 +771,7 @@ public class NetListGenerator {
 				}
 				design.addInstance(inst2);
 
-				ElaboratedNet net1 = new ElaboratedNet(design);
+				ENet net1 = new ENet(design);
 				{
 					net1.setName("net1");
 					net1.addPin(inst1[3].getPin("b"));
@@ -782,9 +782,9 @@ public class NetListGenerator {
 				}
 				design.addConnection(net1);
 
-				ElaboratedNet[] net2 = new ElaboratedNet[2];
+				ENet[] net2 = new ENet[2];
 				for (int i = 0; i < 2; i++) {
-					net2[i] = new ElaboratedNet(design);
+					net2[i] = new ENet(design);
 					{
 						net2[i].setName("net2");
 						net2[i].setIndex(i + 1);
@@ -798,7 +798,7 @@ public class NetListGenerator {
 				design.addConnection(net2[0]);
 				design.addConnection(net2[1]);
 
-				ElaboratedNet net3 = new ElaboratedNet(design);
+				ENet net3 = new ENet(design);
 				{
 					net3.setName("net3");
 					net3.addPin(inst1[0].getPin("a", 2));
@@ -809,7 +809,7 @@ public class NetListGenerator {
 				}
 				design.addConnection(net3);
 
-				ElaboratedNet net4 = new ElaboratedNet(design);
+				ENet net4 = new ENet(design);
 				{
 					net4.setName("net4");
 					net4.addPin(inst1[0].getPin("a", 1));
@@ -830,24 +830,24 @@ public class NetListGenerator {
 		 * Test 5 Netlist with two layers of hierarchy
 		 */
 		{
-			ElaboratedDesign design = new ElaboratedDesign("test5");
+			EDesign design = new EDesign("test5");
 			{
-				ElaboratedInstance inst4 = new ElaboratedInstance(design);
+				EInstance inst4 = new EInstance(design);
 				{
-					inst4.setDevice(new ElaboratedDevice("dev4"));
+					inst4.setDevice(new EDevice("dev4"));
 					inst4.setRefDes("C1");
 					inst4.setName("inst4");
 					inst4.setFootprint("package4");
 					inst4.setLibrary("library4");
 
-					ElaboratedPin g = new ElaboratedPin(inst4);
+					EPin g = new EPin(inst4);
 					{
 						g.setName("g");
 						g.setPinMapping("1");
 					}
 					inst4.addPin(g);
 
-					ElaboratedPin h = new ElaboratedPin(inst4);
+					EPin h = new EPin(inst4);
 					{
 						h.setName("h");
 						h.setPinMapping("2");
@@ -855,28 +855,28 @@ public class NetListGenerator {
 					inst4.addPin(h);
 				}
 
-				ElaboratedSubInstance[] subInst2 = new ElaboratedSubInstance[2];
+				ESubInstance[] subInst2 = new ESubInstance[2];
 				for (int i = 0; i < 2; i++) {
-					subInst2[i] = new ElaboratedSubInstance(design, "SubInst2(" + i + ")");
+					subInst2[i] = new ESubInstance(design, "SubInst2(" + i + ")");
 					{
 						subInst2[i].setIndex(i);
 						subInst2[i].setRefPrefix("Z");
-						ElaboratedInstance inst3 = new ElaboratedInstance(design);
+						EInstance inst3 = new EInstance(design);
 						{
-							inst3.setDevice(new ElaboratedDevice("dev3"));
+							inst3.setDevice(new EDevice("dev3"));
 							inst3.setRefDes("B1");
 							inst3.setName("subInst2.inst3");
 							inst3.setFootprint("package1_1");
 							inst3.setLibrary("library1_1");
 
-							ElaboratedPin e = new ElaboratedPin(inst3);
+							EPin e = new EPin(inst3);
 							{
 								e.setName("e");
 								e.setPinMapping("1");
 							}
 							inst3.addPin(e);
 
-							ElaboratedPin f = new ElaboratedPin(inst3);
+							EPin f = new EPin(inst3);
 							{
 								f.setName("f");
 								f.setPinMapping("2");
@@ -884,26 +884,26 @@ public class NetListGenerator {
 							inst3.addPin(f);
 						}
 
-						ElaboratedSubInstance subInst1 = new ElaboratedSubInstance(subInst2[i], "SubInst2(" + i
+						ESubInstance subInst1 = new ESubInstance(subInst2[i], "SubInst2(" + i
 							+ ")_SubInst1");
 						{
 							subInst1.setRefPrefix("Y");
-							ElaboratedInstance inst1 = new ElaboratedInstance(subInst1);
+							EInstance inst1 = new EInstance(subInst1);
 							{
-								inst1.setDevice(new ElaboratedDevice("dev1"));
+								inst1.setDevice(new EDevice("dev1"));
 								inst1.setRefDes("A1");
 								inst1.setName("subInst11.inst1");
 								inst1.setFootprint("package11_1");
 								inst1.setLibrary("library11_1");
 
-								ElaboratedPin a = new ElaboratedPin(inst1);
+								EPin a = new EPin(inst1);
 								{
 									a.setName("a");
 									a.setPinMapping("1");
 								}
 								inst1.addPin(a);
 
-								ElaboratedPin b = new ElaboratedPin(inst1);
+								EPin b = new EPin(inst1);
 								{
 									b.setName("b");
 									b.setPinMapping("2");
@@ -911,22 +911,22 @@ public class NetListGenerator {
 								inst1.addPin(b);
 							}
 
-							ElaboratedInstance inst2 = new ElaboratedInstance(subInst1);
+							EInstance inst2 = new EInstance(subInst1);
 							{
-								inst2.setDevice(new ElaboratedDevice("dev2"));
+								inst2.setDevice(new EDevice("dev2"));
 								inst2.setRefDes("A2");
 								inst2.setName("subInst11.inst2");
 								inst2.setFootprint("package11_2");
 								inst2.setLibrary("library11_2");
 
-								ElaboratedPin c = new ElaboratedPin(inst2);
+								EPin c = new EPin(inst2);
 								{
 									c.setName("c");
 									c.setPinMapping("1");
 								}
 								inst2.addPin(c);
 
-								ElaboratedPin d = new ElaboratedPin(inst2);
+								EPin d = new EPin(inst2);
 								{
 									d.setName("d");
 									d.setPinMapping("2");
@@ -934,21 +934,21 @@ public class NetListGenerator {
 								inst2.addPin(d);
 							}
 
-							ElaboratedPort pa = new ElaboratedPort(subInst1);
+							EPort pa = new EPort(subInst1);
 							{
 								pa.setName("pa");
 								pa.addPin(inst1.getPin("b"));
 							}
 							subInst1.addConnection(pa);
 
-							ElaboratedPort pb = new ElaboratedPort(subInst1);
+							EPort pb = new EPort(subInst1);
 							{
 								pb.setName("pb");
 								pb.addPin(inst2.getPin("d"));
 							}
 							subInst1.addConnection(pb);
 
-							ElaboratedNet net1 = new ElaboratedNet(subInst1);
+							ENet net1 = new ENet(subInst1);
 							{
 								net1.setName("net1");
 								net1.addPin(inst1.getPin("a"));
@@ -960,7 +960,7 @@ public class NetListGenerator {
 							subInst1.addInstance(inst2);
 						}
 
-						ElaboratedPort pc = new ElaboratedPort(subInst2[i]);
+						EPort pc = new EPort(subInst2[i]);
 						{
 							pc.setName("pc");
 							pc.addPin(inst3.getPin("e"));
@@ -968,14 +968,14 @@ public class NetListGenerator {
 						subInst2[i].addConnection(pc);
 						// System.out.println(pc);
 
-						ElaboratedPort pd = new ElaboratedPort(subInst2[i]);
+						EPort pd = new EPort(subInst2[i]);
 						{
 							pd.setName("pd");
 							pd.addConnection(subInst1.getPort("pb", -1));
 						}
 						subInst2[i].addConnection(pd);
 
-						ElaboratedNet net1 = new ElaboratedNet(subInst2[i]);
+						ENet net1 = new ENet(subInst2[i]);
 						{
 							net1.setName("net1");
 							net1.addPin(inst3.getPin("f"));
@@ -988,7 +988,7 @@ public class NetListGenerator {
 					}
 				}
 
-				ElaboratedNet net1 = new ElaboratedNet(design);
+				ENet net1 = new ENet(design);
 				{
 					net1.setName("net1");
 					net1.addPin(inst4.getPin("g"));
@@ -1003,7 +1003,7 @@ public class NetListGenerator {
 				subInst2[0].getPort("pc", -1).addConnection(net1);
 				subInst2[1].getPort("pc", -1).addConnection(net1);
 
-				ElaboratedNet net2 = new ElaboratedNet(design);
+				ENet net2 = new ENet(design);
 				{
 					net2.setName("net2");
 					net2.addPin(inst4.getPin("h"));

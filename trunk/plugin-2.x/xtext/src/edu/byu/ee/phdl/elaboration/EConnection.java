@@ -5,35 +5,35 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-public abstract class ElaboratedConnection extends Attributable {
+public abstract class EConnection extends Attributable {
 
-	private final Set<ElaboratedConnection> cons;
+	private final Set<EConnection> cons;
 	private int index;
-	private ElaboratedDesignUnit parent;
-	private final List<ElaboratedPin> pins;
+	private EDesignUnit parent;
+	private final List<EPin> pins;
 	private boolean visited;
 
-	public ElaboratedConnection(ElaboratedDesignUnit parent) {
+	public EConnection(EDesignUnit parent) {
 		super();
-		pins = new ArrayList<ElaboratedPin>();
-		cons = new TreeSet<ElaboratedConnection>();
+		pins = new ArrayList<EPin>();
+		cons = new TreeSet<EConnection>();
 		this.parent = parent;
 		this.index = -1;
 	}
 
-	public ElaboratedConnection(ElaboratedDesignUnit parent, ElaboratedConnection old) {
+	public EConnection(EDesignUnit parent, EConnection old) {
 		super(old);
-		pins = new ArrayList<ElaboratedPin>();
-		cons = new TreeSet<ElaboratedConnection>();
+		pins = new ArrayList<EPin>();
+		cons = new TreeSet<EConnection>();
 		this.index = old.getIndex();
 		this.parent = parent;
 		setName(old.getName());
 	}
 
-	public ElaboratedConnection(ElaboratedDesignUnit parent, String name) {
+	public EConnection(EDesignUnit parent, String name) {
 		super();
-		pins = new ArrayList<ElaboratedPin>();
-		cons = new TreeSet<ElaboratedConnection>();
+		pins = new ArrayList<EPin>();
+		cons = new TreeSet<EConnection>();
 		this.index = -1;
 		this.parent = parent;
 		setName(name);
@@ -45,7 +45,7 @@ public abstract class ElaboratedConnection extends Attributable {
 	 * @param n the new NetNode to add
 	 * @return true, if the NetNode isn't already connected, false otherwise
 	 */
-	public boolean addConnection(ElaboratedConnection c) {
+	public boolean addConnection(EConnection c) {
 		if (c != null)
 			return cons.add(c);
 		return false;
@@ -57,7 +57,7 @@ public abstract class ElaboratedConnection extends Attributable {
 	 * @param p the new PinNode
 	 * @return true, if the pin wasn't in the List false, otherwise
 	 */
-	public boolean addPin(ElaboratedPin p) {
+	public boolean addPin(EPin p) {
 		if (p != null)
 			return (!pins.add(p));
 		return false;
@@ -65,7 +65,7 @@ public abstract class ElaboratedConnection extends Attributable {
 
 	@Override
 	public int compareTo(Object o) {
-		ElaboratedConnection c = (ElaboratedConnection) o;
+		EConnection c = (EConnection) o;
 		int result = -1;
 		if (this.equals(c)) {
 			result = 0;
@@ -77,21 +77,21 @@ public abstract class ElaboratedConnection extends Attributable {
 
 	@Override
 	public boolean equals(Object o) {
-		boolean result = this.getName().equals(((ElaboratedConnection) o).getName())
-			&& this.getIndex() == ((ElaboratedConnection) o).getIndex();
+		boolean result = this.getName().equals(((EConnection) o).getName())
+			&& this.getIndex() == ((EConnection) o).getIndex();
 
-		if (this.getParent() instanceof ElaboratedSubInstance && ((ElaboratedConnection) o).getParent() instanceof ElaboratedSubInstance) {
-			result &= ((ElaboratedSubInstance) this.getParent()).equals(((ElaboratedConnection) o).getParent());
-		} else if (this.getParent() instanceof ElaboratedSubInstance || ((ElaboratedConnection) o).getParent() instanceof ElaboratedSubInstance) {
+		if (this.getParent() instanceof ESubInstance && ((EConnection) o).getParent() instanceof ESubInstance) {
+			result &= ((ESubInstance) this.getParent()).equals(((EConnection) o).getParent());
+		} else if (this.getParent() instanceof ESubInstance || ((EConnection) o).getParent() instanceof ESubInstance) {
 			result &= false;
 		} else {
-			result &= this.getParent().equals(((ElaboratedConnection) o).getParent());
+			result &= this.getParent().equals(((EConnection) o).getParent());
 		}
 		return result;
 	}
 
-	public ElaboratedConnection getConnectionByName(String name) {
-		for (ElaboratedConnection c : cons) {
+	public EConnection getConnectionByName(String name) {
+		for (EConnection c : cons) {
 			if (c.getName().equals(name)) {
 				return c;
 			}
@@ -106,13 +106,13 @@ public abstract class ElaboratedConnection extends Attributable {
 	 * 
 	 * @return the set of NetNodes attached to this net
 	 */
-	public Set<ElaboratedConnection> getConnections() {
+	public Set<EConnection> getConnections() {
 		return cons;
 	}
 
 	public String getHierarchyName() {
-		if (parent instanceof ElaboratedSubInstance) {
-			return ((ElaboratedSubInstance) parent).getHierarchyName() + "$" + this.getNameIndex();
+		if (parent instanceof ESubInstance) {
+			return ((ESubInstance) parent).getHierarchyName() + "$" + this.getNameIndex();
 		} else {
 			return this.getNameIndex();
 		}
@@ -136,7 +136,7 @@ public abstract class ElaboratedConnection extends Attributable {
 	 * 
 	 * @return the NetNode's parent DesignNode
 	 */
-	public ElaboratedDesignUnit getParent() {
+	public EDesignUnit getParent() {
 		return parent;
 	}
 
@@ -147,7 +147,7 @@ public abstract class ElaboratedConnection extends Attributable {
 	 * 
 	 * @return the set of PinNodes attached to this net
 	 */
-	public List<ElaboratedPin> getPins() {
+	public List<EPin> getPins() {
 		return pins;
 	}
 
@@ -159,9 +159,9 @@ public abstract class ElaboratedConnection extends Attributable {
 	 * 
 	 * @return the first NetNode that is unvisited, null if there aren't any
 	 */
-	public ElaboratedConnection getUnvisitedConnection() {
-		for (ElaboratedConnection c : cons) {
-			if (!((ElaboratedNet) c).isVisited())
+	public EConnection getUnvisitedConnection() {
+		for (EConnection c : cons) {
+			if (!((ENet) c).isVisited())
 				return c;
 		}
 		return null;
@@ -201,7 +201,7 @@ public abstract class ElaboratedConnection extends Attributable {
 	 * 
 	 * @param n the net to remove
 	 */
-	public void removeConnection(ElaboratedConnection c) {
+	public void removeConnection(EConnection c) {
 		cons.remove(c);
 	}
 
@@ -219,7 +219,7 @@ public abstract class ElaboratedConnection extends Attributable {
 	 * 
 	 * @param parent the new DesignNode
 	 */
-	public void setParent(ElaboratedDesignUnit parent) {
+	public void setParent(EDesignUnit parent) {
 		this.parent = parent;
 	}
 
@@ -248,15 +248,15 @@ public abstract class ElaboratedConnection extends Attributable {
 
 		String idx = (getIndex() == -1) ? "" : ("[" + getIndex() + "]");
 		String pidx = "";
-		if (getParent() instanceof ElaboratedSubInstance) {
-			pidx = (((ElaboratedSubInstance) getParent()).getIndex() != -1) ? ("(" + ((ElaboratedSubInstance) getParent()).getIndex() + ")")
+		if (getParent() instanceof ESubInstance) {
+			pidx = (((ESubInstance) getParent()).getIndex() != -1) ? ("(" + ((ESubInstance) getParent()).getIndex() + ")")
 				: "";
 		}
 		sb.append(String.format(fieldFmtStr, "Name:", "", getName() + idx));
 		sb.append(String.format(fieldFmtStr, "Parent:", "", getParent().getName() + pidx));
 		sb.append(String.format(fieldFmtStr, "ID:", "", Integer.toHexString(System.identityHashCode(this))));
-		if (this instanceof ElaboratedPort) {
-			ElaboratedPort p = ((ElaboratedPort) this);
+		if (this instanceof EPort) {
+			EPort p = ((EPort) this);
 			// String index = (p.hasIndex() ? ("[" + p.getIndex() + "]") : "");
 			String connection = "";
 			if (p.isAssigned()) {
@@ -273,7 +273,7 @@ public abstract class ElaboratedConnection extends Attributable {
 			sb.append("  Attr        Name                   Value           \n");
 			sb.append("  ----  ----------------  -------------------------- \n");
 			int attrCount = 1;
-			for (ElaboratedAttribute a : attributes) {
+			for (EAttribute a : attributes) {
 				sb.append(String.format(attrFmtStr, attrCount, "", a.getName(), "", a.getValue().equals("") ? "(empty)"
 					: a.getValue()));
 				attrCount++;
@@ -285,18 +285,18 @@ public abstract class ElaboratedConnection extends Attributable {
 			sb.append("  Pin     Type          Name            Instance           Design    \n");
 			sb.append("  ----  --------  ----------------  ----------------  ----------------\n");
 			int pinCount = 1;
-			for (ElaboratedPin p : pins) {
+			for (EPin p : pins) {
 				String index = p.getIndex() == -1 ? "" : ("[" + p.getIndex() + "]");
 				String pindex = "";
-				if (p.getParent() instanceof ElaboratedInstance)
-					pindex = (((ElaboratedInstance) p.getParent()).hasIndex()) ? ("(" + ((ElaboratedInstance) p.getParent()).getIndex() + ")")
+				if (p.getParent() instanceof EInstance)
+					pindex = (((EInstance) p.getParent()).hasIndex()) ? ("(" + ((EInstance) p.getParent()).getIndex() + ")")
 						: ("");
 				String dindex = "";
-				if (((ElaboratedInstance) p.getParent()).getParent() instanceof ElaboratedSubInstance)
-					dindex = (((ElaboratedSubInstance) ((ElaboratedInstance) p.getParent()).getParent()).getIndex() != -1) ? ("("
-						+ ((ElaboratedSubInstance) ((ElaboratedInstance) p.getParent()).getParent()).getIndex() + ")") : "";
+				if (((EInstance) p.getParent()).getParent() instanceof ESubInstance)
+					dindex = (((ESubInstance) ((EInstance) p.getParent()).getParent()).getIndex() != -1) ? ("("
+						+ ((ESubInstance) ((EInstance) p.getParent()).getParent()).getIndex() + ")") : "";
 				sb.append(String.format(pinFmtStr, pinCount, "", p.getPinType(), "", p.getName() + index, "", p
-					.getParent().getName() + pindex, "", ((ElaboratedInstance) p.getParent()).getParent().getName() + dindex));
+					.getParent().getName() + pindex, "", ((EInstance) p.getParent()).getParent().getName() + dindex));
 				pinCount++;
 			}
 			sb.append("\n");
@@ -306,7 +306,7 @@ public abstract class ElaboratedConnection extends Attributable {
 			sb.append("  Conn    Type          Name             Parent      \n");
 			sb.append("  ----  --------  ----------------  ---------------- \n");
 			int connCount = 1;
-			for (ElaboratedConnection c : cons) {
+			for (EConnection c : cons) {
 				sb.append(String.format(connFmtStr, connCount, "", c.getNodeType(), "", c.getNameIndex(), "", c
 					.getParent().getNameIndex()));
 				connCount++;

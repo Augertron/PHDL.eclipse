@@ -3,13 +3,13 @@ package edu.byu.ee.phdl.elaboration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ElaboratedSubInstance extends ElaboratedHierarchyUnit {
+public class ESubInstance extends EHierarchyUnit {
 
 	private String refPrefix;
-	private ElaboratedSubDesign subDesign;
-	private ElaboratedDesignUnit parent;
+	private ESubDesign subDesign;
+	private EDesignUnit parent;
 
-	public ElaboratedSubInstance(ElaboratedDesignUnit parent, String name) {
+	public ESubInstance(EDesignUnit parent, String name) {
 		super();
 		this.name = name;
 		this.parent = parent;
@@ -22,7 +22,7 @@ public class ElaboratedSubInstance extends ElaboratedHierarchyUnit {
 	 * @param subDesign
 	 * @param name
 	 */
-	public ElaboratedSubInstance(ElaboratedDesignUnit parent, ElaboratedSubDesign subDesign, String name) {
+	public ESubInstance(EDesignUnit parent, ESubDesign subDesign, String name) {
 		super();
 		this.name = name;
 		this.parent = parent;
@@ -30,29 +30,29 @@ public class ElaboratedSubInstance extends ElaboratedHierarchyUnit {
 		this.refPrefix = subDesign.getRefPrefix();
 
 		// make copies of all instances
-		for (ElaboratedInstance i : subDesign.instances) {
-			ElaboratedInstance newInst = new ElaboratedInstance(this, i);
+		for (EInstance i : subDesign.instances) {
+			EInstance newInst = new EInstance(this, i);
 			if (!this.addInstance(newInst))
 				System.out.println("duplicate instance");
 		}
 
 		// make new ports and nets
 		for (int i = 0; i < subDesign.connections.size(); i++) {
-			ElaboratedConnection c = subDesign.connections.get(i);
-			if (c instanceof ElaboratedPort) {
-				ElaboratedPort newPort = new ElaboratedPort(this, (ElaboratedPort) c);
+			EConnection c = subDesign.connections.get(i);
+			if (c instanceof EPort) {
+				EPort newPort = new EPort(this, (EPort) c);
 				if (!this.addConnection(newPort))
 					System.out.print("duplicate port");
-			} else if (c instanceof ElaboratedNet) {
-				ElaboratedNet newNet = new ElaboratedNet(this, (ElaboratedNet) c);
+			} else if (c instanceof ENet) {
+				ENet newNet = new ENet(this, (ENet) c);
 				if (!this.addConnection(newNet))
 					System.out.print("duplicate net");
 			}
 		}
 
 		// make new SubInstances
-		for (ElaboratedSubInstance s : subDesign.subInsts) {
-			ElaboratedSubInstance inst = new ElaboratedSubInstance(this, s);
+		for (ESubInstance s : subDesign.subInsts) {
+			ESubInstance inst = new ESubInstance(this, s);
 			inst.setIndex(s.getIndex());
 			inst.setLine(s.getLine());
 			inst.setPosition(s.getPosition());
@@ -64,13 +64,13 @@ public class ElaboratedSubInstance extends ElaboratedHierarchyUnit {
 
 		// reconstruct all net and port connectivity
 		for (int i = 0; i < subDesign.connections.size(); i++) {
-			for (ElaboratedConnection c : subDesign.connections.get(i).getConnections()) {
+			for (EConnection c : subDesign.connections.get(i).getConnections()) {
 				int index = subDesign.connections.indexOf(c);
 				if (index != -1)
 					this.connections.get(i).addConnection(this.connections.get(index));
 				else {
-					ElaboratedSubInstance s = this.getSubInstance(c.getParent().getName(), c.getParent().getIndex());
-					ElaboratedPort p = s.getPort(c.getName(), c.getIndex());
+					ESubInstance s = this.getSubInstance(c.getParent().getName(), c.getParent().getIndex());
+					EPort p = s.getPort(c.getName(), c.getIndex());
 					p.setAssignment(this.connections.get(i));
 				}
 			}
@@ -80,7 +80,7 @@ public class ElaboratedSubInstance extends ElaboratedHierarchyUnit {
 		for (int i = 0; i < subDesign.instances.size(); i++) {
 			for (int p = 0; p < subDesign.instances.get(i).getPins().size(); p++) {
 				if (subDesign.instances.get(i).getPins().get(p).isAssigned()) {
-					ElaboratedConnection subC = subDesign.instances.get(i).getPins().get(p).getAssignment();
+					EConnection subC = subDesign.instances.get(i).getPins().get(p).getAssignment();
 					int index = subDesign.connections.indexOf(subC);
 					this.instances.get(i).getPins().get(p).setAssignment(this.connections.get(index));
 					this.connections.get(index).addPin(this.instances.get(i).getPins().get(p));
@@ -94,7 +94,7 @@ public class ElaboratedSubInstance extends ElaboratedHierarchyUnit {
 	 * @param parent
 	 * @param old
 	 */
-	public ElaboratedSubInstance(ElaboratedDesignUnit parent, ElaboratedSubInstance old) {
+	public ESubInstance(EDesignUnit parent, ESubInstance old) {
 		super();
 		this.name = old.getName();
 		this.parent = parent;
@@ -102,32 +102,32 @@ public class ElaboratedSubInstance extends ElaboratedHierarchyUnit {
 		this.refPrefix = old.getRefPrefix();
 
 		// make copies of all instances
-		for (ElaboratedInstance i : old.instances) {
-			ElaboratedInstance newInst = new ElaboratedInstance(this, i);
+		for (EInstance i : old.instances) {
+			EInstance newInst = new EInstance(this, i);
 			if (!this.addInstance(newInst))
 				System.out.println("duplicate instance");
 			// clear all of the overwritten flags on attributes
-			for (ElaboratedAttribute a : newInst.getAttributes())
+			for (EAttribute a : newInst.getAttributes())
 				a.setOverwritten(false);
 		}
 
 		// make new ports and nets
 		for (int i = 0; i < old.connections.size(); i++) {
-			ElaboratedConnection c = old.connections.get(i);
-			if (c instanceof ElaboratedPort) {
-				ElaboratedPort newPort = new ElaboratedPort(this, (ElaboratedPort) c);
+			EConnection c = old.connections.get(i);
+			if (c instanceof EPort) {
+				EPort newPort = new EPort(this, (EPort) c);
 				if (!this.addConnection(newPort))
 					System.out.print("duplicate port");
-			} else if (c instanceof ElaboratedNet) {
-				ElaboratedNet newNet = new ElaboratedNet(this, (ElaboratedNet) c);
+			} else if (c instanceof ENet) {
+				ENet newNet = new ENet(this, (ENet) c);
 				if (!this.addConnection(newNet))
 					System.out.print("duplicate net");
 			}
 		}
 
 		// make new SubInstances
-		for (ElaboratedSubInstance s : old.subInsts) {
-			ElaboratedSubInstance inst = new ElaboratedSubInstance(this, s);
+		for (ESubInstance s : old.subInsts) {
+			ESubInstance inst = new ESubInstance(this, s);
 			inst.setIndex(s.getIndex());
 			inst.setLine(s.getLine());
 			inst.setPosition(s.getPosition());
@@ -139,18 +139,18 @@ public class ElaboratedSubInstance extends ElaboratedHierarchyUnit {
 
 		// reconstruct all net and port connectivity
 		for (int i = 0; i < old.connections.size(); i++) {
-			ElaboratedConnection oldConnection = old.connections.get(i);
-			for (ElaboratedConnection c : oldConnection.getConnections()) {
+			EConnection oldConnection = old.connections.get(i);
+			for (EConnection c : oldConnection.getConnections()) {
 				int index = old.connections.indexOf(c);
 				this.connections.get(i).addConnection(this.connections.get(index));
 			}
 			// reconstruct connections across levels of hierarchy
-			if (oldConnection instanceof ElaboratedPort) {
-				ElaboratedConnection oldAssign = ((ElaboratedPort) oldConnection).getAssignment();
+			if (oldConnection instanceof EPort) {
+				EConnection oldAssign = ((EPort) oldConnection).getAssignment();
 				int index = old.getParent().connections.indexOf(oldAssign);
 				if (index >= 0) {
-					ElaboratedConnection newAssign = this.getParent().connections.get(index);
-					ElaboratedPort newConnection = (ElaboratedPort) this.connections.get(i);
+					EConnection newAssign = this.getParent().connections.get(index);
+					EPort newConnection = (EPort) this.connections.get(i);
 					newAssign.addConnection(newConnection);
 					newConnection.setAssignment(newAssign);
 				}
@@ -162,7 +162,7 @@ public class ElaboratedSubInstance extends ElaboratedHierarchyUnit {
 		for (int i = 0; i < old.instances.size(); i++) {
 			for (int p = 0; p < old.instances.get(i).getPins().size(); p++) {
 				if (old.instances.get(i).getPins().get(p).isAssigned()) {
-					ElaboratedConnection subC = old.instances.get(i).getPins().get(p).getAssignment();
+					EConnection subC = old.instances.get(i).getPins().get(p).getAssignment();
 					int index = old.connections.indexOf(subC);
 					this.instances.get(i).getPins().get(p).setAssignment(this.connections.get(index));
 					this.connections.get(index).addPin(this.instances.get(i).getPins().get(p));
@@ -174,19 +174,19 @@ public class ElaboratedSubInstance extends ElaboratedHierarchyUnit {
 
 	@Override
 	public boolean equals(Object o) {
-		if (!(o instanceof ElaboratedSubInstance)) {
+		if (!(o instanceof ESubInstance)) {
 			return false;
 		}
-		boolean result = this.name.equals(((ElaboratedSubInstance) o).getName())
-				&& this.getIndex() == ((ElaboratedSubInstance) o).getIndex()
-				&& this.parent.equals(((ElaboratedSubInstance) o).getParent());
+		boolean result = this.name.equals(((ESubInstance) o).getName())
+				&& this.getIndex() == ((ESubInstance) o).getIndex()
+				&& this.parent.equals(((ESubInstance) o).getParent());
 		return result;
 	}
 	
 	@Override
 	public int compareTo(Object o) {
 		int result = -1;
-		ElaboratedSubInstance other = (ElaboratedSubInstance)o;
+		ESubInstance other = (ESubInstance)o;
 		if (this.equals(o)) {
 			result = 0;
 		}
@@ -200,19 +200,19 @@ public class ElaboratedSubInstance extends ElaboratedHierarchyUnit {
 	}
 
 	public String getHierarchyName() {
-		if (parent instanceof ElaboratedSubInstance) {
-			return ((ElaboratedSubInstance) parent).getHierarchyName() + "$" + this.getNameIndex();
+		if (parent instanceof ESubInstance) {
+			return ((ESubInstance) parent).getHierarchyName() + "$" + this.getNameIndex();
 		} else {
 			return this.getNameIndex();
 		}
 	}
 
 	@Override
-	public List<ElaboratedNet> getNets() {
-		List<ElaboratedNet> nets = new ArrayList<ElaboratedNet>();
-		for (ElaboratedConnection c : connections) {
-			if (c instanceof ElaboratedNet)
-				nets.add((ElaboratedNet) c);
+	public List<ENet> getNets() {
+		List<ENet> nets = new ArrayList<ENet>();
+		for (EConnection c : connections) {
+			if (c instanceof ENet)
+				nets.add((ENet) c);
 		}
 		return nets;
 	}
@@ -222,15 +222,15 @@ public class ElaboratedSubInstance extends ElaboratedHierarchyUnit {
 		return NodeType.SUBINSTANCE;
 	}
 
-	public ElaboratedDesignUnit getParent() {
+	public EDesignUnit getParent() {
 		return parent;
 	}
 
-	public List<ElaboratedPort> getPorts() {
-		List<ElaboratedPort> ports = new ArrayList<ElaboratedPort>();
-		for (ElaboratedConnection c : connections) {
-			if (c instanceof ElaboratedPort)
-				ports.add((ElaboratedPort) c);
+	public List<EPort> getPorts() {
+		List<EPort> ports = new ArrayList<EPort>();
+		for (EConnection c : connections) {
+			if (c instanceof EPort)
+				ports.add((EPort) c);
 		}
 		return ports;
 	}
@@ -239,15 +239,15 @@ public class ElaboratedSubInstance extends ElaboratedHierarchyUnit {
 		return refPrefix;
 	}
 
-	public ElaboratedSubDesign getSubDesign() {
+	public ESubDesign getSubDesign() {
 		return subDesign;
 	}
 
-	public void setDesign(ElaboratedSubDesign design) {
+	public void setDesign(ESubDesign design) {
 		this.subDesign = design;
 	}
 
-	public void setParent(ElaboratedDesignUnit parent) {
+	public void setParent(EDesignUnit parent) {
 		this.parent = parent;
 	}
 

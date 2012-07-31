@@ -19,21 +19,21 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import edu.byu.ee.phdl.elaboration.ElaboratedDesign;
-import edu.byu.ee.phdl.elaboration.ElaboratedHierarchyUnit;
-import edu.byu.ee.phdl.elaboration.ElaboratedInstance;
-import edu.byu.ee.phdl.elaboration.ElaboratedNet;
-import edu.byu.ee.phdl.elaboration.ElaboratedSubInstance;
+import edu.byu.ee.phdl.elaboration.EDesign;
+import edu.byu.ee.phdl.elaboration.EHierarchyUnit;
+import edu.byu.ee.phdl.elaboration.EInstance;
+import edu.byu.ee.phdl.elaboration.ENet;
+import edu.byu.ee.phdl.elaboration.ESubInstance;
 
 public class InfoGenerator {
 
 	public static boolean unitTest() {
 		boolean success = true;
-		ElaboratedDesign testDesign1 = new ElaboratedDesign();
+		EDesign testDesign1 = new EDesign();
 		testDesign1.setName("test1");
 		testDesign1.appendInfo("Lorem ipsum dolor sit amet.");
 
-		ElaboratedInstance testInst1 = new ElaboratedInstance(testDesign1);
+		EInstance testInst1 = new EInstance(testDesign1);
 		testInst1.setName("testInst1");
 		testInst1.appendInfo("Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
 				+ "Praesent viverra dolor at risus faucibus in dictum nisl dapibus. "
@@ -43,7 +43,7 @@ public class InfoGenerator {
 				+ "sollicitudin fringilla sapien, sodales ullamcorper nulla euismod vel. " + "Sed in imperdiet neque.");
 		testDesign1.addInstance(testInst1);
 
-		ElaboratedInstance testInst2 = new ElaboratedInstance(testDesign1);
+		EInstance testInst2 = new EInstance(testDesign1);
 		testInst2.setName("testInst2");
 		testInst2.appendInfo("Ut laoreet hendrerit ligula, eu interdum neque tincidunt dapibus. In "
 				+ "et turpis at lacus lobortis ultricies. Nam sollicitudin sapien eu nisi "
@@ -53,14 +53,14 @@ public class InfoGenerator {
 				+ "libero. Nullam id tellus vitae odio convallis ultrices.");
 		testDesign1.addInstance(testInst2);
 
-		ElaboratedNet testNet1 = new ElaboratedNet(testDesign1);
+		ENet testNet1 = new ENet(testDesign1);
 		testNet1.setName("testNet1");
 		testNet1.appendInfo("Leo pretium. Felis sit. Sed culpa eu neque tellus ipsum adipiscing, "
 				+ "pellentesque turpis ac. Tortor sed mattis tortor felis adipiscing, urna mauris "
 				+ "mauris, cursus duis, porta condimentum.");
 		testDesign1.addConnection(testNet1);
 
-		ElaboratedSubInstance subInst1 = new ElaboratedSubInstance(testDesign1, "subInst1");
+		ESubInstance subInst1 = new ESubInstance(testDesign1, "subInst1");
 		subInst1.appendInfo("Nec dictum nec eget ipsum aenean nulla, lacus nunc diam ipsum "
 				+ "vel luctus, vel non amet. Praesent pellentesque quis. Auctor et sed "
 				+ "pellentesque libero integer. Donec mauris non urna iaculis ac, dolor "
@@ -68,7 +68,7 @@ public class InfoGenerator {
 				+ "vestibulum litora, suscipit magna ligula suspendisse lobortis varius, nulla "
 				+ "tempus eaque ipsum lobortis. Vitae feugiat vulputate euismod ac lectus "
 				+ "bibendum, id turpis tempor amet, ut et accumsan, a sit morbi magnis vel duis.");
-		ElaboratedInstance testInst3 = new ElaboratedInstance(subInst1);
+		EInstance testInst3 = new EInstance(subInst1);
 		testInst3.setName("testInst3");
 		testInst3.appendInfo("Consectetuer aliquet sollicitudin et, aliquam orci velit mollis "
 				+ "suspendisse mus. Tincidunt faucibus natoque. Purus tortor pellentesque amet, sed "
@@ -87,9 +87,9 @@ public class InfoGenerator {
 
 	String info;
 
-	ElaboratedDesign design;
+	EDesign design;
 
-	public InfoGenerator(ElaboratedDesign design) {
+	public InfoGenerator(EDesign design) {
 		this.design = design;
 		StringBuilder sb = new StringBuilder();
 		sb.append("Layout Supplementary Information\n");
@@ -121,7 +121,7 @@ public class InfoGenerator {
 		System.out.println("  -- Generated: " + File.separator + fileName);
 	}
 
-	private StringBuilder appendDesignInfo(ElaboratedHierarchyUnit des, int tabs_cnt) {
+	private StringBuilder appendDesignInfo(EHierarchyUnit des, int tabs_cnt) {
 		StringBuilder sb_des = new StringBuilder();
 
 		StringBuilder sb_tabs = new StringBuilder();
@@ -146,13 +146,13 @@ public class InfoGenerator {
 		}
 		sb_des.append("\n");
 
-		for (ElaboratedNet net : des.getNets()) {
+		for (ENet net : des.getNets()) {
 			sb_des.append(appendNetInfo(net, tabs_cnt + 1) + "\n");
 		}
-		for (ElaboratedInstance inst : des.getInstances()) {
+		for (EInstance inst : des.getInstances()) {
 			sb_des.append(appendInstanceInfo(inst, tabs_cnt + 1) + "\n");
 		}
-		for (ElaboratedSubInstance sinst : des.getSubInstances()) {
+		for (ESubInstance sinst : des.getSubInstances()) {
 			sb_des.append(appendDesignInfo(sinst, tabs_cnt + 1) + "\n");
 		}
 
@@ -161,7 +161,7 @@ public class InfoGenerator {
 		return sb_des;
 	}
 
-	private StringBuilder appendInstanceInfo(ElaboratedInstance inst, int tabs_cnt) {
+	private StringBuilder appendInstanceInfo(EInstance inst, int tabs_cnt) {
 		int j;
 		StringBuilder sb_inst = new StringBuilder();
 
@@ -190,7 +190,7 @@ public class InfoGenerator {
 		return sb_inst;
 	}
 
-	private StringBuilder appendNetInfo(ElaboratedNet net, int tabs_cnt) {
+	private StringBuilder appendNetInfo(ENet net, int tabs_cnt) {
 		int j;
 		StringBuilder sb_net = new StringBuilder();
 

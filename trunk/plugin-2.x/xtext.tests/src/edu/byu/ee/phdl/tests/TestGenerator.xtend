@@ -26,14 +26,16 @@ class TestGenerator extends XtextTest {
 	@Inject ParseHelper<PhdlModel> parseHelper
 	
 	//val separator = java::io::File::separator
-	private static Logger LOGGER = Logger::getLogger(typeof(XtextTest));
+	private static Logger LOGGER = Logger::getLogger(typeof(TestGenerator));
 	
 	var path = "resources/" + getClass().getSimpleName() + "/"
+	var msgpfx = "testing generator with test-case: "
 	
 	@Test
-	def void test1() {
-		LOGGER.info("testing method " + this.getClass().getSimpleName() + "." + new Throwable().stackTrace.get(0).methodName)
-		var testDir = path + "test1/"
+	def void test_hierarchy1() {
+		var methodName = new Throwable().stackTrace.get(0).methodName;
+		LOGGER.info(msgpfx + this.getClass().getSimpleName() + "." + methodName)
+		var testDir = path + methodName + "/"
 		var model = parseHelper.parse(FileToString::readFile(testDir + "test" + ExtensionCodes::PHDL_EXT))
 		var fsa = new InMemoryFileSystemAccess()
 		underTest.doGenerate(model.eResource, fsa)
@@ -42,9 +44,34 @@ class TestGenerator extends XtextTest {
 	}
 	
 	@Test
-	def void test2() {
-		LOGGER.info("testing method " + this.getClass().getSimpleName() + "." + new Throwable().stackTrace.get(0).methodName)
-		var testDir = path + "test2/"
+	def void test_hierarchy2() {
+		var methodName = new Throwable().stackTrace.get(0).methodName;
+		LOGGER.info(msgpfx + this.getClass().getSimpleName() + "." + methodName)
+		var testDir = path + methodName + "/"
+		var model = parseHelper.parse(FileToString::readFile(testDir + "test" + ExtensionCodes::PHDL_EXT))
+		var fsa = new InMemoryFileSystemAccess()
+		underTest.doGenerate(model.eResource, fsa)
+		testOutputFileNames(fsa, "top")
+		testOutputFiles(fsa, testDir + "golden", "top")
+	}
+	
+	@Test
+	def void test_refDes1() {
+		var methodName = new Throwable().stackTrace.get(0).methodName;
+		LOGGER.info(msgpfx + this.getClass().getSimpleName() + "." + methodName)
+		var testDir = path + methodName + "/"
+		var model = parseHelper.parse(FileToString::readFile(testDir + "test" + ExtensionCodes::PHDL_EXT))
+		var fsa = new InMemoryFileSystemAccess()
+		underTest.doGenerate(model.eResource, fsa)
+		testOutputFileNames(fsa, "top")
+		testOutputFiles(fsa, testDir + "golden", "top")
+	}
+	
+	@Test
+	def void test_refDes2() {
+		var methodName = new Throwable().stackTrace.get(0).methodName;
+		LOGGER.info(msgpfx + this.getClass().getSimpleName() + "." + methodName)
+		var testDir = path + methodName + "/"
 		var model = parseHelper.parse(FileToString::readFile(testDir + "test" + ExtensionCodes::PHDL_EXT))
 		var fsa = new InMemoryFileSystemAccess()
 		underTest.doGenerate(model.eResource, fsa)
