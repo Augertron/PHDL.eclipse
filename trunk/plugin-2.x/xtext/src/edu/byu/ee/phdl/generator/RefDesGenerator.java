@@ -10,9 +10,6 @@
 
 package edu.byu.ee.phdl.generator;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -60,45 +57,6 @@ public class RefDesGenerator {
 		this.flag = flag;
 		generate_pass_1(design);
 		generate_pass_2(design);
-	}
-
-	public String getContents() {
-		StringBuilder sb = new StringBuilder();
-		Set<String> refs = refMap.keySet();
-		for (String s : refs) {
-			sb.append(refMap.get(s).getRefDes() + ",");
-			sb.append(refMap.get(s).getHierarchyPrefix() + refMap.get(s).getNameIndex() + "\n");
-		}
-		return sb.toString();
-	}
-
-	/**
-	 * Returns the RefDes mapping.
-	 * 
-	 * @return a map with RefDes as the key and InstanceNode as the value
-	 * @see EInstance
-	 * 
-	 */
-	public Map<String, EInstance> getRefMap() {
-		return refMap;
-	}
-
-	/**
-	 * Generates a .csv file containing all the Reference Designator mappings.
-	 * 
-	 * @param fileName
-	 *            the name of the file to be written
-	 */
-	public void outputToFile(String fileName) {
-		try {
-			BufferedWriter out = new BufferedWriter(new FileWriter(fileName));
-			out.write(getContents());
-			out.close();
-		} catch (IOException e) {
-			logger.fatal("unable to write file: " + fileName);
-			System.exit(1);
-		}
-		logger.info("wrote file: " + fileName);
 	}
 
 	private void add_to_map(EInstance i) {
@@ -169,6 +127,27 @@ public class RefDesGenerator {
 		}
 
 		return str;
+	}
+
+	public String getContents() {
+		StringBuilder sb = new StringBuilder();
+		Set<String> refs = refMap.keySet();
+		for (String s : refs) {
+			sb.append(refMap.get(s).getRefDes() + ",");
+			sb.append(refMap.get(s).getHierarchyPrefix() + refMap.get(s).getNameIndex() + "\n");
+		}
+		return sb.toString();
+	}
+
+	/**
+	 * Returns the RefDes mapping.
+	 * 
+	 * @return a map with RefDes as the key and InstanceNode as the value
+	 * @see EInstance
+	 * 
+	 */
+	public Map<String, EInstance> getRefMap() {
+		return refMap;
 	}
 
 	private void map_constrained(EHierarchyUnit des) {

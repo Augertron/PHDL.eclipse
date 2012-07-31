@@ -14,6 +14,7 @@ import com.google.inject.Inject;
 
 import edu.byu.ee.phdl.elaboration.EDesign;
 import edu.byu.ee.phdl.elaboration.PhdlElaborator;
+import edu.byu.ee.phdl.erc.ElectricalRuleChecker;
 import edu.byu.ee.phdl.phdl.Design;
 import edu.byu.ee.phdl.phdl.Package;
 import edu.byu.ee.phdl.phdl.PhdlModel;
@@ -50,31 +51,34 @@ public class MyPhdlGenerator implements IGenerator {
 		}
 	}
 
-	public void generate(IFileSystemAccess fsa, String fileName, Design design) {
+	public void generate(IFileSystemAccess fsa, String name, Design design) {
 
 		EDesign eDesign = elaborator.elaborate(design);
-		logger.info("elaborated: " + fileName);
+		logger.info("elaborated: " + name);
+
+		new ElectricalRuleChecker(eDesign.getNetlist());
+		logger.debug("ERC (Electrical Rule Check) completed: " + name);
 
 		RefDesGenerator refDesGen = new RefDesGenerator(eDesign);
-		fsa.generateFile(fileName + ExtensionCodes.REFDES_EXT, refDesGen.getContents());
-		logger.debug("generated reference designators: " + fileName);
+		fsa.generateFile(name + ExtensionCodes.REFDES_EXT, refDesGen.getContents());
+		logger.debug("RDM (REFDES-Mapping) generation completed: " + name);
 
-		BoMGenerator bomGen = new BoMGenerator(eDesign);
-		fsa.generateFile(fileName + ExtensionCodes.BOM_EXT, bomGen.getContents());
-		logger.debug("generated bill of material: " + fileName);
+		BOMGenerator bomGen = new BOMGenerator(eDesign);
+		fsa.generateFile(name + ExtensionCodes.BOM_EXT, bomGen.getContents());
+		logger.debug("BOM (Bill of Material) generated: " + name);
 
 		InfoGenerator infoGen = new InfoGenerator(eDesign);
-		fsa.generateFile(fileName + ExtensionCodes.INFO_EXT, infoGen.getContents());
-		logger.debug("generated layout supplimentary information:" + fileName);
+		fsa.generateFile(name + ExtensionCodes.INFO_EXT, infoGen.getContents());
+		logger.debug("LSI (Layout Supplimentary Information) generated:" + name);
 
-		NetListGenerator netListGen = new NetListGenerator(eDesign, refDesGen.getRefMap());
-		fsa.generateFile(fileName + ExtensionCodes.PADS_EXT, netListGen.getContents());
-		logger.debug("generated netlist: " + fileName);
+		PADSGenerator netListGen = new PADSGenerator(eDesign, refDesGen.getRefMap());
+		fsa.generateFile(name + ExtensionCodes.PADS_EXT, netListGen.getContents());
+		logger.debug("ASC (PADS Netlist) generated: " + name);
 
 		EagleGenerator eagleGen = new EagleGenerator(eDesign, refDesGen.getRefMap());
-		fsa.generateFile(fileName + ExtensionCodes.EAGLE_EXT, eagleGen.getContents());
-		logger.debug("generated EAGLE script: " + fileName);
+		fsa.generateFile(name + ExtensionCodes.EAGLE_EXT, eagleGen.getContents());
+		logger.debug("SCR (EAGLE Script) generated: " + name);
 
-		logger.info("generated output: " + fileName);
+		logger.info("Finished generating output: " + name);
 	}
 }

@@ -10,9 +10,6 @@
 
 package edu.byu.ee.phdl.generator;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.SortedSet;
@@ -35,7 +32,7 @@ import edu.byu.ee.phdl.elaboration.ESubInstance;
  * @author Brad Riching and Richard Black
  * @version 0.1
  */
-public class BoMGenerator {
+public class BOMGenerator {
 
 	private class Row {
 		private int quantity;
@@ -71,7 +68,7 @@ public class BoMGenerator {
 		}
 	}
 
-	private static final Logger logger = Logger.getLogger(BoMGenerator.class);
+	private static final Logger logger = Logger.getLogger(BOMGenerator.class);
 	private final EDesign design;
 	private final List<Row> rows;
 	private final List<String> headers;
@@ -88,7 +85,7 @@ public class BoMGenerator {
 	 *            the DesignNode that contains all of the attribute information.
 	 * @see EDesign
 	 */
-	public BoMGenerator(EDesign d) {
+	public BOMGenerator(EDesign d) {
 		design = d;
 		rows = new ArrayList<Row>();
 		headers = new ArrayList<String>();
@@ -170,25 +167,6 @@ public class BoMGenerator {
 		for (ESubInstance s : des.getSubInstances()) {
 			initializeRows(s);
 		}
-	}
-
-	/**
-	 * Produces a .bom file which contains the comma-separated table of
-	 * attributes.
-	 * 
-	 * @param fileName
-	 *            the file name to output the data
-	 */
-	public void outputToFile(String fileName) {
-		try {
-			BufferedWriter out = new BufferedWriter(new FileWriter(fileName));
-			out.write(bom);
-			out.close();
-		} catch (IOException e) {
-			logger.fatal("unable to write file: " + fileName);
-			System.exit(1);
-		}
-		logger.info("wrote file: " + fileName);
 	}
 
 	private void populateHeaders() {

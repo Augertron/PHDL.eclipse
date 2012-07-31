@@ -124,6 +124,93 @@ public abstract class EDesignUnit extends Node {
 		}
 	}
 
+	public void flatten() {
+		Set<EConnection> deletes = new HashSet<EConnection>();
+		for (EConnection c : connections) {
+			if (!c.isVisited()) {
+				c = flatten(c);
+				c.setVisited(false);
+			}
+		}
+
+		for (EConnection c : connections) {
+			if (c.isVisited())
+				deletes.add(c);
+		}
+
+		for (EConnection delete : deletes)
+			connections.remove(delete);
+	}
+
+	/**
+	 * Merges the names of the current net with the names of all neighbors by
+	 * using a depth-first search.
+	 * 
+	 * @param neighbor2
+	 * @return net with merged name from all unvisited neighbor's names
+	 */
+	private EConnection flatten(EConnection neighbor2) {
+
+		Set<EConnection> removes = new HashSet<EConnection>();
+		neighbor2.setVisited(true);
+
+		for (EConnection neighbor : neighbor2.getConnections()) {
+			if (!neighbor.isVisited()) {
+
+				neighbor = flatten(neighbor);
+
+				// append the name of its neighbor
+				// Deprecated: current.setName(current.getName() + "$" +
+				// neighbor.getName());
+				removes.add(neighbor);
+
+				// grab all of its neighbors pins
+				for (EPin p : neighbor.getPins()) {
+					neighbor2.addPin(p);
+					p.setAssignment(neighbor2);
+				}
+
+			}
+		}
+
+		// remove all current's connections to neighbors
+		for (EConnection remove : removes)
+			neighbor2.removeConnection(remove);
+
+		// propagate the merged net back up the call-stack
+		return neighbor2;
+	}
+
+	public void flatten2() {
+		for (EConnection conn1 : connections) {
+			if (!conn1.isVisited()) {
+				conn1.setVisited(true);
+				for (EConnection conn2 : conn1.getConnections()) {
+					if (!conn2.isVisited()) {
+						conn2.setVisited(true);
+						conn1.getPins().addAll(flatten2(conn2));
+					}
+				}
+				conn1.setFlat(true);
+			}
+		}
+		for (ESubInstance subInst : subInsts) {
+			subInst.flatten2();
+		}
+	}
+
+	public List<EPin> flatten2(EConnection conn1) {
+		List<EPin> pins = new ArrayList<EPin>();
+		pins.addAll(conn1.getPins());
+		for (EConnection conn2 : conn1.getConnections()) {
+			if (!conn2.isVisited()) {
+				conn2.setVisited(true);
+				pins.addAll(flatten2(conn2));
+			}
+		}
+		return pins;
+	}
+
 	public List<EPort> getAllPorts(String name) {
 		List<EPort> allPorts = new ArrayList<EPort>();
 		for (EConnection c : connections) {
@@ -331,45 +418,6 @@ public abstract class EDesignUnit extends Node {
 		return false;
 	}
 
-	/**
-	 * Merges the names of the current net with the names of all neighbors by
-	 * using a depth-first search.
-	 * 
-	 * @param neighbor2
-	 * @return net with merged name from all unvisited neighbor's names
-	 */
-	private ENet merge(EConnection neighbor2) {
-
-		Set<ENet> removes = new HashSet<ENet>();
-		((ENet) neighbor2).setVisited(true);
-
-		for (EConnection neighbor : neighbor2.getConnections()) {
-			if (!((ENet) neighbor).isVisited()) {
-
-				neighbor = merge(neighbor);
-
-				// append the name of its neighbor
-				// Deprecated: current.setName(current.getName() + "$" +
-				// neighbor.getName());
-				removes.add((ENet) neighbor);
-
-				// grab all of its neighbors pins
-				for (EPin p : neighbor.getPins()) {
-					neighbor2.addPin(p);
-					p.setAssignment(neighbor2);
-				}
-
-			}
-		}
-
-		// remove all current's connections to neighbors
-		for (ENet r : removes)
-			neighbor2.removeConnection(r);
-
-		// propagate the merged net back up the call-stack
-		return (ENet) neighbor2;
-	}
-
 	public Map<String, List<ENet>> netsToMap() {
 		Map<String, List<ENet>> map = new HashMap<String, List<ENet>>();
 		for (EConnection c : connections) {
@@ -429,35 +477,6 @@ public abstract class EDesignUnit extends Node {
 
 	public void setSubInstances(List<ESubInstance> subInsts) {
 		this.subInsts = subInsts;
-	}
-
-	/**
-	 * Merges all net-net connections.
-	 */
-	public void superNet2() {
-		Set<ENet> deletes = new HashSet<ENet>();
-		for (EConnection c : connections) {
-			if (!(c instanceof ENet)) {
-				continue;
-			}
-			ENet n = (ENet) c;
-			if (!n.isVisited()) {
-				n = merge(n);
-				n.setVisited(false);
-			}
-		}
-
-		for (EConnection c : connections) {
-			if (!(c instanceof ENet)) {
-				continue;
-			}
-			ENet n = (ENet) c;
-			if (n.isVisited())
-				deletes.add(n);
-		}
-
-		for (ENet n : deletes)
-			connections.remove(n);
 	}
 
 	/**
