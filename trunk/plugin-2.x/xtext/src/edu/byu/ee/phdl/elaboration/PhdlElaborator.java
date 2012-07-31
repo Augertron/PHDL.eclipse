@@ -309,8 +309,9 @@ public class PhdlElaborator {
 		switch (pin.getType()) {
 		case PIN:
 			return EPinType.PIN;
+		default:
+			return null;
 		}
-		return null;
 	}
 
 	private void elaborateSubInstance(EDesignUnit eDesign, Instance subInstance) {

@@ -16,7 +16,7 @@ public class EagleGenerator {
 	private final double xSpacing = 0.25;
 	private final double ySpacing = 0.5;
 	private final double xMax = 30;
-	private final double yMax = 30;
+	// private final double yMax = 30;
 	private double x;
 	private double y;
 

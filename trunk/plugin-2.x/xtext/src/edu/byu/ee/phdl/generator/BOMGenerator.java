@@ -15,8 +15,6 @@ import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import org.apache.log4j.Logger;
-
 import edu.byu.ee.phdl.elaboration.EAttribute;
 import edu.byu.ee.phdl.elaboration.EDesign;
 import edu.byu.ee.phdl.elaboration.EHierarchyUnit;
@@ -68,7 +66,6 @@ public class BOMGenerator {
 		}
 	}
 
-	private static final Logger logger = Logger.getLogger(BOMGenerator.class);
 	private final EDesign design;
 	private final List<Row> rows;
 	private final List<String> headers;
