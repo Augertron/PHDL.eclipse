@@ -42,7 +42,8 @@ public abstract class EConnection extends Attributable {
 	/**
 	 * NetNode addition method.
 	 * 
-	 * @param n the new NetNode to add
+	 * @param n
+	 *            the new NetNode to add
 	 * @return true, if the NetNode isn't already connected, false otherwise
 	 */
 	public boolean addConnection(EConnection c) {
@@ -54,7 +55,8 @@ public abstract class EConnection extends Attributable {
 	/**
 	 * Pin addition method.
 	 * 
-	 * @param p the new PinNode
+	 * @param p
+	 *            the new PinNode
 	 * @return true, if the pin wasn't in the List false, otherwise
 	 */
 	public boolean addPin(EPin p) {
@@ -78,7 +80,7 @@ public abstract class EConnection extends Attributable {
 	@Override
 	public boolean equals(Object o) {
 		boolean result = this.getName().equals(((EConnection) o).getName())
-			&& this.getIndex() == ((EConnection) o).getIndex();
+				&& this.getIndex() == ((EConnection) o).getIndex();
 
 		if (this.getParent() instanceof ESubInstance && ((EConnection) o).getParent() instanceof ESubInstance) {
 			result &= ((ESubInstance) this.getParent()).equals(((EConnection) o).getParent());
@@ -111,15 +113,21 @@ public abstract class EConnection extends Attributable {
 	}
 
 	public String getHierarchyName() {
-		if (parent instanceof ESubInstance) {
-			return ((ESubInstance) parent).getHierarchyName() + "$" + this.getNameIndex();
-		} else {
-			return this.getNameIndex();
+		StringBuilder sb = new StringBuilder();
+		EDesignUnit current = this.parent;
+		while (current != null) {
+			sb.insert(0, current.getNameIndex() + "/");
+			if (current instanceof ESubInstance) {
+				current = ((ESubInstance) current).getParent();
+			} else
+				current = null;
 		}
+		return sb.append(this.getNameIndex()).toString();
 	}
 
 	/**
-	 * Returns the index of the current Net, assuming that it has an array reference.
+	 * Returns the index of the current Net, assuming that it has an array
+	 * reference.
 	 * 
 	 * @return the index of the Net
 	 */
@@ -154,8 +162,8 @@ public abstract class EConnection extends Attributable {
 	/**
 	 * Helper method for superNet algorithm.
 	 * 
-	 * Iterates through all nets attached to this NetNode and returns the first one that is
-	 * unvisited.
+	 * Iterates through all nets attached to this NetNode and returns the first
+	 * one that is unvisited.
 	 * 
 	 * @return the first NetNode that is unvisited, null if there aren't any
 	 */
@@ -199,7 +207,8 @@ public abstract class EConnection extends Attributable {
 	/**
 	 * Removes a net connection from this net.
 	 * 
-	 * @param n the net to remove
+	 * @param n
+	 *            the net to remove
 	 */
 	public void removeConnection(EConnection c) {
 		cons.remove(c);
@@ -217,7 +226,8 @@ public abstract class EConnection extends Attributable {
 	/**
 	 * Parent DesignNode mutator method.
 	 * 
-	 * @param parent the new DesignNode
+	 * @param parent
+	 *            the new DesignNode
 	 */
 	public void setParent(EDesignUnit parent) {
 		this.parent = parent;
@@ -226,7 +236,8 @@ public abstract class EConnection extends Attributable {
 	/**
 	 * Helper mutator method for a Depth First Search.
 	 * 
-	 * @param visited the new value of visited
+	 * @param visited
+	 *            the new value of visited
 	 */
 	public void setVisited(boolean visited) {
 		this.visited = visited;
@@ -250,7 +261,7 @@ public abstract class EConnection extends Attributable {
 		String pidx = "";
 		if (getParent() instanceof ESubInstance) {
 			pidx = (((ESubInstance) getParent()).getIndex() != -1) ? ("(" + ((ESubInstance) getParent()).getIndex() + ")")
-				: "";
+					: "";
 		}
 		sb.append(String.format(fieldFmtStr, "Name:", "", getName() + idx));
 		sb.append(String.format(fieldFmtStr, "Parent:", "", getParent().getName() + pidx));
@@ -275,7 +286,7 @@ public abstract class EConnection extends Attributable {
 			int attrCount = 1;
 			for (EAttribute a : attributes) {
 				sb.append(String.format(attrFmtStr, attrCount, "", a.getName(), "", a.getValue().equals("") ? "(empty)"
-					: a.getValue()));
+						: a.getValue()));
 				attrCount++;
 			}
 			sb.append("\n");
@@ -290,13 +301,13 @@ public abstract class EConnection extends Attributable {
 				String pindex = "";
 				if (p.getParent() instanceof EInstance)
 					pindex = (((EInstance) p.getParent()).hasIndex()) ? ("(" + ((EInstance) p.getParent()).getIndex() + ")")
-						: ("");
+							: ("");
 				String dindex = "";
 				if (((EInstance) p.getParent()).getParent() instanceof ESubInstance)
 					dindex = (((ESubInstance) ((EInstance) p.getParent()).getParent()).getIndex() != -1) ? ("("
-						+ ((ESubInstance) ((EInstance) p.getParent()).getParent()).getIndex() + ")") : "";
+							+ ((ESubInstance) ((EInstance) p.getParent()).getParent()).getIndex() + ")") : "";
 				sb.append(String.format(pinFmtStr, pinCount, "", p.getPinType(), "", p.getName() + index, "", p
-					.getParent().getName() + pindex, "", ((EInstance) p.getParent()).getParent().getName() + dindex));
+						.getParent().getName() + pindex, "", ((EInstance) p.getParent()).getParent().getName() + dindex));
 				pinCount++;
 			}
 			sb.append("\n");
@@ -308,7 +319,7 @@ public abstract class EConnection extends Attributable {
 			int connCount = 1;
 			for (EConnection c : cons) {
 				sb.append(String.format(connFmtStr, connCount, "", c.getNodeType(), "", c.getNameIndex(), "", c
-					.getParent().getNameIndex()));
+						.getParent().getNameIndex()));
 				connCount++;
 			}
 			sb.append("\n");

@@ -15,9 +15,10 @@
 package edu.byu.ee.phdl.generator;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import org.apache.log4j.Logger;
 
 import edu.byu.ee.phdl.elaboration.EDesign;
 import edu.byu.ee.phdl.elaboration.EHierarchyUnit;
@@ -85,12 +86,10 @@ public class InfoGenerator {
 		return success;
 	}
 
-	String info;
-
-	EDesign design;
+	private final String info;
+	private static final Logger logger = Logger.getLogger(InfoGenerator.class);
 
 	public InfoGenerator(EDesign design) {
-		this.design = design;
 		StringBuilder sb = new StringBuilder();
 		sb.append("Layout Supplementary Information\n");
 		sb.append("--------------------------------\n\n");
@@ -106,7 +105,8 @@ public class InfoGenerator {
 	/**
 	 * Generates a .info file containing all the info structures
 	 * 
-	 * @param fileName the name of the file to be written
+	 * @param fileName
+	 *            the name of the file to be written
 	 */
 	public void outputToFile(String fileName) {
 		try {
@@ -114,11 +114,10 @@ public class InfoGenerator {
 			out.write(info);
 			out.close();
 		} catch (IOException e) {
-			System.err.println();
-			System.err.println("File Reading Error - filename may be corrupt");
+			logger.fatal("unable to write file: " + fileName);
 			System.exit(1);
 		}
-		System.out.println("  -- Generated: " + File.separator + fileName);
+		logger.info("wrote file: " + fileName);
 	}
 
 	private StringBuilder appendDesignInfo(EHierarchyUnit des, int tabs_cnt) {

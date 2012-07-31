@@ -22,7 +22,8 @@ public abstract class EDesignUnit extends Node {
 	/**
 	 * Default Constructor.
 	 * 
-	 * Initializes all sets and lists of ports, sub instances, instances, and nets.
+	 * Initializes all sets and lists of ports, sub instances, instances, and
+	 * nets.
 	 * 
 	 * @see EPort
 	 * @see EInstance
@@ -39,8 +40,8 @@ public abstract class EDesignUnit extends Node {
 	/**
 	 * 
 	 * @param newCon
-	 * @return true, if the connection wasn't already in the list and was added successfully false,
-	 *         otherwise
+	 * @return true, if the connection wasn't already in the list and was added
+	 *         successfully false, otherwise
 	 */
 	public boolean addConnection(EConnection newCon) {
 		if (!connections.contains(newCon)) {
@@ -52,8 +53,8 @@ public abstract class EDesignUnit extends Node {
 	/**
 	 * 
 	 * @param newInst
-	 * @return true, if the instance wasn't already in the list and was added successfully false,
-	 *         otherwise
+	 * @return true, if the instance wasn't already in the list and was added
+	 *         successfully false, otherwise
 	 */
 	public boolean addInstance(EInstance newInst) {
 		if (!instances.contains(newInst)) {
@@ -65,8 +66,8 @@ public abstract class EDesignUnit extends Node {
 	/**
 	 * 
 	 * @param newSub
-	 * @return true, if the sub instance wasn't already in the list and was added successfully
-	 *         false, otherwise
+	 * @return true, if the sub instance wasn't already in the list and was
+	 *         added successfully false, otherwise
 	 */
 	public boolean addSubInst(ESubInstance newSub) {
 		if (!subInsts.contains(newSub))
@@ -160,8 +161,8 @@ public abstract class EDesignUnit extends Node {
 	}
 
 	/**
-	 * Finds and return an InstanceNode that has a certain name. If the Instance Node has an index,
-	 * the function returns null.
+	 * Finds and return an InstanceNode that has a certain name. If the Instance
+	 * Node has an index, the function returns null.
 	 * 
 	 * @param name
 	 * @return
@@ -173,7 +174,8 @@ public abstract class EDesignUnit extends Node {
 	/**
 	 * Finds and returns an InstanceNode that has a certain name and index.
 	 * 
-	 * @param name the name of the InstanceNode
+	 * @param name
+	 *            the name of the InstanceNode
 	 * @return the InstanceNode with the instance name
 	 */
 	public EInstance getInstance(String name, int index) {
@@ -191,7 +193,8 @@ public abstract class EDesignUnit extends Node {
 	/**
 	 * Finds all InstanceNodes with the same name and returns a list of them.
 	 * 
-	 * @param instName the base name of the Instance
+	 * @param instName
+	 *            the base name of the Instance
 	 * @return a List of InstanceNodes with the same name
 	 */
 	public List<EInstance> getInstancesByName(String instName) {
@@ -210,7 +213,8 @@ public abstract class EDesignUnit extends Node {
 	/**
 	 * Finds and returns a Net that has a certain name.
 	 * 
-	 * @param name the name of the NetNode
+	 * @param name
+	 *            the name of the NetNode
 	 * @return the NetNode with the net name
 	 */
 	public ENet getNet(String name, int index) {
@@ -227,7 +231,7 @@ public abstract class EDesignUnit extends Node {
 	public List<ENet> getNets() {
 		List<ENet> nets = new ArrayList<ENet>();
 		for (EConnection c : connections) {
-			if (c instanceof edu.byu.ee.phdl.elaboration.ENet) {
+			if (c instanceof ENet) {
 				nets.add((ENet) c);
 			}
 		}
@@ -237,13 +241,14 @@ public abstract class EDesignUnit extends Node {
 	/**
 	 * Finds all NetNodes with the same name and returns a list of them.
 	 * 
-	 * @param netName the base name of the Net
+	 * @param netName
+	 *            the base name of the Net
 	 * @return a List of NetNodes with the same name
 	 */
 	public List<ENet> getNetsByName(String netName) {
 		List<ENet> allNets = new ArrayList<ENet>();
 		for (EConnection c : connections) {
-			if (!(c instanceof edu.byu.ee.phdl.elaboration.ENet))
+			if (!(c instanceof ENet))
 				continue;
 			ENet n = (ENet) c;
 			if (n.getName().equals(netName.toUpperCase()))
@@ -255,7 +260,8 @@ public abstract class EDesignUnit extends Node {
 	/**
 	 * Finds and returns a Port that has a certain name.
 	 * 
-	 * @param name the name of the NetNode
+	 * @param name
+	 *            the name of the NetNode
 	 * @return the NetNode with the net name
 	 */
 	public EPort getPort(String name, int index) {
@@ -312,8 +318,10 @@ public abstract class EDesignUnit extends Node {
 	/**
 	 * Checks to see if a particular device is instanced in the design.
 	 * 
-	 * @param dev the device to check
-	 * @return true, if there exists an instance that references the device false, otherwise
+	 * @param dev
+	 *            the device to check
+	 * @return true, if there exists an instance that references the device
+	 *         false, otherwise
 	 */
 	public boolean isDeviceInstanced(EDevice dev) {
 		for (EInstance i : instances) {
@@ -324,8 +332,8 @@ public abstract class EDesignUnit extends Node {
 	}
 
 	/**
-	 * Merges the names of the current net with the names of all neighbors by using a depth-first
-	 * search.
+	 * Merges the names of the current net with the names of all neighbors by
+	 * using a depth-first search.
 	 * 
 	 * @param neighbor2
 	 * @return net with merged name from all unvisited neighbor's names
@@ -333,18 +341,16 @@ public abstract class EDesignUnit extends Node {
 	private ENet merge(EConnection neighbor2) {
 
 		Set<ENet> removes = new HashSet<ENet>();
-
-		// set the current node as visited
 		((ENet) neighbor2).setVisited(true);
 
-		// visit and process all of its neighbors
 		for (EConnection neighbor : neighbor2.getConnections()) {
 			if (!((ENet) neighbor).isVisited()) {
 
 				neighbor = merge(neighbor);
 
 				// append the name of its neighbor
-				// Deprecated: current.setName(current.getName() + "$" + neighbor.getName());
+				// Deprecated: current.setName(current.getName() + "$" +
+				// neighbor.getName());
 				removes.add((ENet) neighbor);
 
 				// grab all of its neighbors pins
@@ -429,26 +435,20 @@ public abstract class EDesignUnit extends Node {
 	 * Merges all net-net connections.
 	 */
 	public void superNet2() {
-		// any net that is set as visited will be deleted
 		Set<ENet> deletes = new HashSet<ENet>();
-
-		// go through all nets in the design
 		for (EConnection c : connections) {
-			if (!(c instanceof edu.byu.ee.phdl.elaboration.ENet)) {
+			if (!(c instanceof ENet)) {
 				continue;
 			}
 			ENet n = (ENet) c;
 			if (!n.isVisited()) {
-				// call the merge routine on any unvisited net
 				n = merge(n);
-				// make sure merged net isn't deleted.
 				n.setVisited(false);
 			}
 		}
 
-		// gather up all the nets to be deleted from the design
 		for (EConnection c : connections) {
-			if (!(c instanceof edu.byu.ee.phdl.elaboration.ENet)) {
+			if (!(c instanceof ENet)) {
 				continue;
 			}
 			ENet n = (ENet) c;
@@ -456,7 +456,6 @@ public abstract class EDesignUnit extends Node {
 				deletes.add(n);
 		}
 
-		// delete these nets from the design
 		for (ENet n : deletes)
 			connections.remove(n);
 	}
@@ -482,7 +481,8 @@ public abstract class EDesignUnit extends Node {
 	/**
 	 * Recursive routine that generates a DOT formated string of each DesignUnit
 	 * 
-	 * @param fileName the name of the file being written
+	 * @param fileName
+	 *            the name of the file being written
 	 */
 	public void toPNG() {
 		StringBuilder sb = new StringBuilder();
@@ -494,7 +494,7 @@ public abstract class EDesignUnit extends Node {
 		else
 			name = this.getNameIndex() + " (SUBDESIGN)";
 		sb.append("//PHDL Generated Dot file\n//Design unit: " + name + "\n//File: " + this.getFileName() + ", line "
-			+ this.getLine() + ":" + this.getPosition() + "\n\n");
+				+ this.getLine() + ":" + this.getPosition() + "\n\n");
 		sb.append("graph " + this.getName() + " {\n\n");
 		sb.append("\tsplines=false;\n\n");
 
@@ -764,7 +764,7 @@ public abstract class EDesignUnit extends Node {
 			int instCount = 1;
 			for (EInstance i : instances) {
 				sb.append(String.format(instFmtStr, instCount, "", i.getNameIndex(), "", i.getDevice().getName(), "", i
-					.getParent().getName(), " ", i.getGroupName()));
+						.getParent().getName(), " ", i.getGroupName()));
 				instCount++;
 			}
 			sb.append("\n");
@@ -776,7 +776,7 @@ public abstract class EDesignUnit extends Node {
 			int subCount = 1;
 			for (ESubInstance s : subInsts) {
 				sb.append(String.format(subFmtStr, subCount, "", s.getNameIndex(), "", s.getSubDesign().getName(), "",
-					s.getFileName() + ", " + s.getLine() + ":" + s.getPosition()));
+						s.getFileName() + ", " + s.getLine() + ":" + s.getPosition()));
 			}
 			sb.append("\n");
 		}
@@ -802,9 +802,9 @@ public abstract class EDesignUnit extends Node {
 			String nameFmtStr = "    %-8s%2s%-26.26s\n";
 			for (ESubInstance s : subInsts) {
 				sb.append("\n    ======================================================================\n" + "    "
-					+ s.getNodeType() + "\n\n");
+						+ s.getNodeType() + "\n\n");
 				sb.append(String
-					.format(nameFmtStr, "File:", "", getFileName() + ", " + getLine() + ":" + getPosition()));
+						.format(nameFmtStr, "File:", "", getFileName() + ", " + getLine() + ":" + getPosition()));
 				sb.append(String.format(nameFmtStr, "Name: ", "", s.getNameIndex()));
 				sb.append(String.format(nameFmtStr, "ID:", "", Integer.toHexString(System.identityHashCode(s))));
 				if (s.getParent() instanceof ESubInstance)

@@ -26,7 +26,7 @@ class TestGenerator extends XtextTest {
 	@Inject ParseHelper<PhdlModel> parseHelper
 	
 	//val separator = java::io::File::separator
-	private static Logger LOGGER = Logger::getLogger(typeof(TestGenerator));
+	private static Logger logger = Logger::getLogger(typeof(TestGenerator));
 	
 	var path = "resources/" + getClass().getSimpleName() + "/"
 	var msgpfx = "testing generator with test-case: "
@@ -34,7 +34,7 @@ class TestGenerator extends XtextTest {
 	@Test
 	def void test_hierarchy1() {
 		var methodName = new Throwable().stackTrace.get(0).methodName;
-		LOGGER.info(msgpfx + this.getClass().getSimpleName() + "." + methodName)
+		logger.info(msgpfx + this.getClass().getSimpleName() + "." + methodName)
 		var testDir = path + methodName + "/"
 		var model = parseHelper.parse(FileToString::readFile(testDir + "test" + ExtensionCodes::PHDL_EXT))
 		var fsa = new InMemoryFileSystemAccess()
@@ -46,7 +46,7 @@ class TestGenerator extends XtextTest {
 	@Test
 	def void test_hierarchy2() {
 		var methodName = new Throwable().stackTrace.get(0).methodName;
-		LOGGER.info(msgpfx + this.getClass().getSimpleName() + "." + methodName)
+		logger.info(msgpfx + this.getClass().getSimpleName() + "." + methodName)
 		var testDir = path + methodName + "/"
 		var model = parseHelper.parse(FileToString::readFile(testDir + "test" + ExtensionCodes::PHDL_EXT))
 		var fsa = new InMemoryFileSystemAccess()
@@ -58,7 +58,7 @@ class TestGenerator extends XtextTest {
 	@Test
 	def void test_refDes1() {
 		var methodName = new Throwable().stackTrace.get(0).methodName;
-		LOGGER.info(msgpfx + this.getClass().getSimpleName() + "." + methodName)
+		logger.info(msgpfx + this.getClass().getSimpleName() + "." + methodName)
 		var testDir = path + methodName + "/"
 		var model = parseHelper.parse(FileToString::readFile(testDir + "test" + ExtensionCodes::PHDL_EXT))
 		var fsa = new InMemoryFileSystemAccess()
@@ -70,7 +70,7 @@ class TestGenerator extends XtextTest {
 	@Test
 	def void test_refDes2() {
 		var methodName = new Throwable().stackTrace.get(0).methodName;
-		LOGGER.info(msgpfx + this.getClass().getSimpleName() + "." + methodName)
+		logger.info(msgpfx + this.getClass().getSimpleName() + "." + methodName)
 		var testDir = path + methodName + "/"
 		var model = parseHelper.parse(FileToString::readFile(testDir + "test" + ExtensionCodes::PHDL_EXT))
 		var fsa = new InMemoryFileSystemAccess()

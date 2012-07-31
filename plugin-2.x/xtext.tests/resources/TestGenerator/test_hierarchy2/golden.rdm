@@ -1,4 +1,4 @@
-A/B0/C1,a_inst/b_inst(0)/c_inst(1)
-A/B0/C2,a_inst/b_inst(0)/c_inst(0)
-A/B1/C1,a_inst/b_inst(1)/c_inst(1)
-A/B1/C2,a_inst/b_inst(1)/c_inst(0)
+A/B0/C1,top/a_inst/b_inst(0)/c_inst(1)
+A/B0/C2,top/a_inst/b_inst(0)/c_inst(0)
+A/B1/C1,top/a_inst/b_inst(1)/c_inst(1)
+A/B1/C2,top/a_inst/b_inst(1)/c_inst(0)
