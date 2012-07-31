@@ -234,11 +234,9 @@ public class EInstance extends Attributable {
 	public String getHierarchyPrefix() {
 		StringBuilder sb = new StringBuilder();
 		EDesignUnit current = this.parent;
-		if (current instanceof EDesign)
-			return "";
 		while (current != null) {
+			sb.insert(0, current.getNameIndex() + "/");
 			if (current instanceof ESubInstance) {
-				sb.insert(0, current.getNameIndex() + "/");
 				current = ((ESubInstance) current).getParent();
 			} else
 				current = null;

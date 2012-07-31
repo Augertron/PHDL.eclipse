@@ -11,13 +11,14 @@
 package edu.byu.ee.phdl.generator;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+
+import org.apache.log4j.Logger;
 
 import edu.byu.ee.phdl.elaboration.EConnection;
 import edu.byu.ee.phdl.elaboration.EDesign;
@@ -37,6 +38,7 @@ import edu.byu.ee.phdl.elaboration.ESubInstance;
  */
 public class NetListGenerator {
 
+	private static final Logger logger = Logger.getLogger(NetListGenerator.class);
 	private final EDesign design;
 
 	private final Map<String, EInstance> refMap;
@@ -46,10 +48,14 @@ public class NetListGenerator {
 	/**
 	 * Default constructor.
 	 * 
-	 * Takes a design and a map of the reference designators and generates the NetList.
+	 * Takes a design and a map of the reference designators and generates the
+	 * NetList.
 	 * 
-	 * @param design the DesignNode where all the net information is stored.
-	 * @param refMap the map of Reference Designators needed to generated the NetList.
+	 * @param design
+	 *            the DesignNode where all the net information is stored.
+	 * @param refMap
+	 *            the map of Reference Designators needed to generated the
+	 *            NetList.
 	 * 
 	 * @see EDesign
 	 * @see RefDesGenerator
@@ -64,10 +70,11 @@ public class NetListGenerator {
 	/**
 	 * clear_visited
 	 * 
-	 * Recursively iterates through and sets all ElaboratedNet's visited boolean variable to
-	 * unvisited.
+	 * Recursively iterates through and sets all ENet's visited boolean variable
+	 * to unvisited.
 	 * 
-	 * @param des The ElaboratedHierarchyUnit whose Nets will be set to unvisited.
+	 * @param des
+	 *            The EHierarchyUnit whose Nets will be set to unvisited.
 	 */
 	private void clear_visited(EHierarchyUnit des) {
 		des.clearVisited();
@@ -79,7 +86,8 @@ public class NetListGenerator {
 	/**
 	 * generate
 	 * 
-	 * Generates the netlist and a string representation of it and stores it into global variables.
+	 * Generates the netlist and a string representation of it and stores it
+	 * into global variables.
 	 */
 	private void generate() {
 		StringBuilder sb = new StringBuilder();
@@ -96,8 +104,8 @@ public class NetListGenerator {
 	/**
 	 * generate_connections
 	 * 
-	 * Generates the list of nets and the pins associated connected to them for the asc netlist
-	 * file.
+	 * Generates the list of nets and the pins associated connected to them for
+	 * the asc netlist file.
 	 * 
 	 * @return a string representation of the nets and pins for a PADS netlist
 	 */
@@ -131,20 +139,21 @@ public class NetListGenerator {
 	 * 
 	 * Generates the header for a net in a design for the asc netlist file.
 	 * 
-	 * @param n the net whose header is to be generatedd
+	 * @param n
+	 *            the net whose header is to be generatedd
 	 * @return a string representation of the header
 	 */
 	private String generate_net_header(ENet n) {
 		StringBuilder sb = new StringBuilder();
-		sb.append("*SIGNAL* " + n.getHierarchyName().toUpperCase());
-		sb.append("\n");
+		sb.append("*SIGNAL* " + n.getHierarchyName().toUpperCase() + "\n");
 		return sb.toString();
 	}
 
 	/**
 	 * generate_parts
 	 * 
-	 * Generates the list of parts used on the board in for the asc netlist file.
+	 * Generates the list of parts used on the board in for the asc netlist
+	 * file.
 	 * 
 	 * @return a string representation of the part list for a PADS netlist
 	 */
@@ -163,9 +172,11 @@ public class NetListGenerator {
 	/**
 	 * generate_pin_list
 	 * 
-	 * Generates the list of pins attached to a net in a design for the asc netlist file.
+	 * Generates the list of pins attached to a net in a design for the asc
+	 * netlist file.
 	 * 
-	 * @param n the net whose pins will be in the list
+	 * @param n
+	 *            the net whose pins will be in the list
 	 * @return a string representation of the pin list
 	 */
 	private String generate_pin_list(ENet n) {
@@ -199,7 +210,8 @@ public class NetListGenerator {
 	/**
 	 * Generates an .asc file representation of the NetList.
 	 * 
-	 * @param fileName the name of the file to write to
+	 * @param fileName
+	 *            the name of the file to write to
 	 */
 	public void outputToFile(String fileName) {
 		try {
@@ -207,19 +219,21 @@ public class NetListGenerator {
 			out.write(contents);
 			out.close();
 		} catch (IOException e) {
-			System.err.println("File Reading Error - filename may be corrupt");
+			logger.fatal("unable to write file: " + fileName);
 			System.exit(1);
 		}
-		System.out.println("  -- Generated: " + File.separator + fileName);
+		logger.info("wrote file: " + fileName);
 	}
 
 	/**
 	 * retrieve_netlist
 	 * 
-	 * Collects recursively all the nets and pins found in the entire design and inserts them into
-	 * the global netlist map.
+	 * Collects recursively all the nets and pins found in the entire design and
+	 * inserts them into the global netlist map.
 	 * 
-	 * @param des The ElaboratedHierarchyUnit in which to search for nets and pins
+	 * @param des
+	 *            The ElaboratedHierarchyUnit in which to search for nets and
+	 *            pins
 	 */
 	private void retrieve_netlist(EHierarchyUnit des) {
 		for (ENet n : des.getNets()) {
@@ -227,6 +241,8 @@ public class NetListGenerator {
 			if (single_netlist != null && !single_netlist.isEmpty()) {
 				netlist.put(n, single_netlist);
 			}
+			// if (single_netlist.size() < 2)
+			// logger.error("dangling net '" + n.getHierarchyName() + "'");
 		}
 		for (ESubInstance s : des.getSubInstances()) {
 			retrieve_netlist(s);
@@ -238,7 +254,8 @@ public class NetListGenerator {
 	 * 
 	 * Recursively collects all the pins connected to a ElaboratedConnection.
 	 * 
-	 * @param c The ElaboratedConnection whose pins are to be collected
+	 * @param c
+	 *            The ElaboratedConnection whose pins are to be collected
 	 * @return A list of all the pins found on the connection
 	 */
 	private List<EPin> retrieve_pins(EConnection c) {
@@ -446,7 +463,8 @@ public class NetListGenerator {
 		}
 
 		/**
-		 * Test 3 No hierarchy, with arrayed instances/pins/nets Intermittent nets
+		 * Test 3 No hierarchy, with arrayed instances/pins/nets Intermittent
+		 * nets
 		 */
 		{
 			EDesign design = new EDesign("test3");
@@ -884,8 +902,7 @@ public class NetListGenerator {
 							inst3.addPin(f);
 						}
 
-						ESubInstance subInst1 = new ESubInstance(subInst2[i], "SubInst2(" + i
-							+ ")_SubInst1");
+						ESubInstance subInst1 = new ESubInstance(subInst2[i], "SubInst2(" + i + ")_SubInst1");
 						{
 							subInst1.setRefPrefix("Y");
 							EInstance inst1 = new EInstance(subInst1);

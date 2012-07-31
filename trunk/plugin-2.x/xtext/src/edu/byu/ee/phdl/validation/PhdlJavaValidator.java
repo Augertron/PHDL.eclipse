@@ -54,7 +54,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 
 	final String[] reqAttrs = { "REFPREFIX", "LIBRARY", "FOOTPRINT" };
 
-	protected void checkAlreadyAssigned(String ref, EObject assign, Map<String, EObject> refs, EStructuralFeature feature) {
+	protected void checkAlreadyAssigned(String ref, EObject assign, Map<String, EObject> refs,
+			EStructuralFeature feature) {
 		if (refs.get(ref) != null) {
 			error("'" + ref + "' already assigned.", assign, feature, -1, IssueCodes.ALREADY_ASSIGNED);
 			error("Original assignment '" + ref + "'.", refs.get(ref), feature, -1, IssueCodes.ORIGINAL_ASSIGNMENT);
@@ -62,25 +63,30 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 			refs.put(ref, assign);
 	}
 
-	protected void checkAlreadyAssigned(String instName, int index, Map<String, EObject> refs, EObject assign, EStructuralFeature feature) {
+	protected void checkAlreadyAssigned(String instName, int index, Map<String, EObject> refs, EObject assign,
+			EStructuralFeature feature) {
 		String indices = "(" + index + ").";
 		String ref;
-		ref = (assign instanceof PinAssign) ? ((PinAssign) assign).getRef().getName() : ((PortAssign) assign).getRef().getName();
+		ref = (assign instanceof PinAssign) ? ((PinAssign) assign).getRef().getName() : ((PortAssign) assign).getRef()
+				.getName();
 		checkAlreadyAssigned(instName + indices + ref, assign, refs, feature);
 	}
 
-	protected void checkAlreadyAssigned(String instName, int index, Map<String, EObject> refs, EObject assign, int slice,
-			EStructuralFeature feature) {
+	protected void checkAlreadyAssigned(String instName, int index, Map<String, EObject> refs, EObject assign,
+			int slice, EStructuralFeature feature) {
 		String indices = "(" + index + ").";
 		String slices = "[" + slice + "]";
 		String ref;
-		ref = (assign instanceof PinAssign) ? ((PinAssign) assign).getRef().getName() : ((PortAssign) assign).getRef().getName();
+		ref = (assign instanceof PinAssign) ? ((PinAssign) assign).getRef().getName() : ((PortAssign) assign).getRef()
+				.getName();
 		checkAlreadyAssigned(instName + indices + ref + slices, assign, refs, feature);
 	}
 
-	protected void checkAlreadyAssigned(String instName, Map<String, EObject> refs, EObject assign, EStructuralFeature feature) {
+	protected void checkAlreadyAssigned(String instName, Map<String, EObject> refs, EObject assign,
+			EStructuralFeature feature) {
 		String ref;
-		ref = (assign instanceof PinAssign) ? ((PinAssign) assign).getRef().getName() : ((PortAssign) assign).getRef().getName();
+		ref = (assign instanceof PinAssign) ? ((PinAssign) assign).getRef().getName() : ((PortAssign) assign).getRef()
+				.getName();
 		checkAlreadyAssigned(instName + "." + ref, assign, refs, feature);
 	}
 
@@ -88,7 +94,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 			EStructuralFeature feature) {
 		String slices = "[" + slice + "]";
 		String ref;
-		ref = (assign instanceof PinAssign) ? ((PinAssign) assign).getRef().getName() : ((PortAssign) assign).getRef().getName();
+		ref = (assign instanceof PinAssign) ? ((PinAssign) assign).getRef().getName() : ((PortAssign) assign).getRef()
+				.getName();
 		checkAlreadyAssigned(instName + "." + ref + slices, assign, refs, feature);
 	}
 
@@ -121,7 +128,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 					}
 					for (Integer i : ref.getSlices().getSlices()) {
 						if (!PhdlUtils.isValidIndex(con.getVector().getMsb(), con.getVector().getLsb(), i))
-							invalidIndexError(ref.getSlices(), ref.getSlices().getSlices().indexOf(i), PhdlPackage.Literals.SLICES__SLICES);
+							invalidIndexError(ref.getSlices(), ref.getSlices().getSlices().indexOf(i),
+									PhdlPackage.Literals.SLICES__SLICES);
 					}
 				}
 			} else {
@@ -144,9 +152,11 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 				return;
 			}
 			if (assign.getSlices().isVector()) {
-				if (!PhdlUtils.isValidIndex(c.getVector().getMsb(), c.getVector().getLsb(), assign.getSlices().getMsb()))
+				if (!PhdlUtils
+						.isValidIndex(c.getVector().getMsb(), c.getVector().getLsb(), assign.getSlices().getMsb()))
 					invalidMsbError(assign.getSlices(), PhdlPackage.Literals.SLICES__MSB);
-				if (!PhdlUtils.isValidIndex(c.getVector().getMsb(), c.getVector().getLsb(), assign.getSlices().getLsb()))
+				if (!PhdlUtils
+						.isValidIndex(c.getVector().getMsb(), c.getVector().getLsb(), assign.getSlices().getLsb()))
 					invalidLsbError(assign.getSlices(), PhdlPackage.Literals.SLICES__LSB);
 			} else {
 				for (Integer i : assign.getSlices().getSlices())
@@ -181,7 +191,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 				} else {
 					for (Integer i : ref.getSlices().getSlices())
 						if (!PhdlUtils.isValidIndex(con.getVector().getMsb(), con.getVector().getLsb(), i))
-							invalidIndexError(ref, ref.getSlices().getSlices().indexOf(i), PhdlPackage.Literals.SLICES__SLICES);
+							invalidIndexError(ref, ref.getSlices().getSlices().indexOf(i),
+									PhdlPackage.Literals.SLICES__SLICES);
 					rightWidth += ref.getSlices().getSlices().size();
 				}
 			} else {
@@ -194,9 +205,9 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 		if (leftWidth != rightWidth) {
 			EStructuralFeature f = PhdlPackage.Literals.DESIGN__ELEMENTS;
 			int index = ((Design) assign.eContainer()).getElements().indexOf(assign);
-			error("Assignment width mismatch.  Left=" + leftWidth + ", right=" + rightWidth + ".", assign.eContainer(), f, index,
-					IssueCodes.ASSIGNMENT_WIDTH_MISMATCH, Integer.toString(index), Integer.toString(leftWidth),
-					Integer.toString(rightWidth));
+			error("Assignment width mismatch.  Left=" + leftWidth + ", right=" + rightWidth + ".", assign.eContainer(),
+					f, index, IssueCodes.ASSIGNMENT_WIDTH_MISMATCH, Integer.toString(index),
+					Integer.toString(leftWidth), Integer.toString(rightWidth));
 		}
 	}
 
@@ -240,7 +251,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 			if (obj.getCount() == 0) {
 				EStructuralFeature f = PhdlPackage.Literals.CONNECTION_NAME__NAME;
 				int index = ((Connection) obj.getObject().eContainer()).getNames().indexOf(obj.getIndex());
-				warning("Unused connection '" + name + "'", obj.getObject(), f, index, IssueCodes.UNUSED_CONNECTION_DECL);
+				warning("Unused connection '" + name + "'", obj.getObject(), f, index,
+						IssueCodes.UNUSED_CONNECTION_DECL);
 			}
 		}
 	}
@@ -260,7 +272,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 	/**
 	 * Checks the design hierarchy for cycles.
 	 * 
-	 * @param d The top-level design to check for cycles
+	 * @param d
+	 *            The top-level design to check for cycles
 	 * @return The list of paths of SubInstances that form cycles.
 	 */
 	@Check(CheckType.NORMAL)
@@ -313,8 +326,10 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 	@Check(CheckType.NORMAL)
 	public void checkDesignNameUnique(Design design) {
 		List<Design> designs = new ArrayList<Design>();
-		IResourceDescription resourceDescription = resourceDescriptions.getResourceDescription(design.eResource().getURI());
-		List<IContainer> visiblecontainers = containermanager.getVisibleContainers(resourceDescription, resourceDescriptions);
+		IResourceDescription resourceDescription = resourceDescriptions.getResourceDescription(design.eResource()
+				.getURI());
+		List<IContainer> visiblecontainers = containermanager.getVisibleContainers(resourceDescription,
+				resourceDescriptions);
 		for (IContainer container : visiblecontainers) {
 			for (IEObjectDescription eobjectDescription : container.getExportedObjects()) {
 				EObject eObjectOrProxy = eobjectDescription.getEObjectOrProxy();
@@ -368,11 +383,13 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 	}
 
 	/**
-	 * Checks that the appropriate quantity of pins in a device is declared, if the special PINCOUNT
-	 * attribute has been declared in the device. If they do not match, an error is reported in the
-	 * editor at the location of the PINCOUNT attribute.
+	 * Checks that the appropriate quantity of pins in a device is declared, if
+	 * the special PINCOUNT attribute has been declared in the device. If they
+	 * do not match, an error is reported in the editor at the location of the
+	 * PINCOUNT attribute.
 	 * 
-	 * @param d The current device to check
+	 * @param d
+	 *            The current device to check
 	 * @author Brad Riching
 	 */
 	@Check(CheckType.FAST)
@@ -414,9 +431,10 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 				int index = d.getElements().indexOf(p);
 				int width = (Math.abs(p.getVector().getMsb() - p.getVector().getLsb())) + 1;
 				if (width != p.getPinNames().size())
-					error("Invalid pin declaration.", d, PhdlPackage.Literals.DEVICE__ELEMENTS, d.getElements().indexOf(element),
-							IssueCodes.INVALID_PIN_DECLARATION, Integer.toString(index), Boolean.toString(p.getVector().isVector()),
-							Integer.toString(width), Integer.toString(p.getPinNames().size()));
+					error("Invalid pin declaration.", d, PhdlPackage.Literals.DEVICE__ELEMENTS, d.getElements()
+							.indexOf(element), IssueCodes.INVALID_PIN_DECLARATION, Integer.toString(index),
+							Boolean.toString(p.getVector().isVector()), Integer.toString(width), Integer.toString(p
+									.getPinNames().size()));
 			}
 		}
 	}
@@ -464,7 +482,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 		}
 		// System.out.println(0);
 		IResourceDescription resourceDescription = resourceDescriptions.getResourceDescription(i.eResource().getURI());
-		List<IContainer> visiblecontainers = containermanager.getVisibleContainers(resourceDescription, resourceDescriptions);
+		List<IContainer> visiblecontainers = containermanager.getVisibleContainers(resourceDescription,
+				resourceDescriptions);
 		for (IContainer container : visiblecontainers) {
 			for (IEObjectDescription eobjectDescription : container.getExportedObjects()) {
 				EObject eObjectOrProxy = eobjectDescription.getEObjectOrProxy();
@@ -483,7 +502,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 					} else {
 						String importPackageName = namespace.substring(0, index);
 						String importElementName = namespace.substring(namespace.indexOf('.') + 1);
-						// System.out.println(importPackageName + " " + importElementName);
+						// System.out.println(importPackageName + " " +
+						// importElementName);
 						if (p.getName().equals(importPackageName)) {
 							for (Device d : p.getDevices())
 								if (d.getName().equals(importElementName))
@@ -520,8 +540,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 				if (element instanceof NewAttr) {
 					NewAttr a = (NewAttr) element;
 					if (!a.getName().equals(a.getName().toUpperCase()))
-						warning("Only uppercase attribute names are recommended.", a, PhdlPackage.Literals.NEW_ATTR__NAME, -1,
-								IssueCodes.NOT_UPPERCASE, a.getName());
+						warning("Only uppercase attribute names are recommended.", a,
+								PhdlPackage.Literals.NEW_ATTR__NAME, -1, IssueCodes.NOT_UPPERCASE, a.getName());
 					if (a.getQualifier() != null) {
 						if (a.getQualifier().getIndices().isArray()) {
 							int msb = a.getQualifier().getIndices().getMsb();
@@ -537,7 +557,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 								String attr = i.getName() + "(" + index + ")." + a.getName().toUpperCase();
 								if (attrs.get(attr) != null) {
 									EStructuralFeature f = PhdlPackage.Literals.NEW_ATTR__NAME;
-									error("Attribute already declared.", a, f, -1, IssueCodes.ATTRIBUTE_ALREADY_DECLARED);
+									error("Attribute already declared.", a, f, -1,
+											IssueCodes.ATTRIBUTE_ALREADY_DECLARED);
 								} else
 									attrs.put(attr, a);
 							}
@@ -545,14 +566,14 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 							for (Integer index : a.getQualifier().getIndices().getIndices()) {
 								// check all arbitrary indices
 								if (!PhdlUtils.isValidIndex(i.getArray().getMsb(), i.getArray().getLsb(), index))
-									invalidIndexError(a.getQualifier().getIndices(),
-											a.getQualifier().getIndices().getIndices().indexOf(index),
-											PhdlPackage.Literals.INDICES__INDICES);
+									invalidIndexError(a.getQualifier().getIndices(), a.getQualifier().getIndices()
+											.getIndices().indexOf(index), PhdlPackage.Literals.INDICES__INDICES);
 								// check for already declared attributes
 								String attr = i.getName() + "(" + index + ")." + a.getName().toUpperCase();
 								if (attrs.get(attr) != null) {
 									EStructuralFeature f = PhdlPackage.Literals.NEW_ATTR__NAME;
-									error("Attribute already declared.", a, f, -1, IssueCodes.ATTRIBUTE_ALREADY_DECLARED);
+									error("Attribute already declared.", a, f, -1,
+											IssueCodes.ATTRIBUTE_ALREADY_DECLARED);
 								} else
 									attrs.put(attr, a);
 							}
@@ -580,8 +601,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 				if (element instanceof NewAttr) {
 					NewAttr a = (NewAttr) element;
 					if (!a.getName().equals(a.getName().toUpperCase()))
-						warning("Only uppercase attribute names are recommended.", a, PhdlPackage.Literals.NEW_ATTR__NAME, -1,
-								IssueCodes.NOT_UPPERCASE, a.getName());
+						warning("Only uppercase attribute names are recommended.", a,
+								PhdlPackage.Literals.NEW_ATTR__NAME, -1, IssueCodes.NOT_UPPERCASE, a.getName());
 					if (a.getQualifier() != null)
 						qualifierNotAllowedError(a, PhdlPackage.Literals.NEW_ATTR__QUALIFIER);
 					String attr = i.getName() + "." + a.getName().toUpperCase();
@@ -596,22 +617,27 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 	}
 
 	/**
-	 * Checks that all pins inside each instance have exactly one and only one assignment. The check
-	 * is performed with the aid of a map consisting of PinAssigns, keyed by their expected name
-	 * from the device declaration. The name key strings are formed by the instance name, its index
-	 * (if it exists), a period separator, the PinAssign name, and pin slices (if the pin is
-	 * declared as an array in the device.) After the map is initialized, each pin is added to the
-	 * map if the place-holder value was initially null. If the place-holder value contains a
-	 * reference to a PinAssign, then the pin has been assigned twice, and an error is reported.
-	 * After all pins have been added to the map, the map keyset is iterated over. If any values are
-	 * null, those pins are reported with errors as not assigned.
+	 * Checks that all pins inside each instance have exactly one and only one
+	 * assignment. The check is performed with the aid of a map consisting of
+	 * PinAssigns, keyed by their expected name from the device declaration. The
+	 * name key strings are formed by the instance name, its index (if it
+	 * exists), a period separator, the PinAssign name, and pin slices (if the
+	 * pin is declared as an array in the device.) After the map is initialized,
+	 * each pin is added to the map if the place-holder value was initially
+	 * null. If the place-holder value contains a reference to a PinAssign, then
+	 * the pin has been assigned twice, and an error is reported. After all pins
+	 * have been added to the map, the map keyset is iterated over. If any
+	 * values are null, those pins are reported with errors as not assigned.
 	 * 
-	 * @param i The current instance to check
+	 * @param i
+	 *            The current instance to check
 	 * @see #checkAlreadyAssigned(String, EObject, Map, EStructuralFeature)
 	 * @see #checkAlreadyAssigned(String, Map, EObject, EStructuralFeature)
 	 * @see #checkAlreadyAssigned(String, int, Map, EObject, EStructuralFeature)
-	 * @see #checkAlreadyAssigned(String, Map, EObject, Integer, EStructuralFeature)
-	 * @see #checkAlreadyAssigned(String, int, Map, EObject, int, EStructuralFeature)
+	 * @see #checkAlreadyAssigned(String, Map, EObject, Integer,
+	 *      EStructuralFeature)
+	 * @see #checkAlreadyAssigned(String, int, Map, EObject, int,
+	 *      EStructuralFeature)
 	 * @author Brad Riching
 	 */
 	@Check(CheckType.NORMAL)
@@ -642,12 +668,13 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 						PinAssign p = (PinAssign) element;
 						if (p.getQualifier() != null) {
 							if (p.getQualifier().getIndices().isArray()) {
-								if (PhdlUtils.isValidIndex(p.getQualifier().getIndices().getMsb(), p.getQualifier().getIndices().getLsb(),
-										index)) {
+								if (PhdlUtils.isValidIndex(p.getQualifier().getIndices().getMsb(), p.getQualifier()
+										.getIndices().getLsb(), index)) {
 									if (p.getSlices() != null) {
 										if (p.getSlices().isVector()) {
 											if (p.getRef().getVector().isVector())
-												for (Integer slice : PhdlUtils.getIndices(p.getSlices().getMsb(), p.getSlices().getLsb()))
+												for (Integer slice : PhdlUtils.getIndices(p.getSlices().getMsb(), p
+														.getSlices().getLsb()))
 													checkAlreadyAssigned(i.getName(), index, pins, p, slice, pFeature);
 											else
 												checkAlreadyAssigned(i.getName(), index, pins, p, pFeature);
@@ -660,8 +687,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 										}
 									} else { // !p.isSliced()
 										if (p.getRef().getVector().isVector())
-											for (Integer slice : PhdlUtils.getIndices(p.getRef().getVector().getMsb(), p.getRef()
-													.getVector().getLsb()))
+											for (Integer slice : PhdlUtils.getIndices(p.getRef().getVector().getMsb(),
+													p.getRef().getVector().getLsb()))
 												checkAlreadyAssigned(i.getName(), index, pins, p, slice, pFeature);
 										else
 											checkAlreadyAssigned(i.getName(), index, pins, p, pFeature);
@@ -672,7 +699,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 									if (p.getSlices() != null) {
 										if (p.getSlices().isVector()) {
 											if (p.getRef().getVector().isVector())
-												for (Integer slice : PhdlUtils.getIndices(p.getSlices().getMsb(), p.getSlices().getLsb()))
+												for (Integer slice : PhdlUtils.getIndices(p.getSlices().getMsb(), p
+														.getSlices().getLsb()))
 													checkAlreadyAssigned(i.getName(), index, pins, p, slice, pFeature);
 											else
 												checkAlreadyAssigned(i.getName(), index, pins, p, pFeature);
@@ -685,8 +713,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 										}
 									} else { // !p.isSliced()
 										if (p.getRef().getVector().isVector())
-											for (Integer slice : PhdlUtils.getIndices(p.getRef().getVector().getMsb(), p.getRef()
-													.getVector().getLsb()))
+											for (Integer slice : PhdlUtils.getIndices(p.getRef().getVector().getMsb(),
+													p.getRef().getVector().getLsb()))
 												checkAlreadyAssigned(i.getName(), index, pins, p, slice, pFeature);
 										else
 											checkAlreadyAssigned(i.getName(), index, pins, p, pFeature);
@@ -697,7 +725,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 							if (p.getSlices() != null) {
 								if (p.getSlices().isVector()) {
 									if (p.getRef().getVector().isVector())
-										for (Integer slice : PhdlUtils.getIndices(p.getSlices().getMsb(), p.getSlices().getLsb()))
+										for (Integer slice : PhdlUtils.getIndices(p.getSlices().getMsb(), p.getSlices()
+												.getLsb()))
 											checkAlreadyAssigned(i.getName(), index, pins, p, slice, pFeature);
 									else
 										checkAlreadyAssigned(i.getName(), index, pins, p, pFeature);
@@ -710,8 +739,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 								}
 							} else { // !p.isSliced()
 								if (p.getRef().getVector().isVector())
-									for (Integer slice : PhdlUtils.getIndices(p.getRef().getVector().getMsb(), p.getRef().getVector()
-											.getLsb()))
+									for (Integer slice : PhdlUtils.getIndices(p.getRef().getVector().getMsb(), p
+											.getRef().getVector().getLsb()))
 										checkAlreadyAssigned(i.getName(), index, pins, p, slice, pFeature);
 								else
 									checkAlreadyAssigned(i.getName(), index, pins, p, pFeature);
@@ -741,7 +770,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 					if (p.getSlices() != null) {
 						if (p.getSlices().isVector()) {
 							if (p.getRef().getVector().isVector()) {
-								for (Integer slice : PhdlUtils.getIndices(p.getSlices().getMsb(), p.getSlices().getLsb()))
+								for (Integer slice : PhdlUtils.getIndices(p.getSlices().getMsb(), p.getSlices()
+										.getLsb()))
 									checkAlreadyAssigned(i.getName(), pins, p, slice, pFeature);
 							} else
 								checkAlreadyAssigned(i.getName(), pins, p, pFeature);
@@ -754,7 +784,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 						}
 					} else {
 						if (p.getRef().getVector().isVector()) {
-							for (Integer slice : PhdlUtils.getIndices(p.getRef().getVector().getMsb(), p.getRef().getVector().getLsb()))
+							for (Integer slice : PhdlUtils.getIndices(p.getRef().getVector().getMsb(), p.getRef()
+									.getVector().getLsb()))
 								checkAlreadyAssigned(i.getName(), pins, p, slice, pFeature);
 						} else
 							checkAlreadyAssigned(i.getName(), pins, p, pFeature);
@@ -829,7 +860,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 							String attr = i.getName() + "(" + index + ")." + a.getRef().getName();
 							if (attrs.get(attr) != null) {
 								EStructuralFeature f = PhdlPackage.Literals.REF_ATTR__REF;
-								warning("Attribute '" + attr + "' already overwritten.", a, f, -1, IssueCodes.ATTRIBUTE_ALREADY_OVERWRITTEN);
+								warning("Attribute '" + attr + "' already overwritten.", a, f, -1,
+										IssueCodes.ATTRIBUTE_ALREADY_OVERWRITTEN);
 								warning("Initial overwritten attribute '" + attr + "'.", attrs.get(attr), f, -1,
 										IssueCodes.INITIAL_OVERWRITTEN_ATTRIBUTE);
 							} else
@@ -854,7 +886,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 					String attr = i.getName() + "." + a.getRef().getName();
 					if (attrs.get(attr) != null) {
 						EStructuralFeature f = PhdlPackage.Literals.REF_ATTR__REF;
-						warning("Attribute '" + attr + "' already overwritten.", a, f, -1, IssueCodes.ATTRIBUTE_ALREADY_OVERWRITTEN);
+						warning("Attribute '" + attr + "' already overwritten.", a, f, -1,
+								IssueCodes.ATTRIBUTE_ALREADY_OVERWRITTEN);
 						warning("Initial overwritten attribute '" + attr + "'.", attrs.get(attr), f, -1,
 								IssueCodes.INITIAL_OVERWRITTEN_ATTRIBUTE);
 					} else
@@ -867,8 +900,10 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 	@Check(CheckType.NORMAL)
 	public void checkPackageNameUnique(Package pkg) {
 		List<Package> packages = new ArrayList<Package>();
-		IResourceDescription resourceDescription = resourceDescriptions.getResourceDescription(pkg.eResource().getURI());
-		List<IContainer> visiblecontainers = containermanager.getVisibleContainers(resourceDescription, resourceDescriptions);
+		IResourceDescription resourceDescription = resourceDescriptions
+				.getResourceDescription(pkg.eResource().getURI());
+		List<IContainer> visiblecontainers = containermanager.getVisibleContainers(resourceDescription,
+				resourceDescriptions);
 		for (IContainer container : visiblecontainers) {
 			for (IEObjectDescription eobjectDescription : container.getExportedObjects()) {
 				EObject eObjectOrProxy = eobjectDescription.getEObjectOrProxy();
@@ -893,15 +928,17 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 		if (i.getArray().isArray()) {
 			if (p.getQualifier() != null) {
 				if (p.getQualifier().getIndices().isArray()) {
-					if (!PhdlUtils.isValidIndex(i.getArray().getMsb(), i.getArray().getLsb(), p.getQualifier().getIndices().getMsb()))
+					if (!PhdlUtils.isValidIndex(i.getArray().getMsb(), i.getArray().getLsb(), p.getQualifier()
+							.getIndices().getMsb()))
 						invalidMsbError(p.getQualifier().getIndices(), PhdlPackage.Literals.INDICES__MSB);
-					if (!PhdlUtils.isValidIndex(i.getArray().getMsb(), i.getArray().getLsb(), p.getQualifier().getIndices().getLsb()))
+					if (!PhdlUtils.isValidIndex(i.getArray().getMsb(), i.getArray().getLsb(), p.getQualifier()
+							.getIndices().getLsb()))
 						invalidLsbError(p.getQualifier().getIndices(), PhdlPackage.Literals.INDICES__LSB);
 				} else {
 					for (Integer index : p.getQualifier().getIndices().getIndices())
 						if (!PhdlUtils.isValidIndex(i.getArray().getMsb(), i.getArray().getLsb(), index))
-							invalidIndexError(p.getQualifier().getIndices(), p.getQualifier().getIndices().getIndices().indexOf(index),
-									PhdlPackage.Literals.INDICES__INDICES);
+							invalidIndexError(p.getQualifier().getIndices(), p.getQualifier().getIndices().getIndices()
+									.indexOf(index), PhdlPackage.Literals.INDICES__INDICES);
 				}
 			}
 		} else {
@@ -928,7 +965,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 			} else {
 				for (Integer i : p.getSlices().getSlices())
 					if (!PhdlUtils.isValidIndex(pin.getVector().getMsb(), pin.getVector().getLsb(), i))
-						invalidIndexError(p.getSlices(), p.getSlices().getSlices().indexOf(i), PhdlPackage.Literals.SLICES__SLICES);
+						invalidIndexError(p.getSlices(), p.getSlices().getSlices().indexOf(i),
+								PhdlPackage.Literals.SLICES__SLICES);
 			}
 		}
 
@@ -957,7 +995,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 				} else {
 					for (Integer i : ref.getSlices().getSlices())
 						if (!PhdlUtils.isValidIndex(con.getVector().getMsb(), con.getVector().getLsb(), i))
-							invalidSliceError(ref.getSlices(), ref.getSlices().getSlices().indexOf(i), PhdlPackage.Literals.SLICES__SLICES);
+							invalidSliceError(ref.getSlices(), ref.getSlices().getSlices().indexOf(i),
+									PhdlPackage.Literals.SLICES__SLICES);
 					rightWidth += ref.getSlices().getSlices().size();
 				}
 			} else {
@@ -970,8 +1009,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 		if (leftWidth != rightWidth) {
 			EStructuralFeature f = PhdlPackage.Literals.INSTANCE__ELEMENTS;
 			int index = ((Instance) p.eContainer()).getElements().indexOf(p);
-			error("Assignment width mismatch.  Left=" + leftWidth + ", right=" + rightWidth + ".", p.eContainer(), f, index,
-					IssueCodes.ASSIGNMENT_WIDTH_MISMATCH, Integer.toString(index), Integer.toString(leftWidth),
+			error("Assignment width mismatch.  Left=" + leftWidth + ", right=" + rightWidth + ".", p.eContainer(), f,
+					index, IssueCodes.ASSIGNMENT_WIDTH_MISMATCH, Integer.toString(index), Integer.toString(leftWidth),
 					Integer.toString(rightWidth));
 		}
 	}
@@ -982,15 +1021,17 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 		if (i.getArray().isArray()) {
 			if (p.getQualifier() != null) {
 				if (p.getQualifier().getIndices().isArray()) {
-					if (!PhdlUtils.isValidIndex(i.getArray().getMsb(), i.getArray().getLsb(), p.getQualifier().getIndices().getMsb()))
+					if (!PhdlUtils.isValidIndex(i.getArray().getMsb(), i.getArray().getLsb(), p.getQualifier()
+							.getIndices().getMsb()))
 						invalidMsbError(p.getQualifier().getIndices(), PhdlPackage.Literals.INDICES__MSB);
-					if (!PhdlUtils.isValidIndex(i.getArray().getMsb(), i.getArray().getLsb(), p.getQualifier().getIndices().getLsb()))
+					if (!PhdlUtils.isValidIndex(i.getArray().getMsb(), i.getArray().getLsb(), p.getQualifier()
+							.getIndices().getLsb()))
 						invalidLsbError(p.getQualifier().getIndices(), PhdlPackage.Literals.INDICES__LSB);
 				} else {
 					for (Integer index : p.getQualifier().getIndices().getIndices())
 						if (!PhdlUtils.isValidIndex(i.getArray().getMsb(), i.getArray().getLsb(), index))
-							invalidIndexError(p.getQualifier().getIndices(), p.getQualifier().getIndices().getIndices().indexOf(index),
-									PhdlPackage.Literals.INDICES__INDICES);
+							invalidIndexError(p.getQualifier().getIndices(), p.getQualifier().getIndices().getIndices()
+									.indexOf(index), PhdlPackage.Literals.INDICES__INDICES);
 				}
 			}
 		} else {
@@ -1010,24 +1051,27 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 				return;
 			}
 			if (p.getSlices().isVector()) {
-				if (!PhdlUtils.isValidIndex(port.getVector().getMsb(), port.getVector().getLsb(), p.getSlices().getMsb()))
+				if (!PhdlUtils.isValidIndex(port.getVector().getMsb(), port.getVector().getLsb(), p.getSlices()
+						.getMsb()))
 					invalidMsbError(p.getSlices(), PhdlPackage.Literals.SLICES__MSB);
-				if (!PhdlUtils.isValidIndex(port.getVector().getMsb(), port.getVector().getLsb(), p.getSlices().getLsb()))
+				if (!PhdlUtils.isValidIndex(port.getVector().getMsb(), port.getVector().getLsb(), p.getSlices()
+						.getLsb()))
 					invalidLsbError(p.getSlices(), PhdlPackage.Literals.SLICES__LSB);
 			} else {
 				for (Integer i : p.getSlices().getSlices())
 					if (!PhdlUtils.isValidIndex(port.getVector().getMsb(), port.getVector().getLsb(), i))
-						invalidIndexError(p.getSlices(), p.getSlices().getSlices().indexOf(i), PhdlPackage.Literals.SLICES__SLICES);
+						invalidIndexError(p.getSlices(), p.getSlices().getSlices().indexOf(i),
+								PhdlPackage.Literals.SLICES__SLICES);
 			}
 		}
 
-		if (p.getConcatenation().isReplicated())
+		if (p.getConcatenation().isReplicated() || p.getConcatenation().isOpen())
 			return;
-		if (p.getConcatenation().isOpen()) {
-			EStructuralFeature f = PhdlPackage.Literals.CONCATENATION__OPEN;
-			error("Ports may not be open.", p.getConcatenation(), f, -1);
-			return;
-		}
+		// if (p.getConcatenation().isOpen()) {
+		// EStructuralFeature f = PhdlPackage.Literals.CONCATENATION__OPEN;
+		// error("Ports may not be open.", p.getConcatenation(), f, -1);
+		// return;
+		// }
 
 		int leftWidth = getAssignLeftWidth(p);
 		int rightWidth = 0;
@@ -1051,7 +1095,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 				} else {
 					for (Integer i : ref.getSlices().getSlices())
 						if (!PhdlUtils.isValidIndex(con.getVector().getMsb(), con.getVector().getLsb(), i))
-							invalidIndexError(ref, ref.getSlices().getSlices().indexOf(i), PhdlPackage.Literals.SLICES__SLICES);
+							invalidIndexError(ref, ref.getSlices().getSlices().indexOf(i),
+									PhdlPackage.Literals.SLICES__SLICES);
 					rightWidth += ref.getSlices().getSlices().size();
 				}
 			} else {
@@ -1064,8 +1109,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 		if (leftWidth != rightWidth) {
 			EStructuralFeature f = PhdlPackage.Literals.INSTANCE__ELEMENTS;
 			int index = ((Instance) p.eContainer()).getElements().indexOf(p);
-			error("Assignment width mismatch.  Left=" + leftWidth + ", right=" + rightWidth + ".", p.eContainer(), f, index,
-					IssueCodes.ASSIGNMENT_WIDTH_MISMATCH, Integer.toString(index), Integer.toString(leftWidth),
+			error("Assignment width mismatch.  Left=" + leftWidth + ", right=" + rightWidth + ".", p.eContainer(), f,
+					index, IssueCodes.ASSIGNMENT_WIDTH_MISMATCH, Integer.toString(index), Integer.toString(leftWidth),
 					Integer.toString(rightWidth));
 		}
 	}
@@ -1110,7 +1155,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 				} else {
 					for (Integer j : r.getRefIndices().getIndices())
 						if (!PhdlUtils.isValidIndex(i.getArray().getMsb(), i.getArray().getLsb(), j))
-							invalidIndexError(r, r.getRefIndices().getIndices().indexOf(j), PhdlPackage.Literals.INDICES__INDICES);
+							invalidIndexError(r, r.getRefIndices().getIndices().indexOf(j),
+									PhdlPackage.Literals.INDICES__INDICES);
 				}
 			} else if (r.getRefIndices() != null && !i.getArray().isArray())
 				indicesNotAllowedError(r.getRefIndices(), PhdlPackage.Literals.INDICES__INDICES);
@@ -1137,8 +1183,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 					} else {
 						for (Integer i : a.getQualifier().getIndices().getIndices())
 							if (!PhdlUtils.isValidIndex(s.getArray().getMsb(), s.getArray().getLsb(), i))
-								invalidIndexError(a.getQualifier().getIndices(), a.getQualifier().getIndices().getIndices().indexOf(i),
-										PhdlPackage.Literals.INDICES__INDICES);
+								invalidIndexError(a.getQualifier().getIndices(), a.getQualifier().getIndices()
+										.getIndices().indexOf(i), PhdlPackage.Literals.INDICES__INDICES);
 					}
 				} else if (a.getQualifier() != null && !s.getArray().isArray())
 					qualifierNotAllowedError(a, PhdlPackage.Literals.SUB_ATTR__QUALIFIER);
@@ -1156,7 +1202,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 						} else {
 							for (Integer j : a.getRefIndices().getIndices())
 								if (!PhdlUtils.isValidIndex(i.getArray().getMsb(), i.getArray().getLsb(), j))
-									invalidIndexError(a, a.getRefIndices().getIndices().indexOf(j), PhdlPackage.Literals.INDICES__INDICES);
+									invalidIndexError(a, a.getRefIndices().getIndices().indexOf(j),
+											PhdlPackage.Literals.INDICES__INDICES);
 						}
 					} else if (a.getRefIndices() != null && !i.getArray().isArray())
 						indicesNotAllowedError(a.getRefIndices(), PhdlPackage.Literals.INDICES__INDICES);
@@ -1192,22 +1239,28 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 	}
 
 	/**
-	 * Checks that all ports inside each SubInstance have exactly one and only one assignment. The
-	 * check is performed with the aid of a map consisting of PortAssigns, keyed by their expected
-	 * name * from the device declaration. The name key strings are formed by the SubInstance name,
-	 * its index (if it exists), a period separator, the PortAssign name, and port slices (if the
-	 * port is declared as an array in the design.) After the map is initialized, each port is added
-	 * to the map if the place-holder value was initially null. If the place-holder value contains a
-	 * reference to a PortAssign, then the port has been assigned twice, and an error is reported.
-	 * After all ports have been added to the map, the map keyset is iterated over. If any values
-	 * are null, those pins are reported with errors as not assigned.
+	 * Checks that all ports inside each SubInstance have exactly one and only
+	 * one assignment. The check is performed with the aid of a map consisting
+	 * of PortAssigns, keyed by their expected name * from the device
+	 * declaration. The name key strings are formed by the SubInstance name, its
+	 * index (if it exists), a period separator, the PortAssign name, and port
+	 * slices (if the port is declared as an array in the design.) After the map
+	 * is initialized, each port is added to the map if the place-holder value
+	 * was initially null. If the place-holder value contains a reference to a
+	 * PortAssign, then the port has been assigned twice, and an error is
+	 * reported. After all ports have been added to the map, the map keyset is
+	 * iterated over. If any values are null, those pins are reported with
+	 * errors as not assigned.
 	 * 
-	 * @param i The current instance to check
+	 * @param i
+	 *            The current instance to check
 	 * @see #checkAlreadyAssigned(String, EObject, Map, EStructuralFeature)
 	 * @see #checkAlreadyAssigned(String, Map, EObject, EStructuralFeature)
 	 * @see #checkAlreadyAssigned(String, int, Map, EObject, EStructuralFeature)
-	 * @see #checkAlreadyAssigned(String, Map, EObject, Integer, EStructuralFeature)
-	 * @see #checkAlreadyAssigned(String, int, Map, EObject, int, EStructuralFeature)
+	 * @see #checkAlreadyAssigned(String, Map, EObject, Integer,
+	 *      EStructuralFeature)
+	 * @see #checkAlreadyAssigned(String, int, Map, EObject, int,
+	 *      EStructuralFeature)
 	 * @author Brad Riching
 	 */
 	@Check(CheckType.NORMAL)
@@ -1227,9 +1280,11 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 					if (element instanceof Connection && ((Connection) element).isPort()) {
 						Connection connection = (Connection) element;
 						for (ConnectionName name : connection.getNames()) {
-							for (Integer slice : PhdlUtils.getIndices(connection.getVector().getMsb(), connection.getVector().getLsb()))
+							for (Integer slice : PhdlUtils.getIndices(connection.getVector().getMsb(), connection
+									.getVector().getLsb()))
 								if (connection.getVector().isVector())
-									ports.put(i.getName() + "(" + index + ")." + name.getName() + "[" + slice + "]", null);
+									ports.put(i.getName() + "(" + index + ")." + name.getName() + "[" + slice + "]",
+											null);
 								else
 									ports.put(i.getName() + "(" + index + ")." + name.getName(), null);
 						}
@@ -1242,12 +1297,13 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 						Connection c = (Connection) p.getRef().eContainer();
 						if (p.getQualifier() != null) {
 							if (p.getQualifier().getIndices().isArray()) {
-								if (PhdlUtils.isValidIndex(p.getQualifier().getIndices().getMsb(), p.getQualifier().getIndices().getLsb(),
-										index)) {
+								if (PhdlUtils.isValidIndex(p.getQualifier().getIndices().getMsb(), p.getQualifier()
+										.getIndices().getLsb(), index)) {
 									if (p.getSlices() != null) {
 										if (p.getSlices().isVector()) {
 											if (c.getVector().isVector())
-												for (Integer slice : PhdlUtils.getIndices(p.getSlices().getMsb(), p.getSlices().getLsb()))
+												for (Integer slice : PhdlUtils.getIndices(p.getSlices().getMsb(), p
+														.getSlices().getLsb()))
 													checkAlreadyAssigned(i.getName(), index, ports, p, slice, pFeature);
 											else
 												checkAlreadyAssigned(i.getName(), index, ports, p, pFeature);
@@ -1260,7 +1316,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 										}
 									} else { // !p.isSliced()
 										if (((Connection) p.getRef().eContainer()).getVector().isVector())
-											for (Integer slice : PhdlUtils.getIndices(c.getVector().getMsb(), c.getVector().getLsb()))
+											for (Integer slice : PhdlUtils.getIndices(c.getVector().getMsb(), c
+													.getVector().getLsb()))
 												checkAlreadyAssigned(i.getName(), index, ports, p, slice, pFeature);
 										else
 											checkAlreadyAssigned(i.getName(), index, ports, p, pFeature);
@@ -1271,7 +1328,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 									if (p.getSlices() != null) {
 										if (p.getSlices().isVector()) {
 											if (c.getVector().isVector())
-												for (Integer slice : PhdlUtils.getIndices(p.getSlices().getMsb(), p.getSlices().getLsb()))
+												for (Integer slice : PhdlUtils.getIndices(p.getSlices().getMsb(), p
+														.getSlices().getLsb()))
 													checkAlreadyAssigned(i.getName(), index, ports, p, slice, pFeature);
 											else
 												checkAlreadyAssigned(i.getName(), index, ports, p, pFeature);
@@ -1284,7 +1342,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 										}
 									} else { // !p.isSliced()
 										if (c.getVector().isVector())
-											for (Integer slice : PhdlUtils.getIndices(c.getVector().getMsb(), c.getVector().getLsb()))
+											for (Integer slice : PhdlUtils.getIndices(c.getVector().getMsb(), c
+													.getVector().getLsb()))
 												checkAlreadyAssigned(i.getName(), index, ports, p, slice, pFeature);
 										else
 											checkAlreadyAssigned(i.getName(), index, ports, p, pFeature);
@@ -1295,7 +1354,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 							if (p.getSlices() != null) {
 								if (p.getSlices().isVector()) {
 									if (c.getVector().isVector())
-										for (Integer slice : PhdlUtils.getIndices(p.getSlices().getMsb(), p.getSlices().getLsb()))
+										for (Integer slice : PhdlUtils.getIndices(p.getSlices().getMsb(), p.getSlices()
+												.getLsb()))
 											checkAlreadyAssigned(i.getName(), index, ports, p, slice, pFeature);
 									else
 										checkAlreadyAssigned(i.getName(), index, ports, p, pFeature);
@@ -1308,7 +1368,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 								}
 							} else { // !p.isSliced()
 								if (c.getVector().isVector())
-									for (Integer slice : PhdlUtils.getIndices(c.getVector().getMsb(), c.getVector().getLsb()))
+									for (Integer slice : PhdlUtils.getIndices(c.getVector().getMsb(), c.getVector()
+											.getLsb()))
 										checkAlreadyAssigned(i.getName(), index, ports, p, slice, pFeature);
 								else
 									checkAlreadyAssigned(i.getName(), index, ports, p, pFeature);
@@ -1342,7 +1403,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 					if (p.getSlices() != null) {
 						if (p.getSlices().isVector()) {
 							if (c.getVector().isVector()) {
-								for (Integer slice : PhdlUtils.getIndices(p.getSlices().getMsb(), p.getSlices().getLsb()))
+								for (Integer slice : PhdlUtils.getIndices(p.getSlices().getMsb(), p.getSlices()
+										.getLsb()))
 									checkAlreadyAssigned(i.getName(), ports, p, slice, pFeature);
 							} else
 								checkAlreadyAssigned(i.getName(), ports, p, pFeature);
@@ -1370,7 +1432,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 
 	private int getAssignLeftWidth(Assignable assignable) {
 
-		// Connection assignments are not part of an instance context, and width is easy to compute.
+		// Connection assignments are not part of an instance context, and width
+		// is easy to compute.
 		if (assignable instanceof ConnectionAssign) {
 			ConnectionAssign assignment = (ConnectionAssign) assignable;
 			Connection connDecl = (Connection) assignment.getRef().eContainer();
@@ -1387,7 +1450,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 			}
 		}
 
-		// obtain relevant flags and information from the pin or port assignments
+		// obtain relevant flags and information from the pin or port
+		// assignments
 		int numInsts = 0;
 		boolean isQualified = false;
 		boolean isCombined = false;
@@ -1417,7 +1481,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 		} else
 			return 0;
 
-		// compute the number of relevant instances over which the assignment applies
+		// compute the number of relevant instances over which the assignment
+		// applies
 		if (isQualified) {
 			if (indices.isArray())
 				numInsts = Math.abs(indices.getMsb() - indices.getLsb()) + 1;
@@ -1428,7 +1493,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 			numInsts = Math.abs(i.getArray().getMsb() - i.getArray().getLsb()) + 1;
 		}
 
-		// compute the width of the referenced pin or connection on the left hand side
+		// compute the width of the referenced pin or connection on the left
+		// hand side
 		int refWidth = 0;
 		if (assignable.getSlices() != null) {
 			if (assignable.getSlices().isVector())

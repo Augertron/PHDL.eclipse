@@ -8,4 +8,4 @@ CHANGE SIZE 0.25;
 ADD dFoot@dLib 'D1' (0.25 0.0);
 
 # SIGNALS #
-SIGNAL 'N' D1 1 D1 2;
+SIGNAL 'TOP/N' D1 1 D1 2;

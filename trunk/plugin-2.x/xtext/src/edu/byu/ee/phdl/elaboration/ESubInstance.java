@@ -18,6 +18,7 @@ public class ESubInstance extends EHierarchyUnit {
 
 	/**
 	 * Hierarchical constructor called when instancing a subDesign
+	 * 
 	 * @param parent
 	 * @param subDesign
 	 * @param name
@@ -91,6 +92,7 @@ public class ESubInstance extends EHierarchyUnit {
 
 	/**
 	 * SubInstance recursive copy constructor
+	 * 
 	 * @param parent
 	 * @param old
 	 */
@@ -182,29 +184,32 @@ public class ESubInstance extends EHierarchyUnit {
 				&& this.parent.equals(((ESubInstance) o).getParent());
 		return result;
 	}
-	
+
 	@Override
 	public int compareTo(Object o) {
 		int result = -1;
-		ESubInstance other = (ESubInstance)o;
+		ESubInstance other = (ESubInstance) o;
 		if (this.equals(o)) {
 			result = 0;
-		}
-		else if (!this.getNameIndex().equals(other.getNameIndex())) {
+		} else if (!this.getNameIndex().equals(other.getNameIndex())) {
 			result = this.getNameIndex().compareTo(other.getNameIndex());
-		}
-		else {
+		} else {
 			this.getParent().compareTo(other.getParent());
 		}
 		return result;
 	}
 
 	public String getHierarchyName() {
-		if (parent instanceof ESubInstance) {
-			return ((ESubInstance) parent).getHierarchyName() + "$" + this.getNameIndex();
-		} else {
-			return this.getNameIndex();
+		StringBuilder sb = new StringBuilder();
+		EDesignUnit current = this.parent;
+		while (current != null) {
+			sb.insert(0, current.getNameIndex() + "/");
+			if (current instanceof ESubInstance) {
+				current = ((ESubInstance) current).getParent();
+			} else
+				current = null;
 		}
+		return sb.append(this.getNameIndex()).toString();
 	}
 
 	@Override

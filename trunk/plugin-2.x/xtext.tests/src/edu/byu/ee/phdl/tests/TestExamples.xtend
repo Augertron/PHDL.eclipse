@@ -50,7 +50,6 @@ class TestExamples extends XtextTest {
 		ignoreFormattingDifferences()
 		var dir = "TestExamples/atlys/"
 		testFile(dir + "top.phdl", dir + "s6_devices.phdl")
-		assertConstraints(issues.nOfThemContain(2, "Ports may not be open."))
-		assertConstraints(issues.errorsOnly().sizeIs(2))
+		assertConstraints(issues.sizeIs(0))
 	}
 }

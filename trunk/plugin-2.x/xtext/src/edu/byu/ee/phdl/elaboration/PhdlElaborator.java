@@ -376,6 +376,7 @@ public class PhdlElaborator {
 							ports.get(i).setAssignment(cons.get(0));
 							cons.get(0).addConnection(ports.get(i));
 						} else if (concatenation.isOpen()) {
+							// do nothing
 						} else {
 							ports.get(i).setAssignment(cons.get(i));
 							cons.get(i).addConnection(ports.get(i));
@@ -393,6 +394,7 @@ public class PhdlElaborator {
 								ports.get(i).setAssignment(cons.get(0));
 								cons.get(0).addConnection(ports.get(i));
 							} else if (concatenation.isOpen()) {
+								// do nothing
 							} else {
 								ports.get(i).setAssignment(cons.get(i));
 								cons.get(i).addConnection(ports.get(i));

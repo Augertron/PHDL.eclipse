@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import org.apache.log4j.Logger;
+
 import edu.byu.ee.phdl.elaboration.EAttribute;
 import edu.byu.ee.phdl.elaboration.EDesign;
 import edu.byu.ee.phdl.elaboration.EHierarchyUnit;
@@ -27,8 +29,8 @@ import edu.byu.ee.phdl.elaboration.ESubInstance;
 /**
  * Bill of Materials Generator.
  * 
- * This class takes a design and sorts all of its instances attributes into a readable comma-
- * seperated file.
+ * This class takes a design and sorts all of its instances attributes into a
+ * readable comma- seperated file.
  * 
  * @author Brad Riching and Richard Black
  * @version 0.1
@@ -69,6 +71,7 @@ public class BoMGenerator {
 		}
 	}
 
+	private static final Logger logger = Logger.getLogger(BoMGenerator.class);
 	private final EDesign design;
 	private final List<Row> rows;
 	private final List<String> headers;
@@ -78,10 +81,11 @@ public class BoMGenerator {
 	/**
 	 * Default Constructor.
 	 * 
-	 * Takes a DesignNode, generates the table of attributes, and creates a string representation of
-	 * the table.
+	 * Takes a DesignNode, generates the table of attributes, and creates a
+	 * string representation of the table.
 	 * 
-	 * @param design the DesignNode that contains all of the attribute information.
+	 * @param design
+	 *            the DesignNode that contains all of the attribute information.
 	 * @see EDesign
 	 */
 	public BoMGenerator(EDesign d) {
@@ -169,9 +173,11 @@ public class BoMGenerator {
 	}
 
 	/**
-	 * Produces a .bom file which contains the comma-separated table of attributes.
+	 * Produces a .bom file which contains the comma-separated table of
+	 * attributes.
 	 * 
-	 * @param fileName the file name to output the data
+	 * @param fileName
+	 *            the file name to output the data
 	 */
 	public void outputToFile(String fileName) {
 		try {
@@ -179,11 +185,10 @@ public class BoMGenerator {
 			out.write(bom);
 			out.close();
 		} catch (IOException e) {
-			System.err.println("File Writing Error - " + fileName + "\n" + "\tPossible Reasons:\n" + "\t\t*filename may be corrupt\n"
-				+ "\t\t*file may currently be open\n");
+			logger.fatal("unable to write file: " + fileName);
 			System.exit(1);
 		}
-		System.out.println("  -- Generated: \\" + fileName);
+		logger.info("wrote file: " + fileName);
 	}
 
 	private void populateHeaders() {
@@ -208,158 +213,4 @@ public class BoMGenerator {
 			populateHeaders(s);
 		}
 	}
-
-	// public static boolean unitTest() {
-	// {
-	// ElaboratedDesign des = new ElaboratedDesign();
-	// ElaboratedDevice dev1 = new ElaboratedDevice("Dev1");
-	// ElaboratedDevice dev2 = new ElaboratedDevice("Dev2");
-	// ElaboratedDevice dev3 = new ElaboratedDevice("Dev3");
-	// ElaboratedDevice dev4 = new ElaboratedDevice("Dev4");
-	// ElaboratedDevice dev5 = new ElaboratedDevice("Dev5");
-	//
-	// des.setName("test1");
-	// {
-	// Instance inst1 = new Instance(des);
-	// inst1.setName("inst1");
-	// inst1.setRefDes("R1");
-	// inst1.addAttribute(new ElaboratedAttribute(inst1, "RefDes", "R1"));
-	// inst1.addAttribute(new ElaboratedAttribute(inst1, "Footprint", "pkg1"));
-	// inst1.addAttribute(new ElaboratedAttribute(inst1, "Library", "lib1"));
-	// inst1.addAttribute(new ElaboratedAttribute(inst1, "Value", "Bob"));
-	// inst1.setDevice(dev1);
-	//
-	// Instance inst2 = new Instance(des);
-	// inst2.setName("inst2");
-	// inst2.setRefDes("R2");
-	// inst2.addAttribute(new ElaboratedAttribute(inst2, "Footprint", "pkg1"));
-	// inst2.addAttribute(new ElaboratedAttribute(inst2, "Library", "lib1"));
-	// inst2.addAttribute(new ElaboratedAttribute(inst2, "Value", "Jim"));
-	// inst2.setDevice(dev1);
-	//
-	// Instance inst3 = new Instance(des);
-	// inst3.setName("inst3");
-	// inst3.setRefDes("C1");
-	// inst3.addAttribute(new ElaboratedAttribute(inst3, "Footprint", "pkg2"));
-	// inst3.addAttribute(new ElaboratedAttribute(inst3, "Library", "lib1"));
-	// inst3.addAttribute(new ElaboratedAttribute(inst3, "Value", "Kay"));
-	// inst3.setDevice(dev2);
-	//
-	// des.addInstance(inst1);
-	// des.addInstance(inst2);
-	// des.addInstance(inst3);
-	// }
-	//
-	// SubDesign subDes1 = new SubDesign();
-	// subDes1.setName("subDes1");
-	//
-	// SubDesign subDes2 = new SubDesign();
-	// subDes2.setName("subDes2");
-	//
-	// SubInstance subInst1 = new SubInstance(des, "subInst1");
-	// {
-	// subInst1.setDesign(subDes1);
-	//
-	// Instance inst2 = new Instance(subInst1);
-	// inst2.setName("inst2");
-	// inst2.setRefDes("K2");
-	// inst2.addAttribute(new ElaboratedAttribute(inst2, "Footprint", "pkg3"));
-	// inst2.addAttribute(new ElaboratedAttribute(inst2, "Library", "lib1"));
-	// inst2.addAttribute(new ElaboratedAttribute(inst2, "Super", "Fred"));
-	// inst2.addAttribute(new ElaboratedAttribute(inst2, "Home", "Iowa"));
-	// inst2.setDevice(dev3);
-	//
-	// Instance inst3 = new Instance(subInst1);
-	// inst3.setName("inst3");
-	// inst3.setRefDes("K2");
-	// inst3.addAttribute(new ElaboratedAttribute(inst3, "Footprint", "pkg4"));
-	// inst3.addAttribute(new ElaboratedAttribute(inst3, "Library", "lib2"));
-	// inst3.addAttribute(new ElaboratedAttribute(inst3, "sUpEr", "Suzy"));
-	// inst3.addAttribute(new ElaboratedAttribute(inst3, "Home", "Georgia"));
-	// inst3.addAttribute(new ElaboratedAttribute(inst3, "Song", "L-O-V-E"));
-	// inst3.setDevice(dev3);
-	//
-	// Instance inst1 = new Instance(subInst1);
-	// inst1.setName("inst1");
-	// inst1.setRefDes("J5");
-	// inst1.addAttribute(new ElaboratedAttribute(inst1, "Footprint", "pkg4"));
-	// inst1.addAttribute(new ElaboratedAttribute(inst1, "Library", "lib2"));
-	// inst1.addAttribute(new ElaboratedAttribute(inst1, "vAlUE", "Sam"));
-	// inst1.setDevice(dev2);
-	//
-	// subInst1.addInstance(inst2);
-	// subInst1.addInstance(inst3);
-	// subInst1.addInstance(inst1);
-	// }
-	//
-	// des.addSubInst(subInst1);
-	//
-	// SubInstance subInst2_1 = new SubInstance(des, "subInst2_1");
-	// {
-	// subInst2_1.setDesign(subDes2);
-	// Instance[] inst1 = new Instance[5];
-	// for (int i = 0; i < 5; i++) {
-	// inst1[i] = new Instance(subInst2_1);
-	// {
-	// inst1[i].setName("inst1");
-	// inst1[i].setRefDes("A1_" + (i + 1));
-	// inst1[i].setIndex(i + 1);
-	// inst1[i].addAttribute(new ElaboratedAttribute(inst1[i], "Footprint", "pkg2"));
-	// inst1[i].addAttribute(new ElaboratedAttribute(inst1[i], "Library", "lib3"));
-	// inst1[i].addAttribute(new ElaboratedAttribute(inst1[i], "Store", "Shopko"));
-	// inst1[i].setDevice(dev4);
-	// }
-	// subInst2_1.addInstance(inst1[i]);
-	// }
-	//
-	// Instance inst2 = new Instance(subInst2_1);
-	// {
-	// inst2.setName("inst2");
-	// inst2.setRefDes("B1_7");
-	// inst2.addAttribute(new ElaboratedAttribute(inst2, "Footprint", "pkg1"));
-	// inst2.addAttribute(new ElaboratedAttribute(inst2, "liBRary", "lib3"));
-	// inst2.addAttribute(new ElaboratedAttribute(inst2, "Super", "HKN"));
-	// inst2.setDevice(dev5);
-	// }
-	// subInst2_1.addInstance(inst2);
-	// }
-	//
-	// des.addSubInst(subInst2_1);
-	//
-	// SubInstance subInst2_2 = new SubInstance(des, "subInst2_2");
-	// {
-	// subInst2_2.setDesign(subDes2);
-	// Instance[] inst1 = new Instance[5];
-	// for (int i = 0; i < 5; i++) {
-	// inst1[i] = new Instance(subInst2_2);
-	// {
-	// inst1[i].setName("inst1");
-	// inst1[i].setRefDes("A2_" + (i + 1));
-	// inst1[i].setIndex(i + 1);
-	// inst1[i].addAttribute(new ElaboratedAttribute(inst1[i], "Footprint", "pkg2"));
-	// inst1[i].addAttribute(new ElaboratedAttribute(inst1[i], "Library", "lib3"));
-	// inst1[i].addAttribute(new ElaboratedAttribute(inst1[i], "Store", "Shopko"));
-	// inst1[i].setDevice(dev4);
-	// }
-	// subInst2_2.addInstance(inst1[i]);
-	// }
-	//
-	// Instance inst2 = new Instance(subInst2_2);
-	// {
-	// inst2.setName("inst2");
-	// inst2.setRefDes("B2_7");
-	// inst2.addAttribute(new ElaboratedAttribute(inst2, "Footprint", "pkg1"));
-	// inst2.addAttribute(new ElaboratedAttribute(inst2, "liBRary", "lib3"));
-	// inst2.addAttribute(new ElaboratedAttribute(inst2, "Super", "HKN"));
-	// inst2.setDevice(dev5);
-	// }
-	// subInst2_2.addInstance(inst2);
-	// }
-	// des.addSubInst(subInst2_2);
-	// BoMGenerator bomgen = new BoMGenerator(des);
-	// bomgen.outputToFile("TestsOutput/BoMOutput/" + des.getName() + ".csv");
-	// }
-	// return true;
-	// }
-
 }
