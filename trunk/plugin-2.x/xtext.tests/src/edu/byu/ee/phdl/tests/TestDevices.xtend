@@ -23,7 +23,9 @@ class TestDevices extends XtextTest {
 	@Test
 	def void test_pin_decls() {
 		testFile("TestDevices/test_invalid_pin_decl.phdl")
-		assertConstraints(issues.errorsOnly().nOfThemContain(3,"Invalid pin declaration."))
+		assertConstraints(issues.errorsOnly().oneOfThemContains("Pin declaration width mismatch.  Left=1, right=2."))
+		assertConstraints(issues.errorsOnly().oneOfThemContains("Pin declaration width mismatch.  Left=2, right=1."))
+		assertConstraints(issues.errorsOnly().sizeIs(2))
 	}
 	
 	@Test

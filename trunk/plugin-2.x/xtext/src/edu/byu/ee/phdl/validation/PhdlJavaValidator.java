@@ -431,10 +431,11 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 				int index = d.getElements().indexOf(p);
 				int width = (Math.abs(p.getVector().getMsb() - p.getVector().getLsb())) + 1;
 				if (width != p.getPinNames().size())
-					error("Invalid pin declaration.", d, PhdlPackage.Literals.DEVICE__ELEMENTS, d.getElements()
-							.indexOf(element), IssueCodes.INVALID_PIN_DECLARATION, Integer.toString(index),
-							Boolean.toString(p.getVector().isVector()), Integer.toString(width), Integer.toString(p
-									.getPinNames().size()));
+					error("Pin declaration width mismatch.  Left=" + width + ", right=" + p.getPinNames().size() + ".",
+							d, PhdlPackage.Literals.DEVICE__ELEMENTS, d.getElements().indexOf(element),
+							IssueCodes.INVALID_PIN_DECLARATION, Integer.toString(index),
+							Boolean.toString(p.getVector().isVector()), Integer.toString(width),
+							Integer.toString(p.getPinNames().size()));
 			}
 		}
 	}
