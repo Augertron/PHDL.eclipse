@@ -3,6 +3,7 @@ device test_device {
 	attr FOOTPRINT = "footprint";
 	attr LIBRARY = "library";
 	pin a = {1,2};
-	pin b = {3,4};
-	pin[1:0] c = {5};
+	pin b = {3};
+	pin[1:0] c = {4};
+	pin[0:2] d = {5,6,7};
 }
