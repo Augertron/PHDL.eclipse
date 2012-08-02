@@ -1,0 +1,46 @@
+device resistor {
+	attr REFPREFIX = "RA";
+	attr FOOTPRINT = "footprint";
+	attr LIBRARY = "library";
+	pin[3:0] a = {1,2,3,4};
+	pin[3:0] b = {8,7,6,5};
+}
+
+design test {
+
+	net a, b;
+
+	inst my_res1 of resistor {
+		a[3,2] = a;
+		a[1:0] = a;
+		b[3] = b & a;
+		b[2:0] = a;
+	}
+	
+	inst my_res2 of resistor {
+		a = <a>;
+		b = b & b & a;
+	}
+	
+	inst(1:0) my_res_array1 of resistor {
+		combine(this(1).a) = a;
+		combine(this(0).a) = <a>;
+		combine(b) = a;
+	}
+	
+	inst(1:0) my_res_array2 of resistor {
+		combine(this(1).a[3,2]) = a;
+		combine(this(1).a[1:0]) = a;
+		combine(this(0).a[3]) = a & a;
+		combine(this(0).a[2,1,0]) = a;
+		this(1).b[3:2] = b;
+		this(1).b[1,0] = b;
+		this(0).b[3] = b & b;
+		this(0).b[2,1,0] = b;
+	}
+	
+	inst(1:0) my_res_array3 of resistor {
+		combine(this(0,1).a) = a;
+		combine(this(1:0).b) = b;
+	}
+}

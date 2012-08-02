@@ -1,0 +1,19 @@
+device resistor {
+	attr REFPREFIX = "R";
+	attr FOOTPRINT = "footprint";
+	attr LIBRARY = "library";
+	pin a = {1};
+	pin[5:3] b = {2,3,4};
+}
+
+design top {
+
+	net a, b;
+	a = b;
+
+	inst my_res of resistor {
+		a = a;
+		b[2] = b;
+		b[5:3] = <b>;
+	}
+}

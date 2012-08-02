@@ -342,7 +342,7 @@ design AtlysSpartan6_Dem_Board {
 		this(3).a = tck-jtag;
 		this(3).b = TCK;
 	}
-	
+	  
 	//Serial Flash
 	net sdi_int, sdi, cs;
 	net[1:3] dq_int, DQ;
@@ -1197,7 +1197,7 @@ subdesign audioCodec {
 	}
 	
 	//DVDD1,2 and AVDD1
-	net dvdd, avdd;
+	net dvdd;
 	inst dvdd_inductor of inductor {
 		a = VCC3V3;
 		b = dvdd;
@@ -1291,7 +1291,7 @@ subdesign audioCodec {
 	//Audio Codec
 	inst audioCodec of audioCodec {
 		Dvdd = <dvdd>;
-		Avdd = avdd;
+		Avdd = AUD5V0;
 		LINE_OUT_L = line_out_l;
 		LINE_OUT_R = line_out_r;
 		MONO_OUT = open;
@@ -1337,15 +1337,14 @@ subdesign audioOutJackCircuit {
 	port AGND, LINE_OUT_R, LINE_OUT_L;	
 	
 	net out_tip, out_ring;
-	net out_l, out_r;
 	inst outJack of audioJack {
 		SLEEVE = AGND;
 		TIP = out_tip;
 		RING = out_ring;
 	}
 	inst(1:0) lineOutCaps of cap {
-		this(1).pos = out_l;
-		this(0).pos = out_r;
+		this(1).pos = LINE_OUT_L;
+		this(0).pos = LINE_OUT_R;
 		this(1).neg = out_tip;
 		this(0).neg = out_ring;
 	}
@@ -2421,58 +2420,56 @@ subdesign powerReg {
 		GND = GND;
 		U1-SCL = U1-SCL;
 		U1-SDA = U1-SDA;
-		combine(V+) = V+;
-		combine(V-) = V-;
-		
-		this(1).CA0 = open;
-		this(1).CA1 = GND;
-		this(2).CA0 = VCC3V3;
-		this(2).CA1 = GND;
-		this(3).CA0 = open;
-		this(3).CA1 = VCC3V3;
-		this(4).CA0 = VCC3V3;
-		this(4).CA1 = VCC3V3;
+		V+ = V+;
+		V- = V-;
 	}
 }
 
 subdesign i2c_design {
 	port VCC3V3, GND;
 	port U1-SCL, U1-SDA;
-	port V+, V-;
-	port CA0, CA1;
+	port[1:4] V+, V-;
 	
-	net in+, in-;
+	net[1:4] in+, in-;
 	
 	info {"All i2c caps and resistors must be placed nearby their respective ICs"}
-	inst cap_i2c_VCC3V3_2_GND of cap {
+	inst(1:4) capAry_i2c_pwr_2_GND of cap {
 		VALUE = "0.1uF";
 		pos = VCC3V3;
 		neg = GND;
 	}
-	inst cap_i2c_in of cap {
-		VALUE = "1uF";
-		pos = in+;
-		neg = in-;
+	inst(1:4) capAry_i2c_terminal of cap {
+		VALUE = "1uf";
+		combine(pos) = in+;
+		combine(neg) = in-;
 	}
 	
-	inst(1:2) resAry_i2c of res5v {
+	//Internal resisters
+	inst(1:4) resAry_i2c_pos_terminal of res5v {
 		VALUE = "10K";
-		this(1).a = in+;
-		this(1).b = V+;
-		this(2).a = in-;
-		this(2).b = V-;
+		combine(a) = in+;
+		combine(b) = V+;
+	}
+	inst(1:4) resAry_i2c_neg_terminal of res5v {
+		VALUE = "10K";
+		combine(a) = in-;
+		combine(b) = V-;
 	}
 	
-	inst i2c of I2C_Interface {
-		CA0/f0 = CA0;
-		CA1 = CA1;
-		GND = GND;
-		IN+ = in+;
-		IN- = in-;
-		REF+ = VCC3V3;
-		REF- = GND;
+	inst(1:4) i2c_sensors of I2C_Interface {
 		Vcc = VCC3V3;
+		REF+ = VCC3V3;
+		combine(IN+) = in+;
+		combine(IN-) = in-;
+		REF- = GND;
+		GND = GND;
 		SCL = U1-SCL;
 		SDA = U1-SDA;
-	}	
+		this(1,3).CA0/f0 = open;
+		this(2).CA0/f0 = VCC3V3;
+		this(4).CA0/f0 = VCC3V3;
+		this(1,2).CA1 = GND;
+		this(3,4).CA1 = VCC3V3;
+		
+	}
 }
