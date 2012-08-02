@@ -949,7 +949,7 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 	}
 
 	@Check(CheckType.FAST)
-	public void checkPinAssignWidths(PinAssign p) {
+	public void checkPinAssignWidth(PinAssign p) {
 
 		Pin pin = p.getRef();
 		if (p.getSlices() != null) {
@@ -971,42 +971,17 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 			}
 		}
 
+		// we check both of these in another method
 		if (p.getConcatenation().isReplicated() || p.getConcatenation().isOpen())
 			return;
 
 		int leftWidth = getAssignLeftWidth(p);
-		int rightWidth = 0;
+		int rightWidth = getAssignRightWidth(p.getConcatenation());
 
-		for (ConnectionRef ref : p.getConcatenation().getConnections()) {
-			Connection con = (Connection) ref.getRef().eContainer();
-			if (ref.getSlices() != null) {
-				if (!con.getVector().isVector()) {
-					EStructuralFeature f = PhdlPackage.Literals.CONNECTION_REF__REF;
-					error(".", ref, f, -1, IssueCodes.ARRAY_NOT_DECLARED);
-					return;
-				}
-				if (ref.getSlices().isVector()) {
-					int msb = ref.getSlices().getMsb();
-					int lsb = ref.getSlices().getLsb();
-					if (!PhdlUtils.isValidIndex(con.getVector().getMsb(), con.getVector().getLsb(), msb))
-						invalidMsbError(ref, PhdlPackage.Literals.SLICES__MSB);
-					if (!PhdlUtils.isValidIndex(con.getVector().getMsb(), con.getVector().getLsb(), lsb))
-						invalidLsbError(ref, PhdlPackage.Literals.SLICES__LSB);
-					rightWidth += Math.abs(msb - lsb) + 1;
-				} else {
-					for (Integer i : ref.getSlices().getSlices())
-						if (!PhdlUtils.isValidIndex(con.getVector().getMsb(), con.getVector().getLsb(), i))
-							invalidSliceError(ref.getSlices(), ref.getSlices().getSlices().indexOf(i),
-									PhdlPackage.Literals.SLICES__SLICES);
-					rightWidth += ref.getSlices().getSlices().size();
-				}
-			} else {
-				if (con.getVector().isVector())
-					rightWidth += Math.abs(con.getVector().getMsb() - con.getVector().getLsb()) + 1;
-				else
-					rightWidth++;
-			}
-		}
+		// if this is true, the overall width check doesn't make sense anyways
+		if (rightWidth < 0)
+			return;
+
 		if (leftWidth != rightWidth) {
 			EStructuralFeature f = PhdlPackage.Literals.INSTANCE__ELEMENTS;
 			int index = ((Instance) p.eContainer()).getElements().indexOf(p);
@@ -1066,47 +1041,17 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 			}
 		}
 
+		// we check both of these in another method
 		if (p.getConcatenation().isReplicated() || p.getConcatenation().isOpen())
 			return;
-		// if (p.getConcatenation().isOpen()) {
-		// EStructuralFeature f = PhdlPackage.Literals.CONCATENATION__OPEN;
-		// error("Ports may not be open.", p.getConcatenation(), f, -1);
-		// return;
-		// }
 
 		int leftWidth = getAssignLeftWidth(p);
-		int rightWidth = 0;
+		int rightWidth = getAssignRightWidth(p.getConcatenation());
 
-		for (ConnectionRef ref : p.getConcatenation().getConnections()) {
-			Connection con = (Connection) ref.getRef().eContainer();
-			if (ref.getSlices() != null) {
-				if (!con.getVector().isVector()) {
-					EStructuralFeature f = PhdlPackage.Literals.CONNECTION_REF__REF;
-					error("Array not declared.", ref, f, -1, IssueCodes.ARRAY_NOT_DECLARED);
-					return;
-				}
-				if (ref.getSlices().isVector()) {
-					int msb = ref.getSlices().getMsb();
-					int lsb = ref.getSlices().getLsb();
-					if (!PhdlUtils.isValidIndex(con.getVector().getMsb(), con.getVector().getLsb(), msb))
-						invalidMsbError(ref, PhdlPackage.Literals.SLICES__MSB);
-					if (!PhdlUtils.isValidIndex(con.getVector().getMsb(), con.getVector().getLsb(), lsb))
-						invalidLsbError(ref, PhdlPackage.Literals.SLICES__LSB);
-					rightWidth += Math.abs(msb - lsb) + 1;
-				} else {
-					for (Integer i : ref.getSlices().getSlices())
-						if (!PhdlUtils.isValidIndex(con.getVector().getMsb(), con.getVector().getLsb(), i))
-							invalidIndexError(ref, ref.getSlices().getSlices().indexOf(i),
-									PhdlPackage.Literals.SLICES__SLICES);
-					rightWidth += ref.getSlices().getSlices().size();
-				}
-			} else {
-				if (con.getVector().isVector())
-					rightWidth += Math.abs(con.getVector().getMsb() - con.getVector().getLsb()) + 1;
-				else
-					rightWidth++;
-			}
-		}
+		// if this is true, the overall width check doesn't make sense anyways
+		if (rightWidth < 0)
+			return;
+
 		if (leftWidth != rightWidth) {
 			EStructuralFeature f = PhdlPackage.Literals.INSTANCE__ELEMENTS;
 			int index = ((Instance) p.eContainer()).getElements().indexOf(p);
@@ -1516,6 +1461,42 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 		} else
 			totalWidth = refWidth;
 		return totalWidth;
+	}
+
+	private int getAssignRightWidth(Concatenation c) {
+		int rightWidth = 0;
+
+		for (ConnectionRef ref : c.getConnections()) {
+			Connection con = (Connection) ref.getRef().eContainer();
+			if (ref.getSlices() != null) {
+				if (!con.getVector().isVector()) {
+					EStructuralFeature f = PhdlPackage.Literals.CONNECTION_REF__REF;
+					error("Array not declared.", ref, f, -1, IssueCodes.ARRAY_NOT_DECLARED);
+					return -1;
+				}
+				if (ref.getSlices().isVector()) {
+					int msb = ref.getSlices().getMsb();
+					int lsb = ref.getSlices().getLsb();
+					if (!PhdlUtils.isValidIndex(con.getVector().getMsb(), con.getVector().getLsb(), msb))
+						invalidMsbError(ref, PhdlPackage.Literals.SLICES__MSB);
+					if (!PhdlUtils.isValidIndex(con.getVector().getMsb(), con.getVector().getLsb(), lsb))
+						invalidLsbError(ref, PhdlPackage.Literals.SLICES__LSB);
+					rightWidth += Math.abs(msb - lsb) + 1;
+				} else {
+					for (Integer i : ref.getSlices().getSlices())
+						if (!PhdlUtils.isValidIndex(con.getVector().getMsb(), con.getVector().getLsb(), i))
+							invalidSliceError(ref.getSlices(), ref.getSlices().getSlices().indexOf(i),
+									PhdlPackage.Literals.SLICES__SLICES);
+					rightWidth += ref.getSlices().getSlices().size();
+				}
+			} else {
+				if (con.getVector().isVector())
+					rightWidth += Math.abs(con.getVector().getMsb() - con.getVector().getLsb()) + 1;
+				else
+					rightWidth++;
+			}
+		}
+		return rightWidth;
 	}
 
 	private int getNumberOfAssigned(Instance i, Assignable a) {
