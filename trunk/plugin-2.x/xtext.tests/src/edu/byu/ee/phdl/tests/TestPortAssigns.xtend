@@ -24,9 +24,9 @@ class TestPortAssigns extends XtextTest {
 	}
 	
 	@Test
-	def void test_port_assign_pin_refs() {
+	def void test_port_assign_port_refs() {
 		ignoreFormattingDifferences()
-		testFile("TestPortAssigns/test_port_assign_pin_refs.phdl")
+		testFile("TestPortAssigns/test_port_assign_port_refs.phdl")
 		assertConstraints(issues.inLine(15).sizeIs(1).allOfThemContain("Invalid msb."))
 		assertConstraints(issues.inLine(20).sizeIs(1).allOfThemContain("Invalid lsb."))
 		assertConstraints(issues.inLine(25).sizeIs(1).allOfThemContain("Invalid index."))
@@ -55,4 +55,50 @@ class TestPortAssigns extends XtextTest {
 		assertConstraints(issues.inLine(91).sizeIs(1).allOfThemContain("Assignment width mismatch.  Left=16, right=3."))
 	}
 	
+	@Test
+	def void test_port_assign_unassigned() {
+		ignoreFormattingDifferences()
+		testFile("TestPortAssigns/test_port_assign_unassigned.phdl")
+		assertConstraints(issues.inLine(15).sizeIs(1).allOfThemContain("Unassigned port 'test1.a'."))
+		assertConstraints(issues.inLine(20).sizeIs(1).allOfThemContain("Unassigned port 'test2.b[4]'."))
+		assertConstraints(issues.inLine(25).sizeIs(1).allOfThemContain("Unassigned port 'test3(1).a'."))
+		assertConstraints(issues.inLine(30).sizeIs(1).allOfThemContain("Unassigned port 'test4(2).a'."))
+		assertConstraints(issues.inLine(35).sizeIs(7)
+			.oneOfThemContains("Unassigned port 'test5(4).b[4]'.")
+			.oneOfThemContains("Unassigned port 'test5(4).b[3]'.")
+			.oneOfThemContains("Unassigned port 'test5(4).b[2]'.")
+			.oneOfThemContains("Unassigned port 'test5(4).b[1]'.")
+			.oneOfThemContains("Unassigned port 'test5(4).b[3]'.")
+			.oneOfThemContains("Unassigned port 'test5(3).b[3]'.")
+			.oneOfThemContains("Unassigned port 'test5(1).b[3]'.")
+		)
+		assertConstraints(issues.inLine(40).sizeIs(7)
+			.oneOfThemContains("Unassigned port 'test6(3).b[4]'.")
+			.oneOfThemContains("Unassigned port 'test6(3).b[3]'.")
+			.oneOfThemContains("Unassigned port 'test6(3).b[2]'.")
+			.oneOfThemContains("Unassigned port 'test6(3).b[1]'.")
+			.oneOfThemContains("Unassigned port 'test6(4).b[4]'.")
+			.oneOfThemContains("Unassigned port 'test6(1).b[4]'.")
+			.oneOfThemContains("Unassigned port 'test6(2).b[4]'.")
+		)
+		assertConstraints(issues.inLine(45).sizeIs(16)
+			.oneOfThemContains("Unassigned port 'test7(4).b[4]'.")
+			.oneOfThemContains("Unassigned port 'test7(4).b[3]'.")
+			.oneOfThemContains("Unassigned port 'test7(4).b[2]'.")
+			.oneOfThemContains("Unassigned port 'test7(4).b[1]'.")
+			.oneOfThemContains("Unassigned port 'test7(3).b[4]'.")
+			.oneOfThemContains("Unassigned port 'test7(3).b[3]'.")
+			.oneOfThemContains("Unassigned port 'test7(3).b[2]'.")
+			.oneOfThemContains("Unassigned port 'test7(3).b[1]'.")
+			.oneOfThemContains("Unassigned port 'test7(2).b[4]'.")
+			.oneOfThemContains("Unassigned port 'test7(2).b[3]'.")
+			.oneOfThemContains("Unassigned port 'test7(2).b[2]'.")
+			.oneOfThemContains("Unassigned port 'test7(2).b[1]'.")
+			.oneOfThemContains("Unassigned port 'test7(1).b[4]'.")
+			.oneOfThemContains("Unassigned port 'test7(1).b[3]'.")
+			.oneOfThemContains("Unassigned port 'test7(1).b[2]'.")
+			.oneOfThemContains("Unassigned port 'test7(1).b[1]'.")
+		)
+
+	}
 }
