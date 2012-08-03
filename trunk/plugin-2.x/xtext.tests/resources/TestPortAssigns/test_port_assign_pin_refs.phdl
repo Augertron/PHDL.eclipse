@@ -1,0 +1,32 @@
+subdesign scalar {
+	port a;
+}
+
+subdesign vector {
+	port[4:1] b;
+}
+
+design top {
+
+	net a;
+
+	// test invalid msb
+	subinst test1 of vector {
+		b[5:1] = <a>;
+	}
+	
+	// test invalid lsb
+	subinst test2 of vector {
+		b[4:0] = <a>;
+	}
+	
+	// test invalid index
+	subinst test3 of vector {
+		b[5,4,3,2,1] = <a>;
+	}
+	
+	// test array not declared
+	subinst test4 of scalar {
+		a[1] = a;
+	}
+}

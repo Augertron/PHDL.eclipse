@@ -211,51 +211,56 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 		}
 	}
 
-	@Check(CheckType.NORMAL)
-	public void checkDesignConnectionDecls(Design d) {
-		SortedMap<String, CountableConnection> cons = new TreeMap<String, CountableConnection>();
-		for (DesignElement element : d.getElements()) {
-			if (element instanceof Connection) {
-				Connection c = (Connection) element;
-				for (ConnectionName n : c.getNames()) {
-					if (c.getVector().isVector())
-						for (Integer i : PhdlUtils.getIndices(c.getVector().getMsb(), c.getVector().getLsb()))
-							cons.put(n.getName() + "[" + i + "]", new CountableConnection(n, c.getNames().indexOf(n)));
-					else
-						cons.put(n.getName(), new CountableConnection(n, c.getNames().indexOf(n)));
-				}
-			}
-		}
-
-		for (DesignElement desElement : d.getElements()) {
-			if (desElement instanceof Instance) {
-				Instance i = (Instance) desElement;
-				for (EObject instElement : i.getElements()) {
-					if (instElement instanceof PinAssign) {
-						PinAssign p = (PinAssign) instElement;
-						incrementConnectionMap(i, p, cons);
-					} else if (instElement instanceof PortAssign) {
-						PortAssign p = (PortAssign) instElement;
-						incrementConnectionMap(i, p, cons);
-					}
-				}
-			}
-		}
-
-		// for (String name : cons.keySet())
-		// System.out.println("key: " + name + ", value: [" + cons.get(name) +
-		// "]");
-
-		for (String name : cons.keySet()) {
-			CountableConnection obj = cons.get(name);
-			if (obj.getCount() == 0) {
-				EStructuralFeature f = PhdlPackage.Literals.CONNECTION_NAME__NAME;
-				int index = ((Connection) obj.getObject().eContainer()).getNames().indexOf(obj.getIndex());
-				warning("Unused connection '" + name + "'", obj.getObject(), f, index,
-						IssueCodes.UNUSED_CONNECTION_DECL);
-			}
-		}
-	}
+	// @Check(CheckType.NORMAL)
+	// public void checkDesignConnectionDecls(Design d) {
+	// SortedMap<String, CountableConnection> cons = new TreeMap<String,
+	// CountableConnection>();
+	// for (DesignElement element : d.getElements()) {
+	// if (element instanceof Connection) {
+	// Connection c = (Connection) element;
+	// for (ConnectionName n : c.getNames()) {
+	// if (c.getVector().isVector())
+	// for (Integer i : PhdlUtils.getIndices(c.getVector().getMsb(),
+	// c.getVector().getLsb()))
+	// cons.put(n.getName() + "[" + i + "]", new CountableConnection(n,
+	// c.getNames().indexOf(n)));
+	// else
+	// cons.put(n.getName(), new CountableConnection(n,
+	// c.getNames().indexOf(n)));
+	// }
+	// }
+	// }
+	//
+	// for (DesignElement desElement : d.getElements()) {
+	// if (desElement instanceof Instance) {
+	// Instance i = (Instance) desElement;
+	// for (EObject instElement : i.getElements()) {
+	// if (instElement instanceof PinAssign) {
+	// PinAssign p = (PinAssign) instElement;
+	// incrementConnectionMap(i, p, cons);
+	// } else if (instElement instanceof PortAssign) {
+	// PortAssign p = (PortAssign) instElement;
+	// incrementConnectionMap(i, p, cons);
+	// }
+	// }
+	// }
+	// }
+	//
+	// // for (String name : cons.keySet())
+	// // System.out.println("key: " + name + ", value: [" + cons.get(name) +
+	// // "]");
+	//
+	// for (String name : cons.keySet()) {
+	// CountableConnection obj = cons.get(name);
+	// if (obj.getCount() == 0) {
+	// EStructuralFeature f = PhdlPackage.Literals.CONNECTION_NAME__NAME;
+	// int index = ((Connection)
+	// obj.getObject().eContainer()).getNames().indexOf(obj.getIndex());
+	// warning("Unused connection '" + name + "'", obj.getObject(), f, index,
+	// IssueCodes.UNUSED_CONNECTION_DECL);
+	// }
+	// }
+	// }
 
 	@Check(CheckType.FAST)
 	public void checkDesignForPorts(Design d) {
@@ -1477,16 +1482,22 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 				if (ref.getSlices().isVector()) {
 					int msb = ref.getSlices().getMsb();
 					int lsb = ref.getSlices().getLsb();
-					if (!PhdlUtils.isValidIndex(con.getVector().getMsb(), con.getVector().getLsb(), msb))
-						invalidMsbError(ref, PhdlPackage.Literals.SLICES__MSB);
-					if (!PhdlUtils.isValidIndex(con.getVector().getMsb(), con.getVector().getLsb(), lsb))
-						invalidLsbError(ref, PhdlPackage.Literals.SLICES__LSB);
+					if (!PhdlUtils.isValidIndex(con.getVector().getMsb(), con.getVector().getLsb(), msb)) {
+						invalidMsbError(ref.getSlices(), PhdlPackage.Literals.SLICES__MSB);
+						return -1;
+					}
+					if (!PhdlUtils.isValidIndex(con.getVector().getMsb(), con.getVector().getLsb(), lsb)) {
+						invalidLsbError(ref.getSlices(), PhdlPackage.Literals.SLICES__LSB);
+						return -1;
+					}
 					rightWidth += Math.abs(msb - lsb) + 1;
 				} else {
 					for (Integer i : ref.getSlices().getSlices())
-						if (!PhdlUtils.isValidIndex(con.getVector().getMsb(), con.getVector().getLsb(), i))
+						if (!PhdlUtils.isValidIndex(con.getVector().getMsb(), con.getVector().getLsb(), i)) {
 							invalidSliceError(ref.getSlices(), ref.getSlices().getSlices().indexOf(i),
 									PhdlPackage.Literals.SLICES__SLICES);
+							return -1;
+						}
 					rightWidth += ref.getSlices().getSlices().size();
 				}
 			} else {
@@ -1528,57 +1539,63 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 		return numAssigned;
 	}
 
-	private void incrementConnectionMap(Instance i, Assignable a, Map<String, CountableConnection> cons) {
-		if (a.getConcatenation().isOpen())
-			return;
-		int numAssigned = getNumberOfAssigned(i, a);
-		if (!a.getConcatenation().isReplicated()) {
-			for (ConnectionRef ref : a.getConcatenation().getConnections()) {
-				if (ref.getRef().getName() != null) {
-					if (ref.getSlices() != null) {
-						List<Integer> slices;
-						if (ref.getSlices().isVector())
-							slices = PhdlUtils.getIndices(ref.getSlices().getMsb(), ref.getSlices().getLsb());
-						else
-							slices = ref.getSlices().getSlices();
-						for (Integer slice : slices) {
-							CountableConnection found = cons.get(ref.getRef().getName() + "[" + slice + "]");
-							found.setCount(found.getCount() + numAssigned);
-							cons.put(ref.getRef().getName() + "[" + slice + "]", found);
-						}
-					} else {
-						Connection c = (Connection) ref.getRef().eContainer();
-						if (c.getVector().isVector()) {
-							for (Integer slice : PhdlUtils.getIndices(c.getVector().getMsb(), c.getVector().getLsb())) {
-								CountableConnection found = cons.get(ref.getRef().getName() + "[" + slice + "]");
-								found.setCount(found.getCount() + numAssigned);
-								cons.put(ref.getRef().getName() + "[" + slice + "]", found);
-							}
-						} else {
-							CountableConnection found = cons.get(ref.getRef().getName());
-							found.setCount(found.getCount() + numAssigned);
-							cons.put(ref.getRef().getName(), found);
-						}
-					}
-				}
-			}
-		} else {
-			int leftWidth = getAssignLeftWidth(a);
-			ConnectionRef ref = a.getConcatenation().getReplicate();
-			if (ref.getRef().getName() != null) {
-				if (ref.getSlices() != null && ref.getSlices().getSlices().size() == 1) {
-					int slice = ref.getSlices().getSlices().get(0);
-					CountableConnection found = cons.get(ref.getRef().getName() + "[" + slice + "]");
-					found.setCount(leftWidth);
-					cons.put(ref.getRef().getName() + "[" + slice + "]", found);
-				} else {
-					CountableConnection found = cons.get(ref.getRef().getName());
-					found.setCount(leftWidth);
-					cons.put(ref.getRef().getName(), found);
-				}
-			}
-		}
-	}
+	// private void incrementConnectionMap(Instance i, Assignable a, Map<String,
+	// CountableConnection> cons) {
+	// if (a.getConcatenation().isOpen())
+	// return;
+	// int numAssigned = getNumberOfAssigned(i, a);
+	// if (!a.getConcatenation().isReplicated()) {
+	// for (ConnectionRef ref : a.getConcatenation().getConnections()) {
+	// if (ref.getRef().getName() != null) {
+	// if (ref.getSlices() != null) {
+	// List<Integer> slices;
+	// if (ref.getSlices().isVector())
+	// slices = PhdlUtils.getIndices(ref.getSlices().getMsb(),
+	// ref.getSlices().getLsb());
+	// else
+	// slices = ref.getSlices().getSlices();
+	// for (Integer slice : slices) {
+	// CountableConnection found = cons.get(ref.getRef().getName() + "[" + slice
+	// + "]");
+	// found.setCount(found.getCount() + numAssigned);
+	// cons.put(ref.getRef().getName() + "[" + slice + "]", found);
+	// }
+	// } else {
+	// Connection c = (Connection) ref.getRef().eContainer();
+	// if (c.getVector().isVector()) {
+	// for (Integer slice : PhdlUtils.getIndices(c.getVector().getMsb(),
+	// c.getVector().getLsb())) {
+	// CountableConnection found = cons.get(ref.getRef().getName() + "[" + slice
+	// + "]");
+	// found.setCount(found.getCount() + numAssigned);
+	// cons.put(ref.getRef().getName() + "[" + slice + "]", found);
+	// }
+	// } else {
+	// CountableConnection found = cons.get(ref.getRef().getName());
+	// found.setCount(found.getCount() + numAssigned);
+	// cons.put(ref.getRef().getName(), found);
+	// }
+	// }
+	// }
+	// }
+	// } else {
+	// int leftWidth = getAssignLeftWidth(a);
+	// ConnectionRef ref = a.getConcatenation().getReplicate();
+	// if (ref.getRef().getName() != null) {
+	// if (ref.getSlices() != null && ref.getSlices().getSlices().size() == 1) {
+	// int slice = ref.getSlices().getSlices().get(0);
+	// CountableConnection found = cons.get(ref.getRef().getName() + "[" + slice
+	// + "]");
+	// found.setCount(leftWidth);
+	// cons.put(ref.getRef().getName() + "[" + slice + "]", found);
+	// } else {
+	// CountableConnection found = cons.get(ref.getRef().getName());
+	// found.setCount(leftWidth);
+	// cons.put(ref.getRef().getName(), found);
+	// }
+	// }
+	// }
+	// }
 
 	protected void indicesNotAllowedError(EObject object, EStructuralFeature feature) {
 		error("Indices not allowed.", object, feature, -1, IssueCodes.INDICES_NOT_ALLOWED);

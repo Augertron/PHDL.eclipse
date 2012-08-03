@@ -1,9 +1,15 @@
-device resistor {
-	attr REFPREFIX = "R";
+device scalar {
+	attr REFPREFIX = "S";
 	attr FOOTPRINT = "footprint";
 	attr LIBRARY = "library";
 	pin a = {1};
-	pin[5:3] b = {2,3,4};
+}
+
+device vector {
+	attr REFPREFIX = "S";
+	attr FOOTPRINT = "footprint";
+	attr LIBRARY = "library";
+	pin[4:1] a = {4,3,2,1};
 }
 
 design top {
@@ -11,8 +17,24 @@ design top {
 	net a, b;
 	a = b;
 
-	inst my_res of resistor {
+	inst my_res1 of resistor {
 		a = a[0];
 		b[5:3] = <b>;
+	}
+	
+	net[3:2] c;
+	inst my_res2 of resistor {
+		a = a;
+		b = c[4:2];
+	}
+	
+	inst my_res3 of resistor {
+		a = a;
+		b = c[3:1];
+	}
+	
+	inst my_res4 of resistor {
+		a = a;
+		b = c[4,2,3];
 	}
 }
