@@ -1,0 +1,16 @@
+design top {
+	net a;
+	net[4:1] b;
+	
+	// test array not declared
+	a[1] = b[1];
+	
+	// test invalid msb
+	b[5:1] = <a>;
+	
+	// test invalid lsb
+	b[4:0] = <a>;
+	
+	// test invalid index
+	b[5] = a;
+}

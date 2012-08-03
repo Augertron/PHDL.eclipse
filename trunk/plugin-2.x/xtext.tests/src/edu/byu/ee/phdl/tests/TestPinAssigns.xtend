@@ -34,7 +34,7 @@ class TestPinAssigns extends XtextTest {
 	}
 	
 	@Test
-	def void test_pin_assign_width() {
+	def void test_pin_assign_widths() {
 		ignoreFormattingDifferences()
 		testFile("TestPinAssigns/test_pin_assign_widths.phdl")
 		assertConstraints(issues.inLine(22).sizeIs(1).allOfThemContain("Assignment width mismatch.  Left=1, right=2."))

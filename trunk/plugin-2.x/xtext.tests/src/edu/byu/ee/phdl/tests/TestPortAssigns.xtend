@@ -34,7 +34,7 @@ class TestPortAssigns extends XtextTest {
 	}
 	
 	@Test
-	def void test_port_assign_width() {
+	def void test_port_assign_widths() {
 		ignoreFormattingDifferences()
 		testFile("TestPortAssigns/test_port_assign_widths.phdl")
 		assertConstraints(issues.inLine(16).sizeIs(1).allOfThemContain("Assignment width mismatch.  Left=1, right=2."))
