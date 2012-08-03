@@ -115,7 +115,7 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 					int lsb = ref.getSlices().getLsb();
 					if ((Math.abs(msb - lsb) + 1) != 1) {
 						EStructuralFeature f = PhdlPackage.Literals.CONNECTION_REF__REF;
-						error("Cannot replicate array.", ref, f, -1, IssueCodes.CANNOT_REPLICATE_ARRAY);
+						error("Cannot replicate vector.", ref, f, -1, IssueCodes.CANNOT_REPLICATE_ARRAY);
 					}
 					if (!PhdlUtils.isValidIndex(con.getVector().getMsb(), con.getVector().getLsb(), msb))
 						invalidMsbError(ref.getSlices(), PhdlPackage.Literals.SLICES__MSB);
@@ -135,7 +135,7 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 			} else {
 				if (con.getVector().isVector()) {
 					EStructuralFeature f = PhdlPackage.Literals.CONNECTION_REF__REF;
-					error("Cannot replicate array.", ref, f, -1, IssueCodes.CANNOT_REPLICATE_ARRAY);
+					error("Cannot replicate implicit vector.", ref, f, -1, IssueCodes.CANNOT_REPLICATE_ARRAY);
 				}
 			}
 		}

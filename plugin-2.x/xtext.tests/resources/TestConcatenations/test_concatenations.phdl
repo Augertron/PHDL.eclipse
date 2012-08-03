@@ -37,5 +37,37 @@ design top {
 		a = a[0];
 	}
 	
-	// test replications
+	// test replicated array not declared
+	inst test5 of vector {
+		b = <a[2]>;
+	}
+	
+	// test replicated vector
+	inst test6 of vector {
+		b = <b[2:1]>;
+	}
+	
+	// test invalid msb / lsb
+	inst test7 of vector {
+		b = <b[5:5]>;
+	}
+	
+	// test cannot replicate slices
+	inst test9 of vector {
+		b = <b[1,2,3]>;
+	}
+	
+	// test invalid slice index
+	inst test10 of vector {
+		b = <b[5]>;
+	}
+	
+	// test cannot replicate implicit vector
+	inst test11 of vector {
+		b = <b>;
+	}
+	
+	inst test12 of vector {
+		b = open;
+	}
 }
