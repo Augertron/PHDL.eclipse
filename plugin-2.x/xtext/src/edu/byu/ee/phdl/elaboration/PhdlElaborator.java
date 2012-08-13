@@ -309,6 +309,26 @@ public class PhdlElaborator {
 		switch (pin.getType()) {
 		case PIN:
 			return EPinType.PIN;
+		case INPUT:
+			return EPinType.INPIN;
+		case OUTPUT:
+			return EPinType.OUTPIN;
+		case IN_OUT:
+			return EPinType.IOPIN;
+		case OPEN_COLLECTOR:
+			return EPinType.OCPIN;
+		case OPEN_EMITTER:
+			return EPinType.OEPIN;
+		case PASSIVE:
+			return EPinType.PASSPIN;
+		case TRISTATE:
+			return EPinType.TRIPIN;
+		case POWER:
+			return EPinType.PWRPIN;
+		case SUPPLY:
+			return EPinType.SUPPIN;
+		case NO_CONNECT:
+			return EPinType.NCPIN;
 		default:
 			return null;
 		}

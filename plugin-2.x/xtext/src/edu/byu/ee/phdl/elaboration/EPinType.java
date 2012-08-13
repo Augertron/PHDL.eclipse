@@ -17,5 +17,5 @@ package edu.byu.ee.phdl.elaboration;
  * @version 0.1
  */
 public enum EPinType {
-	PIN, INPIN, OUTPIN, IOPIN, PWRPIN, SUPPIN,
+	INPIN, OUTPIN, IOPIN, TRIPIN, PASSPIN, PIN, PWRPIN, SUPPIN, OCPIN, OEPIN, NCPIN
 }
