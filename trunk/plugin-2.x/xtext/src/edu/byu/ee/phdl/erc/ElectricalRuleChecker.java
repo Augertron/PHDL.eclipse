@@ -6,38 +6,82 @@ import org.apache.log4j.Logger;
 
 import edu.byu.ee.phdl.elaboration.EConnection;
 import edu.byu.ee.phdl.elaboration.EPin;
+import edu.byu.ee.phdl.elaboration.EPinType;
 
 public class ElectricalRuleChecker {
 
-	public enum ERC {
-		OK(1), WARN(2), ERROR(3);
+	private final int OK = 0;
+	private final int WARN = 1;
+	private final int ERROR = 2;
 
-		private final int value;
-
-		ERC(int value) {
-			this.value = value;
-		}
-
-		public int getValue() {
-			return value;
-		}
-	}
-
-	private final int matrix[][] = { { 1 }, { 1, 3 }, { 1, 1, 1 }, { 1, 2, 1, 1, }, { 1, 1, 1, 1, 1 },
-			{ 2, 2, 2, 2, 2, 2 }, { 1, 1, 1, 2, 1, 2, 1 }, { 1, 3, 2, 3, 1, 2, 1, 3 }, { 1, 3, 1, 2, 1, 2, 1, 3, 1 },
-			{ 1, 3, 2, 2, 1, 2, 1, 3, 2, 2 }, { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 } };
+	private final int[][] matrix = new int[][] { { OK, OK, OK, OK, OK, WARN, OK, OK, OK, OK, ERROR },
+			{ OK, ERROR, OK, WARN, OK, WARN, OK, ERROR, ERROR, ERROR, ERROR },
+			{ OK, OK, OK, OK, OK, WARN, OK, WARN, OK, WARN, ERROR },
+			{ OK, WARN, OK, OK, OK, WARN, WARN, ERROR, WARN, WARN, ERROR },
+			{ OK, OK, OK, OK, OK, WARN, OK, OK, OK, OK, ERROR },
+			{ WARN, WARN, WARN, WARN, WARN, WARN, WARN, WARN, WARN, WARN, ERROR },
+			{ OK, OK, OK, WARN, OK, WARN, OK, OK, OK, OK, ERROR },
+			{ OK, ERROR, WARN, ERROR, OK, WARN, OK, ERROR, ERROR, ERROR, ERROR },
+			{ OK, ERROR, OK, WARN, OK, WARN, OK, ERROR, OK, OK, ERROR },
+			{ OK, ERROR, WARN, WARN, OK, WARN, OK, ERROR, OK, OK, ERROR },
+			{ ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR } };
 
 	private static final Logger logger = Logger.getLogger(ElectricalRuleChecker.class);
 
 	public ElectricalRuleChecker(List<EConnection> netlist) {
 		for (EConnection c : netlist) {
-			if (c.getPins().size() < 2) {
+			List<EPin> pins = c.getPins();
+			if (pins.size() < 2) {
 				logger.error("dangling net '" + c.getHierarchyName() + "'");
 			}
-
-			for (EPin p : c.getPins()) {
-
+			for (int i = 0; i < pins.size() - 1; i++) {
+				for (int j = i + 1; j < pins.size(); j++) {
+					int result = matrix[getIndex(pins.get(i).getPinType())][getIndex(pins.get(j).getPinType())];
+					switch (result) {
+					case ERROR:
+						logger.error("'" + c.getHierarchyName() + "' connects pins '" + "' and '" + "'");
+						break;
+					case WARN:
+						logger.warn("");
+						break;
+					case OK:
+						// do nothing
+						break;
+					default:
+						logger.error("unrecognized electrical rule check code in matrix: " + result);
+						break;
+					}
+				}
 			}
+		}
+	}
+
+	private int getIndex(EPinType pinType) {
+		switch (pinType) {
+		case INPIN:
+			return 0;
+		case OUTPIN:
+			return 1;
+		case IOPIN:
+			return 2;
+		case TRIPIN:
+			return 3;
+		case PASSPIN:
+			return 4;
+		case PIN:
+			return 5;
+		case PWRPIN:
+			return 6;
+		case SUPPIN:
+			return 7;
+		case OCPIN:
+			return 8;
+		case OEPIN:
+			return 9;
+		case NCPIN:
+			return 10;
+		default:
+			return -1;
 		}
 	}
 
