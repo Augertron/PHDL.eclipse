@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import edu.byu.ee.phdl.elaboration.EConnection;
+import edu.byu.ee.phdl.elaboration.EInstance;
 import edu.byu.ee.phdl.elaboration.EPin;
 import edu.byu.ee.phdl.elaboration.EPinType;
 
@@ -19,7 +20,7 @@ public class ElectricalRuleChecker {
 			{ OK, OK, OK, OK, OK, WARN, OK, WARN, OK, WARN, ERROR },
 			{ OK, WARN, OK, OK, OK, WARN, WARN, ERROR, WARN, WARN, ERROR },
 			{ OK, OK, OK, OK, OK, WARN, OK, OK, OK, OK, ERROR },
-			{ WARN, WARN, WARN, WARN, WARN, WARN, WARN, WARN, WARN, WARN, ERROR },
+			{ WARN, WARN, WARN, WARN, WARN, OK, WARN, WARN, WARN, WARN, ERROR },
 			{ OK, OK, OK, WARN, OK, WARN, OK, OK, OK, OK, ERROR },
 			{ OK, ERROR, WARN, ERROR, OK, WARN, OK, ERROR, ERROR, ERROR, ERROR },
 			{ OK, ERROR, OK, WARN, OK, WARN, OK, ERROR, OK, OK, ERROR },
@@ -37,12 +38,27 @@ public class ElectricalRuleChecker {
 			for (int i = 0; i < pins.size() - 1; i++) {
 				for (int j = i + 1; j < pins.size(); j++) {
 					int result = matrix[getIndex(pins.get(i).getPinType())][getIndex(pins.get(j).getPinType())];
+					StringBuilder message = new StringBuilder();
+					message.append("'" + c.getHierarchyName() + "' connects ");
+
+					// first pin message
+					message.append(pins.get(i).getPinType() + " '");
+					message.append(((EInstance) pins.get(i).getParent()).getHierarchyPrefix());
+					message.append(((EInstance) pins.get(i).getParent()).getNameIndex());
+					message.append("/" + pins.get(i).getName() + "' to ");
+
+					// second pin message
+					message.append(pins.get(j).getPinType() + " '");
+					message.append(((EInstance) pins.get(j).getParent()).getHierarchyPrefix());
+					message.append(((EInstance) pins.get(j).getParent()).getNameIndex());
+					message.append("/" + pins.get(j).getName() + "'.");
+
 					switch (result) {
 					case ERROR:
-						logger.error("'" + c.getHierarchyName() + "' connects pins '" + "' and '" + "'");
+						logger.error(message.toString());
 						break;
 					case WARN:
-						logger.warn("");
+						logger.warn(message.toString());
 						break;
 					case OK:
 						// do nothing
