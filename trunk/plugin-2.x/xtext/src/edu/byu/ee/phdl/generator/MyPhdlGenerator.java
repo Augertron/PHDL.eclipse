@@ -32,10 +32,10 @@ public class MyPhdlGenerator implements IGenerator {
 	@Override
 	public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
 
-		boolean found = false;
-
-		Iterable<EObject> iterable1 = IteratorExtensions.<EObject> toIterable(resource.getAllContents());
-		Iterable<PhdlModel> phdlModelFilter = IterableExtensions.<PhdlModel> filter(iterable1, PhdlModel.class);
+		// Iterable<EObject> iterable1 = IteratorExtensions.<EObject>
+		// toIterable(resource.getAllContents());
+		Iterable<PhdlModel> phdlModelFilter = IterableExtensions.<PhdlModel> filter(
+				IteratorExtensions.<EObject> toIterable(resource.getAllContents()), PhdlModel.class);
 		for (final PhdlModel m : phdlModelFilter) {
 			EList<Design> designs = m.getDesigns();
 			for (final Design design : designs) {
@@ -44,19 +44,21 @@ public class MyPhdlGenerator implements IGenerator {
 						if (commandLine.hasOption("top")) {
 							if (commandLine.getOptionValue("top").equals(design.getName())) {
 								generate(fsa, design.getName(), design);
-								found = true;
 							}
+						} else {
+							generate(fsa, design.getName(), design);
 						}
 					} else {
 						generate(fsa, design.getName(), design);
-						found = true;
 					}
 				}
 			}
 		}
 
-		Iterable<EObject> iterable2 = IteratorExtensions.<EObject> toIterable(resource.getAllContents());
-		Iterable<Package> packageFilter = IterableExtensions.<Package> filter(iterable2, Package.class);
+		// Iterable<EObject> iterable2 = IteratorExtensions.<EObject>
+		// toIterable(resource.getAllContents());
+		Iterable<Package> packageFilter = IterableExtensions.<Package> filter(
+				IteratorExtensions.<EObject> toIterable(resource.getAllContents()), Package.class);
 		for (final Package p : packageFilter) {
 			EList<Design> designs = p.getDesigns();
 			for (final Design design : designs) {
@@ -65,26 +67,22 @@ public class MyPhdlGenerator implements IGenerator {
 						if (commandLine.hasOption("top")) {
 							if (commandLine.getOptionValue("top").equals(design.getName())) {
 								generate(fsa, p.getName() + "_" + design.getName(), design);
-								found = true;
 							}
+						} else {
+							generate(fsa, p.getName() + "_" + design.getName(), design);
 						}
 					} else {
 						generate(fsa, p.getName() + "_" + design.getName(), design);
-						found = true;
 					}
 				}
 			}
-		}
-
-		if (!found) {
-			logger.error("top level design not found");
 		}
 	}
 
 	public void generate(IFileSystemAccess fsa, String name, Design design) {
 
 		EDesign eDesign = elaborator.elaborate(design);
-		logger.info("elaborated: " + name);
+		logger.debug("elaborated: " + name);
 
 		new ElectricalRuleChecker(eDesign.getNetlist());
 		logger.debug("completed ERC (Electrical Rule Check): " + name);
@@ -93,7 +91,7 @@ public class MyPhdlGenerator implements IGenerator {
 		fsa.generateFile(name + ExtensionCodes.REFDES_EXT, refDesGen.getContents());
 		logger.debug("generated RDM (REFDES-Mapping): " + name);
 
-		BOMGenerator bomGen = new BOMGenerator(eDesign);
+		BoMGenerator bomGen = new BoMGenerator(eDesign);
 		fsa.generateFile(name + ExtensionCodes.BOM_EXT, bomGen.getContents());
 		logger.debug("generated BOM (Bill of Material): " + name);
 
@@ -113,6 +111,8 @@ public class MyPhdlGenerator implements IGenerator {
 				fsa.generateFile(name + ExtensionCodes.EAGLE_EXT, eagleGen.getContents());
 				logger.debug("generated SCR (EAGLE Script): " + name);
 			}
+			if (commandLine.hasOption("hierarchy"))
+				eDesign.printHierarchy();
 		} else {
 			PADSGenerator netListGen = new PADSGenerator(eDesign, refDesGen.getRefMap());
 			fsa.generateFile(name + ExtensionCodes.PADS_EXT, netListGen.getContents());
