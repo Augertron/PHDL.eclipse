@@ -1,6 +1,5 @@
 package edu.byu.ee.phdl.generator;
 
-
 public interface ExtensionCodes {
 	String REFDES_EXT = ".rdm";
 
@@ -11,6 +10,8 @@ public interface ExtensionCodes {
 	String EAGLE_EXT = ".scr";
 
 	String INFO_EXT = ".lsi";
-	
+
 	String PHDL_EXT = ".phdl";
+
+	String OSMOND_EXT = ".osm";
 }

@@ -1371,77 +1371,137 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Concatenation");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Assignment cConnectionsAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
-		private final RuleCall cConnectionsConnectionRefParserRuleCall_0_0_0 = (RuleCall)cConnectionsAssignment_0_0.eContents().get(0);
-		private final Group cGroup_0_1 = (Group)cGroup_0.eContents().get(1);
-		private final Keyword cAmpersandKeyword_0_1_0 = (Keyword)cGroup_0_1.eContents().get(0);
-		private final Assignment cConnectionsAssignment_0_1_1 = (Assignment)cGroup_0_1.eContents().get(1);
-		private final RuleCall cConnectionsConnectionRefParserRuleCall_0_1_1_0 = (RuleCall)cConnectionsAssignment_0_1_1.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
+		private final Assignment cConnectionsAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
+		private final RuleCall cConnectionsConnectionRefParserRuleCall_0_1_0 = (RuleCall)cConnectionsAssignment_0_1.eContents().get(0);
+		private final Group cGroup_0_2 = (Group)cGroup_0.eContents().get(2);
+		private final Keyword cCommaKeyword_0_2_0 = (Keyword)cGroup_0_2.eContents().get(0);
+		private final Assignment cConnectionsAssignment_0_2_1 = (Assignment)cGroup_0_2.eContents().get(1);
+		private final RuleCall cConnectionsConnectionRefParserRuleCall_0_2_1_0 = (RuleCall)cConnectionsAssignment_0_2_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_0_3 = (Keyword)cGroup_0.eContents().get(3);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Assignment cReplicatedAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
-		private final Keyword cReplicatedLessThanSignKeyword_1_0_0 = (Keyword)cReplicatedAssignment_1_0.eContents().get(0);
-		private final Assignment cReplicateAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cReplicateConnectionRefParserRuleCall_1_1_0 = (RuleCall)cReplicateAssignment_1_1.eContents().get(0);
-		private final Keyword cGreaterThanSignKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
-		private final Assignment cOpenAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
-		private final Keyword cOpenOpenKeyword_2_0 = (Keyword)cOpenAssignment_2.eContents().get(0);
+		private final Assignment cConnectionsAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final RuleCall cConnectionsConnectionRefParserRuleCall_1_0_0 = (RuleCall)cConnectionsAssignment_1_0.eContents().get(0);
+		private final Group cGroup_1_1 = (Group)cGroup_1.eContents().get(1);
+		private final Keyword cAmpersandKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
+		private final Assignment cConnectionsAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
+		private final RuleCall cConnectionsConnectionRefParserRuleCall_1_1_1_0 = (RuleCall)cConnectionsAssignment_1_1_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
+		private final Assignment cReplicatedAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
+		private final Keyword cReplicatedLessThanSignKeyword_2_0_0 = (Keyword)cReplicatedAssignment_2_0.eContents().get(0);
+		private final Assignment cReplicateAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cReplicateConnectionRefParserRuleCall_2_1_0 = (RuleCall)cReplicateAssignment_2_1.eContents().get(0);
+		private final Keyword cGreaterThanSignKeyword_2_2 = (Keyword)cGroup_2.eContents().get(2);
+		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
+		private final Assignment cReplicateAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
+		private final RuleCall cReplicateConnectionRefParserRuleCall_3_0_0 = (RuleCall)cReplicateAssignment_3_0.eContents().get(0);
+		private final Assignment cReplicatedAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final Keyword cReplicatedAsteriskKeyword_3_1_0 = (Keyword)cReplicatedAssignment_3_1.eContents().get(0);
+		private final Assignment cOpenAssignment_4 = (Assignment)cAlternatives.eContents().get(4);
+		private final Keyword cOpenOpenKeyword_4_0 = (Keyword)cOpenAssignment_4.eContents().get(0);
 		
 		//Concatenation:
 		//
-		//	connections+=ConnectionRef ("&" connections+=ConnectionRef)* | replicated?="<" replicate=ConnectionRef ">" |
+		//	"{" connections+=ConnectionRef ("," connections+=ConnectionRef)* "}" | connections+=ConnectionRef ("&"
 		//
-		//	open?="open";
+		//	connections+=ConnectionRef)* | replicated?="<" replicate=ConnectionRef ">" | replicate=ConnectionRef replicated?="*"
+		//
+		//	| open?="open";
 		public ParserRule getRule() { return rule; }
 
-		//connections+=ConnectionRef ("&" connections+=ConnectionRef)* | replicated?="<" replicate=ConnectionRef ">" |
+		//"{" connections+=ConnectionRef ("," connections+=ConnectionRef)* "}" | connections+=ConnectionRef ("&"
+		//
+		//connections+=ConnectionRef)* | replicated?="<" replicate=ConnectionRef ">" | replicate=ConnectionRef replicated?="*" |
 		//
 		//open?="open"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//connections+=ConnectionRef ("&" connections+=ConnectionRef)*
+		//"{" connections+=ConnectionRef ("," connections+=ConnectionRef)* "}"
 		public Group getGroup_0() { return cGroup_0; }
 
-		//connections+=ConnectionRef
-		public Assignment getConnectionsAssignment_0_0() { return cConnectionsAssignment_0_0; }
-
-		//ConnectionRef
-		public RuleCall getConnectionsConnectionRefParserRuleCall_0_0_0() { return cConnectionsConnectionRefParserRuleCall_0_0_0; }
-
-		//("&" connections+=ConnectionRef)*
-		public Group getGroup_0_1() { return cGroup_0_1; }
-
-		//"&"
-		public Keyword getAmpersandKeyword_0_1_0() { return cAmpersandKeyword_0_1_0; }
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_0_0() { return cLeftCurlyBracketKeyword_0_0; }
 
 		//connections+=ConnectionRef
-		public Assignment getConnectionsAssignment_0_1_1() { return cConnectionsAssignment_0_1_1; }
+		public Assignment getConnectionsAssignment_0_1() { return cConnectionsAssignment_0_1; }
 
 		//ConnectionRef
-		public RuleCall getConnectionsConnectionRefParserRuleCall_0_1_1_0() { return cConnectionsConnectionRefParserRuleCall_0_1_1_0; }
+		public RuleCall getConnectionsConnectionRefParserRuleCall_0_1_0() { return cConnectionsConnectionRefParserRuleCall_0_1_0; }
 
-		//replicated?="<" replicate=ConnectionRef ">"
+		//("," connections+=ConnectionRef)*
+		public Group getGroup_0_2() { return cGroup_0_2; }
+
+		//","
+		public Keyword getCommaKeyword_0_2_0() { return cCommaKeyword_0_2_0; }
+
+		//connections+=ConnectionRef
+		public Assignment getConnectionsAssignment_0_2_1() { return cConnectionsAssignment_0_2_1; }
+
+		//ConnectionRef
+		public RuleCall getConnectionsConnectionRefParserRuleCall_0_2_1_0() { return cConnectionsConnectionRefParserRuleCall_0_2_1_0; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_0_3() { return cRightCurlyBracketKeyword_0_3; }
+
+		//connections+=ConnectionRef ("&" connections+=ConnectionRef)*
 		public Group getGroup_1() { return cGroup_1; }
 
-		//replicated?="<"
-		public Assignment getReplicatedAssignment_1_0() { return cReplicatedAssignment_1_0; }
-
-		//"<"
-		public Keyword getReplicatedLessThanSignKeyword_1_0_0() { return cReplicatedLessThanSignKeyword_1_0_0; }
-
-		//replicate=ConnectionRef
-		public Assignment getReplicateAssignment_1_1() { return cReplicateAssignment_1_1; }
+		//connections+=ConnectionRef
+		public Assignment getConnectionsAssignment_1_0() { return cConnectionsAssignment_1_0; }
 
 		//ConnectionRef
-		public RuleCall getReplicateConnectionRefParserRuleCall_1_1_0() { return cReplicateConnectionRefParserRuleCall_1_1_0; }
+		public RuleCall getConnectionsConnectionRefParserRuleCall_1_0_0() { return cConnectionsConnectionRefParserRuleCall_1_0_0; }
+
+		//("&" connections+=ConnectionRef)*
+		public Group getGroup_1_1() { return cGroup_1_1; }
+
+		//"&"
+		public Keyword getAmpersandKeyword_1_1_0() { return cAmpersandKeyword_1_1_0; }
+
+		//connections+=ConnectionRef
+		public Assignment getConnectionsAssignment_1_1_1() { return cConnectionsAssignment_1_1_1; }
+
+		//ConnectionRef
+		public RuleCall getConnectionsConnectionRefParserRuleCall_1_1_1_0() { return cConnectionsConnectionRefParserRuleCall_1_1_1_0; }
+
+		//replicated?="<" replicate=ConnectionRef ">"
+		public Group getGroup_2() { return cGroup_2; }
+
+		//replicated?="<"
+		public Assignment getReplicatedAssignment_2_0() { return cReplicatedAssignment_2_0; }
+
+		//"<"
+		public Keyword getReplicatedLessThanSignKeyword_2_0_0() { return cReplicatedLessThanSignKeyword_2_0_0; }
+
+		//replicate=ConnectionRef
+		public Assignment getReplicateAssignment_2_1() { return cReplicateAssignment_2_1; }
+
+		//ConnectionRef
+		public RuleCall getReplicateConnectionRefParserRuleCall_2_1_0() { return cReplicateConnectionRefParserRuleCall_2_1_0; }
 
 		//">"
-		public Keyword getGreaterThanSignKeyword_1_2() { return cGreaterThanSignKeyword_1_2; }
+		public Keyword getGreaterThanSignKeyword_2_2() { return cGreaterThanSignKeyword_2_2; }
+
+		//replicate=ConnectionRef replicated?="*"
+		public Group getGroup_3() { return cGroup_3; }
+
+		//replicate=ConnectionRef
+		public Assignment getReplicateAssignment_3_0() { return cReplicateAssignment_3_0; }
+
+		//ConnectionRef
+		public RuleCall getReplicateConnectionRefParserRuleCall_3_0_0() { return cReplicateConnectionRefParserRuleCall_3_0_0; }
+
+		//replicated?="*"
+		public Assignment getReplicatedAssignment_3_1() { return cReplicatedAssignment_3_1; }
+
+		//"*"
+		public Keyword getReplicatedAsteriskKeyword_3_1_0() { return cReplicatedAsteriskKeyword_3_1_0; }
 
 		//open?="open"
-		public Assignment getOpenAssignment_2() { return cOpenAssignment_2; }
+		public Assignment getOpenAssignment_4() { return cOpenAssignment_4; }
 
 		//"open"
-		public Keyword getOpenOpenKeyword_2_0() { return cOpenOpenKeyword_2_0; }
+		public Keyword getOpenOpenKeyword_4_0() { return cOpenOpenKeyword_4_0; }
 	}
 
 	public class ConnectionRefElements extends AbstractParserRuleElementFinder {
@@ -2374,9 +2434,11 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 
 	//Concatenation:
 	//
-	//	connections+=ConnectionRef ("&" connections+=ConnectionRef)* | replicated?="<" replicate=ConnectionRef ">" |
+	//	"{" connections+=ConnectionRef ("," connections+=ConnectionRef)* "}" | connections+=ConnectionRef ("&"
 	//
-	//	open?="open";
+	//	connections+=ConnectionRef)* | replicated?="<" replicate=ConnectionRef ">" | replicate=ConnectionRef replicated?="*"
+	//
+	//	| open?="open";
 	public ConcatenationElements getConcatenationAccess() {
 		return (pConcatenation != null) ? pConcatenation : (pConcatenation = new ConcatenationElements());
 	}

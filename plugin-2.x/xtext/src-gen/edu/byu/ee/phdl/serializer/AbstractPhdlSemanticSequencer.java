@@ -257,7 +257,13 @@ public abstract class AbstractPhdlSemanticSequencer extends AbstractDelegatingSe
 	
 	/**
 	 * Constraint:
-	 *     ((connections+=ConnectionRef connections+=ConnectionRef*) | (replicated?='<' replicate=ConnectionRef) | open?='open')
+	 *     (
+	 *         (connections+=ConnectionRef connections+=ConnectionRef*) | 
+	 *         (connections+=ConnectionRef connections+=ConnectionRef*) | 
+	 *         (replicated?='<' replicate=ConnectionRef) | 
+	 *         (replicate=ConnectionRef replicated?='*') | 
+	 *         open?='open'
+	 *     )
 	 */
 	protected void sequence_Concatenation(EObject context, Concatenation semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -567,6 +567,19 @@
     </type>
     <alternatives xsi:type="xtext:Alternatives">
       <elements xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="{"/>
+        <elements xsi:type="xtext:Assignment" feature="connections" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.24"/>
+        </elements>
+        <elements xsi:type="xtext:Group" cardinality="*">
+          <elements xsi:type="xtext:Keyword" value=","/>
+          <elements xsi:type="xtext:Assignment" feature="connections" operator="+=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.24"/>
+          </elements>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="}"/>
+      </elements>
+      <elements xsi:type="xtext:Group">
         <elements xsi:type="xtext:Assignment" feature="connections" operator="+=">
           <terminal xsi:type="xtext:RuleCall" rule="//@rules.24"/>
         </elements>
@@ -585,6 +598,14 @@
           <terminal xsi:type="xtext:RuleCall" rule="//@rules.24"/>
         </elements>
         <elements xsi:type="xtext:Keyword" value=">"/>
+      </elements>
+      <elements xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" feature="replicate" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.24"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="replicated" operator="?=">
+          <terminal xsi:type="xtext:Keyword" value="*"/>
+        </elements>
       </elements>
       <elements xsi:type="xtext:Assignment" feature="open" operator="?=">
         <terminal xsi:type="xtext:Keyword" value="open"/>

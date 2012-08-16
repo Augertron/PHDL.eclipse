@@ -2283,41 +2283,90 @@ ruleConcatenation returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(((
+((	otherlv_0='{' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getConcatenationAccess().getLeftCurlyBracketKeyword_0_0());
+    }
+(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getConcatenationAccess().getConnectionsConnectionRefParserRuleCall_0_0_0()); 
+	        newCompositeNode(grammarAccess.getConcatenationAccess().getConnectionsConnectionRefParserRuleCall_0_1_0()); 
 	    }
-		lv_connections_0_0=ruleConnectionRef		{
+		lv_connections_1_0=ruleConnectionRef		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getConcatenationRule());
 	        }
        		add(
        			$current, 
        			"connections",
-        		lv_connections_0_0, 
+        		lv_connections_1_0, 
         		"ConnectionRef");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)(	otherlv_1='&' 
+)(	otherlv_2=',' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getConcatenationAccess().getAmpersandKeyword_0_1_0());
+    	newLeafNode(otherlv_2, grammarAccess.getConcatenationAccess().getCommaKeyword_0_2_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getConcatenationAccess().getConnectionsConnectionRefParserRuleCall_0_1_1_0()); 
+	        newCompositeNode(grammarAccess.getConcatenationAccess().getConnectionsConnectionRefParserRuleCall_0_2_1_0()); 
 	    }
-		lv_connections_2_0=ruleConnectionRef		{
+		lv_connections_3_0=ruleConnectionRef		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getConcatenationRule());
 	        }
        		add(
        			$current, 
        			"connections",
-        		lv_connections_2_0, 
+        		lv_connections_3_0, 
+        		"ConnectionRef");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))*	otherlv_4='}' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getConcatenationAccess().getRightCurlyBracketKeyword_0_3());
+    }
+)
+    |((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getConcatenationAccess().getConnectionsConnectionRefParserRuleCall_1_0_0()); 
+	    }
+		lv_connections_5_0=ruleConnectionRef		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getConcatenationRule());
+	        }
+       		add(
+       			$current, 
+       			"connections",
+        		lv_connections_5_0, 
+        		"ConnectionRef");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(	otherlv_6='&' 
+    {
+    	newLeafNode(otherlv_6, grammarAccess.getConcatenationAccess().getAmpersandKeyword_1_1_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getConcatenationAccess().getConnectionsConnectionRefParserRuleCall_1_1_1_0()); 
+	    }
+		lv_connections_7_0=ruleConnectionRef		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getConcatenationRule());
+	        }
+       		add(
+       			$current, 
+       			"connections",
+        		lv_connections_7_0, 
         		"ConnectionRef");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2326,9 +2375,9 @@ ruleConcatenation returns [EObject current=null]
 ))*)
     |((
 (
-		lv_replicated_3_0=	'<' 
+		lv_replicated_8_0=	'<' 
     {
-        newLeafNode(lv_replicated_3_0, grammarAccess.getConcatenationAccess().getReplicatedLessThanSignKeyword_1_0_0());
+        newLeafNode(lv_replicated_8_0, grammarAccess.getConcatenationAccess().getReplicatedLessThanSignKeyword_2_0_0());
     }
  
 	    {
@@ -2342,31 +2391,65 @@ ruleConcatenation returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getConcatenationAccess().getReplicateConnectionRefParserRuleCall_1_1_0()); 
+	        newCompositeNode(grammarAccess.getConcatenationAccess().getReplicateConnectionRefParserRuleCall_2_1_0()); 
 	    }
-		lv_replicate_4_0=ruleConnectionRef		{
+		lv_replicate_9_0=ruleConnectionRef		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getConcatenationRule());
 	        }
        		set(
        			$current, 
        			"replicate",
-        		lv_replicate_4_0, 
+        		lv_replicate_9_0, 
         		"ConnectionRef");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_5='>' 
+)	otherlv_10='>' 
     {
-    	newLeafNode(otherlv_5, grammarAccess.getConcatenationAccess().getGreaterThanSignKeyword_1_2());
+    	newLeafNode(otherlv_10, grammarAccess.getConcatenationAccess().getGreaterThanSignKeyword_2_2());
     }
 )
+    |((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getConcatenationAccess().getReplicateConnectionRefParserRuleCall_3_0_0()); 
+	    }
+		lv_replicate_11_0=ruleConnectionRef		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getConcatenationRule());
+	        }
+       		set(
+       			$current, 
+       			"replicate",
+        		lv_replicate_11_0, 
+        		"ConnectionRef");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(
+(
+		lv_replicated_12_0=	'*' 
+    {
+        newLeafNode(lv_replicated_12_0, grammarAccess.getConcatenationAccess().getReplicatedAsteriskKeyword_3_1_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getConcatenationRule());
+	        }
+       		setWithLastConsumed($current, "replicated", true, "*");
+	    }
+
+)
+))
     |(
 (
-		lv_open_6_0=	'open' 
+		lv_open_13_0=	'open' 
     {
-        newLeafNode(lv_open_6_0, grammarAccess.getConcatenationAccess().getOpenOpenKeyword_2_0());
+        newLeafNode(lv_open_13_0, grammarAccess.getConcatenationAccess().getOpenOpenKeyword_4_0());
     }
  
 	    {
