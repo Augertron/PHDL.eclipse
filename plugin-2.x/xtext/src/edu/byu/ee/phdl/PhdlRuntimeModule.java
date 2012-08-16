@@ -58,6 +58,6 @@ public class PhdlRuntimeModule extends edu.byu.ee.phdl.AbstractPhdlRuntimeModule
 
 	@Override
 	public Class<? extends org.eclipse.xtext.generator.IGenerator> bindIGenerator() {
-		return edu.byu.ee.phdl.generator.MyPhdlGenerator.class;
+		return edu.byu.ee.phdl.generator.PhdlGeneratorImpl.class;
 	}
 }

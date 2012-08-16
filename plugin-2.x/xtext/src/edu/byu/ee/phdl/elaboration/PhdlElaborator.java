@@ -70,6 +70,7 @@ public class PhdlElaborator {
 		elaborateDesignElements(eDesign, design);
 		eDesign.flatten2();
 		eDesign.makeNetlistMap();
+		logger.info("elaborated: " + design.getName());
 		return eDesign;
 	}
 

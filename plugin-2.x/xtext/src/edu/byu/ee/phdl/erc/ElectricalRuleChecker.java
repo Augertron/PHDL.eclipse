@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import edu.byu.ee.phdl.elaboration.EConnection;
+import edu.byu.ee.phdl.elaboration.EDesign;
 import edu.byu.ee.phdl.elaboration.EInstance;
 import edu.byu.ee.phdl.elaboration.EPin;
 import edu.byu.ee.phdl.elaboration.EPinType;
@@ -14,6 +15,9 @@ public class ElectricalRuleChecker {
 	private final int OK = 0;
 	private final int WARN = 1;
 	private final int ERROR = 2;
+
+	private int numErrors = 0;
+	private int numWarns = 0;
 
 	private final int[][] matrix = new int[][] { { OK, OK, OK, OK, OK, WARN, OK, OK, OK, OK, ERROR },
 			{ OK, ERROR, OK, WARN, OK, WARN, OK, ERROR, ERROR, ERROR, ERROR },
@@ -29,46 +33,54 @@ public class ElectricalRuleChecker {
 
 	private static final Logger logger = Logger.getLogger(ElectricalRuleChecker.class);
 
-	public ElectricalRuleChecker(List<EConnection> netlist) {
-		for (EConnection c : netlist) {
+	public ElectricalRuleChecker(EDesign design) {
+		for (EConnection c : design.getNetlist()) {
 			List<EPin> pins = c.getPins();
 			if (pins.size() < 2) {
 				logger.error("dangling net '" + c.getHierarchyName() + "'");
+				numErrors++;
 			}
 			for (int i = 0; i < pins.size() - 1; i++) {
 				for (int j = i + 1; j < pins.size(); j++) {
-					int result = matrix[getIndex(pins.get(i).getPinType())][getIndex(pins.get(j).getPinType())];
+					int lookupValue = matrix[getIndex(pins.get(i).getPinType())][getIndex(pins.get(j).getPinType())];
 					StringBuilder message = new StringBuilder();
-					message.append("'" + c.getHierarchyName() + "' connects ");
+					if (lookupValue != OK) {
+						message.append("'" + c.getHierarchyName() + "' connects ");
 
-					// first pin message
-					message.append(pins.get(i).getPinType() + " '");
-					message.append(((EInstance) pins.get(i).getParent()).getHierarchyPrefix());
-					message.append(((EInstance) pins.get(i).getParent()).getNameIndex());
-					message.append("/" + pins.get(i).getName() + "' to ");
+						// first pin message
+						message.append(pins.get(i).getPinType() + " '");
+						message.append(((EInstance) pins.get(i).getParent()).getHierarchyPrefix());
+						message.append(((EInstance) pins.get(i).getParent()).getNameIndex());
+						message.append("/" + pins.get(i).getName() + "' to ");
 
-					// second pin message
-					message.append(pins.get(j).getPinType() + " '");
-					message.append(((EInstance) pins.get(j).getParent()).getHierarchyPrefix());
-					message.append(((EInstance) pins.get(j).getParent()).getNameIndex());
-					message.append("/" + pins.get(j).getName() + "'.");
+						// second pin message
+						message.append(pins.get(j).getPinType() + " '");
+						message.append(((EInstance) pins.get(j).getParent()).getHierarchyPrefix());
+						message.append(((EInstance) pins.get(j).getParent()).getNameIndex());
+						message.append("/" + pins.get(j).getName() + "'.");
+					}
 
-					switch (result) {
-					case ERROR:
+					if (lookupValue == ERROR) {
 						logger.error(message.toString());
-						break;
-					case WARN:
+						numErrors++;
+					} else if (lookupValue == WARN) {
 						logger.warn(message.toString());
-						break;
-					case OK:
+						numWarns++;
+					} else if (lookupValue == OK) {
 						// do nothing
-						break;
-					default:
-						logger.error("unrecognized electrical rule check code in matrix: " + result);
-						break;
+					} else {
+						logger.error("unrecognized electrical rule check code in matrix: " + lookupValue);
+						numErrors++;
 					}
 				}
 			}
+		}
+		if (numErrors > 0) {
+			logger.error("ERC (Electrical Rule Check) completed with errors: " + design.getName());
+		} else if (numWarns > 0) {
+			logger.warn("ERC (Electrical Rule Check) completed with warnings: " + design.getName());
+		} else {
+			logger.info("completed ERC (Electrical Rule Check) with no errors or warnings: " + design.getName());
 		}
 	}
 
