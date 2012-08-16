@@ -30,7 +30,7 @@ import edu.byu.ee.phdl.elaboration.ESubInstance;
  * @author Brad Riching and Richard Black
  * @version 0.1
  */
-public class BOMGenerator {
+public class BoMGenerator {
 
 	private class Row {
 		private int quantity;
@@ -82,7 +82,7 @@ public class BOMGenerator {
 	 *            the DesignNode that contains all of the attribute information.
 	 * @see EDesign
 	 */
-	public BOMGenerator(EDesign d) {
+	public BoMGenerator(EDesign d) {
 		design = d;
 		rows = new ArrayList<Row>();
 		headers = new ArrayList<String>();
