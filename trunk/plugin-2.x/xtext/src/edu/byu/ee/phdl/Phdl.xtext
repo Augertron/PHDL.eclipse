@@ -82,8 +82,10 @@ ConnectionAssign:
 	ref=[ConnectionName | PhdlID] slices=Slices? '=' concatenation=Concatenation ';';
 
 Concatenation:
+	('{' connections+=ConnectionRef (',' connections+=ConnectionRef)* '}') |
 	(connections+=ConnectionRef ('&' connections+=ConnectionRef)*) |
 	(replicated?='<' replicate=ConnectionRef '>') | 
+	(replicate=ConnectionRef replicated?='*') |
 	(open?='open');
 	
 ConnectionRef:

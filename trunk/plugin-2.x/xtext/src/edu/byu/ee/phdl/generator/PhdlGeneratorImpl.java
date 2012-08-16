@@ -108,24 +108,35 @@ public class PhdlGeneratorImpl implements IGenerator {
 			if (commandLine.hasOption("all") || commandLine.hasOption("pads")) {
 				PADSGenerator netListGen = new PADSGenerator(eDesign, refDesGen.getRefMap());
 				fsa.generateFile(name + ExtensionCodes.PADS_EXT, netListGen.getContents());
-				logger.debug("generated ASC (PADS Netlist): " + name);
+				logger.debug("generated ASC (PADS netlist): " + name);
 			}
 
 			if (commandLine.hasOption("all") || commandLine.hasOption("eagle")) {
 				EagleGenerator eagleGen = new EagleGenerator(eDesign, refDesGen.getRefMap());
 				fsa.generateFile(name + ExtensionCodes.EAGLE_EXT, eagleGen.getContents());
-				logger.debug("generated SCR (EAGLE Script): " + name);
+				logger.debug("generated SCR (EAGLE script): " + name);
 			}
+
+			if (commandLine.hasOption("all") || commandLine.hasOption("osmond")) {
+				OsmondGenerator osmondGen = new OsmondGenerator(eDesign, refDesGen.getRefMap());
+				fsa.generateFile(name + ExtensionCodes.OSMOND_EXT, osmondGen.getContents());
+				logger.debug("generated OSM (Osmond netlist): " + name);
+			}
+
 			if (commandLine.hasOption("hierarchy"))
 				logger.info(eDesign.displayHierarchy());
 		} else {
 			PADSGenerator netListGen = new PADSGenerator(eDesign, refDesGen.getRefMap());
 			fsa.generateFile(name + ExtensionCodes.PADS_EXT, netListGen.getContents());
-			logger.debug("generated ASC (PADS Netlist): " + name);
+			logger.debug("generated ASC (PADS netlist): " + name);
 
 			EagleGenerator eagleGen = new EagleGenerator(eDesign, refDesGen.getRefMap());
 			fsa.generateFile(name + ExtensionCodes.EAGLE_EXT, eagleGen.getContents());
-			logger.debug("generated SCR (EAGLE Script): " + name);
+			logger.debug("generated SCR (EAGLE script): " + name);
+
+			OsmondGenerator osmondGen = new OsmondGenerator(eDesign, refDesGen.getRefMap());
+			fsa.generateFile(name + ExtensionCodes.OSMOND_EXT, osmondGen.getContents());
+			logger.debug("generated OSM (Osmond netlist): " + name);
 
 			logger.info(eDesign.displayHierarchy());
 		}

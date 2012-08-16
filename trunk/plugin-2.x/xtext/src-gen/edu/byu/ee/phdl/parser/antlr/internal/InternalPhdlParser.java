@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalPhdlParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_INT", "RULE_PINNUM", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "'package'", "'{'", "'}'", "'import'", "';'", "'device'", "'attr'", "'='", "','", "'info'", "'design'", "'subdesign'", "'net'", "'port'", "'inst'", "'of'", "'subinst'", "'newattr'", "'combine'", "'('", "')'", "'.'", "'&'", "'<'", "'>'", "'open'", "':'", "'['", "']'", "'this'", "'*'", "'pin'", "'inpin'", "'outpin'", "'iopin'", "'pwrpin'", "'suppin'", "'ocpin'", "'oepin'", "'tripin'", "'passpin'", "'ncpin'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_INT", "RULE_PINNUM", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "'package'", "'{'", "'}'", "'import'", "';'", "'device'", "'attr'", "'='", "','", "'info'", "'design'", "'subdesign'", "'net'", "'port'", "'inst'", "'of'", "'subinst'", "'newattr'", "'combine'", "'('", "')'", "'.'", "'&'", "'<'", "'>'", "'*'", "'open'", "':'", "'['", "']'", "'this'", "'pin'", "'inpin'", "'outpin'", "'iopin'", "'pwrpin'", "'suppin'", "'ocpin'", "'oepin'", "'tripin'", "'passpin'", "'ncpin'"
     };
     public static final int RULE_ID=4;
     public static final int T__29=29;
@@ -3103,7 +3103,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                         int alt20=2;
                         int LA20_0 = input.LA(1);
 
-                        if ( (LA20_0==RULE_ID||(LA20_0>=RULE_INT && LA20_0<=RULE_PINNUM)||LA20_0==20||(LA20_0>=28 && LA20_0<=29)||LA20_0==40) ) {
+                        if ( (LA20_0==RULE_ID||(LA20_0>=RULE_INT && LA20_0<=RULE_PINNUM)||LA20_0==20||(LA20_0>=28 && LA20_0<=29)||LA20_0==41) ) {
                             alt20=1;
                         }
 
@@ -3320,7 +3320,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                         int alt22=2;
                         int LA22_0 = input.LA(1);
 
-                        if ( (LA22_0==RULE_ID||(LA22_0>=RULE_INT && LA22_0<=RULE_PINNUM)||LA22_0==17||LA22_0==20||LA22_0==29||LA22_0==40) ) {
+                        if ( (LA22_0==RULE_ID||(LA22_0>=RULE_INT && LA22_0<=RULE_PINNUM)||LA22_0==17||LA22_0==20||LA22_0==29||LA22_0==41) ) {
                             alt22=1;
                         }
 
@@ -3758,7 +3758,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
             int alt26=2;
             int LA26_0 = input.LA(1);
 
-            if ( (LA26_0==40) ) {
+            if ( (LA26_0==41) ) {
                 alt26=1;
             }
             switch (alt26) {
@@ -3937,7 +3937,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
             int alt27=2;
             int LA27_0 = input.LA(1);
 
-            if ( (LA27_0==40) ) {
+            if ( (LA27_0==41) ) {
                 alt27=1;
             }
             switch (alt27) {
@@ -4128,7 +4128,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
             if ( (LA32_0==29) ) {
                 alt32=1;
             }
-            else if ( (LA32_0==RULE_ID||(LA32_0>=RULE_INT && LA32_0<=RULE_PINNUM)||LA32_0==40) ) {
+            else if ( (LA32_0==RULE_ID||(LA32_0>=RULE_INT && LA32_0<=RULE_PINNUM)||LA32_0==41) ) {
                 alt32=2;
             }
             else {
@@ -4174,7 +4174,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                     int alt28=2;
                     int LA28_0 = input.LA(1);
 
-                    if ( (LA28_0==40) ) {
+                    if ( (LA28_0==41) ) {
                         alt28=1;
                     }
                     switch (alt28) {
@@ -4244,7 +4244,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                     int alt29=2;
                     int LA29_0 = input.LA(1);
 
-                    if ( (LA29_0==38) ) {
+                    if ( (LA29_0==39) ) {
                         alt29=1;
                     }
                     switch (alt29) {
@@ -4302,7 +4302,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                     int alt30=2;
                     int LA30_0 = input.LA(1);
 
-                    if ( (LA30_0==40) ) {
+                    if ( (LA30_0==41) ) {
                         alt30=1;
                     }
                     switch (alt30) {
@@ -4372,7 +4372,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                     int alt31=2;
                     int LA31_0 = input.LA(1);
 
-                    if ( (LA31_0==38) ) {
+                    if ( (LA31_0==39) ) {
                         alt31=1;
                     }
                     switch (alt31) {
@@ -4543,7 +4543,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
             int alt33=2;
             int LA33_0 = input.LA(1);
 
-            if ( (LA33_0==40) ) {
+            if ( (LA33_0==41) ) {
                 alt33=1;
             }
             switch (alt33) {
@@ -4994,7 +4994,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
             if ( (LA41_0==29) ) {
                 alt41=1;
             }
-            else if ( (LA41_0==RULE_ID||(LA41_0>=RULE_INT && LA41_0<=RULE_PINNUM)||LA41_0==40) ) {
+            else if ( (LA41_0==RULE_ID||(LA41_0>=RULE_INT && LA41_0<=RULE_PINNUM)||LA41_0==41) ) {
                 alt41=2;
             }
             else {
@@ -5040,7 +5040,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                     int alt37=2;
                     int LA37_0 = input.LA(1);
 
-                    if ( (LA37_0==40) ) {
+                    if ( (LA37_0==41) ) {
                         alt37=1;
                     }
                     switch (alt37) {
@@ -5110,7 +5110,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                     int alt38=2;
                     int LA38_0 = input.LA(1);
 
-                    if ( (LA38_0==38) ) {
+                    if ( (LA38_0==39) ) {
                         alt38=1;
                     }
                     switch (alt38) {
@@ -5168,7 +5168,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                     int alt39=2;
                     int LA39_0 = input.LA(1);
 
-                    if ( (LA39_0==40) ) {
+                    if ( (LA39_0==41) ) {
                         alt39=1;
                     }
                     switch (alt39) {
@@ -5238,7 +5238,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                     int alt40=2;
                     int LA40_0 = input.LA(1);
 
-                    if ( (LA40_0==38) ) {
+                    if ( (LA40_0==39) ) {
                         alt40=1;
                     }
                     switch (alt40) {
@@ -5433,7 +5433,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
             int alt42=2;
             int LA42_0 = input.LA(1);
 
-            if ( (LA42_0==38) ) {
+            if ( (LA42_0==39) ) {
                 alt42=1;
             }
             switch (alt42) {
@@ -5567,72 +5567,62 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleConcatenation"
-    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2282:1: ruleConcatenation returns [EObject current=null] : ( ( ( (lv_connections_0_0= ruleConnectionRef ) ) (otherlv_1= '&' ( (lv_connections_2_0= ruleConnectionRef ) ) )* ) | ( ( (lv_replicated_3_0= '<' ) ) ( (lv_replicate_4_0= ruleConnectionRef ) ) otherlv_5= '>' ) | ( (lv_open_6_0= 'open' ) ) ) ;
+    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2282:1: ruleConcatenation returns [EObject current=null] : ( (otherlv_0= '{' ( (lv_connections_1_0= ruleConnectionRef ) ) (otherlv_2= ',' ( (lv_connections_3_0= ruleConnectionRef ) ) )* otherlv_4= '}' ) | ( ( (lv_connections_5_0= ruleConnectionRef ) ) (otherlv_6= '&' ( (lv_connections_7_0= ruleConnectionRef ) ) )* ) | ( ( (lv_replicated_8_0= '<' ) ) ( (lv_replicate_9_0= ruleConnectionRef ) ) otherlv_10= '>' ) | ( ( (lv_replicate_11_0= ruleConnectionRef ) ) ( (lv_replicated_12_0= '*' ) ) ) | ( (lv_open_13_0= 'open' ) ) ) ;
     public final EObject ruleConcatenation() throws RecognitionException {
         EObject current = null;
 
-        Token otherlv_1=null;
-        Token lv_replicated_3_0=null;
-        Token otherlv_5=null;
-        Token lv_open_6_0=null;
-        EObject lv_connections_0_0 = null;
+        Token otherlv_0=null;
+        Token otherlv_2=null;
+        Token otherlv_4=null;
+        Token otherlv_6=null;
+        Token lv_replicated_8_0=null;
+        Token otherlv_10=null;
+        Token lv_replicated_12_0=null;
+        Token lv_open_13_0=null;
+        EObject lv_connections_1_0 = null;
 
-        EObject lv_connections_2_0 = null;
+        EObject lv_connections_3_0 = null;
 
-        EObject lv_replicate_4_0 = null;
+        EObject lv_connections_5_0 = null;
+
+        EObject lv_connections_7_0 = null;
+
+        EObject lv_replicate_9_0 = null;
+
+        EObject lv_replicate_11_0 = null;
 
 
          enterRule(); 
             
         try {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2285:28: ( ( ( ( (lv_connections_0_0= ruleConnectionRef ) ) (otherlv_1= '&' ( (lv_connections_2_0= ruleConnectionRef ) ) )* ) | ( ( (lv_replicated_3_0= '<' ) ) ( (lv_replicate_4_0= ruleConnectionRef ) ) otherlv_5= '>' ) | ( (lv_open_6_0= 'open' ) ) ) )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2286:1: ( ( ( (lv_connections_0_0= ruleConnectionRef ) ) (otherlv_1= '&' ( (lv_connections_2_0= ruleConnectionRef ) ) )* ) | ( ( (lv_replicated_3_0= '<' ) ) ( (lv_replicate_4_0= ruleConnectionRef ) ) otherlv_5= '>' ) | ( (lv_open_6_0= 'open' ) ) )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2285:28: ( ( (otherlv_0= '{' ( (lv_connections_1_0= ruleConnectionRef ) ) (otherlv_2= ',' ( (lv_connections_3_0= ruleConnectionRef ) ) )* otherlv_4= '}' ) | ( ( (lv_connections_5_0= ruleConnectionRef ) ) (otherlv_6= '&' ( (lv_connections_7_0= ruleConnectionRef ) ) )* ) | ( ( (lv_replicated_8_0= '<' ) ) ( (lv_replicate_9_0= ruleConnectionRef ) ) otherlv_10= '>' ) | ( ( (lv_replicate_11_0= ruleConnectionRef ) ) ( (lv_replicated_12_0= '*' ) ) ) | ( (lv_open_13_0= 'open' ) ) ) )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2286:1: ( (otherlv_0= '{' ( (lv_connections_1_0= ruleConnectionRef ) ) (otherlv_2= ',' ( (lv_connections_3_0= ruleConnectionRef ) ) )* otherlv_4= '}' ) | ( ( (lv_connections_5_0= ruleConnectionRef ) ) (otherlv_6= '&' ( (lv_connections_7_0= ruleConnectionRef ) ) )* ) | ( ( (lv_replicated_8_0= '<' ) ) ( (lv_replicate_9_0= ruleConnectionRef ) ) otherlv_10= '>' ) | ( ( (lv_replicate_11_0= ruleConnectionRef ) ) ( (lv_replicated_12_0= '*' ) ) ) | ( (lv_open_13_0= 'open' ) ) )
             {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2286:1: ( ( ( (lv_connections_0_0= ruleConnectionRef ) ) (otherlv_1= '&' ( (lv_connections_2_0= ruleConnectionRef ) ) )* ) | ( ( (lv_replicated_3_0= '<' ) ) ( (lv_replicate_4_0= ruleConnectionRef ) ) otherlv_5= '>' ) | ( (lv_open_6_0= 'open' ) ) )
-            int alt44=3;
-            switch ( input.LA(1) ) {
-            case RULE_ID:
-            case RULE_INT:
-            case RULE_PINNUM:
-                {
-                alt44=1;
-                }
-                break;
-            case 34:
-                {
-                alt44=2;
-                }
-                break;
-            case 36:
-                {
-                alt44=3;
-                }
-                break;
-            default:
-                NoViableAltException nvae =
-                    new NoViableAltException("", 44, 0, input);
-
-                throw nvae;
-            }
-
-            switch (alt44) {
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2286:1: ( (otherlv_0= '{' ( (lv_connections_1_0= ruleConnectionRef ) ) (otherlv_2= ',' ( (lv_connections_3_0= ruleConnectionRef ) ) )* otherlv_4= '}' ) | ( ( (lv_connections_5_0= ruleConnectionRef ) ) (otherlv_6= '&' ( (lv_connections_7_0= ruleConnectionRef ) ) )* ) | ( ( (lv_replicated_8_0= '<' ) ) ( (lv_replicate_9_0= ruleConnectionRef ) ) otherlv_10= '>' ) | ( ( (lv_replicate_11_0= ruleConnectionRef ) ) ( (lv_replicated_12_0= '*' ) ) ) | ( (lv_open_13_0= 'open' ) ) )
+            int alt45=5;
+            alt45 = dfa45.predict(input);
+            switch (alt45) {
                 case 1 :
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2286:2: ( ( (lv_connections_0_0= ruleConnectionRef ) ) (otherlv_1= '&' ( (lv_connections_2_0= ruleConnectionRef ) ) )* )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2286:2: (otherlv_0= '{' ( (lv_connections_1_0= ruleConnectionRef ) ) (otherlv_2= ',' ( (lv_connections_3_0= ruleConnectionRef ) ) )* otherlv_4= '}' )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2286:2: ( ( (lv_connections_0_0= ruleConnectionRef ) ) (otherlv_1= '&' ( (lv_connections_2_0= ruleConnectionRef ) ) )* )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2286:3: ( (lv_connections_0_0= ruleConnectionRef ) ) (otherlv_1= '&' ( (lv_connections_2_0= ruleConnectionRef ) ) )*
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2286:2: (otherlv_0= '{' ( (lv_connections_1_0= ruleConnectionRef ) ) (otherlv_2= ',' ( (lv_connections_3_0= ruleConnectionRef ) ) )* otherlv_4= '}' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2286:4: otherlv_0= '{' ( (lv_connections_1_0= ruleConnectionRef ) ) (otherlv_2= ',' ( (lv_connections_3_0= ruleConnectionRef ) ) )* otherlv_4= '}'
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2286:3: ( (lv_connections_0_0= ruleConnectionRef ) )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2287:1: (lv_connections_0_0= ruleConnectionRef )
+                    otherlv_0=(Token)match(input,12,FOLLOW_12_in_ruleConcatenation4694); 
+
+                        	newLeafNode(otherlv_0, grammarAccess.getConcatenationAccess().getLeftCurlyBracketKeyword_0_0());
+                        
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2290:1: ( (lv_connections_1_0= ruleConnectionRef ) )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2291:1: (lv_connections_1_0= ruleConnectionRef )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2287:1: (lv_connections_0_0= ruleConnectionRef )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2288:3: lv_connections_0_0= ruleConnectionRef
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2291:1: (lv_connections_1_0= ruleConnectionRef )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2292:3: lv_connections_1_0= ruleConnectionRef
                     {
                      
-                    	        newCompositeNode(grammarAccess.getConcatenationAccess().getConnectionsConnectionRefParserRuleCall_0_0_0()); 
+                    	        newCompositeNode(grammarAccess.getConcatenationAccess().getConnectionsConnectionRefParserRuleCall_0_1_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleConnectionRef_in_ruleConcatenation4703);
-                    lv_connections_0_0=ruleConnectionRef();
+                    pushFollow(FOLLOW_ruleConnectionRef_in_ruleConcatenation4715);
+                    lv_connections_1_0=ruleConnectionRef();
 
                     state._fsp--;
 
@@ -5643,7 +5633,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                            		add(
                            			current, 
                            			"connections",
-                            		lv_connections_0_0, 
+                            		lv_connections_1_0, 
                             		"ConnectionRef");
                     	        afterParserOrEnumRuleCall();
                     	    
@@ -5653,36 +5643,36 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2304:2: (otherlv_1= '&' ( (lv_connections_2_0= ruleConnectionRef ) ) )*
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2308:2: (otherlv_2= ',' ( (lv_connections_3_0= ruleConnectionRef ) ) )*
                     loop43:
                     do {
                         int alt43=2;
                         int LA43_0 = input.LA(1);
 
-                        if ( (LA43_0==33) ) {
+                        if ( (LA43_0==19) ) {
                             alt43=1;
                         }
 
 
                         switch (alt43) {
                     	case 1 :
-                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2304:4: otherlv_1= '&' ( (lv_connections_2_0= ruleConnectionRef ) )
+                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2308:4: otherlv_2= ',' ( (lv_connections_3_0= ruleConnectionRef ) )
                     	    {
-                    	    otherlv_1=(Token)match(input,33,FOLLOW_33_in_ruleConcatenation4716); 
+                    	    otherlv_2=(Token)match(input,19,FOLLOW_19_in_ruleConcatenation4728); 
 
-                    	        	newLeafNode(otherlv_1, grammarAccess.getConcatenationAccess().getAmpersandKeyword_0_1_0());
+                    	        	newLeafNode(otherlv_2, grammarAccess.getConcatenationAccess().getCommaKeyword_0_2_0());
                     	        
-                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2308:1: ( (lv_connections_2_0= ruleConnectionRef ) )
-                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2309:1: (lv_connections_2_0= ruleConnectionRef )
+                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2312:1: ( (lv_connections_3_0= ruleConnectionRef ) )
+                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2313:1: (lv_connections_3_0= ruleConnectionRef )
                     	    {
-                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2309:1: (lv_connections_2_0= ruleConnectionRef )
-                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2310:3: lv_connections_2_0= ruleConnectionRef
+                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2313:1: (lv_connections_3_0= ruleConnectionRef )
+                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2314:3: lv_connections_3_0= ruleConnectionRef
                     	    {
                     	     
-                    	    	        newCompositeNode(grammarAccess.getConcatenationAccess().getConnectionsConnectionRefParserRuleCall_0_1_1_0()); 
+                    	    	        newCompositeNode(grammarAccess.getConcatenationAccess().getConnectionsConnectionRefParserRuleCall_0_2_1_0()); 
                     	    	    
-                    	    pushFollow(FOLLOW_ruleConnectionRef_in_ruleConcatenation4737);
-                    	    lv_connections_2_0=ruleConnectionRef();
+                    	    pushFollow(FOLLOW_ruleConnectionRef_in_ruleConcatenation4749);
+                    	    lv_connections_3_0=ruleConnectionRef();
 
                     	    state._fsp--;
 
@@ -5693,7 +5683,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                     	           		add(
                     	           			current, 
                     	           			"connections",
-                    	            		lv_connections_2_0, 
+                    	            		lv_connections_3_0, 
                     	            		"ConnectionRef");
                     	    	        afterParserOrEnumRuleCall();
                     	    	    
@@ -5712,6 +5702,10 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                         }
                     } while (true);
 
+                    otherlv_4=(Token)match(input,13,FOLLOW_13_in_ruleConcatenation4763); 
+
+                        	newLeafNode(otherlv_4, grammarAccess.getConcatenationAccess().getRightCurlyBracketKeyword_0_3());
+                        
 
                     }
 
@@ -5719,20 +5713,122 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2327:6: ( ( (lv_replicated_3_0= '<' ) ) ( (lv_replicate_4_0= ruleConnectionRef ) ) otherlv_5= '>' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2335:6: ( ( (lv_connections_5_0= ruleConnectionRef ) ) (otherlv_6= '&' ( (lv_connections_7_0= ruleConnectionRef ) ) )* )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2327:6: ( ( (lv_replicated_3_0= '<' ) ) ( (lv_replicate_4_0= ruleConnectionRef ) ) otherlv_5= '>' )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2327:7: ( (lv_replicated_3_0= '<' ) ) ( (lv_replicate_4_0= ruleConnectionRef ) ) otherlv_5= '>'
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2335:6: ( ( (lv_connections_5_0= ruleConnectionRef ) ) (otherlv_6= '&' ( (lv_connections_7_0= ruleConnectionRef ) ) )* )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2335:7: ( (lv_connections_5_0= ruleConnectionRef ) ) (otherlv_6= '&' ( (lv_connections_7_0= ruleConnectionRef ) ) )*
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2327:7: ( (lv_replicated_3_0= '<' ) )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2328:1: (lv_replicated_3_0= '<' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2335:7: ( (lv_connections_5_0= ruleConnectionRef ) )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2336:1: (lv_connections_5_0= ruleConnectionRef )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2328:1: (lv_replicated_3_0= '<' )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2329:3: lv_replicated_3_0= '<'
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2336:1: (lv_connections_5_0= ruleConnectionRef )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2337:3: lv_connections_5_0= ruleConnectionRef
                     {
-                    lv_replicated_3_0=(Token)match(input,34,FOLLOW_34_in_ruleConcatenation4765); 
+                     
+                    	        newCompositeNode(grammarAccess.getConcatenationAccess().getConnectionsConnectionRefParserRuleCall_1_0_0()); 
+                    	    
+                    pushFollow(FOLLOW_ruleConnectionRef_in_ruleConcatenation4792);
+                    lv_connections_5_0=ruleConnectionRef();
 
-                            newLeafNode(lv_replicated_3_0, grammarAccess.getConcatenationAccess().getReplicatedLessThanSignKeyword_1_0_0());
+                    state._fsp--;
+
+
+                    	        if (current==null) {
+                    	            current = createModelElementForParent(grammarAccess.getConcatenationRule());
+                    	        }
+                           		add(
+                           			current, 
+                           			"connections",
+                            		lv_connections_5_0, 
+                            		"ConnectionRef");
+                    	        afterParserOrEnumRuleCall();
+                    	    
+
+                    }
+
+
+                    }
+
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2353:2: (otherlv_6= '&' ( (lv_connections_7_0= ruleConnectionRef ) ) )*
+                    loop44:
+                    do {
+                        int alt44=2;
+                        int LA44_0 = input.LA(1);
+
+                        if ( (LA44_0==33) ) {
+                            alt44=1;
+                        }
+
+
+                        switch (alt44) {
+                    	case 1 :
+                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2353:4: otherlv_6= '&' ( (lv_connections_7_0= ruleConnectionRef ) )
+                    	    {
+                    	    otherlv_6=(Token)match(input,33,FOLLOW_33_in_ruleConcatenation4805); 
+
+                    	        	newLeafNode(otherlv_6, grammarAccess.getConcatenationAccess().getAmpersandKeyword_1_1_0());
+                    	        
+                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2357:1: ( (lv_connections_7_0= ruleConnectionRef ) )
+                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2358:1: (lv_connections_7_0= ruleConnectionRef )
+                    	    {
+                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2358:1: (lv_connections_7_0= ruleConnectionRef )
+                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2359:3: lv_connections_7_0= ruleConnectionRef
+                    	    {
+                    	     
+                    	    	        newCompositeNode(grammarAccess.getConcatenationAccess().getConnectionsConnectionRefParserRuleCall_1_1_1_0()); 
+                    	    	    
+                    	    pushFollow(FOLLOW_ruleConnectionRef_in_ruleConcatenation4826);
+                    	    lv_connections_7_0=ruleConnectionRef();
+
+                    	    state._fsp--;
+
+
+                    	    	        if (current==null) {
+                    	    	            current = createModelElementForParent(grammarAccess.getConcatenationRule());
+                    	    	        }
+                    	           		add(
+                    	           			current, 
+                    	           			"connections",
+                    	            		lv_connections_7_0, 
+                    	            		"ConnectionRef");
+                    	    	        afterParserOrEnumRuleCall();
+                    	    	    
+
+                    	    }
+
+
+                    	    }
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop44;
+                        }
+                    } while (true);
+
+
+                    }
+
+
+                    }
+                    break;
+                case 3 :
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2376:6: ( ( (lv_replicated_8_0= '<' ) ) ( (lv_replicate_9_0= ruleConnectionRef ) ) otherlv_10= '>' )
+                    {
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2376:6: ( ( (lv_replicated_8_0= '<' ) ) ( (lv_replicate_9_0= ruleConnectionRef ) ) otherlv_10= '>' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2376:7: ( (lv_replicated_8_0= '<' ) ) ( (lv_replicate_9_0= ruleConnectionRef ) ) otherlv_10= '>'
+                    {
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2376:7: ( (lv_replicated_8_0= '<' ) )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2377:1: (lv_replicated_8_0= '<' )
+                    {
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2377:1: (lv_replicated_8_0= '<' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2378:3: lv_replicated_8_0= '<'
+                    {
+                    lv_replicated_8_0=(Token)match(input,34,FOLLOW_34_in_ruleConcatenation4854); 
+
+                            newLeafNode(lv_replicated_8_0, grammarAccess.getConcatenationAccess().getReplicatedLessThanSignKeyword_2_0_0());
                         
 
                     	        if (current==null) {
@@ -5746,17 +5842,17 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2342:2: ( (lv_replicate_4_0= ruleConnectionRef ) )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2343:1: (lv_replicate_4_0= ruleConnectionRef )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2391:2: ( (lv_replicate_9_0= ruleConnectionRef ) )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2392:1: (lv_replicate_9_0= ruleConnectionRef )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2343:1: (lv_replicate_4_0= ruleConnectionRef )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2344:3: lv_replicate_4_0= ruleConnectionRef
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2392:1: (lv_replicate_9_0= ruleConnectionRef )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2393:3: lv_replicate_9_0= ruleConnectionRef
                     {
                      
-                    	        newCompositeNode(grammarAccess.getConcatenationAccess().getReplicateConnectionRefParserRuleCall_1_1_0()); 
+                    	        newCompositeNode(grammarAccess.getConcatenationAccess().getReplicateConnectionRefParserRuleCall_2_1_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleConnectionRef_in_ruleConcatenation4799);
-                    lv_replicate_4_0=ruleConnectionRef();
+                    pushFollow(FOLLOW_ruleConnectionRef_in_ruleConcatenation4888);
+                    lv_replicate_9_0=ruleConnectionRef();
 
                     state._fsp--;
 
@@ -5767,7 +5863,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                            		set(
                            			current, 
                            			"replicate",
-                            		lv_replicate_4_0, 
+                            		lv_replicate_9_0, 
                             		"ConnectionRef");
                     	        afterParserOrEnumRuleCall();
                     	    
@@ -5777,9 +5873,9 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_5=(Token)match(input,35,FOLLOW_35_in_ruleConcatenation4811); 
+                    otherlv_10=(Token)match(input,35,FOLLOW_35_in_ruleConcatenation4900); 
 
-                        	newLeafNode(otherlv_5, grammarAccess.getConcatenationAccess().getGreaterThanSignKeyword_1_2());
+                        	newLeafNode(otherlv_10, grammarAccess.getConcatenationAccess().getGreaterThanSignKeyword_2_2());
                         
 
                     }
@@ -5787,18 +5883,83 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
                     }
                     break;
-                case 3 :
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2365:6: ( (lv_open_6_0= 'open' ) )
+                case 4 :
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2414:6: ( ( (lv_replicate_11_0= ruleConnectionRef ) ) ( (lv_replicated_12_0= '*' ) ) )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2365:6: ( (lv_open_6_0= 'open' ) )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2366:1: (lv_open_6_0= 'open' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2414:6: ( ( (lv_replicate_11_0= ruleConnectionRef ) ) ( (lv_replicated_12_0= '*' ) ) )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2414:7: ( (lv_replicate_11_0= ruleConnectionRef ) ) ( (lv_replicated_12_0= '*' ) )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2366:1: (lv_open_6_0= 'open' )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2367:3: lv_open_6_0= 'open'
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2414:7: ( (lv_replicate_11_0= ruleConnectionRef ) )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2415:1: (lv_replicate_11_0= ruleConnectionRef )
                     {
-                    lv_open_6_0=(Token)match(input,36,FOLLOW_36_in_ruleConcatenation4836); 
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2415:1: (lv_replicate_11_0= ruleConnectionRef )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2416:3: lv_replicate_11_0= ruleConnectionRef
+                    {
+                     
+                    	        newCompositeNode(grammarAccess.getConcatenationAccess().getReplicateConnectionRefParserRuleCall_3_0_0()); 
+                    	    
+                    pushFollow(FOLLOW_ruleConnectionRef_in_ruleConcatenation4929);
+                    lv_replicate_11_0=ruleConnectionRef();
 
-                            newLeafNode(lv_open_6_0, grammarAccess.getConcatenationAccess().getOpenOpenKeyword_2_0());
+                    state._fsp--;
+
+
+                    	        if (current==null) {
+                    	            current = createModelElementForParent(grammarAccess.getConcatenationRule());
+                    	        }
+                           		set(
+                           			current, 
+                           			"replicate",
+                            		lv_replicate_11_0, 
+                            		"ConnectionRef");
+                    	        afterParserOrEnumRuleCall();
+                    	    
+
+                    }
+
+
+                    }
+
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2432:2: ( (lv_replicated_12_0= '*' ) )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2433:1: (lv_replicated_12_0= '*' )
+                    {
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2433:1: (lv_replicated_12_0= '*' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2434:3: lv_replicated_12_0= '*'
+                    {
+                    lv_replicated_12_0=(Token)match(input,36,FOLLOW_36_in_ruleConcatenation4947); 
+
+                            newLeafNode(lv_replicated_12_0, grammarAccess.getConcatenationAccess().getReplicatedAsteriskKeyword_3_1_0());
+                        
+
+                    	        if (current==null) {
+                    	            current = createModelElement(grammarAccess.getConcatenationRule());
+                    	        }
+                           		setWithLastConsumed(current, "replicated", true, "*");
+                    	    
+
+                    }
+
+
+                    }
+
+
+                    }
+
+
+                    }
+                    break;
+                case 5 :
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2448:6: ( (lv_open_13_0= 'open' ) )
+                    {
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2448:6: ( (lv_open_13_0= 'open' ) )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2449:1: (lv_open_13_0= 'open' )
+                    {
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2449:1: (lv_open_13_0= 'open' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2450:3: lv_open_13_0= 'open'
+                    {
+                    lv_open_13_0=(Token)match(input,37,FOLLOW_37_in_ruleConcatenation4985); 
+
+                            newLeafNode(lv_open_13_0, grammarAccess.getConcatenationAccess().getOpenOpenKeyword_4_0());
                         
 
                     	        if (current==null) {
@@ -5836,7 +5997,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleConnectionRef"
-    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2388:1: entryRuleConnectionRef returns [EObject current=null] : iv_ruleConnectionRef= ruleConnectionRef EOF ;
+    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2471:1: entryRuleConnectionRef returns [EObject current=null] : iv_ruleConnectionRef= ruleConnectionRef EOF ;
     public final EObject entryRuleConnectionRef() throws RecognitionException {
         EObject current = null;
 
@@ -5844,17 +6005,17 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2389:2: (iv_ruleConnectionRef= ruleConnectionRef EOF )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2390:2: iv_ruleConnectionRef= ruleConnectionRef EOF
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2472:2: (iv_ruleConnectionRef= ruleConnectionRef EOF )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2473:2: iv_ruleConnectionRef= ruleConnectionRef EOF
             {
              newCompositeNode(grammarAccess.getConnectionRefRule()); 
-            pushFollow(FOLLOW_ruleConnectionRef_in_entryRuleConnectionRef4885);
+            pushFollow(FOLLOW_ruleConnectionRef_in_entryRuleConnectionRef5034);
             iv_ruleConnectionRef=ruleConnectionRef();
 
             state._fsp--;
 
              current =iv_ruleConnectionRef; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleConnectionRef4895); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleConnectionRef5044); 
 
             }
 
@@ -5872,7 +6033,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleConnectionRef"
-    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2397:1: ruleConnectionRef returns [EObject current=null] : ( ( ( rulePhdlID ) ) ( (lv_slices_1_0= ruleSlices ) )? ) ;
+    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2480:1: ruleConnectionRef returns [EObject current=null] : ( ( ( rulePhdlID ) ) ( (lv_slices_1_0= ruleSlices ) )? ) ;
     public final EObject ruleConnectionRef() throws RecognitionException {
         EObject current = null;
 
@@ -5882,17 +6043,17 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2400:28: ( ( ( ( rulePhdlID ) ) ( (lv_slices_1_0= ruleSlices ) )? ) )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2401:1: ( ( ( rulePhdlID ) ) ( (lv_slices_1_0= ruleSlices ) )? )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2483:28: ( ( ( ( rulePhdlID ) ) ( (lv_slices_1_0= ruleSlices ) )? ) )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2484:1: ( ( ( rulePhdlID ) ) ( (lv_slices_1_0= ruleSlices ) )? )
             {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2401:1: ( ( ( rulePhdlID ) ) ( (lv_slices_1_0= ruleSlices ) )? )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2401:2: ( ( rulePhdlID ) ) ( (lv_slices_1_0= ruleSlices ) )?
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2484:1: ( ( ( rulePhdlID ) ) ( (lv_slices_1_0= ruleSlices ) )? )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2484:2: ( ( rulePhdlID ) ) ( (lv_slices_1_0= ruleSlices ) )?
             {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2401:2: ( ( rulePhdlID ) )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2402:1: ( rulePhdlID )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2484:2: ( ( rulePhdlID ) )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2485:1: ( rulePhdlID )
             {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2402:1: ( rulePhdlID )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2403:3: rulePhdlID
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2485:1: ( rulePhdlID )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2486:3: rulePhdlID
             {
 
             			if (current==null) {
@@ -5902,7 +6063,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
              
             	        newCompositeNode(grammarAccess.getConnectionRefAccess().getRefConnectionNameCrossReference_0_0()); 
             	    
-            pushFollow(FOLLOW_rulePhdlID_in_ruleConnectionRef4943);
+            pushFollow(FOLLOW_rulePhdlID_in_ruleConnectionRef5092);
             rulePhdlID();
 
             state._fsp--;
@@ -5916,24 +6077,24 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2416:2: ( (lv_slices_1_0= ruleSlices ) )?
-            int alt45=2;
-            int LA45_0 = input.LA(1);
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2499:2: ( (lv_slices_1_0= ruleSlices ) )?
+            int alt46=2;
+            int LA46_0 = input.LA(1);
 
-            if ( (LA45_0==38) ) {
-                alt45=1;
+            if ( (LA46_0==39) ) {
+                alt46=1;
             }
-            switch (alt45) {
+            switch (alt46) {
                 case 1 :
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2417:1: (lv_slices_1_0= ruleSlices )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2500:1: (lv_slices_1_0= ruleSlices )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2417:1: (lv_slices_1_0= ruleSlices )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2418:3: lv_slices_1_0= ruleSlices
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2500:1: (lv_slices_1_0= ruleSlices )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2501:3: lv_slices_1_0= ruleSlices
                     {
                      
                     	        newCompositeNode(grammarAccess.getConnectionRefAccess().getSlicesSlicesParserRuleCall_1_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleSlices_in_ruleConnectionRef4964);
+                    pushFollow(FOLLOW_ruleSlices_in_ruleConnectionRef5113);
                     lv_slices_1_0=ruleSlices();
 
                     state._fsp--;
@@ -5979,7 +6140,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleConnectionName"
-    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2442:1: entryRuleConnectionName returns [EObject current=null] : iv_ruleConnectionName= ruleConnectionName EOF ;
+    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2525:1: entryRuleConnectionName returns [EObject current=null] : iv_ruleConnectionName= ruleConnectionName EOF ;
     public final EObject entryRuleConnectionName() throws RecognitionException {
         EObject current = null;
 
@@ -5987,17 +6148,17 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2443:2: (iv_ruleConnectionName= ruleConnectionName EOF )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2444:2: iv_ruleConnectionName= ruleConnectionName EOF
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2526:2: (iv_ruleConnectionName= ruleConnectionName EOF )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2527:2: iv_ruleConnectionName= ruleConnectionName EOF
             {
              newCompositeNode(grammarAccess.getConnectionNameRule()); 
-            pushFollow(FOLLOW_ruleConnectionName_in_entryRuleConnectionName5001);
+            pushFollow(FOLLOW_ruleConnectionName_in_entryRuleConnectionName5150);
             iv_ruleConnectionName=ruleConnectionName();
 
             state._fsp--;
 
              current =iv_ruleConnectionName; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleConnectionName5011); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleConnectionName5160); 
 
             }
 
@@ -6015,7 +6176,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleConnectionName"
-    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2451:1: ruleConnectionName returns [EObject current=null] : ( (lv_name_0_0= rulePhdlID ) ) ;
+    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2534:1: ruleConnectionName returns [EObject current=null] : ( (lv_name_0_0= rulePhdlID ) ) ;
     public final EObject ruleConnectionName() throws RecognitionException {
         EObject current = null;
 
@@ -6025,19 +6186,19 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2454:28: ( ( (lv_name_0_0= rulePhdlID ) ) )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2455:1: ( (lv_name_0_0= rulePhdlID ) )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2537:28: ( ( (lv_name_0_0= rulePhdlID ) ) )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2538:1: ( (lv_name_0_0= rulePhdlID ) )
             {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2455:1: ( (lv_name_0_0= rulePhdlID ) )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2456:1: (lv_name_0_0= rulePhdlID )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2538:1: ( (lv_name_0_0= rulePhdlID ) )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2539:1: (lv_name_0_0= rulePhdlID )
             {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2456:1: (lv_name_0_0= rulePhdlID )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2457:3: lv_name_0_0= rulePhdlID
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2539:1: (lv_name_0_0= rulePhdlID )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2540:3: lv_name_0_0= rulePhdlID
             {
              
             	        newCompositeNode(grammarAccess.getConnectionNameAccess().getNamePhdlIDParserRuleCall_0()); 
             	    
-            pushFollow(FOLLOW_rulePhdlID_in_ruleConnectionName5056);
+            pushFollow(FOLLOW_rulePhdlID_in_ruleConnectionName5205);
             lv_name_0_0=rulePhdlID();
 
             state._fsp--;
@@ -6077,7 +6238,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleIndices"
-    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2481:1: entryRuleIndices returns [EObject current=null] : iv_ruleIndices= ruleIndices EOF ;
+    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2564:1: entryRuleIndices returns [EObject current=null] : iv_ruleIndices= ruleIndices EOF ;
     public final EObject entryRuleIndices() throws RecognitionException {
         EObject current = null;
 
@@ -6085,17 +6246,17 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2482:2: (iv_ruleIndices= ruleIndices EOF )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2483:2: iv_ruleIndices= ruleIndices EOF
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2565:2: (iv_ruleIndices= ruleIndices EOF )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2566:2: iv_ruleIndices= ruleIndices EOF
             {
              newCompositeNode(grammarAccess.getIndicesRule()); 
-            pushFollow(FOLLOW_ruleIndices_in_entryRuleIndices5091);
+            pushFollow(FOLLOW_ruleIndices_in_entryRuleIndices5240);
             iv_ruleIndices=ruleIndices();
 
             state._fsp--;
 
              current =iv_ruleIndices; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleIndices5101); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleIndices5250); 
 
             }
 
@@ -6113,7 +6274,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleIndices"
-    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2490:1: ruleIndices returns [EObject current=null] : (otherlv_0= '(' ( ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_array_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) ) | ( ( (lv_indices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_indices_6_0= RULE_INT ) ) )* ) ) otherlv_7= ')' ) ;
+    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2573:1: ruleIndices returns [EObject current=null] : (otherlv_0= '(' ( ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_array_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) ) | ( ( (lv_indices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_indices_6_0= RULE_INT ) ) )* ) ) otherlv_7= ')' ) ;
     public final EObject ruleIndices() throws RecognitionException {
         EObject current = null;
 
@@ -6129,56 +6290,56 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2493:28: ( (otherlv_0= '(' ( ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_array_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) ) | ( ( (lv_indices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_indices_6_0= RULE_INT ) ) )* ) ) otherlv_7= ')' ) )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2494:1: (otherlv_0= '(' ( ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_array_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) ) | ( ( (lv_indices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_indices_6_0= RULE_INT ) ) )* ) ) otherlv_7= ')' )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2576:28: ( (otherlv_0= '(' ( ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_array_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) ) | ( ( (lv_indices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_indices_6_0= RULE_INT ) ) )* ) ) otherlv_7= ')' ) )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2577:1: (otherlv_0= '(' ( ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_array_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) ) | ( ( (lv_indices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_indices_6_0= RULE_INT ) ) )* ) ) otherlv_7= ')' )
             {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2494:1: (otherlv_0= '(' ( ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_array_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) ) | ( ( (lv_indices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_indices_6_0= RULE_INT ) ) )* ) ) otherlv_7= ')' )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2494:3: otherlv_0= '(' ( ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_array_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) ) | ( ( (lv_indices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_indices_6_0= RULE_INT ) ) )* ) ) otherlv_7= ')'
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2577:1: (otherlv_0= '(' ( ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_array_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) ) | ( ( (lv_indices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_indices_6_0= RULE_INT ) ) )* ) ) otherlv_7= ')' )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2577:3: otherlv_0= '(' ( ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_array_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) ) | ( ( (lv_indices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_indices_6_0= RULE_INT ) ) )* ) ) otherlv_7= ')'
             {
-            otherlv_0=(Token)match(input,30,FOLLOW_30_in_ruleIndices5138); 
+            otherlv_0=(Token)match(input,30,FOLLOW_30_in_ruleIndices5287); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getIndicesAccess().getLeftParenthesisKeyword_0());
                 
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2498:1: ( ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_array_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) ) | ( ( (lv_indices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_indices_6_0= RULE_INT ) ) )* ) )
-            int alt47=2;
-            int LA47_0 = input.LA(1);
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2581:1: ( ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_array_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) ) | ( ( (lv_indices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_indices_6_0= RULE_INT ) ) )* ) )
+            int alt48=2;
+            int LA48_0 = input.LA(1);
 
-            if ( (LA47_0==RULE_INT) ) {
-                int LA47_1 = input.LA(2);
+            if ( (LA48_0==RULE_INT) ) {
+                int LA48_1 = input.LA(2);
 
-                if ( (LA47_1==19||LA47_1==31) ) {
-                    alt47=2;
+                if ( (LA48_1==38) ) {
+                    alt48=1;
                 }
-                else if ( (LA47_1==37) ) {
-                    alt47=1;
+                else if ( (LA48_1==19||LA48_1==31) ) {
+                    alt48=2;
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("", 47, 1, input);
+                        new NoViableAltException("", 48, 1, input);
 
                     throw nvae;
                 }
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 47, 0, input);
+                    new NoViableAltException("", 48, 0, input);
 
                 throw nvae;
             }
-            switch (alt47) {
+            switch (alt48) {
                 case 1 :
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2498:2: ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_array_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2581:2: ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_array_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2498:2: ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_array_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2498:3: ( (lv_msb_1_0= RULE_INT ) ) ( (lv_array_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2581:2: ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_array_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2581:3: ( (lv_msb_1_0= RULE_INT ) ) ( (lv_array_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2498:3: ( (lv_msb_1_0= RULE_INT ) )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2499:1: (lv_msb_1_0= RULE_INT )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2581:3: ( (lv_msb_1_0= RULE_INT ) )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2582:1: (lv_msb_1_0= RULE_INT )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2499:1: (lv_msb_1_0= RULE_INT )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2500:3: lv_msb_1_0= RULE_INT
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2582:1: (lv_msb_1_0= RULE_INT )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2583:3: lv_msb_1_0= RULE_INT
                     {
-                    lv_msb_1_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleIndices5157); 
+                    lv_msb_1_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleIndices5306); 
 
                     			newLeafNode(lv_msb_1_0, grammarAccess.getIndicesAccess().getMsbINTTerminalRuleCall_1_0_0_0()); 
                     		
@@ -6198,13 +6359,13 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2516:2: ( (lv_array_2_0= ':' ) )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2517:1: (lv_array_2_0= ':' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2599:2: ( (lv_array_2_0= ':' ) )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2600:1: (lv_array_2_0= ':' )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2517:1: (lv_array_2_0= ':' )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2518:3: lv_array_2_0= ':'
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2600:1: (lv_array_2_0= ':' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2601:3: lv_array_2_0= ':'
                     {
-                    lv_array_2_0=(Token)match(input,37,FOLLOW_37_in_ruleIndices5180); 
+                    lv_array_2_0=(Token)match(input,38,FOLLOW_38_in_ruleIndices5329); 
 
                             newLeafNode(lv_array_2_0, grammarAccess.getIndicesAccess().getArrayColonKeyword_1_0_1_0());
                         
@@ -6220,13 +6381,13 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2531:2: ( (lv_lsb_3_0= RULE_INT ) )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2532:1: (lv_lsb_3_0= RULE_INT )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2614:2: ( (lv_lsb_3_0= RULE_INT ) )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2615:1: (lv_lsb_3_0= RULE_INT )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2532:1: (lv_lsb_3_0= RULE_INT )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2533:3: lv_lsb_3_0= RULE_INT
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2615:1: (lv_lsb_3_0= RULE_INT )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2616:3: lv_lsb_3_0= RULE_INT
                     {
-                    lv_lsb_3_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleIndices5210); 
+                    lv_lsb_3_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleIndices5359); 
 
                     			newLeafNode(lv_lsb_3_0, grammarAccess.getIndicesAccess().getLsbINTTerminalRuleCall_1_0_2_0()); 
                     		
@@ -6253,18 +6414,18 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2550:6: ( ( (lv_indices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_indices_6_0= RULE_INT ) ) )* )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2633:6: ( ( (lv_indices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_indices_6_0= RULE_INT ) ) )* )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2550:6: ( ( (lv_indices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_indices_6_0= RULE_INT ) ) )* )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2550:7: ( (lv_indices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_indices_6_0= RULE_INT ) ) )*
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2633:6: ( ( (lv_indices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_indices_6_0= RULE_INT ) ) )* )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2633:7: ( (lv_indices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_indices_6_0= RULE_INT ) ) )*
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2550:7: ( (lv_indices_4_0= RULE_INT ) )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2551:1: (lv_indices_4_0= RULE_INT )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2633:7: ( (lv_indices_4_0= RULE_INT ) )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2634:1: (lv_indices_4_0= RULE_INT )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2551:1: (lv_indices_4_0= RULE_INT )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2552:3: lv_indices_4_0= RULE_INT
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2634:1: (lv_indices_4_0= RULE_INT )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2635:3: lv_indices_4_0= RULE_INT
                     {
-                    lv_indices_4_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleIndices5240); 
+                    lv_indices_4_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleIndices5389); 
 
                     			newLeafNode(lv_indices_4_0, grammarAccess.getIndicesAccess().getIndicesINTTerminalRuleCall_1_1_0_0()); 
                     		
@@ -6284,32 +6445,32 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2568:2: (otherlv_5= ',' ( (lv_indices_6_0= RULE_INT ) ) )*
-                    loop46:
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2651:2: (otherlv_5= ',' ( (lv_indices_6_0= RULE_INT ) ) )*
+                    loop47:
                     do {
-                        int alt46=2;
-                        int LA46_0 = input.LA(1);
+                        int alt47=2;
+                        int LA47_0 = input.LA(1);
 
-                        if ( (LA46_0==19) ) {
-                            alt46=1;
+                        if ( (LA47_0==19) ) {
+                            alt47=1;
                         }
 
 
-                        switch (alt46) {
+                        switch (alt47) {
                     	case 1 :
-                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2568:4: otherlv_5= ',' ( (lv_indices_6_0= RULE_INT ) )
+                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2651:4: otherlv_5= ',' ( (lv_indices_6_0= RULE_INT ) )
                     	    {
-                    	    otherlv_5=(Token)match(input,19,FOLLOW_19_in_ruleIndices5258); 
+                    	    otherlv_5=(Token)match(input,19,FOLLOW_19_in_ruleIndices5407); 
 
                     	        	newLeafNode(otherlv_5, grammarAccess.getIndicesAccess().getCommaKeyword_1_1_1_0());
                     	        
-                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2572:1: ( (lv_indices_6_0= RULE_INT ) )
-                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2573:1: (lv_indices_6_0= RULE_INT )
+                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2655:1: ( (lv_indices_6_0= RULE_INT ) )
+                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2656:1: (lv_indices_6_0= RULE_INT )
                     	    {
-                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2573:1: (lv_indices_6_0= RULE_INT )
-                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2574:3: lv_indices_6_0= RULE_INT
+                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2656:1: (lv_indices_6_0= RULE_INT )
+                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2657:3: lv_indices_6_0= RULE_INT
                     	    {
-                    	    lv_indices_6_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleIndices5275); 
+                    	    lv_indices_6_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleIndices5424); 
 
                     	    			newLeafNode(lv_indices_6_0, grammarAccess.getIndicesAccess().getIndicesINTTerminalRuleCall_1_1_1_1_0()); 
                     	    		
@@ -6334,7 +6495,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop46;
+                    	    break loop47;
                         }
                     } while (true);
 
@@ -6347,7 +6508,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_7=(Token)match(input,31,FOLLOW_31_in_ruleIndices5296); 
+            otherlv_7=(Token)match(input,31,FOLLOW_31_in_ruleIndices5445); 
 
                 	newLeafNode(otherlv_7, grammarAccess.getIndicesAccess().getRightParenthesisKeyword_2());
                 
@@ -6372,7 +6533,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleSlices"
-    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2602:1: entryRuleSlices returns [EObject current=null] : iv_ruleSlices= ruleSlices EOF ;
+    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2685:1: entryRuleSlices returns [EObject current=null] : iv_ruleSlices= ruleSlices EOF ;
     public final EObject entryRuleSlices() throws RecognitionException {
         EObject current = null;
 
@@ -6380,17 +6541,17 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2603:2: (iv_ruleSlices= ruleSlices EOF )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2604:2: iv_ruleSlices= ruleSlices EOF
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2686:2: (iv_ruleSlices= ruleSlices EOF )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2687:2: iv_ruleSlices= ruleSlices EOF
             {
              newCompositeNode(grammarAccess.getSlicesRule()); 
-            pushFollow(FOLLOW_ruleSlices_in_entryRuleSlices5332);
+            pushFollow(FOLLOW_ruleSlices_in_entryRuleSlices5481);
             iv_ruleSlices=ruleSlices();
 
             state._fsp--;
 
              current =iv_ruleSlices; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleSlices5342); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleSlices5491); 
 
             }
 
@@ -6408,7 +6569,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleSlices"
-    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2611:1: ruleSlices returns [EObject current=null] : (otherlv_0= '[' ( ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_vector_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) ) | ( ( (lv_slices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_slices_6_0= RULE_INT ) ) )* ) ) otherlv_7= ']' ) ;
+    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2694:1: ruleSlices returns [EObject current=null] : (otherlv_0= '[' ( ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_vector_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) ) | ( ( (lv_slices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_slices_6_0= RULE_INT ) ) )* ) ) otherlv_7= ']' ) ;
     public final EObject ruleSlices() throws RecognitionException {
         EObject current = null;
 
@@ -6424,56 +6585,56 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2614:28: ( (otherlv_0= '[' ( ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_vector_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) ) | ( ( (lv_slices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_slices_6_0= RULE_INT ) ) )* ) ) otherlv_7= ']' ) )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2615:1: (otherlv_0= '[' ( ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_vector_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) ) | ( ( (lv_slices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_slices_6_0= RULE_INT ) ) )* ) ) otherlv_7= ']' )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2697:28: ( (otherlv_0= '[' ( ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_vector_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) ) | ( ( (lv_slices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_slices_6_0= RULE_INT ) ) )* ) ) otherlv_7= ']' ) )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2698:1: (otherlv_0= '[' ( ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_vector_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) ) | ( ( (lv_slices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_slices_6_0= RULE_INT ) ) )* ) ) otherlv_7= ']' )
             {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2615:1: (otherlv_0= '[' ( ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_vector_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) ) | ( ( (lv_slices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_slices_6_0= RULE_INT ) ) )* ) ) otherlv_7= ']' )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2615:3: otherlv_0= '[' ( ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_vector_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) ) | ( ( (lv_slices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_slices_6_0= RULE_INT ) ) )* ) ) otherlv_7= ']'
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2698:1: (otherlv_0= '[' ( ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_vector_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) ) | ( ( (lv_slices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_slices_6_0= RULE_INT ) ) )* ) ) otherlv_7= ']' )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2698:3: otherlv_0= '[' ( ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_vector_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) ) | ( ( (lv_slices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_slices_6_0= RULE_INT ) ) )* ) ) otherlv_7= ']'
             {
-            otherlv_0=(Token)match(input,38,FOLLOW_38_in_ruleSlices5379); 
+            otherlv_0=(Token)match(input,39,FOLLOW_39_in_ruleSlices5528); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getSlicesAccess().getLeftSquareBracketKeyword_0());
                 
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2619:1: ( ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_vector_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) ) | ( ( (lv_slices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_slices_6_0= RULE_INT ) ) )* ) )
-            int alt49=2;
-            int LA49_0 = input.LA(1);
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2702:1: ( ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_vector_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) ) | ( ( (lv_slices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_slices_6_0= RULE_INT ) ) )* ) )
+            int alt50=2;
+            int LA50_0 = input.LA(1);
 
-            if ( (LA49_0==RULE_INT) ) {
-                int LA49_1 = input.LA(2);
+            if ( (LA50_0==RULE_INT) ) {
+                int LA50_1 = input.LA(2);
 
-                if ( (LA49_1==37) ) {
-                    alt49=1;
+                if ( (LA50_1==38) ) {
+                    alt50=1;
                 }
-                else if ( (LA49_1==19||LA49_1==39) ) {
-                    alt49=2;
+                else if ( (LA50_1==19||LA50_1==40) ) {
+                    alt50=2;
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("", 49, 1, input);
+                        new NoViableAltException("", 50, 1, input);
 
                     throw nvae;
                 }
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 49, 0, input);
+                    new NoViableAltException("", 50, 0, input);
 
                 throw nvae;
             }
-            switch (alt49) {
+            switch (alt50) {
                 case 1 :
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2619:2: ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_vector_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2702:2: ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_vector_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2619:2: ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_vector_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2619:3: ( (lv_msb_1_0= RULE_INT ) ) ( (lv_vector_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2702:2: ( ( (lv_msb_1_0= RULE_INT ) ) ( (lv_vector_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) ) )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2702:3: ( (lv_msb_1_0= RULE_INT ) ) ( (lv_vector_2_0= ':' ) ) ( (lv_lsb_3_0= RULE_INT ) )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2619:3: ( (lv_msb_1_0= RULE_INT ) )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2620:1: (lv_msb_1_0= RULE_INT )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2702:3: ( (lv_msb_1_0= RULE_INT ) )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2703:1: (lv_msb_1_0= RULE_INT )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2620:1: (lv_msb_1_0= RULE_INT )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2621:3: lv_msb_1_0= RULE_INT
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2703:1: (lv_msb_1_0= RULE_INT )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2704:3: lv_msb_1_0= RULE_INT
                     {
-                    lv_msb_1_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleSlices5398); 
+                    lv_msb_1_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleSlices5547); 
 
                     			newLeafNode(lv_msb_1_0, grammarAccess.getSlicesAccess().getMsbINTTerminalRuleCall_1_0_0_0()); 
                     		
@@ -6493,13 +6654,13 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2637:2: ( (lv_vector_2_0= ':' ) )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2638:1: (lv_vector_2_0= ':' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2720:2: ( (lv_vector_2_0= ':' ) )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2721:1: (lv_vector_2_0= ':' )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2638:1: (lv_vector_2_0= ':' )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2639:3: lv_vector_2_0= ':'
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2721:1: (lv_vector_2_0= ':' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2722:3: lv_vector_2_0= ':'
                     {
-                    lv_vector_2_0=(Token)match(input,37,FOLLOW_37_in_ruleSlices5421); 
+                    lv_vector_2_0=(Token)match(input,38,FOLLOW_38_in_ruleSlices5570); 
 
                             newLeafNode(lv_vector_2_0, grammarAccess.getSlicesAccess().getVectorColonKeyword_1_0_1_0());
                         
@@ -6515,13 +6676,13 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2652:2: ( (lv_lsb_3_0= RULE_INT ) )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2653:1: (lv_lsb_3_0= RULE_INT )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2735:2: ( (lv_lsb_3_0= RULE_INT ) )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2736:1: (lv_lsb_3_0= RULE_INT )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2653:1: (lv_lsb_3_0= RULE_INT )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2654:3: lv_lsb_3_0= RULE_INT
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2736:1: (lv_lsb_3_0= RULE_INT )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2737:3: lv_lsb_3_0= RULE_INT
                     {
-                    lv_lsb_3_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleSlices5451); 
+                    lv_lsb_3_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleSlices5600); 
 
                     			newLeafNode(lv_lsb_3_0, grammarAccess.getSlicesAccess().getLsbINTTerminalRuleCall_1_0_2_0()); 
                     		
@@ -6548,18 +6709,18 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2671:6: ( ( (lv_slices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_slices_6_0= RULE_INT ) ) )* )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2754:6: ( ( (lv_slices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_slices_6_0= RULE_INT ) ) )* )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2671:6: ( ( (lv_slices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_slices_6_0= RULE_INT ) ) )* )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2671:7: ( (lv_slices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_slices_6_0= RULE_INT ) ) )*
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2754:6: ( ( (lv_slices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_slices_6_0= RULE_INT ) ) )* )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2754:7: ( (lv_slices_4_0= RULE_INT ) ) (otherlv_5= ',' ( (lv_slices_6_0= RULE_INT ) ) )*
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2671:7: ( (lv_slices_4_0= RULE_INT ) )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2672:1: (lv_slices_4_0= RULE_INT )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2754:7: ( (lv_slices_4_0= RULE_INT ) )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2755:1: (lv_slices_4_0= RULE_INT )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2672:1: (lv_slices_4_0= RULE_INT )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2673:3: lv_slices_4_0= RULE_INT
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2755:1: (lv_slices_4_0= RULE_INT )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2756:3: lv_slices_4_0= RULE_INT
                     {
-                    lv_slices_4_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleSlices5481); 
+                    lv_slices_4_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleSlices5630); 
 
                     			newLeafNode(lv_slices_4_0, grammarAccess.getSlicesAccess().getSlicesINTTerminalRuleCall_1_1_0_0()); 
                     		
@@ -6579,32 +6740,32 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2689:2: (otherlv_5= ',' ( (lv_slices_6_0= RULE_INT ) ) )*
-                    loop48:
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2772:2: (otherlv_5= ',' ( (lv_slices_6_0= RULE_INT ) ) )*
+                    loop49:
                     do {
-                        int alt48=2;
-                        int LA48_0 = input.LA(1);
+                        int alt49=2;
+                        int LA49_0 = input.LA(1);
 
-                        if ( (LA48_0==19) ) {
-                            alt48=1;
+                        if ( (LA49_0==19) ) {
+                            alt49=1;
                         }
 
 
-                        switch (alt48) {
+                        switch (alt49) {
                     	case 1 :
-                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2689:4: otherlv_5= ',' ( (lv_slices_6_0= RULE_INT ) )
+                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2772:4: otherlv_5= ',' ( (lv_slices_6_0= RULE_INT ) )
                     	    {
-                    	    otherlv_5=(Token)match(input,19,FOLLOW_19_in_ruleSlices5499); 
+                    	    otherlv_5=(Token)match(input,19,FOLLOW_19_in_ruleSlices5648); 
 
                     	        	newLeafNode(otherlv_5, grammarAccess.getSlicesAccess().getCommaKeyword_1_1_1_0());
                     	        
-                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2693:1: ( (lv_slices_6_0= RULE_INT ) )
-                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2694:1: (lv_slices_6_0= RULE_INT )
+                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2776:1: ( (lv_slices_6_0= RULE_INT ) )
+                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2777:1: (lv_slices_6_0= RULE_INT )
                     	    {
-                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2694:1: (lv_slices_6_0= RULE_INT )
-                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2695:3: lv_slices_6_0= RULE_INT
+                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2777:1: (lv_slices_6_0= RULE_INT )
+                    	    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2778:3: lv_slices_6_0= RULE_INT
                     	    {
-                    	    lv_slices_6_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleSlices5516); 
+                    	    lv_slices_6_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleSlices5665); 
 
                     	    			newLeafNode(lv_slices_6_0, grammarAccess.getSlicesAccess().getSlicesINTTerminalRuleCall_1_1_1_1_0()); 
                     	    		
@@ -6629,7 +6790,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop48;
+                    	    break loop49;
                         }
                     } while (true);
 
@@ -6642,7 +6803,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_7=(Token)match(input,39,FOLLOW_39_in_ruleSlices5537); 
+            otherlv_7=(Token)match(input,40,FOLLOW_40_in_ruleSlices5686); 
 
                 	newLeafNode(otherlv_7, grammarAccess.getSlicesAccess().getRightSquareBracketKeyword_2());
                 
@@ -6667,7 +6828,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleVector"
-    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2723:1: entryRuleVector returns [EObject current=null] : iv_ruleVector= ruleVector EOF ;
+    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2806:1: entryRuleVector returns [EObject current=null] : iv_ruleVector= ruleVector EOF ;
     public final EObject entryRuleVector() throws RecognitionException {
         EObject current = null;
 
@@ -6675,17 +6836,17 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2724:2: (iv_ruleVector= ruleVector EOF )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2725:2: iv_ruleVector= ruleVector EOF
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2807:2: (iv_ruleVector= ruleVector EOF )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2808:2: iv_ruleVector= ruleVector EOF
             {
              newCompositeNode(grammarAccess.getVectorRule()); 
-            pushFollow(FOLLOW_ruleVector_in_entryRuleVector5573);
+            pushFollow(FOLLOW_ruleVector_in_entryRuleVector5722);
             iv_ruleVector=ruleVector();
 
             state._fsp--;
 
              current =iv_ruleVector; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleVector5583); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleVector5732); 
 
             }
 
@@ -6703,7 +6864,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleVector"
-    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2732:1: ruleVector returns [EObject current=null] : ( () (otherlv_1= '[' ( (lv_msb_2_0= RULE_INT ) ) ( (lv_vector_3_0= ':' ) ) ( (lv_lsb_4_0= RULE_INT ) ) otherlv_5= ']' )? ) ;
+    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2815:1: ruleVector returns [EObject current=null] : ( () (otherlv_1= '[' ( (lv_msb_2_0= RULE_INT ) ) ( (lv_vector_3_0= ':' ) ) ( (lv_lsb_4_0= RULE_INT ) ) otherlv_5= ']' )? ) ;
     public final EObject ruleVector() throws RecognitionException {
         EObject current = null;
 
@@ -6716,14 +6877,14 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2735:28: ( ( () (otherlv_1= '[' ( (lv_msb_2_0= RULE_INT ) ) ( (lv_vector_3_0= ':' ) ) ( (lv_lsb_4_0= RULE_INT ) ) otherlv_5= ']' )? ) )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2736:1: ( () (otherlv_1= '[' ( (lv_msb_2_0= RULE_INT ) ) ( (lv_vector_3_0= ':' ) ) ( (lv_lsb_4_0= RULE_INT ) ) otherlv_5= ']' )? )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2818:28: ( ( () (otherlv_1= '[' ( (lv_msb_2_0= RULE_INT ) ) ( (lv_vector_3_0= ':' ) ) ( (lv_lsb_4_0= RULE_INT ) ) otherlv_5= ']' )? ) )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2819:1: ( () (otherlv_1= '[' ( (lv_msb_2_0= RULE_INT ) ) ( (lv_vector_3_0= ':' ) ) ( (lv_lsb_4_0= RULE_INT ) ) otherlv_5= ']' )? )
             {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2736:1: ( () (otherlv_1= '[' ( (lv_msb_2_0= RULE_INT ) ) ( (lv_vector_3_0= ':' ) ) ( (lv_lsb_4_0= RULE_INT ) ) otherlv_5= ']' )? )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2736:2: () (otherlv_1= '[' ( (lv_msb_2_0= RULE_INT ) ) ( (lv_vector_3_0= ':' ) ) ( (lv_lsb_4_0= RULE_INT ) ) otherlv_5= ']' )?
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2819:1: ( () (otherlv_1= '[' ( (lv_msb_2_0= RULE_INT ) ) ( (lv_vector_3_0= ':' ) ) ( (lv_lsb_4_0= RULE_INT ) ) otherlv_5= ']' )? )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2819:2: () (otherlv_1= '[' ( (lv_msb_2_0= RULE_INT ) ) ( (lv_vector_3_0= ':' ) ) ( (lv_lsb_4_0= RULE_INT ) ) otherlv_5= ']' )?
             {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2736:2: ()
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2737:5: 
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2819:2: ()
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2820:5: 
             {
 
                     current = forceCreateModelElement(
@@ -6733,28 +6894,28 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2742:2: (otherlv_1= '[' ( (lv_msb_2_0= RULE_INT ) ) ( (lv_vector_3_0= ':' ) ) ( (lv_lsb_4_0= RULE_INT ) ) otherlv_5= ']' )?
-            int alt50=2;
-            int LA50_0 = input.LA(1);
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2825:2: (otherlv_1= '[' ( (lv_msb_2_0= RULE_INT ) ) ( (lv_vector_3_0= ':' ) ) ( (lv_lsb_4_0= RULE_INT ) ) otherlv_5= ']' )?
+            int alt51=2;
+            int LA51_0 = input.LA(1);
 
-            if ( (LA50_0==38) ) {
-                alt50=1;
+            if ( (LA51_0==39) ) {
+                alt51=1;
             }
-            switch (alt50) {
+            switch (alt51) {
                 case 1 :
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2742:4: otherlv_1= '[' ( (lv_msb_2_0= RULE_INT ) ) ( (lv_vector_3_0= ':' ) ) ( (lv_lsb_4_0= RULE_INT ) ) otherlv_5= ']'
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2825:4: otherlv_1= '[' ( (lv_msb_2_0= RULE_INT ) ) ( (lv_vector_3_0= ':' ) ) ( (lv_lsb_4_0= RULE_INT ) ) otherlv_5= ']'
                     {
-                    otherlv_1=(Token)match(input,38,FOLLOW_38_in_ruleVector5630); 
+                    otherlv_1=(Token)match(input,39,FOLLOW_39_in_ruleVector5779); 
 
                         	newLeafNode(otherlv_1, grammarAccess.getVectorAccess().getLeftSquareBracketKeyword_1_0());
                         
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2746:1: ( (lv_msb_2_0= RULE_INT ) )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2747:1: (lv_msb_2_0= RULE_INT )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2829:1: ( (lv_msb_2_0= RULE_INT ) )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2830:1: (lv_msb_2_0= RULE_INT )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2747:1: (lv_msb_2_0= RULE_INT )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2748:3: lv_msb_2_0= RULE_INT
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2830:1: (lv_msb_2_0= RULE_INT )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2831:3: lv_msb_2_0= RULE_INT
                     {
-                    lv_msb_2_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleVector5647); 
+                    lv_msb_2_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleVector5796); 
 
                     			newLeafNode(lv_msb_2_0, grammarAccess.getVectorAccess().getMsbINTTerminalRuleCall_1_1_0()); 
                     		
@@ -6774,13 +6935,13 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2764:2: ( (lv_vector_3_0= ':' ) )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2765:1: (lv_vector_3_0= ':' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2847:2: ( (lv_vector_3_0= ':' ) )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2848:1: (lv_vector_3_0= ':' )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2765:1: (lv_vector_3_0= ':' )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2766:3: lv_vector_3_0= ':'
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2848:1: (lv_vector_3_0= ':' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2849:3: lv_vector_3_0= ':'
                     {
-                    lv_vector_3_0=(Token)match(input,37,FOLLOW_37_in_ruleVector5670); 
+                    lv_vector_3_0=(Token)match(input,38,FOLLOW_38_in_ruleVector5819); 
 
                             newLeafNode(lv_vector_3_0, grammarAccess.getVectorAccess().getVectorColonKeyword_1_2_0());
                         
@@ -6796,13 +6957,13 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2779:2: ( (lv_lsb_4_0= RULE_INT ) )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2780:1: (lv_lsb_4_0= RULE_INT )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2862:2: ( (lv_lsb_4_0= RULE_INT ) )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2863:1: (lv_lsb_4_0= RULE_INT )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2780:1: (lv_lsb_4_0= RULE_INT )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2781:3: lv_lsb_4_0= RULE_INT
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2863:1: (lv_lsb_4_0= RULE_INT )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2864:3: lv_lsb_4_0= RULE_INT
                     {
-                    lv_lsb_4_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleVector5700); 
+                    lv_lsb_4_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleVector5849); 
 
                     			newLeafNode(lv_lsb_4_0, grammarAccess.getVectorAccess().getLsbINTTerminalRuleCall_1_3_0()); 
                     		
@@ -6822,7 +6983,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_5=(Token)match(input,39,FOLLOW_39_in_ruleVector5717); 
+                    otherlv_5=(Token)match(input,40,FOLLOW_40_in_ruleVector5866); 
 
                         	newLeafNode(otherlv_5, grammarAccess.getVectorAccess().getRightSquareBracketKeyword_1_4());
                         
@@ -6853,7 +7014,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleArray"
-    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2809:1: entryRuleArray returns [EObject current=null] : iv_ruleArray= ruleArray EOF ;
+    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2892:1: entryRuleArray returns [EObject current=null] : iv_ruleArray= ruleArray EOF ;
     public final EObject entryRuleArray() throws RecognitionException {
         EObject current = null;
 
@@ -6861,17 +7022,17 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2810:2: (iv_ruleArray= ruleArray EOF )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2811:2: iv_ruleArray= ruleArray EOF
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2893:2: (iv_ruleArray= ruleArray EOF )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2894:2: iv_ruleArray= ruleArray EOF
             {
              newCompositeNode(grammarAccess.getArrayRule()); 
-            pushFollow(FOLLOW_ruleArray_in_entryRuleArray5755);
+            pushFollow(FOLLOW_ruleArray_in_entryRuleArray5904);
             iv_ruleArray=ruleArray();
 
             state._fsp--;
 
              current =iv_ruleArray; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleArray5765); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleArray5914); 
 
             }
 
@@ -6889,7 +7050,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleArray"
-    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2818:1: ruleArray returns [EObject current=null] : ( () (otherlv_1= '(' ( (lv_msb_2_0= RULE_INT ) ) ( (lv_array_3_0= ':' ) ) ( (lv_lsb_4_0= RULE_INT ) ) otherlv_5= ')' )? ) ;
+    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2901:1: ruleArray returns [EObject current=null] : ( () (otherlv_1= '(' ( (lv_msb_2_0= RULE_INT ) ) ( (lv_array_3_0= ':' ) ) ( (lv_lsb_4_0= RULE_INT ) ) otherlv_5= ')' )? ) ;
     public final EObject ruleArray() throws RecognitionException {
         EObject current = null;
 
@@ -6902,14 +7063,14 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2821:28: ( ( () (otherlv_1= '(' ( (lv_msb_2_0= RULE_INT ) ) ( (lv_array_3_0= ':' ) ) ( (lv_lsb_4_0= RULE_INT ) ) otherlv_5= ')' )? ) )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2822:1: ( () (otherlv_1= '(' ( (lv_msb_2_0= RULE_INT ) ) ( (lv_array_3_0= ':' ) ) ( (lv_lsb_4_0= RULE_INT ) ) otherlv_5= ')' )? )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2904:28: ( ( () (otherlv_1= '(' ( (lv_msb_2_0= RULE_INT ) ) ( (lv_array_3_0= ':' ) ) ( (lv_lsb_4_0= RULE_INT ) ) otherlv_5= ')' )? ) )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2905:1: ( () (otherlv_1= '(' ( (lv_msb_2_0= RULE_INT ) ) ( (lv_array_3_0= ':' ) ) ( (lv_lsb_4_0= RULE_INT ) ) otherlv_5= ')' )? )
             {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2822:1: ( () (otherlv_1= '(' ( (lv_msb_2_0= RULE_INT ) ) ( (lv_array_3_0= ':' ) ) ( (lv_lsb_4_0= RULE_INT ) ) otherlv_5= ')' )? )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2822:2: () (otherlv_1= '(' ( (lv_msb_2_0= RULE_INT ) ) ( (lv_array_3_0= ':' ) ) ( (lv_lsb_4_0= RULE_INT ) ) otherlv_5= ')' )?
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2905:1: ( () (otherlv_1= '(' ( (lv_msb_2_0= RULE_INT ) ) ( (lv_array_3_0= ':' ) ) ( (lv_lsb_4_0= RULE_INT ) ) otherlv_5= ')' )? )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2905:2: () (otherlv_1= '(' ( (lv_msb_2_0= RULE_INT ) ) ( (lv_array_3_0= ':' ) ) ( (lv_lsb_4_0= RULE_INT ) ) otherlv_5= ')' )?
             {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2822:2: ()
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2823:5: 
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2905:2: ()
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2906:5: 
             {
 
                     current = forceCreateModelElement(
@@ -6919,28 +7080,28 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2828:2: (otherlv_1= '(' ( (lv_msb_2_0= RULE_INT ) ) ( (lv_array_3_0= ':' ) ) ( (lv_lsb_4_0= RULE_INT ) ) otherlv_5= ')' )?
-            int alt51=2;
-            int LA51_0 = input.LA(1);
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2911:2: (otherlv_1= '(' ( (lv_msb_2_0= RULE_INT ) ) ( (lv_array_3_0= ':' ) ) ( (lv_lsb_4_0= RULE_INT ) ) otherlv_5= ')' )?
+            int alt52=2;
+            int LA52_0 = input.LA(1);
 
-            if ( (LA51_0==30) ) {
-                alt51=1;
+            if ( (LA52_0==30) ) {
+                alt52=1;
             }
-            switch (alt51) {
+            switch (alt52) {
                 case 1 :
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2828:4: otherlv_1= '(' ( (lv_msb_2_0= RULE_INT ) ) ( (lv_array_3_0= ':' ) ) ( (lv_lsb_4_0= RULE_INT ) ) otherlv_5= ')'
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2911:4: otherlv_1= '(' ( (lv_msb_2_0= RULE_INT ) ) ( (lv_array_3_0= ':' ) ) ( (lv_lsb_4_0= RULE_INT ) ) otherlv_5= ')'
                     {
-                    otherlv_1=(Token)match(input,30,FOLLOW_30_in_ruleArray5812); 
+                    otherlv_1=(Token)match(input,30,FOLLOW_30_in_ruleArray5961); 
 
                         	newLeafNode(otherlv_1, grammarAccess.getArrayAccess().getLeftParenthesisKeyword_1_0());
                         
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2832:1: ( (lv_msb_2_0= RULE_INT ) )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2833:1: (lv_msb_2_0= RULE_INT )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2915:1: ( (lv_msb_2_0= RULE_INT ) )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2916:1: (lv_msb_2_0= RULE_INT )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2833:1: (lv_msb_2_0= RULE_INT )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2834:3: lv_msb_2_0= RULE_INT
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2916:1: (lv_msb_2_0= RULE_INT )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2917:3: lv_msb_2_0= RULE_INT
                     {
-                    lv_msb_2_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleArray5829); 
+                    lv_msb_2_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleArray5978); 
 
                     			newLeafNode(lv_msb_2_0, grammarAccess.getArrayAccess().getMsbINTTerminalRuleCall_1_1_0()); 
                     		
@@ -6960,13 +7121,13 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2850:2: ( (lv_array_3_0= ':' ) )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2851:1: (lv_array_3_0= ':' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2933:2: ( (lv_array_3_0= ':' ) )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2934:1: (lv_array_3_0= ':' )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2851:1: (lv_array_3_0= ':' )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2852:3: lv_array_3_0= ':'
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2934:1: (lv_array_3_0= ':' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2935:3: lv_array_3_0= ':'
                     {
-                    lv_array_3_0=(Token)match(input,37,FOLLOW_37_in_ruleArray5852); 
+                    lv_array_3_0=(Token)match(input,38,FOLLOW_38_in_ruleArray6001); 
 
                             newLeafNode(lv_array_3_0, grammarAccess.getArrayAccess().getArrayColonKeyword_1_2_0());
                         
@@ -6982,13 +7143,13 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2865:2: ( (lv_lsb_4_0= RULE_INT ) )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2866:1: (lv_lsb_4_0= RULE_INT )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2948:2: ( (lv_lsb_4_0= RULE_INT ) )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2949:1: (lv_lsb_4_0= RULE_INT )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2866:1: (lv_lsb_4_0= RULE_INT )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2867:3: lv_lsb_4_0= RULE_INT
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2949:1: (lv_lsb_4_0= RULE_INT )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2950:3: lv_lsb_4_0= RULE_INT
                     {
-                    lv_lsb_4_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleArray5882); 
+                    lv_lsb_4_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleArray6031); 
 
                     			newLeafNode(lv_lsb_4_0, grammarAccess.getArrayAccess().getLsbINTTerminalRuleCall_1_3_0()); 
                     		
@@ -7008,7 +7169,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_5=(Token)match(input,31,FOLLOW_31_in_ruleArray5899); 
+                    otherlv_5=(Token)match(input,31,FOLLOW_31_in_ruleArray6048); 
 
                         	newLeafNode(otherlv_5, grammarAccess.getArrayAccess().getRightParenthesisKeyword_1_4());
                         
@@ -7039,7 +7200,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleQualifier"
-    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2895:1: entryRuleQualifier returns [EObject current=null] : iv_ruleQualifier= ruleQualifier EOF ;
+    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2978:1: entryRuleQualifier returns [EObject current=null] : iv_ruleQualifier= ruleQualifier EOF ;
     public final EObject entryRuleQualifier() throws RecognitionException {
         EObject current = null;
 
@@ -7047,17 +7208,17 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2896:2: (iv_ruleQualifier= ruleQualifier EOF )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2897:2: iv_ruleQualifier= ruleQualifier EOF
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2979:2: (iv_ruleQualifier= ruleQualifier EOF )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2980:2: iv_ruleQualifier= ruleQualifier EOF
             {
              newCompositeNode(grammarAccess.getQualifierRule()); 
-            pushFollow(FOLLOW_ruleQualifier_in_entryRuleQualifier5937);
+            pushFollow(FOLLOW_ruleQualifier_in_entryRuleQualifier6086);
             iv_ruleQualifier=ruleQualifier();
 
             state._fsp--;
 
              current =iv_ruleQualifier; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifier5947); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifier6096); 
 
             }
 
@@ -7075,7 +7236,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleQualifier"
-    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2904:1: ruleQualifier returns [EObject current=null] : (otherlv_0= 'this' ( (lv_indices_1_0= ruleIndices ) ) otherlv_2= '.' ) ;
+    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2987:1: ruleQualifier returns [EObject current=null] : (otherlv_0= 'this' ( (lv_indices_1_0= ruleIndices ) ) otherlv_2= '.' ) ;
     public final EObject ruleQualifier() throws RecognitionException {
         EObject current = null;
 
@@ -7087,26 +7248,26 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2907:28: ( (otherlv_0= 'this' ( (lv_indices_1_0= ruleIndices ) ) otherlv_2= '.' ) )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2908:1: (otherlv_0= 'this' ( (lv_indices_1_0= ruleIndices ) ) otherlv_2= '.' )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2990:28: ( (otherlv_0= 'this' ( (lv_indices_1_0= ruleIndices ) ) otherlv_2= '.' ) )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2991:1: (otherlv_0= 'this' ( (lv_indices_1_0= ruleIndices ) ) otherlv_2= '.' )
             {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2908:1: (otherlv_0= 'this' ( (lv_indices_1_0= ruleIndices ) ) otherlv_2= '.' )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2908:3: otherlv_0= 'this' ( (lv_indices_1_0= ruleIndices ) ) otherlv_2= '.'
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2991:1: (otherlv_0= 'this' ( (lv_indices_1_0= ruleIndices ) ) otherlv_2= '.' )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2991:3: otherlv_0= 'this' ( (lv_indices_1_0= ruleIndices ) ) otherlv_2= '.'
             {
-            otherlv_0=(Token)match(input,40,FOLLOW_40_in_ruleQualifier5984); 
+            otherlv_0=(Token)match(input,41,FOLLOW_41_in_ruleQualifier6133); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getQualifierAccess().getThisKeyword_0());
                 
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2912:1: ( (lv_indices_1_0= ruleIndices ) )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2913:1: (lv_indices_1_0= ruleIndices )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2995:1: ( (lv_indices_1_0= ruleIndices ) )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2996:1: (lv_indices_1_0= ruleIndices )
             {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2913:1: (lv_indices_1_0= ruleIndices )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2914:3: lv_indices_1_0= ruleIndices
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2996:1: (lv_indices_1_0= ruleIndices )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2997:3: lv_indices_1_0= ruleIndices
             {
              
             	        newCompositeNode(grammarAccess.getQualifierAccess().getIndicesIndicesParserRuleCall_1_0()); 
             	    
-            pushFollow(FOLLOW_ruleIndices_in_ruleQualifier6005);
+            pushFollow(FOLLOW_ruleIndices_in_ruleQualifier6154);
             lv_indices_1_0=ruleIndices();
 
             state._fsp--;
@@ -7128,7 +7289,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,32,FOLLOW_32_in_ruleQualifier6017); 
+            otherlv_2=(Token)match(input,32,FOLLOW_32_in_ruleQualifier6166); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getQualifierAccess().getFullStopKeyword_2());
                 
@@ -7153,7 +7314,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleQualifiedNameWithWildCard"
-    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2946:1: entryRuleQualifiedNameWithWildCard returns [String current=null] : iv_ruleQualifiedNameWithWildCard= ruleQualifiedNameWithWildCard EOF ;
+    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3029:1: entryRuleQualifiedNameWithWildCard returns [String current=null] : iv_ruleQualifiedNameWithWildCard= ruleQualifiedNameWithWildCard EOF ;
     public final String entryRuleQualifiedNameWithWildCard() throws RecognitionException {
         String current = null;
 
@@ -7161,17 +7322,17 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2947:2: (iv_ruleQualifiedNameWithWildCard= ruleQualifiedNameWithWildCard EOF )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2948:2: iv_ruleQualifiedNameWithWildCard= ruleQualifiedNameWithWildCard EOF
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3030:2: (iv_ruleQualifiedNameWithWildCard= ruleQualifiedNameWithWildCard EOF )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3031:2: iv_ruleQualifiedNameWithWildCard= ruleQualifiedNameWithWildCard EOF
             {
              newCompositeNode(grammarAccess.getQualifiedNameWithWildCardRule()); 
-            pushFollow(FOLLOW_ruleQualifiedNameWithWildCard_in_entryRuleQualifiedNameWithWildCard6058);
+            pushFollow(FOLLOW_ruleQualifiedNameWithWildCard_in_entryRuleQualifiedNameWithWildCard6207);
             iv_ruleQualifiedNameWithWildCard=ruleQualifiedNameWithWildCard();
 
             state._fsp--;
 
              current =iv_ruleQualifiedNameWithWildCard.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedNameWithWildCard6069); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedNameWithWildCard6218); 
 
             }
 
@@ -7189,7 +7350,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleQualifiedNameWithWildCard"
-    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2955:1: ruleQualifiedNameWithWildCard returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_QualifiedName_0= ruleQualifiedName (kw= '.' kw= '*' )? ) ;
+    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3038:1: ruleQualifiedNameWithWildCard returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_QualifiedName_0= ruleQualifiedName (kw= '.' kw= '*' )? ) ;
     public final AntlrDatatypeRuleToken ruleQualifiedNameWithWildCard() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -7200,16 +7361,16 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2958:28: ( (this_QualifiedName_0= ruleQualifiedName (kw= '.' kw= '*' )? ) )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2959:1: (this_QualifiedName_0= ruleQualifiedName (kw= '.' kw= '*' )? )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3041:28: ( (this_QualifiedName_0= ruleQualifiedName (kw= '.' kw= '*' )? ) )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3042:1: (this_QualifiedName_0= ruleQualifiedName (kw= '.' kw= '*' )? )
             {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2959:1: (this_QualifiedName_0= ruleQualifiedName (kw= '.' kw= '*' )? )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2960:5: this_QualifiedName_0= ruleQualifiedName (kw= '.' kw= '*' )?
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3042:1: (this_QualifiedName_0= ruleQualifiedName (kw= '.' kw= '*' )? )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3043:5: this_QualifiedName_0= ruleQualifiedName (kw= '.' kw= '*' )?
             {
              
                     newCompositeNode(grammarAccess.getQualifiedNameWithWildCardAccess().getQualifiedNameParserRuleCall_0()); 
                 
-            pushFollow(FOLLOW_ruleQualifiedName_in_ruleQualifiedNameWithWildCard6116);
+            pushFollow(FOLLOW_ruleQualifiedName_in_ruleQualifiedNameWithWildCard6265);
             this_QualifiedName_0=ruleQualifiedName();
 
             state._fsp--;
@@ -7220,23 +7381,23 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
              
                     afterParserOrEnumRuleCall();
                 
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2970:1: (kw= '.' kw= '*' )?
-            int alt52=2;
-            int LA52_0 = input.LA(1);
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3053:1: (kw= '.' kw= '*' )?
+            int alt53=2;
+            int LA53_0 = input.LA(1);
 
-            if ( (LA52_0==32) ) {
-                alt52=1;
+            if ( (LA53_0==32) ) {
+                alt53=1;
             }
-            switch (alt52) {
+            switch (alt53) {
                 case 1 :
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2971:2: kw= '.' kw= '*'
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3054:2: kw= '.' kw= '*'
                     {
-                    kw=(Token)match(input,32,FOLLOW_32_in_ruleQualifiedNameWithWildCard6135); 
+                    kw=(Token)match(input,32,FOLLOW_32_in_ruleQualifiedNameWithWildCard6284); 
 
                             current.merge(kw);
                             newLeafNode(kw, grammarAccess.getQualifiedNameWithWildCardAccess().getFullStopKeyword_1_0()); 
                         
-                    kw=(Token)match(input,41,FOLLOW_41_in_ruleQualifiedNameWithWildCard6148); 
+                    kw=(Token)match(input,36,FOLLOW_36_in_ruleQualifiedNameWithWildCard6297); 
 
                             current.merge(kw);
                             newLeafNode(kw, grammarAccess.getQualifiedNameWithWildCardAccess().getAsteriskKeyword_1_1()); 
@@ -7268,7 +7429,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleQualifiedName"
-    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2990:1: entryRuleQualifiedName returns [String current=null] : iv_ruleQualifiedName= ruleQualifiedName EOF ;
+    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3073:1: entryRuleQualifiedName returns [String current=null] : iv_ruleQualifiedName= ruleQualifiedName EOF ;
     public final String entryRuleQualifiedName() throws RecognitionException {
         String current = null;
 
@@ -7276,17 +7437,17 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2991:2: (iv_ruleQualifiedName= ruleQualifiedName EOF )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2992:2: iv_ruleQualifiedName= ruleQualifiedName EOF
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3074:2: (iv_ruleQualifiedName= ruleQualifiedName EOF )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3075:2: iv_ruleQualifiedName= ruleQualifiedName EOF
             {
              newCompositeNode(grammarAccess.getQualifiedNameRule()); 
-            pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName6191);
+            pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName6340);
             iv_ruleQualifiedName=ruleQualifiedName();
 
             state._fsp--;
 
              current =iv_ruleQualifiedName.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedName6202); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedName6351); 
 
             }
 
@@ -7304,7 +7465,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleQualifiedName"
-    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:2999:1: ruleQualifiedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_PhdlID_0= rulePhdlID (kw= '.' this_PhdlID_2= rulePhdlID )? ) ;
+    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3082:1: ruleQualifiedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_PhdlID_0= rulePhdlID (kw= '.' this_PhdlID_2= rulePhdlID )? ) ;
     public final AntlrDatatypeRuleToken ruleQualifiedName() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -7317,16 +7478,16 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3002:28: ( (this_PhdlID_0= rulePhdlID (kw= '.' this_PhdlID_2= rulePhdlID )? ) )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3003:1: (this_PhdlID_0= rulePhdlID (kw= '.' this_PhdlID_2= rulePhdlID )? )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3085:28: ( (this_PhdlID_0= rulePhdlID (kw= '.' this_PhdlID_2= rulePhdlID )? ) )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3086:1: (this_PhdlID_0= rulePhdlID (kw= '.' this_PhdlID_2= rulePhdlID )? )
             {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3003:1: (this_PhdlID_0= rulePhdlID (kw= '.' this_PhdlID_2= rulePhdlID )? )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3004:5: this_PhdlID_0= rulePhdlID (kw= '.' this_PhdlID_2= rulePhdlID )?
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3086:1: (this_PhdlID_0= rulePhdlID (kw= '.' this_PhdlID_2= rulePhdlID )? )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3087:5: this_PhdlID_0= rulePhdlID (kw= '.' this_PhdlID_2= rulePhdlID )?
             {
              
                     newCompositeNode(grammarAccess.getQualifiedNameAccess().getPhdlIDParserRuleCall_0()); 
                 
-            pushFollow(FOLLOW_rulePhdlID_in_ruleQualifiedName6249);
+            pushFollow(FOLLOW_rulePhdlID_in_ruleQualifiedName6398);
             this_PhdlID_0=rulePhdlID();
 
             state._fsp--;
@@ -7337,22 +7498,22 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
              
                     afterParserOrEnumRuleCall();
                 
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3014:1: (kw= '.' this_PhdlID_2= rulePhdlID )?
-            int alt53=2;
-            int LA53_0 = input.LA(1);
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3097:1: (kw= '.' this_PhdlID_2= rulePhdlID )?
+            int alt54=2;
+            int LA54_0 = input.LA(1);
 
-            if ( (LA53_0==32) ) {
-                int LA53_1 = input.LA(2);
+            if ( (LA54_0==32) ) {
+                int LA54_1 = input.LA(2);
 
-                if ( (LA53_1==RULE_ID||(LA53_1>=RULE_INT && LA53_1<=RULE_PINNUM)) ) {
-                    alt53=1;
+                if ( (LA54_1==RULE_ID||(LA54_1>=RULE_INT && LA54_1<=RULE_PINNUM)) ) {
+                    alt54=1;
                 }
             }
-            switch (alt53) {
+            switch (alt54) {
                 case 1 :
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3015:2: kw= '.' this_PhdlID_2= rulePhdlID
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3098:2: kw= '.' this_PhdlID_2= rulePhdlID
                     {
-                    kw=(Token)match(input,32,FOLLOW_32_in_ruleQualifiedName6268); 
+                    kw=(Token)match(input,32,FOLLOW_32_in_ruleQualifiedName6417); 
 
                             current.merge(kw);
                             newLeafNode(kw, grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0()); 
@@ -7360,7 +7521,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                      
                             newCompositeNode(grammarAccess.getQualifiedNameAccess().getPhdlIDParserRuleCall_1_1()); 
                         
-                    pushFollow(FOLLOW_rulePhdlID_in_ruleQualifiedName6290);
+                    pushFollow(FOLLOW_rulePhdlID_in_ruleQualifiedName6439);
                     this_PhdlID_2=rulePhdlID();
 
                     state._fsp--;
@@ -7398,7 +7559,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePhdlID"
-    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3039:1: entryRulePhdlID returns [String current=null] : iv_rulePhdlID= rulePhdlID EOF ;
+    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3122:1: entryRulePhdlID returns [String current=null] : iv_rulePhdlID= rulePhdlID EOF ;
     public final String entryRulePhdlID() throws RecognitionException {
         String current = null;
 
@@ -7406,17 +7567,17 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3040:2: (iv_rulePhdlID= rulePhdlID EOF )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3041:2: iv_rulePhdlID= rulePhdlID EOF
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3123:2: (iv_rulePhdlID= rulePhdlID EOF )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3124:2: iv_rulePhdlID= rulePhdlID EOF
             {
              newCompositeNode(grammarAccess.getPhdlIDRule()); 
-            pushFollow(FOLLOW_rulePhdlID_in_entryRulePhdlID6338);
+            pushFollow(FOLLOW_rulePhdlID_in_entryRulePhdlID6487);
             iv_rulePhdlID=rulePhdlID();
 
             state._fsp--;
 
              current =iv_rulePhdlID.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRulePhdlID6349); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulePhdlID6498); 
 
             }
 
@@ -7434,7 +7595,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePhdlID"
-    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3048:1: rulePhdlID returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_INT_0= RULE_INT | this_ID_1= RULE_ID | this_PINNUM_2= RULE_PINNUM ) ;
+    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3131:1: rulePhdlID returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_INT_0= RULE_INT | this_ID_1= RULE_ID | this_PINNUM_2= RULE_PINNUM ) ;
     public final AntlrDatatypeRuleToken rulePhdlID() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -7445,39 +7606,39 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3051:28: ( (this_INT_0= RULE_INT | this_ID_1= RULE_ID | this_PINNUM_2= RULE_PINNUM ) )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3052:1: (this_INT_0= RULE_INT | this_ID_1= RULE_ID | this_PINNUM_2= RULE_PINNUM )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3134:28: ( (this_INT_0= RULE_INT | this_ID_1= RULE_ID | this_PINNUM_2= RULE_PINNUM ) )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3135:1: (this_INT_0= RULE_INT | this_ID_1= RULE_ID | this_PINNUM_2= RULE_PINNUM )
             {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3052:1: (this_INT_0= RULE_INT | this_ID_1= RULE_ID | this_PINNUM_2= RULE_PINNUM )
-            int alt54=3;
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3135:1: (this_INT_0= RULE_INT | this_ID_1= RULE_ID | this_PINNUM_2= RULE_PINNUM )
+            int alt55=3;
             switch ( input.LA(1) ) {
             case RULE_INT:
                 {
-                alt54=1;
+                alt55=1;
                 }
                 break;
             case RULE_ID:
                 {
-                alt54=2;
+                alt55=2;
                 }
                 break;
             case RULE_PINNUM:
                 {
-                alt54=3;
+                alt55=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 54, 0, input);
+                    new NoViableAltException("", 55, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt54) {
+            switch (alt55) {
                 case 1 :
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3052:6: this_INT_0= RULE_INT
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3135:6: this_INT_0= RULE_INT
                     {
-                    this_INT_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_rulePhdlID6389); 
+                    this_INT_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_rulePhdlID6538); 
 
                     		current.merge(this_INT_0);
                         
@@ -7488,9 +7649,9 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3060:10: this_ID_1= RULE_ID
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3143:10: this_ID_1= RULE_ID
                     {
-                    this_ID_1=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_rulePhdlID6415); 
+                    this_ID_1=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_rulePhdlID6564); 
 
                     		current.merge(this_ID_1);
                         
@@ -7501,9 +7662,9 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3068:10: this_PINNUM_2= RULE_PINNUM
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3151:10: this_PINNUM_2= RULE_PINNUM
                     {
-                    this_PINNUM_2=(Token)match(input,RULE_PINNUM,FOLLOW_RULE_PINNUM_in_rulePhdlID6441); 
+                    this_PINNUM_2=(Token)match(input,RULE_PINNUM,FOLLOW_RULE_PINNUM_in_rulePhdlID6590); 
 
                     		current.merge(this_PINNUM_2);
                         
@@ -7534,7 +7695,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePinType"
-    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3083:1: rulePinType returns [Enumerator current=null] : ( (enumLiteral_0= 'pin' ) | (enumLiteral_1= 'inpin' ) | (enumLiteral_2= 'outpin' ) | (enumLiteral_3= 'iopin' ) | (enumLiteral_4= 'pwrpin' ) | (enumLiteral_5= 'suppin' ) | (enumLiteral_6= 'ocpin' ) | (enumLiteral_7= 'oepin' ) | (enumLiteral_8= 'tripin' ) | (enumLiteral_9= 'passpin' ) | (enumLiteral_10= 'ncpin' ) ) ;
+    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3166:1: rulePinType returns [Enumerator current=null] : ( (enumLiteral_0= 'pin' ) | (enumLiteral_1= 'inpin' ) | (enumLiteral_2= 'outpin' ) | (enumLiteral_3= 'iopin' ) | (enumLiteral_4= 'pwrpin' ) | (enumLiteral_5= 'suppin' ) | (enumLiteral_6= 'ocpin' ) | (enumLiteral_7= 'oepin' ) | (enumLiteral_8= 'tripin' ) | (enumLiteral_9= 'passpin' ) | (enumLiteral_10= 'ncpin' ) ) ;
     public final Enumerator rulePinType() throws RecognitionException {
         Enumerator current = null;
 
@@ -7552,82 +7713,82 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3085:28: ( ( (enumLiteral_0= 'pin' ) | (enumLiteral_1= 'inpin' ) | (enumLiteral_2= 'outpin' ) | (enumLiteral_3= 'iopin' ) | (enumLiteral_4= 'pwrpin' ) | (enumLiteral_5= 'suppin' ) | (enumLiteral_6= 'ocpin' ) | (enumLiteral_7= 'oepin' ) | (enumLiteral_8= 'tripin' ) | (enumLiteral_9= 'passpin' ) | (enumLiteral_10= 'ncpin' ) ) )
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3086:1: ( (enumLiteral_0= 'pin' ) | (enumLiteral_1= 'inpin' ) | (enumLiteral_2= 'outpin' ) | (enumLiteral_3= 'iopin' ) | (enumLiteral_4= 'pwrpin' ) | (enumLiteral_5= 'suppin' ) | (enumLiteral_6= 'ocpin' ) | (enumLiteral_7= 'oepin' ) | (enumLiteral_8= 'tripin' ) | (enumLiteral_9= 'passpin' ) | (enumLiteral_10= 'ncpin' ) )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3168:28: ( ( (enumLiteral_0= 'pin' ) | (enumLiteral_1= 'inpin' ) | (enumLiteral_2= 'outpin' ) | (enumLiteral_3= 'iopin' ) | (enumLiteral_4= 'pwrpin' ) | (enumLiteral_5= 'suppin' ) | (enumLiteral_6= 'ocpin' ) | (enumLiteral_7= 'oepin' ) | (enumLiteral_8= 'tripin' ) | (enumLiteral_9= 'passpin' ) | (enumLiteral_10= 'ncpin' ) ) )
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3169:1: ( (enumLiteral_0= 'pin' ) | (enumLiteral_1= 'inpin' ) | (enumLiteral_2= 'outpin' ) | (enumLiteral_3= 'iopin' ) | (enumLiteral_4= 'pwrpin' ) | (enumLiteral_5= 'suppin' ) | (enumLiteral_6= 'ocpin' ) | (enumLiteral_7= 'oepin' ) | (enumLiteral_8= 'tripin' ) | (enumLiteral_9= 'passpin' ) | (enumLiteral_10= 'ncpin' ) )
             {
-            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3086:1: ( (enumLiteral_0= 'pin' ) | (enumLiteral_1= 'inpin' ) | (enumLiteral_2= 'outpin' ) | (enumLiteral_3= 'iopin' ) | (enumLiteral_4= 'pwrpin' ) | (enumLiteral_5= 'suppin' ) | (enumLiteral_6= 'ocpin' ) | (enumLiteral_7= 'oepin' ) | (enumLiteral_8= 'tripin' ) | (enumLiteral_9= 'passpin' ) | (enumLiteral_10= 'ncpin' ) )
-            int alt55=11;
+            // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3169:1: ( (enumLiteral_0= 'pin' ) | (enumLiteral_1= 'inpin' ) | (enumLiteral_2= 'outpin' ) | (enumLiteral_3= 'iopin' ) | (enumLiteral_4= 'pwrpin' ) | (enumLiteral_5= 'suppin' ) | (enumLiteral_6= 'ocpin' ) | (enumLiteral_7= 'oepin' ) | (enumLiteral_8= 'tripin' ) | (enumLiteral_9= 'passpin' ) | (enumLiteral_10= 'ncpin' ) )
+            int alt56=11;
             switch ( input.LA(1) ) {
             case 42:
                 {
-                alt55=1;
+                alt56=1;
                 }
                 break;
             case 43:
                 {
-                alt55=2;
+                alt56=2;
                 }
                 break;
             case 44:
                 {
-                alt55=3;
+                alt56=3;
                 }
                 break;
             case 45:
                 {
-                alt55=4;
+                alt56=4;
                 }
                 break;
             case 46:
                 {
-                alt55=5;
+                alt56=5;
                 }
                 break;
             case 47:
                 {
-                alt55=6;
+                alt56=6;
                 }
                 break;
             case 48:
                 {
-                alt55=7;
+                alt56=7;
                 }
                 break;
             case 49:
                 {
-                alt55=8;
+                alt56=8;
                 }
                 break;
             case 50:
                 {
-                alt55=9;
+                alt56=9;
                 }
                 break;
             case 51:
                 {
-                alt55=10;
+                alt56=10;
                 }
                 break;
             case 52:
                 {
-                alt55=11;
+                alt56=11;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 55, 0, input);
+                    new NoViableAltException("", 56, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt55) {
+            switch (alt56) {
                 case 1 :
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3086:2: (enumLiteral_0= 'pin' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3169:2: (enumLiteral_0= 'pin' )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3086:2: (enumLiteral_0= 'pin' )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3086:4: enumLiteral_0= 'pin'
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3169:2: (enumLiteral_0= 'pin' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3169:4: enumLiteral_0= 'pin'
                     {
-                    enumLiteral_0=(Token)match(input,42,FOLLOW_42_in_rulePinType6500); 
+                    enumLiteral_0=(Token)match(input,42,FOLLOW_42_in_rulePinType6649); 
 
                             current = grammarAccess.getPinTypeAccess().getPinEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_0, grammarAccess.getPinTypeAccess().getPinEnumLiteralDeclaration_0()); 
@@ -7639,12 +7800,12 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3092:6: (enumLiteral_1= 'inpin' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3175:6: (enumLiteral_1= 'inpin' )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3092:6: (enumLiteral_1= 'inpin' )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3092:8: enumLiteral_1= 'inpin'
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3175:6: (enumLiteral_1= 'inpin' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3175:8: enumLiteral_1= 'inpin'
                     {
-                    enumLiteral_1=(Token)match(input,43,FOLLOW_43_in_rulePinType6517); 
+                    enumLiteral_1=(Token)match(input,43,FOLLOW_43_in_rulePinType6666); 
 
                             current = grammarAccess.getPinTypeAccess().getInputEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_1, grammarAccess.getPinTypeAccess().getInputEnumLiteralDeclaration_1()); 
@@ -7656,12 +7817,12 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3098:6: (enumLiteral_2= 'outpin' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3181:6: (enumLiteral_2= 'outpin' )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3098:6: (enumLiteral_2= 'outpin' )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3098:8: enumLiteral_2= 'outpin'
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3181:6: (enumLiteral_2= 'outpin' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3181:8: enumLiteral_2= 'outpin'
                     {
-                    enumLiteral_2=(Token)match(input,44,FOLLOW_44_in_rulePinType6534); 
+                    enumLiteral_2=(Token)match(input,44,FOLLOW_44_in_rulePinType6683); 
 
                             current = grammarAccess.getPinTypeAccess().getOutputEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_2, grammarAccess.getPinTypeAccess().getOutputEnumLiteralDeclaration_2()); 
@@ -7673,12 +7834,12 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3104:6: (enumLiteral_3= 'iopin' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3187:6: (enumLiteral_3= 'iopin' )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3104:6: (enumLiteral_3= 'iopin' )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3104:8: enumLiteral_3= 'iopin'
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3187:6: (enumLiteral_3= 'iopin' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3187:8: enumLiteral_3= 'iopin'
                     {
-                    enumLiteral_3=(Token)match(input,45,FOLLOW_45_in_rulePinType6551); 
+                    enumLiteral_3=(Token)match(input,45,FOLLOW_45_in_rulePinType6700); 
 
                             current = grammarAccess.getPinTypeAccess().getInOutEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_3, grammarAccess.getPinTypeAccess().getInOutEnumLiteralDeclaration_3()); 
@@ -7690,12 +7851,12 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3110:6: (enumLiteral_4= 'pwrpin' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3193:6: (enumLiteral_4= 'pwrpin' )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3110:6: (enumLiteral_4= 'pwrpin' )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3110:8: enumLiteral_4= 'pwrpin'
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3193:6: (enumLiteral_4= 'pwrpin' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3193:8: enumLiteral_4= 'pwrpin'
                     {
-                    enumLiteral_4=(Token)match(input,46,FOLLOW_46_in_rulePinType6568); 
+                    enumLiteral_4=(Token)match(input,46,FOLLOW_46_in_rulePinType6717); 
 
                             current = grammarAccess.getPinTypeAccess().getPowerEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_4, grammarAccess.getPinTypeAccess().getPowerEnumLiteralDeclaration_4()); 
@@ -7707,12 +7868,12 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3116:6: (enumLiteral_5= 'suppin' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3199:6: (enumLiteral_5= 'suppin' )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3116:6: (enumLiteral_5= 'suppin' )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3116:8: enumLiteral_5= 'suppin'
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3199:6: (enumLiteral_5= 'suppin' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3199:8: enumLiteral_5= 'suppin'
                     {
-                    enumLiteral_5=(Token)match(input,47,FOLLOW_47_in_rulePinType6585); 
+                    enumLiteral_5=(Token)match(input,47,FOLLOW_47_in_rulePinType6734); 
 
                             current = grammarAccess.getPinTypeAccess().getSupplyEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_5, grammarAccess.getPinTypeAccess().getSupplyEnumLiteralDeclaration_5()); 
@@ -7724,12 +7885,12 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 7 :
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3122:6: (enumLiteral_6= 'ocpin' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3205:6: (enumLiteral_6= 'ocpin' )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3122:6: (enumLiteral_6= 'ocpin' )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3122:8: enumLiteral_6= 'ocpin'
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3205:6: (enumLiteral_6= 'ocpin' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3205:8: enumLiteral_6= 'ocpin'
                     {
-                    enumLiteral_6=(Token)match(input,48,FOLLOW_48_in_rulePinType6602); 
+                    enumLiteral_6=(Token)match(input,48,FOLLOW_48_in_rulePinType6751); 
 
                             current = grammarAccess.getPinTypeAccess().getOpenCollectorEnumLiteralDeclaration_6().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_6, grammarAccess.getPinTypeAccess().getOpenCollectorEnumLiteralDeclaration_6()); 
@@ -7741,12 +7902,12 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 8 :
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3128:6: (enumLiteral_7= 'oepin' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3211:6: (enumLiteral_7= 'oepin' )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3128:6: (enumLiteral_7= 'oepin' )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3128:8: enumLiteral_7= 'oepin'
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3211:6: (enumLiteral_7= 'oepin' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3211:8: enumLiteral_7= 'oepin'
                     {
-                    enumLiteral_7=(Token)match(input,49,FOLLOW_49_in_rulePinType6619); 
+                    enumLiteral_7=(Token)match(input,49,FOLLOW_49_in_rulePinType6768); 
 
                             current = grammarAccess.getPinTypeAccess().getOpenEmitterEnumLiteralDeclaration_7().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_7, grammarAccess.getPinTypeAccess().getOpenEmitterEnumLiteralDeclaration_7()); 
@@ -7758,12 +7919,12 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 9 :
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3134:6: (enumLiteral_8= 'tripin' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3217:6: (enumLiteral_8= 'tripin' )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3134:6: (enumLiteral_8= 'tripin' )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3134:8: enumLiteral_8= 'tripin'
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3217:6: (enumLiteral_8= 'tripin' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3217:8: enumLiteral_8= 'tripin'
                     {
-                    enumLiteral_8=(Token)match(input,50,FOLLOW_50_in_rulePinType6636); 
+                    enumLiteral_8=(Token)match(input,50,FOLLOW_50_in_rulePinType6785); 
 
                             current = grammarAccess.getPinTypeAccess().getTristateEnumLiteralDeclaration_8().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_8, grammarAccess.getPinTypeAccess().getTristateEnumLiteralDeclaration_8()); 
@@ -7775,12 +7936,12 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 10 :
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3140:6: (enumLiteral_9= 'passpin' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3223:6: (enumLiteral_9= 'passpin' )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3140:6: (enumLiteral_9= 'passpin' )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3140:8: enumLiteral_9= 'passpin'
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3223:6: (enumLiteral_9= 'passpin' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3223:8: enumLiteral_9= 'passpin'
                     {
-                    enumLiteral_9=(Token)match(input,51,FOLLOW_51_in_rulePinType6653); 
+                    enumLiteral_9=(Token)match(input,51,FOLLOW_51_in_rulePinType6802); 
 
                             current = grammarAccess.getPinTypeAccess().getPassiveEnumLiteralDeclaration_9().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_9, grammarAccess.getPinTypeAccess().getPassiveEnumLiteralDeclaration_9()); 
@@ -7792,12 +7953,12 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 11 :
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3146:6: (enumLiteral_10= 'ncpin' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3229:6: (enumLiteral_10= 'ncpin' )
                     {
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3146:6: (enumLiteral_10= 'ncpin' )
-                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3146:8: enumLiteral_10= 'ncpin'
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3229:6: (enumLiteral_10= 'ncpin' )
+                    // ../edu.byu.ee.phdl.xtext/src-gen/edu/byu/ee/phdl/parser/antlr/internal/InternalPhdl.g:3229:8: enumLiteral_10= 'ncpin'
                     {
-                    enumLiteral_10=(Token)match(input,52,FOLLOW_52_in_rulePinType6670); 
+                    enumLiteral_10=(Token)match(input,52,FOLLOW_52_in_rulePinType6819); 
 
                             current = grammarAccess.getPinTypeAccess().getNoConnectEnumLiteralDeclaration_10().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_10, grammarAccess.getPinTypeAccess().getNoConnectEnumLiteralDeclaration_10()); 
@@ -7832,37 +7993,38 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
 
     protected DFA24 dfa24 = new DFA24(this);
     protected DFA25 dfa25 = new DFA25(this);
+    protected DFA45 dfa45 = new DFA45(this);
     static final String DFA24_eotS =
         "\20\uffff";
     static final String DFA24_eofS =
         "\20\uffff";
     static final String DFA24_minS =
-        "\1\4\1\uffff\1\36\1\22\2\uffff\1\6\1\4\1\23\1\uffff\2\6\1\40\1"+
-        "\37\1\23\1\4";
+        "\1\4\1\uffff\1\36\1\22\2\uffff\1\6\1\4\1\23\1\uffff\1\6\1\40\1"+
+        "\6\1\23\1\4\1\37";
     static final String DFA24_maxS =
-        "\1\50\1\uffff\1\36\1\46\2\uffff\1\6\1\44\1\45\1\uffff\2\6\1\40"+
-        "\2\37\1\7";
+        "\1\51\1\uffff\1\36\1\47\2\uffff\1\6\1\45\1\46\1\uffff\1\6\1\40"+
+        "\1\6\1\37\1\7\1\37";
     static final String DFA24_acceptS =
         "\1\uffff\1\1\2\uffff\1\3\1\4\3\uffff\1\2\6\uffff";
     static final String DFA24_specialS =
         "\20\uffff}>";
     static final String[] DFA24_transitionS = {
-            "\1\3\1\uffff\2\4\14\uffff\1\5\7\uffff\1\1\1\4\12\uffff\1\2",
+            "\1\3\1\uffff\2\4\14\uffff\1\5\7\uffff\1\1\1\4\13\uffff\1\2",
             "",
             "\1\6",
-            "\1\7\23\uffff\1\4",
+            "\1\7\24\uffff\1\4",
             "",
             "",
             "\1\10",
-            "\1\4\1\11\2\4\32\uffff\1\4\1\uffff\1\4",
-            "\1\13\13\uffff\1\14\5\uffff\1\12",
+            "\1\4\1\11\2\4\4\uffff\1\4\25\uffff\1\4\2\uffff\1\4",
+            "\1\12\13\uffff\1\13\6\uffff\1\14",
             "",
             "\1\15",
             "\1\16",
             "\1\17",
-            "\1\14",
-            "\1\13\13\uffff\1\14",
-            "\1\3\1\uffff\2\4"
+            "\1\12\13\uffff\1\13",
+            "\1\3\1\uffff\2\4",
+            "\1\13"
     };
 
     static final short[] DFA24_eot = DFA.unpackEncodedString(DFA24_eotS);
@@ -7903,32 +8065,32 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
     static final String DFA25_eofS =
         "\17\uffff";
     static final String DFA25_minS =
-        "\1\4\1\uffff\1\36\1\22\2\uffff\1\6\1\uffff\1\23\2\6\1\40\1\37\1"+
-        "\23\1\4";
+        "\1\4\1\uffff\1\36\1\22\2\uffff\1\6\1\uffff\1\23\1\6\1\40\1\6\1"+
+        "\23\1\4\1\37";
     static final String DFA25_maxS =
-        "\1\50\1\uffff\1\36\1\46\2\uffff\1\6\1\uffff\1\45\2\6\1\40\2\37"+
-        "\1\7";
+        "\1\51\1\uffff\1\36\1\47\2\uffff\1\6\1\uffff\1\46\1\6\1\40\1\6\1"+
+        "\37\1\7\1\37";
     static final String DFA25_acceptS =
         "\1\uffff\1\1\2\uffff\1\3\1\4\1\uffff\1\2\7\uffff";
     static final String DFA25_specialS =
         "\17\uffff}>";
     static final String[] DFA25_transitionS = {
-            "\1\3\1\uffff\2\4\11\uffff\1\1\2\uffff\1\5\10\uffff\1\4\12\uffff"+
+            "\1\3\1\uffff\2\4\11\uffff\1\1\2\uffff\1\5\10\uffff\1\4\13\uffff"+
             "\1\2",
             "",
             "\1\6",
-            "\1\4\13\uffff\1\7\1\uffff\1\7\5\uffff\1\4",
+            "\1\4\13\uffff\1\7\1\uffff\1\7\6\uffff\1\4",
             "",
             "",
             "\1\10",
             "",
-            "\1\12\13\uffff\1\13\5\uffff\1\11",
+            "\1\11\13\uffff\1\12\6\uffff\1\13",
             "\1\14",
             "\1\15",
             "\1\16",
-            "\1\13",
-            "\1\12\13\uffff\1\13",
-            "\1\3\1\uffff\2\4"
+            "\1\11\13\uffff\1\12",
+            "\1\3\1\uffff\2\4",
+            "\1\12"
     };
 
     static final short[] DFA25_eot = DFA.unpackEncodedString(DFA25_eotS);
@@ -7962,6 +8124,71 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
         }
         public String getDescription() {
             return "1447:1: (this_Attr_0= ruleAttr | this_SubAttr_1= ruleSubAttr | this_PortAssign_2= rulePortAssign | this_Info_3= ruleInfo )";
+        }
+    }
+    static final String DFA45_eotS =
+        "\20\uffff";
+    static final String DFA45_eofS =
+        "\2\uffff\3\10\7\uffff\1\10\3\uffff";
+    static final String DFA45_minS =
+        "\1\4\1\uffff\3\17\2\uffff\1\6\2\uffff\1\23\1\6\1\17\1\6\1\23\1"+
+        "\50";
+    static final String DFA45_maxS =
+        "\1\45\1\uffff\3\47\2\uffff\1\6\2\uffff\1\50\1\6\1\44\1\6\2\50";
+    static final String DFA45_acceptS =
+        "\1\uffff\1\1\3\uffff\1\3\1\5\1\uffff\1\2\1\4\6\uffff";
+    static final String DFA45_specialS =
+        "\20\uffff}>";
+    static final String[] DFA45_transitionS = {
+            "\1\3\1\uffff\1\2\1\4\4\uffff\1\1\25\uffff\1\5\2\uffff\1\6",
+            "",
+            "\1\10\21\uffff\1\10\2\uffff\1\11\2\uffff\1\7",
+            "\1\10\21\uffff\1\10\2\uffff\1\11\2\uffff\1\7",
+            "\1\10\21\uffff\1\10\2\uffff\1\11\2\uffff\1\7",
+            "",
+            "",
+            "\1\12",
+            "",
+            "",
+            "\1\13\22\uffff\1\15\1\uffff\1\14",
+            "\1\16",
+            "\1\10\21\uffff\1\10\2\uffff\1\11",
+            "\1\17",
+            "\1\13\24\uffff\1\14",
+            "\1\14"
+    };
+
+    static final short[] DFA45_eot = DFA.unpackEncodedString(DFA45_eotS);
+    static final short[] DFA45_eof = DFA.unpackEncodedString(DFA45_eofS);
+    static final char[] DFA45_min = DFA.unpackEncodedStringToUnsignedChars(DFA45_minS);
+    static final char[] DFA45_max = DFA.unpackEncodedStringToUnsignedChars(DFA45_maxS);
+    static final short[] DFA45_accept = DFA.unpackEncodedString(DFA45_acceptS);
+    static final short[] DFA45_special = DFA.unpackEncodedString(DFA45_specialS);
+    static final short[][] DFA45_transition;
+
+    static {
+        int numStates = DFA45_transitionS.length;
+        DFA45_transition = new short[numStates][];
+        for (int i=0; i<numStates; i++) {
+            DFA45_transition[i] = DFA.unpackEncodedString(DFA45_transitionS[i]);
+        }
+    }
+
+    class DFA45 extends DFA {
+
+        public DFA45(BaseRecognizer recognizer) {
+            this.recognizer = recognizer;
+            this.decisionNumber = 45;
+            this.eot = DFA45_eot;
+            this.eof = DFA45_eof;
+            this.min = DFA45_min;
+            this.max = DFA45_max;
+            this.accept = DFA45_accept;
+            this.special = DFA45_special;
+            this.transition = DFA45_transition;
+        }
+        public String getDescription() {
+            return "2286:1: ( (otherlv_0= '{' ( (lv_connections_1_0= ruleConnectionRef ) ) (otherlv_2= ',' ( (lv_connections_3_0= ruleConnectionRef ) ) )* otherlv_4= '}' ) | ( ( (lv_connections_5_0= ruleConnectionRef ) ) (otherlv_6= '&' ( (lv_connections_7_0= ruleConnectionRef ) ) )* ) | ( ( (lv_replicated_8_0= '<' ) ) ( (lv_replicate_9_0= ruleConnectionRef ) ) otherlv_10= '>' ) | ( ( (lv_replicate_11_0= ruleConnectionRef ) ) ( (lv_replicated_12_0= '*' ) ) ) | ( (lv_open_13_0= 'open' ) ) )";
         }
     }
  
@@ -8007,7 +8234,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_15_in_ruleAttr975 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePin_in_entryRulePin1011 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRulePin1021 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePinType_in_rulePin1067 = new BitSet(new long[]{0x00000040000000D0L});
+    public static final BitSet FOLLOW_rulePinType_in_rulePin1067 = new BitSet(new long[]{0x00000080000000D0L});
     public static final BitSet FOLLOW_ruleVector_in_rulePin1088 = new BitSet(new long[]{0x00000000000000D0L});
     public static final BitSet FOLLOW_rulePhdlID_in_rulePin1109 = new BitSet(new long[]{0x0000000000040000L});
     public static final BitSet FOLLOW_18_in_rulePin1121 = new BitSet(new long[]{0x0000000000001000L});
@@ -8039,19 +8266,19 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleInfo_in_ruleDesignElement1729 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleConnection_in_entryRuleConnection1764 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleConnection1774 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_23_in_ruleConnection1818 = new BitSet(new long[]{0x00000040000000D0L});
-    public static final BitSet FOLLOW_ruleVector_in_ruleConnection1852 = new BitSet(new long[]{0x00000040000000D0L});
+    public static final BitSet FOLLOW_23_in_ruleConnection1818 = new BitSet(new long[]{0x00000080000000D0L});
+    public static final BitSet FOLLOW_ruleVector_in_ruleConnection1852 = new BitSet(new long[]{0x00000080000000D0L});
     public static final BitSet FOLLOW_ruleConnectionName_in_ruleConnection1873 = new BitSet(new long[]{0x0000000000089000L});
-    public static final BitSet FOLLOW_19_in_ruleConnection1886 = new BitSet(new long[]{0x00000040000000D0L});
+    public static final BitSet FOLLOW_19_in_ruleConnection1886 = new BitSet(new long[]{0x00000080000000D0L});
     public static final BitSet FOLLOW_ruleConnectionName_in_ruleConnection1907 = new BitSet(new long[]{0x0000000000089000L});
     public static final BitSet FOLLOW_12_in_ruleConnection1923 = new BitSet(new long[]{0x001FFC0000122000L});
     public static final BitSet FOLLOW_ruleNetElement_in_ruleConnection1944 = new BitSet(new long[]{0x001FFC0000122000L});
     public static final BitSet FOLLOW_13_in_ruleConnection1957 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_15_in_ruleConnection1976 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_ruleConnection2003 = new BitSet(new long[]{0x00000040000000D0L});
-    public static final BitSet FOLLOW_ruleVector_in_ruleConnection2037 = new BitSet(new long[]{0x00000040000000D0L});
+    public static final BitSet FOLLOW_24_in_ruleConnection2003 = new BitSet(new long[]{0x00000080000000D0L});
+    public static final BitSet FOLLOW_ruleVector_in_ruleConnection2037 = new BitSet(new long[]{0x00000080000000D0L});
     public static final BitSet FOLLOW_ruleConnectionName_in_ruleConnection2058 = new BitSet(new long[]{0x0000000000089000L});
-    public static final BitSet FOLLOW_19_in_ruleConnection2071 = new BitSet(new long[]{0x00000040000000D0L});
+    public static final BitSet FOLLOW_19_in_ruleConnection2071 = new BitSet(new long[]{0x00000080000000D0L});
     public static final BitSet FOLLOW_ruleConnectionName_in_ruleConnection2092 = new BitSet(new long[]{0x0000000000089000L});
     public static final BitSet FOLLOW_12_in_ruleConnection2108 = new BitSet(new long[]{0x001FFC0000122000L});
     public static final BitSet FOLLOW_rulePortElement_in_ruleConnection2129 = new BitSet(new long[]{0x001FFC0000122000L});
@@ -8071,8 +8298,8 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_RULE_ID_in_ruleInstance2513 = new BitSet(new long[]{0x0000000004000000L});
     public static final BitSet FOLLOW_26_in_ruleInstance2530 = new BitSet(new long[]{0x00000000000000D0L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_ruleInstance2553 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_12_in_ruleInstance2565 = new BitSet(new long[]{0x001FFD00301220D0L});
-    public static final BitSet FOLLOW_ruleInstanceElement_in_ruleInstance2586 = new BitSet(new long[]{0x001FFD00301220D0L});
+    public static final BitSet FOLLOW_12_in_ruleInstance2565 = new BitSet(new long[]{0x001FFE00301220D0L});
+    public static final BitSet FOLLOW_ruleInstanceElement_in_ruleInstance2586 = new BitSet(new long[]{0x001FFE00301220D0L});
     public static final BitSet FOLLOW_13_in_ruleInstance2599 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_27_in_ruleInstance2625 = new BitSet(new long[]{0x0000000040000010L});
     public static final BitSet FOLLOW_ruleArray_in_ruleInstance2659 = new BitSet(new long[]{0x0000000000000010L});
@@ -8080,8 +8307,8 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_26_in_ruleInstance2693 = new BitSet(new long[]{0x00000000000000D0L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_ruleInstance2716 = new BitSet(new long[]{0x0000000000001020L});
     public static final BitSet FOLLOW_RULE_STRING_in_ruleInstance2733 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_12_in_ruleInstance2751 = new BitSet(new long[]{0x001FFD00201220D0L});
-    public static final BitSet FOLLOW_ruleSubInstanceElement_in_ruleInstance2772 = new BitSet(new long[]{0x001FFD00201220D0L});
+    public static final BitSet FOLLOW_12_in_ruleInstance2751 = new BitSet(new long[]{0x001FFE00201220D0L});
+    public static final BitSet FOLLOW_ruleSubInstanceElement_in_ruleInstance2772 = new BitSet(new long[]{0x001FFE00201220D0L});
     public static final BitSet FOLLOW_13_in_ruleInstance2785 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleInstanceElement_in_entryRuleInstanceElement2822 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleInstanceElement2832 = new BitSet(new long[]{0x0000000000000002L});
@@ -8104,7 +8331,7 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_15_in_ruleRefAttr3291 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleNewAttr_in_entryRuleNewAttr3327 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleNewAttr3337 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_ruleNewAttr3374 = new BitSet(new long[]{0x0000010000000010L});
+    public static final BitSet FOLLOW_28_in_ruleNewAttr3374 = new BitSet(new long[]{0x0000020000000010L});
     public static final BitSet FOLLOW_ruleQualifier_in_ruleNewAttr3395 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_RULE_ID_in_ruleNewAttr3413 = new BitSet(new long[]{0x0000000000040000L});
     public static final BitSet FOLLOW_18_in_ruleNewAttr3430 = new BitSet(new long[]{0x0000000000000020L});
@@ -8113,15 +8340,15 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_rulePinAssign_in_entryRulePinAssign3500 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRulePinAssign3510 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_29_in_rulePinAssign3555 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_30_in_rulePinAssign3580 = new BitSet(new long[]{0x00000100000000D0L});
+    public static final BitSet FOLLOW_30_in_rulePinAssign3580 = new BitSet(new long[]{0x00000200000000D0L});
     public static final BitSet FOLLOW_ruleQualifier_in_rulePinAssign3601 = new BitSet(new long[]{0x00000000000000D0L});
-    public static final BitSet FOLLOW_rulePhdlID_in_rulePinAssign3625 = new BitSet(new long[]{0x0000004080000000L});
+    public static final BitSet FOLLOW_rulePhdlID_in_rulePinAssign3625 = new BitSet(new long[]{0x0000008080000000L});
     public static final BitSet FOLLOW_ruleSlices_in_rulePinAssign3646 = new BitSet(new long[]{0x0000000080000000L});
     public static final BitSet FOLLOW_31_in_rulePinAssign3659 = new BitSet(new long[]{0x0000000000040000L});
     public static final BitSet FOLLOW_ruleQualifier_in_rulePinAssign3688 = new BitSet(new long[]{0x00000000000000D0L});
-    public static final BitSet FOLLOW_rulePhdlID_in_rulePinAssign3712 = new BitSet(new long[]{0x0000004000040000L});
+    public static final BitSet FOLLOW_rulePhdlID_in_rulePinAssign3712 = new BitSet(new long[]{0x0000008000040000L});
     public static final BitSet FOLLOW_ruleSlices_in_rulePinAssign3733 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_rulePinAssign3748 = new BitSet(new long[]{0x00000014000000D0L});
+    public static final BitSet FOLLOW_18_in_rulePinAssign3748 = new BitSet(new long[]{0x00000024000010D0L});
     public static final BitSet FOLLOW_ruleConcatenation_in_rulePinAssign3769 = new BitSet(new long[]{0x0000000000008000L});
     public static final BitSet FOLLOW_15_in_rulePinAssign3781 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleSubAttr_in_entryRuleSubAttr3817 = new BitSet(new long[]{0x0000000000000000L});
@@ -8142,104 +8369,111 @@ public class InternalPhdlParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_rulePortAssign_in_entryRulePortAssign4168 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRulePortAssign4178 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_29_in_rulePortAssign4223 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_30_in_rulePortAssign4248 = new BitSet(new long[]{0x00000100000000D0L});
+    public static final BitSet FOLLOW_30_in_rulePortAssign4248 = new BitSet(new long[]{0x00000200000000D0L});
     public static final BitSet FOLLOW_ruleQualifier_in_rulePortAssign4269 = new BitSet(new long[]{0x00000000000000D0L});
-    public static final BitSet FOLLOW_rulePhdlID_in_rulePortAssign4293 = new BitSet(new long[]{0x0000004080000000L});
+    public static final BitSet FOLLOW_rulePhdlID_in_rulePortAssign4293 = new BitSet(new long[]{0x0000008080000000L});
     public static final BitSet FOLLOW_ruleSlices_in_rulePortAssign4314 = new BitSet(new long[]{0x0000000080000000L});
     public static final BitSet FOLLOW_31_in_rulePortAssign4327 = new BitSet(new long[]{0x0000000000040000L});
     public static final BitSet FOLLOW_ruleQualifier_in_rulePortAssign4356 = new BitSet(new long[]{0x00000000000000D0L});
-    public static final BitSet FOLLOW_rulePhdlID_in_rulePortAssign4380 = new BitSet(new long[]{0x0000004000040000L});
+    public static final BitSet FOLLOW_rulePhdlID_in_rulePortAssign4380 = new BitSet(new long[]{0x0000008000040000L});
     public static final BitSet FOLLOW_ruleSlices_in_rulePortAssign4401 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_rulePortAssign4416 = new BitSet(new long[]{0x00000014000000D0L});
+    public static final BitSet FOLLOW_18_in_rulePortAssign4416 = new BitSet(new long[]{0x00000024000010D0L});
     public static final BitSet FOLLOW_ruleConcatenation_in_rulePortAssign4437 = new BitSet(new long[]{0x0000000000008000L});
     public static final BitSet FOLLOW_15_in_rulePortAssign4449 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleConnectionAssign_in_entryRuleConnectionAssign4485 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleConnectionAssign4495 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePhdlID_in_ruleConnectionAssign4543 = new BitSet(new long[]{0x0000004000040000L});
+    public static final BitSet FOLLOW_rulePhdlID_in_ruleConnectionAssign4543 = new BitSet(new long[]{0x0000008000040000L});
     public static final BitSet FOLLOW_ruleSlices_in_ruleConnectionAssign4564 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_ruleConnectionAssign4577 = new BitSet(new long[]{0x00000014000000D0L});
+    public static final BitSet FOLLOW_18_in_ruleConnectionAssign4577 = new BitSet(new long[]{0x00000024000010D0L});
     public static final BitSet FOLLOW_ruleConcatenation_in_ruleConnectionAssign4598 = new BitSet(new long[]{0x0000000000008000L});
     public static final BitSet FOLLOW_15_in_ruleConnectionAssign4610 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleConcatenation_in_entryRuleConcatenation4646 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleConcatenation4656 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleConnectionRef_in_ruleConcatenation4703 = new BitSet(new long[]{0x0000000200000002L});
-    public static final BitSet FOLLOW_33_in_ruleConcatenation4716 = new BitSet(new long[]{0x00000000000000D0L});
-    public static final BitSet FOLLOW_ruleConnectionRef_in_ruleConcatenation4737 = new BitSet(new long[]{0x0000000200000002L});
-    public static final BitSet FOLLOW_34_in_ruleConcatenation4765 = new BitSet(new long[]{0x00000000000000D0L});
-    public static final BitSet FOLLOW_ruleConnectionRef_in_ruleConcatenation4799 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_ruleConcatenation4811 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_ruleConcatenation4836 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleConnectionRef_in_entryRuleConnectionRef4885 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleConnectionRef4895 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePhdlID_in_ruleConnectionRef4943 = new BitSet(new long[]{0x0000004000000002L});
-    public static final BitSet FOLLOW_ruleSlices_in_ruleConnectionRef4964 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleConnectionName_in_entryRuleConnectionName5001 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleConnectionName5011 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePhdlID_in_ruleConnectionName5056 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleIndices_in_entryRuleIndices5091 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleIndices5101 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_ruleIndices5138 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleIndices5157 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_37_in_ruleIndices5180 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleIndices5210 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleIndices5240 = new BitSet(new long[]{0x0000000080080000L});
-    public static final BitSet FOLLOW_19_in_ruleIndices5258 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleIndices5275 = new BitSet(new long[]{0x0000000080080000L});
-    public static final BitSet FOLLOW_31_in_ruleIndices5296 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleSlices_in_entryRuleSlices5332 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleSlices5342 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_ruleSlices5379 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleSlices5398 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_37_in_ruleSlices5421 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleSlices5451 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleSlices5481 = new BitSet(new long[]{0x0000008000080000L});
-    public static final BitSet FOLLOW_19_in_ruleSlices5499 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleSlices5516 = new BitSet(new long[]{0x0000008000080000L});
-    public static final BitSet FOLLOW_39_in_ruleSlices5537 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVector_in_entryRuleVector5573 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleVector5583 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_ruleVector5630 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleVector5647 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_37_in_ruleVector5670 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleVector5700 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_ruleVector5717 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleArray_in_entryRuleArray5755 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleArray5765 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_ruleArray5812 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleArray5829 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_37_in_ruleArray5852 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleArray5882 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_ruleArray5899 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifier_in_entryRuleQualifier5937 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleQualifier5947 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_ruleQualifier5984 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_ruleIndices_in_ruleQualifier6005 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_ruleQualifier6017 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedNameWithWildCard_in_entryRuleQualifiedNameWithWildCard6058 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedNameWithWildCard6069 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleQualifiedNameWithWildCard6116 = new BitSet(new long[]{0x0000000100000002L});
-    public static final BitSet FOLLOW_32_in_ruleQualifiedNameWithWildCard6135 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_41_in_ruleQualifiedNameWithWildCard6148 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName6191 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName6202 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePhdlID_in_ruleQualifiedName6249 = new BitSet(new long[]{0x0000000100000002L});
-    public static final BitSet FOLLOW_32_in_ruleQualifiedName6268 = new BitSet(new long[]{0x00000000000000D0L});
-    public static final BitSet FOLLOW_rulePhdlID_in_ruleQualifiedName6290 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePhdlID_in_entryRulePhdlID6338 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulePhdlID6349 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INT_in_rulePhdlID6389 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rulePhdlID6415 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_PINNUM_in_rulePhdlID6441 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_42_in_rulePinType6500 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_43_in_rulePinType6517 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_44_in_rulePinType6534 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_45_in_rulePinType6551 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_46_in_rulePinType6568 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_rulePinType6585 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_rulePinType6602 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_49_in_rulePinType6619 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_50_in_rulePinType6636 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_51_in_rulePinType6653 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_52_in_rulePinType6670 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_12_in_ruleConcatenation4694 = new BitSet(new long[]{0x00000000000000D0L});
+    public static final BitSet FOLLOW_ruleConnectionRef_in_ruleConcatenation4715 = new BitSet(new long[]{0x0000000000082000L});
+    public static final BitSet FOLLOW_19_in_ruleConcatenation4728 = new BitSet(new long[]{0x00000000000000D0L});
+    public static final BitSet FOLLOW_ruleConnectionRef_in_ruleConcatenation4749 = new BitSet(new long[]{0x0000000000082000L});
+    public static final BitSet FOLLOW_13_in_ruleConcatenation4763 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleConnectionRef_in_ruleConcatenation4792 = new BitSet(new long[]{0x0000000200000002L});
+    public static final BitSet FOLLOW_33_in_ruleConcatenation4805 = new BitSet(new long[]{0x00000000000000D0L});
+    public static final BitSet FOLLOW_ruleConnectionRef_in_ruleConcatenation4826 = new BitSet(new long[]{0x0000000200000002L});
+    public static final BitSet FOLLOW_34_in_ruleConcatenation4854 = new BitSet(new long[]{0x00000000000000D0L});
+    public static final BitSet FOLLOW_ruleConnectionRef_in_ruleConcatenation4888 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_ruleConcatenation4900 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleConnectionRef_in_ruleConcatenation4929 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_36_in_ruleConcatenation4947 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_ruleConcatenation4985 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleConnectionRef_in_entryRuleConnectionRef5034 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleConnectionRef5044 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePhdlID_in_ruleConnectionRef5092 = new BitSet(new long[]{0x0000008000000002L});
+    public static final BitSet FOLLOW_ruleSlices_in_ruleConnectionRef5113 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleConnectionName_in_entryRuleConnectionName5150 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleConnectionName5160 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePhdlID_in_ruleConnectionName5205 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleIndices_in_entryRuleIndices5240 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleIndices5250 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_30_in_ruleIndices5287 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleIndices5306 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_38_in_ruleIndices5329 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleIndices5359 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleIndices5389 = new BitSet(new long[]{0x0000000080080000L});
+    public static final BitSet FOLLOW_19_in_ruleIndices5407 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleIndices5424 = new BitSet(new long[]{0x0000000080080000L});
+    public static final BitSet FOLLOW_31_in_ruleIndices5445 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleSlices_in_entryRuleSlices5481 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleSlices5491 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_39_in_ruleSlices5528 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleSlices5547 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_38_in_ruleSlices5570 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleSlices5600 = new BitSet(new long[]{0x0000010000000000L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleSlices5630 = new BitSet(new long[]{0x0000010000080000L});
+    public static final BitSet FOLLOW_19_in_ruleSlices5648 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleSlices5665 = new BitSet(new long[]{0x0000010000080000L});
+    public static final BitSet FOLLOW_40_in_ruleSlices5686 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleVector_in_entryRuleVector5722 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleVector5732 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_39_in_ruleVector5779 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleVector5796 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_38_in_ruleVector5819 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleVector5849 = new BitSet(new long[]{0x0000010000000000L});
+    public static final BitSet FOLLOW_40_in_ruleVector5866 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleArray_in_entryRuleArray5904 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleArray5914 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_30_in_ruleArray5961 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleArray5978 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_38_in_ruleArray6001 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleArray6031 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_ruleArray6048 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifier_in_entryRuleQualifier6086 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleQualifier6096 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_41_in_ruleQualifier6133 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_ruleIndices_in_ruleQualifier6154 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_ruleQualifier6166 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedNameWithWildCard_in_entryRuleQualifiedNameWithWildCard6207 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedNameWithWildCard6218 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleQualifiedNameWithWildCard6265 = new BitSet(new long[]{0x0000000100000002L});
+    public static final BitSet FOLLOW_32_in_ruleQualifiedNameWithWildCard6284 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_36_in_ruleQualifiedNameWithWildCard6297 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName6340 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName6351 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePhdlID_in_ruleQualifiedName6398 = new BitSet(new long[]{0x0000000100000002L});
+    public static final BitSet FOLLOW_32_in_ruleQualifiedName6417 = new BitSet(new long[]{0x00000000000000D0L});
+    public static final BitSet FOLLOW_rulePhdlID_in_ruleQualifiedName6439 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePhdlID_in_entryRulePhdlID6487 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulePhdlID6498 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INT_in_rulePhdlID6538 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rulePhdlID6564 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_PINNUM_in_rulePhdlID6590 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_42_in_rulePinType6649 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_43_in_rulePinType6666 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_44_in_rulePinType6683 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_45_in_rulePinType6700 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_rulePinType6717 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_rulePinType6734 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_rulePinType6751 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_49_in_rulePinType6768 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_50_in_rulePinType6785 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_51_in_rulePinType6802 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_52_in_rulePinType6819 = new BitSet(new long[]{0x0000000000000002L});
 
 }

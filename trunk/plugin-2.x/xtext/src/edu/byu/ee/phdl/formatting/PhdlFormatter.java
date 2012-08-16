@@ -32,10 +32,11 @@ import edu.byu.ee.phdl.services.PhdlGrammarAccess.VectorElements;
 /**
  * This class contains custom formatting description.
  * 
- * see : http://www.eclipse.org/Xtext/documentation/latest/xtext.html#formatting on how and when to
- * use it
+ * see : http://www.eclipse.org/Xtext/documentation/latest/xtext.html#formatting
+ * on how and when to use it
  * 
- * Also see {@link org.eclipse.xtext.xtext.XtextFormattingTokenSerializer} as an example
+ * Also see {@link org.eclipse.xtext.xtext.XtextFormattingTokenSerializer} as an
+ * example
  */
 public class PhdlFormatter extends AbstractDeclarativeFormatter {
 
@@ -71,8 +72,11 @@ public class PhdlFormatter extends AbstractDeclarativeFormatter {
 
 	private void formatConcatenations(FormattingConfig config, PhdlGrammarAccess access) {
 		ConcatenationElements elements = access.getConcatenationAccess();
-		config.setNoSpace().around(elements.getReplicateAssignment_1_1());
-		config.setSpace(" ").around(elements.getAmpersandKeyword_0_1_0());
+		config.setNoSpace().around(elements.getReplicateAssignment_2_1());
+		config.setSpace(" ").around(elements.getAmpersandKeyword_1_1_0());
+		config.setNoSpace().before(elements.getCommaKeyword_0_2_0());
+		config.setNoSpace().after(elements.getLeftCurlyBracketKeyword_0_0());
+		config.setNoSpace().before(elements.getRightCurlyBracketKeyword_0_3());
 	}
 
 	private void formatConnectionAssigns(FormattingConfig config, PhdlGrammarAccess access) {
