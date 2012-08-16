@@ -1,7 +1,6 @@
-package edu.byu.ee.phdl;
+package edu.byu.ee.phdl.standalone;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -32,7 +31,9 @@ import com.google.inject.Injector;
 import com.google.inject.Provider;
 import com.google.inject.name.Named;
 
-public class PhdlComp {
+import edu.byu.ee.phdl.PhdlStandaloneSetupGenerated;
+
+public class PhdlCompiler {
 
 	@Inject
 	private Provider<ResourceSet> resourceSetProvider;
@@ -54,7 +55,7 @@ public class PhdlComp {
 	private static String version = "PHDL Compiler v2.1, ";
 	private static String release = "August 15, 2012 release.  ";
 
-	private final static Logger logger = Logger.getLogger(PhdlComp.class);
+	private final static Logger logger = Logger.getLogger(PhdlCompiler.class);
 
 	private static Options options;
 	private static CommandLine commandLine;
@@ -64,12 +65,13 @@ public class PhdlComp {
 	}
 
 	public static void main(String[] args) {
+		logger.info(version + release);
 		Options options = setupOptions();
 		parseArgs(options, args);
 
 		try {
 			Injector injector = new PhdlStandaloneSetupGenerated().createInjectorAndDoEMFRegistration();
-			PhdlComp compileInstance = injector.getInstance(PhdlComp.class);
+			PhdlCompiler compileInstance = injector.getInstance(PhdlCompiler.class);
 			compileInstance.compile();
 		} catch (Exception e) {
 			logger.error("unexpected error.");
@@ -122,13 +124,25 @@ public class PhdlComp {
 		return options;
 	}
 
-	private void compile() throws IOException {
-		logger.info(version + release + "Compilation started. ");
+	private void compile() {
+		logger.info("compilation started.");
 
 		// obtain src and gen folders from the command-line if present
 		String srcFolder = commandLine.hasOption("src") ? commandLine.getOptionValue("src") : "src";
 		String genFolder = commandLine.hasOption("gen") ? commandLine.getOptionValue("gen") : srcFolder + "-gen";
 		fileAccess.setOutputPath(genFolder);
+
+		// check that src directory exists
+		if (!new File(srcFolder).exists()) {
+			logger.error("directory " + srcFolder + " does not exist.");
+			System.exit(1);
+		}
+
+		// work with only the top design if specified
+		if (commandLine.hasOption("top"))
+			logger.info("working with specified design: " + commandLine.getOptionValue("top"));
+		else
+			logger.info("working with all top-level designs in source directory.");
 
 		// check source files are present
 		List<String> srcFiles = getSourceFiles(srcFolder);
@@ -194,15 +208,15 @@ public class PhdlComp {
 		for (Resource resource : resources) {
 			generator.doGenerate(resource, fileAccess);
 		}
-		logger.info("Compilation complete.");
+		logger.info("compilation complete.");
 	}
 
-	private List<String> getSourceFiles(String folderName) throws IOException {
+	private List<String> getSourceFiles(String directory) {
 		List<String> sourceFiles = new ArrayList<String>();
-		File folder = new File(folderName);
+		File folder = new File(directory);
 		for (String item : folder.list()) {
 			File f = new File(folder.getAbsolutePath() + File.separator + item);
-			String relativePath = folderName + File.separator + item;
+			String relativePath = directory + File.separator + item;
 			if (isModelFile(f)) {
 				sourceFiles.add(relativePath);
 			} else if (f.isDirectory()) {

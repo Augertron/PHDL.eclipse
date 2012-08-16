@@ -85,6 +85,25 @@ public abstract class EDesignUnit extends Node {
 		return this.getNameIndex().compareTo(((EDesignUnit) o).getNameIndex());
 	}
 
+	public String displayHierarchy() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("design hierarchy:\n\n");
+		sb.append(displayHierarchy(1));
+		return sb.toString();
+	}
+
+	public String displayHierarchy(int numIndents) {
+		StringBuilder sb = new StringBuilder();
+		String space = "";
+		for (int i = 0; i < numIndents; i++)
+			space += "  ";
+		sb.append(space + getNameIndex());
+		sb.append("\n");
+		for (ESubInstance s : subInsts)
+			sb.append(s.displayHierarchy(numIndents + 1));
+		return sb.toString();
+	}
+
 	@Override
 	/**
 	 * Checks to see if the current DesignNode is equal to
@@ -446,21 +465,6 @@ public abstract class EDesignUnit extends Node {
 			}
 		}
 		return map;
-	}
-
-	public void printHierarchy() {
-		System.out.println("\n  Design hierarchy:");
-		printHierarchyRecursive(3);
-		System.out.println();
-	}
-
-	public void printHierarchyRecursive(int numIndents) {
-		String space = "";
-		for (int i = 0; i < numIndents; i++)
-			space += "  ";
-		System.out.println(space + getNameIndex());
-		for (ESubInstance s : subInsts)
-			s.printHierarchyRecursive(numIndents + 1);
 	}
 
 	public void setConnections(List<EConnection> connections) {

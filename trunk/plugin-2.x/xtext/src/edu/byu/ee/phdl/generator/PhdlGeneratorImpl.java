@@ -12,7 +12,6 @@ import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 
 import com.google.inject.Inject;
 
-import edu.byu.ee.phdl.PhdlComp;
 import edu.byu.ee.phdl.elaboration.EDesign;
 import edu.byu.ee.phdl.elaboration.PhdlElaborator;
 import edu.byu.ee.phdl.erc.ElectricalRuleChecker;
@@ -20,14 +19,14 @@ import edu.byu.ee.phdl.phdl.Design;
 import edu.byu.ee.phdl.phdl.Package;
 import edu.byu.ee.phdl.phdl.PhdlModel;
 
-public class MyPhdlGenerator implements IGenerator {
+public class PhdlGeneratorImpl implements IGenerator {
 
-	private static Logger logger = Logger.getLogger(MyPhdlGenerator.class);
+	private static Logger logger = Logger.getLogger(PhdlGeneratorImpl.class);
 
 	@Inject
 	PhdlElaborator elaborator;
 
-	private final CommandLine commandLine = PhdlComp.getCommandLine();
+	private final CommandLine commandLine = edu.byu.ee.phdl.standalone.PhdlCompiler.getCommandLine();
 
 	@Override
 	public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
@@ -81,23 +80,29 @@ public class MyPhdlGenerator implements IGenerator {
 
 	public void generate(IFileSystemAccess fsa, String name, Design design) {
 
+		// elaborate the design
 		EDesign eDesign = elaborator.elaborate(design);
-		logger.debug("elaborated: " + name);
 
-		new ElectricalRuleChecker(eDesign.getNetlist());
-		logger.debug("completed ERC (Electrical Rule Check): " + name);
+		// perform the electrical rule check
+		new ElectricalRuleChecker(eDesign);
 
+		// generate reference designators
+
+		generateRefDes(fsa, name, design);
 		RefDesGenerator refDesGen = new RefDesGenerator(eDesign);
-		fsa.generateFile(name + ExtensionCodes.REFDES_EXT, refDesGen.getContents());
-		logger.debug("generated RDM (REFDES-Mapping): " + name);
+		String refDesFileName = name + ExtensionCodes.REFDES_EXT;
+		fsa.generateFile(refDesFileName, refDesGen.getContents());
+		logger.info("generated RDM (REFDES-Mapping): " + refDesFileName);
 
 		BoMGenerator bomGen = new BoMGenerator(eDesign);
-		fsa.generateFile(name + ExtensionCodes.BOM_EXT, bomGen.getContents());
-		logger.debug("generated BOM (Bill of Material): " + name);
+		String bomFileName = name + ExtensionCodes.BOM_EXT;
+		fsa.generateFile(bomFileName, bomGen.getContents());
+		logger.info("generated BOM (Bill of Material): " + bomFileName);
 
 		InfoGenerator infoGen = new InfoGenerator(eDesign);
-		fsa.generateFile(name + ExtensionCodes.INFO_EXT, infoGen.getContents());
-		logger.debug("generated LSI (Layout Supplimentary Information):" + name);
+		String infoFileName = name + ExtensionCodes.INFO_EXT;
+		fsa.generateFile(infoFileName, infoGen.getContents());
+		logger.info("generated LSI (Layout Supplimentary Information): " + infoFileName);
 
 		if (commandLine != null) {
 			if (commandLine.hasOption("all") || commandLine.hasOption("pads")) {
@@ -112,7 +117,7 @@ public class MyPhdlGenerator implements IGenerator {
 				logger.debug("generated SCR (EAGLE Script): " + name);
 			}
 			if (commandLine.hasOption("hierarchy"))
-				eDesign.printHierarchy();
+				logger.info(eDesign.displayHierarchy());
 		} else {
 			PADSGenerator netListGen = new PADSGenerator(eDesign, refDesGen.getRefMap());
 			fsa.generateFile(name + ExtensionCodes.PADS_EXT, netListGen.getContents());
@@ -121,8 +126,15 @@ public class MyPhdlGenerator implements IGenerator {
 			EagleGenerator eagleGen = new EagleGenerator(eDesign, refDesGen.getRefMap());
 			fsa.generateFile(name + ExtensionCodes.EAGLE_EXT, eagleGen.getContents());
 			logger.debug("generated SCR (EAGLE Script): " + name);
+
+			logger.info(eDesign.displayHierarchy());
 		}
 
 		// logger.info("Finished generating output: " + name);
+	}
+
+	private void generateRefDes(IFileSystemAccess fsa, String name, Design design) {
+		// TODO Auto-generated method stub
+
 	}
 }
