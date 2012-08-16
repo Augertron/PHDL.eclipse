@@ -1,0 +1,9 @@
+Part myFOOTPRINT { Name "A/B0/C1" }
+Part myFOOTPRINT { Name "A/B0/C2" }
+Part myFOOTPRINT { Name "A/B1/C1" }
+Part myFOOTPRINT { Name "A/B1/C2" }
+
+Signal "TOP/NET_TOP1[1]"
+{ A/B1/C1-0 A/B1/C2-0 A/B0/C1-0 A/B0/C2-0 }
+Signal "TOP/NET_TOP1[0]"
+{ A/B1/C2-1 A/B1/C1-1 A/B0/C2-1 A/B0/C1-1 }

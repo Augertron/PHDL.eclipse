@@ -80,12 +80,13 @@ class TestGenerator extends XtextTest {
 	}
 	
 	def void testOutputFileNames(InMemoryFileSystemAccess fsa, String path) {
-		assertEquals(5, fsa.files.size)
+		assertEquals(6, fsa.files.size)
 		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + path + ExtensionCodes::PADS_EXT))
 		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + path + ExtensionCodes::BOM_EXT))
 		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + path + ExtensionCodes::INFO_EXT))
 		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + path + ExtensionCodes::REFDES_EXT))
 		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + path + ExtensionCodes::EAGLE_EXT))
+		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + path + ExtensionCodes::OSMOND_EXT))
 	}
 	
 	def void testOutputFiles(InMemoryFileSystemAccess fsa, String expected, String actual) {
@@ -103,6 +104,9 @@ class TestGenerator extends XtextTest {
 		)
 		assertEquals(FileToString::readFile(expected + ExtensionCodes::EAGLE_EXT), 
 			fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + actual + ExtensionCodes::EAGLE_EXT).toString
+		)
+		assertEquals(FileToString::readFile(expected + ExtensionCodes::OSMOND_EXT), 
+			fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + actual + ExtensionCodes::OSMOND_EXT).toString
 		)
 	}
 }
