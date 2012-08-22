@@ -10,21 +10,21 @@ import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 
-import com.google.inject.Inject;
+import com.thoughtworks.xstream.XStream;
 
 import edu.byu.ee.phdl.elaboration.EDesign;
 import edu.byu.ee.phdl.elaboration.PhdlElaborator;
 import edu.byu.ee.phdl.erc.ElectricalRuleChecker;
+import edu.byu.ee.phdl.netlist.PhdlNetlist;
 import edu.byu.ee.phdl.phdl.Design;
 import edu.byu.ee.phdl.phdl.Package;
 import edu.byu.ee.phdl.phdl.PhdlModel;
+import edu.byu.ee.phdl.utils.ExtensionCodes;
+import edu.byu.ee.phdl.utils.PhdlUtils;
 
 public class PhdlGeneratorImpl implements IGenerator {
 
 	private static Logger logger = Logger.getLogger(PhdlGeneratorImpl.class);
-
-	@Inject
-	PhdlElaborator elaborator;
 
 	private final CommandLine commandLine = edu.byu.ee.phdl.standalone.PhdlCompiler.getCommandLine();
 
@@ -80,15 +80,11 @@ public class PhdlGeneratorImpl implements IGenerator {
 
 	public void generate(IFileSystemAccess fsa, String name, Design design) {
 
-		// elaborate the design
+		PhdlElaborator elaborator = new PhdlElaborator();
 		EDesign eDesign = elaborator.elaborate(design);
 
-		// perform the electrical rule check
 		new ElectricalRuleChecker(eDesign);
 
-		// generate reference designators
-
-		generateRefDes(fsa, name, design);
 		RefDesGenerator refDesGen = new RefDesGenerator(eDesign);
 		String refDesFileName = name + ExtensionCodes.REFDES_EXT;
 		fsa.generateFile(refDesFileName, refDesGen.getContents());
@@ -106,46 +102,46 @@ public class PhdlGeneratorImpl implements IGenerator {
 
 		if (commandLine != null) {
 			if (commandLine.hasOption("all") || commandLine.hasOption("pads")) {
-				PADSGenerator netListGen = new PADSGenerator(eDesign, refDesGen.getRefMap());
-				fsa.generateFile(name + ExtensionCodes.PADS_EXT, netListGen.getContents());
+				PADSGenerator padsGen = new PADSGenerator(eDesign);
+				fsa.generateFile(name + ExtensionCodes.PADS_EXT, padsGen.getContents());
 				logger.debug("generated ASC (PADS netlist): " + name);
 			}
 
 			if (commandLine.hasOption("all") || commandLine.hasOption("eagle")) {
-				EagleGenerator eagleGen = new EagleGenerator(eDesign, refDesGen.getRefMap());
+				EagleGenerator eagleGen = new EagleGenerator(eDesign);
 				fsa.generateFile(name + ExtensionCodes.EAGLE_EXT, eagleGen.getContents());
 				logger.debug("generated SCR (EAGLE script): " + name);
 			}
 
-			if (commandLine.hasOption("all") || commandLine.hasOption("osmond")) {
-				OsmondGenerator osmondGen = new OsmondGenerator(eDesign, refDesGen.getRefMap());
-				fsa.generateFile(name + ExtensionCodes.OSMOND_EXT, osmondGen.getContents());
-				logger.debug("generated OSM (Osmond netlist): " + name);
+			if (commandLine.hasOption("all") || commandLine.hasOption("xml")) {
+				PhdlNetlist netlist = new PhdlNetlist(eDesign);
+				XStream xstream = new XStream();
+				PhdlUtils.configureAliases(xstream);
+				String xmlFileName = name + ExtensionCodes.XML_EXT;
+				fsa.generateFile(xmlFileName, xstream.toXML(netlist) + "\n");
+				logger.info("generated XML (For use with netlist translator): " + xmlFileName);
 			}
 
 			if (commandLine.hasOption("hierarchy"))
 				logger.info(eDesign.displayHierarchy());
 		} else {
-			PADSGenerator netListGen = new PADSGenerator(eDesign, refDesGen.getRefMap());
-			fsa.generateFile(name + ExtensionCodes.PADS_EXT, netListGen.getContents());
+			PADSGenerator padsGen = new PADSGenerator(eDesign);
+			fsa.generateFile(name + ExtensionCodes.PADS_EXT, padsGen.getContents());
 			logger.debug("generated ASC (PADS netlist): " + name);
 
-			EagleGenerator eagleGen = new EagleGenerator(eDesign, refDesGen.getRefMap());
+			EagleGenerator eagleGen = new EagleGenerator(eDesign);
 			fsa.generateFile(name + ExtensionCodes.EAGLE_EXT, eagleGen.getContents());
 			logger.debug("generated SCR (EAGLE script): " + name);
 
-			OsmondGenerator osmondGen = new OsmondGenerator(eDesign, refDesGen.getRefMap());
-			fsa.generateFile(name + ExtensionCodes.OSMOND_EXT, osmondGen.getContents());
-			logger.debug("generated OSM (Osmond netlist): " + name);
+			PhdlNetlist netlist = new PhdlNetlist(eDesign);
+			XStream xstream = new XStream();
+			PhdlUtils.configureAliases(xstream);
+			String xmlFileName = name + ExtensionCodes.XML_EXT;
+			fsa.generateFile(xmlFileName, xstream.toXML(netlist) + "\n");
+			logger.info("generated XML (For use with netlist translator): " + xmlFileName);
 
 			logger.info(eDesign.displayHierarchy());
 		}
-
-		// logger.info("Finished generating output: " + name);
-	}
-
-	private void generateRefDes(IFileSystemAccess fsa, String name, Design design) {
-		// TODO Auto-generated method stub
 
 	}
 }

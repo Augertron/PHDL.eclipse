@@ -1,4 +1,0 @@
-Part dFoot { Name "D1" }
-
-Signal "TOP/N"
-{ D1-1 D1-2 }

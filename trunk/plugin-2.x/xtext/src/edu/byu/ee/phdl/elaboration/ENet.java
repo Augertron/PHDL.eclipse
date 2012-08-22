@@ -10,6 +10,7 @@
 
 package edu.byu.ee.phdl.elaboration;
 
+
 // import phdl.TestDriver;
 
 /**
@@ -23,7 +24,8 @@ public class ENet extends EConnection {
 	/**
 	 * Default Constructor.
 	 * 
-	 * @param d the DesignNode that is the parent of this net
+	 * @param d
+	 *            the DesignNode that is the parent of this net
 	 */
 	public ENet(EDesignUnit design) {
 		super(design);
@@ -50,15 +52,18 @@ public class ENet extends EConnection {
 	// /**
 	// * Unit Test Code Author: Richard Black Date: January 6, 2012
 	// *
-	// * WARNING: This test code assumes that certain methods work in other objects. Common
+	// * WARNING: This test code assumes that certain methods work in other
+	// objects. Common
 	// * occurrences of this are "equals," "compare," and "toString."
 	// *
 	// * Legend # Proper Behavior X Improper Behavior ? Untested
 	// *
 	// * Member Variables private boolean visited;
 	// *
-	// * Methods # public Net(Design design); ? public Net(Design design, String name); # public
-	// * boolean isVisited(); # public void setVisited(boolean visited); ? public Net
+	// * Methods # public Net(Design design); ? public Net(Design design, String
+	// name); # public
+	// * boolean isVisited(); # public void setVisited(boolean visited); ?
+	// public Net
 	// * getUnvisitedNet();
 	// */
 	// public static boolean unitTest() {
@@ -94,7 +99,8 @@ public class ENet extends EConnection {
 	// testNet2.setVisited(true);
 	// if (!testNet2.isVisited()) {
 	// success &= TestDriver
-	// .displayError(testNum, "public Net(Design design)", "the net should be marked visited");
+	// .displayError(testNum, "public Net(Design design)",
+	// "the net should be marked visited");
 	// }
 	//
 	// /**
@@ -102,7 +108,8 @@ public class ENet extends EConnection {
 	// */
 	// testNum++;
 	// if (testNet2.getNodeType() != NodeType.NET) {
-	// success &= TestDriver.displayError(testNum, "public NodeType getNodeType()",
+	// success &= TestDriver.displayError(testNum,
+	// "public NodeType getNodeType()",
 	// "incorrect node type",
 	// NodeType.NET.toString(), testNet2.getNodeType().toString());
 	// }
@@ -130,7 +137,8 @@ public class ENet extends EConnection {
 	// outer2.addSubInst(inner2);
 	//
 	// if (net11.equals(net12)) {
-	// success &= TestDriver.displayError(testNum, "public boolean equals()", "Incorrect value",
+	// success &= TestDriver.displayError(testNum, "public boolean equals()",
+	// "Incorrect value",
 	// "true", "false");
 	// }
 	//

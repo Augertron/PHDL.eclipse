@@ -34,7 +34,8 @@ public class EPin extends Node {
 	/**
 	 * Default Constructor.
 	 * 
-	 * @param parent the Parent to set
+	 * @param parent
+	 *            the Parent to set
 	 * @see Attributable
 	 */
 	public EPin(Attributable parent) {
@@ -51,8 +52,10 @@ public class EPin extends Node {
 	/**
 	 * Copy Constructor.
 	 * 
-	 * @param old the old PinNode to copy
-	 * @param parent the parent of the PinNode
+	 * @param old
+	 *            the old PinNode to copy
+	 * @param parent
+	 *            the parent of the PinNode
 	 */
 	public EPin(Attributable parent, EPin old) {
 		super(old);
@@ -71,6 +74,10 @@ public class EPin extends Node {
 		this.name = name;
 		this.pinType = type;
 		setIndex(-1);
+	}
+
+	public boolean assignTo(EConnection connection) {
+		return (this.setAssignment(connection) && connection.addPin(this));
 	}
 
 	@Override
@@ -151,15 +158,12 @@ public class EPin extends Node {
 		return open;
 	}
 
-	/**
-	 * Net mutator method.
-	 * 
-	 * @param net the new NetNode
-	 */
-	public void setAssignment(EConnection assignment) {
+	public boolean setAssignment(EConnection assignment) {
 		if (assignment != null) {
 			this.assignment = assignment;
+			return true;
 		}
+		return false;
 	}
 
 	public void setIndex(int index) {
@@ -177,7 +181,8 @@ public class EPin extends Node {
 	/**
 	 * ParentNode mutator method.
 	 * 
-	 * @param parent the new attributable parent node
+	 * @param parent
+	 *            the new attributable parent node
 	 */
 	public void setParent(Attributable parent) {
 		if (parent != null) {
@@ -190,7 +195,8 @@ public class EPin extends Node {
 	/**
 	 * PinName mutator method.
 	 * 
-	 * @param pinName the new pinName
+	 * @param pinName
+	 *            the new pinName
 	 */
 	public void setPinMapping(String pinMapping) {
 		if (pinMapping != null) {
@@ -210,27 +216,36 @@ public class EPin extends Node {
 	 */
 	public String toString() {
 		return getNodeType() + ": " + getPinType() + " " + name + ((index == -1) ? ("") : ("[" + index + "]")) + " = {"
-			+ pinMapping + "}";
+				+ pinMapping + "}";
 	}
 
 	// /***********************************
 	// * Unit Test Code Author: Richard Black Date: January 4, 2012
 	// *
-	// * WARNING: This test code assumes that certain methods work in other objects. Common
+	// * WARNING: This test code assumes that certain methods work in other
+	// objects. Common
 	// * occurrences of this are "equals," "compare," and "toString."
 	// *
-	// * Legend # Proper Behavior (as of January 6, 2012) X Improper Behavior ? Untested
+	// * Legend # Proper Behavior (as of January 6, 2012) X Improper Behavior ?
+	// Untested
 	// *
-	// * Member Variables Attributable parent String pinMapping Net net PinType pinType int index
+	// * Member Variables Attributable parent String pinMapping Net net PinType
+	// pinType int index
 	// *
-	// * Methods # public Pin(Attributable parent); # public Pin(Pin old, Attributable parent); #
-	// * public boolean equals(Object o); # public int getIndex(); # public Net getNet(); # public
-	// * NodeType getNodeType(); # public Attributable getParent(); # public String getPinMapping();
+	// * Methods # public Pin(Attributable parent); # public Pin(Pin old,
+	// Attributable parent); #
+	// * public boolean equals(Object o); # public int getIndex(); # public Net
+	// getNet(); # public
+	// * NodeType getNodeType(); # public Attributable getParent(); # public
+	// String getPinMapping();
 	// #
-	// * public PinType getPinType(); # public boolean hasNet(); # public void setIndex(int index);
+	// * public PinType getPinType(); # public boolean hasNet(); # public void
+	// setIndex(int index);
 	// #
-	// * public void setNet(Net net); # public void setParent(Attributable parent); # public void
-	// * setPinMapping(String pinMapping); # public void setPinType(PinType type); # public String
+	// * public void setNet(Net net); # public void setParent(Attributable
+	// parent); # public void
+	// * setPinMapping(String pinMapping); # public void setPinType(PinType
+	// type); # public String
 	// * toString();
 	// *
 	// ***********************************/
@@ -243,23 +258,32 @@ public class EPin extends Node {
 	// testNum++;
 	// Pin testPin1 = new Pin(null);
 	// if (testPin1.parent != null) {
-	// success = TestDriver.displayError(testNum, "public Pin(Attributable parent)",
-	// "parent member variable should be null", "null", testPin1.parent.toString());
+	// success = TestDriver.displayError(testNum,
+	// "public Pin(Attributable parent)",
+	// "parent member variable should be null", "null",
+	// testPin1.parent.toString());
 	// }
 	// if (testPin1.pinMapping != null) {
-	// success = TestDriver.displayError(testNum, "public Pin(Attributable parent)",
-	// "pinMapping member variable should be null", "null", testPin1.pinMapping.toString());
+	// success = TestDriver.displayError(testNum,
+	// "public Pin(Attributable parent)",
+	// "pinMapping member variable should be null", "null",
+	// testPin1.pinMapping.toString());
 	// }
 	// if (testPin1.assignment != null) {
-	// success = TestDriver.displayError(testNum, "public Pin(Attributable parent)",
-	// "net member variable should be null", "null", testPin1.assignment.toString());
+	// success = TestDriver.displayError(testNum,
+	// "public Pin(Attributable parent)",
+	// "net member variable should be null", "null",
+	// testPin1.assignment.toString());
 	// }
 	// if (testPin1.pinType != PinType.PIN) {
-	// success = TestDriver.displayError(testNum, "public Pin(Attributable parent)",
-	// "pinType member variable should be PIN", "PIN", testPin1.pinType.toString());
+	// success = TestDriver.displayError(testNum,
+	// "public Pin(Attributable parent)",
+	// "pinType member variable should be PIN", "PIN",
+	// testPin1.pinType.toString());
 	// }
 	// if (testPin1.index != -1) {
-	// success = TestDriver.displayError(testNum, "public Pin(Attributable parent)",
+	// success = TestDriver.displayError(testNum,
+	// "public Pin(Attributable parent)",
 	// "index member variable should be -1", "-1", testPin1.index + "");
 	// }
 	//
@@ -270,7 +294,8 @@ public class EPin extends Node {
 	// Net parentNet = new Net(null);
 	// Pin testPin2 = new Pin(parentNet);
 	// if (testPin2.parent != null) {
-	// success = TestDriver.displayError(testNum, "public Pin(Attributable parent)",
+	// success = TestDriver.displayError(testNum,
+	// "public Pin(Attributable parent)",
 	// "parent member variable should be null when parameter is an invalid parent");
 	// }
 	//
@@ -281,16 +306,19 @@ public class EPin extends Node {
 	// Device parentDevice = new Device("null");
 	// Pin testPin3 = new Pin(parentDevice);
 	// if (testPin3.parent != parentDevice) {
-	// success = TestDriver.displayError(testNum, "public Pin(Attributable parent)",
+	// success = TestDriver.displayError(testNum,
+	// "public Pin(Attributable parent)",
 	// "parent member variable should have same address as parameter");
 	// }
 	// if (!testPin3.parent.equals(parentDevice)) {
-	// success = TestDriver.displayError(testNum, "public Pin(Attributable parent)",
+	// success = TestDriver.displayError(testNum,
+	// "public Pin(Attributable parent)",
 	// "parent member variable should be a device with name \"null\"");
 	// }
 	//
 	// /**
-	// * Test 4 public Pin(Pin old, Attributable parent); old = testPin3 parent = null
+	// * Test 4 public Pin(Pin old, Attributable parent); old = testPin3 parent
+	// = null
 	// */
 	// testNum++;
 	// Net testNet3 = new Net(null);
@@ -301,45 +329,61 @@ public class EPin extends Node {
 	// Pin copyPin1 = new Pin(parentDevice, testPin3);
 	//
 	// if (copyPin1.parent == null) {
-	// success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)",
-	// "member variable parent should not be null", "\"null\"", copyPin1.parent.toString());
+	// success = TestDriver.displayError(testNum,
+	// "public Pin(Pin old, Attributable parent)",
+	// "member variable parent should not be null", "\"null\"",
+	// copyPin1.parent.toString());
 	// }
 	// if (copyPin1.fileName != testPin3.fileName) {
-	// success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)",
-	// "member variable filename doesn't match", testPin3.fileName, copyPin1.fileName);
+	// success = TestDriver.displayError(testNum,
+	// "public Pin(Pin old, Attributable parent)",
+	// "member variable filename doesn't match", testPin3.fileName,
+	// copyPin1.fileName);
 	// }
 	// if (copyPin1.info != testPin3.info) {
-	// success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)",
+	// success = TestDriver.displayError(testNum,
+	// "public Pin(Pin old, Attributable parent)",
 	// "member variable info doesn't match", testPin3.info, copyPin1.info);
 	// }
 	// if (copyPin1.line != testPin3.line) {
-	// success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)",
-	// "member variable line doesn't match", testPin3.line + "", copyPin1.line + "");
+	// success = TestDriver.displayError(testNum,
+	// "public Pin(Pin old, Attributable parent)",
+	// "member variable line doesn't match", testPin3.line + "", copyPin1.line +
+	// "");
 	// }
 	// if (copyPin1.name != testPin3.name) {
-	// success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)",
+	// success = TestDriver.displayError(testNum,
+	// "public Pin(Pin old, Attributable parent)",
 	// "member variable name doesn't match", testPin3.name, copyPin1.name);
 	// }
 	// if (copyPin1.pos != testPin3.pos) {
-	// success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)",
-	// "member variable pos doesn't match", testPin3.pos + "", copyPin1.pos + "");
+	// success = TestDriver.displayError(testNum,
+	// "public Pin(Pin old, Attributable parent)",
+	// "member variable pos doesn't match", testPin3.pos + "", copyPin1.pos +
+	// "");
 	// }
 	// if (copyPin1.pinMapping != testPin3.pinMapping) {
-	// success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)",
-	// "member variable pinMapping doesn't match", testPin3.pinMapping, copyPin1.pinMapping);
+	// success = TestDriver.displayError(testNum,
+	// "public Pin(Pin old, Attributable parent)",
+	// "member variable pinMapping doesn't match", testPin3.pinMapping,
+	// copyPin1.pinMapping);
 	// }
 	// if (copyPin1.pinType != testPin3.pinType) {
-	// success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)",
+	// success = TestDriver.displayError(testNum,
+	// "public Pin(Pin old, Attributable parent)",
 	// "member variable pinType doesn't match", testPin3.pinType.toString(),
 	// copyPin1.pinType.toString());
 	// }
 	// if (copyPin1.index != testPin3.index) {
-	// success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)",
-	// "member variable index doesn't match", testPin3.index + "", copyPin1.index + "");
+	// success = TestDriver.displayError(testNum,
+	// "public Pin(Pin old, Attributable parent)",
+	// "member variable index doesn't match", testPin3.index + "",
+	// copyPin1.index + "");
 	// }
 	//
 	// /**
-	// * Test 5 public Pin(Pin old, Attributable parent); old = copyPin1 modified parent = null
+	// * Test 5 public Pin(Pin old, Attributable parent); old = copyPin1
+	// modified parent = null
 	// */
 	// testNum++;
 	// Net tempNet1 = new Net(null);
@@ -356,37 +400,50 @@ public class EPin extends Node {
 	//
 	// Pin copyPin2 = new Pin(null, copyPin1);
 	// if (copyPin2.fileName != copyPin1.fileName) {
-	// success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)",
-	// "member variable filename doesn't match", copyPin1.fileName, copyPin2.fileName);
+	// success = TestDriver.displayError(testNum,
+	// "public Pin(Pin old, Attributable parent)",
+	// "member variable filename doesn't match", copyPin1.fileName,
+	// copyPin2.fileName);
 	// }
 	// if (copyPin2.info != copyPin1.info) {
-	// success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)",
+	// success = TestDriver.displayError(testNum,
+	// "public Pin(Pin old, Attributable parent)",
 	// "member variable info doesn't match", copyPin1.info, copyPin2.info);
 	// }
 	// if (copyPin2.line != copyPin1.line) {
-	// success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)",
-	// "member variable line doesn't match", copyPin1.line + "", copyPin2.line + "");
+	// success = TestDriver.displayError(testNum,
+	// "public Pin(Pin old, Attributable parent)",
+	// "member variable line doesn't match", copyPin1.line + "", copyPin2.line +
+	// "");
 	// }
 	// if (copyPin2.name != copyPin1.name) {
-	// success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)",
+	// success = TestDriver.displayError(testNum,
+	// "public Pin(Pin old, Attributable parent)",
 	// "member variable name doesn't match", copyPin1.name, copyPin2.name);
 	// }
 	// if (copyPin2.pos != copyPin1.pos) {
-	// success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)",
-	// "member variable pos doesn't match", copyPin1.pos + "", copyPin2.pos + "");
+	// success = TestDriver.displayError(testNum,
+	// "public Pin(Pin old, Attributable parent)",
+	// "member variable pos doesn't match", copyPin1.pos + "", copyPin2.pos +
+	// "");
 	// }
 	// if (copyPin2.pinMapping != copyPin1.pinMapping) {
-	// success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)",
-	// "member variable pinMapping doesn't match", copyPin1.pinMapping, copyPin2.pinMapping);
+	// success = TestDriver.displayError(testNum,
+	// "public Pin(Pin old, Attributable parent)",
+	// "member variable pinMapping doesn't match", copyPin1.pinMapping,
+	// copyPin2.pinMapping);
 	// }
 	// if (copyPin2.pinType != copyPin1.pinType) {
-	// success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)",
+	// success = TestDriver.displayError(testNum,
+	// "public Pin(Pin old, Attributable parent)",
 	// "member variable pinType doesn't match", copyPin1.pinType.toString(),
 	// copyPin2.pinType.toString());
 	// }
 	// if (copyPin2.index != copyPin1.index) {
-	// success = TestDriver.displayError(testNum, "public Pin(Pin old, Attributable parent)",
-	// "member variable index doesn't match", copyPin1.index + "", copyPin2.index + "");
+	// success = TestDriver.displayError(testNum,
+	// "public Pin(Pin old, Attributable parent)",
+	// "member variable index doesn't match", copyPin1.index + "",
+	// copyPin2.index + "");
 	// }
 	//
 	// /**
@@ -394,11 +451,13 @@ public class EPin extends Node {
 	// */
 	// testNum++;
 	// if (!copyPin1.equals(copyPin2)) {
-	// success = TestDriver.displayError(testNum, "public boolean equals(Object o)",
+	// success = TestDriver.displayError(testNum,
+	// "public boolean equals(Object o)",
 	// "copyPin1 and copyPin2 should be equal");
 	// }
 	// if (!copyPin2.equals(copyPin1)) {
-	// success = TestDriver.displayError(testNum, "public boolean equals(Object o)",
+	// success = TestDriver.displayError(testNum,
+	// "public boolean equals(Object o)",
 	// "copyPin2 and copyPin1 should be equal");
 	// }
 	//
@@ -407,16 +466,19 @@ public class EPin extends Node {
 	// */
 	// testNum++;
 	// if (copyPin1.equals(testPin3)) {
-	// success = TestDriver.displayError(testNum, "public boolean equals(Object o)",
+	// success = TestDriver.displayError(testNum,
+	// "public boolean equals(Object o)",
 	// "copyPin1 and testPin3 should not be equal");
 	// }
 	// if (testPin3.equals(copyPin1)) {
-	// success = TestDriver.displayError(testNum, "public boolean equals(Object o)",
+	// success = TestDriver.displayError(testNum,
+	// "public boolean equals(Object o)",
 	// "testPin3 and copyPin1 should not be equal");
 	// }
 	//
 	// /**
-	// * Test 8 public boolean equals(Object o); o = testPin4a, testPin4b, gradually modified
+	// * Test 8 public boolean equals(Object o); o = testPin4a, testPin4b,
+	// gradually modified
 	// */
 	// testNum++;
 	// Pin testPin4a = new Pin(null);
@@ -432,62 +494,71 @@ public class EPin extends Node {
 	//
 	// Pin testPin4b = new Pin(null, testPin4a);
 	// if (!testPin4a.equals(testPin4b)) {
-	// success = TestDriver.displayError(testNum, "public boolean equals(Object o)",
+	// success = TestDriver.displayError(testNum,
+	// "public boolean equals(Object o)",
 	// "testPin4a and testPin4b should be equal");
 	// }
 	//
 	// testPin4b.name = "diff_name";
 	// if (testPin4a.equals(testPin4b)) {
-	// success = TestDriver.displayError(testNum, "public boolean equals(Object o)",
+	// success = TestDriver.displayError(testNum,
+	// "public boolean equals(Object o)",
 	// "testPin4a and testPin4b should not be equal when names are different");
 	// }
 	//
 	// testPin4b.name = testPin4a.name;
 	// testPin4b.index = 3;
 	// if (testPin4a.equals(testPin4b)) {
-	// success = TestDriver.displayError(testNum, "public boolean equals(Object o)",
+	// success = TestDriver.displayError(testNum,
+	// "public boolean equals(Object o)",
 	// "testPin4a and testPin4b should not be equal when indices are different");
 	// }
 	//
 	// testPin4b.index = testPin4a.index;
 	// testPin4b.pinMapping = "ba";
 	// if (!testPin4a.equals(testPin4b)) {
-	// success = TestDriver.displayError(testNum, "public boolean equals(Object o)",
+	// success = TestDriver.displayError(testNum,
+	// "public boolean equals(Object o)",
 	// "testPin4a and testPin4b should be equal when pinMappings are different");
 	// }
 	//
 	// testPin4b.pinMapping = testPin4a.pinMapping;
 	// testPin4b.pinType = PinType.INPIN;
 	// if (!testPin4a.equals(testPin4b)) {
-	// success = TestDriver.displayError(testNum, "public boolean equals(Object o)",
+	// success = TestDriver.displayError(testNum,
+	// "public boolean equals(Object o)",
 	// "testPin4a and testPin4b should be equal when pinTypes are different");
 	// }
 	//
 	// testPin4b.pinType = testPin4a.pinType;
 	// testPin4b.fileName = "other_filename";
 	// if (!testPin4a.equals(testPin4b)) {
-	// success = TestDriver.displayError(testNum, "public boolean equals(Object o)",
+	// success = TestDriver.displayError(testNum,
+	// "public boolean equals(Object o)",
 	// "testPin4a and testPin4b should be equal when fileNames are different");
 	// }
 	//
 	// testPin4b.fileName = testPin4a.fileName;
 	// testPin4b.info = "other_info";
 	// if (!testPin4a.equals(testPin4b)) {
-	// success = TestDriver.displayError(testNum, "public boolean equals(Object o)",
+	// success = TestDriver.displayError(testNum,
+	// "public boolean equals(Object o)",
 	// "testPin4a and testPin4b should be equal when infos are different");
 	// }
 	//
 	// testPin4b.info = testPin4a.info;
 	// testPin4b.line = 999;
 	// if (!testPin4a.equals(testPin4b)) {
-	// success = TestDriver.displayError(testNum, "public boolean equals(Object o)",
+	// success = TestDriver.displayError(testNum,
+	// "public boolean equals(Object o)",
 	// "testPin4a and testPin4b should be equal when lines are different");
 	// }
 	//
 	// testPin4b.line = testPin4a.line;
 	// testPin4b.pos = 777;
 	// if (!testPin4a.equals(testPin4b)) {
-	// success = TestDriver.displayError(testNum, "public boolean equals(Object o)",
+	// success = TestDriver.displayError(testNum,
+	// "public boolean equals(Object o)",
 	// "testPin4a and testPin4b should be equal when pos's are different");
 	// }
 	//
@@ -502,7 +573,8 @@ public class EPin extends Node {
 	// }
 	// testPin5.index = 4;
 	// if (testPin5.getIndex() != 4) {
-	// success = TestDriver.displayError(testNum, "public int getIndex()", "Index incorrect",
+	// success = TestDriver.displayError(testNum, "public int getIndex()",
+	// "Index incorrect",
 	// testPin5.index + "",
 	// testPin5.getIndex() + "");
 	// }
@@ -513,14 +585,16 @@ public class EPin extends Node {
 	// testNum++;
 	// if (testPin5.getAssignment() != null) {
 	// success = TestDriver
-	// .displayError(testNum, "public Net getNet()", "Upon initialization, net should be null");
+	// .displayError(testNum, "public Net getNet()",
+	// "Upon initialization, net should be null");
 	// }
 	// Design dummy_des = new Design("dummy");
 	// Net testNet5 = new Net(dummy_des);
 	// testNet5.name = "test_net_5";
 	// testPin5.assignment = testNet5;
 	// if (!testPin5.getAssignment().equals(testNet5)) {
-	// success = TestDriver.displayError(testNum, "public Net getNet()", "Net incorrect",
+	// success = TestDriver.displayError(testNum, "public Net getNet()",
+	// "Net incorrect",
 	// testNet5.toString(),
 	// testPin5.getAssignment().toString());
 	// }
@@ -530,7 +604,8 @@ public class EPin extends Node {
 	// */
 	// testNum++;
 	// if (testPin5.getNodeType() != NodeType.PIN) {
-	// success = TestDriver.displayError(testNum, "public NodeType getNodeType()",
+	// success = TestDriver.displayError(testNum,
+	// "public NodeType getNodeType()",
 	// "A Pin should have a nodeType of PIN");
 	// }
 	//
@@ -539,14 +614,16 @@ public class EPin extends Node {
 	// */
 	// testNum++;
 	// if (testPin5.getParent() != null) {
-	// success = TestDriver.displayError(testNum, "public NodeType getParent()", "Incorrect parent",
+	// success = TestDriver.displayError(testNum, "public NodeType getParent()",
+	// "Incorrect parent",
 	// "null",
 	// testPin5.getParent().toString());
 	// }
 	// Device parentDevice5 = new Device("parent_device_5");
 	// testPin5.parent = parentDevice5;
 	// if (!testPin5.getParent().equals(parentDevice5)) {
-	// success = TestDriver.displayError(testNum, "public NodeType getParent()", "Incorrect parent",
+	// success = TestDriver.displayError(testNum, "public NodeType getParent()",
+	// "Incorrect parent",
 	// parentDevice5.toString(), testPin5.getParent().toString());
 	// }
 	//
@@ -555,12 +632,15 @@ public class EPin extends Node {
 	// */
 	// testNum++;
 	// if (testPin5.getPinMapping() != null) {
-	// success = TestDriver.displayError(testNum, "public NodeType getPinMapping()",
-	// "Upon initialization, pinMapping should be null", "null", testPin5.getPinMapping());
+	// success = TestDriver.displayError(testNum,
+	// "public NodeType getPinMapping()",
+	// "Upon initialization, pinMapping should be null", "null",
+	// testPin5.getPinMapping());
 	// }
 	// testPin5.pinMapping = "5ab";
 	// if (!testPin5.getPinMapping().equals("5ab")) {
-	// success = TestDriver.displayError(testNum, "public NodeType getPinMapping()",
+	// success = TestDriver.displayError(testNum,
+	// "public NodeType getPinMapping()",
 	// "pinMapping incorrect",
 	// testPin5.pinMapping, testPin5.getPinMapping());
 	// }
@@ -570,15 +650,19 @@ public class EPin extends Node {
 	// */
 	// testNum++;
 	// if (testPin5.getPinType() != PinType.PIN) {
-	// success = TestDriver.displayError(testNum, "public NodeType getPinType()",
-	// "Upon initialization, pinType should be PIN", testPin5.pinType.toString(),
+	// success = TestDriver.displayError(testNum,
+	// "public NodeType getPinType()",
+	// "Upon initialization, pinType should be PIN",
+	// testPin5.pinType.toString(),
 	// testPin5.getPinType()
 	// .toString());
 	// }
 	// testPin5.pinType = PinType.PWRPIN;
 	// if (testPin5.getPinType() != PinType.PWRPIN) {
-	// success = TestDriver.displayError(testNum, "public NodeType getPinType()",
-	// "Upon initialization, pinType should be PWRPIN", testPin5.pinType.toString(),
+	// success = TestDriver.displayError(testNum,
+	// "public NodeType getPinType()",
+	// "Upon initialization, pinType should be PWRPIN",
+	// testPin5.pinType.toString(),
 	// testPin5.getPinType()
 	// .toString());
 	// }
@@ -605,25 +689,31 @@ public class EPin extends Node {
 	// testNum++;
 	// testPin6.setIndex(14);
 	// if (testPin6.getIndex() != 14) {
-	// success = TestDriver.displayError(testNum, "public void setIndex(int index)",
+	// success = TestDriver.displayError(testNum,
+	// "public void setIndex(int index)",
 	// "Incorrect index", "14",
 	// testPin6.getIndex() + "");
 	// }
 	// testPin6.setIndex(-1);
 	// if (testPin6.getIndex() != -1) {
-	// success = TestDriver.displayError(testNum, "public void setIndex(int index)",
+	// success = TestDriver.displayError(testNum,
+	// "public void setIndex(int index)",
 	// "Incorrect index", "-1",
 	// testPin6.getIndex() + "");
 	// }
 	// testPin6.setIndex(-123);
 	// if (testPin6.getIndex() != -1) {
-	// success = TestDriver.displayError(testNum, "public void setIndex(int index)",
-	// "Index should default to -1 if less than 0", "-1", testPin6.getIndex() + "");
+	// success = TestDriver.displayError(testNum,
+	// "public void setIndex(int index)",
+	// "Index should default to -1 if less than 0", "-1", testPin6.getIndex() +
+	// "");
 	// }
 	// testPin6.setIndex(320584);
 	// if (testPin6.getIndex() != 320584) {
-	// success = TestDriver.displayError(testNum, "public void setIndex(int index)",
-	// "There should be no upper limit on index", "320584", testPin6.getIndex() + "");
+	// success = TestDriver.displayError(testNum,
+	// "public void setIndex(int index)",
+	// "There should be no upper limit on index", "320584", testPin6.getIndex()
+	// + "");
 	// }
 	//
 	// /**
@@ -635,7 +725,8 @@ public class EPin extends Node {
 	// testNet7.name = "test_net_7";
 	// testPin7.setAssignment(testNet7);
 	// if (!testPin7.getAssignment().equals(testNet7)) {
-	// success = TestDriver.displayError(testNum, "public void setNet(Net net)", "Incorrect Net",
+	// success = TestDriver.displayError(testNum, "public void setNet(Net net)",
+	// "Incorrect Net",
 	// testNet7.toString(), testPin7.getAssignment().toString());
 	// }
 	// testPin7.setAssignment(null);
@@ -651,12 +742,15 @@ public class EPin extends Node {
 	// Device parentDevice7 = new Device("parent_device_7");
 	// testPin7.setParent(parentDevice7);
 	// if (!testPin7.getParent().equals(parentDevice7)) {
-	// success = TestDriver.displayError(testNum, "public void setParent(Attributable parent)",
-	// "Incorrect Parent", parentDevice7.toString(), testPin7.getParent().toString());
+	// success = TestDriver.displayError(testNum,
+	// "public void setParent(Attributable parent)",
+	// "Incorrect Parent", parentDevice7.toString(),
+	// testPin7.getParent().toString());
 	// }
 	// testPin7.setParent(null);
 	// if (testPin7.getParent() == null) {
-	// success = TestDriver.displayError(testNum, "public void setParent(Attributable parent)",
+	// success = TestDriver.displayError(testNum,
+	// "public void setParent(Attributable parent)",
 	// "Should not be able to assign null via setParent()");
 	// }
 	//
@@ -666,12 +760,14 @@ public class EPin extends Node {
 	// testNum++;
 	// testPin7.setPinMapping("7xyz");
 	// if (!testPin7.getPinMapping().equals("7xyz")) {
-	// success = TestDriver.displayError(testNum, "public void setPinMapping(String pinMapping)",
+	// success = TestDriver.displayError(testNum,
+	// "public void setPinMapping(String pinMapping)",
 	// "Incorrect PinMapping", "7xyz", testPin7.getPinMapping());
 	// }
 	// testPin7.setPinMapping(null);
 	// if (testPin7.getPinMapping() == null) {
-	// success = TestDriver.displayError(testNum, "public void setPinMapping(String pinMapping)",
+	// success = TestDriver.displayError(testNum,
+	// "public void setPinMapping(String pinMapping)",
 	// "Should not be able to assign null via setPinMapping");
 	// }
 	//
@@ -681,37 +777,43 @@ public class EPin extends Node {
 	// testNum++;
 	// testPin7.setPinType(PinType.INPIN);
 	// if (testPin7.getPinType() != PinType.INPIN) {
-	// success = TestDriver.displayError(testNum, "public void setPinType(PinType pinType)",
+	// success = TestDriver.displayError(testNum,
+	// "public void setPinType(PinType pinType)",
 	// "Incorrect PinType",
 	// PinType.INPIN.toString(), testPin7.getPinType().toString());
 	// }
 	// testPin7.setPinType(PinType.IOPIN);
 	// if (testPin7.getPinType() != PinType.IOPIN) {
-	// success = TestDriver.displayError(testNum, "public void setPinType(PinType pinType)",
+	// success = TestDriver.displayError(testNum,
+	// "public void setPinType(PinType pinType)",
 	// "Incorrect PinType",
 	// PinType.IOPIN.toString(), testPin7.getPinType().toString());
 	// }
 	// testPin7.setPinType(PinType.OUTPIN);
 	// if (testPin7.getPinType() != PinType.OUTPIN) {
-	// success = TestDriver.displayError(testNum, "public void setPinType(PinType pinType)",
+	// success = TestDriver.displayError(testNum,
+	// "public void setPinType(PinType pinType)",
 	// "Incorrect PinType",
 	// PinType.OUTPIN.toString(), testPin7.getPinType().toString());
 	// }
 	// testPin7.setPinType(PinType.PWRPIN);
 	// if (testPin7.getPinType() != PinType.PWRPIN) {
-	// success = TestDriver.displayError(testNum, "public void setPinType(PinType pinType)",
+	// success = TestDriver.displayError(testNum,
+	// "public void setPinType(PinType pinType)",
 	// "Incorrect PinType",
 	// PinType.PWRPIN.toString(), testPin7.getPinType().toString());
 	// }
 	// testPin7.setPinType(PinType.SUPPIN);
 	// if (testPin7.getPinType() != PinType.SUPPIN) {
-	// success = TestDriver.displayError(testNum, "public void setPinType(PinType pinType)",
+	// success = TestDriver.displayError(testNum,
+	// "public void setPinType(PinType pinType)",
 	// "Incorrect PinType",
 	// PinType.SUPPIN.toString(), testPin7.getPinType().toString());
 	// }
 	// testPin7.setPinType(PinType.PIN);
 	// if (testPin7.getPinType() != PinType.PIN) {
-	// success = TestDriver.displayError(testNum, "public void setPinType(PinType pinType)",
+	// success = TestDriver.displayError(testNum,
+	// "public void setPinType(PinType pinType)",
 	// "Incorrect PinType",
 	// PinType.PIN.toString(), testPin7.getPinType().toString());
 	// }

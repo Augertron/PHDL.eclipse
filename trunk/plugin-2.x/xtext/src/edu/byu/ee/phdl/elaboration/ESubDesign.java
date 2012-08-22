@@ -1,5 +1,6 @@
 package edu.byu.ee.phdl.elaboration;
 
+
 public class ESubDesign extends EDesignUnit {
 
 	private String refPrefix;
@@ -7,7 +8,7 @@ public class ESubDesign extends EDesignUnit {
 	public ESubDesign() {
 		super();
 	}
-	
+
 	public ESubDesign(String name) {
 		super();
 		this.name = name;

@@ -30,9 +30,9 @@ public class PADSGenerator {
 	private final Map<String, EInstance> refMap;
 	private String contents;
 
-	public PADSGenerator(EDesign design, Map<String, EInstance> refMap) {
+	public PADSGenerator(EDesign design) {
 		this.design = design;
-		this.refMap = refMap;
+		this.refMap = design.getRefMap();
 		generate();
 	}
 
@@ -41,13 +41,15 @@ public class PADSGenerator {
 		sb.append(generateHeader() + "\n\n");
 		sb.append(generateParts() + "\n");
 		sb.append(generateConnections());
-		sb.append("\n*END*");
+		sb.append("\n*END*\n");
 		contents = sb.toString();
 	}
 
 	private String generateConnectionHeader(EConnection n) {
 		StringBuilder sb = new StringBuilder();
-		sb.append("*SIGNAL* " + n.getHierarchyName().toUpperCase() + "\n");
+		sb.append("*SIGNAL* ");
+		sb.append(n.getHierarchyName());
+		sb.append("\n");
 		return sb.toString();
 	}
 
@@ -73,9 +75,12 @@ public class PADSGenerator {
 		devices.append("*PART*\n");
 		for (String s : refMap.keySet()) {
 			EInstance i = refMap.get(s);
-			devices.append(s + " ");
+			devices.append(s);
+			devices.append(" ");
 			devices.append(i.getLibrary());
-			devices.append("@" + i.getFootprint() + "\n");
+			devices.append("@");
+			devices.append(i.getFootprint());
+			devices.append("\n");
 		}
 		return devices.toString();
 	}
@@ -92,8 +97,14 @@ public class PADSGenerator {
 				String ref1 = ((EInstance) pin1.getParent()).getRefDes();
 				String ref2 = ((EInstance) pin2.getParent()).getRefDes();
 
-				sb.append(" " + ref1 + "." + pin1.getPinMapping());
-				sb.append(" " + ref2 + "." + pin2.getPinMapping());
+				sb.append(" ");
+				sb.append(ref1);
+				sb.append(".");
+				sb.append(pin1.getPinMapping());
+				sb.append(" ");
+				sb.append(ref2);
+				sb.append(".");
+				sb.append(pin2.getPinMapping());
 				sb.append("\n");
 			}
 		}

@@ -10,6 +10,7 @@
 
 package edu.byu.ee.phdl.elaboration;
 
+
 /**
  * A class that represents an attribute.
  * 
@@ -99,11 +100,13 @@ public class EAttribute extends Node {
 	}
 
 	/**
-	 * Changes the attribute value and checks to see if it's already been changed once.
+	 * Changes the attribute value and checks to see if it's already been
+	 * changed once.
 	 * 
 	 * @param value
 	 *            the new attribute value
-	 * @return true if the attribute hasn't been overwritten before false if it has
+	 * @return true if the attribute hasn't been overwritten before false if it
+	 *         has
 	 */
 	public boolean overwrite(String value) {
 		this.value = value;

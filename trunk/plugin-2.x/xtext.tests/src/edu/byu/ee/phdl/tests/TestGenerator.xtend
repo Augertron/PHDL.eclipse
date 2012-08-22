@@ -13,7 +13,8 @@ import edu.byu.ee.phdl.phdl.PhdlModel
 import org.eclipselabs.xtext.utils.unittesting.XtextRunner2
 import org.apache.log4j.Logger
 import org.eclipselabs.xtext.utils.unittesting.XtextTest
-import edu.byu.ee.phdl.generator.ExtensionCodes
+import edu.byu.ee.phdl.utils.ExtensionCodes
+import edu.byu.ee.phdl.utils.PhdlUtils
 
 import static org.junit.Assert.*
 
@@ -36,7 +37,7 @@ class TestGenerator extends XtextTest {
 		var methodName = new Throwable().stackTrace.get(0).methodName;
 		logger.info(msgpfx + this.getClass().getSimpleName() + "." + methodName)
 		var testDir = path + methodName + "/"
-		var model = parseHelper.parse(FileToString::readFile(testDir + "test" + ExtensionCodes::PHDL_EXT))
+		var model = parseHelper.parse(PhdlUtils::fileToString(testDir + "test" + ExtensionCodes::PHDL_EXT))
 		var fsa = new InMemoryFileSystemAccess()
 		underTest.doGenerate(model.eResource, fsa)
 		testOutputFileNames(fsa, "top")
@@ -48,7 +49,7 @@ class TestGenerator extends XtextTest {
 		var methodName = new Throwable().stackTrace.get(0).methodName;
 		logger.info(msgpfx + this.getClass().getSimpleName() + "." + methodName)
 		var testDir = path + methodName + "/"
-		var model = parseHelper.parse(FileToString::readFile(testDir + "test" + ExtensionCodes::PHDL_EXT))
+		var model = parseHelper.parse(PhdlUtils::fileToString(testDir + "test" + ExtensionCodes::PHDL_EXT))
 		var fsa = new InMemoryFileSystemAccess()
 		underTest.doGenerate(model.eResource, fsa)
 		testOutputFileNames(fsa, "top")
@@ -60,7 +61,7 @@ class TestGenerator extends XtextTest {
 		var methodName = new Throwable().stackTrace.get(0).methodName;
 		logger.info(msgpfx + this.getClass().getSimpleName() + "." + methodName)
 		var testDir = path + methodName + "/"
-		var model = parseHelper.parse(FileToString::readFile(testDir + "test" + ExtensionCodes::PHDL_EXT))
+		var model = parseHelper.parse(PhdlUtils::fileToString(testDir + "test" + ExtensionCodes::PHDL_EXT))
 		var fsa = new InMemoryFileSystemAccess()
 		underTest.doGenerate(model.eResource, fsa)
 		testOutputFileNames(fsa, "top")
@@ -72,7 +73,7 @@ class TestGenerator extends XtextTest {
 		var methodName = new Throwable().stackTrace.get(0).methodName;
 		logger.info(msgpfx + this.getClass().getSimpleName() + "." + methodName)
 		var testDir = path + methodName + "/"
-		var model = parseHelper.parse(FileToString::readFile(testDir + "test" + ExtensionCodes::PHDL_EXT))
+		var model = parseHelper.parse(PhdlUtils::fileToString(testDir + "test" + ExtensionCodes::PHDL_EXT))
 		var fsa = new InMemoryFileSystemAccess()
 		underTest.doGenerate(model.eResource, fsa)
 		testOutputFileNames(fsa, "top")
@@ -86,27 +87,28 @@ class TestGenerator extends XtextTest {
 		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + path + ExtensionCodes::INFO_EXT))
 		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + path + ExtensionCodes::REFDES_EXT))
 		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + path + ExtensionCodes::EAGLE_EXT))
-		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + path + ExtensionCodes::OSMOND_EXT))
+		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + path + ExtensionCodes::XML_EXT))
 	}
 	
 	def void testOutputFiles(InMemoryFileSystemAccess fsa, String expected, String actual) {
-		assertEquals(FileToString::readFile(expected + ExtensionCodes::PADS_EXT), 
+		assertEquals(PhdlUtils::fileToString(expected + ExtensionCodes::PADS_EXT), 
 			fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + actual + ExtensionCodes::PADS_EXT).toString
 		)
-		assertEquals(FileToString::readFile(expected + ExtensionCodes::BOM_EXT), 
+		assertEquals(PhdlUtils::fileToString(expected + ExtensionCodes::BOM_EXT), 
 			fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + actual + ExtensionCodes::BOM_EXT).toString
 		)
-		assertEquals(FileToString::readFile(expected + ExtensionCodes::INFO_EXT), 
+		assertEquals(PhdlUtils::fileToString(expected + ExtensionCodes::INFO_EXT), 
 			fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + actual + ExtensionCodes::INFO_EXT).toString
 		)
-		assertEquals(FileToString::readFile(expected + ExtensionCodes::REFDES_EXT), 
+		assertEquals(PhdlUtils::fileToString(expected + ExtensionCodes::REFDES_EXT), 
 			fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + actual + ExtensionCodes::REFDES_EXT).toString
 		)
-		assertEquals(FileToString::readFile(expected + ExtensionCodes::EAGLE_EXT), 
+		assertEquals(PhdlUtils::fileToString(expected + ExtensionCodes::EAGLE_EXT), 
 			fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + actual + ExtensionCodes::EAGLE_EXT).toString
 		)
-		assertEquals(FileToString::readFile(expected + ExtensionCodes::OSMOND_EXT), 
-			fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + actual + ExtensionCodes::OSMOND_EXT).toString
+		assertEquals(PhdlUtils::fileToString(expected + ExtensionCodes::XML_EXT), 
+			fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + actual + ExtensionCodes::XML_EXT).toString
 		)
+		
 	}
 }

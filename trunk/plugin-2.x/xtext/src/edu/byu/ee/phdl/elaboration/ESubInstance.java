@@ -61,7 +61,7 @@ public class ESubInstance extends EHierarchyUnit {
 			for (EConnection c : subDesign.connections.get(i).getConnections()) {
 				int index = subDesign.connections.indexOf(c);
 				if (index != -1)
-					this.connections.get(i).addConnection(this.connections.get(index));
+					this.connections.get(i).connectTo(this.connections.get(index));
 				else {
 					ESubInstance s = this.getSubInstance(c.getParent().getName(), c.getParent().getIndex());
 					EPort p = s.getPort(c.getName(), c.getIndex());
@@ -146,7 +146,7 @@ public class ESubInstance extends EHierarchyUnit {
 				if (index >= 0) {
 					EConnection newAssign = this.getParent().connections.get(index);
 					EPort newConnection = (EPort) this.connections.get(i);
-					newAssign.addConnection(newConnection);
+					newAssign.connectTo(newConnection);
 					newConnection.setAssignment(newAssign);
 				}
 			}
@@ -174,13 +174,13 @@ public class ESubInstance extends EHierarchyUnit {
 		this.subDesign = null;
 	}
 
-	public void appendToNetlistMap(List<EConnection> netlist) {
+	public void appendToNetlist(List<EConnection> netlist) {
 		for (EConnection c : connections) {
 			if (c.isFlat())
 				netlist.add(c);
 		}
 		for (ESubInstance s : subInsts)
-			s.appendToNetlistMap(netlist);
+			s.appendToNetlist(netlist);
 
 	}
 

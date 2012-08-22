@@ -8,10 +8,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public abstract class EDesignUnit extends Node {
 	protected List<EConnection> connections;
@@ -144,87 +142,30 @@ public abstract class EDesignUnit extends Node {
 	}
 
 	public void flatten() {
-		Set<EConnection> deletes = new HashSet<EConnection>();
-		for (EConnection c : connections) {
-			if (!c.isVisited()) {
-				c = flatten(c);
-				c.setVisited(false);
-			}
-		}
-
-		for (EConnection c : connections) {
-			if (c.isVisited())
-				deletes.add(c);
-		}
-
-		for (EConnection delete : deletes)
-			connections.remove(delete);
-	}
-
-	/**
-	 * Merges the names of the current net with the names of all neighbors by
-	 * using a depth-first search.
-	 * 
-	 * @param neighbor2
-	 * @return net with merged name from all unvisited neighbor's names
-	 */
-	private EConnection flatten(EConnection neighbor2) {
-
-		Set<EConnection> removes = new HashSet<EConnection>();
-		neighbor2.setVisited(true);
-
-		for (EConnection neighbor : neighbor2.getConnections()) {
-			if (!neighbor.isVisited()) {
-
-				neighbor = flatten(neighbor);
-
-				// append the name of its neighbor
-				// Deprecated: current.setName(current.getName() + "$" +
-				// neighbor.getName());
-				removes.add(neighbor);
-
-				// grab all of its neighbors pins
-				for (EPin p : neighbor.getPins()) {
-					neighbor2.addPin(p);
-					p.setAssignment(neighbor2);
-				}
-
-			}
-		}
-
-		// remove all current's connections to neighbors
-		for (EConnection remove : removes)
-			neighbor2.removeConnection(remove);
-
-		// propagate the merged net back up the call-stack
-		return neighbor2;
-	}
-
-	public void flatten2() {
 		for (EConnection conn1 : connections) {
 			if (!conn1.isVisited()) {
 				conn1.setVisited(true);
 				for (EConnection conn2 : conn1.getConnections()) {
 					if (!conn2.isVisited()) {
 						conn2.setVisited(true);
-						conn1.getPins().addAll(flatten2(conn2));
+						conn1.getPins().addAll(flatten(conn2));
 					}
 				}
 				conn1.setFlat(true);
 			}
 		}
 		for (ESubInstance subInst : subInsts) {
-			subInst.flatten2();
+			subInst.flatten();
 		}
 	}
 
-	public List<EPin> flatten2(EConnection conn1) {
+	public List<EPin> flatten(EConnection conn1) {
 		List<EPin> pins = new ArrayList<EPin>();
 		pins.addAll(conn1.getPins());
 		for (EConnection conn2 : conn1.getConnections()) {
 			if (!conn2.isVisited()) {
 				conn2.setVisited(true);
-				pins.addAll(flatten2(conn2));
+				pins.addAll(flatten(conn2));
 			}
 		}
 		return pins;
@@ -234,7 +175,7 @@ public abstract class EDesignUnit extends Node {
 		List<EPort> allPorts = new ArrayList<EPort>();
 		for (EConnection c : connections) {
 			if (c instanceof EPort) {
-				if (c.getName().equals(name.toUpperCase()))
+				if (c.getName().equals(name))
 					allPorts.add((EPort) c);
 			}
 		}
@@ -243,7 +184,7 @@ public abstract class EDesignUnit extends Node {
 
 	public EConnection getConnection(String name, int index) {
 		for (EConnection c : connections) {
-			if (c.getName().equals(name.toUpperCase()) && c.getIndex() == index)
+			if (c.getName().equals(name) && c.getIndex() == index)
 				return c;
 		}
 		return null;
@@ -256,7 +197,7 @@ public abstract class EDesignUnit extends Node {
 	public List<EConnection> getConnectionsByName(String name) {
 		List<EConnection> allCons = new ArrayList<EConnection>();
 		for (EConnection c : connections) {
-			if (c.getName().equals(name.toUpperCase()))
+			if (c.getName().equals(name))
 				allCons.add(c);
 		}
 		return allCons;
@@ -327,7 +268,7 @@ public abstract class EDesignUnit extends Node {
 		for (EConnection c : connections) {
 			if (c instanceof ENet) {
 				ENet n = (ENet) c;
-				if (n.getName().equals(name.toUpperCase()) && n.getIndex() == index)
+				if (n.getName().equals(name) && n.getIndex() == index)
 					return n;
 			}
 		}
@@ -357,7 +298,7 @@ public abstract class EDesignUnit extends Node {
 			if (!(c instanceof ENet))
 				continue;
 			ENet n = (ENet) c;
-			if (n.getName().equals(netName.toUpperCase()))
+			if (n.getName().equals(netName))
 				allNets.add(n);
 		}
 		return allNets;
@@ -374,7 +315,7 @@ public abstract class EDesignUnit extends Node {
 		for (EConnection c : connections) {
 			if (c instanceof edu.byu.ee.phdl.elaboration.EPort) {
 				EPort p = (EPort) c;
-				if (p.getName().equals(name.toUpperCase()) && p.getIndex() == index)
+				if (p.getName().equals(name) && p.getIndex() == index)
 					return p;
 			}
 		}
@@ -387,7 +328,7 @@ public abstract class EDesignUnit extends Node {
 			if (!(c instanceof EPort))
 				continue;
 			EPort p = (EPort) c;
-			if (p.getName().equals(portName.toUpperCase()))
+			if (p.getName().equals(portName))
 				allPorts.add(p);
 		}
 		return allPorts;

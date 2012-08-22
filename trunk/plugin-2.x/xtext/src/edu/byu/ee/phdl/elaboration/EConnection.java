@@ -40,26 +40,12 @@ public abstract class EConnection extends Attributable {
 		setName(name);
 	}
 
-	/**
-	 * NetNode addition method.
-	 * 
-	 * @param n
-	 *            the new NetNode to add
-	 * @return true, if the NetNode isn't already connected, false otherwise
-	 */
 	public boolean addConnection(EConnection c) {
 		if (c != null)
 			return cons.add(c);
 		return false;
 	}
 
-	/**
-	 * Pin addition method.
-	 * 
-	 * @param p
-	 *            the new PinNode
-	 * @return true, if the pin wasn't in the List false, otherwise
-	 */
 	public boolean addPin(EPin p) {
 		if (p != null)
 			return (!pins.add(p));
@@ -76,6 +62,10 @@ public abstract class EConnection extends Attributable {
 			result = this.getHierarchyName().compareTo(c.getHierarchyName());
 		}
 		return result;
+	}
+
+	public boolean connectTo(EConnection connection) {
+		return (this.addConnection(connection) && connection.addConnection(this));
 	}
 
 	@Override
@@ -117,8 +107,8 @@ public abstract class EConnection extends Attributable {
 		StringBuilder sb = new StringBuilder();
 		EDesignUnit current = this.parent;
 		while (current != null) {
-			sb.insert(0, current.getNameIndex() + "/");
 			if (current instanceof ESubInstance) {
+				sb.insert(0, current.getNameIndex() + "/");
 				current = ((ESubInstance) current).getParent();
 			} else
 				current = null;
@@ -229,7 +219,7 @@ public abstract class EConnection extends Attributable {
 
 	@Override
 	public void setName(String name) {
-		this.name = name.toUpperCase();
+		this.name = name;
 	}
 
 	/**

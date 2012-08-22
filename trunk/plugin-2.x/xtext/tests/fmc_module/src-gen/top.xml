@@ -1,0 +1,2658 @@
+<netlist>
+  <parts>
+    <entry>
+      <string>CLK/BAL0/R4</string>
+      <pair>
+        <first class="string">CR0603</first>
+        <second class="string">res_0603</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>CLK/BAL0/R3</string>
+      <pair>
+        <first class="string">CR0603</first>
+        <second class="string">res_0603</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>CLK/BAL0/R5</string>
+      <pair>
+        <first class="string">CR0603</first>
+        <second class="string">res_0603</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR1/C2</string>
+      <pair>
+        <first class="string">CC0402</first>
+        <second class="string">cap_0402</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR1/C1</string>
+      <pair>
+        <first class="string">CC0402</first>
+        <second class="string">cap_0402</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR1/P3</string>
+      <pair>
+        <first class="string">SMA_STRAIT</first>
+        <second class="string">SMA_CON</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR1/P2</string>
+      <pair>
+        <first class="string">SMA_STRAIT</first>
+        <second class="string">SMA_CON</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>CLK/BAL1/T1</string>
+      <pair>
+        <first class="string">AT224-1</first>
+        <second class="string">TC4-14+</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>CLK/P3</string>
+      <pair>
+        <first class="string">SMA_STRAIT</first>
+        <second class="string">SMA_CON</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR1/P4</string>
+      <pair>
+        <first class="string">SMA_STRAIT</first>
+        <second class="string">SMA_CON</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>CLK/P4</string>
+      <pair>
+        <first class="string">CAS-220B</first>
+        <second class="string">slide_switch</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR1/P1</string>
+      <pair>
+        <first class="string">SMA_STRAIT</first>
+        <second class="string">SMA_CON</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>CLK/P2</string>
+      <pair>
+        <first class="string">SMA_STRAIT</first>
+        <second class="string">SMA_CON</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR4/C1</string>
+      <pair>
+        <first class="string">CC0402</first>
+        <second class="string">cap_0402</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>CLK/P1</string>
+      <pair>
+        <first class="string">SMA_STRAIT</first>
+        <second class="string">SMA_CON</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR4/C2</string>
+      <pair>
+        <first class="string">CC0402</first>
+        <second class="string">cap_0402</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>J1</string>
+      <pair>
+        <first class="string">HDR2x8/0_100</first>
+        <second class="string">2x8_hdr</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>C10</string>
+      <pair>
+        <first class="string">7343-31</first>
+        <second class="string">tant_cap</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>R1</string>
+      <pair>
+        <first class="string">CR0603</first>
+        <second class="string">res_0603</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>CLK/U1</string>
+      <pair>
+        <first class="string">SY898533LKZ</first>
+        <second class="string">sy898533</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>CLK/BAL0/T1</string>
+      <pair>
+        <first class="string">AT224-1</first>
+        <second class="string">TC4-14+</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>C8</string>
+      <pair>
+        <first class="string">7343-31</first>
+        <second class="string">tant_cap</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>C7</string>
+      <pair>
+        <first class="string">7343-31</first>
+        <second class="string">tant_cap</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>CLK/C1</string>
+      <pair>
+        <first class="string">CC0402</first>
+        <second class="string">cap_0402</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>C9</string>
+      <pair>
+        <first class="string">7343-31</first>
+        <second class="string">tant_cap</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>CLK/C2</string>
+      <pair>
+        <first class="string">CC0402</first>
+        <second class="string">cap_0402</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>C4</string>
+      <pair>
+        <first class="string">7343-31</first>
+        <second class="string">tant_cap</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>CLK/C3</string>
+      <pair>
+        <first class="string">CC0402</first>
+        <second class="string">cap_0402</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>C3</string>
+      <pair>
+        <first class="string">7343-31</first>
+        <second class="string">tant_cap</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>C6</string>
+      <pair>
+        <first class="string">7343-31</first>
+        <second class="string">tant_cap</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>CLK/C4</string>
+      <pair>
+        <first class="string">CC0402</first>
+        <second class="string">cap_0402</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>C5</string>
+      <pair>
+        <first class="string">7343-31</first>
+        <second class="string">tant_cap</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>CLK/BAL1/R1</string>
+      <pair>
+        <first class="string">CR0603</first>
+        <second class="string">res_0603</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR5/P4</string>
+      <pair>
+        <first class="string">SMA_STRAIT</first>
+        <second class="string">SMA_CON</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR5/P3</string>
+      <pair>
+        <first class="string">SMA_STRAIT</first>
+        <second class="string">SMA_CON</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>CLK/BAL1/R3</string>
+      <pair>
+        <first class="string">CR0603</first>
+        <second class="string">res_0603</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR5/P2</string>
+      <pair>
+        <first class="string">SMA_STRAIT</first>
+        <second class="string">SMA_CON</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>CLK/BAL1/R2</string>
+      <pair>
+        <first class="string">CR0603</first>
+        <second class="string">res_0603</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR5/C2</string>
+      <pair>
+        <first class="string">CC0402</first>
+        <second class="string">cap_0402</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR5/C1</string>
+      <pair>
+        <first class="string">CC0402</first>
+        <second class="string">cap_0402</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR3/P2</string>
+      <pair>
+        <first class="string">SMA_STRAIT</first>
+        <second class="string">SMA_CON</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR0/P4</string>
+      <pair>
+        <first class="string">SMA_STRAIT</first>
+        <second class="string">SMA_CON</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>CLK/R4</string>
+      <pair>
+        <first class="string">CR0603</first>
+        <second class="string">res_0603</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR3/P3</string>
+      <pair>
+        <first class="string">SMA_STRAIT</first>
+        <second class="string">SMA_CON</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>CLK/R3</string>
+      <pair>
+        <first class="string">CR0603</first>
+        <second class="string">res_0603</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR0/P3</string>
+      <pair>
+        <first class="string">SMA_STRAIT</first>
+        <second class="string">SMA_CON</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR2/P4</string>
+      <pair>
+        <first class="string">SMA_STRAIT</first>
+        <second class="string">SMA_CON</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>CLK/R2</string>
+      <pair>
+        <first class="string">CR0603</first>
+        <second class="string">res_0603</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR0/P2</string>
+      <pair>
+        <first class="string">SMA_STRAIT</first>
+        <second class="string">SMA_CON</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR3/P1</string>
+      <pair>
+        <first class="string">SMA_STRAIT</first>
+        <second class="string">SMA_CON</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR2/P3</string>
+      <pair>
+        <first class="string">SMA_STRAIT</first>
+        <second class="string">SMA_CON</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>CLK/R1</string>
+      <pair>
+        <first class="string">CR0603</first>
+        <second class="string">res_0603</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR0/P1</string>
+      <pair>
+        <first class="string">SMA_STRAIT</first>
+        <second class="string">SMA_CON</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR2/P2</string>
+      <pair>
+        <first class="string">SMA_STRAIT</first>
+        <second class="string">SMA_CON</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR5/P1</string>
+      <pair>
+        <first class="string">SMA_STRAIT</first>
+        <second class="string">SMA_CON</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR2/P1</string>
+      <pair>
+        <first class="string">SMA_STRAIT</first>
+        <second class="string">SMA_CON</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR3/P4</string>
+      <pair>
+        <first class="string">SMA_STRAIT</first>
+        <second class="string">SMA_CON</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>C1</string>
+      <pair>
+        <first class="string">7343-31</first>
+        <second class="string">tant_cap</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>C2</string>
+      <pair>
+        <first class="string">7343-31</first>
+        <second class="string">tant_cap</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR4/P2</string>
+      <pair>
+        <first class="string">SMA_STRAIT</first>
+        <second class="string">SMA_CON</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR4/P1</string>
+      <pair>
+        <first class="string">SMA_STRAIT</first>
+        <second class="string">SMA_CON</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR2/C2</string>
+      <pair>
+        <first class="string">CC0402</first>
+        <second class="string">cap_0402</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR4/P4</string>
+      <pair>
+        <first class="string">SMA_STRAIT</first>
+        <second class="string">SMA_CON</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR3/C2</string>
+      <pair>
+        <first class="string">CC0402</first>
+        <second class="string">cap_0402</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR4/P3</string>
+      <pair>
+        <first class="string">SMA_STRAIT</first>
+        <second class="string">SMA_CON</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR3/C1</string>
+      <pair>
+        <first class="string">CC0402</first>
+        <second class="string">cap_0402</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR2/C1</string>
+      <pair>
+        <first class="string">CC0402</first>
+        <second class="string">cap_0402</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR0/C2</string>
+      <pair>
+        <first class="string">CC0402</first>
+        <second class="string">cap_0402</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>XVR0/C1</string>
+      <pair>
+        <first class="string">CC0402</first>
+        <second class="string">cap_0402</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>P1</string>
+      <pair>
+        <first class="string">SMA_STRAIT</first>
+        <second class="string">SMA_CON</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>P3</string>
+      <pair>
+        <first class="string">ASP-134488-01</first>
+        <second class="string">asp_134488</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>P2</string>
+      <pair>
+        <first class="string">SMA_STRAIT</first>
+        <second class="string">SMA_CON</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>H4</string>
+      <pair>
+        <first class="string">MOUNT_HOLE_125</first>
+        <second class="string">mount_hole_125</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>H3</string>
+      <pair>
+        <first class="string">MOUNT_HOLE_125</first>
+        <second class="string">mount_hole_125</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>H2</string>
+      <pair>
+        <first class="string">MOUNT_HOLE_125</first>
+        <second class="string">mount_hole_125</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>CLK/BAL1/R4</string>
+      <pair>
+        <first class="string">CR0603</first>
+        <second class="string">res_0603</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>H1</string>
+      <pair>
+        <first class="string">MOUNT_HOLE_125</first>
+        <second class="string">mount_hole_125</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>CLK/BAL1/R5</string>
+      <pair>
+        <first class="string">CR0603</first>
+        <second class="string">res_0603</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>CLK/BAL0/R1</string>
+      <pair>
+        <first class="string">CR0603</first>
+        <second class="string">res_0603</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>CLK/BAL0/R2</string>
+      <pair>
+        <first class="string">CR0603</first>
+        <second class="string">res_0603</second>
+      </pair>
+    </entry>
+  </parts>
+  <nets>
+    <entry>
+      <string>discrete[3]</string>
+      <list>
+        <pair>
+          <first class="string">J1</first>
+          <second class="string">9</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C19</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>clks[3]</string>
+      <list>
+        <pair>
+          <first class="string">CLK/U1</first>
+          <second class="string">16</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/C1</first>
+          <second class="string">1</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/R1</first>
+          <second class="string">1</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>gbtclk_m2c_p[0]</string>
+      <list>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">D1</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/C1</first>
+          <second class="string">2</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>dp_c2m_n[4]</string>
+      <list>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A35</second>
+        </pair>
+        <pair>
+          <first class="string">XVR4/P2</first>
+          <second class="string">1</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>gbtclk_m2c_n[1]</string>
+      <list>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">B21</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/C4</first>
+          <second class="string">2</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>dp_m2c_p[4]</string>
+      <list>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A14</second>
+        </pair>
+        <pair>
+          <first class="string">XVR4/C1</first>
+          <second class="string">2</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>clk250p</string>
+      <list>
+        <pair>
+          <first class="string">CLK/P1</first>
+          <second class="string">1</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/BAL0/T1</first>
+          <second class="string">4</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>single_clk_rtn</string>
+      <list>
+        <pair>
+          <first class="string">CLK/P3</first>
+          <second class="string">5</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/P3</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/P3</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/P3</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/BAL1/T1</first>
+          <second class="string">5</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>dp_c2m_n[0]</string>
+      <list>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C3</second>
+        </pair>
+        <pair>
+          <first class="string">XVR0/P2</first>
+          <second class="string">1</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>dp_m2c_n[2]</string>
+      <list>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A7</second>
+        </pair>
+        <pair>
+          <first class="string">XVR2/C2</first>
+          <second class="string">2</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>clk250n</string>
+      <list>
+        <pair>
+          <first class="string">CLK/P2</first>
+          <second class="string">1</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/BAL0/T1</first>
+          <second class="string">5</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>sync_in</string>
+      <list>
+        <pair>
+          <first class="string">P2</first>
+          <second class="string">1</second>
+        </pair>
+        <pair>
+          <first class="string">R1</first>
+          <second class="string">1</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C11</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>dp_c2m_p[4]</string>
+      <list>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A34</second>
+        </pair>
+        <pair>
+          <first class="string">XVR4/P1</first>
+          <second class="string">1</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>clk250</string>
+      <list>
+        <pair>
+          <first class="string">CLK/P3</first>
+          <second class="string">1</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/BAL1/T1</first>
+          <second class="string">4</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>dp_c2m_p[0]</string>
+      <list>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C2</second>
+        </pair>
+        <pair>
+          <first class="string">XVR0/P1</first>
+          <second class="string">1</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>dp_m2c_p[1]</string>
+      <list>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A2</second>
+        </pair>
+        <pair>
+          <first class="string">XVR1/C1</first>
+          <second class="string">2</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>+3v3</string>
+      <list>
+        <pair>
+          <first class="string">C1</first>
+          <second class="string">1</second>
+        </pair>
+        <pair>
+          <first class="string">C2</first>
+          <second class="string">1</second>
+        </pair>
+        <pair>
+          <first class="string">C3</first>
+          <second class="string">1</second>
+        </pair>
+        <pair>
+          <first class="string">C4</first>
+          <second class="string">1</second>
+        </pair>
+        <pair>
+          <first class="string">C5</first>
+          <second class="string">1</second>
+        </pair>
+        <pair>
+          <first class="string">C6</first>
+          <second class="string">1</second>
+        </pair>
+        <pair>
+          <first class="string">C7</first>
+          <second class="string">1</second>
+        </pair>
+        <pair>
+          <first class="string">C8</first>
+          <second class="string">1</second>
+        </pair>
+        <pair>
+          <first class="string">C9</first>
+          <second class="string">1</second>
+        </pair>
+        <pair>
+          <first class="string">C10</first>
+          <second class="string">1</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C39</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">D36</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">D38</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">D40</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/U1</first>
+          <second class="string">10</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/U1</first>
+          <second class="string">13</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/U1</first>
+          <second class="string">18</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/U1</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/P4</first>
+          <second class="string">1</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/P4</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/BAL0/R4</first>
+          <second class="string">1</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/BAL1/R4</first>
+          <second class="string">1</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>sma_m2c[0]</string>
+      <list>
+        <pair>
+          <first class="string">XVR0/P4</first>
+          <second class="string">1</second>
+        </pair>
+        <pair>
+          <first class="string">XVR0/C2</first>
+          <second class="string">1</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>discrete[7]</string>
+      <list>
+        <pair>
+          <first class="string">J1</first>
+          <second class="string">1</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C27</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>clks[2]</string>
+      <list>
+        <pair>
+          <first class="string">CLK/U1</first>
+          <second class="string">17</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/C2</first>
+          <second class="string">1</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/R2</first>
+          <second class="string">1</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>gbtclk_m2c_p[1]</string>
+      <list>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">B20</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/C2</first>
+          <second class="string">2</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>diff_clk_rtn</string>
+      <list>
+        <pair>
+          <first class="string">CLK/P1</first>
+          <second class="string">5</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/P1</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/P1</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/P1</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/P2</first>
+          <second class="string">5</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/P2</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/P2</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/P2</first>
+          <second class="string">2</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>dp_m2c_n[5]</string>
+      <list>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A19</second>
+        </pair>
+        <pair>
+          <first class="string">XVR5/C2</first>
+          <second class="string">2</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>gbtclk_m2c_n[0]</string>
+      <list>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">D4</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/C3</first>
+          <second class="string">2</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>dp_c2m_n[3]</string>
+      <list>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A31</second>
+        </pair>
+        <pair>
+          <first class="string">XVR3/P2</first>
+          <second class="string">1</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>discrete[4]</string>
+      <list>
+        <pair>
+          <first class="string">J1</first>
+          <second class="string">7</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C22</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>discrete[0]</string>
+      <list>
+        <pair>
+          <first class="string">J1</first>
+          <second class="string">15</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C14</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>dp_m2c_p[3]</string>
+      <list>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A10</second>
+        </pair>
+        <pair>
+          <first class="string">XVR3/C1</first>
+          <second class="string">2</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>sec_tap</string>
+      <list>
+        <pair>
+          <first class="string">CLK/BAL1/T1</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/BAL1/R4</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/BAL1/R5</first>
+          <second class="string">2</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>dp_m2c_n[1]</string>
+      <list>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A3</second>
+        </pair>
+        <pair>
+          <first class="string">XVR1/C2</first>
+          <second class="string">2</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>dp_c2m_p[3]</string>
+      <list>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A30</second>
+        </pair>
+        <pair>
+          <first class="string">XVR3/P1</first>
+          <second class="string">1</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>dp_m2c_p[2]</string>
+      <list>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A6</second>
+        </pair>
+        <pair>
+          <first class="string">XVR2/C1</first>
+          <second class="string">2</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>discrete[5]</string>
+      <list>
+        <pair>
+          <first class="string">J1</first>
+          <second class="string">5</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C23</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>dp_c2m_n[2]</string>
+      <list>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A27</second>
+        </pair>
+        <pair>
+          <first class="string">XVR2/P2</first>
+          <second class="string">1</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>clks[1]</string>
+      <list>
+        <pair>
+          <first class="string">CLK/U1</first>
+          <second class="string">19</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/C3</first>
+          <second class="string">1</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/R3</first>
+          <second class="string">1</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>clk_sel</string>
+      <list>
+        <pair>
+          <first class="string">CLK/U1</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/P4</first>
+          <second class="string">2</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>dp_m2c_n[4]</string>
+      <list>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A15</second>
+        </pair>
+        <pair>
+          <first class="string">XVR4/C2</first>
+          <second class="string">2</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>discrete[1]</string>
+      <list>
+        <pair>
+          <first class="string">J1</first>
+          <second class="string">13</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C15</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>clk250_bal_p[1]</string>
+      <list>
+        <pair>
+          <first class="string">CLK/U1</first>
+          <second class="string">6</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/BAL1/R1</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/BAL1/R3</first>
+          <second class="string">1</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>dp_m2c_n[0]</string>
+      <list>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C7</second>
+        </pair>
+        <pair>
+          <first class="string">XVR0/C2</first>
+          <second class="string">2</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>loopback</string>
+      <list>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">D30</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">D31</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>dp_c2m_p[2]</string>
+      <list>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A26</second>
+        </pair>
+        <pair>
+          <first class="string">XVR2/P1</first>
+          <second class="string">1</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>gnd</string>
+      <list>
+        <pair>
+          <first class="string">P1</first>
+          <second class="string">5</second>
+        </pair>
+        <pair>
+          <first class="string">P1</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">P1</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">P1</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">P2</first>
+          <second class="string">5</second>
+        </pair>
+        <pair>
+          <first class="string">P2</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">P2</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">P2</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">R1</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">C1</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">C2</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">C3</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">C4</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">C5</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">C6</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">C7</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">C8</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">C9</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">C10</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">J1</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">J1</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">J1</first>
+          <second class="string">6</second>
+        </pair>
+        <pair>
+          <first class="string">J1</first>
+          <second class="string">8</second>
+        </pair>
+        <pair>
+          <first class="string">J1</first>
+          <second class="string">10</second>
+        </pair>
+        <pair>
+          <first class="string">J1</first>
+          <second class="string">12</second>
+        </pair>
+        <pair>
+          <first class="string">J1</first>
+          <second class="string">14</second>
+        </pair>
+        <pair>
+          <first class="string">J1</first>
+          <second class="string">16</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A1</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A4</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A5</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A8</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A9</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A12</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A13</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A16</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A17</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A20</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A21</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A24</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A25</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A28</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A29</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A32</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A33</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A36</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A37</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A40</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">B2</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">B3</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">B6</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">B7</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">B10</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">B11</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">B14</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">B15</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">B18</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">B19</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">B22</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">B23</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">B26</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">B27</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">B30</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">B31</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">B34</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">B35</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">B38</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">B39</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C1</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C4</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C5</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C8</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C9</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C12</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C13</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C16</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C17</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C20</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C21</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C24</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C25</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C28</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C29</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C32</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C33</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C36</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C38</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C40</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">D2</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">D3</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">D6</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">D7</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">D10</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">D13</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">D16</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">D19</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">D22</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">D25</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">D28</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">D37</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">D39</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">E1</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">E4</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">E5</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">E8</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">E11</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">E14</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">E17</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">E20</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">E23</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">E26</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">E29</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">E32</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">E35</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">E38</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">E40</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">F2</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">F3</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">F6</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">F9</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">F12</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">F15</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">F18</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">F21</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">F24</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">F27</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">F30</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">F33</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">F36</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">F39</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">G1</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">G4</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">G5</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">G8</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">G11</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">G14</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">G17</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">G20</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">G23</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">G26</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">G29</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">G32</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">G35</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">G38</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">G40</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">H3</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">H6</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">H9</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">H12</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">H15</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">H18</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">H21</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">H24</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">H27</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">H30</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">H33</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">H36</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">H39</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">J1</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">J4</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">J5</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">J8</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">J11</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">J14</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">J17</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">J20</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">J23</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">J26</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">J29</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">J32</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">J35</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">J38</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">J40</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">K2</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">K3</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">K6</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">K9</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">K12</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">K15</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">K18</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">K21</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">K24</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">K27</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">K30</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">K33</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">K36</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">K39</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/U1</first>
+          <second class="string">1</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/R1</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/R2</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/R3</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/R4</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/P4</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/P4</first>
+          <second class="string">6</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/BAL0/R5</first>
+          <second class="string">1</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/BAL1/R5</first>
+          <second class="string">1</second>
+        </pair>
+        <pair>
+          <first class="string">XVR0/P1</first>
+          <second class="string">5</second>
+        </pair>
+        <pair>
+          <first class="string">XVR0/P1</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">XVR0/P1</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">XVR0/P1</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">XVR0/P2</first>
+          <second class="string">5</second>
+        </pair>
+        <pair>
+          <first class="string">XVR0/P2</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">XVR0/P2</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">XVR0/P2</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">XVR0/P3</first>
+          <second class="string">5</second>
+        </pair>
+        <pair>
+          <first class="string">XVR0/P3</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">XVR0/P3</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">XVR0/P3</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">XVR0/P4</first>
+          <second class="string">5</second>
+        </pair>
+        <pair>
+          <first class="string">XVR0/P4</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">XVR0/P4</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">XVR0/P4</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">XVR1/P1</first>
+          <second class="string">5</second>
+        </pair>
+        <pair>
+          <first class="string">XVR1/P1</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">XVR1/P1</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">XVR1/P1</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">XVR1/P2</first>
+          <second class="string">5</second>
+        </pair>
+        <pair>
+          <first class="string">XVR1/P2</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">XVR1/P2</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">XVR1/P2</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">XVR1/P3</first>
+          <second class="string">5</second>
+        </pair>
+        <pair>
+          <first class="string">XVR1/P3</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">XVR1/P3</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">XVR1/P3</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">XVR1/P4</first>
+          <second class="string">5</second>
+        </pair>
+        <pair>
+          <first class="string">XVR1/P4</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">XVR1/P4</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">XVR1/P4</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">XVR2/P1</first>
+          <second class="string">5</second>
+        </pair>
+        <pair>
+          <first class="string">XVR2/P1</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">XVR2/P1</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">XVR2/P1</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">XVR2/P2</first>
+          <second class="string">5</second>
+        </pair>
+        <pair>
+          <first class="string">XVR2/P2</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">XVR2/P2</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">XVR2/P2</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">XVR2/P3</first>
+          <second class="string">5</second>
+        </pair>
+        <pair>
+          <first class="string">XVR2/P3</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">XVR2/P3</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">XVR2/P3</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">XVR2/P4</first>
+          <second class="string">5</second>
+        </pair>
+        <pair>
+          <first class="string">XVR2/P4</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">XVR2/P4</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">XVR2/P4</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">XVR3/P1</first>
+          <second class="string">5</second>
+        </pair>
+        <pair>
+          <first class="string">XVR3/P1</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">XVR3/P1</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">XVR3/P1</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">XVR3/P2</first>
+          <second class="string">5</second>
+        </pair>
+        <pair>
+          <first class="string">XVR3/P2</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">XVR3/P2</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">XVR3/P2</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">XVR3/P3</first>
+          <second class="string">5</second>
+        </pair>
+        <pair>
+          <first class="string">XVR3/P3</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">XVR3/P3</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">XVR3/P3</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">XVR3/P4</first>
+          <second class="string">5</second>
+        </pair>
+        <pair>
+          <first class="string">XVR3/P4</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">XVR3/P4</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">XVR3/P4</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">XVR4/P1</first>
+          <second class="string">5</second>
+        </pair>
+        <pair>
+          <first class="string">XVR4/P1</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">XVR4/P1</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">XVR4/P1</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">XVR4/P2</first>
+          <second class="string">5</second>
+        </pair>
+        <pair>
+          <first class="string">XVR4/P2</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">XVR4/P2</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">XVR4/P2</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">XVR4/P3</first>
+          <second class="string">5</second>
+        </pair>
+        <pair>
+          <first class="string">XVR4/P3</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">XVR4/P3</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">XVR4/P3</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">XVR4/P4</first>
+          <second class="string">5</second>
+        </pair>
+        <pair>
+          <first class="string">XVR4/P4</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">XVR4/P4</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">XVR4/P4</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">XVR5/P1</first>
+          <second class="string">5</second>
+        </pair>
+        <pair>
+          <first class="string">XVR5/P1</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">XVR5/P1</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">XVR5/P1</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">XVR5/P2</first>
+          <second class="string">5</second>
+        </pair>
+        <pair>
+          <first class="string">XVR5/P2</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">XVR5/P2</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">XVR5/P2</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">XVR5/P3</first>
+          <second class="string">5</second>
+        </pair>
+        <pair>
+          <first class="string">XVR5/P3</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">XVR5/P3</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">XVR5/P3</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">XVR5/P4</first>
+          <second class="string">5</second>
+        </pair>
+        <pair>
+          <first class="string">XVR5/P4</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">XVR5/P4</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">XVR5/P4</first>
+          <second class="string">2</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>dp_m2c_p[5]</string>
+      <list>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A18</second>
+        </pair>
+        <pair>
+          <first class="string">XVR5/C1</first>
+          <second class="string">2</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>clk250_bal_n[0]</string>
+      <list>
+        <pair>
+          <first class="string">CLK/U1</first>
+          <second class="string">5</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/BAL0/R2</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/BAL0/R3</first>
+          <second class="string">2</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>discrete[6]</string>
+      <list>
+        <pair>
+          <first class="string">J1</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C26</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>clks[0]</string>
+      <list>
+        <pair>
+          <first class="string">CLK/U1</first>
+          <second class="string">20</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/C4</first>
+          <second class="string">1</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/R4</first>
+          <second class="string">1</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>dp_c2m_n[1]</string>
+      <list>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A23</second>
+        </pair>
+        <pair>
+          <first class="string">XVR1/P2</first>
+          <second class="string">1</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>dp_m2c_n[3]</string>
+      <list>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A11</second>
+        </pair>
+        <pair>
+          <first class="string">XVR3/C2</first>
+          <second class="string">2</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>discrete[2]</string>
+      <list>
+        <pair>
+          <first class="string">J1</first>
+          <second class="string">11</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C18</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>clk250_bal_p[0]</string>
+      <list>
+        <pair>
+          <first class="string">CLK/U1</first>
+          <second class="string">4</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/BAL0/R1</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/BAL0/R3</first>
+          <second class="string">1</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>sec_p</string>
+      <list>
+        <pair>
+          <first class="string">CLK/BAL1/T1</first>
+          <second class="string">1</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/BAL1/R1</first>
+          <second class="string">1</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>sma_m2c[1]</string>
+      <list>
+        <pair>
+          <first class="string">XVR0/P3</first>
+          <second class="string">1</second>
+        </pair>
+        <pair>
+          <first class="string">XVR0/C1</first>
+          <second class="string">1</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>sec_n</string>
+      <list>
+        <pair>
+          <first class="string">CLK/BAL1/T1</first>
+          <second class="string">3</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/BAL1/R2</first>
+          <second class="string">1</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>sync_out</string>
+      <list>
+        <pair>
+          <first class="string">P1</first>
+          <second class="string">1</second>
+        </pair>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C10</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>dp_c2m_n[5]</string>
+      <list>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A39</second>
+        </pair>
+        <pair>
+          <first class="string">XVR5/P2</first>
+          <second class="string">1</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>dp_c2m_p[1]</string>
+      <list>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A22</second>
+        </pair>
+        <pair>
+          <first class="string">XVR1/P1</first>
+          <second class="string">1</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>dp_m2c_p[0]</string>
+      <list>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">C6</second>
+        </pair>
+        <pair>
+          <first class="string">XVR0/C1</first>
+          <second class="string">2</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>dp_c2m_p[5]</string>
+      <list>
+        <pair>
+          <first class="string">P3</first>
+          <second class="string">A38</second>
+        </pair>
+        <pair>
+          <first class="string">XVR5/P1</first>
+          <second class="string">1</second>
+        </pair>
+      </list>
+    </entry>
+    <entry>
+      <string>clk250_bal_n[1]</string>
+      <list>
+        <pair>
+          <first class="string">CLK/U1</first>
+          <second class="string">7</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/BAL1/R2</first>
+          <second class="string">2</second>
+        </pair>
+        <pair>
+          <first class="string">CLK/BAL1/R3</first>
+          <second class="string">2</second>
+        </pair>
+      </list>
+    </entry>
+  </nets>
+</netlist>

@@ -1,0 +1,222 @@
+<netlist>
+  <parts>
+    <entry>
+      <string>C4</string>
+      <pair>
+        <first class="string">footprint</first>
+        <second class="string">library</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>C3</string>
+      <pair>
+        <first class="string">footprint</first>
+        <second class="string">library</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>C6</string>
+      <pair>
+        <first class="string">footprint</first>
+        <second class="string">library</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>C5</string>
+      <pair>
+        <first class="string">footprint</first>
+        <second class="string">library</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>X4/D1</string>
+      <pair>
+        <first class="string">footprint</first>
+        <second class="string">library</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>R8</string>
+      <pair>
+        <first class="string">footprint</first>
+        <second class="string">library</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>R6</string>
+      <pair>
+        <first class="string">footprint</first>
+        <second class="string">library</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>R7</string>
+      <pair>
+        <first class="string">footprint</first>
+        <second class="string">library</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>R4</string>
+      <pair>
+        <first class="string">footprint</first>
+        <second class="string">library</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>R5</string>
+      <pair>
+        <first class="string">footprint</first>
+        <second class="string">library</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>X4/R2</string>
+      <pair>
+        <first class="string">footprint</first>
+        <second class="string">library</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>R2</string>
+      <pair>
+        <first class="string">footprint</first>
+        <second class="string">library</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>X4/R1</string>
+      <pair>
+        <first class="string">footprint</first>
+        <second class="string">library</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>R3</string>
+      <pair>
+        <first class="string">footprint</first>
+        <second class="string">library</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>B/C/R1</string>
+      <pair>
+        <first class="string">footprint</first>
+        <second class="string">library</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>C1</string>
+      <pair>
+        <first class="string">footprint</first>
+        <second class="string">library</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>C2</string>
+      <pair>
+        <first class="string">footprint</first>
+        <second class="string">library</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>X3/D1</string>
+      <pair>
+        <first class="string">footprint</first>
+        <second class="string">library</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>A/C1</string>
+      <pair>
+        <first class="string">footprint</first>
+        <second class="string">library</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>A/C3</string>
+      <pair>
+        <first class="string">footprint</first>
+        <second class="string">library</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>X1/R2</string>
+      <pair>
+        <first class="string">footprint</first>
+        <second class="string">library</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>X1/R1</string>
+      <pair>
+        <first class="string">footprint</first>
+        <second class="string">library</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>R1</string>
+      <pair>
+        <first class="string">footprint</first>
+        <second class="string">library</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>X2/R2</string>
+      <pair>
+        <first class="string">footprint</first>
+        <second class="string">library</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>X2/D1</string>
+      <pair>
+        <first class="string">footprint</first>
+        <second class="string">library</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>X2/R1</string>
+      <pair>
+        <first class="string">footprint</first>
+        <second class="string">library</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>X3/R1</string>
+      <pair>
+        <first class="string">footprint</first>
+        <second class="string">library</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>A/R1</string>
+      <pair>
+        <first class="string">footprint</first>
+        <second class="string">library</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>X3/R2</string>
+      <pair>
+        <first class="string">footprint</first>
+        <second class="string">library</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>X1/D1</string>
+      <pair>
+        <first class="string">footprint</first>
+        <second class="string">library</second>
+      </pair>
+    </entry>
+    <entry>
+      <string>B/C/C1</string>
+      <pair>
+        <first class="string">footprint</first>
+        <second class="string">library</second>
+      </pair>
+    </entry>
+  </parts>
+  <nets/>
+</netlist>

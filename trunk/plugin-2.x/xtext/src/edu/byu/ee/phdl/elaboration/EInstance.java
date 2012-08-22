@@ -166,8 +166,30 @@ public class EInstance extends Attributable {
 		return device;
 	}
 
+	/**
+	 * Package accessor method.
+	 * 
+	 * @return the package attribute
+	 */
+	public String getFootprint() {
+		return pkg;
+	}
+
 	public String getGroupName() {
 		return groupName;
+	}
+
+	public String getHierarchyPrefix() {
+		StringBuilder sb = new StringBuilder();
+		EDesignUnit current = this.parent;
+		while (current != null) {
+			sb.insert(0, current.getNameIndex() + "/");
+			if (current instanceof ESubInstance) {
+				current = ((ESubInstance) current).getParent();
+			} else
+				current = null;
+		}
+		return sb.toString();
 	}
 
 	public int getIndex() {
@@ -190,15 +212,6 @@ public class EInstance extends Attributable {
 	 */
 	public NodeType getNodeType() {
 		return NodeType.INSTANCE;
-	}
-
-	/**
-	 * Package accessor method.
-	 * 
-	 * @return the package attribute
-	 */
-	public String getFootprint() {
-		return pkg;
 	}
 
 	/**
@@ -229,19 +242,6 @@ public class EInstance extends Attributable {
 			if (p.getName().equals(name) && p.getIndex() == index)
 				return p;
 		return null;
-	}
-
-	public String getHierarchyPrefix() {
-		StringBuilder sb = new StringBuilder();
-		EDesignUnit current = this.parent;
-		while (current != null) {
-			sb.insert(0, current.getNameIndex() + "/");
-			if (current instanceof ESubInstance) {
-				current = ((ESubInstance) current).getParent();
-			} else
-				current = null;
-		}
-		return sb.toString();
 	}
 
 	/**
@@ -317,6 +317,16 @@ public class EInstance extends Attributable {
 		this.device.addInstance(this);
 	}
 
+	/**
+	 * Package mutator method.
+	 * 
+	 * @param footprint
+	 *            the new package attribute
+	 */
+	public void setFootprint(String pkg) {
+		this.pkg = pkg;
+	}
+
 	public void setGroupName(String groupName) {
 		this.groupName = groupName;
 	}
@@ -327,16 +337,6 @@ public class EInstance extends Attributable {
 
 	public void setLibrary(String library) {
 		this.library = library;
-	}
-
-	/**
-	 * Package mutator method.
-	 * 
-	 * @param footprint
-	 *            the new package attribute
-	 */
-	public void setFootprint(String pkg) {
-		this.pkg = pkg;
 	}
 
 	/**

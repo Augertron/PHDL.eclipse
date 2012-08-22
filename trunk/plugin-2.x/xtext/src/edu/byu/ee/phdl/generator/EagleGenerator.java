@@ -24,9 +24,9 @@ public class EagleGenerator {
 	private final Map<String, EInstance> refMap;
 	private String contents;
 
-	public EagleGenerator(EDesign design, Map<String, EInstance> refMap) {
+	public EagleGenerator(EDesign design) {
 		this.design = design;
-		this.refMap = refMap;
+		this.refMap = design.getRefMap();
 		generate();
 	}
 
@@ -53,7 +53,7 @@ public class EagleGenerator {
 		connections.append("# SIGNALS #\n");
 
 		for (EConnection c : design.getNetlist()) {
-			connections.append("SIGNAL '" + c.getHierarchyName().toUpperCase() + "'");
+			connections.append("SIGNAL '" + c.getHierarchyName() + "'");
 			connections.append(generatePinList(c));
 		}
 		return connections.toString();
