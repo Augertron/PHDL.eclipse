@@ -25,7 +25,7 @@ import java.util.Set;
  * 
  * @author Brad Riching and Richard Black
  * @version 0.l
- *
+ * 
  */
 public class EPort extends EConnection {
 
@@ -48,6 +48,15 @@ public class EPort extends EConnection {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * Connection getter method.
+	 * 
+	 * @return the NetNode attached to the Pin
+	 */
+	public EConnection getAssignment() {
+		return assignment;
+	}
+
 	@Override
 	public EAttribute getAttribute(String name) {
 		throw new UnsupportedOperationException();
@@ -56,15 +65,6 @@ public class EPort extends EConnection {
 	@Override
 	public Set<EAttribute> getAttributes() {
 		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * Connection getter method.
-	 * 
-	 * @return the NetNode attached to the Pin
-	 */
-	public EConnection getAssignment() {
-		return assignment;
 	}
 
 	@Override

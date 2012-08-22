@@ -24,9 +24,9 @@ public class OsmondGenerator {
 	private final Map<String, EInstance> refMap;
 	private String contents;
 
-	public OsmondGenerator(EDesign design, Map<String, EInstance> refMap) {
+	public OsmondGenerator(EDesign design) {
 		this.design = design;
-		this.refMap = refMap;
+		this.refMap = design.getRefMap();
 		generate();
 	}
 

@@ -50,6 +50,7 @@ public class RefDesGenerator {
 		this.flag = false;
 		generate_pass_1(design);
 		generate_pass_2(design);
+		design.setRefMap(this.refMap);
 	}
 
 	public RefDesGenerator(EDesign design, boolean flag) {
@@ -57,6 +58,7 @@ public class RefDesGenerator {
 		this.flag = flag;
 		generate_pass_1(design);
 		generate_pass_2(design);
+		design.setRefMap(this.refMap);
 	}
 
 	private void add_to_map(EInstance i) {

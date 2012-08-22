@@ -10,6 +10,7 @@
 
 package edu.byu.ee.phdl.elaboration;
 
+
 /**
  * Enumerated types that describe Pins.
  * 

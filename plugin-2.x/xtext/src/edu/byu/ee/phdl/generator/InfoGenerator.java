@@ -30,6 +30,7 @@ public class InfoGenerator {
 		sb.append("--------------------------------\n\n");
 
 		sb.append(appendDesignInfo(design, 1));
+		sb.append("\n");
 		info = sb.toString();
 	}
 

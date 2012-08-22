@@ -128,6 +128,7 @@ public class BoMGenerator {
 				sb.append(", " + r.entries.get(i));
 			}
 		}
+		sb.append("\n");
 		bom = sb.toString();
 	}
 

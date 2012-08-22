@@ -57,7 +57,6 @@ public class PhdlCompiler {
 
 	private final static Logger logger = Logger.getLogger(PhdlCompiler.class);
 
-	private static Options options;
 	private static CommandLine commandLine;
 
 	public static CommandLine getCommandLine() {
@@ -66,8 +65,7 @@ public class PhdlCompiler {
 
 	public static void main(String[] args) {
 		logger.info(version + release);
-		Options options = setupOptions();
-		parseArgs(options, args);
+		parseArgs(setupOptions(), args);
 
 		try {
 			Injector injector = new PhdlStandaloneSetupGenerated().createInjectorAndDoEMFRegistration();
@@ -88,6 +86,7 @@ public class PhdlCompiler {
 			commandLine = parser.parse(options, args);
 		} catch (ParseException e) {
 			formatter.printHelp(usage, options, true);
+			System.exit(1);
 		}
 
 		// detect improper usage and display help
@@ -104,13 +103,13 @@ public class PhdlCompiler {
 
 	@SuppressWarnings("static-access")
 	private static Options setupOptions() {
-		options = new Options();
-		options.addOption("h", "help", false, "print this message");
+		Options options = new Options();
+		options.addOption("?", "help", false, "print this message");
 		options.addOption("q", "quiet", false, "supress reporting of warnings");
 		options.addOption("v", "verbose", false, "report any extra information");
 		options.addOption("p", "pads", false, "generate PADS netlist output");
 		options.addOption("e", "eagle", false, "generate EAGLE script output");
-		options.addOption("o", "osmond", false, "generate Osmond netlist output");
+		options.addOption("x", "xml", false, "generate XML netlist output");
 		options.addOption("a", "all", false, "generate all netlist output formats");
 		options.addOption("h", "hierarchy", false, "display design hierarchy");
 		options.addOption(OptionBuilder.withArgName("directory").hasArg()

@@ -12,6 +12,7 @@ package edu.byu.ee.phdl.elaboration;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A class that represents an elaborated design in PHDL.
@@ -22,6 +23,7 @@ import java.util.List;
 public class EDesign extends EHierarchyUnit {
 
 	private final List<EConnection> netlist;
+	private Map<String, EInstance> refMap = null;
 
 	public EDesign() {
 		super();
@@ -61,14 +63,18 @@ public class EDesign extends EHierarchyUnit {
 		return NodeType.DESIGN;
 	}
 
-	public void makeNetlistMap() {
+	public Map<String, EInstance> getRefMap() {
+		return refMap;
+	}
+
+	public void makeNetlist() {
 		for (EConnection c : connections) {
 			if (c.isFlat()) {
 				netlist.add(c);
 			}
 		}
 		for (ESubInstance s : subInsts) {
-			s.appendToNetlistMap(netlist);
+			s.appendToNetlist(netlist);
 		}
 	}
 
@@ -80,6 +86,10 @@ public class EDesign extends EHierarchyUnit {
 				connections.add(c);
 			}
 		}
+	}
+
+	public void setRefMap(Map<String, EInstance> refMap) {
+		this.refMap = refMap;
 	}
 
 }

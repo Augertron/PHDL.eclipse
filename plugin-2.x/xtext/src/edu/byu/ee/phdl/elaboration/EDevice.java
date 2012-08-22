@@ -142,8 +142,8 @@ public class EDevice extends Attributable {
 			sb.append("  ----  ----------------  -------------------------- \n");
 			int attrCount = 1;
 			for (EAttribute a : attributes) {
-				sb.append(String.format(attrFmtStr, attrCount, "", a.getName(), "", a.getValue()
-					.equals("") ? "(empty)" : a.getValue()));
+				sb.append(String.format(attrFmtStr, attrCount, "", a.getName(), "", a.getValue().equals("") ? "(empty)"
+						: a.getValue()));
 				attrCount++;
 			}
 			sb.append("\n");
@@ -155,8 +155,8 @@ public class EDevice extends Attributable {
 			int pinCount = 1;
 			for (EPin p : pins) {
 				String index = p.getIndex() == -1 ? "" : ("[" + p.getIndex() + "]");
-				sb.append(String.format(pinFmtStr, pinCount, "", p.getPinType(), "", p.getName()
-					+ index, "", p.getPinMapping()));
+				sb.append(String.format(pinFmtStr, pinCount, "", p.getPinType(), "", p.getName() + index, "",
+						p.getPinMapping()));
 				pinCount++;
 			}
 			sb.append("\n");
@@ -176,8 +176,8 @@ public class EDevice extends Attributable {
 						pIndex = ("(" + ((ESubInstance) i.getParent()).getIndex() + ")");
 				}
 				sb.append(String.format(instFmtStr, instCount, "", i.getName() + index, "",
-					i.getFileName() + ", " + i.getLine() + ":" + i.getPosition(), "", i.getParent()
-						.getName() + pIndex));
+						i.getFileName() + ", " + i.getLine() + ":" + i.getPosition(), "", i.getParent().getName()
+								+ pIndex));
 				instCount++;
 			}
 			sb.append("\n");

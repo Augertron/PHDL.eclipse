@@ -58,8 +58,9 @@ public class PhdlElaborator {
 	 * Elaborates a Design. The elaboration process is essentially a graph
 	 * transformation where the syntax graph represented by the Design is
 	 * translated into a new circuit description graph represented by an
-	 * ElaboratedDesign. The is because the AST is not sufficient to represent
-	 * the circuit with instanced devices, and multiple levels of hierarchy.
+	 * ElaboratedDesign. The is because the Xtext model is not sufficient to
+	 * represent the circuit with instanced devices, and multiple levels of
+	 * hierarchy.
 	 * 
 	 * @param design
 	 *            the Design to elaborate
@@ -68,8 +69,8 @@ public class PhdlElaborator {
 	public EDesign elaborate(Design design) {
 		EDesign eDesign = new EDesign(design.getName());
 		elaborateDesignElements(eDesign, design);
-		eDesign.flatten2();
-		eDesign.makeNetlistMap();
+		eDesign.flatten();
+		eDesign.makeNetlist();
 		logger.info("elaborated: " + design.getName());
 		return eDesign;
 	}
@@ -86,11 +87,9 @@ public class PhdlElaborator {
 		List<EConnection> rVals = getRelevantConnections(eDesign, connectionAssign.getConcatenation());
 		for (int i = 0; i < lVals.size(); i++) {
 			if (connectionAssign.getConcatenation().isReplicated()) {
-				lVals.get(i).addConnection(rVals.get(0));
-				rVals.get(0).addConnection(lVals.get(i));
+				lVals.get(i).connectTo(rVals.get(0));
 			} else {
-				lVals.get(i).addConnection(rVals.get(i));
-				rVals.get(i).addConnection(lVals.get(i));
+				lVals.get(i).connectTo(rVals.get(i));
 			}
 		}
 	}
@@ -260,13 +259,11 @@ public class PhdlElaborator {
 					}
 					for (int i = 0; i < pins.size(); i++) {
 						if (concatenation.isReplicated()) {
-							pins.get(i).setAssignment(cons.get(0));
-							cons.get(0).addPin(pins.get(i));
+							pins.get(i).assignTo(cons.get(0));
 						} else if (concatenation.isOpen()) {
 							pins.get(i).setOpen(true);
 						} else {
-							pins.get(i).setAssignment(cons.get(i));
-							cons.get(i).addPin(pins.get(i));
+							pins.get(i).assignTo(cons.get(i));
 						}
 					}
 				} else {
@@ -278,13 +275,11 @@ public class PhdlElaborator {
 							pins.addAll(inst.getAllPins(pinAssign.getRef().getName()));
 						for (int i = 0; i < pins.size(); i++) {
 							if (concatenation.isReplicated()) {
-								pins.get(i).setAssignment(cons.get(0));
-								cons.get(0).addPin(pins.get(i));
+								pins.get(i).assignTo(cons.get(0));
 							} else if (concatenation.isOpen()) {
 								pins.get(i).setOpen(true);
 							} else {
-								pins.get(i).setAssignment(cons.get(i));
-								cons.get(i).addPin(pins.get(i));
+								pins.get(i).assignTo(cons.get(i));
 							}
 						}
 						pins.clear();
@@ -331,6 +326,7 @@ public class PhdlElaborator {
 		case NO_CONNECT:
 			return EPinType.NCPIN;
 		default:
+			logger.error("cannot elaborate pintype: " + pin.getType());
 			return null;
 		}
 	}
