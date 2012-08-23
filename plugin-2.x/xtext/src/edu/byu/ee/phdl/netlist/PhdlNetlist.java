@@ -1,12 +1,7 @@
 package edu.byu.ee.phdl.netlist;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.eclipse.xtext.util.Pair;
-import org.eclipse.xtext.util.Tuples;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import edu.byu.ee.phdl.elaboration.EConnection;
 import edu.byu.ee.phdl.elaboration.EDesign;
@@ -15,40 +10,72 @@ import edu.byu.ee.phdl.elaboration.EPin;
 
 public class PhdlNetlist {
 
-	private Map<String, Pair<String, String>> parts;
-	private Map<String, List<Pair<String, String>>> nets;
+	private String name;
+
+	private SortedSet<PhdlPart> parts;
+	private SortedSet<PhdlNet> nets;
+
+	// private Map<String, Pair<String, String>> parts;
+	// private Map<String, List<Pair<String, String>>> nets;
 
 	public PhdlNetlist(EDesign design) {
-		this.parts = new HashMap<String, Pair<String, String>>();
-		this.nets = new HashMap<String, List<Pair<String, String>>>();
+		this.name = design.getName();
+		this.parts = new TreeSet<PhdlPart>();
+		this.nets = new TreeSet<PhdlNet>();
 		buildNetlist(design);
+	}
+
+	public boolean addNet(PhdlNet net) {
+		return nets.add(net);
+	}
+
+	public boolean addPart(PhdlPart part) {
+		return parts.add(part);
 	}
 
 	private void buildNetlist(EDesign design) {
 		for (String s : design.getRefMap().keySet()) {
-			String footprint = design.getRefMap().get(s).getFootprint();
-			String library = design.getRefMap().get(s).getLibrary();
-			Pair<String, String> partData = Tuples.create(footprint, library);
-			parts.put(s, partData);
+			PhdlPart part = new PhdlPart();
+			part.setName(s);
+			part.setFootprint(design.getRefMap().get(s).getFootprint());
+			part.setLibrary(design.getRefMap().get(s).getLibrary());
+			addPart(part);
 		}
 		for (EConnection c : design.getNetlist()) {
-			List<Pair<String, String>> pins = new ArrayList<Pair<String, String>>();
+			PhdlNet net = new PhdlNet();
+			net.setName(c.getName());
 			for (EPin p : c.getPins()) {
-				String partName = ((EInstance) p.getParent()).getRefDes();
-				String pinName = p.getPinMapping();
-				Pair<String, String> pinData = Tuples.create(partName, pinName);
-				pins.add(pinData);
+				PhdlPin pin = new PhdlPin();
+				pin.setPartName(((EInstance) p.getParent()).getRefDes());
+				pin.setPinName(p.getPinMapping());
+				net.addPin(pin);
 			}
-			nets.put(c.getNameIndex(), pins);
+			addNet(net);
 		}
 	}
 
-	public Map<String, List<Pair<String, String>>> getNets() {
+	public String getName() {
+		return name;
+	}
+
+	public SortedSet<PhdlNet> getNets() {
 		return nets;
 	}
 
-	public Map<String, Pair<String, String>> getParts() {
-		return parts;
-	}
+	// public String getPartFootprint(String partName) {
+	// return parts.get(partName).getFirst();
+	// }
+	//
+	// public String getPartLibrary(String partName) {
+	// return parts.get(partName).getSecond();
+	// }
+	//
+	// public Set<String> getPartNames() {
+	// return parts.keySet();
+	// }
+	//
+	// public Map<String, Pair<String, String>> getParts() {
+	// return parts;
+	// }
 
 }

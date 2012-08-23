@@ -1,1977 +1,1210 @@
 <netlist>
+  <name>spartan_pcie_board</name>
   <parts>
-    <entry>
-      <string>PWR/R1</string>
-      <pair>
-        <first class="string">CR0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>PWR/R2</string>
-      <pair>
-        <first class="string">CR0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>TP12</string>
-      <pair>
-        <first class="string">TP_SQUARE</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>FPGA1/R1</string>
-      <pair>
-        <first class="string">CR0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>MTG4</string>
-      <pair>
-        <first class="string">MOUNT_HOLE_125</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>TP11</string>
-      <pair>
-        <first class="string">TP_SQUARE</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>TP14</string>
-      <pair>
-        <first class="string">TP_ROUND</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>FPGA1/R3</string>
-      <pair>
-        <first class="string">CR0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>PWR/C11</string>
-      <pair>
-        <first class="string">TANT3528</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>TP13</string>
-      <pair>
-        <first class="string">TP_ROUND</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>FPGA1/R2</string>
-      <pair>
-        <first class="string">CR0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>PWR/C10</string>
-      <pair>
-        <first class="string">CC0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>PWR/C7</string>
-      <pair>
-        <first class="string">CC0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>FPGA1/R5</string>
-      <pair>
-        <first class="string">CR0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>PWR/C8</string>
-      <pair>
-        <first class="string">CC0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>FPGA1/R4</string>
-      <pair>
-        <first class="string">CR0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>MTG1</string>
-      <pair>
-        <first class="string">MOUNT_HOLE_125</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>TP10</string>
-      <pair>
-        <first class="string">TP_ROUND</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>PWR/C9</string>
-      <pair>
-        <first class="string">CC0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>FPGA1/R7</string>
-      <pair>
-        <first class="string">CR0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>MTG2</string>
-      <pair>
-        <first class="string">MOUNT_HOLE_125</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>FPGA1/R6</string>
-      <pair>
-        <first class="string">CR0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>MTG3</string>
-      <pair>
-        <first class="string">MOUNT_HOLE_125</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>FPGA1/R9</string>
-      <pair>
-        <first class="string">CR0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>PWR/C3</string>
-      <pair>
-        <first class="string">CC0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>PWR/C4</string>
-      <pair>
-        <first class="string">CC0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>FPGA1/R8</string>
-      <pair>
-        <first class="string">CR0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>PWR/C5</string>
-      <pair>
-        <first class="string">CC0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>PWR/C6</string>
-      <pair>
-        <first class="string">CC0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>PWR/C1</string>
-      <pair>
-        <first class="string">TANT3528</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>PWR/C2</string>
-      <pair>
-        <first class="string">TANT3528</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>TP15</string>
-      <pair>
-        <first class="string">TP_SQUARE</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>TP16</string>
-      <pair>
-        <first class="string">TP_SQUARE</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>FPGA1/D1</string>
-      <pair>
-        <first class="string">LED_1113F</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>FPGA1/SW4</string>
-      <pair>
-        <first class="string">PANASONIC_EVQ</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>FPGA1/SW5</string>
-      <pair>
-        <first class="string">PANASONIC_EVQ</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>FPGA1/SW2</string>
-      <pair>
-        <first class="string">PANASONIC_EVQ</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>FPGA1/SW3</string>
-      <pair>
-        <first class="string">PANASONIC_EVQ</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>FPGA1/SW1</string>
-      <pair>
-        <first class="string">CTS_219-8LPST</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>FPGA1/P1</string>
-      <pair>
-        <first class="string">MOLEX-87332-1420</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>FPGA1/D8</string>
-      <pair>
-        <first class="string">LED_1113F</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>FPGA1/D7</string>
-      <pair>
-        <first class="string">LED_1113F</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>FPGA1/D6</string>
-      <pair>
-        <first class="string">LED_1113F</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>FPGA1/D5</string>
-      <pair>
-        <first class="string">LED_1113F</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>FPGA1/D4</string>
-      <pair>
-        <first class="string">LED_1113F</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>FPGA1/D3</string>
-      <pair>
-        <first class="string">LED_1113F</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>FPGA1/D2</string>
-      <pair>
-        <first class="string">LED_1113F</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>PWR/C14</string>
-      <pair>
-        <first class="string">CC0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>PWR/C15</string>
-      <pair>
-        <first class="string">CC0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>FPGA1/R10</string>
-      <pair>
-        <first class="string">CR0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>PWR/C12</string>
-      <pair>
-        <first class="string">TANT3528</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>PWR/C13</string>
-      <pair>
-        <first class="string">CC0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>P1</string>
-      <pair>
-        <first class="string">PCIE_EDGE_CONN_X1</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>PWR/C18</string>
-      <pair>
-        <first class="string">CC0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>PWR/U1</string>
-      <pair>
-        <first class="string">LT3022_MSOP16</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>PWR/C19</string>
-      <pair>
-        <first class="string">CC0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>PWR/C16</string>
-      <pair>
-        <first class="string">CC0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>PWR/C17</string>
-      <pair>
-        <first class="string">CC0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>TP8</string>
-      <pair>
-        <first class="string">TP_SQUARE</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>FPGA1/R15</string>
-      <pair>
-        <first class="string">CR0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>TP9</string>
-      <pair>
-        <first class="string">TP_ROUND</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>TP4</string>
-      <pair>
-        <first class="string">TP_SQUARE</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>FPGA1/R11</string>
-      <pair>
-        <first class="string">CR0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>TP5</string>
-      <pair>
-        <first class="string">TP_ROUND</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>FPGA1/R12</string>
-      <pair>
-        <first class="string">CR0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>FPGA1/U1</string>
-      <pair>
-        <first class="string">PC28F128P30</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>TP6</string>
-      <pair>
-        <first class="string">TP_ROUND</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>FPGA1/R13</string>
-      <pair>
-        <first class="string">CR0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>PWR/C20</string>
-      <pair>
-        <first class="string">CC0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>TP7</string>
-      <pair>
-        <first class="string">TP_SQUARE</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>FPGA1/R14</string>
-      <pair>
-        <first class="string">CR0603</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>TP1</string>
-      <pair>
-        <first class="string">TP_ROUND</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>TP2</string>
-      <pair>
-        <first class="string">TP_ROUND</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>TP3</string>
-      <pair>
-        <first class="string">TP_SQUARE</first>
-        <second class="string">pcie_lib</second>
-      </pair>
-    </entry>
+    <part>
+      <name>FPGA1/D1</name>
+      <footprint>LED_1113F</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>FPGA1/D2</name>
+      <footprint>LED_1113F</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>FPGA1/D3</name>
+      <footprint>LED_1113F</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>FPGA1/D4</name>
+      <footprint>LED_1113F</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>FPGA1/D5</name>
+      <footprint>LED_1113F</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>FPGA1/D6</name>
+      <footprint>LED_1113F</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>FPGA1/D7</name>
+      <footprint>LED_1113F</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>FPGA1/D8</name>
+      <footprint>LED_1113F</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>FPGA1/P1</name>
+      <footprint>MOLEX-87332-1420</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>FPGA1/R1</name>
+      <footprint>CR0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>FPGA1/R10</name>
+      <footprint>CR0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>FPGA1/R11</name>
+      <footprint>CR0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>FPGA1/R12</name>
+      <footprint>CR0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>FPGA1/R13</name>
+      <footprint>CR0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>FPGA1/R14</name>
+      <footprint>CR0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>FPGA1/R15</name>
+      <footprint>CR0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>FPGA1/R2</name>
+      <footprint>CR0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>FPGA1/R3</name>
+      <footprint>CR0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>FPGA1/R4</name>
+      <footprint>CR0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>FPGA1/R5</name>
+      <footprint>CR0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>FPGA1/R6</name>
+      <footprint>CR0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>FPGA1/R7</name>
+      <footprint>CR0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>FPGA1/R8</name>
+      <footprint>CR0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>FPGA1/R9</name>
+      <footprint>CR0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>FPGA1/SW1</name>
+      <footprint>CTS_219-8LPST</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>FPGA1/SW2</name>
+      <footprint>PANASONIC_EVQ</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>FPGA1/SW3</name>
+      <footprint>PANASONIC_EVQ</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>FPGA1/SW4</name>
+      <footprint>PANASONIC_EVQ</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>FPGA1/SW5</name>
+      <footprint>PANASONIC_EVQ</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>FPGA1/U1</name>
+      <footprint>PC28F128P30</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>MTG1</name>
+      <footprint>MOUNT_HOLE_125</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>MTG2</name>
+      <footprint>MOUNT_HOLE_125</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>MTG3</name>
+      <footprint>MOUNT_HOLE_125</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>MTG4</name>
+      <footprint>MOUNT_HOLE_125</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>P1</name>
+      <footprint>PCIE_EDGE_CONN_X1</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>PWR/C1</name>
+      <footprint>TANT3528</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>PWR/C10</name>
+      <footprint>CC0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>PWR/C11</name>
+      <footprint>TANT3528</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>PWR/C12</name>
+      <footprint>TANT3528</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>PWR/C13</name>
+      <footprint>CC0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>PWR/C14</name>
+      <footprint>CC0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>PWR/C15</name>
+      <footprint>CC0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>PWR/C16</name>
+      <footprint>CC0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>PWR/C17</name>
+      <footprint>CC0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>PWR/C18</name>
+      <footprint>CC0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>PWR/C19</name>
+      <footprint>CC0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>PWR/C2</name>
+      <footprint>TANT3528</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>PWR/C20</name>
+      <footprint>CC0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>PWR/C3</name>
+      <footprint>CC0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>PWR/C4</name>
+      <footprint>CC0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>PWR/C5</name>
+      <footprint>CC0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>PWR/C6</name>
+      <footprint>CC0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>PWR/C7</name>
+      <footprint>CC0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>PWR/C8</name>
+      <footprint>CC0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>PWR/C9</name>
+      <footprint>CC0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>PWR/R1</name>
+      <footprint>CR0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>PWR/R2</name>
+      <footprint>CR0603</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>PWR/U1</name>
+      <footprint>LT3022_MSOP16</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>TP1</name>
+      <footprint>TP_ROUND</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>TP10</name>
+      <footprint>TP_ROUND</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>TP11</name>
+      <footprint>TP_SQUARE</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>TP12</name>
+      <footprint>TP_SQUARE</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>TP13</name>
+      <footprint>TP_ROUND</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>TP14</name>
+      <footprint>TP_ROUND</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>TP15</name>
+      <footprint>TP_SQUARE</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>TP16</name>
+      <footprint>TP_SQUARE</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>TP2</name>
+      <footprint>TP_ROUND</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>TP3</name>
+      <footprint>TP_SQUARE</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>TP4</name>
+      <footprint>TP_SQUARE</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>TP5</name>
+      <footprint>TP_ROUND</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>TP6</name>
+      <footprint>TP_ROUND</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>TP7</name>
+      <footprint>TP_SQUARE</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>TP8</name>
+      <footprint>TP_SQUARE</footprint>
+      <library>pcie_lib</library>
+    </part>
+    <part>
+      <name>TP9</name>
+      <footprint>TP_ROUND</footprint>
+      <library>pcie_lib</library>
+    </part>
   </parts>
   <nets>
-    <entry>
-      <string>cfg_addr[4]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">D1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_wp_n</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">C6</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/R14</first>
-          <second class="string">1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>led_cathode[3]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/D4</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/R4</first>
-          <second class="string">1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_data[1]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">E2</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>pushbutton[3]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/SW4</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/SW4</first>
-          <second class="string">3</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_addr[24]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">H8</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>led[4]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/D5</first>
-          <second class="string">1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>dip_io[5]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/SW1</first>
-          <second class="string">12</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>+1V5_sense</string>
-      <list>
-        <pair>
-          <first class="string">PWR/U1</first>
-          <second class="string">5</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/R1</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/R2</first>
-          <second class="string">1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_addr[14]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">B5</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>led_cathode[2]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/D3</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/R3</first>
-          <second class="string">1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>+12V</string>
-      <list>
-        <pair>
-          <first class="string">P1</first>
-          <second class="string">B1</second>
-        </pair>
-        <pair>
-          <first class="string">P1</first>
-          <second class="string">B2</second>
-        </pair>
-        <pair>
-          <first class="string">P1</first>
-          <second class="string">A2</second>
-        </pair>
-        <pair>
-          <first class="string">P1</first>
-          <second class="string">A3</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_data[0]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">F2</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>pushbutton[4]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/SW5</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/SW5</first>
-          <second class="string">3</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_addr[5]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">D2</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_addr[25]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">B6</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_clk</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">E6</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/R10</first>
-          <second class="string">1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>dip_io[6]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/SW1</first>
-          <second class="string">11</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_addr[15]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">C5</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>led[5]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/D6</first>
-          <second class="string">1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>tck</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/P1</first>
-          <second class="string">6</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_addr[2]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">B1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>test_trace_top</string>
-      <list>
-        <pair>
-          <first class="string">TP15</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">TP16</first>
-          <second class="string">1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>led_cathode[1]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/D2</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/R2</first>
-          <second class="string">1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>pushbutton[1]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/SW2</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/SW2</first>
-          <second class="string">3</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_data[14]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">G7</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_data[3]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">E4</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_data[4]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">E5</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>led[2]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/D3</first>
-          <second class="string">1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>dip_io[3]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/SW1</first>
-          <second class="string">14</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_addr[12]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">C4</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>gnd</string>
-      <list>
-        <pair>
-          <first class="string">P1</first>
-          <second class="string">B4</second>
-        </pair>
-        <pair>
-          <first class="string">P1</first>
-          <second class="string">B7</second>
-        </pair>
-        <pair>
-          <first class="string">P1</first>
-          <second class="string">B13</second>
-        </pair>
-        <pair>
-          <first class="string">P1</first>
-          <second class="string">B16</second>
-        </pair>
-        <pair>
-          <first class="string">P1</first>
-          <second class="string">B18</second>
-        </pair>
-        <pair>
-          <first class="string">P1</first>
-          <second class="string">A4</second>
-        </pair>
-        <pair>
-          <first class="string">P1</first>
-          <second class="string">A12</second>
-        </pair>
-        <pair>
-          <first class="string">P1</first>
-          <second class="string">A15</second>
-        </pair>
-        <pair>
-          <first class="string">P1</first>
-          <second class="string">A18</second>
-        </pair>
-        <pair>
-          <first class="string">TP1</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">TP2</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">TP5</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">TP6</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">TP9</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">TP10</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">TP13</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">TP14</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/R1</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/R2</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/R3</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/R4</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/R5</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/R6</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/R7</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/R8</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/SW1</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/SW1</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/SW1</first>
-          <second class="string">3</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/SW1</first>
-          <second class="string">4</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/SW1</first>
-          <second class="string">5</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/SW1</first>
-          <second class="string">6</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/SW1</first>
-          <second class="string">7</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/SW1</first>
-          <second class="string">8</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/SW2</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/SW2</first>
-          <second class="string">4</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/SW3</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/SW3</first>
-          <second class="string">4</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/SW4</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/SW4</first>
-          <second class="string">4</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/SW5</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/SW5</first>
-          <second class="string">4</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/P1</first>
-          <second class="string">3</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/P1</first>
-          <second class="string">5</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/P1</first>
-          <second class="string">7</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/P1</first>
-          <second class="string">9</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/P1</first>
-          <second class="string">11</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">B2</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">H2</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">H4</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">H6</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/R15</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/U1</first>
-          <second class="string">6</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/U1</first>
-          <second class="string">7</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/U1</first>
-          <second class="string">10</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/U1</first>
-          <second class="string">11</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/U1</first>
-          <second class="string">17</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/R2</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C1</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C2</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C3</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C4</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C5</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C6</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C7</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C8</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C9</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C10</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C11</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C12</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C13</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C14</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C15</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C16</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C17</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C18</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C19</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C20</first>
-          <second class="string">2</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>tdi</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/P1</first>
-          <second class="string">10</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>tdo</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/P1</first>
-          <second class="string">8</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_addr[3]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">C1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>led_cathode[0]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/D1</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/R1</first>
-          <second class="string">1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>pushbutton[2]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/SW3</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/SW3</first>
-          <second class="string">3</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_data[15]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">E7</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_data[2]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">G3</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_wait</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">F7</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>dip_io[4]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/SW1</first>
-          <second class="string">13</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>led[3]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/D4</first>
-          <second class="string">1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_addr[13]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">A5</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_addr[10]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">C3</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>led_cathode[7]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/D8</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/R8</first>
-          <second class="string">1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>pcie_rx0_n</string>
-      <list>
-        <pair>
-          <first class="string">P1</first>
-          <second class="string">B15</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>pcie_rx0_p</string>
-      <list>
-        <pair>
-          <first class="string">P1</first>
-          <second class="string">B14</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>pcie_perst_n</string>
-      <list>
-        <pair>
-          <first class="string">P1</first>
-          <second class="string">A11</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>led[1]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/D2</first>
-          <second class="string">1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_data[12]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">F5</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>dip_io[1]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/SW1</first>
-          <second class="string">16</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_addr[20]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">C7</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>tms</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/P1</first>
-          <second class="string">4</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_addr[9]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">B3</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_addr[18]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">A7</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>+3V3</string>
-      <list>
-        <pair>
-          <first class="string">TP3</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">TP4</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/P1</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">D5</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">D6</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">G4</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/R9</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/R10</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/R11</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/R12</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/R13</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/R14</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/U1</first>
-          <second class="string">9</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/U1</first>
-          <second class="string">12</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/U1</first>
-          <second class="string">13</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/U1</first>
-          <second class="string">14</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C11</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C12</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C13</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C14</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C15</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C16</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C17</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C18</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C19</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C20</first>
-          <second class="string">1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_ce_n</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">B4</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/R13</first>
-          <second class="string">1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_data[6]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">G6</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>+1V5</string>
-      <list>
-        <pair>
-          <first class="string">PWR/U1</first>
-          <second class="string">3</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/U1</first>
-          <second class="string">4</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/R1</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C1</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C2</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C3</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C4</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C5</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C6</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C7</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C8</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C9</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">PWR/C10</first>
-          <second class="string">1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_addr[11]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">D3</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>+1V2</string>
-      <list/>
-    </entry>
-    <entry>
-      <string>led[0]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/D1</first>
-          <second class="string">1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_data[13]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">H5</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_addr[1]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">A1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>led_cathode[6]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/D7</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/R7</first>
-          <second class="string">1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>+1V8</string>
-      <list>
-        <pair>
-          <first class="string">TP7</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">TP8</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">A6</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">H3</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">A4</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_addr[21]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">C8</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>dip_io[2]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/SW1</first>
-          <second class="string">15</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_addr[8]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">A3</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_reset_n</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">D4</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/R9</first>
-          <second class="string">1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_addr[19]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">B7</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_data[5]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">G5</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>pcie_tx0_p</string>
-      <list>
-        <pair>
-          <first class="string">P1</first>
-          <second class="string">A16</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>pcie_refclk_p</string>
-      <list>
-        <pair>
-          <first class="string">P1</first>
-          <second class="string">A13</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>pcie_tx0_n</string>
-      <list>
-        <pair>
-          <first class="string">P1</first>
-          <second class="string">A17</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_addr[22]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">A8</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>led_cathode[5]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/D6</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/R6</first>
-          <second class="string">1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_data[10]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">F3</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_adv_n</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">F6</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/R15</first>
-          <second class="string">1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>dip_io[7]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/SW1</first>
-          <second class="string">10</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_addr[16]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">D7</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>test_trace_bottom</string>
-      <list>
-        <pair>
-          <first class="string">TP11</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">TP12</first>
-          <second class="string">1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_oe_n</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">F8</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/R12</first>
-          <second class="string">1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_addr[7]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">C2</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>pcie_prsnt_n</string>
-      <list>
-        <pair>
-          <first class="string">P1</first>
-          <second class="string">B17</second>
-        </pair>
-        <pair>
-          <first class="string">P1</first>
-          <second class="string">A1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>led[6]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/D7</first>
-          <second class="string">1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_data[9]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">E3</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_data[8]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">E1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>pcie_refclk_n</string>
-      <list>
-        <pair>
-          <first class="string">P1</first>
-          <second class="string">A14</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_data[11]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">F4</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_addr[23]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">G1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>led_cathode[4]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/D5</first>
-          <second class="string">2</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/R5</first>
-          <second class="string">1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>dip_io[8]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/SW1</first>
-          <second class="string">9</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_addr[17]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">D8</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_addr[6]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">A2</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_data[7]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">H7</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>led[7]</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/D8</first>
-          <second class="string">1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>cfg_we_n</string>
-      <list>
-        <pair>
-          <first class="string">FPGA1/U1</first>
-          <second class="string">G8</second>
-        </pair>
-        <pair>
-          <first class="string">FPGA1/R11</first>
-          <second class="string">1</second>
-        </pair>
-      </list>
-    </entry>
+    <net>
+      <name>+12V</name>
+      <pins>
+        <pin>
+          <pinName>B1</pinName>
+          <partName>P1</partName>
+        </pin>
+        <pin>
+          <pinName>B2</pinName>
+          <partName>P1</partName>
+        </pin>
+        <pin>
+          <pinName>A2</pinName>
+          <partName>P1</partName>
+        </pin>
+        <pin>
+          <pinName>A3</pinName>
+          <partName>P1</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>+1V2</name>
+      <pins/>
+    </net>
+    <net>
+      <name>+1V5</name>
+      <pins>
+        <pin>
+          <pinName>3</pinName>
+          <partName>PWR/U1</partName>
+        </pin>
+        <pin>
+          <pinName>4</pinName>
+          <partName>PWR/U1</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>PWR/R1</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>PWR/C1</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>PWR/C2</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>PWR/C3</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>PWR/C4</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>PWR/C5</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>PWR/C6</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>PWR/C7</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>PWR/C8</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>PWR/C9</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>PWR/C10</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>+1V5_sense</name>
+      <pins/>
+    </net>
+    <net>
+      <name>+1V8</name>
+      <pins>
+        <pin>
+          <pinName>1</pinName>
+          <partName>TP7</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>TP8</partName>
+        </pin>
+        <pin>
+          <pinName>A6</pinName>
+          <partName>FPGA1/U1</partName>
+        </pin>
+        <pin>
+          <pinName>H3</pinName>
+          <partName>FPGA1/U1</partName>
+        </pin>
+        <pin>
+          <pinName>A4</pinName>
+          <partName>FPGA1/U1</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>+3V3</name>
+      <pins>
+        <pin>
+          <pinName>1</pinName>
+          <partName>TP3</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>TP4</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>FPGA1/P1</partName>
+        </pin>
+        <pin>
+          <pinName>D5</pinName>
+          <partName>FPGA1/U1</partName>
+        </pin>
+        <pin>
+          <pinName>D6</pinName>
+          <partName>FPGA1/U1</partName>
+        </pin>
+        <pin>
+          <pinName>G4</pinName>
+          <partName>FPGA1/U1</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>FPGA1/R9</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>FPGA1/R10</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>FPGA1/R11</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>FPGA1/R12</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>FPGA1/R13</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>FPGA1/R14</partName>
+        </pin>
+        <pin>
+          <pinName>9</pinName>
+          <partName>PWR/U1</partName>
+        </pin>
+        <pin>
+          <pinName>12</pinName>
+          <partName>PWR/U1</partName>
+        </pin>
+        <pin>
+          <pinName>13</pinName>
+          <partName>PWR/U1</partName>
+        </pin>
+        <pin>
+          <pinName>14</pinName>
+          <partName>PWR/U1</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>PWR/C11</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>PWR/C12</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>PWR/C13</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>PWR/C14</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>PWR/C15</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>PWR/C16</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>PWR/C17</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>PWR/C18</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>PWR/C19</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>PWR/C20</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>cfg_addr</name>
+      <pins>
+        <pin>
+          <pinName>B6</pinName>
+          <partName>FPGA1/U1</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>cfg_adv_n</name>
+      <pins>
+        <pin>
+          <pinName>F6</pinName>
+          <partName>FPGA1/U1</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>FPGA1/R15</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>cfg_ce_n</name>
+      <pins>
+        <pin>
+          <pinName>B4</pinName>
+          <partName>FPGA1/U1</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>FPGA1/R13</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>cfg_clk</name>
+      <pins>
+        <pin>
+          <pinName>E6</pinName>
+          <partName>FPGA1/U1</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>FPGA1/R10</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>cfg_data</name>
+      <pins>
+        <pin>
+          <pinName>E7</pinName>
+          <partName>FPGA1/U1</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>cfg_oe_n</name>
+      <pins>
+        <pin>
+          <pinName>F8</pinName>
+          <partName>FPGA1/U1</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>FPGA1/R12</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>cfg_reset_n</name>
+      <pins>
+        <pin>
+          <pinName>D4</pinName>
+          <partName>FPGA1/U1</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>FPGA1/R9</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>cfg_wait</name>
+      <pins>
+        <pin>
+          <pinName>F7</pinName>
+          <partName>FPGA1/U1</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>cfg_we_n</name>
+      <pins>
+        <pin>
+          <pinName>G8</pinName>
+          <partName>FPGA1/U1</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>FPGA1/R11</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>cfg_wp_n</name>
+      <pins>
+        <pin>
+          <pinName>C6</pinName>
+          <partName>FPGA1/U1</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>FPGA1/R14</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>dip_io</name>
+      <pins>
+        <pin>
+          <pinName>16</pinName>
+          <partName>FPGA1/SW1</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>gnd</name>
+      <pins>
+        <pin>
+          <pinName>B4</pinName>
+          <partName>P1</partName>
+        </pin>
+        <pin>
+          <pinName>B7</pinName>
+          <partName>P1</partName>
+        </pin>
+        <pin>
+          <pinName>B13</pinName>
+          <partName>P1</partName>
+        </pin>
+        <pin>
+          <pinName>B16</pinName>
+          <partName>P1</partName>
+        </pin>
+        <pin>
+          <pinName>B18</pinName>
+          <partName>P1</partName>
+        </pin>
+        <pin>
+          <pinName>A4</pinName>
+          <partName>P1</partName>
+        </pin>
+        <pin>
+          <pinName>A12</pinName>
+          <partName>P1</partName>
+        </pin>
+        <pin>
+          <pinName>A15</pinName>
+          <partName>P1</partName>
+        </pin>
+        <pin>
+          <pinName>A18</pinName>
+          <partName>P1</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>TP1</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>TP2</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>TP5</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>TP6</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>TP9</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>TP10</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>TP13</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>TP14</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>FPGA1/R1</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>FPGA1/R2</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>FPGA1/R3</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>FPGA1/R4</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>FPGA1/R5</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>FPGA1/R6</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>FPGA1/R7</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>FPGA1/R8</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>FPGA1/SW1</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>FPGA1/SW1</partName>
+        </pin>
+        <pin>
+          <pinName>3</pinName>
+          <partName>FPGA1/SW1</partName>
+        </pin>
+        <pin>
+          <pinName>4</pinName>
+          <partName>FPGA1/SW1</partName>
+        </pin>
+        <pin>
+          <pinName>5</pinName>
+          <partName>FPGA1/SW1</partName>
+        </pin>
+        <pin>
+          <pinName>6</pinName>
+          <partName>FPGA1/SW1</partName>
+        </pin>
+        <pin>
+          <pinName>7</pinName>
+          <partName>FPGA1/SW1</partName>
+        </pin>
+        <pin>
+          <pinName>8</pinName>
+          <partName>FPGA1/SW1</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>FPGA1/SW2</partName>
+        </pin>
+        <pin>
+          <pinName>4</pinName>
+          <partName>FPGA1/SW2</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>FPGA1/SW3</partName>
+        </pin>
+        <pin>
+          <pinName>4</pinName>
+          <partName>FPGA1/SW3</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>FPGA1/SW4</partName>
+        </pin>
+        <pin>
+          <pinName>4</pinName>
+          <partName>FPGA1/SW4</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>FPGA1/SW5</partName>
+        </pin>
+        <pin>
+          <pinName>4</pinName>
+          <partName>FPGA1/SW5</partName>
+        </pin>
+        <pin>
+          <pinName>3</pinName>
+          <partName>FPGA1/P1</partName>
+        </pin>
+        <pin>
+          <pinName>5</pinName>
+          <partName>FPGA1/P1</partName>
+        </pin>
+        <pin>
+          <pinName>7</pinName>
+          <partName>FPGA1/P1</partName>
+        </pin>
+        <pin>
+          <pinName>9</pinName>
+          <partName>FPGA1/P1</partName>
+        </pin>
+        <pin>
+          <pinName>11</pinName>
+          <partName>FPGA1/P1</partName>
+        </pin>
+        <pin>
+          <pinName>B2</pinName>
+          <partName>FPGA1/U1</partName>
+        </pin>
+        <pin>
+          <pinName>H2</pinName>
+          <partName>FPGA1/U1</partName>
+        </pin>
+        <pin>
+          <pinName>H4</pinName>
+          <partName>FPGA1/U1</partName>
+        </pin>
+        <pin>
+          <pinName>H6</pinName>
+          <partName>FPGA1/U1</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>FPGA1/R15</partName>
+        </pin>
+        <pin>
+          <pinName>6</pinName>
+          <partName>PWR/U1</partName>
+        </pin>
+        <pin>
+          <pinName>7</pinName>
+          <partName>PWR/U1</partName>
+        </pin>
+        <pin>
+          <pinName>10</pinName>
+          <partName>PWR/U1</partName>
+        </pin>
+        <pin>
+          <pinName>11</pinName>
+          <partName>PWR/U1</partName>
+        </pin>
+        <pin>
+          <pinName>17</pinName>
+          <partName>PWR/U1</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>PWR/R2</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>PWR/C1</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>PWR/C2</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>PWR/C3</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>PWR/C4</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>PWR/C5</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>PWR/C6</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>PWR/C7</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>PWR/C8</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>PWR/C9</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>PWR/C10</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>PWR/C11</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>PWR/C12</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>PWR/C13</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>PWR/C14</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>PWR/C15</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>PWR/C16</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>PWR/C17</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>PWR/C18</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>PWR/C19</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>PWR/C20</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>led</name>
+      <pins>
+        <pin>
+          <pinName>1</pinName>
+          <partName>FPGA1/D8</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>led_cathode</name>
+      <pins>
+        <pin>
+          <pinName>2</pinName>
+          <partName>FPGA1/D8</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>FPGA1/R8</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>pcie_perst_n</name>
+      <pins>
+        <pin>
+          <pinName>A11</pinName>
+          <partName>P1</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>pcie_prsnt_n</name>
+      <pins>
+        <pin>
+          <pinName>B17</pinName>
+          <partName>P1</partName>
+        </pin>
+        <pin>
+          <pinName>A1</pinName>
+          <partName>P1</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>pcie_refclk_n</name>
+      <pins>
+        <pin>
+          <pinName>A14</pinName>
+          <partName>P1</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>pcie_refclk_p</name>
+      <pins>
+        <pin>
+          <pinName>A13</pinName>
+          <partName>P1</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>pcie_rx0_n</name>
+      <pins>
+        <pin>
+          <pinName>B15</pinName>
+          <partName>P1</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>pcie_rx0_p</name>
+      <pins>
+        <pin>
+          <pinName>B14</pinName>
+          <partName>P1</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>pcie_tx0_n</name>
+      <pins>
+        <pin>
+          <pinName>A17</pinName>
+          <partName>P1</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>pcie_tx0_p</name>
+      <pins>
+        <pin>
+          <pinName>A16</pinName>
+          <partName>P1</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>pushbutton</name>
+      <pins>
+        <pin>
+          <pinName>2</pinName>
+          <partName>FPGA1/SW2</partName>
+        </pin>
+        <pin>
+          <pinName>3</pinName>
+          <partName>FPGA1/SW2</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>tck</name>
+      <pins>
+        <pin>
+          <pinName>6</pinName>
+          <partName>FPGA1/P1</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>tdi</name>
+      <pins>
+        <pin>
+          <pinName>10</pinName>
+          <partName>FPGA1/P1</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>tdo</name>
+      <pins>
+        <pin>
+          <pinName>8</pinName>
+          <partName>FPGA1/P1</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>test_trace_bottom</name>
+      <pins>
+        <pin>
+          <pinName>1</pinName>
+          <partName>TP11</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>TP12</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>test_trace_top</name>
+      <pins>
+        <pin>
+          <pinName>1</pinName>
+          <partName>TP15</partName>
+        </pin>
+        <pin>
+          <pinName>1</pinName>
+          <partName>TP16</partName>
+        </pin>
+      </pins>
+    </net>
+    <net>
+      <name>tms</name>
+      <pins>
+        <pin>
+          <pinName>4</pinName>
+          <partName>FPGA1/P1</partName>
+        </pin>
+      </pins>
+    </net>
   </nets>
 </netlist>

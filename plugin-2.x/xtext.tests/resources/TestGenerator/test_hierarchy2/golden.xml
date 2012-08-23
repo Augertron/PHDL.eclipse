@@ -1,76 +1,48 @@
 <netlist>
+  <name>top</name>
   <parts>
-    <entry>
-      <string>A/B0/C2</string>
-      <pair>
-        <first class="string">myFOOTPRINT</first>
-        <second class="string">myLIBRARY</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>A/B0/C1</string>
-      <pair>
-        <first class="string">myFOOTPRINT</first>
-        <second class="string">myLIBRARY</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>A/B1/C2</string>
-      <pair>
-        <first class="string">myFOOTPRINT</first>
-        <second class="string">myLIBRARY</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>A/B1/C1</string>
-      <pair>
-        <first class="string">myFOOTPRINT</first>
-        <second class="string">myLIBRARY</second>
-      </pair>
-    </entry>
+    <part>
+      <name>A/B0/C1</name>
+      <footprint>myFOOTPRINT</footprint>
+      <library>myLIBRARY</library>
+    </part>
+    <part>
+      <name>A/B0/C2</name>
+      <footprint>myFOOTPRINT</footprint>
+      <library>myLIBRARY</library>
+    </part>
+    <part>
+      <name>A/B1/C1</name>
+      <footprint>myFOOTPRINT</footprint>
+      <library>myLIBRARY</library>
+    </part>
+    <part>
+      <name>A/B1/C2</name>
+      <footprint>myFOOTPRINT</footprint>
+      <library>myLIBRARY</library>
+    </part>
   </parts>
   <nets>
-    <entry>
-      <string>net_top1[0]</string>
-      <list>
-        <pair>
-          <first class="string">A/B1/C2</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">A/B1/C1</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">A/B0/C2</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">A/B0/C1</first>
-          <second class="string">1</second>
-        </pair>
-      </list>
-    </entry>
-    <entry>
-      <string>net_top1[1]</string>
-      <list>
-        <pair>
-          <first class="string">A/B1/C1</first>
-          <second class="string">0</second>
-        </pair>
-        <pair>
-          <first class="string">A/B1/C2</first>
-          <second class="string">0</second>
-        </pair>
-        <pair>
-          <first class="string">A/B0/C1</first>
-          <second class="string">0</second>
-        </pair>
-        <pair>
-          <first class="string">A/B0/C2</first>
-          <second class="string">0</second>
-        </pair>
-      </list>
-    </entry>
+    <net>
+      <name>net_top1</name>
+      <pins>
+        <pin>
+          <pinName>0</pinName>
+          <partName>A/B1/C1</partName>
+        </pin>
+        <pin>
+          <pinName>0</pinName>
+          <partName>A/B1/C2</partName>
+        </pin>
+        <pin>
+          <pinName>0</pinName>
+          <partName>A/B0/C1</partName>
+        </pin>
+        <pin>
+          <pinName>0</pinName>
+          <partName>A/B0/C2</partName>
+        </pin>
+      </pins>
+    </net>
   </nets>
 </netlist>

@@ -12,7 +12,7 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.log4j.Logger;
 
-import edu.byu.ee.phdl.elaboration.EDesign;
+import edu.byu.ee.phdl.netlist.PhdlNetlist;
 
 public class Console {
 
@@ -80,38 +80,39 @@ public class Console {
 		options.addOption(OptionBuilder.withArgName("design_name").hasArg()
 				.withDescription("compiled top level design name").create("top"));
 		options.addOption(OptionBuilder.withArgName("class_name").hasArg()
-				.withDescription("concrete translator class name for layout tool").create("tool"));
+				.withDescription("class<? extends DefaultTranslator> for generating arbitrarily formatted netlists")
+				.create("tool"));
 		return options;
 	}
 
 	private final DefaultTranslator translator;
-	private final List<EDesign> designs;
+	private final List<PhdlNetlist> netlists;
 
 	public Console(DefaultTranslator translator) {
 		if (translator == null) {
 			throw new IllegalArgumentException("translator cannot be null.");
 		}
 		this.translator = translator;
-		this.designs = new ArrayList<EDesign>();
+		this.netlists = new ArrayList<PhdlNetlist>();
 	}
 
 	private void run() {
 		String topDesignName = commandLine.hasOption("top") ? commandLine.getOptionValue("top") : null;
 		if (topDesignName == null) {
-			// get all designs with file extension *.ser
+			// get all designs with file extension *.xml
 		} else {
 			logger.info("translating design: " + topDesignName);
-			// get only design with name equal to topDesignName
+			// get only netlist with name equal to topDesignName
 		}
 
-		if (designs.isEmpty()) {
+		if (netlists.isEmpty()) {
 			logger.error("no compiled PHDL designs found.");
 			System.exit(1);
 		}
 
-		for (EDesign design : designs) {
-			if (!translator.translate(design))
-				logger.error("could not translate design: " + design.getName());
+		for (PhdlNetlist netlist : netlists) {
+			translator.translate(netlist);
+
 		}
 	}
 }

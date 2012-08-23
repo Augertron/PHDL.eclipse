@@ -1,26 +1,25 @@
 <netlist>
+  <name>top</name>
   <parts>
-    <entry>
-      <string>D1</string>
-      <pair>
-        <first class="string">dFoot</first>
-        <second class="string">dLib</second>
-      </pair>
-    </entry>
+    <part>
+      <name>D1</name>
+      <footprint>dFoot</footprint>
+      <library>dLib</library>
+    </part>
   </parts>
   <nets>
-    <entry>
-      <string>n</string>
-      <list>
-        <pair>
-          <first class="string">D1</first>
-          <second class="string">1</second>
-        </pair>
-        <pair>
-          <first class="string">D1</first>
-          <second class="string">2</second>
-        </pair>
-      </list>
-    </entry>
+    <net>
+      <name>n</name>
+      <pins>
+        <pin>
+          <pinName>1</pinName>
+          <partName>D1</partName>
+        </pin>
+        <pin>
+          <pinName>2</pinName>
+          <partName>D1</partName>
+        </pin>
+      </pins>
+    </net>
   </nets>
 </netlist>

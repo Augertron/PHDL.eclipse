@@ -1,726 +1,521 @@
 <netlist>
+  <name>top</name>
   <parts>
-    <entry>
-      <string>W3/X1/C2</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W3/X1/C3</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W3/X1/C1</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>R15</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>R13</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>R14</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>R11</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>R12</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W3/X2/C3</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W3/X2/C2</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>R10</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W3/X2/C1</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W4/X2/R3</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W2/R6</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W2/R2</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W2/R3</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W3/C1</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W2/R4</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W1/X2/C3</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W2/R5</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W1/X1/C2</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W1/X1/C3</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W2/R1</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W1/X1/C1</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W1/X2/C1</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W1/X2/C2</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W4/X2/C1</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W4/X2/C2</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W4/X2/C3</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W2/X2/C2</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W2/X2/C3</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W2/X2/C1</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W1/R6</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W1/R5</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W1/R4</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W1/R3</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W1/R2</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W1/R1</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>R3/R4/R1</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>R8</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>R9</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>R6</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>R7</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>R4</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>R5</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>R2</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>R3</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W2/X1/R3</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W3/X2/R3</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>C16</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>C17</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>C18</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>C19</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W2/X2/R3</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>R1</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>C10</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>C11</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>C12</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>C13</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>C14</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>C15</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W1/C1</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W4/R6</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W4/R5</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W4/R4</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W4/R3</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W4/R2</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W4/R1</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>C8</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>C7</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W1/X1/R3</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>C9</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>C4</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>C3</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W2/X1/C3</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>C6</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W1/X2/R3</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W2/X1/C2</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>C5</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W2/X1/C1</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W4/X1/C3</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>C25</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>C26</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>C23</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>C24</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>C21</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>C22</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W3/X1/R3</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W4/C1</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W4/X1/C1</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>C20</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W4/X1/C2</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W3/R1</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W3/R2</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W3/R3</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W3/R4</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W3/R5</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W3/R6</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>C1</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>C2</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W4/X1/R3</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>W2/C1</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
-    <entry>
-      <string>R3/R4/C1</string>
-      <pair>
-        <first class="string">footprint</first>
-        <second class="string">library</second>
-      </pair>
-    </entry>
+    <part>
+      <name>C1</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>C10</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>C11</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>C12</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>C13</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>C14</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>C15</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>C16</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>C17</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>C18</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>C19</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>C2</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>C20</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>C21</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>C22</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>C23</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>C24</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>C25</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>C26</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>C3</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>C4</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>C5</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>C6</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>C7</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>C8</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>C9</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>R1</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>R10</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>R11</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>R12</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>R13</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>R14</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>R15</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>R2</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>R3</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>R3/R4/C1</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>R3/R4/R1</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>R4</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>R5</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>R6</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>R7</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>R8</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>R9</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W1/C1</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W1/R1</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W1/R2</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W1/R3</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W1/R4</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W1/R5</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W1/R6</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W1/X1/C1</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W1/X1/C2</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W1/X1/C3</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W1/X1/R3</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W1/X2/C1</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W1/X2/C2</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W1/X2/C3</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W1/X2/R3</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W2/C1</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W2/R1</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W2/R2</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W2/R3</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W2/R4</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W2/R5</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W2/R6</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W2/X1/C1</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W2/X1/C2</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W2/X1/C3</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W2/X1/R3</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W2/X2/C1</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W2/X2/C2</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W2/X2/C3</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W2/X2/R3</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W3/C1</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W3/R1</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W3/R2</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W3/R3</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W3/R4</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W3/R5</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W3/R6</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W3/X1/C1</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W3/X1/C2</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W3/X1/C3</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W3/X1/R3</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W3/X2/C1</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W3/X2/C2</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W3/X2/C3</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W3/X2/R3</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W4/C1</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W4/R1</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W4/R2</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W4/R3</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W4/R4</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W4/R5</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W4/R6</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W4/X1/C1</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W4/X1/C2</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W4/X1/C3</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W4/X1/R3</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W4/X2/C1</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W4/X2/C2</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W4/X2/C3</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
+    <part>
+      <name>W4/X2/R3</name>
+      <footprint>footprint</footprint>
+      <library>library</library>
+    </part>
   </parts>
   <nets/>
 </netlist>
