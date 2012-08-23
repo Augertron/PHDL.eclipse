@@ -1,4 +1,4 @@
-package edu.byu.ee.phdl.standalone;
+package edu.byu.ee.phdl.compile;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ import com.google.inject.name.Named;
 
 import edu.byu.ee.phdl.PhdlStandaloneSetupGenerated;
 
-public class PhdlCompiler {
+public class Console {
 
 	@Inject
 	private Provider<ResourceSet> resourceSetProvider;
@@ -55,7 +55,7 @@ public class PhdlCompiler {
 	private static String version = "PHDL Compiler v2.1, ";
 	private static String release = "August 15, 2012 release.  ";
 
-	private final static Logger logger = Logger.getLogger(PhdlCompiler.class);
+	private final static Logger logger = Logger.getLogger(Console.class);
 
 	private static CommandLine commandLine;
 
@@ -69,8 +69,8 @@ public class PhdlCompiler {
 
 		try {
 			Injector injector = new PhdlStandaloneSetupGenerated().createInjectorAndDoEMFRegistration();
-			PhdlCompiler compileInstance = injector.getInstance(PhdlCompiler.class);
-			compileInstance.compile();
+			Console consoleInstance = injector.getInstance(Console.class);
+			consoleInstance.run();
 		} catch (Exception e) {
 			logger.error("unexpected error.");
 			e.printStackTrace();
@@ -123,7 +123,7 @@ public class PhdlCompiler {
 		return options;
 	}
 
-	private void compile() {
+	private void run() {
 		logger.info("compilation started.");
 
 		// obtain src and gen folders from the command-line if present
