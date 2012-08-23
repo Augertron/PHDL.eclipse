@@ -116,7 +116,7 @@ public class PhdlGeneratorImpl implements IGenerator {
 			if (commandLine.hasOption("all") || commandLine.hasOption("xml")) {
 				PhdlNetlist netlist = new PhdlNetlist(eDesign);
 				XStream xstream = new XStream();
-				PhdlUtils.configureAliases(xstream);
+				PhdlUtils.setAliasesForPhdlNetlist(xstream);
 				String xmlFileName = name + ExtensionCodes.XML_EXT;
 				fsa.generateFile(xmlFileName, xstream.toXML(netlist) + "\n");
 				logger.info("generated XML (For use with netlist translator): " + xmlFileName);
@@ -135,7 +135,7 @@ public class PhdlGeneratorImpl implements IGenerator {
 
 			PhdlNetlist netlist = new PhdlNetlist(eDesign);
 			XStream xstream = new XStream();
-			PhdlUtils.configureAliases(xstream);
+			PhdlUtils.setAliasesForPhdlNetlist(xstream);
 			String xmlFileName = name + ExtensionCodes.XML_EXT;
 			fsa.generateFile(xmlFileName, xstream.toXML(netlist) + "\n");
 			logger.info("generated XML (For use with netlist translator): " + xmlFileName);

@@ -1,39 +1,25 @@
 package edu.byu.ee.phdl.utils;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.xtext.util.Pair;
-
 import com.thoughtworks.xstream.XStream;
 
-import edu.byu.ee.phdl.elaboration.EDesign;
+import edu.byu.ee.phdl.netlist.PhdlNet;
 import edu.byu.ee.phdl.netlist.PhdlNetlist;
+import edu.byu.ee.phdl.netlist.PhdlPart;
+import edu.byu.ee.phdl.netlist.PhdlPin;
 import edu.byu.ee.phdl.phdl.Indices;
 
 public class PhdlUtils {
-	public static void configureAliases(XStream xstream) {
+	public static void setAliasesForPhdlNetlist(XStream xstream) {
 		xstream.alias("netlist", PhdlNetlist.class);
-		xstream.alias("pair", Pair.class);
-		// xstream.alias("attr", EAttribute.class);
-		// xstream.alias("design", EDesign.class);
-		// xstream.alias("device", EDevice.class);
-		// xstream.alias("inst", EInstance.class);
-		// xstream.alias("net", ENet.class);
-		// xstream.alias("pin", EPin.class);
-		// xstream.alias("type", EPinType.class);
-		// xstream.alias("port", EPort.class);
-		// xstream.alias("subdesign", ESubDesign.class);
-		// xstream.alias("subinst", ESubInstance.class);
+		xstream.alias("part", PhdlPart.class);
+		xstream.alias("net", PhdlNet.class);
+		xstream.alias("pin", PhdlPin.class);
 	}
 
 	public static String fileToString(String fileName) {
@@ -56,25 +42,6 @@ public class PhdlUtils {
 		}
 
 		return sb.toString();
-	}
-
-	public static EDesign getDesignFromSerialFile(String designName) {
-		EDesign design = null;
-		try {
-			ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(designName
-					+ ".ser")));
-			try {
-				Object obj = ois.readObject();
-				if (obj instanceof EDesign) {
-					design = (EDesign) obj;
-				}
-			} finally {
-				ois.close();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return design;
 	}
 
 	public static List<Integer> getIndices(Indices i) {
@@ -131,22 +98,5 @@ public class PhdlUtils {
 		} else {
 			return index == msb;
 		}
-	}
-
-	public static boolean saveDesignToSerialFile(EDesign design) {
-		boolean success = false;
-		try {
-			ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(
-					design.getName() + ".ser")));
-			try {
-				oos.writeObject(design);
-				success = true;
-			} finally {
-				oos.close();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return success;
 	}
 }
