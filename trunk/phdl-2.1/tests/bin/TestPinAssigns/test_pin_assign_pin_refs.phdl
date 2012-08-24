@@ -1,0 +1,38 @@
+device scalar {
+	attr REFPREFIX = "R";
+	attr FOOTPRINT = "footprint";
+	attr LIBRARY = "library";
+	pin a = {1};
+}
+
+device vector {
+	attr REFPREFIX = "R";
+	attr FOOTPRINT = "footprint";
+	attr LIBRARY = "library";
+	pin[4:1] b = {4,3,2,1};
+}
+
+design top {
+
+	net a;
+
+	// test invalid msb
+	inst test1 of vector {
+		b[5:1] = <a>;
+	}
+	
+	// test invalid lsb
+	inst test2 of vector {
+		b[4:0] = <a>;
+	}
+	
+	// test invalid index
+	inst test3 of vector {
+		b[5,4,3,2,1] = <a>;
+	}
+	
+	// test array not declared
+	inst test4 of scalar {
+		a[1] = a;
+	}
+}

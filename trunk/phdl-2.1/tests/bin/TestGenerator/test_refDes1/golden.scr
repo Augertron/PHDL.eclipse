@@ -1,0 +1,40 @@
+# Auto-generated EAGLE PCB script from: 
+SET UNDO_LOG OFF;
+GRID INCH;
+CHANGE DISPLAY OFF;
+CHANGE SIZE 0.25;
+
+# PARTS #
+ADD footprint@library 'A/C1' (0.25 0.0);
+ADD footprint@library 'A/C3' (0.5 0.0);
+ADD footprint@library 'A/R1' (0.75 0.0);
+ADD footprint@library 'B/C/C1' (1.0 0.0);
+ADD footprint@library 'B/C/R1' (1.25 0.0);
+ADD footprint@library 'C1' (1.5 0.0);
+ADD footprint@library 'C2' (1.75 0.0);
+ADD footprint@library 'C3' (2.0 0.0);
+ADD footprint@library 'C4' (2.25 0.0);
+ADD footprint@library 'C5' (2.5 0.0);
+ADD footprint@library 'C6' (2.75 0.0);
+ADD footprint@library 'R1' (3.0 0.0);
+ADD footprint@library 'R2' (3.25 0.0);
+ADD footprint@library 'R3' (3.5 0.0);
+ADD footprint@library 'R4' (3.75 0.0);
+ADD footprint@library 'R5' (4.0 0.0);
+ADD footprint@library 'R6' (4.25 0.0);
+ADD footprint@library 'R7' (4.5 0.0);
+ADD footprint@library 'R8' (4.75 0.0);
+ADD footprint@library 'X1/D1' (5.0 0.0);
+ADD footprint@library 'X1/R1' (5.25 0.0);
+ADD footprint@library 'X1/R2' (5.5 0.0);
+ADD footprint@library 'X2/D1' (5.75 0.0);
+ADD footprint@library 'X2/R1' (6.0 0.0);
+ADD footprint@library 'X2/R2' (6.25 0.0);
+ADD footprint@library 'X3/D1' (6.5 0.0);
+ADD footprint@library 'X3/R1' (6.75 0.0);
+ADD footprint@library 'X3/R2' (7.0 0.0);
+ADD footprint@library 'X4/D1' (7.25 0.0);
+ADD footprint@library 'X4/R1' (7.5 0.0);
+ADD footprint@library 'X4/R2' (7.75 0.0);
+
+# SIGNALS #
