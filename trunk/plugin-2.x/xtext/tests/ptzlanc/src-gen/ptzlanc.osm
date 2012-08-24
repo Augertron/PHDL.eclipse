@@ -1,0 +1,507 @@
+Part C0603MP { Name "C1" }
+Part C0603MP { Name "C10" }
+Part C0603MP { Name "C11" }
+Part C0603MP { Name "C12" }
+Part C0603MP { Name "C13" }
+Part C0603MP { Name "C14" }
+Part C0603MP { Name "C15" }
+Part C0603MP { Name "C16" }
+Part C0603MP { Name "C17" }
+Part C0603MP { Name "C18" }
+Part C0603MP { Name "C19" }
+Part C0603MP { Name "C2" }
+Part C0603MP { Name "C20" }
+Part C0603MP { Name "C21" }
+Part C0603MP { Name "C22" }
+Part C0603MP { Name "C23" }
+Part C0603MP { Name "C24" }
+Part C0603MP { Name "C25" }
+Part C0603MP { Name "C26" }
+Part C0603MP { Name "C27" }
+Part C0603MP { Name "C28" }
+Part C1206MP/T { Name "C29" }
+Part C0603MP { Name "C3" }
+Part C1206MP/T { Name "C30" }
+Part C1206MP/T { Name "C31" }
+Part C1206MP/T { Name "C32" }
+Part C1206MP/T { Name "C33" }
+Part C1206MP/T { Name "C34" }
+Part C1206MP/T { Name "C35" }
+Part C0603MP { Name "C36" }
+Part C0603MP { Name "C37" }
+Part C0603MP { Name "C38" }
+Part C0603MP { Name "C39" }
+Part C0603MP { Name "C4" }
+Part C0603MP { Name "C40" }
+Part C0603MP { Name "C41" }
+Part C0603MP { Name "C42" }
+Part C0603MP { Name "C43" }
+Part C0603MP { Name "C44" }
+Part C0603MP { Name "C45" }
+Part C0603MP { Name "C46" }
+Part C0603MP { Name "C47" }
+Part C0603MP { Name "C48" }
+Part C0603MP { Name "C49" }
+Part C0603MP { Name "C5" }
+Part C0603MP { Name "C50" }
+Part C1206MP/T { Name "C51" }
+Part C1206MP/T { Name "C52" }
+Part C1206MP/T { Name "C53" }
+Part C1206MP/T { Name "C54" }
+Part C0603MP { Name "C55" }
+Part C0603MP { Name "C56" }
+Part C0603MP { Name "C57" }
+Part C0603MP { Name "C58" }
+Part C0603MP { Name "C59" }
+Part C0603MP { Name "C6" }
+Part C0603MP { Name "C60" }
+Part C0603MP { Name "C61" }
+Part C0603MP { Name "C62" }
+Part C0603MP { Name "C63" }
+Part C0603MP { Name "C64" }
+Part C0603MP { Name "C65" }
+Part C0603MP { Name "C66" }
+Part CSV-E/F { Name "C67" }
+Part CSV-E/F { Name "C68" }
+Part CSV-E/F { Name "C69" }
+Part C0603MP { Name "C7" }
+Part CSV-E/F { Name "C70" }
+Part CSV-E/F { Name "C71" }
+Part CSV-E/F { Name "C72" }
+Part C0603MP { Name "C73" }
+Part C0603MP { Name "C74" }
+Part C0603MP { Name "C75" }
+Part C0603MP { Name "C76" }
+Part C0603MP { Name "C77" }
+Part CSV-D { Name "C78" }
+Part CSV-D { Name "C79" }
+Part C0603MP { Name "C8" }
+Part CSV-D { Name "C80" }
+Part CSV-D { Name "C81" }
+Part C0603MP { Name "C82" }
+Part C0603MP { Name "C83" }
+Part C1206MP/T { Name "C84" }
+Part C1206MP/T { Name "C85" }
+Part C1206MP/T { Name "C86" }
+Part C1206MP/T { Name "C87" }
+Part CSV-D { Name "C88" }
+Part CSV-D { Name "C89" }
+Part C0603MP { Name "C9" }
+Part C1206MP/T { Name "C90" }
+Part C1206MP/T { Name "C91" }
+Part C1206MP/T { Name "C92" }
+Part C1206MP/T { Name "C93" }
+Part C0603MP { Name "C94" }
+Part DO214AC { Name "D1" }
+Part DO214AC { Name "D10" }
+Part DO214AC { Name "D11" }
+Part DO214AC { Name "D12" }
+Part DO214AC { Name "D13" }
+Part DO214AC { Name "D14" }
+Part DO214AC { Name "D15" }
+Part DO214AC { Name "D16" }
+Part DO214AC { Name "D17" }
+Part DO214AC { Name "D18" }
+Part DO214AC { Name "D2" }
+Part DO214AC { Name "D3" }
+Part DO214AC { Name "D4" }
+Part DO214AC { Name "D5" }
+Part DO214AC { Name "D6" }
+Part DO214AC { Name "D7" }
+Part DO214AC { Name "D8" }
+Part DO214AC { Name "D9" }
+Part 3,6 { Name "H1" }
+Part 3,6 { Name "H2" }
+Part 3,6 { Name "H3" }
+Part 3,6 { Name "H4" }
+Part 1X06/90 { Name "J1" }
+Part 70543-05 { Name "J10" }
+Part 70543-05 { Name "J11" }
+Part 70543-05 { Name "J12" }
+Part 22-23-2031 { Name "J13" }
+Part 22-23-2031 { Name "J14" }
+Part 22-23-2021 { Name "J15" }
+Part 22-23-2021 { Name "J16" }
+Part 22-23-2021 { Name "J17" }
+Part 09HP { Name "J18" }
+Part SIP-100-03-40 { Name "J19" }
+Part 1X06/90 { Name "J2" }
+Part 70543-02 { Name "J20" }
+Part DCJ0202 { Name "J21" }
+Part DIL-100-2X03 { Name "J3" }
+Part SIP-100-03-40 { Name "J4" }
+Part SIP-100-03-40 { Name "J5" }
+Part 79107-14 { Name "J6" }
+Part 1X06/90 { Name "J7" }
+Part 70543-02 { Name "J8" }
+Part 70543-05 { Name "J9" }
+Part 0603MP { Name "LD0" }
+Part 0603MP { Name "LD1" }
+Part 0603MP { Name "LD10" }
+Part 0603MP { Name "LD11" }
+Part 0603MP { Name "LD2" }
+Part 0603MP { Name "LD3" }
+Part 0603MP { Name "LD4" }
+Part 0603MP { Name "LD5" }
+Part 0603MP { Name "LD6" }
+Part 0603MP { Name "LD7" }
+Part 0603MP { Name "LD8" }
+Part 0603MP { Name "LD9" }
+Part TO252 { Name "Q1" }
+Part TO252 { Name "Q10" }
+Part TO252 { Name "Q11" }
+Part TO252 { Name "Q12" }
+Part SOT23-BEC { Name "Q13" }
+Part TO252 { Name "Q2" }
+Part TO252 { Name "Q3" }
+Part TO252 { Name "Q4" }
+Part TO252 { Name "Q5" }
+Part TO252 { Name "Q6" }
+Part TO252 { Name "Q7" }
+Part TO252 { Name "Q8" }
+Part TO252 { Name "Q9" }
+Part R0603MP { Name "R1" }
+Part R0603MP { Name "R10" }
+Part R0603MP { Name "R11" }
+Part R0603MP { Name "R12" }
+Part R0603MP { Name "R13" }
+Part R0603MP { Name "R14" }
+Part R0603MP { Name "R15" }
+Part R0603MP { Name "R16" }
+Part R0603MP { Name "R17" }
+Part R0603MP { Name "R18" }
+Part R0603MP { Name "R19" }
+Part R0603MP { Name "R2" }
+Part R0603MP { Name "R20" }
+Part R0603MP { Name "R21" }
+Part R0603MP { Name "R22" }
+Part R0603MP { Name "R23" }
+Part R0603MP { Name "R24" }
+Part R0603MP { Name "R25" }
+Part R0603MP { Name "R26" }
+Part R0603MP { Name "R27" }
+Part R0603MP { Name "R28" }
+Part R0603MP { Name "R29" }
+Part R0603MP { Name "R3" }
+Part R0603MP { Name "R30" }
+Part R0603MP { Name "R31" }
+Part R0603MP { Name "R32" }
+Part R0603MP { Name "R33" }
+Part R0603MP { Name "R34" }
+Part R0603MP { Name "R35" }
+Part R0603MP { Name "R36" }
+Part R0603MP { Name "R37" }
+Part R0603MP { Name "R38" }
+Part R0603MP { Name "R39" }
+Part R0603MP { Name "R4" }
+Part R0603MP { Name "R40" }
+Part R0603MP { Name "R41" }
+Part R0603MP { Name "R42" }
+Part R0603MP { Name "R43" }
+Part R0603MP { Name "R44" }
+Part R0603MP { Name "R45" }
+Part R0603MP { Name "R46" }
+Part R0603MP { Name "R47" }
+Part R0603MP { Name "R48" }
+Part R0603MP { Name "R49" }
+Part R0603MP { Name "R5" }
+Part R0603MP { Name "R50" }
+Part R0603MP { Name "R51" }
+Part R0603MP { Name "R52" }
+Part R0603MP { Name "R53" }
+Part R0603MP { Name "R54" }
+Part R0603MP { Name "R55" }
+Part R0603MP { Name "R56" }
+Part R0603MP { Name "R57" }
+Part R0603MP { Name "R58" }
+Part R0603MP { Name "R59" }
+Part R0603MP { Name "R6" }
+Part R0603MP { Name "R60" }
+Part R0603MP { Name "R61" }
+Part R0603MP { Name "R62" }
+Part R0603MP { Name "R63" }
+Part R0603MP { Name "R64" }
+Part R0603MP { Name "R65" }
+Part R0603MP { Name "R66" }
+Part R0603MP { Name "R67" }
+Part R0603MP { Name "R68" }
+Part R0603MP { Name "R69" }
+Part R0603MP { Name "R7" }
+Part R0603MP { Name "R70" }
+Part R0603MP { Name "R71" }
+Part R0603MP { Name "R72" }
+Part R0603MP { Name "R73" }
+Part R0603MP { Name "R74" }
+Part R0603MP { Name "R75" }
+Part R0603MP { Name "R76" }
+Part R0603MP { Name "R77" }
+Part R0603MP { Name "R78" }
+Part R0603MP { Name "R79" }
+Part R0603MP { Name "R8" }
+Part R0603MP { Name "R80" }
+Part R0603MP { Name "R81" }
+Part R0603MP { Name "R82" }
+Part R0603MP { Name "R83" }
+Part R0603MP { Name "R84" }
+Part R0603MP { Name "R85" }
+Part R0603MP { Name "R86" }
+Part R0603MP { Name "R87" }
+Part R0603MP { Name "R9" }
+Part DS-08 { Name "S1" }
+Part TL1105T { Name "S2" }
+Part TL1105T { Name "S3" }
+Part tq144 { Name "U1" }
+Part TO-220-11 { Name "U10" }
+Part TO-220-11 { Name "U11" }
+Part SO16 { Name "U12" }
+Part D2PACK { Name "U13" }
+Part TO263 { Name "U14" }
+Part DPACK { Name "U15" }
+Part DPACK { Name "U16" }
+Part TSOPII44 { Name "U2" }
+Part TSOPII44 { Name "U3" }
+Part TSSOP20 { Name "U4" }
+Part SOT23-6 { Name "U5" }
+Part SO14 { Name "U6" }
+Part SO14 { Name "U7" }
+Part SO24W { Name "U8" }
+Part SO24W { Name "U9" }
+Part SM77H { Name "X1" }
+Signal "2v5_pwr"
+  { LD11-a R86-2 }
+Signal "3v3_pwr"
+  { LD10-a R84-2 }
+Signal "3v3_sense"
+  { U14-1 C86-+ R82-2 R83-1 }
+Signal "5v_pwr"
+  { LD9-a R81-2 }
+Signal "CCLK"
+  { U1-P72 R33-1 }
+Signal "DONE"
+  { U1-P71 R29-2 LD8-a J5-1 }
+Signal "HSWAP_EN"
+  { U1-P142 J4-2 }
+Signal "M0"
+  { U1-P38 J3-6 }
+Signal "M1"
+  { U1-P37 J3-4 }
+Signal "M2"
+  { U1-P39 J3-2 }
+Signal "PROG_B"
+  { U1-P143 U4-7 R28-2 R30-1 }
+Signal "TCK"
+  { U1-P110 U4-6 J6-6 R36-2 }
+Signal "TDI"
+  { U1-P144 J6-10 R35-2 }
+Signal "TDO"
+  { U1-P109 U4-4 }
+Signal "TMS"
+  { U1-P111 U4-5 J6-4 R34-2 }
+Signal "addr"
+  { U1-P4 U2-44 U3-1 }
+Signal "ahb"
+  { U8-16 C57-2 D1-c }
+Signal "ahg"
+  { R53-2 Q1-1 }
+Signal "aho"
+  { U8-17 R53-1 }
+Signal "ahs"
+  { U8-18 C57-1 D13-c R47-1 }
+Signal "alg"
+  { R56-2 Q4-1 R65-1 }
+Signal "alo"
+  { U8-21 R56-1 }
+Signal "bhb"
+  { U8-1 C58-2 D2-c }
+Signal "bhg"
+  { R54-2 Q2-1 }
+Signal "bho"
+  { U8-24 R54-1 }
+Signal "bhs"
+  { U8-23 C58-1 D15-c R48-1 }
+Signal "blg"
+  { R57-2 Q5-1 R66-1 }
+Signal "blo"
+  { U8-22 R57-1 }
+Signal "boot1"
+  { U10-1 C63-2 }
+Signal "boot2"
+  { U10-11 C64-2 }
+Signal "c1+"
+  { U12-1 C73-2 }
+Signal "c1-"
+  { U12-3 C73-1 }
+Signal "c2+"
+  { U12-4 C74-2 }
+Signal "c2-"
+  { U12-5 C74-1 }
+Signal "ce0_n"
+  { U1-P140 U2-6 }
+Signal "ce1_n"
+  { U1-P137 U3-6 }
+Signal "chb"
+  { U8-13 C59-2 D3-c }
+Signal "chg"
+  { R55-2 Q3-1 }
+Signal "cho"
+  { U8-14 R55-1 }
+Signal "chs"
+  { U8-15 C59-1 D17-c R49-1 }
+Signal "clamps"
+  { D7-c D13-a }
+Signal "clg"
+  { R58-2 Q6-1 R67-1 }
+Signal "clk"
+  { U1-P52 X1-3 }
+Signal "clo"
+  { U8-19 R58-1 }
+Signal "d0"
+  { U4-1 R31-2 }
+Signal "dac_out"
+  { U5-1 J8-2 }
+Signal "data"
+  { U1-P23 U2-16 U2-29 U3-29 U3-16 }
+Signal "din"
+  { U1-P65 R31-1 }
+Signal "dir0"
+  { U1-P90 U10-3 R73-1 }
+Signal "dir1"
+  { U1-P93 U11-3 R74-1 }
+Signal "e0"
+  { U6-1 J9-5 }
+Signal "e1"
+  { U6-13 J10-5 }
+Signal "enc0"
+  { U1-P69 U6-2 }
+Signal "enc1"
+  { U1-P70 U6-12 }
+Signal "gnd"
+  { U1-P101 U1-P114 U1-P117 U1-P136 U1-P139 U1-P16 U1-P22 U1-P29 U1-P42 U1-P45 U1-P64 U1-P67 U1-P81 U1-P88 U1-P9 U1-P94 C1-1 C2-1 C3-1 C4-1 C5-1 C6-1 C7-1 C8-1 C9-1 C10-1 C11-1 C12-1 C13-1 C14-1 C15-1 C16-1 C17-1 C18-1 C19-1 C20-1 C21-1 C22-1 C23-1 C24-1 C25-1 C26-1 C27-1 C28-1 C29-- C30-- C31-- C32-- C33-- C34-- C35-- R1-2 R2-2 R3-2 R4-2 R5-2 R6-2 R7-2 R8-2 LD7-c LD6-c LD5-c LD4-c LD3-c LD2-c LD1-c LD0-c U2-34 U2-12 U3-34 U3-12 C36-1 C37-1 C38-1 C39-1 C40-1 C41-1 C42-1 C43-1 X1-1 X1-2 C44-1 S2-2 S2-4 J1-2 J2-2 J3-5 J3-3 J3-1 J4-3 U4-11 C45-1 C46-1 C47-1 LD8-c S3-2 S3-4 J5-3 J6-1 J6-3 J6-5 J6-7 J6-9 J6-11 J6-13 J7-5 U5-2 C48-1 J8-1 U6-7 J9-1 J10-1 C49-1 U7-7 J11-1 J12-1 C50-1 U8-6 U9-6 U8-10 U9-10 C51-- C52-- C53-- C54-- R44-2 R46-2 C55-2 C56-2 D7-a D8-a D9-a D10-a D11-a D12-a Q4-2 Q5-2 Q6-2 Q10-2 Q11-2 Q12-2 R65-2 R66-2 R67-2 R68-2 R69-2 R70-2 U10-4 U11-4 U10-7 U11-7 J17-1 C67-- C68-- C69-- C70-- C71-- C72-- R71-2 R72-2 R73-2 R74-2 U12-15 C76-1 C77-1 J18-5 J18-g1 J18-g2 J19-1 Q13-e J20-1 J21-2 J21-3 C78-- C79-- U13-2 C80-- C81-- C82-1 C83-1 LD9-c C84-- C85-- C86-- C87-- C88-- C89-- R83-2 LD10-c U15-4 C90-- C91-- C92-- R85-2 LD11-c U16-1 C93-- R87-2 C94-1 }
+Signal "gpio"
+  { U1-P124 J2-6 }
+Signal "high0"
+  { U1-P104 U8-5 }
+Signal "high1"
+  { U1-P97 U9-5 }
+Signal "init_b"
+  { U1-P58 U4-8 R27-2 }
+Signal "lanc_base"
+  { Q13-b R78-2 }
+Signal "lanc_line"
+  { R80-2 J20-2 }
+Signal "lanc_res"
+  { Q13-c R77-2 R79-2 R80-1 }
+Signal "lb_n"
+  { U1-P12 U2-39 U3-39 }
+Signal "led"
+  { U1-P50 R17-2 }
+Signal "led_res"
+  { LD7-a R17-1 }
+Signal "low0"
+  { U1-P105 U8-4 }
+Signal "low1"
+  { U1-P98 U9-4 }
+Signal "lrx"
+  { U1-P84 R77-1 }
+Signal "ltx"
+  { U1-P83 R78-1 }
+Signal "mot0"
+  { R47-2 Q1-2 Q4-3 J13-3 }
+Signal "mot1"
+  { R50-2 Q7-2 Q10-3 J14-3 }
+Signal "oe_n"
+  { U1-P10 U2-41 U3-41 }
+Signal "out1"
+  { U10-2 C63-1 J15-2 }
+Signal "out2"
+  { U10-10 C64-1 J15-1 }
+Signal "prog_sw"
+  { R30-2 S3-1 S3-3 }
+Signal "pwm0"
+  { U1-P89 U10-5 R71-1 }
+Signal "pwm1"
+  { U1-P92 U11-5 R72-1 }
+Signal "r1in"
+  { U12-13 J18-3 }
+Signal "r1out"
+  { U12-12 R75-2 }
+Signal "r2in"
+  { U12-8 J19-2 }
+Signal "r2out"
+  { U12-9 R76-2 }
+Signal "rdel"
+  { U8-7 R43-2 }
+Signal "reset_res"
+  { S2-1 S2-3 R26-2 R25-1 }
+Signal "rfsh"
+  { U8-9 C55-1 }
+Signal "rom_ce"
+  { U4-10 R32-2 J5-2 }
+Signal "rom_clk"
+  { U4-3 R33-2 }
+Signal "rs232_com"
+  { J18-1 J18-4 J18-6 }
+Signal "rs232_jump"
+  { J18-7 J18-8 }
+Signal "rst"
+  { U1-P40 R25-2 }
+Signal "rxd"
+  { U1-P47 R75-1 }
+Signal "rxd_a"
+  { U1-P41 R76-1 }
+Signal "s0"
+  { U7-1 J11-5 R40-2 }
+Signal "s1"
+  { U7-13 J12-5 R37-2 }
+Signal "sclk"
+  { U1-P86 U5-5 }
+Signal "sdata"
+  { U1-P87 U5-4 }
+Signal "sense0"
+  { U1-P78 U7-2 }
+Signal "sense1"
+  { U1-P79 U7-12 }
+Signal "sw"
+  { U1-P135 R9-2 }
+Signal "sw_res"
+  { S1-9 R1-1 R9-1 }
+Signal "sync"
+  { U1-P85 U5-6 }
+Signal "t1out"
+  { U12-14 J18-2 }
+Signal "t2out"
+  { U12-7 J19-3 }
+Signal "tck_ext"
+  { J7-4 R36-1 }
+Signal "tdi_ext"
+  { J7-2 R35-1 }
+Signal "tdo_rom"
+  { U4-17 J6-8 J7-3 }
+Signal "tms_ext"
+  { J7-1 R34-1 }
+Signal "txd"
+  { U1-P46 U12-11 }
+Signal "txd_a"
+  { U1-P44 U12-10 }
+Signal "ub_n"
+  { U1-P11 U2-40 U3-40 }
+Signal "uvlo"
+  { U8-8 R44-1 }
+Signal "v+"
+  { U12-2 C75-1 }
+Signal "v-"
+  { U12-6 C76-2 }
+Signal "vccaux"
+  { U1-P120 U1-P134 U1-P48 U1-P62 C13-2 C14-2 C15-2 C16-2 C17-2 C18-2 C19-2 C20-2 C32-+ C33-+ R27-1 R28-1 R29-1 J6-2 U15-3 C92-+ R85-1 R86-1 }
+Signal "vccint"
+  { U1-P121 U1-P133 U1-P49 U1-P61 C21-2 C22-2 C23-2 C24-2 C25-2 C26-2 C27-2 C28-2 C34-+ C35-+ U16-4 C93-+ R87-1 }
+Signal "vcco"
+  { U1-P138 U1-P115 U1-P126 U1-P106 U1-P75 U1-P91 U1-P66 U1-P43 U1-P54 U1-P34 U1-P19 U1-P3 C1-2 C2-2 C3-2 C4-2 C5-2 C6-2 C7-2 C8-2 C9-2 C10-2 C11-2 C12-2 C29-+ C30-+ C31-+ S1-1 S1-2 S1-3 S1-4 S1-5 S1-6 S1-7 S1-8 U2-33 U2-11 U3-33 U3-11 C36-2 C37-2 C38-2 C39-2 C40-2 C41-2 C42-2 C43-2 X1-4 C44-2 R26-1 J1-1 J2-1 J4-1 U4-18 U4-19 U4-20 C45-2 C46-2 C47-2 R32-1 J7-6 U6-14 C49-2 U7-14 C50-2 U12-16 C75-2 C77-2 U14-2 U14-tab C87-+ C88-+ C89-+ R82-1 R84-1 U15-1 C90-+ C91-+ U16-3 C94-2 }
+Signal "vdd"
+  { U8-20 U9-20 C51-+ C52-+ C53-+ C54-+ R43-1 R45-1 D1-a D2-a D3-a D4-a D5-a D6-a J21-1 C78-+ C79-+ U13-1 C82-2 }
+Signal "vmot"
+  { Q1-3 Q2-3 Q3-3 Q7-3 Q8-3 Q9-3 U10-6 U11-6 J17-2 C67-+ C68-+ C69-+ C70-+ C71-+ C72-+ }
+Signal "vu"
+  { U5-3 C48-2 J9-2 J10-2 J11-2 J12-2 R37-1 R38-1 R39-1 R40-1 R41-1 R42-1 R79-1 U13-3 C80-+ C81-+ C83-2 R81-1 U14-3 C84-+ C85-+ }
+Signal "we_n"
+  { U1-P24 U2-17 U3-17 }

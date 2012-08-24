@@ -1,0 +1,512 @@
+/**** Generated from PHDL Translator (DefaultTranslator) ****/ 
+
+/**** Parts ****/
+part C1 {C0603MP, rc-master-smd}
+part C10 {C0603MP, rc-master-smd}
+part C11 {C0603MP, rc-master-smd}
+part C12 {C0603MP, rc-master-smd}
+part C13 {C0603MP, rc-master-smd}
+part C14 {C0603MP, rc-master-smd}
+part C15 {C0603MP, rc-master-smd}
+part C16 {C0603MP, rc-master-smd}
+part C17 {C0603MP, rc-master-smd}
+part C18 {C0603MP, rc-master-smd}
+part C19 {C0603MP, rc-master-smd}
+part C2 {C0603MP, rc-master-smd}
+part C20 {C0603MP, rc-master-smd}
+part C21 {C0603MP, rc-master-smd}
+part C22 {C0603MP, rc-master-smd}
+part C23 {C0603MP, rc-master-smd}
+part C24 {C0603MP, rc-master-smd}
+part C25 {C0603MP, rc-master-smd}
+part C26 {C0603MP, rc-master-smd}
+part C27 {C0603MP, rc-master-smd}
+part C28 {C0603MP, rc-master-smd}
+part C29 {C1206MP/T, rc-master-smd}
+part C3 {C0603MP, rc-master-smd}
+part C30 {C1206MP/T, rc-master-smd}
+part C31 {C1206MP/T, rc-master-smd}
+part C32 {C1206MP/T, rc-master-smd}
+part C33 {C1206MP/T, rc-master-smd}
+part C34 {C1206MP/T, rc-master-smd}
+part C35 {C1206MP/T, rc-master-smd}
+part C36 {C0603MP, rc-master-smd}
+part C37 {C0603MP, rc-master-smd}
+part C38 {C0603MP, rc-master-smd}
+part C39 {C0603MP, rc-master-smd}
+part C4 {C0603MP, rc-master-smd}
+part C40 {C0603MP, rc-master-smd}
+part C41 {C0603MP, rc-master-smd}
+part C42 {C0603MP, rc-master-smd}
+part C43 {C0603MP, rc-master-smd}
+part C44 {C0603MP, rc-master-smd}
+part C45 {C0603MP, rc-master-smd}
+part C46 {C0603MP, rc-master-smd}
+part C47 {C0603MP, rc-master-smd}
+part C48 {C0603MP, rc-master-smd}
+part C49 {C0603MP, rc-master-smd}
+part C5 {C0603MP, rc-master-smd}
+part C50 {C0603MP, rc-master-smd}
+part C51 {C1206MP/T, rc-master-smd}
+part C52 {C1206MP/T, rc-master-smd}
+part C53 {C1206MP/T, rc-master-smd}
+part C54 {C1206MP/T, rc-master-smd}
+part C55 {C0603MP, rc-master-smd}
+part C56 {C0603MP, rc-master-smd}
+part C57 {C0603MP, rc-master-smd}
+part C58 {C0603MP, rc-master-smd}
+part C59 {C0603MP, rc-master-smd}
+part C6 {C0603MP, rc-master-smd}
+part C60 {C0603MP, rc-master-smd}
+part C61 {C0603MP, rc-master-smd}
+part C62 {C0603MP, rc-master-smd}
+part C63 {C0603MP, rc-master-smd}
+part C64 {C0603MP, rc-master-smd}
+part C65 {C0603MP, rc-master-smd}
+part C66 {C0603MP, rc-master-smd}
+part C67 {CSV-E/F, rc-master-smd}
+part C68 {CSV-E/F, rc-master-smd}
+part C69 {CSV-E/F, rc-master-smd}
+part C7 {C0603MP, rc-master-smd}
+part C70 {CSV-E/F, rc-master-smd}
+part C71 {CSV-E/F, rc-master-smd}
+part C72 {CSV-E/F, rc-master-smd}
+part C73 {C0603MP, rc-master-smd}
+part C74 {C0603MP, rc-master-smd}
+part C75 {C0603MP, rc-master-smd}
+part C76 {C0603MP, rc-master-smd}
+part C77 {C0603MP, rc-master-smd}
+part C78 {CSV-D, rc-master-smd}
+part C79 {CSV-D, rc-master-smd}
+part C8 {C0603MP, rc-master-smd}
+part C80 {CSV-D, rc-master-smd}
+part C81 {CSV-D, rc-master-smd}
+part C82 {C0603MP, rc-master-smd}
+part C83 {C0603MP, rc-master-smd}
+part C84 {C1206MP/T, rc-master-smd}
+part C85 {C1206MP/T, rc-master-smd}
+part C86 {C1206MP/T, rc-master-smd}
+part C87 {C1206MP/T, rc-master-smd}
+part C88 {CSV-D, rc-master-smd}
+part C89 {CSV-D, rc-master-smd}
+part C9 {C0603MP, rc-master-smd}
+part C90 {C1206MP/T, rc-master-smd}
+part C91 {C1206MP/T, rc-master-smd}
+part C92 {C1206MP/T, rc-master-smd}
+part C93 {C1206MP/T, rc-master-smd}
+part C94 {C0603MP, rc-master-smd}
+part D1 {DO214AC, diode}
+part D10 {DO214AC, diode}
+part D11 {DO214AC, diode}
+part D12 {DO214AC, diode}
+part D13 {DO214AC, diode}
+part D14 {DO214AC, diode}
+part D15 {DO214AC, diode}
+part D16 {DO214AC, diode}
+part D17 {DO214AC, diode}
+part D18 {DO214AC, diode}
+part D2 {DO214AC, diode}
+part D3 {DO214AC, diode}
+part D4 {DO214AC, diode}
+part D5 {DO214AC, diode}
+part D6 {DO214AC, diode}
+part D7 {DO214AC, diode}
+part D8 {DO214AC, diode}
+part D9 {DO214AC, diode}
+part H1 {3,6, holes}
+part H2 {3,6, holes}
+part H3 {3,6, holes}
+part H4 {3,6, holes}
+part J1 {1X06/90, pinhead}
+part J10 {70543-05, con-molex}
+part J11 {70543-05, con-molex}
+part J12 {70543-05, con-molex}
+part J13 {22-23-2031, con-molex}
+part J14 {22-23-2031, con-molex}
+part J15 {22-23-2021, con-molex}
+part J16 {22-23-2021, con-molex}
+part J17 {22-23-2021, con-molex}
+part J18 {09HP, con-subd}
+part J19 {SIP-100-03-40, con-headers-jp}
+part J2 {1X06/90, pinhead}
+part J20 {70543-02, con-molex}
+part J21 {DCJ0202, con-jack}
+part J3 {DIL-100-2X03, con-headers-jp}
+part J4 {SIP-100-03-40, con-headers-jp}
+part J5 {SIP-100-03-40, con-headers-jp}
+part J6 {79107-14, con-headers-jp}
+part J7 {1X06/90, pinhead}
+part J8 {70543-02, con-molex}
+part J9 {70543-05, con-molex}
+part LD0 {0603MP, led}
+part LD1 {0603MP, led}
+part LD10 {0603MP, led}
+part LD11 {0603MP, led}
+part LD2 {0603MP, led}
+part LD3 {0603MP, led}
+part LD4 {0603MP, led}
+part LD5 {0603MP, led}
+part LD6 {0603MP, led}
+part LD7 {0603MP, led}
+part LD8 {0603MP, led}
+part LD9 {0603MP, led}
+part Q1 {TO252, ref-packages-smd-ipc}
+part Q10 {TO252, ref-packages-smd-ipc}
+part Q11 {TO252, ref-packages-smd-ipc}
+part Q12 {TO252, ref-packages-smd-ipc}
+part Q13 {SOT23-BEC, transistor-npn}
+part Q2 {TO252, ref-packages-smd-ipc}
+part Q3 {TO252, ref-packages-smd-ipc}
+part Q4 {TO252, ref-packages-smd-ipc}
+part Q5 {TO252, ref-packages-smd-ipc}
+part Q6 {TO252, ref-packages-smd-ipc}
+part Q7 {TO252, ref-packages-smd-ipc}
+part Q8 {TO252, ref-packages-smd-ipc}
+part Q9 {TO252, ref-packages-smd-ipc}
+part R1 {R0603MP, rc-master-smd}
+part R10 {R0603MP, rc-master-smd}
+part R11 {R0603MP, rc-master-smd}
+part R12 {R0603MP, rc-master-smd}
+part R13 {R0603MP, rc-master-smd}
+part R14 {R0603MP, rc-master-smd}
+part R15 {R0603MP, rc-master-smd}
+part R16 {R0603MP, rc-master-smd}
+part R17 {R0603MP, rc-master-smd}
+part R18 {R0603MP, rc-master-smd}
+part R19 {R0603MP, rc-master-smd}
+part R2 {R0603MP, rc-master-smd}
+part R20 {R0603MP, rc-master-smd}
+part R21 {R0603MP, rc-master-smd}
+part R22 {R0603MP, rc-master-smd}
+part R23 {R0603MP, rc-master-smd}
+part R24 {R0603MP, rc-master-smd}
+part R25 {R0603MP, rc-master-smd}
+part R26 {R0603MP, rc-master-smd}
+part R27 {R0603MP, rc-master-smd}
+part R28 {R0603MP, rc-master-smd}
+part R29 {R0603MP, rc-master-smd}
+part R3 {R0603MP, rc-master-smd}
+part R30 {R0603MP, rc-master-smd}
+part R31 {R0603MP, rc-master-smd}
+part R32 {R0603MP, rc-master-smd}
+part R33 {R0603MP, rc-master-smd}
+part R34 {R0603MP, rc-master-smd}
+part R35 {R0603MP, rc-master-smd}
+part R36 {R0603MP, rc-master-smd}
+part R37 {R0603MP, rc-master-smd}
+part R38 {R0603MP, rc-master-smd}
+part R39 {R0603MP, rc-master-smd}
+part R4 {R0603MP, rc-master-smd}
+part R40 {R0603MP, rc-master-smd}
+part R41 {R0603MP, rc-master-smd}
+part R42 {R0603MP, rc-master-smd}
+part R43 {R0603MP, rc-master-smd}
+part R44 {R0603MP, rc-master-smd}
+part R45 {R0603MP, rc-master-smd}
+part R46 {R0603MP, rc-master-smd}
+part R47 {R0603MP, rc-master-smd}
+part R48 {R0603MP, rc-master-smd}
+part R49 {R0603MP, rc-master-smd}
+part R5 {R0603MP, rc-master-smd}
+part R50 {R0603MP, rc-master-smd}
+part R51 {R0603MP, rc-master-smd}
+part R52 {R0603MP, rc-master-smd}
+part R53 {R0603MP, rc-master-smd}
+part R54 {R0603MP, rc-master-smd}
+part R55 {R0603MP, rc-master-smd}
+part R56 {R0603MP, rc-master-smd}
+part R57 {R0603MP, rc-master-smd}
+part R58 {R0603MP, rc-master-smd}
+part R59 {R0603MP, rc-master-smd}
+part R6 {R0603MP, rc-master-smd}
+part R60 {R0603MP, rc-master-smd}
+part R61 {R0603MP, rc-master-smd}
+part R62 {R0603MP, rc-master-smd}
+part R63 {R0603MP, rc-master-smd}
+part R64 {R0603MP, rc-master-smd}
+part R65 {R0603MP, rc-master-smd}
+part R66 {R0603MP, rc-master-smd}
+part R67 {R0603MP, rc-master-smd}
+part R68 {R0603MP, rc-master-smd}
+part R69 {R0603MP, rc-master-smd}
+part R7 {R0603MP, rc-master-smd}
+part R70 {R0603MP, rc-master-smd}
+part R71 {R0603MP, rc-master-smd}
+part R72 {R0603MP, rc-master-smd}
+part R73 {R0603MP, rc-master-smd}
+part R74 {R0603MP, rc-master-smd}
+part R75 {R0603MP, rc-master-smd}
+part R76 {R0603MP, rc-master-smd}
+part R77 {R0603MP, rc-master-smd}
+part R78 {R0603MP, rc-master-smd}
+part R79 {R0603MP, rc-master-smd}
+part R8 {R0603MP, rc-master-smd}
+part R80 {R0603MP, rc-master-smd}
+part R81 {R0603MP, rc-master-smd}
+part R82 {R0603MP, rc-master-smd}
+part R83 {R0603MP, rc-master-smd}
+part R84 {R0603MP, rc-master-smd}
+part R85 {R0603MP, rc-master-smd}
+part R86 {R0603MP, rc-master-smd}
+part R87 {R0603MP, rc-master-smd}
+part R9 {R0603MP, rc-master-smd}
+part S1 {DS-08, switch-dil}
+part S2 {TL1105T, switch}
+part S3 {TL1105T, switch}
+part U1 {tq144, xilinx_devices}
+part U10 {TO-220-11, national-semi}
+part U11 {TO-220-11, national-semi}
+part U12 {SO16, ref-packages-smd-ipc}
+part U13 {D2PACK, v-reg}
+part U14 {TO263, v-reg}
+part U15 {DPACK, v-reg}
+part U16 {DPACK, v-reg}
+part U2 {TSOPII44, memory-issi}
+part U3 {TSOPII44, memory-issi}
+part U4 {TSSOP20, xilinx-flash}
+part U5 {SOT23-6, ref-packages-smd-ipc}
+part U6 {SO14, ref-packages-smd-ipc}
+part U7 {SO14, ref-packages-smd-ipc}
+part U8 {SO24W, ref-packages-smd-ipc}
+part U9 {SO24W, ref-packages-smd-ipc}
+part X1 {SM77H, crystal}
+
+/**** Signals ****/
+signal '2v5_pwr'
+  { LD11.a R86.2 }
+signal '3v3_pwr'
+  { LD10.a R84.2 }
+signal '3v3_sense'
+  { U14.1 C86.+ R82.2 R83.1 }
+signal '5v_pwr'
+  { LD9.a R81.2 }
+signal 'CCLK'
+  { U1.P72 R33.1 }
+signal 'DONE'
+  { U1.P71 R29.2 LD8.a J5.1 }
+signal 'HSWAP_EN'
+  { U1.P142 J4.2 }
+signal 'M0'
+  { U1.P38 J3.6 }
+signal 'M1'
+  { U1.P37 J3.4 }
+signal 'M2'
+  { U1.P39 J3.2 }
+signal 'PROG_B'
+  { U1.P143 U4.7 R28.2 R30.1 }
+signal 'TCK'
+  { U1.P110 U4.6 J6.6 R36.2 }
+signal 'TDI'
+  { U1.P144 J6.10 R35.2 }
+signal 'TDO'
+  { U1.P109 U4.4 }
+signal 'TMS'
+  { U1.P111 U4.5 J6.4 R34.2 }
+signal 'addr'
+  { U1.P4 U2.44 U3.1 }
+signal 'ahb'
+  { U8.16 C57.2 D1.c }
+signal 'ahg'
+  { R53.2 Q1.1 }
+signal 'aho'
+  { U8.17 R53.1 }
+signal 'ahs'
+  { U8.18 C57.1 D13.c R47.1 }
+signal 'alg'
+  { R56.2 Q4.1 R65.1 }
+signal 'alo'
+  { U8.21 R56.1 }
+signal 'bhb'
+  { U8.1 C58.2 D2.c }
+signal 'bhg'
+  { R54.2 Q2.1 }
+signal 'bho'
+  { U8.24 R54.1 }
+signal 'bhs'
+  { U8.23 C58.1 D15.c R48.1 }
+signal 'blg'
+  { R57.2 Q5.1 R66.1 }
+signal 'blo'
+  { U8.22 R57.1 }
+signal 'boot1'
+  { U10.1 C63.2 }
+signal 'boot2'
+  { U10.11 C64.2 }
+signal 'c1+'
+  { U12.1 C73.2 }
+signal 'c1-'
+  { U12.3 C73.1 }
+signal 'c2+'
+  { U12.4 C74.2 }
+signal 'c2-'
+  { U12.5 C74.1 }
+signal 'ce0_n'
+  { U1.P140 U2.6 }
+signal 'ce1_n'
+  { U1.P137 U3.6 }
+signal 'chb'
+  { U8.13 C59.2 D3.c }
+signal 'chg'
+  { R55.2 Q3.1 }
+signal 'cho'
+  { U8.14 R55.1 }
+signal 'chs'
+  { U8.15 C59.1 D17.c R49.1 }
+signal 'clamps'
+  { D7.c D13.a }
+signal 'clg'
+  { R58.2 Q6.1 R67.1 }
+signal 'clk'
+  { U1.P52 X1.3 }
+signal 'clo'
+  { U8.19 R58.1 }
+signal 'd0'
+  { U4.1 R31.2 }
+signal 'dac_out'
+  { U5.1 J8.2 }
+signal 'data'
+  { U1.P23 U2.16 U2.29 U3.29 U3.16 }
+signal 'din'
+  { U1.P65 R31.1 }
+signal 'dir0'
+  { U1.P90 U10.3 R73.1 }
+signal 'dir1'
+  { U1.P93 U11.3 R74.1 }
+signal 'e0'
+  { U6.1 J9.5 }
+signal 'e1'
+  { U6.13 J10.5 }
+signal 'enc0'
+  { U1.P69 U6.2 }
+signal 'enc1'
+  { U1.P70 U6.12 }
+signal 'gnd'
+  { U1.P101 U1.P114 U1.P117 U1.P136 U1.P139 U1.P16 U1.P22 U1.P29 U1.P42 U1.P45 U1.P64 U1.P67 U1.P81 U1.P88 U1.P9 U1.P94 C1.1 C2.1 C3.1 C4.1 C5.1 C6.1 C7.1 C8.1 C9.1 C10.1 C11.1 C12.1 C13.1 C14.1 C15.1 C16.1 C17.1 C18.1 C19.1 C20.1 C21.1 C22.1 C23.1 C24.1 C25.1 C26.1 C27.1 C28.1 C29.- C30.- C31.- C32.- C33.- C34.- C35.- R1.2 R2.2 R3.2 R4.2 R5.2 R6.2 R7.2 R8.2 LD7.c LD6.c LD5.c LD4.c LD3.c LD2.c LD1.c LD0.c U2.34 U2.12 U3.34 U3.12 C36.1 C37.1 C38.1 C39.1 C40.1 C41.1 C42.1 C43.1 X1.1 X1.2 C44.1 S2.2 S2.4 J1.2 J2.2 J3.5 J3.3 J3.1 J4.3 U4.11 C45.1 C46.1 C47.1 LD8.c S3.2 S3.4 J5.3 J6.1 J6.3 J6.5 J6.7 J6.9 J6.11 J6.13 J7.5 U5.2 C48.1 J8.1 U6.7 J9.1 J10.1 C49.1 U7.7 J11.1 J12.1 C50.1 U8.6 U9.6 U8.10 U9.10 C51.- C52.- C53.- C54.- R44.2 R46.2 C55.2 C56.2 D7.a D8.a D9.a D10.a D11.a D12.a Q4.2 Q5.2 Q6.2 Q10.2 Q11.2 Q12.2 R65.2 R66.2 R67.2 R68.2 R69.2 R70.2 U10.4 U11.4 U10.7 U11.7 J17.1 C67.- C68.- C69.- C70.- C71.- C72.- R71.2 R72.2 R73.2 R74.2 U12.15 C76.1 C77.1 J18.5 J18.g1 J18.g2 J19.1 Q13.e J20.1 J21.2 J21.3 C78.- C79.- U13.2 C80.- C81.- C82.1 C83.1 LD9.c C84.- C85.- C86.- C87.- C88.- C89.- R83.2 LD10.c U15.4 C90.- C91.- C92.- R85.2 LD11.c U16.1 C93.- R87.2 C94.1 }
+signal 'gpio'
+  { U1.P124 J2.6 }
+signal 'high0'
+  { U1.P104 U8.5 }
+signal 'high1'
+  { U1.P97 U9.5 }
+signal 'init_b'
+  { U1.P58 U4.8 R27.2 }
+signal 'lanc_base'
+  { Q13.b R78.2 }
+signal 'lanc_line'
+  { R80.2 J20.2 }
+signal 'lanc_res'
+  { Q13.c R77.2 R79.2 R80.1 }
+signal 'lb_n'
+  { U1.P12 U2.39 U3.39 }
+signal 'led'
+  { U1.P50 R17.2 }
+signal 'led_res'
+  { LD7.a R17.1 }
+signal 'low0'
+  { U1.P105 U8.4 }
+signal 'low1'
+  { U1.P98 U9.4 }
+signal 'lrx'
+  { U1.P84 R77.1 }
+signal 'ltx'
+  { U1.P83 R78.1 }
+signal 'mot0'
+  { R47.2 Q1.2 Q4.3 J13.3 }
+signal 'mot1'
+  { R50.2 Q7.2 Q10.3 J14.3 }
+signal 'oe_n'
+  { U1.P10 U2.41 U3.41 }
+signal 'out1'
+  { U10.2 C63.1 J15.2 }
+signal 'out2'
+  { U10.10 C64.1 J15.1 }
+signal 'prog_sw'
+  { R30.2 S3.1 S3.3 }
+signal 'pwm0'
+  { U1.P89 U10.5 R71.1 }
+signal 'pwm1'
+  { U1.P92 U11.5 R72.1 }
+signal 'r1in'
+  { U12.13 J18.3 }
+signal 'r1out'
+  { U12.12 R75.2 }
+signal 'r2in'
+  { U12.8 J19.2 }
+signal 'r2out'
+  { U12.9 R76.2 }
+signal 'rdel'
+  { U8.7 R43.2 }
+signal 'reset_res'
+  { S2.1 S2.3 R26.2 R25.1 }
+signal 'rfsh'
+  { U8.9 C55.1 }
+signal 'rom_ce'
+  { U4.10 R32.2 J5.2 }
+signal 'rom_clk'
+  { U4.3 R33.2 }
+signal 'rs232_com'
+  { J18.1 J18.4 J18.6 }
+signal 'rs232_jump'
+  { J18.7 J18.8 }
+signal 'rst'
+  { U1.P40 R25.2 }
+signal 'rxd'
+  { U1.P47 R75.1 }
+signal 'rxd_a'
+  { U1.P41 R76.1 }
+signal 's0'
+  { U7.1 J11.5 R40.2 }
+signal 's1'
+  { U7.13 J12.5 R37.2 }
+signal 'sclk'
+  { U1.P86 U5.5 }
+signal 'sdata'
+  { U1.P87 U5.4 }
+signal 'sense0'
+  { U1.P78 U7.2 }
+signal 'sense1'
+  { U1.P79 U7.12 }
+signal 'sw'
+  { U1.P135 R9.2 }
+signal 'sw_res'
+  { S1.9 R1.1 R9.1 }
+signal 'sync'
+  { U1.P85 U5.6 }
+signal 't1out'
+  { U12.14 J18.2 }
+signal 't2out'
+  { U12.7 J19.3 }
+signal 'tck_ext'
+  { J7.4 R36.1 }
+signal 'tdi_ext'
+  { J7.2 R35.1 }
+signal 'tdo_rom'
+  { U4.17 J6.8 J7.3 }
+signal 'tms_ext'
+  { J7.1 R34.1 }
+signal 'txd'
+  { U1.P46 U12.11 }
+signal 'txd_a'
+  { U1.P44 U12.10 }
+signal 'ub_n'
+  { U1.P11 U2.40 U3.40 }
+signal 'uvlo'
+  { U8.8 R44.1 }
+signal 'v+'
+  { U12.2 C75.1 }
+signal 'v-'
+  { U12.6 C76.2 }
+signal 'vccaux'
+  { U1.P120 U1.P134 U1.P48 U1.P62 C13.2 C14.2 C15.2 C16.2 C17.2 C18.2 C19.2 C20.2 C32.+ C33.+ R27.1 R28.1 R29.1 J6.2 U15.3 C92.+ R85.1 R86.1 }
+signal 'vccint'
+  { U1.P121 U1.P133 U1.P49 U1.P61 C21.2 C22.2 C23.2 C24.2 C25.2 C26.2 C27.2 C28.2 C34.+ C35.+ U16.4 C93.+ R87.1 }
+signal 'vcco'
+  { U1.P138 U1.P115 U1.P126 U1.P106 U1.P75 U1.P91 U1.P66 U1.P43 U1.P54 U1.P34 U1.P19 U1.P3 C1.2 C2.2 C3.2 C4.2 C5.2 C6.2 C7.2 C8.2 C9.2 C10.2 C11.2 C12.2 C29.+ C30.+ C31.+ S1.1 S1.2 S1.3 S1.4 S1.5 S1.6 S1.7 S1.8 U2.33 U2.11 U3.33 U3.11 C36.2 C37.2 C38.2 C39.2 C40.2 C41.2 C42.2 C43.2 X1.4 C44.2 R26.1 J1.1 J2.1 J4.1 U4.18 U4.19 U4.20 C45.2 C46.2 C47.2 R32.1 J7.6 U6.14 C49.2 U7.14 C50.2 U12.16 C75.2 C77.2 U14.2 U14.tab C87.+ C88.+ C89.+ R82.1 R84.1 U15.1 C90.+ C91.+ U16.3 C94.2 }
+signal 'vdd'
+  { U8.20 U9.20 C51.+ C52.+ C53.+ C54.+ R43.1 R45.1 D1.a D2.a D3.a D4.a D5.a D6.a J21.1 C78.+ C79.+ U13.1 C82.2 }
+signal 'vmot'
+  { Q1.3 Q2.3 Q3.3 Q7.3 Q8.3 Q9.3 U10.6 U11.6 J17.2 C67.+ C68.+ C69.+ C70.+ C71.+ C72.+ }
+signal 'vu'
+  { U5.3 C48.2 J9.2 J10.2 J11.2 J12.2 R37.1 R38.1 R39.1 R40.1 R41.1 R42.1 R79.1 U13.3 C80.+ C81.+ C83.2 R81.1 U14.3 C84.+ C85.+ }
+signal 'we_n'
+  { U1.P24 U2.17 U3.17 }

@@ -15,5 +15,7 @@ public interface ExtensionCodes {
 
 	String XML_EXT = ".xml";
 
-	String DEFAULT_EXT = ".net";
+	String PCB_EXT = ".pcb";
+
+	String NET_EXT = ".net";
 }

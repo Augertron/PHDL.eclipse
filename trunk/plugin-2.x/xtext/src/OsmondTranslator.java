@@ -12,6 +12,7 @@ public class OsmondTranslator extends DefaultTranslator {
 
 	@Override
 	protected String translateHeader() {
+		// put your header here
 		String header = "";
 		return header;
 	}

@@ -11,7 +11,7 @@ public class DefaultTranslator {
 	protected String fileExtension;
 
 	public DefaultTranslator() {
-		this.fileExtension = ExtensionCodes.DEFAULT_EXT;
+		this.fileExtension = ExtensionCodes.PCB_EXT;
 	}
 
 	public String getFileExtension() {
