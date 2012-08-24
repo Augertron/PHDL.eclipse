@@ -1,8 +1,0 @@
-device test_device {
-	attr REFPREFIX = "R";
-	attr FOOTPRINT = "footprint";
-	attr LIBRARY = "library";
-	pin a = {1};
-	pin b = {1};
-	pin[1:0] c = {1,1};
-}
