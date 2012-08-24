@@ -1,0 +1,48 @@
+subdesign scalar {
+	port a;
+}
+
+subdesign vector {
+	port[4:1] b;
+}
+
+design test {
+
+	net a;
+	net[4:1] b;
+
+	// test for unassigned scalars in a subinstance
+	subinst test1 of scalar {
+		
+	}
+	
+	// test for unassigned vectors in a subinstance
+	subinst test2 of vector {
+		b[3,1,2] = b[3:1];
+	}
+	
+	// test for unassigned qualified scalars in a subinstance array
+	subinst(4:1) test3 of scalar {
+		this(4:2).a = a;
+	}
+	
+	// test for unassigned combined scalars in a subinstance array
+	subinst(4:1) test4 of scalar {
+		combine(this(4,3,1).a) = b[3:1];
+	}
+	
+	// test for unassigned qualified vectors in a subinstance array
+	subinst(4:1) test5 of vector {
+		this(3:1).b[2,4,1] = b[4:2];
+	}
+	
+	// test for unassigned combined vectors in a subinstance array
+	subinst(4:1) test6 of vector {
+		combine(this(4,1,2).b[3,1,2]) = b & b & a;
+	}
+	
+	// test for all unssigned port vectors in a subinstance array
+	subinst (4:1) test7 of vector {
+		
+	}
+}

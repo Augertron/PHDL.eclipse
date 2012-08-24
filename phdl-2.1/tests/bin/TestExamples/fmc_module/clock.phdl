@@ -1,0 +1,105 @@
+/**
+ * Design: clock.phdl
+ * Adapted from PADS fmc_module.prj
+ * Submitted by: Pete Dudley, Sandia Labs
+ * Translated by: Brad Riching, Brigham Young University
+ * Feb 02, 2012
+ *
+ * Dependencies: devices.phdl
+ */
+ 
+ subdesign clock {
+ 
+	port +3v3, gnd;
+	port[0:1] gbtclk_m2c_p;
+	port[0:1] gbtclk_m2c_n;
+	
+	net clk250p, clk250n, clk250;
+	net[0:1] clk250_bal_p, clk250_bal_n;
+	
+	net diff_clk_rtn;
+	net single_clk_rtn;
+	
+	net[3:0] clks;
+	
+	net clk_sel;
+	
+	// the differential clock connectors
+	inst(1:2) differential_clk of 3SMA_CON {
+		this(1).sig = clk250p;
+		this(2).sig = clk250n;
+		gnd = <diff_clk_rtn>;
+	}
+	
+	// the single ended clock connector
+	inst single_ended_clk of 3SMA_CON {
+		sig = clk250;
+		gnd = <single_clk_rtn>;
+	}
+	
+	subinst(0:1) baluns of balun {
+		attr refPrefix = "BAL";
+		this(0).in_p = clk250p;
+		this(0).in_n = clk250n;
+		this(1).in_p = clk250;
+		this(1).in_n = single_clk_rtn;
+		
+		combine(out_p) = clk250_bal_p;
+		combine(out_n) = clk250_bal_n;
+		
+		+3v3 = <+3v3>;
+		gnd = <gnd>;
+	}
+	
+	// the clock buffer IC
+	inst clock_buffer of sy898533 {
+		vcc = <+3v3>;
+		clk_p = clk250_bal_p[0];
+		clk_n = clk250_bal_n[0];
+		pclk_p = clk250_bal_p[1];
+		pclk_n = clk250_bal_n[1];
+		clk_en = +3v3;
+		clk_sel = clk_sel;
+		NC = open;
+		q0_p = clks[0];
+		q0_n = clks[1];
+		q1_p = clks[2];
+		q1_n = clks[3];
+		q2_p = open;
+		q2_n = open;
+		q3_p = open;
+		q3_n = open;
+		vee = gnd;
+	}
+ 
+	// clock buffer output blocking caps
+	inst(1:4) clk_block_cap of cap_0402 {
+		VALUE = "1uF";
+		combine(a) = clks;
+		combine(this(1,2).b) = gbtclk_m2c_p;
+		combine(this(3,4).b) = gbtclk_m2c_n;
+	}
+	
+	// clock buffer output terminations
+	inst(1:4) clk_term of res_0603 {
+		VALUE = "120";
+		combine(a) = clks;
+		b = <gnd>;
+	}
+	
+	// the input clock select
+	inst clk_sel of slide_switch {
+
+		// circuit 1
+		p1_1 = +3v3;
+		p2_1 = gnd;
+		s_1 = clk_sel;
+		
+		// circuit 2 (not used)
+		p1_2 = +3v3;
+		p2_2 = gnd;
+		s_2 = open;
+	}
+ 
+ }
+ 

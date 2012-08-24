@@ -1,0 +1,54 @@
+device scalar {
+	attr REFPREFIX = "S";
+	attr FOOTPRINT = "footprint";
+	attr LIBRARY = "library";
+	pin a = {1};
+}
+
+device vector {
+	attr REFPREFIX = "V";
+	attr FOOTPRINT = "footprint";
+	attr LIBRARY = "library";
+	pin[4:1] b = {4,3,2,1};
+}
+
+design test {
+
+	net a;
+	net[4:1] b;
+
+	// test for unassigned scalars in an instance
+	inst test1 of scalar {
+		
+	}
+	
+	// test for unassigned vectors in an instance
+	inst test2 of vector {
+		b[3,1,2] = b[3:1];
+	}
+	
+	// test for unassigned qualified scalars in an instance array
+	inst(4:1) test3 of scalar {
+		this(4:2).a = a;
+	}
+	
+	// test for unassigned combined scalars in an instance array
+	inst(4:1) test4 of scalar {
+		combine(this(4,3,1).a) = b[3:1];
+	}
+	
+	// test for unassigned qualified vectors in an instance array
+	inst(4:1) test5 of vector {
+		this(3:1).b[2,4,1] = b[4:2];
+	}
+	
+	// test for unassigned combined vectors in an instance array
+	inst(4:1) test6 of vector {
+		combine(this(4,1,2).b[3,1,2]) = b & b & a;
+	}
+	
+	// test for all unssigned pin vectors in an instance array
+	inst (4:1) test7 of vector {
+		
+	}
+}

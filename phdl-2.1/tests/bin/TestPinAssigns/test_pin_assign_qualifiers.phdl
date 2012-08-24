@@ -1,0 +1,32 @@
+device dev {
+	attr REFPREFIX = "R";
+	attr FOOTPRINT = "footprint";
+	attr LIBRARY = "library";
+	pin a = {1};
+}
+
+design top {
+
+	net a;
+
+	// test invalid pin assign qualifier msb
+	inst(3:2) dev1 of dev {
+		this(5:2).a = a;
+	}
+	
+	// test invalid pin assign qualifier lsb
+	inst(3:2) dev2 of dev {
+		this(3:1).a = a;
+	}
+	
+	// test invalid pin assign qualifier index
+	inst(3:2) dev3 of dev {
+		this(4).a = a;
+		this(3,2).a = a;
+	}
+	
+	// test qualifier not allowed
+	inst dev4 of dev {
+		this(1).a = a;
+	}
+}
