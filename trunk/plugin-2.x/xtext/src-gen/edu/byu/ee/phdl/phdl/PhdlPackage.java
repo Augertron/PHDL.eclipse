@@ -39,7 +39,7 @@ public interface PhdlPackage extends EPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  String eNS_URI = "http://ee.byu.edu/phdl";
+  String eNS_URI = "http://phdl.sf.net";
 
   /**
    * The package namespace name.

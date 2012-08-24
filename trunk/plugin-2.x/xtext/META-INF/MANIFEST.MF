@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: edu.byu.ee.phdl.xtext
 Bundle-Vendor: Brigham Young University
 Bundle-Version: 1.0.0.qualifier
-Bundle-SymbolicName: edu.byu.ee.phdl.xtext; singleton:=true
+Bundle-SymbolicName: edu.byu.ee.phdl.xtext;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext;bundle-version="2.1.0";visibility:=reexport,
  org.eclipse.xtext.xbase;bundle-version="2.1.0";resolution:=optional;visibility:=reexport,

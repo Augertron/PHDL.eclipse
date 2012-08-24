@@ -35,8 +35,8 @@ public class PhdlStandaloneSetupGenerated implements ISetup {
 	}
 	
 	public void register(Injector injector) {
-	if (!EPackage.Registry.INSTANCE.containsKey("http://ee.byu.edu/phdl")) {
-		EPackage.Registry.INSTANCE.put("http://ee.byu.edu/phdl", edu.byu.ee.phdl.phdl.PhdlPackage.eINSTANCE);
+	if (!EPackage.Registry.INSTANCE.containsKey("http://phdl.sf.net")) {
+		EPackage.Registry.INSTANCE.put("http://phdl.sf.net", edu.byu.ee.phdl.phdl.PhdlPackage.eINSTANCE);
 	}
 
 		org.eclipse.xtext.resource.IResourceFactory resourceFactory = injector.getInstance(org.eclipse.xtext.resource.IResourceFactory.class);

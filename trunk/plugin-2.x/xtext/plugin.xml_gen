@@ -5,7 +5,7 @@
 
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
-       uri = "http://ee.byu.edu/phdl" 
+       uri = "http://phdl.sf.net" 
        class = "edu.byu.ee.phdl.phdl.PhdlPackage"
        genModel = "edu/byu/ee/phdl/Phdl.genmodel" /> 
 	

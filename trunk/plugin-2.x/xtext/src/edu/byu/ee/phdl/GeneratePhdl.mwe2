@@ -6,7 +6,7 @@ import org.eclipse.xtext.ui.generator.*
 
 var grammarURI = "classpath:/edu/byu/ee/phdl/Phdl.xtext"
 var file.extensions = "phdl"
-var projectName = "edu.byu.ee.phdl.xtext"
+var projectName = "phdl.xtext"
 var runtimeProject = "../${projectName}"
 
 Workflow {
