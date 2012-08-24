@@ -8,14 +8,14 @@ import edu.byu.ee.phdl.utils.ExtensionCodes;
 
 public class DefaultTranslator {
 
-	private String fileExtension = ExtensionCodes.DEFAULT_EXT;
+	protected String fileExtension;
+
+	public DefaultTranslator() {
+		this.fileExtension = ExtensionCodes.DEFAULT_EXT;
+	}
 
 	public String getFileExtension() {
 		return fileExtension;
-	}
-
-	public void setFileExtension(String extension) {
-		this.fileExtension = extension;
 	}
 
 	public String translate(PhdlNetlist netlist) {
@@ -26,12 +26,12 @@ public class DefaultTranslator {
 		return sb.toString();
 	}
 
-	public String translateHeader() {
+	protected String translateHeader() {
 		String header = "/**** Generated from PHDL Translator (DefaultTranslator) ****/ \n";
 		return header;
 	}
 
-	public String translateNet(PhdlNet net) {
+	protected String translateNet(PhdlNet net) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("signal '" + net.getName() + "'\n  { ");
 		for (PhdlPin pin : net.getPins()) {
@@ -41,7 +41,7 @@ public class DefaultTranslator {
 		return sb.toString();
 	}
 
-	public String translateNets(PhdlNetlist netlist) {
+	protected String translateNets(PhdlNetlist netlist) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("\n/**** Signals ****/\n");
 		for (PhdlNet net : netlist.getNets()) {
@@ -50,11 +50,11 @@ public class DefaultTranslator {
 		return sb.toString();
 	}
 
-	public String translatePart(PhdlPart part) {
+	protected String translatePart(PhdlPart part) {
 		return "part " + part.getName() + " {" + part.getFootprint() + ", " + part.getLibrary() + "}\n";
 	}
 
-	public String translateParts(PhdlNetlist netlist) {
+	protected String translateParts(PhdlNetlist netlist) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("\n/**** Parts ****/\n");
 		for (PhdlPart part : netlist.getParts()) {

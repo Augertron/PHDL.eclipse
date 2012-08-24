@@ -26,7 +26,7 @@ public class PhdlGeneratorImpl implements IGenerator {
 
 	private static Logger logger = Logger.getLogger(PhdlGeneratorImpl.class);
 
-	private final CommandLine commandLine = edu.byu.ee.phdl.compile.Console.getCommandLine();
+	private final CommandLine commandLine = edu.byu.ee.phdl.compile.Compile.getCommandLine();
 
 	@Override
 	public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
