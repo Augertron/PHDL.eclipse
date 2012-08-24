@@ -1,31 +1,17 @@
 package edu.byu.ee.phdl.translate;
 
-import org.apache.log4j.Logger;
-
 import edu.byu.ee.phdl.netlist.PhdlNet;
 import edu.byu.ee.phdl.netlist.PhdlNetlist;
 import edu.byu.ee.phdl.netlist.PhdlPart;
+import edu.byu.ee.phdl.netlist.PhdlPin;
 import edu.byu.ee.phdl.utils.ExtensionCodes;
 
 public class DefaultTranslator {
 
-	private final Logger logger = Logger.getLogger(DefaultTranslator.class);
-
 	private String fileExtension = ExtensionCodes.DEFAULT_EXT;
 
-	public String generateHeader() {
-
-		return null;
-	}
-
-	public String generateNet(PhdlNet net) {
-
-		return null;
-	}
-
-	public String generatePart(PhdlPart part) {
-
-		return null;
+	public String getFileExtension() {
+		return fileExtension;
 	}
 
 	public void setFileExtension(String extension) {
@@ -34,9 +20,46 @@ public class DefaultTranslator {
 
 	public String translate(PhdlNetlist netlist) {
 		StringBuilder sb = new StringBuilder();
-		sb.append(generateHeader());
+		sb.append(translateHeader());
+		sb.append(translateParts(netlist));
+		sb.append(translateNets(netlist));
+		return sb.toString();
+	}
 
-		System.out.println(this.getClass().getName());
+	public String translateHeader() {
+		String header = "/**** Generated from PHDL Translator (DefaultTranslator) ****/ \n";
+		return header;
+	}
+
+	public String translateNet(PhdlNet net) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("signal '" + net.getName() + "'\n  { ");
+		for (PhdlPin pin : net.getPins()) {
+			sb.append(pin.getPartName() + "." + pin.getPinName() + " ");
+		}
+		sb.append("}\n");
+		return sb.toString();
+	}
+
+	public String translateNets(PhdlNetlist netlist) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("\n/**** Signals ****/\n");
+		for (PhdlNet net : netlist.getNets()) {
+			sb.append(translateNet(net));
+		}
+		return sb.toString();
+	}
+
+	public String translatePart(PhdlPart part) {
+		return "part " + part.getName() + " {" + part.getFootprint() + ", " + part.getLibrary() + "}\n";
+	}
+
+	public String translateParts(PhdlNetlist netlist) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("\n/**** Parts ****/\n");
+		for (PhdlPart part : netlist.getParts()) {
+			sb.append(translatePart(part));
+		}
 		return sb.toString();
 	}
 

@@ -1,6 +1,5 @@
 package edu.byu.ee.phdl.translate;
 
-
 public class PadsTranslator extends DefaultTranslator {
 
 	// @Override

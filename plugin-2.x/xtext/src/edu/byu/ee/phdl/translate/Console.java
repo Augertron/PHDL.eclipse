@@ -1,7 +1,8 @@
 package edu.byu.ee.phdl.translate;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -12,38 +13,38 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.log4j.Logger;
 
+import com.thoughtworks.xstream.XStream;
+
 import edu.byu.ee.phdl.netlist.PhdlNetlist;
+import edu.byu.ee.phdl.utils.ExtensionCodes;
+import edu.byu.ee.phdl.utils.PhdlUtils;
 
 public class Console {
 
 	private final static Logger logger = Logger.getLogger(Console.class);
 
-	private static String usage = "java -jar phdl2.jar";
+	private static String usage = "java -jar phdltran.jar";
 	private static String version = "PHDL translator v2.1, ";
 	private static String release = "August 25, 2012 release.  ";
 
 	private static CommandLine commandLine;
 
 	public static void main(String[] args) {
-		logger.info(version + release);
 		parseArgs(setupOptions(), args);
-		logger.info("starting translation...");
+
+		logger.info(version + release);
 
 		String translatorClassName = commandLine.hasOption("tool") ? commandLine.getOptionValue("tool")
-				: "DefaultTranslator";
+				: "edu.byu.ee.phdl.translate.DefaultTranslator";
 		try {
-			String fullyQualifiedClassName;
-			if (translatorClassName.startsWith("edu.byu.ee.phdl.translate."))
-				fullyQualifiedClassName = translatorClassName;
-			else
-				fullyQualifiedClassName = Console.class.getPackage().getName() + "." + translatorClassName;
-			logger.info("using translator class: " + fullyQualifiedClassName);
-			Class<?> clazz = Class.forName(fullyQualifiedClassName);
+			logger.info("using translator class: " + translatorClassName);
+			Class<?> clazz = Class.forName(translatorClassName);
 			DefaultTranslator translator = (DefaultTranslator) clazz.newInstance();
 			Console console = new Console(translator);
 			console.run();
+
 		} catch (ClassNotFoundException e) {
-			logger.error(e + ", translator not present on class path.");
+			logger.error(e + ", translator class must be present on class path.");
 		} catch (InstantiationException e) {
 			logger.error(e + ", translator class must be concrete.");
 		} catch (IllegalAccessException e) {
@@ -76,43 +77,125 @@ public class Console {
 	private static Options setupOptions() {
 		Options options = new Options();
 		options.addOption("?", "help", false, "print this message");
-		options.addOption("h", "hierarchy", false, "display design hierarchy");
-		options.addOption(OptionBuilder.withArgName("design_name").hasArg()
-				.withDescription("compiled top level design name").create("top"));
-		options.addOption(OptionBuilder.withArgName("class_name").hasArg()
-				.withDescription("class<? extends DefaultTranslator> for generating arbitrarily formatted netlists")
+		options.addOption(OptionBuilder
+				.withArgName("class_name")
+				.hasArg()
+				.withDescription(
+						"fully qualified class name extending DefaultTranslator for generating arbitrarily formatted netlists for a particular layout tool.")
 				.create("tool"));
+		options.addOption(OptionBuilder
+				.withArgName("file_name")
+				.hasArg()
+				.withDescription(
+						"PHDL netlist source directory or file name with *.xml extension.  If not specified, the translator will attempt to translate all *.xml files in the current directory.")
+				.create("src"));
+		options.addOption(OptionBuilder
+				.withArgName("file_name")
+				.hasArg()
+				.withDescription(
+						"Output file name (with or without extension). If not specified, output name(s) will be constructed from the *.xml netlist file name.")
+				.create("gen"));
 		return options;
 	}
 
 	private final DefaultTranslator translator;
-	private final List<PhdlNetlist> netlists;
+	private final Map<String, PhdlNetlist> netlists;
 
 	public Console(DefaultTranslator translator) {
 		if (translator == null) {
 			throw new IllegalArgumentException("translator cannot be null.");
 		}
 		this.translator = translator;
-		this.netlists = new ArrayList<PhdlNetlist>();
+		this.netlists = new HashMap<String, PhdlNetlist>();
 	}
 
-	private void run() {
-		String topDesignName = commandLine.hasOption("top") ? commandLine.getOptionValue("top") : null;
-		if (topDesignName == null) {
-			// get all designs with file extension *.xml
-		} else {
-			logger.info("translating design: " + topDesignName);
-			// get only netlist with name equal to topDesignName
-		}
+	private String extractDesignName(String fileName) {
+		String str = fileName.substring(fileName.lastIndexOf(File.separator) + 1, fileName.lastIndexOf("."));
+		return str;
+	}
 
-		if (netlists.isEmpty()) {
-			logger.error("no compiled PHDL designs found.");
+	private void getAllNetlistFiles(String directory) {
+		File folder = new File(directory);
+		logger.info("using directory: " + folder.getAbsolutePath());
+		File[] files = folder.listFiles();
+		for (int i = 0; i < files.length; i++) {
+			if (files[i].isFile() && files[i].getName().toLowerCase().endsWith(ExtensionCodes.XML_EXT)) {
+				logger.info("translating source file: " + files[i].getName());
+				String xml = PhdlUtils.readStringFromFile(files[i].getAbsolutePath());
+				if (xml == null) {
+					logger.error("unable to read file: " + files[i].getAbsolutePath());
+					System.exit(1);
+				}
+				XStream xstream = new XStream();
+				PhdlUtils.setAliasesForPhdlNetlist(xstream);
+				try {
+					PhdlNetlist netlist = (PhdlNetlist) xstream.fromXML(xml);
+					netlists.put(extractDesignName(files[i].getAbsolutePath()), netlist);
+				} catch (Exception e) {
+					logger.warn("skipping invalid PHDL netlist file: " + files[i].getAbsolutePath());
+				}
+			}
+		}
+	}
+
+	private void getNetlistFile(String srcFile) {
+		File file = new File(srcFile);
+		logger.info("translating source file: " + file.getName());
+		String xml = PhdlUtils.readStringFromFile(file.getAbsolutePath());
+		if (xml == null) {
+			logger.error("unable to read file: " + file.getAbsolutePath());
 			System.exit(1);
 		}
 
-		for (PhdlNetlist netlist : netlists) {
-			translator.translate(netlist);
+		XStream xstream = new XStream();
+		PhdlUtils.setAliasesForPhdlNetlist(xstream);
+		Object obj = xstream.fromXML(xml);
+		if (obj instanceof PhdlNetlist) {
+			PhdlNetlist netlist = (PhdlNetlist) obj;
+			netlists.put(extractDesignName(file.getAbsolutePath()), netlist);
+		}
+	}
 
+	private void run() {
+		logger.info("translation started...");
+
+		String src = commandLine.hasOption("src") ? commandLine.getOptionValue("src") : ".";
+		File file = new File(src);
+		if (!file.exists()) {
+			logger.error("source does not exist: " + file.getAbsolutePath());
+			System.exit(1);
+		}
+
+		if (file.getAbsolutePath().toLowerCase().endsWith(ExtensionCodes.XML_EXT)) {
+			getNetlistFile(file.getAbsolutePath());
+		} else {
+			getAllNetlistFiles(file.getAbsolutePath());
+		}
+
+		if (netlists.isEmpty()) {
+			logger.error("no PHDL netlists found, exiting.");
+			System.exit(1);
+		}
+
+		String gen;
+		if (file.isDirectory()) {
+			gen = commandLine.hasOption("gen") ? commandLine.getOptionValue("gen") : file.getAbsolutePath();
+		} else {
+			gen = new File(".").getAbsolutePath();
+		}
+		File genFolder = new File(gen);
+		if (!genFolder.isDirectory()) {
+			logger.error("invalid output folder specified: " + genFolder.getAbsolutePath());
+			System.exit(1);
+		}
+
+		for (String netlist : netlists.keySet()) {
+			String fileName = genFolder.getAbsolutePath().toString() + File.separator + netlist
+					+ translator.getFileExtension();
+
+			if (!PhdlUtils.writeStringToFile(fileName, translator.translate(netlists.get(netlist)))) {
+				logger.error("failed to generate file: " + fileName);
+			}
 		}
 	}
 }

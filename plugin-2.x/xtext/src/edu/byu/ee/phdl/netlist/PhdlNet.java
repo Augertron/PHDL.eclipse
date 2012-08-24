@@ -42,6 +42,10 @@ public class PhdlNet implements Comparable<Object> {
 		return name;
 	}
 
+	public List<PhdlPin> getPins() {
+		return pins;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
