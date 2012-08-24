@@ -1,0 +1,52 @@
+	// discrete semiconductor devices
+	
+	device LD0603 {
+		attr REFPREFIX = "LD";
+		attr FOOTPRINT = "0603MP";
+		attr LIBRARY = "led";
+		attr REFDES = "";
+		attr MFGR = "";
+		attr SUPPLIER = "";
+		attr PARTNUMBER = "";
+		attr COST = "";
+		pin a = {a};
+		pin c = {c};
+	}
+	
+	device DO214AC {
+		attr REFPREFIX = "D";
+		attr FOOTPRINT = "DO214AC";
+		attr LIBRARY = "diode";
+		attr MFGR = "";
+		attr SUPPLIER = "";
+		attr PARTNUMBER = "";
+		attr COST = "";
+		pin a = {a};
+		pin c = {c};
+	}
+	
+	device TO252 {
+		attr REFPREFIX = "Q";
+		attr FOOTPRINT = "TO252";
+		attr LIBRARY = "ref-packages-smd-ipc";
+		attr MFGR = "";
+		attr SUPPLIER = "";
+		attr PARTNUMBER = "";
+		attr COST = "";
+		pin g = {1};
+		pin s = {2};
+		pin d = {3};
+	}
+	
+	device BSR14 {
+		attr REFPREFIX = "Q";
+		attr FOOTPRINT = "SOT23-BEC";
+		attr LIBRARY = "transistor-npn";
+		attr MFGR = "Fairchild";
+		attr SUPPLIER = "DIGI-KEY";
+		attr PARTNUMBER = "BSR14CT-ND";
+		attr COST = "0.43";
+		pin b = {b};
+		pin c = {c};
+		pin e = {e};
+	}

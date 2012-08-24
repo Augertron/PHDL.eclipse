@@ -1,0 +1,150 @@
+/**
+ *	Voice Modulator Circuit
+ *	Device Declarations
+ *	vm_devices.phdl
+ *
+ *	Designed by Zam
+ *		freecircuitdiagrams4u.blogspot.com
+ *
+ *	Adapted to PHDL by Richard Black
+ *	April 6, 2012	
+ */
+
+device Resistor {
+ 	attr REFPREFIX = "R";
+ 	attr LIBRARY = "rcl";
+ 	attr FOOTPRINT = "0204/5";
+ 	attr COST = "0.10";
+ 	attr VALUE = "100k";
+ 	pin a = {1};
+	pin b = {2};
+}
+
+device Capacitor {
+	attr REFPREFIX = "C";
+	attr LIBRARY = "rcl";
+	attr FOOTPRINT = "C0504";
+	attr VALUE = "4.7uF";
+	attr COST = "0.10";
+	pin pos = {1};
+	pin neg = {2};
+}
+
+device pbSwitch {
+	attr REFPREFIX = "S";
+	attr LIBRARY = "switch-omron";
+	attr FOOTPRINT = "B3F-31XX";
+	attr COST = "0.75";
+	pin on_a = {1};
+	pin on_b = {2};
+	pin off_a = {3};
+	pin off_b = {4};
+}
+
+device LED {
+	attr REFPREFIX = "D";
+	attr LIBRARY = "led";
+	attr FOOTPRINT = "S0T23";
+	attr COLOR = "red";
+	attr COST = "0.45";
+	pin a = {1};
+	pin k = {2};	
+}
+
+device zDiode {
+	attr REFPREFIX = "D";
+	attr LIBRARY = "diode";
+	attr FOOTPRINT = "DO35Z10";
+	attr COST = "0.30";
+	pin a = {1};
+	pin k = {2};
+}
+
+device Pot {
+	attr REFPREFIX = "R";
+	attr LIBRARY = "pot";
+	attr FOOTPRINT = "B25P";
+	attr COST = "2.00";
+	pin a = {1};
+	pin b = {2};
+	pin out = {3};
+}
+
+device spstSwitch {
+	attr REFPREFIX = "S";
+	attr LIBRARY = "switch-coto";
+	attr FOOTPRINT = "CT10-XXXX-G1";
+	attr COST = "0.80";
+	pin a = {1};
+	pin b = {2};
+}
+
+// This is actually a connector
+device Mic {
+	attr REFPREFIX = "M";
+	attr LIBRARY = "audio";
+	attr FOOTPRINT = "NC3FBH1";
+	attr COST = "0.90";
+	pin pos = {1};
+	pin neg = {2};
+	pin gnd = {3};
+}
+
+// This is actually a connector
+device Speaker {
+	attr REFPREFIX = "K";
+	attr LIBRARY = "audio";
+	attr FOOTPRINT = "NC3FBH1";
+	attr COST = "0.90";
+	pin pos = {1};
+	pin neg = {2};
+	pin gnd = {3};
+}
+
+device VoiceMod {
+	attr REFPREFIX = "IC";
+	attr LIBRARY = "ic-package";
+	attr FOOTPRINT = "DIL18";
+	attr PARTNUMBER  = "HT8950";
+	attr COST = "1.50";
+	pin[0:2] SW = {1, 2, 3};
+	pin VSS = {4};
+	pin AO = {5};
+	pin AIN = {6};
+	pin VDD = {7};
+	pin LAMP = {8};
+	pin AUDIO = {9};
+	pin VREF = {10};
+	pin TS = {11};
+	pin FVIB = {12};
+	pin[2:1] OSC = {13, 14};
+	pin VIB = {15};
+	pin TGU = {16};
+	pin TGD = {17};
+	pin ROB = {18};
+}
+
+device AudioAmp {
+	attr REFPREFIX = "IC";
+	attr LIBRARY = "ic-package";
+	attr FOOTPRINT = "DIL8";
+	attr PARTNUMBER = "DIL08";
+	attr COST = "3.00";
+	pin OUTN = {1};
+	pin AudIn = {2};
+	pin VREF = {3};
+	pin VSS = {4};
+	pin _CE = {5};
+	pin NC = {6};
+	pin OUTP = {7};
+	pin VDD = {8};
+}
+
+device Battery4V {
+	attr REFPREFIX = "V";
+	attr LIBRARY = "battery";
+	attr FOOTPRINT = "4V110R";
+	attr COST = "1.50";
+	pin pos = {1};
+	pin neg = {2};
+}

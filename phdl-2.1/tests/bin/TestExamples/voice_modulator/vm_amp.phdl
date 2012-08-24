@@ -1,0 +1,89 @@
+/**
+ *	Voice Modulator Circuit
+ *	Amplifier Logic
+ *	vm_amp.phdl
+ *
+ *	Designed by Zam
+ *		freecircuitdiagrams4u.blogspot.com
+ *
+ *	Adapted to PHDL by Richard Black
+ *	April 6, 2012	
+ */
+
+subdesign Amplifier {
+	port vcc_adj;
+	port gnd;
+	port vcc;
+	port signal;
+	
+	inst diode of zDiode {
+		k = vcc_adj;
+		a = gnd;
+	}
+	
+	net sw_vcc;
+	net[1:2] c_ic;
+	net pot_c;
+	inst(1:5) caps of Capacitor {
+		this(1).pos = vcc_adj;
+		this(2,3).pos = sw_vcc;
+		this(4).pos = c_ic[2];
+		this(1:4).neg = gnd;
+		this(5).pos = pot_c;
+		this(5).neg = c_ic[1];
+		
+		this(1).VALUE = "0.1uF";
+		this(2).VALUE = "100uF";
+		this(3).VALUE = "47uF";
+		this(4).VALUE = "1uF";
+		this(5).VALUE = "0.1uF";
+	}
+	
+	net rrc;
+	inst(1:2) vol_div of Resistor {
+		a = signal;
+		this(1).b = gnd;
+		this(2).b = rrc;
+		
+		this(1).VALUE = "510";
+		this(2).VALUE = "33K";
+	}
+	
+	inst pot of Pot {
+		a = rrc;
+		b = gnd;
+		out = pot_c;
+		newattr VALUE = "50K";
+	}
+	
+	inst switch of spstSwitch {
+		a = vcc;
+		b = sw_vcc;
+	}
+	
+	inst drain of Resistor {
+		info {"Put this resistor nearby VCC"}
+		a = vcc_adj;
+		b = sw_vcc;
+		VALUE = "330";
+	}
+	
+	net spk_pos;
+	net spk_neg;
+	inst powerAmp of AudioAmp {
+		OUTN = spk_neg;
+		OUTP = spk_pos;
+		AudIn = c_ic[1];
+		VREF = c_ic[2];
+		VSS = gnd;
+		_CE = gnd;
+		NC = open;
+		VDD = sw_vcc;
+	}
+	
+	inst speaker of Speaker {
+		pos = spk_pos;
+		neg = spk_neg;
+		gnd = gnd;
+	}
+}

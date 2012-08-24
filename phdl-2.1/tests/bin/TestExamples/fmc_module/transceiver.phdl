@@ -1,0 +1,35 @@
+/**
+ * Design: transceiver.phdl
+ * Adapted from PADS fmc_module.prj
+ * Submitted by: Pete Dudley, Sandia Labs
+ * Translated by: Brad Riching, Brigham Young University
+ * Feb 02, 2012
+ *
+ * Dependencies: devices.phdl
+ */
+
+
+subdesign transceiver {
+	port c2m_p;
+	port c2m_n;
+	port m2c_p;
+	port m2c_n;
+	port gnd;
+	
+	net[1:0] sma_m2c;
+	
+	// each transceiver has four sma-connectors
+	inst(1:4) sma_con of 3SMA_CON {
+		this(1).sig = c2m_p;
+		this(2).sig = c2m_n;
+		combine(this(3,4).sig) = sma_m2c;
+		gnd = <gnd>;
+	}
+	
+	// dc blocking capacitors on the receiver sma-connectors
+	inst(1:2) dc_block of cap_0402 {
+		VALUE = "1uF";
+		combine(a) = sma_m2c;
+		combine(b) = m2c_p & m2c_n;
+	}
+}
