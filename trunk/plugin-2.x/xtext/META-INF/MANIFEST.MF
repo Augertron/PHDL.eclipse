@@ -45,3 +45,7 @@ Export-Package: edu.byu.ee.phdl,
  edu.byu.ee.phdl.services,
  edu.byu.ee.phdl.utils,
  edu.byu.ee.phdl.validation
+Bundle-ClassPath: .,
+ lib/xstream-1.4.3/lib/xstream-1.4.3.jar,
+ lib/xstream-1.4.3/lib/xstream/xpp3_min-1.1.4c.jar,
+ lib/xstream-1.4.3/lib/xstream/xmlpull-1.1.3.1.jar

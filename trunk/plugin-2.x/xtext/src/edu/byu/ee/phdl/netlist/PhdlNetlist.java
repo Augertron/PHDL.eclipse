@@ -15,9 +15,6 @@ public class PhdlNetlist {
 	private SortedSet<PhdlPart> parts;
 	private SortedSet<PhdlNet> nets;
 
-	// private Map<String, Pair<String, String>> parts;
-	// private Map<String, List<Pair<String, String>>> nets;
-
 	public PhdlNetlist(EDesign design) {
 		this.name = design.getName();
 		this.parts = new TreeSet<PhdlPart>();
@@ -62,20 +59,7 @@ public class PhdlNetlist {
 		return nets;
 	}
 
-	// public String getPartFootprint(String partName) {
-	// return parts.get(partName).getFirst();
-	// }
-	//
-	// public String getPartLibrary(String partName) {
-	// return parts.get(partName).getSecond();
-	// }
-	//
-	// public Set<String> getPartNames() {
-	// return parts.keySet();
-	// }
-	//
-	// public Map<String, Pair<String, String>> getParts() {
-	// return parts;
-	// }
-
+	public SortedSet<PhdlPart> getParts() {
+		return parts;
+	}
 }
