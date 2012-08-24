@@ -87,7 +87,7 @@ class TestGenerator extends XtextTest {
 		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + path + ExtensionCodes::INFO_EXT))
 		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + path + ExtensionCodes::REFDES_EXT))
 		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + path + ExtensionCodes::EAGLE_EXT))
-		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + path + ExtensionCodes::XML_EXT))
+		assertTrue(fsa.files.containsKey(IFileSystemAccess::DEFAULT_OUTPUT + path + ExtensionCodes::NET_EXT))
 	}
 	
 	def void testOutputFiles(InMemoryFileSystemAccess fsa, String expected, String actual) {
@@ -106,8 +106,8 @@ class TestGenerator extends XtextTest {
 		assertEquals(PhdlUtils::fileToString(expected + ExtensionCodes::EAGLE_EXT), 
 			fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + actual + ExtensionCodes::EAGLE_EXT).toString
 		)
-		assertEquals(PhdlUtils::fileToString(expected + ExtensionCodes::XML_EXT), 
-			fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + actual + ExtensionCodes::XML_EXT).toString
+		assertEquals(PhdlUtils::fileToString(expected + ExtensionCodes::NET_EXT), 
+			fsa.files.get(IFileSystemAccess::DEFAULT_OUTPUT + actual + ExtensionCodes::NET_EXT).toString
 		)
 		
 	}

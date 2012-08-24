@@ -1,0 +1,5 @@
+device test_device {
+	attr REFPREFIX = "r";
+	attr FOOTPRINT = "footprint";
+	attr LIBRARY = "library";
+}

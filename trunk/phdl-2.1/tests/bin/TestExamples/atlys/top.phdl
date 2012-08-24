@@ -1,0 +1,2475 @@
+
+design AtlysSpartan6_Dem_Board {
+	net SHIELD, GND;
+	net VCCB2, VSWT5V0, VCC3V3, VCC1V8, VCC2V5, VCC1V2;
+	
+
+	//GND and Shield
+	inst Shield_GND_Cap of cap {
+		neg = GND;
+		pos = SHIELD;
+		VALUE = "1nF";
+		newattr VOLTAGE = "250V";
+	}
+	inst Shield_GND_Res of res5v { 
+		
+		a = GND;
+		b = SHIELD;
+		VALUE = "1M";
+	}
+
+	//VHDCI Connector
+	net[1:20] EXP-IO_P, EXP-IO_N;
+	subinst VHDCI_Connector of DigilentVHDCIConnector {
+		GND = GND;
+		SHIELD = SHIELD;
+		EXP-IO_P = EXP-IO_P;
+		EXP-IO_N = EXP-IO_N;
+		VCCB2 = VCCB2;
+		VSWT5V0 = VSWT5V0;
+	}
+	
+	//HDMI_D
+	net JA-SCL, JA-SDA, PMOD-SCL, PMOD_SDA;
+	net JA-CLK_P, JA-CLK_N;
+	net[2:0] JA-D_P, JA-D_N;
+	subinst PMODA of HDMI_D {
+		GND = GND;
+		SHIELD = SHIELD;
+		VCC3V3 = VCC3V3;
+		VSWT5V0 = VSWT5V0;
+		VCCB2 = VCCB2;
+		JA-SCL = JA-SCL;
+		JA-SDA = JA-SDA;
+		PMOD-SCL = PMOD-SCL;
+		PMOD-SDA = PMOD_SDA;
+		JA-CLK_N = JA-CLK_N;
+		JA-CLK_P = JA-CLK_P;
+		JA-D_N = JA-D_N;
+		JA-D_P = JA-D_P;
+	}
+	
+	//PushBtns, Switches, LEDS
+	net[0:7] SW, LD;
+	net HSWAP/LD5, M1/LD7;
+	HSWAP/LD5 = LD[5];
+	M1/LD7 = LD[7];
+	net BTNU, BTNC, BTNR, BTNL, BTND;
+	subinst pbs_sws_leds of GPIO_SW_LED_PBTNS {
+		BTNU = BTNU;
+		BTNC = BTNC;
+		BTNR = BTNR;
+		BTNL = BTNL;
+		BTND = BTND;
+		SW = SW;
+		LD = LD;
+		GND = GND; 
+		VCC1V8 = VCC1V8;
+		VCCB2 = VCCB2;
+		VCC3V3 = VCC3V3;
+	}
+	
+	//Button Reset
+	net M0/RESET, BTNRST;
+	net rst_pb_net;
+	inst(2:0) rstResArray of res5v {
+		this(2).VALUE = "10K";
+		this(1).VALUE = "1K";
+		this(0).VALUE = "390";	
+		this(2).a = VCCB2;
+		this(1).a = M0/RESET;
+		this(0).a = BTNRST;
+		b = rst_pb_net;		
+	}
+	inst RESET_BUTTON of pushButton {
+		A = <rst_pb_net>;
+		B = <GND>;
+	}
+	
+	//HDMI_IN sub designs
+	net[2:0] TMDS-RXB_P, TMDS-RXB_N;
+	net TMDS-RXB-CLK_P, TMDS-RXB-CLK_N;
+	net hdmi1_oe;
+	
+	net[2:0] TMDS-RX_P, TMDS-RX_N;
+	net TMDS-RX-CLK_P, TMDS-RX-CLK_N;
+	net TMDS-RX-SCL, TMDS-RX-SDA;
+	net hdmi3_oe;
+	
+	subinst(1:0) hdmi_in_subDesigns of HDMI_IN {
+		VCC3V3 = VCC3V3;
+		VSWT5V0 = VSWT5V0;
+		SHIELD = SHIELD;
+		GND = GND;
+		
+		//HDMI_IN 1
+		this(1).TMDS-RX-CLK_N = TMDS-RXB-CLK_N; 
+		this(1).TMDS-RX-CLK_P = TMDS-RXB-CLK_P;
+		this(1).TMDS-RX_P = TMDS-RXB_P;
+		this(1).TMDS-RX_N = TMDS-RXB_N;
+		this(1).SCL = PMOD-SCL;
+		this(1).SDA = PMOD_SDA;
+		this(1).OE = hdmi1_oe;
+		
+		//HDMI_IN 3
+		this(0).TMDS-RX-CLK_N = TMDS-RX-CLK_N; 
+		this(0).TMDS-RX-CLK_P = TMDS-RX-CLK_P;
+		this(0).TMDS-RX_P = TMDS-RX_P;
+		this(0).TMDS-RX_N = TMDS-RX_N;
+		this(0).SCL = TMDS-RX-SCL;
+		this(0).SDA = TMDS-RX-SDA;
+		this(0).OE = hdmi3_oe;
+		 
+	}
+	//Set up HDMI1_OE
+	inst oeRes of res5v {
+		VALUE = "10K";
+		a = hdmi1_oe;
+		b = VCC3V3;
+	}
+	inst oeJMPR of jumper2 {
+		a = hdmi1_oe;
+		b = GND;
+	}
+	//Set up HDMI3_OE
+	inst oe3Res of res5v {
+		a = hdmi3_oe;
+		b = GND;
+		VALUE = "10K";
+	}
+	
+	//HDMI_OUT
+	net TMDS-TX-CLK_P, TMDS-TX-CLK_N;
+	net[2:0] TMDS-TX_P, TMDS-TX_N;
+	net TMDS-TX-SCL, TMDS-TX-SDA;
+	
+	subinst hdmi_out of HDMI_OUT {
+		GND = GND;
+		SHIELD = SHIELD;
+		VCC3V3 = VCC3V3;
+		VSWT5V0 = VSWT5V0;
+		RX-SCL = TMDS-RX-SCL;
+		RX-SDA = TMDS-RX-SDA;
+		TMDS-TX-CLK_P = TMDS-TX-CLK_P;
+		TMDS-TX-CLK_N = TMDS-TX-CLK_N;
+		TMDS-TX_N = TMDS-TX_N;
+		TMDS-TX_P = TMDS-TX_P;
+		TX-SCL = TMDS-TX-SCL;
+		TX-SDA = TMDS-TX-SDA;
+	}
+	
+	//Audio
+	net AUD-SDO, AUD-BIT-CLK, AUD-SDI, AUD-SYNC, AUD-RESET;
+	subinst audio of audioCodec {
+		AUD-BIT-CLK = AUD-BIT-CLK;
+		AUD-RESET = AUD-RESET;
+		AUD-SDI = AUD-SDI;
+		AUD-SDO = AUD-SDO;
+		AUD-SYNC = AUD-SYNC;
+		GND = GND;
+		VCC3V3 = VCC3V3;
+		VSWT5V0 = VSWT5V0;
+	}
+	
+	//USB Periferal Controller 
+	net U1-INTO_NUM, U1-SLOE, U1-PKTEND, U1-SLCS;
+	net[0:1] U1-FIFOAD;
+	net[0:7] U1-FD;
+	net TDO-FPGA/TDO-JTAG, TDO-USB/TDI-FPGA, TMS, TCK, PGOOD, USBDONE;
+	net U1-IFCLK, U1-SDA, U1-SCL;
+	net U1-FLAGA, U1-FLAGB, U1-FLAGC, U1-SLRD, U1-SLWR;
+	net USBPROG;
+	subinst usbPerfController of usbController {
+		GND = GND;
+		SHIELD = SHIELD;
+		VCC3V3 = VCC3V3;
+		U1-INTO_NUM = U1-INTO_NUM;
+		U1-SLOE = U1-SLOE;
+		U1-PKTEND = U1-PKTEND;
+		U1-SLCS = U1-SLCS;
+		U1-FIFOAD = U1-FIFOAD;
+		U1-FD = U1-FD;
+		TDO-FPGA/TDO-JTAG = TDO-FPGA/TDO-JTAG;
+		TDO-USB/TD1-FPGA = TDO-USB/TDI-FPGA;
+		TMS = TMS;
+		TCK = TCK;
+		PGOOD = PGOOD;
+		USBDONE = USBDONE;
+		U1-IFCLK = U1-IFCLK;
+		U1-SDA = U1-SDA;
+		U1-SCL = U1-SCL;
+		U1-FLAGA = U1-FLAGA;
+		U1-FLAGB = U1-FLAGB;
+		U1-FLAGC = U1-FLAGC;
+		U1-SLRD = U1-SLRD;
+		U1-SLWR = U1-SLWR;
+		USBPROG = USBPROG;
+		BTNRST = BTNRST;
+	}
+
+	//Flash Mem Controller
+	net DQ1, SCK;
+	net PIC32-SCK1, PIC32-SDI1, PIC32-SDO1, PIC32-SS1;
+	subinst flashMem of flashMemCntr {
+		GND = GND;
+		SHIELD = SHIELD;
+		VSWT5V0 = VSWT5V0;
+		VCC3V3 = VCC3V3;
+		USBDONE = USBDONE;
+		M1/LD7 = M1/LD7;
+		SCK = SCK;
+		DQ1 = DQ1;
+		SCK1 = PIC32-SCK1;
+		SDI1 = PIC32-SDI1;
+		SDO1 = PIC32-SDO1;
+		SS1 = PIC32-SS1;
+	}
+
+	//USB UART
+	net USBB-TXD, USBB-RXD;
+	subinst usbUart of usbUart {
+		GND = GND;
+		VCC3V3 = VCC3V3;
+		SHIELD = SHIELD;
+		TXD = USBB-TXD;
+		RXD = USBB-RXD;
+	}
+
+	//Ethernet Unit
+	net E-MDIO, E-MDC, E-INT, E-RESET, E-COL, E-CRS;
+	net E-RXDV, E-RXCLK, E-RXER;
+	net[0:7] E-RXD, E-TXD;
+	net E-GTXCLK, E-TXCLK, E-TXER, E-TXEN;
+	subinst ethUnit of ethernetUnit {
+		E-CRS = E-CRS;
+		E-COL = E-COL;
+		E-INT = E-INT;
+		E-GTXCLK = E-GTXCLK;
+		E-MDIO = E-MDIO;
+		E-MDC = E-MDC;
+		E-RXCLK = E-RXCLK;
+		E-RESET = E-RESET;
+		E-RXD = E-RXD;
+		E-RXDV = E-RXDV;
+		VCC1V2 = VCC1V2;
+		SHIELD = SHIELD;
+		GND = GND;
+		E-TXER = E-TXER;
+		VCC2V5 = VCC2V5;
+		E-TXCLK = E-TXCLK;
+		E-TXD = E-TXD;
+		E-RXER = E-RXER;
+		E-TXEN = E-TXEN;
+	}
+
+	//DDR MEM
+	net DDR0V9, DDR1V8;
+	net[0:12] DDR-A;
+	net[0:2] DDR-BA;
+	net DDR-CK_P, DDR-CK_N, DDR-CKE, DDR-RAS, DDR-CAS, DDR-WE;
+	net[0:15] DDR-DQ;
+	net DDR-UDQS_P, DDR-LDQS_P, DDR-UDQS_N, DDR-LDQS_N;
+	net DDR-LDM, DDR-UDM, DDR-ODT;
+	info {"DDR-UDQS, DDR-LDQS, and DDR-CK need to be routed as differential pairs"}
+	subinst ddrMem of ddrMem {
+		A = DDR-A;
+		RAS = DDR-RAS;
+		UDM = DDR-UDM;
+		UDQS_N = DDR-UDQS_N;
+		UDQS_P = DDR-UDQS_P;
+		LDM = DDR-LDM;
+		LDQS_N = DDR-LDQS_N;
+		LDQS_P = DDR-LDQS_P;
+		ODT = DDR-ODT;
+		DQ = DDR-DQ;
+		GND = GND;
+		DDR0V9 = DDR0V9;
+		CK_P = DDR-CK_P;
+		DDR1V8 = DDR1V8;
+		CAS = DDR-CAS;
+		BA = DDR-BA;
+		CK_N = DDR-CK_N;
+		CKE = DDR-CKE;
+		WE = DDR-WE;
+	}
+	inst fb_ddr1v8_2_VCC1V8 of feriteBead {
+		VALUE = "600";
+		a = VCC1V8;
+		b = DDR1V8;
+	}
+	
+	//Power
+	subinst powerRegulation of powerReg {
+		VCC2V5 = VCC2V5;
+		DDR0V9 = DDR0V9;
+		VCC3V3 = VCC3V3;
+		GND = GND;
+		VSWT5V0 = VSWT5V0;
+		PGOOD = PGOOD;
+		U1-SCL = U1-SCL;
+		U1-SDA = U1-SDA;
+		VCC1V2 = VCC1V2;
+		VCC1V8 = VCC1V8;
+	}
+	////////////////////
+	//FPGA Configuration
+	////////////////////
+	
+	//Jtag 
+	net tms-jtag, tck-jtag, tdi-jtag;
+	inst jtagHeader of header2mm_2x7 {
+		p[1,3,5,7,9,11,13] = <GND>;
+		p[12,14] = open;
+		p[2] = VCC3V3;
+		p[4] = tms-jtag;
+		p[6] = tck-jtag;
+		p[8] = TDO-FPGA/TDO-JTAG;
+		p[10] = tdi-jtag;
+	}
+	inst(1:4) jtagDiodes of diode {
+		pos = GND;
+		this(1).neg = TDO-FPGA/TDO-JTAG;
+		this(2).neg = tms-jtag;
+		this(3).neg = tdi-jtag;
+		this(4).neg = tck-jtag;
+	}
+	inst(1:3) resAry_jtag of res5v {
+		VALUE = "200";
+		this(1).a = tms-jtag;
+		this(1).b = TMS;
+		this(2).a = tdi-jtag;
+		this(2).b = TDO-USB/TDI-FPGA;
+		this(3).a = tck-jtag;
+		this(3).b = TCK;
+	}
+	  
+	//Serial Flash
+	net sdi_int, sdi, cs;
+	net[1:3] dq_int, DQ;
+	DQ[1] = DQ1;
+
+	inst(1:3) resAry_srlFlash_dq1_3 of res5v {
+		VALUE = "100";
+		combine(b) = dq_int;
+		combine(a) = DQ;
+	}
+	inst(1:2) resAry_srlFlash_dq2_3 of res5v {
+		VALUE = "1.8K";
+		a = VCC3V3;
+		combine(b) = dq_int[2:3];
+	}
+	inst res_srlFlash_sdi of res5v {
+		VALUE = "100";
+		a = sdi;
+		b = sdi_int;
+	}
+	inst res_srlFlash_cs of res5v {
+		VALUE = "4.7K";
+		a = VCC3V3;
+		b = cs;
+	}
+	inst(1:2) resAry_srlFlash_bias_sck of res5v {
+		VALUE = "100";
+		this(1).a = VCCB2;
+		b = SCK;
+		this(2).a = GND;
+	}
+	inst cap_srlFlash_pwr of cap {
+		info {"Place Nearby the power pin for the serial flash IC."}
+		pos = VCC3V3;
+		neg = GND;
+	}
+	inst serialFlashCntrl of serialFlash_F8 {
+		DQ0 = sdi_int;
+		DQ1 = dq_int[1];
+		DQ2/WP_N = dq_int[2];
+		Hold_N/DQ3 = dq_int[3];
+		Vcc = VCC3V3;
+		C = SCK;
+		CS_N = cs;
+		Vss = GND;
+	}
+	//////////////////
+	//MISC FPGA Items
+	//////////////////
+	net cmpcs, suspend;
+	net DONE, PROG, INIT;
+	inst res_fpga_cmpcs of res5v {
+		VALUE = "1K";
+		a = VCC3V3;
+		b = cmpcs;
+	}
+	inst res_fpga_suspend of res5v {
+		VALUE = "4.7K";
+		a = suspend;
+		b = GND;
+	}
+	inst res_fpga_m1ld7_2_gnd of res5v {
+		VALUE = "1K";
+		a = M1/LD7;
+		b = GND;
+	}
+	inst res_fpga_hswapld5_2_gnd of res5v {
+		VALUE = "10K";
+		a = HSWAP/LD5;
+		b = GND;
+	}
+	inst(1:2) resAry_fpga_prog_done_net of res5v {
+		VALUE = "390";
+		this(1).a = DONE;
+		this(1).b = USBDONE;
+		this(2).a = PROG;
+		this(2).b = USBPROG;
+	}
+	inst(1:3) resAry_fpga_res_2_pwr of res5v {
+		this(1,2).VALUE = "4.7K";
+		this(3).VALUE = "270";
+		a = VCCB2;
+		this(1).b = INIT;
+		this(2).b = PROG;
+		this(3).b = DONE;
+	}
+	
+	//Done LED
+	inst DONE_LED of led {
+		REFDES = "LD14";
+		pos = DONE;
+		neg = GND;
+	}
+	
+	//Jumper 
+	inst jmpr_fpga_hswap_2_pwr of jumper2 {
+		a = HSWAP/LD5;
+		b = VCC3V3;
+	}
+	
+	//Main CLK
+	net GCLK;
+	inst mainClkGen_fpga of programableHighFreqCrystalOscillator {
+		Vdd = VCC3V3;
+		OE/ST = VCC3V3;
+		OUT = GCLK;
+		GND = GND;
+		VALUE = "100MHz";
+	}
+	inst clkCap of cap {
+		info {"Place nearby the maid fpga clk Generator"}
+		VALUE = "0.1uF";
+		pos = VCC3V3;
+		neg = GND;
+	}
+	
+	//GND
+	net ZIO, RZQ;
+	inst(1:2) resAry_fpga_gnd of res5v {
+		this(1).VALUE = "NoLoad";
+		this(2).VALUE = "100";
+		this(1).a = ZIO;
+		this(2).a = RZQ;
+		b = GND;
+	}
+	
+	//USB Boot JUMPER
+	inst usbBootJmpr of jumper2 {
+		a = M1/LD7;
+		b = VCCB2;
+	}
+	
+	//////////////////
+	//FPGA Power
+	//////////////////
+	inst(1:14) capAry_fpga_vcco_0 of cap {
+		pos = VCC3V3;
+		neg = GND;
+		this(1:6).VALUE = "10nF";
+		this(7:12).VALUE = "47nF";
+		this(13).VALUE = "0.47uf";
+		this(14).VALUE = "4.7uF";
+		info {"Place these caps nearby the VCCO_0 pins of the fpga."}
+	}
+	inst(1:14) capAry_fpga_vcco_1 of cap {
+		pos = VCC3V3;
+		neg = GND;
+		this(1:6).VALUE = "10nF";
+		this(7:12).VALUE = "47nF";
+		this(13).VALUE = "0.47uf";
+		this(14).VALUE = "4.7uF";
+		info {"Place these caps nearby the VCCO_1 pins of the fpga."}
+	}
+	inst(1:14) capAry_fpga_vcco_2 of cap {
+		pos = VCCB2;
+		neg = GND;
+		this(1:6).VALUE = "10nF";
+		this(7:12).VALUE = "47nF";
+		this(13).VALUE = "0.47uf";
+		this(14).VALUE = "4.7uF";
+		info {"Place these caps nearby the VCCO_2 pins of the fpga."}
+	}
+	inst vccb2_jmpr of jumper3 {
+		a = VCC3V3;
+		b = VCCB2;
+		c = VCC2V5;
+	}
+	inst(1:14) capAry_fpga_vcco_3 of cap {
+		pos = DDR1V8;
+		neg = GND;
+		this(1:6).VALUE = "10nF";
+		this(7:12).VALUE = "47nF";
+		this(13).VALUE = "0.47uf";
+		this(14).VALUE = "4.7uF";
+		info {"Place these caps nearby the VCCO_3 pins of the fpga."}
+	}
+	
+	inst(1:14) capAry_fpga_vccaux1 of cap {
+		pos = VCC3V3;
+		neg = GND;
+		this(1:6).VALUE = "10nF";
+		this(7:12).VALUE = "47nF";
+		this(13).VALUE = "0.47uf";
+		this(14).VALUE = "4.7uF";
+		info {"Place these caps nearby the VCCAUX pins of the fpga."}
+	}
+	inst(1:14) capAry_fpga_vccaux2 of cap {
+		pos = VCC3V3;
+		neg = GND;
+		this(1:6).VALUE = "10nF";
+		this(7:12).VALUE = "47nF";
+		this(13).VALUE = "0.47uf";
+		this(14).VALUE = "4.7uF";
+		info {"Place these caps nearby the VCCAUX pins of the fpga."}
+	}
+	
+	inst(1:14) capAry_fpga_vccint1 of cap {
+		pos = VCC1V2;
+		neg = GND;
+		this(1:6).VALUE = "10nF";
+		this(7:12).VALUE = "47nF";
+		this(13).VALUE = "0.47uf";
+		this(14).VALUE = "4.7uF";
+		info {"Place these caps nearby the VCCINT pins of the fpga."}
+	}
+	
+	inst(1:14) capAry_fpga_vccint2 of cap {
+		pos = VCC1V2;
+		neg = GND;
+		this(1:6).VALUE = "10nF";
+		this(7:12).VALUE = "47nF";
+		this(13).VALUE = "0.47uf";
+		this(14).VALUE = "4.7uF";
+		info {"Place these caps nearby the VCCINT pins of the fpga."}
+	}
+	
+	
+	
+	//////////////////
+	// Spartan 6 FPGA
+	//////////////////
+	inst spartan6 of spartan6_FPGA {
+		nopad/unconnected = open;
+		aud-bit-clk = AUD-BIT-CLK;
+		aud-reset = AUD-RESET;
+		aud-sdi = AUD-SDI;
+		aud-sdo = AUD-SDO;
+		aud-sync = AUD-SYNC;
+		btnc = BTNC;
+		btnd = BTND;
+		btnl = BTNL;
+		btnr = BTNR;
+		btnu = BTNU;
+		cmpcs = cmpcs;
+		cs = cs;
+		ddr-a = DDR-A;
+		ddr-ba = DDR-BA;
+		ddr-cas = DDR-CAS;
+		ddr-ck_n = DDR-CK_N;
+		ddr-ck_p = DDR-CK_P;
+		ddr-cke = DDR-CKE;
+		ddr-dq = DDR-DQ;
+		ddr-ldm = DDR-LDM;
+		ddr-ldqs_n = DDR-LDQS_N;
+		ddr-ldqs_p = DDR-LDQS_P;
+		ddr-odt = DDR-ODT;
+		ddr-ras = DDR-RAS;
+		ddr-udm = DDR-UDM;
+		ddr-udqs_n = DDR-UDQS_N;
+		ddr-udqs_p = DDR-UDQS_P;
+		ddr-we = DDR-WE;
+		ddr0v9 = <DDR0V9>;
+		done = DONE;
+		dq = DQ;
+		e-col = E-COL;
+		e-crs = E-CRS;
+		e-gtxclk = E-GTXCLK;
+		e-int = E-INT;
+		e-mdc = E-MDC;
+		e-mdio = E-MDIO;
+		e-reset = E-RESET;
+		e-rxclk = E-RXCLK;
+		e-rxd = E-RXD;
+		e-rxdv = E-RXDV;
+		e-rxer = E-RXER;
+		e-txclk = E-TXCLK;
+		e-txd = E-TXD;
+		e-txen = E-TXEN;
+		e-txer = E-TXER;
+		exp-io_n = EXP-IO_N;
+		exp-io_p = EXP-IO_P;
+		gclk = GCLK;
+		gnd = <GND>;
+		hswap/ld5 = HSWAP/LD5;
+		init = INIT;
+		ja-clk_n = JA-CLK_N;
+		ja-clk_p = JA-CLK_P;
+		ja-d_n = JA-D_N;
+		ja-d_p = JA-D_P;
+		ja-scl = JA-SCL;
+		ja-sda = JA-SDA;
+		ld = LD[0:4];
+		ld6 = LD[6];
+		m0/reset = M0/RESET;
+		m1/ld7 = M1/LD7;
+		pic32-sck1 = PIC32-SCK1;
+		pic32-sdi1 = PIC32-SDI1;
+		pic32-sdo1 = PIC32-SDO1;
+		pic32-ss1 = PIC32-SS1;
+		prog = PROG;
+		rzq = RZQ;
+		sck = SCK;
+		sdi = sdi;
+		suspend = suspend;
+		sw = SW;
+		tck = TCK;
+		tdo-fpga/tdo-jtag = TDO-FPGA/TDO-JTAG;
+		tdo-usb/tdi-fpga = TDO-USB/TDI-FPGA;
+		tmds-rx_n = TMDS-RX_N;
+		tmds-rx_p = TMDS-RXB_P;
+		tmds-rx-clk_n = TMDS-RX-CLK_N;
+		tmds-rx-clk_p = TMDS-RX-CLK_P;
+		tmds-rx-scl = TMDS-RX-SCL;
+		tmds-rx-sda = TMDS-RX-SDA;
+		tmds-rxb_n = TMDS-RXB_N;
+		tmds-rxb_p = TMDS-RXB_P;
+		tmds-rxb-clk_n = TMDS-RX-CLK_N;
+		tmds-rxb-clk_p = TMDS-RX-CLK_P;
+		tmds-tx_n = TMDS-TX_N;
+		tmds-tx_p = TMDS-TX_P;
+		tmds-tx-clk_n = TMDS-TX-CLK_N;
+		tmds-tx-clk_p = TMDS-TX-CLK_P;
+		tmds-tx-scl = TMDS-TX-SCL;
+		tmds-tx-sda = TMDS-TX-SDA;
+		tms = TMS;
+		u1-fd = U1-FD;
+		u1-fifoad = U1-FIFOAD;
+		u1-flaga = U1-FLAGA;
+		u1-flagb = U1-FLAGB;
+		u1-flagc = U1-FLAGC;
+		u1-ifclk = U1-IFCLK;
+		u1-int_num = U1-INTO_NUM;
+		u1-pktend = U1-PKTEND;
+		u1-slcs = U1-SLCS;
+		u1-sloe = U1-SLOE;
+		u1-slrd = U1-SLRD;
+		u1-slwr = U1-SLWR;
+		usbb-rxd = USBB-RXD;
+		usbb-txd = USBB-TXD;
+		vccaux = <VCC3V3>;
+		vccint = <VCC1V2>;
+		vcco_0 = <VCC3V3>;
+		vcco_1 = <VCC3V3>;
+		vcco_2 = <VCCB2>;
+		vcco_3 = <DDR1V8>;
+		zio = ZIO;
+	}
+}
+
+subdesign GPIO_SW_LED_PBTNS {
+	port VCC1V8, VCCB2, VCC3V3;
+	port GND;
+	port[0:7] SW, LD;
+	port BTNU, BTNC, BTNR, BTNL, BTND;
+	
+	net[1:5] btn_net;
+	net[0:7] ld_net, sw_net;
+	
+	//Push Buttons
+	inst(1:5) buttons of pushButton {
+		this(1).REFDES = "BTNU";
+		this(2).REFDES = "BTNC";
+		this(3).REFDES = "BTNR";
+		this(4).REFDES = "BTNL";
+		this(5).REFDES = "BTND";
+		
+		combine(A) = <VCC1V8>;
+		combine(B[1]) = btn_net;
+		combine(B[2]) = btn_net;
+	}
+	
+	inst(1:5) btn_out_res of res5v{
+		VALUE = "10K";
+		combine(a) = btn_net;
+		this(1).b = BTNU;
+		this(2).b = BTNC;
+		this(3).b = BTNR;
+		this(4).b = BTNL;
+		this(5).b = BTND;
+	}
+	
+	inst(1:5) btn_gnd_res of res5v{
+		VALUE = "10K";
+		combine(a) = btn_net;
+		b = GND;
+	}
+	
+	//LEDS
+	inst(0:7) leds of led{
+		combine(pos) = ld_net;
+		neg = GND;
+	}
+	inst(0:7) ld_res of res5v{
+		VALUE = "390";
+		combine(a) = LD;
+		combine(b) = ld_net;
+	}
+	
+	//Switches
+	inst(0:7) switches of slideSwitch{
+		this(0:3).p[1] = VCC3V3;
+		this(4:6).p[1] = VCCB2;
+		this(7).p[1] = VCC1V8;
+		
+		combine(p[2]) = sw_net;
+		
+		p[3] = GND;
+	}
+	
+	inst(0:7) sw_res of res5v {
+		combine(a) = sw_net;
+		combine(b) = SW;
+		VALUE = "10K";
+	}
+}
+
+subdesign HDMI_D {
+	port GND, SHIELD, VCC3V3, VCCB2, VSWT5V0;
+	port JA-SCL, JA-SDA;
+	port PMOD-SCL, PMOD-SDA;
+	info {"Port pairs JA-CLK_P and JA-CLK_N, JA_P and JA_N need to be routed as sets of differential pairs."}
+	port JA-CLK_P, JA-CLK_N;
+	port[2:0] JA-D_P, JA-D_N;
+
+	net JA1, JA2, JA3, JA4, JA7, JA8, JA9, JA10;
+	net hpd/5v, scl, sda;
+
+	//Instantiate Jumpers
+	inst JP3 of jumper2 {
+		a = VSWT5V0;
+		b = hpd/5v;
+	}
+	inst JP2 of jumper2x2 {
+		p[1] = scl;
+		p[2] = PMOD-SCL;
+		p[3] = sda;
+		p[4] = PMOD-SDA;
+	}
+	
+	//Internal Resistors
+	inst(1:2) R18_19 of res5v {
+		combine(a) = <VCC3V3>;
+		this(1).b = PMOD-SDA;
+		this(2).b = PMOD-SCL;
+		VALUE = "10K";
+	}
+	inst(1:2) R39_40 of res5v {
+		combine(a) = <VCC3V3>;
+		this(1).b = scl;
+		this(2).b = sda;
+		VALUE = "2.2K";
+	}
+	inst(1:2) R45_48 of res5v {
+		this(1).a = JA-SCL;
+		this(1).b = scl;
+		this(2).a = JA-SDA;
+		this(2).b = sda;
+	}
+	inst(1:8) HDMI_D_RES of res5v {
+		this(1).a = JA4;
+		this(2).a = JA3;
+		this(3).a = JA10;
+		this(4).a = JA9;
+		this(5).a = JA2;
+		this(6).a = JA1;
+		this(7).a = JA8;
+		this(8).a = JA7;
+		combine(this(1,3,5).b) = JA-D_P;
+		combine(this(2,4,6).b) = JA-D_N;
+		this(7).b = JA-CLK_P;
+		this(8).b = JA-CLK_N;
+		VALUE = "50";
+	}
+	
+	//Declare Header
+	inst pmod2x6 of header2x6_90 {
+		p[1] = JA1;
+		p[2] = JA2;
+		p[3] = JA3;
+		p[4] = JA4;
+		p[7] = JA7;
+		p[8] = JA8;
+		p[9] = JA9;
+		p[10] = JA10;
+		p[5,11] = <GND>;
+		p[6,12] = <VCCB2>;
+	}
+	
+	inst HDMI_D_inst of HDMItypeD {
+		HPD = hpd/5v;
+		RES = VCCB2;
+		D+[2] = JA4;
+		D+[1] = JA10;
+		D+[0] = JA2;
+		D-[2] = JA3;
+		D-[1] = JA9;
+		D-[0] = JA1;
+		DS = <GND>;
+		5V = hpd/5v;
+		shield = <SHIELD>;
+		CLK+ = JA8;
+		CLK- = JA7;
+		CLK_S = GND;
+		CEC = VCCB2;
+		Gnd = GND;
+		SCL = scl;
+		SDA = sda;
+	}
+}
+
+subdesign DigilentVHDCIConnector {
+	info {"All nets and ports require differential pair routing except for power rail and shield."}
+	port GND, SHIELD;
+	port VCCB2, VSWT5V0;
+	port[1:20] EXP-IO_P, EXP-IO_N;
+	
+	net[1:20] vhdci_IO_P, vhdci_IO_N;
+
+	inst DigilentVHDCIConnector_inst of VHDCI_Connector {
+		shield = <SHIELD>;
+		p[1,3,4,6,7,9,10,12,13,15,20,22,23,25,26,28,29,31,32,34] = vhdci_IO_P;
+		p[35,37,38,40,41,43,44,46,47,49,54,56,57,59,60,62,63,65,66,68] = vhdci_IO_N;
+		p[2,5,8,11,14,21,24,27,30,33,36,39,42,45,48,55,58,61,64,67] = <GND>;
+		p[16,19,50,53] = <VCCB2>;
+		p[17,18,51,52] = <VSWT5V0>;
+	}
+
+	inst(1:20) vhdciResArrayP of res5v {
+		VALUE = "50";
+		combine(a) = vhdci_IO_P;
+		combine(b) = EXP-IO_P;
+	}
+	inst(1:20) vhdciResArrayN of res5v {
+		VALUE = "50";
+		combine(a) = vhdci_IO_N;
+		combine(b) = EXP-IO_N;
+	}
+}			
+
+subdesign HDMI_IN {
+	info{"All nets and ports require differential pair routing except for power rail, PMOD, and shield."}
+	port VCC3V3, VSWT5V0, GND, SHIELD;
+	port[2:0] TMDS-RX_P, TMDS-RX_N;
+	port TMDS-RX-CLK_P, TMDS-RX-CLK_N;
+	port SCL, SDA;
+	port OE;
+	
+	net[0:3] rx_in_p, rx_in_n;
+	net i2c,pre, ovs, scl_in, sda_in, hpd, 5v0, vsadj; 
+	
+	//Capacitors
+	info{"Capacitors need to be placed nearby the power rail of TMDS141RHAR part"}
+	inst(7:0) pwrCapAry of cap {
+		VALUE = "0.1uF";
+		pos = VCC3V3;
+		neg = GND;
+	}
+	
+	//Internal Resisters
+	inst(7:0) resAry_pwr2fpgaRX of res5v {
+		VALUE = "50";
+		a = VCC3V3;
+		combine(this(7,5,3).b) = TMDS-RX_P;
+		combine(this(6,4,2).b) = TMDS-RX_N;
+		this(1).b = TMDS-RX-CLK_P;
+		this(0).b = TMDS-RX-CLK_N;
+	}
+	inst(2:0) resAry_pwr2pre_ovs_i2c of res5v {
+		this(2,1).VALUE = "10K No Load";
+		this(0).VALUE = "10K";
+		a = VCC3V3;
+		this(2).b = pre;
+		this(1).b = ovs;
+		this(0).b = i2c;
+	}
+	inst(1:0) resAry_pre_ovs2gnd of res5v {
+		this(1).VALUE = "10K";
+		this(0).VALUE = "10K No Load";
+		this(1).a = pre;
+		this(0).a = ovs;
+		b = GND;
+	}
+	inst(1:0) resAry_pwr2sda_scl of res5v {
+		VALUE = "1.74K";
+		a = VSWT5V0;
+		this(1).b = sda_in;
+		this(0).b = scl_in;
+	}
+	inst res_hpd2pwr of res5v {
+		VALUE = "1K";
+		a = VSWT5V0;
+		b = hpd;
+	}
+	inst res_vsadj2gnd of res5v {
+		VALUE = "4.64K";
+		a = vsadj;
+		b = GND;
+	}
+	
+	//Jumper
+	inst jmp_hdmi2pwr5V of jumper2 {
+		a = VSWT5V0;
+		b = 5v0;
+	}
+	
+	//HDMI In Port
+	inst hdmiIn of HDMItypeA {
+		D+ = rx_in_p[0:2];
+		D- = rx_in_n[0:2];
+		CLK+ = rx_in_p[3];
+		CLK- = rx_in_n[3];
+		shield = <SHIELD>;
+		DS = <GND>;
+		CLKS = GND;
+		CEC = open;
+		RES = open;
+		SCL = scl_in;
+		SDA = sda_in;
+		DDC/CECG = GND;
+		5V0 = 5v0;
+		HPD = hpd;
+	}
+	
+	//HDMI Hider
+	inst HDMIhider of hdmiHider {
+		RXC_p = rx_in_p[0];
+		RXC_n = rx_in_n[0];
+		RX_p = rx_in_p[1:3];
+		RX_n = rx_in_n[1:3];
+		RSCL = scl_in;
+		RSDA = sda_in;
+		I2CEN = i2c;
+		OEn = OE;
+		PRE = pre;
+		OVS = ovs;
+		Gnd = <GND>;
+		Vcc = <VCC3V3>;
+		TXC_p = TMDS-RX_P[2];
+		TXC_n = TMDS-RX_N[2];
+		TX_p = TMDS-RX_P[1:0] & TMDS-RX-CLK_P;
+		TX_n = TMDS-RX_N[1:0] & TMDS-RX-CLK_N;
+		TSCL = SCL;
+		TSDA = SDA;
+		VSADJ = vsadj;
+	}
+}
+
+subdesign HDMI_OUT {
+	info{"All nets and ports require differential pair routing except for power rail, PMOD, and shield."}
+	port VCC3V3, VSWT5V0, GND, SHIELD;
+	port[2:0] TMDS-TX_P, TMDS-TX_N;
+	port TMDS-TX-CLK_P, TMDS-TX-CLK_N;
+	port RX-SCL, RX-SDA;
+	port TX-SCL, TX-SDA;
+	
+	net[0:3] tx_in_p, tx_in_n;
+	net i2c,pre, ovs, scl_in, sda_in, cec, vsadj, oe; 
+	
+	//Capacitors
+	info{"Capacitors need to be placed nearby the power rail of TMDS141RHAR part"}
+	inst(7:0) pwrCapAry of cap {
+		VALUE = "0.1uF";
+		pos = VCC3V3;
+		neg = GND;
+	}
+	
+	//Internal Resisters
+	inst res_oe2gnd of res5v{
+		VALUE = "10K";
+		a = oe;
+		b = GND;
+	}
+	inst res_cec2gnd of res5v{
+		VALUE = "0";
+		a = cec;
+		b= GND;
+	}
+	inst(2:0) resAry_pwr2pre_ovs_i2c of res5v {
+		this(2,1).VALUE = "10K No Load";
+		this(0).VALUE = "10K";
+		a = VCC3V3;
+		this(2).b = pre;
+		this(1).b = ovs;
+		this(0).b = i2c;
+	}
+	inst(1:0) resAry_pre_ovs2gnd of res5v {
+		this(1).VALUE = "10K";
+		this(0).VALUE = "10K No Load";
+		this(1).a = pre;
+		this(0).a = ovs;
+		b = GND;
+	}
+	inst(1:0) resAry_pwr2sda_scl of res5v {
+		VALUE = "1.74K";
+		a = VSWT5V0;
+		this(1).b = sda_in;
+		this(0).b = scl_in;
+	}
+	inst res_vsadj2gnd of res5v {
+		VALUE = "4.64K";
+		a = vsadj;
+		b = GND;
+	}
+	inst(1:0) res_scl_sda_tx2pwr of res5v {
+		this(1).a = TX-SDA;
+		this(0).a = TX-SCL;
+		b = VCC3V3;
+	}
+	
+	//Jumper
+	inst(1:0) jmp_scl_sda_tx2rx of jumper2 {
+		 this(1).a = TX-SDA;
+		 this(1).b = RX-SDA;
+		 this(0).a = TX-SCL;
+		 this(0).b = RX-SCL;
+	}
+	
+	//HDMI In Port
+	inst hdmiIn of HDMItypeA {
+		D+ = tx_in_p[0:2];
+		D- = tx_in_n[0:2];
+		CLK+ = tx_in_p[3];
+		CLK- = tx_in_n[3];
+		shield = <SHIELD>;
+		DS = <GND>;
+		CLKS = GND;
+		CEC = cec;
+		RES = open;
+		SCL = scl_in;
+		SDA = sda_in;
+		DDC/CECG = GND;
+		5V0 = VSWT5V0;
+		HPD = open;
+	}
+	
+	//HDMI Hider
+	inst HDMIhider of hdmiHider {
+		TXC_p = tx_in_p[0];
+		TXC_n = tx_in_n[0];
+		TX_p = tx_in_p[1:3];
+		TX_n = tx_in_n[1:3];
+		TSCL = scl_in;
+		TSDA = sda_in;
+		I2CEN = i2c;
+		OEn = oe;
+		PRE = pre;
+		OVS = ovs;
+		Gnd = <GND>;
+		Vcc = <VCC3V3>;
+		RXC_p = TMDS-TX_P[2];
+		RXC_n = TMDS-TX_N[2];
+		RX_p = TMDS-TX_P[1:0] & TMDS-TX-CLK_P;
+		RX_n = TMDS-TX_N[1:0] & TMDS-TX-CLK_N;
+		RSCL = TX-SCL;
+		RSDA = TX-SDA;
+		VSADJ = vsadj;
+	}
+}
+
+subdesign audioCodec {
+	port VSWT5V0, VCC3V3, GND;
+	net AUD5V0, AGND, AUDVREF;
+	port AUD-SDO, AUD-BIT-CLK, AUD-SDI, AUD-SYNC, AUD-RESET;
+	
+	//FB
+	inst FB1 of feriteBead {
+		a = VSWT5V0;
+		b = AUD5V0;
+		VALUE = "600";
+	}
+	inst C26 of cap {
+		pos = AUD5V0;
+		neg = AGND;
+		VALUE = "0.1uF";
+	}
+	
+	//Line_IN
+	net in_tip, in_ring, in_tip_net, in_ring_net;
+	net line_in_l, line_in_r;
+	inst(0:3) resAry_line_in of res5v {
+		this(0,2).a = in_tip_net;
+		this(0).b = in_tip;
+		this(2).b = AGND;
+		this(1,3).a = in_ring_net;
+		this(1).b = in_ring;
+		this(3).b = AGND;
+		VALUE = "6.81K";
+	}
+	inst(1:0) in_ln_caps of cap {
+		this(1).neg = in_tip_net;
+		this(1).pos = line_in_l;
+		this(0).neg = in_ring_net;
+		this(0).pos = line_in_r;
+	}
+	inst lineInJack of audioJack {
+		SLEEVE = AGND;
+		TIP = in_tip;
+		RING = in_ring;
+	}
+	
+	//Mic
+	net mic_tip, mic_ring, mic_tip_net, mic_ring_net;
+	net mic1;
+	inst micInJack of audioJack {
+		SLEEVE = AGND;
+		TIP = mic_tip;
+		RING = mic_ring;
+	}
+	inst micTipRes of res5v{
+		VALUE = "1K";
+		a = mic_tip;
+		b = mic_tip_net;
+	}
+	inst micInCap of cap {
+		VALUE = "1uF";
+		pos = mic1;
+		neg = mic_tip_net;
+	}
+	inst micRingRes of res5v {
+		VALUE = "47";
+		a = mic_ring;
+		b = mic_ring_net;
+	}
+	inst micRingRefRes of res5v {
+		VALUE = "2.2K";
+		a = mic_ring_net;
+		b = AUDVREF;
+	}
+	inst micTipGndRes of res5v {
+		VALUE = "47K";
+		a = mic_tip_net;
+		b = AGND;
+	}
+	inst(1:0) micRingCaps of cap {
+		this(1).VALUE = "220pF";
+		this(0).VALUE = "2.2uF";
+		this(1).pos = mic_ring_net;
+		this(0).pos = AUDVREF;
+		neg = AGND;
+	}
+	
+	//Line Outs
+	net line_out_l, line_out_r, hp_out_l, hp_out_r;
+	//inst(0) is line out and inst(1) is hp_out
+	subinst(1:0) lineOuts of audioOutJackCircuit
+	{
+		AGND = AGND;
+		this(0).LINE_OUT_L = line_out_l;
+		this(0).LINE_OUT_R = line_out_r;
+		this(1).LINE_OUT_L = hp_out_l;
+		this(1).LINE_OUT_R = hp_out_r;
+		
+		//Change the value of the main capacitors
+		this(0).lineOutCaps.VALUE = "1uF";
+		this(1).lineOutCaps.VALUE = "220uF";
+	}
+	net hp_out_c;
+	inst hp_c_cap of cap {
+		VALUE = "1uF";
+		pos = hp_out_c;
+		neg = AGND;
+	}
+	
+	//DVDD1,2 and AVDD1
+	net dvdd;
+	inst dvdd_inductor of inductor {
+		a = VCC3V3;
+		b = dvdd;
+		VALUE = "27nH";
+	}
+	inst(1:0) dvdd_3v2gnd_caps of cap {
+		pos = VCC3V3;
+		neg = GND;
+		this(1).VALUE = "0.1uF";
+		this(0).VALUE = "1uF";
+	}
+	inst(1:0) avdd_5v2agnd_caps of cap {
+		pos = AUD5V0;
+		neg = AGND;
+		this(1).VALUE = "0.1uF";
+		this(0).VALUE = "1uF";	
+	} 
+	
+	//3dn and 3dp
+	net 3dn, 3dp;
+	inst dn_dp_cap of cap {
+		pos = 3dp;
+		neg = 3dn;
+		VALUE = "22nF";
+	}
+	
+	//cap to gnd
+	net cap2gnd_net;
+	inst cap_net2gnd of cap {
+		pos = cap2gnd_net;
+		neg = AGND;
+		VALUE = "0.1uF";
+	}
+	
+	//AUD
+	net bit_clk_in, sdata_in;
+	inst(0:4) resAry_AUD of res5v {
+		this(0:2).VALUE = "4.75K";
+		this(0).a = AUD-RESET;
+		this(1).a = AUD-SDO;
+		this(2).a = AUD-SYNC;
+		this(0,1,2).b = GND;
+		
+		this(3:4).VALUE = "27.4";
+		this(3).a = AUD-BIT-CLK;
+		this(3).b = bit_clk_in;
+		this(4).a = AUD-SDI;
+		this(4).b = sdata_in;
+	} 
+	
+	//Gnd to Agnd res
+	inst res_gnd2agnd of res5v {
+		VALUE = "0";
+		a = GND;
+		b = AGND;
+	}
+	
+	//Referance Settings
+	net vref;
+	inst(1:0) capAry_vref2agnd of cap {
+		pos = vref;
+		neg = AGND;
+		this(1).VALUE = "0.1uF";
+		this(0).VALUE = "3.3uF";
+	}
+	inst res_vref2aud5vRef of res5v {
+		a = vref;
+		b = AUD5V0;
+		VALUE = "10K";
+	}
+	
+	//Frequency Generator
+	net xtl_in, xtl_out;
+	inst X1 of clkCrystal {
+		p[1] = xtl_in;
+		p[2] = xtl_out;
+		VALUE = "24.576MHz";
+	}
+	inst crystalRes_audio of res5v {
+		VALUE = "1M";
+		a = xtl_in;
+		b = xtl_out;
+	}
+	inst(1:0) crystal2gnd_caps of cap {
+		this(1).pos = xtl_in;
+		this(0).pos = xtl_out;
+		VALUE = "20pF";
+		neg = GND;
+	}
+	
+	//Audio Codec
+	inst audioCodec of audioCodec {
+		Dvdd = <dvdd>;
+		Avdd = AUD5V0;
+		LINE_OUT_L = line_out_l;
+		LINE_OUT_R = line_out_r;
+		MONO_OUT = open;
+		HP_OUT_L = hp_out_l;
+		HP_OUT_R = hp_out_r;
+		HP_OUT_C = hp_out_c;
+		EAPD = open;
+		3DN = 3dn;
+		3DP = 3dp;
+		XTL_IN = xtl_in;
+		XTL_OUT = xtl_out;
+		Vref = vref;
+		Vref_out = AUDVREF;
+		Avss = AGND;
+		Dvss = <GND>;
+		CIN = open;
+		RESET_NUM = AUD-RESET;
+		SYNC = AUD-SYNC;
+		SDATA_IN = sdata_in;
+		BIT_CLK = bit_clk_in;
+		SDATA_OUT = AUD-SDO;
+		VIDEO_R = cap2gnd_net;
+		VIDEO_L = cap2gnd_net;
+		ID0 = open;
+		ID1 = open;
+		CD_R = cap2gnd_net;
+		CD_L = cap2gnd_net;
+		CD_GND = cap2gnd_net;
+		PHONE = cap2gnd_net;
+		AUX_L = cap2gnd_net;
+		AUX_R = cap2gnd_net;
+		MIC2 = cap2gnd_net;
+		PC_BEEP = cap2gnd_net;
+		MIC1 = mic1;
+		LINE_IN_L = line_in_l;
+		LINE_IN_R = line_in_r;
+		NC = open;
+	}
+}
+
+subdesign audioOutJackCircuit {
+
+	port AGND, LINE_OUT_R, LINE_OUT_L;	
+	
+	net out_tip, out_ring;
+	inst outJack of audioJack {
+		SLEEVE = AGND;
+		TIP = out_tip;
+		RING = out_ring;
+	}
+	inst(1:0) lineOutCaps of cap {
+		this(1).pos = LINE_OUT_L;
+		this(0).pos = LINE_OUT_R;
+		this(1).neg = out_tip;
+		this(0).neg = out_ring;
+	}
+	inst(1:0) resAry_tp_rng2gnd of res5v {
+		this(1).a = out_tip;
+		this(0).a = out_ring;
+		b = AGND;
+		VALUE = "10K"; 
+	}
+	inst(1:0) capAry_tp_rng2gnd of cap {
+		this(1).pos = out_tip;
+		this(0).pos = out_ring;
+		neg = AGND;
+		VALUE = "220pF"; 
+	}
+}
+
+subdesign usbController {
+	port GND, VCC3V3, SHIELD;
+	port U1-INTO_NUM, U1-SLOE, U1-PKTEND, U1-SLCS;
+	port[0:1] U1-FIFOAD;
+	port[0:7] U1-FD;
+	port TDO-FPGA/TDO-JTAG, TDO-USB/TD1-FPGA, TMS, TCK, PGOOD, BTNRST, USBDONE;
+	port U1-IFCLK, U1-SDA, U1-SCL;
+	port U1-FLAGA, U1-FLAGB, U1-FLAGC, U1-SLRD, U1-SLWR;
+	port USBPROG;
+	
+	info {"D_P and D_N need to be routed as differential pairs"}
+	net D_P, D_N;
+	//PORTA
+	net[0:7] porta_int;
+	inst(1:6) resAry_porta of res5v{
+		combine(a) = porta_int[0] & porta_int[2] & porta_int[4:7];
+		this(1).b = U1-INTO_NUM;
+		this(2).b = U1-SLOE;
+		combine(this(3,4).b) = U1-FIFOAD;
+		this(5).b = U1-PKTEND;
+		this(6).b = U1-SLCS;
+		VALUE = "75";
+	}
+	inst(0:3) resAry_porta_pwr_gnd of res5v {
+		VALUE = "10K";
+		this(0).a = porta_int[7];
+		this(0).b = GND;
+		this(1:3).a = VCC3V3;
+		combine(this(1:3).b) = porta_int[0:2];
+	}
+	
+	//PORTB
+	net[0:7] portb_int;
+	inst(0:7) resAry_portB of res5v {
+		VALUE = "75";
+		combine(a) = portb_int;
+		combine(b) = U1-FD;
+	}
+	
+	//PORTD
+	net[0:3] portd_int;
+	inst(0:3) resAry_portD of res5v {
+		VALUE = "100";
+		combine(a) = portd_int;
+		this(0).b = TDO-FPGA/TDO-JTAG;
+		this(1).b = TDO-USB/TD1-FPGA;
+		this(2).b = TMS;
+		this(3).b = TCK;
+	}
+	
+	//PWR Caps
+	info { "USB_Pwr_Cap_Array needs to be placed nearby the usb controller pwr rail input pins"}
+    inst(0:17) USB_Pwr_Cap_Array of cap {
+    	pos = VCC3V3;
+    	neg = GND;
+    	this(0:7).VALUE = "47nF";
+    	this(8:14).VALUE = "10nF";
+    	this(15:17).VALUE = "4.7uF";
+    }
+    
+    //MISC 
+    net reset, wakeup, ifclk, xtalin, xtalout;
+    net[0:2] u1_ctl;
+    inst resetRes of res5v {
+    	a = VCC3V3;
+    	b = reset;
+    	VALUE = "100K";
+    }
+    inst resetCap of cap {
+    	pos = reset;
+    	neg = GND;
+    	VALUE = "47nF";
+    }
+    inst wakeupRes of res5v {
+    	a = VCC3V3;
+    	b = wakeup;
+    	VALUE = "10K";
+    }
+    inst ifclkRes of res5v {
+    	a = U1-IFCLK;
+    	b = ifclk;
+    	VALUE = "70";
+    }
+    inst(0:3) u1_2_pwr_resAry of res5v {
+    	a = VCC3V3;
+    	this(0).b = U1-SCL;
+    	this(1).b = U1-SDA; 
+    	this(2).b = U1-SLRD;
+    	this(3).b = U1-SLWR;
+    	this(0,1).VALUE = "2.2K";
+    	this(2,3).VALUE = "10K";
+    }
+    inst(0:2) u1_flag_resAry of res5v {
+    	combine(a) = u1_ctl;
+    	this(0).b = U1-FLAGA;
+    	this(1).b = U1-FLAGB;
+    	this(2).b = U1-FLAGC;
+    	VALUE = "75";
+    }
+    inst usb_Freq_Gen of clkCrystal {
+    	p[1] = xtalin;
+    	p[2] = xtalout;
+    	VALUE = "24MHz";
+    }
+    inst(0:1) usb_freq_gen_capAry of cap {
+    	this(0).pos = xtalin;
+    	this(1).pos = xtalout;
+    	neg = GND;
+    	VALUE = "12pF";
+    }
+    
+    //EEProm
+    net u1_sda_int;
+    inst usbCtrEepRom of cmosSerialEEPROM {
+    	A[0] = VCC3V3;
+    	A[1,2] = <GND>;
+    	WP = GND;
+    	Vss = GND;
+    	SCL = U1-SCL;
+    	SDA = u1_sda_int;
+    	Vcc = VCC3V3;
+    }
+    inst usbEepRomCap of cap {
+    	VALUE = "47nF";
+    	pos = VCC3V3;
+    	neg = GND;
+    }
+    inst usb_sda_jmpr of jumper2 {
+    	a = u1_sda_int;
+    	b = U1-SDA;
+    }
+    
+    //Micro USB Port
+    inst microUSB_ab of microUSB_ABPort {
+    	S = <SHIELD>;
+    	G = GND;
+    	ID = open;
+    	D+ = D_P;
+    	D- = D_N;
+    	V = open;
+    } 
+	inst usbPerifCntr of usbController {
+    	AGND = <GND>;
+    	GND = <GND>;
+    	VCC = <VCC3V3>;
+    	AVCC = <VCC3V3>;
+    	PAD = GND;
+    	
+    	PA[0:2] = porta_int[0:2];
+    	PA[3] = open;
+    	PA[4:7] = porta_int[4:7];
+    	PB = portb_int;
+    	PD = portd_int[0] & USBPROG & portd_int[1:3] & PGOOD & BTNRST & USBDONE;
+    	
+    	RESET = reset;
+    	DPLUS = D_P;
+    	DMINUS = D_N;
+    	WAKEUP = wakeup;
+    	IFCLK/PE0 = ifclk;
+    	CLKOUT/PE1 = open;
+    	SDA = U1-SDA;
+    	SCL = U1-SCL;
+    	RESERVED = GND;
+    	RDY0/SLRD = U1-SLRD;
+    	RDY1/SLWR = U1-SLWR;
+    	CTL = u1_ctl;
+    	XTALIN = xtalin;
+    	XTALOUT = xtalout;
+    }
+
+}
+
+subdesign flashMemCntr {
+	port GND, SHIELD, VSWT5V0, VCC3V3;
+	port DQ1, SCK;
+	port USBDONE, M1/LD7;
+	port SCK1, SDI1, SDO1, SS1;
+	
+	net pic32-C2IN-/AN2, pic32-C2IN+/AN3, pic32-PGC2, pic32-PGD2, pic32-MCLR;
+	net pic32-din, pic32-sck;
+	
+	//dq/sck resistors
+	inst(0:1) sck_din_resAry of res5v {
+		VALUE = "100";
+		this(0).a = pic32-din;
+		this(1).a = pic32-sck;
+		this(0).b = DQ1;
+		this(1).b = SCK;
+	}
+	net[0:3] pic32_int;
+	inst(0:3) pic32_resAry of res5v {
+		combine(a) = pic32_int;
+		this(0).b = SCK1;
+		this(1).b = SDI1;
+		this(2).b = SDO1;
+		this(3).b = SS1;
+		VALUE = "200";
+	}
+	
+	//USB A Port
+	net d+, d-;
+	info {"Nets d+ and d- need to be routed as differential pairs"}
+	inst usbA of USB_APort {
+		G = GND;
+		V = VSWT5V0;
+		D+ = d+;
+		D- = d-;
+		S = <SHIELD>;
+	}
+	inst usb_a_cap of cap {
+		pos = VSWT5V0;
+		neg = GND;
+		VALUE = "100uF";
+	}
+	
+	//Frequency Generator
+	net[1:0] freq__gen_net;
+	inst flashFreqGen of clkCrystal {
+		VALUE = "8MHz";
+		p = freq__gen_net;
+	}
+	inst(1:0) flashFreqGen_caps of cap{
+		VALUE = "20pF";
+		combine(pos) = freq__gen_net;
+		neg = GND;
+	}
+	
+	//MISC
+	net[0:2] head_1x6_int;
+	inst(0:2) head1x6_resAry of res5v {
+		combine(a) = head_1x6_int;
+		combine(b) = pic32-MCLR & pic32-PGD2 & pic32-PGC2;
+		VALUE = "200";
+	}
+	inst head1x6 of header1x6 {
+		p[1,4,5] = head_1x6_int;
+		p[2] = VCC3V3;
+		p[3] = GND;
+		p[6] = open;
+	}
+	
+	net[0:1] an_int;
+	inst(0:1) an3_2_resAry of res5v {
+		VALUE = "200";
+		this(0).a = pic32-C2IN-/AN2;
+		this(1).a = pic32-C2IN+/AN3;
+		combine(b) = an_int;
+	}
+	inst(0:1) an3_2_head of header1x2 {
+		combine(p[1]) = an_int;
+		p[2] = GND;
+	}
+	
+	//Power
+	net vcap;
+	inst(0:7) flashPwrCaps of cap {
+		this(0:5).VALUE = "0.1uF";
+		this(0:5).pos = VCC3V3;
+		
+		this(6:7).VALUE = "10uF";
+		this(6:7).pos = vcap;
+		
+		neg = GND;
+	}
+	inst flashMCLR_res of res5v {
+		a = VCC3V3;
+		b = pic32-MCLR;
+		VALUE = "10K";
+	}
+	
+	//flashMemCntrlr
+	inst flashMemCntrlr of flashMicroController32bit {
+		AN2/C2IN-/SS1/CN4/RB2 = pic32-C2IN-/AN2;
+		AN3/C2IN+/CN5/RB3 = pic32-C2IN+/AN3;
+		PGEC2/AN6/OCFA/RB6 = pic32-PGC2;
+		PGED2/AN7/RB7 = pic32-PGD2;
+		TDO/AN11/PMA12/RB11 = pic32-din;
+		TCK/AN12/PMA11/RB12 = pic32-sck;
+		AN14/U2RTS_N/PMALH/PMA1/RB14 = USBDONE;
+		AN15/OCFB/PMALL/PMA0/CN12/RB15 = M1/LD7;
+		OSC1/CLKI/RC12 = freq__gen_net[1];
+		OSC2/CLKO/RC15 = freq__gen_net[0];
+		Avdd = VCC3V3;
+		Vdd = <VCC3V3>;
+		Avss = GND;
+		Vss = <GND>;
+		VUSB = VCC3V3;
+		Vcap/Vddcore = vcap;
+		MCLR_N = pic32-MCLR;
+		ENVREG = VCC3V3;
+		D-/RG3 = d-;
+		D+/RG2 = d+;
+		SCK2/PMA5/CN7/RG6 = pic32_int[0];
+		SDI2/PMA4/CN9/RG7 = pic32_int[1];
+		SDO2/PMA3/CN10/RG8 = pic32_int[2];
+		SS2_N/PMA2/CN11/RG9 = pic32_int[3];
+		
+		//All the rest should be open pins
+		CN16/RD7 = open;
+		IC4/PMCS1/PMA14/INT4/RD11 = open;
+		OC1/INT0/RD0 = open;
+		OC5/IC5/PMWR/CN13/RD4 = open;
+		PGEC1/AN1/Vref-/CVref-/CN3/RB1 = open;
+		PGED1/AN0/Vref+/CVref+/PMA6/CN2/RB0 = open;
+		PMD/RE = open;
+		PMRD/CN14/RD5 = open;
+		RF0 = open;
+		RF1 = open;
+		RTCC/IC1/INT1/RD8 = open;
+		SCL1/IC3/PMCS2/PMA15/INT3/RD10 = open;
+		SCL2/U2TX/PMA8/CN18/RF5 = open;
+		SDA2/U2RX/PMA9/CN17/RF4 = open;
+		SOSCI/CN1/RC13 = open;
+		SOSCO/T1CK/CN0/RC14 = open;
+		TDI/AN13/PMA10/RB13 = open;
+		TMS/AN10/CVrefout/PMA13/RB10 = open;
+		U1CTS_N/SDA1/IC2/INT2/RD9 = open;
+		U1RTS_N/OC2/RD1 = open;
+		AN4/C1IN-/CN6/RB4 = open;
+		U1TX/OC4/RD3 = open;
+		USBID/RF3 = open;
+		AN8/U2CTS_N/C1OUT/RB8 = open;
+		UTRX/OC3/RD2 = open;
+		AN5/C1IN+/Vbuson/CN7/RB5 = open;
+		Vbus = open;
+		CN15/RD6 = open;
+		AN9/C2OUT/PMA7/RB9 = open;
+	}
+}
+
+subdesign usbUart {
+	port GND, VCC3V3, SHIELD;
+	port TXD, RXD;
+	
+	net[0:5] net_int;
+	net sda, scl, tx;
+	
+	//Interior Resistors
+	inst(0:7) usbUart_resAry of res5v {
+		VALUE = "10K";
+		this(0).a = VCC3V3;
+		this(1).a = GND;
+		this(2:7).a = VCC3V3;
+		combine(b) = net_int & sda & scl;
+	}
+	inst tx_res of res5v {
+		VALUE = "200";
+		a = RXD;
+		b = tx;
+	}
+	
+	//Power Caps
+	inst(0:1) usbUart_pwr_caps of cap {
+		pos = VCC3V3;
+		neg = GND;
+		this(0).VALUE = "4.7uF";
+		this(1).VALUE = "0.1uF";
+	}
+	
+	//Micro AB Port
+	info {"d+ and d- should be routed as differential pairs"}
+	net d+, d-;
+	inst usbAB of microUSB_ABPort {
+		S = <SHIELD>;
+		G = GND;
+		ID = open;
+		D+ = d+;
+		D- = d-;
+		V = open;
+	}
+	
+	//UART
+	inst usbUart of USB_UART {
+		GND = <GND>;
+		VDD = VCC3V3;
+		RX = TXD;
+		TX = tx;
+		LOWPOWER = open;
+		GPIO0/RI = net_int[0];
+		GPIO1/CD = net_int[1];
+		GPIO2/DSR = net_int[2];
+		GPIO3/DTR = net_int[3];
+		GPIO4/CTS = net_int[4];
+		GPIO5/RTS = net_int[5];
+		SDA = sda;
+		SCL = scl;
+		USBD+ = d+;
+		USBD- = d-;
+		p = GND;
+	}
+	
+}
+
+subdesign ethernetUnit {
+	port GND, SHIELD, VCC2V5, VCC1V2;
+	port E-MDIO, E-MDC, E-INT, E-RESET, E-COL, E-CRS;
+	port E-RXDV, E-RXCLK, E-RXER;
+	port[0:7] E-RXD, E-TXD;
+	port E-GTXCLK, E-TXCLK, E-TXER, E-TXEN;
+	
+	net coma, rset, trstn;
+	net e-config0, e-config4, e-config5;
+	net e-avdd;
+	
+	//Internal Resistors
+	inst(0:1) resAry_2_2v5pwr of res5v {
+		VALUE = "4.75K";
+		a = VCC2V5;
+		this(0).b = E-MDIO;
+		this(1).b = E-INT;
+	}
+	inst(0:2) resAry_2_gnd of res5v {
+		this(0,1).VALUE = "4.7K";
+		this(2).VALUE = "4.99K";
+		a = GND;
+		this(0).b = trstn;
+		this(1).b = coma;
+		this(2).b = rset;
+	}
+	inst(0:3) txdResAry of res5v {
+		VALUE = "4.7K";
+		a = GND;
+		combine(b) = E-TXD[4:7];
+	}
+	inst(0:3) configResAry of res5v {
+		this(0).VALUE = "0 No Load";
+		this(0).a = GND;
+		this(0,1).b = e-config0;
+		this(1:3).VALUE = "0";
+		this(1,2,3).a = VCC2V5;
+		this(2).b = e-config4;
+		this(3).b = e-config5;
+	}
+	
+	//Power Caps
+	info {"eth_pwr_cap Arrays need to be placed nearby the ethernet controller IC"}
+	inst(1:6) eth_pwr_capAry1 of cap {
+		VALUE = "0.1uF";
+		pos = e-avdd;
+		neg = GND;
+	}
+	inst(1:9) eth_pwr_capAry2 of cap {
+		VALUE = "0.1uF";
+		pos = VCC2V5;
+		neg = GND;
+	}
+	inst(1:12) eth_pwr_capAry3 of cap {
+		VALUE = "0.1uF";
+		pos = VCC1V2;
+		neg = GND;
+	}
+	inst(1:3) eth_pwr_capAry4 of cap {
+		this(1,2).VALUE = "1nF";
+		this(3).VALUE = "10uF";
+		pos = VCC1V2;
+		neg = GND;
+	}
+	inst(1:4) eth_pwr_capAry5 of cap {
+		this(1,3).VALUE = "1nF";
+		this(2,4).VALUE = "10uF";
+		pos = VCC2V5;
+		neg = GND;
+	}
+	inst(1:2) eth_pwr_capAry6 of cap {
+		this(1).VALUE = "1nF";
+		this(2).VALUE = "10uF";
+		pos = e-avdd;
+		neg = GND;
+	}
+	inst fb of feriteBead {
+		a = VCC2V5;
+		b = e-avdd;
+	}
+	
+	//LEDS
+	net e-led-duplex, e-ledl, e-ledr;
+	net[0:2] e-led-link;
+	net[1:6] eth_led_int;
+	inst(1:6) eth_leds of led {
+		combine(pos) = eth_led_int;
+		this(1).neg = e-led-duplex;
+		combine(this(2,3).neg) = e-ledl & e-ledr;
+		combine(this(4:6).neg) = e-led-link;
+	}
+	inst(1:6) eth_leds_resAry of res5v {
+		combine(a) = eth_led_int;
+		b = VCC2V5;
+		VALUE = "150";
+	}
+	
+	//Ethernet Port Connection
+	net[0:3] td_p, td_n, td_int_net;
+	info {"Net arrays td_p and td_n to the ethernet port need to be routed as differential pairs"}
+	inst ethPort of ethPort {
+		shd = <SHIELD>;
+		TD+ = td_p;
+		TD- = td_n;
+		Vcc = e-avdd;
+		GND = GND;
+	}
+	inst(0:7) eth_port_resArt of res5v {
+		VALUE = "47";
+		combine(this(0,2,4,6).a) = td_p;
+		combine(this(1,3,5,7).a) = td_n;
+		this(0,1).b = td_int_net[0];
+		this(2,3).b = td_int_net[1];
+		this(4,5).b = td_int_net[2];
+		this(6,7).b = td_int_net[3];
+	}
+	inst(0:3) eth_port_caps of cap {
+		VALUE = "10nF";
+		combine(pos) = td_int_net;
+		neg = GND;
+	}
+	
+	//Ethernet Frequency Generator
+	net[1:2] xtal;
+	inst eth_freq_gen of clkCrystal {
+		VALUE = "25MHz";
+		p = xtal;
+	}
+	inst(1:2) eth_freq_gen_caps of cap {
+		VALUE = "22pF";
+		combine(pos) = xtal;
+		neg = GND;
+	}
+	
+	//Ethernet Cntr IC
+	inst ethTransceiver of gigabitEthernetTransceiver {
+		MDIO = E-MDIO;
+		MDC = E-MDC;
+		TMS = open;
+		TCK = open;
+		TDI = open;
+		TDO = open;
+		TRSTn = trstn;
+		125CLK = open;
+		INTn = E-INT;
+		RESETn = E-RESET;
+		COMA = coma;
+		RSET = rset;
+		COL = E-COL;
+		CRS = E-CRS;
+		RX_DV = E-RXDV;
+		RX_CLK = E-RXCLK;
+		RX_ER = E-RXER;
+		RXD = E-RXD;
+		GTX_CLK = E-GTXCLK;
+		TX_CLK = E-TXCLK;
+		TX_ER = E-TXER;
+		TX_EN = E-TXEN;
+		TXD = E-TXD;
+		AVDD = <e-avdd>;
+		VDDO = <VCC2V5>;
+		VDDOH = <VCC2V5>;
+		VDDOX = <VCC2V5>;
+		DVDD = <VCC1V2>;
+		VSSC = GND;
+		VSS = <GND>;
+		CONFIG = e-config0 & GND & VCC2V5 & VCC2V5 & e-config4 & e-config5 & e-ledr;
+		LED_LINK10 = e-led-link[0];
+		LED_LINK100 = e-led-link[1];
+		LED_LINK1000= e-led-link[2];
+		LED_DUPLEX = e-led-duplex;
+		LED_TX = e-ledl;
+		LED_RX = e-ledr;
+		XTAL1 = xtal[1];
+		XTAL2 = xtal[2];
+		HSDAC+ = open;
+		HSDAC- = open;
+		S_IN+ = open;
+		S_IN- = open;
+		S_CLK+ = open;
+		S_CLK- = open;
+		S_OUT+ = open;
+		S_OUT- = open;
+		MDI+ = td_p;
+		MDI- = td_n;
+		NC = open;
+		SEL_FREQ = open;
+	}
+}
+
+subdesign ddrMem {
+	port DDR0V9, DDR1V8, GND;
+	port[0:12] A;
+	port[0:2] BA;
+	port CK_P, CK_N, CKE, RAS, CAS, WE;
+	port[0:15] DQ;
+	port UDQS_P, LDQS_P, UDQS_N, LDQS_N;
+	port LDM, UDM, ODT;
+	
+	net DDRVDDQ, vref, cs_num;
+	//Internal Resistors
+	inst(0:18) ddr_int_resAry of res5v {
+		VALUE = "49.9";
+		a = DDR0V9;
+		combine(this(0:12).b) = A[12:0];
+		combine(this(13:15).b) = BA[0:2];
+		this(16).b = RAS;
+		this(17).b = CAS;
+		this(18).b = WE;
+	}
+	inst ddr_clk_terminating_res of res5v {
+		info {"Place this resistor nearby the clk pins of the ddr memory IC"}
+		VALUE = "100";
+		a = CK_P;
+		b = CK_N;
+	}
+	inst(1:2) ddr_vref_resAry of res5v {
+		VALUE = "20K";
+		this(1).a = DDR1V8;
+		this(2).a = GND;
+		b = vref;
+	}
+	inst cke_res of res5v {
+		VALUE = "4.7K";
+		a = GND;
+		b = CKE;
+	}
+	inst odt_res of res5v {
+		VALUE = "4.7K";
+		a = GND;
+		b = ODT;
+	}
+	inst cs_num_res of res5v {
+		VALUE = "100";
+		a = GND;
+		b = cs_num;
+	}
+	
+	//Internal Caps
+	info {"Place DDR Caps nearby pins for the ddr memory controller."}
+	inst ddr_vrefCap of cap {
+		VALUE = "0.1uF";
+		pos = vref;
+		neg = GND;
+	}
+	inst(1:14) ddr_1v8_2_gnd_capAry of cap {
+		pos = DDR1V8;
+		neg = GND;
+		this(1:6).VALUE = "10nF";
+		this(7:12).VALUE = "47nF";
+		this(13).VALUE = "0.47uF";
+		this(14).VALUE = "4.7uF";
+	}
+	inst(1:20) ddr_vddq_2_gnd_capAry of cap {
+		pos = DDRVDDQ;
+		neg = GND;
+		this(1:9).VALUE = "10nF";
+		this(10:18).VALUE = "47nF";
+		this(19).VALUE = "0.47uF";
+		this(20).VALUE = "4.7uF";
+	}
+	inst(1:4) ddr_0v9_2_gnd_capAry of cap {
+		pos = DDR0V9;
+		neg = GND;
+		this(1).VALUE = "10nF";
+		this(2).VALUE = "0.1uF";
+		this(3).VALUE = "0.1uF";
+		this(4).VALUE = "1uF";
+	}
+	
+	//Ferite Bead
+	inst ddr_fb of feriteBead {
+		VALUE = "600";
+		a = DDR1V8;
+		b = DDRVDDQ;
+	}
+	
+	//DDR Memory Controller
+	inst ddrMem of micronDDRMem {
+		Vref = vref;
+		RFU = open;
+		A = A;
+		BA = BA;
+		CK = CK_P;
+		CK_num = CK_N;
+		CKE = CKE;
+		CS_num = cs_num;
+		RASnum = RAS;
+		CAS_num = CAS;
+		WE_num = WE;
+		Vssq = <GND>;
+		Vssdl = GND;
+		Vss = <GND>;
+		ODT = ODT;
+		UDM = UDM;
+		LDM = LDM;
+		LDQSnum/NU = LDQS_N;
+		LDQS = LDQS_P;
+		UDQSnum/NU = UDQS_N;
+		UDQS = UDQS_P;
+		DQ = DQ;
+		Vdd = <DDR1V8>;
+		Vddl = DDR1V8;
+		Vddq = <DDRVDDQ>;
+		NC = open;
+	}
+	
+}
+
+
+subdesign powerReg {
+	port GND;
+	port VCC2V5, VCC1V2, VCC3V3, VCC1V8, VSWT5V0, DDR0V9;
+	port U1-SCL, U1-SDA;
+	port PGOOD;
+	info{ "All Internal Power Caps and Inductors Need to be placed close to the IC refered to in their name."}
+	
+	net VU5V0, EN;
+	net[1:4] V+, V-;
+	/////////////////////////////////
+	//StepDown Dc/DC Regulator - dcReg1
+	/////////////////////////////////
+	net dcReg1_sw1, dcReg1_sw1_int, dcReg1_sw2, dcReg1_sw2_int, dcReg1_vfb1, dcReg1_vfb2;
+	net dcReg1_ith1, dcReg1_ith2, dcReg1_ith1_int, dcReg1_ith2_int;
+	inst dcReg1 of stepDownDC/DCRegulator {
+	  BMC1 = VU5V0;
+	  BMC2 = VU5V0;
+	  FREQ = VU5V0;
+	  GNDA = GND;
+	  ITH1 = dcReg1_ith1;
+	  ITH2 = dcReg1_ith2;
+	  PGND1 = GND;
+	  PGND1D = GND;
+	  PGND2 = GND;
+	  PGOOD1 = PGOOD;
+	  PGOOD2 = PGOOD;
+	  PHASE = GND;
+	  RUN1 = EN;
+	  RUN2 = EN;
+	  SW1 = dcReg1_sw1;
+	  SW1D = dcReg1_sw2;
+	  SW2A = dcReg1_sw2;
+	  SW2B = dcReg1_sw2;
+	  SYNC/MODE = VU5V0;
+	  TRACK/SS1 = open;
+	  TRACK/SS2 = open;
+	  VCCA = VU5V0;
+	  VCCD = VU5V0;
+	  VFB1 = dcReg1_vfb1;
+	  VFB2 = dcReg1_vfb2;
+	  VIN1 = VU5V0;
+	  VIN1D = VU5V0;
+	  VIN2 = VU5V0;	
+	}
+	//Internal Capacitors
+	inst cap_dcReg1_vu5v0_2_gnd of cap {
+		VALUE = "22uF";
+		pos = VU5V0;
+		neg = GND;
+	}
+	inst(1:2) capAry_dcReg1_sw1 of cap {
+		this(1).VALUE = "100pF";
+		this(2).VALUE = "22uF";
+		pos = dcReg1_sw1_int;
+		this(1).neg = dcReg1_vfb1;
+		this(2).neg = GND;
+	}
+	inst cap_dcReg1_sw2 of cap {
+		VALUE = "100pF";
+		pos = dcReg1_sw2_int;
+		neg = dcReg1_vfb2;
+	}
+	inst(1:2) capAry_dcReg1_sw2_2_gnd of cap {
+		VALUE = "47uF";
+		pos = dcReg1_sw2_int;
+		neg = GND;
+	}
+	inst(1:4) capAry_dcReg1_ith_2_gnd of cap { 
+		this(1,3).VALUE = "1nF";
+		this(2,4).VALUE = "10pF";
+		neg = GND;
+		this(1).pos = dcReg1_ith1_int;
+		this(2).pos = dcReg1_ith1;
+		this(3).pos = dcReg1_ith2_int;
+		this(4).pos = dcReg1_ith2;
+	}
+	//Inductors
+	inst l_dcReg1_sw1 of inductor {
+		VALUE = "1.5uH";
+		a = dcReg1_sw1;
+		b = dcReg1_sw1_int;
+	}
+	inst l_dcReg1_sw2 of inductor {
+		VALUE = "1uH";
+		a = dcReg1_sw2;
+		b = dcReg1_sw2_int;
+	}
+	//Internal Resistors 
+	inst res_dcReg1_sw1 of res5v {
+		VALUE = "95.3K";
+		a = dcReg1_sw1_int;
+		b = dcReg1_vfb1;
+	}
+	inst res_dcReg1_sw2 of res5v {
+		VALUE = "33K";
+		a = dcReg1_sw2_int;
+		b = dcReg1_vfb2;
+	}
+	inst(1:2) resAry_dcReg1_vfb_2_gnd of res5v{
+		VALUE = "30.1K";
+		this(1).a = dcReg1_vfb1;
+		this(2).a = dcReg1_vfb2;
+		b = GND;
+	}
+	inst(1:2) resAry_dcReg1_ith of res5v {
+		VALUE = "13K";
+		this(1).a = dcReg1_ith1;
+		this(1).b = dcReg1_ith1_int;
+		this(2).a = dcReg1_ith2;
+		this(2).b = dcReg1_ith2_int;
+	}
+	inst(1:2) doublePaddedResAry_dcReg1 of multiPadResister {
+		VALUE = "0.010";
+		combine(a[1]) = V+[1:2];
+		combine(b[1]) = V-[1:2];
+		this(1).a[0] = dcReg1_sw1_int;
+		this(1).b[0] = VCC2V5;
+		this(2).a[0] = dcReg1_sw2_int;
+		this(2).b[0] = VCC1V2;
+	}
+    
+    /////////////////////////////
+	//3aStepDownSwitchReg - dcReg2
+	/////////////////////////////
+	net dcReg2_rt/sync, dcReg2_ss/track;
+	net[1:2]dcReg2_vc, dcReg2_vc_int, dcReg2_vout, dcReg2_fb, dcReg2_bst, dcReg2_sw, dcReg2_ind;
+	inst dcReg2 of 3aStepDownSwitchingRegulator {
+		 BST = dcReg2_bst;
+		 FB = dcReg2_fb;
+		 IND = dcReg2_ind;
+		 PG  = <PGOOD>;
+		 Rt/SYNC = dcReg2_rt/sync;
+		 SHDN = EN;
+		 SS/TRACK = <dcReg2_ss/track>;
+		 SW = dcReg2_sw;
+		 Vc = dcReg2_vc;
+		 Vin = <VU5V0>;
+		 Vout = dcReg2_vout;
+	}
+	//Internal Caps
+	inst(1:2) capAry_dcReg2_vu5v0_2_gnd of  cap {
+		VALUE = "4.7uF";
+		pos = VU5V0;
+		neg = GND;
+	}
+	inst cap_dcReg1_sstrack_2_gnd of cap {
+		VALUE = "0.1uF";
+		pos = dcReg2_ss/track;
+		neg = GND;
+	}
+	inst(1:4) capAry_dcReg2_vc_2_gnd of cap {
+		this(1).VALUE = "10pF";
+		this(2,3).VALUE = "470pF";
+		this(4).VALUE = "47pF";
+		this(1,2).pos = dcReg2_vc[1];
+		this(3,4).pos = dcReg2_vc[2];
+		this(1,4).neg = GND;
+		combine(this(2,3).neg) = dcReg2_vc_int;
+	}
+	inst(1:2) capAry_dcReg2_bst_2_sw of cap {
+		VALUE = "470nF";
+		combine(pos) = dcReg2_bst;
+		combine(neg) = dcReg2_sw;
+	}
+	inst(1:2) capAry_dcReg2_vout_2_gnd of cap {
+		this(1).VALUE = "47uF";
+		this(2).VALUE = "100uF";
+		combine(pos) = dcReg2_vout;
+		combine(neg) = <GND>;
+	}
+	//Inductors
+	inst(1:2) inductorAry_dcReg2 of inductor {
+		this(1).VALUE = "1.5uH";
+		this(2).VALUE = "2.2uH";
+		combine(a) = dcReg2_sw;
+		combine(b) = dcReg2_ind;
+	} 
+	//Diodes
+	inst(1:2) diodeAry_dcReg2_sw of diode {
+		combine(pos) = <GND>;
+		combine(neg) = dcReg2_sw;
+	}
+		inst(1:2) diodeAry_dcReg2_vout_2_bst of diode {
+		pos = dcReg2_vout[1];
+		combine(neg) = dcReg2_bst;
+	}
+	//Internal Resistors
+	inst res_dcReg2_rtsync of res5v {
+		VALUE = "61.9K";
+		a = GND;
+		b = dcReg2_rt/sync;
+	}
+	inst(1:2) resAry_dcReg2_vc of res5v {
+		VALUE = "40.2K";
+		combine(a) = dcReg2_vc_int;
+		b = GND;
+	}
+	inst(1:2) resAry_dcReg2_vout_2_fb of res5v {
+		this(1).VALUE = "24.9K";
+		this(2).VALUE = "10K";
+		combine(a) = dcReg2_vout;
+		combine(b) = dcReg2_fb;
+	}
+	inst(1:2) resAry_dcReg2_fb_2_gnd of res5v {
+		VALUE = "8.06K";
+		combine(a) = dcReg2_fb;
+		b = GND;
+	}
+	inst(3:4) doublePaddedResAry_dcReg2 of multiPadResister {
+		VALUE = "0.010";
+		combine(a[1]) = V+[3:4];
+		combine(b[1]) = V-[3:4];
+		this(3).a[0] = dcReg2_vout[1];
+		this(3).b[0] = VCC3V3;
+		this(4).a[0] = dcReg2_vout[2];
+		this(4).b[0] = VCC1V8;
+	}
+	
+	///////////////////////////
+	//DDR Mem Term Regulator
+	///////////////////////////
+	net ddr_ith, ddr_rt, ddr_runss, ddr_sw, ddr_ith_int;
+	inst ddrPwrReg of ddrMemTerminationRegulator {
+		VREF = VCC1V8;
+		ITH = ddr_ith;
+		RT = ddr_rt;
+		RUN/SS = ddr_runss;
+		SGND = GND;
+		PGND = <GND>;
+		VFB = DDR0V9;
+		PGOOD= PGOOD;
+		SW = <ddr_sw>;
+		PVIN = <VCC3V3>;
+		SVIN = VCC3V3;
+	}
+	//Internal Capacitors 
+	inst(1:2) capAry_ddrPwrReg_vcc3v3_2_gnd of cap {
+		VALUE = "100uF";
+		pos = VCC3V3;
+		neg = GND;
+	}
+	inst cap_ddrPwrReg_runss_2_gnd of cap {
+		VALUE = "330pF";
+		pos = ddr_runss;
+		neg = GND;
+	}
+	inst cap_ddrPwrReg_ith_int of cap {
+		VALUE = "2.2nF";
+		pos = ddr_ith_int;
+		neg = GND;
+	}
+	inst cap_ddrPwrReg_ith of cap {
+		VALUE = "100pF";
+		pos = ddr_ith;
+		neg = GND;
+	}
+	inst(1:2) capAry_ddrPwrReg_ddr0v9_2_gnd of cap {
+		VALUE = "100uF";
+		pos = DDR0V9;
+		neg = GND;
+	}
+	//Inductor
+	inst inductor_ddrPwrReg of inductor {
+		VALUE = "1.5uH";
+		a = ddr_sw;
+		b = DDR0V9;
+	}
+	//Internal Resistors
+	inst res_ddrPwrReg_runss of res5v {
+		VALUE = "4.7M";
+		a = VCC3V3;
+		b = ddr_runss;
+	}
+	inst res_ddrPwrReg_rt of res5v {
+		VALUE = "309K";
+		a = GND;
+		b = ddr_rt;
+	}
+	inst res_ddrPwrReg_ith of res5v {
+		VALUE = "5.11K";
+		a = ddr_ith_int;
+		b = ddr_ith;
+	}
+	
+	//Power Jack
+	inst pwrJack of powerJack {
+		POWER = VU5V0;
+		GND = GND;
+		GND2 = GND;
+	}
+	inst pwrJmpr of jumper2 {
+		a = VU5V0;
+		b = GND;
+	}
+	
+	//Power Switch
+	net pwr_en;
+	inst pwrSwitch of slideSwitch {
+		p[1] = VU5V0;
+		p[2] = pwr_en;
+		p[3] = GND;
+	}
+	inst res_pwrEn of res5v {
+		VALUE = "1K";
+		a = pwr_en;
+		b = EN;
+	}
+	
+	//PGood LED
+	net pwrLED_int1, pwrLED_int2;
+	inst(1:2) resAry_pwrLED of res5v {
+		this(1).VALUE = "100K";
+		this(2).VALUE = "390";
+		a = VCC3V3;
+		this(1).b = PGOOD;
+		this(2).b = pwrLED_int1;
+	}
+	inst pwrLED of led {
+		pos = pwrLED_int1;
+		neg = pwrLED_int2;
+	}
+	inst mosFet of cMosPowerTransistor {
+		Source= pwrLED_int2;
+		Gate = GND;
+		Drain = PGOOD;
+	}
+	
+	//Intergrated Load Switch
+	net[1:2] ldSw_r;
+	inst integLdSw of integratedLoadSwitch {
+		Vin/R1 = VU5V0;
+		ON/OFF = EN;
+		R1/RC = ldSw_r[1];
+		Vout/C1 = <VSWT5V0>;
+		R2 = ldSw_r[2];
+	}
+	inst(1:2) resAry_ldSw_r of res5v {
+		this(1).VALUE = "10K";
+		this(2).VALUE = "1K";
+		combine(a) = ldSw_r;
+		this(1).b = VU5V0;
+		this(2).b = GND;
+	}
+	inst res_ldSw_pwr of res5v {
+		VALUE = "47K";
+		a = EN;
+		b = VSWT5V0;
+	}
+	
+	//I2C_Interfaces
+	subinst(1:4) i2c_Sensors of i2c_design {
+		VCC3V3 = VCC3V3;
+		GND = GND;
+		U1-SCL = U1-SCL;
+		U1-SDA = U1-SDA;
+		V+ = V+;
+		V- = V-;
+	}
+}
+
+subdesign i2c_design {
+	port VCC3V3, GND;
+	port U1-SCL, U1-SDA;
+	port[1:4] V+, V-;
+	
+	net[1:4] in+, in-;
+	
+	info {"All i2c caps and resistors must be placed nearby their respective ICs"}
+	inst(1:4) capAry_i2c_pwr_2_GND of cap {
+		VALUE = "0.1uF";
+		pos = VCC3V3;
+		neg = GND;
+	}
+	inst(1:4) capAry_i2c_terminal of cap {
+		VALUE = "1uf";
+		combine(pos) = in+;
+		combine(neg) = in-;
+	}
+	
+	//Internal resisters
+	inst(1:4) resAry_i2c_pos_terminal of res5v {
+		VALUE = "10K";
+		combine(a) = in+;
+		combine(b) = V+;
+	}
+	inst(1:4) resAry_i2c_neg_terminal of res5v {
+		VALUE = "10K";
+		combine(a) = in-;
+		combine(b) = V-;
+	}
+	
+	inst(1:4) i2c_sensors of I2C_Interface {
+		Vcc = VCC3V3;
+		REF+ = VCC3V3;
+		combine(IN+) = in+;
+		combine(IN-) = in-;
+		REF- = GND;
+		GND = GND;
+		SCL = U1-SCL;
+		SDA = U1-SDA;
+		this(1,3).CA0/f0 = open;
+		this(2).CA0/f0 = VCC3V3;
+		this(4).CA0/f0 = VCC3V3;
+		this(1,2).CA1 = GND;
+		this(3,4).CA1 = VCC3V3;
+		
+	}
+}
