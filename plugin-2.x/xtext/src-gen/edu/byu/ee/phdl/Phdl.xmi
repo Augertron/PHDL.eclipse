@@ -4,11 +4,11 @@
     <ePackage href="http://www.eclipse.org/emf/2002/Ecore#/"/>
   </metamodelDeclarations>
   <metamodelDeclarations xsi:type="xtext:GeneratedMetamodel" name="phdl">
-    <ePackage href="http://ee.byu.edu/phdl#/"/>
+    <ePackage href="http://phdl.sf.net#/"/>
   </metamodelDeclarations>
   <rules xsi:type="xtext:ParserRule" name="PhdlModel">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//PhdlModel"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//PhdlModel"/>
     </type>
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:Assignment" cardinality="*" feature="imports" operator="+=">
@@ -29,7 +29,7 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="Package">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//Package"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//Package"/>
     </type>
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:Keyword" value="package"/>
@@ -53,7 +53,7 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="Import">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//Import"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//Import"/>
     </type>
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:Keyword" value="import"/>
@@ -65,7 +65,7 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="Device">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//Device"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//Device"/>
     </type>
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:Keyword" value="device"/>
@@ -81,7 +81,7 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="DeviceElement">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//DeviceElement"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//DeviceElement"/>
     </type>
     <alternatives xsi:type="xtext:Alternatives">
       <elements xsi:type="xtext:RuleCall" rule="//@rules.5"/>
@@ -91,7 +91,7 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="Attr">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//Attr"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//Attr"/>
     </type>
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:Keyword" value="attr"/>
@@ -107,7 +107,7 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="Pin">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//Pin"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//Pin"/>
     </type>
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:Assignment" feature="type" operator="=">
@@ -138,7 +138,7 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="Info">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//Info"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//Info"/>
     </type>
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:Keyword" value="info"/>
@@ -151,7 +151,7 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="Design">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//Design"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//Design"/>
     </type>
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:Alternatives">
@@ -174,7 +174,7 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="DesignElement">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//DesignElement"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//DesignElement"/>
     </type>
     <alternatives xsi:type="xtext:Alternatives">
       <elements xsi:type="xtext:RuleCall" rule="//@rules.10"/>
@@ -185,7 +185,7 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="Connection">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//Connection"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//Connection"/>
     </type>
     <alternatives xsi:type="xtext:Alternatives">
       <elements xsi:type="xtext:Group">
@@ -246,7 +246,7 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="NetElement">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//NetElement"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//NetElement"/>
     </type>
     <alternatives xsi:type="xtext:Alternatives">
       <elements xsi:type="xtext:RuleCall" rule="//@rules.5"/>
@@ -255,13 +255,13 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="PortElement">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//PortElement"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//PortElement"/>
     </type>
     <alternatives xsi:type="xtext:RuleCall" rule="//@rules.7"/>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="Instance">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//Instance"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//Instance"/>
     </type>
     <alternatives xsi:type="xtext:Alternatives">
       <elements xsi:type="xtext:Group">
@@ -278,7 +278,7 @@
         <elements xsi:type="xtext:Assignment" feature="device" operator="=">
           <terminal xsi:type="xtext:CrossReference">
             <type metamodel="//@metamodelDeclarations.1">
-              <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//Device"/>
+              <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//Device"/>
             </type>
             <terminal xsi:type="xtext:RuleCall" rule="//@rules.35"/>
           </terminal>
@@ -303,7 +303,7 @@
         <elements xsi:type="xtext:Assignment" feature="subDesign" operator="=">
           <terminal xsi:type="xtext:CrossReference">
             <type metamodel="//@metamodelDeclarations.1">
-              <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//Design"/>
+              <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//Design"/>
             </type>
             <terminal xsi:type="xtext:RuleCall" rule="//@rules.35"/>
           </terminal>
@@ -321,7 +321,7 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="InstanceElement">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//InstanceElement"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//InstanceElement"/>
     </type>
     <alternatives xsi:type="xtext:Alternatives">
       <elements xsi:type="xtext:RuleCall" rule="//@rules.17"/>
@@ -332,7 +332,7 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="SubInstanceElement">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//SubInstanceElement"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//SubInstanceElement"/>
     </type>
     <alternatives xsi:type="xtext:Alternatives">
       <elements xsi:type="xtext:RuleCall" rule="//@rules.5"/>
@@ -343,7 +343,7 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="RefAttr">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//RefAttr"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//RefAttr"/>
     </type>
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:Assignment" cardinality="?" feature="qualifier" operator="=">
@@ -352,7 +352,7 @@
       <elements xsi:type="xtext:Assignment" feature="ref" operator="=">
         <terminal xsi:type="xtext:CrossReference">
           <type metamodel="//@metamodelDeclarations.1">
-            <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//Attr"/>
+            <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//Attr"/>
           </type>
           <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
         </terminal>
@@ -366,7 +366,7 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="NewAttr">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//NewAttr"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//NewAttr"/>
     </type>
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:Keyword" value="newattr"/>
@@ -385,7 +385,7 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="PinAssign">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//PinAssign"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//PinAssign"/>
     </type>
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:Alternatives">
@@ -400,7 +400,7 @@
           <elements xsi:type="xtext:Assignment" feature="ref" operator="=">
             <terminal xsi:type="xtext:CrossReference">
               <type metamodel="//@metamodelDeclarations.1">
-                <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//Pin"/>
+                <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//Pin"/>
               </type>
               <terminal xsi:type="xtext:RuleCall" rule="//@rules.36"/>
             </terminal>
@@ -417,7 +417,7 @@
           <elements xsi:type="xtext:Assignment" feature="ref" operator="=">
             <terminal xsi:type="xtext:CrossReference">
               <type metamodel="//@metamodelDeclarations.1">
-                <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//Pin"/>
+                <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//Pin"/>
               </type>
               <terminal xsi:type="xtext:RuleCall" rule="//@rules.36"/>
             </terminal>
@@ -436,7 +436,7 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="SubAttr">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//SubAttr"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//SubAttr"/>
     </type>
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:Assignment" cardinality="?" feature="qualifier" operator="=">
@@ -446,7 +446,7 @@
         <elements xsi:type="xtext:Assignment" feature="ref" operator="=">
           <terminal xsi:type="xtext:CrossReference">
             <type metamodel="//@metamodelDeclarations.1">
-              <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//Referenceable"/>
+              <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//Referenceable"/>
             </type>
             <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
           </terminal>
@@ -467,14 +467,14 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="RefTail">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//RefTail"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//RefTail"/>
     </type>
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:Keyword" value="."/>
       <elements xsi:type="xtext:Assignment" feature="ref" operator="=">
         <terminal xsi:type="xtext:CrossReference">
           <type metamodel="//@metamodelDeclarations.1">
-            <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//Referenceable"/>
+            <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//Referenceable"/>
           </type>
           <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
         </terminal>
@@ -489,7 +489,7 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="PortAssign">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//PortAssign"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//PortAssign"/>
     </type>
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:Alternatives">
@@ -504,7 +504,7 @@
           <elements xsi:type="xtext:Assignment" feature="ref" operator="=">
             <terminal xsi:type="xtext:CrossReference">
               <type metamodel="//@metamodelDeclarations.1">
-                <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//ConnectionName"/>
+                <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//ConnectionName"/>
               </type>
               <terminal xsi:type="xtext:RuleCall" rule="//@rules.36"/>
             </terminal>
@@ -521,7 +521,7 @@
           <elements xsi:type="xtext:Assignment" feature="ref" operator="=">
             <terminal xsi:type="xtext:CrossReference">
               <type metamodel="//@metamodelDeclarations.1">
-                <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//ConnectionName"/>
+                <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//ConnectionName"/>
               </type>
               <terminal xsi:type="xtext:RuleCall" rule="//@rules.36"/>
             </terminal>
@@ -540,13 +540,13 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="ConnectionAssign">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//ConnectionAssign"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//ConnectionAssign"/>
     </type>
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:Assignment" feature="ref" operator="=">
         <terminal xsi:type="xtext:CrossReference">
           <type metamodel="//@metamodelDeclarations.1">
-            <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//ConnectionName"/>
+            <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//ConnectionName"/>
           </type>
           <terminal xsi:type="xtext:RuleCall" rule="//@rules.36"/>
         </terminal>
@@ -563,7 +563,7 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="Concatenation">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//Concatenation"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//Concatenation"/>
     </type>
     <alternatives xsi:type="xtext:Alternatives">
       <elements xsi:type="xtext:Group">
@@ -614,13 +614,13 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="ConnectionRef">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//ConnectionRef"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//ConnectionRef"/>
     </type>
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:Assignment" feature="ref" operator="=">
         <terminal xsi:type="xtext:CrossReference">
           <type metamodel="//@metamodelDeclarations.1">
-            <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//ConnectionName"/>
+            <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//ConnectionName"/>
           </type>
           <terminal xsi:type="xtext:RuleCall" rule="//@rules.36"/>
         </terminal>
@@ -632,7 +632,7 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="ConnectionName">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//ConnectionName"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//ConnectionName"/>
     </type>
     <alternatives xsi:type="xtext:Assignment" feature="name" operator="=">
       <terminal xsi:type="xtext:RuleCall" rule="//@rules.36"/>
@@ -640,7 +640,7 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="Indices">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//Indices"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//Indices"/>
     </type>
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:Keyword" value="("/>
@@ -673,7 +673,7 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="Slices">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//Slices"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//Slices"/>
     </type>
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:Keyword" value="["/>
@@ -706,12 +706,12 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="Vector">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//Vector"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//Vector"/>
     </type>
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:Action">
         <type metamodel="//@metamodelDeclarations.1">
-          <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//Vector"/>
+          <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//Vector"/>
         </type>
       </elements>
       <elements xsi:type="xtext:Group" cardinality="?">
@@ -731,12 +731,12 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="Array">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//Array"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//Array"/>
     </type>
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:Action">
         <type metamodel="//@metamodelDeclarations.1">
-          <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//Array"/>
+          <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//Array"/>
         </type>
       </elements>
       <elements xsi:type="xtext:Group" cardinality="?">
@@ -756,7 +756,7 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="Qualifier">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//Qualifier"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//Qualifier"/>
     </type>
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:Keyword" value="this"/>
@@ -768,7 +768,7 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="Referenceable">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//Referenceable"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//Referenceable"/>
     </type>
     <alternatives xsi:type="xtext:Alternatives">
       <elements xsi:type="xtext:RuleCall" rule="//@rules.13"/>
@@ -779,7 +779,7 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="Assignable">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EClass" href="http://ee.byu.edu/phdl#//Assignable"/>
+      <classifier xsi:type="ecore:EClass" href="http://phdl.sf.net#//Assignable"/>
     </type>
     <alternatives xsi:type="xtext:Alternatives">
       <elements xsi:type="xtext:RuleCall" rule="//@rules.18"/>
@@ -789,51 +789,51 @@
   </rules>
   <rules xsi:type="xtext:EnumRule" name="PinType">
     <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EEnum" href="http://ee.byu.edu/phdl#//PinType"/>
+      <classifier xsi:type="ecore:EEnum" href="http://phdl.sf.net#//PinType"/>
     </type>
     <alternatives xsi:type="xtext:Alternatives">
       <elements xsi:type="xtext:EnumLiteralDeclaration">
-        <enumLiteral href="http://ee.byu.edu/phdl#//PinType/Pin"/>
+        <enumLiteral href="http://phdl.sf.net#//PinType/Pin"/>
         <literal value="pin"/>
       </elements>
       <elements xsi:type="xtext:EnumLiteralDeclaration">
-        <enumLiteral href="http://ee.byu.edu/phdl#//PinType/Input"/>
+        <enumLiteral href="http://phdl.sf.net#//PinType/Input"/>
         <literal value="inpin"/>
       </elements>
       <elements xsi:type="xtext:EnumLiteralDeclaration">
-        <enumLiteral href="http://ee.byu.edu/phdl#//PinType/Output"/>
+        <enumLiteral href="http://phdl.sf.net#//PinType/Output"/>
         <literal value="outpin"/>
       </elements>
       <elements xsi:type="xtext:EnumLiteralDeclaration">
-        <enumLiteral href="http://ee.byu.edu/phdl#//PinType/InOut"/>
+        <enumLiteral href="http://phdl.sf.net#//PinType/InOut"/>
         <literal value="iopin"/>
       </elements>
       <elements xsi:type="xtext:EnumLiteralDeclaration">
-        <enumLiteral href="http://ee.byu.edu/phdl#//PinType/Power"/>
+        <enumLiteral href="http://phdl.sf.net#//PinType/Power"/>
         <literal value="pwrpin"/>
       </elements>
       <elements xsi:type="xtext:EnumLiteralDeclaration">
-        <enumLiteral href="http://ee.byu.edu/phdl#//PinType/Supply"/>
+        <enumLiteral href="http://phdl.sf.net#//PinType/Supply"/>
         <literal value="suppin"/>
       </elements>
       <elements xsi:type="xtext:EnumLiteralDeclaration">
-        <enumLiteral href="http://ee.byu.edu/phdl#//PinType/OpenCollector"/>
+        <enumLiteral href="http://phdl.sf.net#//PinType/OpenCollector"/>
         <literal value="ocpin"/>
       </elements>
       <elements xsi:type="xtext:EnumLiteralDeclaration">
-        <enumLiteral href="http://ee.byu.edu/phdl#//PinType/OpenEmitter"/>
+        <enumLiteral href="http://phdl.sf.net#//PinType/OpenEmitter"/>
         <literal value="oepin"/>
       </elements>
       <elements xsi:type="xtext:EnumLiteralDeclaration">
-        <enumLiteral href="http://ee.byu.edu/phdl#//PinType/Tristate"/>
+        <enumLiteral href="http://phdl.sf.net#//PinType/Tristate"/>
         <literal value="tripin"/>
       </elements>
       <elements xsi:type="xtext:EnumLiteralDeclaration">
-        <enumLiteral href="http://ee.byu.edu/phdl#//PinType/Passive"/>
+        <enumLiteral href="http://phdl.sf.net#//PinType/Passive"/>
         <literal value="passpin"/>
       </elements>
       <elements xsi:type="xtext:EnumLiteralDeclaration">
-        <enumLiteral href="http://ee.byu.edu/phdl#//PinType/NoConnect"/>
+        <enumLiteral href="http://phdl.sf.net#//PinType/NoConnect"/>
         <literal value="ncpin"/>
       </elements>
     </alternatives>

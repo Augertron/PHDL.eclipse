@@ -74,15 +74,15 @@ public class InternalPhdlLexer extends Lexer {
         super(input,state);
 
     }
-    public String getGrammarFileName() { return "../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g"; }
+    public String getGrammarFileName() { return "../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g"; }
 
     // $ANTLR start "KEYWORD_42"
     public final void mKEYWORD_42() throws RecognitionException {
         try {
             int _type = KEYWORD_42;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:19:12: ( 'subdesign' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:19:14: 'subdesign'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:19:12: ( 'subdesign' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:19:14: 'subdesign'
             {
             match("subdesign"); 
 
@@ -102,8 +102,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_37;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:21:12: ( 'combine' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:21:14: 'combine'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:21:12: ( 'combine' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:21:14: 'combine'
             {
             match("combine"); 
 
@@ -123,8 +123,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_38;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:23:12: ( 'newattr' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:23:14: 'newattr'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:23:12: ( 'newattr' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:23:14: 'newattr'
             {
             match("newattr"); 
 
@@ -144,8 +144,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_39;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:25:12: ( 'package' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:25:14: 'package'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:25:12: ( 'package' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:25:14: 'package'
             {
             match("package"); 
 
@@ -165,8 +165,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_40;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:27:12: ( 'passpin' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:27:14: 'passpin'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:27:12: ( 'passpin' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:27:14: 'passpin'
             {
             match("passpin"); 
 
@@ -186,8 +186,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_41;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:29:12: ( 'subinst' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:29:14: 'subinst'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:29:12: ( 'subinst' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:29:14: 'subinst'
             {
             match("subinst"); 
 
@@ -207,8 +207,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_30;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:31:12: ( 'design' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:31:14: 'design'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:31:12: ( 'design' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:31:14: 'design'
             {
             match("design"); 
 
@@ -228,8 +228,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_31;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:33:12: ( 'device' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:33:14: 'device'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:33:12: ( 'device' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:33:14: 'device'
             {
             match("device"); 
 
@@ -249,8 +249,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_32;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:35:12: ( 'import' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:35:14: 'import'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:35:12: ( 'import' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:35:14: 'import'
             {
             match("import"); 
 
@@ -270,8 +270,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_33;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:37:12: ( 'outpin' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:37:14: 'outpin'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:37:12: ( 'outpin' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:37:14: 'outpin'
             {
             match("outpin"); 
 
@@ -291,8 +291,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_34;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:39:12: ( 'pwrpin' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:39:14: 'pwrpin'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:39:12: ( 'pwrpin' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:39:14: 'pwrpin'
             {
             match("pwrpin"); 
 
@@ -312,8 +312,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_35;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:41:12: ( 'suppin' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:41:14: 'suppin'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:41:12: ( 'suppin' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:41:14: 'suppin'
             {
             match("suppin"); 
 
@@ -333,8 +333,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_36;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:43:12: ( 'tripin' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:43:14: 'tripin'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:43:12: ( 'tripin' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:43:14: 'tripin'
             {
             match("tripin"); 
 
@@ -354,8 +354,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_25;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:45:12: ( 'inpin' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:45:14: 'inpin'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:45:12: ( 'inpin' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:45:14: 'inpin'
             {
             match("inpin"); 
 
@@ -375,8 +375,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_26;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:47:12: ( 'iopin' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:47:14: 'iopin'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:47:12: ( 'iopin' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:47:14: 'iopin'
             {
             match("iopin"); 
 
@@ -396,8 +396,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_27;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:49:12: ( 'ncpin' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:49:14: 'ncpin'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:49:12: ( 'ncpin' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:49:14: 'ncpin'
             {
             match("ncpin"); 
 
@@ -417,8 +417,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_28;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:51:12: ( 'ocpin' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:51:14: 'ocpin'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:51:12: ( 'ocpin' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:51:14: 'ocpin'
             {
             match("ocpin"); 
 
@@ -438,8 +438,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_29;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:53:12: ( 'oepin' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:53:14: 'oepin'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:53:12: ( 'oepin' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:53:14: 'oepin'
             {
             match("oepin"); 
 
@@ -459,8 +459,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_19;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:55:12: ( 'attr' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:55:14: 'attr'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:55:12: ( 'attr' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:55:14: 'attr'
             {
             match("attr"); 
 
@@ -480,8 +480,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_20;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:57:12: ( 'info' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:57:14: 'info'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:57:12: ( 'info' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:57:14: 'info'
             {
             match("info"); 
 
@@ -501,8 +501,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_21;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:59:12: ( 'inst' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:59:14: 'inst'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:59:12: ( 'inst' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:59:14: 'inst'
             {
             match("inst"); 
 
@@ -522,8 +522,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_22;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:61:12: ( 'open' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:61:14: 'open'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:61:12: ( 'open' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:61:14: 'open'
             {
             match("open"); 
 
@@ -543,8 +543,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_23;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:63:12: ( 'port' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:63:14: 'port'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:63:12: ( 'port' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:63:14: 'port'
             {
             match("port"); 
 
@@ -564,8 +564,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_24;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:65:12: ( 'this' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:65:14: 'this'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:65:12: ( 'this' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:65:14: 'this'
             {
             match("this"); 
 
@@ -585,8 +585,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_17;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:67:12: ( 'net' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:67:14: 'net'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:67:12: ( 'net' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:67:14: 'net'
             {
             match("net"); 
 
@@ -606,8 +606,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_18;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:69:12: ( 'pin' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:69:14: 'pin'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:69:12: ( 'pin' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:69:14: 'pin'
             {
             match("pin"); 
 
@@ -627,8 +627,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_16;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:71:12: ( 'of' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:71:14: 'of'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:71:12: ( 'of' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:71:14: 'of'
             {
             match("of"); 
 
@@ -648,8 +648,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_1;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:73:11: ( '&' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:73:13: '&'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:73:11: ( '&' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:73:13: '&'
             {
             match('&'); 
 
@@ -668,8 +668,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_2;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:75:11: ( '(' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:75:13: '('
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:75:11: ( '(' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:75:13: '('
             {
             match('('); 
 
@@ -688,8 +688,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_3;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:77:11: ( ')' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:77:13: ')'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:77:11: ( ')' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:77:13: ')'
             {
             match(')'); 
 
@@ -708,8 +708,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_4;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:79:11: ( '*' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:79:13: '*'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:79:11: ( '*' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:79:13: '*'
             {
             match('*'); 
 
@@ -728,8 +728,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_5;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:81:11: ( ',' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:81:13: ','
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:81:11: ( ',' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:81:13: ','
             {
             match(','); 
 
@@ -748,8 +748,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_6;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:83:11: ( '.' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:83:13: '.'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:83:11: ( '.' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:83:13: '.'
             {
             match('.'); 
 
@@ -768,8 +768,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_7;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:85:11: ( ':' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:85:13: ':'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:85:11: ( ':' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:85:13: ':'
             {
             match(':'); 
 
@@ -788,8 +788,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_8;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:87:11: ( ';' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:87:13: ';'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:87:11: ( ';' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:87:13: ';'
             {
             match(';'); 
 
@@ -808,8 +808,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_9;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:89:11: ( '<' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:89:13: '<'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:89:11: ( '<' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:89:13: '<'
             {
             match('<'); 
 
@@ -828,8 +828,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_10;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:91:12: ( '=' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:91:14: '='
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:91:12: ( '=' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:91:14: '='
             {
             match('='); 
 
@@ -848,8 +848,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_11;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:93:12: ( '>' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:93:14: '>'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:93:12: ( '>' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:93:14: '>'
             {
             match('>'); 
 
@@ -868,8 +868,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_12;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:95:12: ( '[' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:95:14: '['
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:95:12: ( '[' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:95:14: '['
             {
             match('['); 
 
@@ -888,8 +888,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_13;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:97:12: ( ']' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:97:14: ']'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:97:12: ( ']' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:97:14: ']'
             {
             match(']'); 
 
@@ -908,8 +908,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_14;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:99:12: ( '{' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:99:14: '{'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:99:12: ( '{' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:99:14: '{'
             {
             match('{'); 
 
@@ -928,8 +928,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = KEYWORD_15;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:101:12: ( '}' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:101:14: '}'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:101:12: ( '}' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:101:14: '}'
             {
             match('}'); 
 
@@ -948,8 +948,8 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:105:9: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:105:11: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:105:9: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:105:11: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -960,7 +960,7 @@ public class InternalPhdlLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:105:35: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:105:35: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop1:
             do {
                 int alt1=2;
@@ -973,7 +973,7 @@ public class InternalPhdlLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:
+            	    // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:
             	    {
             	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
             	        input.consume();
@@ -1009,10 +1009,10 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:107:10: ( ( '0' .. '9' | '1' .. '9' ( '0' .. '9' )+ ) )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:107:12: ( '0' .. '9' | '1' .. '9' ( '0' .. '9' )+ )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:107:10: ( ( '0' .. '9' | '1' .. '9' ( '0' .. '9' )+ ) )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:107:12: ( '0' .. '9' | '1' .. '9' ( '0' .. '9' )+ )
             {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:107:12: ( '0' .. '9' | '1' .. '9' ( '0' .. '9' )+ )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:107:12: ( '0' .. '9' | '1' .. '9' ( '0' .. '9' )+ )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -1036,17 +1036,17 @@ public class InternalPhdlLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:107:13: '0' .. '9'
+                    // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:107:13: '0' .. '9'
                     {
                     matchRange('0','9'); 
 
                     }
                     break;
                 case 2 :
-                    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:107:22: '1' .. '9' ( '0' .. '9' )+
+                    // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:107:22: '1' .. '9' ( '0' .. '9' )+
                     {
                     matchRange('1','9'); 
-                    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:107:31: ( '0' .. '9' )+
+                    // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:107:31: ( '0' .. '9' )+
                     int cnt2=0;
                     loop2:
                     do {
@@ -1060,7 +1060,7 @@ public class InternalPhdlLexer extends Lexer {
 
                         switch (alt2) {
                     	case 1 :
-                    	    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:107:32: '0' .. '9'
+                    	    // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:107:32: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1098,10 +1098,10 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = RULE_PINNUM;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:109:13: ( ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '+' | '-' | '$' | '/' | '@' | '!' )+ )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:109:15: ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '+' | '-' | '$' | '/' | '@' | '!' )+
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:109:13: ( ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '+' | '-' | '$' | '/' | '@' | '!' )+ )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:109:15: ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '+' | '-' | '$' | '/' | '@' | '!' )+
             {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:109:15: ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '+' | '-' | '$' | '/' | '@' | '!' )+
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:109:15: ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '+' | '-' | '$' | '/' | '@' | '!' )+
             int cnt4=0;
             loop4:
             do {
@@ -1115,7 +1115,7 @@ public class InternalPhdlLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:
+            	    // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:
             	    {
             	    if ( input.LA(1)=='!'||input.LA(1)=='$'||input.LA(1)=='+'||input.LA(1)=='-'||(input.LA(1)>='/' && input.LA(1)<='9')||(input.LA(1)>='@' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
             	        input.consume();
@@ -1155,10 +1155,10 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:111:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:111:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:111:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:111:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:111:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:111:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -1176,10 +1176,10 @@ public class InternalPhdlLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:111:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:111:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:111:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:111:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop5:
                     do {
                         int alt5=3;
@@ -1195,7 +1195,7 @@ public class InternalPhdlLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:111:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+                    	    // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:111:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
@@ -1211,7 +1211,7 @@ public class InternalPhdlLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:111:66: ~ ( ( '\\\\' | '\"' ) )
+                    	    // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:111:66: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1236,10 +1236,10 @@ public class InternalPhdlLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:111:86: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:111:86: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:111:91: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:111:91: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop6:
                     do {
                         int alt6=3;
@@ -1255,7 +1255,7 @@ public class InternalPhdlLexer extends Lexer {
 
                         switch (alt6) {
                     	case 1 :
-                    	    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:111:92: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+                    	    // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:111:92: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
@@ -1271,7 +1271,7 @@ public class InternalPhdlLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:111:137: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:111:137: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1314,12 +1314,12 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:113:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:113:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:113:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:113:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:113:24: ( options {greedy=false; } : . )*
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:113:24: ( options {greedy=false; } : . )*
             loop8:
             do {
                 int alt8=2;
@@ -1344,7 +1344,7 @@ public class InternalPhdlLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:113:52: .
+            	    // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:113:52: .
             	    {
             	    matchAny(); 
 
@@ -1374,12 +1374,12 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:115:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:115:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:115:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:115:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:115:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:115:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop9:
             do {
                 int alt9=2;
@@ -1392,7 +1392,7 @@ public class InternalPhdlLexer extends Lexer {
 
                 switch (alt9) {
             	case 1 :
-            	    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:115:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:115:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1412,7 +1412,7 @@ public class InternalPhdlLexer extends Lexer {
                 }
             } while (true);
 
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:115:40: ( ( '\\r' )? '\\n' )?
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:115:40: ( ( '\\r' )? '\\n' )?
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -1421,9 +1421,9 @@ public class InternalPhdlLexer extends Lexer {
             }
             switch (alt11) {
                 case 1 :
-                    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:115:41: ( '\\r' )? '\\n'
+                    // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:115:41: ( '\\r' )? '\\n'
                     {
-                    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:115:41: ( '\\r' )?
+                    // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:115:41: ( '\\r' )?
                     int alt10=2;
                     int LA10_0 = input.LA(1);
 
@@ -1432,7 +1432,7 @@ public class InternalPhdlLexer extends Lexer {
                     }
                     switch (alt10) {
                         case 1 :
-                            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:115:41: '\\r'
+                            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:115:41: '\\r'
                             {
                             match('\r'); 
 
@@ -1464,10 +1464,10 @@ public class InternalPhdlLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:117:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:117:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:117:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:117:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:117:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:117:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt12=0;
             loop12:
             do {
@@ -1481,7 +1481,7 @@ public class InternalPhdlLexer extends Lexer {
 
                 switch (alt12) {
             	case 1 :
-            	    // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:
+            	    // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:
             	    {
             	    if ( (input.LA(1)>='\t' && input.LA(1)<='\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
             	        input.consume();
@@ -1517,348 +1517,348 @@ public class InternalPhdlLexer extends Lexer {
     // $ANTLR end "RULE_WS"
 
     public void mTokens() throws RecognitionException {
-        // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:8: ( KEYWORD_42 | KEYWORD_37 | KEYWORD_38 | KEYWORD_39 | KEYWORD_40 | KEYWORD_41 | KEYWORD_30 | KEYWORD_31 | KEYWORD_32 | KEYWORD_33 | KEYWORD_34 | KEYWORD_35 | KEYWORD_36 | KEYWORD_25 | KEYWORD_26 | KEYWORD_27 | KEYWORD_28 | KEYWORD_29 | KEYWORD_19 | KEYWORD_20 | KEYWORD_21 | KEYWORD_22 | KEYWORD_23 | KEYWORD_24 | KEYWORD_17 | KEYWORD_18 | KEYWORD_16 | KEYWORD_1 | KEYWORD_2 | KEYWORD_3 | KEYWORD_4 | KEYWORD_5 | KEYWORD_6 | KEYWORD_7 | KEYWORD_8 | KEYWORD_9 | KEYWORD_10 | KEYWORD_11 | KEYWORD_12 | KEYWORD_13 | KEYWORD_14 | KEYWORD_15 | RULE_ID | RULE_INT | RULE_PINNUM | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS )
+        // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:8: ( KEYWORD_42 | KEYWORD_37 | KEYWORD_38 | KEYWORD_39 | KEYWORD_40 | KEYWORD_41 | KEYWORD_30 | KEYWORD_31 | KEYWORD_32 | KEYWORD_33 | KEYWORD_34 | KEYWORD_35 | KEYWORD_36 | KEYWORD_25 | KEYWORD_26 | KEYWORD_27 | KEYWORD_28 | KEYWORD_29 | KEYWORD_19 | KEYWORD_20 | KEYWORD_21 | KEYWORD_22 | KEYWORD_23 | KEYWORD_24 | KEYWORD_17 | KEYWORD_18 | KEYWORD_16 | KEYWORD_1 | KEYWORD_2 | KEYWORD_3 | KEYWORD_4 | KEYWORD_5 | KEYWORD_6 | KEYWORD_7 | KEYWORD_8 | KEYWORD_9 | KEYWORD_10 | KEYWORD_11 | KEYWORD_12 | KEYWORD_13 | KEYWORD_14 | KEYWORD_15 | RULE_ID | RULE_INT | RULE_PINNUM | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS )
         int alt13=49;
         alt13 = dfa13.predict(input);
         switch (alt13) {
             case 1 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:10: KEYWORD_42
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:10: KEYWORD_42
                 {
                 mKEYWORD_42(); 
 
                 }
                 break;
             case 2 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:21: KEYWORD_37
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:21: KEYWORD_37
                 {
                 mKEYWORD_37(); 
 
                 }
                 break;
             case 3 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:32: KEYWORD_38
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:32: KEYWORD_38
                 {
                 mKEYWORD_38(); 
 
                 }
                 break;
             case 4 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:43: KEYWORD_39
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:43: KEYWORD_39
                 {
                 mKEYWORD_39(); 
 
                 }
                 break;
             case 5 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:54: KEYWORD_40
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:54: KEYWORD_40
                 {
                 mKEYWORD_40(); 
 
                 }
                 break;
             case 6 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:65: KEYWORD_41
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:65: KEYWORD_41
                 {
                 mKEYWORD_41(); 
 
                 }
                 break;
             case 7 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:76: KEYWORD_30
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:76: KEYWORD_30
                 {
                 mKEYWORD_30(); 
 
                 }
                 break;
             case 8 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:87: KEYWORD_31
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:87: KEYWORD_31
                 {
                 mKEYWORD_31(); 
 
                 }
                 break;
             case 9 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:98: KEYWORD_32
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:98: KEYWORD_32
                 {
                 mKEYWORD_32(); 
 
                 }
                 break;
             case 10 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:109: KEYWORD_33
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:109: KEYWORD_33
                 {
                 mKEYWORD_33(); 
 
                 }
                 break;
             case 11 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:120: KEYWORD_34
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:120: KEYWORD_34
                 {
                 mKEYWORD_34(); 
 
                 }
                 break;
             case 12 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:131: KEYWORD_35
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:131: KEYWORD_35
                 {
                 mKEYWORD_35(); 
 
                 }
                 break;
             case 13 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:142: KEYWORD_36
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:142: KEYWORD_36
                 {
                 mKEYWORD_36(); 
 
                 }
                 break;
             case 14 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:153: KEYWORD_25
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:153: KEYWORD_25
                 {
                 mKEYWORD_25(); 
 
                 }
                 break;
             case 15 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:164: KEYWORD_26
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:164: KEYWORD_26
                 {
                 mKEYWORD_26(); 
 
                 }
                 break;
             case 16 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:175: KEYWORD_27
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:175: KEYWORD_27
                 {
                 mKEYWORD_27(); 
 
                 }
                 break;
             case 17 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:186: KEYWORD_28
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:186: KEYWORD_28
                 {
                 mKEYWORD_28(); 
 
                 }
                 break;
             case 18 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:197: KEYWORD_29
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:197: KEYWORD_29
                 {
                 mKEYWORD_29(); 
 
                 }
                 break;
             case 19 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:208: KEYWORD_19
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:208: KEYWORD_19
                 {
                 mKEYWORD_19(); 
 
                 }
                 break;
             case 20 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:219: KEYWORD_20
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:219: KEYWORD_20
                 {
                 mKEYWORD_20(); 
 
                 }
                 break;
             case 21 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:230: KEYWORD_21
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:230: KEYWORD_21
                 {
                 mKEYWORD_21(); 
 
                 }
                 break;
             case 22 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:241: KEYWORD_22
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:241: KEYWORD_22
                 {
                 mKEYWORD_22(); 
 
                 }
                 break;
             case 23 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:252: KEYWORD_23
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:252: KEYWORD_23
                 {
                 mKEYWORD_23(); 
 
                 }
                 break;
             case 24 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:263: KEYWORD_24
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:263: KEYWORD_24
                 {
                 mKEYWORD_24(); 
 
                 }
                 break;
             case 25 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:274: KEYWORD_17
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:274: KEYWORD_17
                 {
                 mKEYWORD_17(); 
 
                 }
                 break;
             case 26 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:285: KEYWORD_18
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:285: KEYWORD_18
                 {
                 mKEYWORD_18(); 
 
                 }
                 break;
             case 27 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:296: KEYWORD_16
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:296: KEYWORD_16
                 {
                 mKEYWORD_16(); 
 
                 }
                 break;
             case 28 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:307: KEYWORD_1
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:307: KEYWORD_1
                 {
                 mKEYWORD_1(); 
 
                 }
                 break;
             case 29 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:317: KEYWORD_2
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:317: KEYWORD_2
                 {
                 mKEYWORD_2(); 
 
                 }
                 break;
             case 30 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:327: KEYWORD_3
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:327: KEYWORD_3
                 {
                 mKEYWORD_3(); 
 
                 }
                 break;
             case 31 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:337: KEYWORD_4
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:337: KEYWORD_4
                 {
                 mKEYWORD_4(); 
 
                 }
                 break;
             case 32 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:347: KEYWORD_5
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:347: KEYWORD_5
                 {
                 mKEYWORD_5(); 
 
                 }
                 break;
             case 33 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:357: KEYWORD_6
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:357: KEYWORD_6
                 {
                 mKEYWORD_6(); 
 
                 }
                 break;
             case 34 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:367: KEYWORD_7
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:367: KEYWORD_7
                 {
                 mKEYWORD_7(); 
 
                 }
                 break;
             case 35 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:377: KEYWORD_8
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:377: KEYWORD_8
                 {
                 mKEYWORD_8(); 
 
                 }
                 break;
             case 36 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:387: KEYWORD_9
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:387: KEYWORD_9
                 {
                 mKEYWORD_9(); 
 
                 }
                 break;
             case 37 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:397: KEYWORD_10
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:397: KEYWORD_10
                 {
                 mKEYWORD_10(); 
 
                 }
                 break;
             case 38 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:408: KEYWORD_11
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:408: KEYWORD_11
                 {
                 mKEYWORD_11(); 
 
                 }
                 break;
             case 39 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:419: KEYWORD_12
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:419: KEYWORD_12
                 {
                 mKEYWORD_12(); 
 
                 }
                 break;
             case 40 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:430: KEYWORD_13
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:430: KEYWORD_13
                 {
                 mKEYWORD_13(); 
 
                 }
                 break;
             case 41 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:441: KEYWORD_14
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:441: KEYWORD_14
                 {
                 mKEYWORD_14(); 
 
                 }
                 break;
             case 42 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:452: KEYWORD_15
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:452: KEYWORD_15
                 {
                 mKEYWORD_15(); 
 
                 }
                 break;
             case 43 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:463: RULE_ID
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:463: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
             case 44 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:471: RULE_INT
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:471: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
             case 45 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:480: RULE_PINNUM
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:480: RULE_PINNUM
                 {
                 mRULE_PINNUM(); 
 
                 }
                 break;
             case 46 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:492: RULE_STRING
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:492: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
             case 47 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:504: RULE_ML_COMMENT
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:504: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
             case 48 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:520: RULE_SL_COMMENT
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:520: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
             case 49 :
-                // ../edu.byu.ee.phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:536: RULE_WS
+                // ../phdl.xtext.ui/src-gen/edu/byu/ee/phdl/ui/contentassist/antlr/lexer/InternalPhdlLexer.g:1:536: RULE_WS
                 {
                 mRULE_WS(); 
 

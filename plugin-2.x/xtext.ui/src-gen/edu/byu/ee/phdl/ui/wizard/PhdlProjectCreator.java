@@ -18,7 +18,7 @@ import com.google.common.collect.Lists;
 
 public class PhdlProjectCreator extends AbstractPluginProjectCreator {
 
-	protected static final String DSL_GENERATOR_PROJECT_NAME = "edu.byu.ee.phdl.xtext";
+	protected static final String DSL_GENERATOR_PROJECT_NAME = "phdl.xtext";
 
 	protected static final String SRC_ROOT = "src";
 	protected static final String SRC_GEN_ROOT = "src-gen";

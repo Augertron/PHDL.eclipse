@@ -65,7 +65,7 @@ public class PhdlFactoryImpl extends EFactoryImpl implements PhdlFactory
   {
     try
     {
-      PhdlFactory thePhdlFactory = (PhdlFactory)EPackage.Registry.INSTANCE.getEFactory("http://ee.byu.edu/phdl"); 
+      PhdlFactory thePhdlFactory = (PhdlFactory)EPackage.Registry.INSTANCE.getEFactory("http://phdl.sf.net"); 
       if (thePhdlFactory != null)
       {
         return thePhdlFactory;
