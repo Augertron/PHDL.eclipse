@@ -1,6 +1,9 @@
 package edu.byu.ee.phdl.erc;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 
@@ -28,6 +31,23 @@ public class ElectricalRuleChecker {
 			{ OK, ERROR, WARN, WARN, OK, WARN, OK, ERROR, OK, OK, ERROR },
 			{ ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR } };
 
+	private static final Map<EPinType, Integer> types;
+	static {
+		Map<EPinType, Integer> map = new HashMap<EPinType, Integer>();
+		map.put(EPinType.INPIN, 0);
+		map.put(EPinType.OUTPIN, 1);
+		map.put(EPinType.IOPIN, 2);
+		map.put(EPinType.TRIPIN, 3);
+		map.put(EPinType.PASSPIN, 4);
+		map.put(EPinType.PIN, 5);
+		map.put(EPinType.PWRPIN, 6);
+		map.put(EPinType.SUPPIN, 7);
+		map.put(EPinType.OCPIN, 8);
+		map.put(EPinType.OEPIN, 9);
+		map.put(EPinType.NCPIN, 10);
+		types = Collections.unmodifiableMap(map);
+	}
+
 	private static final Logger logger = Logger.getLogger(ElectricalRuleChecker.class);
 
 	public ElectricalRuleChecker(EDesign design) {
@@ -42,7 +62,7 @@ public class ElectricalRuleChecker {
 			}
 			for (int i = 0; i < pins.size() - 1; i++) {
 				for (int j = i + 1; j < pins.size(); j++) {
-					int lookupValue = matrix[getIndex(pins.get(i).getPinType())][getIndex(pins.get(j).getPinType())];
+					int lookupValue = matrix[types.get(pins.get(i).getPinType())][types.get(pins.get(j).getPinType())];
 					StringBuilder message = new StringBuilder();
 					if (lookupValue != OK) {
 						message.append("'" + c.getHierarchyName() + "' connects ");
@@ -79,35 +99,6 @@ public class ElectricalRuleChecker {
 			logger.warn("ERC (Electrical Rule Check) completed with " + numWarns + " warnings: " + design.getName());
 		} else {
 			logger.info("completed ERC (Electrical Rule Check) with no errors or warnings: " + design.getName());
-		}
-	}
-
-	private int getIndex(EPinType pinType) {
-		switch (pinType) {
-		case INPIN:
-			return 0;
-		case OUTPIN:
-			return 1;
-		case IOPIN:
-			return 2;
-		case TRIPIN:
-			return 3;
-		case PASSPIN:
-			return 4;
-		case PIN:
-			return 5;
-		case PWRPIN:
-			return 6;
-		case SUPPIN:
-			return 7;
-		case OCPIN:
-			return 8;
-		case OEPIN:
-			return 9;
-		case NCPIN:
-			return 10;
-		default:
-			return -1;
 		}
 	}
 
