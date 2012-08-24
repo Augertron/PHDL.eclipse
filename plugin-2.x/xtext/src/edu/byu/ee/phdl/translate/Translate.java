@@ -129,16 +129,12 @@ public class Translate {
 	}
 
 	private String extractDesignName(String fileName) {
-		String str = fileName.substring(fileName.lastIndexOf(File.separator) + 1, fileName.lastIndexOf("."));
-		return str;
+		return fileName.substring(fileName.lastIndexOf(File.separator) + 1, fileName.lastIndexOf("."));
 	}
 
 	private void generateFile(String fileName, String netlist, boolean overwrite) {
 		if (PhdlUtils.writeStringToFile(fileName, translator.translate(netlists.get(netlist)))) {
-			if (overwrite)
-				logger.info("overwrote file: " + fileName);
-			else
-				logger.info("wrote file: " + fileName);
+			logger.info((overwrite ? "overwrote" : "wrote") + " file " + fileName);
 		} else {
 			logger.error("failed to generate file: " + fileName);
 		}
@@ -173,12 +169,32 @@ public class Translate {
 		}
 	}
 
-	private void getAllNetlistFiles(String directory) {
+	private void getFile(String srcFile) {
+		File file = new File(srcFile);
+		logger.info("reading source file: " + file.getName());
+		String xml = PhdlUtils.readStringFromFile(file.getAbsolutePath());
+		if (xml == null) {
+			logger.error("problem reading file: " + file.getAbsolutePath());
+			System.exit(1);
+		}
+
+		XStream xstream = new XStream();
+		PhdlUtils.setAliasesForPhdlNetlist(xstream);
+		Object obj = xstream.fromXML(xml);
+		try {
+			PhdlNetlist netlist = (PhdlNetlist) obj;
+			netlists.put(extractDesignName(file.getAbsolutePath()), netlist);
+		} catch (Exception e) {
+			logger.error("invalid PHDL netlist file: " + file.getAbsolutePath());
+		}
+	}
+
+	private void getFiles(String directory) {
 		File folder = new File(directory);
 		logger.info("using directory: " + folder.getAbsolutePath());
 		File[] files = folder.listFiles();
 		for (int i = 0; i < files.length; i++) {
-			if (files[i].isFile() && files[i].getName().toLowerCase().endsWith(ExtensionCodes.XML_EXT)) {
+			if (files[i].isFile() && files[i].getName().toLowerCase().endsWith(ExtensionCodes.NET_EXT)) {
 				logger.info("reading source file: " + files[i].getName());
 				String xml = PhdlUtils.readStringFromFile(files[i].getAbsolutePath());
 				if (xml == null) {
@@ -219,26 +235,6 @@ public class Translate {
 		return genFolder;
 	}
 
-	private void getNetlistFile(String srcFile) {
-		File file = new File(srcFile);
-		logger.info("reading source file: " + file.getName());
-		String xml = PhdlUtils.readStringFromFile(file.getAbsolutePath());
-		if (xml == null) {
-			logger.error("problem reading file: " + file.getAbsolutePath());
-			System.exit(1);
-		}
-
-		XStream xstream = new XStream();
-		PhdlUtils.setAliasesForPhdlNetlist(xstream);
-		Object obj = xstream.fromXML(xml);
-		try {
-			PhdlNetlist netlist = (PhdlNetlist) obj;
-			netlists.put(extractDesignName(file.getAbsolutePath()), netlist);
-		} catch (Exception e) {
-			logger.error("invalid PHDL netlist file: " + file.getAbsolutePath());
-		}
-	}
-
 	private File getSourceFolder() {
 		// obtain the resource file or folder name
 		String src = commandLine.hasOption("src") ? commandLine.getOptionValue("src") : ".";
@@ -250,9 +246,9 @@ public class Translate {
 
 		// use all netlist files if a directory is specified
 		if (fileOrFolder.isDirectory()) {
-			getAllNetlistFiles(fileOrFolder.getAbsolutePath());
-		} else if (fileOrFolder.getAbsolutePath().toLowerCase().endsWith(ExtensionCodes.XML_EXT)) {
-			getNetlistFile(fileOrFolder.getAbsolutePath());
+			getFiles(fileOrFolder.getAbsolutePath());
+		} else if (fileOrFolder.getAbsolutePath().toLowerCase().endsWith(ExtensionCodes.NET_EXT)) {
+			getFile(fileOrFolder.getAbsolutePath());
 		}
 
 		// report an error if no resources were found
