@@ -10,10 +10,10 @@ import edu.byu.ee.phdl.elaboration.EPin;
 
 public class PhdlNetlist {
 
-	private String name;
+	private final String name;
 
-	private SortedSet<PhdlPart> parts;
-	private SortedSet<PhdlNet> nets;
+	private final SortedSet<PhdlPart> parts;
+	private final SortedSet<PhdlNet> nets;
 
 	public PhdlNetlist(EDesign design) {
 		this.name = design.getName();
@@ -61,5 +61,11 @@ public class PhdlNetlist {
 
 	public SortedSet<PhdlPart> getParts() {
 		return parts;
+	}
+
+	@Override
+	public String toString() {
+		return getClass().getSimpleName() + ": " + getName() + ", " + getParts().size() + " parts, " + getNets().size()
+				+ " nets.";
 	}
 }
