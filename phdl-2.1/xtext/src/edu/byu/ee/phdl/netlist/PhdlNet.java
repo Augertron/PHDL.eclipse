@@ -6,7 +6,7 @@ import java.util.List;
 public class PhdlNet implements Comparable<Object> {
 
 	private String name;
-	private List<PhdlPin> pins;
+	private final List<PhdlPin> pins;
 
 	public PhdlNet() {
 		this.pins = new ArrayList<PhdlPin>();
@@ -56,6 +56,11 @@ public class PhdlNet implements Comparable<Object> {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return getClass().getSimpleName() + ": " + getName() + ", " + getPins().size() + " pins.";
 	}
 
 }

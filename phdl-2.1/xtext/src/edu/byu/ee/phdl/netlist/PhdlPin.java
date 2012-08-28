@@ -52,4 +52,9 @@ public class PhdlPin {
 		this.pinName = pinName;
 	}
 
+	@Override
+	public String toString() {
+		return getClass().getSimpleName() + ": " + getPartName() + "." + getPinName();
+	}
+
 }

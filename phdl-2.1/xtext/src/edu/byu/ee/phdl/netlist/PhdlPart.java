@@ -60,4 +60,9 @@ public class PhdlPart implements Comparable<Object> {
 		this.name = name;
 	}
 
+	@Override
+	public String toString() {
+		return getClass().getSimpleName() + ": " + getName() + ", " + getFootprint() + "@" + getLibrary();
+	}
+
 }
