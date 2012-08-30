@@ -35,6 +35,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: edu.byu.ee.phdl,
  edu.byu.ee.phdl.formatting,
  edu.byu.ee.phdl.generator,
+ edu.byu.ee.phdl.netlist,
  edu.byu.ee.phdl.parser.antlr,
  edu.byu.ee.phdl.parser.antlr.internal,
  edu.byu.ee.phdl.phdl,

@@ -1,4 +1,4 @@
-package edu.byu.ee.phdl.tests;
+package edu.byu.ee.phdl.xtext.tests;
 
 import org.eclipse.xtext.junit4.InjectWith;
 import org.eclipselabs.xtext.utils.unittesting.XtextRunner2;

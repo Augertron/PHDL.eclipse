@@ -33,7 +33,7 @@ import com.google.inject.name.Named;
 
 import edu.byu.ee.phdl.PhdlStandaloneSetupGenerated;
 
-public class Compile {
+public class PhdlCompile {
 
 	@Inject
 	private Provider<ResourceSet> resourceSetProvider;
@@ -55,7 +55,7 @@ public class Compile {
 	private static String version = "PHDL Compiler v2.1, ";
 	private static String release = "August 15, 2012 release.  ";
 
-	private final static Logger logger = Logger.getLogger(Compile.class);
+	private final static Logger logger = Logger.getLogger(PhdlCompile.class);
 
 	private static CommandLine commandLine;
 
@@ -69,7 +69,7 @@ public class Compile {
 
 		try {
 			Injector injector = new PhdlStandaloneSetupGenerated().createInjectorAndDoEMFRegistration();
-			Compile consoleInstance = injector.getInstance(Compile.class);
+			PhdlCompile consoleInstance = injector.getInstance(PhdlCompile.class);
 			consoleInstance.run();
 		} catch (Exception e) {
 			logger.error("unexpected error.");

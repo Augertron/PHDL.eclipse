@@ -2,8 +2,13 @@ package edu.byu.ee.phdl.netlist;
 
 public class PhdlPin {
 
-	private String pinName;
 	private String partName;
+	private String pinName;
+
+	public PhdlPin(String partName, String pinName) {
+		this.partName = partName;
+		this.pinName = pinName;
+	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -42,14 +47,6 @@ public class PhdlPin {
 		result = prime * result + ((partName == null) ? 0 : partName.hashCode());
 		result = prime * result + ((pinName == null) ? 0 : pinName.hashCode());
 		return result;
-	}
-
-	public void setPartName(String partName) {
-		this.partName = partName;
-	}
-
-	public void setPinName(String pinName) {
-		this.pinName = pinName;
 	}
 
 	@Override

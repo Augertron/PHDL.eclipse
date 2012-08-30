@@ -1,4 +1,4 @@
-package edu.byu.ee.phdl.tests;
+package edu.byu.ee.phdl.xtext.tests;
 
 import java.io.File;
 import java.io.FileInputStream;

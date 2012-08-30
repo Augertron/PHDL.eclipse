@@ -27,20 +27,20 @@
       <name>net_top1</name>
       <pins>
         <pin>
-          <pinName>0</pinName>
           <partName>A/B1/C1</partName>
+          <pinName>0</pinName>
         </pin>
         <pin>
-          <pinName>0</pinName>
           <partName>A/B1/C2</partName>
+          <pinName>0</pinName>
         </pin>
         <pin>
-          <pinName>0</pinName>
           <partName>A/B0/C1</partName>
+          <pinName>0</pinName>
         </pin>
         <pin>
-          <pinName>0</pinName>
           <partName>A/B0/C2</partName>
+          <pinName>0</pinName>
         </pin>
       </pins>
     </net>

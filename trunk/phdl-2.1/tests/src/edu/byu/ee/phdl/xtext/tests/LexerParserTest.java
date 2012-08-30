@@ -1,4 +1,4 @@
-package edu.byu.ee.phdl.tests;
+package edu.byu.ee.phdl.xtext.tests;
 
 import org.apache.log4j.Logger;
 import org.eclipse.xtext.junit4.InjectWith;

@@ -2,9 +2,19 @@ package edu.byu.ee.phdl.netlist;
 
 public class PhdlPart implements Comparable<Object> {
 
-	private String name;
+	private final String name;
 	private String footprint;
 	private String library;
+
+	public PhdlPart(String name) {
+		this.name = name;
+	}
+
+	public PhdlPart(String name, String footprint, String library) {
+		this.name = name;
+		this.footprint = footprint;
+		this.library = library;
+	}
 
 	@Override
 	public int compareTo(Object o) {
@@ -54,10 +64,6 @@ public class PhdlPart implements Comparable<Object> {
 
 	public void setLibrary(String library) {
 		this.library = library;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	@Override
