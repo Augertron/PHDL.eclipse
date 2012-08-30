@@ -22,9 +22,9 @@ import edu.byu.ee.phdl.netlist.PhdlNetlist;
 import edu.byu.ee.phdl.utils.ExtensionCodes;
 import edu.byu.ee.phdl.utils.PhdlUtils;
 
-public class Translate {
+public class PhdlTranslate {
 
-	private final static Logger logger = Logger.getLogger(Translate.class);
+	private final static Logger logger = Logger.getLogger(PhdlTranslate.class);
 
 	private static String usage = "java -jar phdltran.jar";
 	private static String version = "PHDL translator v2.1, ";
@@ -84,7 +84,7 @@ public class Translate {
 		System.out.println(version + release + "\n");
 		parseArgs(createOptions(), args);
 		DefaultTranslator translator = createTranslator();
-		Translate console = new Translate(translator);
+		PhdlTranslate console = new PhdlTranslate(translator);
 		console.run();
 	}
 
@@ -120,7 +120,7 @@ public class Translate {
 
 	private final Map<String, PhdlNetlist> netlists;
 
-	public Translate(DefaultTranslator translator) {
+	public PhdlTranslate(DefaultTranslator translator) {
 		if (translator == null) {
 			throw new IllegalArgumentException("translator cannot be null.");
 		}

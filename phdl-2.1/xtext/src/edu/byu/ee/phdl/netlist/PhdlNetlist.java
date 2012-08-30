@@ -31,20 +31,17 @@ public class PhdlNetlist {
 	}
 
 	private void buildNetlist(EDesign design) {
-		for (String s : design.getRefMap().keySet()) {
-			PhdlPart part = new PhdlPart();
-			part.setName(s);
-			part.setFootprint(design.getRefMap().get(s).getFootprint());
-			part.setLibrary(design.getRefMap().get(s).getLibrary());
+		for (String name : design.getRefMap().keySet()) {
+			PhdlPart part = new PhdlPart(name);
+			part.setFootprint(design.getRefMap().get(name).getFootprint());
+			part.setLibrary(design.getRefMap().get(name).getLibrary());
 			addPart(part);
 		}
 		for (EConnection c : design.getNetlist()) {
 			PhdlNet net = new PhdlNet();
 			net.setName(c.getName());
 			for (EPin p : c.getPins()) {
-				PhdlPin pin = new PhdlPin();
-				pin.setPartName(((EInstance) p.getParent()).getRefDes());
-				pin.setPinName(p.getPinMapping());
+				PhdlPin pin = new PhdlPin(((EInstance) p.getParent()).getRefDes(), p.getPinMapping());
 				net.addPin(pin);
 			}
 			addNet(net);

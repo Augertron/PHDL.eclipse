@@ -12,12 +12,12 @@
       <name>n</name>
       <pins>
         <pin>
-          <pinName>1</pinName>
           <partName>D1</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>D1</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>

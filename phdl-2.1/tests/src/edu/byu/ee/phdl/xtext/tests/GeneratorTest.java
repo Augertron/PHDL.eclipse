@@ -1,4 +1,4 @@
-package edu.byu.ee.phdl.tests;
+package edu.byu.ee.phdl.xtext.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -31,7 +31,6 @@ public class GeneratorTest extends XtextTest {
 	@Inject
 	ParseHelper<PhdlModel> parseHelper;
 
-	// val separator = java::io::File::separator
 	private static Logger logger = Logger.getLogger(GeneratorTest.class);
 
 	String path = "resources/" + getClass().getSimpleName() + "/";
@@ -69,32 +68,6 @@ public class GeneratorTest extends XtextTest {
 		}
 	}
 
-	public void testOutputFileNames(InMemoryFileSystemAccess fsa, String path) {
-		assertEquals(6, fsa.getFiles().size());
-		assertTrue(fsa.getFiles().containsKey(IFileSystemAccess.DEFAULT_OUTPUT + path + ExtensionCodes.PADS_EXT));
-		assertTrue(fsa.getFiles().containsKey(IFileSystemAccess.DEFAULT_OUTPUT + path + ExtensionCodes.BOM_EXT));
-		assertTrue(fsa.getFiles().containsKey(IFileSystemAccess.DEFAULT_OUTPUT + path + ExtensionCodes.INFO_EXT));
-		assertTrue(fsa.getFiles().containsKey(IFileSystemAccess.DEFAULT_OUTPUT + path + ExtensionCodes.REFDES_EXT));
-		assertTrue(fsa.getFiles().containsKey(IFileSystemAccess.DEFAULT_OUTPUT + path + ExtensionCodes.EAGLE_EXT));
-		assertTrue(fsa.getFiles().containsKey(IFileSystemAccess.DEFAULT_OUTPUT + path + ExtensionCodes.NET_EXT));
-	}
-
-	public void testOutputFiles(InMemoryFileSystemAccess fsa, String expected, String actual) {
-		assertEquals(PhdlUtils.fileToString(expected + ExtensionCodes.PADS_EXT),
-				fsa.getFiles().get(IFileSystemAccess.DEFAULT_OUTPUT + actual + ExtensionCodes.PADS_EXT).toString());
-		assertEquals(PhdlUtils.fileToString(expected + ExtensionCodes.BOM_EXT),
-				fsa.getFiles().get(IFileSystemAccess.DEFAULT_OUTPUT + actual + ExtensionCodes.BOM_EXT).toString());
-		assertEquals(PhdlUtils.fileToString(expected + ExtensionCodes.INFO_EXT),
-				fsa.getFiles().get(IFileSystemAccess.DEFAULT_OUTPUT + actual + ExtensionCodes.INFO_EXT).toString());
-		assertEquals(PhdlUtils.fileToString(expected + ExtensionCodes.REFDES_EXT),
-				fsa.getFiles().get(IFileSystemAccess.DEFAULT_OUTPUT + actual + ExtensionCodes.REFDES_EXT).toString());
-		assertEquals(PhdlUtils.fileToString(expected + ExtensionCodes.EAGLE_EXT),
-				fsa.getFiles().get(IFileSystemAccess.DEFAULT_OUTPUT + actual + ExtensionCodes.EAGLE_EXT).toString());
-		assertEquals(PhdlUtils.fileToString(expected + ExtensionCodes.NET_EXT),
-				fsa.getFiles().get(IFileSystemAccess.DEFAULT_OUTPUT + actual + ExtensionCodes.NET_EXT).toString());
-
-	}
-
 	@Test
 	public void testRefDes1() {
 		try {
@@ -125,5 +98,31 @@ public class GeneratorTest extends XtextTest {
 		} catch (Exception e) {
 			throw Exceptions.sneakyThrow(e);
 		}
+	}
+
+	private void testOutputFileNames(InMemoryFileSystemAccess fsa, String path) {
+		assertEquals(6, fsa.getFiles().size());
+		assertTrue(fsa.getFiles().containsKey(IFileSystemAccess.DEFAULT_OUTPUT + path + ExtensionCodes.PADS_EXT));
+		assertTrue(fsa.getFiles().containsKey(IFileSystemAccess.DEFAULT_OUTPUT + path + ExtensionCodes.BOM_EXT));
+		assertTrue(fsa.getFiles().containsKey(IFileSystemAccess.DEFAULT_OUTPUT + path + ExtensionCodes.INFO_EXT));
+		assertTrue(fsa.getFiles().containsKey(IFileSystemAccess.DEFAULT_OUTPUT + path + ExtensionCodes.REFDES_EXT));
+		assertTrue(fsa.getFiles().containsKey(IFileSystemAccess.DEFAULT_OUTPUT + path + ExtensionCodes.EAGLE_EXT));
+		assertTrue(fsa.getFiles().containsKey(IFileSystemAccess.DEFAULT_OUTPUT + path + ExtensionCodes.NET_EXT));
+	}
+
+	private void testOutputFiles(InMemoryFileSystemAccess fsa, String expected, String actual) {
+		assertEquals(PhdlUtils.fileToString(expected + ExtensionCodes.PADS_EXT),
+				fsa.getFiles().get(IFileSystemAccess.DEFAULT_OUTPUT + actual + ExtensionCodes.PADS_EXT).toString());
+		assertEquals(PhdlUtils.fileToString(expected + ExtensionCodes.BOM_EXT),
+				fsa.getFiles().get(IFileSystemAccess.DEFAULT_OUTPUT + actual + ExtensionCodes.BOM_EXT).toString());
+		assertEquals(PhdlUtils.fileToString(expected + ExtensionCodes.INFO_EXT),
+				fsa.getFiles().get(IFileSystemAccess.DEFAULT_OUTPUT + actual + ExtensionCodes.INFO_EXT).toString());
+		assertEquals(PhdlUtils.fileToString(expected + ExtensionCodes.REFDES_EXT),
+				fsa.getFiles().get(IFileSystemAccess.DEFAULT_OUTPUT + actual + ExtensionCodes.REFDES_EXT).toString());
+		assertEquals(PhdlUtils.fileToString(expected + ExtensionCodes.EAGLE_EXT),
+				fsa.getFiles().get(IFileSystemAccess.DEFAULT_OUTPUT + actual + ExtensionCodes.EAGLE_EXT).toString());
+		assertEquals(PhdlUtils.fileToString(expected + ExtensionCodes.NET_EXT),
+				fsa.getFiles().get(IFileSystemAccess.DEFAULT_OUTPUT + actual + ExtensionCodes.NET_EXT).toString());
+
 	}
 }
