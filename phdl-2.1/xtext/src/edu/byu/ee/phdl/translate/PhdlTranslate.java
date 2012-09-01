@@ -24,13 +24,20 @@ import edu.byu.ee.phdl.utils.PhdlUtils;
 
 public class PhdlTranslate {
 
-	private final static Logger logger = Logger.getLogger(PhdlTranslate.class);
+	private static final Logger logger = Logger.getLogger(PhdlTranslate.class);
 
-	private static String usage = "java -jar phdltran.jar";
-	private static String version = "PHDL translator v2.1, ";
-	private static String release = "August 27, 2012 release.  ";
+	private static final String usage = "java -jar phdltran.jar";
+	private static final String version = "PHDL translator v2.1, ";
+	private static final String release = "August 27, 2012 release.  ";
 
 	private static CommandLine commandLine;
+
+	public static void main(String... args) {
+		System.out.println(version + release + "\n");
+		parseArgs(createOptions(), args);
+		PhdlTranslate translate = new PhdlTranslate(getTranslator());
+		translate.run();
+	}
 
 	@SuppressWarnings("static-access")
 	private static Options createOptions() {
@@ -58,7 +65,7 @@ public class PhdlTranslate {
 		return options;
 	}
 
-	private static DefaultTranslator createTranslator() {
+	private static DefaultTranslator getTranslator() {
 		String translatorClassName = commandLine.hasOption("tool") ? commandLine.getOptionValue("tool")
 				: "edu.byu.ee.phdl.translate.DefaultTranslator";
 		try {
@@ -68,24 +75,14 @@ public class PhdlTranslate {
 		} catch (ClassNotFoundException e) {
 			logger.error(e + ", translator class must be present on class path.");
 			System.exit(1);
-
 		} catch (InstantiationException e) {
 			logger.error(e + ", translator class must be concrete.");
 			System.exit(1);
-
 		} catch (IllegalAccessException e) {
 			logger.error(e + ", translator class must have a no-arg constructor.");
 			System.exit(1);
 		}
 		return null;
-	}
-
-	public static void main(String[] args) {
-		System.out.println(version + release + "\n");
-		parseArgs(createOptions(), args);
-		DefaultTranslator translator = createTranslator();
-		PhdlTranslate console = new PhdlTranslate(translator);
-		console.run();
 	}
 
 	private static void parseArgs(Options options, String[] args) {
@@ -108,7 +105,11 @@ public class PhdlTranslate {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String input = null;
 		try {
-			input = br.readLine();
+			try {
+				input = br.readLine();
+			} finally {
+				br.close();
+			}
 		} catch (IOException e) {
 			logger.error("problem reading command line");
 			System.exit(1);
@@ -117,7 +118,6 @@ public class PhdlTranslate {
 	}
 
 	private final DefaultTranslator translator;
-
 	private final Map<String, PhdlNetlist> netlists;
 
 	public PhdlTranslate(DefaultTranslator translator) {
@@ -128,87 +128,44 @@ public class PhdlTranslate {
 		this.netlists = new HashMap<String, PhdlNetlist>();
 	}
 
-	private String extractDesignName(String fileName) {
-		return fileName.substring(fileName.lastIndexOf(File.separator) + 1, fileName.lastIndexOf("."));
+	private String extractDesignName(String path) {
+		return path.substring(path.lastIndexOf(File.separator) + 1, path.lastIndexOf("."));
 	}
 
-	private void generateFile(String fileName, String netlist, boolean overwrite) {
-		if (PhdlUtils.writeStringToFile(fileName, translator.translate(netlists.get(netlist)))) {
+	private void generateFile(String fileName, String contents, boolean overwrite) {
+		if (PhdlUtils.writeStringToFile(fileName, contents))
 			logger.info((overwrite ? "overwrote" : "wrote") + " file " + fileName);
-		} else {
+		else
 			logger.error("failed to generate file: " + fileName);
-		}
 	}
 
 	private void generateOutput(File genFolder) {
-		boolean owAll = commandLine.hasOption("overwrite") ? true : false;
+		boolean overwrite = commandLine.hasOption("overwrite") ? true : false;
 		for (String netlist : netlists.keySet()) {
 			String fileName = genFolder.getAbsolutePath().toString() + File.separator + netlist
 					+ translator.getFileExtension();
 
+			String contents = translator.translate(netlists.get(netlist));
+
 			File genFile = new File(fileName);
 
 			if (genFile.exists()) {
-				if (owAll) {
-					generateFile(fileName, netlist, true);
+				if (overwrite) {
+					generateFile(fileName, contents, true);
 				} else {
-					logger.warn("file " + fileName + " exists.  overwrite?  (yes/no/all)");
-					String overwrite = readLine();
-					if (overwrite.equals("all"))
-						owAll = true;
-					if (overwrite.equals("yes") || owAll)
-						generateFile(fileName, netlist, true);
-					else if (overwrite.equals("no"))
+					logger.warn("file " + fileName + " exists.");
+					System.out.println("overwrite? (yes/no/all)");
+					String response = readLine();
+					overwrite = response.equals("all") ? true : false;
+					if (response.equals("yes") || overwrite)
+						generateFile(fileName, contents, true);
+					else if (response.equals("no"))
 						continue;
 					else
-						logger.warn("unrecognized input: " + overwrite + ", exiting.");
+						logger.warn("unrecognized input: " + response + ", exiting.");
 				}
 			} else {
-				generateFile(fileName, netlist, false);
-			}
-		}
-	}
-
-	private void getFile(String srcFile) {
-		File file = new File(srcFile);
-		logger.info("reading source file: " + file.getName());
-		String xml = PhdlUtils.readStringFromFile(file.getAbsolutePath());
-		if (xml == null) {
-			logger.error("problem reading file: " + file.getAbsolutePath());
-			System.exit(1);
-		}
-
-		XStream xstream = new XStream();
-		PhdlUtils.setAliasesForPhdlNetlist(xstream);
-		Object obj = xstream.fromXML(xml);
-		try {
-			PhdlNetlist netlist = (PhdlNetlist) obj;
-			netlists.put(extractDesignName(file.getAbsolutePath()), netlist);
-		} catch (Exception e) {
-			logger.error("invalid PHDL netlist file: " + file.getAbsolutePath());
-		}
-	}
-
-	private void getFiles(String directory) {
-		File folder = new File(directory);
-		logger.info("using directory: " + folder.getAbsolutePath());
-		File[] files = folder.listFiles();
-		for (int i = 0; i < files.length; i++) {
-			if (files[i].isFile() && files[i].getName().toLowerCase().endsWith(ExtensionCodes.NET_EXT)) {
-				logger.info("reading source file: " + files[i].getName());
-				String xml = PhdlUtils.readStringFromFile(files[i].getAbsolutePath());
-				if (xml == null) {
-					logger.error("problem reading file: " + files[i].getAbsolutePath());
-					System.exit(1);
-				}
-				XStream xstream = new XStream();
-				PhdlUtils.setAliasesForPhdlNetlist(xstream);
-				try {
-					PhdlNetlist netlist = (PhdlNetlist) xstream.fromXML(xml);
-					netlists.put(extractDesignName(files[i].getAbsolutePath()), netlist);
-				} catch (Exception e) {
-					logger.warn("skipping invalid PHDL netlist file: " + files[i].getAbsolutePath());
-				}
+				generateFile(fileName, contents, false);
 			}
 		}
 	}
@@ -235,6 +192,46 @@ public class PhdlTranslate {
 		return genFolder;
 	}
 
+	private void getNetlistFile(String fileName) {
+		File file = new File(fileName);
+		logger.info("reading netlist file: " + file.getName());
+		String xml = PhdlUtils.readStringFromFile(file.getAbsolutePath());
+		if (xml == null) {
+			logger.error("problem reading file: " + file.getAbsolutePath());
+			System.exit(1);
+		}
+		XStream xstream = new XStream();
+		PhdlUtils.setAliasesForPhdlNetlist(xstream);
+		try {
+			netlists.put(extractDesignName(file.getAbsolutePath()), (PhdlNetlist) xstream.fromXML(xml));
+		} catch (Exception e) {
+			logger.error("invalid PHDL netlist file: " + file.getAbsolutePath());
+		}
+	}
+
+	private void getNetlistFiles(String directory) {
+		File folder = new File(directory);
+		logger.info("using directory: " + folder.getAbsolutePath());
+		File[] files = folder.listFiles();
+		for (int i = 0; i < files.length; i++) {
+			if (files[i].isFile() && files[i].getName().toLowerCase().endsWith(ExtensionCodes.NET_EXT)) {
+				logger.info("reading source file: " + files[i].getName());
+				String xml = PhdlUtils.readStringFromFile(files[i].getAbsolutePath());
+				if (xml == null) {
+					logger.error("problem reading file: " + files[i].getAbsolutePath());
+					System.exit(1);
+				}
+				XStream xstream = new XStream();
+				PhdlUtils.setAliasesForPhdlNetlist(xstream);
+				try {
+					netlists.put(extractDesignName(files[i].getAbsolutePath()), (PhdlNetlist) xstream.fromXML(xml));
+				} catch (Exception e) {
+					logger.warn("skipping invalid PHDL netlist file: " + files[i].getAbsolutePath());
+				}
+			}
+		}
+	}
+
 	private File getSourceFolder() {
 		// obtain the resource file or folder name
 		String src = commandLine.hasOption("src") ? commandLine.getOptionValue("src") : ".";
@@ -246,9 +243,9 @@ public class PhdlTranslate {
 
 		// use all netlist files if a directory is specified
 		if (fileOrFolder.isDirectory()) {
-			getFiles(fileOrFolder.getAbsolutePath());
+			getNetlistFiles(fileOrFolder.getAbsolutePath());
 		} else if (fileOrFolder.getAbsolutePath().toLowerCase().endsWith(ExtensionCodes.NET_EXT)) {
-			getFile(fileOrFolder.getAbsolutePath());
+			getNetlistFile(fileOrFolder.getAbsolutePath());
 		}
 
 		// report an error if no resources were found
@@ -266,4 +263,5 @@ public class PhdlTranslate {
 		generateOutput(genFolder);
 		logger.info("translation completed.");
 	}
+
 }

@@ -1,4 +1,4 @@
-package edu.byu.ee.phld.netlist.tests;
+package edu.byu.ee.phdl.netlist.tests;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

@@ -8,22 +8,14 @@ import edu.byu.ee.phdl.utils.ExtensionCodes;
 
 public class DefaultTranslator {
 
-	protected String fileExtension;
-
-	public DefaultTranslator() {
-		this.fileExtension = ExtensionCodes.PCB_EXT;
-	}
+	protected String fileExtension = ExtensionCodes.PCB_EXT;
 
 	public String getFileExtension() {
 		return fileExtension;
 	}
 
-	public String translate(PhdlNetlist netlist) {
-		StringBuilder sb = new StringBuilder();
-		sb.append(translateHeader());
-		sb.append(translateParts(netlist));
-		sb.append(translateNets(netlist));
-		return sb.toString();
+	public final String translate(PhdlNetlist netlist) {
+		return translateNetlist(netlist);
 	}
 
 	protected String translateHeader() {
@@ -38,6 +30,14 @@ public class DefaultTranslator {
 			sb.append(pin.getPartName() + "." + pin.getPinName() + " ");
 		}
 		sb.append("}\n");
+		return sb.toString();
+	}
+
+	protected String translateNetlist(PhdlNetlist netlist) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(translateHeader());
+		sb.append(translateParts(netlist));
+		sb.append(translateNets(netlist));
 		return sb.toString();
 	}
 

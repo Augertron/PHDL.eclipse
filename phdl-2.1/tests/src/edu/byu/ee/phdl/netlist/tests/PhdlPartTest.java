@@ -1,4 +1,4 @@
-package edu.byu.ee.phld.netlist.tests;
+package edu.byu.ee.phdl.netlist.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -12,26 +12,24 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import edu.byu.ee.phdl.netlist.PhdlPin;
+import edu.byu.ee.phdl.netlist.PhdlPart;
 
-public class PhdlPinTest {
+public class PhdlPartTest {
 
-	private final static Logger logger = Logger.getLogger(PhdlPinTest.class);
+	private final static Logger logger = Logger.getLogger(PhdlPartTest.class);
 	private final String msgpfx = "testing" + getClass().getSimpleName() + ".";
 
-	private static PhdlPin p1;
-	private static PhdlPin p2;
-	private static PhdlPin p3;
-	private static PhdlPin p4;
-	private static PhdlPin p5;
+	private static PhdlPart p1;
+	private static PhdlPart p2;
+	private static PhdlPart p3;
+	private static PhdlPart p4;
 
 	@BeforeClass
 	public static void setup() {
-		p1 = new PhdlPin("samePart", "samePin");
-		p2 = new PhdlPin("samePart", "samePin");
-		p3 = new PhdlPin("samePart", "samePin");
-		p4 = new PhdlPin("samePart", "diffPin");
-		p5 = new PhdlPin("diffPart", "diffPin");
+		p1 = new PhdlPart("same", "footprint1", "library1");
+		p2 = new PhdlPart("same", "footprint2", "library2");
+		p3 = new PhdlPart("same", "footprint3", "library3");
+		p4 = new PhdlPart("different", "footprint4", "library4");
 	}
 
 	@AfterClass
@@ -40,7 +38,14 @@ public class PhdlPinTest {
 		p2 = null;
 		p3 = null;
 		p4 = null;
-		p5 = null;
+	}
+
+	@Test
+	public void testCompareTo() {
+		logger.info(msgpfx + new Throwable().getStackTrace()[0].getMethodName());
+		assertEquals("not comparable", 0, p1.compareTo(p2));
+		assertTrue("not comparable", p1.compareTo(p4) > 0);
+		assertTrue("not comaprable", p4.compareTo(p1) < 0);
 	}
 
 	@Test
@@ -51,14 +56,14 @@ public class PhdlPinTest {
 		assertTrue("not transitive", p1.equals(p2) && p2.equals(p3) && p1.equals(p3));
 		assertFalse("should not be equal", p1.equals(null));
 		assertFalse("should not be equal", p1.equals(p4));
-		assertFalse("should not be equal", p1.equals(p5));
 	}
 
 	@Test
 	public void testFields() {
 		logger.info(msgpfx + new Throwable().getStackTrace()[0].getMethodName());
-		assertEquals("pinName is not equal", "samePin", p1.getPinName());
-		assertEquals("partName is not equal", "samePart", p1.getPartName());
+		assertEquals("name is not equal", "same", p1.getName());
+		assertEquals("footprint is not equal", "footprint1", p1.getFootprint());
+		assertEquals("library is not equal", "library1", p1.getLibrary());
 	}
 
 	@Test
@@ -70,16 +75,18 @@ public class PhdlPinTest {
 	@Test
 	public void testPartInSet() {
 		logger.info(msgpfx + new Throwable().getStackTrace()[0].getMethodName());
-		Set<PhdlPin> set = new HashSet<PhdlPin>();
+		Set<PhdlPart> set = new HashSet<PhdlPart>();
 		set.add(p1);
 		set.add(p2);
-		assertEquals("cannot have two equal pins in a set", 1, set.size());
+		assertEquals("cannot have two equal parts in a set", 1, set.size());
 	}
 
 	@Test
 	public void testToString() {
 		logger.info(msgpfx + new Throwable().getStackTrace()[0].getMethodName());
-		String expected = p1.getClass().getSimpleName() + ": " + p1.getPartName() + "." + p1.getPinName();
+		String expected = p1.getClass().getSimpleName() + ": " + p1.getName() + ", " + p1.getFootprint() + "@"
+				+ p1.getLibrary();
 		assertEquals("toString() method not correct", expected, p1.toString());
 	}
+
 }
