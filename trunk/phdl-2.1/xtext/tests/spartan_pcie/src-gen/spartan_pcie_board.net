@@ -377,20 +377,20 @@
       <name>+12V</name>
       <pins>
         <pin>
+          <partName>P1</partName>
           <pinName>B1</pinName>
-          <partName>P1</partName>
         </pin>
         <pin>
+          <partName>P1</partName>
           <pinName>B2</pinName>
-          <partName>P1</partName>
         </pin>
         <pin>
+          <partName>P1</partName>
           <pinName>A2</pinName>
-          <partName>P1</partName>
         </pin>
         <pin>
-          <pinName>A3</pinName>
           <partName>P1</partName>
+          <pinName>A3</pinName>
         </pin>
       </pins>
     </net>
@@ -402,56 +402,56 @@
       <name>+1V5</name>
       <pins>
         <pin>
+          <partName>PWR/U1</partName>
           <pinName>3</pinName>
-          <partName>PWR/U1</partName>
         </pin>
         <pin>
+          <partName>PWR/U1</partName>
           <pinName>4</pinName>
-          <partName>PWR/U1</partName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>PWR/R1</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>PWR/C1</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>PWR/C2</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>PWR/C3</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>PWR/C4</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>PWR/C5</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>PWR/C6</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>PWR/C7</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>PWR/C8</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>PWR/C9</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>PWR/C10</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -463,24 +463,24 @@
       <name>+1V8</name>
       <pins>
         <pin>
-          <pinName>1</pinName>
           <partName>TP7</partName>
-        </pin>
-        <pin>
           <pinName>1</pinName>
+        </pin>
+        <pin>
           <partName>TP8</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
+          <partName>FPGA1/U1</partName>
           <pinName>A6</pinName>
-          <partName>FPGA1/U1</partName>
         </pin>
         <pin>
+          <partName>FPGA1/U1</partName>
           <pinName>H3</pinName>
-          <partName>FPGA1/U1</partName>
         </pin>
         <pin>
-          <pinName>A4</pinName>
           <partName>FPGA1/U1</partName>
+          <pinName>A4</pinName>
         </pin>
       </pins>
     </net>
@@ -488,108 +488,108 @@
       <name>+3V3</name>
       <pins>
         <pin>
-          <pinName>1</pinName>
           <partName>TP3</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>TP4</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>FPGA1/P1</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
+          <partName>FPGA1/U1</partName>
           <pinName>D5</pinName>
-          <partName>FPGA1/U1</partName>
         </pin>
         <pin>
+          <partName>FPGA1/U1</partName>
           <pinName>D6</pinName>
-          <partName>FPGA1/U1</partName>
         </pin>
         <pin>
+          <partName>FPGA1/U1</partName>
           <pinName>G4</pinName>
-          <partName>FPGA1/U1</partName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>FPGA1/R9</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>FPGA1/R10</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>FPGA1/R11</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>FPGA1/R12</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>FPGA1/R13</partName>
-        </pin>
-        <pin>
           <pinName>2</pinName>
+        </pin>
+        <pin>
           <partName>FPGA1/R14</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
+          <partName>PWR/U1</partName>
           <pinName>9</pinName>
-          <partName>PWR/U1</partName>
         </pin>
         <pin>
+          <partName>PWR/U1</partName>
           <pinName>12</pinName>
-          <partName>PWR/U1</partName>
         </pin>
         <pin>
+          <partName>PWR/U1</partName>
           <pinName>13</pinName>
-          <partName>PWR/U1</partName>
         </pin>
         <pin>
+          <partName>PWR/U1</partName>
           <pinName>14</pinName>
-          <partName>PWR/U1</partName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>PWR/C11</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>PWR/C12</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>PWR/C13</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>PWR/C14</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>PWR/C15</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>PWR/C16</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>PWR/C17</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>PWR/C18</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>PWR/C19</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>PWR/C20</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -597,8 +597,8 @@
       <name>cfg_addr</name>
       <pins>
         <pin>
-          <pinName>B6</pinName>
           <partName>FPGA1/U1</partName>
+          <pinName>B6</pinName>
         </pin>
       </pins>
     </net>
@@ -606,12 +606,12 @@
       <name>cfg_adv_n</name>
       <pins>
         <pin>
-          <pinName>F6</pinName>
           <partName>FPGA1/U1</partName>
+          <pinName>F6</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>FPGA1/R15</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -619,12 +619,12 @@
       <name>cfg_ce_n</name>
       <pins>
         <pin>
-          <pinName>B4</pinName>
           <partName>FPGA1/U1</partName>
+          <pinName>B4</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>FPGA1/R13</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -632,12 +632,12 @@
       <name>cfg_clk</name>
       <pins>
         <pin>
-          <pinName>E6</pinName>
           <partName>FPGA1/U1</partName>
+          <pinName>E6</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>FPGA1/R10</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -645,8 +645,8 @@
       <name>cfg_data</name>
       <pins>
         <pin>
-          <pinName>E7</pinName>
           <partName>FPGA1/U1</partName>
+          <pinName>E7</pinName>
         </pin>
       </pins>
     </net>
@@ -654,12 +654,12 @@
       <name>cfg_oe_n</name>
       <pins>
         <pin>
-          <pinName>F8</pinName>
           <partName>FPGA1/U1</partName>
+          <pinName>F8</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>FPGA1/R12</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -667,12 +667,12 @@
       <name>cfg_reset_n</name>
       <pins>
         <pin>
-          <pinName>D4</pinName>
           <partName>FPGA1/U1</partName>
+          <pinName>D4</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>FPGA1/R9</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -680,8 +680,8 @@
       <name>cfg_wait</name>
       <pins>
         <pin>
-          <pinName>F7</pinName>
           <partName>FPGA1/U1</partName>
+          <pinName>F7</pinName>
         </pin>
       </pins>
     </net>
@@ -689,12 +689,12 @@
       <name>cfg_we_n</name>
       <pins>
         <pin>
-          <pinName>G8</pinName>
           <partName>FPGA1/U1</partName>
+          <pinName>G8</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>FPGA1/R11</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -702,12 +702,12 @@
       <name>cfg_wp_n</name>
       <pins>
         <pin>
-          <pinName>C6</pinName>
           <partName>FPGA1/U1</partName>
+          <pinName>C6</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>FPGA1/R14</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -715,8 +715,8 @@
       <name>dip_io</name>
       <pins>
         <pin>
-          <pinName>16</pinName>
           <partName>FPGA1/SW1</partName>
+          <pinName>16</pinName>
         </pin>
       </pins>
     </net>
@@ -724,312 +724,312 @@
       <name>gnd</name>
       <pins>
         <pin>
+          <partName>P1</partName>
           <pinName>B4</pinName>
-          <partName>P1</partName>
         </pin>
         <pin>
+          <partName>P1</partName>
           <pinName>B7</pinName>
-          <partName>P1</partName>
         </pin>
         <pin>
+          <partName>P1</partName>
           <pinName>B13</pinName>
-          <partName>P1</partName>
         </pin>
         <pin>
+          <partName>P1</partName>
           <pinName>B16</pinName>
-          <partName>P1</partName>
         </pin>
         <pin>
+          <partName>P1</partName>
           <pinName>B18</pinName>
-          <partName>P1</partName>
         </pin>
         <pin>
+          <partName>P1</partName>
           <pinName>A4</pinName>
-          <partName>P1</partName>
         </pin>
         <pin>
+          <partName>P1</partName>
           <pinName>A12</pinName>
-          <partName>P1</partName>
         </pin>
         <pin>
+          <partName>P1</partName>
           <pinName>A15</pinName>
-          <partName>P1</partName>
         </pin>
         <pin>
+          <partName>P1</partName>
           <pinName>A18</pinName>
-          <partName>P1</partName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>TP1</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>TP2</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>TP5</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>TP6</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>TP9</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>TP10</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>TP13</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>TP14</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>FPGA1/R1</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>FPGA1/R2</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>FPGA1/R3</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>FPGA1/R4</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>FPGA1/R5</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>FPGA1/R6</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>FPGA1/R7</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>FPGA1/R8</partName>
-        </pin>
-        <pin>
-          <pinName>1</pinName>
-          <partName>FPGA1/SW1</partName>
-        </pin>
-        <pin>
           <pinName>2</pinName>
-          <partName>FPGA1/SW1</partName>
         </pin>
         <pin>
+          <partName>FPGA1/SW1</partName>
+          <pinName>1</pinName>
+        </pin>
+        <pin>
+          <partName>FPGA1/SW1</partName>
+          <pinName>2</pinName>
+        </pin>
+        <pin>
+          <partName>FPGA1/SW1</partName>
           <pinName>3</pinName>
-          <partName>FPGA1/SW1</partName>
         </pin>
         <pin>
+          <partName>FPGA1/SW1</partName>
           <pinName>4</pinName>
-          <partName>FPGA1/SW1</partName>
         </pin>
         <pin>
+          <partName>FPGA1/SW1</partName>
           <pinName>5</pinName>
-          <partName>FPGA1/SW1</partName>
         </pin>
         <pin>
+          <partName>FPGA1/SW1</partName>
           <pinName>6</pinName>
-          <partName>FPGA1/SW1</partName>
         </pin>
         <pin>
+          <partName>FPGA1/SW1</partName>
           <pinName>7</pinName>
-          <partName>FPGA1/SW1</partName>
         </pin>
         <pin>
+          <partName>FPGA1/SW1</partName>
           <pinName>8</pinName>
-          <partName>FPGA1/SW1</partName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>FPGA1/SW2</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>4</pinName>
           <partName>FPGA1/SW2</partName>
+          <pinName>4</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>FPGA1/SW3</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>4</pinName>
           <partName>FPGA1/SW3</partName>
-        </pin>
-        <pin>
-          <pinName>1</pinName>
-          <partName>FPGA1/SW4</partName>
-        </pin>
-        <pin>
           <pinName>4</pinName>
+        </pin>
+        <pin>
           <partName>FPGA1/SW4</partName>
-        </pin>
-        <pin>
           <pinName>1</pinName>
-          <partName>FPGA1/SW5</partName>
         </pin>
         <pin>
+          <partName>FPGA1/SW4</partName>
           <pinName>4</pinName>
-          <partName>FPGA1/SW5</partName>
         </pin>
         <pin>
+          <partName>FPGA1/SW5</partName>
+          <pinName>1</pinName>
+        </pin>
+        <pin>
+          <partName>FPGA1/SW5</partName>
+          <pinName>4</pinName>
+        </pin>
+        <pin>
+          <partName>FPGA1/P1</partName>
           <pinName>3</pinName>
-          <partName>FPGA1/P1</partName>
         </pin>
         <pin>
+          <partName>FPGA1/P1</partName>
           <pinName>5</pinName>
-          <partName>FPGA1/P1</partName>
         </pin>
         <pin>
+          <partName>FPGA1/P1</partName>
           <pinName>7</pinName>
-          <partName>FPGA1/P1</partName>
         </pin>
         <pin>
+          <partName>FPGA1/P1</partName>
           <pinName>9</pinName>
-          <partName>FPGA1/P1</partName>
         </pin>
         <pin>
+          <partName>FPGA1/P1</partName>
           <pinName>11</pinName>
-          <partName>FPGA1/P1</partName>
         </pin>
         <pin>
+          <partName>FPGA1/U1</partName>
           <pinName>B2</pinName>
-          <partName>FPGA1/U1</partName>
         </pin>
         <pin>
+          <partName>FPGA1/U1</partName>
           <pinName>H2</pinName>
-          <partName>FPGA1/U1</partName>
         </pin>
         <pin>
+          <partName>FPGA1/U1</partName>
           <pinName>H4</pinName>
-          <partName>FPGA1/U1</partName>
         </pin>
         <pin>
+          <partName>FPGA1/U1</partName>
           <pinName>H6</pinName>
-          <partName>FPGA1/U1</partName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>FPGA1/R15</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
+          <partName>PWR/U1</partName>
           <pinName>6</pinName>
-          <partName>PWR/U1</partName>
         </pin>
         <pin>
+          <partName>PWR/U1</partName>
           <pinName>7</pinName>
-          <partName>PWR/U1</partName>
         </pin>
         <pin>
+          <partName>PWR/U1</partName>
           <pinName>10</pinName>
-          <partName>PWR/U1</partName>
         </pin>
         <pin>
+          <partName>PWR/U1</partName>
           <pinName>11</pinName>
-          <partName>PWR/U1</partName>
         </pin>
         <pin>
+          <partName>PWR/U1</partName>
           <pinName>17</pinName>
-          <partName>PWR/U1</partName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>PWR/R2</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>PWR/C1</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>PWR/C2</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>PWR/C3</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>PWR/C4</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>PWR/C5</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>PWR/C6</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>PWR/C7</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>PWR/C8</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>PWR/C9</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>PWR/C10</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>PWR/C11</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>PWR/C12</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>PWR/C13</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>PWR/C14</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>PWR/C15</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>PWR/C16</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>PWR/C17</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>PWR/C18</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>PWR/C19</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>PWR/C20</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -1037,8 +1037,8 @@
       <name>led</name>
       <pins>
         <pin>
-          <pinName>1</pinName>
           <partName>FPGA1/D8</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -1046,12 +1046,12 @@
       <name>led_cathode</name>
       <pins>
         <pin>
-          <pinName>2</pinName>
           <partName>FPGA1/D8</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>FPGA1/R8</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -1059,8 +1059,8 @@
       <name>pcie_perst_n</name>
       <pins>
         <pin>
-          <pinName>A11</pinName>
           <partName>P1</partName>
+          <pinName>A11</pinName>
         </pin>
       </pins>
     </net>
@@ -1068,12 +1068,12 @@
       <name>pcie_prsnt_n</name>
       <pins>
         <pin>
-          <pinName>B17</pinName>
           <partName>P1</partName>
+          <pinName>B17</pinName>
         </pin>
         <pin>
-          <pinName>A1</pinName>
           <partName>P1</partName>
+          <pinName>A1</pinName>
         </pin>
       </pins>
     </net>
@@ -1081,8 +1081,8 @@
       <name>pcie_refclk_n</name>
       <pins>
         <pin>
-          <pinName>A14</pinName>
           <partName>P1</partName>
+          <pinName>A14</pinName>
         </pin>
       </pins>
     </net>
@@ -1090,8 +1090,8 @@
       <name>pcie_refclk_p</name>
       <pins>
         <pin>
-          <pinName>A13</pinName>
           <partName>P1</partName>
+          <pinName>A13</pinName>
         </pin>
       </pins>
     </net>
@@ -1099,8 +1099,8 @@
       <name>pcie_rx0_n</name>
       <pins>
         <pin>
-          <pinName>B15</pinName>
           <partName>P1</partName>
+          <pinName>B15</pinName>
         </pin>
       </pins>
     </net>
@@ -1108,8 +1108,8 @@
       <name>pcie_rx0_p</name>
       <pins>
         <pin>
-          <pinName>B14</pinName>
           <partName>P1</partName>
+          <pinName>B14</pinName>
         </pin>
       </pins>
     </net>
@@ -1117,8 +1117,8 @@
       <name>pcie_tx0_n</name>
       <pins>
         <pin>
-          <pinName>A17</pinName>
           <partName>P1</partName>
+          <pinName>A17</pinName>
         </pin>
       </pins>
     </net>
@@ -1126,8 +1126,8 @@
       <name>pcie_tx0_p</name>
       <pins>
         <pin>
-          <pinName>A16</pinName>
           <partName>P1</partName>
+          <pinName>A16</pinName>
         </pin>
       </pins>
     </net>
@@ -1135,12 +1135,12 @@
       <name>pushbutton</name>
       <pins>
         <pin>
-          <pinName>2</pinName>
           <partName>FPGA1/SW2</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>3</pinName>
           <partName>FPGA1/SW2</partName>
+          <pinName>3</pinName>
         </pin>
       </pins>
     </net>
@@ -1148,8 +1148,8 @@
       <name>tck</name>
       <pins>
         <pin>
-          <pinName>6</pinName>
           <partName>FPGA1/P1</partName>
+          <pinName>6</pinName>
         </pin>
       </pins>
     </net>
@@ -1157,8 +1157,8 @@
       <name>tdi</name>
       <pins>
         <pin>
-          <pinName>10</pinName>
           <partName>FPGA1/P1</partName>
+          <pinName>10</pinName>
         </pin>
       </pins>
     </net>
@@ -1166,8 +1166,8 @@
       <name>tdo</name>
       <pins>
         <pin>
-          <pinName>8</pinName>
           <partName>FPGA1/P1</partName>
+          <pinName>8</pinName>
         </pin>
       </pins>
     </net>
@@ -1175,12 +1175,12 @@
       <name>test_trace_bottom</name>
       <pins>
         <pin>
-          <pinName>1</pinName>
           <partName>TP11</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>TP12</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -1188,12 +1188,12 @@
       <name>test_trace_top</name>
       <pins>
         <pin>
-          <pinName>1</pinName>
           <partName>TP15</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>TP16</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -1201,8 +1201,8 @@
       <name>tms</name>
       <pins>
         <pin>
-          <pinName>4</pinName>
           <partName>FPGA1/P1</partName>
+          <pinName>4</pinName>
         </pin>
       </pins>
     </net>

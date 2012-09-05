@@ -1352,12 +1352,12 @@
       <name>2v5_pwr</name>
       <pins>
         <pin>
-          <pinName>a</pinName>
           <partName>LD11</partName>
+          <pinName>a</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>R86</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -1365,12 +1365,12 @@
       <name>3v3_pwr</name>
       <pins>
         <pin>
-          <pinName>a</pinName>
           <partName>LD10</partName>
+          <pinName>a</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>R84</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -1378,20 +1378,20 @@
       <name>3v3_sense</name>
       <pins>
         <pin>
-          <pinName>1</pinName>
           <partName>U14</partName>
-        </pin>
-        <pin>
-          <pinName>+</pinName>
-          <partName>C86</partName>
-        </pin>
-        <pin>
-          <pinName>2</pinName>
-          <partName>R82</partName>
-        </pin>
-        <pin>
           <pinName>1</pinName>
+        </pin>
+        <pin>
+          <partName>C86</partName>
+          <pinName>+</pinName>
+        </pin>
+        <pin>
+          <partName>R82</partName>
+          <pinName>2</pinName>
+        </pin>
+        <pin>
           <partName>R83</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -1399,12 +1399,12 @@
       <name>5v_pwr</name>
       <pins>
         <pin>
-          <pinName>a</pinName>
           <partName>LD9</partName>
+          <pinName>a</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>R81</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -1412,12 +1412,12 @@
       <name>CCLK</name>
       <pins>
         <pin>
-          <pinName>P72</pinName>
           <partName>U1</partName>
+          <pinName>P72</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R33</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -1425,20 +1425,20 @@
       <name>DONE</name>
       <pins>
         <pin>
-          <pinName>P71</pinName>
           <partName>U1</partName>
+          <pinName>P71</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>R29</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>a</pinName>
           <partName>LD8</partName>
+          <pinName>a</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>J5</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -1446,12 +1446,12 @@
       <name>HSWAP_EN</name>
       <pins>
         <pin>
-          <pinName>P142</pinName>
           <partName>U1</partName>
+          <pinName>P142</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>J4</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -1459,12 +1459,12 @@
       <name>M0</name>
       <pins>
         <pin>
-          <pinName>P38</pinName>
           <partName>U1</partName>
+          <pinName>P38</pinName>
         </pin>
         <pin>
-          <pinName>6</pinName>
           <partName>J3</partName>
+          <pinName>6</pinName>
         </pin>
       </pins>
     </net>
@@ -1472,12 +1472,12 @@
       <name>M1</name>
       <pins>
         <pin>
-          <pinName>P37</pinName>
           <partName>U1</partName>
+          <pinName>P37</pinName>
         </pin>
         <pin>
-          <pinName>4</pinName>
           <partName>J3</partName>
+          <pinName>4</pinName>
         </pin>
       </pins>
     </net>
@@ -1485,12 +1485,12 @@
       <name>M2</name>
       <pins>
         <pin>
-          <pinName>P39</pinName>
           <partName>U1</partName>
+          <pinName>P39</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>J3</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -1498,20 +1498,20 @@
       <name>PROG_B</name>
       <pins>
         <pin>
-          <pinName>P143</pinName>
           <partName>U1</partName>
+          <pinName>P143</pinName>
         </pin>
         <pin>
-          <pinName>7</pinName>
           <partName>U4</partName>
+          <pinName>7</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>R28</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R30</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -1519,20 +1519,20 @@
       <name>TCK</name>
       <pins>
         <pin>
-          <pinName>P110</pinName>
           <partName>U1</partName>
+          <pinName>P110</pinName>
         </pin>
         <pin>
-          <pinName>6</pinName>
           <partName>U4</partName>
-        </pin>
-        <pin>
           <pinName>6</pinName>
-          <partName>J6</partName>
         </pin>
         <pin>
-          <pinName>2</pinName>
+          <partName>J6</partName>
+          <pinName>6</pinName>
+        </pin>
+        <pin>
           <partName>R36</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -1540,16 +1540,16 @@
       <name>TDI</name>
       <pins>
         <pin>
-          <pinName>P144</pinName>
           <partName>U1</partName>
+          <pinName>P144</pinName>
         </pin>
         <pin>
-          <pinName>10</pinName>
           <partName>J6</partName>
+          <pinName>10</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>R35</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -1557,12 +1557,12 @@
       <name>TDO</name>
       <pins>
         <pin>
-          <pinName>P109</pinName>
           <partName>U1</partName>
+          <pinName>P109</pinName>
         </pin>
         <pin>
-          <pinName>4</pinName>
           <partName>U4</partName>
+          <pinName>4</pinName>
         </pin>
       </pins>
     </net>
@@ -1570,20 +1570,20 @@
       <name>TMS</name>
       <pins>
         <pin>
-          <pinName>P111</pinName>
           <partName>U1</partName>
+          <pinName>P111</pinName>
         </pin>
         <pin>
-          <pinName>5</pinName>
           <partName>U4</partName>
+          <pinName>5</pinName>
         </pin>
         <pin>
-          <pinName>4</pinName>
           <partName>J6</partName>
+          <pinName>4</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>R34</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -1591,16 +1591,16 @@
       <name>addr</name>
       <pins>
         <pin>
-          <pinName>P4</pinName>
           <partName>U1</partName>
+          <pinName>P4</pinName>
         </pin>
         <pin>
-          <pinName>44</pinName>
           <partName>U2</partName>
+          <pinName>44</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>U3</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -1608,16 +1608,16 @@
       <name>ahb</name>
       <pins>
         <pin>
-          <pinName>16</pinName>
           <partName>U8</partName>
+          <pinName>16</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C57</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>c</pinName>
           <partName>D1</partName>
+          <pinName>c</pinName>
         </pin>
       </pins>
     </net>
@@ -1625,12 +1625,12 @@
       <name>ahg</name>
       <pins>
         <pin>
-          <pinName>2</pinName>
           <partName>R53</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>Q1</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -1638,12 +1638,12 @@
       <name>aho</name>
       <pins>
         <pin>
-          <pinName>17</pinName>
           <partName>U8</partName>
+          <pinName>17</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R53</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -1651,20 +1651,20 @@
       <name>ahs</name>
       <pins>
         <pin>
-          <pinName>18</pinName>
           <partName>U8</partName>
+          <pinName>18</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C57</partName>
-        </pin>
-        <pin>
-          <pinName>c</pinName>
-          <partName>D13</partName>
-        </pin>
-        <pin>
           <pinName>1</pinName>
+        </pin>
+        <pin>
+          <partName>D13</partName>
+          <pinName>c</pinName>
+        </pin>
+        <pin>
           <partName>R47</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -1672,16 +1672,16 @@
       <name>alg</name>
       <pins>
         <pin>
-          <pinName>2</pinName>
           <partName>R56</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>Q4</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R65</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -1689,12 +1689,12 @@
       <name>alo</name>
       <pins>
         <pin>
-          <pinName>21</pinName>
           <partName>U8</partName>
+          <pinName>21</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R56</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -1702,16 +1702,16 @@
       <name>bhb</name>
       <pins>
         <pin>
-          <pinName>1</pinName>
           <partName>U8</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C58</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>c</pinName>
           <partName>D2</partName>
+          <pinName>c</pinName>
         </pin>
       </pins>
     </net>
@@ -1719,12 +1719,12 @@
       <name>bhg</name>
       <pins>
         <pin>
-          <pinName>2</pinName>
           <partName>R54</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>Q2</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -1732,12 +1732,12 @@
       <name>bho</name>
       <pins>
         <pin>
-          <pinName>24</pinName>
           <partName>U8</partName>
+          <pinName>24</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R54</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -1745,20 +1745,20 @@
       <name>bhs</name>
       <pins>
         <pin>
-          <pinName>23</pinName>
           <partName>U8</partName>
+          <pinName>23</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C58</partName>
-        </pin>
-        <pin>
-          <pinName>c</pinName>
-          <partName>D15</partName>
-        </pin>
-        <pin>
           <pinName>1</pinName>
+        </pin>
+        <pin>
+          <partName>D15</partName>
+          <pinName>c</pinName>
+        </pin>
+        <pin>
           <partName>R48</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -1766,16 +1766,16 @@
       <name>blg</name>
       <pins>
         <pin>
-          <pinName>2</pinName>
           <partName>R57</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>Q5</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R66</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -1783,12 +1783,12 @@
       <name>blo</name>
       <pins>
         <pin>
-          <pinName>22</pinName>
           <partName>U8</partName>
+          <pinName>22</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R57</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -1796,12 +1796,12 @@
       <name>boot1</name>
       <pins>
         <pin>
-          <pinName>1</pinName>
           <partName>U10</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C63</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -1809,12 +1809,12 @@
       <name>boot2</name>
       <pins>
         <pin>
-          <pinName>11</pinName>
           <partName>U10</partName>
+          <pinName>11</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C64</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -1822,12 +1822,12 @@
       <name>c1+</name>
       <pins>
         <pin>
-          <pinName>1</pinName>
           <partName>U12</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C73</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -1835,12 +1835,12 @@
       <name>c1-</name>
       <pins>
         <pin>
-          <pinName>3</pinName>
           <partName>U12</partName>
+          <pinName>3</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C73</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -1848,12 +1848,12 @@
       <name>c2+</name>
       <pins>
         <pin>
-          <pinName>4</pinName>
           <partName>U12</partName>
+          <pinName>4</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C74</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -1861,12 +1861,12 @@
       <name>c2-</name>
       <pins>
         <pin>
-          <pinName>5</pinName>
           <partName>U12</partName>
+          <pinName>5</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C74</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -1874,12 +1874,12 @@
       <name>ce0_n</name>
       <pins>
         <pin>
-          <pinName>P140</pinName>
           <partName>U1</partName>
+          <pinName>P140</pinName>
         </pin>
         <pin>
-          <pinName>6</pinName>
           <partName>U2</partName>
+          <pinName>6</pinName>
         </pin>
       </pins>
     </net>
@@ -1887,12 +1887,12 @@
       <name>ce1_n</name>
       <pins>
         <pin>
-          <pinName>P137</pinName>
           <partName>U1</partName>
+          <pinName>P137</pinName>
         </pin>
         <pin>
-          <pinName>6</pinName>
           <partName>U3</partName>
+          <pinName>6</pinName>
         </pin>
       </pins>
     </net>
@@ -1900,16 +1900,16 @@
       <name>chb</name>
       <pins>
         <pin>
-          <pinName>13</pinName>
           <partName>U8</partName>
+          <pinName>13</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C59</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>c</pinName>
           <partName>D3</partName>
+          <pinName>c</pinName>
         </pin>
       </pins>
     </net>
@@ -1917,12 +1917,12 @@
       <name>chg</name>
       <pins>
         <pin>
-          <pinName>2</pinName>
           <partName>R55</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>Q3</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -1930,12 +1930,12 @@
       <name>cho</name>
       <pins>
         <pin>
-          <pinName>14</pinName>
           <partName>U8</partName>
+          <pinName>14</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R55</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -1943,20 +1943,20 @@
       <name>chs</name>
       <pins>
         <pin>
-          <pinName>15</pinName>
           <partName>U8</partName>
+          <pinName>15</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C59</partName>
-        </pin>
-        <pin>
-          <pinName>c</pinName>
-          <partName>D17</partName>
-        </pin>
-        <pin>
           <pinName>1</pinName>
+        </pin>
+        <pin>
+          <partName>D17</partName>
+          <pinName>c</pinName>
+        </pin>
+        <pin>
           <partName>R49</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -1964,12 +1964,12 @@
       <name>clamps</name>
       <pins>
         <pin>
-          <pinName>c</pinName>
           <partName>D7</partName>
+          <pinName>c</pinName>
         </pin>
         <pin>
-          <pinName>a</pinName>
           <partName>D13</partName>
+          <pinName>a</pinName>
         </pin>
       </pins>
     </net>
@@ -1977,16 +1977,16 @@
       <name>clg</name>
       <pins>
         <pin>
-          <pinName>2</pinName>
           <partName>R58</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>Q6</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R67</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -1994,12 +1994,12 @@
       <name>clk</name>
       <pins>
         <pin>
-          <pinName>P52</pinName>
           <partName>U1</partName>
+          <pinName>P52</pinName>
         </pin>
         <pin>
-          <pinName>3</pinName>
           <partName>X1</partName>
+          <pinName>3</pinName>
         </pin>
       </pins>
     </net>
@@ -2007,12 +2007,12 @@
       <name>clo</name>
       <pins>
         <pin>
-          <pinName>19</pinName>
           <partName>U8</partName>
+          <pinName>19</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R58</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -2020,12 +2020,12 @@
       <name>d0</name>
       <pins>
         <pin>
-          <pinName>1</pinName>
           <partName>U4</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>R31</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -2033,12 +2033,12 @@
       <name>dac_out</name>
       <pins>
         <pin>
-          <pinName>1</pinName>
           <partName>U5</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>J8</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -2046,24 +2046,24 @@
       <name>data</name>
       <pins>
         <pin>
-          <pinName>P23</pinName>
           <partName>U1</partName>
+          <pinName>P23</pinName>
         </pin>
         <pin>
-          <pinName>16</pinName>
           <partName>U2</partName>
-        </pin>
-        <pin>
-          <pinName>29</pinName>
-          <partName>U2</partName>
-        </pin>
-        <pin>
-          <pinName>29</pinName>
-          <partName>U3</partName>
-        </pin>
-        <pin>
           <pinName>16</pinName>
+        </pin>
+        <pin>
+          <partName>U2</partName>
+          <pinName>29</pinName>
+        </pin>
+        <pin>
           <partName>U3</partName>
+          <pinName>29</pinName>
+        </pin>
+        <pin>
+          <partName>U3</partName>
+          <pinName>16</pinName>
         </pin>
       </pins>
     </net>
@@ -2071,12 +2071,12 @@
       <name>din</name>
       <pins>
         <pin>
-          <pinName>P65</pinName>
           <partName>U1</partName>
+          <pinName>P65</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R31</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -2084,16 +2084,16 @@
       <name>dir0</name>
       <pins>
         <pin>
-          <pinName>P90</pinName>
           <partName>U1</partName>
+          <pinName>P90</pinName>
         </pin>
         <pin>
-          <pinName>3</pinName>
           <partName>U10</partName>
+          <pinName>3</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R73</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -2101,16 +2101,16 @@
       <name>dir1</name>
       <pins>
         <pin>
-          <pinName>P93</pinName>
           <partName>U1</partName>
+          <pinName>P93</pinName>
         </pin>
         <pin>
-          <pinName>3</pinName>
           <partName>U11</partName>
+          <pinName>3</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R74</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -2118,12 +2118,12 @@
       <name>e0</name>
       <pins>
         <pin>
-          <pinName>1</pinName>
           <partName>U6</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>5</pinName>
           <partName>J9</partName>
+          <pinName>5</pinName>
         </pin>
       </pins>
     </net>
@@ -2131,12 +2131,12 @@
       <name>e1</name>
       <pins>
         <pin>
-          <pinName>13</pinName>
           <partName>U6</partName>
+          <pinName>13</pinName>
         </pin>
         <pin>
-          <pinName>5</pinName>
           <partName>J10</partName>
+          <pinName>5</pinName>
         </pin>
       </pins>
     </net>
@@ -2144,12 +2144,12 @@
       <name>enc0</name>
       <pins>
         <pin>
-          <pinName>P69</pinName>
           <partName>U1</partName>
+          <pinName>P69</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>U6</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -2157,12 +2157,12 @@
       <name>enc1</name>
       <pins>
         <pin>
-          <pinName>P70</pinName>
           <partName>U1</partName>
+          <pinName>P70</pinName>
         </pin>
         <pin>
-          <pinName>12</pinName>
           <partName>U6</partName>
+          <pinName>12</pinName>
         </pin>
       </pins>
     </net>
@@ -2170,800 +2170,800 @@
       <name>gnd</name>
       <pins>
         <pin>
+          <partName>U1</partName>
           <pinName>P101</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P114</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P117</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P136</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P139</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P16</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P22</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P29</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P42</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P45</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P64</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P67</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P81</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P88</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P9</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P94</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C1</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C2</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C3</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C4</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C5</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C6</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C7</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C8</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C9</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C10</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C11</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C12</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C13</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C14</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C15</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C16</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C17</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C18</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C19</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C20</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C21</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C22</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C23</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C24</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C25</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C26</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C27</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C28</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>-</pinName>
           <partName>C29</partName>
+          <pinName>-</pinName>
         </pin>
         <pin>
-          <pinName>-</pinName>
           <partName>C30</partName>
+          <pinName>-</pinName>
         </pin>
         <pin>
-          <pinName>-</pinName>
           <partName>C31</partName>
+          <pinName>-</pinName>
         </pin>
         <pin>
-          <pinName>-</pinName>
           <partName>C32</partName>
+          <pinName>-</pinName>
         </pin>
         <pin>
-          <pinName>-</pinName>
           <partName>C33</partName>
+          <pinName>-</pinName>
         </pin>
         <pin>
-          <pinName>-</pinName>
           <partName>C34</partName>
+          <pinName>-</pinName>
         </pin>
         <pin>
-          <pinName>-</pinName>
           <partName>C35</partName>
+          <pinName>-</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>R1</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>R2</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>R3</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>R4</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>R5</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>R6</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>R7</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>R8</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>c</pinName>
           <partName>LD7</partName>
+          <pinName>c</pinName>
         </pin>
         <pin>
-          <pinName>c</pinName>
           <partName>LD6</partName>
+          <pinName>c</pinName>
         </pin>
         <pin>
-          <pinName>c</pinName>
           <partName>LD5</partName>
+          <pinName>c</pinName>
         </pin>
         <pin>
-          <pinName>c</pinName>
           <partName>LD4</partName>
+          <pinName>c</pinName>
         </pin>
         <pin>
-          <pinName>c</pinName>
           <partName>LD3</partName>
+          <pinName>c</pinName>
         </pin>
         <pin>
-          <pinName>c</pinName>
           <partName>LD2</partName>
+          <pinName>c</pinName>
         </pin>
         <pin>
-          <pinName>c</pinName>
           <partName>LD1</partName>
+          <pinName>c</pinName>
         </pin>
         <pin>
-          <pinName>c</pinName>
           <partName>LD0</partName>
+          <pinName>c</pinName>
         </pin>
         <pin>
-          <pinName>34</pinName>
           <partName>U2</partName>
-        </pin>
-        <pin>
-          <pinName>12</pinName>
-          <partName>U2</partName>
-        </pin>
-        <pin>
           <pinName>34</pinName>
-          <partName>U3</partName>
         </pin>
         <pin>
+          <partName>U2</partName>
           <pinName>12</pinName>
-          <partName>U3</partName>
         </pin>
         <pin>
-          <pinName>1</pinName>
+          <partName>U3</partName>
+          <pinName>34</pinName>
+        </pin>
+        <pin>
+          <partName>U3</partName>
+          <pinName>12</pinName>
+        </pin>
+        <pin>
           <partName>C36</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C37</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C38</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C39</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C40</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C41</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C42</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C43</partName>
-        </pin>
-        <pin>
           <pinName>1</pinName>
-          <partName>X1</partName>
         </pin>
         <pin>
+          <partName>X1</partName>
+          <pinName>1</pinName>
+        </pin>
+        <pin>
+          <partName>X1</partName>
           <pinName>2</pinName>
-          <partName>X1</partName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C44</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>S2</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
+          <partName>S2</partName>
           <pinName>4</pinName>
-          <partName>S2</partName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>J1</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>J2</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
+          <partName>J3</partName>
           <pinName>5</pinName>
-          <partName>J3</partName>
         </pin>
         <pin>
+          <partName>J3</partName>
           <pinName>3</pinName>
-          <partName>J3</partName>
         </pin>
         <pin>
+          <partName>J3</partName>
           <pinName>1</pinName>
-          <partName>J3</partName>
         </pin>
         <pin>
-          <pinName>3</pinName>
           <partName>J4</partName>
+          <pinName>3</pinName>
         </pin>
         <pin>
-          <pinName>11</pinName>
           <partName>U4</partName>
-        </pin>
-        <pin>
-          <pinName>1</pinName>
-          <partName>C45</partName>
-        </pin>
-        <pin>
-          <pinName>1</pinName>
-          <partName>C46</partName>
-        </pin>
-        <pin>
-          <pinName>1</pinName>
-          <partName>C47</partName>
-        </pin>
-        <pin>
-          <pinName>c</pinName>
-          <partName>LD8</partName>
-        </pin>
-        <pin>
-          <pinName>2</pinName>
-          <partName>S3</partName>
-        </pin>
-        <pin>
-          <pinName>4</pinName>
-          <partName>S3</partName>
-        </pin>
-        <pin>
-          <pinName>3</pinName>
-          <partName>J5</partName>
-        </pin>
-        <pin>
-          <pinName>1</pinName>
-          <partName>J6</partName>
-        </pin>
-        <pin>
-          <pinName>3</pinName>
-          <partName>J6</partName>
-        </pin>
-        <pin>
-          <pinName>5</pinName>
-          <partName>J6</partName>
-        </pin>
-        <pin>
-          <pinName>7</pinName>
-          <partName>J6</partName>
-        </pin>
-        <pin>
-          <pinName>9</pinName>
-          <partName>J6</partName>
-        </pin>
-        <pin>
           <pinName>11</pinName>
-          <partName>J6</partName>
         </pin>
         <pin>
-          <pinName>13</pinName>
-          <partName>J6</partName>
-        </pin>
-        <pin>
-          <pinName>5</pinName>
-          <partName>J7</partName>
-        </pin>
-        <pin>
-          <pinName>2</pinName>
-          <partName>U5</partName>
-        </pin>
-        <pin>
+          <partName>C45</partName>
           <pinName>1</pinName>
-          <partName>C48</partName>
         </pin>
         <pin>
+          <partName>C46</partName>
           <pinName>1</pinName>
-          <partName>J8</partName>
         </pin>
         <pin>
-          <pinName>7</pinName>
-          <partName>U6</partName>
-        </pin>
-        <pin>
+          <partName>C47</partName>
           <pinName>1</pinName>
-          <partName>J9</partName>
         </pin>
         <pin>
-          <pinName>1</pinName>
-          <partName>J10</partName>
+          <partName>LD8</partName>
+          <pinName>c</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
-          <partName>C49</partName>
-        </pin>
-        <pin>
-          <pinName>7</pinName>
-          <partName>U7</partName>
-        </pin>
-        <pin>
-          <pinName>1</pinName>
-          <partName>J11</partName>
-        </pin>
-        <pin>
-          <pinName>1</pinName>
-          <partName>J12</partName>
-        </pin>
-        <pin>
-          <pinName>1</pinName>
-          <partName>C50</partName>
-        </pin>
-        <pin>
-          <pinName>6</pinName>
-          <partName>U8</partName>
-        </pin>
-        <pin>
-          <pinName>6</pinName>
-          <partName>U9</partName>
-        </pin>
-        <pin>
-          <pinName>10</pinName>
-          <partName>U8</partName>
-        </pin>
-        <pin>
-          <pinName>10</pinName>
-          <partName>U9</partName>
-        </pin>
-        <pin>
-          <pinName>-</pinName>
-          <partName>C51</partName>
-        </pin>
-        <pin>
-          <pinName>-</pinName>
-          <partName>C52</partName>
-        </pin>
-        <pin>
-          <pinName>-</pinName>
-          <partName>C53</partName>
-        </pin>
-        <pin>
-          <pinName>-</pinName>
-          <partName>C54</partName>
-        </pin>
-        <pin>
+          <partName>S3</partName>
           <pinName>2</pinName>
-          <partName>R44</partName>
         </pin>
         <pin>
-          <pinName>2</pinName>
-          <partName>R46</partName>
-        </pin>
-        <pin>
-          <pinName>2</pinName>
-          <partName>C55</partName>
-        </pin>
-        <pin>
-          <pinName>2</pinName>
-          <partName>C56</partName>
-        </pin>
-        <pin>
-          <pinName>a</pinName>
-          <partName>D7</partName>
-        </pin>
-        <pin>
-          <pinName>a</pinName>
-          <partName>D8</partName>
-        </pin>
-        <pin>
-          <pinName>a</pinName>
-          <partName>D9</partName>
-        </pin>
-        <pin>
-          <pinName>a</pinName>
-          <partName>D10</partName>
-        </pin>
-        <pin>
-          <pinName>a</pinName>
-          <partName>D11</partName>
-        </pin>
-        <pin>
-          <pinName>a</pinName>
-          <partName>D12</partName>
-        </pin>
-        <pin>
-          <pinName>2</pinName>
-          <partName>Q4</partName>
-        </pin>
-        <pin>
-          <pinName>2</pinName>
-          <partName>Q5</partName>
-        </pin>
-        <pin>
-          <pinName>2</pinName>
-          <partName>Q6</partName>
-        </pin>
-        <pin>
-          <pinName>2</pinName>
-          <partName>Q10</partName>
-        </pin>
-        <pin>
-          <pinName>2</pinName>
-          <partName>Q11</partName>
-        </pin>
-        <pin>
-          <pinName>2</pinName>
-          <partName>Q12</partName>
-        </pin>
-        <pin>
-          <pinName>2</pinName>
-          <partName>R65</partName>
-        </pin>
-        <pin>
-          <pinName>2</pinName>
-          <partName>R66</partName>
-        </pin>
-        <pin>
-          <pinName>2</pinName>
-          <partName>R67</partName>
-        </pin>
-        <pin>
-          <pinName>2</pinName>
-          <partName>R68</partName>
-        </pin>
-        <pin>
-          <pinName>2</pinName>
-          <partName>R69</partName>
-        </pin>
-        <pin>
-          <pinName>2</pinName>
-          <partName>R70</partName>
-        </pin>
-        <pin>
+          <partName>S3</partName>
           <pinName>4</pinName>
-          <partName>U10</partName>
         </pin>
         <pin>
-          <pinName>4</pinName>
-          <partName>U11</partName>
-        </pin>
-        <pin>
-          <pinName>7</pinName>
-          <partName>U10</partName>
-        </pin>
-        <pin>
-          <pinName>7</pinName>
-          <partName>U11</partName>
-        </pin>
-        <pin>
-          <pinName>1</pinName>
-          <partName>J17</partName>
-        </pin>
-        <pin>
-          <pinName>-</pinName>
-          <partName>C67</partName>
-        </pin>
-        <pin>
-          <pinName>-</pinName>
-          <partName>C68</partName>
-        </pin>
-        <pin>
-          <pinName>-</pinName>
-          <partName>C69</partName>
-        </pin>
-        <pin>
-          <pinName>-</pinName>
-          <partName>C70</partName>
-        </pin>
-        <pin>
-          <pinName>-</pinName>
-          <partName>C71</partName>
-        </pin>
-        <pin>
-          <pinName>-</pinName>
-          <partName>C72</partName>
-        </pin>
-        <pin>
-          <pinName>2</pinName>
-          <partName>R71</partName>
-        </pin>
-        <pin>
-          <pinName>2</pinName>
-          <partName>R72</partName>
-        </pin>
-        <pin>
-          <pinName>2</pinName>
-          <partName>R73</partName>
-        </pin>
-        <pin>
-          <pinName>2</pinName>
-          <partName>R74</partName>
-        </pin>
-        <pin>
-          <pinName>15</pinName>
-          <partName>U12</partName>
-        </pin>
-        <pin>
-          <pinName>1</pinName>
-          <partName>C76</partName>
-        </pin>
-        <pin>
-          <pinName>1</pinName>
-          <partName>C77</partName>
-        </pin>
-        <pin>
-          <pinName>5</pinName>
-          <partName>J18</partName>
-        </pin>
-        <pin>
-          <pinName>g1</pinName>
-          <partName>J18</partName>
-        </pin>
-        <pin>
-          <pinName>g2</pinName>
-          <partName>J18</partName>
-        </pin>
-        <pin>
-          <pinName>1</pinName>
-          <partName>J19</partName>
-        </pin>
-        <pin>
-          <pinName>e</pinName>
-          <partName>Q13</partName>
-        </pin>
-        <pin>
-          <pinName>1</pinName>
-          <partName>J20</partName>
-        </pin>
-        <pin>
-          <pinName>2</pinName>
-          <partName>J21</partName>
-        </pin>
-        <pin>
+          <partName>J5</partName>
           <pinName>3</pinName>
-          <partName>J21</partName>
         </pin>
         <pin>
-          <pinName>-</pinName>
-          <partName>C78</partName>
-        </pin>
-        <pin>
-          <pinName>-</pinName>
-          <partName>C79</partName>
-        </pin>
-        <pin>
-          <pinName>2</pinName>
-          <partName>U13</partName>
-        </pin>
-        <pin>
-          <pinName>-</pinName>
-          <partName>C80</partName>
-        </pin>
-        <pin>
-          <pinName>-</pinName>
-          <partName>C81</partName>
-        </pin>
-        <pin>
+          <partName>J6</partName>
           <pinName>1</pinName>
-          <partName>C82</partName>
         </pin>
         <pin>
-          <pinName>1</pinName>
-          <partName>C83</partName>
+          <partName>J6</partName>
+          <pinName>3</pinName>
         </pin>
         <pin>
-          <pinName>c</pinName>
-          <partName>LD9</partName>
+          <partName>J6</partName>
+          <pinName>5</pinName>
         </pin>
         <pin>
-          <pinName>-</pinName>
-          <partName>C84</partName>
+          <partName>J6</partName>
+          <pinName>7</pinName>
         </pin>
         <pin>
-          <pinName>-</pinName>
-          <partName>C85</partName>
+          <partName>J6</partName>
+          <pinName>9</pinName>
         </pin>
         <pin>
-          <pinName>-</pinName>
-          <partName>C86</partName>
+          <partName>J6</partName>
+          <pinName>11</pinName>
         </pin>
         <pin>
-          <pinName>-</pinName>
-          <partName>C87</partName>
+          <partName>J6</partName>
+          <pinName>13</pinName>
         </pin>
         <pin>
-          <pinName>-</pinName>
-          <partName>C88</partName>
+          <partName>J7</partName>
+          <pinName>5</pinName>
         </pin>
         <pin>
-          <pinName>-</pinName>
-          <partName>C89</partName>
-        </pin>
-        <pin>
+          <partName>U5</partName>
           <pinName>2</pinName>
-          <partName>R83</partName>
         </pin>
         <pin>
-          <pinName>c</pinName>
-          <partName>LD10</partName>
+          <partName>C48</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
+          <partName>J8</partName>
+          <pinName>1</pinName>
+        </pin>
+        <pin>
+          <partName>U6</partName>
+          <pinName>7</pinName>
+        </pin>
+        <pin>
+          <partName>J9</partName>
+          <pinName>1</pinName>
+        </pin>
+        <pin>
+          <partName>J10</partName>
+          <pinName>1</pinName>
+        </pin>
+        <pin>
+          <partName>C49</partName>
+          <pinName>1</pinName>
+        </pin>
+        <pin>
+          <partName>U7</partName>
+          <pinName>7</pinName>
+        </pin>
+        <pin>
+          <partName>J11</partName>
+          <pinName>1</pinName>
+        </pin>
+        <pin>
+          <partName>J12</partName>
+          <pinName>1</pinName>
+        </pin>
+        <pin>
+          <partName>C50</partName>
+          <pinName>1</pinName>
+        </pin>
+        <pin>
+          <partName>U8</partName>
+          <pinName>6</pinName>
+        </pin>
+        <pin>
+          <partName>U9</partName>
+          <pinName>6</pinName>
+        </pin>
+        <pin>
+          <partName>U8</partName>
+          <pinName>10</pinName>
+        </pin>
+        <pin>
+          <partName>U9</partName>
+          <pinName>10</pinName>
+        </pin>
+        <pin>
+          <partName>C51</partName>
+          <pinName>-</pinName>
+        </pin>
+        <pin>
+          <partName>C52</partName>
+          <pinName>-</pinName>
+        </pin>
+        <pin>
+          <partName>C53</partName>
+          <pinName>-</pinName>
+        </pin>
+        <pin>
+          <partName>C54</partName>
+          <pinName>-</pinName>
+        </pin>
+        <pin>
+          <partName>R44</partName>
+          <pinName>2</pinName>
+        </pin>
+        <pin>
+          <partName>R46</partName>
+          <pinName>2</pinName>
+        </pin>
+        <pin>
+          <partName>C55</partName>
+          <pinName>2</pinName>
+        </pin>
+        <pin>
+          <partName>C56</partName>
+          <pinName>2</pinName>
+        </pin>
+        <pin>
+          <partName>D7</partName>
+          <pinName>a</pinName>
+        </pin>
+        <pin>
+          <partName>D8</partName>
+          <pinName>a</pinName>
+        </pin>
+        <pin>
+          <partName>D9</partName>
+          <pinName>a</pinName>
+        </pin>
+        <pin>
+          <partName>D10</partName>
+          <pinName>a</pinName>
+        </pin>
+        <pin>
+          <partName>D11</partName>
+          <pinName>a</pinName>
+        </pin>
+        <pin>
+          <partName>D12</partName>
+          <pinName>a</pinName>
+        </pin>
+        <pin>
+          <partName>Q4</partName>
+          <pinName>2</pinName>
+        </pin>
+        <pin>
+          <partName>Q5</partName>
+          <pinName>2</pinName>
+        </pin>
+        <pin>
+          <partName>Q6</partName>
+          <pinName>2</pinName>
+        </pin>
+        <pin>
+          <partName>Q10</partName>
+          <pinName>2</pinName>
+        </pin>
+        <pin>
+          <partName>Q11</partName>
+          <pinName>2</pinName>
+        </pin>
+        <pin>
+          <partName>Q12</partName>
+          <pinName>2</pinName>
+        </pin>
+        <pin>
+          <partName>R65</partName>
+          <pinName>2</pinName>
+        </pin>
+        <pin>
+          <partName>R66</partName>
+          <pinName>2</pinName>
+        </pin>
+        <pin>
+          <partName>R67</partName>
+          <pinName>2</pinName>
+        </pin>
+        <pin>
+          <partName>R68</partName>
+          <pinName>2</pinName>
+        </pin>
+        <pin>
+          <partName>R69</partName>
+          <pinName>2</pinName>
+        </pin>
+        <pin>
+          <partName>R70</partName>
+          <pinName>2</pinName>
+        </pin>
+        <pin>
+          <partName>U10</partName>
           <pinName>4</pinName>
-          <partName>U15</partName>
         </pin>
         <pin>
+          <partName>U11</partName>
+          <pinName>4</pinName>
+        </pin>
+        <pin>
+          <partName>U10</partName>
+          <pinName>7</pinName>
+        </pin>
+        <pin>
+          <partName>U11</partName>
+          <pinName>7</pinName>
+        </pin>
+        <pin>
+          <partName>J17</partName>
+          <pinName>1</pinName>
+        </pin>
+        <pin>
+          <partName>C67</partName>
           <pinName>-</pinName>
-          <partName>C90</partName>
         </pin>
         <pin>
+          <partName>C68</partName>
           <pinName>-</pinName>
-          <partName>C91</partName>
         </pin>
         <pin>
+          <partName>C69</partName>
           <pinName>-</pinName>
-          <partName>C92</partName>
         </pin>
         <pin>
+          <partName>C70</partName>
+          <pinName>-</pinName>
+        </pin>
+        <pin>
+          <partName>C71</partName>
+          <pinName>-</pinName>
+        </pin>
+        <pin>
+          <partName>C72</partName>
+          <pinName>-</pinName>
+        </pin>
+        <pin>
+          <partName>R71</partName>
           <pinName>2</pinName>
-          <partName>R85</partName>
         </pin>
         <pin>
+          <partName>R72</partName>
+          <pinName>2</pinName>
+        </pin>
+        <pin>
+          <partName>R73</partName>
+          <pinName>2</pinName>
+        </pin>
+        <pin>
+          <partName>R74</partName>
+          <pinName>2</pinName>
+        </pin>
+        <pin>
+          <partName>U12</partName>
+          <pinName>15</pinName>
+        </pin>
+        <pin>
+          <partName>C76</partName>
+          <pinName>1</pinName>
+        </pin>
+        <pin>
+          <partName>C77</partName>
+          <pinName>1</pinName>
+        </pin>
+        <pin>
+          <partName>J18</partName>
+          <pinName>5</pinName>
+        </pin>
+        <pin>
+          <partName>J18</partName>
+          <pinName>g1</pinName>
+        </pin>
+        <pin>
+          <partName>J18</partName>
+          <pinName>g2</pinName>
+        </pin>
+        <pin>
+          <partName>J19</partName>
+          <pinName>1</pinName>
+        </pin>
+        <pin>
+          <partName>Q13</partName>
+          <pinName>e</pinName>
+        </pin>
+        <pin>
+          <partName>J20</partName>
+          <pinName>1</pinName>
+        </pin>
+        <pin>
+          <partName>J21</partName>
+          <pinName>2</pinName>
+        </pin>
+        <pin>
+          <partName>J21</partName>
+          <pinName>3</pinName>
+        </pin>
+        <pin>
+          <partName>C78</partName>
+          <pinName>-</pinName>
+        </pin>
+        <pin>
+          <partName>C79</partName>
+          <pinName>-</pinName>
+        </pin>
+        <pin>
+          <partName>U13</partName>
+          <pinName>2</pinName>
+        </pin>
+        <pin>
+          <partName>C80</partName>
+          <pinName>-</pinName>
+        </pin>
+        <pin>
+          <partName>C81</partName>
+          <pinName>-</pinName>
+        </pin>
+        <pin>
+          <partName>C82</partName>
+          <pinName>1</pinName>
+        </pin>
+        <pin>
+          <partName>C83</partName>
+          <pinName>1</pinName>
+        </pin>
+        <pin>
+          <partName>LD9</partName>
           <pinName>c</pinName>
-          <partName>LD11</partName>
         </pin>
         <pin>
-          <pinName>1</pinName>
-          <partName>U16</partName>
-        </pin>
-        <pin>
+          <partName>C84</partName>
           <pinName>-</pinName>
-          <partName>C93</partName>
         </pin>
         <pin>
+          <partName>C85</partName>
+          <pinName>-</pinName>
+        </pin>
+        <pin>
+          <partName>C86</partName>
+          <pinName>-</pinName>
+        </pin>
+        <pin>
+          <partName>C87</partName>
+          <pinName>-</pinName>
+        </pin>
+        <pin>
+          <partName>C88</partName>
+          <pinName>-</pinName>
+        </pin>
+        <pin>
+          <partName>C89</partName>
+          <pinName>-</pinName>
+        </pin>
+        <pin>
+          <partName>R83</partName>
           <pinName>2</pinName>
-          <partName>R87</partName>
         </pin>
         <pin>
+          <partName>LD10</partName>
+          <pinName>c</pinName>
+        </pin>
+        <pin>
+          <partName>U15</partName>
+          <pinName>4</pinName>
+        </pin>
+        <pin>
+          <partName>C90</partName>
+          <pinName>-</pinName>
+        </pin>
+        <pin>
+          <partName>C91</partName>
+          <pinName>-</pinName>
+        </pin>
+        <pin>
+          <partName>C92</partName>
+          <pinName>-</pinName>
+        </pin>
+        <pin>
+          <partName>R85</partName>
+          <pinName>2</pinName>
+        </pin>
+        <pin>
+          <partName>LD11</partName>
+          <pinName>c</pinName>
+        </pin>
+        <pin>
+          <partName>U16</partName>
           <pinName>1</pinName>
+        </pin>
+        <pin>
+          <partName>C93</partName>
+          <pinName>-</pinName>
+        </pin>
+        <pin>
+          <partName>R87</partName>
+          <pinName>2</pinName>
+        </pin>
+        <pin>
           <partName>C94</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -2971,12 +2971,12 @@
       <name>gpio</name>
       <pins>
         <pin>
-          <pinName>P124</pinName>
           <partName>U1</partName>
+          <pinName>P124</pinName>
         </pin>
         <pin>
-          <pinName>6</pinName>
           <partName>J2</partName>
+          <pinName>6</pinName>
         </pin>
       </pins>
     </net>
@@ -2984,12 +2984,12 @@
       <name>high0</name>
       <pins>
         <pin>
-          <pinName>P104</pinName>
           <partName>U1</partName>
+          <pinName>P104</pinName>
         </pin>
         <pin>
-          <pinName>5</pinName>
           <partName>U8</partName>
+          <pinName>5</pinName>
         </pin>
       </pins>
     </net>
@@ -2997,12 +2997,12 @@
       <name>high1</name>
       <pins>
         <pin>
-          <pinName>P97</pinName>
           <partName>U1</partName>
+          <pinName>P97</pinName>
         </pin>
         <pin>
-          <pinName>5</pinName>
           <partName>U9</partName>
+          <pinName>5</pinName>
         </pin>
       </pins>
     </net>
@@ -3010,16 +3010,16 @@
       <name>init_b</name>
       <pins>
         <pin>
-          <pinName>P58</pinName>
           <partName>U1</partName>
+          <pinName>P58</pinName>
         </pin>
         <pin>
-          <pinName>8</pinName>
           <partName>U4</partName>
+          <pinName>8</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>R27</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -3027,12 +3027,12 @@
       <name>lanc_base</name>
       <pins>
         <pin>
-          <pinName>b</pinName>
           <partName>Q13</partName>
+          <pinName>b</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>R78</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -3040,12 +3040,12 @@
       <name>lanc_line</name>
       <pins>
         <pin>
-          <pinName>2</pinName>
           <partName>R80</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>J20</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -3053,20 +3053,20 @@
       <name>lanc_res</name>
       <pins>
         <pin>
-          <pinName>c</pinName>
           <partName>Q13</partName>
+          <pinName>c</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>R77</partName>
-        </pin>
-        <pin>
           <pinName>2</pinName>
-          <partName>R79</partName>
         </pin>
         <pin>
-          <pinName>1</pinName>
+          <partName>R79</partName>
+          <pinName>2</pinName>
+        </pin>
+        <pin>
           <partName>R80</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -3074,16 +3074,16 @@
       <name>lb_n</name>
       <pins>
         <pin>
-          <pinName>P12</pinName>
           <partName>U1</partName>
+          <pinName>P12</pinName>
         </pin>
         <pin>
-          <pinName>39</pinName>
           <partName>U2</partName>
+          <pinName>39</pinName>
         </pin>
         <pin>
-          <pinName>39</pinName>
           <partName>U3</partName>
+          <pinName>39</pinName>
         </pin>
       </pins>
     </net>
@@ -3091,12 +3091,12 @@
       <name>led</name>
       <pins>
         <pin>
-          <pinName>P50</pinName>
           <partName>U1</partName>
+          <pinName>P50</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>R17</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -3104,12 +3104,12 @@
       <name>led_res</name>
       <pins>
         <pin>
-          <pinName>a</pinName>
           <partName>LD7</partName>
+          <pinName>a</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R17</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -3117,12 +3117,12 @@
       <name>low0</name>
       <pins>
         <pin>
-          <pinName>P105</pinName>
           <partName>U1</partName>
+          <pinName>P105</pinName>
         </pin>
         <pin>
-          <pinName>4</pinName>
           <partName>U8</partName>
+          <pinName>4</pinName>
         </pin>
       </pins>
     </net>
@@ -3130,12 +3130,12 @@
       <name>low1</name>
       <pins>
         <pin>
-          <pinName>P98</pinName>
           <partName>U1</partName>
+          <pinName>P98</pinName>
         </pin>
         <pin>
-          <pinName>4</pinName>
           <partName>U9</partName>
+          <pinName>4</pinName>
         </pin>
       </pins>
     </net>
@@ -3143,12 +3143,12 @@
       <name>lrx</name>
       <pins>
         <pin>
-          <pinName>P84</pinName>
           <partName>U1</partName>
+          <pinName>P84</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R77</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -3156,12 +3156,12 @@
       <name>ltx</name>
       <pins>
         <pin>
-          <pinName>P83</pinName>
           <partName>U1</partName>
+          <pinName>P83</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R78</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -3169,20 +3169,20 @@
       <name>mot0</name>
       <pins>
         <pin>
-          <pinName>2</pinName>
           <partName>R47</partName>
-        </pin>
-        <pin>
           <pinName>2</pinName>
+        </pin>
+        <pin>
           <partName>Q1</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>3</pinName>
           <partName>Q4</partName>
+          <pinName>3</pinName>
         </pin>
         <pin>
-          <pinName>3</pinName>
           <partName>J13</partName>
+          <pinName>3</pinName>
         </pin>
       </pins>
     </net>
@@ -3190,20 +3190,20 @@
       <name>mot1</name>
       <pins>
         <pin>
-          <pinName>2</pinName>
           <partName>R50</partName>
-        </pin>
-        <pin>
           <pinName>2</pinName>
+        </pin>
+        <pin>
           <partName>Q7</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>3</pinName>
           <partName>Q10</partName>
+          <pinName>3</pinName>
         </pin>
         <pin>
-          <pinName>3</pinName>
           <partName>J14</partName>
+          <pinName>3</pinName>
         </pin>
       </pins>
     </net>
@@ -3211,16 +3211,16 @@
       <name>oe_n</name>
       <pins>
         <pin>
-          <pinName>P10</pinName>
           <partName>U1</partName>
+          <pinName>P10</pinName>
         </pin>
         <pin>
-          <pinName>41</pinName>
           <partName>U2</partName>
+          <pinName>41</pinName>
         </pin>
         <pin>
-          <pinName>41</pinName>
           <partName>U3</partName>
+          <pinName>41</pinName>
         </pin>
       </pins>
     </net>
@@ -3228,16 +3228,16 @@
       <name>out1</name>
       <pins>
         <pin>
-          <pinName>2</pinName>
           <partName>U10</partName>
-        </pin>
-        <pin>
-          <pinName>1</pinName>
-          <partName>C63</partName>
-        </pin>
-        <pin>
           <pinName>2</pinName>
+        </pin>
+        <pin>
+          <partName>C63</partName>
+          <pinName>1</pinName>
+        </pin>
+        <pin>
           <partName>J15</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -3245,16 +3245,16 @@
       <name>out2</name>
       <pins>
         <pin>
-          <pinName>10</pinName>
           <partName>U10</partName>
+          <pinName>10</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C64</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>J15</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -3262,16 +3262,16 @@
       <name>prog_sw</name>
       <pins>
         <pin>
-          <pinName>2</pinName>
           <partName>R30</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
+          <partName>S3</partName>
           <pinName>1</pinName>
-          <partName>S3</partName>
         </pin>
         <pin>
-          <pinName>3</pinName>
           <partName>S3</partName>
+          <pinName>3</pinName>
         </pin>
       </pins>
     </net>
@@ -3279,16 +3279,16 @@
       <name>pwm0</name>
       <pins>
         <pin>
-          <pinName>P89</pinName>
           <partName>U1</partName>
+          <pinName>P89</pinName>
         </pin>
         <pin>
-          <pinName>5</pinName>
           <partName>U10</partName>
+          <pinName>5</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R71</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -3296,16 +3296,16 @@
       <name>pwm1</name>
       <pins>
         <pin>
-          <pinName>P92</pinName>
           <partName>U1</partName>
+          <pinName>P92</pinName>
         </pin>
         <pin>
-          <pinName>5</pinName>
           <partName>U11</partName>
+          <pinName>5</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R72</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -3313,12 +3313,12 @@
       <name>r1in</name>
       <pins>
         <pin>
-          <pinName>13</pinName>
           <partName>U12</partName>
+          <pinName>13</pinName>
         </pin>
         <pin>
-          <pinName>3</pinName>
           <partName>J18</partName>
+          <pinName>3</pinName>
         </pin>
       </pins>
     </net>
@@ -3326,12 +3326,12 @@
       <name>r1out</name>
       <pins>
         <pin>
-          <pinName>12</pinName>
           <partName>U12</partName>
+          <pinName>12</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>R75</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -3339,12 +3339,12 @@
       <name>r2in</name>
       <pins>
         <pin>
-          <pinName>8</pinName>
           <partName>U12</partName>
+          <pinName>8</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>J19</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -3352,12 +3352,12 @@
       <name>r2out</name>
       <pins>
         <pin>
-          <pinName>9</pinName>
           <partName>U12</partName>
+          <pinName>9</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>R76</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -3365,12 +3365,12 @@
       <name>rdel</name>
       <pins>
         <pin>
-          <pinName>7</pinName>
           <partName>U8</partName>
+          <pinName>7</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>R43</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -3378,20 +3378,20 @@
       <name>reset_res</name>
       <pins>
         <pin>
-          <pinName>1</pinName>
           <partName>S2</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
+          <partName>S2</partName>
           <pinName>3</pinName>
-          <partName>S2</partName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>R26</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R25</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -3399,12 +3399,12 @@
       <name>rfsh</name>
       <pins>
         <pin>
-          <pinName>9</pinName>
           <partName>U8</partName>
+          <pinName>9</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C55</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -3412,16 +3412,16 @@
       <name>rom_ce</name>
       <pins>
         <pin>
-          <pinName>10</pinName>
           <partName>U4</partName>
+          <pinName>10</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>R32</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>J5</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -3429,12 +3429,12 @@
       <name>rom_clk</name>
       <pins>
         <pin>
-          <pinName>3</pinName>
           <partName>U4</partName>
+          <pinName>3</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>R33</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -3442,16 +3442,16 @@
       <name>rs232_com</name>
       <pins>
         <pin>
+          <partName>J18</partName>
           <pinName>1</pinName>
-          <partName>J18</partName>
         </pin>
         <pin>
+          <partName>J18</partName>
           <pinName>4</pinName>
-          <partName>J18</partName>
         </pin>
         <pin>
-          <pinName>6</pinName>
           <partName>J18</partName>
+          <pinName>6</pinName>
         </pin>
       </pins>
     </net>
@@ -3459,12 +3459,12 @@
       <name>rs232_jump</name>
       <pins>
         <pin>
-          <pinName>7</pinName>
           <partName>J18</partName>
+          <pinName>7</pinName>
         </pin>
         <pin>
-          <pinName>8</pinName>
           <partName>J18</partName>
+          <pinName>8</pinName>
         </pin>
       </pins>
     </net>
@@ -3472,12 +3472,12 @@
       <name>rst</name>
       <pins>
         <pin>
-          <pinName>P40</pinName>
           <partName>U1</partName>
+          <pinName>P40</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>R25</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -3485,12 +3485,12 @@
       <name>rxd</name>
       <pins>
         <pin>
-          <pinName>P47</pinName>
           <partName>U1</partName>
+          <pinName>P47</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R75</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -3498,12 +3498,12 @@
       <name>rxd_a</name>
       <pins>
         <pin>
-          <pinName>P41</pinName>
           <partName>U1</partName>
+          <pinName>P41</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R76</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -3511,16 +3511,16 @@
       <name>s0</name>
       <pins>
         <pin>
-          <pinName>1</pinName>
           <partName>U7</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>5</pinName>
           <partName>J11</partName>
+          <pinName>5</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>R40</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -3528,16 +3528,16 @@
       <name>s1</name>
       <pins>
         <pin>
-          <pinName>13</pinName>
           <partName>U7</partName>
+          <pinName>13</pinName>
         </pin>
         <pin>
-          <pinName>5</pinName>
           <partName>J12</partName>
+          <pinName>5</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>R37</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -3545,12 +3545,12 @@
       <name>sclk</name>
       <pins>
         <pin>
-          <pinName>P86</pinName>
           <partName>U1</partName>
+          <pinName>P86</pinName>
         </pin>
         <pin>
-          <pinName>5</pinName>
           <partName>U5</partName>
+          <pinName>5</pinName>
         </pin>
       </pins>
     </net>
@@ -3558,12 +3558,12 @@
       <name>sdata</name>
       <pins>
         <pin>
-          <pinName>P87</pinName>
           <partName>U1</partName>
+          <pinName>P87</pinName>
         </pin>
         <pin>
-          <pinName>4</pinName>
           <partName>U5</partName>
+          <pinName>4</pinName>
         </pin>
       </pins>
     </net>
@@ -3571,12 +3571,12 @@
       <name>sense0</name>
       <pins>
         <pin>
-          <pinName>P78</pinName>
           <partName>U1</partName>
+          <pinName>P78</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>U7</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -3584,12 +3584,12 @@
       <name>sense1</name>
       <pins>
         <pin>
-          <pinName>P79</pinName>
           <partName>U1</partName>
+          <pinName>P79</pinName>
         </pin>
         <pin>
-          <pinName>12</pinName>
           <partName>U7</partName>
+          <pinName>12</pinName>
         </pin>
       </pins>
     </net>
@@ -3597,12 +3597,12 @@
       <name>sw</name>
       <pins>
         <pin>
-          <pinName>P135</pinName>
           <partName>U1</partName>
+          <pinName>P135</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>R9</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -3610,16 +3610,16 @@
       <name>sw_res</name>
       <pins>
         <pin>
-          <pinName>9</pinName>
           <partName>S1</partName>
+          <pinName>9</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R1</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R9</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -3627,12 +3627,12 @@
       <name>sync</name>
       <pins>
         <pin>
-          <pinName>P85</pinName>
           <partName>U1</partName>
+          <pinName>P85</pinName>
         </pin>
         <pin>
-          <pinName>6</pinName>
           <partName>U5</partName>
+          <pinName>6</pinName>
         </pin>
       </pins>
     </net>
@@ -3640,12 +3640,12 @@
       <name>t1out</name>
       <pins>
         <pin>
-          <pinName>14</pinName>
           <partName>U12</partName>
+          <pinName>14</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>J18</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -3653,12 +3653,12 @@
       <name>t2out</name>
       <pins>
         <pin>
-          <pinName>7</pinName>
           <partName>U12</partName>
+          <pinName>7</pinName>
         </pin>
         <pin>
-          <pinName>3</pinName>
           <partName>J19</partName>
+          <pinName>3</pinName>
         </pin>
       </pins>
     </net>
@@ -3666,12 +3666,12 @@
       <name>tck_ext</name>
       <pins>
         <pin>
-          <pinName>4</pinName>
           <partName>J7</partName>
+          <pinName>4</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R36</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -3679,12 +3679,12 @@
       <name>tdi_ext</name>
       <pins>
         <pin>
-          <pinName>2</pinName>
           <partName>J7</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R35</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -3692,16 +3692,16 @@
       <name>tdo_rom</name>
       <pins>
         <pin>
-          <pinName>17</pinName>
           <partName>U4</partName>
+          <pinName>17</pinName>
         </pin>
         <pin>
-          <pinName>8</pinName>
           <partName>J6</partName>
+          <pinName>8</pinName>
         </pin>
         <pin>
-          <pinName>3</pinName>
           <partName>J7</partName>
+          <pinName>3</pinName>
         </pin>
       </pins>
     </net>
@@ -3709,12 +3709,12 @@
       <name>tms_ext</name>
       <pins>
         <pin>
-          <pinName>1</pinName>
           <partName>J7</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R34</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -3722,12 +3722,12 @@
       <name>txd</name>
       <pins>
         <pin>
-          <pinName>P46</pinName>
           <partName>U1</partName>
+          <pinName>P46</pinName>
         </pin>
         <pin>
-          <pinName>11</pinName>
           <partName>U12</partName>
+          <pinName>11</pinName>
         </pin>
       </pins>
     </net>
@@ -3735,12 +3735,12 @@
       <name>txd_a</name>
       <pins>
         <pin>
-          <pinName>P44</pinName>
           <partName>U1</partName>
+          <pinName>P44</pinName>
         </pin>
         <pin>
-          <pinName>10</pinName>
           <partName>U12</partName>
+          <pinName>10</pinName>
         </pin>
       </pins>
     </net>
@@ -3748,16 +3748,16 @@
       <name>ub_n</name>
       <pins>
         <pin>
-          <pinName>P11</pinName>
           <partName>U1</partName>
+          <pinName>P11</pinName>
         </pin>
         <pin>
-          <pinName>40</pinName>
           <partName>U2</partName>
+          <pinName>40</pinName>
         </pin>
         <pin>
-          <pinName>40</pinName>
           <partName>U3</partName>
+          <pinName>40</pinName>
         </pin>
       </pins>
     </net>
@@ -3765,12 +3765,12 @@
       <name>uvlo</name>
       <pins>
         <pin>
-          <pinName>8</pinName>
           <partName>U8</partName>
+          <pinName>8</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R44</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -3778,12 +3778,12 @@
       <name>v+</name>
       <pins>
         <pin>
-          <pinName>2</pinName>
           <partName>U12</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>C75</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -3791,12 +3791,12 @@
       <name>v-</name>
       <pins>
         <pin>
-          <pinName>6</pinName>
           <partName>U12</partName>
+          <pinName>6</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C76</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -3804,92 +3804,92 @@
       <name>vccaux</name>
       <pins>
         <pin>
+          <partName>U1</partName>
           <pinName>P120</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P134</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P48</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P62</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C13</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C14</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C15</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C16</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C17</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C18</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C19</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C20</partName>
-        </pin>
-        <pin>
-          <pinName>+</pinName>
-          <partName>C32</partName>
-        </pin>
-        <pin>
-          <pinName>+</pinName>
-          <partName>C33</partName>
-        </pin>
-        <pin>
-          <pinName>1</pinName>
-          <partName>R27</partName>
-        </pin>
-        <pin>
-          <pinName>1</pinName>
-          <partName>R28</partName>
-        </pin>
-        <pin>
-          <pinName>1</pinName>
-          <partName>R29</partName>
-        </pin>
-        <pin>
           <pinName>2</pinName>
-          <partName>J6</partName>
         </pin>
         <pin>
-          <pinName>3</pinName>
-          <partName>U15</partName>
-        </pin>
-        <pin>
+          <partName>C32</partName>
           <pinName>+</pinName>
+        </pin>
+        <pin>
+          <partName>C33</partName>
+          <pinName>+</pinName>
+        </pin>
+        <pin>
+          <partName>R27</partName>
+          <pinName>1</pinName>
+        </pin>
+        <pin>
+          <partName>R28</partName>
+          <pinName>1</pinName>
+        </pin>
+        <pin>
+          <partName>R29</partName>
+          <pinName>1</pinName>
+        </pin>
+        <pin>
+          <partName>J6</partName>
+          <pinName>2</pinName>
+        </pin>
+        <pin>
+          <partName>U15</partName>
+          <pinName>3</pinName>
+        </pin>
+        <pin>
           <partName>C92</partName>
+          <pinName>+</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R85</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R86</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -3897,72 +3897,72 @@
       <name>vccint</name>
       <pins>
         <pin>
+          <partName>U1</partName>
           <pinName>P121</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P133</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P49</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P61</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C21</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C22</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C23</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C24</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C25</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C26</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C27</partName>
-        </pin>
-        <pin>
           <pinName>2</pinName>
+        </pin>
+        <pin>
           <partName>C28</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>+</pinName>
           <partName>C34</partName>
+          <pinName>+</pinName>
         </pin>
         <pin>
-          <pinName>+</pinName>
           <partName>C35</partName>
-        </pin>
-        <pin>
-          <pinName>4</pinName>
-          <partName>U16</partName>
-        </pin>
-        <pin>
           <pinName>+</pinName>
-          <partName>C93</partName>
         </pin>
         <pin>
-          <pinName>1</pinName>
+          <partName>U16</partName>
+          <pinName>4</pinName>
+        </pin>
+        <pin>
+          <partName>C93</partName>
+          <pinName>+</pinName>
+        </pin>
+        <pin>
           <partName>R87</partName>
+          <pinName>1</pinName>
         </pin>
       </pins>
     </net>
@@ -3970,324 +3970,324 @@
       <name>vcco</name>
       <pins>
         <pin>
+          <partName>U1</partName>
           <pinName>P138</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P115</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P126</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P106</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P75</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P91</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P66</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P43</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P54</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P34</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P19</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
+          <partName>U1</partName>
           <pinName>P3</pinName>
-          <partName>U1</partName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C1</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C2</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C3</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C4</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C5</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C6</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C7</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C8</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C9</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C10</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C11</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C12</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>+</pinName>
           <partName>C29</partName>
+          <pinName>+</pinName>
         </pin>
         <pin>
-          <pinName>+</pinName>
           <partName>C30</partName>
+          <pinName>+</pinName>
         </pin>
         <pin>
-          <pinName>+</pinName>
           <partName>C31</partName>
+          <pinName>+</pinName>
         </pin>
         <pin>
+          <partName>S1</partName>
           <pinName>1</pinName>
-          <partName>S1</partName>
         </pin>
         <pin>
+          <partName>S1</partName>
           <pinName>2</pinName>
-          <partName>S1</partName>
         </pin>
         <pin>
+          <partName>S1</partName>
           <pinName>3</pinName>
-          <partName>S1</partName>
         </pin>
         <pin>
+          <partName>S1</partName>
           <pinName>4</pinName>
-          <partName>S1</partName>
         </pin>
         <pin>
+          <partName>S1</partName>
           <pinName>5</pinName>
-          <partName>S1</partName>
         </pin>
         <pin>
+          <partName>S1</partName>
           <pinName>6</pinName>
-          <partName>S1</partName>
         </pin>
         <pin>
+          <partName>S1</partName>
           <pinName>7</pinName>
-          <partName>S1</partName>
         </pin>
         <pin>
+          <partName>S1</partName>
           <pinName>8</pinName>
-          <partName>S1</partName>
         </pin>
         <pin>
-          <pinName>33</pinName>
           <partName>U2</partName>
-        </pin>
-        <pin>
-          <pinName>11</pinName>
-          <partName>U2</partName>
-        </pin>
-        <pin>
           <pinName>33</pinName>
-          <partName>U3</partName>
         </pin>
         <pin>
+          <partName>U2</partName>
           <pinName>11</pinName>
-          <partName>U3</partName>
         </pin>
         <pin>
-          <pinName>2</pinName>
+          <partName>U3</partName>
+          <pinName>33</pinName>
+        </pin>
+        <pin>
+          <partName>U3</partName>
+          <pinName>11</pinName>
+        </pin>
+        <pin>
           <partName>C36</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C37</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C38</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C39</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C40</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C41</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C42</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C43</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>4</pinName>
           <partName>X1</partName>
+          <pinName>4</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C44</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R26</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>J1</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>J2</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>J4</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
+          <partName>U4</partName>
           <pinName>18</pinName>
-          <partName>U4</partName>
         </pin>
         <pin>
+          <partName>U4</partName>
           <pinName>19</pinName>
-          <partName>U4</partName>
         </pin>
         <pin>
+          <partName>U4</partName>
           <pinName>20</pinName>
-          <partName>U4</partName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C45</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C46</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C47</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R32</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>6</pinName>
           <partName>J7</partName>
+          <pinName>6</pinName>
         </pin>
         <pin>
-          <pinName>14</pinName>
           <partName>U6</partName>
-        </pin>
-        <pin>
-          <pinName>2</pinName>
-          <partName>C49</partName>
-        </pin>
-        <pin>
           <pinName>14</pinName>
+        </pin>
+        <pin>
+          <partName>C49</partName>
+          <pinName>2</pinName>
+        </pin>
+        <pin>
           <partName>U7</partName>
+          <pinName>14</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C50</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>16</pinName>
           <partName>U12</partName>
+          <pinName>16</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C75</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C77</partName>
-        </pin>
-        <pin>
           <pinName>2</pinName>
-          <partName>U14</partName>
         </pin>
         <pin>
+          <partName>U14</partName>
+          <pinName>2</pinName>
+        </pin>
+        <pin>
+          <partName>U14</partName>
           <pinName>tab</pinName>
-          <partName>U14</partName>
         </pin>
         <pin>
-          <pinName>+</pinName>
           <partName>C87</partName>
+          <pinName>+</pinName>
         </pin>
         <pin>
-          <pinName>+</pinName>
           <partName>C88</partName>
+          <pinName>+</pinName>
         </pin>
         <pin>
-          <pinName>+</pinName>
           <partName>C89</partName>
+          <pinName>+</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R82</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R84</partName>
-        </pin>
-        <pin>
           <pinName>1</pinName>
+        </pin>
+        <pin>
           <partName>U15</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>+</pinName>
           <partName>C90</partName>
-        </pin>
-        <pin>
           <pinName>+</pinName>
+        </pin>
+        <pin>
           <partName>C91</partName>
+          <pinName>+</pinName>
         </pin>
         <pin>
-          <pinName>3</pinName>
           <partName>U16</partName>
+          <pinName>3</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C94</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -4295,80 +4295,80 @@
       <name>vdd</name>
       <pins>
         <pin>
-          <pinName>20</pinName>
           <partName>U8</partName>
-        </pin>
-        <pin>
           <pinName>20</pinName>
+        </pin>
+        <pin>
           <partName>U9</partName>
+          <pinName>20</pinName>
         </pin>
         <pin>
-          <pinName>+</pinName>
           <partName>C51</partName>
+          <pinName>+</pinName>
         </pin>
         <pin>
-          <pinName>+</pinName>
           <partName>C52</partName>
+          <pinName>+</pinName>
         </pin>
         <pin>
-          <pinName>+</pinName>
           <partName>C53</partName>
+          <pinName>+</pinName>
         </pin>
         <pin>
-          <pinName>+</pinName>
           <partName>C54</partName>
+          <pinName>+</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R43</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>R45</partName>
+          <pinName>1</pinName>
         </pin>
         <pin>
-          <pinName>a</pinName>
           <partName>D1</partName>
+          <pinName>a</pinName>
         </pin>
         <pin>
-          <pinName>a</pinName>
           <partName>D2</partName>
+          <pinName>a</pinName>
         </pin>
         <pin>
-          <pinName>a</pinName>
           <partName>D3</partName>
+          <pinName>a</pinName>
         </pin>
         <pin>
-          <pinName>a</pinName>
           <partName>D4</partName>
+          <pinName>a</pinName>
         </pin>
         <pin>
-          <pinName>a</pinName>
           <partName>D5</partName>
-        </pin>
-        <pin>
           <pinName>a</pinName>
+        </pin>
+        <pin>
           <partName>D6</partName>
+          <pinName>a</pinName>
         </pin>
         <pin>
-          <pinName>1</pinName>
           <partName>J21</partName>
-        </pin>
-        <pin>
-          <pinName>+</pinName>
-          <partName>C78</partName>
-        </pin>
-        <pin>
-          <pinName>+</pinName>
-          <partName>C79</partName>
-        </pin>
-        <pin>
           <pinName>1</pinName>
-          <partName>U13</partName>
         </pin>
         <pin>
-          <pinName>2</pinName>
+          <partName>C78</partName>
+          <pinName>+</pinName>
+        </pin>
+        <pin>
+          <partName>C79</partName>
+          <pinName>+</pinName>
+        </pin>
+        <pin>
+          <partName>U13</partName>
+          <pinName>1</pinName>
+        </pin>
+        <pin>
           <partName>C82</partName>
+          <pinName>2</pinName>
         </pin>
       </pins>
     </net>
@@ -4376,64 +4376,64 @@
       <name>vmot</name>
       <pins>
         <pin>
-          <pinName>3</pinName>
           <partName>Q1</partName>
+          <pinName>3</pinName>
         </pin>
         <pin>
-          <pinName>3</pinName>
           <partName>Q2</partName>
+          <pinName>3</pinName>
         </pin>
         <pin>
-          <pinName>3</pinName>
           <partName>Q3</partName>
+          <pinName>3</pinName>
         </pin>
         <pin>
-          <pinName>3</pinName>
           <partName>Q7</partName>
+          <pinName>3</pinName>
         </pin>
         <pin>
-          <pinName>3</pinName>
           <partName>Q8</partName>
-        </pin>
-        <pin>
           <pinName>3</pinName>
+        </pin>
+        <pin>
           <partName>Q9</partName>
+          <pinName>3</pinName>
         </pin>
         <pin>
-          <pinName>6</pinName>
           <partName>U10</partName>
-        </pin>
-        <pin>
           <pinName>6</pinName>
+        </pin>
+        <pin>
           <partName>U11</partName>
+          <pinName>6</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>J17</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>+</pinName>
           <partName>C67</partName>
+          <pinName>+</pinName>
         </pin>
         <pin>
-          <pinName>+</pinName>
           <partName>C68</partName>
+          <pinName>+</pinName>
         </pin>
         <pin>
-          <pinName>+</pinName>
           <partName>C69</partName>
+          <pinName>+</pinName>
         </pin>
         <pin>
-          <pinName>+</pinName>
           <partName>C70</partName>
+          <pinName>+</pinName>
         </pin>
         <pin>
-          <pinName>+</pinName>
           <partName>C71</partName>
+          <pinName>+</pinName>
         </pin>
         <pin>
-          <pinName>+</pinName>
           <partName>C72</partName>
+          <pinName>+</pinName>
         </pin>
       </pins>
     </net>
@@ -4441,88 +4441,88 @@
       <name>vu</name>
       <pins>
         <pin>
-          <pinName>3</pinName>
           <partName>U5</partName>
+          <pinName>3</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>C48</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>J9</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>J10</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>J11</partName>
+          <pinName>2</pinName>
         </pin>
         <pin>
-          <pinName>2</pinName>
           <partName>J12</partName>
-        </pin>
-        <pin>
-          <pinName>1</pinName>
-          <partName>R37</partName>
-        </pin>
-        <pin>
-          <pinName>1</pinName>
-          <partName>R38</partName>
-        </pin>
-        <pin>
-          <pinName>1</pinName>
-          <partName>R39</partName>
-        </pin>
-        <pin>
-          <pinName>1</pinName>
-          <partName>R40</partName>
-        </pin>
-        <pin>
-          <pinName>1</pinName>
-          <partName>R41</partName>
-        </pin>
-        <pin>
-          <pinName>1</pinName>
-          <partName>R42</partName>
-        </pin>
-        <pin>
-          <pinName>1</pinName>
-          <partName>R79</partName>
-        </pin>
-        <pin>
-          <pinName>3</pinName>
-          <partName>U13</partName>
-        </pin>
-        <pin>
-          <pinName>+</pinName>
-          <partName>C80</partName>
-        </pin>
-        <pin>
-          <pinName>+</pinName>
-          <partName>C81</partName>
-        </pin>
-        <pin>
           <pinName>2</pinName>
-          <partName>C83</partName>
         </pin>
         <pin>
+          <partName>R37</partName>
           <pinName>1</pinName>
-          <partName>R81</partName>
         </pin>
         <pin>
+          <partName>R38</partName>
+          <pinName>1</pinName>
+        </pin>
+        <pin>
+          <partName>R39</partName>
+          <pinName>1</pinName>
+        </pin>
+        <pin>
+          <partName>R40</partName>
+          <pinName>1</pinName>
+        </pin>
+        <pin>
+          <partName>R41</partName>
+          <pinName>1</pinName>
+        </pin>
+        <pin>
+          <partName>R42</partName>
+          <pinName>1</pinName>
+        </pin>
+        <pin>
+          <partName>R79</partName>
+          <pinName>1</pinName>
+        </pin>
+        <pin>
+          <partName>U13</partName>
           <pinName>3</pinName>
+        </pin>
+        <pin>
+          <partName>C80</partName>
+          <pinName>+</pinName>
+        </pin>
+        <pin>
+          <partName>C81</partName>
+          <pinName>+</pinName>
+        </pin>
+        <pin>
+          <partName>C83</partName>
+          <pinName>2</pinName>
+        </pin>
+        <pin>
+          <partName>R81</partName>
+          <pinName>1</pinName>
+        </pin>
+        <pin>
           <partName>U14</partName>
+          <pinName>3</pinName>
         </pin>
         <pin>
-          <pinName>+</pinName>
           <partName>C84</partName>
+          <pinName>+</pinName>
         </pin>
         <pin>
-          <pinName>+</pinName>
           <partName>C85</partName>
+          <pinName>+</pinName>
         </pin>
       </pins>
     </net>
@@ -4530,16 +4530,16 @@
       <name>we_n</name>
       <pins>
         <pin>
-          <pinName>P24</pinName>
           <partName>U1</partName>
+          <pinName>P24</pinName>
         </pin>
         <pin>
-          <pinName>17</pinName>
           <partName>U2</partName>
+          <pinName>17</pinName>
         </pin>
         <pin>
-          <pinName>17</pinName>
           <partName>U3</partName>
+          <pinName>17</pinName>
         </pin>
       </pins>
     </net>

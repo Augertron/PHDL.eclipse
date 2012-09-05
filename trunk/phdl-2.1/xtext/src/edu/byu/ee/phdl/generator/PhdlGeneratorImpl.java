@@ -15,7 +15,6 @@ import com.thoughtworks.xstream.XStream;
 import edu.byu.ee.phdl.elaboration.EDesign;
 import edu.byu.ee.phdl.elaboration.PhdlElaborator;
 import edu.byu.ee.phdl.erc.ElectricalRuleChecker;
-import edu.byu.ee.phdl.netlist.PhdlNetlist;
 import edu.byu.ee.phdl.phdl.Design;
 import edu.byu.ee.phdl.phdl.Package;
 import edu.byu.ee.phdl.phdl.PhdlModel;
@@ -114,11 +113,11 @@ public class PhdlGeneratorImpl implements IGenerator {
 			}
 
 			if (commandLine.hasOption("all") || commandLine.hasOption("xml")) {
-				PhdlNetlist netlist = new PhdlNetlist(eDesign);
+				NetlistGenerator netlistGen = new NetlistGenerator(eDesign);
 				XStream xstream = new XStream();
 				PhdlUtils.setAliasesForPhdlNetlist(xstream);
 				String xmlFileName = name + ExtensionCodes.NET_EXT;
-				fsa.generateFile(xmlFileName, xstream.toXML(netlist) + "\n");
+				fsa.generateFile(xmlFileName, xstream.toXML(netlistGen.getNetlist()) + "\n");
 				logger.info("generated XML (For use with netlist translator): " + xmlFileName);
 			}
 
@@ -133,11 +132,11 @@ public class PhdlGeneratorImpl implements IGenerator {
 			fsa.generateFile(name + ExtensionCodes.EAGLE_EXT, eagleGen.getContents());
 			logger.debug("generated SCR (EAGLE script): " + name);
 
-			PhdlNetlist netlist = new PhdlNetlist(eDesign);
+			NetlistGenerator netlistGen = new NetlistGenerator(eDesign);
 			XStream xstream = new XStream();
 			PhdlUtils.setAliasesForPhdlNetlist(xstream);
 			String xmlFileName = name + ExtensionCodes.NET_EXT;
-			fsa.generateFile(xmlFileName, xstream.toXML(netlist) + "\n");
+			fsa.generateFile(xmlFileName, xstream.toXML(netlistGen.getNetlist()) + "\n");
 			logger.info("generated XML (For use with netlist translator): " + xmlFileName);
 
 			logger.info(eDesign.displayHierarchy());
