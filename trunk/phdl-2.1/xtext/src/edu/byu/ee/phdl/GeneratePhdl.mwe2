@@ -30,8 +30,8 @@ Workflow {
         pathRtProject = runtimeProject
         pathUiProject = "${runtimeProject}.ui"
         pathTestProject = "${runtimeProject}.tests"
-        projectNameRt = projectName
-        projectNameUi = "${projectName}.ui"
+        projectNameRt = "edu.byu.ee.${projectName}"
+        projectNameUi = "edu.byu.ee.${projectName}.ui"
         language = {
             uri = grammarURI
             fileExtensions = file.extensions
