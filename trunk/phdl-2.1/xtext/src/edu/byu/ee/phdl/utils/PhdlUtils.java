@@ -17,27 +17,6 @@ import edu.byu.ee.phdl.netlist.PhdlPin;
 import edu.byu.ee.phdl.phdl.Indices;
 
 public class PhdlUtils {
-	public static String fileToString(String fileName) {
-		StringBuilder sb = new StringBuilder();
-		BufferedReader br = null;
-		try {
-			try {
-				br = new BufferedReader(new FileReader(fileName));
-				String line = "";
-				while ((line = br.readLine()) != null) {
-					sb.append(line);
-					sb.append("\n");
-				}
-			} finally {
-				br.close();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-
-		return sb.toString();
-	}
 
 	public static List<Integer> getIndices(Indices i) {
 		List<Integer> indices = new ArrayList<Integer>();

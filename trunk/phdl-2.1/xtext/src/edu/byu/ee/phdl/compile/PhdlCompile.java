@@ -53,7 +53,7 @@ public class PhdlCompile {
 
 	private static String usage = "java -jar phdlcomp.jar";
 	private static String version = "PHDL Compiler v2.1, ";
-	private static String release = "August 15, 2012 release.  ";
+	private static String build = "September 10, 2012 build.  ";
 
 	private final static Logger logger = Logger.getLogger(PhdlCompile.class);
 
@@ -63,8 +63,8 @@ public class PhdlCompile {
 		return commandLine;
 	}
 
-	public static void main(String[] args) {
-		logger.info(version + release);
+	public static void main(String... args) {
+		logger.info(version + build);
 		parseArgs(setupOptions(), args);
 
 		try {
@@ -110,32 +110,53 @@ public class PhdlCompile {
 		options.addOption("p", "pads", false, "generate PADS netlist output");
 		options.addOption("e", "eagle", false, "generate EAGLE script output");
 		options.addOption("x", "xml", false, "generate XML netlist output");
-		options.addOption("a", "all", false, "generate all netlist output formats");
+		options.addOption("a", "all", false, "generate all output formats");
 		options.addOption("h", "hierarchy", false, "display design hierarchy");
+		options.addOption(OptionBuilder.withArgName("class_name").hasArg()
+				.withDescription("optional translator class name").create("tran"));
 		options.addOption(OptionBuilder.withArgName("directory").hasArg()
 				.withDescription("directory containing PHDL source files").create("src"));
 		options.addOption(OptionBuilder.withArgName("directory").hasArg()
 				.withDescription("directory to output generated files").create("gen"));
 		options.addOption(OptionBuilder.withArgName("design_name").hasArg()
 				.withDescription("specify top-level design name").create("top"));
-		options.addOption(OptionBuilder.withArgName("key=value").hasArgs(2).withValueSeparator()
-				.withDescription("specify arbitrary key-value pairs (beta)").create("pair"));
 		return options;
+	}
+
+	private List<String> getSourceFiles(String directory) {
+		List<String> sourceFiles = new ArrayList<String>();
+		File folder = new File(directory);
+		for (String item : folder.list()) {
+			File file = new File(folder.getAbsolutePath() + File.separator + item);
+			String relativePath = directory + File.separator + item;
+			if (file.isFile() && file.getName().endsWith("." + fileExtension)) {
+				sourceFiles.add(relativePath);
+			} else if (file.isDirectory()) {
+				sourceFiles.addAll(getSourceFiles(relativePath));
+			}
+		}
+		return sourceFiles;
 	}
 
 	private void run() {
 		logger.info("compilation started.");
 
-		// obtain src and gen folders from the command-line if present
+		// obtain src folder from the command-line if present
 		String srcFolder = commandLine.hasOption("src") ? commandLine.getOptionValue("src") : "src";
-		String genFolder = commandLine.hasOption("gen") ? commandLine.getOptionValue("gen") : srcFolder + "-gen";
-		fileAccess.setOutputPath(genFolder);
 
+		File file = new File(srcFolder);
 		// check that src directory exists
-		if (!new File(srcFolder).exists()) {
-			logger.error("directory " + srcFolder + " does not exist.");
+		if (file.isFile()) {
+			logger.error("please enter a valid directory containing all PHDL source files.");
 			System.exit(1);
 		}
+		if (!file.exists()) {
+			logger.error("directory " + file.getAbsolutePath() + " does not exist.");
+			System.exit(1);
+		}
+
+		String genFolder = commandLine.hasOption("gen") ? commandLine.getOptionValue("gen") : srcFolder + "-gen";
+		fileAccess.setOutputPath(genFolder);
 
 		// work with only the top design if specified
 		if (commandLine.hasOption("top"))
@@ -189,8 +210,7 @@ public class PhdlCompile {
 							logger.info(issue.toString());
 					}
 				}
-				// exit abnormally since compilation cannot proceed with errors
-				// in source code
+				// compilation cannot proceed with errors in source code
 				System.exit(1);
 			}
 
@@ -208,24 +228,5 @@ public class PhdlCompile {
 			generator.doGenerate(resource, fileAccess);
 		}
 		logger.info("compilation complete.");
-	}
-
-	private List<String> getSourceFiles(String directory) {
-		List<String> sourceFiles = new ArrayList<String>();
-		File folder = new File(directory);
-		for (String item : folder.list()) {
-			File f = new File(folder.getAbsolutePath() + File.separator + item);
-			String relativePath = directory + File.separator + item;
-			if (isModelFile(f)) {
-				sourceFiles.add(relativePath);
-			} else if (f.isDirectory()) {
-				sourceFiles.addAll(getSourceFiles(relativePath));
-			}
-		}
-		return sourceFiles;
-	}
-
-	private boolean isModelFile(File f) {
-		return f.isFile() && f.getName().endsWith("." + fileExtension);
 	}
 }
