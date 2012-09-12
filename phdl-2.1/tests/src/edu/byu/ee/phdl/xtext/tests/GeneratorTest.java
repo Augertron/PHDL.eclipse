@@ -42,7 +42,8 @@ public class GeneratorTest extends XtextTest {
 			String methodName = new Throwable().getStackTrace()[0].getMethodName();
 			logger.info(msgpfx + this.getClass().getSimpleName() + "." + methodName);
 			String testDir = path + methodName + "/";
-			PhdlModel model = parseHelper.parse(PhdlUtils.fileToString(testDir + "test" + ExtensionCodes.PHDL_EXT));
+			PhdlModel model = parseHelper.parse(PhdlUtils
+					.readStringFromFile(testDir + "test" + ExtensionCodes.PHDL_EXT));
 			InMemoryFileSystemAccess fsa = new InMemoryFileSystemAccess();
 			underTest.doGenerate(model.eResource(), fsa);
 			testOutputFileNames(fsa, "top");
@@ -58,7 +59,8 @@ public class GeneratorTest extends XtextTest {
 			String methodName = new Throwable().getStackTrace()[0].getMethodName();
 			logger.info(msgpfx + this.getClass().getSimpleName() + "." + methodName);
 			String testDir = path + methodName + "/";
-			PhdlModel model = parseHelper.parse(PhdlUtils.fileToString(testDir + "test" + ExtensionCodes.PHDL_EXT));
+			PhdlModel model = parseHelper.parse(PhdlUtils
+					.readStringFromFile(testDir + "test" + ExtensionCodes.PHDL_EXT));
 			InMemoryFileSystemAccess fsa = new InMemoryFileSystemAccess();
 			underTest.doGenerate(model.eResource(), fsa);
 			testOutputFileNames(fsa, "top");
@@ -74,7 +76,8 @@ public class GeneratorTest extends XtextTest {
 			String methodName = new Throwable().getStackTrace()[0].getMethodName();
 			logger.info(msgpfx + this.getClass().getSimpleName() + "." + methodName);
 			String testDir = path + methodName + "/";
-			PhdlModel model = parseHelper.parse(PhdlUtils.fileToString(testDir + "test" + ExtensionCodes.PHDL_EXT));
+			PhdlModel model = parseHelper.parse(PhdlUtils
+					.readStringFromFile(testDir + "test" + ExtensionCodes.PHDL_EXT));
 			InMemoryFileSystemAccess fsa = new InMemoryFileSystemAccess();
 			underTest.doGenerate(model.eResource(), fsa);
 			testOutputFileNames(fsa, "top");
@@ -90,7 +93,8 @@ public class GeneratorTest extends XtextTest {
 			String methodName = new Throwable().getStackTrace()[0].getMethodName();
 			logger.info(msgpfx + this.getClass().getSimpleName() + "." + methodName);
 			String testDir = path + methodName + "/";
-			PhdlModel model = parseHelper.parse(PhdlUtils.fileToString(testDir + "test" + ExtensionCodes.PHDL_EXT));
+			PhdlModel model = parseHelper.parse(PhdlUtils
+					.readStringFromFile(testDir + "test" + ExtensionCodes.PHDL_EXT));
 			InMemoryFileSystemAccess fsa = new InMemoryFileSystemAccess();
 			underTest.doGenerate(model.eResource(), fsa);
 			testOutputFileNames(fsa, "top");
@@ -111,17 +115,17 @@ public class GeneratorTest extends XtextTest {
 	}
 
 	private void testOutputFiles(InMemoryFileSystemAccess fsa, String expected, String actual) {
-		assertEquals(PhdlUtils.fileToString(expected + ExtensionCodes.PADS_EXT),
+		assertEquals(PhdlUtils.readStringFromFile(expected + ExtensionCodes.PADS_EXT),
 				fsa.getFiles().get(IFileSystemAccess.DEFAULT_OUTPUT + actual + ExtensionCodes.PADS_EXT).toString());
-		assertEquals(PhdlUtils.fileToString(expected + ExtensionCodes.BOM_EXT),
+		assertEquals(PhdlUtils.readStringFromFile(expected + ExtensionCodes.BOM_EXT),
 				fsa.getFiles().get(IFileSystemAccess.DEFAULT_OUTPUT + actual + ExtensionCodes.BOM_EXT).toString());
-		assertEquals(PhdlUtils.fileToString(expected + ExtensionCodes.INFO_EXT),
+		assertEquals(PhdlUtils.readStringFromFile(expected + ExtensionCodes.INFO_EXT),
 				fsa.getFiles().get(IFileSystemAccess.DEFAULT_OUTPUT + actual + ExtensionCodes.INFO_EXT).toString());
-		assertEquals(PhdlUtils.fileToString(expected + ExtensionCodes.REFDES_EXT),
+		assertEquals(PhdlUtils.readStringFromFile(expected + ExtensionCodes.REFDES_EXT),
 				fsa.getFiles().get(IFileSystemAccess.DEFAULT_OUTPUT + actual + ExtensionCodes.REFDES_EXT).toString());
-		assertEquals(PhdlUtils.fileToString(expected + ExtensionCodes.EAGLE_EXT),
+		assertEquals(PhdlUtils.readStringFromFile(expected + ExtensionCodes.EAGLE_EXT),
 				fsa.getFiles().get(IFileSystemAccess.DEFAULT_OUTPUT + actual + ExtensionCodes.EAGLE_EXT).toString());
-		assertEquals(PhdlUtils.fileToString(expected + ExtensionCodes.NET_EXT),
+		assertEquals(PhdlUtils.readStringFromFile(expected + ExtensionCodes.NET_EXT),
 				fsa.getFiles().get(IFileSystemAccess.DEFAULT_OUTPUT + actual + ExtensionCodes.NET_EXT).toString());
 
 	}

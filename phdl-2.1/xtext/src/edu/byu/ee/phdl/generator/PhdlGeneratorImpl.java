@@ -18,6 +18,7 @@ import edu.byu.ee.phdl.erc.ElectricalRuleChecker;
 import edu.byu.ee.phdl.phdl.Design;
 import edu.byu.ee.phdl.phdl.Package;
 import edu.byu.ee.phdl.phdl.PhdlModel;
+import edu.byu.ee.phdl.translate.DefaultTranslator;
 import edu.byu.ee.phdl.utils.ExtensionCodes;
 import edu.byu.ee.phdl.utils.PhdlUtils;
 
@@ -99,6 +100,13 @@ public class PhdlGeneratorImpl implements IGenerator {
 		fsa.generateFile(infoFileName, infoGen.getContents());
 		logger.info("generated LSI (Layout Supplimentary Information): " + infoFileName);
 
+		NetlistGenerator netlistGen = new NetlistGenerator(eDesign);
+		XStream xstream = new XStream();
+		PhdlUtils.setAliasesForPhdlNetlist(xstream);
+		String xmlFileName = name + ExtensionCodes.NET_EXT;
+		fsa.generateFile(xmlFileName, xstream.toXML(netlistGen.getNetlist()) + "\n");
+		logger.info("generated XML (PHDL default netlist): " + xmlFileName);
+
 		if (commandLine != null) {
 			if (commandLine.hasOption("all") || commandLine.hasOption("pads")) {
 				PADSGenerator padsGen = new PADSGenerator(eDesign);
@@ -112,14 +120,26 @@ public class PhdlGeneratorImpl implements IGenerator {
 				logger.debug("generated SCR (EAGLE script): " + name);
 			}
 
-			if (commandLine.hasOption("all") || commandLine.hasOption("xml")) {
-				NetlistGenerator netlistGen = new NetlistGenerator(eDesign);
-				XStream xstream = new XStream();
-				PhdlUtils.setAliasesForPhdlNetlist(xstream);
-				String xmlFileName = name + ExtensionCodes.NET_EXT;
-				fsa.generateFile(xmlFileName, xstream.toXML(netlistGen.getNetlist()) + "\n");
-				logger.info("generated XML (For use with netlist translator): " + xmlFileName);
+			DefaultTranslator translator = null;
+			String translatorClassName = commandLine.hasOption("tran") ? commandLine.getOptionValue("tran")
+					: "edu.byu.ee.phdl.translate.DefaultTranslator";
+			try {
+				logger.info("using translator class: " + translatorClassName);
+				Class<?> clazz = Class.forName(translatorClassName);
+				translator = (DefaultTranslator) clazz.newInstance();
+			} catch (ClassNotFoundException e) {
+				logger.error(e + ", translator class must be present on class path.");
+				System.exit(1);
+			} catch (InstantiationException e) {
+				logger.error(e + ", translator class must be concrete.");
+				System.exit(1);
+			} catch (IllegalAccessException e) {
+				logger.error(e + ", translator class must have a no-arg constructor.");
+				System.exit(1);
 			}
+
+			fsa.generateFile(name + translator.getFileExtension(), translator.translate(netlistGen.getNetlist()));
+			logger.debug("generated default netlist translation file: " + name);
 
 			if (commandLine.hasOption("hierarchy"))
 				logger.info(eDesign.displayHierarchy());
@@ -132,15 +152,7 @@ public class PhdlGeneratorImpl implements IGenerator {
 			fsa.generateFile(name + ExtensionCodes.EAGLE_EXT, eagleGen.getContents());
 			logger.debug("generated SCR (EAGLE script): " + name);
 
-			NetlistGenerator netlistGen = new NetlistGenerator(eDesign);
-			XStream xstream = new XStream();
-			PhdlUtils.setAliasesForPhdlNetlist(xstream);
-			String xmlFileName = name + ExtensionCodes.NET_EXT;
-			fsa.generateFile(xmlFileName, xstream.toXML(netlistGen.getNetlist()) + "\n");
-			logger.info("generated XML (For use with netlist translator): " + xmlFileName);
-
 			logger.info(eDesign.displayHierarchy());
 		}
-
 	}
 }
