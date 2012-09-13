@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="D:/Program Files/eclipse-juno/plugins/com.google.inject_3.0.0.v201203062045.jar" sourcepath="D:/Program Files/eclipse-juno/plugins/com.google.inject.source_3.0.0.v201203062045.jar">
+		<accessrules>
+			<accessrule kind="accessible" pattern="com/google/inject/*"/>
+			<accessrule kind="accessible" pattern="com/google/inject/binder/*"/>
+			<accessrule kind="discouraged" pattern="com/google/inject/internal/*"/>
+			<accessrule kind="accessible" pattern="com/google/inject/matcher/*"/>
+			<accessrule kind="accessible" pattern="com/google/inject/name/*"/>
+			<accessrule kind="accessible" pattern="com/google/inject/spi/*"/>
+			<accessrule kind="accessible" pattern="com/google/inject/util/*"/>
+			<accessrule ignoreifbetter="true" kind="nonaccessible" pattern="**/*"/>
+		</accessrules>
+	</classpathentry>
+	<classpathentry kind="lib" path="D:/Program Files/eclipse-juno/plugins/javax.inject_1.0.0.v20091030.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
