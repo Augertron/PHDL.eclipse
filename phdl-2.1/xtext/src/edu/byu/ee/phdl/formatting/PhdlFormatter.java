@@ -17,7 +17,6 @@ import edu.byu.ee.phdl.services.PhdlGrammarAccess.DeviceElements;
 import edu.byu.ee.phdl.services.PhdlGrammarAccess.ImportElements;
 import edu.byu.ee.phdl.services.PhdlGrammarAccess.IndicesElements;
 import edu.byu.ee.phdl.services.PhdlGrammarAccess.InstanceElements;
-import edu.byu.ee.phdl.services.PhdlGrammarAccess.NewAttrElements;
 import edu.byu.ee.phdl.services.PhdlGrammarAccess.PackageElements;
 import edu.byu.ee.phdl.services.PhdlGrammarAccess.PinAssignElements;
 import edu.byu.ee.phdl.services.PhdlGrammarAccess.PinElements;
@@ -28,6 +27,7 @@ import edu.byu.ee.phdl.services.PhdlGrammarAccess.RefTailElements;
 import edu.byu.ee.phdl.services.PhdlGrammarAccess.SlicesElements;
 import edu.byu.ee.phdl.services.PhdlGrammarAccess.SubAttrElements;
 import edu.byu.ee.phdl.services.PhdlGrammarAccess.VectorElements;
+//import edu.byu.ee.phdl.services.PhdlGrammarAccess.NewAttrElements;
 
 /**
  * This class contains custom formatting description.
@@ -162,18 +162,20 @@ public class PhdlFormatter extends AbstractDeclarativeFormatter {
 		config.setIndentationDecrement().before(elements.getRightCurlyBracketKeyword_1_8());
 		config.setLinewrap(1, 1, 2).between(access.getInstanceElementRule(), access.getInstanceElementRule());
 		formatRefAttrs(config, access);
-		formatNewAttrs(config, access);
+		// formatNewAttrs(config, access);
 		formatPinAssigns(config, access);
 		formatSubAttrs(config, access);
 		formatPortAssigns(config, access);
 	}
 
-	private void formatNewAttrs(FormattingConfig config, PhdlGrammarAccess access) {
-		NewAttrElements elements = access.getNewAttrAccess();
-		config.setNoSpace().before(elements.getSemicolonKeyword_5());
-		config.setLinewrap(1, 1, 2).after(elements.getSemicolonKeyword_5());
-		config.setLinewrap(1).between(access.getNewAttrRule(), access.getNewAttrRule());
-	}
+	/*
+	 * private void formatNewAttrs(FormattingConfig config, PhdlGrammarAccess
+	 * access) { NewAttrElements elements = access.getNewAttrAccess();
+	 * config.setNoSpace().before(elements.getSemicolonKeyword_5());
+	 * config.setLinewrap(1, 1, 2).after(elements.getSemicolonKeyword_5());
+	 * config.setLinewrap(1).between(access.getNewAttrRule(),
+	 * access.getNewAttrRule()); }
+	 */
 
 	private void formatPackages(FormattingConfig config, PhdlGrammarAccess access) {
 		config.setLinewrap(1, 2, 2).around(access.getPackageRule());
@@ -251,9 +253,9 @@ public class PhdlFormatter extends AbstractDeclarativeFormatter {
 
 	private void formatSubAttrs(FormattingConfig config, PhdlGrammarAccess access) {
 		SubAttrElements elements = access.getSubAttrAccess();
-		config.setSpace(" ").around(elements.getEqualsSignKeyword_3());
-		config.setNoSpace().before(elements.getSemicolonKeyword_5());
-		config.setLinewrap(1).after(elements.getSemicolonKeyword_5());
+		config.setSpace(" ").around(elements.getEqualsSignKeyword_4());
+		config.setNoSpace().before(elements.getSemicolonKeyword_6());
+		config.setLinewrap(1).after(elements.getSemicolonKeyword_6());
 		formatRefTails(config, access);
 	}
 }

@@ -78,7 +78,7 @@ design test {
 	
 	// test combined and qualified scalar to vector mismatch in instance array
 	subinst(4:1) scalar8 of scalar {
-		combine(this(4:1).a) = b;
+		combine(this(4:1).a) = b[3:1];
 	}
 	
 	// test combined and qualified vector to scalar mismatch in instance array

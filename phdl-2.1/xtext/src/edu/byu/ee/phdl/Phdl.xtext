@@ -52,7 +52,7 @@ Instance:
 	(subInst?='subinst' array=Array name=ID 'of' subDesign=[Design | QualifiedName] prefix=STRING? '{' elements+=SubInstanceElement* '}');
 	
 InstanceElement:
-	NewAttr | RefAttr | PinAssign | Info;
+	Attr | RefAttr | PinAssign | Info;
 	
 SubInstanceElement:
 	Attr | SubAttr | PortAssign | Info;
@@ -60,16 +60,13 @@ SubInstanceElement:
 RefAttr:
 	qualifier=Qualifier? ref=[Attr] '=' value=STRING ';';
 
-NewAttr:
-	'newattr' qualifier=Qualifier? name=ID '=' value=STRING ';';
-
 PinAssign:
 	(	(combined?='combine' '(' qualifier=Qualifier? ref=[Pin | PhdlID] slices=Slices? ')') 
 	|	(qualifier=Qualifier? ref=[Pin | PhdlID] slices=Slices?)) 
 	'=' concatenation=Concatenation ';';
 
 SubAttr:
-	qualifier=Qualifier? (ref=[Referenceable | ID] refIndices=Indices?) tail=RefTail '=' value=STRING ';';
+	qualifier=Qualifier? ref=[Referenceable | ID] refIndices=Indices? tail=RefTail '=' value=STRING ';';
 
 RefTail:
 	'.' ref=[Referenceable | ID] refIndices=Indices? tail=RefTail?;
@@ -110,7 +107,7 @@ Qualifier:
 	'this' indices=Indices '.';
 	
 Referenceable:
-	Instance | Attr | NewAttr | RefAttr;
+	Instance | Attr | RefAttr;
 
 Assignable:
 	PinAssign | PortAssign | ConnectionAssign;

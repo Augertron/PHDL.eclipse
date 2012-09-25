@@ -1,4 +1,4 @@
-package edu.byu.ee.phdl;
+package edu.byu.ee.phdl.tests;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

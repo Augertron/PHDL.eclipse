@@ -50,7 +50,7 @@ public class PhdlProjectCreator extends AbstractPluginProjectCreator {
 		output.addOutlet(new Outlet(false, getEncoding(), null, true, project.getLocation().makeAbsolute().toOSString()));
 
 		XpandExecutionContextImpl execCtx = new XpandExecutionContextImpl(output, null);
-		execCtx.getResourceManager().setFileEncoding("Cp1252");
+		execCtx.getResourceManager().setFileEncoding("UTF-8");
 		execCtx.registerMetaModel(new JavaBeansMetaModel());
 
 		XpandFacade facade = XpandFacade.create(execCtx);

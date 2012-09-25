@@ -32,7 +32,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cDesignsDesignParserRuleCall_1_2_0 = (RuleCall)cDesignsAssignment_1_2.eContents().get(0);
 		
 		//PhdlModel:
-		//
 		//	imports+=Import* (packages+=Package | devices+=Device | designs+=Design)*;
 		public ParserRule getRule() { return rule; }
 
@@ -84,7 +83,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//Package:
-		//
 		//	"package" name=ID "{" imports+=Import* (devices+=Device | designs+=Design)* "}";
 		public ParserRule getRule() { return rule; }
 
@@ -137,7 +135,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//Import:
-		//
 		//	"import" importedNamespace=QualifiedNameWithWildCard ";";
 		public ParserRule getRule() { return rule; }
 
@@ -169,7 +166,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//Device:
-		//
 		//	"device" name=PhdlID "{" elements+=DeviceElement* "}";
 		public ParserRule getRule() { return rule; }
 
@@ -206,7 +202,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cInfoParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//DeviceElement:
-		//
 		//	Attr | Pin | Info;
 		public ParserRule getRule() { return rule; }
 
@@ -235,7 +230,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//Attr:
-		//
 		//	"attr" name=ID "=" value=STRING ";";
 		public ParserRule getRule() { return rule; }
 
@@ -286,7 +280,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//Pin:
-		//
 		//	type=PinType vector=Vector name=PhdlID "=" "{" (pinNames+=PhdlID ("," pinNames+=PhdlID)*)? "}" ";";
 		public ParserRule getRule() { return rule; }
 
@@ -355,7 +348,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//Info:
-		//
 		//	"info" "{" info=STRING "}";
 		public ParserRule getRule() { return rule; }
 
@@ -394,7 +386,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//Design:
-		//
 		//	(design?="design" | subdesign?="subdesign") name=ID "{" elements+=DesignElement* "}";
 		public ParserRule getRule() { return rule; }
 
@@ -444,7 +435,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cInfoParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//DesignElement:
-		//
 		//	Connection | Instance | ConnectionAssign | Info;
 		public ParserRule getRule() { return rule; }
 
@@ -505,14 +495,11 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_1_4_1 = (Keyword)cAlternatives_1_4.eContents().get(1);
 		
 		//Connection:
-		//
 		//	net?="net" vector=Vector names+=ConnectionName ("," names+=ConnectionName)* ("{" elements+=NetElement* "}" | ";") |
-		//
 		//	port?="port" vector=Vector names+=ConnectionName ("," names+=ConnectionName)* ("{" elements+=PortElement* "}" | ";");
 		public ParserRule getRule() { return rule; }
 
 		//net?="net" vector=Vector names+=ConnectionName ("," names+=ConnectionName)* ("{" elements+=NetElement* "}" | ";") |
-		//
 		//port?="port" vector=Vector names+=ConnectionName ("," names+=ConnectionName)* ("{" elements+=PortElement* "}" | ";")
 		public Alternatives getAlternatives() { return cAlternatives; }
 
@@ -632,7 +619,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cInfoParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//NetElement:
-		//
 		//	Attr | Info;
 		public ParserRule getRule() { return rule; }
 
@@ -651,7 +637,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cInfoParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
 		//PortElement:
-		//
 		//	Info;
 		public ParserRule getRule() { return rule; }
 
@@ -696,18 +681,13 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_1_8 = (Keyword)cGroup_1.eContents().get(8);
 		
 		//Instance:
-		//
 		//	inst?="inst" array=Array name=ID "of" device=[Device|QualifiedName] "{" elements+=InstanceElement* "}" |
-		//
 		//	subInst?="subinst" array=Array name=ID "of" subDesign=[Design|QualifiedName] prefix=STRING? "{"
-		//
 		//	elements+=SubInstanceElement* "}";
 		public ParserRule getRule() { return rule; }
 
 		//inst?="inst" array=Array name=ID "of" device=[Device|QualifiedName] "{" elements+=InstanceElement* "}" |
-		//
 		//subInst?="subinst" array=Array name=ID "of" subDesign=[Design|QualifiedName] prefix=STRING? "{"
-		//
 		//elements+=SubInstanceElement* "}"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
@@ -757,7 +737,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getRightCurlyBracketKeyword_0_7() { return cRightCurlyBracketKeyword_0_7; }
 
 		//subInst?="subinst" array=Array name=ID "of" subDesign=[Design|QualifiedName] prefix=STRING? "{"
-		//
 		//elements+=SubInstanceElement* "}"
 		public Group getGroup_1() { return cGroup_1; }
 
@@ -813,21 +792,20 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	public class InstanceElementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "InstanceElement");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cNewAttrParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cAttrParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cRefAttrParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cPinAssignParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cInfoParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//InstanceElement:
-		//
-		//	NewAttr | RefAttr | PinAssign | Info;
+		//	Attr | RefAttr | PinAssign | Info;
 		public ParserRule getRule() { return rule; }
 
-		//NewAttr | RefAttr | PinAssign | Info
+		//Attr | RefAttr | PinAssign | Info
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//NewAttr
-		public RuleCall getNewAttrParserRuleCall_0() { return cNewAttrParserRuleCall_0; }
+		//Attr
+		public RuleCall getAttrParserRuleCall_0() { return cAttrParserRuleCall_0; }
 
 		//RefAttr
 		public RuleCall getRefAttrParserRuleCall_1() { return cRefAttrParserRuleCall_1; }
@@ -848,7 +826,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cInfoParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//SubInstanceElement:
-		//
 		//	Attr | SubAttr | PortAssign | Info;
 		public ParserRule getRule() { return rule; }
 
@@ -882,7 +859,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//RefAttr:
-		//
 		//	qualifier=Qualifier? ref=[Attr] "=" value=STRING ";";
 		public ParserRule getRule() { return rule; }
 
@@ -917,55 +893,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getSemicolonKeyword_4() { return cSemicolonKeyword_4; }
 	}
 
-	public class NewAttrElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NewAttr");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cNewattrKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cQualifierAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cQualifierQualifierParserRuleCall_1_0 = (RuleCall)cQualifierAssignment_1.eContents().get(0);
-		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
-		private final Keyword cEqualsSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cValueAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cValueSTRINGTerminalRuleCall_4_0 = (RuleCall)cValueAssignment_4.eContents().get(0);
-		private final Keyword cSemicolonKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		
-		//NewAttr:
-		//
-		//	"newattr" qualifier=Qualifier? name=ID "=" value=STRING ";";
-		public ParserRule getRule() { return rule; }
-
-		//"newattr" qualifier=Qualifier? name=ID "=" value=STRING ";"
-		public Group getGroup() { return cGroup; }
-
-		//"newattr"
-		public Keyword getNewattrKeyword_0() { return cNewattrKeyword_0; }
-
-		//qualifier=Qualifier?
-		public Assignment getQualifierAssignment_1() { return cQualifierAssignment_1; }
-
-		//Qualifier
-		public RuleCall getQualifierQualifierParserRuleCall_1_0() { return cQualifierQualifierParserRuleCall_1_0; }
-
-		//name=ID
-		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
-
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_2_0() { return cNameIDTerminalRuleCall_2_0; }
-
-		//"="
-		public Keyword getEqualsSignKeyword_3() { return cEqualsSignKeyword_3; }
-
-		//value=STRING
-		public Assignment getValueAssignment_4() { return cValueAssignment_4; }
-
-		//STRING
-		public RuleCall getValueSTRINGTerminalRuleCall_4_0() { return cValueSTRINGTerminalRuleCall_4_0; }
-
-		//";"
-		public Keyword getSemicolonKeyword_5() { return cSemicolonKeyword_5; }
-	}
-
 	public class PinAssignElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PinAssign");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -996,19 +923,15 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//PinAssign:
-		//
 		//	(combined?="combine" "(" qualifier=Qualifier? ref=[Pin|PhdlID] slices=Slices? ")" | qualifier=Qualifier?
-		//
 		//	ref=[Pin|PhdlID] slices=Slices?) "=" concatenation=Concatenation ";";
 		public ParserRule getRule() { return rule; }
 
 		//(combined?="combine" "(" qualifier=Qualifier? ref=[Pin|PhdlID] slices=Slices? ")" | qualifier=Qualifier?
-		//
 		//ref=[Pin|PhdlID] slices=Slices?) "=" concatenation=Concatenation ";"
 		public Group getGroup() { return cGroup; }
 
 		//combined?="combine" "(" qualifier=Qualifier? ref=[Pin|PhdlID] slices=Slices? ")" | qualifier=Qualifier? ref=[Pin|PhdlID]
-		//
 		//slices=Slices?
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 
@@ -1090,25 +1013,23 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cQualifierAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cQualifierQualifierParserRuleCall_0_0 = (RuleCall)cQualifierAssignment_0.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Assignment cRefAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
-		private final CrossReference cRefReferenceableCrossReference_1_0_0 = (CrossReference)cRefAssignment_1_0.eContents().get(0);
-		private final RuleCall cRefReferenceableIDTerminalRuleCall_1_0_0_1 = (RuleCall)cRefReferenceableCrossReference_1_0_0.eContents().get(1);
-		private final Assignment cRefIndicesAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cRefIndicesIndicesParserRuleCall_1_1_0 = (RuleCall)cRefIndicesAssignment_1_1.eContents().get(0);
-		private final Assignment cTailAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cTailRefTailParserRuleCall_2_0 = (RuleCall)cTailAssignment_2.eContents().get(0);
-		private final Keyword cEqualsSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cValueAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cValueSTRINGTerminalRuleCall_4_0 = (RuleCall)cValueAssignment_4.eContents().get(0);
-		private final Keyword cSemicolonKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cRefAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cRefReferenceableCrossReference_1_0 = (CrossReference)cRefAssignment_1.eContents().get(0);
+		private final RuleCall cRefReferenceableIDTerminalRuleCall_1_0_1 = (RuleCall)cRefReferenceableCrossReference_1_0.eContents().get(1);
+		private final Assignment cRefIndicesAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cRefIndicesIndicesParserRuleCall_2_0 = (RuleCall)cRefIndicesAssignment_2.eContents().get(0);
+		private final Assignment cTailAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cTailRefTailParserRuleCall_3_0 = (RuleCall)cTailAssignment_3.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cValueAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cValueSTRINGTerminalRuleCall_5_0 = (RuleCall)cValueAssignment_5.eContents().get(0);
+		private final Keyword cSemicolonKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//SubAttr:
-		//
-		//	qualifier=Qualifier? (ref=[Referenceable] refIndices=Indices?) tail=RefTail "=" value=STRING ";";
+		//	qualifier=Qualifier? ref=[Referenceable] refIndices=Indices? tail=RefTail "=" value=STRING ";";
 		public ParserRule getRule() { return rule; }
 
-		//qualifier=Qualifier? (ref=[Referenceable] refIndices=Indices?) tail=RefTail "=" value=STRING ";"
+		//qualifier=Qualifier? ref=[Referenceable] refIndices=Indices? tail=RefTail "=" value=STRING ";"
 		public Group getGroup() { return cGroup; }
 
 		//qualifier=Qualifier?
@@ -1117,41 +1038,38 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		//Qualifier
 		public RuleCall getQualifierQualifierParserRuleCall_0_0() { return cQualifierQualifierParserRuleCall_0_0; }
 
-		//ref=[Referenceable] refIndices=Indices?
-		public Group getGroup_1() { return cGroup_1; }
-
 		//ref=[Referenceable]
-		public Assignment getRefAssignment_1_0() { return cRefAssignment_1_0; }
+		public Assignment getRefAssignment_1() { return cRefAssignment_1; }
 
 		//[Referenceable]
-		public CrossReference getRefReferenceableCrossReference_1_0_0() { return cRefReferenceableCrossReference_1_0_0; }
+		public CrossReference getRefReferenceableCrossReference_1_0() { return cRefReferenceableCrossReference_1_0; }
 
 		//ID
-		public RuleCall getRefReferenceableIDTerminalRuleCall_1_0_0_1() { return cRefReferenceableIDTerminalRuleCall_1_0_0_1; }
+		public RuleCall getRefReferenceableIDTerminalRuleCall_1_0_1() { return cRefReferenceableIDTerminalRuleCall_1_0_1; }
 
 		//refIndices=Indices?
-		public Assignment getRefIndicesAssignment_1_1() { return cRefIndicesAssignment_1_1; }
+		public Assignment getRefIndicesAssignment_2() { return cRefIndicesAssignment_2; }
 
 		//Indices
-		public RuleCall getRefIndicesIndicesParserRuleCall_1_1_0() { return cRefIndicesIndicesParserRuleCall_1_1_0; }
+		public RuleCall getRefIndicesIndicesParserRuleCall_2_0() { return cRefIndicesIndicesParserRuleCall_2_0; }
 
 		//tail=RefTail
-		public Assignment getTailAssignment_2() { return cTailAssignment_2; }
+		public Assignment getTailAssignment_3() { return cTailAssignment_3; }
 
 		//RefTail
-		public RuleCall getTailRefTailParserRuleCall_2_0() { return cTailRefTailParserRuleCall_2_0; }
+		public RuleCall getTailRefTailParserRuleCall_3_0() { return cTailRefTailParserRuleCall_3_0; }
 
 		//"="
-		public Keyword getEqualsSignKeyword_3() { return cEqualsSignKeyword_3; }
+		public Keyword getEqualsSignKeyword_4() { return cEqualsSignKeyword_4; }
 
 		//value=STRING
-		public Assignment getValueAssignment_4() { return cValueAssignment_4; }
+		public Assignment getValueAssignment_5() { return cValueAssignment_5; }
 
 		//STRING
-		public RuleCall getValueSTRINGTerminalRuleCall_4_0() { return cValueSTRINGTerminalRuleCall_4_0; }
+		public RuleCall getValueSTRINGTerminalRuleCall_5_0() { return cValueSTRINGTerminalRuleCall_5_0; }
 
 		//";"
-		public Keyword getSemicolonKeyword_5() { return cSemicolonKeyword_5; }
+		public Keyword getSemicolonKeyword_6() { return cSemicolonKeyword_6; }
 	}
 
 	public class RefTailElements extends AbstractParserRuleElementFinder {
@@ -1167,7 +1085,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTailRefTailParserRuleCall_3_0 = (RuleCall)cTailAssignment_3.eContents().get(0);
 		
 		//RefTail:
-		//
 		//	"." ref=[Referenceable] refIndices=Indices? tail=RefTail?;
 		public ParserRule getRule() { return rule; }
 
@@ -1229,19 +1146,15 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//PortAssign:
-		//
 		//	(combined?="combine" "(" qualifier=Qualifier? ref=[ConnectionName|PhdlID] slices=Slices? ")" | qualifier=Qualifier?
-		//
 		//	ref=[ConnectionName|PhdlID] slices=Slices?) "=" concatenation=Concatenation ";";
 		public ParserRule getRule() { return rule; }
 
 		//(combined?="combine" "(" qualifier=Qualifier? ref=[ConnectionName|PhdlID] slices=Slices? ")" | qualifier=Qualifier?
-		//
 		//ref=[ConnectionName|PhdlID] slices=Slices?) "=" concatenation=Concatenation ";"
 		public Group getGroup() { return cGroup; }
 
 		//combined?="combine" "(" qualifier=Qualifier? ref=[ConnectionName|PhdlID] slices=Slices? ")" | qualifier=Qualifier?
-		//
 		//ref=[ConnectionName|PhdlID] slices=Slices?
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 
@@ -1332,7 +1245,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//ConnectionAssign:
-		//
 		//	ref=[ConnectionName|PhdlID] slices=Slices? "=" concatenation=Concatenation ";";
 		public ParserRule getRule() { return rule; }
 
@@ -1401,18 +1313,13 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cOpenOpenKeyword_4_0 = (Keyword)cOpenAssignment_4.eContents().get(0);
 		
 		//Concatenation:
-		//
 		//	"{" connections+=ConnectionRef ("," connections+=ConnectionRef)* "}" | connections+=ConnectionRef ("&"
-		//
-		//	connections+=ConnectionRef)* | replicated?="<" replicate=ConnectionRef ">" | replicate=ConnectionRef replicated?="*"
-		//
-		//	| open?="open";
+		//	connections+=ConnectionRef)* | replicated?="<" replicate=ConnectionRef ">" | replicate=ConnectionRef replicated?="*" |
+		//	open?="open";
 		public ParserRule getRule() { return rule; }
 
 		//"{" connections+=ConnectionRef ("," connections+=ConnectionRef)* "}" | connections+=ConnectionRef ("&"
-		//
 		//connections+=ConnectionRef)* | replicated?="<" replicate=ConnectionRef ">" | replicate=ConnectionRef replicated?="*" |
-		//
 		//open?="open"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
@@ -1514,7 +1421,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSlicesSlicesParserRuleCall_1_0 = (RuleCall)cSlicesAssignment_1.eContents().get(0);
 		
 		//ConnectionRef:
-		//
 		//	ref=[ConnectionName|PhdlID] slices=Slices?;
 		public ParserRule getRule() { return rule; }
 
@@ -1543,7 +1449,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNamePhdlIDParserRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
 		
 		//ConnectionName:
-		//
 		//	name=PhdlID;
 		public ParserRule getRule() { return rule; }
 
@@ -1576,7 +1481,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//Indices:
-		//
 		//	"(" (msb=INT array?=":" lsb=INT | indices+=INT ("," indices+=INT)*) ")";
 		public ParserRule getRule() { return rule; }
 
@@ -1657,7 +1561,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//Slices:
-		//
 		//	"[" (msb=INT vector?=":" lsb=INT | slices+=INT ("," slices+=INT)*) "]";
 		public ParserRule getRule() { return rule; }
 
@@ -1731,7 +1634,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_1_4 = (Keyword)cGroup_1.eContents().get(4);
 		
 		//Vector:
-		//
 		//	{Vector} ("[" msb=INT vector?=":" lsb=INT "]")?;
 		public ParserRule getRule() { return rule; }
 
@@ -1784,7 +1686,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_1_4 = (Keyword)cGroup_1.eContents().get(4);
 		
 		//Array:
-		//
 		//	{Array} ("(" msb=INT array?=":" lsb=INT ")")?;
 		public ParserRule getRule() { return rule; }
 
@@ -1831,7 +1732,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cFullStopKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//Qualifier:
-		//
 		//	"this" indices=Indices ".";
 		public ParserRule getRule() { return rule; }
 
@@ -1856,15 +1756,13 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cInstanceParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cAttrParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cNewAttrParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cRefAttrParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cRefAttrParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//Referenceable:
-		//
-		//	Instance | Attr | NewAttr | RefAttr;
+		//	Instance | Attr | RefAttr;
 		public ParserRule getRule() { return rule; }
 
-		//Instance | Attr | NewAttr | RefAttr
+		//Instance | Attr | RefAttr
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//Instance
@@ -1873,11 +1771,8 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		//Attr
 		public RuleCall getAttrParserRuleCall_1() { return cAttrParserRuleCall_1; }
 
-		//NewAttr
-		public RuleCall getNewAttrParserRuleCall_2() { return cNewAttrParserRuleCall_2; }
-
 		//RefAttr
-		public RuleCall getRefAttrParserRuleCall_3() { return cRefAttrParserRuleCall_3; }
+		public RuleCall getRefAttrParserRuleCall_2() { return cRefAttrParserRuleCall_2; }
 	}
 
 	public class AssignableElements extends AbstractParserRuleElementFinder {
@@ -1888,7 +1783,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cConnectionAssignParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//Assignable:
-		//
 		//	PinAssign | PortAssign | ConnectionAssign;
 		public ParserRule getRule() { return rule; }
 
@@ -1914,7 +1808,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cAsteriskKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
 		
 		//QualifiedNameWithWildCard:
-		//
 		//	QualifiedName ("." "*")?;
 		public ParserRule getRule() { return rule; }
 
@@ -1943,7 +1836,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPhdlIDParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
 		
 		//QualifiedName:
-		//
 		//	PhdlID ("." PhdlID)?;
 		public ParserRule getRule() { return rule; }
 
@@ -1971,7 +1863,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPINNUMTerminalRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//PhdlID:
-		//
 		//	INT | ID | PINNUM;
 		public ParserRule getRule() { return rule; }
 
@@ -2016,14 +1907,11 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cNoConnectNcpinKeyword_10_0 = (Keyword)cNoConnectEnumLiteralDeclaration_10.eContents().get(0);
 		
 		//enum PinType:
-		//
-		//	Pin="pin" | Input="inpin" | Output="outpin" | InOut="iopin" | Power="pwrpin" | Supply="suppin" |
-		//
-		//	OpenCollector="ocpin" | OpenEmitter="oepin" | Tristate="tripin" | Passive="passpin" | NoConnect="ncpin";
+		//	Pin="pin" | Input="inpin" | Output="outpin" | InOut="iopin" | Power="pwrpin" | Supply="suppin" | OpenCollector="ocpin"
+		//	| OpenEmitter="oepin" | Tristate="tripin" | Passive="passpin" | NoConnect="ncpin";
 		public EnumRule getRule() { return rule; }
 
 		//Pin="pin" | Input="inpin" | Output="outpin" | InOut="iopin" | Power="pwrpin" | Supply="suppin" | OpenCollector="ocpin" |
-		//
 		//OpenEmitter="oepin" | Tristate="tripin" | Passive="passpin" | NoConnect="ncpin"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
@@ -2111,7 +1999,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	private InstanceElementElements pInstanceElement;
 	private SubInstanceElementElements pSubInstanceElement;
 	private RefAttrElements pRefAttr;
-	private NewAttrElements pNewAttr;
 	private PinAssignElements pPinAssign;
 	private SubAttrElements pSubAttr;
 	private RefTailElements pRefTail;
@@ -2170,7 +2057,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//PhdlModel:
-	//
 	//	imports+=Import* (packages+=Package | devices+=Device | designs+=Design)*;
 	public PhdlModelElements getPhdlModelAccess() {
 		return (pPhdlModel != null) ? pPhdlModel : (pPhdlModel = new PhdlModelElements());
@@ -2181,7 +2067,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Package:
-	//
 	//	"package" name=ID "{" imports+=Import* (devices+=Device | designs+=Design)* "}";
 	public PackageElements getPackageAccess() {
 		return (pPackage != null) ? pPackage : (pPackage = new PackageElements());
@@ -2192,7 +2077,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Import:
-	//
 	//	"import" importedNamespace=QualifiedNameWithWildCard ";";
 	public ImportElements getImportAccess() {
 		return (pImport != null) ? pImport : (pImport = new ImportElements());
@@ -2203,7 +2087,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Device:
-	//
 	//	"device" name=PhdlID "{" elements+=DeviceElement* "}";
 	public DeviceElements getDeviceAccess() {
 		return (pDevice != null) ? pDevice : (pDevice = new DeviceElements());
@@ -2214,7 +2097,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DeviceElement:
-	//
 	//	Attr | Pin | Info;
 	public DeviceElementElements getDeviceElementAccess() {
 		return (pDeviceElement != null) ? pDeviceElement : (pDeviceElement = new DeviceElementElements());
@@ -2225,7 +2107,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Attr:
-	//
 	//	"attr" name=ID "=" value=STRING ";";
 	public AttrElements getAttrAccess() {
 		return (pAttr != null) ? pAttr : (pAttr = new AttrElements());
@@ -2236,7 +2117,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Pin:
-	//
 	//	type=PinType vector=Vector name=PhdlID "=" "{" (pinNames+=PhdlID ("," pinNames+=PhdlID)*)? "}" ";";
 	public PinElements getPinAccess() {
 		return (pPin != null) ? pPin : (pPin = new PinElements());
@@ -2247,7 +2127,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Info:
-	//
 	//	"info" "{" info=STRING "}";
 	public InfoElements getInfoAccess() {
 		return (pInfo != null) ? pInfo : (pInfo = new InfoElements());
@@ -2258,7 +2137,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Design:
-	//
 	//	(design?="design" | subdesign?="subdesign") name=ID "{" elements+=DesignElement* "}";
 	public DesignElements getDesignAccess() {
 		return (pDesign != null) ? pDesign : (pDesign = new DesignElements());
@@ -2269,7 +2147,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DesignElement:
-	//
 	//	Connection | Instance | ConnectionAssign | Info;
 	public DesignElementElements getDesignElementAccess() {
 		return (pDesignElement != null) ? pDesignElement : (pDesignElement = new DesignElementElements());
@@ -2280,9 +2157,7 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Connection:
-	//
 	//	net?="net" vector=Vector names+=ConnectionName ("," names+=ConnectionName)* ("{" elements+=NetElement* "}" | ";") |
-	//
 	//	port?="port" vector=Vector names+=ConnectionName ("," names+=ConnectionName)* ("{" elements+=PortElement* "}" | ";");
 	public ConnectionElements getConnectionAccess() {
 		return (pConnection != null) ? pConnection : (pConnection = new ConnectionElements());
@@ -2293,7 +2168,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NetElement:
-	//
 	//	Attr | Info;
 	public NetElementElements getNetElementAccess() {
 		return (pNetElement != null) ? pNetElement : (pNetElement = new NetElementElements());
@@ -2304,7 +2178,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PortElement:
-	//
 	//	Info;
 	public PortElementElements getPortElementAccess() {
 		return (pPortElement != null) ? pPortElement : (pPortElement = new PortElementElements());
@@ -2315,11 +2188,8 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Instance:
-	//
 	//	inst?="inst" array=Array name=ID "of" device=[Device|QualifiedName] "{" elements+=InstanceElement* "}" |
-	//
 	//	subInst?="subinst" array=Array name=ID "of" subDesign=[Design|QualifiedName] prefix=STRING? "{"
-	//
 	//	elements+=SubInstanceElement* "}";
 	public InstanceElements getInstanceAccess() {
 		return (pInstance != null) ? pInstance : (pInstance = new InstanceElements());
@@ -2330,8 +2200,7 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//InstanceElement:
-	//
-	//	NewAttr | RefAttr | PinAssign | Info;
+	//	Attr | RefAttr | PinAssign | Info;
 	public InstanceElementElements getInstanceElementAccess() {
 		return (pInstanceElement != null) ? pInstanceElement : (pInstanceElement = new InstanceElementElements());
 	}
@@ -2341,7 +2210,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SubInstanceElement:
-	//
 	//	Attr | SubAttr | PortAssign | Info;
 	public SubInstanceElementElements getSubInstanceElementAccess() {
 		return (pSubInstanceElement != null) ? pSubInstanceElement : (pSubInstanceElement = new SubInstanceElementElements());
@@ -2352,7 +2220,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//RefAttr:
-	//
 	//	qualifier=Qualifier? ref=[Attr] "=" value=STRING ";";
 	public RefAttrElements getRefAttrAccess() {
 		return (pRefAttr != null) ? pRefAttr : (pRefAttr = new RefAttrElements());
@@ -2362,21 +2229,8 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 		return getRefAttrAccess().getRule();
 	}
 
-	//NewAttr:
-	//
-	//	"newattr" qualifier=Qualifier? name=ID "=" value=STRING ";";
-	public NewAttrElements getNewAttrAccess() {
-		return (pNewAttr != null) ? pNewAttr : (pNewAttr = new NewAttrElements());
-	}
-	
-	public ParserRule getNewAttrRule() {
-		return getNewAttrAccess().getRule();
-	}
-
 	//PinAssign:
-	//
 	//	(combined?="combine" "(" qualifier=Qualifier? ref=[Pin|PhdlID] slices=Slices? ")" | qualifier=Qualifier?
-	//
 	//	ref=[Pin|PhdlID] slices=Slices?) "=" concatenation=Concatenation ";";
 	public PinAssignElements getPinAssignAccess() {
 		return (pPinAssign != null) ? pPinAssign : (pPinAssign = new PinAssignElements());
@@ -2387,8 +2241,7 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SubAttr:
-	//
-	//	qualifier=Qualifier? (ref=[Referenceable] refIndices=Indices?) tail=RefTail "=" value=STRING ";";
+	//	qualifier=Qualifier? ref=[Referenceable] refIndices=Indices? tail=RefTail "=" value=STRING ";";
 	public SubAttrElements getSubAttrAccess() {
 		return (pSubAttr != null) ? pSubAttr : (pSubAttr = new SubAttrElements());
 	}
@@ -2398,7 +2251,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//RefTail:
-	//
 	//	"." ref=[Referenceable] refIndices=Indices? tail=RefTail?;
 	public RefTailElements getRefTailAccess() {
 		return (pRefTail != null) ? pRefTail : (pRefTail = new RefTailElements());
@@ -2409,9 +2261,7 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PortAssign:
-	//
 	//	(combined?="combine" "(" qualifier=Qualifier? ref=[ConnectionName|PhdlID] slices=Slices? ")" | qualifier=Qualifier?
-	//
 	//	ref=[ConnectionName|PhdlID] slices=Slices?) "=" concatenation=Concatenation ";";
 	public PortAssignElements getPortAssignAccess() {
 		return (pPortAssign != null) ? pPortAssign : (pPortAssign = new PortAssignElements());
@@ -2422,7 +2272,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ConnectionAssign:
-	//
 	//	ref=[ConnectionName|PhdlID] slices=Slices? "=" concatenation=Concatenation ";";
 	public ConnectionAssignElements getConnectionAssignAccess() {
 		return (pConnectionAssign != null) ? pConnectionAssign : (pConnectionAssign = new ConnectionAssignElements());
@@ -2433,12 +2282,9 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Concatenation:
-	//
 	//	"{" connections+=ConnectionRef ("," connections+=ConnectionRef)* "}" | connections+=ConnectionRef ("&"
-	//
-	//	connections+=ConnectionRef)* | replicated?="<" replicate=ConnectionRef ">" | replicate=ConnectionRef replicated?="*"
-	//
-	//	| open?="open";
+	//	connections+=ConnectionRef)* | replicated?="<" replicate=ConnectionRef ">" | replicate=ConnectionRef replicated?="*" |
+	//	open?="open";
 	public ConcatenationElements getConcatenationAccess() {
 		return (pConcatenation != null) ? pConcatenation : (pConcatenation = new ConcatenationElements());
 	}
@@ -2448,7 +2294,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ConnectionRef:
-	//
 	//	ref=[ConnectionName|PhdlID] slices=Slices?;
 	public ConnectionRefElements getConnectionRefAccess() {
 		return (pConnectionRef != null) ? pConnectionRef : (pConnectionRef = new ConnectionRefElements());
@@ -2459,7 +2304,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ConnectionName:
-	//
 	//	name=PhdlID;
 	public ConnectionNameElements getConnectionNameAccess() {
 		return (pConnectionName != null) ? pConnectionName : (pConnectionName = new ConnectionNameElements());
@@ -2470,7 +2314,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Indices:
-	//
 	//	"(" (msb=INT array?=":" lsb=INT | indices+=INT ("," indices+=INT)*) ")";
 	public IndicesElements getIndicesAccess() {
 		return (pIndices != null) ? pIndices : (pIndices = new IndicesElements());
@@ -2481,7 +2324,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Slices:
-	//
 	//	"[" (msb=INT vector?=":" lsb=INT | slices+=INT ("," slices+=INT)*) "]";
 	public SlicesElements getSlicesAccess() {
 		return (pSlices != null) ? pSlices : (pSlices = new SlicesElements());
@@ -2492,7 +2334,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Vector:
-	//
 	//	{Vector} ("[" msb=INT vector?=":" lsb=INT "]")?;
 	public VectorElements getVectorAccess() {
 		return (pVector != null) ? pVector : (pVector = new VectorElements());
@@ -2503,7 +2344,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Array:
-	//
 	//	{Array} ("(" msb=INT array?=":" lsb=INT ")")?;
 	public ArrayElements getArrayAccess() {
 		return (pArray != null) ? pArray : (pArray = new ArrayElements());
@@ -2514,7 +2354,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Qualifier:
-	//
 	//	"this" indices=Indices ".";
 	public QualifierElements getQualifierAccess() {
 		return (pQualifier != null) ? pQualifier : (pQualifier = new QualifierElements());
@@ -2525,8 +2364,7 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Referenceable:
-	//
-	//	Instance | Attr | NewAttr | RefAttr;
+	//	Instance | Attr | RefAttr;
 	public ReferenceableElements getReferenceableAccess() {
 		return (pReferenceable != null) ? pReferenceable : (pReferenceable = new ReferenceableElements());
 	}
@@ -2536,7 +2374,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Assignable:
-	//
 	//	PinAssign | PortAssign | ConnectionAssign;
 	public AssignableElements getAssignableAccess() {
 		return (pAssignable != null) ? pAssignable : (pAssignable = new AssignableElements());
@@ -2547,10 +2384,8 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum PinType:
-	//
-	//	Pin="pin" | Input="inpin" | Output="outpin" | InOut="iopin" | Power="pwrpin" | Supply="suppin" |
-	//
-	//	OpenCollector="ocpin" | OpenEmitter="oepin" | Tristate="tripin" | Passive="passpin" | NoConnect="ncpin";
+	//	Pin="pin" | Input="inpin" | Output="outpin" | InOut="iopin" | Power="pwrpin" | Supply="suppin" | OpenCollector="ocpin"
+	//	| OpenEmitter="oepin" | Tristate="tripin" | Passive="passpin" | NoConnect="ncpin";
 	public PinTypeElements getPinTypeAccess() {
 		return (unknownRulePinType != null) ? unknownRulePinType : (unknownRulePinType = new PinTypeElements());
 	}
@@ -2560,7 +2395,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//QualifiedNameWithWildCard:
-	//
 	//	QualifiedName ("." "*")?;
 	public QualifiedNameWithWildCardElements getQualifiedNameWithWildCardAccess() {
 		return (pQualifiedNameWithWildCard != null) ? pQualifiedNameWithWildCard : (pQualifiedNameWithWildCard = new QualifiedNameWithWildCardElements());
@@ -2571,7 +2405,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//QualifiedName:
-	//
 	//	PhdlID ("." PhdlID)?;
 	public QualifiedNameElements getQualifiedNameAccess() {
 		return (pQualifiedName != null) ? pQualifiedName : (pQualifiedName = new QualifiedNameElements());
@@ -2582,7 +2415,6 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PhdlID:
-	//
 	//	INT | ID | PINNUM;
 	public PhdlIDElements getPhdlIDAccess() {
 		return (pPhdlID != null) ? pPhdlID : (pPhdlID = new PhdlIDElements());
@@ -2593,52 +2425,44 @@ public class PhdlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//terminal ID:
-	//
 	//	("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;
 	public TerminalRule getIDRule() {
 		return (tID != null) ? tID : (tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ID"));
 	} 
 
 	//terminal INT returns ecore::EInt:
-	//
 	//	"0".."9" | "1".."9" "0".."9"+;
 	public TerminalRule getINTRule() {
 		return (tINT != null) ? tINT : (tINT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "INT"));
 	} 
 
 	//terminal PINNUM:
-	//
 	//	("0".."9" | "a".."z" | "A".."Z" | "_" | "+" | "-" | "$" | "/" | "@" | "!")+;
 	public TerminalRule getPINNUMRule() {
 		return (tPINNUM != null) ? tPINNUM : (tPINNUM = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "PINNUM"));
 	} 
 
 	//terminal STRING:
-	//
 	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "u" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"" | "\'" ("\\" ("b" | "t" |
-	//
 	//	"n" | "f" | "r" | "u" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
 	public TerminalRule getSTRINGRule() {
 		return (tSTRING != null) ? tSTRING : (tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING"));
 	} 
 
 	////terminal DOC_COMMENT: '/ **' -> '* /';
-	// terminal ML_COMMENT:
-	//
+	//terminal ML_COMMENT:
 	//	"/ *"->"* /";
 	public TerminalRule getML_COMMENTRule() {
 		return (tML_COMMENT != null) ? tML_COMMENT : (tML_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ML_COMMENT"));
 	} 
 
 	//terminal SL_COMMENT:
-	//
 	//	"//" !("\n" | "\r")* ("\r"? "\n")?;
 	public TerminalRule getSL_COMMENTRule() {
 		return (tSL_COMMENT != null) ? tSL_COMMENT : (tSL_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SL_COMMENT"));
 	} 
 
 	////terminal UNCLOSED_COMMENT: '/ *' (!EOF)* EOF; terminal WS:
-	//
 	//	(" " | "\t" | "\r" | "\n")+;
 	public TerminalRule getWSRule() {
 		return (tWS != null) ? tWS : (tWS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "WS"));

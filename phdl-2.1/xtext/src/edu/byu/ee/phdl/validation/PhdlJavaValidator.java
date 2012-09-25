@@ -33,7 +33,6 @@ import edu.byu.ee.phdl.phdl.DeviceElement;
 import edu.byu.ee.phdl.phdl.Import;
 import edu.byu.ee.phdl.phdl.Indices;
 import edu.byu.ee.phdl.phdl.Instance;
-import edu.byu.ee.phdl.phdl.NewAttr;
 import edu.byu.ee.phdl.phdl.Package;
 import edu.byu.ee.phdl.phdl.PhdlPackage;
 import edu.byu.ee.phdl.phdl.Pin;
@@ -527,7 +526,7 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 	}
 
 	@Check(CheckType.NORMAL)
-	public void checkInstanceNewAttributes(Instance i) {
+	public void checkInstanceAttributes(Instance i) {
 		if (i.isSubInst())
 			return;
 		SortedMap<String, EObject> attrs = new TreeMap<String, EObject>();
@@ -543,57 +542,21 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 				}
 			}
 			for (EObject element : i.getElements()) {
-				if (element instanceof NewAttr) {
-					NewAttr a = (NewAttr) element;
+				if (element instanceof Attr) {
+					Attr a = (Attr) element;
 					if (!a.getName().equals(a.getName().toUpperCase()))
-						warning("Only uppercase attribute names are recommended.", a,
-								PhdlPackage.Literals.NEW_ATTR__NAME, -1, IssueCodes.NOT_UPPERCASE, a.getName());
-					if (a.getQualifier() != null) {
-						if (a.getQualifier().getIndices().isArray()) {
-							int msb = a.getQualifier().getIndices().getMsb();
-							int lsb = a.getQualifier().getIndices().getLsb();
-							// check the msb
-							if (!PhdlUtils.isValidIndex(i.getArray().getMsb(), i.getArray().getLsb(), msb))
-								invalidMsbError(a, PhdlPackage.Literals.INDICES__MSB);
-							// check the lsb
-							if (!PhdlUtils.isValidIndex(i.getArray().getMsb(), i.getArray().getLsb(), lsb))
-								invalidLsbError(a, PhdlPackage.Literals.INDICES__LSB);
-							// check for already declared attributes
-							for (Integer index : PhdlUtils.getIndices(msb, lsb)) {
-								String attr = i.getName() + "(" + index + ")." + a.getName().toUpperCase();
-								if (attrs.get(attr) != null) {
-									EStructuralFeature f = PhdlPackage.Literals.NEW_ATTR__NAME;
-									error("Attribute already declared.", a, f, -1,
-											IssueCodes.ATTRIBUTE_ALREADY_DECLARED);
-								} else
-									attrs.put(attr, a);
-							}
-						} else { // !a.isArray()
-							for (Integer index : a.getQualifier().getIndices().getIndices()) {
-								// check all arbitrary indices
-								if (!PhdlUtils.isValidIndex(i.getArray().getMsb(), i.getArray().getLsb(), index))
-									invalidIndexError(a.getQualifier().getIndices(), a.getQualifier().getIndices()
-											.getIndices().indexOf(index), PhdlPackage.Literals.INDICES__INDICES);
-								// check for already declared attributes
-								String attr = i.getName() + "(" + index + ")." + a.getName().toUpperCase();
-								if (attrs.get(attr) != null) {
-									EStructuralFeature f = PhdlPackage.Literals.NEW_ATTR__NAME;
-									error("Attribute already declared.", a, f, -1,
-											IssueCodes.ATTRIBUTE_ALREADY_DECLARED);
-								} else
-									attrs.put(attr, a);
-							}
-						}
-					} else { // !a.isQualified()
-						for (Integer index : PhdlUtils.getIndices(i.getArray().getMsb(), i.getArray().getLsb())) {
-							String attr = i.getName() + "(" + index + ")." + a.getName().toUpperCase();
-							if (attrs.get(attr) != null) {
-								EStructuralFeature f = PhdlPackage.Literals.NEW_ATTR__NAME;
-								error("Attribute already declared.", a, f, -1, IssueCodes.ATTRIBUTE_ALREADY_DECLARED);
-							} else
-								attrs.put(attr, a);
-						}
+						warning("Only uppercase attribute names are recommended.", a, PhdlPackage.Literals.ATTR__NAME,
+								-1, IssueCodes.NOT_UPPERCASE, a.getName());
+
+					for (Integer index : PhdlUtils.getIndices(i.getArray().getMsb(), i.getArray().getLsb())) {
+						String attr = i.getName() + "(" + index + ")." + a.getName().toUpperCase();
+						if (attrs.get(attr) != null) {
+							EStructuralFeature f = PhdlPackage.Literals.ATTR__NAME;
+							error("Attribute already declared.", a, f, -1, IssueCodes.ATTRIBUTE_ALREADY_DECLARED);
+						} else
+							attrs.put(attr, a);
 					}
+
 				}
 			}
 		} else { // !i.isArray()
@@ -604,16 +567,14 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 				}
 			}
 			for (EObject element : i.getElements()) {
-				if (element instanceof NewAttr) {
-					NewAttr a = (NewAttr) element;
+				if (element instanceof Attr) {
+					Attr a = (Attr) element;
 					if (!a.getName().equals(a.getName().toUpperCase()))
-						warning("Only uppercase attribute names are recommended.", a,
-								PhdlPackage.Literals.NEW_ATTR__NAME, -1, IssueCodes.NOT_UPPERCASE, a.getName());
-					if (a.getQualifier() != null)
-						qualifierNotAllowedError(a, PhdlPackage.Literals.NEW_ATTR__QUALIFIER);
+						warning("Only uppercase attribute names are recommended.", a, PhdlPackage.Literals.ATTR__NAME,
+								-1, IssueCodes.NOT_UPPERCASE, a.getName());
 					String attr = i.getName() + "." + a.getName().toUpperCase();
 					if (attrs.get(attr) != null) {
-						EStructuralFeature f = PhdlPackage.Literals.NEW_ATTR__NAME;
+						EStructuralFeature f = PhdlPackage.Literals.ATTR__NAME;
 						error("Attribute already declared.", a, f, -1, IssueCodes.ATTRIBUTE_ALREADY_DECLARED);
 					} else
 						attrs.put(attr, a);
@@ -1069,7 +1030,7 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 	@Check(CheckType.FAST)
 	public void checkRefTails(RefTail r) {
 		if (r.getTail() == null) {
-			if (!(r.getRef() instanceof Attr || r.getRef() instanceof RefAttr || r.getRef() instanceof NewAttr)) {
+			if (!(r.getRef() instanceof Attr || r.getRef() instanceof RefAttr)) {
 				EStructuralFeature f = PhdlPackage.Literals.REF_TAIL__REF;
 				error("Invalid attribute name.", r, f, -1);
 			}
@@ -1082,9 +1043,9 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 					int msb = r.getRefIndices().getMsb();
 					int lsb = r.getRefIndices().getLsb();
 					if (!PhdlUtils.isValidIndex(i.getArray().getMsb(), i.getArray().getLsb(), msb))
-						invalidMsbError(r, PhdlPackage.Literals.INDICES__MSB);
+						invalidMsbError(r.getRefIndices(), PhdlPackage.Literals.INDICES__MSB);
 					if (!PhdlUtils.isValidIndex(i.getArray().getMsb(), i.getArray().getLsb(), lsb))
-						invalidLsbError(r, PhdlPackage.Literals.INDICES__LSB);
+						invalidLsbError(r.getRefIndices(), PhdlPackage.Literals.INDICES__LSB);
 				} else {
 					for (Integer j : r.getRefIndices().getIndices())
 						if (!PhdlUtils.isValidIndex(i.getArray().getMsb(), i.getArray().getLsb(), j))
@@ -1092,7 +1053,7 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 									PhdlPackage.Literals.INDICES__INDICES);
 				}
 			} else if (r.getRefIndices() != null && !i.getArray().isArray())
-				indicesNotAllowedError(r.getRefIndices(), PhdlPackage.Literals.INDICES__INDICES);
+				indicesNotAllowedError(r, PhdlPackage.Literals.REF_TAIL__REF_INDICES);
 		} else if (r.getRef() instanceof Instance && ((Instance) r.getRef()).isSubInst()) {
 			Instance i = (Instance) r.getRef();
 			if (r.getRefIndices() != null && i.getArray().isArray()) {
@@ -1100,24 +1061,24 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 					int msb = r.getRefIndices().getMsb();
 					int lsb = r.getRefIndices().getLsb();
 					if (!PhdlUtils.isValidIndex(i.getArray().getMsb(), i.getArray().getLsb(), msb))
-						invalidMsbError(r, PhdlPackage.Literals.INDICES__MSB);
+						invalidMsbError(r.getRefIndices(), PhdlPackage.Literals.INDICES__MSB);
 					if (!PhdlUtils.isValidIndex(i.getArray().getMsb(), i.getArray().getLsb(), lsb))
-						invalidLsbError(r, PhdlPackage.Literals.INDICES__LSB);
+						invalidLsbError(r.getRefIndices(), PhdlPackage.Literals.INDICES__LSB);
 				} else {
 					for (Integer j : r.getRefIndices().getIndices())
 						if (!PhdlUtils.isValidIndex(i.getArray().getMsb(), i.getArray().getLsb(), j))
-							invalidIndexError(r, r.getRefIndices().getIndices().indexOf(j),
+							invalidIndexError(r.getRefIndices(), r.getRefIndices().getIndices().indexOf(j),
 									PhdlPackage.Literals.INDICES__INDICES);
 				}
 			} else if (r.getRefIndices() != null && !i.getArray().isArray())
-				indicesNotAllowedError(r.getRefIndices(), PhdlPackage.Literals.INDICES__INDICES);
+				indicesNotAllowedError(r, PhdlPackage.Literals.REF_TAIL__REF_INDICES);
 		} else {
 			if (r.getRefIndices() != null)
-				indicesNotAllowedError(r, PhdlPackage.Literals.REF_TAIL__REF);
+				indicesNotAllowedError(r, PhdlPackage.Literals.REF_TAIL__REF_INDICES);
 		}
 	}
 
-	@Check(CheckType.NORMAL)
+	@Check(CheckType.FAST)
 	public void checkSubInstanceAttributes(Instance s) {
 		for (EObject element : s.getElements()) {
 			// check all sub attributes
@@ -1130,7 +1091,7 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 						if (!PhdlUtils.isValidIndex(s.getArray().getMsb(), s.getArray().getLsb(), msb))
 							invalidMsbError(a, PhdlPackage.Literals.INDICES__MSB);
 						if (!PhdlUtils.isValidIndex(s.getArray().getMsb(), s.getArray().getLsb(), lsb))
-							invalidLsbError(a, PhdlPackage.Literals.INDICES__LSB);
+							invalidLsbError(a.getRefIndices(), PhdlPackage.Literals.INDICES__LSB);
 					} else {
 						for (Integer i : a.getQualifier().getIndices().getIndices())
 							if (!PhdlUtils.isValidIndex(s.getArray().getMsb(), s.getArray().getLsb(), i))
@@ -1147,9 +1108,9 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 							int msb = a.getRefIndices().getMsb();
 							int lsb = a.getRefIndices().getLsb();
 							if (!PhdlUtils.isValidIndex(i.getArray().getMsb(), i.getArray().getLsb(), msb))
-								invalidMsbError(a, PhdlPackage.Literals.INDICES__MSB);
+								invalidMsbError(a.getRefIndices(), PhdlPackage.Literals.INDICES__MSB);
 							if (!PhdlUtils.isValidIndex(i.getArray().getMsb(), i.getArray().getLsb(), lsb))
-								invalidLsbError(a, PhdlPackage.Literals.INDICES__LSB);
+								invalidLsbError(a.getRefIndices(), PhdlPackage.Literals.INDICES__LSB);
 						} else {
 							for (Integer j : a.getRefIndices().getIndices())
 								if (!PhdlUtils.isValidIndex(i.getArray().getMsb(), i.getArray().getLsb(), j))
@@ -1165,9 +1126,9 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 							int msb = a.getRefIndices().getMsb();
 							int lsb = a.getRefIndices().getLsb();
 							if (!PhdlUtils.isValidIndex(i.getArray().getMsb(), i.getArray().getLsb(), msb))
-								invalidMsbError(a, PhdlPackage.Literals.INDICES__MSB);
+								invalidMsbError(a.getRefIndices(), PhdlPackage.Literals.INDICES__MSB);
 							if (!PhdlUtils.isValidIndex(i.getArray().getMsb(), i.getArray().getLsb(), lsb))
-								invalidLsbError(a, PhdlPackage.Literals.INDICES__LSB);
+								invalidLsbError(a.getRefIndices(), PhdlPackage.Literals.INDICES__LSB);
 						} else {
 							for (Integer j : a.getRefIndices().getIndices())
 								if (!PhdlUtils.isValidIndex(i.getArray().getMsb(), i.getArray().getLsb(), j))

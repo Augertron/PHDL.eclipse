@@ -20,7 +20,6 @@ import edu.byu.ee.phdl.phdl.Info;
 import edu.byu.ee.phdl.phdl.Instance;
 import edu.byu.ee.phdl.phdl.InstanceElement;
 import edu.byu.ee.phdl.phdl.NetElement;
-import edu.byu.ee.phdl.phdl.NewAttr;
 import edu.byu.ee.phdl.phdl.PhdlFactory;
 import edu.byu.ee.phdl.phdl.PhdlModel;
 import edu.byu.ee.phdl.phdl.PhdlPackage;
@@ -172,13 +171,6 @@ public class PhdlPackageImpl extends EPackageImpl implements PhdlPackage
    * @generated
    */
   private EClass refAttrEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass newAttrEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -910,46 +902,6 @@ public class PhdlPackageImpl extends EPackageImpl implements PhdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getNewAttr()
-  {
-    return newAttrEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getNewAttr_Qualifier()
-  {
-    return (EReference)newAttrEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getNewAttr_Name()
-  {
-    return (EAttribute)newAttrEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getNewAttr_Value()
-  {
-    return (EAttribute)newAttrEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getPinAssign()
   {
     return pinAssignEClass;
@@ -1597,11 +1549,6 @@ public class PhdlPackageImpl extends EPackageImpl implements PhdlPackage
     createEReference(refAttrEClass, REF_ATTR__REF);
     createEAttribute(refAttrEClass, REF_ATTR__VALUE);
 
-    newAttrEClass = createEClass(NEW_ATTR);
-    createEReference(newAttrEClass, NEW_ATTR__QUALIFIER);
-    createEAttribute(newAttrEClass, NEW_ATTR__NAME);
-    createEAttribute(newAttrEClass, NEW_ATTR__VALUE);
-
     pinAssignEClass = createEClass(PIN_ASSIGN);
     createEAttribute(pinAssignEClass, PIN_ASSIGN__COMBINED);
     createEReference(pinAssignEClass, PIN_ASSIGN__QUALIFIER);
@@ -1706,6 +1653,7 @@ public class PhdlPackageImpl extends EPackageImpl implements PhdlPackage
     // Add supertypes to classes
     attrEClass.getESuperTypes().add(this.getDeviceElement());
     attrEClass.getESuperTypes().add(this.getNetElement());
+    attrEClass.getESuperTypes().add(this.getInstanceElement());
     attrEClass.getESuperTypes().add(this.getSubInstanceElement());
     attrEClass.getESuperTypes().add(this.getReferenceable());
     pinEClass.getESuperTypes().add(this.getDeviceElement());
@@ -1720,8 +1668,6 @@ public class PhdlPackageImpl extends EPackageImpl implements PhdlPackage
     instanceEClass.getESuperTypes().add(this.getReferenceable());
     refAttrEClass.getESuperTypes().add(this.getInstanceElement());
     refAttrEClass.getESuperTypes().add(this.getReferenceable());
-    newAttrEClass.getESuperTypes().add(this.getInstanceElement());
-    newAttrEClass.getESuperTypes().add(this.getReferenceable());
     pinAssignEClass.getESuperTypes().add(this.getInstanceElement());
     pinAssignEClass.getESuperTypes().add(this.getAssignable());
     subAttrEClass.getESuperTypes().add(this.getSubInstanceElement());
@@ -1802,11 +1748,6 @@ public class PhdlPackageImpl extends EPackageImpl implements PhdlPackage
     initEReference(getRefAttr_Qualifier(), this.getQualifier(), null, "qualifier", null, 0, 1, RefAttr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRefAttr_Ref(), this.getAttr(), null, "ref", null, 0, 1, RefAttr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getRefAttr_Value(), ecorePackage.getEString(), "value", null, 0, 1, RefAttr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(newAttrEClass, NewAttr.class, "NewAttr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getNewAttr_Qualifier(), this.getQualifier(), null, "qualifier", null, 0, 1, NewAttr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getNewAttr_Name(), ecorePackage.getEString(), "name", null, 0, 1, NewAttr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getNewAttr_Value(), ecorePackage.getEString(), "value", null, 0, 1, NewAttr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pinAssignEClass, PinAssign.class, "PinAssign", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPinAssign_Combined(), ecorePackage.getEBoolean(), "combined", null, 0, 1, PinAssign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

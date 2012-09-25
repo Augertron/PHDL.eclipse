@@ -15,7 +15,6 @@ import edu.byu.ee.phdl.phdl.Import;
 import edu.byu.ee.phdl.phdl.Indices;
 import edu.byu.ee.phdl.phdl.Info;
 import edu.byu.ee.phdl.phdl.Instance;
-import edu.byu.ee.phdl.phdl.NewAttr;
 import edu.byu.ee.phdl.phdl.PhdlModel;
 import edu.byu.ee.phdl.phdl.PhdlPackage;
 import edu.byu.ee.phdl.phdl.Pin;
@@ -57,6 +56,7 @@ public abstract class AbstractPhdlSemanticSequencer extends AbstractDelegatingSe
 			case PhdlPackage.ATTR:
 				if(context == grammarAccess.getAttrRule() ||
 				   context == grammarAccess.getDeviceElementRule() ||
+				   context == grammarAccess.getInstanceElementRule() ||
 				   context == grammarAccess.getNetElementRule() ||
 				   context == grammarAccess.getReferenceableRule() ||
 				   context == grammarAccess.getSubInstanceElementRule()) {
@@ -138,14 +138,6 @@ public abstract class AbstractPhdlSemanticSequencer extends AbstractDelegatingSe
 				   context == grammarAccess.getInstanceRule() ||
 				   context == grammarAccess.getReferenceableRule()) {
 					sequence_Instance(context, (Instance) semanticObject); 
-					return; 
-				}
-				else break;
-			case PhdlPackage.NEW_ATTR:
-				if(context == grammarAccess.getInstanceElementRule() ||
-				   context == grammarAccess.getNewAttrRule() ||
-				   context == grammarAccess.getReferenceableRule()) {
-					sequence_NewAttr(context, (NewAttr) semanticObject); 
 					return; 
 				}
 				else break;
@@ -390,15 +382,6 @@ public abstract class AbstractPhdlSemanticSequencer extends AbstractDelegatingSe
 	 *     )
 	 */
 	protected void sequence_Instance(EObject context, Instance semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (qualifier=Qualifier? name=ID value=STRING)
-	 */
-	protected void sequence_NewAttr(EObject context, NewAttr semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

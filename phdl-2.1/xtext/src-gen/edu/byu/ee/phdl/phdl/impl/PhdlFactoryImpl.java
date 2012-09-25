@@ -20,7 +20,6 @@ import edu.byu.ee.phdl.phdl.Info;
 import edu.byu.ee.phdl.phdl.Instance;
 import edu.byu.ee.phdl.phdl.InstanceElement;
 import edu.byu.ee.phdl.phdl.NetElement;
-import edu.byu.ee.phdl.phdl.NewAttr;
 import edu.byu.ee.phdl.phdl.PhdlFactory;
 import edu.byu.ee.phdl.phdl.PhdlModel;
 import edu.byu.ee.phdl.phdl.PhdlPackage;
@@ -116,7 +115,6 @@ public class PhdlFactoryImpl extends EFactoryImpl implements PhdlFactory
       case PhdlPackage.INSTANCE_ELEMENT: return createInstanceElement();
       case PhdlPackage.SUB_INSTANCE_ELEMENT: return createSubInstanceElement();
       case PhdlPackage.REF_ATTR: return createRefAttr();
-      case PhdlPackage.NEW_ATTR: return createNewAttr();
       case PhdlPackage.PIN_ASSIGN: return createPinAssign();
       case PhdlPackage.SUB_ATTR: return createSubAttr();
       case PhdlPackage.REF_TAIL: return createRefTail();
@@ -356,17 +354,6 @@ public class PhdlFactoryImpl extends EFactoryImpl implements PhdlFactory
   {
     RefAttrImpl refAttr = new RefAttrImpl();
     return refAttr;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NewAttr createNewAttr()
-  {
-    NewAttrImpl newAttr = new NewAttrImpl();
-    return newAttr;
   }
 
   /**

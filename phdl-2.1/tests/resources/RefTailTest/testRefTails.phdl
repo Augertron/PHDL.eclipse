@@ -1,0 +1,180 @@
+device res5v {
+	attr REFPREFIX = "R";
+	attr FOOTPRINT = "R0603";
+	attr LIBRARY = "rcl";
+	attr VALUE = "50";
+
+	pin a = {1};
+	pin b = {2};
+}
+
+subdesign A {
+	net a1;
+	net[1:6] a2_ary;
+	
+	inst myRes of res5v {
+		a = a1;
+		b = a1;
+	}
+	
+	inst(1:6) myResAry of res5v{
+		combine(a) = a2_ary;
+		combine(b) = a2_ary;
+	}
+} 
+
+subdesign B {
+	
+	subinst myA of A {}
+	
+	subinst(1:6) myA_arry of A {}
+}
+
+subdesign C {
+	subinst myB of B {}
+}
+
+subdesign D {
+	subinst myC1 of C {}
+	subinst myC2 of C {}
+	subinst myC3 of C {}
+
+	subinst(1:6) myC_ary of C {}
+}
+
+design E {
+	subinst myD1 of D {
+		
+		//Correct SubInst Ref
+		myC1.myB.myA.myRes.VALUE = "15";
+		myC2.myB.myA_arry.myRes.VALUE = "15";
+		myC_ary(1).myB.myA.myRes.VALUE = "15";
+		myC_ary(2).myB.myA_arry.myRes.VALUE = "15";
+		
+		myC1.myB.myA.myResAry(1).VALUE = "15";
+		myC2.myB.myA_arry.myResAry(1).VALUE = "15";
+		myC_ary(1).myB.myA.myResAry(1).VALUE = "15";
+		myC_ary(2).myB.myA_arry.myResAry(1).VALUE = "15";
+	}
+	
+	subinst myD3 of D {
+		//Invalid Attribute Name - SubInst Ref
+		myC1.myB.HELLO = "15";
+		myC1.myB.myA = "15";
+		myC1.myB.myA_arry = "15";
+		myC1.myB.myA_arry(1) = "15";
+		myC1.myB.myA_arry(1).myRes = "15";
+		myC1.myB.myA_arry(1).myResAry = "15";
+		myC1.myB.myA_arry(1).myResAry(1:2) = "15";
+	}
+	
+	//RefTail (Inst) Tests
+	subinst myD4 of D {
+		
+		myC1.myB.myA.myRes.VALUE = "15";
+		myC1.myB.myA.myResAry(1).VALUE = "15";
+		myC1.myB.myA.myResAry(5,6).VALUE = "15";
+		myC1.myB.myA.myResAry(2:3).VALUE = "15";
+		
+		//Invalid MSB (Inst) RefTail error
+		myC2.myB.myA.myResAry(1:3).VALUE = "15";
+		myC2.myB.myA.myResAry(0:5).VALUE = "15";
+		myC2.myB.myA.myResAry(6:4).VALUE = "15";
+		myC2.myB.myA.myResAry(7:4).VALUE = "15";
+		
+		//Invalid LSB (Inst) RefTail error
+		myC2.myB.myA.myResAry(4:6).VALUE = "15";
+		myC2.myB.myA.myResAry(4:7).VALUE = "15";
+		myC2.myB.myA.myResAry(3:1).VALUE = "15";
+		myC2.myB.myA.myResAry(3:0).VALUE = "15";
+		
+		//Invalid Index Error
+		myC2.myB.myA.myResAry(1,3,5).VALUE = "15";
+		myC2.myB.myA.myResAry(6,2,4).VALUE = "15";
+		myC2.myB.myA.myResAry(7).VALUE = "15";
+		myC2.myB.myA.myResAry(1,2,3,7).VALUE = "15";
+		myC2.myB.myA.myResAry(7,1,2,3).VALUE = "15";
+		myC2.myB.myA.myResAry(1,7,2,3).VALUE = "15";
+		myC2.myB.myA.myResAry(0).VALUE = "15";
+		myC2.myB.myA.myResAry(1,2,3,0).VALUE = "15";
+		myC2.myB.myA.myResAry(0,1,2,3).VALUE = "15";
+		myC2.myB.myA.myResAry(1,0,2,3).VALUE = "15";
+		myC2.myB.myA.myResAry(0,7,2).VALUE = "15";		
+		
+		//Indices Not Allowed Error
+		myC3.myB.myA.myRes(1).VALUE = "15"; 
+		myC3.myB.myA.myRes(1:2).VALUE = "15";  
+		
+	}
+	
+	//RefTail (SubInst) Tests
+	subinst myD5 of D {
+		myC1.myB.myA_arry.myRes.VALUE = "15";
+		myC1.myB.myA_arry(1).myRes.VALUE = "15";
+		myC1.myB.myA_arry(2:3).myRes.VALUE = "15";
+		//myC_ary.myB.myA_arry(4,5,6).myRes.VALUE = "15";
+		
+		myC1.myB.myA_arry.myResAry(1).VALUE = "15";
+		myC1.myB.myA_arry(1).myResAry(1,2).VALUE = "15";
+		myC1.myB.myA_arry(2:3).myResAry(2:3).VALUE = "15";
+		//myC_ary.myB.myA_arry(4,5,6).myResAry.VALUE = "15";
+		
+		//Invalid MSB (SubInst) Reftail error
+		myC2.myB.myA_arry(1:3).myRes.VALUE = "15";
+		myC2.myB.myA_arry(0:3).myRes.VALUE = "15";
+		myC2.myB.myA_arry(6:4).myRes.VALUE = "15";
+		myC2.myB.myA_arry(7:4).myRes.VALUE = "15";
+		  
+		//Invalid LSB (SubInst) Reftail error
+		myC2.myB.myA_arry(4:6).myRes.VALUE = "15";
+		myC2.myB.myA_arry(4:7).myRes.VALUE = "15";
+		myC2.myB.myA_arry(3:1).myRes.VALUE = "15";
+		myC2.myB.myA_arry(3:0).myRes.VALUE = "15";
+		
+		//Invalid Index Error
+		myC2.myB.myA_arry(1,3,5).myRes.VALUE = "15";
+		myC2.myB.myA_arry(6,2,4).myRes.VALUE = "15";
+		myC2.myB.myA_arry(7).myRes.VALUE = "15";
+		myC2.myB.myA_arry(1,2,3,7).myRes.VALUE = "15";
+		myC2.myB.myA_arry(7,1,2,3).myRes.VALUE = "15";
+		myC2.myB.myA_arry(1,7,2,3).myRes.VALUE = "15";
+		myC2.myB.myA_arry(0).myRes.VALUE = "15";
+		myC2.myB.myA_arry(1,2,3,0).myRes.VALUE = "15";
+		myC2.myB.myA_arry(0,1,2,3).myRes.VALUE = "15";
+		myC2.myB.myA_arry(1,0,2,3).myRes.VALUE = "15";
+		myC2.myB.myA_arry(0,7,2).myRes.VALUE = "15";
+		
+		//Indices Not Allowed Error
+		myC3.myB.myA(1).myRes.VALUE = "15";  
+		myC3.myB.myA(1:2).myRes.VALUE = "15";
+	}     
+	
+	//Test attribute indices not allowed error
+	subinst myD6 of D {
+		myC1.myB.myA.myRes.VALUE(1) = "15";
+		myC2.myB.myA.myResAry(1:2).VALUE(2:3) = "15";
+		myC3.myB.myA_arry(2:3).myRes.VALUE(4,6) = "15";
+	}          
+} 
+
+
+//		///////////////////////////////////
+//		//This should have errors on the 2nd and 4th lines
+//		/////////////////////////////////
+//		myC_ary(1:3).myB.myA.myRes.VALUE = "15";
+//		myC_ary(0:3).myB.myA.myRes.VALUE = "15"; 
+//		myC_ary(6:4).myB.myA.myRes.VALUE = "15";
+//		myC_ary(7:4).myB.myA.myRes.VALUE = "15";    
+//		//Though this really should be tested in a test SubInstance Attribute File
+//		//Along with the equivalent test for Immediate Instance Arrays
+//		
+//				///////////////////////////////////
+//		//This should have errors on the 2nd and 4th lines
+//		/////////////////////////////////
+//		myC_ary(4:6).myB.myA.myRes.VALUE = "15";
+//		myC_ary(4:7).myB.myA.myRes.VALUE = "15";
+//		myC_ary(3:1).myB.myA.myRes.VALUE = "15";
+//		myC_ary(3:0).myB.myA.myRes.VALUE = "15";  
+//		//Though this really should be tested in a test SubInstance Attribute File
+//		//Along with the equivalent test for Immediate Instance Arrays
+//		 
