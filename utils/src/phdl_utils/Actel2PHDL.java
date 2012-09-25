@@ -200,20 +200,29 @@ public class Actel2PHDL {
 
 	
 	// Usage string for help directions
-	static private String usage = "\nPHDL Compiler v0.1.\n\n"
-		+ " * Copyright (C) 2011 BYU Configurable Computing Lab This program is free software: you can\r\n"
-		+ " * redistribute it and/or modify it under the terms of the GNU General Public License as published\r\n"
-		+ " * by the Free Software Foundation, either version 3 of the License, or (at your option) any later\r\n"
-		+ " * version. This program is distributed in the hope that it will be useful, but WITHOUT ANY\r\n"
-		+ " * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR\r\n"
-		+ " * PURPOSE. See the GNU General Public License for more details. You should have received a copy of\r\n"
-		+ " * the GNU General Public License along with this program. If not, see\r\n"
-		+ " * <http://www.gnu.org/licenses/>.\n\n" + "" + "Usage:\n\n"
-		+ "\t<filename.csv>"
-		+ "\t is the xilinx Comma Separated Value file. Output goes to standard out.\n"
-		+ "\tYou will probably want to run this program something like this.\n"
-		+ "\t\t\"java phdl_utils.Xilinx2PHDL > junk.txt\"\n"
-		+ "\tthen edit junk.txt to cut and paste the output into your design.\n";
+static private String usage = "\nPHDL Compiler v0.1.\n\n"
+                + " * Copyright (C) 2011 BYU Configurable Computing Lab This program is free software: you can\r\n"
+                + " * redistribute it and/or modify it under the terms of the GNU General Public License as published\r\n"
+                + " * by the Free Software Foundation, either version 3 of the License, or (at your option) any later\r\n"
+                + " * version. This program is distributed in the hope that it will be useful, but WITHOUT ANY\r\n"
+                + " * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR\r\n"
+                + " * PURPOSE. See the GNU General Public License for more details. You should have received a copy of\r\n"
+                + " * the GNU General Public License along with this program. If not, see\r\n"
+                + " * <http://www.gnu.org/licenses/>.\n\n" + "" + "Usage:\n\n"
+                + "\t<filename.csv>"
+                + "\t is an Actel Comma Separated Value file. Output goes to standard out.\n"
+                + "\tYou will probably want to run this program something like this.\n"
+                + "\t\t\"java phdl_utils.Actel2PHDL > outfile.txt\"\n"
+                + "\tthen edit outfile.txt to cut and paste the output into your design.\n\n"
+                + "\tThe Actel (MicroSemi) toolchain does not generate a pinout file by default.\n"
+                + "\tTo create an Actel CSV pinout report you must open Actel's Designer program\n"
+                + "\ton your design then select \"I/O Attribute Editor\".  From within that program\n"
+                + "\tselect the \"Package Pins\" tab. That gives you a spreadsheet view of all the pins\n"
+                + "on the part. Cut and paste all the data from that spreadsheet into a\n"
+                + "Microsoft Excel spreadsheet and then save the file in .csv format.\n\n"
+                + "This author has requested that MicroSemi add .csv pinout report generation to\n"
+                + "the reports menu of Designer.\n";
+
 
 	/**
 	 * Main() parses the input CSV file and generates the component declaration and instantiation
