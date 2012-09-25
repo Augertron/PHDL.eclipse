@@ -23,12 +23,14 @@ import edu.byu.ee.phdl.phdl.Design;
 import edu.byu.ee.phdl.phdl.DesignElement;
 import edu.byu.ee.phdl.phdl.DeviceElement;
 import edu.byu.ee.phdl.phdl.Instance;
-import edu.byu.ee.phdl.phdl.NewAttr;
+import edu.byu.ee.phdl.phdl.InstanceElement;
+//import edu.byu.ee.phdl.phdl.NewAttr;
 import edu.byu.ee.phdl.phdl.Pin;
 import edu.byu.ee.phdl.phdl.RefAttr;
 import edu.byu.ee.phdl.phdl.RefTail;
 import edu.byu.ee.phdl.phdl.Referenceable;
 import edu.byu.ee.phdl.phdl.SubAttr;
+import edu.byu.ee.phdl.services.PhdlGrammarAccess.InstanceElements;
 
 /**
  * This class contains custom scoping description.
@@ -154,6 +156,9 @@ public class PhdlScopeProvider extends AbstractDeclarativeScopeProvider {
 		for (DeviceElement element : i.getDevice().getElements())
 			if (element instanceof Attr)
 				attrs.add(element);
+		for(EObject element : i.getElements())
+			if (element instanceof Attr)
+				attrs.add(element);
 		return Scopes.scopeFor(attrs);
 	}
 
@@ -172,8 +177,8 @@ public class PhdlScopeProvider extends AbstractDeclarativeScopeProvider {
 			for (EObject element : ((Instance) i).getElements()) {
 				if (element instanceof RefAttr)
 					candidates.add((Referenceable) element);
-				else if (element instanceof NewAttr)
-					candidates.add((Referenceable) element);
+//				else if (element instanceof NewAttr)
+//					candidates.add((Referenceable) element);
 			}
 			for (DeviceElement element : ((Instance) i).getDevice().getElements())
 				if (element instanceof Attr)

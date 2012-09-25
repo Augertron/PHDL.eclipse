@@ -1,0 +1,85 @@
+device pushButton_refDesDeclared {
+	attr REFPREFIX = "BTN";
+	attr FOOTPRINT = "5501";
+	attr LIBRARY = "switch";
+	attr REFDES = "";
+	
+	pin[1:2] A = {1A,1B};
+	pin[1:2] B = {NO, NC};
+}
+
+device pushButton_refDesNotDeclared {
+	attr REFPREFIX = "BTN";
+	attr FOOTPRINT = "5501";
+	attr LIBRARY = "switch";
+	//attr REFDES = "";
+	
+	pin[1:2] A = {1A,1B};
+	pin[1:2] B = {NO, NC};
+}
+
+
+design top {
+
+	net[1:5] btn_net;
+	net gnd, VCC1V8;
+
+	inst oneButton of pushButton_refDesDeclared {
+		REFDES = "A";
+		
+		A = <VCC1V8>;
+		B = <gnd>;
+	}
+
+	inst(1:5) buttons of pushButton_refDesDeclared {
+		this(1).REFDES = "BTNU";
+		this(2).REFDES = "BTNC";
+		this(3).REFDES = "BTNR";
+		this(4).REFDES = "BTNL";
+		this(5).REFDES = "BTND";
+		
+		combine(A) = <VCC1V8>;
+		combine(B[1]) = btn_net;
+		combine(B[2]) = btn_net;
+	}
+	
+	inst oneButton2 of pushButton_refDesNotDeclared {
+		REFDES = "A";
+		
+		A = <VCC1V8>;
+		B = <gnd>;
+	}
+
+	inst(1:5) buttons2 of pushButton_refDesNotDeclared {
+		this(1).REFDES = "BTNU";
+		this(2).REFDES = "BTNC";
+		this(3).REFDES = "BTNR";
+		this(4).REFDES = "BTNL";
+		this(5).REFDES = "BTND";
+		
+		combine(A) = <VCC1V8>;
+		combine(B[1]) = btn_net;
+		combine(B[2]) = btn_net;
+	}
+	
+	inst oneButton3 of pushButton_refDesNotDeclared {
+		attr REFDES = "";
+		REFDES = "A";
+		
+		A = <VCC1V8>;
+		B = <gnd>;
+	}
+	
+	inst(1:5) buttons3 of pushButton_refDesNotDeclared {
+		attr REFDES = "";
+		this(1).REFDES = "BTNU";
+		this(2).REFDES = "BTNC";
+		this(3).REFDES = "BTNR";
+		this(4).REFDES = "BTNL";
+		this(5).REFDES = "BTND";
+		
+		combine(A) = <VCC1V8>;
+		combine(B[1]) = btn_net;
+		combine(B[2]) = btn_net;
+	}
+}

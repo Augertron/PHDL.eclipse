@@ -20,7 +20,7 @@ package edu.byu.ee.phdl.phdl;
  * @model
  * @generated
  */
-public interface Attr extends DeviceElement, NetElement, SubInstanceElement, Referenceable
+public interface Attr extends DeviceElement, NetElement, InstanceElement, SubInstanceElement, Referenceable
 {
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.

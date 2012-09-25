@@ -176,15 +176,6 @@ public interface PhdlFactory extends EFactory
   RefAttr createRefAttr();
 
   /**
-   * Returns a new object of class '<em>New Attr</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>New Attr</em>'.
-   * @generated
-   */
-  NewAttr createNewAttr();
-
-  /**
    * Returns a new object of class '<em>Pin Assign</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

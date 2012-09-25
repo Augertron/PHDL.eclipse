@@ -53,7 +53,7 @@ subdesign Amplifier {
 		a = rrc;
 		b = gnd;
 		out = pot_c;
-		newattr VALUE = "50K";
+		attr VALUE = "50K";
 	}
 	
 	inst switch of spstSwitch {

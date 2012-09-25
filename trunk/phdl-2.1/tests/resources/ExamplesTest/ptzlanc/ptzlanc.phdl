@@ -81,8 +81,8 @@ design ptzlanc {
 	inst fpga of top_tq144 {
 		LIBRARY = "xilinx_devices";
 		PARTNUMBER = "122-1717-ND";
-		newattr SUPPLIER = "DIGI-KEY";
-		newattr COST = "21.95";
+		attr SUPPLIER = "DIGI-KEY";
+		attr COST = "21.95";
 
 		// Signal pins from FPGA design.
 		addr = addr;

@@ -29,7 +29,7 @@
         eType="#//DeviceElement" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DeviceElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Attr" eSuperTypes="#//DeviceElement #//NetElement #//SubInstanceElement #//Referenceable">
+  <eClassifiers xsi:type="ecore:EClass" name="Attr" eSuperTypes="#//DeviceElement #//NetElement #//InstanceElement #//SubInstanceElement #//Referenceable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -82,12 +82,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="qualifier" eType="#//Qualifier"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="#//Attr"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NewAttr" eSuperTypes="#//InstanceElement #//Referenceable">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="qualifier" eType="#//Qualifier"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PinAssign" eSuperTypes="#//InstanceElement #//Assignable">

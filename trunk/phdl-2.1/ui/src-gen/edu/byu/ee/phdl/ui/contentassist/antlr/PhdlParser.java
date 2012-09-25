@@ -77,12 +77,10 @@ public class PhdlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getInstanceAccess().getGroup_0(), "rule__Instance__Group_0__0");
 					put(grammarAccess.getInstanceAccess().getGroup_1(), "rule__Instance__Group_1__0");
 					put(grammarAccess.getRefAttrAccess().getGroup(), "rule__RefAttr__Group__0");
-					put(grammarAccess.getNewAttrAccess().getGroup(), "rule__NewAttr__Group__0");
 					put(grammarAccess.getPinAssignAccess().getGroup(), "rule__PinAssign__Group__0");
 					put(grammarAccess.getPinAssignAccess().getGroup_0_0(), "rule__PinAssign__Group_0_0__0");
 					put(grammarAccess.getPinAssignAccess().getGroup_0_1(), "rule__PinAssign__Group_0_1__0");
 					put(grammarAccess.getSubAttrAccess().getGroup(), "rule__SubAttr__Group__0");
-					put(grammarAccess.getSubAttrAccess().getGroup_1(), "rule__SubAttr__Group_1__0");
 					put(grammarAccess.getRefTailAccess().getGroup(), "rule__RefTail__Group__0");
 					put(grammarAccess.getPortAssignAccess().getGroup(), "rule__PortAssign__Group__0");
 					put(grammarAccess.getPortAssignAccess().getGroup_0_0(), "rule__PortAssign__Group_0_0__0");
@@ -159,9 +157,6 @@ public class PhdlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRefAttrAccess().getQualifierAssignment_0(), "rule__RefAttr__QualifierAssignment_0");
 					put(grammarAccess.getRefAttrAccess().getRefAssignment_1(), "rule__RefAttr__RefAssignment_1");
 					put(grammarAccess.getRefAttrAccess().getValueAssignment_3(), "rule__RefAttr__ValueAssignment_3");
-					put(grammarAccess.getNewAttrAccess().getQualifierAssignment_1(), "rule__NewAttr__QualifierAssignment_1");
-					put(grammarAccess.getNewAttrAccess().getNameAssignment_2(), "rule__NewAttr__NameAssignment_2");
-					put(grammarAccess.getNewAttrAccess().getValueAssignment_4(), "rule__NewAttr__ValueAssignment_4");
 					put(grammarAccess.getPinAssignAccess().getCombinedAssignment_0_0_0(), "rule__PinAssign__CombinedAssignment_0_0_0");
 					put(grammarAccess.getPinAssignAccess().getQualifierAssignment_0_0_2(), "rule__PinAssign__QualifierAssignment_0_0_2");
 					put(grammarAccess.getPinAssignAccess().getRefAssignment_0_0_3(), "rule__PinAssign__RefAssignment_0_0_3");
@@ -171,10 +166,10 @@ public class PhdlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPinAssignAccess().getSlicesAssignment_0_1_2(), "rule__PinAssign__SlicesAssignment_0_1_2");
 					put(grammarAccess.getPinAssignAccess().getConcatenationAssignment_2(), "rule__PinAssign__ConcatenationAssignment_2");
 					put(grammarAccess.getSubAttrAccess().getQualifierAssignment_0(), "rule__SubAttr__QualifierAssignment_0");
-					put(grammarAccess.getSubAttrAccess().getRefAssignment_1_0(), "rule__SubAttr__RefAssignment_1_0");
-					put(grammarAccess.getSubAttrAccess().getRefIndicesAssignment_1_1(), "rule__SubAttr__RefIndicesAssignment_1_1");
-					put(grammarAccess.getSubAttrAccess().getTailAssignment_2(), "rule__SubAttr__TailAssignment_2");
-					put(grammarAccess.getSubAttrAccess().getValueAssignment_4(), "rule__SubAttr__ValueAssignment_4");
+					put(grammarAccess.getSubAttrAccess().getRefAssignment_1(), "rule__SubAttr__RefAssignment_1");
+					put(grammarAccess.getSubAttrAccess().getRefIndicesAssignment_2(), "rule__SubAttr__RefIndicesAssignment_2");
+					put(grammarAccess.getSubAttrAccess().getTailAssignment_3(), "rule__SubAttr__TailAssignment_3");
+					put(grammarAccess.getSubAttrAccess().getValueAssignment_5(), "rule__SubAttr__ValueAssignment_5");
 					put(grammarAccess.getRefTailAccess().getRefAssignment_1(), "rule__RefTail__RefAssignment_1");
 					put(grammarAccess.getRefTailAccess().getRefIndicesAssignment_2(), "rule__RefTail__RefIndicesAssignment_2");
 					put(grammarAccess.getRefTailAccess().getTailAssignment_3(), "rule__RefTail__TailAssignment_3");

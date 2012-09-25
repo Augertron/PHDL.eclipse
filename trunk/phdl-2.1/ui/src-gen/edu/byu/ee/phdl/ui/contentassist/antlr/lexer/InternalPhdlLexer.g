@@ -16,17 +16,15 @@ import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.Lexer;
 
 
 
-KEYWORD_42 : 'subdesign';
+KEYWORD_41 : 'subdesign';
 
 KEYWORD_37 : 'combine';
 
-KEYWORD_38 : 'newattr';
+KEYWORD_38 : 'package';
 
-KEYWORD_39 : 'package';
+KEYWORD_39 : 'passpin';
 
-KEYWORD_40 : 'passpin';
-
-KEYWORD_41 : 'subinst';
+KEYWORD_40 : 'subinst';
 
 KEYWORD_30 : 'design';
 

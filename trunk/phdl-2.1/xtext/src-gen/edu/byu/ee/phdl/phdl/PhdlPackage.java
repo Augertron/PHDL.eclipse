@@ -723,52 +723,6 @@ public interface PhdlPackage extends EPackage
   int REF_ATTR_FEATURE_COUNT = INSTANCE_ELEMENT_FEATURE_COUNT + 3;
 
   /**
-   * The meta object id for the '{@link edu.byu.ee.phdl.phdl.impl.NewAttrImpl <em>New Attr</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see edu.byu.ee.phdl.phdl.impl.NewAttrImpl
-   * @see edu.byu.ee.phdl.phdl.impl.PhdlPackageImpl#getNewAttr()
-   * @generated
-   */
-  int NEW_ATTR = 17;
-
-  /**
-   * The feature id for the '<em><b>Qualifier</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NEW_ATTR__QUALIFIER = INSTANCE_ELEMENT_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NEW_ATTR__NAME = INSTANCE_ELEMENT_FEATURE_COUNT + 1;
-
-  /**
-   * The feature id for the '<em><b>Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NEW_ATTR__VALUE = INSTANCE_ELEMENT_FEATURE_COUNT + 2;
-
-  /**
-   * The number of structural features of the '<em>New Attr</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NEW_ATTR_FEATURE_COUNT = INSTANCE_ELEMENT_FEATURE_COUNT + 3;
-
-  /**
    * The meta object id for the '{@link edu.byu.ee.phdl.phdl.impl.PinAssignImpl <em>Pin Assign</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -776,7 +730,7 @@ public interface PhdlPackage extends EPackage
    * @see edu.byu.ee.phdl.phdl.impl.PhdlPackageImpl#getPinAssign()
    * @generated
    */
-  int PIN_ASSIGN = 18;
+  int PIN_ASSIGN = 17;
 
   /**
    * The feature id for the '<em><b>Slices</b></em>' containment reference.
@@ -840,7 +794,7 @@ public interface PhdlPackage extends EPackage
    * @see edu.byu.ee.phdl.phdl.impl.PhdlPackageImpl#getSubAttr()
    * @generated
    */
-  int SUB_ATTR = 19;
+  int SUB_ATTR = 18;
 
   /**
    * The feature id for the '<em><b>Qualifier</b></em>' containment reference.
@@ -904,7 +858,7 @@ public interface PhdlPackage extends EPackage
    * @see edu.byu.ee.phdl.phdl.impl.PhdlPackageImpl#getRefTail()
    * @generated
    */
-  int REF_TAIL = 20;
+  int REF_TAIL = 19;
 
   /**
    * The feature id for the '<em><b>Ref</b></em>' reference.
@@ -950,7 +904,7 @@ public interface PhdlPackage extends EPackage
    * @see edu.byu.ee.phdl.phdl.impl.PhdlPackageImpl#getPortAssign()
    * @generated
    */
-  int PORT_ASSIGN = 21;
+  int PORT_ASSIGN = 20;
 
   /**
    * The feature id for the '<em><b>Slices</b></em>' containment reference.
@@ -1014,7 +968,7 @@ public interface PhdlPackage extends EPackage
    * @see edu.byu.ee.phdl.phdl.impl.PhdlPackageImpl#getConnectionAssign()
    * @generated
    */
-  int CONNECTION_ASSIGN = 22;
+  int CONNECTION_ASSIGN = 21;
 
   /**
    * The feature id for the '<em><b>Slices</b></em>' containment reference.
@@ -1060,7 +1014,7 @@ public interface PhdlPackage extends EPackage
    * @see edu.byu.ee.phdl.phdl.impl.PhdlPackageImpl#getConcatenation()
    * @generated
    */
-  int CONCATENATION = 23;
+  int CONCATENATION = 22;
 
   /**
    * The feature id for the '<em><b>Connections</b></em>' containment reference list.
@@ -1115,7 +1069,7 @@ public interface PhdlPackage extends EPackage
    * @see edu.byu.ee.phdl.phdl.impl.PhdlPackageImpl#getConnectionRef()
    * @generated
    */
-  int CONNECTION_REF = 24;
+  int CONNECTION_REF = 23;
 
   /**
    * The feature id for the '<em><b>Ref</b></em>' reference.
@@ -1152,7 +1106,7 @@ public interface PhdlPackage extends EPackage
    * @see edu.byu.ee.phdl.phdl.impl.PhdlPackageImpl#getConnectionName()
    * @generated
    */
-  int CONNECTION_NAME = 25;
+  int CONNECTION_NAME = 24;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1180,7 +1134,7 @@ public interface PhdlPackage extends EPackage
    * @see edu.byu.ee.phdl.phdl.impl.PhdlPackageImpl#getIndices()
    * @generated
    */
-  int INDICES = 26;
+  int INDICES = 25;
 
   /**
    * The feature id for the '<em><b>Msb</b></em>' attribute.
@@ -1235,7 +1189,7 @@ public interface PhdlPackage extends EPackage
    * @see edu.byu.ee.phdl.phdl.impl.PhdlPackageImpl#getSlices()
    * @generated
    */
-  int SLICES = 27;
+  int SLICES = 26;
 
   /**
    * The feature id for the '<em><b>Msb</b></em>' attribute.
@@ -1290,7 +1244,7 @@ public interface PhdlPackage extends EPackage
    * @see edu.byu.ee.phdl.phdl.impl.PhdlPackageImpl#getVector()
    * @generated
    */
-  int VECTOR = 28;
+  int VECTOR = 27;
 
   /**
    * The feature id for the '<em><b>Msb</b></em>' attribute.
@@ -1336,7 +1290,7 @@ public interface PhdlPackage extends EPackage
    * @see edu.byu.ee.phdl.phdl.impl.PhdlPackageImpl#getArray()
    * @generated
    */
-  int ARRAY = 29;
+  int ARRAY = 28;
 
   /**
    * The feature id for the '<em><b>Msb</b></em>' attribute.
@@ -1382,7 +1336,7 @@ public interface PhdlPackage extends EPackage
    * @see edu.byu.ee.phdl.phdl.impl.PhdlPackageImpl#getQualifier()
    * @generated
    */
-  int QUALIFIER = 30;
+  int QUALIFIER = 29;
 
   /**
    * The feature id for the '<em><b>Indices</b></em>' containment reference.
@@ -1410,7 +1364,7 @@ public interface PhdlPackage extends EPackage
    * @see edu.byu.ee.phdl.phdl.impl.PhdlPackageImpl#getReferenceable()
    * @generated
    */
-  int REFERENCEABLE = 31;
+  int REFERENCEABLE = 30;
 
   /**
    * The number of structural features of the '<em>Referenceable</em>' class.
@@ -1429,7 +1383,7 @@ public interface PhdlPackage extends EPackage
    * @see edu.byu.ee.phdl.phdl.impl.PhdlPackageImpl#getAssignable()
    * @generated
    */
-  int ASSIGNABLE = 32;
+  int ASSIGNABLE = 31;
 
   /**
    * The feature id for the '<em><b>Slices</b></em>' containment reference.
@@ -1466,7 +1420,7 @@ public interface PhdlPackage extends EPackage
    * @see edu.byu.ee.phdl.phdl.impl.PhdlPackageImpl#getPinType()
    * @generated
    */
-  int PIN_TYPE = 33;
+  int PIN_TYPE = 32;
 
 
   /**
@@ -2056,49 +2010,6 @@ public interface PhdlPackage extends EPackage
    * @generated
    */
   EAttribute getRefAttr_Value();
-
-  /**
-   * Returns the meta object for class '{@link edu.byu.ee.phdl.phdl.NewAttr <em>New Attr</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>New Attr</em>'.
-   * @see edu.byu.ee.phdl.phdl.NewAttr
-   * @generated
-   */
-  EClass getNewAttr();
-
-  /**
-   * Returns the meta object for the containment reference '{@link edu.byu.ee.phdl.phdl.NewAttr#getQualifier <em>Qualifier</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Qualifier</em>'.
-   * @see edu.byu.ee.phdl.phdl.NewAttr#getQualifier()
-   * @see #getNewAttr()
-   * @generated
-   */
-  EReference getNewAttr_Qualifier();
-
-  /**
-   * Returns the meta object for the attribute '{@link edu.byu.ee.phdl.phdl.NewAttr#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see edu.byu.ee.phdl.phdl.NewAttr#getName()
-   * @see #getNewAttr()
-   * @generated
-   */
-  EAttribute getNewAttr_Name();
-
-  /**
-   * Returns the meta object for the attribute '{@link edu.byu.ee.phdl.phdl.NewAttr#getValue <em>Value</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Value</em>'.
-   * @see edu.byu.ee.phdl.phdl.NewAttr#getValue()
-   * @see #getNewAttr()
-   * @generated
-   */
-  EAttribute getNewAttr_Value();
 
   /**
    * Returns the meta object for class '{@link edu.byu.ee.phdl.phdl.PinAssign <em>Pin Assign</em>}'.
@@ -3185,40 +3096,6 @@ public interface PhdlPackage extends EPackage
      * @generated
      */
     EAttribute REF_ATTR__VALUE = eINSTANCE.getRefAttr_Value();
-
-    /**
-     * The meta object literal for the '{@link edu.byu.ee.phdl.phdl.impl.NewAttrImpl <em>New Attr</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see edu.byu.ee.phdl.phdl.impl.NewAttrImpl
-     * @see edu.byu.ee.phdl.phdl.impl.PhdlPackageImpl#getNewAttr()
-     * @generated
-     */
-    EClass NEW_ATTR = eINSTANCE.getNewAttr();
-
-    /**
-     * The meta object literal for the '<em><b>Qualifier</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference NEW_ATTR__QUALIFIER = eINSTANCE.getNewAttr_Qualifier();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute NEW_ATTR__NAME = eINSTANCE.getNewAttr_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute NEW_ATTR__VALUE = eINSTANCE.getNewAttr_Value();
 
     /**
      * The meta object literal for the '{@link edu.byu.ee.phdl.phdl.impl.PinAssignImpl <em>Pin Assign</em>}' class.

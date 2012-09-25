@@ -20,7 +20,6 @@ import edu.byu.ee.phdl.phdl.Info;
 import edu.byu.ee.phdl.phdl.Instance;
 import edu.byu.ee.phdl.phdl.InstanceElement;
 import edu.byu.ee.phdl.phdl.NetElement;
-import edu.byu.ee.phdl.phdl.NewAttr;
 import edu.byu.ee.phdl.phdl.PhdlModel;
 import edu.byu.ee.phdl.phdl.PhdlPackage;
 import edu.byu.ee.phdl.phdl.Pin;
@@ -145,6 +144,7 @@ public class PhdlSwitch<T> extends Switch<T>
         T result = caseAttr(attr);
         if (result == null) result = caseDeviceElement(attr);
         if (result == null) result = caseNetElement(attr);
+        if (result == null) result = caseInstanceElement(attr);
         if (result == null) result = caseSubInstanceElement(attr);
         if (result == null) result = caseReferenceable(attr);
         if (result == null) result = defaultCase(theEObject);
@@ -236,15 +236,6 @@ public class PhdlSwitch<T> extends Switch<T>
         T result = caseRefAttr(refAttr);
         if (result == null) result = caseInstanceElement(refAttr);
         if (result == null) result = caseReferenceable(refAttr);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case PhdlPackage.NEW_ATTR:
-      {
-        NewAttr newAttr = (NewAttr)theEObject;
-        T result = caseNewAttr(newAttr);
-        if (result == null) result = caseInstanceElement(newAttr);
-        if (result == null) result = caseReferenceable(newAttr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -632,22 +623,6 @@ public class PhdlSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseRefAttr(RefAttr object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>New Attr</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>New Attr</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseNewAttr(NewAttr object)
   {
     return null;
   }

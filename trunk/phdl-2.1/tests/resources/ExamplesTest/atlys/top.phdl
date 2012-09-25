@@ -9,7 +9,7 @@ design AtlysSpartan6_Dem_Board {
 		neg = GND;
 		pos = SHIELD;
 		VALUE = "1nF";
-		newattr VOLTAGE = "250V";
+		attr VOLTAGE = "250V";
 	}
 	inst Shield_GND_Res of res5v { 
 		

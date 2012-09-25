@@ -16,10 +16,10 @@ public class ConnectionAssignTest extends XtextTest {
 	public void testConnectionAssignRefs() {
 		ignoreFormattingDifferences();
 		testFile(getClass().getSimpleName() + "/testConnectionAssignRefs.phdl");
-		assertConstraints(issues.inLine(6).sizeIs(1).allOfThemContain("Array not declared."));
-		assertConstraints(issues.inLine(9).sizeIs(1).allOfThemContain("Invalid msb."));
-		assertConstraints(issues.inLine(12).sizeIs(1).allOfThemContain("Invalid lsb."));
-		assertConstraints(issues.inLine(15).sizeIs(1).allOfThemContain("Invalid index."));
+		assertConstraints(issues.inLine(6).allOfThemContain("Array not declared.").sizeIs(1));
+		assertConstraints(issues.inLine(9).allOfThemContain("Invalid msb.").sizeIs(1));
+		assertConstraints(issues.inLine(12).allOfThemContain("Invalid lsb.").sizeIs(1));
+		assertConstraints(issues.inLine(15).allOfThemContain("Invalid index.").sizeIs(1));
 
 	}
 
@@ -27,13 +27,13 @@ public class ConnectionAssignTest extends XtextTest {
 	public void testConnectionAssignWidths() {
 		ignoreFormattingDifferences();
 		testFile(getClass().getSimpleName() + "/testConnectionAssignWidths.phdl");
-		assertConstraints(issues.inLine(6).sizeIs(1).allOfThemContain("Assignment width mismatch.  Left=1, right=2."));
-		assertConstraints(issues.inLine(9).sizeIs(1).allOfThemContain("Assignment width mismatch.  Left=1, right=4."));
-		assertConstraints(issues.inLine(12).sizeIs(1).allOfThemContain("Assignment width mismatch.  Left=1, right=3."));
-		assertConstraints(issues.inLine(15).sizeIs(1).allOfThemContain("Assignment width mismatch.  Left=1, right=8."));
-		assertConstraints(issues.inLine(18).sizeIs(1).allOfThemContain("Assignment width mismatch.  Left=4, right=1."));
-		assertConstraints(issues.inLine(21).sizeIs(1).allOfThemContain("Assignment width mismatch.  Left=4, right=2."));
-		assertConstraints(issues.inLine(24).sizeIs(1).allOfThemContain("Assignment width mismatch.  Left=4, right=3."));
-		assertConstraints(issues.inLine(27).sizeIs(1).allOfThemContain("Assignment width mismatch.  Left=4, right=8."));
+		assertConstraints(issues.inLine(6).allOfThemContain("Assignment width mismatch.  Left=1, right=2.").sizeIs(1));
+		assertConstraints(issues.inLine(9).allOfThemContain("Assignment width mismatch.  Left=1, right=4.").sizeIs(1));
+		assertConstraints(issues.inLine(12).allOfThemContain("Assignment width mismatch.  Left=1, right=3.").sizeIs(1));
+		assertConstraints(issues.inLine(15).allOfThemContain("Assignment width mismatch.  Left=1, right=8.").sizeIs(1));
+		assertConstraints(issues.inLine(18).allOfThemContain("Assignment width mismatch.  Left=4, right=1.").sizeIs(1));
+		assertConstraints(issues.inLine(21).allOfThemContain("Assignment width mismatch.  Left=4, right=2.").sizeIs(1));
+		assertConstraints(issues.inLine(24).allOfThemContain("Assignment width mismatch.  Left=4, right=3.").sizeIs(1));
+		assertConstraints(issues.inLine(27).allOfThemContain("Assignment width mismatch.  Left=4, right=8.").sizeIs(1));
 	}
 }

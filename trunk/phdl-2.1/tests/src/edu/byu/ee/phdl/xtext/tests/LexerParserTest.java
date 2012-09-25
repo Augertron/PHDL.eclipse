@@ -76,7 +76,6 @@ public class LexerParserTest extends XtextTest {
 		testKeyword("this");
 		testKeyword("open");
 		testKeyword("combine");
-		testKeyword("newattr");
 		testKeyword("attr");
 		testKeyword("subinst");
 		testKeyword("inst");

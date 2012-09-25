@@ -20,7 +20,6 @@ import edu.byu.ee.phdl.phdl.Info;
 import edu.byu.ee.phdl.phdl.Instance;
 import edu.byu.ee.phdl.phdl.InstanceElement;
 import edu.byu.ee.phdl.phdl.NetElement;
-import edu.byu.ee.phdl.phdl.NewAttr;
 import edu.byu.ee.phdl.phdl.PhdlModel;
 import edu.byu.ee.phdl.phdl.PhdlPackage;
 import edu.byu.ee.phdl.phdl.Pin;
@@ -190,11 +189,6 @@ public class PhdlAdapterFactory extends AdapterFactoryImpl
       public Adapter caseRefAttr(RefAttr object)
       {
         return createRefAttrAdapter();
-      }
-      @Override
-      public Adapter caseNewAttr(NewAttr object)
-      {
-        return createNewAttrAdapter();
       }
       @Override
       public Adapter casePinAssign(PinAssign object)
@@ -544,21 +538,6 @@ public class PhdlAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createRefAttrAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.byu.ee.phdl.phdl.NewAttr <em>New Attr</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.byu.ee.phdl.phdl.NewAttr
-   * @generated
-   */
-  public Adapter createNewAttrAdapter()
   {
     return null;
   }
