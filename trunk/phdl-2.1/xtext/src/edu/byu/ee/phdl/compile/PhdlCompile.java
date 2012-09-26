@@ -53,7 +53,7 @@ public class PhdlCompile {
 
 	private static String usage = "java -jar phdlcomp.jar";
 	private static String version = "PHDL Compiler v2.1, ";
-	private static String build = "September 10, 2012 build.  ";
+	private static String build = "September 26, 2012 build.";
 
 	private final static Logger logger = Logger.getLogger(PhdlCompile.class);
 
@@ -89,8 +89,8 @@ public class PhdlCompile {
 			System.exit(1);
 		}
 
-		// detect improper usage and display help
-		if (args.length == 0 || commandLine.hasOption("help")) {
+		// display help if requested
+		if (commandLine.hasOption("help")) {
 			formatter.printHelp(usage, options, true);
 			System.exit(1);
 		}
@@ -142,9 +142,10 @@ public class PhdlCompile {
 		logger.info("compilation started.");
 
 		// obtain src folder from the command-line if present
-		String srcFolder = commandLine.hasOption("src") ? commandLine.getOptionValue("src") : "src";
-
+		String srcFolder = commandLine.hasOption("src") ? commandLine.getOptionValue("src") : ".";
 		File file = new File(srcFolder);
+
+		logger.info("src folder specified: " + file.getAbsolutePath());
 		// check that src directory exists
 		if (file.isFile()) {
 			logger.error("please enter a valid directory containing all PHDL source files.");
@@ -155,7 +156,9 @@ public class PhdlCompile {
 			System.exit(1);
 		}
 
-		String genFolder = commandLine.hasOption("gen") ? commandLine.getOptionValue("gen") : srcFolder + "-gen";
+		String noGenFolder = !srcFolder.equals(".") ? srcFolder + "-gen" : ".";
+		String genFolder = commandLine.hasOption("gen") ? commandLine.getOptionValue("gen") : noGenFolder;
+		logger.info("gen folder specified: " + new File(genFolder).getAbsolutePath());
 		fileAccess.setOutputPath(genFolder);
 
 		// work with only the top design if specified
@@ -196,13 +199,6 @@ public class PhdlCompile {
 					if (issue.getSeverity().equals(Severity.ERROR))
 						logger.error(issue.toString());
 				}
-				// display warnings only if the -quiet option is not set
-				if (!commandLine.hasOption("quiet")) {
-					for (Issue issue : issues) {
-						if (issue.getSeverity().equals(Severity.WARNING))
-							logger.warn(issue.toString());
-					}
-				}
 				// display info only if the -verbose option is set
 				if (commandLine.hasOption("verbose")) {
 					for (Issue issue : issues) {
@@ -216,9 +212,9 @@ public class PhdlCompile {
 
 			// report warnings and info depending on command-line options
 			for (Issue issue : issues) {
-				if (issue.getSeverity().equals(Severity.WARNING) && !commandLine.hasOption("quiet"))
+				if (issue.getSeverity().equals(Severity.WARNING) && commandLine.hasOption("verbose"))
 					logger.warn(issue.toString());
-				if (issue.getSeverity().equals(Severity.INFO) && commandLine.hasOption("verbose"))
+				if (issue.getSeverity().equals(Severity.INFO))
 					logger.info(issue.toString());
 			}
 		}
