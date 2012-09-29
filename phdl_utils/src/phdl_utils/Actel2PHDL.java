@@ -218,10 +218,10 @@ static private String usage = "\nPHDL Compiler v0.1.\n\n"
                 + "\tTo create an Actel CSV pinout report you must open Actel's Designer program\n"
                 + "\ton your design then select \"I/O Attribute Editor\".  From within that program\n"
                 + "\tselect the \"Package Pins\" tab. That gives you a spreadsheet view of all the pins\n"
-                + "on the part. Cut and paste all the data from that spreadsheet into a\n"
-                + "Microsoft Excel spreadsheet and then save the file in .csv format.\n\n"
-                + "This author has requested that MicroSemi add .csv pinout report generation to\n"
-                + "the reports menu of Designer.\n";
+                + "\ton the part. Cut and paste all the data from that spreadsheet into a\n"
+                + "\tMicrosoft Excel spreadsheet and then save the file in .csv format.\n\n"
+                + "\tThis author has requested that MicroSemi add .csv pinout report generation to\n"
+                + "\tthe reports menu of Designer.\n";
 
 
 	/**
