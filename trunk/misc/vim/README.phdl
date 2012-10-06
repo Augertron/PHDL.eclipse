@@ -1,4 +1,10 @@
 To use with VIM:
 
-Copy ftdetect/phdl.vim  to ~/.vim/ftdetect/
-Copy syntax/phdl.vim to ~/.vim/syntax/
+On regular platforms:
+	Copy ftdetect/phdl.vim  to ~/.vim/ftdetect/
+	Copy syntax/phdl.vim to ~/.vim/syntax/
+
+On Microsoft Windows:
+	Run ":echo $HOME" within vim to find Vim's idea of your home directory[1].
+	Copy ftdetect/phdl.vim to $HOME/vimfiles/ftdetect/
+	Copy syntax/phdl.vim to $HOME/vimfiles/syntax/
