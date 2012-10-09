@@ -50,7 +50,8 @@ public abstract class Attributable extends Node {
 	 * 
 	 * @param a
 	 *            the AttributeNode to add to the set
-	 * @return true if the AttributeNode wasn't already in the set, false otherwise
+	 * @return true if the AttributeNode wasn't already in the set, false
+	 *         otherwise
 	 */
 	public boolean addAttribute(EAttribute a) {
 		return attributes.add(a);
@@ -65,7 +66,7 @@ public abstract class Attributable extends Node {
 	 */
 	public EAttribute getAttribute(String name) {
 		for (EAttribute a : attributes) {
-			if (a.getName().equals(name.toUpperCase()))
+			if (a.getName().equals(name))
 				return a;
 		}
 		return null;

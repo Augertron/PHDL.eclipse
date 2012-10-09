@@ -57,14 +57,6 @@ public class DeviceTest extends XtextTest {
 	}
 
 	@Test
-	public void testUppercaseAttrs() {
-		ignoreFormattingDifferences();
-		testFile(getClass().getSimpleName() + "/testUppercaseAttrs.phdl");
-		assertConstraints(issues.allOfThemContain("Only uppercase attribute names are recommended"));
-		assertConstraints(issues.warningsOnly().sizeIs(6));
-	}
-
-	@Test
 	public void testValidDevices() {
 		ignoreFormattingDifferences();
 		testFile(getClass().getSimpleName() + "/testValidDevice.phdl");

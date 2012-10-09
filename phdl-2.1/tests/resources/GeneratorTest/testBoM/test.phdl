@@ -1,0 +1,40 @@
+device resistor {
+
+	attr REFPREFIX = "R";
+	attr LIBRARY = "PKG";
+	attr FOOTPRINT = "FOOT";
+	attr VALUE = "15";
+}
+
+device switch {
+
+	attr REFPREFIX = "SW";
+	attr LIBRARY = "PKG";
+	attr FOOTPRINT= "SWTCH";
+}
+
+device inductor {
+
+	attr REFPREFIX = "L";
+	attr LIBRARY = "PKG";
+	attr FOOTPRINT= "IND";
+	attr VALUE = "15";
+}
+
+design top {
+
+	inst(1:8) myResAry of resistor {
+		VALUE = "121";
+	}
+
+	inst myRes of resistor {
+	}
+
+	inst ind of inductor {
+		FOOTPRINT = "23";
+	}
+
+	inst sw of switch {
+
+	}
+}

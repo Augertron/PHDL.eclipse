@@ -1,0 +1,5 @@
+QUANTITY, NAME, REFDES, LIBRARY, FOOTPRINT, VALUE
+8, resistor, R1; R2; R3; R4; R5; R6; R7; R8, PKG, FOOT, 121
+1, resistor, R9, PKG, FOOT, 15
+1, inductor, L1, PKG, 23, 15
+1, switch, SW1, PKG, SWTCH, 

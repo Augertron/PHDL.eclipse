@@ -10,7 +10,6 @@
 
 package edu.byu.ee.phdl.elaboration;
 
-
 /**
  * A class that represents an attribute.
  * 
@@ -55,7 +54,11 @@ public class EAttribute extends Node {
 
 	public EAttribute(Attributable parent, String name, String value) {
 		this.parent = parent;
-		this.name = name.toUpperCase();
+		if (name.equalsIgnoreCase("REFDES") || name.equalsIgnoreCase("LIBRARY") || name.equalsIgnoreCase("FOOTPRINT")
+				|| name.equalsIgnoreCase("REFPREFIX"))
+			this.name = name.toUpperCase();
+		else
+			this.name = name;
 		this.value = value;
 	}
 
@@ -126,7 +129,11 @@ public class EAttribute extends Node {
 	 * @param the new name of the attribute
 	 */
 	public void setName(String name) {
-		this.name = name.toUpperCase();
+		if (name.equalsIgnoreCase("REFDES") || name.equalsIgnoreCase("LIBRARY") || name.equalsIgnoreCase("FOOTPRINT")
+				|| name.equalsIgnoreCase("REFPREFIX"))
+			this.name = name.toUpperCase();
+		else
+			this.name = name;
 	}
 
 	public void setOverwritten(boolean overwritten) {

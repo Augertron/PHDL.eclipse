@@ -85,12 +85,14 @@ public class PhdlGeneratorImpl implements IGenerator {
 
 		new ElectricalRuleChecker(eDesign);
 
+		// Modifies eDesign object and adds map
 		RefDesGenerator refDesGen = new RefDesGenerator(eDesign);
+
 		String refDesFileName = name + ExtensionCodes.REFDES_EXT;
 		fsa.generateFile(refDesFileName, refDesGen.getContents());
 		logger.info("generated RDM (REFDES-Mapping): " + refDesFileName);
 
-		BoMGenerator bomGen = new BoMGenerator(eDesign);
+		BoMGenerator bomGen = new BoMGenerator(eDesign, logger);
 		String bomFileName = name + ExtensionCodes.BOM_EXT;
 		fsa.generateFile(bomFileName, bomGen.getContents());
 		logger.info("generated BOM (Bill of Material): " + bomFileName);
