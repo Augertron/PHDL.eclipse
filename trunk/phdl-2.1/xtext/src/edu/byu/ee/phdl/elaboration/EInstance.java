@@ -332,6 +332,8 @@ public class EInstance extends Attributable {
 	}
 
 	public void setIndex(int index) {
+		if (index < 0)
+			throw new IllegalArgumentException("Index may not be negative.");
 		this.index = index;
 	}
 

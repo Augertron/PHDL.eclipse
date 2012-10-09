@@ -104,6 +104,23 @@ public class GeneratorTest extends XtextTest {
 		}
 	}
 
+	@Test
+	public void testBoM() {
+		try {
+			String methodName = new Throwable().getStackTrace()[0].getMethodName();
+			logger.info(msgpfx + this.getClass().getSimpleName() + "." + methodName);
+			String testDir = path + methodName + "/";
+			PhdlModel model = parseHelper.parse(PhdlUtils
+					.readStringFromFile(testDir + "test" + ExtensionCodes.PHDL_EXT));
+			InMemoryFileSystemAccess fsa = new InMemoryFileSystemAccess();
+			underTest.doGenerate(model.eResource(), fsa);
+			testOutputFileNames(fsa, "top");
+			testOutputFiles(fsa, testDir + "golden", "top");
+		} catch (Exception e) {
+			throw Exceptions.sneakyThrow(e);
+		}
+	}
+
 	private void testOutputFileNames(InMemoryFileSystemAccess fsa, String path) {
 		assertEquals(6, fsa.getFiles().size());
 		assertTrue(fsa.getFiles().containsKey(IFileSystemAccess.DEFAULT_OUTPUT + path + ExtensionCodes.PADS_EXT));

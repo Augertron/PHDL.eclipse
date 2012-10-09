@@ -34,6 +34,7 @@ import edu.byu.ee.phdl.phdl.Import;
 import edu.byu.ee.phdl.phdl.Indices;
 import edu.byu.ee.phdl.phdl.Instance;
 import edu.byu.ee.phdl.phdl.Package;
+import edu.byu.ee.phdl.phdl.PhdlModel;
 import edu.byu.ee.phdl.phdl.PhdlPackage;
 import edu.byu.ee.phdl.phdl.Pin;
 import edu.byu.ee.phdl.phdl.PinAssign;
@@ -52,6 +53,8 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 	IResourceDescriptions resourceDescriptions;
 
 	final String[] reqAttrs = { "REFPREFIX", "LIBRARY", "FOOTPRINT" };
+
+	protected Map<String, Map<String, List<Attr>>> globalAttrs;
 
 	protected void checkAlreadyAssigned(String ref, EObject assign, Map<String, EObject> refs,
 			EStructuralFeature feature) {
@@ -96,6 +99,59 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 		ref = (assign instanceof PinAssign) ? ((PinAssign) assign).getRef().getName() : ((PortAssign) assign).getRef()
 				.getName();
 		checkAlreadyAssigned(instName + "." + ref + slices, assign, refs, feature);
+	}
+
+	@Check(CheckType.FAST)
+	public void checkGlobalAttrs(PhdlModel model) {
+
+		// Currently, we do nothing when this occurs
+
+		/*
+		 * Resource resource = model.eResource(); Iterable<Attr> attrFilter =
+		 * IterableExtensions.<Attr> filter( IteratorExtensions.<EObject>
+		 * toIterable(resource.getAllContents()), Attr.class);
+		 * 
+		 * debug("Resource URI :" + resource.getURI().toString());
+		 * 
+		 * // Create a map of all the attributes in the current resource
+		 * Map<String, List<Attr>> attrMap = new HashMap<String, List<Attr>>();
+		 * for (Attr a : attrFilter) { if
+		 * (attrMap.containsKey(a.getName().toUpperCase())) { List<Attr>
+		 * crntList = attrMap.get(a.getName().toUpperCase()); crntList.add(a); }
+		 * else { List<Attr> attrList = new LinkedList<Attr>(); attrList.add(a);
+		 * attrMap.put(a.getName().toUpperCase(), attrList); } }
+		 * 
+		 * // If needed create the global map of attributes keyed by resource
+		 * file if (globalAttrs == null) globalAttrs = new HashMap<String,
+		 * Map<String, List<Attr>>>(); // Update the global Attribute map with
+		 * this files current attributes
+		 * globalAttrs.put(resource.getURI().toString(), new HashMap<String,
+		 * List<Attr>>(attrMap));
+		 * 
+		 * debug("-------------------------------");
+		 * 
+		 * // generate a map of all the attributes in the global Attrs map
+		 * Map<String, List<Attr>> allAttrsMap = new HashMap<String,
+		 * List<Attr>>(); for (String uri : globalAttrs.keySet()) { for (String
+		 * key : globalAttrs.get(uri).keySet()) { if
+		 * (allAttrsMap.containsKey(key)) { for (Attr a :
+		 * globalAttrs.get(uri).get(key)) allAttrsMap.get(key).add(a); } else
+		 * allAttrsMap.put(key, new
+		 * LinkedList<Attr>(globalAttrs.get(uri).get(key))); } }
+		 * 
+		 * // Throw a warning for every attribute with the same name but a //
+		 * difference in case for (String key : allAttrsMap.keySet()) {
+		 * debug(key); List<Attr> crntAttrList = allAttrsMap.get(key);
+		 * Set<String> warningSet = new HashSet<String>(); for (Attr a :
+		 * crntAttrList) warningSet.add(a.getName()); if (warningSet.size() > 1)
+		 * for (Attr a : crntAttrList) if
+		 * (a.eResource().getURI().toString().equals
+		 * (resource.getURI().toString()))
+		 * warning("Attribute declared with same name, but different case.", a,
+		 * PhdlPackage.Literals.ATTR__NAME, -1); debug("List size = " +
+		 * crntAttrList.size()); debug("Set size = " + warningSet.size()); }
+		 * debug("Hi");
+		 */
 	}
 
 	@Check(CheckType.FAST)
@@ -354,18 +410,6 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 	}
 
 	@Check(CheckType.FAST)
-	public void checkDeviceAttributes(Device d) {
-		for (DeviceElement element : d.getElements()) {
-			if (element instanceof Attr) {
-				Attr a = (Attr) element;
-				if (!a.getName().toUpperCase().equals(a.getName()))
-					warning("Only uppercase attribute names are recommended.", a, PhdlPackage.Literals.ATTR__NAME, -1,
-							IssueCodes.NOT_UPPERCASE, a.getName());
-			}
-		}
-	}
-
-	@Check(CheckType.FAST)
 	public void checkDevicePhysicalPinNames(Device d) {
 		Map<String, Pin> pinMap = new HashMap<String, Pin>();
 		for (DeviceElement element : d.getElements()) {
@@ -449,7 +493,7 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 		for (DeviceElement element : d.getElements()) {
 			if (element instanceof Attr) {
 				Attr a = (Attr) element;
-				if (a.getName().toUpperCase().equals("REFPREFIX")) {
+				if (a.getName().toUpperCase().equalsIgnoreCase("REFPREFIX")) {
 					if (!a.getValue().toUpperCase().equals(a.getValue()))
 						warning("Only uppercase REFPREFIX value recommended.", a, PhdlPackage.Literals.ATTR__VALUE, -1);
 				}
@@ -464,7 +508,7 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 			for (DeviceElement element : d.getElements()) {
 				if (element instanceof Attr) {
 					Attr a = (Attr) element;
-					if (a.getName().toUpperCase().equals(reqAttr)) {
+					if (a.getName().equalsIgnoreCase(reqAttr)) {
 						found = true;
 						break;
 					}
@@ -544,9 +588,6 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 			for (EObject element : i.getElements()) {
 				if (element instanceof Attr) {
 					Attr a = (Attr) element;
-					if (!a.getName().equals(a.getName().toUpperCase()))
-						warning("Only uppercase attribute names are recommended.", a, PhdlPackage.Literals.ATTR__NAME,
-								-1, IssueCodes.NOT_UPPERCASE, a.getName());
 
 					for (Integer index : PhdlUtils.getIndices(i.getArray().getMsb(), i.getArray().getLsb())) {
 						String attr = i.getName() + "(" + index + ")." + a.getName().toUpperCase();
@@ -569,9 +610,6 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 			for (EObject element : i.getElements()) {
 				if (element instanceof Attr) {
 					Attr a = (Attr) element;
-					if (!a.getName().equals(a.getName().toUpperCase()))
-						warning("Only uppercase attribute names are recommended.", a, PhdlPackage.Literals.ATTR__NAME,
-								-1, IssueCodes.NOT_UPPERCASE, a.getName());
 					String attr = i.getName() + "." + a.getName().toUpperCase();
 					if (attrs.get(attr) != null) {
 						EStructuralFeature f = PhdlPackage.Literals.ATTR__NAME;
@@ -1580,5 +1618,11 @@ public class PhdlJavaValidator extends AbstractPhdlJavaValidator {
 
 	protected void qualifierNotAllowedError(EObject object, EStructuralFeature feature) {
 		error("Qualifier not allowed.", object, feature, -1, IssueCodes.QUALIFIER_NOT_ALLOWED);
+	}
+
+	protected void debug(String s) {
+		boolean debugOn = false;
+		if (debugOn)
+			System.out.println(s);
 	}
 }

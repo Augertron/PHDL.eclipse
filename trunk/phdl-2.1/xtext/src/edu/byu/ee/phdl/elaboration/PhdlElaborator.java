@@ -234,12 +234,14 @@ public class PhdlElaborator {
 				RefAttr refAttr = (RefAttr) element;
 				for (EInstance inst : getRelevantInstances(eDesign, instance, refAttr))
 					inst.getAttribute(refAttr.getRef().getName()).setValue(refAttr.getValue());
-			/*} else if (element instanceof NewAttr) {
-				NewAttr newAttr = (NewAttr) element;
-				for (EInstance inst : getRelevantInstances(eDesign, instance, newAttr)) {
-					EAttribute eAttribute = new EAttribute(inst, newAttr.getName(), newAttr.getValue());
-					inst.addAttribute(eAttribute);
-				}*/
+				/*
+				 * } else if (element instanceof NewAttr) { NewAttr newAttr =
+				 * (NewAttr) element; for (EInstance inst :
+				 * getRelevantInstances(eDesign, instance, newAttr)) {
+				 * EAttribute eAttribute = new EAttribute(inst,
+				 * newAttr.getName(), newAttr.getValue());
+				 * inst.addAttribute(eAttribute); }
+				 */
 			} else if (element instanceof PinAssign) {
 				PinAssign pinAssign = (PinAssign) element;
 				List<EInstance> insts = getRelevantInstances(eDesign, instance, pinAssign);
@@ -461,11 +463,11 @@ public class PhdlElaborator {
 			isQualified = ((RefAttr) element).getQualifier() != null;
 			if (isQualified)
 				indices = ((RefAttr) element).getQualifier().getIndices();
-		} /*else if (element instanceof NewAttr) {
-			isQualified = ((NewAttr) element).getQualifier() != null;
-			if (isQualified)
-				indices = ((NewAttr) element).getQualifier().getIndices();
-		} */else if (element instanceof PinAssign) {
+		} /*
+		 * else if (element instanceof NewAttr) { isQualified = ((NewAttr)
+		 * element).getQualifier() != null; if (isQualified) indices =
+		 * ((NewAttr) element).getQualifier().getIndices(); }
+		 */else if (element instanceof PinAssign) {
 			isQualified = ((PinAssign) element).getQualifier() != null;
 			if (isQualified)
 				indices = ((PinAssign) element).getQualifier().getIndices();
@@ -514,8 +516,10 @@ public class PhdlElaborator {
 				refs.add(new Reference(((Instance) tail.getRef()).getName(), tail.getRefIndices()));
 			else if (tail.getRef() instanceof Attr)
 				refs.add(new Reference(((Attr) tail.getRef()).getName(), null));
-			/*else if (tail.getRef() instanceof NewAttr)
-				refs.add(new Reference(((NewAttr) tail.getRef()).getName(), null));*/
+			/*
+			 * else if (tail.getRef() instanceof NewAttr) refs.add(new
+			 * Reference(((NewAttr) tail.getRef()).getName(), null));
+			 */
 			else if (tail.getRef() instanceof RefAttr)
 				refs.add(new Reference(((RefAttr) tail.getRef()).getRef().getName(), null));
 			tail = tail.getTail();

@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import org.apache.commons.cli.CommandLine;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -22,6 +23,8 @@ import com.google.common.collect.Lists;
  * Equinox extension registry.
  */
 public class PhdlRuntimeModule extends edu.byu.ee.phdl.AbstractPhdlRuntimeModule {
+
+	private final CommandLine commandLine = edu.byu.ee.phdl.compile.PhdlCompile.getCommandLine();
 
 	public static class FixedFlatResourceSetBasedAllContainersState extends FlatResourceSetBasedAllContainersState {
 
@@ -59,5 +62,14 @@ public class PhdlRuntimeModule extends edu.byu.ee.phdl.AbstractPhdlRuntimeModule
 	@Override
 	public Class<? extends org.eclipse.xtext.generator.IGenerator> bindIGenerator() {
 		return edu.byu.ee.phdl.generator.PhdlGeneratorImpl.class;
+	}
+
+	@Override
+	@org.eclipse.xtext.service.SingletonBinding(eager = true)
+	public Class<? extends edu.byu.ee.phdl.validation.PhdlJavaValidator> bindPhdlJavaValidator() {
+		if (commandLine != null)
+			return edu.byu.ee.phdl.validation.PhdlJavaCommandLineValidator.class;
+		else
+			return edu.byu.ee.phdl.validation.PhdlJavaValidator.class;
 	}
 }

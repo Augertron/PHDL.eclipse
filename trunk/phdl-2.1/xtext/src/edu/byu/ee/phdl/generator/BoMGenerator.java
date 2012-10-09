@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import org.apache.log4j.Logger;
+
 import edu.byu.ee.phdl.elaboration.EAttribute;
 import edu.byu.ee.phdl.elaboration.EDesign;
 import edu.byu.ee.phdl.elaboration.EHierarchyUnit;
@@ -71,6 +73,7 @@ public class BoMGenerator {
 	private final List<String> headers;
 	private List<String> excludes;
 	private String bom;
+	private static Logger logger;
 
 	/**
 	 * Default Constructor.
@@ -82,8 +85,9 @@ public class BoMGenerator {
 	 *            the DesignNode that contains all of the attribute information.
 	 * @see EDesign
 	 */
-	public BoMGenerator(EDesign d) {
+	public BoMGenerator(EDesign d, Logger l) {
 		design = d;
+		logger = l;
 		rows = new ArrayList<Row>();
 		headers = new ArrayList<String>();
 		generate();
@@ -181,6 +185,12 @@ public class BoMGenerator {
 		for (EInstance i : des.getInstances()) {
 			for (EAttribute a : i.getAttributes()) {
 				if (!excludes.contains(a.getName()) && !headers.contains(a.getName())) {
+					for (String head : headers) {
+						if (head.equalsIgnoreCase(a.getName()))
+							logger.warn("Attribute declared with same name, but different case: " + a.getName()
+									+ " at instance: " + i.getHierarchyPrefix() + i.getNameIndex()
+									+ ", adding to BoM...");
+					}
 					headers.add(a.getName());
 				}
 			}
