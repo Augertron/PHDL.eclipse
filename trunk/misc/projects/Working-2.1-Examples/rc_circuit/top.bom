@@ -1,0 +1,4 @@
+QUANTITY, NAME, REFDES, LIBRARY, FOOTPRINT, VALUE
+1, resistor, R1, rcl, R0603, 1k
+1, capacitor, C1, rcl, C0603, 100uF
+2, hdr_2x1, J1; J2, pinhead, 1X02, 
