@@ -1,0 +1,28 @@
+
+/*************************************
+ * RC Circuit Design
+ */
+design top {
+	
+	net in, out, gnd;
+	
+	// an instance of a resistor
+	inst my_res of resistor {
+		a = in;
+		b = out;
+	}
+	
+	//an instance of a polarized capacitor
+	inst my_cap of capacitor {
+		pos = out;
+		neg = gnd;
+	}
+	
+	//the input and output connectors
+	//I/O is on p[1], and gnd is on p[0]
+	inst(1:0) my_io of hdr_2x1 {	//Instances an array of 2 headers indexed from 1 to 0
+		this(1).p[1] = in;	//Assigns pin 1 of the 1st instance or my_io to the in net
+		this(0).p[1] = out;	//Assigns pin 1 of the 0th instance of my_io to the out net
+		p[0] = gnd;		//Assigns pin 0 of both instances of my_io to the gnd net
+	}				
+}

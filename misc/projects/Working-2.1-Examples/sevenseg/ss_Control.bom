@@ -1,0 +1,5 @@
+QUANTITY, NAME, REFDES, LIBRARY, FOOTPRINT, COST, VALUE
+1, Battery, G1, battery, 1V60R, 1.50, 
+1, SevenSeg, LD1, led, MS243, 2.00, 
+8, Switch, SW1; SW2; SW3; SW4; SW5; SW6; SW7; SW8, switches, MS243, 1.18, 
+8, Resistor, R1; R2; R3; R4; R5; R6; R7; R8, rcl, M0805, 0.05, 120

@@ -1,0 +1,4 @@
+C1,my_cap
+J1,my_io(1)
+J2,my_io(0)
+R1,my_res
