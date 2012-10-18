@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="edu.byu.ee.phdl.xtext.feature"
-      label="PHDL IDE Feature"
+      label="PHDL IDE 2.1.2"
       version="2.1.2.qualifier"
       provider-name="Brigham Young University">
 
@@ -700,7 +700,7 @@ Public License instead of this License.  But first, please read
    </license>
 
    <url>
-      <update label="PHDL IDE Site" url="https://phdl.svn.sourceforge.net/svnroot/phdl/trunk/plugin-2.x/xtext.update"/>
+      <update label="PHDL IDE Site" url="http://phdl.sourceforge.net/update"/>
    </url>
 
    <requires>
@@ -737,6 +737,14 @@ Public License instead of this License.  But first, please read
    </requires>
 
    <plugin
+         id="edu.byu.ee.phdl.log4j"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         fragment="true"
+         unpack="false"/>
+
+   <plugin
          id="edu.byu.ee.phdl.xtext"
          download-size="0"
          install-size="0"
@@ -748,14 +756,6 @@ Public License instead of this License.  But first, please read
          download-size="0"
          install-size="0"
          version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="edu.byu.ee.phdl.log4j"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
          unpack="false"/>
 
 </feature>
