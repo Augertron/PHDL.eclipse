@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: edu.byu.ee.phdl.xtext.tests
 Bundle-Vendor: Brigham Young University
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 2.1.2.qualifier
 Bundle-SymbolicName: edu.byu.ee.phdl.xtext.tests;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.core.runtime,
