@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/edu.byu.ee.phdl.xtext.feature_1.0.0.201207061313.jar" id="edu.byu.ee.phdl.xtext.feature" version="1.0.0.201207061313">
+   <feature url="features/edu.byu.ee.phdl.xtext.feature_2.1.2.201210191909.jar" id="edu.byu.ee.phdl.xtext.feature" version="2.1.2.201210191909">
       <category name="PHDL"/>
    </feature>
    <category-def name="PHDL" label="PHDL"/>
