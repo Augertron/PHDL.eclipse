@@ -1,0 +1,11 @@
+Hey, to make the executable jar file for phdl_utils do this. 
+
+Inside eclipse -> right click on the project -> export -> executable jar file.  
+
+At this point you are in a wizard.  You have to select one of the launch files. I don't know why.
+
+Then select the the radio button to export libraries into the jar file.
+
+Tell it where you want your jar file to go. Default is in the workspace root.
+
+Good luck.
