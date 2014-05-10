@@ -291,7 +291,7 @@ public class CSV2PHDL {
 				}
 			}else{ // Put it in PowHash.
 				RootName = SigName;
-				String pinNumString = CSVStringArray[r][0];
+				//String pinNumString = CSVStringArray[r][0];
 				if (PowHash.containsKey(RootName)) {
 					PinHash = (TreeMap<String, String[]>) PowHash.get(RootName);
 					((TreeMap<String, String[]>) PowHash.get(RootName)).put(CSVStringArray[r][0],CSVStringArray[r]);
