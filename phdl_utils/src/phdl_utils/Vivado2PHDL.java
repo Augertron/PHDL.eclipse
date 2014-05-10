@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Comparator;
 //import java.util.Comparator;
 import java.util.Iterator;
 import java.util.TreeMap;
@@ -11,6 +12,30 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.Ostermiller.util.CSVParser;
+
+
+/**
+ * This Comparator class is used to compare vector pins that have numeric indexes inclosed in []
+ * brackets. In other words std_logic_vectors.
+ */
+class VivSigCompare implements Comparator<Object> {
+	public int compare(Object o1, Object o2) {
+		String i1 = (String) o1;
+		String i2 = (String) o2;
+		Pattern IndexPat = Pattern.compile("\\[[0-9]+\\]");
+		Matcher IndexPatMatcher_o1 = IndexPat.matcher(i1);
+		Matcher IndexPatMatcher_o2 = IndexPat.matcher(i2);
+		// If it is a vector signal extract the vector indexes and compare them.
+		if ((IndexPatMatcher_o1.find()) && (IndexPatMatcher_o2.find())) {
+			Integer Index_o1 = Integer.parseInt(i1.substring(IndexPatMatcher_o1.start() + 1, IndexPatMatcher_o1.end() - 1));
+			Integer Index_o2 = Integer.parseInt(i2.substring(IndexPatMatcher_o2.start() + 1, IndexPatMatcher_o2.end() - 1));
+			return -Index_o1.compareTo(Index_o2);
+		} else {
+			return -i1.compareTo(i2);
+		}
+	}
+}
+
 
 /**
  * This program reads Xilinx Comma Separated Value, csv, files and generates customized component
@@ -27,11 +52,10 @@ public class Vivado2PHDL {
 	 * @return
 	 */
 	public static Integer getIndex(String SigString) {
-		Pattern IndexPat = Pattern.compile("<[0-9]+>");
+		Pattern IndexPat = Pattern.compile("\\[[0-9]+\\]");
 		Matcher IndexPatMatcher_o1 = IndexPat.matcher(SigString);
 		if ((IndexPatMatcher_o1.find())) {
-			return Integer.parseInt(SigString.substring(IndexPatMatcher_o1.start() + 1,
-				IndexPatMatcher_o1.end() - 1));
+			return Integer.parseInt(SigString.substring(IndexPatMatcher_o1.start() + 1, IndexPatMatcher_o1.end() - 1));
 		} else {
 			return (999);
 		}
@@ -51,13 +75,13 @@ public class Vivado2PHDL {
 		TreeMap<String, TreeMap<String, String[]>> UnusedHash, String PartNum, String Package,
 		String FileRoot) {
 
-		System.out
-			.println("\n// Device declaration extracted from Xilinx " + FileRoot + "_pad.csv");
+		System.out.println("\n// Device declaration extracted from Xilinx " + FileRoot + "_pad.csv");
 		System.out.println("device " + FileRoot + " is");
 		System.out.println("\tattr refPrefix = \"U\";");
 		System.out.println("\tattr pkg_type = \"" + Package + "\";");
 		System.out.println("\tattr mfgr = \"XILINX\";");
 		System.out.println("\tattr partNumber = \"" + PartNum + "\";\n");
+		
 		System.out.println("\t// User I/O pins.");
 		Iterator<String> it = SigHash.keySet().iterator();
 		while (it.hasNext()) {
@@ -66,17 +90,22 @@ public class Vivado2PHDL {
 			if (vectorSize == 1) {
 				System.out.print("\tpin  " + ((String) KeyString) + " = {");
 			} else {
-				Integer firstIndex = getIndex((String) ((TreeMap<String, String[]>) SigHash.get(KeyString))
-					.firstKey());
-				Integer lastIndex = getIndex((String) ((TreeMap<String, String[]>) SigHash.get(KeyString)).lastKey());
-				System.out.print("\tpin" + "[" + firstIndex + ":" + lastIndex + "] "
-					+ ((String) KeyString) + " = {");
+				
+				TreeMap<String, String[]> junk = SigHash.get(KeyString);
+				Iterator<String> junk_it = junk.keySet().iterator();
+				while (junk_it.hasNext()) {
+					Object junk_key = junk_it.next();
+					System.out.println(junk.get(junk_key)[1] + junk_key);
+				}
+				
+				Integer firstIndex = getIndex((String) ((TreeMap<String, String[]>) SigHash.get(KeyString)).firstKey());
+				Integer lastIndex  = getIndex((String) ((TreeMap<String, String[]>) SigHash.get(KeyString)).lastKey());
+				System.out.print("\tpin" + "[" + firstIndex + ":" + lastIndex + "] " + ((String) KeyString) + " = {");
 			}
 			Iterator<String> innerIt = ((TreeMap<String, String[]>) SigHash.get(KeyString)).keySet().iterator();
 			while (innerIt.hasNext()) {
 				Object innerKeyString = innerIt.next();
-				System.out
-					.print(((String[]) ((TreeMap<String, String[]>) SigHash.get(KeyString)).get(innerKeyString))[0]);
+				System.out.print(((String[]) ((TreeMap<String, String[]>) SigHash.get(KeyString)).get(innerKeyString))[1]);
 				if (innerIt.hasNext())
 					System.out.print(",");
 			}
@@ -114,8 +143,7 @@ public class Vivado2PHDL {
 			Iterator<String> innerIt = ((TreeMap<String, String[]>) UnusedHash.get(KeyString)).keySet().iterator();
 			while (innerIt.hasNext()) {
 				Object innerKeyString = innerIt.next();
-				System.out.print(((String[]) ((TreeMap<String, String[]>) UnusedHash.get(KeyString))
-					.get(innerKeyString))[0]);
+				System.out.print(((String[]) ((TreeMap<String, String[]>) UnusedHash.get(KeyString)).get(innerKeyString))[1]);
 				if (innerIt.hasNext())
 					System.out.print(",");
 			}
@@ -255,40 +283,39 @@ public class Vivado2PHDL {
 		TreeMap<String, TreeMap<String, String[]>> UnusedHash = new TreeMap<String, TreeMap<String, String[]>>();
 		String SigName = "junk";
 		String RootName;
-		Pattern IndexPat = Pattern.compile("<[0-9]+>");
+		Pattern IndexPat = Pattern.compile("\\[[0-9]+\\]");
 		Matcher IndexPatMatcher = IndexPat.matcher(SigName);
 		int pin_count = 0;
 		TreeMap<String, String[]> PinHash;
+		//System.out.println(" CSVStringArray.length="+ CSVStringArray.length+"\n");
 		for (int r = 0; r < CSVStringArray.length; r++) {
-			if ((CSVStringArray[r][0] != "") && (!CSVStringArray[r][0].contains("IO Bank"))) { // If valid pin.
+			if (!CSVStringArray[r][0].contains("IO Bank")) { // If valid pin.
 				pin_count++;
 				if (CSVStringArray[r][9] != "") { // if this pin has a signal name.
-					SigName = CSVStringArray[r][1];
+					SigName = CSVStringArray[r][9];
 					IndexPatMatcher.reset(SigName);
 					if (IndexPatMatcher.find()) { // This pin is part of a std_logic_vector.
 						RootName = SigName.substring(0, IndexPatMatcher.start());
 						if (SigHash.containsKey(RootName)) {
-							((TreeMap<String, String[]>) SigHash.get(RootName)).put(CSVStringArray[r][1],
-								CSVStringArray[r]);
+							((TreeMap<String, String[]>) SigHash.get(RootName)).put(CSVStringArray[r][1], CSVStringArray[r]);
 						} else {
-							PinHash = new TreeMap<String, String[]>(new SigCompare());
-							PinHash.put(CSVStringArray[r][1], CSVStringArray[r]);
+							PinHash = new TreeMap<String, String[]>(new VivSigCompare());
+							PinHash.put(CSVStringArray[r][9], CSVStringArray[r]);
 							SigHash.put(RootName, PinHash);
 						}
 					} else { // Not part of a std_logic_vector so just add to hashtable.
 						PinHash = new TreeMap<String, String[]>();
-						PinHash.put(CSVStringArray[r][1], CSVStringArray[r]);
-						SigHash.put(CSVStringArray[r][1], PinHash);
+						PinHash.put(CSVStringArray[r][9], CSVStringArray[r]);
+						SigHash.put(CSVStringArray[r][9], PinHash);
 					}
 				} else { // This pin does not have a signal name (power or dedicated pin).
 					if (CSVStringArray[r][2] == "") { // If not an unused pin.
 						RootName = CSVStringArray[r][3];
 						if (PowHash.containsKey(RootName)) {
-							((TreeMap<String, String[]>) PowHash.get(RootName)).put(CSVStringArray[r][0],
-								CSVStringArray[r]);
+							((TreeMap<String, String[]>) PowHash.get(RootName)).put(CSVStringArray[r][1], CSVStringArray[r]);
 						} else {
 							PinHash = new TreeMap<String, String[]>();
-							PinHash.put(CSVStringArray[r][0], CSVStringArray[r]);
+							PinHash.put(CSVStringArray[r][1], CSVStringArray[r]);
 							PowHash.put(RootName, PinHash);
 						}
 					} else { // If pin is an UNUSED i/o pin.
@@ -296,6 +323,7 @@ public class Vivado2PHDL {
 						PinHash = new TreeMap<String, String[]>();
 						PinHash.put(RootName, CSVStringArray[r]);
 						UnusedHash.put(RootName, PinHash);
+						//System.out.println(RootName+"\n");
 					}
 
 				}
@@ -304,66 +332,33 @@ public class Vivado2PHDL {
 
 		// Lets scan the csv file for the PART TYPE, SPEED GRADE and PACKAGE.
 		String WholeFileString = readFile(args[0]);
-		Pattern PartNumPat = Pattern.compile("(#PART TYPE:([ ]+)([0-9a-zA-Z]+))");
+		Pattern PartNumPat = Pattern.compile("(Part:([ ]+)([0-9a-zA-Z|-]+))");
 		Matcher PartNumMatcher = PartNumPat.matcher(WholeFileString);
 		String PART_NUMBER;
 		if (PartNumMatcher.find()) {
 			PART_NUMBER = PartNumMatcher.group(3);
-			System.out.println("//PART TYPE = " + PART_NUMBER);
+			System.out.println("// PART TYPE = " + PART_NUMBER);
 		} else {
 			PART_NUMBER = "pn_not_found:";
-			System.out.println("//PART TYPE: not found");
+			System.out.println("// PART TYPE: not found");
 		}
 
-		PartNumPat = Pattern.compile("(#SPEED GRADE:([ ]+)([-0-9a-zA-Z-]+))");
-		PartNumMatcher = PartNumPat.matcher(WholeFileString);
-		String SPEED_GRADE;
-		if (PartNumMatcher.find()) {
-			SPEED_GRADE = PartNumMatcher.group(3);
-			System.out.println("//SPEED GRADE = " + SPEED_GRADE);
+		Pattern DesignNamePat = Pattern.compile("(#Top:([ ]+)([0-9a-zA-Z|-|_]+))");
+		Matcher DesignNameMatcher = DesignNamePat.matcher(WholeFileString);
+		String DesignName;
+		if (DesignNameMatcher.find()) {
+			DesignName = DesignNameMatcher.group(3);
+			System.out.println("// Design Name = " + DesignName);
 		} else {
-			SPEED_GRADE = "speed_grade_not_found:";
-			System.out.println("//SPEED GRADE: not found");
+			DesignName = "desname_not_found:";
+			System.out.println("// Design Name: not found");
 		}
 
-		PartNumPat = Pattern.compile("(#PACKAGE:([ ]+)([-0-9a-zA-Z-]+))");
-		PartNumMatcher = PartNumPat.matcher(WholeFileString);
-		String PACKAGE;
-		if (PartNumMatcher.find()) {
-			PACKAGE = PartNumMatcher.group(3);
-			System.out.println("//PACKAGE = " + PACKAGE);
-		} else {
-			PACKAGE = "package_not_found";
-			System.out.println("//PACKAGE: not found");
-		}
-
-		PartNumPat = Pattern.compile("(#OUTPUT FILE:([ ]+)([-_.0-9a-zA-Z-]+))");
-		PartNumMatcher = PartNumPat.matcher(WholeFileString);
-		String InputFile;
-		String FileRoot = "junk";
-		if (PartNumMatcher.find()) {
-			InputFile = PartNumMatcher.group(3);
-			System.out.println("//INPUT FILE = " + InputFile);
-			PartNumPat = Pattern.compile("_pad.csv");
-			IndexPatMatcher = PartNumPat.matcher(InputFile);
-			if (IndexPatMatcher.find()) {
-				FileRoot = InputFile.substring(0, IndexPatMatcher.start());
-			} else {
-				FileRoot = InputFile;
-			}
-			System.out.println("//Root Filename = " + FileRoot);
-		} else {
-			InputFile = "input_file_not_found";
-			System.out.println("INPUT FILE: not found");
-		}
-
-		String FullPartNum = PART_NUMBER + SPEED_GRADE + PACKAGE;
-		System.out.println("//Full Part Number = " + FullPartNum);
 
 		// OK, now we have all the data organized into a hash table of hash tables.
 		// These functions walk through the data and print the output file.
 
-		PrintDeclaration(SigHash, PowHash, UnusedHash, FullPartNum, PACKAGE, FileRoot);
+		PrintDeclaration(SigHash, PowHash, UnusedHash, PART_NUMBER, "", DesignName);
 		PrintInstantiation(SigHash, PowHash, UnusedHash);
 
 		System.out.println("\n//Total pins found = " + pin_count);
