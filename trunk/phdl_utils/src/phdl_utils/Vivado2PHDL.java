@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+//import java.util.Comparator;
 import java.util.Iterator;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
@@ -17,7 +18,7 @@ import com.Ostermiller.util.CSVParser;
  * 
  * @author pedro
  */
-public class Xilinx2PHDL {
+public class Vivado2PHDL {
 
 	/**
 	 * This little function returns the integer value of the index of a vector signal name.
@@ -194,10 +195,10 @@ public class Xilinx2PHDL {
 		+ " * PURPOSE. See the GNU General Public License for more details. You should have received a copy of\r\n"
 		+ " * the GNU General Public License along with this program. If not, see\r\n"
 		+ " * <http://www.gnu.org/licenses/>.\n\n" + "" + "Usage:\n\n"
-		+ "\tjava phdl_utils.Xilinx2PHDL <filename.csv>"
+		+ "\tjava phdl_utils.Vivado2PHDL <filename.csv>"
 		+ "\t is the xilinx Comma Separated Value file. Output goes to standard out.\n"
 		+ "\tYou will probably want to run this program something like this.\n"
-		+ "\t\t\"java phdl_utils.Xilinx2PHDL design_name.csv > design_name.phdl\"\n"
+		+ "\t\t\"java phdl_utils.Vivado2PHDL design_name.csv > design_name.phdl\"\n"
 		+ "\tthen edit junk.txt to cut and paste the output into your design.\n";
 
 	/**
@@ -205,14 +206,18 @@ public class Xilinx2PHDL {
 	 * template.
 	 * 
 	 * First the entire CSV table is read into an array of strings using
-	 * com.Ostermiller.util.CSVParser. Columns 0 through 15 are defined as follows. Pin
-	 * Number,Signal Name, Pin Usage,Pin Name,Direction,IO Standard,IO Bank Number,Drive (mA),Slew
-	 * Rate,Termination,IOB Delay,Voltage,Constraint,IO Register,Signal Integrity
+	 * com.Ostermiller.util.CSVParser. Columns 0 through 15 are defined as follows:
+	 *  
+	 * IOBank, PinNumber, IOB Alias, SiteType, MinTrace, MaxTrace, TraceLength, 
+	 * Prohibit, Interface, SignalName, Direction, DiffPairType, DiffPairSignal, 
+	 * IOStandard, Drive(mA), SlewRate, Output Impedance, ......
 	 * 
 	 * Then let's find all the unique signal identifiers. We need a little logic to decide what to
-	 * do with the signal. If there is a non-null string in column 1 then the signal comes from the
+	 * do with the signal. If there is a non-null string in the SignalName column(9) then the signal comes from the
 	 * compiled FPGA design. Vector signals from the compiled design should be combined into a
-	 * single HDL component pin. Next we can look for "UNUSED" in column 4. Unused pins could be
+	 * single HDL component pin. 
+	 * 
+	 * Next we can look for "UNUSED" in column 4. Unused pins could be
 	 * left off the component definition or just appended to the bottom of the file for convenience.
 	 * For now we append. Otherwise, we should look to see if it is a power or ground pin by looking
 	 * in column 3. Power and grounds can be found in column 3 and need to be grouped, ie we want
@@ -255,9 +260,9 @@ public class Xilinx2PHDL {
 		int pin_count = 0;
 		TreeMap<String, String[]> PinHash;
 		for (int r = 0; r < CSVStringArray.length; r++) {
-			if ((CSVStringArray[r][0] != "") && (!CSVStringArray[r][0].contains("Pin Number"))) { // If valid pin.
+			if ((CSVStringArray[r][0] != "") && (!CSVStringArray[r][0].contains("IO Bank"))) { // If valid pin.
 				pin_count++;
-				if (CSVStringArray[r][1] != "") { // if this pin has a signal name.
+				if (CSVStringArray[r][9] != "") { // if this pin has a signal name.
 					SigName = CSVStringArray[r][1];
 					IndexPatMatcher.reset(SigName);
 					if (IndexPatMatcher.find()) { // This pin is part of a std_logic_vector.
@@ -276,7 +281,7 @@ public class Xilinx2PHDL {
 						SigHash.put(CSVStringArray[r][1], PinHash);
 					}
 				} else { // This pin does not have a signal name (power or dedicated pin).
-					if (!CSVStringArray[r][4].contains("UNUSED")) { // If not an unused pin.
+					if (CSVStringArray[r][2] == "") { // If not an unused pin.
 						RootName = CSVStringArray[r][3];
 						if (PowHash.containsKey(RootName)) {
 							((TreeMap<String, String[]>) PowHash.get(RootName)).put(CSVStringArray[r][0],
